@@ -479,12 +479,13 @@ export function validatePopulationRecords(
       row.category,
       row.sex ?? "",
       row.referenceYear,
-      row.universe
+      row.universe,
+      row.figureBasis
     ].join("|");
     const first = seenKeys.get(key);
     if (first !== undefined) {
       errors.push(
-        `${where}: duplicates line ${first} (same source table, region, dimension, category, sex, reference year and universe).`
+        `${where}: duplicates line ${first} (same source table, region, dimension, category, sex, reference year, universe and figure basis).`
       );
       continue;
     }

@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.07.01,3,Seruyan Hilir,age_group,0-14,laki_laki,5005,jiwa,2025,registration,total_population,3.2,37,,0-14
+62.07.01,3,Seruyan Hilir,age_group,0-14,perempuan,4760,jiwa,2025,registration,total_population,3.2,37,,0-14
+62.07.01,3,Seruyan Hilir,age_group,0-14,,9765,jiwa,2025,registration,total_population,3.2,37,,0-14
+62.07.01,3,Seruyan Hilir,age_group,15-64,laki_laki,13633,jiwa,2025,registration,total_population,3.2,37,,15-64
+62.07.01,3,Seruyan Hilir,age_group,15-64,perempuan,12408,jiwa,2025,registration,total_population,3.2,37,,15-64
+62.07.01,3,Seruyan Hilir,age_group,15-64,,26041,jiwa,2025,registration,total_population,3.2,37,,15-64
+62.07.01,3,Seruyan Hilir,age_group,65+,laki_laki,672,jiwa,2025,registration,total_population,3.2,37,,65+
+62.07.01,3,Seruyan Hilir,age_group,65+,perempuan,636,jiwa,2025,registration,total_population,3.2,37,,65+
+62.07.01,3,Seruyan Hilir,age_group,65+,,1308,jiwa,2025,registration,total_population,3.2,37,,65+
+62.07.01,3,Seruyan Hilir,sex,laki_laki,,19310,jiwa,2025,registration,total_population,3.2,37,,Laki-Laki
+62.07.01,3,Seruyan Hilir,sex,perempuan,,17804,jiwa,2025,registration,total_population,3.2,37,,Perempuan
+62.07.01,3,Seruyan Hilir,total,total,,37114,jiwa,2025,registration,total_population,3.2,37,,

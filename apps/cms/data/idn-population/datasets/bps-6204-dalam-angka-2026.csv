@@ -6,6 +6,57 @@ region_code,region_level,source_region_name,dimension,category,sex,value,unit,re
 62.04.04,3,Dusun utara,total,total,,16951,jiwa,2025,projection,total_population,3.1.1,54,,
 62.04.05,3,Gunung Bintang Awai,total,total,,19510,jiwa,2025,projection,total_population,3.1.1,54,,
 62.04,2,Barito Selatan,total,total,,137055,jiwa,2025,projection,total_population,3.1.1,54,,
+62.04,2,Kabupaten Barito Selatan,age_group,0-4,laki_laki,5.84,ribu_jiwa,2025,projection,total_population,3.1.2,57,,0–4
+62.04,2,Kabupaten Barito Selatan,age_group,0-4,perempuan,5.60,ribu_jiwa,2025,projection,total_population,3.1.2,57,,0–4
+62.04,2,Kabupaten Barito Selatan,age_group,0-4,,11.44,ribu_jiwa,2025,projection,total_population,3.1.2,57,,0–4
+62.04,2,Kabupaten Barito Selatan,age_group,5-9,laki_laki,5.41,ribu_jiwa,2025,projection,total_population,3.1.2,57,,5–9
+62.04,2,Kabupaten Barito Selatan,age_group,5-9,perempuan,5.18,ribu_jiwa,2025,projection,total_population,3.1.2,57,,5–9
+62.04,2,Kabupaten Barito Selatan,age_group,5-9,,10.59,ribu_jiwa,2025,projection,total_population,3.1.2,57,,5–9
+62.04,2,Kabupaten Barito Selatan,age_group,10-14,laki_laki,5.02,ribu_jiwa,2025,projection,total_population,3.1.2,57,,10–14
+62.04,2,Kabupaten Barito Selatan,age_group,10-14,perempuan,4.73,ribu_jiwa,2025,projection,total_population,3.1.2,57,,10–14
+62.04,2,Kabupaten Barito Selatan,age_group,10-14,,9.75,ribu_jiwa,2025,projection,total_population,3.1.2,57,,10–14
+62.04,2,Kabupaten Barito Selatan,age_group,15-19,laki_laki,5.64,ribu_jiwa,2025,projection,total_population,3.1.2,57,,15–19
+62.04,2,Kabupaten Barito Selatan,age_group,15-19,perempuan,5.24,ribu_jiwa,2025,projection,total_population,3.1.2,57,,15–19
+62.04,2,Kabupaten Barito Selatan,age_group,15-19,,10.88,ribu_jiwa,2025,projection,total_population,3.1.2,57,,15–19
+62.04,2,Kabupaten Barito Selatan,age_group,20-24,laki_laki,6.07,ribu_jiwa,2025,projection,total_population,3.1.2,57,,20–24
+62.04,2,Kabupaten Barito Selatan,age_group,20-24,perempuan,5.68,ribu_jiwa,2025,projection,total_population,3.1.2,57,,20–24
+62.04,2,Kabupaten Barito Selatan,age_group,20-24,,11.75,ribu_jiwa,2025,projection,total_population,3.1.2,57,,20–24
+62.04,2,Kabupaten Barito Selatan,age_group,25-29,laki_laki,5.81,ribu_jiwa,2025,projection,total_population,3.1.2,57,,25–29
+62.04,2,Kabupaten Barito Selatan,age_group,25-29,perempuan,5.40,ribu_jiwa,2025,projection,total_population,3.1.2,57,,25–29
+62.04,2,Kabupaten Barito Selatan,age_group,25-29,,11.21,ribu_jiwa,2025,projection,total_population,3.1.2,57,,25–29
+62.04,2,Kabupaten Barito Selatan,age_group,30-34,laki_laki,5.31,ribu_jiwa,2025,projection,total_population,3.1.2,57,,30–34
+62.04,2,Kabupaten Barito Selatan,age_group,30-34,perempuan,4.96,ribu_jiwa,2025,projection,total_population,3.1.2,57,,30–34
+62.04,2,Kabupaten Barito Selatan,age_group,30-34,,10.26,ribu_jiwa,2025,projection,total_population,3.1.2,57,,30–34
+62.04,2,Kabupaten Barito Selatan,age_group,35-39,laki_laki,5.14,ribu_jiwa,2025,projection,total_population,3.1.2,57,,35–39
+62.04,2,Kabupaten Barito Selatan,age_group,35-39,perempuan,5.09,ribu_jiwa,2025,projection,total_population,3.1.2,57,,35–39
+62.04,2,Kabupaten Barito Selatan,age_group,35-39,,10.24,ribu_jiwa,2025,projection,total_population,3.1.2,57,,35–39
+62.04,2,Kabupaten Barito Selatan,age_group,40-44,laki_laki,5.10,ribu_jiwa,2025,projection,total_population,3.1.2,57,,40–44
+62.04,2,Kabupaten Barito Selatan,age_group,40-44,perempuan,4.97,ribu_jiwa,2025,projection,total_population,3.1.2,57,,40–44
+62.04,2,Kabupaten Barito Selatan,age_group,40-44,,10.07,ribu_jiwa,2025,projection,total_population,3.1.2,57,,40–44
+62.04,2,Kabupaten Barito Selatan,age_group,45-49,laki_laki,5.00,ribu_jiwa,2025,projection,total_population,3.1.2,57,,45–49
+62.04,2,Kabupaten Barito Selatan,age_group,45-49,perempuan,4.85,ribu_jiwa,2025,projection,total_population,3.1.2,57,,45–49
+62.04,2,Kabupaten Barito Selatan,age_group,45-49,,9.85,ribu_jiwa,2025,projection,total_population,3.1.2,57,,45–49
+62.04,2,Kabupaten Barito Selatan,age_group,50-54,laki_laki,4.57,ribu_jiwa,2025,projection,total_population,3.1.2,57,,50–54
+62.04,2,Kabupaten Barito Selatan,age_group,50-54,perempuan,4.32,ribu_jiwa,2025,projection,total_population,3.1.2,57,,50–54
+62.04,2,Kabupaten Barito Selatan,age_group,50-54,,8.89,ribu_jiwa,2025,projection,total_population,3.1.2,57,,50–54
+62.04,2,Kabupaten Barito Selatan,age_group,55-59,laki_laki,3.72,ribu_jiwa,2025,projection,total_population,3.1.2,57,,55–59
+62.04,2,Kabupaten Barito Selatan,age_group,55-59,perempuan,3.54,ribu_jiwa,2025,projection,total_population,3.1.2,57,,55–59
+62.04,2,Kabupaten Barito Selatan,age_group,55-59,,7.26,ribu_jiwa,2025,projection,total_population,3.1.2,57,,55–59
+62.04,2,Kabupaten Barito Selatan,age_group,60-64,laki_laki,2.92,ribu_jiwa,2025,projection,total_population,3.1.2,57,,60–64
+62.04,2,Kabupaten Barito Selatan,age_group,60-64,perempuan,2.81,ribu_jiwa,2025,projection,total_population,3.1.2,57,,60–64
+62.04,2,Kabupaten Barito Selatan,age_group,60-64,,5.73,ribu_jiwa,2025,projection,total_population,3.1.2,57,,60–64
+62.04,2,Kabupaten Barito Selatan,age_group,65-69,laki_laki,2.12,ribu_jiwa,2025,projection,total_population,3.1.2,57,,65–69
+62.04,2,Kabupaten Barito Selatan,age_group,65-69,perempuan,2.05,ribu_jiwa,2025,projection,total_population,3.1.2,57,,65–69
+62.04,2,Kabupaten Barito Selatan,age_group,65-69,,4.17,ribu_jiwa,2025,projection,total_population,3.1.2,57,,65–69
+62.04,2,Kabupaten Barito Selatan,age_group,70-74,laki_laki,1.24,ribu_jiwa,2025,projection,total_population,3.1.2,57,,70–74
+62.04,2,Kabupaten Barito Selatan,age_group,70-74,perempuan,1.34,ribu_jiwa,2025,projection,total_population,3.1.2,57,,70–74
+62.04,2,Kabupaten Barito Selatan,age_group,70-74,,2.58,ribu_jiwa,2025,projection,total_population,3.1.2,57,,70–74
+62.04,2,Kabupaten Barito Selatan,age_group,75+,laki_laki,1.04,ribu_jiwa,2025,projection,total_population,3.1.2,57,,75+
+62.04,2,Kabupaten Barito Selatan,age_group,75+,perempuan,1.35,ribu_jiwa,2025,projection,total_population,3.1.2,57,,75+
+62.04,2,Kabupaten Barito Selatan,age_group,75+,,2.4,ribu_jiwa,2025,projection,total_population,3.1.2,57,,75+
+62.04,2,Kabupaten Barito Selatan,sex,laki_laki,,69.94,ribu_jiwa,2025,projection,total_population,3.1.2,57,,Laki-Laki
+62.04,2,Kabupaten Barito Selatan,sex,perempuan,,67.11,ribu_jiwa,2025,projection,total_population,3.1.2,57,,Perempuan
+62.04,2,Kabupaten Barito Selatan,total,total,,137.06,ribu_jiwa,2025,projection,total_population,3.1.2,57,,
 62.04.01,3,Jenamas,religion,islam,,8947,jiwa,2025,registration,total_population,4.3.1,139,,Islam
 62.04.01,3,Jenamas,religion,kristen,,9,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
 62.04.01,3,Jenamas,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Katolik

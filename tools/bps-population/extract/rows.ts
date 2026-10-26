@@ -4,7 +4,7 @@
  * directly above the data; those markers are the x-anchors every number is
  * assigned to, which makes the assignment independent of the text-layer order.
  */
-import { isCellToken, isIndexToken } from "./cells";
+import { isCellToken, isIndexToken, parseCell } from "./cells";
 import type { Page, Word } from "./words";
 
 export interface Marker {
@@ -118,7 +118,7 @@ export function analysePage(page: Page): PageInfo | null {
   }
   const head = parts.join(" ");
 
-  const noteStarts = page.words.filter((w) => w.y0 > markerY && /^(catatan|sumber)\b/i.test(w.text) && w.x0 < page.width * 0.3);
+  const noteStarts = page.words.filter((w) => w.y0 > markerY && (/^(catatan|sumber|umber)[/:]/i.test(w.text) || /\/(note|source):?$/i.test(w.text)) && w.x0 < page.width * 0.3);
   const bodyBottom = Math.min(
     noteStarts.length ? Math.min(...noteStarts.map((w) => w.y0)) - 0.5 : Number.POSITIVE_INFINITY,
     page.height * 0.9
@@ -220,7 +220,7 @@ export function readBody(info: PageInfo, labelCols: 1 | 2): BodyRow[] {
       if (isNum) {
         const k = nearestMarker(info, cx(w), dataStart);
         cells[k] = cells[k] === undefined ? w.text : `${cells[k]} ${w.text}`;
-        hasNum = true;
+        if (parseCell(w.text).kind !== "na") hasNum = true;
       } else if (cx(w) < lineSplit) {
         l1.push(w.text);
       } else {
@@ -233,6 +233,15 @@ export function readBody(info: PageInfo, labelCols: 1 | 2): BodyRow[] {
   for (let i = merged.length - 1; i >= 0; i--) {
     if (merged[i]!.hasNum) {
       merged[i]!.last = true;
+      // a trailing "Hasil Registrasi" line is a second total; the row before it is the first
+      if (/^hasil\s*registrasi/i.test(merged[i]!.label1)) {
+        for (let j = i - 1; j >= 0; j--) {
+          if (merged[j]!.hasNum) {
+            merged[j]!.last = true;
+            break;
+          }
+        }
+      }
       break;
     }
   }
@@ -264,6 +273,11 @@ const GROUP_LINE = /^(kabupaten|kota)\s*\/\s*(regency|municipality|city)$/i;
 /** Joins labels that the PDF wrapped over several lines around a numbers line. */
 function mergeWrapped(rows: BodyRow[]): BodyRow[] {
   const out: BodyRow[] = [];
+  // typical distance between two data rows: a label line much closer than that is a wrapped continuation
+  const gaps: number[] = [];
+  for (let i = 1; i < rows.length; i++) if (rows[i]!.hasNum && rows[i - 1]!.hasNum) gaps.push(rows[i]!.y - rows[i - 1]!.y);
+  gaps.sort((a, b) => a - b);
+  const pitch = gaps[Math.floor(gaps.length / 2)] ?? 14;
   for (let i = 0; i < rows.length; i++) {
     const row = rows[i]!;
     const hasLabel = row.label1 !== "" || row.label2 !== "";
@@ -278,7 +292,7 @@ function mergeWrapped(rows: BodyRow[]): BodyRow[] {
       }
       const prev = out[out.length - 1];
       const startsNew = /^\d{1,3}\.\s|^\d{3}\s*\./.test(row.label1) || GROUP_LINE.test(row.label1.trim());
-      if (prev && prev.hasNum && prev.wrapped && !startsNew) {
+      if (prev && prev.hasNum && (prev.wrapped || row.y - prev.y < pitch * 0.8) && !startsNew) {
         prev.label1 = [prev.label1, row.label1].filter(Boolean).join(" ");
         prev.label2 = [prev.label2, row.label2].filter(Boolean).join(" ");
         continue;

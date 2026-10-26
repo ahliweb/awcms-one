@@ -1,0 +1,57 @@
+{
+  "datasetCode": "bps-6201-kecamatan-620103-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.01.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kotawaringin Lama Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kotawaringin Barat",
+  "publisherDomain": "6201",
+  "publisherWebsite": "https://kobarkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kotawaringin Barat (https://kobarkab.bps.go.id), publikasi \"Kecamatan Kotawaringin Lama Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6201040",
+  "publicationNumber": "62010.26008",
+  "issn": "2808-635X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kobarkab.bps.go.id/id/publication/2026/09/28/517996b89b4e54d0c7b395fb/kecamatan-kotawaringin-lama-dalam-angka-2026.html",
+  "sourceFileSha256": "fd6c369e3c3fda3b5ef4102214c3ac0eb303f36ab137287e556c01efd33e3fb5",
+  "sourceFileBytes": 13969323,
+  "sourcePages": [
+    35,
+    36,
+    37
+  ],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kotawaringin Barat.",
+  "csvPath": "datasets/bps-6201-kecamatan-620103-dalam-angka-2026.csv",
+  "csvSha256": "c8b092e8c4ca143994c1caa1dda973b674919a0c5b14c813c094befcdfee8473",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurah an di Kecamatan Kotawaringin Lama, 2025",
+      "printedPages": [
+        35,
+        36
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kotawaringin Lama , 2025",
+      "printedPages": [
+        37
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

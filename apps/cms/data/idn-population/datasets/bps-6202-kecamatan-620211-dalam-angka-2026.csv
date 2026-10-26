@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.02.11,3,Teluk Sampit,age_group,0-4,laki_laki,397,jiwa,2025,registration,total_population,3.2,35,,0 – 4
+62.02.11,3,Teluk Sampit,age_group,0-4,perempuan,361,jiwa,2025,registration,total_population,3.2,35,,0 – 4
+62.02.11,3,Teluk Sampit,age_group,0-4,,758,jiwa,2025,registration,total_population,3.2,35,,0 – 4
+62.02.11,3,Teluk Sampit,age_group,5-9,laki_laki,614,jiwa,2025,registration,total_population,3.2,35,,5 – 9
+62.02.11,3,Teluk Sampit,age_group,5-9,perempuan,573,jiwa,2025,registration,total_population,3.2,35,,5 – 9
+62.02.11,3,Teluk Sampit,age_group,5-9,,1187,jiwa,2025,registration,total_population,3.2,35,,5 – 9
+62.02.11,3,Teluk Sampit,age_group,10-14,laki_laki,611,jiwa,2025,registration,total_population,3.2,35,,10 – 14
+62.02.11,3,Teluk Sampit,age_group,10-14,perempuan,559,jiwa,2025,registration,total_population,3.2,35,,10 – 14
+62.02.11,3,Teluk Sampit,age_group,10-14,,1170,jiwa,2025,registration,total_population,3.2,35,,10 – 14
+62.02.11,3,Teluk Sampit,age_group,15-19,laki_laki,470,jiwa,2025,registration,total_population,3.2,35,,15 – 19
+62.02.11,3,Teluk Sampit,age_group,15-19,perempuan,444,jiwa,2025,registration,total_population,3.2,35,,15 – 19
+62.02.11,3,Teluk Sampit,age_group,15-19,,914,jiwa,2025,registration,total_population,3.2,35,,15 – 19
+62.02.11,3,Teluk Sampit,age_group,20-24,laki_laki,484,jiwa,2025,registration,total_population,3.2,35,,20 – 24
+62.02.11,3,Teluk Sampit,age_group,20-24,perempuan,476,jiwa,2025,registration,total_population,3.2,35,,20 – 24
+62.02.11,3,Teluk Sampit,age_group,20-24,,960,jiwa,2025,registration,total_population,3.2,35,,20 – 24
+62.02.11,3,Teluk Sampit,age_group,25-29,laki_laki,511,jiwa,2025,registration,total_population,3.2,35,,25 – 29
+62.02.11,3,Teluk Sampit,age_group,25-29,perempuan,444,jiwa,2025,registration,total_population,3.2,35,,25 – 29
+62.02.11,3,Teluk Sampit,age_group,25-29,,955,jiwa,2025,registration,total_population,3.2,35,,25 – 29
+62.02.11,3,Teluk Sampit,age_group,30-34,laki_laki,519,jiwa,2025,registration,total_population,3.2,35,,30 – 34
+62.02.11,3,Teluk Sampit,age_group,30-34,perempuan,482,jiwa,2025,registration,total_population,3.2,35,,30 – 34
+62.02.11,3,Teluk Sampit,age_group,30-34,,1001,jiwa,2025,registration,total_population,3.2,35,,30 – 34
+62.02.11,3,Teluk Sampit,age_group,35-39,laki_laki,512,jiwa,2025,registration,total_population,3.2,35,,35 – 39
+62.02.11,3,Teluk Sampit,age_group,35-39,perempuan,476,jiwa,2025,registration,total_population,3.2,35,,35 – 39
+62.02.11,3,Teluk Sampit,age_group,35-39,,988,jiwa,2025,registration,total_population,3.2,35,,35 – 39
+62.02.11,3,Teluk Sampit,age_group,40-44,laki_laki,513,jiwa,2025,registration,total_population,3.2,35,,40 – 44
+62.02.11,3,Teluk Sampit,age_group,40-44,perempuan,477,jiwa,2025,registration,total_population,3.2,35,,40 – 44
+62.02.11,3,Teluk Sampit,age_group,40-44,,990,jiwa,2025,registration,total_population,3.2,35,,40 – 44
+62.02.11,3,Teluk Sampit,age_group,45-49,laki_laki,451,jiwa,2025,registration,total_population,3.2,35,,45 – 49
+62.02.11,3,Teluk Sampit,age_group,45-49,perempuan,409,jiwa,2025,registration,total_population,3.2,35,,45 – 49
+62.02.11,3,Teluk Sampit,age_group,45-49,,860,jiwa,2025,registration,total_population,3.2,35,,45 – 49
+62.02.11,3,Teluk Sampit,age_group,50-54,laki_laki,350,jiwa,2025,registration,total_population,3.2,35,,50 – 54
+62.02.11,3,Teluk Sampit,age_group,50-54,perempuan,332,jiwa,2025,registration,total_population,3.2,35,,50 – 54
+62.02.11,3,Teluk Sampit,age_group,50-54,,682,jiwa,2025,registration,total_population,3.2,35,,50 – 54
+62.02.11,3,Teluk Sampit,age_group,55-59,laki_laki,292,jiwa,2025,registration,total_population,3.2,35,,55 – 59
+62.02.11,3,Teluk Sampit,age_group,55-59,perempuan,242,jiwa,2025,registration,total_population,3.2,35,,55 – 59
+62.02.11,3,Teluk Sampit,age_group,55-59,,534,jiwa,2025,registration,total_population,3.2,35,,55 – 59
+62.02.11,3,Teluk Sampit,age_group,60-64,laki_laki,197,jiwa,2025,registration,total_population,3.2,35,,60 – 64
+62.02.11,3,Teluk Sampit,age_group,60-64,perempuan,176,jiwa,2025,registration,total_population,3.2,35,,60 – 64
+62.02.11,3,Teluk Sampit,age_group,60-64,,373,jiwa,2025,registration,total_population,3.2,35,,60 – 64
+62.02.11,3,Teluk Sampit,age_group,65-69,laki_laki,149,jiwa,2025,registration,total_population,3.2,35,,65 – 69
+62.02.11,3,Teluk Sampit,age_group,65-69,perempuan,137,jiwa,2025,registration,total_population,3.2,35,,65 – 69
+62.02.11,3,Teluk Sampit,age_group,65-69,,286,jiwa,2025,registration,total_population,3.2,35,,65 – 69
+62.02.11,3,Teluk Sampit,age_group,70-74,laki_laki,91,jiwa,2025,registration,total_population,3.2,35,,70 – 74
+62.02.11,3,Teluk Sampit,age_group,70-74,perempuan,63,jiwa,2025,registration,total_population,3.2,35,,70 – 74
+62.02.11,3,Teluk Sampit,age_group,70-74,,154,jiwa,2025,registration,total_population,3.2,35,,70 – 74
+62.02.11,3,Teluk Sampit,age_group,75+,laki_laki,110,jiwa,2025,registration,total_population,3.2,35,,75+
+62.02.11,3,Teluk Sampit,age_group,75+,perempuan,110,jiwa,2025,registration,total_population,3.2,35,,75+
+62.02.11,3,Teluk Sampit,age_group,75+,,220,jiwa,2025,registration,total_population,3.2,35,,75+
+62.02.11,3,Teluk Sampit,sex,laki_laki,,6271,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+62.02.11,3,Teluk Sampit,sex,perempuan,,5761,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+62.02.11,3,Teluk Sampit,total,total,,12032,jiwa,2025,registration,total_population,3.2,35,,

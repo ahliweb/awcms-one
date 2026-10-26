@@ -20,6 +20,7 @@ import {
   expenditureTable,
   industryByRegion,
   religionByRegion,
+  villageSex,
   sexTable,
   totalByRegion,
   wageByAge,
@@ -33,6 +34,7 @@ import {
   coverageOfDomain,
   findRecord,
   frontMatterText,
+  loadDistrictRecords,
   loadStateRecords,
   parseFrontMatter,
   titleCase,
@@ -44,14 +46,15 @@ const REPO_ROOT = resolve(import.meta.dir, "../../..");
 const WILAYAH = join(REPO_ROOT, "apps/cms/data/idn-admin-regions/upstream/cahyadsn-wilayah/db/wilayah.sql");
 const DEFAULT_OUT = join(REPO_ROOT, "apps/cms/data/idn-population/datasets");
 
-type Handler = { id: string; description: string; multi?: boolean; run: (ctx: Ctx, nth: number) => TableResult | null };
+type Handler = { id: string; description: string; multi?: boolean; scope?: "district" | "not-district"; run: (ctx: Ctx, nth: number) => TableResult | null };
 
 export const HANDLERS: Handler[] = [
+  { id: "sex-by-village", description: "Population by sex per desa/kelurahan (Kecamatan 3.1.1)", scope: "district", run: (c, nth) => villageSex(c, nth) },
   { id: "total-by-region", description: "Total population per child region (3.1.1)", run: totalByRegion },
   {
     id: "age-by-sex",
     description: "Population by age group and sex of the covered region (3.1.2)",
-    run: (c) => sexTable(c, "age-by-sex", (k) => /^jumlahpendudukmenurutkelompokumurdanjeniskelamin/.test(k), "age"),
+    run: (c) => sexTable(c, "age-by-sex", (k) => /^jumlahpenduduk(\(ribu\))?menurutkelompokumurdanjeniskelamin/.test(k), "age"),
   },
   {
     id: "sex-by-region",
@@ -103,6 +106,8 @@ export function resolveCoverage(index: RegionIndex, domain: string, officeName?:
 }
 
 export interface ExtractOptions {
+  /** Kemendagri code of the kecamatan when the PDF is a "Kecamatan Dalam Angka" yearbook. */
+  districtCode?: string;
   officeName?: string | null;
   pdf: string;
   domain: string;
@@ -117,13 +122,18 @@ export interface ExtractOptions {
 
 export interface ExtractOutcome {
   datasetCode: string;
-  status: "written" | "refused";
+  status: "written" | "refused" | "gap-only";
   rowCounts: Record<string, number>;
   total: number;
   gaps: string[];
   report: CheckReport;
   problems: string[];
   pagesVisited: number[];
+}
+
+/** A host as state.json records it (with or without a scheme) -> `https://host`, exactly one scheme. */
+export function websiteOfHost(host: string): string {
+  return `https://${host.trim().replace(/^[a-z]+:\/\//i, "").replace(/\/+$/, "")}`;
 }
 
 /** The running page header "KOTA X DALAM ANGKA 2026" (upper case, repeated on every even page). */
@@ -142,9 +152,36 @@ function regionIndex(): RegionIndex {
   return cachedIndex;
 }
 
+/**
+ * Runs the importer's own pure manifest, CSV and consistency validators before
+ * anything is written, so a dataset the importer would refuse is never produced.
+ */
+async function importerCheck(entry: Record<string, unknown>, csv: string, index: RegionIndex, coverage: string): Promise<string[]> {
+  const base = join(REPO_ROOT, "apps/cms/src/modules/idn-admin-regions/domain");
+  const { parsePopulationManifest } = await import(join(base, "population-manifest.ts"));
+  const { parsePopulationCsv } = await import(join(base, "population-csv.ts"));
+  const { validatePopulationRecords } = await import(join(base, "population-validation.ts"));
+  const errors: string[] = [];
+  const m = parsePopulationManifest(entry);
+  if (!m.ok) errors.push(...m.errors);
+  const p = parsePopulationCsv(csv);
+  if (p.errors.length) errors.push(...p.errors);
+  else {
+    const regionLevels = new Map<string, number>();
+    for (const code of index.byCode.keys()) regionLevels.set(code, levelOfCode(code));
+    const v = validatePopulationRecords(p.records, { regionLevels, coverageRegionCode: coverage });
+    errors.push(...v.errors.slice(0, 20));
+  }
+  return errors;
+}
+
 export async function extractPdf(opt: ExtractOptions): Promise<ExtractOutcome> {
   const index = regionIndex();
-  const coverage = resolveCoverage(index, opt.domain, opt.officeName ?? opt.record?.name);
+  const isDistrict = opt.districtCode !== undefined;
+  if (isDistrict && (levelOfCode(opt.districtCode!) !== 3 || !index.byCode.has(opt.districtCode!))) {
+    throw new Error(`district code ${opt.districtCode} is not a kecamatan in wilayah.sql`);
+  }
+  const coverage = isDistrict ? opt.districtCode! : resolveCoverage(index, opt.domain, opt.officeName ?? opt.record?.name);
   if (!index.byCode.has(coverage)) throw new Error(`coverage region ${coverage} is not in wilayah.sql`);
   const coverageLevel = levelOfCode(coverage);
 
@@ -154,11 +191,20 @@ export async function extractPdf(opt: ExtractOptions): Promise<ExtractOutcome> {
     const info = analysePage(p);
     if (info) infos.push(info);
   }
-  const ctx: Ctx = { infos, index, coverage };
+  const ctx: Ctx = { infos, index, coverage, soft: coverageLevel >= 2 };
+  if (isDistrict) {
+    // Kecamatan yearbooks often print the source only once: use the publication-wide basis
+    const notes = infos.map((i) => i.notesKey).join("");
+    const reg = /registrasi|dkb|siak|catatansipil|dukcapil|kementerianagama/.test(notes);
+    const proj = /proyeksi/.test(notes);
+    ctx.defaultBasis = reg && !proj ? "registration" : proj && !reg ? "projection" : null;
+  }
+  const districtHandlers = new Set(["sex-by-village", "age-by-sex", "religion-by-region"]);
+  const handlers = isDistrict ? HANDLERS.filter((h) => districtHandlers.has(h.id)) : HANDLERS.filter((h) => h.scope !== "district");
 
   const results: TableResult[] = [];
   const gaps: string[] = [];
-  for (const h of HANDLERS) {
+  for (const h of handlers) {
     let found = 0;
     for (let nth = 0; nth < (h.multi ? 8 : 1); nth++) {
       const r = h.run(ctx, nth);
@@ -172,17 +218,27 @@ export async function extractPdf(opt: ExtractOptions): Promise<ExtractOutcome> {
   const problems: string[] = [];
   let usable = results;
   const failedTables = results.filter((r) => r.problems.length > 0);
-  for (const r of failedTables) for (const p of r.problems) problems.push(`table ${r.table} (${r.id}): ${p}`);
+  if (!opt.dropFailedTables) for (const r of failedTables) for (const p of r.problems) problems.push(`table ${r.table} (${r.id}): ${p}`);
   if (opt.dropFailedTables) {
     usable = results.filter((r) => r.problems.length === 0);
-    for (const r of failedTables) gaps.push(`table ${r.table} (${r.id}) could not be read reliably and is not included`);
+    for (const r of failedTables) gaps.push(`table ${r.table} (${r.id}) could not be read reliably and is not included (${r.problems[0]})`);
   }
   for (const r of usable) for (const g of r.gaps) gaps.push(`table ${r.table}: ${g}`);
 
-  const all: OutRow[] = usable.flatMap((r) => r.rows);
+  let all: OutRow[] = usable.flatMap((r) => r.rows);
+  let report = runChecks(all, index);
+  if (opt.dropFailedTables && report.failures.length > 0) {
+    // a table whose own figures contradict each other (a printing error in the source) is
+    // left out whole and recorded; the rest of the publication is still usable
+    const bad = new Set(report.failures.map((f) => f.sourceTable));
+    for (const t of bad) {
+      const sample = report.failures.find((f) => f.sourceTable === t)!;
+      gaps.push(`table ${t} is not included: its published figures do not add up (${sample.detail}); the source itself is inconsistent`);
+    }
+    all = all.filter((r) => !bad.has(r.source_table));
+    report = runChecks(all, index);
+  }
   const dd = dedupe(all);
-  // checks run on every table's own rows (before cross-table duplicates are merged)
-  const report = runChecks(all, index);
   report.keyCollisions = dd.report.keyCollisions;
   report.duplicatesDropped = dd.report.duplicatesDropped;
   report.conflicts = dd.report.conflicts;
@@ -194,7 +250,9 @@ export async function extractPdf(opt: ExtractOptions): Promise<ExtractOutcome> {
   const year = rec?.foundYear ?? header?.year ?? front.year ?? rec?.targetYear ?? 0;
   const runTitle = header?.text ?? front.runningTitle;
   const title = rec?.title ?? (runTitle ? titleCase(runTitle) : null) ?? `${opt.domain} Dalam Angka ${year}`;
-  const datasetCode = `bps-${opt.domain}-dalam-angka-${year}`;
+  const datasetCode = isDistrict
+    ? `bps-${opt.domain}-kecamatan-${opt.districtCode!.replace(/\./g, "")}-dalam-angka-${year}`
+    : `bps-${opt.domain}-dalam-angka-${year}`;
   const rowCounts: Record<string, number> = {};
   for (const r of all) rowCounts[r.dimension] = (rowCounts[r.dimension] ?? 0) + 1;
 
@@ -203,17 +261,24 @@ export async function extractPdf(opt: ExtractOptions): Promise<ExtractOutcome> {
   for (const c of report.conflicts) blocking.push(`cross-table conflict: ${c}`);
   for (const r of all) if (r.category.length > 80) blocking.push(`category key longer than 80 characters: ${r.category}`);
   if (all.length === 0) blocking.push("no rows extracted");
-  const website = opt.website ?? (rec?.host ? `https://${rec.host}` : undefined);
   const pageUrl = opt.url ?? rec?.pageUrl ?? undefined;
+  const website = opt.website ?? (rec?.host ? websiteOfHost(rec.host) : pageUrl ? new URL(pageUrl).origin : undefined);
   if (!website) blocking.push("publisher website unknown (state.json host or --website)");
   if (!pageUrl) blocking.push("publication page URL unknown (state.json pageUrl or --url)");
   if (!front.termsOfUse) blocking.push("copyright sentence not found on the front pages");
-  if (!front.publisherName) blocking.push("publisher not found on the front pages");
+  const publisherName = front.publisherName ?? (opt.officeName ? `BPS ${opt.officeName}` : null);
+  if (!publisherName) blocking.push("publisher not found on the front pages");
 
   const pagesVisited = [...new Set(usable.flatMap((r) => r.printedPages))].sort((a, b) => a - b);
+  // nothing readable at all and nothing wrong with what was read: a gap-only publication
+  const gapOnly = all.length === 0 && problems.length === 0 && report.failures.length === 0;
+  if (gapOnly) {
+    const reason = infos.length < 5 ? "no text layer (needs OCR)" : "no readable figures: every table cell is unavailable or not in the text layer (needs OCR)";
+    gaps.unshift(reason);
+  }
   const outcome: ExtractOutcome = {
     datasetCode,
-    status: blocking.length ? "refused" : "written",
+    status: gapOnly ? "gap-only" : blocking.length ? "refused" : "written",
     rowCounts,
     total: all.length,
     gaps,
@@ -243,23 +308,22 @@ export async function extractPdf(opt: ExtractOptions): Promise<ExtractOutcome> {
     "",
   ].join("\n");
   writeFileSync(reviewPath, summary);
-  if (outcome.status === "refused") return outcome;
+  if (outcome.status !== "written") return outcome;
 
   const csv = rowsToCsv(all);
   const csvSha = new Bun.CryptoHasher("sha256").update(csv).digest("hex");
   const src = await sha256OfFile(opt.pdf);
-  const series = opt.domain.endsWith("00") ? "provinsi_dalam_angka" : "kabupaten_kota_dalam_angka";
-  const publisherName = front.publisherName!;
+  const series = isDistrict ? "kecamatan_dalam_angka" : opt.domain.endsWith("00") ? "provinsi_dalam_angka" : "kabupaten_kota_dalam_angka";
   const entry = {
     datasetCode,
     publicationSeries: series,
     coverageRegionCode: coverage,
     coverageRegionLevel: coverageLevel,
     publicationTitle: title,
-    publisherName,
+    publisherName: publisherName!,
     publisherDomain: opt.domain,
     publisherWebsite: website,
-    attribution: attributionSentence(publisherName, website!, title),
+    attribution: attributionSentence(publisherName!, website!, title),
     catalogueNumber: front.catalogueNumber ?? rec?.catalogueNumber ?? null,
     publicationNumber: front.publicationNumber ?? rec?.publicationNumber ?? null,
     issn: front.issn ?? rec?.issn ?? null,
@@ -284,6 +348,13 @@ export async function extractPdf(opt: ExtractOptions): Promise<ExtractOutcome> {
       })),
     knownGaps: gaps,
   };
+  const importerErrors = await importerCheck(entry, csv, index, coverage);
+  if (importerErrors.length) {
+    outcome.status = "refused";
+    outcome.problems.push(...importerErrors.map((e) => `importer check: ${e}`));
+    writeFileSync(reviewPath, `${summary}\n## Importer checks failed\n${importerErrors.map((e) => `- ${e}`).join("\n")}\n`);
+    return outcome;
+  }
   mkdirSync(opt.outDir, { recursive: true });
   writeFileSync(join(opt.outDir, `${datasetCode}.csv`), csv);
   writeFileSync(join(opt.outDir, `${datasetCode}.json`), `${JSON.stringify(entry, null, 2)}\n`);
@@ -314,7 +385,7 @@ async function main(): Promise<number> {
   if (flag("from-state")) {
     const only = arg("only");
     let refused = 0;
-    for (const rec of records) {
+    for (const rec of flag("districts-only") ? [] : records) {
       if (rec.status !== "done" || !rec.pdfFile) continue;
       if (only && rec.domain !== only) continue;
       const pdf = rec.pdfFile.startsWith("/") ? rec.pdfFile : join(cdir, "pdf", basename(rec.pdfFile));
@@ -331,20 +402,39 @@ async function main(): Promise<number> {
         console.log(`ERROR ${rec.domain}: ${(e as Error).message}`);
       }
     }
+    for (const rec of loadDistrictRecords(cdir)) {
+      if (rec.status !== "done" || !rec.pdfFile || rec.domain === "") continue;
+      const compact = rec.districtCode.replace(/\./g, "");
+      if (only && only !== rec.districtCode && only !== compact && only !== rec.domain) continue;
+      const pdf = rec.pdfFile.startsWith("/") ? rec.pdfFile : join(cdir, "pdf", "kecamatan", basename(rec.pdfFile));
+      const year = rec.foundYear ?? rec.targetYear;
+      const code = `bps-${rec.domain}-kecamatan-${compact}-dalam-angka-${year}`;
+      if (!flag("force") && existsSync(join(outDir, `${code}.json`))) continue;
+      if (!existsSync(pdf)) continue;
+      try {
+        const o = await extractPdf({ pdf, domain: rec.domain, districtCode: rec.districtCode, officeName: records.find((r) => r.domain === rec.domain)?.name, outDir, reviewDir, record: rec, dropFailedTables });
+        print(o);
+        if (o.status === "refused") refused++;
+      } catch (e) {
+        refused++;
+        console.log(`ERROR ${code}: ${(e as Error).message}`);
+      }
+    }
     return refused ? 2 : 0;
   }
   const pdf = arg("pdf");
   const domain = arg("domain");
   if (!pdf || !domain) {
-    console.error("usage: run.ts --pdf <path> --domain <dddd> [--out <dir>] [--url U] [--website W] [--release-date D] [--drop-failed-tables] | --from-state [--only dddd] [--force]");
+    console.error("usage: run.ts --pdf <path> --domain <dddd> [--district 62.71.01] [--out <dir>] [--url U] [--website W] [--release-date D] [--drop-failed-tables] | --from-state [--only dddd] [--force]");
     return 64;
   }
   const o = await extractPdf({
     pdf: resolve(pdf),
     domain,
+    districtCode: arg("district"),
     outDir,
     reviewDir,
-    record: findRecord(records, domain, pdf),
+    record: arg("district") ? null : findRecord(records, domain, pdf),
     url: arg("url"),
     website: arg("website"),
     releaseDate: arg("release-date"),

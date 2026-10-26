@@ -222,7 +222,9 @@ CREATE TABLE IF NOT EXISTS awcms_idn_population_stats (
 COMMENT ON TABLE awcms_idn_population_stats IS
   'Global reference data (awcms-one ADR-0051) — figures published by BPS for ONE dataset, stored exactly as published (value + unit, never converted). NOT tenant-scoped, no RLS: see sql/882 header. Aggregate statistics only, no personal data; small-cell suppression applies to any read surface.';
 
--- A figure is identified by the table it was published in and what it measures,
+-- A figure is identified by the table it was published in, its basis and what it
+-- measures (one table can print a projection total and a registration total for
+-- the same region and year),
 -- so a repeated key is a defect in the extraction rather than a second opinion.
 -- `source_table` is part of the key because every BPS table prints its own total
 -- rows for a region; the same total appearing in two tables is two figures, and
@@ -231,7 +233,7 @@ COMMENT ON TABLE awcms_idn_population_stats IS
 CREATE UNIQUE INDEX IF NOT EXISTS awcms_idn_population_stats_key
   ON awcms_idn_population_stats (
     dataset_id, source_table, region_code, dimension, category, sex,
-    reference_year, universe
+    reference_year, universe, figure_basis
   ) NULLS NOT DISTINCT;
 
 CREATE INDEX IF NOT EXISTS awcms_idn_population_stats_dataset_region_idx

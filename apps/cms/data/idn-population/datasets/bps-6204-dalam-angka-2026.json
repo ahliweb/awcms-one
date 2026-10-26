@@ -6,8 +6,8 @@
   "publicationTitle": "Kabupaten Barito Selatan Dalam Angka 2026",
   "publisherName": "BPS Kabupaten Barito Selatan",
   "publisherDomain": "6204",
-  "publisherWebsite": "https://https://barselkab.bps.go.id",
-  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Barito Selatan (https://https://barselkab.bps.go.id), publikasi \"Kabupaten Barito Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "publisherWebsite": "https://barselkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Barito Selatan (https://barselkab.bps.go.id), publikasi \"Kabupaten Barito Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
   "catalogueNumber": "1102001.6204",
   "publicationNumber": "62040.25002",
   "issn": "0215-6393",
@@ -18,12 +18,13 @@
   "sourceFileBytes": 36546595,
   "sourcePages": [
     54,
+    57,
     139,
     309
   ],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Barito Selatan.",
   "csvPath": "datasets/bps-6204-dalam-angka-2026.csv",
-  "csvSha256": "865ae325a11a6a2fb848c9ea011b92f297fcebb8dee81b38ae1b15d68b4d4eac",
+  "csvSha256": "f9a5b2816408b795c30e618fb04761c248e9256cf6b35c383126674e683687c4",
   "tablesUsed": [
     {
       "table": "3.1.1",
@@ -36,6 +37,18 @@
       ],
       "figureBasis": "projection",
       "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk (ribu) Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Barito Selatan, 2025",
+      "printedPages": [
+        57
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
     },
     {
       "table": "4.3.1",
@@ -64,12 +77,12 @@
     }
   ],
   "knownGaps": [
-    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
     "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
     "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
     "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
     "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
     "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
-    "Net wage by age group (3.2.31): no table with this title was found in the publication"
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 3.1.2: the total row is labelled with the placeholder \"Nama Provinsi\" and is read as the covered region"
   ]
 }

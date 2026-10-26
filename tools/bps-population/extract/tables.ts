@@ -55,6 +55,10 @@ export interface Ctx {
   infos: PageInfo[];
   index: RegionIndex;
   coverage: string;
+  /** Used when a table states no basis of its own (Kecamatan yearbooks): the publication-wide basis. */
+  defaultBasis?: string | null;
+  /** Unmatched/ambiguous row names become gaps instead of blocking problems (village level). */
+  soft?: boolean;
 }
 
 interface Found {
@@ -65,7 +69,7 @@ interface Found {
 type RowKind = "kabkota" | "kecamatan" | "kelurahan" | null;
 
 export function rowKindOf(headKey: string): RowKind {
-  const m = /menurut(kabupaten\/kota|kecamatan|kelurahan|desa\/kelurahan|desa)/.exec(headKey);
+  const m = /(?:menurut|dan)(kabupaten\/kota|kecamatan|kelurahan|desa\/kelurahan|desa)/.exec(headKey);
   if (!m) return null;
   if (m[1] === "kabupaten/kota") return "kabkota";
   if (m[1] === "kecamatan") return "kecamatan";
@@ -85,7 +89,7 @@ export function findTable(ctx: Ctx, test: (headKey: string) => boolean, nth = 0)
   let seen = 0;
   for (let i = 0; i < ctx.infos.length; i++) {
     const info = ctx.infos[i]!;
-    if (info.continued || info.tableNumber === null || !test(info.headKey)) continue;
+    if (info.continued || info.tableNumber === null || /^(persentase|distribusipersentase|rata-?rata)/.test(info.headKey) && !/upah|pengeluaran/.test(info.headKey) || !test(info.headKey)) continue;
     if (!levelOk(rowKindOf(info.headKey), coverageLevel)) continue;
     if (seen++ < nth) continue;
     const pages = [info];
@@ -123,9 +127,9 @@ function blank(id: string, found: Found): TableResult {
 }
 
 function unitOfHead(info: PageInfo, fallback?: string): string | null {
-  if (/ribujiwa|thousandpeople|thousandpersons/.test(info.headKey)) return "ribu_jiwa";
+  if (/ribujiwa|ribuorang|\(ribu|thousandpeople|thousandpersons/.test(info.headKey)) return "ribu_jiwa";
   if (/\(rupiah|\(rupiahs/.test(info.headKey)) return "rupiah";
-  if (/\(jiwa\)|\(person\)/.test(info.headKey)) return "jiwa";
+  if (/\(jiwa(\)|\/)|\(person\)/.test(info.headKey)) return "jiwa";
   return fallback ?? null;
 }
 
@@ -136,15 +140,17 @@ function titleYears(info: PageInfo): number[] {
   return [...new Set([...text.matchAll(/\b((?:19|20)\d{2})\b/g)].map((m) => Number(m[1])))];
 }
 
-export function basisOf(infos: PageInfo | PageInfo[], year: number): string | null {
+export function basisOf(infos: PageInfo | PageInfo[], year: number, defaultBasis: string | null = null): string | null {
   const list = Array.isArray(infos) ? infos : [infos];
-  const t = list.map((i) => i.headKey + i.notesKey).join("");
-  const info = { headKey: list[0]!.headKey };
-  if (/registrasi|dkb|konsolidasibersih|siak|catatansipil|dukcapil|kementerianagama|kantorkementerianagama/.test(t)) return "registration";
+  const head = list.map((i) => i.headKey).join("");
+  const t = head + list.map((i) => i.notesKey).join("");
+  const REG = /registrasi|dkb|konsolidasibersih|siak|catatansipil|dukcapil|kementerianagama/;
+  if (REG.test(head)) return "registration";
   if (/sakernas|susenas|survei/.test(t)) return "survey_estimate";
-  if (year <= 2020 && year % 10 === 0 && /sensus/.test(t) && !/proyeksi/.test(info.headKey)) return "census";
+  if (year <= 2020 && year % 10 === 0 && /sensus/.test(t) && !/proyeksi/.test(head)) return "census";
   if (/proyeksi/.test(t)) return "projection";
-  return null;
+  if (REG.test(t)) return "registration";
+  return defaultBasis ?? null;
 }
 
 function mk(
@@ -192,13 +198,14 @@ function sexColumns(info: PageInfo, firstData: number, titleYear: number | null)
   const groups: { key: string; cx: number; text: string }[] = [];
   for (const w of words) {
     if (cx(w) < info.markers[firstData]!.cx - 40) continue;
-    if (/^laki-?laki$/i.test(w.text)) groups.push({ key: "laki_laki", cx: cx(w), text: w.text });
-    else if (/^perempuan$/i.test(w.text)) groups.push({ key: "perempuan", cx: cx(w), text: w.text });
-    else if (/^jumlah$/i.test(w.text)) groups.push({ key: "jumlah", cx: cx(w), text: w.text });
-    else if (/^rasio$/i.test(w.text)) groups.push({ key: "rasio", cx: cx(w), text: w.text });
+    if (/^laki-?laki\/?$/i.test(w.text)) groups.push({ key: "laki_laki", cx: cx(w), text: w.text });
+    else if (/^perempuan\/?$/i.test(w.text)) groups.push({ key: "perempuan", cx: cx(w), text: w.text });
+    else if (/^jumlah\/?$/i.test(w.text)) groups.push({ key: "jumlah", cx: cx(w), text: w.text });
+    else if (/^(rasio|laju)$/i.test(w.text)) groups.push({ key: "rasio", cx: cx(w), text: w.text });
   }
   const years = words.filter((w) => /^(?:19|20)\d{2}$/.test(w.text));
   const cols: { pos: number; group: string; year: number | null; label: string }[] = [];
+  const spacing = (info.markers[info.markers.length - 1]!.cx - info.markers[0]!.cx) / Math.max(1, info.markers.length - 1);
   for (let k = firstData; k < info.markers.length; k++) {
     const m = info.markers[k]!;
     let best: { key: string; d: number; text: string } | null = null;
@@ -212,7 +219,8 @@ function sexColumns(info: PageInfo, firstData: number, titleYear: number | null)
       if (near.length === 1) year = Number(near[0]!.text);
       else if (near.length > 1) year = null;
     }
-    cols.push({ pos: k, group: best?.key ?? "?", year, label: best?.text ?? "" });
+    const near = best !== null && best.d <= spacing * 0.8; // a column with no group header of its own is not guessed
+    cols.push({ pos: k, group: near ? best!.key : "?", year, label: near ? best!.text : "" });
   }
   return cols;
 }
@@ -237,6 +245,7 @@ function rowRegion(
     st.hint = g;
     return "skip";
   }
+  const ctxSoft = ctx.soft === true;
   const m1 = row.label1.trim();
   const m2 = row.label2.trim();
   const dt = DISTRICT_TOTAL.exec(m1) ?? DISTRICT_TOTAL.exec(m2);
@@ -266,9 +275,9 @@ function rowRegion(
   const r = resolveLabel(ctx.index, scope, label, st.hint, row.last);
   if (r.status === "ok") {
     if (m2 === "" && m1 !== "" && r.code !== ctx.coverage) st.district = r.code;
-    return { code: r.code!, name: label.replace(/^\s*\d{1,3}\.\s*/, ""), subtotal: false };
+    return { code: r.code!, name: label.replace(/^\s*\d{1,3}\.\s*/, "").replace(/(?<=\p{L})\d{1,2}$/u, ""), subtotal: false };
   }
-  problems.push(`row "${label}": ${r.status} ${r.candidates.join(",")}`);
+  problems.push(`${ctxSoft ? "row not stored: " : ""}row "${label}": ${r.status} ${r.candidates.join(",")}`);
   return "skip";
 }
 
@@ -335,10 +344,14 @@ export function totalByRegion(ctx: Ctx): TableResult | null {
   }
   const st: RegionState = { hint: null, district: null };
   for (const row of readBody(info, L)) {
-    const r = rowRegion(ctx, row, st, ctx.coverage, res.problems);
+    const isRegistration = /^hasil\s*registrasi/i.test(row.label1.trim());
+    // "Hasil Registrasi" is a second total of the same table on the registration basis
+    const r = isRegistration
+      ? { code: ctx.coverage, name: ctx.index.byCode.get(ctx.coverage)?.name ?? ctx.coverage, subtotal: false }
+      : rowRegion(ctx, row, st, ctx.coverage, ctx.soft ? res.gaps : res.problems);
     if (r === "skip" || r === null || !row.hasNum) continue;
     for (const c of cols) {
-      const basis = basisOf(found.pages, c.year);
+      const basis = isRegistration ? "registration" : basisOf(found.pages, c.year, ctx.defaultBasis);
       if (!basis) {
         res.problems.push(`basis of ${c.year} not determinable`);
         continue;
@@ -349,6 +362,17 @@ export function totalByRegion(ctx: Ctx): TableResult | null {
   }
   finish(res, [info]);
   return res;
+}
+
+/** Kecamatan yearbooks: 3.1.1 holds the population by sex per desa/kelurahan (and a growth rate). */
+export function villageSex(ctx: Ctx, nth = 0): TableResult | null {
+  return sexTable(
+    ctx,
+    "sex-by-village",
+    (k) => /^(jumlah)?penduduk,?(laju|distribusi)/.test(k) && /menurut(desa\/kelurah\s*an|desa\/kelurahan|kelurahan|desa)/.test(k),
+    "region",
+    nth
+  );
 }
 
 /** 3.1.2 / 3.1.3 / 3.1.4(reg) / 4.3.4: sex columns; rows are age bands, regions or religions. */
@@ -365,7 +389,7 @@ export function sexTable(
   const tbl = found.start.tableNumber!;
   for (const info of found.pages) {
     const L = labelColumnCount(info);
-    const unit = unitOfHead(found.start, rowMode === "religion" ? "jiwa" : undefined);
+    const unit = unitOfHead(found.start, rowMode === "religion" || ctx.soft ? "jiwa" : undefined);
     if (!unit || unit === "rupiah") {
       res.problems.push("unit not stated in the heading");
       return res;
@@ -383,8 +407,11 @@ export function sexTable(
         if (!dimBase) {
           if (totalLabel(label)) {
             dimBase = { dimension: "total", category: "total" };
+          } else if (row.last && /^nama\s+(provinsi|kabupaten|kota|wilayah)/i.test(label)) {
+            // an unfilled template label ("Nama Provinsi") on the last row, which is the region's total
+            if (!res.gaps.some((g) => g.includes("placeholder"))) res.gaps.push(`the total row is labelled with the placeholder "${label}" and is read as the covered region`);
           } else {
-            const r = rowRegion(ctx, row, st, ctx.coverage, res.problems);
+            const r = rowRegion(ctx, row, st, ctx.coverage, ctx.soft ? res.gaps : res.problems);
             if (r === "skip" || r === null) continue;
             region = r;
           }
@@ -402,7 +429,7 @@ export function sexTable(
           dimBase = { dimension: "religion", category: k };
         }
       } else {
-        const r = rowRegion(ctx, row, st, ctx.coverage, res.problems);
+        const r = rowRegion(ctx, row, st, ctx.coverage, ctx.soft ? res.gaps : res.problems);
         if (r === "skip" || r === null) continue;
         region = r;
       }
@@ -412,7 +439,7 @@ export function sexTable(
           res.problems.push("year of a column not determinable");
           continue;
         }
-        const basis = basisOf(found.pages, c.year);
+        const basis = basisOf(found.pages, c.year, ctx.defaultBasis);
         if (!basis) {
           res.problems.push(`basis of ${c.year} not determinable`);
           continue;
@@ -455,7 +482,7 @@ export function ageByRegionColumns(ctx: Ctx): TableResult | null {
     res.problems.push("unit or year not determinable");
     return res;
   }
-  const basis = basisOf(found.pages, ty[0]!);
+  const basis = basisOf(found.pages, ty[0]!, ctx.defaultBasis);
   if (!basis) {
     res.problems.push("basis not determinable");
     return res;
@@ -496,7 +523,7 @@ export function ageByRegionColumns(ctx: Ctx): TableResult | null {
 
 /** 4.5.4 / 4.3.1: religion columns, region rows (columns may continue over pages). */
 export function religionByRegion(ctx: Ctx, nth = 0): TableResult | null {
-  const found = findTable(ctx, (k) => /menurut(kabupaten\/kota|kecamatan|kelurahan|desa)danagama/.test(k), nth);
+  const found = findTable(ctx, (k) => (/penduduk.*menurut(kabupaten\/kota|kecamatan|kelurahan|desa)danagama/.test(k) || /penduduk.*menurutagama(\/alirankepercayaan)?dan(desa\/kelurahan|kelurahan|desa)/.test(k)), nth);
   if (!found) return null;
   const res = blank("religion-by-region", found);
   const tbl = found.start.tableNumber!;
@@ -505,7 +532,7 @@ export function religionByRegion(ctx: Ctx, nth = 0): TableResult | null {
     res.problems.push("year not determinable");
     return res;
   }
-  const basis = basisOf(found.pages, ty[0]!);
+  const basis = basisOf(found.pages, ty[0]!, ctx.defaultBasis);
   if (!basis) {
     res.problems.push("basis not determinable");
     return res;
@@ -525,11 +552,11 @@ export function religionByRegion(ctx: Ctx, nth = 0): TableResult | null {
       if (key) {
         colKey.set(k, key);
         const band = hw.filter((w) => nearestMarker(info, cx(w), L) === k);
-        colLabel.set(k, clusterLines(band.filter((w) => religionKey(w.text) !== null), 3)[0]?.map((w) => w.text).join(" ") ?? "");
+        colLabel.set(k, clusterLines(band.filter((w) => religionKey(w.text) !== null || /^aliran$/i.test(w.text)), 3)[0]?.map((w) => w.text).join(" ") ?? "");
       } else res.problems.push(`religion column ${k + 1} header "${text}" not recognised`);
     }
     for (const row of readBody(info, L)) {
-      const r = rowRegion(ctx, row, st, ctx.coverage, res.problems);
+      const r = rowRegion(ctx, row, st, ctx.coverage, ctx.soft ? res.gaps : res.problems);
       if (r === "skip" || r === null || !row.hasNum) continue;
       for (const [k, key] of colKey) {
         const o =
@@ -617,7 +644,7 @@ function industryColumns(ctx: Ctx, found: Found, res: TableResult, kind: "employ
     return res;
   }
   const year = ty[0]!;
-  const basis = basisOf(found.pages, year);
+  const basis = basisOf(found.pages, year, ctx.defaultBasis);
   if (!basis) {
     res.problems.push("basis not determinable");
     return res;
@@ -649,7 +676,7 @@ function industryColumns(ctx: Ctx, found: Found, res: TableResult, kind: "employ
       if (band) {
         prefix = `kelompok_umur/${band}`;
       } else {
-        const r = rowRegion(ctx, row, st, ctx.coverage, res.problems);
+        const r = rowRegion(ctx, row, st, ctx.coverage, ctx.soft ? res.gaps : res.problems);
         if (r === "skip" || r === null) continue;
         prefix = "";
       }
@@ -664,7 +691,7 @@ function industryColumns(ctx: Ctx, found: Found, res: TableResult, kind: "employ
       if (o) res.rows.push(o);
       continue;
     }
-    const r = rowRegion(ctx, row, st, ctx.coverage, res.problems);
+    const r = rowRegion(ctx, row, st, ctx.coverage, ctx.soft ? res.gaps : res.problems);
     if (r === "skip" || r === null) continue;
     for (const [k, v] of colKind) {
       if (v.total) {
@@ -715,7 +742,7 @@ export function expenditureTable(ctx: Ctx): TableResult | null {
     const indo = indonesianPart(row.label1).trim();
     const key = totalLabel(indo) ? "total" : `kelompok_komoditas/${snakeCase(indo)}`;
     for (const [k, year] of years) {
-      const basis = basisOf(found.pages, year) ?? "survey_estimate";
+      const basis = basisOf(found.pages, year, ctx.defaultBasis) ?? "survey_estimate";
       const o = mk(info, tbl, region, "expenditure", key, "", row.cells[k], "rupiah", year, basis, "per_capita", totalLabel(indo) ? "" : indo);
       if (o) res.rows.push(o);
     }
@@ -728,11 +755,17 @@ function finish(res: TableResult, infos: PageInfo[]): void {
   // A heading that says "(jiwa)" over figures printed with decimals is a printing error in
   // the source (persons are whole numbers). The digits are kept; only the unit label is
   // corrected, to the thousands the decimals imply, and the correction is recorded.
+  if (res.rows.some((r) => r.unit === "rupiah" && /\.\d{3,}$/.test(r.value))) {
+    res.problems.push("rupiah figures printed with a three-digit decimal part: the table uses ',' as a thousands mark and is not read");
+  }
   const people = res.rows.filter((r) => r.unit === "jiwa" && r.dimension !== "occupation" && r.universe !== "employed_15_plus");
-  if (people.some((r) => r.value.includes("."))) {
-    if (people.every((r) => r.value.includes(".") || r.value === "0")) {
+  if (people.some((r) => /\.\d{3,}$/.test(r.value))) {
+    res.problems.push("figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?)");
+  } else if (people.some((r) => r.value.includes("."))) {
+    // trailing zeros are dropped in print ("14" for 14,00), so a large majority is enough
+    if (people.filter((r) => r.value.includes(".")).length >= people.length * 0.9) {
       for (const r of people) r.unit = "ribu_jiwa";
-      res.gaps.push("the heading states 'jiwa' but every figure carries decimals (whole persons cannot); stored as ribu_jiwa with the digits unchanged");
+      res.gaps.push("the heading states 'jiwa' but almost every figure carries decimals (whole persons cannot); stored as ribu_jiwa with the digits unchanged");
     } else {
       res.problems.push("heading says jiwa but only some figures carry decimals");
     }
@@ -741,7 +774,7 @@ function finish(res: TableResult, infos: PageInfo[]): void {
   res.referenceYears = [...new Set(res.rows.map((r) => r.reference_year))].sort();
   res.figureBasis = [...new Set(res.rows.map((r) => r.figure_basis))];
   res.units = [...new Set(res.rows.map((r) => r.unit))];
-  if (res.rows.length === 0 && res.problems.length === 0) res.problems.push("no rows read");
+  if (res.rows.length === 0 && res.problems.length === 0) res.gaps.push(`no figures were read (every cell is unavailable ("...") or not recognised)`);
 }
 
 export type { Word };

@@ -74,6 +74,17 @@ export function coreLabel(name: string): string {
   return normalizeLabel(name.replace(TYPE_PREFIX, ""));
 }
 
+/**
+ * Spelling variants BPS prints that differ from wilayah.sql, scoped to the parent
+ * region they occur under. An alias is consulted only when the printed name matched
+ * nothing, and only counts when its canonical spelling matches exactly one child of
+ * that parent. Each entry says why the two are the same place.
+ */
+export const NAME_ALIASES: { parent: string; printed: string; canonical: string; why: string }[] = [
+  // Kabupaten Barito Timur: BPS prints the Dayak spelling "Benua Lima"; the Kemendagri decree (62.13.02) spells it "Banua Lima".
+  { parent: "62.13", printed: "Benua Lima", canonical: "Banua Lima", why: "same kecamatan, Benua/Banua spelling (BPS Barito Timur DA 2026 vs Kemendagri 62.13.02)" },
+];
+
 export interface Resolution {
   code: string | null;
   name: string | null;
@@ -125,6 +136,10 @@ export function resolveLabel(
       const narrowed = found.filter((c) => typeOfName(c.name) === kind);
       if (narrowed.length > 0) found = narrowed;
     }
+  }
+  if (found.length === 0) {
+    const alias = NAME_ALIASES.find((a) => a.parent === parent && normalizeLabel(a.printed) === wantFull);
+    if (alias) found = children.filter((c) => normalizeLabel(c.name) === normalizeLabel(alias.canonical));
   }
   if (found.length === 1) return { code: found[0]!.code, name: found[0]!.name, status: "ok", candidates: [found[0]!.code] };
   if (found.length > 1) return { code: null, name: null, status: "ambiguous", candidates: found.map((c) => c.code) };

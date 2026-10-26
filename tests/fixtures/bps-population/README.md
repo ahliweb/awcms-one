@@ -9,3 +9,4 @@ Page fixtures cut from real BPS "Dalam Angka 2026" PDFs (`pdftotext -bbox-layout
 BPS statistics are quoted for testing only; they remain BPS's (see apps/cms/data/idn-population/NOTICE.md).
 - `prov-3.2.14-employed-by-industry.bbox.xml` - same publication, PDF p.228 (industry groups 1-3 defined in a footnote)
 - `city-front-matter.txt` - Kota Palangka Raya Dalam Angka 2026, `pdftotext` of PDF p.4 (catalogue, ISSN, publication number, copyright sentence)
+- `kec-pahandut-p68.bbox.xml`, `kec-pahandut-p121.bbox.xml` - Kecamatan Pahandut Dalam Angka 2025, PDF p.68 (population by sex per kelurahan) and p.121 (religion per kelurahan)

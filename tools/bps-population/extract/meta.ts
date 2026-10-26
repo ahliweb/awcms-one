@@ -102,3 +102,46 @@ export function coverageOfDomain(domain: string): string {
 export function attributionSentence(publisherName: string, website: string, title: string): string {
   return `Data diperoleh dari situs web resmi ${publisherName} (${website}), publikasi "${title}", yang dapat diunduh secara bebas oleh siapa pun.`;
 }
+
+export interface DistrictRecord extends StateRecord {
+  /** Kemendagri dotted code of the kecamatan, e.g. "62.71.01". */
+  districtCode: string;
+}
+
+/** Kecamatan entries of state.json (`districts`), normalised; tolerant of field naming. */
+export function loadDistrictRecords(dir = cacheDir()): DistrictRecord[] {
+  const path = join(dir, "state.json");
+  if (!existsSync(path)) return [];
+  const parsed = JSON.parse(readFileSync(path, "utf8")) as { districts?: Record<string, Record<string, unknown>> };
+  const out: DistrictRecord[] = [];
+  for (const [key, raw] of Object.entries(parsed.districts ?? {})) {
+    const str = (...names: string[]) => {
+      for (const n of names) if (typeof raw[n] === "string" && raw[n] !== "") return raw[n] as string;
+      return undefined;
+    };
+    const num = (...names: string[]) => {
+      for (const n of names) if (typeof raw[n] === "number") return raw[n] as number;
+      return undefined;
+    };
+    const code = str("districtCode", "kemendagriCode", "code") ?? key.split(":")[0]!;
+    const compact = code.replace(/\./g, "");
+    const dotted = /^\d{6}$/.test(compact) ? `${compact.slice(0, 2)}.${compact.slice(2, 4)}.${compact.slice(4, 6)}` : code;
+    out.push({
+      districtCode: dotted,
+      domain: str("regencyDomain", "domain", "officeDomain", "parentDomain") ?? "",
+      name: str("name"),
+      host: str("host"),
+      status: str("status"),
+      foundYear: num("foundYear", "year"),
+      targetYear: num("targetYear"),
+      title: str("title") ?? null,
+      pageUrl: str("pageUrl") ?? null,
+      releaseDate: str("releaseDate") ?? null,
+      catalogueNumber: str("catalogueNumber") ?? null,
+      publicationNumber: str("publicationNumber") ?? null,
+      issn: str("issn") ?? null,
+      pdfFile: str("pdfFile") ?? null,
+    });
+  }
+  return out;
+}

@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-6201-kecamatan-620105-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.01.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pangkalan Lada Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kotawaringin Barat",
+  "publisherDomain": "6201",
+  "publisherWebsite": "https://kobarkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kotawaringin Barat (https://kobarkab.bps.go.id), publikasi \"Kecamatan Pangkalan Lada Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6201062",
+  "publicationNumber": "62010.26014",
+  "issn": "2808-6317",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kobarkab.bps.go.id/id/publication/2026/09/28/d3dceda162387bb62ec342f0/kecamatan-pangkalan-lada-dalam-angka-2026.html",
+  "sourceFileSha256": "9fa0c14f671fd25c3d891756dc5e64ad5453ae903988704a871cadd024828758",
+  "sourceFileBytes": 11896244,
+  "sourcePages": [
+    30,
+    31
+  ],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kotawaringin Barat.",
+  "csvPath": "datasets/bps-6201-kecamatan-620105-dalam-angka-2026.csv",
+  "csvSha256": "42e89fae13e3df19a9d38016496df35977b02ae956927c4549807df704465a10",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pangkalan Lada , 2025",
+      "printedPages": [
+        30,
+        31
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2 (age-by-sex) could not be read reliably and is not included (year of a column not determinable)"
+  ]
+}

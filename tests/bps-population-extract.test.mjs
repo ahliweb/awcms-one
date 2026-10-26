@@ -19,7 +19,8 @@ import {
   resolveLabel,
 } from "../tools/bps-population/extract/regions.ts";
 import { analysePage, joinLabel, readBody } from "../tools/bps-population/extract/rows.ts";
-import { footnoteLabels, industryByRegion, religionKey, sexTable, shortIndustryKey } from "../tools/bps-population/extract/tables.ts";
+import { footnoteLabels, industryByRegion, religionByRegion, religionKey, sexTable, shortIndustryKey, villageSex } from "../tools/bps-population/extract/tables.ts";
+import { websiteOfHost } from "../tools/bps-population/extract/run.ts";
 import { parseBboxPages } from "../tools/bps-population/extract/words.ts";
 
 const FIX = new URL("./fixtures/bps-population/", import.meta.url).pathname;
@@ -143,6 +144,11 @@ describe("name to Kemendagri code mapping", () => {
     assert.equal(kindFromGroupLine("Kabupaten/Regency"), "kabupaten");
   });
 
+  test("a documented spelling variant resolves only inside its own regency", () => {
+    assert.equal(resolveLabel(index, "62.13", "Benua Lima").code, "62.13.02");
+    assert.equal(resolveLabel(index, "62.12", "Benua Lima").status, "unmatched");
+  });
+
   test("apostrophes, straight or typographic, do not split a name", () => {
     assert.equal(normalizeLabel("Ba'a"), normalizeLabel("Ba’a"));
     assert.equal(normalizeLabel("Baʼa"), normalizeLabel("Ba'a"));
@@ -238,6 +244,38 @@ describe("table handlers on real pages", () => {
   });
 });
 
+describe("Kecamatan yearbooks (village level)", () => {
+  const soft = (name) => ({ ...ctxOf(name, "62.71.01"), soft: true, defaultBasis: "registration" });
+
+  test("population by sex per kelurahan, labels with a trailing slash and a growth-rate column", () => {
+    const res = villageSex(soft("kec-pahandut-p68.bbox.xml"));
+    assert.deepEqual(res.problems, []);
+    const get = (code, dim, cat) => res.rows.find((r) => r.region_code === code && r.dimension === dim && r.category === cat);
+    assert.equal(get("62.71.01.1001", "sex", "laki_laki").value, "14243");
+    assert.equal(get("62.71.01.1005", "total", "total").value, "5900");
+    assert.equal(get("62.71.01", "total", "total").value, "105743"); // the unindexed last row is the kecamatan itself
+    assert.ok(res.rows.every((r) => r.unit === "jiwa" && r.reference_year === 2024 && r.region_level >= 3));
+    assert.equal(res.rows.length, 21); // 6 kelurahan + the kecamatan, three figures each; the growth rate is not a population figure
+    assert.equal(runChecks(res.rows, index).failures.length, 0);
+  });
+
+  test("religion per kelurahan: nil symbol, wrapped first row", () => {
+    const res = religionByRegion(soft("kec-pahandut-p121.bbox.xml"));
+    assert.deepEqual(res.problems, []);
+    const get = (code, cat) => res.rows.find((r) => r.region_code === code && r.category === cat);
+    assert.equal(get("62.71.01.1001", "islam").value, "26080");
+    assert.equal(get("62.71.01.1004", "katolik").value, "0");
+    assert.equal(get("62.71.01.1004", "katolik").value_note, "nil");
+  });
+
+  test("an unknown village is a gap, not a failure", () => {
+    const ctx = soft("kec-pahandut-p68.bbox.xml");
+    const wrongDistrict = { ...ctx, coverage: "62.71.04" };
+    const res = villageSex(wrongDistrict);
+    assert.ok(res.gaps.some((g) => g.startsWith("row not stored")));
+  });
+});
+
 describe("self-validation", () => {
   const row = (over) => ({
     region_code: "62.71",
@@ -330,6 +368,12 @@ describe("output and metadata", () => {
       fm.termsOfUse,
       "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Palangka Raya."
     );
+  });
+
+  test("a host that already carries a scheme is never prefixed twice", () => {
+    assert.equal(websiteOfHost("https://kobarkab.bps.go.id"), "https://kobarkab.bps.go.id");
+    assert.equal(websiteOfHost("kobarkab.bps.go.id"), "https://kobarkab.bps.go.id");
+    assert.equal(websiteOfHost("http://kobarkab.bps.go.id/"), "https://kobarkab.bps.go.id");
   });
 
   test("domain to coverage code, and the attribution sentence", () => {

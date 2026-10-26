@@ -6,8 +6,8 @@
   "publicationTitle": "Kabupaten Katingan Dalam Angka 2026",
   "publisherName": "BPS Kabupaten Katingan",
   "publisherDomain": "6209",
-  "publisherWebsite": "https://https://katingankab.bps.go.id",
-  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Katingan (https://https://katingankab.bps.go.id), publikasi \"Kabupaten Katingan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "publisherWebsite": "https://katingankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Katingan (https://katingankab.bps.go.id), publikasi \"Kabupaten Katingan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
   "catalogueNumber": "1102001.6209",
   "publicationNumber": "62090.26002",
   "issn": "0215-2371",
@@ -24,7 +24,7 @@
   ],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Katingan .",
   "csvPath": "datasets/bps-6209-dalam-angka-2026.csv",
-  "csvSha256": "07cf3c9a115d1a5b071b5451b3110343cf4dcdcfc00bfdfef3b1e4043f891ab0",
+  "csvSha256": "ef4e110cc84a68df91c648b47e01a0907066030ca007e219eb0f8bcef27dbfd1",
   "tablesUsed": [
     {
       "table": "3.1.1",
@@ -83,6 +83,6 @@
     "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
     "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
     "Net wage by age group (3.2.31): no table with this title was found in the publication",
-    "table 3.1.1: the heading states 'jiwa' but every figure carries decimals (whole persons cannot); stored as ribu_jiwa with the digits unchanged"
+    "table 3.1.1: the heading states 'jiwa' but almost every figure carries decimals (whole persons cannot); stored as ribu_jiwa with the digits unchanged"
   ]
 }

@@ -127,7 +127,7 @@ export function runChecks(rows: OutRow[], index: RegionIndex): CheckReport {
   const byKey = new Map<string, OutRow>();
   for (const r of rows) {
     if (r.unit === "rupiah") continue;
-    byKey.set([r.region_code, r.dimension, r.category, r.sex, r.reference_year, r.universe, r.unit, r.source_table].join("|"), r);
+    byKey.set([r.region_code, r.dimension, r.category, r.sex, r.reference_year, r.universe, r.unit, r.figure_basis, r.source_table].join("|"), r);
   }
   for (const r of rows) {
     if (r.unit === "rupiah") continue;
@@ -136,7 +136,7 @@ export function runChecks(rows: OutRow[], index: RegionIndex): CheckReport {
     const parts: bigint[] = [];
     let complete = true;
     for (const k of kids) {
-      const c = byKey.get([k.code, r.dimension, r.category, r.sex, r.reference_year, r.universe, r.unit, r.source_table].join("|"));
+      const c = byKey.get([k.code, r.dimension, r.category, r.sex, r.reference_year, r.universe, r.unit, r.figure_basis, r.source_table].join("|"));
       if (c) parts.push(toScaled(c.value));
       else {
         complete = false;
@@ -145,7 +145,7 @@ export function runChecks(rows: OutRow[], index: RegionIndex): CheckReport {
     }
     if (!complete) {
       // only count as skipped when at least one child row exists in this table
-      const any = kids.some((k) => byKey.has([k.code, r.dimension, r.category, r.sex, r.reference_year, r.universe, r.unit, r.source_table].join("|")));
+      const any = kids.some((k) => byKey.has([k.code, r.dimension, r.category, r.sex, r.reference_year, r.universe, r.unit, r.figure_basis, r.source_table].join("|")));
       if (any) skip("children-sum: not every child region is published in this table");
       continue;
     }

@@ -12,7 +12,7 @@ region_code,region_level,source_region_name,dimension,category,sex,value,unit,re
 62.06.07,3,Marikit,total,total,,6.96,ribu_jiwa,2025,projection,total_population,3.1.1,53,,
 62.06.08,3,Katingan Hulu,total,total,,8.40,ribu_jiwa,2025,projection,total_population,3.1.1,53,,
 62.06.13,3,Bukit Raya,total,total,,3.25,ribu_jiwa,2025,projection,total_population,3.1.1,53,,
-62.06,2,Katingan1,total,total,,174.34,ribu_jiwa,2025,projection,total_population,3.1.1,53,,
+62.06,2,Katingan,total,total,,174.34,ribu_jiwa,2025,projection,total_population,3.1.1,53,,
 62.06,2,Kabupaten Katingan,age_group,0-4,laki_laki,8.26,ribu_jiwa,2025,projection,total_population,3.1.2,56,,0–4
 62.06,2,Kabupaten Katingan,age_group,0-4,perempuan,7.93,ribu_jiwa,2025,projection,total_population,3.1.2,56,,0–4
 62.06,2,Kabupaten Katingan,age_group,0-4,,16.19,ribu_jiwa,2025,projection,total_population,3.1.2,56,,0–4

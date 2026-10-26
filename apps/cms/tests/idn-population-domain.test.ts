@@ -591,6 +591,16 @@ describe("validatePopulationRecords: consistency checks", () => {
     expect(ribu("10.02")).toBe(1);
   });
 
+  test("one table may print the same figure under two bases", () => {
+    const result = run([
+      { code: "62", value: 100, basis: "projection" },
+      { code: "62", value: 98, basis: "registration" }
+    ]);
+    expect(result.errors).toEqual([]);
+    // Different bases are never compared against each other.
+    expect(result.report.warningCount).toBe(0);
+  });
+
   test("a repeated key inside ONE table is still a duplicate", () => {
     const result = run([
       { code: "62", value: 1, table: "T1" },

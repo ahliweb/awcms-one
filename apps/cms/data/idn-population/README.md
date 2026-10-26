@@ -17,14 +17,28 @@ data/idn-population/
 `<dddd>` is the BPS office domain: `6200` is the province of Kalimantan Tengah,
 `6271` is Kota Palangka Raya. A domain ending in `00` is a provincial
 yearbook (`provinsi_dalam_angka`); any other domain is a regency/city one
-(`kabupaten_kota_dalam_angka`).
+(`kabupaten_kota_dalam_angka`). BPS numbers its regency domains in its own
+order (6207 is Lamandau, Kemendagri 62.09), so a regency is mapped to its
+Kemendagri code **by name**, never by the digits.
+
+A **Kecamatan Dalam Angka** (series `kecamatan_dalam_angka`) is published by the
+regency/city office: its dataset code is
+`bps-<regency domain>-kecamatan-<compact district code>-dalam-angka-<year>`
+(for example `bps-6271-kecamatan-627101-dalam-angka-2025`), its coverage is the
+three-segment district code, and its rows are per desa/kelurahan (level 4).
+Village names that are unmatched or ambiguous in `wilayah.sql` (BPS and Kemendagri
+sometimes spell a name differently, e.g. "Benua Lima" / "Banua Lima") are not
+stored and are listed in `knownGaps`.
+
+`category_label` is the category exactly as the publication prints it (`0–4`,
+`Protestan`, the full industry-group text); the `category` key stays short and stable.
 
 ## What a dataset contains
 
 The CSV header is fixed:
 
 ```text
-region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
 ```
 
 | dimension | category | unit | basis | notes |
@@ -49,11 +63,11 @@ stored.
 ## Producing a dataset
 
 ```bash
-# one publication
+# one publication (add --district 62.71.01 for a Kecamatan yearbook)
 bun tools/bps-population/extract/run.ts --pdf ~/.cache/awcms-bps-population/pdf/6271-dalam-angka-2026.pdf --domain 6271
 
-# every publication that tools/bps-population/fetch.ts has downloaded and that has no dataset yet
-bun tools/bps-population/extract/run.ts --from-state [--only 6271] [--force]
+# every publication (regency/province `offices` and `districts`) that fetch.ts has downloaded and that has no dataset yet
+bun tools/bps-population/extract/run.ts --from-state [--only 6271|62.71.01] [--force] [--drop-failed-tables]
 ```
 
 The extractor finds each table by its Indonesian **title wording** (the table
@@ -69,6 +83,12 @@ region, and **validates before writing**:
 - a figure read from two tables must agree; a name that is unmatched or
   ambiguous (the 16 same-name Kabupaten/Kota pairs; "Kabupaten/Regency" and
   "Kota/Municipality" group lines are used as hints) is reported, never guessed.
+
+`--drop-failed-tables` leaves out a table whose own figures contradict each other
+(a printing error in the source; the dataset's `knownGaps` says which and why).
+When a heading says "jiwa" over figures that are almost all printed with decimals
+(a recurring printing error), the unit is stored as `ribu_jiwa`, digits unchanged,
+and the correction is listed in `knownGaps`.
 
 A dataset that fails is **not written**; a review file goes to
 `~/.cache/awcms-bps-population/review/<datasetCode>.review.md`, outside the

@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-6202-kecamatan-620202-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.02.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cempaga Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kotawaringin Timur",
+  "publisherDomain": "6202",
+  "publisherWebsite": "https://kotimkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kotawaringin Timur (https://kotimkab.bps.go.id), publikasi \"Kecamatan Cempaga Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6202190",
+  "publicationNumber": "62020.26019",
+  "issn": "2622-2779",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kotimkab.bps.go.id/id/publication/2026/09/28/2a0e7398480cefb8eab06f18/kecamatan-cempaga-dalam-angka-2026.html",
+  "sourceFileSha256": "1c4f2b62a056735ff3dc418dc78f2d6b96508a36076747b91740b758ffa28aca",
+  "sourceFileBytes": 7922182,
+  "sourcePages": [
+    33,
+    34,
+    35
+  ],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kotawaringin Timur.",
+  "csvPath": "datasets/bps-6202-kecamatan-620202-dalam-angka-2026.csv",
+  "csvSha256": "987dee33a17343e93d8ab0017d0080a9bd38b830e732e8c314d41cf18a97341a",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cempaga, 2025",
+      "printedPages": [
+        35
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Lubuk Ranggan\": unmatched ",
+    "table 3.1: row not stored: row \"Lubuk Ranggan\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

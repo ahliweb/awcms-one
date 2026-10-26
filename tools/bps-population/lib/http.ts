@@ -20,7 +20,20 @@ export class ChallengeError extends Error {
   }
 }
 
+export class StallError extends Error {
+  constructor(public readonly url: string, why: string) {
+    super(`stalled: ${why} (${url})`);
+    this.name = "StallError";
+  }
+}
+
 export interface ClientOptions {
+  /** A download that receives no bytes for this long is aborted (default 60 s). */
+  idleTimeoutMs?: number;
+  /** Hard cap for one file (default 15 min). */
+  fileCapMs?: number;
+  /** Waits before re-trying a stalled download (default 30 s, 2 min, 5 min). */
+  stallBackoffMs?: number[];
   minIntervalMs?: number;
   backoffMs?: number[];
   /** Pauses before retrying a 403/challenge, one retry per entry. */
@@ -46,15 +59,25 @@ export class PoliteClient {
   readonly minIntervalMs: number;
   private readonly backoff: number[];
   private readonly challengePauses: number[];
+  private readonly idleTimeoutMs: number;
+  private readonly fileCapMs: number;
+  private readonly stallBackoff: number[];
+  readonly controller = new AbortController();
+  /** The .part file being written, so a signal handler can remove it. */
+  currentPart: string | null = null;
   private readonly sleep: (ms: number) => Promise<void>;
   private readonly fetchImpl: typeof fetch;
   private readonly now: () => number;
   private lastEnd = 0;
+  private metaChain: Promise<void> = Promise.resolve();
   requests = 0;
 
   constructor(opts: ClientOptions = {}) {
     this.minIntervalMs = Math.max(2000, opts.minIntervalMs ?? 2000);
     this.backoff = opts.backoffMs ?? [10_000, 30_000, 90_000];
+    this.idleTimeoutMs = opts.idleTimeoutMs ?? 60_000;
+    this.fileCapMs = opts.fileCapMs ?? 15 * 60_000;
+    this.stallBackoff = opts.stallBackoffMs ?? [30_000, 120_000, 300_000];
     this.challengePauses = opts.challengePausesMs ?? [15 * 60_000, 60 * 60_000];
     this.sleep = opts.sleep ?? ((ms) => new Promise((r) => setTimeout(r, ms)));
     this.fetchImpl = opts.fetchImpl ?? fetch;
@@ -71,18 +94,32 @@ export class PoliteClient {
    * A 403/challenge is never bypassed: pause 15 minutes and retry that one URL once, then pause 60 minutes
    * and retry once more, then give up with ChallengeError (the caller stops and records it).
    */
-  private async run<T>(url: string, init: RequestInit, read: (res: Response) => Promise<T>): Promise<T> {
+  private async run<T>(url: string, init: RequestInit, read: (res: Response) => Promise<T>, lane: "meta" | "download" = "meta"): Promise<T> {
+    if (lane === "download") return this.runInner(url, init, read, false);
+    // Page and server-action requests: strictly one at a time (a mutex over the whole retry loop), 2 s apart.
+    const prev = this.metaChain;
+    let release!: () => void;
+    this.metaChain = new Promise<void>((r) => (release = r));
+    await prev;
+    try {
+      return await this.runInner(url, init, read, true);
+    } finally {
+      release();
+    }
+  }
+
+  private async runInner<T>(url: string, init: RequestInit, read: (res: Response) => Promise<T>, spaced: boolean): Promise<T> {
     let lastErr: unknown;
     let challenges = 0;
     for (let attempt = 0; attempt <= this.backoff.length; ) {
-      await this.gap();
+      if (spaced) await this.gap();
       this.requests++;
       let challenged = false;
       try {
         const res = await this.fetchImpl(url, {
           ...init,
           headers: { "User-Agent": USER_AGENT, "Accept-Language": "id,en;q=0.8", ...(init.headers as Record<string, string>) },
-          signal: AbortSignal.timeout(120_000),
+          signal: AbortSignal.any([AbortSignal.timeout(spaced ? 120_000 : this.fileCapMs), this.controller.signal]),
         });
         if (res.status === 403 || res.headers.get("cf-mitigated")?.toLowerCase() === "challenge") {
           this.lastEnd = this.now();
@@ -94,12 +131,13 @@ export class PoliteClient {
           await res.body?.cancel();
         } else {
           const out = await read(res);
-          this.lastEnd = this.now();
+          if (spaced) this.lastEnd = this.now();
           return out;
         }
       } catch (err) {
         this.lastEnd = this.now();
         if (err instanceof ChallengeError) challenged = true;
+        else if (err instanceof StallError) throw err;
         else lastErr = err;
       }
       if (challenged) {
@@ -137,51 +175,99 @@ export class PoliteClient {
   /**
    * Streams a download to `dest` (via dest + ".part", renamed only for a real PDF), hashing as it goes.
    * A JSON error body or anything that is not a PDF is discarded and reported, never kept as a PDF.
+   * A leftover .part is deleted first. A transfer with no bytes for `idleTimeoutMs` (or longer than
+   * `fileCapMs`) is aborted, its .part removed and retried after 30 s / 2 min / 5 min, then it fails as "stalled".
    */
   async downloadPdf(url: string, dest: string): Promise<DownloadResult> {
     mkdirSync(dirname(dest), { recursive: true });
     const part = `${dest}.part`;
-    return this.run(url, {}, async (res) => {
+    for (let attempt = 0; ; attempt++) {
+      rmSync(part, { force: true });
+      try {
+        return await this.downloadOnce(url, dest, part);
+      } catch (err) {
+        rmSync(part, { force: true });
+        this.currentPart = null;
+        if (!(err instanceof StallError)) throw err;
+        const wait = this.stallBackoff[attempt];
+        if (wait === undefined) throw err;
+        console.error(`${err.message}; retrying in ${wait / 1000} s`);
+        await this.sleep(wait);
+      }
+    }
+  }
+
+  private async downloadOnce(url: string, dest: string, part: string): Promise<DownloadResult> {
+    const idle = this.idleTimeoutMs;
+    const started = this.now();
+    const cap = this.fileCapMs;
+    const client = this;
+    return this.run(url, {}, readDownloadFn, "download");
+    async function readDownloadFn(res: Response): Promise<DownloadResult> {
       if (res.status !== 200 || !res.body) {
         await res.body?.cancel();
-        return { kind: "other", bytes: 0, sha256: null, detail: `HTTP ${res.status}` } satisfies DownloadResult;
+        return { kind: "other", bytes: 0, sha256: null, detail: `HTTP ${res.status}` };
       }
+      client.currentPart = part;
+      const reader = res.body.getReader();
       const hash = createHash("sha256");
       const writer = Bun.file(part).writer();
       let total = 0;
       let first: Uint8Array | null = null;
       const small: Uint8Array[] = [];
-      for await (const chunk of res.body) {
-        if (first === null) {
-          first = chunk;
-          if (!isPdf(chunk)) {
-            // Not a PDF: read the (small) rest, classify, and discard.
-            small.push(chunk);
+      let isPdfBody = true;
+      try {
+        for (;;) {
+          let timer: ReturnType<typeof setTimeout> | undefined;
+          const stall = new Promise<never>((_, reject) => {
+            timer = setTimeout(() => reject(new StallError(url, `no bytes for ${idle / 1000} s`)), idle);
+          });
+          let chunk: ReadableStreamReadResult<Uint8Array>;
+          try {
+            chunk = await Promise.race([reader.read(), stall]);
+          } finally {
+            clearTimeout(timer);
+          }
+          if (chunk.done) break;
+          if (client.now() - started > cap) throw new StallError(url, `exceeded ${cap / 60_000} min per file`);
+          const bytes = chunk.value;
+          if (first === null) {
+            first = bytes;
+            isPdfBody = isPdf(bytes);
+          }
+          if (!isPdfBody) {
+            small.push(bytes);
+            if (small.reduce((n, c) => n + c.length, 0) > 1_000_000) break;
             continue;
           }
-        } else if (!isPdf(first)) {
-          small.push(chunk);
-          if (small.reduce((n, c) => n + c.length, 0) > 1_000_000) break;
-          continue;
+          hash.update(bytes);
+          writer.write(bytes);
+          total += bytes.length;
         }
-        hash.update(chunk);
-        writer.write(chunk);
-        total += chunk.length;
+      } catch (err) {
+        void reader.cancel().catch(() => {}); // do not await: a stalled stream may never settle
+        try {
+          await writer.end();
+        } catch {
+          /* the .part is removed by the caller */
+        }
+        throw err;
       }
       await writer.end();
-      if (first !== null && !isPdf(first)) {
+      client.currentPart = null;
+      if (first !== null && !isPdfBody) {
         rmSync(part, { force: true });
         const all = Buffer.concat(small);
         const err = detectJsonError(all);
-        return { kind: err ? "json-error" : "other", bytes: all.length, sha256: null, detail: err ?? "not a PDF" } satisfies DownloadResult;
+        return { kind: err ? "json-error" : "other", bytes: all.length, sha256: null, detail: err ?? "not a PDF" };
       }
       if (total === 0) {
         rmSync(part, { force: true });
-        return { kind: "other", bytes: 0, sha256: null, detail: "empty body" } satisfies DownloadResult;
+        return { kind: "other", bytes: 0, sha256: null, detail: "empty body" };
       }
       renameSync(part, dest);
-      return { kind: "pdf", bytes: total, sha256: hash.digest("hex"), detail: null } satisfies DownloadResult;
-    });
+      return { kind: "pdf", bytes: total, sha256: hash.digest("hex"), detail: null };
+    }
   }
 }
 

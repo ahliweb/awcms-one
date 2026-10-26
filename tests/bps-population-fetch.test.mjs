@@ -22,9 +22,11 @@ import {
   publicationPageUrl,
 } from "../tools/bps-population/lib/parse.ts";
 import { matchRegion, parseWilayah } from "../tools/bps-population/lib/regions.ts";
-import { PoliteClient } from "../tools/bps-population/lib/http.ts";
+import { PoliteClient, StallError } from "../tools/bps-population/lib/http.ts";
 import { loadState, needsWork, saveState, stateKey, emptyState } from "../tools/bps-population/lib/state.ts";
-import { pdfPath, selectTargets } from "../tools/bps-population/fetch.ts";
+import { pdfPath, selectTargets, provinceCodes, districtPdfPath, HELP, roundRobin, runPool, DOWNLOAD_CONCURRENCY } from "../tools/bps-population/fetch.ts";
+import { matchDistrict, parseDistricts, parseKecamatanTitle } from "../tools/bps-population/lib/districts.ts";
+import { existsSync } from "node:fs";
 
 const enc = (s) => new TextEncoder().encode(s);
 
@@ -215,5 +217,123 @@ describe("PoliteClient", () => {
     const r = await client.getText("https://x.bps.go.id/");
     assert.equal(r.text, "ok");
     assert.ok(waits.includes(10_000) && waits.includes(30_000));
+  });
+});
+
+describe("stage 4 districts", () => {
+  const sql = "('62.71','Kota Palangkaraya'),\n('62.71.01','Pahandut'),\n('62.71.02','Jekan Raya'),\n('62.71.03','Sebangau'),\n('62.01.01','Kumai'),\n('62.71.01.1001','Tumbang Rungan')";
+  test("districts are scoped to one regency", () => {
+    const d = parseDistricts(sql, "62.71");
+    assert.deepEqual(d.map((x) => x.code), ["62.71.01", "62.71.02", "62.71.03"]);
+  });
+  test("titles and name matching", () => {
+    assert.deepEqual(parseKecamatanTitle("Kecamatan Jekan Raya Dalam Angka 2026"), { name: "Jekan Raya", year: 2026 });
+    assert.equal(parseKecamatanTitle("Kota Palangka Raya Dalam Angka 2026"), null);
+    const d = parseDistricts(sql, "62.71");
+    assert.equal(matchDistrict("Jekan Raya", d).region.code, "62.71.02");
+    assert.equal(matchDistrict("JEKANRAYA", d).kind, "matched");
+    assert.equal(matchDistrict("Nowhere", d).kind, "unmatched");
+    assert.equal(matchDistrict("Sabangau", d).kind, "unmatched"); // spelling differs: reported, never guessed
+    const dup = [{ code: "a.1", name: "Kota" }, { code: "a.2", name: "Kota" }];
+    assert.equal(matchDistrict("Kota", dup).kind, "ambiguous");
+  });
+  test("paths, provinces and help", () => {
+    assert.equal(districtPdfPath("/c", "62.71.01", 2026), "/c/pdf/kecamatan/62.71.01-2026.pdf");
+    const o = (c) => ({ domain: "x", level: "regency_city", kemendagriCode: c, name: "n", host: "h" });
+    assert.deepEqual(provinceCodes([o("62.71"), o("11.01"), o("62"), o(null)]), ["11", "62"]);
+    assert.match(HELP, /--province-full/);
+    assert.match(HELP, /--all-provinces-full/);
+  });
+});
+
+describe("stalled downloads", () => {
+  test("no bytes for the idle window: .part removed, retried, then failed as stalled", async () => {
+    const dir = (await import("node:fs")).mkdtempSync(join(tmpdir(), "bps-stall-"));
+    try {
+      let calls = 0;
+      const client = new PoliteClient({
+        idleTimeoutMs: 40,
+        stallBackoffMs: [1, 1, 1],
+        sleep: async () => {},
+        fetchImpl: async () => {
+          calls++;
+          const body = new ReadableStream({
+            start(c) {
+              c.enqueue(new TextEncoder().encode("%PDF-1.7 partial"));
+            },
+          });
+          return new Response(body, { status: 200 });
+        },
+      });
+      const dest = join(dir, "x.pdf");
+      await assert.rejects(() => client.downloadPdf("https://x.bps.go.id/f", dest), StallError);
+      assert.equal(calls, 4);
+      assert.equal(existsSync(`${dest}.part`), false);
+      assert.equal(existsSync(dest), false);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+  test("a healthy PDF download is renamed into place with its sha256", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "bps-dl-"));
+    try {
+      const client = new PoliteClient({ sleep: async () => {}, fetchImpl: async () => new Response("%PDF-1.4 hello") });
+      const dest = join(dir, "a.pdf");
+      const r = await client.downloadPdf("https://x.bps.go.id/f", dest);
+      assert.equal(r.kind, "pdf");
+      assert.equal(r.sha256, (await import("node:crypto")).createHash("sha256").update("%PDF-1.4 hello").digest("hex"));
+      assert.equal(existsSync(dest), true);
+      const bad = new PoliteClient({ sleep: async () => {}, fetchImpl: async () => new Response('{"status":"error","message":"Remote server error (404)."}') });
+      const e = await bad.downloadPdf("https://x.bps.go.id/f", join(dir, "b.pdf"));
+      assert.equal(e.kind, "json-error");
+      assert.equal(existsSync(join(dir, "b.pdf")), false);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+});
+
+describe("download concurrency", () => {
+  test("round robin interleaves offices", () => {
+    assert.deepEqual(roundRobin([["a1", "a2", "a3"], ["b1"], ["c1", "c2"]]), ["a1", "b1", "c1", "a2", "c2", "a3"]);
+    assert.deepEqual(roundRobin([]), []);
+  });
+  test("the pool never runs more than N at once and rethrows the first failure after settling", async () => {
+    let live = 0;
+    let peak = 0;
+    await runPool([...Array(10).keys()], DOWNLOAD_CONCURRENCY, async () => {
+      peak = Math.max(peak, ++live);
+      await new Promise((r) => setTimeout(r, 5));
+      live--;
+    });
+    assert.equal(peak, 3);
+    const seen = [];
+    await assert.rejects(() => runPool([1, 2, 3, 4, 5, 6], 2, async (x) => { seen.push(x); if (x === 2) throw new Error("boom"); await new Promise((r) => setTimeout(r, 5)); }), /boom/);
+    assert.ok(seen.length < 6);
+  });
+  test("page requests are serialized while PDF transfers overlap", async () => {
+    let metaLive = 0, metaPeak = 0, dlLive = 0, dlPeak = 0;
+    const client = new PoliteClient({
+      sleep: async () => {},
+      fetchImpl: async (url) => {
+        const isDl = String(url).includes("download.php");
+        if (isDl) { dlPeak = Math.max(dlPeak, ++dlLive); await new Promise((r) => setTimeout(r, 20)); dlLive--; return new Response("%PDF-1.4 x"); }
+        metaPeak = Math.max(metaPeak, ++metaLive);
+        await new Promise((r) => setTimeout(r, 5));
+        metaLive--;
+        return new Response("ok");
+      },
+    });
+    const dir = mkdtempSync(join(tmpdir(), "bps-par-"));
+    try {
+      await Promise.all([
+        ...[1, 2, 3, 4].map((i) => client.getText(`https://x.bps.go.id/${i}`)),
+        ...[1, 2, 3].map((i) => client.downloadPdf(`https://webapi.bps.go.id/download.php?f=${i}`, join(dir, `${i}.pdf`))),
+      ]);
+      assert.equal(metaPeak, 1);
+      assert.equal(dlPeak, 3);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
   });
 });

@@ -553,6 +553,7 @@ suite("idn population statistics (real PostgreSQL)", () => {
         reference_year: "2025",
         universe: "'total_population'",
         source_table: "'Tabel 3.1.1'",
+        figure_basis: "'projection'",
         ...overrides
       };
       return sql.unsafe(
@@ -562,7 +563,7 @@ suite("idn population statistics (real PostgreSQL)", () => {
             source_table, source_row_hash)
          VALUES ('${datasetId}', ${row.region_code}, ${row.region_level}, 'x',
                  ${row.dimension}, ${row.category}, ${row.sex}, ${row.value},
-                 ${row.unit}, ${row.reference_year}, 'projection', ${row.universe},
+                 ${row.unit}, ${row.reference_year}, ${row.figure_basis}, ${row.universe},
                  ${row.source_table}, 'h')`
       );
     };
@@ -602,6 +603,8 @@ suite("idn population statistics (real PostgreSQL)", () => {
         )
       ).message
     ).toMatch(/total_sex_check/);
+    // The same table may print the same figure under another basis.
+    await insert({ figure_basis: "'registration'" });
     // The same figure in ANOTHER table is allowed: each table keeps its own total.
     await insert({ source_table: "'Tabel 9.9.9'" });
     // A different reference year is a different figure, and fractional ribu_jiwa is fine.

@@ -1,0 +1,88 @@
+{
+  "datasetCode": "bps-6208-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "62.07",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Seruyan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Seruyan",
+  "publisherDomain": "6208",
+  "publisherWebsite": "https://seruyankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Seruyan (https://seruyankab.bps.go.id), publikasi \"Kabupaten Seruyan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6208",
+  "publicationNumber": "62080.26003",
+  "issn": "2355-3510",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://seruyankab.bps.go.id/id/publication/2026/02/27/e0407164ea7295093a6a2efa/kabupaten-seruyan-dalam-angka-2026.html",
+  "sourceFileSha256": "e9188059d62838922cc5eeab6d400c6fb2daa0b190eb8fa5691984161684dbf5",
+  "sourceFileBytes": 25668741,
+  "sourcePages": [
+    64,
+    67,
+    136,
+    311
+  ],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Seruyan.",
+  "csvPath": "datasets/bps-6208-dalam-angka-2026.csv",
+  "csvSha256": "de2e51b9fbb669a9799e4e275c71c0c0e7553c939b93bef8430c64eb82729b82",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Seruyan, 2025",
+      "printedPages": [
+        64
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Seruyan (ribu jiwa), 2025",
+      "printedPages": [
+        67
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Seruyan, 2025",
+      "printedPages": [
+        136
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Seruyan (rupiah), 2024 dan 2025",
+      "printedPages": [
+        311
+      ],
+      "referenceYears": [
+        2024,
+        2025
+      ],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 4.3.1 is not included: its published figures do not add up (religion/hindu/- 2025: parts sum 7477.0000 != 7479.0000 (diff 2.0000)); the source itself is inconsistent"
+  ]
+}
