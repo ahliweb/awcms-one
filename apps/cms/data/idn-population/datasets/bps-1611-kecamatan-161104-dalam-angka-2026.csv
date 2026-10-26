@@ -1,0 +1,121 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.11.04.2001,4,Ujung Alih,sex,laki_laki,,924,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+16.11.04.2001,4,Ujung Alih,sex,perempuan,,848,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+16.11.04.2001,4,Ujung Alih,total,total,,1772,jiwa,2025,registration,total_population,3.1,33,,
+16.11.04.2003,4,Ulak Mengkudu,sex,laki_laki,,784,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+16.11.04.2003,4,Ulak Mengkudu,sex,perempuan,,789,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+16.11.04.2003,4,Ulak Mengkudu,total,total,,1573,jiwa,2025,registration,total_population,3.1,33,,
+16.11.04.2004,4,Batu Pance,sex,laki_laki,,1029,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+16.11.04.2004,4,Batu Pance,sex,perempuan,,964,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+16.11.04.2004,4,Batu Pance,total,total,,1993,jiwa,2025,registration,total_population,3.1,33,,
+16.11.04.2005,4,Aur Gading,sex,laki_laki,,695,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+16.11.04.2005,4,Aur Gading,sex,perempuan,,663,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+16.11.04.2005,4,Aur Gading,total,total,,1358,jiwa,2025,registration,total_population,3.1,33,,
+16.11.04.2006,4,Terusan Lama,sex,laki_laki,,538,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+16.11.04.2006,4,Terusan Lama,sex,perempuan,,480,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+16.11.04.2006,4,Terusan Lama,total,total,,1018,jiwa,2025,registration,total_population,3.1,33,,
+16.11.04.2007,4,Terusan Baru,sex,laki_laki,,1585,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+16.11.04.2007,4,Terusan Baru,sex,perempuan,,1543,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+16.11.04.2007,4,Terusan Baru,total,total,,3128,jiwa,2025,registration,total_population,3.1,33,,
+16.11.04.2009,4,Seguring Kecil,sex,laki_laki,,344,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+16.11.04.2009,4,Seguring Kecil,sex,perempuan,,339,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+16.11.04.2009,4,Seguring Kecil,total,total,,683,jiwa,2025,registration,total_population,3.1,33,,
+16.11.04.2008,4,Rantau Tenang,sex,laki_laki,,1316,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+16.11.04.2008,4,Rantau Tenang,sex,perempuan,,1222,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+16.11.04.2008,4,Rantau Tenang,total,total,,2538,jiwa,2025,registration,total_population,3.1,33,,
+16.11.04.2012,4,Lampar Baru,sex,laki_laki,,751,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+16.11.04.2012,4,Lampar Baru,sex,perempuan,,791,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+16.11.04.2012,4,Lampar Baru,total,total,,1542,jiwa,2025,registration,total_population,3.1,33,,
+16.11.04.2011,4,Kemang Manis,sex,laki_laki,,796,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+16.11.04.2011,4,Kemang Manis,sex,perempuan,,751,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+16.11.04.2011,4,Kemang Manis,total,total,,1547,jiwa,2025,registration,total_population,3.1,33,,
+16.11.04.2027,4,Mekar Jaya,sex,laki_laki,,1635,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+16.11.04.2027,4,Mekar Jaya,sex,perempuan,,1548,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+16.11.04.2027,4,Mekar Jaya,total,total,,3183,jiwa,2025,registration,total_population,3.1,33,,
+16.11.04.2034,4,Makarti Jaya,sex,laki_laki,,497,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+16.11.04.2034,4,Makarti Jaya,sex,perempuan,,452,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+16.11.04.2034,4,Makarti Jaya,total,total,,949,jiwa,2025,registration,total_population,3.1,33,,
+16.11.04.2024,4,Sugi Waras,sex,laki_laki,,696,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+16.11.04.2024,4,Sugi Waras,sex,perempuan,,640,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+16.11.04.2024,4,Sugi Waras,total,total,,1336,jiwa,2025,registration,total_population,3.1,33,,
+16.11.04.2022,4,Batu Raja Baru,sex,laki_laki,,1069,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+16.11.04.2022,4,Batu Raja Baru,sex,perempuan,,967,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+16.11.04.2022,4,Batu Raja Baru,total,total,,2036,jiwa,2025,registration,total_population,3.1,33,,
+16.11.04.2023,4,Batu Raja Lama,sex,laki_laki,,1067,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+16.11.04.2023,4,Batu Raja Lama,sex,perempuan,,1027,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+16.11.04.2023,4,Batu Raja Lama,total,total,,2094,jiwa,2025,registration,total_population,3.1,34,,
+16.11.04.2021,4,Kota Gading,sex,laki_laki,,732,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+16.11.04.2021,4,Kota Gading,sex,perempuan,,708,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+16.11.04.2021,4,Kota Gading,total,total,,1440,jiwa,2025,registration,total_population,3.1,34,,
+16.11.04.2035,4,Tanjung Kupang Baru,sex,laki_laki,,1691,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+16.11.04.2035,4,Tanjung Kupang Baru,sex,perempuan,,1461,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+16.11.04.2035,4,Tanjung Kupang Baru,total,total,,3152,jiwa,2025,registration,total_population,3.1,34,,
+16.11.04.1010,4,Kupang,sex,laki_laki,,1687,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+16.11.04.1010,4,Kupang,sex,perempuan,,1655,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+16.11.04.1010,4,Kupang,total,total,,3342,jiwa,2025,registration,total_population,3.1,34,,
+16.11.04.1013,4,Tanjung Kupang,sex,laki_laki,,4594,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+16.11.04.1013,4,Tanjung Kupang,sex,perempuan,,4490,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+16.11.04.1013,4,Tanjung Kupang,total,total,,9084,jiwa,2025,registration,total_population,3.1,34,,
+16.11.04.1014,4,Tanjung Makmur,sex,laki_laki,,1842,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+16.11.04.1014,4,Tanjung Makmur,sex,perempuan,,1707,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+16.11.04.1014,4,Tanjung Makmur,total,total,,3549,jiwa,2025,registration,total_population,3.1,34,,
+16.11.04.1036,4,Kelumpang Jaya,sex,laki_laki,,1085,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+16.11.04.1036,4,Kelumpang Jaya,sex,perempuan,,1014,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+16.11.04.1036,4,Kelumpang Jaya,total,total,,2099,jiwa,2025,registration,total_population,3.1,34,,
+16.11.04.1033,4,Jaya Loka,sex,laki_laki,,4993,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+16.11.04.1033,4,Jaya Loka,sex,perempuan,,4717,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+16.11.04.1033,4,Jaya Loka,total,total,,9710,jiwa,2025,registration,total_population,3.1,34,,
+16.11.04,3,Tebing Tinggi,sex,laki_laki,,37231,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+16.11.04,3,Tebing Tinggi,sex,perempuan,,35352,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+16.11.04,3,Tebing Tinggi,total,total,,72583,jiwa,2025,registration,total_population,3.1,34,,
+16.11.04,3,Tebing Tinggi,age_group,0-4,laki_laki,2146,jiwa,2025,registration,total_population,3.2,37,,0-4
+16.11.04,3,Tebing Tinggi,age_group,0-4,perempuan,1883,jiwa,2025,registration,total_population,3.2,37,,0-4
+16.11.04,3,Tebing Tinggi,age_group,0-4,,4029,jiwa,2025,registration,total_population,3.2,37,,0-4
+16.11.04,3,Tebing Tinggi,age_group,5-9,laki_laki,2649,jiwa,2025,registration,total_population,3.2,37,,5-9
+16.11.04,3,Tebing Tinggi,age_group,5-9,perempuan,2482,jiwa,2025,registration,total_population,3.2,37,,5-9
+16.11.04,3,Tebing Tinggi,age_group,5-9,,5131,jiwa,2025,registration,total_population,3.2,37,,5-9
+16.11.04,3,Tebing Tinggi,age_group,10-14,laki_laki,3032,jiwa,2025,registration,total_population,3.2,37,,10-14
+16.11.04,3,Tebing Tinggi,age_group,10-14,perempuan,2736,jiwa,2025,registration,total_population,3.2,37,,10-14
+16.11.04,3,Tebing Tinggi,age_group,10-14,,5768,jiwa,2025,registration,total_population,3.2,37,,10-14
+16.11.04,3,Tebing Tinggi,age_group,15-19,laki_laki,3237,jiwa,2025,registration,total_population,3.2,37,,15-19
+16.11.04,3,Tebing Tinggi,age_group,15-19,perempuan,3005,jiwa,2025,registration,total_population,3.2,37,,15-19
+16.11.04,3,Tebing Tinggi,age_group,15-19,,6242,jiwa,2025,registration,total_population,3.2,37,,15-19
+16.11.04,3,Tebing Tinggi,age_group,20-24,laki_laki,3262,jiwa,2025,registration,total_population,3.2,37,,20-24
+16.11.04,3,Tebing Tinggi,age_group,20-24,perempuan,2989,jiwa,2025,registration,total_population,3.2,37,,20-24
+16.11.04,3,Tebing Tinggi,age_group,20-24,,6251,jiwa,2025,registration,total_population,3.2,37,,20-24
+16.11.04,3,Tebing Tinggi,age_group,25-29,laki_laki,2998,jiwa,2025,registration,total_population,3.2,37,,25-29
+16.11.04,3,Tebing Tinggi,age_group,25-29,perempuan,2764,jiwa,2025,registration,total_population,3.2,37,,25-29
+16.11.04,3,Tebing Tinggi,age_group,25-29,,5762,jiwa,2025,registration,total_population,3.2,37,,25-29
+16.11.04,3,Tebing Tinggi,age_group,30-34,laki_laki,2835,jiwa,2025,registration,total_population,3.2,37,,30-34
+16.11.04,3,Tebing Tinggi,age_group,30-34,perempuan,2752,jiwa,2025,registration,total_population,3.2,37,,30-34
+16.11.04,3,Tebing Tinggi,age_group,30-34,,5587,jiwa,2025,registration,total_population,3.2,37,,30-34
+16.11.04,3,Tebing Tinggi,age_group,35-39,laki_laki,3548,jiwa,2025,registration,total_population,3.2,37,,35-39
+16.11.04,3,Tebing Tinggi,age_group,35-39,perempuan,3293,jiwa,2025,registration,total_population,3.2,37,,35-39
+16.11.04,3,Tebing Tinggi,age_group,35-39,,6841,jiwa,2025,registration,total_population,3.2,37,,35-39
+16.11.04,3,Tebing Tinggi,age_group,40-44,laki_laki,2934,jiwa,2025,registration,total_population,3.2,37,,40-44
+16.11.04,3,Tebing Tinggi,age_group,40-44,perempuan,2796,jiwa,2025,registration,total_population,3.2,37,,40-44
+16.11.04,3,Tebing Tinggi,age_group,40-44,,5730,jiwa,2025,registration,total_population,3.2,37,,40-44
+16.11.04,3,Tebing Tinggi,age_group,45-49,laki_laki,2659,jiwa,2025,registration,total_population,3.2,37,,45-49
+16.11.04,3,Tebing Tinggi,age_group,45-49,perempuan,2566,jiwa,2025,registration,total_population,3.2,37,,45-49
+16.11.04,3,Tebing Tinggi,age_group,45-49,,5225,jiwa,2025,registration,total_population,3.2,37,,45-49
+16.11.04,3,Tebing Tinggi,age_group,50-54,laki_laki,2046,jiwa,2025,registration,total_population,3.2,37,,50-54
+16.11.04,3,Tebing Tinggi,age_group,50-54,perempuan,2024,jiwa,2025,registration,total_population,3.2,37,,50-54
+16.11.04,3,Tebing Tinggi,age_group,50-54,,4070,jiwa,2025,registration,total_population,3.2,37,,50-54
+16.11.04,3,Tebing Tinggi,age_group,55-59,laki_laki,1914,jiwa,2025,registration,total_population,3.2,37,,55-59
+16.11.04,3,Tebing Tinggi,age_group,55-59,perempuan,1891,jiwa,2025,registration,total_population,3.2,37,,55-59
+16.11.04,3,Tebing Tinggi,age_group,55-59,,3805,jiwa,2025,registration,total_population,3.2,37,,55-59
+16.11.04,3,Tebing Tinggi,age_group,60-64,laki_laki,1419,jiwa,2025,registration,total_population,3.2,37,,60-64
+16.11.04,3,Tebing Tinggi,age_group,60-64,perempuan,1409,jiwa,2025,registration,total_population,3.2,37,,60-64
+16.11.04,3,Tebing Tinggi,age_group,60-64,,2828,jiwa,2025,registration,total_population,3.2,37,,60-64
+16.11.04,3,Tebing Tinggi,age_group,65-69,laki_laki,1224,jiwa,2025,registration,total_population,3.2,37,,65-69
+16.11.04,3,Tebing Tinggi,age_group,65-69,perempuan,1165,jiwa,2025,registration,total_population,3.2,37,,65-69
+16.11.04,3,Tebing Tinggi,age_group,65-69,,2389,jiwa,2025,registration,total_population,3.2,37,,65-69
+16.11.04,3,Tebing Tinggi,age_group,70-74,laki_laki,649,jiwa,2025,registration,total_population,3.2,37,,70-74
+16.11.04,3,Tebing Tinggi,age_group,70-74,perempuan,617,jiwa,2025,registration,total_population,3.2,37,,70-74
+16.11.04,3,Tebing Tinggi,age_group,70-74,,1266,jiwa,2025,registration,total_population,3.2,37,,70-74
+16.11.04,3,Tebing Tinggi,age_group,75+,laki_laki,679,jiwa,2025,registration,total_population,3.2,37,,≥75
+16.11.04,3,Tebing Tinggi,age_group,75+,perempuan,980,jiwa,2025,registration,total_population,3.2,37,,≥75
+16.11.04,3,Tebing Tinggi,age_group,75+,,1659,jiwa,2025,registration,total_population,3.2,37,,≥75
+16.11.04,3,Tebing Tinggi,sex,laki_laki,,37231,jiwa,2025,registration,total_population,3.2,37,,Laki-Laki
+16.11.04,3,Tebing Tinggi,sex,perempuan,,35352,jiwa,2025,registration,total_population,3.2,37,,Perempuan
+16.11.04,3,Tebing Tinggi,total,total,,72583,jiwa,2025,registration,total_population,3.2,37,,

@@ -1,0 +1,30 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.07.04.2004,4,Rantau Rasau I,sex,laki_laki,,1401,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.07.04.2004,4,Rantau Rasau I,total,total,,2741,jiwa,2025,registration,total_population,3.1,30,,
+15.07.04.2005,4,Rantau Rasau II,sex,laki_laki,,1504,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.07.04.2005,4,Rantau Rasau II,sex,perempuan,,1466,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.07.04.2009,4,Rantau Jaya,sex,laki_laki,,1744,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.07.04.2009,4,Rantau Jaya,sex,perempuan,,1761,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.07.04.2009,4,Rantau Jaya,total,total,,3505,jiwa,2025,registration,total_population,3.1,30,,
+15.07.04.2008,4,Bangun Karya,sex,laki_laki,,1327,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.07.04.2008,4,Bangun Karya,sex,perempuan,,1297,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.07.04.2008,4,Bangun Karya,total,total,,2624,jiwa,2025,registration,total_population,3.1,30,,
+15.07.04.2011,4,Sungai Dusun,sex,laki_laki,,135,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.07.04.2011,4,Sungai Dusun,sex,perempuan,,158,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.07.04.2011,4,Sungai Dusun,total,total,,293,jiwa,2025,registration,total_population,3.1,30,,
+15.07.04.2007,4,Harapan Makmur,sex,laki_laki,,1731,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.07.04.2007,4,Harapan Makmur,total,total,,3411,jiwa,2025,registration,total_population,3.1,30,,
+15.07.04.2014,4,Marga Mulya,sex,laki_laki,,632,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.07.04.2014,4,Marga Mulya,sex,perempuan,,602,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.07.04.2014,4,Marga Mulya,total,total,,1234,jiwa,2025,registration,total_population,3.1,30,,
+15.07.04.2013,4,Karya Bakti,sex,laki_laki,,908,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.07.04.2013,4,Karya Bakti,sex,perempuan,,862,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.07.04.2015,4,Pematang Mayan,sex,laki_laki,,619,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.07.04.2015,4,Pematang Mayan,sex,perempuan,,592,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.07.04.2015,4,Pematang Mayan,total,total,,1211,jiwa,2025,registration,total_population,3.1,30,,
+15.07.04.1006,4,Bandar Jaya,sex,laki_laki,,2505,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.07.04.1006,4,Bandar Jaya,sex,perempuan,,2444,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.07.04.1006,4,Bandar Jaya,total,total,,4949,jiwa,2025,registration,total_population,3.1,30,,
+15.07.04,3,Kecamatan Rantau Rasau,sex,laki_laki,,13686,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.07.04,3,Kecamatan Rantau Rasau,sex,perempuan,,13346,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.07.04,3,Kecamatan Rantau Rasau,total,total,,27032,jiwa,2025,registration,total_population,3.1,30,,

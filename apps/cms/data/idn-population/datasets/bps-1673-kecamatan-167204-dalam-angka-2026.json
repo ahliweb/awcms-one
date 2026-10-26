@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1673-kecamatan-167204-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.72.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Dempo Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kota Pagar Alam",
+  "publisherDomain": "1673",
+  "publisherWebsite": "https://pagaralamkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Pagar Alam (https://pagaralamkota.bps.go.id), publikasi \"Kecamatan Dempo Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1673010",
+  "publicationNumber": "16730.26006",
+  "issn": "3031-8432",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pagaralamkota.bps.go.id/id/publication/2026/09/28/dea50b772f70189016070e7d/kecamatan-dempo-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "337252085ed08e4334bcd3e8b8210b579860b367af5c8a47ca0e8413796685e8",
+  "sourceFileBytes": 9516356,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Pagar Alam.",
+  "csvPath": "datasets/bps-1673-kecamatan-167204-dalam-angka-2026.csv",
+  "csvSha256": "ddcf7f99ac2de6094b9559c9ff9a008d77013018625eb5a7233135aa00d10b2d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Dempo Selatan, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Dempo Selatan, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Perahu Dipo\": unmatched ",
+    "table 3.1: row not stored: row \"Perahu Dipo\": unmatched "
+  ]
+}

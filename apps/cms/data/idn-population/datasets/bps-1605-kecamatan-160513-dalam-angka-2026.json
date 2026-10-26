@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1605-kecamatan-160513-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.05.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Purwodadi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Musi Rawas",
+  "publisherDomain": "1605",
+  "publisherWebsite": "https://musirawaskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Musi Rawas (https://musirawaskab.bps.go.id), publikasi \"Kecamatan Purwodadi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "16050.26010",
+  "issn": "2723-8652",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://musirawaskab.bps.go.id/id/publication/2026/09/28/a7ff12f5c715f62a85427b45/kecamatan-purwodadi-dalam-angka-2026.html",
+  "sourceFileSha256": "0fd0c773b0f327178a26de792db7985a27730bc69dc36868a7949c890fd76488",
+  "sourceFileBytes": 7863231,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Musi Rawas",
+  "csvPath": "datasets/bps-1605-kecamatan-160513-dalam-angka-2026.csv",
+  "csvSha256": "ce1ceccfa20bc1aa8f66d4d0a5929d9803c3cc5282e60502de0f5b2c03ed572d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Purwodadi, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Purwodadi, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.04.04.1003,4,Seberang Tembilahan,sex,laki_laki,,2774,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.04.1003,4,Seberang Tembilahan,sex,perempuan,,2594,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.04.1003,4,Seberang Tembilahan,total,total,,5368,jiwa,2026,registration,total_population,3.1,29,,
+14.04.04.1004,4,Sungai Perak,sex,laki_laki,,2015,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.04.1004,4,Sungai Perak,sex,perempuan,,1817,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.04.1004,4,Sungai Perak,total,total,,3832,jiwa,2026,registration,total_population,3.1,29,,
+14.04.04.1002,4,Tembilahan Hilir,sex,laki_laki,,10047,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.04.1002,4,Tembilahan Hilir,sex,perempuan,,9636,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.04.1002,4,Tembilahan Hilir,total,total,,19683,jiwa,2026,registration,total_population,3.1,29,,
+14.04.04.1001,4,Tembilahan Kota,sex,laki_laki,,12197,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.04.1001,4,Tembilahan Kota,sex,perempuan,,12035,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.04.1001,4,Tembilahan Kota,total,total,,24232,jiwa,2026,registration,total_population,3.1,29,,
+14.04.04.1006,4,Pekan Arba,sex,laki_laki,,7936,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.04.1006,4,Pekan Arba,sex,perempuan,,7790,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.04.1006,4,Pekan Arba,total,total,,15726,jiwa,2026,registration,total_population,3.1,29,,
+14.04.04.1005,4,Sungai Beringin,sex,laki_laki,,7899,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.04.1005,4,Sungai Beringin,sex,perempuan,,7677,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.04.1005,4,Sungai Beringin,total,total,,15576,jiwa,2026,registration,total_population,3.1,29,,
+14.04.04.1007,4,Seberang Tembilahan Barat,sex,laki_laki,,1010,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.04.1007,4,Seberang Tembilahan Barat,sex,perempuan,,884,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.04.1007,4,Seberang Tembilahan Barat,total,total,,1894,jiwa,2026,registration,total_population,3.1,29,,
+14.04.04.1008,4,Seberang Tembilahan Selatan,sex,laki_laki,,667,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.04.1008,4,Seberang Tembilahan Selatan,sex,perempuan,,679,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.04.1008,4,Seberang Tembilahan Selatan,total,total,,1346,jiwa,2026,registration,total_population,3.1,29,,
+14.04.04,3,Tembilahan,sex,laki_laki,,44545,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.04,3,Tembilahan,sex,perempuan,,43112,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.04,3,Tembilahan,total,total,,87657,jiwa,2026,registration,total_population,3.1,29,,

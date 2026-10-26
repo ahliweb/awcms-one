@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.04.05.1005,4,Tempuling,sex,laki_laki,,2474,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.05.1005,4,Tempuling,sex,perempuan,,2226,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.05.1005,4,Tempuling,total,total,,4700,jiwa,2026,registration,total_population,3.1,29,,
+14.04.05.1004,4,Sungai Salak,sex,laki_laki,,5059,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.05.1004,4,Sungai Salak,sex,perempuan,,4846,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.05.1004,4,Sungai Salak,total,total,,9905,jiwa,2026,registration,total_population,3.1,29,,
+14.04.05.2007,4,Teluk Jira,sex,laki_laki,,1925,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.05.2007,4,Teluk Jira,sex,perempuan,,1727,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.05.2007,4,Teluk Jira,total,total,,3652,jiwa,2026,registration,total_population,3.1,29,,
+14.04.05.2003,4,Mumpa,sex,laki_laki,,2142,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.05.2003,4,Mumpa,sex,perempuan,,2018,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.05.2003,4,Mumpa,total,total,,4160,jiwa,2026,registration,total_population,3.1,29,,
+14.04.05.2002,4,Teluk Kiambang,sex,laki_laki,,1862,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.05.2002,4,Teluk Kiambang,sex,perempuan,,1824,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.05.2002,4,Teluk Kiambang,total,total,,3686,jiwa,2026,registration,total_population,3.1,29,,
+14.04.05.2009,4,Karya Tunas Jaya,sex,laki_laki,,1965,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.05.2009,4,Karya Tunas Jaya,sex,perempuan,,1874,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.05.2009,4,Karya Tunas Jaya,total,total,,3839,jiwa,2026,registration,total_population,3.1,29,,
+14.04.05.2011,4,Harapan Jaya,sex,laki_laki,,1227,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.05.2011,4,Harapan Jaya,sex,perempuan,,1215,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.05.2011,4,Harapan Jaya,total,total,,2442,jiwa,2026,registration,total_population,3.1,29,,
+14.04.05.1016,4,Tanjung Pidada,sex,laki_laki,,778,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.05.1016,4,Tanjung Pidada,sex,perempuan,,707,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.05.1016,4,Tanjung Pidada,total,total,,1485,jiwa,2026,registration,total_population,3.1,29,,
+14.04.05.1017,4,Pangkalan Tujuh,sex,laki_laki,,1698,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.05.1017,4,Pangkalan Tujuh,sex,perempuan,,1622,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.05.1017,4,Pangkalan Tujuh,total,total,,3320,jiwa,2026,registration,total_population,3.1,29,,
+14.04.05,3,Tempuling,sex,laki_laki,,19130,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.05,3,Tempuling,sex,perempuan,,18059,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.05,3,Tempuling,total,total,,37189,jiwa,2026,registration,total_population,3.1,29,,

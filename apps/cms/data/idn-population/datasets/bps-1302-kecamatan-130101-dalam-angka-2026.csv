@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.01.01,3,Pancung Soal,age_group,0-4,laki_laki,1056,jiwa,2025,registration,total_population,3.2,27,,0–4
+13.01.01,3,Pancung Soal,age_group,0-4,perempuan,1017,jiwa,2025,registration,total_population,3.2,27,,0–4
+13.01.01,3,Pancung Soal,age_group,0-4,,2073,jiwa,2025,registration,total_population,3.2,27,,0–4
+13.01.01,3,Pancung Soal,age_group,5-9,laki_laki,1450,jiwa,2025,registration,total_population,3.2,27,,5–9
+13.01.01,3,Pancung Soal,age_group,5-9,perempuan,1363,jiwa,2025,registration,total_population,3.2,27,,5–9
+13.01.01,3,Pancung Soal,age_group,5-9,,2813,jiwa,2025,registration,total_population,3.2,27,,5–9
+13.01.01,3,Pancung Soal,age_group,10-14,laki_laki,1610,jiwa,2025,registration,total_population,3.2,27,,10–14
+13.01.01,3,Pancung Soal,age_group,10-14,perempuan,1502,jiwa,2025,registration,total_population,3.2,27,,10–14
+13.01.01,3,Pancung Soal,age_group,10-14,,3112,jiwa,2025,registration,total_population,3.2,27,,10–14
+13.01.01,3,Pancung Soal,age_group,15-19,laki_laki,1343,jiwa,2025,registration,total_population,3.2,27,,15–19
+13.01.01,3,Pancung Soal,age_group,15-19,perempuan,1335,jiwa,2025,registration,total_population,3.2,27,,15–19
+13.01.01,3,Pancung Soal,age_group,15-19,,2678,jiwa,2025,registration,total_population,3.2,27,,15–19
+13.01.01,3,Pancung Soal,age_group,20-24,laki_laki,1323,jiwa,2025,registration,total_population,3.2,27,,20–24
+13.01.01,3,Pancung Soal,age_group,20-24,perempuan,1212,jiwa,2025,registration,total_population,3.2,27,,20–24
+13.01.01,3,Pancung Soal,age_group,20-24,,2535,jiwa,2025,registration,total_population,3.2,27,,20–24
+13.01.01,3,Pancung Soal,age_group,25-29,laki_laki,1190,jiwa,2025,registration,total_population,3.2,27,,25–29
+13.01.01,3,Pancung Soal,age_group,25-29,perempuan,1062,jiwa,2025,registration,total_population,3.2,27,,25–29
+13.01.01,3,Pancung Soal,age_group,25-29,,2252,jiwa,2025,registration,total_population,3.2,27,,25–29
+13.01.01,3,Pancung Soal,age_group,30-34,laki_laki,914,jiwa,2025,registration,total_population,3.2,27,,30–34
+13.01.01,3,Pancung Soal,age_group,30-34,perempuan,886,jiwa,2025,registration,total_population,3.2,27,,30–34
+13.01.01,3,Pancung Soal,age_group,30-34,,1800,jiwa,2025,registration,total_population,3.2,27,,30–34
+13.01.01,3,Pancung Soal,age_group,35-39,laki_laki,967,jiwa,2025,registration,total_population,3.2,27,,35–39
+13.01.01,3,Pancung Soal,age_group,35-39,perempuan,959,jiwa,2025,registration,total_population,3.2,27,,35–39
+13.01.01,3,Pancung Soal,age_group,35-39,,1926,jiwa,2025,registration,total_population,3.2,27,,35–39
+13.01.01,3,Pancung Soal,age_group,40-44,laki_laki,1098,jiwa,2025,registration,total_population,3.2,27,,40–44
+13.01.01,3,Pancung Soal,age_group,40-44,perempuan,1053,jiwa,2025,registration,total_population,3.2,27,,40–44
+13.01.01,3,Pancung Soal,age_group,40-44,,2151,jiwa,2025,registration,total_population,3.2,27,,40–44
+13.01.01,3,Pancung Soal,age_group,45-49,laki_laki,1051,jiwa,2025,registration,total_population,3.2,27,,45–49
+13.01.01,3,Pancung Soal,age_group,45-49,perempuan,952,jiwa,2025,registration,total_population,3.2,27,,45–49
+13.01.01,3,Pancung Soal,age_group,45-49,,2003,jiwa,2025,registration,total_population,3.2,27,,45–49
+13.01.01,3,Pancung Soal,age_group,50-54,laki_laki,731,jiwa,2025,registration,total_population,3.2,27,,50–54
+13.01.01,3,Pancung Soal,age_group,50-54,perempuan,748,jiwa,2025,registration,total_population,3.2,27,,50–54
+13.01.01,3,Pancung Soal,age_group,50-54,,1479,jiwa,2025,registration,total_population,3.2,27,,50–54
+13.01.01,3,Pancung Soal,age_group,55-59,laki_laki,574,jiwa,2025,registration,total_population,3.2,27,,55–59
+13.01.01,3,Pancung Soal,age_group,55-59,perempuan,558,jiwa,2025,registration,total_population,3.2,27,,55–59
+13.01.01,3,Pancung Soal,age_group,55-59,,1132,jiwa,2025,registration,total_population,3.2,27,,55–59
+13.01.01,3,Pancung Soal,age_group,60-64,laki_laki,397,jiwa,2025,registration,total_population,3.2,27,,60–64
+13.01.01,3,Pancung Soal,age_group,60-64,perempuan,533,jiwa,2025,registration,total_population,3.2,27,,60–64
+13.01.01,3,Pancung Soal,age_group,60-64,,930,jiwa,2025,registration,total_population,3.2,27,,60–64
+13.01.01,3,Pancung Soal,age_group,65-69,laki_laki,393,jiwa,2025,registration,total_population,3.2,27,,65–69
+13.01.01,3,Pancung Soal,age_group,65-69,perempuan,460,jiwa,2025,registration,total_population,3.2,27,,65–69
+13.01.01,3,Pancung Soal,age_group,65-69,,853,jiwa,2025,registration,total_population,3.2,27,,65–69
+13.01.01,3,Pancung Soal,age_group,70-74,laki_laki,249,jiwa,2025,registration,total_population,3.2,27,,70–74
+13.01.01,3,Pancung Soal,age_group,70-74,perempuan,282,jiwa,2025,registration,total_population,3.2,27,,70–74
+13.01.01,3,Pancung Soal,age_group,70-74,,531,jiwa,2025,registration,total_population,3.2,27,,70–74
+13.01.01,3,Pancung Soal,age_group,75+,laki_laki,221,jiwa,2025,registration,total_population,3.2,27,,75+
+13.01.01,3,Pancung Soal,age_group,75+,perempuan,352,jiwa,2025,registration,total_population,3.2,27,,75+
+13.01.01,3,Pancung Soal,age_group,75+,,573,jiwa,2025,registration,total_population,3.2,27,,75+
+13.01.01,3,Kecamatan Pancung Soal,sex,laki_laki,,14567,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+13.01.01,3,Kecamatan Pancung Soal,sex,perempuan,,14274,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+13.01.01,3,Kecamatan Pancung Soal,total,total,,28841,jiwa,2025,registration,total_population,3.2,27,,

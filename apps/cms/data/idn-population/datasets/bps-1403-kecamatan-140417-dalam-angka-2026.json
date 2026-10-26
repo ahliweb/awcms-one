@@ -1,0 +1,43 @@
+{
+  "datasetCode": "bps-1403-kecamatan-140417-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.04.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pulau Burung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Indragiri Hilir",
+  "publisherDomain": "1403",
+  "publisherWebsite": "https://inhilkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Indragiri Hilir (https://inhilkab.bps.go.id), publikasi \"Kecamatan Pulau Burung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1403123",
+  "publicationNumber": "14030.26025",
+  "issn": "2715-4165",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://inhilkab.bps.go.id/id/publication/2026/09/28/5759f3ffa4e0b3b1df3c40cf/kecamatan-pulau-burung-dalam-angka-2026.html",
+  "sourceFileSha256": "e2c2f958b114108208a3bd17df6f68644a9b85c3beea858e3c759a3c946918b4",
+  "sourceFileBytes": 3510641,
+  "sourcePages": [29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik BPS Kabupaten Indragiri Hilir.",
+  "csvPath": "datasets/bps-1403-kecamatan-140417-dalam-angka-2026.csv",
+  "csvSha256": "67a6d6a870071028633fcdd9e0d0c231a3ad9bce2e6cd2fec7202633c835d234",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pulau Burung, 2026",
+      "printedPages": [29, 30],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sri Danai\": unmatched ",
+    "table 3.1: row not stored: row \"Binangun Jaya\": unmatched ",
+    "table 3.1: row not stored: row \"Sukoharjo Jaya\": unmatched ",
+    "table 3.1: row not stored: row \"Sri Danai\": unmatched ",
+    "table 3.1: row not stored: row \"Binangun Jaya\": unmatched ",
+    "table 3.1: row not stored: row \"Sukoharjo Jaya\": unmatched "
+  ]
+}

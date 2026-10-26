@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1504-kecamatan-150404-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.04.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Batin XXIV Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Batang Hari",
+  "publisherDomain": "1504",
+  "publisherWebsite": "https://batangharikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Batang Hari (https://batangharikab.bps.go.id), publikasi \"Kecamatan Batin XXIV Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1504020",
+  "publicationNumber": "15040.26007",
+  "issn": "2723-505X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://batangharikab.bps.go.id/id/publication/2026/09/28/1473891e378dfeed737e34f3/kecamatan-batin-xxiv-dalam-angka-2026.html",
+  "sourceFileSha256": "0bb64809e0a2d1be7cc320d90df1d50dfe37ab4edf5933ed2b87a1e10d117ccf",
+  "sourceFileBytes": 10323330,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Batang Hari .",
+  "csvPath": "datasets/bps-1504-kecamatan-150404-dalam-angka-2026.csv",
+  "csvSha256": "aba97dee514a8c573a111cbe61da3978a8ca0b38c2af75ddeaebe213d61ff904",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Batin XXIV , 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Batin XXIV , 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

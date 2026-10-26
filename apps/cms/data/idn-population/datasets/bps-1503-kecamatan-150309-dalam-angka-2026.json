@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-1503-kecamatan-150309-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.03.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Singkut Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sarolangun",
+  "publisherDomain": "1503",
+  "publisherWebsite": "https://sarolangunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sarolangun (https://sarolangunkab.bps.go.id), publikasi \"Kecamatan Singkut Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1503031",
+  "publicationNumber": "15030.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sarolangunkab.bps.go.id/id/publication/2026/09/28/1311259a9a41fb54c28cba7c/kecamatan-singkut-dalam-angka-2026.html",
+  "sourceFileSha256": "ca3830ea4c95886e6d765530ad0f32ec0c8dc154bd295052ed550a9445c9ab10",
+  "sourceFileBytes": 10842932,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sarolangun.",
+  "csvPath": "datasets/bps-1503-kecamatan-150309-dalam-angka-2026.csv",
+  "csvSha256": "240a2a16a251afec19e887de9e4e72b03d6a9a91180b3070aa79af1e879d0d23",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Singkut, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sedang Sari\": unmatched ",
+    "table 3.1: row not stored: row \"Sedang Sari\": unmatched ",
+    "table 3.2: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.03.22.2003,4,Harapan Mulia,sex,laki_laki,,390,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.22.2003,4,Harapan Mulia,sex,perempuan,,364,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.22.2003,4,Harapan Mulia,total,total,,754,jiwa,2025,registration,total_population,3.1,23,,
+16.03.22.2002,4,Arisan Musi,sex,laki_laki,,624,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.22.2002,4,Arisan Musi,sex,perempuan,,569,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.22.2002,4,Arisan Musi,total,total,,1193,jiwa,2025,registration,total_population,3.1,23,,
+16.03.22.2001,4,Gedung Buruk,sex,laki_laki,,460,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.22.2001,4,Gedung Buruk,sex,perempuan,,425,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.22.2001,4,Gedung Buruk,total,total,,885,jiwa,2025,registration,total_population,3.1,23,,
+16.03.22.2008,4,Kayu Ara Batu,sex,laki_laki,,612,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.22.2008,4,Kayu Ara Batu,sex,perempuan,,601,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.22.2008,4,Kayu Ara Batu,total,total,,1213,jiwa,2025,registration,total_population,3.1,23,,
+16.03.22.2005,4,Arisan Musi Timur,sex,laki_laki,,481,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.22.2005,4,Arisan Musi Timur,sex,perempuan,,411,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.22.2005,4,Arisan Musi Timur,total,total,,892,jiwa,2025,registration,total_population,3.1,23,,
+16.03.22.2006,4,Patra Tani,sex,laki_laki,,537,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.22.2006,4,Patra Tani,sex,perempuan,,513,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.22.2006,4,Patra Tani,total,total,,1050,jiwa,2025,registration,total_population,3.1,23,,
+16.03.22.2007,4,Tanjung Baru,sex,laki_laki,,782,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.22.2007,4,Tanjung Baru,sex,perempuan,,734,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.22.2007,4,Tanjung Baru,total,total,,1516,jiwa,2025,registration,total_population,3.1,23,,
+16.03.22.2004,4,Mulia Abadi,sex,laki_laki,,557,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.22.2004,4,Mulia Abadi,sex,perempuan,,499,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.22.2004,4,Mulia Abadi,total,total,,1056,jiwa,2025,registration,total_population,3.1,23,,
+16.03.22,3,Muara Belida,sex,laki_laki,,4443,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.22,3,Muara Belida,sex,perempuan,,4116,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.22,3,Muara Belida,total,total,,8559,jiwa,2025,registration,total_population,3.1,23,,

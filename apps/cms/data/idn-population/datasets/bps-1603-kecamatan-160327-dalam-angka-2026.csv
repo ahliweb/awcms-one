@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.03.27.2001,4,Lebak Budi,sex,laki_laki,,1268,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.27.2001,4,Lebak Budi,sex,perempuan,,1158,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.27.2001,4,Lebak Budi,total,total,,2426,jiwa,2025,registration,total_population,3.1,23,,
+16.03.27.2002,4,Lambur,sex,laki_laki,,517,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.27.2002,4,Lambur,sex,perempuan,,466,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.27.2002,4,Lambur,total,total,,983,jiwa,2025,registration,total_population,3.1,23,,
+16.03.27.2003,4,Pagar Jati,sex,laki_laki,,256,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.27.2003,4,Pagar Jati,sex,perempuan,,238,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.27.2003,4,Pagar Jati,total,total,,494,jiwa,2025,registration,total_population,3.1,23,,
+16.03.27.2004,4,Tanjung Baru,sex,laki_laki,,404,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.27.2004,4,Tanjung Baru,sex,perempuan,,400,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.27.2004,4,Tanjung Baru,total,total,,804,jiwa,2025,registration,total_population,3.1,23,,
+16.03.27.2005,4,Sukaraja,sex,laki_laki,,416,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.27.2005,4,Sukaraja,sex,perempuan,,343,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.27.2005,4,Sukaraja,total,total,,759,jiwa,2025,registration,total_population,3.1,23,,
+16.03.27.2006,4,Pandan Dulang,sex,laki_laki,,259,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.27.2006,4,Pandan Dulang,sex,perempuan,,227,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.27.2006,4,Pandan Dulang,total,total,,486,jiwa,2025,registration,total_population,3.1,23,,
+16.03.27.2007,4,Muara Meo,sex,laki_laki,,681,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.27.2007,4,Muara Meo,sex,perempuan,,640,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.27.2007,4,Muara Meo,total,total,,1321,jiwa,2025,registration,total_population,3.1,23,,
+16.03.27.2008,4,Sugih Waras,sex,laki_laki,,235,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.27.2008,4,Sugih Waras,sex,perempuan,,228,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.27.2008,4,Sugih Waras,total,total,,463,jiwa,2025,registration,total_population,3.1,23,,
+16.03.27.2009,4,Indramayu,sex,laki_laki,,442,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.27.2009,4,Indramayu,sex,perempuan,,434,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.27.2009,4,Indramayu,total,total,,876,jiwa,2025,registration,total_population,3.1,23,,
+16.03.27.2010,4,Bedegung,sex,laki_laki,,594,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.27.2010,4,Bedegung,sex,perempuan,,564,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.27.2010,4,Bedegung,total,total,,1158,jiwa,2025,registration,total_population,3.1,23,,
+16.03.27.2011,4,Padang Bindu,sex,laki_laki,,853,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.27.2011,4,Padang Bindu,sex,perempuan,,782,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.27.2011,4,Padang Bindu,total,total,,1635,jiwa,2025,registration,total_population,3.1,23,,
+16.03.27.2012,4,Lubuk Nipis,sex,laki_laki,,1099,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.27.2012,4,Lubuk Nipis,sex,perempuan,,988,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.27.2012,4,Lubuk Nipis,total,total,,2087,jiwa,2025,registration,total_population,3.1,23,,
+16.03.27,3,Panang Enim,sex,laki_laki,,7024,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.27,3,Panang Enim,sex,perempuan,,6468,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.27,3,Panang Enim,total,total,,13492,jiwa,2025,registration,total_population,3.1,23,,

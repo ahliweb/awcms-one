@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.09.12.2002,4,Sungai Kelelawar,sex,laki_laki,,203,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.12.2002,4,Sungai Kelelawar,sex,perempuan,,197,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.12.2002,4,Sungai Kelelawar,total,total,,400,jiwa,2025,registration,total_population,3.1,22,,
+14.09.12.2005,4,Sungai Alah,sex,laki_laki,,379,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.12.2005,4,Sungai Alah,sex,perempuan,,408,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.12.2005,4,Sungai Alah,total,total,,787,jiwa,2025,registration,total_population,3.1,22,,
+14.09.12.2001,4,Lubuk Ambacang,sex,laki_laki,,665,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.12.2001,4,Lubuk Ambacang,sex,perempuan,,628,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.12.2001,4,Lubuk Ambacang,total,total,,1293,jiwa,2025,registration,total_population,3.1,22,,
+14.09.12.2006,4,Koto Kombu,sex,laki_laki,,361,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.12.2006,4,Koto Kombu,sex,perempuan,,354,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.12.2006,4,Koto Kombu,total,total,,715,jiwa,2025,registration,total_population,3.1,22,,
+14.09.12.2007,4,Sumpu,sex,laki_laki,,324,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.12.2007,4,Sumpu,sex,perempuan,,310,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.12.2007,4,Sumpu,total,total,,634,jiwa,2025,registration,total_population,3.1,22,,
+14.09.12.2009,4,Inuman,sex,laki_laki,,175,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.12.2009,4,Inuman,sex,perempuan,,185,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.12.2009,4,Inuman,total,total,,360,jiwa,2025,registration,total_population,3.1,22,,
+14.09.12.2010,4,Tanjung Medang,sex,laki_laki,,366,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.12.2010,4,Tanjung Medang,sex,perempuan,,417,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.12.2010,4,Tanjung Medang,total,total,,783,jiwa,2025,registration,total_population,3.1,22,,
+14.09.12.2008,4,Mudik Ulo,sex,laki_laki,,446,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.12.2008,4,Mudik Ulo,sex,perempuan,,455,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.12.2008,4,Mudik Ulo,total,total,,901,jiwa,2025,registration,total_population,3.1,22,,
+14.09.12.2004,4,Sungai Pinang,sex,laki_laki,,452,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.12.2004,4,Sungai Pinang,sex,perempuan,,475,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.12.2004,4,Sungai Pinang,total,total,,927,jiwa,2025,registration,total_population,3.1,22,,
+14.09.12.2003,4,Tanjung,sex,laki_laki,,503,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.12.2003,4,Tanjung,sex,perempuan,,512,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.12.2003,4,Tanjung,total,total,,1015,jiwa,2025,registration,total_population,3.1,22,,
+14.09.12.2012,4,Sampurago,sex,laki_laki,,297,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.12.2012,4,Sampurago,sex,perempuan,,299,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.12.2012,4,Sampurago,total,total,,596,jiwa,2025,registration,total_population,3.1,22,,
+14.09.12,3,Hulu Kuantan,sex,laki_laki,,5198,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.12,3,Hulu Kuantan,sex,perempuan,,5180,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.12,3,Hulu Kuantan,total,total,,10378,jiwa,2025,registration,total_population,3.1,22,,

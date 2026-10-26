@@ -1,0 +1,6 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.76.01,3,Payakumbuh Barat,total,total,,57.90,ribu_jiwa,2025,projection,total_population,3.1.1,101,,
+13.76.05,3,Payakumbuh Selatan,total,total,,13.18,ribu_jiwa,2025,projection,total_population,3.1.1,101,,
+13.76.03,3,Payakumbuh Timur,total,total,,31.25,ribu_jiwa,2025,projection,total_population,3.1.1,101,,
+13.76.02,3,Payakumbuh Utara,total,total,,33.43,ribu_jiwa,2025,projection,total_population,3.1.1,101,,
+13.76,2,Kota Payakumbuh,total,total,,148.60,ribu_jiwa,2025,projection,total_population,3.1.1,101,,

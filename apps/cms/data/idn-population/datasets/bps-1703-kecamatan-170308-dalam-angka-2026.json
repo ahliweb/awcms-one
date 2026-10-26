@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-1703-kecamatan-170308-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "17.03.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Giri Mulya Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bengkulu Utara",
+  "publisherDomain": "1703",
+  "publisherWebsite": "https://bengkuluutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bengkulu Utara (https://bengkuluutarakab.bps.go.id), publikasi \"Kecamatan Giri Mulya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "1703.2018",
+  "issn": "2623-1360",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bengkuluutarakab.bps.go.id/id/publication/2026/09/28/c94b662b7105eb03ad0ffbb4/kecamatan-giri-mulya-dalam-angka-2026.html",
+  "sourceFileSha256": "84d63a88fcbb379b74ceb496a4143d34925ea0c1c3cf23294eb836f9f29cc599",
+  "sourceFileBytes": 4210658,
+  "sourcePages": [30, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Bengkulu Utara",
+  "csvPath": "datasets/bps-1703-kecamatan-170308-dalam-angka-2026.csv",
+  "csvSha256": "b88bc92a7449b4c0b0d280e15176961ac67d5cff55de36a693e0912d1c11f769",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Giri Mulya, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Giri Mulya, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "cross-table disagreement, both stored as published: 17.03.08 sex/laki_laki/ 2025: 7987 (table 3.1) vs 12219 (table 3.2)",
+    "cross-table disagreement, both stored as published: 17.03.08 sex/perempuan/ 2025: 7716 (table 3.1) vs 11540 (table 3.2)",
+    "cross-table disagreement, both stored as published: 17.03.08 total/total/ 2025: 15703 (table 3.1) vs 23759 (table 3.2)"
+  ]
+}

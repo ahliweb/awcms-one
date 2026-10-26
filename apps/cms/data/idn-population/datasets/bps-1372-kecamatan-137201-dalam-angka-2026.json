@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1372-kecamatan-137201-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "13.72.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lubuk Sikarah dalam Angka 2026",
+  "publisherName": "BPS Kota Solok",
+  "publisherDomain": "1372",
+  "publisherWebsite": "https://solokkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Solok (https://solokkota.bps.go.id), publikasi \"Kecamatan Lubuk Sikarah dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1372010",
+  "publicationNumber": "13720.26006",
+  "issn": "2987-6532",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://solokkota.bps.go.id/id/publication/2026/09/28/d49d727a614cb314da606fc7/kecamatan-lubuk-sikarah-dalam-angka-2026.html",
+  "sourceFileSha256": "dd7edc9174a6a3e249b0b5fe248ee293353a62609033fd0567977a01a50db050",
+  "sourceFileBytes": 4063526,
+  "sourcePages": [41, 42, 43],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Solok.",
+  "csvPath": "datasets/bps-1372-kecamatan-137201-dalam-angka-2026.csv",
+  "csvSha256": "5e300bb3c3ee87f6439becfdae2d91bc1d9d27adf126f644050ba18909336893",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Lubuk Sikarah, 2025",
+      "printedPages": [41, 42],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lubuk Sikarah, 2025",
+      "printedPages": [43],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

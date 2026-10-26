@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.08.14.2001,4,Tanjung Kukuh,sex,laki_laki,,1512,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.14.2001,4,Tanjung Kukuh,sex,perempuan,,1436,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.14.2001,4,Tanjung Kukuh,total,total,,2948,jiwa,2025,registration,total_population,3.1,28,,
+16.08.14.2002,4,Betung,sex,laki_laki,,1525,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.14.2002,4,Betung,sex,perempuan,,1485,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.14.2002,4,Betung,total,total,,3010,jiwa,2025,registration,total_population,3.1,28,,
+16.08.14.2003,4,Tanjung Mas,sex,laki_laki,,524,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.14.2003,4,Tanjung Mas,sex,perempuan,,445,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.14.2003,4,Tanjung Mas,total,total,,969,jiwa,2025,registration,total_population,3.1,28,,
+16.08.14.2004,4,Menanga Besar,sex,laki_laki,,1334,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.14.2004,4,Menanga Besar,sex,perempuan,,1248,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.14.2004,4,Menanga Besar,total,total,,2582,jiwa,2025,registration,total_population,3.1,28,,
+16.08.14.2005,4,Menanga Tengah,sex,laki_laki,,1882,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.14.2005,4,Menanga Tengah,sex,perempuan,,1761,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.14.2005,4,Menanga Tengah,total,total,,3643,jiwa,2025,registration,total_population,3.1,28,,
+16.08.14.2008,4,Kangkung,sex,laki_laki,,418,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.14.2008,4,Kangkung,sex,perempuan,,400,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.14.2008,4,Kangkung,total,total,,818,jiwa,2025,registration,total_population,3.1,28,,
+16.08.14.2006,4,Adu Manis,sex,laki_laki,,1609,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.14.2006,4,Adu Manis,sex,perempuan,,1478,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.14.2006,4,Adu Manis,total,total,,3087,jiwa,2025,registration,total_population,3.1,28,,
+16.08.14.2007,4,Sukanegeri,sex,laki_laki,,781,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.14.2007,4,Sukanegeri,sex,perempuan,,733,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.14.2007,4,Sukanegeri,total,total,,1514,jiwa,2025,registration,total_population,3.1,28,,
+16.08.14.2009,4,Sri Tanjung,sex,laki_laki,,529,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.14.2009,4,Sri Tanjung,sex,perempuan,,484,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.14.2009,4,Sri Tanjung,total,total,,1013,jiwa,2025,registration,total_population,3.1,28,,
+16.08.14.2010,4,Kangkung Ilir,sex,laki_laki,,771,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.14.2010,4,Kangkung Ilir,sex,perempuan,,660,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.14.2010,4,Kangkung Ilir,total,total,,1431,jiwa,2025,registration,total_population,3.1,28,,
+16.08.14.2011,4,Betung Timur,sex,laki_laki,,445,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.14.2011,4,Betung Timur,sex,perempuan,,390,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.14.2011,4,Betung Timur,total,total,,835,jiwa,2025,registration,total_population,3.1,28,,
+16.08.14.2012,4,Menanga Sari,sex,laki_laki,,455,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.14.2012,4,Menanga Sari,sex,perempuan,,402,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.14.2012,4,Menanga Sari,total,total,,857,jiwa,2025,registration,total_population,3.1,28,,
+16.08.14,3,Semendawai Barat,sex,laki_laki,,11785,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.14,3,Semendawai Barat,sex,perempuan,,10922,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.14,3,Semendawai Barat,total,total,,22707,jiwa,2025,registration,total_population,3.1,28,,
+16.08.14,3,Semendawai Barat,age_group,0-4,laki_laki,772,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.08.14,3,Semendawai Barat,age_group,0-4,perempuan,639,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.08.14,3,Semendawai Barat,age_group,0-4,,1411,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.08.14,3,Semendawai Barat,age_group,5-9,laki_laki,1028,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.08.14,3,Semendawai Barat,age_group,5-9,perempuan,963,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.08.14,3,Semendawai Barat,age_group,5-9,,1991,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.08.14,3,Semendawai Barat,age_group,10-14,laki_laki,1128,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.08.14,3,Semendawai Barat,age_group,10-14,perempuan,1015,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.08.14,3,Semendawai Barat,age_group,10-14,,2143,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.08.14,3,Semendawai Barat,age_group,15-19,laki_laki,998,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.08.14,3,Semendawai Barat,age_group,15-19,perempuan,913,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.08.14,3,Semendawai Barat,age_group,15-19,,1911,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.08.14,3,Semendawai Barat,age_group,20-24,laki_laki,1004,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.08.14,3,Semendawai Barat,age_group,20-24,perempuan,942,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.08.14,3,Semendawai Barat,age_group,20-24,,1946,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.08.14,3,Semendawai Barat,age_group,25-29,laki_laki,979,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.08.14,3,Semendawai Barat,age_group,25-29,perempuan,776,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.08.14,3,Semendawai Barat,age_group,25-29,,1755,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.08.14,3,Semendawai Barat,age_group,30-34,laki_laki,843,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.08.14,3,Semendawai Barat,age_group,30-34,perempuan,713,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.08.14,3,Semendawai Barat,age_group,30-34,,1556,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.08.14,3,Semendawai Barat,age_group,35-39,laki_laki,914,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.08.14,3,Semendawai Barat,age_group,35-39,perempuan,779,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.08.14,3,Semendawai Barat,age_group,35-39,,1693,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.08.14,3,Semendawai Barat,age_group,40-44,laki_laki,809,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.08.14,3,Semendawai Barat,age_group,40-44,perempuan,765,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.08.14,3,Semendawai Barat,age_group,40-44,,1574,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.08.14,3,Semendawai Barat,age_group,45-49,laki_laki,756,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.08.14,3,Semendawai Barat,age_group,45-49,perempuan,655,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.08.14,3,Semendawai Barat,age_group,45-49,,1411,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.08.14,3,Semendawai Barat,age_group,50-54,laki_laki,608,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.08.14,3,Semendawai Barat,age_group,50-54,perempuan,624,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.08.14,3,Semendawai Barat,age_group,50-54,,1232,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.08.14,3,Semendawai Barat,age_group,55-59,laki_laki,573,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.08.14,3,Semendawai Barat,age_group,55-59,perempuan,582,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.08.14,3,Semendawai Barat,age_group,55-59,,1155,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.08.14,3,Semendawai Barat,age_group,60-64,laki_laki,472,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.08.14,3,Semendawai Barat,age_group,60-64,perempuan,478,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.08.14,3,Semendawai Barat,age_group,60-64,,950,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.08.14,3,Semendawai Barat,age_group,65-69,laki_laki,376,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.08.14,3,Semendawai Barat,age_group,65-69,perempuan,401,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.08.14,3,Semendawai Barat,age_group,65-69,,777,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.08.14,3,Semendawai Barat,age_group,70-74,laki_laki,248,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.08.14,3,Semendawai Barat,age_group,70-74,perempuan,286,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.08.14,3,Semendawai Barat,age_group,70-74,,534,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.08.14,3,Semendawai Barat,age_group,75+,laki_laki,277,jiwa,2025,registration,total_population,3.2,30,,75+
+16.08.14,3,Semendawai Barat,age_group,75+,perempuan,391,jiwa,2025,registration,total_population,3.2,30,,75+
+16.08.14,3,Semendawai Barat,age_group,75+,,668,jiwa,2025,registration,total_population,3.2,30,,75+
+16.08.14,3,Semendawai Barat,sex,laki_laki,,11785,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+16.08.14,3,Semendawai Barat,sex,perempuan,,10922,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+16.08.14,3,Semendawai Barat,total,total,,22707,jiwa,2025,registration,total_population,3.2,30,,

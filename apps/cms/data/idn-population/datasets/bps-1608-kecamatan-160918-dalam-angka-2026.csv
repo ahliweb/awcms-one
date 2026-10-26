@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.09.18.2007,4,Sukabumi,sex,laki_laki,,423,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.18.2007,4,Sukabumi,sex,perempuan,,416,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.18.2007,4,Sukabumi,total,total,,839,jiwa,2025,registration,total_population,3.1,27,,
+16.09.18.2006,4,Kota Agung,sex,laki_laki,,1178,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.18.2006,4,Kota Agung,sex,perempuan,,1092,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.18.2006,4,Kota Agung,total,total,,2270,jiwa,2025,registration,total_population,3.1,27,,
+16.09.18.2005,4,Karang Pendeta,sex,laki_laki,,320,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.18.2005,4,Karang Pendeta,sex,perempuan,,309,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.18.2005,4,Karang Pendeta,total,total,,629,jiwa,2025,registration,total_population,3.1,27,,
+16.09.18.2003,4,Surabaya,sex,laki_laki,,837,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.18.2003,4,Surabaya,sex,perempuan,,759,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.18.2003,4,Surabaya,total,total,,1596,jiwa,2025,registration,total_population,3.1,27,,
+16.09.18.2002,4,Kuripan,sex,laki_laki,,383,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.18.2002,4,Kuripan,sex,perempuan,,337,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.18.2002,4,Kuripan,total,total,,720,jiwa,2025,registration,total_population,3.1,27,,
+16.09.18.2001,4,Peninggiran,sex,laki_laki,,969,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.18.2001,4,Peninggiran,sex,perempuan,,850,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.18.2001,4,Peninggiran,total,total,,1819,jiwa,2025,registration,total_population,3.1,27,,
+16.09.18,3,TIGA DIHAJI,sex,laki_laki,,5274,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.18,3,TIGA DIHAJI,sex,perempuan,,4799,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.18,3,TIGA DIHAJI,total,total,,10073,jiwa,2025,registration,total_population,3.1,27,,
+16.09.18,3,Tiga Dihaji,age_group,0-4,laki_laki,293,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.18,3,Tiga Dihaji,age_group,0-4,perempuan,266,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.18,3,Tiga Dihaji,age_group,0-4,,559,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.18,3,Tiga Dihaji,age_group,5-9,laki_laki,370,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.18,3,Tiga Dihaji,age_group,5-9,perempuan,316,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.18,3,Tiga Dihaji,age_group,5-9,,686,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.18,3,Tiga Dihaji,age_group,10-14,laki_laki,367,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.18,3,Tiga Dihaji,age_group,10-14,perempuan,362,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.18,3,Tiga Dihaji,age_group,10-14,,729,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.18,3,Tiga Dihaji,age_group,15-19,laki_laki,399,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.18,3,Tiga Dihaji,age_group,15-19,perempuan,385,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.18,3,Tiga Dihaji,age_group,15-19,,784,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.18,3,Tiga Dihaji,age_group,20-24,laki_laki,422,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.18,3,Tiga Dihaji,age_group,20-24,perempuan,387,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.18,3,Tiga Dihaji,age_group,20-24,,809,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.18,3,Tiga Dihaji,age_group,25-29,laki_laki,384,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.18,3,Tiga Dihaji,age_group,25-29,perempuan,400,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.18,3,Tiga Dihaji,age_group,25-29,,784,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.18,3,Tiga Dihaji,age_group,30-34,laki_laki,355,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.18,3,Tiga Dihaji,age_group,30-34,perempuan,354,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.18,3,Tiga Dihaji,age_group,30-34,,709,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.18,3,Tiga Dihaji,age_group,35-39,laki_laki,491,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.18,3,Tiga Dihaji,age_group,35-39,perempuan,433,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.18,3,Tiga Dihaji,age_group,35-39,,924,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.18,3,Tiga Dihaji,age_group,40-44,laki_laki,425,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.18,3,Tiga Dihaji,age_group,40-44,perempuan,383,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.18,3,Tiga Dihaji,age_group,40-44,,808,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.18,3,Tiga Dihaji,age_group,45-49,laki_laki,433,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.18,3,Tiga Dihaji,age_group,45-49,perempuan,385,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.18,3,Tiga Dihaji,age_group,45-49,,818,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.18,3,Tiga Dihaji,age_group,50-54,laki_laki,374,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.18,3,Tiga Dihaji,age_group,50-54,perempuan,269,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.18,3,Tiga Dihaji,age_group,50-54,,643,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.18,3,Tiga Dihaji,age_group,55-59,laki_laki,292,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.18,3,Tiga Dihaji,age_group,55-59,perempuan,293,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.18,3,Tiga Dihaji,age_group,55-59,,585,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.18,3,Tiga Dihaji,age_group,60-64,laki_laki,251,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.18,3,Tiga Dihaji,age_group,60-64,perempuan,223,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.18,3,Tiga Dihaji,age_group,60-64,,474,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.18,3,Tiga Dihaji,age_group,65-69,laki_laki,206,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.18,3,Tiga Dihaji,age_group,65-69,perempuan,170,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.18,3,Tiga Dihaji,age_group,65-69,,376,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.18,3,Tiga Dihaji,age_group,70-74,laki_laki,104,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.18,3,Tiga Dihaji,age_group,70-74,perempuan,84,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.18,3,Tiga Dihaji,age_group,70-74,,188,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.18,3,Tiga Dihaji,age_group,75+,laki_laki,108,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.18,3,Tiga Dihaji,age_group,75+,perempuan,89,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.18,3,Tiga Dihaji,age_group,75+,,197,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.18,3,TIGA DIHAJI,sex,laki_laki,,5274,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+16.09.18,3,TIGA DIHAJI,sex,perempuan,,4799,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+16.09.18,3,TIGA DIHAJI,total,total,,10073,jiwa,2025,registration,total_population,3.2,29,,

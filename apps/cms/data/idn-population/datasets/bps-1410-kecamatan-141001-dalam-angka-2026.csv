@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.10.01.2008,4,SESAP,sex,laki_laki,,442,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.01.2008,4,SESAP,sex,perempuan,,378,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.01.2008,4,SESAP,total,total,,820,jiwa,2025,registration,total_population,3.1,28,,
+14.10.01.2016,4,BANGLAS BARAT,sex,laki_laki,,3154,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.01.2016,4,BANGLAS BARAT,sex,perempuan,,3249,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.01.2016,4,BANGLAS BARAT,total,total,,6403,jiwa,2025,registration,total_population,3.1,28,,
+14.10.01.2005,4,BANGLAS,sex,laki_laki,,3912,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.01.2005,4,BANGLAS,sex,perempuan,,3698,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.01.2005,4,BANGLAS,total,total,,7610,jiwa,2025,registration,total_population,3.1,28,,
+14.10.01.1003,4,SELAT PANJANG SELATAN,sex,laki_laki,,4363,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.01.1003,4,SELAT PANJANG SELATAN,sex,perempuan,,4309,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.01.1003,4,SELAT PANJANG SELATAN,total,total,,8672,jiwa,2025,registration,total_population,3.1,28,,
+14.10.01.2006,4,ALAH AIR,sex,laki_laki,,3157,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.01.2006,4,ALAH AIR,sex,perempuan,,2984,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.01.2006,4,ALAH AIR,total,total,,6141,jiwa,2025,registration,total_population,3.1,28,,
+14.10.01.2007,4,ALAH AIR TIMUR,sex,laki_laki,,2128,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.01.2007,4,ALAH AIR TIMUR,sex,perempuan,,2055,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.01.2007,4,ALAH AIR TIMUR,total,total,,4183,jiwa,2025,registration,total_population,3.1,28,,
+14.10.01.1002,4,SELAT PANJANG BARAT,sex,laki_laki,,2441,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.01.1002,4,SELAT PANJANG BARAT,sex,perempuan,,2426,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.01.1002,4,SELAT PANJANG BARAT,total,total,,4867,jiwa,2025,registration,total_population,3.1,28,,
+14.10.01.1001,4,SELAT PANJANG KOTA,sex,laki_laki,,5131,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.01.1001,4,SELAT PANJANG KOTA,sex,perempuan,,4921,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.01.1001,4,SELAT PANJANG KOTA,total,total,,10052,jiwa,2025,registration,total_population,3.1,28,,
+14.10.01,3,Tebing Tinggi,age_group,0-4,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,0-4
+14.10.01,3,Tebing Tinggi,age_group,0-4,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,0-4
+14.10.01,3,Tebing Tinggi,age_group,0-4,,0,jiwa,2025,registration,total_population,3.2,30,nil,0-4
+14.10.01,3,Tebing Tinggi,age_group,5-9,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,5-9
+14.10.01,3,Tebing Tinggi,age_group,5-9,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,5-9
+14.10.01,3,Tebing Tinggi,age_group,5-9,,0,jiwa,2025,registration,total_population,3.2,30,nil,5-9
+14.10.01,3,Tebing Tinggi,age_group,10-14,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,10-14
+14.10.01,3,Tebing Tinggi,age_group,10-14,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,10-14
+14.10.01,3,Tebing Tinggi,age_group,10-14,,0,jiwa,2025,registration,total_population,3.2,30,nil,10-14
+14.10.01,3,Tebing Tinggi,age_group,15-19,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,15-19
+14.10.01,3,Tebing Tinggi,age_group,15-19,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,15-19
+14.10.01,3,Tebing Tinggi,age_group,15-19,,0,jiwa,2025,registration,total_population,3.2,30,nil,15-19
+14.10.01,3,Tebing Tinggi,age_group,20-24,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,20-24
+14.10.01,3,Tebing Tinggi,age_group,20-24,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,20-24
+14.10.01,3,Tebing Tinggi,age_group,20-24,,0,jiwa,2025,registration,total_population,3.2,30,nil,20-24
+14.10.01,3,Tebing Tinggi,age_group,25-29,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,25-29
+14.10.01,3,Tebing Tinggi,age_group,25-29,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,25-29
+14.10.01,3,Tebing Tinggi,age_group,25-29,,0,jiwa,2025,registration,total_population,3.2,30,nil,25-29
+14.10.01,3,Tebing Tinggi,age_group,30-34,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,30-34
+14.10.01,3,Tebing Tinggi,age_group,30-34,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,30-34
+14.10.01,3,Tebing Tinggi,age_group,30-34,,0,jiwa,2025,registration,total_population,3.2,30,nil,30-34
+14.10.01,3,Tebing Tinggi,age_group,35-39,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,35-39
+14.10.01,3,Tebing Tinggi,age_group,35-39,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,35-39
+14.10.01,3,Tebing Tinggi,age_group,35-39,,0,jiwa,2025,registration,total_population,3.2,30,nil,35-39
+14.10.01,3,Tebing Tinggi,age_group,40-44,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,40-44
+14.10.01,3,Tebing Tinggi,age_group,40-44,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,40-44
+14.10.01,3,Tebing Tinggi,age_group,40-44,,0,jiwa,2025,registration,total_population,3.2,30,nil,40-44
+14.10.01,3,Tebing Tinggi,age_group,45-49,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,45-49
+14.10.01,3,Tebing Tinggi,age_group,45-49,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,45-49
+14.10.01,3,Tebing Tinggi,age_group,45-49,,0,jiwa,2025,registration,total_population,3.2,30,nil,45-49
+14.10.01,3,Tebing Tinggi,age_group,50-54,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,50-54
+14.10.01,3,Tebing Tinggi,age_group,50-54,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,50-54
+14.10.01,3,Tebing Tinggi,age_group,50-54,,0,jiwa,2025,registration,total_population,3.2,30,nil,50-54
+14.10.01,3,Tebing Tinggi,age_group,55-59,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,55-59
+14.10.01,3,Tebing Tinggi,age_group,55-59,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,55-59
+14.10.01,3,Tebing Tinggi,age_group,55-59,,0,jiwa,2025,registration,total_population,3.2,30,nil,55-59
+14.10.01,3,Tebing Tinggi,age_group,60-64,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,60-64
+14.10.01,3,Tebing Tinggi,age_group,60-64,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,60-64
+14.10.01,3,Tebing Tinggi,age_group,60-64,,0,jiwa,2025,registration,total_population,3.2,30,nil,60-64
+14.10.01,3,Tebing Tinggi,age_group,65-69,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,65-69
+14.10.01,3,Tebing Tinggi,age_group,65-69,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,65-69
+14.10.01,3,Tebing Tinggi,age_group,65-69,,0,jiwa,2025,registration,total_population,3.2,30,nil,65-69
+14.10.01,3,Tebing Tinggi,age_group,70-74,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,70-74
+14.10.01,3,Tebing Tinggi,age_group,70-74,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,70-74
+14.10.01,3,Tebing Tinggi,age_group,70-74,,0,jiwa,2025,registration,total_population,3.2,30,nil,70-74
+14.10.01,3,Tebing Tinggi,age_group,75+,laki_laki,0,jiwa,2025,registration,total_population,3.2,30,nil,75+
+14.10.01,3,Tebing Tinggi,age_group,75+,perempuan,0,jiwa,2025,registration,total_population,3.2,30,nil,75+
+14.10.01,3,Tebing Tinggi,age_group,75+,,0,jiwa,2025,registration,total_population,3.2,30,nil,75+
+14.10.01,3,TEBING TINGGI,sex,laki_laki,,0,jiwa,2025,registration,total_population,3.2,30,nil,Laki-Laki
+14.10.01,3,TEBING TINGGI,sex,perempuan,,0,jiwa,2025,registration,total_population,3.2,30,nil,Perempuan
+14.10.01,3,TEBING TINGGI,total,total,,0,jiwa,2025,registration,total_population,3.2,30,nil,

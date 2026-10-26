@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.09.08.2001,4,Betumonga,sex,laki_laki,,715,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+13.09.08.2001,4,Betumonga,sex,perempuan,,667,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+13.09.08.2001,4,Betumonga,total,total,,1382,jiwa,2025,registration,total_population,3.1,31,,
+13.09.08.2002,4,Goisooinan,sex,laki_laki,,677,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+13.09.08.2002,4,Goisooinan,sex,perempuan,,638,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+13.09.08.2002,4,Goisooinan,total,total,,1315,jiwa,2025,registration,total_population,3.1,31,,
+13.09.08.2005,4,Bukit Pamewa,sex,laki_laki,,445,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+13.09.08.2005,4,Bukit Pamewa,sex,perempuan,,440,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+13.09.08.2005,4,Bukit Pamewa,total,total,,885,jiwa,2025,registration,total_population,3.1,31,,
+13.09.08.2006,4,Sipora Jaya,sex,laki_laki,,1486,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+13.09.08.2006,4,Sipora Jaya,sex,perempuan,,1409,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+13.09.08.2006,4,Sipora Jaya,total,total,,2895,jiwa,2025,registration,total_population,3.1,31,,
+13.09.08.2004,4,Sido Makmur,sex,laki_laki,,520,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+13.09.08.2004,4,Sido Makmur,sex,perempuan,,506,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+13.09.08.2004,4,Sido Makmur,total,total,,1026,jiwa,2025,registration,total_population,3.1,31,,
+13.09.08.2003,4,Tuapejat,sex,laki_laki,,3580,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+13.09.08.2003,4,Tuapejat,sex,perempuan,,3358,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+13.09.08.2003,4,Tuapejat,total,total,,6938,jiwa,2025,registration,total_population,3.1,31,,
+13.09.08,3,Sipora Utara,sex,laki_laki,,7423,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+13.09.08,3,Sipora Utara,sex,perempuan,,7018,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+13.09.08,3,Sipora Utara,total,total,,14441,jiwa,2025,registration,total_population,3.1,31,,
+13.09.08,3,Sipora Utara,age_group,0-4,laki_laki,600,jiwa,2025,registration,total_population,3.2,33,,0–4
+13.09.08,3,Sipora Utara,age_group,0-4,perempuan,566,jiwa,2025,registration,total_population,3.2,33,,0–4
+13.09.08,3,Sipora Utara,age_group,0-4,,1166,jiwa,2025,registration,total_population,3.2,33,,0–4
+13.09.08,3,Sipora Utara,age_group,5-9,laki_laki,756,jiwa,2025,registration,total_population,3.2,33,,5–9
+13.09.08,3,Sipora Utara,age_group,5-9,perempuan,722,jiwa,2025,registration,total_population,3.2,33,,5–9
+13.09.08,3,Sipora Utara,age_group,5-9,,1478,jiwa,2025,registration,total_population,3.2,33,,5–9
+13.09.08,3,Sipora Utara,age_group,10-14,laki_laki,736,jiwa,2025,registration,total_population,3.2,33,,10–14
+13.09.08,3,Sipora Utara,age_group,10-14,perempuan,657,jiwa,2025,registration,total_population,3.2,33,,10–14
+13.09.08,3,Sipora Utara,age_group,10-14,,1393,jiwa,2025,registration,total_population,3.2,33,,10–14
+13.09.08,3,Sipora Utara,age_group,15-19,laki_laki,708,jiwa,2025,registration,total_population,3.2,33,,15–19
+13.09.08,3,Sipora Utara,age_group,15-19,perempuan,661,jiwa,2025,registration,total_population,3.2,33,,15–19
+13.09.08,3,Sipora Utara,age_group,15-19,,1369,jiwa,2025,registration,total_population,3.2,33,,15–19
+13.09.08,3,Sipora Utara,age_group,20-24,laki_laki,624,jiwa,2025,registration,total_population,3.2,33,,20–24
+13.09.08,3,Sipora Utara,age_group,20-24,perempuan,599,jiwa,2025,registration,total_population,3.2,33,,20–24
+13.09.08,3,Sipora Utara,age_group,20-24,,1223,jiwa,2025,registration,total_population,3.2,33,,20–24
+13.09.08,3,Sipora Utara,age_group,25-29,laki_laki,545,jiwa,2025,registration,total_population,3.2,33,,25–29
+13.09.08,3,Sipora Utara,age_group,25-29,perempuan,566,jiwa,2025,registration,total_population,3.2,33,,25–29
+13.09.08,3,Sipora Utara,age_group,25-29,,1111,jiwa,2025,registration,total_population,3.2,33,,25–29
+13.09.08,3,Sipora Utara,age_group,30-34,laki_laki,557,jiwa,2025,registration,total_population,3.2,33,,30–34
+13.09.08,3,Sipora Utara,age_group,30-34,perempuan,607,jiwa,2025,registration,total_population,3.2,33,,30–34
+13.09.08,3,Sipora Utara,age_group,30-34,,1164,jiwa,2025,registration,total_population,3.2,33,,30–34
+13.09.08,3,Sipora Utara,age_group,35-39,laki_laki,597,jiwa,2025,registration,total_population,3.2,33,,35–39
+13.09.08,3,Sipora Utara,age_group,35-39,perempuan,636,jiwa,2025,registration,total_population,3.2,33,,35–39
+13.09.08,3,Sipora Utara,age_group,35-39,,1233,jiwa,2025,registration,total_population,3.2,33,,35–39
+13.09.08,3,Sipora Utara,age_group,40-44,laki_laki,664,jiwa,2025,registration,total_population,3.2,33,,40–44
+13.09.08,3,Sipora Utara,age_group,40-44,perempuan,617,jiwa,2025,registration,total_population,3.2,33,,40–44
+13.09.08,3,Sipora Utara,age_group,40-44,,1281,jiwa,2025,registration,total_population,3.2,33,,40–44
+13.09.08,3,Sipora Utara,age_group,45-49,laki_laki,564,jiwa,2025,registration,total_population,3.2,33,,45–49
+13.09.08,3,Sipora Utara,age_group,45-49,perempuan,448,jiwa,2025,registration,total_population,3.2,33,,45–49
+13.09.08,3,Sipora Utara,age_group,45-49,,1012,jiwa,2025,registration,total_population,3.2,33,,45–49
+13.09.08,3,Sipora Utara,age_group,50-54,laki_laki,379,jiwa,2025,registration,total_population,3.2,33,,50–54
+13.09.08,3,Sipora Utara,age_group,50-54,perempuan,292,jiwa,2025,registration,total_population,3.2,33,,50–54
+13.09.08,3,Sipora Utara,age_group,50-54,,671,jiwa,2025,registration,total_population,3.2,33,,50–54
+13.09.08,3,Sipora Utara,age_group,55-59,laki_laki,253,jiwa,2025,registration,total_population,3.2,33,,55–59
+13.09.08,3,Sipora Utara,age_group,55-59,perempuan,205,jiwa,2025,registration,total_population,3.2,33,,55–59
+13.09.08,3,Sipora Utara,age_group,55-59,,458,jiwa,2025,registration,total_population,3.2,33,,55–59
+13.09.08,3,Sipora Utara,age_group,60-64,laki_laki,179,jiwa,2025,registration,total_population,3.2,33,,60–64
+13.09.08,3,Sipora Utara,age_group,60-64,perempuan,171,jiwa,2025,registration,total_population,3.2,33,,60–64
+13.09.08,3,Sipora Utara,age_group,60-64,,350,jiwa,2025,registration,total_population,3.2,33,,60–64
+13.09.08,3,Sipora Utara,age_group,65-69,laki_laki,113,jiwa,2025,registration,total_population,3.2,33,,65–69
+13.09.08,3,Sipora Utara,age_group,65-69,perempuan,136,jiwa,2025,registration,total_population,3.2,33,,65–69
+13.09.08,3,Sipora Utara,age_group,65-69,,249,jiwa,2025,registration,total_population,3.2,33,,65–69
+13.09.08,3,Sipora Utara,age_group,70-74,laki_laki,70,jiwa,2025,registration,total_population,3.2,33,,70–74
+13.09.08,3,Sipora Utara,age_group,70-74,perempuan,62,jiwa,2025,registration,total_population,3.2,33,,70–74
+13.09.08,3,Sipora Utara,age_group,70-74,,132,jiwa,2025,registration,total_population,3.2,33,,70–74
+13.09.08,3,Sipora Utara,age_group,75+,laki_laki,78,jiwa,2025,registration,total_population,3.2,33,,75+
+13.09.08,3,Sipora Utara,age_group,75+,perempuan,73,jiwa,2025,registration,total_population,3.2,33,,75+
+13.09.08,3,Sipora Utara,age_group,75+,,151,jiwa,2025,registration,total_population,3.2,33,,75+
+13.09.08,3,Sipora Utara,sex,laki_laki,,7423,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+13.09.08,3,Sipora Utara,sex,perempuan,,7018,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+13.09.08,3,Sipora Utara,total,total,,14441,jiwa,2025,registration,total_population,3.2,33,,

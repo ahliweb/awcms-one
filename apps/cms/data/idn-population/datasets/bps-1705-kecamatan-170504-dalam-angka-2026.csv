@@ -1,0 +1,127 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.05.04.2001,4,Maras Jauh,sex,laki_laki,,366,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2001,4,Maras Jauh,sex,perempuan,,337,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2001,4,Maras Jauh,total,total,,703,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2019,4,Tebat Gunung,sex,laki_laki,,812,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2019,4,Tebat Gunung,sex,perempuan,,751,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2019,4,Tebat Gunung,total,total,,1563,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2018,4,Padang Serunaian,sex,laki_laki,,290,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2018,4,Padang Serunaian,sex,perempuan,,282,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2018,4,Padang Serunaian,total,total,,572,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2016,4,Gunung Mesir,sex,laki_laki,,475,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2016,4,Gunung Mesir,sex,perempuan,,447,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2016,4,Gunung Mesir,total,total,,922,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2006,4,Petai Kayu,sex,laki_laki,,444,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2006,4,Petai Kayu,sex,perempuan,,396,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2006,4,Petai Kayu,total,total,,840,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2004,4,Nanjungan,sex,laki_laki,,335,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2004,4,Nanjungan,sex,perempuan,,328,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2004,4,Nanjungan,total,total,,663,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2002,4,Bandung Agung,sex,laki_laki,,308,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2002,4,Bandung Agung,sex,perempuan,,295,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2002,4,Bandung Agung,total,total,,603,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2003,4,Pinju Layang,sex,laki_laki,,508,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2003,4,Pinju Layang,sex,perempuan,,508,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2003,4,Pinju Layang,total,total,,1016,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2014,4,Nanti Agung,sex,laki_laki,,272,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2014,4,Nanti Agung,sex,perempuan,,267,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2014,4,Nanti Agung,total,total,,539,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.1005,4,Pajar Bulan,sex,laki_laki,,585,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.1005,4,Pajar Bulan,sex,perempuan,,561,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.1005,4,Pajar Bulan,total,total,,1146,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2011,4,Rantau Panjang,sex,laki_laki,,460,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2011,4,Rantau Panjang,sex,perempuan,,458,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2011,4,Rantau Panjang,total,total,,918,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2015,4,Talang Durian,sex,laki_laki,,339,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2015,4,Talang Durian,sex,perempuan,,333,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2015,4,Talang Durian,total,total,,672,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2012,4,Air Melancar,sex,laki_laki,,208,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2012,4,Air Melancar,sex,perempuan,,180,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2012,4,Air Melancar,total,total,,388,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2010,4,Cugung Langu,sex,laki_laki,,203,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2010,4,Cugung Langu,sex,perempuan,,167,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2010,4,Cugung Langu,total,total,,370,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2008,4,Renah Gajah Mati I,sex,laki_laki,,295,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2008,4,Renah Gajah Mati I,sex,perempuan,,257,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2008,4,Renah Gajah Mati I,total,total,,552,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2013,4,Muara Dua,sex,laki_laki,,178,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2013,4,Muara Dua,sex,perempuan,,157,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2013,4,Muara Dua,total,total,,335,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2009,4,Renah Gajah Mati II,sex,laki_laki,,374,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2009,4,Renah Gajah Mati II,sex,perempuan,,341,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2009,4,Renah Gajah Mati II,total,total,,715,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2017,4,Kayu Elang,sex,laki_laki,,496,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2017,4,Kayu Elang,sex,perempuan,,465,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2017,4,Kayu Elang,total,total,,961,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2007,4,Napalan,sex,laki_laki,,125,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2007,4,Napalan,sex,perempuan,,114,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2007,4,Napalan,total,total,,239,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2020,4,Mekar Sari Mukti,sex,laki_laki,,108,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2020,4,Mekar Sari Mukti,sex,perempuan,,89,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2020,4,Mekar Sari Mukti,total,total,,197,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2024,4,Suban,sex,laki_laki,,112,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2024,4,Suban,sex,perempuan,,81,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2024,4,Suban,total,total,,193,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2023,4,Telatan,sex,laki_laki,,532,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2023,4,Telatan,sex,perempuan,,462,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2023,4,Telatan,total,total,,994,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2021,4,Kemang Manis,sex,laki_laki,,211,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2021,4,Kemang Manis,sex,perempuan,,219,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2021,4,Kemang Manis,total,total,,430,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04.2022,4,Gunung Megang,sex,laki_laki,,211,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04.2022,4,Gunung Megang,sex,perempuan,,221,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04.2022,4,Gunung Megang,total,total,,432,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04,3,Semidang Alas,sex,laki_laki,,8247,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.05.04,3,Semidang Alas,sex,perempuan,,7716,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.05.04,3,Semidang Alas,total,total,,15963,jiwa,2025,registration,total_population,3.1,33,,
+17.05.04,3,Semidang Alas,age_group,0-4,laki_laki,470,jiwa,2025,registration,total_population,3.2,35,,0-4
+17.05.04,3,Semidang Alas,age_group,0-4,perempuan,440,jiwa,2025,registration,total_population,3.2,35,,0-4
+17.05.04,3,Semidang Alas,age_group,0-4,,910,jiwa,2025,registration,total_population,3.2,35,,0-4
+17.05.04,3,Semidang Alas,age_group,5-9,laki_laki,590,jiwa,2025,registration,total_population,3.2,35,,5-9
+17.05.04,3,Semidang Alas,age_group,5-9,perempuan,612,jiwa,2025,registration,total_population,3.2,35,,5-9
+17.05.04,3,Semidang Alas,age_group,5-9,,1202,jiwa,2025,registration,total_population,3.2,35,,5-9
+17.05.04,3,Semidang Alas,age_group,10-14,laki_laki,668,jiwa,2025,registration,total_population,3.2,35,,10-14
+17.05.04,3,Semidang Alas,age_group,10-14,perempuan,666,jiwa,2025,registration,total_population,3.2,35,,10-14
+17.05.04,3,Semidang Alas,age_group,10-14,,1334,jiwa,2025,registration,total_population,3.2,35,,10-14
+17.05.04,3,Semidang Alas,age_group,15-19,laki_laki,713,jiwa,2025,registration,total_population,3.2,35,,15-19
+17.05.04,3,Semidang Alas,age_group,15-19,perempuan,702,jiwa,2025,registration,total_population,3.2,35,,15-19
+17.05.04,3,Semidang Alas,age_group,15-19,,1415,jiwa,2025,registration,total_population,3.2,35,,15-19
+17.05.04,3,Semidang Alas,age_group,20-24,laki_laki,758,jiwa,2025,registration,total_population,3.2,35,,20-24
+17.05.04,3,Semidang Alas,age_group,20-24,perempuan,695,jiwa,2025,registration,total_population,3.2,35,,20-24
+17.05.04,3,Semidang Alas,age_group,20-24,,1453,jiwa,2025,registration,total_population,3.2,35,,20-24
+17.05.04,3,Semidang Alas,age_group,25-29,laki_laki,724,jiwa,2025,registration,total_population,3.2,35,,25-29
+17.05.04,3,Semidang Alas,age_group,25-29,perempuan,582,jiwa,2025,registration,total_population,3.2,35,,25-29
+17.05.04,3,Semidang Alas,age_group,25-29,,1306,jiwa,2025,registration,total_population,3.2,35,,25-29
+17.05.04,3,Semidang Alas,age_group,30-34,laki_laki,607,jiwa,2025,registration,total_population,3.2,35,,30-34
+17.05.04,3,Semidang Alas,age_group,30-34,perempuan,558,jiwa,2025,registration,total_population,3.2,35,,30-34
+17.05.04,3,Semidang Alas,age_group,30-34,,1165,jiwa,2025,registration,total_population,3.2,35,,30-34
+17.05.04,3,Semidang Alas,age_group,35-39,laki_laki,600,jiwa,2025,registration,total_population,3.2,35,,35-39
+17.05.04,3,Semidang Alas,age_group,35-39,perempuan,550,jiwa,2025,registration,total_population,3.2,35,,35-39
+17.05.04,3,Semidang Alas,age_group,35-39,,1150,jiwa,2025,registration,total_population,3.2,35,,35-39
+17.05.04,3,Semidang Alas,age_group,40-44,laki_laki,636,jiwa,2025,registration,total_population,3.2,35,,40-44
+17.05.04,3,Semidang Alas,age_group,40-44,perempuan,579,jiwa,2025,registration,total_population,3.2,35,,40-44
+17.05.04,3,Semidang Alas,age_group,40-44,,1215,jiwa,2025,registration,total_population,3.2,35,,40-44
+17.05.04,3,Semidang Alas,age_group,45-49,laki_laki,674,jiwa,2025,registration,total_population,3.2,35,,45-49
+17.05.04,3,Semidang Alas,age_group,45-49,perempuan,566,jiwa,2025,registration,total_population,3.2,35,,45-49
+17.05.04,3,Semidang Alas,age_group,45-49,,1240,jiwa,2025,registration,total_population,3.2,35,,45-49
+17.05.04,3,Semidang Alas,age_group,50-54,laki_laki,514,jiwa,2025,registration,total_population,3.2,35,,50-54
+17.05.04,3,Semidang Alas,age_group,50-54,perempuan,448,jiwa,2025,registration,total_population,3.2,35,,50-54
+17.05.04,3,Semidang Alas,age_group,50-54,,962,jiwa,2025,registration,total_population,3.2,35,,50-54
+17.05.04,3,Semidang Alas,age_group,55-59,laki_laki,412,jiwa,2025,registration,total_population,3.2,35,,55-59
+17.05.04,3,Semidang Alas,age_group,55-59,perempuan,361,jiwa,2025,registration,total_population,3.2,35,,55-59
+17.05.04,3,Semidang Alas,age_group,55-59,,773,jiwa,2025,registration,total_population,3.2,35,,55-59
+17.05.04,3,Semidang Alas,age_group,60-64,laki_laki,301,jiwa,2025,registration,total_population,3.2,35,,60-64
+17.05.04,3,Semidang Alas,age_group,60-64,perempuan,305,jiwa,2025,registration,total_population,3.2,35,,60-64
+17.05.04,3,Semidang Alas,age_group,60-64,,606,jiwa,2025,registration,total_population,3.2,35,,60-64
+17.05.04,3,Semidang Alas,age_group,65-69,laki_laki,254,jiwa,2025,registration,total_population,3.2,35,,65-69
+17.05.04,3,Semidang Alas,age_group,65-69,perempuan,256,jiwa,2025,registration,total_population,3.2,35,,65-69
+17.05.04,3,Semidang Alas,age_group,65-69,,510,jiwa,2025,registration,total_population,3.2,35,,65-69
+17.05.04,3,Semidang Alas,age_group,70-74,laki_laki,120,jiwa,2025,registration,total_population,3.2,35,,70-74
+17.05.04,3,Semidang Alas,age_group,70-74,perempuan,149,jiwa,2025,registration,total_population,3.2,35,,70-74
+17.05.04,3,Semidang Alas,age_group,70-74,,269,jiwa,2025,registration,total_population,3.2,35,,70-74
+17.05.04,3,Semidang Alas,age_group,75+,laki_laki,206,jiwa,2025,registration,total_population,3.2,35,,>75
+17.05.04,3,Semidang Alas,age_group,75+,perempuan,247,jiwa,2025,registration,total_population,3.2,35,,>75
+17.05.04,3,Semidang Alas,age_group,75+,,453,jiwa,2025,registration,total_population,3.2,35,,>75
+17.05.04,3,Semidang Alas,sex,laki_laki,,8247,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+17.05.04,3,Semidang Alas,sex,perempuan,,7716,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+17.05.04,3,Semidang Alas,total,total,,15963,jiwa,2025,registration,total_population,3.2,35,,

@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.03.21.2007,4,Gardu,sex,laki_laki,,276,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.21.2007,4,Gardu,sex,perempuan,,272,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.21.2007,4,Gardu,total,total,,548,jiwa,2025,registration,total_population,3.1,28,,
+17.03.21.2006,4,Pagar Banyu,sex,laki_laki,,598,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.21.2006,4,Pagar Banyu,sex,perempuan,,585,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.21.2006,4,Pagar Banyu,total,total,,1183,jiwa,2025,registration,total_population,3.1,28,,
+17.03.21.2005,4,Pematang Sapang,sex,laki_laki,,637,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.21.2005,4,Pematang Sapang,sex,perempuan,,588,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.21.2005,4,Pematang Sapang,total,total,,1225,jiwa,2025,registration,total_population,3.1,28,,
+17.03.21.2004,4,Sumber Agung,sex,laki_laki,,844,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.21.2004,4,Sumber Agung,sex,perempuan,,813,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.21.2004,4,Sumber Agung,total,total,,1657,jiwa,2025,registration,total_population,3.1,28,,
+17.03.21.2003,4,Sidodadi,sex,laki_laki,,484,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.21.2003,4,Sidodadi,sex,perempuan,,462,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.21.2003,4,Sidodadi,total,total,,946,jiwa,2025,registration,total_population,3.1,28,,
+17.03.21.2012,4,Gunung Besar,sex,laki_laki,,389,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.21.2012,4,Gunung Besar,sex,perempuan,,387,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.21.2012,4,Gunung Besar,total,total,,776,jiwa,2025,registration,total_population,3.1,28,,
+17.03.21.2008,4,Kali,sex,laki_laki,,588,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.21.2008,4,Kali,sex,perempuan,,552,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.21.2008,4,Kali,total,total,,1140,jiwa,2025,registration,total_population,3.1,28,,
+17.03.21.2010,4,Pagar Ruyung,sex,laki_laki,,190,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.21.2010,4,Pagar Ruyung,sex,perempuan,,178,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.21.2010,4,Pagar Ruyung,total,total,,368,jiwa,2025,registration,total_population,3.1,28,,
+17.03.21.2011,4,Air Merah,sex,laki_laki,,581,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.21.2011,4,Air Merah,sex,perempuan,,533,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.21.2011,4,Air Merah,total,total,,1114,jiwa,2025,registration,total_population,3.1,28,,
+17.03.21.2002,4,Tebing Kaning,sex,laki_laki,,503,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.21.2002,4,Tebing Kaning,sex,perempuan,,472,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.21.2002,4,Tebing Kaning,total,total,,975,jiwa,2025,registration,total_population,3.1,28,,
+17.03.21.1001,4,Kemumu,sex,laki_laki,,1405,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.21.1001,4,Kemumu,sex,perempuan,,1349,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.21.1001,4,Kemumu,total,total,,2754,jiwa,2025,registration,total_population,3.1,28,,
+17.03.21.2009,4,Kalai Duai,sex,laki_laki,,379,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.21.2009,4,Kalai Duai,sex,perempuan,,391,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.21.2009,4,Kalai Duai,total,total,,770,jiwa,2025,registration,total_population,3.1,28,,
+17.03.21,3,Arma Jaya,sex,laki_laki,,6874,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.21,3,Arma Jaya,sex,perempuan,,6582,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.21,3,Arma Jaya,total,total,,13456,jiwa,2025,registration,total_population,3.1,28,,
+17.03.21,3,Arma Jaya,age_group,0-4,laki_laki,448,jiwa,2025,registration,total_population,3.2,30,,0-4
+17.03.21,3,Arma Jaya,age_group,0-4,perempuan,409,jiwa,2025,registration,total_population,3.2,30,,0-4
+17.03.21,3,Arma Jaya,age_group,0-4,,857,jiwa,2025,registration,total_population,3.2,30,,0-4
+17.03.21,3,Arma Jaya,age_group,5-9,laki_laki,583,jiwa,2025,registration,total_population,3.2,30,,5-9
+17.03.21,3,Arma Jaya,age_group,5-9,perempuan,529,jiwa,2025,registration,total_population,3.2,30,,5-9
+17.03.21,3,Arma Jaya,age_group,5-9,,1112,jiwa,2025,registration,total_population,3.2,30,,5-9
+17.03.21,3,Arma Jaya,age_group,10-14,laki_laki,597,jiwa,2025,registration,total_population,3.2,30,,10-14
+17.03.21,3,Arma Jaya,age_group,10-14,perempuan,613,jiwa,2025,registration,total_population,3.2,30,,10-14
+17.03.21,3,Arma Jaya,age_group,10-14,,1210,jiwa,2025,registration,total_population,3.2,30,,10-14
+17.03.21,3,Arma Jaya,age_group,15-19,laki_laki,623,jiwa,2025,registration,total_population,3.2,30,,15-19
+17.03.21,3,Arma Jaya,age_group,15-19,perempuan,535,jiwa,2025,registration,total_population,3.2,30,,15-19
+17.03.21,3,Arma Jaya,age_group,15-19,,1158,jiwa,2025,registration,total_population,3.2,30,,15-19
+17.03.21,3,Arma Jaya,age_group,20-24,laki_laki,547,jiwa,2025,registration,total_population,3.2,30,,20-24
+17.03.21,3,Arma Jaya,age_group,20-24,perempuan,523,jiwa,2025,registration,total_population,3.2,30,,20-24
+17.03.21,3,Arma Jaya,age_group,20-24,,1070,jiwa,2025,registration,total_population,3.2,30,,20-24
+17.03.21,3,Arma Jaya,age_group,25-29,laki_laki,579,jiwa,2025,registration,total_population,3.2,30,,25-29
+17.03.21,3,Arma Jaya,age_group,25-29,perempuan,523,jiwa,2025,registration,total_population,3.2,30,,25-29
+17.03.21,3,Arma Jaya,age_group,25-29,,1102,jiwa,2025,registration,total_population,3.2,30,,25-29
+17.03.21,3,Arma Jaya,age_group,30-34,laki_laki,509,jiwa,2025,registration,total_population,3.2,30,,30-34
+17.03.21,3,Arma Jaya,age_group,30-34,perempuan,470,jiwa,2025,registration,total_population,3.2,30,,30-34
+17.03.21,3,Arma Jaya,age_group,30-34,,979,jiwa,2025,registration,total_population,3.2,30,,30-34
+17.03.21,3,Arma Jaya,age_group,35-39,laki_laki,510,jiwa,2025,registration,total_population,3.2,30,,35-39
+17.03.21,3,Arma Jaya,age_group,35-39,perempuan,533,jiwa,2025,registration,total_population,3.2,30,,35-39
+17.03.21,3,Arma Jaya,age_group,35-39,,1043,jiwa,2025,registration,total_population,3.2,30,,35-39
+17.03.21,3,Arma Jaya,age_group,40-44,laki_laki,529,jiwa,2025,registration,total_population,3.2,30,,40-44
+17.03.21,3,Arma Jaya,age_group,40-44,perempuan,512,jiwa,2025,registration,total_population,3.2,30,,40-44
+17.03.21,3,Arma Jaya,age_group,40-44,,1041,jiwa,2025,registration,total_population,3.2,30,,40-44
+17.03.21,3,Arma Jaya,age_group,45-49,laki_laki,523,jiwa,2025,registration,total_population,3.2,30,,45-49
+17.03.21,3,Arma Jaya,age_group,45-49,perempuan,509,jiwa,2025,registration,total_population,3.2,30,,45-49
+17.03.21,3,Arma Jaya,age_group,45-49,,1032,jiwa,2025,registration,total_population,3.2,30,,45-49
+17.03.21,3,Arma Jaya,age_group,50-54,laki_laki,414,jiwa,2025,registration,total_population,3.2,30,,50-54
+17.03.21,3,Arma Jaya,age_group,50-54,perempuan,393,jiwa,2025,registration,total_population,3.2,30,,50-54
+17.03.21,3,Arma Jaya,age_group,50-54,,807,jiwa,2025,registration,total_population,3.2,30,,50-54
+17.03.21,3,Arma Jaya,age_group,55-59,laki_laki,314,jiwa,2025,registration,total_population,3.2,30,,55-59
+17.03.21,3,Arma Jaya,age_group,55-59,perempuan,302,jiwa,2025,registration,total_population,3.2,30,,55-59
+17.03.21,3,Arma Jaya,age_group,55-59,,616,jiwa,2025,registration,total_population,3.2,30,,55-59
+17.03.21,3,Arma Jaya,age_group,60-64,laki_laki,241,jiwa,2025,registration,total_population,3.2,30,,60-64
+17.03.21,3,Arma Jaya,age_group,60-64,perempuan,230,jiwa,2025,registration,total_population,3.2,30,,60-64
+17.03.21,3,Arma Jaya,age_group,60-64,,471,jiwa,2025,registration,total_population,3.2,30,,60-64
+17.03.21,3,Arma Jaya,age_group,65-69,laki_laki,177,jiwa,2025,registration,total_population,3.2,30,,65-69
+17.03.21,3,Arma Jaya,age_group,65-69,perempuan,192,jiwa,2025,registration,total_population,3.2,30,,65-69
+17.03.21,3,Arma Jaya,age_group,65-69,,369,jiwa,2025,registration,total_population,3.2,30,,65-69
+17.03.21,3,Arma Jaya,age_group,70-74,laki_laki,120,jiwa,2025,registration,total_population,3.2,30,,70-74
+17.03.21,3,Arma Jaya,age_group,70-74,perempuan,126,jiwa,2025,registration,total_population,3.2,30,,70-74
+17.03.21,3,Arma Jaya,age_group,70-74,,246,jiwa,2025,registration,total_population,3.2,30,,70-74
+17.03.21,3,Arma Jaya,age_group,75+,laki_laki,160,jiwa,2025,registration,total_population,3.2,30,,75+
+17.03.21,3,Arma Jaya,age_group,75+,perempuan,183,jiwa,2025,registration,total_population,3.2,30,,75+
+17.03.21,3,Arma Jaya,age_group,75+,,343,jiwa,2025,registration,total_population,3.2,30,,75+
+17.03.21,3,Arma Jaya,sex,laki_laki,,6874,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+17.03.21,3,Arma Jaya,sex,perempuan,,6582,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+17.03.21,3,Arma Jaya,total,total,,13456,jiwa,2025,registration,total_population,3.2,30,,

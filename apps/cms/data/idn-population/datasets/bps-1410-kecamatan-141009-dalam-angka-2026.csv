@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.10.09.2002,4,BETING,sex,laki_laki,,730,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.10.09.2002,4,BETING,sex,perempuan,,715,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+14.10.09.2002,4,BETING,total,total,,1445,jiwa,2025,registration,total_population,3.1,30,,
+14.10.09.2003,4,SOKOP,sex,laki_laki,,777,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.10.09.2003,4,SOKOP,sex,perempuan,,754,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+14.10.09.2003,4,SOKOP,total,total,,1531,jiwa,2025,registration,total_population,3.1,30,,
+14.10.09.2005,4,BUNGUR,sex,laki_laki,,1398,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.10.09.2005,4,BUNGUR,sex,perempuan,,1278,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+14.10.09.2005,4,BUNGUR,total,total,,2676,jiwa,2025,registration,total_population,3.1,30,,
+14.10.09.2001,4,TANJUNG KEDABU,sex,laki_laki,,1078,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.10.09.2001,4,TANJUNG KEDABU,sex,perempuan,,1098,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+14.10.09.2001,4,TANJUNG KEDABU,total,total,,2176,jiwa,2025,registration,total_population,3.1,30,,
+14.10.09.2004,4,TELESUNG,sex,laki_laki,,684,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.10.09.2004,4,TELESUNG,sex,perempuan,,594,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+14.10.09.2004,4,TELESUNG,total,total,,1278,jiwa,2025,registration,total_population,3.1,30,,
+14.10.09.2006,4,TENGGAYUN RAYA,sex,laki_laki,,463,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.10.09.2006,4,TENGGAYUN RAYA,sex,perempuan,,454,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+14.10.09.2006,4,TENGGAYUN RAYA,total,total,,917,jiwa,2025,registration,total_population,3.1,30,,
+14.10.09.2009,4,SONDE,sex,laki_laki,,1204,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.10.09.2009,4,SONDE,sex,perempuan,,1148,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+14.10.09.2009,4,SONDE,total,total,,2352,jiwa,2025,registration,total_population,3.1,30,,
+14.10.09.2008,4,KAYU ARA,sex,laki_laki,,584,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.10.09.2008,4,KAYU ARA,sex,perempuan,,470,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+14.10.09.2008,4,KAYU ARA,total,total,,1054,jiwa,2025,registration,total_population,3.1,30,,
+14.10.09.2011,4,TANAH MERAH,sex,laki_laki,,914,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.10.09.2011,4,TANAH MERAH,sex,perempuan,,921,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+14.10.09.2011,4,TANAH MERAH,total,total,,1835,jiwa,2025,registration,total_population,3.1,30,,
+14.10.09.2010,4,KEDABU RAPAT,sex,laki_laki,,1645,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.10.09.2010,4,KEDABU RAPAT,sex,perempuan,,1591,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+14.10.09.2010,4,KEDABU RAPAT,total,total,,3236,jiwa,2025,registration,total_population,3.1,30,,
+14.10.09.2007,4,SENDAUR,sex,laki_laki,,516,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.10.09.2007,4,SENDAUR,sex,perempuan,,527,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+14.10.09.2007,4,SENDAUR,total,total,,1043,jiwa,2025,registration,total_population,3.1,30,,
+14.10.09,3,RANGSANG PESISIR,sex,laki_laki,,9993,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.10.09,3,RANGSANG PESISIR,sex,perempuan,,9550,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+14.10.09,3,RANGSANG PESISIR,total,total,,19543,jiwa,2025,registration,total_population,3.1,30,,

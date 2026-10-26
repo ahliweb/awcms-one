@@ -1,0 +1,54 @@
+{
+  "datasetCode": "bps-1509-kecamatan-150808-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.08.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Muko-Muko Bathin VII Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bungo",
+  "publisherDomain": "1509",
+  "publisherWebsite": "https://bungokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bungo (https://bungokab.bps.go.id), publikasi \"Kecamatan Muko-Muko Bathin VII Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1509031",
+  "publicationNumber": "15090.26013",
+  "issn": "2714-5859",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bungokab.bps.go.id/id/publication/2026/09/28/24f0b4174cd77e826f309bb8/kecamatan-muko-muko-bathin-vii-dalam-angka-2026.html",
+  "sourceFileSha256": "ae4c49a1c4504b3c890b4f36bbec3b564d52e530df7ad787f97a3bc19c958435",
+  "sourceFileBytes": 14144040,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bungo.",
+  "csvPath": "datasets/bps-1509-kecamatan-150808-dalam-angka-2026.csv",
+  "csvSha256": "ef9b12f91977ed45cea8b3f5fa109ba1616f8ab7f0d739c0df5a82293eb325f3",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Muko -Muko Bathin VII , 202 5",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Muko -Muko Bathin VII , 202 5",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Tebing Tinggi 9.34%\": unmatched ",
+    "table 3.1: row not stored: row \"Datar 8.06%\": unmatched ",
+    "table 3.1: row not stored: row \"Bedaro 21.28%\": unmatched ",
+    "table 3.1: row not stored: row \"Baru Pusat Jalo 6.47%\": unmatched ",
+    "table 3.1: row not stored: row \"Tebat 11.68%\": unmatched ",
+    "table 3.1: row not stored: row \"Tanjung Agung 19.19%\": unmatched ",
+    "table 3.1: row not stored: row \"Mangun Jayo 10.27%\": unmatched ",
+    "table 3.1: row not stored: row \"Suka Jaya 8.52%\": unmatched ",
+    "table 3.1: row not stored: row \"Pekan Jumat 5.20%\": unmatched ",
+    "table 3.1: row not stored: row \"Muko -Muko Bathin VII 100%\": unmatched "
+  ]
+}

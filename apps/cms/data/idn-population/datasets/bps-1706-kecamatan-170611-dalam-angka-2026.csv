@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.06.11.2002,4,Rawa Mulya,sex,laki_laki,,1107,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.06.11.2002,4,Rawa Mulya,sex,perempuan,,1085,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.06.11.2002,4,Rawa Mulya,total,total,,2192,jiwa,2025,registration,total_population,3.1,27,,
+17.06.11.2006,4,Dusun Baru Pelokan,sex,laki_laki,,1175,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.06.11.2006,4,Dusun Baru Pelokan,sex,perempuan,,1150,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.06.11.2006,4,Dusun Baru Pelokan,total,total,,2325,jiwa,2025,registration,total_population,3.1,27,,
+17.06.11.2001,4,Lubuk Sanai,sex,laki_laki,,1024,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.06.11.2001,4,Lubuk Sanai,sex,perempuan,,1020,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.06.11.2001,4,Lubuk Sanai,total,total,,2044,jiwa,2025,registration,total_population,3.1,27,,
+17.06.11.2004,4,Tanjung Mulya,sex,laki_laki,,1413,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.06.11.2004,4,Tanjung Mulya,sex,perempuan,,1298,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.06.11.2004,4,Tanjung Mulya,total,total,,2711,jiwa,2025,registration,total_population,3.1,27,,
+17.06.11.2003,4,Rawa Bangun,sex,laki_laki,,655,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.06.11.2003,4,Rawa Bangun,sex,perempuan,,618,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.06.11.2003,4,Rawa Bangun,total,total,,1273,jiwa,2025,registration,total_population,3.1,27,,
+17.06.11.2007,4,Lubuk Sanai II,sex,laki_laki,,521,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.06.11.2007,4,Lubuk Sanai II,sex,perempuan,,500,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.06.11.2007,4,Lubuk Sanai II,total,total,,1021,jiwa,2025,registration,total_population,3.1,27,,
+17.06.11.2009,4,Lubuk Sanai III,sex,laki_laki,,673,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.06.11.2009,4,Lubuk Sanai III,sex,perempuan,,657,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.06.11.2009,4,Lubuk Sanai III,total,total,,1330,jiwa,2025,registration,total_population,3.1,27,,
+17.06.11,3,XIV KOTO,sex,laki_laki,,7614,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.06.11,3,XIV KOTO,sex,perempuan,,7294,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.06.11,3,XIV KOTO,total,total,,14908,jiwa,2025,registration,total_population,3.1,27,,
+17.06.11,3,XIV Koto,age_group,0-4,laki_laki,588,jiwa,2025,registration,total_population,3.3,30,,0-4
+17.06.11,3,XIV Koto,age_group,0-4,perempuan,571,jiwa,2025,registration,total_population,3.3,30,,0-4
+17.06.11,3,XIV Koto,age_group,0-4,,1159,jiwa,2025,registration,total_population,3.3,30,,0-4
+17.06.11,3,XIV Koto,age_group,5-9,laki_laki,704,jiwa,2025,registration,total_population,3.3,30,,5-9
+17.06.11,3,XIV Koto,age_group,5-9,perempuan,653,jiwa,2025,registration,total_population,3.3,30,,5-9
+17.06.11,3,XIV Koto,age_group,5-9,,1357,jiwa,2025,registration,total_population,3.3,30,,5-9
+17.06.11,3,XIV Koto,age_group,10-14,laki_laki,685,jiwa,2025,registration,total_population,3.3,30,,10-14
+17.06.11,3,XIV Koto,age_group,10-14,perempuan,622,jiwa,2025,registration,total_population,3.3,30,,10-14
+17.06.11,3,XIV Koto,age_group,10-14,,1307,jiwa,2025,registration,total_population,3.3,30,,10-14
+17.06.11,3,XIV Koto,age_group,15-19,laki_laki,636,jiwa,2025,registration,total_population,3.3,30,,15-19
+17.06.11,3,XIV Koto,age_group,15-19,perempuan,585,jiwa,2025,registration,total_population,3.3,30,,15-19
+17.06.11,3,XIV Koto,age_group,15-19,,1221,jiwa,2025,registration,total_population,3.3,30,,15-19
+17.06.11,3,XIV Koto,age_group,20-24,laki_laki,580,jiwa,2025,registration,total_population,3.3,30,,20-24
+17.06.11,3,XIV Koto,age_group,20-24,perempuan,596,jiwa,2025,registration,total_population,3.3,30,,20-24
+17.06.11,3,XIV Koto,age_group,20-24,,1176,jiwa,2025,registration,total_population,3.3,30,,20-24
+17.06.11,3,XIV Koto,age_group,25-29,laki_laki,637,jiwa,2025,registration,total_population,3.3,30,,25-29
+17.06.11,3,XIV Koto,age_group,25-29,perempuan,585,jiwa,2025,registration,total_population,3.3,30,,25-29
+17.06.11,3,XIV Koto,age_group,25-29,,1222,jiwa,2025,registration,total_population,3.3,30,,25-29
+17.06.11,3,XIV Koto,age_group,30-34,laki_laki,569,jiwa,2025,registration,total_population,3.3,30,,30-34
+17.06.11,3,XIV Koto,age_group,30-34,perempuan,592,jiwa,2025,registration,total_population,3.3,30,,30-34
+17.06.11,3,XIV Koto,age_group,30-34,,1161,jiwa,2025,registration,total_population,3.3,30,,30-34
+17.06.11,3,XIV Koto,age_group,35-39,laki_laki,605,jiwa,2025,registration,total_population,3.3,30,,35-39
+17.06.11,3,XIV Koto,age_group,35-39,perempuan,590,jiwa,2025,registration,total_population,3.3,30,,35-39
+17.06.11,3,XIV Koto,age_group,35-39,,1195,jiwa,2025,registration,total_population,3.3,30,,35-39
+17.06.11,3,XIV Koto,age_group,40-44,laki_laki,559,jiwa,2025,registration,total_population,3.3,30,,40-44
+17.06.11,3,XIV Koto,age_group,40-44,perempuan,557,jiwa,2025,registration,total_population,3.3,30,,40-44
+17.06.11,3,XIV Koto,age_group,40-44,,1116,jiwa,2025,registration,total_population,3.3,30,,40-44
+17.06.11,3,XIV Koto,age_group,45-49,laki_laki,492,jiwa,2025,registration,total_population,3.3,30,,45-49
+17.06.11,3,XIV Koto,age_group,45-49,perempuan,447,jiwa,2025,registration,total_population,3.3,30,,45-49
+17.06.11,3,XIV Koto,age_group,45-49,,939,jiwa,2025,registration,total_population,3.3,30,,45-49
+17.06.11,3,XIV Koto,age_group,50-54,laki_laki,416,jiwa,2025,registration,total_population,3.3,30,,50-54
+17.06.11,3,XIV Koto,age_group,50-54,perempuan,390,jiwa,2025,registration,total_population,3.3,30,,50-54
+17.06.11,3,XIV Koto,age_group,50-54,,806,jiwa,2025,registration,total_population,3.3,30,,50-54
+17.06.11,3,XIV Koto,age_group,55-59,laki_laki,358,jiwa,2025,registration,total_population,3.3,30,,55-59
+17.06.11,3,XIV Koto,age_group,55-59,perempuan,308,jiwa,2025,registration,total_population,3.3,30,,55-59
+17.06.11,3,XIV Koto,age_group,55-59,,666,jiwa,2025,registration,total_population,3.3,30,,55-59
+17.06.11,3,XIV Koto,age_group,60-64,laki_laki,275,jiwa,2025,registration,total_population,3.3,30,,60-64
+17.06.11,3,XIV Koto,age_group,60-64,perempuan,294,jiwa,2025,registration,total_population,3.3,30,,60-64
+17.06.11,3,XIV Koto,age_group,60-64,,569,jiwa,2025,registration,total_population,3.3,30,,60-64
+17.06.11,3,XIV Koto,age_group,65-69,laki_laki,222,jiwa,2025,registration,total_population,3.3,30,,65-69
+17.06.11,3,XIV Koto,age_group,65-69,perempuan,193,jiwa,2025,registration,total_population,3.3,30,,65-69
+17.06.11,3,XIV Koto,age_group,65-69,,415,jiwa,2025,registration,total_population,3.3,30,,65-69
+17.06.11,3,XIV Koto,age_group,70-74,laki_laki,131,jiwa,2025,registration,total_population,3.3,30,,70-74
+17.06.11,3,XIV Koto,age_group,70-74,perempuan,132,jiwa,2025,registration,total_population,3.3,30,,70-74
+17.06.11,3,XIV Koto,age_group,70-74,,263,jiwa,2025,registration,total_population,3.3,30,,70-74
+17.06.11,3,XIV Koto,age_group,75+,laki_laki,157,jiwa,2025,registration,total_population,3.3,30,,≥75
+17.06.11,3,XIV Koto,age_group,75+,perempuan,179,jiwa,2025,registration,total_population,3.3,30,,≥75
+17.06.11,3,XIV Koto,age_group,75+,,336,jiwa,2025,registration,total_population,3.3,30,,≥75
+17.06.11,3,XIV KOTO,sex,laki_laki,,7614,jiwa,2025,registration,total_population,3.3,30,,Laki-Laki
+17.06.11,3,XIV KOTO,sex,perempuan,,7294,jiwa,2025,registration,total_population,3.3,30,,Perempuan
+17.06.11,3,XIV KOTO,total,total,,14908,jiwa,2025,registration,total_population,3.3,30,,

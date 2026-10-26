@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.08.07.2007,4,Rantau Tipu,sex,laki_laki,,725,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.08.07.2007,4,Rantau Tipu,sex,perempuan,,623,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.08.07.2007,4,Rantau Tipu,total,total,,1348,jiwa,2025,registration,total_population,3.1,31,,
+15.08.07.2011,4,Renah Sungai Ipuh,sex,laki_laki,,896,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.08.07.2011,4,Renah Sungai Ipuh,sex,perempuan,,873,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.08.07.2011,4,Renah Sungai Ipuh,total,total,,1769,jiwa,2025,registration,total_population,3.1,31,,
+15.08.07.2010,4,Pemunyian,sex,laki_laki,,806,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.08.07.2010,4,Pemunyian,sex,perempuan,,767,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.08.07.2010,4,Pemunyian,total,total,,1573,jiwa,2025,registration,total_population,3.1,31,,
+15.08.07.2005,4,Renah Sungai Besar,sex,laki_laki,,447,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.08.07.2005,4,Renah Sungai Besar,sex,perempuan,,404,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.08.07.2005,4,Renah Sungai Besar,total,total,,851,jiwa,2025,registration,total_population,3.1,31,,
+15.08.07.2001,4,Tanjung Bungo,sex,laki_laki,,177,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.08.07.2001,4,Tanjung Bungo,sex,perempuan,,180,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.08.07.2001,4,Tanjung Bungo,total,total,,357,jiwa,2025,registration,total_population,3.1,31,,
+15.08.07.2004,4,Tuo Limbur,sex,laki_laki,,978,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.08.07.2004,4,Tuo Limbur,sex,perempuan,,965,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.08.07.2004,4,Tuo Limbur,total,total,,1943,jiwa,2025,registration,total_population,3.1,31,,
+15.08.07.2012,4,Tebo Jaya,sex,laki_laki,,1260,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.08.07.2012,4,Tebo Jaya,sex,perempuan,,1229,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.08.07.2012,4,Tebo Jaya,total,total,,2489,jiwa,2025,registration,total_population,3.1,31,,
+15.08.07.2013,4,Sekar Mengkuang,sex,laki_laki,,1213,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.08.07.2013,4,Sekar Mengkuang,sex,perempuan,,1218,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.08.07.2013,4,Sekar Mengkuang,total,total,,2431,jiwa,2025,registration,total_population,3.1,31,,
+15.08.07.2003,4,Pauh Agung,sex,laki_laki,,585,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.08.07.2003,4,Pauh Agung,sex,perempuan,,561,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.08.07.2003,4,Pauh Agung,total,total,,1146,jiwa,2025,registration,total_population,3.1,31,,
+15.08.07.2014,4,Limbur Baru,sex,laki_laki,,1015,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.08.07.2014,4,Limbur Baru,sex,perempuan,,954,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.08.07.2014,4,Limbur Baru,total,total,,1969,jiwa,2025,registration,total_population,3.1,31,,
+15.08.07,3,Limbur Lubuk Mengkuang,sex,laki_laki,,9322,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+15.08.07,3,Limbur Lubuk Mengkuang,sex,perempuan,,8938,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+15.08.07,3,Limbur Lubuk Mengkuang,total,total,,18260,jiwa,2025,registration,total_population,3.1,31,,
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,0-4,laki_laki,758,jiwa,2025,registration,total_population,3.2,33,,0-4
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,0-4,perempuan,667,jiwa,2025,registration,total_population,3.2,33,,0-4
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,0-4,,1425,jiwa,2025,registration,total_population,3.2,33,,0-4
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,5-9,laki_laki,881,jiwa,2025,registration,total_population,3.2,33,,5-9
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,5-9,perempuan,856,jiwa,2025,registration,total_population,3.2,33,,5-9
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,5-9,,1737,jiwa,2025,registration,total_population,3.2,33,,5-9
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,10-14,laki_laki,874,jiwa,2025,registration,total_population,3.2,33,,10-14
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,10-14,perempuan,774,jiwa,2025,registration,total_population,3.2,33,,10-14
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,10-14,,1648,jiwa,2025,registration,total_population,3.2,33,,10-14
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,15-19,laki_laki,733,jiwa,2025,registration,total_population,3.2,33,,15-19
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,15-19,perempuan,796,jiwa,2025,registration,total_population,3.2,33,,15-19
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,15-19,,1529,jiwa,2025,registration,total_population,3.2,33,,15-19
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,20-24,laki_laki,752,jiwa,2025,registration,total_population,3.2,33,,20-24
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,20-24,perempuan,801,jiwa,2025,registration,total_population,3.2,33,,20-24
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,20-24,,1553,jiwa,2025,registration,total_population,3.2,33,,20-24
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,25-29,laki_laki,830,jiwa,2025,registration,total_population,3.2,33,,25-29
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,25-29,perempuan,770,jiwa,2025,registration,total_population,3.2,33,,25-29
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,25-29,,1600,jiwa,2025,registration,total_population,3.2,33,,25-29
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,30-34,laki_laki,855,jiwa,2025,registration,total_population,3.2,33,,30-34
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,30-34,perempuan,780,jiwa,2025,registration,total_population,3.2,33,,30-34
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,30-34,,1635,jiwa,2025,registration,total_population,3.2,33,,30-34
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,35-39,laki_laki,830,jiwa,2025,registration,total_population,3.2,33,,35-39
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,35-39,perempuan,747,jiwa,2025,registration,total_population,3.2,33,,35-39
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,35-39,,1577,jiwa,2025,registration,total_population,3.2,33,,35-39
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,40-44,laki_laki,714,jiwa,2025,registration,total_population,3.2,33,,40-44
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,40-44,perempuan,672,jiwa,2025,registration,total_population,3.2,33,,40-44
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,40-44,,1386,jiwa,2025,registration,total_population,3.2,33,,40-44
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,45-49,laki_laki,634,jiwa,2025,registration,total_population,3.2,33,,45-49
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,45-49,perempuan,617,jiwa,2025,registration,total_population,3.2,33,,45-49
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,45-49,,1251,jiwa,2025,registration,total_population,3.2,33,,45-49
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,50-54,laki_laki,477,jiwa,2025,registration,total_population,3.2,33,,50-54
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,50-54,perempuan,426,jiwa,2025,registration,total_population,3.2,33,,50-54
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,50-54,,903,jiwa,2025,registration,total_population,3.2,33,,50-54
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,55-59,laki_laki,357,jiwa,2025,registration,total_population,3.2,33,,55-59
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,55-59,perempuan,397,jiwa,2025,registration,total_population,3.2,33,,55-59
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,55-59,,754,jiwa,2025,registration,total_population,3.2,33,,55-59
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,60-64,laki_laki,283,jiwa,2025,registration,total_population,3.2,33,,60-64
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,60-64,perempuan,253,jiwa,2025,registration,total_population,3.2,33,,60-64
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,60-64,,536,jiwa,2025,registration,total_population,3.2,33,,60-64
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,65-69,laki_laki,182,jiwa,2025,registration,total_population,3.2,33,,65-69
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,65-69,perempuan,216,jiwa,2025,registration,total_population,3.2,33,,65-69
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,65-69,,398,jiwa,2025,registration,total_population,3.2,33,,65-69
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,70-74,laki_laki,92,jiwa,2025,registration,total_population,3.2,33,,70-74
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,70-74,perempuan,70,jiwa,2025,registration,total_population,3.2,33,,70-74
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,70-74,,162,jiwa,2025,registration,total_population,3.2,33,,70-74
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,75+,laki_laki,70,jiwa,2025,registration,total_population,3.2,33,,75+
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,75+,perempuan,96,jiwa,2025,registration,total_population,3.2,33,,75+
+15.08.07,3,Limbur Lubuk Mengkuang,age_group,75+,,166,jiwa,2025,registration,total_population,3.2,33,,75+
+15.08.07,3,Limbur Lubuk Mengkuang,sex,laki_laki,,9322,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+15.08.07,3,Limbur Lubuk Mengkuang,sex,perempuan,,8938,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+15.08.07,3,Limbur Lubuk Mengkuang,total,total,,18260,jiwa,2025,registration,total_population,3.2,33,,

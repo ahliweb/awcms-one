@@ -1,0 +1,152 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.05.05,3,Semidang Alas Maras,total,total,,26100,jiwa,2025,registration,total_population,3.1.1,63,,
+17.05.04,3,Semidang Alas,total,total,,15963,jiwa,2025,registration,total_population,3.1.1,63,,
+17.05.03,3,Talo,total,total,,12597,jiwa,2025,registration,total_population,3.1.1,63,,
+17.05.14,3,Ilir Talo,total,total,,16917,jiwa,2025,registration,total_population,3.1.1,63,,
+17.05.12,3,Talo Kecil,total,total,,11519,jiwa,2025,registration,total_population,3.1.1,63,,
+17.05.13,3,Ulu Talo,total,total,,6530,jiwa,2025,registration,total_population,3.1.1,63,,
+17.05.02,3,Seluma,total,total,,11117,jiwa,2025,registration,total_population,3.1.1,63,,
+17.05.11,3,Seluma Selatan,total,total,,14386,jiwa,2025,registration,total_population,3.1.1,63,,
+17.05.08,3,Seluma Barat,total,total,,10404,jiwa,2025,registration,total_population,3.1.1,63,,
+17.05.09,3,Seluma Timur,total,total,,11579,jiwa,2025,registration,total_population,3.1.1,63,,
+17.05.10,3,Seluma Utara,total,total,,9532,jiwa,2025,registration,total_population,3.1.1,63,,
+17.05.01,3,Sukaraja,total,total,,34654,jiwa,2025,registration,total_population,3.1.1,63,,
+17.05.06,3,Air Periukan,total,total,,23778,jiwa,2025,registration,total_population,3.1.1,63,,
+17.05.07,3,Lubuk Sandi,total,total,,12323,jiwa,2025,registration,total_population,3.1.1,63,,
+17.05,2,Kabupaten Seluma,total,total,,217399,jiwa,2025,registration,total_population,3.1.1,63,,
+17.05.05,3,Semidang Alas Maras,religion,islam,,26057,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+17.05.05,3,Semidang Alas Maras,religion,kristen,,41,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+17.05.05,3,Semidang Alas Maras,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+17.05.05,3,Semidang Alas Maras,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+17.05.05,3,Semidang Alas Maras,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,134,,Budha
+17.05.05,3,Semidang Alas Maras,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+17.05.04,3,Semidang Alas,religion,islam,,15950,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+17.05.04,3,Semidang Alas,religion,kristen,,13,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+17.05.04,3,Semidang Alas,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Katolik
+17.05.04,3,Semidang Alas,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+17.05.04,3,Semidang Alas,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+17.05.04,3,Semidang Alas,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+17.05.03,3,Talo,religion,islam,,12556,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+17.05.03,3,Talo,religion,kristen,,41,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+17.05.03,3,Talo,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Katolik
+17.05.03,3,Talo,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+17.05.03,3,Talo,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+17.05.03,3,Talo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+17.05.14,3,Ilir Talo,religion,islam,,16828,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+17.05.14,3,Ilir Talo,religion,kristen,,30,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+17.05.14,3,Ilir Talo,religion,katolik,,59,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+17.05.14,3,Ilir Talo,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+17.05.14,3,Ilir Talo,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+17.05.14,3,Ilir Talo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+17.05.12,3,Talo Kecil,religion,islam,,11494,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+17.05.12,3,Talo Kecil,religion,kristen,,25,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+17.05.12,3,Talo Kecil,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Katolik
+17.05.12,3,Talo Kecil,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+17.05.12,3,Talo Kecil,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+17.05.12,3,Talo Kecil,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+17.05.13,3,Ulu Talo,religion,islam,,6403,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+17.05.13,3,Ulu Talo,religion,kristen,,39,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+17.05.13,3,Ulu Talo,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+17.05.13,3,Ulu Talo,religion,hindu,,84,jiwa,2025,registration,total_population,4.3.1,134,,Hindu
+17.05.13,3,Ulu Talo,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+17.05.13,3,Ulu Talo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+17.05.02,3,Seluma,religion,islam,,10971,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+17.05.02,3,Seluma,religion,kristen,,119,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+17.05.02,3,Seluma,religion,katolik,,27,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+17.05.02,3,Seluma,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+17.05.02,3,Seluma,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+17.05.02,3,Seluma,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+17.05.11,3,Seluma Selatan,religion,islam,,14246,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+17.05.11,3,Seluma Selatan,religion,kristen,,108,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+17.05.11,3,Seluma Selatan,religion,katolik,,30,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+17.05.11,3,Seluma Selatan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+17.05.11,3,Seluma Selatan,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,134,,Budha
+17.05.11,3,Seluma Selatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+17.05.08,3,Seluma Barat,religion,islam,,10110,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+17.05.08,3,Seluma Barat,religion,kristen,,243,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+17.05.08,3,Seluma Barat,religion,katolik,,48,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+17.05.08,3,Seluma Barat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+17.05.08,3,Seluma Barat,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,134,,Budha
+17.05.08,3,Seluma Barat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+17.05.09,3,Seluma Timur,religion,islam,,11445,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+17.05.09,3,Seluma Timur,religion,kristen,,133,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+17.05.09,3,Seluma Timur,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+17.05.09,3,Seluma Timur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+17.05.09,3,Seluma Timur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+17.05.09,3,Seluma Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+17.05.10,3,Seluma Utara,religion,islam,,9528,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+17.05.10,3,Seluma Utara,religion,kristen,,4,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+17.05.10,3,Seluma Utara,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Katolik
+17.05.10,3,Seluma Utara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+17.05.10,3,Seluma Utara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+17.05.10,3,Seluma Utara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+17.05.01,3,Sukaraja,religion,islam,,32809,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+17.05.01,3,Sukaraja,religion,kristen,,1316,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+17.05.01,3,Sukaraja,religion,katolik,,87,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+17.05.01,3,Sukaraja,religion,hindu,,440,jiwa,2025,registration,total_population,4.3.1,134,,Hindu
+17.05.01,3,Sukaraja,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,134,,Budha
+17.05.01,3,Sukaraja,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+17.05.06,3,Air Periukan,religion,islam,,22819,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+17.05.06,3,Air Periukan,religion,kristen,,300,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+17.05.06,3,Air Periukan,religion,katolik,,34,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+17.05.06,3,Air Periukan,religion,hindu,,624,jiwa,2025,registration,total_population,4.3.1,134,,Hindu
+17.05.06,3,Air Periukan,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,134,,Budha
+17.05.06,3,Air Periukan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+17.05.07,3,Lubuk Sandi,religion,islam,,12089,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+17.05.07,3,Lubuk Sandi,religion,kristen,,51,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+17.05.07,3,Lubuk Sandi,religion,katolik,,3,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+17.05.07,3,Lubuk Sandi,religion,hindu,,180,jiwa,2025,registration,total_population,4.3.1,134,,Hindu
+17.05.07,3,Lubuk Sandi,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+17.05.07,3,Lubuk Sandi,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+17.05,2,Kabupaten Seluma,religion,islam,,213305,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+17.05,2,Kabupaten Seluma,religion,kristen,,2463,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+17.05,2,Kabupaten Seluma,religion,katolik,,294,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+17.05,2,Kabupaten Seluma,religion,hindu,,1328,jiwa,2025,registration,total_population,4.3.1,134,,Hindu
+17.05,2,Kabupaten Seluma,religion,buddha,,9,jiwa,2025,registration,total_population,4.3.1,134,,Budha
+17.05,2,Kabupaten Seluma,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/padi_padian,,102043,rupiah,2024,survey_estimate,per_capita,10.1,273,,Padi-padian
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/padi_padian,,100995,rupiah,2025,survey_estimate,per_capita,10.1,273,,Padi-padian
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/umbi_umbian,,5778,rupiah,2024,survey_estimate,per_capita,10.1,273,,Umbi-umbian
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/umbi_umbian,,6269,rupiah,2025,survey_estimate,per_capita,10.1,273,,Umbi-umbian
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,57539,rupiah,2024,survey_estimate,per_capita,10.1,273,,Ikan/udang/cumi/kerang
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,66958,rupiah,2025,survey_estimate,per_capita,10.1,273,,Ikan/udang/cumi/kerang
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/daging,,26593,rupiah,2024,survey_estimate,per_capita,10.1,273,,Daging
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/daging,,31956,rupiah,2025,survey_estimate,per_capita,10.1,273,,Daging
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/telur_dan_susu,,25696,rupiah,2024,survey_estimate,per_capita,10.1,273,,Telur dan susu
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/telur_dan_susu,,28344,rupiah,2025,survey_estimate,per_capita,10.1,273,,Telur dan susu
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/sayur_sayuran,,74411,rupiah,2024,survey_estimate,per_capita,10.1,273,,Sayur-sayuran
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/sayur_sayuran,,78732,rupiah,2025,survey_estimate,per_capita,10.1,273,,Sayur-sayuran
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/kacang_kacangan,,10271,rupiah,2024,survey_estimate,per_capita,10.1,273,,Kacang-kacangan
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/kacang_kacangan,,12095,rupiah,2025,survey_estimate,per_capita,10.1,273,,Kacang-kacangan
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/buah_buahan,,32237,rupiah,2024,survey_estimate,per_capita,10.1,273,,Buah-buahan
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/buah_buahan,,35862,rupiah,2025,survey_estimate,per_capita,10.1,273,,Buah-buahan
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/minyak_dan_kelapa,,21900,rupiah,2024,survey_estimate,per_capita,10.1,273,,Minyak dan kelapa
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23528,rupiah,2025,survey_estimate,per_capita,10.1,273,,Minyak dan kelapa
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/bahan_minuman,,20868,rupiah,2024,survey_estimate,per_capita,10.1,273,,Bahan minuman
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/bahan_minuman,,22203,rupiah,2025,survey_estimate,per_capita,10.1,273,,Bahan minuman
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/bumbu_bumbuan,,11422,rupiah,2024,survey_estimate,per_capita,10.1,273,,Bumbu-bumbuan
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/bumbu_bumbuan,,12961,rupiah,2025,survey_estimate,per_capita,10.1,273,,Bumbu-bumbuan
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/konsumsi_lainnya,,11823,rupiah,2024,survey_estimate,per_capita,10.1,273,,Konsumsi lainnya
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/konsumsi_lainnya,,11943,rupiah,2025,survey_estimate,per_capita,10.1,273,,Konsumsi lainnya
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,144531,rupiah,2024,survey_estimate,per_capita,10.1,273,,Makanan dan minuman jadi
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,150515,rupiah,2025,survey_estimate,per_capita,10.1,273,,Makanan dan minuman jadi
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/rokok,,125580,rupiah,2024,survey_estimate,per_capita,10.1,273,,Rokok
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/rokok,,140862,rupiah,2025,survey_estimate,per_capita,10.1,273,,Rokok
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/jumlah_makanan,,670689,rupiah,2024,survey_estimate,per_capita,10.1,273,,Jumlah makanan
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/jumlah_makanan,,723224,rupiah,2025,survey_estimate,per_capita,10.1,273,,Jumlah makanan
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,282573,rupiah,2024,survey_estimate,per_capita,10.1,273,,Perumahan dan fasilitas rumah tangga
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,307104,rupiah,2025,survey_estimate,per_capita,10.1,273,,Perumahan dan fasilitas rumah tangga
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,96002,rupiah,2024,survey_estimate,per_capita,10.1,273,,Aneka barang dan jasa
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,112389,rupiah,2025,survey_estimate,per_capita,10.1,273,,Aneka barang dan jasa
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,25886,rupiah,2024,survey_estimate,per_capita,10.1,273,,"Pakaian, alas kaki, dan tutup kepala"
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,30922,rupiah,2025,survey_estimate,per_capita,10.1,273,,"Pakaian, alas kaki, dan tutup kepala"
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/barang_tahan_lama,,47555,rupiah,2024,survey_estimate,per_capita,10.1,273,,Barang tahan lama
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/barang_tahan_lama,,57496,rupiah,2025,survey_estimate,per_capita,10.1,273,,Barang tahan lama
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,44079,rupiah,2024,survey_estimate,per_capita,10.1,273,,"Pajak, pungutan, dan asuransi"
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,49051,rupiah,2025,survey_estimate,per_capita,10.1,273,,"Pajak, pungutan, dan asuransi"
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,28083,rupiah,2024,survey_estimate,per_capita,10.1,273,,Keperluan pesta dan upacara/kenduri
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,6620,rupiah,2025,survey_estimate,per_capita,10.1,273,,Keperluan pesta dan upacara/kenduri
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,524178,rupiah,2024,survey_estimate,per_capita,10.1,273,,Jumlah bukan makanan
+17.05,2,Kabupaten Seluma,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,563582,rupiah,2025,survey_estimate,per_capita,10.1,273,,Jumlah bukan makanan
+17.05,2,Kabupaten Seluma,expenditure,total,,1194867,rupiah,2024,survey_estimate,per_capita,10.1,273,,
+17.05,2,Kabupaten Seluma,expenditure,total,,1286806,rupiah,2025,survey_estimate,per_capita,10.1,273,,

@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.08.02.2023,4,Desa Air Hitam,sex,laki_laki,,313,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+17.08.02.2023,4,Desa Air Hitam,sex,perempuan,,290,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+17.08.02.2023,4,Desa Air Hitam,total,total,,603,jiwa,2025,registration,total_population,3.1,,,
+17.08.02.2009,4,Desa Bumi Sari,sex,laki_laki,,883,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+17.08.02.2009,4,Desa Bumi Sari,sex,perempuan,,838,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+17.08.02.2009,4,Desa Bumi Sari,total,total,,1721,jiwa,2025,registration,total_population,3.1,,,
+17.08.02.2016,4,Desa Cugung Lalang,sex,laki_laki,,339,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+17.08.02.2016,4,Desa Cugung Lalang,sex,perempuan,,324,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+17.08.02.2016,4,Desa Cugung Lalang,total,total,,663,jiwa,2025,registration,total_population,3.1,,,
+17.08.02.2021,4,Desa Meranti Jaya,sex,laki_laki,,945,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+17.08.02.2021,4,Desa Meranti Jaya,sex,perempuan,,838,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+17.08.02.2021,4,Desa Meranti Jaya,total,total,,1783,jiwa,2025,registration,total_population,3.1,,,
+17.08.02.2008,4,Desa Pekalongan,sex,laki_laki,,907,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+17.08.02.2008,4,Desa Pekalongan,sex,perempuan,,903,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+17.08.02.2008,4,Desa Pekalongan,total,total,,1810,jiwa,2025,registration,total_population,3.1,,,
+17.08.02.2019,4,Desa Pungguk Meranti,sex,laki_laki,,742,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+17.08.02.2019,4,Desa Pungguk Meranti,sex,perempuan,,693,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+17.08.02.2019,4,Desa Pungguk Meranti,total,total,,1435,jiwa,2025,registration,total_population,3.1,,,
+17.08.02.2018,4,Desa Suro Bali,sex,laki_laki,,315,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+17.08.02.2018,4,Desa Suro Bali,sex,perempuan,,279,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+17.08.02.2018,4,Desa Suro Bali,total,total,,594,jiwa,2025,registration,total_population,3.1,,,
+17.08.02.2007,4,Desa Suro Baru,sex,laki_laki,,542,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+17.08.02.2007,4,Desa Suro Baru,sex,perempuan,,539,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+17.08.02.2007,4,Desa Suro Baru,total,total,,1081,jiwa,2025,registration,total_population,3.1,,,
+17.08.02.2005,4,Desa Suro Ilir,sex,laki_laki,,667,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+17.08.02.2005,4,Desa Suro Ilir,sex,perempuan,,689,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+17.08.02.2005,4,Desa Suro Ilir,total,total,,1356,jiwa,2025,registration,total_population,3.1,,,
+17.08.02.2003,4,Desa Suro Lembak,sex,laki_laki,,407,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+17.08.02.2003,4,Desa Suro Lembak,sex,perempuan,,371,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+17.08.02.2003,4,Desa Suro Lembak,total,total,,778,jiwa,2025,registration,total_population,3.1,,,
+17.08.02.2006,4,Desa Suro Muncar,sex,laki_laki,,739,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+17.08.02.2006,4,Desa Suro Muncar,sex,perempuan,,686,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+17.08.02.2006,4,Desa Suro Muncar,total,total,,1425,jiwa,2025,registration,total_population,3.1,,,
+17.08.02.2004,4,Desa Tanjung Alam,sex,laki_laki,,513,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+17.08.02.2004,4,Desa Tanjung Alam,sex,perempuan,,498,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+17.08.02.2004,4,Desa Tanjung Alam,total,total,,1011,jiwa,2025,registration,total_population,3.1,,,
+17.08.02.2017,4,Ujan Mas Bawah,sex,laki_laki,,579,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+17.08.02.2017,4,Ujan Mas Bawah,sex,perempuan,,573,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+17.08.02.2017,4,Ujan Mas Bawah,total,total,,1152,jiwa,2025,registration,total_population,3.1,,,
+17.08.02.1002,4,Kelurahan Ujan Mas Atas,sex,laki_laki,,2105,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+17.08.02.1002,4,Kelurahan Ujan Mas Atas,sex,perempuan,,1965,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+17.08.02.1002,4,Kelurahan Ujan Mas Atas,total,total,,4070,jiwa,2025,registration,total_population,3.1,,,
+17.08.02,3,Ujan Mas,sex,laki_laki,,12795,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+17.08.02,3,Ujan Mas,sex,perempuan,,12073,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+17.08.02,3,Ujan Mas,total,total,,24868,jiwa,2025,registration,total_population,3.1,,,
+17.08.02,3,Ujan Mas,age_group,0-4,laki_laki,839,jiwa,2025,registration,total_population,3.2,,,0 – 4
+17.08.02,3,Ujan Mas,age_group,0-4,perempuan,749,jiwa,2025,registration,total_population,3.2,,,0 – 4
+17.08.02,3,Ujan Mas,age_group,0-4,,1588,jiwa,2025,registration,total_population,3.2,,,0 – 4
+17.08.02,3,Ujan Mas,age_group,5-9,laki_laki,1040,jiwa,2025,registration,total_population,3.2,,,5 – 9
+17.08.02,3,Ujan Mas,age_group,5-9,perempuan,976,jiwa,2025,registration,total_population,3.2,,,5 – 9
+17.08.02,3,Ujan Mas,age_group,5-9,,2016,jiwa,2025,registration,total_population,3.2,,,5 – 9
+17.08.02,3,Ujan Mas,age_group,10-14,laki_laki,1159,jiwa,2025,registration,total_population,3.2,,,10 – 14
+17.08.02,3,Ujan Mas,age_group,10-14,perempuan,996,jiwa,2025,registration,total_population,3.2,,,10 – 14
+17.08.02,3,Ujan Mas,age_group,10-14,,2155,jiwa,2025,registration,total_population,3.2,,,10 – 14
+17.08.02,3,Ujan Mas,age_group,15-19,laki_laki,1058,jiwa,2025,registration,total_population,3.2,,,15 – 19
+17.08.02,3,Ujan Mas,age_group,15-19,perempuan,1035,jiwa,2025,registration,total_population,3.2,,,15 – 19
+17.08.02,3,Ujan Mas,age_group,15-19,,2093,jiwa,2025,registration,total_population,3.2,,,15 – 19
+17.08.02,3,Ujan Mas,age_group,20-24,laki_laki,1084,jiwa,2025,registration,total_population,3.2,,,20 – 24
+17.08.02,3,Ujan Mas,age_group,20-24,perempuan,1043,jiwa,2025,registration,total_population,3.2,,,20 – 24
+17.08.02,3,Ujan Mas,age_group,20-24,,2127,jiwa,2025,registration,total_population,3.2,,,20 – 24
+17.08.02,3,Ujan Mas,age_group,25-29,laki_laki,1106,jiwa,2025,registration,total_population,3.2,,,25 – 29
+17.08.02,3,Ujan Mas,age_group,25-29,perempuan,1041,jiwa,2025,registration,total_population,3.2,,,25 – 29
+17.08.02,3,Ujan Mas,age_group,25-29,,2147,jiwa,2025,registration,total_population,3.2,,,25 – 29
+17.08.02,3,Ujan Mas,age_group,30-34,laki_laki,946,jiwa,2025,registration,total_population,3.2,,,30 – 34
+17.08.02,3,Ujan Mas,age_group,30-34,perempuan,845,jiwa,2025,registration,total_population,3.2,,,30 – 34
+17.08.02,3,Ujan Mas,age_group,30-34,,1791,jiwa,2025,registration,total_population,3.2,,,30 – 34
+17.08.02,3,Ujan Mas,age_group,35-39,laki_laki,937,jiwa,2025,registration,total_population,3.2,,,35 – 39
+17.08.02,3,Ujan Mas,age_group,35-39,perempuan,888,jiwa,2025,registration,total_population,3.2,,,35 – 39
+17.08.02,3,Ujan Mas,age_group,35-39,,1825,jiwa,2025,registration,total_population,3.2,,,35 – 39
+17.08.02,3,Ujan Mas,age_group,40-44,laki_laki,903,jiwa,2025,registration,total_population,3.2,,,40 – 44
+17.08.02,3,Ujan Mas,age_group,40-44,perempuan,911,jiwa,2025,registration,total_population,3.2,,,40 – 44
+17.08.02,3,Ujan Mas,age_group,40-44,,1814,jiwa,2025,registration,total_population,3.2,,,40 – 44
+17.08.02,3,Ujan Mas,age_group,45-49,laki_laki,1021,jiwa,2025,registration,total_population,3.2,,,45 – 49
+17.08.02,3,Ujan Mas,age_group,45-49,perempuan,917,jiwa,2025,registration,total_population,3.2,,,45 – 49
+17.08.02,3,Ujan Mas,age_group,45-49,,1938,jiwa,2025,registration,total_population,3.2,,,45 – 49
+17.08.02,3,Ujan Mas,age_group,50-54,laki_laki,715,jiwa,2025,registration,total_population,3.2,,,50 – 54
+17.08.02,3,Ujan Mas,age_group,50-54,perempuan,783,jiwa,2025,registration,total_population,3.2,,,50 – 54
+17.08.02,3,Ujan Mas,age_group,50-54,,1498,jiwa,2025,registration,total_population,3.2,,,50 – 54
+17.08.02,3,Ujan Mas,age_group,55-59,laki_laki,688,jiwa,2025,registration,total_population,3.2,,,55 – 59
+17.08.02,3,Ujan Mas,age_group,55-59,perempuan,599,jiwa,2025,registration,total_population,3.2,,,55 – 59
+17.08.02,3,Ujan Mas,age_group,55-59,,1287,jiwa,2025,registration,total_population,3.2,,,55 – 59
+17.08.02,3,Ujan Mas,age_group,60-64,laki_laki,478,jiwa,2025,registration,total_population,3.2,,,60 – 64
+17.08.02,3,Ujan Mas,age_group,60-64,perempuan,478,jiwa,2025,registration,total_population,3.2,,,60 – 64
+17.08.02,3,Ujan Mas,age_group,60-64,,956,jiwa,2025,registration,total_population,3.2,,,60 – 64
+17.08.02,3,Ujan Mas,age_group,65-69,laki_laki,326,jiwa,2025,registration,total_population,3.2,,,65 – 69
+17.08.02,3,Ujan Mas,age_group,65-69,perempuan,323,jiwa,2025,registration,total_population,3.2,,,65 – 69
+17.08.02,3,Ujan Mas,age_group,65-69,,649,jiwa,2025,registration,total_population,3.2,,,65 – 69
+17.08.02,3,Ujan Mas,age_group,70-74,laki_laki,227,jiwa,2025,registration,total_population,3.2,,,70 – 74
+17.08.02,3,Ujan Mas,age_group,70-74,perempuan,204,jiwa,2025,registration,total_population,3.2,,,70 – 74
+17.08.02,3,Ujan Mas,age_group,70-74,,431,jiwa,2025,registration,total_population,3.2,,,70 – 74
+17.08.02,3,Ujan Mas,age_group,75+,laki_laki,268,jiwa,2025,registration,total_population,3.2,,,> 75
+17.08.02,3,Ujan Mas,age_group,75+,perempuan,285,jiwa,2025,registration,total_population,3.2,,,> 75
+17.08.02,3,Ujan Mas,age_group,75+,,553,jiwa,2025,registration,total_population,3.2,,,> 75
+17.08.02,3,Ujan Mas,sex,laki_laki,,12795,jiwa,2025,registration,total_population,3.2,,,Laki-Laki
+17.08.02,3,Ujan Mas,sex,perempuan,,12073,jiwa,2025,registration,total_population,3.2,,,Perempuan
+17.08.02,3,Ujan Mas,total,total,,24868,jiwa,2025,registration,total_population,3.2,,,

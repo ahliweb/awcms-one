@@ -1,0 +1,121 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.02.12.2001,4,Ulak Kemang,sex,laki_laki,,1502,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2001,4,Ulak Kemang,sex,perempuan,,1410,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2001,4,Ulak Kemang,total,total,,2912,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2002,4,Sepang,sex,laki_laki,,921,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2002,4,Sepang,sex,perempuan,,904,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2002,4,Sepang,total,total,,1825,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2003,4,Keman,sex,laki_laki,,1202,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2003,4,Keman,sex,perempuan,,1143,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2003,4,Keman,total,total,,2345,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2004,4,Kandis,sex,laki_laki,,928,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2004,4,Kandis,sex,perempuan,,904,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2004,4,Kandis,total,total,,1832,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2005,4,Ulak Depati,sex,laki_laki,,622,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2005,4,Ulak Depati,sex,perempuan,,620,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2005,4,Ulak Depati,total,total,,1242,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2017,4,Jungkal,sex,laki_laki,,856,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2017,4,Jungkal,sex,perempuan,,845,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2017,4,Jungkal,total,total,,1701,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2016,4,Serdang,sex,laki_laki,,485,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2016,4,Serdang,sex,perempuan,,489,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2016,4,Serdang,total,total,,974,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2013,4,Serimenang,sex,laki_laki,,557,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2013,4,Serimenang,sex,perempuan,,544,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2013,4,Serimenang,total,total,,1101,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2012,4,Pampangan,sex,laki_laki,,1416,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2012,4,Pampangan,sex,perempuan,,1422,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2012,4,Pampangan,total,total,,2838,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2008,4,Pulau Betung,sex,laki_laki,,971,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2008,4,Pulau Betung,sex,perempuan,,968,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2008,4,Pulau Betung,total,total,,1939,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2007,4,Tapus,sex,laki_laki,,1064,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2007,4,Tapus,sex,perempuan,,1035,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2007,4,Tapus,total,total,,2099,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2006,4,Pulau Layang,sex,laki_laki,,610,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2006,4,Pulau Layang,sex,perempuan,,619,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2006,4,Pulau Layang,total,total,,1229,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2010,4,Kuro,sex,laki_laki,,436,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2010,4,Kuro,sex,perempuan,,441,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2010,4,Kuro,total,total,,877,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2009,4,Bangsal,sex,laki_laki,,224,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2009,4,Bangsal,sex,perempuan,,219,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2009,4,Bangsal,total,total,,443,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2011,4,Menggeris,sex,laki_laki,,507,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2011,4,Menggeris,sex,perempuan,,488,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2011,4,Menggeris,total,total,,995,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2014,4,Secondong,sex,laki_laki,,490,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2014,4,Secondong,sex,perempuan,,461,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2014,4,Secondong,total,total,,951,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2015,4,Jermun,sex,laki_laki,,340,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2015,4,Jermun,sex,perempuan,,369,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2015,4,Jermun,total,total,,709,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2035,4,Tanjung Kemang,sex,laki_laki,,297,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2035,4,Tanjung Kemang,sex,perempuan,,272,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2035,4,Tanjung Kemang,total,total,,569,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2036,4,Ulak Pianggu,sex,laki_laki,,640,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2036,4,Ulak Pianggu,sex,perempuan,,620,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2036,4,Ulak Pianggu,total,total,,1260,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2037,4,Ulak Kemang Baru,sex,laki_laki,,707,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2037,4,Ulak Kemang Baru,sex,perempuan,,724,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2037,4,Ulak Kemang Baru,total,total,,1431,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2038,4,Keman Baru,sex,laki_laki,,896,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2038,4,Keman Baru,sex,perempuan,,813,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2038,4,Keman Baru,total,total,,1709,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12.2039,4,Sri Mulya,sex,laki_laki,,474,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12.2039,4,Sri Mulya,sex,perempuan,,479,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12.2039,4,Sri Mulya,total,total,,953,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12,3,Kecamatan Pampangan,sex,laki_laki,,16145,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.12,3,Kecamatan Pampangan,sex,perempuan,,15789,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.12,3,Kecamatan Pampangan,total,total,,31934,jiwa,2025,registration,total_population,3.1,31,,
+16.02.12,3,Pampangan,age_group,0-4,laki_laki,1006,jiwa,2025,registration,total_population,3.2,33,,0-4
+16.02.12,3,Pampangan,age_group,0-4,perempuan,963,jiwa,2025,registration,total_population,3.2,33,,0-4
+16.02.12,3,Pampangan,age_group,0-4,,1969,jiwa,2025,registration,total_population,3.2,33,,0-4
+16.02.12,3,Pampangan,age_group,5-9,laki_laki,1457,jiwa,2025,registration,total_population,3.2,33,,5-9
+16.02.12,3,Pampangan,age_group,5-9,perempuan,1375,jiwa,2025,registration,total_population,3.2,33,,5-9
+16.02.12,3,Pampangan,age_group,5-9,,2832,jiwa,2025,registration,total_population,3.2,33,,5-9
+16.02.12,3,Pampangan,age_group,10-14,laki_laki,1464,jiwa,2025,registration,total_population,3.2,33,,10-14
+16.02.12,3,Pampangan,age_group,10-14,perempuan,1354,jiwa,2025,registration,total_population,3.2,33,,10-14
+16.02.12,3,Pampangan,age_group,10-14,,2818,jiwa,2025,registration,total_population,3.2,33,,10-14
+16.02.12,3,Pampangan,age_group,15-19,laki_laki,1367,jiwa,2025,registration,total_population,3.2,33,,15-19
+16.02.12,3,Pampangan,age_group,15-19,perempuan,1319,jiwa,2025,registration,total_population,3.2,33,,15-19
+16.02.12,3,Pampangan,age_group,15-19,,2686,jiwa,2025,registration,total_population,3.2,33,,15-19
+16.02.12,3,Pampangan,age_group,20-24,laki_laki,1320,jiwa,2025,registration,total_population,3.2,33,,20-24
+16.02.12,3,Pampangan,age_group,20-24,perempuan,1325,jiwa,2025,registration,total_population,3.2,33,,20-24
+16.02.12,3,Pampangan,age_group,20-24,,2645,jiwa,2025,registration,total_population,3.2,33,,20-24
+16.02.12,3,Pampangan,age_group,25-29,laki_laki,1271,jiwa,2025,registration,total_population,3.2,33,,25-29
+16.02.12,3,Pampangan,age_group,25-29,perempuan,1254,jiwa,2025,registration,total_population,3.2,33,,25-29
+16.02.12,3,Pampangan,age_group,25-29,,2525,jiwa,2025,registration,total_population,3.2,33,,25-29
+16.02.12,3,Pampangan,age_group,30-34,laki_laki,1194,jiwa,2025,registration,total_population,3.2,33,,30-34
+16.02.12,3,Pampangan,age_group,30-34,perempuan,1151,jiwa,2025,registration,total_population,3.2,33,,30-34
+16.02.12,3,Pampangan,age_group,30-34,,2345,jiwa,2025,registration,total_population,3.2,33,,30-34
+16.02.12,3,Pampangan,age_group,35-39,laki_laki,1235,jiwa,2025,registration,total_population,3.2,33,,35-39
+16.02.12,3,Pampangan,age_group,35-39,perempuan,1154,jiwa,2025,registration,total_population,3.2,33,,35-39
+16.02.12,3,Pampangan,age_group,35-39,,2389,jiwa,2025,registration,total_population,3.2,33,,35-39
+16.02.12,3,Pampangan,age_group,40-44,laki_laki,1195,jiwa,2025,registration,total_population,3.2,33,,40-44
+16.02.12,3,Pampangan,age_group,40-44,perempuan,1157,jiwa,2025,registration,total_population,3.2,33,,40-44
+16.02.12,3,Pampangan,age_group,40-44,,2352,jiwa,2025,registration,total_population,3.2,33,,40-44
+16.02.12,3,Pampangan,age_group,45-49,laki_laki,1142,jiwa,2025,registration,total_population,3.2,33,,45-49
+16.02.12,3,Pampangan,age_group,45-49,perempuan,1113,jiwa,2025,registration,total_population,3.2,33,,45-49
+16.02.12,3,Pampangan,age_group,45-49,,2255,jiwa,2025,registration,total_population,3.2,33,,45-49
+16.02.12,3,Pampangan,age_group,50-54,laki_laki,1037,jiwa,2025,registration,total_population,3.2,33,,50-54
+16.02.12,3,Pampangan,age_group,50-54,perempuan,1036,jiwa,2025,registration,total_population,3.2,33,,50-54
+16.02.12,3,Pampangan,age_group,50-54,,2073,jiwa,2025,registration,total_population,3.2,33,,50-54
+16.02.12,3,Pampangan,age_group,55-59,laki_laki,855,jiwa,2025,registration,total_population,3.2,33,,55-59
+16.02.12,3,Pampangan,age_group,55-59,perempuan,886,jiwa,2025,registration,total_population,3.2,33,,55-59
+16.02.12,3,Pampangan,age_group,55-59,,1741,jiwa,2025,registration,total_population,3.2,33,,55-59
+16.02.12,3,Pampangan,age_group,60-64,laki_laki,660,jiwa,2025,registration,total_population,3.2,33,,60-64
+16.02.12,3,Pampangan,age_group,60-64,perempuan,690,jiwa,2025,registration,total_population,3.2,33,,60-64
+16.02.12,3,Pampangan,age_group,60-64,,1350,jiwa,2025,registration,total_population,3.2,33,,60-64
+16.02.12,3,Pampangan,age_group,65-69,laki_laki,452,jiwa,2025,registration,total_population,3.2,33,,65-69
+16.02.12,3,Pampangan,age_group,65-69,perempuan,450,jiwa,2025,registration,total_population,3.2,33,,65-69
+16.02.12,3,Pampangan,age_group,65-69,,902,jiwa,2025,registration,total_population,3.2,33,,65-69
+16.02.12,3,Pampangan,age_group,70-74,laki_laki,235,jiwa,2025,registration,total_population,3.2,33,,70-74
+16.02.12,3,Pampangan,age_group,70-74,perempuan,262,jiwa,2025,registration,total_population,3.2,33,,70-74
+16.02.12,3,Pampangan,age_group,70-74,,497,jiwa,2025,registration,total_population,3.2,33,,70-74
+16.02.12,3,Pampangan,age_group,74+,laki_laki,255,jiwa,2025,registration,total_population,3.2,33,,>74
+16.02.12,3,Pampangan,age_group,74+,perempuan,300,jiwa,2025,registration,total_population,3.2,33,,>74
+16.02.12,3,Pampangan,age_group,74+,,555,jiwa,2025,registration,total_population,3.2,33,,>74
+16.02.12,3,Kecamatan Pampangan,sex,laki_laki,,16145,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+16.02.12,3,Kecamatan Pampangan,sex,perempuan,,15789,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+16.02.12,3,Kecamatan Pampangan,total,total,,31934,jiwa,2025,registration,total_population,3.2,33,,

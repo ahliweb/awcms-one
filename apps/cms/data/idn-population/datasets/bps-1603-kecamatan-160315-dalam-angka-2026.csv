@@ -1,0 +1,39 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.03.15.2008,4,Sumber Rahayu,sex,perempuan,,2298,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.15.2008,4,Sumber Rahayu,total,total,,4627,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.15.2010,4,Kencana Mulia,sex,laki_laki,,907,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.15.2010,4,Kencana Mulia,sex,perempuan,,826,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.15.2010,4,Kencana Mulia,total,total,,1733,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.15.2007,4,Sugih Waras,sex,laki_laki,,1341,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.15.2007,4,Sugih Waras,sex,perempuan,,1333,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.15.2007,4,Sugih Waras,total,total,,2674,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.15.2006,4,Pagar Agung,sex,laki_laki,,1791,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.15.2006,4,Pagar Agung,sex,perempuan,,1750,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.15.2006,4,Pagar Agung,total,total,,3541,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.15.2003,4,Tanjung Raya,sex,laki_laki,,961,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.15.2003,4,Tanjung Raya,sex,perempuan,,979,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.15.2003,4,Tanjung Raya,total,total,,1940,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.15.2004,4,Tanjung Dalam,sex,laki_laki,,503,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.15.2004,4,Tanjung Dalam,sex,perempuan,,459,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.15.2004,4,Tanjung Dalam,total,total,,962,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.15.2005,4,Sukarami,sex,laki_laki,,633,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.15.2005,4,Sukarami,sex,perempuan,,619,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.15.2005,4,Sukarami,total,total,,1252,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.15.2002,4,Sugihan,sex,laki_laki,,1795,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.15.2002,4,Sugihan,sex,perempuan,,1644,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.15.2002,4,Sugihan,total,total,,3439,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.15.2011,4,Negeri Agung,sex,laki_laki,,504,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.15.2011,4,Negeri Agung,sex,perempuan,,462,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.15.2011,4,Negeri Agung,total,total,,966,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.15.2001,4,Baru Rambang,sex,laki_laki,,577,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.15.2001,4,Baru Rambang,sex,perempuan,,558,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.15.2001,4,Baru Rambang,total,total,,1135,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.15.2013,4,Air Keruh,sex,laki_laki,,178,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.15.2013,4,Air Keruh,sex,perempuan,,198,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.15.2013,4,Air Keruh,total,total,,376,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.15.2012,4,Sugih Waras Barat,sex,laki_laki,,1477,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.15.2012,4,Sugih Waras Barat,sex,perempuan,,1494,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.15.2012,4,Sugih Waras Barat,total,total,,2971,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.15,3,Rambang,sex,laki_laki,,15055,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.15,3,Rambang,sex,perempuan,,14620,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.15,3,Rambang,total,total,,29675,jiwa,2025,registration,total_population,unnumbered-p23,23,,

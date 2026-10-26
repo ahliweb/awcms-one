@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.05.01.2002,4,SUNGAI BERTAM,sex,laki_laki,,2050,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01.2002,4,SUNGAI BERTAM,sex,perempuan,,1979,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01.2002,4,SUNGAI BERTAM,total,total,,4029,jiwa,2025,registration,total_population,3.1,33,,
+15.05.01.2016,4,MUHAJIRIN,sex,laki_laki,,1809,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01.2016,4,MUHAJIRIN,sex,perempuan,,1671,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01.2016,4,MUHAJIRIN,total,total,,3480,jiwa,2025,registration,total_population,3.1,33,,
+15.05.01.2017,4,MARO SEBO,sex,laki_laki,,524,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01.2017,4,MARO SEBO,sex,perempuan,,522,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01.2017,4,MARO SEBO,total,total,,1046,jiwa,2025,registration,total_population,3.1,33,,
+15.05.01.2005,4,MUARO PIJOAN,sex,laki_laki,,1308,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01.2005,4,MUARO PIJOAN,sex,perempuan,,1276,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01.2005,4,MUARO PIJOAN,total,total,,2584,jiwa,2025,registration,total_population,3.1,33,,
+15.05.01.2014,4,SIMPANG SUNGAI DUREN,sex,laki_laki,,2544,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01.2014,4,SIMPANG SUNGAI DUREN,sex,perempuan,,2493,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01.2014,4,SIMPANG SUNGAI DUREN,total,total,,5037,jiwa,2025,registration,total_population,3.1,33,,
+15.05.01.2007,4,MENDALO DARAT,sex,laki_laki,,7298,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01.2007,4,MENDALO DARAT,sex,perempuan,,7011,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01.2007,4,MENDALO DARAT,total,total,,14309,jiwa,2025,registration,total_population,3.1,33,,
+15.05.01.2006,4,SUNGAI DUREN,sex,laki_laki,,2474,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01.2006,4,SUNGAI DUREN,sex,perempuan,,2336,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01.2006,4,SUNGAI DUREN,total,total,,4810,jiwa,2025,registration,total_population,3.1,33,,
+15.05.01.2010,4,MENDALO LAUT,sex,laki_laki,,760,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01.2010,4,MENDALO LAUT,sex,perempuan,,737,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01.2010,4,MENDALO LAUT,total,total,,1497,jiwa,2025,registration,total_population,3.1,33,,
+15.05.01.2013,4,PENYENGAT OLAK,sex,laki_laki,,1802,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01.2013,4,PENYENGAT OLAK,sex,perempuan,,1716,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01.2013,4,PENYENGAT OLAK,total,total,,3518,jiwa,2025,registration,total_population,3.1,33,,
+15.05.01.2011,4,SEMBUBUK,sex,laki_laki,,996,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01.2011,4,SEMBUBUK,sex,perempuan,,903,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01.2011,4,SEMBUBUK,total,total,,1899,jiwa,2025,registration,total_population,3.1,33,,
+15.05.01.2009,4,SARANG BURUNG,sex,laki_laki,,1515,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01.2009,4,SARANG BURUNG,sex,perempuan,,1357,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01.2009,4,SARANG BURUNG,total,total,,2872,jiwa,2025,registration,total_population,3.1,33,,
+15.05.01.2004,4,PEMATANG JERING,sex,laki_laki,,743,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01.2004,4,PEMATANG JERING,sex,perempuan,,722,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01.2004,4,PEMATANG JERING,total,total,,1465,jiwa,2025,registration,total_population,3.1,33,,
+15.05.01.2008,4,RENGAS BANDUNG,sex,laki_laki,,1700,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01.2008,4,RENGAS BANDUNG,sex,perempuan,,1582,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01.2008,4,RENGAS BANDUNG,total,total,,3282,jiwa,2025,registration,total_population,3.1,33,,
+15.05.01.2012,4,SENAUNG,sex,laki_laki,,1630,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01.2012,4,SENAUNG,sex,perempuan,,1520,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01.2012,4,SENAUNG,total,total,,3150,jiwa,2025,registration,total_population,3.1,33,,
+15.05.01.2015,4,KEDEMANGAN,sex,laki_laki,,1615,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01.2015,4,KEDEMANGAN,sex,perempuan,,1548,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01.2015,4,KEDEMANGAN,total,total,,3163,jiwa,2025,registration,total_population,3.1,33,,
+15.05.01.2019,4,DANAU SARANG ELANG,sex,laki_laki,,605,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01.2019,4,DANAU SARANG ELANG,sex,perempuan,,613,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01.2019,4,DANAU SARANG ELANG,total,total,,1218,jiwa,2025,registration,total_population,3.1,33,,
+15.05.01.2020,4,SIMPANG LIMO,sex,laki_laki,,1351,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01.2020,4,SIMPANG LIMO,sex,perempuan,,1283,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01.2020,4,SIMPANG LIMO,total,total,,2634,jiwa,2025,registration,total_population,3.1,33,,
+15.05.01.2022,4,PEMATANG GAJAH,sex,laki_laki,,4027,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01.2022,4,PEMATANG GAJAH,sex,perempuan,,3880,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01.2022,4,PEMATANG GAJAH,total,total,,7907,jiwa,2025,registration,total_population,3.1,33,,
+15.05.01.2021,4,MENDALO INDAH,sex,laki_laki,,2580,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01.2021,4,MENDALO INDAH,sex,perempuan,,2483,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01.2021,4,MENDALO INDAH,total,total,,5063,jiwa,2025,registration,total_population,3.1,33,,
+15.05.01.1003,4,PIJOAN,sex,laki_laki,,3214,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01.1003,4,PIJOAN,sex,perempuan,,3123,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01.1003,4,PIJOAN,total,total,,6337,jiwa,2025,registration,total_population,3.1,33,,
+15.05.01,3,Jambi Luar Kota,sex,laki_laki,,40545,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.05.01,3,Jambi Luar Kota,sex,perempuan,,38755,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+15.05.01,3,Jambi Luar Kota,total,total,,79300,jiwa,2025,registration,total_population,3.1,33,,

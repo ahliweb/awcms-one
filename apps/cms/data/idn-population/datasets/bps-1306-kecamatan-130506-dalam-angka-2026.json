@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-1306-kecamatan-130506-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "13.05.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan V Koto Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Padang Pariaman BPS-Statistics Padang Pariaman Regency Sumber Ilustrasi",
+  "publisherDomain": "1306",
+  "publisherWebsite": "https://padangpariamankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Padang Pariaman BPS-Statistics Padang Pariaman Regency Sumber Ilustrasi (https://padangpariamankab.bps.go.id), publikasi \"Kecamatan V Koto Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1306070",
+  "publicationNumber": "13060.26018",
+  "issn": "3089-0365",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://padangpariamankab.bps.go.id/id/publication/2026/09/28/8fe9bc81a654e29f172c3e2e/kecamatan-v-koto-dalam-angka-2026.html",
+  "sourceFileSha256": "f96bdf5d18d75cd4fcddcc2b2f9bdca3732a34d6a024540b8dff329bd4757d48",
+  "sourceFileBytes": 22462894,
+  "sourcePages": [39],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Padang Pariaman.",
+  "csvPath": "datasets/bps-1306-kecamatan-130506-dalam-angka-2026.csv",
+  "csvSha256": "0b86967958ed2eede5614ea03e71499485dab5df496c8370fda31fb998aea631",
+  "tablesUsed": [
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Tables Kecamatan V Koto (jiwa), 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.3: row not stored: row \"Jumlah Total\": unmatched "
+  ]
+}

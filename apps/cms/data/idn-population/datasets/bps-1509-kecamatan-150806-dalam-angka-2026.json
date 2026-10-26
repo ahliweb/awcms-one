@@ -1,0 +1,62 @@
+{
+  "datasetCode": "bps-1509-kecamatan-150806-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.08.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pelepat Dalam Angka 2026",
+  "publisherName": "BPSKabupaten Bungo",
+  "publisherDomain": "1509",
+  "publisherWebsite": "https://bungokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPSKabupaten Bungo (https://bungokab.bps.go.id), publikasi \"Kecamatan Pelepat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1509010",
+  "publicationNumber": "15090.26005",
+  "issn": "2715-2790",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bungokab.bps.go.id/id/publication/2026/09/28/9ee99602d84202ba70bc2a7a/kecamatan-pelepat-dalam-angka-2026.html",
+  "sourceFileSha256": "6ac1e587fc405327c12e61f98ad9c64993d02ba73ae214e005e476d96abf817c",
+  "sourceFileBytes": 14530907,
+  "sourcePages": [36, 37, 38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulisdari Badan Pusat StatistikKabupaten Bungo.",
+  "csvPath": "datasets/bps-1509-kecamatan-150806-dalam-angka-2026.csv",
+  "csvSha256": "ae23f2942797a92d6052fa24c413ca2707ae7abf00bf1162cd4f5dca715f996e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pelepat , 2025",
+      "printedPages": [36, 37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pelepat , 2025",
+      "printedPages": [38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Mulia Jaya\": unmatched ",
+    "table 3.1: row not stored: row \"Mulia Bakti\": unmatched ",
+    "table 3.1: row not stored: row \"Batu Kerbau 4,61%\": unmatched ",
+    "table 3.1: row not stored: row \"Baru Pelepat 7,23%\": unmatched ",
+    "table 3.1: row not stored: row \"Rantel 2,59%\": unmatched ",
+    "table 3.1: row not stored: row \"Balai Jaya 3,44%\": unmatched ",
+    "table 3.1: row not stored: row \"Sungai Beringin 3,35%\": unmatched ",
+    "table 3.1: row not stored: row \"Rantau Keloyang 11,31%\": unmatched ",
+    "table 3.1: row not stored: row \"Dwi Karya Bakti 9,72%\": unmatched ",
+    "table 3.1: row not stored: row \"Mulia Jaya 5,75%\": unmatched ",
+    "table 3.1: row not stored: row \"Gapura Suci 11,58%\": unmatched ",
+    "table 3.1: row not stored: row \"Mulia Bakti 6,59%\": unmatched ",
+    "table 3.1: row not stored: row \"Cilodang 5,34%\": unmatched ",
+    "table 3.1: row not stored: row \"Sungai Gurun 4,51%\": unmatched ",
+    "table 3.1: row not stored: row \"Senamat 18,48%\": unmatched ",
+    "table 3.1: row not stored: row \"Sekampil 2,68%\": unmatched ",
+    "table 3.1: row not stored: row \"Bukit Telago 2,82%\": unmatched ",
+    "table 3.1: row not stored: row \"Pelepat 100,00%\": unmatched "
+  ]
+}

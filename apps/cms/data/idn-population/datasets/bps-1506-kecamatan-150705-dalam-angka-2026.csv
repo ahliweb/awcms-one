@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.07.05.2006,4,Sungai Benuh,sex,laki_laki,,150,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.05.2006,4,Sungai Benuh,sex,perempuan,,127,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.05.2006,4,Sungai Benuh,total,total,,277,jiwa,2025,registration,total_population,3.1,29,,
+15.07.05.2009,4,Labuhan Pering,sex,laki_laki,,843,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.05.2009,4,Labuhan Pering,sex,perempuan,,777,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.05.2009,4,Labuhan Pering,total,total,,1620,jiwa,2025,registration,total_population,3.1,29,,
+15.07.05.2007,4,Sungai Cemara,sex,laki_laki,,349,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.05.2007,4,Sungai Cemara,sex,perempuan,,346,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.05.2007,4,Sungai Cemara,total,total,,695,jiwa,2025,registration,total_population,3.1,29,,
+15.07.05.2002,4,Air Hitam Laut,sex,laki_laki,,1205,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.05.2002,4,Air Hitam Laut,sex,perempuan,,1148,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.05.2002,4,Air Hitam Laut,total,total,,2353,jiwa,2025,registration,total_population,3.1,29,,
+15.07.05.2008,4,Remau Baku Tuo,sex,laki_laki,,462,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.05.2008,4,Remau Baku Tuo,sex,perempuan,,426,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.05.2008,4,Remau Baku Tuo,total,total,,888,jiwa,2025,registration,total_population,3.1,29,,
+15.07.05.2001,4,Sungai Sayang,sex,laki_laki,,737,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.05.2001,4,Sungai Sayang,sex,perempuan,,728,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.05.2001,4,Sungai Sayang,total,total,,1465,jiwa,2025,registration,total_population,3.1,29,,
+15.07.05.2003,4,Sungai Jambat,sex,laki_laki,,1664,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.05.2003,4,Sungai Jambat,sex,perempuan,,1554,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.05.2003,4,Sungai Jambat,total,total,,3218,jiwa,2025,registration,total_population,3.1,29,,
+15.07.05.2004,4,Sungai Itik,sex,laki_laki,,1142,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.05.2004,4,Sungai Itik,sex,perempuan,,1102,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.05.2004,4,Sungai Itik,total,total,,2244,jiwa,2025,registration,total_population,3.1,29,,
+15.07.05.1005,4,Sungai Lokan,sex,laki_laki,,897,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.05.1005,4,Sungai Lokan,sex,perempuan,,894,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.05.1005,4,Sungai Lokan,total,total,,1791,jiwa,2025,registration,total_population,3.1,29,,
+15.07.05,3,Kecamatan Sadu,sex,laki_laki,,7449,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.05,3,Kecamatan Sadu,sex,perempuan,,7102,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.05,3,Kecamatan Sadu,total,total,,14551,jiwa,2025,registration,total_population,3.1,29,,

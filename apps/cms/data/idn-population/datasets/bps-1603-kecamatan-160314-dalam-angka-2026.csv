@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.03.14.2005,4,Aur,sex,laki_laki,,1669,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.14.2005,4,Aur,sex,perempuan,,1568,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.14.2005,4,Aur,total,total,,3237,jiwa,2025,registration,total_population,3.1,23,,
+16.03.14.2006,4,Beringin,sex,laki_laki,,2740,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.14.2006,4,Beringin,sex,perempuan,,2587,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.14.2006,4,Beringin,total,total,,5327,jiwa,2025,registration,total_population,3.1,23,,
+16.03.14.2011,4,Sukamerindu,sex,laki_laki,,1142,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.14.2011,4,Sukamerindu,sex,perempuan,,1108,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.14.2011,4,Sukamerindu,total,total,,2250,jiwa,2025,registration,total_population,3.1,23,,
+16.03.14.2007,4,Kota Baru,sex,laki_laki,,1144,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.14.2007,4,Kota Baru,sex,perempuan,,1124,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.14.2007,4,Kota Baru,total,total,,2268,jiwa,2025,registration,total_population,3.1,23,,
+16.03.14.2008,4,Pagar Gunung,sex,laki_laki,,1351,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.14.2008,4,Pagar Gunung,sex,perempuan,,1297,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.14.2008,4,Pagar Gunung,total,total,,2648,jiwa,2025,registration,total_population,3.1,23,,
+16.03.14.2014,4,Jiwa Baru,sex,laki_laki,,1326,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.14.2014,4,Jiwa Baru,sex,perempuan,,1232,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.14.2014,4,Jiwa Baru,total,total,,2558,jiwa,2025,registration,total_population,3.1,23,,
+16.03.14.2009,4,Gunung Raja,sex,laki_laki,,1513,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.14.2009,4,Gunung Raja,sex,perempuan,,1397,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.14.2009,4,Gunung Raja,total,total,,2910,jiwa,2025,registration,total_population,3.1,23,,
+16.03.14.2010,4,Tanjung Kemala,sex,laki_laki,,1785,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.14.2010,4,Tanjung Kemala,sex,perempuan,,1706,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.14.2010,4,Tanjung Kemala,total,total,,3491,jiwa,2025,registration,total_population,3.1,23,,
+16.03.14.2021,4,Menanti,sex,laki_laki,,1176,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.14.2021,4,Menanti,sex,perempuan,,1076,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.14.2021,4,Menanti,total,total,,2252,jiwa,2025,registration,total_population,3.1,23,,
+16.03.14.2020,4,Air Asam,sex,laki_laki,,870,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.03.14.2020,4,Air Asam,sex,perempuan,,811,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.03.14.2020,4,Air Asam,total,total,,1681,jiwa,2025,registration,total_population,3.1,23,,

@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1503-kecamatan-150310-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.03.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cermin Nan Gedang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sarolangun",
+  "publisherDomain": "1503",
+  "publisherWebsite": "https://sarolangunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sarolangun (https://sarolangunkab.bps.go.id), publikasi \"Kecamatan Cermin Nan Gedang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1503021",
+  "publicationNumber": "15030.26007",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sarolangunkab.bps.go.id/id/publication/2026/09/28/ede7913ef878455f388e3569/kecamatan-cermin-nan-gedang-dalam-angka-2026.html",
+  "sourceFileSha256": "2d4346b16a73f86c8948633f6f31fa356d9113f91e7cbe7e338389a12c9edcab",
+  "sourceFileBytes": 10948220,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sarolangun.",
+  "csvPath": "datasets/bps-1503-kecamatan-150310-dalam-angka-2026.csv",
+  "csvSha256": "0caca1016b0f40b07d88362bc7607a770e4a438bd9574cbabb2a0fa729c3acb8",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Cermin Nan Gedang, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

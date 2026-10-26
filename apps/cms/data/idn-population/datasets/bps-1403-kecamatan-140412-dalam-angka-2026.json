@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1403-kecamatan-140412-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.04.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gaung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Indragiri Hilir",
+  "publisherDomain": "1403",
+  "publisherWebsite": "https://inhilkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Indragiri Hilir (https://inhilkab.bps.go.id), publikasi \"Kecamatan Gaung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1403100",
+  "publicationNumber": "14030.26020",
+  "issn": "2715-4122",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://inhilkab.bps.go.id/id/publication/2026/09/28/f4f7468bd97e468a96992d23/kecamatan-gaung-dalam-angka-2026.html",
+  "sourceFileSha256": "df7fe2b547de512b30134577d095ac409166ac8e2d2dc9b6fda417cfd5e1e775",
+  "sourceFileBytes": 3336921,
+  "sourcePages": [29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik BPS Kabupaten Indragiri Hilir.",
+  "csvPath": "datasets/bps-1403-kecamatan-140412-dalam-angka-2026.csv",
+  "csvSha256": "047da09f59d34ea59990961fc79eb4ccc2896cea7025aa1285ef626079ec592c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Gaung, 2026",
+      "printedPages": [29, 30],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

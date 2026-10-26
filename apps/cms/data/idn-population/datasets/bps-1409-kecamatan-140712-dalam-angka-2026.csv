@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.07.12.2003,4,Bantayan Baru,sex,laki_laki,,1127,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.12.2003,4,Bantayan Baru,sex,perempuan,,1066,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.12.2003,4,Bantayan Baru,total,total,,2193,jiwa,2025,registration,total_population,3.1,18,,
+14.07.12.1004,4,Bantayan Hilir,sex,laki_laki,,801,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.12.1004,4,Bantayan Hilir,sex,perempuan,,785,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.12.1004,4,Bantayan Hilir,total,total,,1586,jiwa,2025,registration,total_population,3.1,18,,
+14.07.12.2005,4,Sungai Sialang Hulu,sex,laki_laki,,713,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.12.2005,4,Sungai Sialang Hulu,sex,perempuan,,644,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.12.2005,4,Sungai Sialang Hulu,total,total,,1357,jiwa,2025,registration,total_population,3.1,18,,
+14.07.12.2002,4,Sungai Sialang,sex,laki_laki,,925,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.12.2002,4,Sungai Sialang,sex,perempuan,,875,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.12.2002,4,Sungai Sialang,total,total,,1800,jiwa,2025,registration,total_population,3.1,18,,
+14.07.12,3,Batu Hampar,sex,laki_laki,,5328,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.12,3,Batu Hampar,sex,perempuan,,5012,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.12,3,Batu Hampar,total,total,,10340,jiwa,2025,registration,total_population,3.1,18,,

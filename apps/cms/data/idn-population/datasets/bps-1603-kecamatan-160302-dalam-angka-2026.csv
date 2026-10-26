@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.03.02.1006,4,Tungkal,sex,laki_laki,,2249,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.02.1006,4,Tungkal,sex,perempuan,,2247,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.02.1006,4,Tungkal,total,total,,4496,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.02.1010,4,Muara Enim,sex,laki_laki,,7406,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.02.1010,4,Muara Enim,sex,perempuan,,7176,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.02.1010,4,Muara Enim,total,total,,14582,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.02.1016,4,Air Lintang,sex,laki_laki,,5202,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.02.1016,4,Air Lintang,sex,perempuan,,5047,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.02.1016,4,Air Lintang,total,total,,10249,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.02.2001,4,Tanjung Raja,sex,laki_laki,,1386,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.02.2001,4,Tanjung Raja,sex,perempuan,,1285,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.02.2001,4,Tanjung Raja,total,total,,2671,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.02.2002,4,Karang Raja,sex,laki_laki,,3423,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.02.2002,4,Karang Raja,sex,perempuan,,3221,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.02.2002,4,Karang Raja,total,total,,6644,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.02.2003,4,Muara Lawai,sex,laki_laki,,3322,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.02.2003,4,Muara Lawai,sex,perempuan,,3170,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.02.2003,4,Muara Lawai,total,total,,6492,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.02.2004,4,Tanjung Jati,sex,laki_laki,,1111,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.02.2004,4,Tanjung Jati,sex,perempuan,,1085,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.02.2004,4,Tanjung Jati,total,total,,2196,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.02.2011,4,Kepur,sex,laki_laki,,1993,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.02.2011,4,Kepur,sex,perempuan,,1970,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.02.2011,4,Kepur,total,total,,3963,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.02.2012,4,Tanjung Serian,sex,laki_laki,,1032,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.02.2012,4,Tanjung Serian,sex,perempuan,,1025,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.02.2012,4,Tanjung Serian,total,total,,2057,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.02.2013,4,Muara Harapan,sex,laki_laki,,1072,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.02.2013,4,Muara Harapan,sex,perempuan,,1105,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.02.2013,4,Muara Harapan,total,total,,2177,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.02.2014,4,Saka Jaya,sex,laki_laki,,880,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.02.2014,4,Saka Jaya,sex,perempuan,,795,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.02.2014,4,Saka Jaya,total,total,,1675,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.02.2015,4,Harapan Jaya,sex,laki_laki,,966,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.02.2015,4,Harapan Jaya,sex,perempuan,,945,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.02.2015,4,Harapan Jaya,total,total,,1911,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.02,3,Muara Enim,sex,laki_laki,,42837,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.02,3,Muara Enim,sex,perempuan,,42042,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.02,3,Muara Enim,total,total,,84879,jiwa,2025,registration,total_population,unnumbered-p23,23,,

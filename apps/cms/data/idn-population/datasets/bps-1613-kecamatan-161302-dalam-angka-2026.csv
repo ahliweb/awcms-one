@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.13.02.2015,4,Lubuk Mas,sex,laki_laki,,430,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.02.2015,4,Lubuk Mas,sex,perempuan,,411,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.02.2015,4,Lubuk Mas,total,total,,841,jiwa,2025,registration,total_population,3.1,24,,
+16.13.02.2001,4,Pangkalan,sex,laki_laki,,996,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.02.2001,4,Pangkalan,sex,perempuan,,952,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.02.2001,4,Pangkalan,total,total,,1948,jiwa,2025,registration,total_population,3.1,24,,
+16.13.02.2003,4,Teladas,sex,laki_laki,,611,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.02.2003,4,Teladas,sex,perempuan,,627,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.02.2003,4,Teladas,total,total,,1238,jiwa,2025,registration,total_population,3.1,24,,
+16.13.02.2002,4,Kerta Dewa,sex,laki_laki,,791,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.02.2002,4,Kerta Dewa,sex,perempuan,,767,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.02.2002,4,Kerta Dewa,total,total,,1558,jiwa,2025,registration,total_population,3.1,24,,
+16.13.02.2004,4,Pulau Lebar,sex,laki_laki,,526,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.02.2004,4,Pulau Lebar,sex,perempuan,,519,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.02.2004,4,Pulau Lebar,total,total,,1045,jiwa,2025,registration,total_population,3.1,24,,
+16.13.02.2006,4,Sungai Baung,sex,laki_laki,,2321,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.02.2006,4,Sungai Baung,sex,perempuan,,2302,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.02.2006,4,Sungai Baung,total,total,,4623,jiwa,2025,registration,total_population,3.1,24,,
+16.13.02.2009,4,Surulangun,sex,laki_laki,,1075,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.02.2009,4,Surulangun,sex,perempuan,,1048,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.02.2009,4,Surulangun,total,total,,2123,jiwa,2025,registration,total_population,3.1,24,,
+16.13.02.2017,4,Sukomoro,sex,laki_laki,,784,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.02.2017,4,Sukomoro,sex,perempuan,,776,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.02.2017,4,Sukomoro,total,total,,1560,jiwa,2025,registration,total_population,3.1,24,,
+16.13.02.1005,4,Pasar Surulangun,sex,laki_laki,,1921,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.02.1005,4,Pasar Surulangun,sex,perempuan,,1906,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.02.1005,4,Pasar Surulangun,total,total,,3827,jiwa,2025,registration,total_population,3.1,24,,
+16.13.02.2013,4,Lesung Batu Muda,sex,laki_laki,,1579,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.02.2013,4,Lesung Batu Muda,sex,perempuan,,1657,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.02.2013,4,Lesung Batu Muda,total,total,,3236,jiwa,2025,registration,total_population,3.1,24,,
+16.13.02.2010,4,Lesung Batu,sex,laki_laki,,945,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.02.2010,4,Lesung Batu,sex,perempuan,,923,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.02.2010,4,Lesung Batu,total,total,,1868,jiwa,2025,registration,total_population,3.1,24,,
+16.13.02.2011,4,Lubuk Kemang,sex,laki_laki,,1185,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.02.2011,4,Lubuk Kemang,sex,perempuan,,1178,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.02.2011,4,Lubuk Kemang,total,total,,2363,jiwa,2025,registration,total_population,3.1,24,,
+16.13.02.2012,4,Remban,sex,laki_laki,,1953,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.02.2012,4,Remban,sex,perempuan,,1974,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.02.2012,4,Remban,total,total,,3927,jiwa,2025,registration,total_population,3.1,24,,
+16.13.02.2008,4,Sungai Kijang,sex,laki_laki,,658,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.02.2008,4,Sungai Kijang,sex,perempuan,,620,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.02.2008,4,Sungai Kijang,total,total,,1278,jiwa,2025,registration,total_population,3.1,24,,
+16.13.02.2007,4,Sungai Jauh,sex,laki_laki,,878,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.02.2007,4,Sungai Jauh,sex,perempuan,,881,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.02.2007,4,Sungai Jauh,total,total,,1759,jiwa,2025,registration,total_population,3.1,24,,
+16.13.02.2014,4,Simpang Nibung Rawas,sex,laki_laki,,980,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.02.2014,4,Simpang Nibung Rawas,sex,perempuan,,947,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.02.2014,4,Simpang Nibung Rawas,total,total,,1927,jiwa,2025,registration,total_population,3.1,24,,
+16.13.02.2016,4,Sungai Lanang,sex,laki_laki,,540,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.02.2016,4,Sungai Lanang,sex,perempuan,,505,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.02.2016,4,Sungai Lanang,total,total,,1045,jiwa,2025,registration,total_population,3.1,24,,
+16.13.02,3,Rawas Ulu,sex,laki_laki,,18173,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.02,3,Rawas Ulu,sex,perempuan,,17993,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.02,3,Rawas Ulu,total,total,,36166,jiwa,2025,registration,total_population,3.1,24,,
+16.13.02,3,Rawas Ulu,sex,laki_laki,,18173,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+16.13.02,3,Rawas Ulu,sex,perempuan,,17993,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+16.13.02,3,Rawas Ulu,total,total,,36166,jiwa,2025,registration,total_population,3.2,26,,

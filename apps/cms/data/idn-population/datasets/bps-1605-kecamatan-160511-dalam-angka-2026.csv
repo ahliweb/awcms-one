@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.05.11.1001,4,Selangit,sex,laki_laki,,1438,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.05.11.1001,4,Selangit,sex,perempuan,,1412,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.05.11.1001,4,Selangit,total,total,,2850,jiwa,2025,registration,total_population,3.1,27,,
+16.05.11.2005,4,Taba Remanik,sex,laki_laki,,649,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.05.11.2005,4,Taba Remanik,sex,perempuan,,652,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.05.11.2005,4,Taba Remanik,total,total,,1301,jiwa,2025,registration,total_population,3.1,27,,
+16.05.11.2004,4,Taba Tengah,sex,laki_laki,,689,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.05.11.2004,4,Taba Tengah,sex,perempuan,,626,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.05.11.2004,4,Taba Tengah,total,total,,1315,jiwa,2025,registration,total_population,3.1,27,,
+16.05.11.2011,4,Taba Gindo,sex,laki_laki,,722,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.05.11.2011,4,Taba Gindo,sex,perempuan,,680,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.05.11.2011,4,Taba Gindo,total,total,,1402,jiwa,2025,registration,total_population,3.1,27,,
+16.05.11.2008,4,Muara Nilau,sex,laki_laki,,1182,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.05.11.2008,4,Muara Nilau,sex,perempuan,,1081,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.05.11.2008,4,Muara Nilau,total,total,,2263,jiwa,2025,registration,total_population,3.1,27,,
+16.05.11.2007,4,Karang Panggung,sex,laki_laki,,565,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.05.11.2007,4,Karang Panggung,sex,perempuan,,520,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.05.11.2007,4,Karang Panggung,total,total,,1085,jiwa,2025,registration,total_population,3.1,27,,
+16.05.11.2006,4,Batu Gane,sex,laki_laki,,550,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.05.11.2006,4,Batu Gane,sex,perempuan,,544,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.05.11.2006,4,Batu Gane,total,total,,1094,jiwa,2025,registration,total_population,3.1,27,,
+16.05.11.2003,4,Napal Melintang,sex,laki_laki,,635,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.05.11.2003,4,Napal Melintang,sex,perempuan,,588,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.05.11.2003,4,Napal Melintang,total,total,,1223,jiwa,2025,registration,total_population,3.1,27,,
+16.05.11.2002,4,Lubuk Ngin,sex,laki_laki,,1863,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.05.11.2002,4,Lubuk Ngin,sex,perempuan,,1854,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.05.11.2002,4,Lubuk Ngin,total,total,,3717,jiwa,2025,registration,total_population,3.1,27,,
+16.05.11.2012,4,Lubuk Ngin Baru,sex,laki_laki,,721,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.05.11.2012,4,Lubuk Ngin Baru,sex,perempuan,,705,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.05.11.2012,4,Lubuk Ngin Baru,total,total,,1426,jiwa,2025,registration,total_population,3.1,27,,
+16.05.11,3,Selangit,sex,laki_laki,,10519,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.05.11,3,Selangit,sex,perempuan,,10108,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.05.11,3,Selangit,total,total,,20627,jiwa,2025,registration,total_population,3.1,27,,

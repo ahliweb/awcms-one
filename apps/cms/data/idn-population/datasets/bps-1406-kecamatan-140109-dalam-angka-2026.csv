@@ -1,0 +1,51 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.01.09.2006,4,Aur Kuning,sex,perempuan,,299,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2006,4,Aur Kuning,total,total,,642,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2012,4,Tanjung Beringin,sex,perempuan,,247,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2012,4,Tanjung Beringin,total,total,,522,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2005,4,Batu Sanggan,sex,perempuan,,186,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2005,4,Batu Sanggan,total,total,,377,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2002,4,Tanjung Belit,sex,perempuan,,446,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2002,4,Tanjung Belit,total,total,,907,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2001,4,Gema,sex,perempuan,,729,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2001,4,Gema,total,total,,1479,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2003,4,Tanjung Belit Selatan,sex,perempuan,,357,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2003,4,Tanjung Belit Selatan,total,total,,767,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2004,4,Koto Lama,sex,perempuan,,276,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2004,4,Koto Lama,total,total,,579,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2007,4,Ludai,sex,perempuan,,199,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2007,4,Ludai,total,total,,400,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2010,4,Pangkalan Kapas,sex,perempuan,,127,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2010,4,Pangkalan Kapas,total,total,,295,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2011,4,Kebun Tinggi,sex,perempuan,,208,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2011,4,Kebun Tinggi,total,total,,447,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2009,4,Batu Sasak,sex,perempuan,,618,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2009,4,Batu Sasak,total,total,,1271,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2008,4,Tanjung Karang,sex,perempuan,,276,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2008,4,Tanjung Karang,total,total,,578,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2013,4,Gajah Bertalut,sex,perempuan,,220,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2013,4,Gajah Bertalut,total,total,,441,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2015,4,Pangkalan Serai,sex,perempuan,,182,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2015,4,Pangkalan Serai,total,total,,371,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2014,4,Danau Sontul,sex,perempuan,,192,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2014,4,Danau Sontul,total,total,,398,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2018,4,Deras Tajak,sex,perempuan,,149,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2018,4,Deras Tajak,total,total,,301,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2017,4,Terusan,sex,perempuan,,202,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2017,4,Terusan,total,total,,395,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2019,4,Sungai Santi,sex,perempuan,,132,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2019,4,Sungai Santi,total,total,,273,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2021,4,Tanjung Permai,sex,perempuan,,134,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2021,4,Tanjung Permai,total,total,,272,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2016,4,Dua Sepakat,sex,perempuan,,70,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2016,4,Dua Sepakat,total,total,,143,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2020,4,Subayang Jaya,sex,perempuan,,130,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2020,4,Subayang Jaya,total,total,,298,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2022,4,Bukit Betung,sex,perempuan,,303,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2022,4,Bukit Betung,total,total,,651,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2024,4,Lubuk Bigau,sex,perempuan,,105,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2024,4,Lubuk Bigau,total,total,,223,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09.2023,4,Muaro Bio,sex,perempuan,,65,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09.2023,4,Muaro Bio,total,total,,135,jiwa,2025,registration,total_population,3.1,11,,
+14.01.09,3,Kecamatan Kampar Kiri Hulu,sex,perempuan,,5852,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.09,3,Kecamatan Kampar Kiri Hulu,total,total,,12165,jiwa,2025,registration,total_population,3.1,11,,

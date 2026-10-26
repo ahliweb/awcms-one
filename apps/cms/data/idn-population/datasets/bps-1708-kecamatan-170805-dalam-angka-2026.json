@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1708-kecamatan-170805-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "17.08.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Merigi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kepahiang",
+  "publisherDomain": "1708",
+  "publisherWebsite": "https://kepahiangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kepahiang (https://kepahiangkab.bps.go.id), publikasi \"Kecamatan Merigi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "17080.26012",
+  "issn": "2620-3421",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kepahiangkab.bps.go.id/id/publication/2026/09/28/05dbf36f6cd34ac98bad80e7/kecamatan-merigi-dalam-angka-2026.html",
+  "sourceFileSha256": "02ee259aa0b70eab22ca15d61faf79d48d9ae1022eeea6414ac3a6129537c90b",
+  "sourceFileBytes": 3441245,
+  "sourcePages": [28, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kepahiang",
+  "csvPath": "datasets/bps-1708-kecamatan-170805-dalam-angka-2026.csv",
+  "csvSha256": "efe0aa0fe5c246eda88851dad676db325a6bb06ed549563ee8c8f623e3944ded",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Merigi, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Merigi, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Desa Simpang Kota Bingin\": unmatched "
+  ]
+}

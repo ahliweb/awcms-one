@@ -1,0 +1,100 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.03.15.2008,4,Kota Agung,sex,laki_laki,,777,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.15.2008,4,Kota Agung,sex,perempuan,,716,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.15.2008,4,Kota Agung,total,total,,1493,jiwa,2025,registration,total_population,3.1,28,,
+17.03.15.2009,4,Talang Lembak,sex,laki_laki,,173,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.15.2009,4,Talang Lembak,sex,perempuan,,169,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.15.2009,4,Talang Lembak,total,total,,342,jiwa,2025,registration,total_population,3.1,28,,
+17.03.15.2007,4,Talang Renah,sex,laki_laki,,185,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.15.2007,4,Talang Renah,sex,perempuan,,180,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.15.2007,4,Talang Renah,total,total,,365,jiwa,2025,registration,total_population,3.1,28,,
+17.03.15.2015,4,Sungai Pura,sex,laki_laki,,203,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.15.2015,4,Sungai Pura,sex,perempuan,,190,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.15.2015,4,Sungai Pura,total,total,,393,jiwa,2025,registration,total_population,3.1,28,,
+17.03.15.2006,4,Tanjung Genting,sex,laki_laki,,249,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.15.2006,4,Tanjung Genting,sex,perempuan,,225,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.15.2006,4,Tanjung Genting,total,total,,474,jiwa,2025,registration,total_population,3.1,28,,
+17.03.15.2004,4,Lubuk Balam,sex,laki_laki,,594,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.15.2004,4,Lubuk Balam,sex,perempuan,,598,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.15.2004,4,Lubuk Balam,total,total,,1192,jiwa,2025,registration,total_population,3.1,28,,
+17.03.15.2005,4,Datar Macang,sex,laki_laki,,616,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.15.2005,4,Datar Macang,sex,perempuan,,559,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.15.2005,4,Datar Macang,total,total,,1175,jiwa,2025,registration,total_population,3.1,28,,
+17.03.15.2003,4,Genting Perangkap,sex,laki_laki,,207,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.15.2003,4,Genting Perangkap,sex,perempuan,,189,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.15.2003,4,Genting Perangkap,total,total,,396,jiwa,2025,registration,total_population,3.1,28,,
+17.03.15.2012,4,Talang Baru Ginting,sex,laki_laki,,125,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.15.2012,4,Talang Baru Ginting,sex,perempuan,,118,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.15.2012,4,Talang Baru Ginting,total,total,,243,jiwa,2025,registration,total_population,3.1,28,,
+17.03.15.2011,4,Talang Pungguk,sex,laki_laki,,201,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.15.2011,4,Talang Pungguk,sex,perempuan,,195,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.15.2011,4,Talang Pungguk,total,total,,396,jiwa,2025,registration,total_population,3.1,28,,
+17.03.15.2010,4,Kertapati,sex,laki_laki,,460,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.15.2010,4,Kertapati,sex,perempuan,,443,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.15.2010,4,Kertapati,total,total,,903,jiwa,2025,registration,total_population,3.1,28,,
+17.03.15.2014,4,Talang Ginting,sex,laki_laki,,272,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.15.2014,4,Talang Ginting,sex,perempuan,,219,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.15.2014,4,Talang Ginting,total,total,,491,jiwa,2025,registration,total_population,3.1,28,,
+17.03.15.2013,4,Tanjung Karet,sex,laki_laki,,340,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.15.2013,4,Tanjung Karet,sex,perempuan,,316,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.15.2013,4,Tanjung Karet,total,total,,656,jiwa,2025,registration,total_population,3.1,28,,
+17.03.15.2016,4,Dusun Curup,sex,laki_laki,,656,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.15.2016,4,Dusun Curup,sex,perempuan,,624,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.15.2016,4,Dusun Curup,total,total,,1280,jiwa,2025,registration,total_population,3.1,28,,
+17.03.15.2017,4,Penyangkak,sex,laki_laki,,298,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.15.2017,4,Penyangkak,sex,perempuan,,282,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.15.2017,4,Penyangkak,total,total,,580,jiwa,2025,registration,total_population,3.1,28,,
+17.03.15,3,Air Besi,sex,laki_laki,,5356,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.03.15,3,Air Besi,sex,perempuan,,5023,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.03.15,3,Air Besi,total,total,,10379,jiwa,2025,registration,total_population,3.1,28,,
+17.03.15,3,Air Besi,age_group,0-4,laki_laki,329,jiwa,2025,registration,total_population,3.2,30,,0-4
+17.03.15,3,Air Besi,age_group,0-4,perempuan,293,jiwa,2025,registration,total_population,3.2,30,,0-4
+17.03.15,3,Air Besi,age_group,0-4,,622,jiwa,2025,registration,total_population,3.2,30,,0-4
+17.03.15,3,Air Besi,age_group,5-9,laki_laki,445,jiwa,2025,registration,total_population,3.2,30,,5-9
+17.03.15,3,Air Besi,age_group,5-9,perempuan,397,jiwa,2025,registration,total_population,3.2,30,,5-9
+17.03.15,3,Air Besi,age_group,5-9,,842,jiwa,2025,registration,total_population,3.2,30,,5-9
+17.03.15,3,Air Besi,age_group,10-14,laki_laki,506,jiwa,2025,registration,total_population,3.2,30,,10-14
+17.03.15,3,Air Besi,age_group,10-14,perempuan,415,jiwa,2025,registration,total_population,3.2,30,,10-14
+17.03.15,3,Air Besi,age_group,10-14,,921,jiwa,2025,registration,total_population,3.2,30,,10-14
+17.03.15,3,Air Besi,age_group,15-19,laki_laki,440,jiwa,2025,registration,total_population,3.2,30,,15-19
+17.03.15,3,Air Besi,age_group,15-19,perempuan,423,jiwa,2025,registration,total_population,3.2,30,,15-19
+17.03.15,3,Air Besi,age_group,15-19,,863,jiwa,2025,registration,total_population,3.2,30,,15-19
+17.03.15,3,Air Besi,age_group,20-24,laki_laki,389,jiwa,2025,registration,total_population,3.2,30,,20-24
+17.03.15,3,Air Besi,age_group,20-24,perempuan,382,jiwa,2025,registration,total_population,3.2,30,,20-24
+17.03.15,3,Air Besi,age_group,20-24,,771,jiwa,2025,registration,total_population,3.2,30,,20-24
+17.03.15,3,Air Besi,age_group,25-29,laki_laki,479,jiwa,2025,registration,total_population,3.2,30,,25-29
+17.03.15,3,Air Besi,age_group,25-29,perempuan,421,jiwa,2025,registration,total_population,3.2,30,,25-29
+17.03.15,3,Air Besi,age_group,25-29,,900,jiwa,2025,registration,total_population,3.2,30,,25-29
+17.03.15,3,Air Besi,age_group,30-34,laki_laki,440,jiwa,2025,registration,total_population,3.2,30,,30-34
+17.03.15,3,Air Besi,age_group,30-34,perempuan,399,jiwa,2025,registration,total_population,3.2,30,,30-34
+17.03.15,3,Air Besi,age_group,30-34,,839,jiwa,2025,registration,total_population,3.2,30,,30-34
+17.03.15,3,Air Besi,age_group,35-39,laki_laki,478,jiwa,2025,registration,total_population,3.2,30,,35-39
+17.03.15,3,Air Besi,age_group,35-39,perempuan,453,jiwa,2025,registration,total_population,3.2,30,,35-39
+17.03.15,3,Air Besi,age_group,35-39,,931,jiwa,2025,registration,total_population,3.2,30,,35-39
+17.03.15,3,Air Besi,age_group,40-44,laki_laki,463,jiwa,2025,registration,total_population,3.2,30,,40-44
+17.03.15,3,Air Besi,age_group,40-44,perempuan,429,jiwa,2025,registration,total_population,3.2,30,,40-44
+17.03.15,3,Air Besi,age_group,40-44,,892,jiwa,2025,registration,total_population,3.2,30,,40-44
+17.03.15,3,Air Besi,age_group,45-49,laki_laki,353,jiwa,2025,registration,total_population,3.2,30,,45-49
+17.03.15,3,Air Besi,age_group,45-49,perempuan,353,jiwa,2025,registration,total_population,3.2,30,,45-49
+17.03.15,3,Air Besi,age_group,45-49,,706,jiwa,2025,registration,total_population,3.2,30,,45-49
+17.03.15,3,Air Besi,age_group,50-54,laki_laki,289,jiwa,2025,registration,total_population,3.2,30,,50-54
+17.03.15,3,Air Besi,age_group,50-54,perempuan,263,jiwa,2025,registration,total_population,3.2,30,,50-54
+17.03.15,3,Air Besi,age_group,50-54,,552,jiwa,2025,registration,total_population,3.2,30,,50-54
+17.03.15,3,Air Besi,age_group,55-59,laki_laki,228,jiwa,2025,registration,total_population,3.2,30,,55-59
+17.03.15,3,Air Besi,age_group,55-59,perempuan,240,jiwa,2025,registration,total_population,3.2,30,,55-59
+17.03.15,3,Air Besi,age_group,55-59,,468,jiwa,2025,registration,total_population,3.2,30,,55-59
+17.03.15,3,Air Besi,age_group,60-64,laki_laki,181,jiwa,2025,registration,total_population,3.2,30,,60-64
+17.03.15,3,Air Besi,age_group,60-64,perempuan,190,jiwa,2025,registration,total_population,3.2,30,,60-64
+17.03.15,3,Air Besi,age_group,60-64,,371,jiwa,2025,registration,total_population,3.2,30,,60-64
+17.03.15,3,Air Besi,age_group,65-69,laki_laki,159,jiwa,2025,registration,total_population,3.2,30,,65-69
+17.03.15,3,Air Besi,age_group,65-69,perempuan,158,jiwa,2025,registration,total_population,3.2,30,,65-69
+17.03.15,3,Air Besi,age_group,65-69,,317,jiwa,2025,registration,total_population,3.2,30,,65-69
+17.03.15,3,Air Besi,age_group,70-75,laki_laki,75,jiwa,2025,registration,total_population,3.2,30,,70-75
+17.03.15,3,Air Besi,age_group,70-75,perempuan,81,jiwa,2025,registration,total_population,3.2,30,,70-75
+17.03.15,3,Air Besi,age_group,70-75,,156,jiwa,2025,registration,total_population,3.2,30,,70-75
+17.03.15,3,Air Besi,age_group,75+,laki_laki,102,jiwa,2025,registration,total_population,3.2,30,,75+
+17.03.15,3,Air Besi,age_group,75+,perempuan,126,jiwa,2025,registration,total_population,3.2,30,,75+
+17.03.15,3,Air Besi,age_group,75+,,228,jiwa,2025,registration,total_population,3.2,30,,75+
+17.03.15,3,Air Besi,sex,laki_laki,,5356,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+17.03.15,3,Air Besi,sex,perempuan,,5023,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+17.03.15,3,Air Besi,total,total,,10379,jiwa,2025,registration,total_population,3.2,30,,

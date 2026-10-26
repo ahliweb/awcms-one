@@ -1,0 +1,210 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.06.01,3,Tanjung Mutiara,total,total,,34738,jiwa,2025,registration,total_population,3.1.1,67,,
+13.06.02,3,Lubuk Basung,total,total,,85634,jiwa,2025,registration,total_population,3.1.1,67,,
+13.06.13,3,Ampek Nagari,total,total,,30900,jiwa,2025,registration,total_population,3.1.1,67,,
+13.06.03,3,Tanjung Raya,total,total,,38827,jiwa,2025,registration,total_population,3.1.1,67,,
+13.06.04,3,Matur,total,total,,19670,jiwa,2025,registration,total_population,3.1.1,67,,
+13.06.05,3,IV Koto,total,total,,26890,jiwa,2025,registration,total_population,3.1.1,67,,
+13.06.16,3,Malalak,total,total,,10720,jiwa,2025,registration,total_population,3.1.1,67,,
+13.06.06,3,Banuhampu,total,total,,39102,jiwa,2025,registration,total_population,3.1.1,67,,
+13.06.12,3,Sungai Pua,total,total,,28059,jiwa,2025,registration,total_population,3.1.1,67,,
+13.06.07,3,Ampek Angkek,total,total,,45769,jiwa,2025,registration,total_population,3.1.1,67,,
+13.06.08,3,Baso,total,total,,37874,jiwa,2025,registration,total_population,3.1.1,67,,
+13.06.09,3,Tilatang Kamang,total,total,,37559,jiwa,2025,registration,total_population,3.1.1,67,,
+13.06.15,3,Kamang Magek,total,total,,22215,jiwa,2025,registration,total_population,3.1.1,67,,
+13.06.11,3,Palembayan,total,total,,35051,jiwa,2025,registration,total_population,3.1.1,67,,
+13.06.10,3,Palupuh,total,total,,15273,jiwa,2025,registration,total_population,3.1.1,67,,
+13.06,2,Kabupaten Agam,total,total,,534173,jiwa,2025,registration,total_population,3.1.1,67,,
+13.06,2,Kabupaten Agam,age_group,0-4,laki_laki,16725,jiwa,2025,registration,total_population,3.1.2,70,,0–4
+13.06,2,Kabupaten Agam,age_group,0-4,perempuan,15312,jiwa,2025,registration,total_population,3.1.2,70,,0–4
+13.06,2,Kabupaten Agam,age_group,0-4,,32037,jiwa,2025,registration,total_population,3.1.2,70,,0–4
+13.06,2,Kabupaten Agam,age_group,5-9,laki_laki,22200,jiwa,2025,registration,total_population,3.1.2,70,,5–9
+13.06,2,Kabupaten Agam,age_group,5-9,perempuan,20458,jiwa,2025,registration,total_population,3.1.2,70,,5–9
+13.06,2,Kabupaten Agam,age_group,5-9,,42658,jiwa,2025,registration,total_population,3.1.2,70,,5–9
+13.06,2,Kabupaten Agam,age_group,10-14,laki_laki,23764,jiwa,2025,registration,total_population,3.1.2,70,,10–14
+13.06,2,Kabupaten Agam,age_group,10-14,perempuan,21920,jiwa,2025,registration,total_population,3.1.2,70,,10–14
+13.06,2,Kabupaten Agam,age_group,10-14,,45684,jiwa,2025,registration,total_population,3.1.2,70,,10–14
+13.06,2,Kabupaten Agam,age_group,15-19,laki_laki,24128,jiwa,2025,registration,total_population,3.1.2,70,,15–19
+13.06,2,Kabupaten Agam,age_group,15-19,perempuan,22588,jiwa,2025,registration,total_population,3.1.2,70,,15–19
+13.06,2,Kabupaten Agam,age_group,15-19,,46716,jiwa,2025,registration,total_population,3.1.2,70,,15–19
+13.06,2,Kabupaten Agam,age_group,20-24,laki_laki,24093,jiwa,2025,registration,total_population,3.1.2,70,,20–24
+13.06,2,Kabupaten Agam,age_group,20-24,perempuan,22863,jiwa,2025,registration,total_population,3.1.2,70,,20–24
+13.06,2,Kabupaten Agam,age_group,20-24,,46956,jiwa,2025,registration,total_population,3.1.2,70,,20–24
+13.06,2,Kabupaten Agam,age_group,25-29,laki_laki,22361,jiwa,2025,registration,total_population,3.1.2,70,,25–29
+13.06,2,Kabupaten Agam,age_group,25-29,perempuan,20245,jiwa,2025,registration,total_population,3.1.2,70,,25–29
+13.06,2,Kabupaten Agam,age_group,25-29,,42606,jiwa,2025,registration,total_population,3.1.2,70,,25–29
+13.06,2,Kabupaten Agam,age_group,30-34,laki_laki,18076,jiwa,2025,registration,total_population,3.1.2,70,,30–34
+13.06,2,Kabupaten Agam,age_group,30-34,perempuan,16265,jiwa,2025,registration,total_population,3.1.2,70,,30–34
+13.06,2,Kabupaten Agam,age_group,30-34,,34341,jiwa,2025,registration,total_population,3.1.2,70,,30–34
+13.06,2,Kabupaten Agam,age_group,35-39,laki_laki,16412,jiwa,2025,registration,total_population,3.1.2,70,,35–39
+13.06,2,Kabupaten Agam,age_group,35-39,perempuan,15288,jiwa,2025,registration,total_population,3.1.2,70,,35–39
+13.06,2,Kabupaten Agam,age_group,35-39,,31700,jiwa,2025,registration,total_population,3.1.2,70,,35–39
+13.06,2,Kabupaten Agam,age_group,40-44,laki_laki,17658,jiwa,2025,registration,total_population,3.1.2,70,,40–44
+13.06,2,Kabupaten Agam,age_group,40-44,perempuan,16754,jiwa,2025,registration,total_population,3.1.2,70,,40–44
+13.06,2,Kabupaten Agam,age_group,40-44,,34412,jiwa,2025,registration,total_population,3.1.2,70,,40–44
+13.06,2,Kabupaten Agam,age_group,45-49,laki_laki,16227,jiwa,2025,registration,total_population,3.1.2,70,,45–49
+13.06,2,Kabupaten Agam,age_group,45-49,perempuan,16075,jiwa,2025,registration,total_population,3.1.2,70,,45–49
+13.06,2,Kabupaten Agam,age_group,45-49,,32302,jiwa,2025,registration,total_population,3.1.2,70,,45–49
+13.06,2,Kabupaten Agam,age_group,50-54,laki_laki,14671,jiwa,2025,registration,total_population,3.1.2,70,,50–54
+13.06,2,Kabupaten Agam,age_group,50-54,perempuan,15298,jiwa,2025,registration,total_population,3.1.2,70,,50–54
+13.06,2,Kabupaten Agam,age_group,50-54,,29969,jiwa,2025,registration,total_population,3.1.2,70,,50–54
+13.06,2,Kabupaten Agam,age_group,55-59,laki_laki,12977,jiwa,2025,registration,total_population,3.1.2,70,,55–59
+13.06,2,Kabupaten Agam,age_group,55-59,perempuan,13878,jiwa,2025,registration,total_population,3.1.2,70,,55–59
+13.06,2,Kabupaten Agam,age_group,55-59,,26855,jiwa,2025,registration,total_population,3.1.2,70,,55–59
+13.06,2,Kabupaten Agam,age_group,60-64,laki_laki,11469,jiwa,2025,registration,total_population,3.1.2,70,,60–64
+13.06,2,Kabupaten Agam,age_group,60-64,perempuan,13069,jiwa,2025,registration,total_population,3.1.2,70,,60–64
+13.06,2,Kabupaten Agam,age_group,60-64,,24538,jiwa,2025,registration,total_population,3.1.2,70,,60–64
+13.06,2,Kabupaten Agam,age_group,65-69,laki_laki,10053,jiwa,2025,registration,total_population,3.1.2,70,,65–69
+13.06,2,Kabupaten Agam,age_group,65-69,perempuan,12103,jiwa,2025,registration,total_population,3.1.2,70,,65–69
+13.06,2,Kabupaten Agam,age_group,65-69,,22156,jiwa,2025,registration,total_population,3.1.2,70,,65–69
+13.06,2,Kabupaten Agam,age_group,70-74,laki_laki,7418,jiwa,2025,registration,total_population,3.1.2,70,,70–74
+13.06,2,Kabupaten Agam,age_group,70-74,perempuan,9569,jiwa,2025,registration,total_population,3.1.2,70,,70–74
+13.06,2,Kabupaten Agam,age_group,70-74,,16987,jiwa,2025,registration,total_population,3.1.2,70,,70–74
+13.06,2,Kabupaten Agam,age_group,75+,laki_laki,9105,jiwa,2025,registration,total_population,3.1.2,70,,75+
+13.06,2,Kabupaten Agam,age_group,75+,perempuan,15151,jiwa,2025,registration,total_population,3.1.2,70,,75+
+13.06,2,Kabupaten Agam,age_group,75+,,24256,jiwa,2025,registration,total_population,3.1.2,70,,75+
+13.06,2,Kabupaten Agam,sex,laki_laki,,267337,jiwa,2025,registration,total_population,3.1.2,70,,Laki-laki
+13.06,2,Kabupaten Agam,sex,perempuan,,266836,jiwa,2025,registration,total_population,3.1.2,70,,Perempuan
+13.06,2,Kabupaten Agam,total,total,,534173,jiwa,2025,registration,total_population,3.1.2,70,,
+13.06.01,3,Tanjung Mutiara,religion,islam,,33018,jiwa,2025,registration,total_population,4.3.1,203,,Islam
+13.06.01,3,Tanjung Mutiara,religion,kristen,,1555,jiwa,2025,registration,total_population,4.3.1,203,,Protestan
+13.06.01,3,Tanjung Mutiara,religion,katolik,,165,jiwa,2025,registration,total_population,4.3.1,203,,Katolik
+13.06.01,3,Tanjung Mutiara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Hindu
+13.06.01,3,Tanjung Mutiara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Budha
+13.06.01,3,Tanjung Mutiara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Lainnya
+13.06.02,3,Lubuk Basung,religion,islam,,85242,jiwa,2025,registration,total_population,4.3.1,203,,Islam
+13.06.02,3,Lubuk Basung,religion,kristen,,318,jiwa,2025,registration,total_population,4.3.1,203,,Protestan
+13.06.02,3,Lubuk Basung,religion,katolik,,74,jiwa,2025,registration,total_population,4.3.1,203,,Katolik
+13.06.02,3,Lubuk Basung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Hindu
+13.06.02,3,Lubuk Basung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Budha
+13.06.02,3,Lubuk Basung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Lainnya
+13.06.13,3,Ampek Nagari,religion,islam,,29483,jiwa,2025,registration,total_population,4.3.1,203,,Islam
+13.06.13,3,Ampek Nagari,religion,kristen,,1316,jiwa,2025,registration,total_population,4.3.1,203,,Protestan
+13.06.13,3,Ampek Nagari,religion,katolik,,101,jiwa,2025,registration,total_population,4.3.1,203,,Katolik
+13.06.13,3,Ampek Nagari,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Hindu
+13.06.13,3,Ampek Nagari,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Budha
+13.06.13,3,Ampek Nagari,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Lainnya
+13.06.03,3,Tanjung Raya,religion,islam,,38810,jiwa,2025,registration,total_population,4.3.1,203,,Islam
+13.06.03,3,Tanjung Raya,religion,kristen,,17,jiwa,2025,registration,total_population,4.3.1,203,,Protestan
+13.06.03,3,Tanjung Raya,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Katolik
+13.06.03,3,Tanjung Raya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Hindu
+13.06.03,3,Tanjung Raya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Budha
+13.06.03,3,Tanjung Raya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Lainnya
+13.06.04,3,Matur,religion,islam,,19669,jiwa,2025,registration,total_population,4.3.1,203,,Islam
+13.06.04,3,Matur,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,203,,Protestan
+13.06.04,3,Matur,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Katolik
+13.06.04,3,Matur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Hindu
+13.06.04,3,Matur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Budha
+13.06.04,3,Matur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Lainnya
+13.06.05,3,IV Koto,religion,islam,,26890,jiwa,2025,registration,total_population,4.3.1,203,,Islam
+13.06.05,3,IV Koto,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Protestan
+13.06.05,3,IV Koto,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Katolik
+13.06.05,3,IV Koto,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Hindu
+13.06.05,3,IV Koto,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Budha
+13.06.05,3,IV Koto,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Lainnya
+13.06.16,3,Malalak,religion,islam,,10720,jiwa,2025,registration,total_population,4.3.1,203,,Islam
+13.06.16,3,Malalak,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Protestan
+13.06.16,3,Malalak,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Katolik
+13.06.16,3,Malalak,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Hindu
+13.06.16,3,Malalak,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Budha
+13.06.16,3,Malalak,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Lainnya
+13.06.06,3,Banuhampu,religion,islam,,39084,jiwa,2025,registration,total_population,4.3.1,203,,Islam
+13.06.06,3,Banuhampu,religion,kristen,,4,jiwa,2025,registration,total_population,4.3.1,203,,Protestan
+13.06.06,3,Banuhampu,religion,katolik,,13,jiwa,2025,registration,total_population,4.3.1,203,,Katolik
+13.06.06,3,Banuhampu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Hindu
+13.06.06,3,Banuhampu,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,203,,Budha
+13.06.06,3,Banuhampu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Lainnya
+13.06.12,3,Sungai Pua,religion,islam,,28058,jiwa,2025,registration,total_population,4.3.1,203,,Islam
+13.06.12,3,Sungai Pua,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,203,,Protestan
+13.06.12,3,Sungai Pua,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,203,,Katolik
+13.06.12,3,Sungai Pua,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Hindu
+13.06.12,3,Sungai Pua,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Budha
+13.06.12,3,Sungai Pua,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Lainnya
+13.06.07,3,Ampek Angkek,religion,islam,,45521,jiwa,2025,registration,total_population,4.3.1,203,,Islam
+13.06.07,3,Ampek Angkek,religion,kristen,,107,jiwa,2025,registration,total_population,4.3.1,203,,Protestan
+13.06.07,3,Ampek Angkek,religion,katolik,,141,jiwa,2025,registration,total_population,4.3.1,203,,Katolik
+13.06.07,3,Ampek Angkek,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Hindu
+13.06.07,3,Ampek Angkek,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Budha
+13.06.07,3,Ampek Angkek,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Lainnya
+13.06.08,3,Baso,religion,islam,,37848,jiwa,2025,registration,total_population,4.3.1,203,,Islam
+13.06.08,3,Baso,religion,kristen,,26,jiwa,2025,registration,total_population,4.3.1,203,,Protestan
+13.06.08,3,Baso,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Katolik
+13.06.08,3,Baso,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Hindu
+13.06.08,3,Baso,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Budha
+13.06.08,3,Baso,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Lainnya
+13.06.09,3,Tilatang Kamang,religion,islam,,37533,jiwa,2025,registration,total_population,4.3.1,203,,Islam
+13.06.09,3,Tilatang Kamang,religion,kristen,,21,jiwa,2025,registration,total_population,4.3.1,203,,Protestan
+13.06.09,3,Tilatang Kamang,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,203,,Katolik
+13.06.09,3,Tilatang Kamang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Hindu
+13.06.09,3,Tilatang Kamang,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,203,,Budha
+13.06.09,3,Tilatang Kamang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Lainnya
+13.06.15,3,Kamang Magek,religion,islam,,22215,jiwa,2025,registration,total_population,4.3.1,203,,Islam
+13.06.15,3,Kamang Magek,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Protestan
+13.06.15,3,Kamang Magek,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Katolik
+13.06.15,3,Kamang Magek,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Hindu
+13.06.15,3,Kamang Magek,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Budha
+13.06.15,3,Kamang Magek,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Lainnya
+13.06.11,3,Palembayan,religion,islam,,34770,jiwa,2025,registration,total_population,4.3.1,203,,Islam
+13.06.11,3,Palembayan,religion,kristen,,273,jiwa,2025,registration,total_population,4.3.1,203,,Protestan
+13.06.11,3,Palembayan,religion,katolik,,8,jiwa,2025,registration,total_population,4.3.1,203,,Katolik
+13.06.11,3,Palembayan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Hindu
+13.06.11,3,Palembayan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Budha
+13.06.11,3,Palembayan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Lainnya
+13.06.10,3,Palupuh,religion,islam,,15273,jiwa,2025,registration,total_population,4.3.1,203,,Islam
+13.06.10,3,Palupuh,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Protestan
+13.06.10,3,Palupuh,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Katolik
+13.06.10,3,Palupuh,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Hindu
+13.06.10,3,Palupuh,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Budha
+13.06.10,3,Palupuh,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Lainnya
+13.06,2,Kabupaten Agam,religion,islam,,530025,jiwa,2025,registration,total_population,4.3.1,203,,Islam
+13.06,2,Kabupaten Agam,religion,kristen,,3639,jiwa,2025,registration,total_population,4.3.1,203,,Protestan
+13.06,2,Kabupaten Agam,religion,katolik,,504,jiwa,2025,registration,total_population,4.3.1,203,,Katolik
+13.06,2,Kabupaten Agam,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Hindu
+13.06,2,Kabupaten Agam,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,203,,Budha
+13.06,2,Kabupaten Agam,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,203,nil,Lainnya
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/padi_padian,,102271,rupiah,2024,survey_estimate,per_capita,10.1,427,,Padi-padian
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/padi_padian,,113683,rupiah,2025,survey_estimate,per_capita,10.1,427,,Padi-padian
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/umbi_umbian,,9562,rupiah,2024,survey_estimate,per_capita,10.1,427,,Umbi-umbian
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/umbi_umbian,,8805,rupiah,2025,survey_estimate,per_capita,10.1,427,,Umbi-umbian
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,62057,rupiah,2024,survey_estimate,per_capita,10.1,427,,Ikan/udang/cumi/kerang
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,73089,rupiah,2025,survey_estimate,per_capita,10.1,427,,Ikan/udang/cumi/kerang
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/daging,,29105,rupiah,2024,survey_estimate,per_capita,10.1,427,,Daging
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/daging,,31221,rupiah,2025,survey_estimate,per_capita,10.1,427,,Daging
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/telur_dan_susu,,31707,rupiah,2024,survey_estimate,per_capita,10.1,427,,Telur dan susu
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/telur_dan_susu,,37204,rupiah,2025,survey_estimate,per_capita,10.1,427,,Telur dan susu
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/sayur_sayuran,,76015,rupiah,2024,survey_estimate,per_capita,10.1,427,,Sayur-sayuran
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/sayur_sayuran,,75317,rupiah,2025,survey_estimate,per_capita,10.1,427,,Sayur-sayuran
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/kacang_kacangan,,9331,rupiah,2024,survey_estimate,per_capita,10.1,427,,Kacang-kacangan
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/kacang_kacangan,,9858,rupiah,2025,survey_estimate,per_capita,10.1,427,,Kacang-kacangan
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/buah_buahan,,31259,rupiah,2024,survey_estimate,per_capita,10.1,427,,Buah-buahan
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/buah_buahan,,41228,rupiah,2025,survey_estimate,per_capita,10.1,427,,Buah-buahan
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/minyak_dan_kelapa,,25281,rupiah,2024,survey_estimate,per_capita,10.1,427,,Minyak dan kelapa
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/minyak_dan_kelapa,,29319,rupiah,2025,survey_estimate,per_capita,10.1,427,,Minyak dan kelapa
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/bahan_minuman,,18084,rupiah,2024,survey_estimate,per_capita,10.1,427,,Bahan minuman
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/bahan_minuman,,19984,rupiah,2025,survey_estimate,per_capita,10.1,427,,Bahan minuman
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/bumbu_bumbuan,,7483,rupiah,2024,survey_estimate,per_capita,10.1,427,,Bumbu-bumbuan
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/bumbu_bumbuan,,7958,rupiah,2025,survey_estimate,per_capita,10.1,427,,Bumbu-bumbuan
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/konsumsi_lainnya,,10076,rupiah,2024,survey_estimate,per_capita,10.1,427,,Konsumsi lainnya
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/konsumsi_lainnya,,9716,rupiah,2025,survey_estimate,per_capita,10.1,427,,Konsumsi lainnya
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,187985,rupiah,2024,survey_estimate,per_capita,10.1,427,,Makanan dan minuman jadi
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,169267,rupiah,2025,survey_estimate,per_capita,10.1,427,,Makanan dan minuman jadi
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/rokok,,94223,rupiah,2024,survey_estimate,per_capita,10.1,427,,Rokok
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/rokok,,100132,rupiah,2025,survey_estimate,per_capita,10.1,427,,Rokok
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/jumlah_makanan,,694440,rupiah,2024,survey_estimate,per_capita,10.1,427,,Jumlah makanan
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/jumlah_makanan,,726782,rupiah,2025,survey_estimate,per_capita,10.1,427,,Jumlah makanan
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,279374,rupiah,2024,survey_estimate,per_capita,10.1,427,,Perumahan dan fasilitas rumah tangga
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,283930,rupiah,2025,survey_estimate,per_capita,10.1,427,,Perumahan dan fasilitas rumah tangga
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,128381,rupiah,2024,survey_estimate,per_capita,10.1,427,,Aneka komoditas dan jasa
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,135187,rupiah,2025,survey_estimate,per_capita,10.1,427,,Aneka komoditas dan jasa
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,35600,rupiah,2024,survey_estimate,per_capita,10.1,427,,"Pakaian, alas kaki, dan tutup kepala"
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,37232,rupiah,2025,survey_estimate,per_capita,10.1,427,,"Pakaian, alas kaki, dan tutup kepala"
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/komoditas_tahan_lama,,20348,rupiah,2024,survey_estimate,per_capita,10.1,427,,Komoditas tahan lama
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/komoditas_tahan_lama,,53881,rupiah,2025,survey_estimate,per_capita,10.1,427,,Komoditas tahan lama
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,50735,rupiah,2024,survey_estimate,per_capita,10.1,427,,"Pajak, pungutan, dan asuransi"
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,56728,rupiah,2025,survey_estimate,per_capita,10.1,427,,"Pajak, pungutan, dan asuransi"
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,30347,rupiah,2024,survey_estimate,per_capita,10.1,427,,Keperluan pesta dan upacara/kenduri
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,22154,rupiah,2025,survey_estimate,per_capita,10.1,427,,Keperluan pesta dan upacara/kenduri
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,544785,rupiah,2024,survey_estimate,per_capita,10.1,427,,Jumlah bukan makanan
+13.06,2,Kabupaten Agam,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,589112,rupiah,2025,survey_estimate,per_capita,10.1,427,,Jumlah bukan makanan
+13.06,2,Kabupaten Agam,expenditure,total,,1239225,rupiah,2024,survey_estimate,per_capita,10.1,427,,
+13.06,2,Kabupaten Agam,expenditure,total,,1315893,rupiah,2025,survey_estimate,per_capita,10.1,427,,

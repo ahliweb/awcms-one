@@ -1,0 +1,72 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.71.11.1002,4,Labuh Baru Timur,sex,laki_laki,,13979,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.11.1002,4,Labuh Baru Timur,sex,perempuan,,14063,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.11.1002,4,Labuh Baru Timur,total,total,,28042,jiwa,2025,registration,total_population,3.1,22,,
+14.71.11.1001,4,Tampan,sex,laki_laki,,6918,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.11.1001,4,Tampan,sex,perempuan,,6856,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.11.1004,4,Air Hitam,sex,laki_laki,,5142,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.11.1004,4,Air Hitam,sex,perempuan,,5125,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.11.1004,4,Air Hitam,total,total,,10267,jiwa,2025,registration,total_population,3.1,22,,
+14.71.11.1003,4,Labuh Baru Barat,sex,laki_laki,,13064,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.11.1003,4,Labuh Baru Barat,sex,perempuan,,13044,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.11.1003,4,Labuh Baru Barat,total,total,,26108,jiwa,2025,registration,total_population,3.1,22,,
+14.71.11.1005,4,Bandar Raya,sex,laki_laki,,6055,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.11.1005,4,Bandar Raya,sex,perempuan,,5913,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.11.1005,4,Bandar Raya,total,total,,11968,jiwa,2025,registration,total_population,3.1,22,,
+14.71.11.1007,4,Tirta Siak,sex,laki_laki,,6576,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.11.1007,4,Tirta Siak,sex,perempuan,,6529,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.11.1007,4,Tirta Siak,total,total,,13105,jiwa,2025,registration,total_population,3.1,22,,
+14.71.11,3,Payung Sekaki,sex,laki_laki,,51734,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.11,3,Payung Sekaki,sex,perempuan,,51530,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.11,3,Payung Sekaki,total,total,,103264,jiwa,2025,registration,total_population,3.1,22,,
+14.71.11,3,Payung Sekaki,age_group,0-4,laki_laki,3482,jiwa,2025,registration,total_population,3.2,24,,0–4
+14.71.11,3,Payung Sekaki,age_group,0-4,perempuan,3157,jiwa,2025,registration,total_population,3.2,24,,0–4
+14.71.11,3,Payung Sekaki,age_group,0-4,,6639,jiwa,2025,registration,total_population,3.2,24,,0–4
+14.71.11,3,Payung Sekaki,age_group,5-9,laki_laki,4564,jiwa,2025,registration,total_population,3.2,24,,5–9
+14.71.11,3,Payung Sekaki,age_group,5-9,perempuan,4328,jiwa,2025,registration,total_population,3.2,24,,5–9
+14.71.11,3,Payung Sekaki,age_group,5-9,,8892,jiwa,2025,registration,total_population,3.2,24,,5–9
+14.71.11,3,Payung Sekaki,age_group,10-14,laki_laki,4664,jiwa,2025,registration,total_population,3.2,24,,10–14
+14.71.11,3,Payung Sekaki,age_group,10-14,perempuan,4440,jiwa,2025,registration,total_population,3.2,24,,10–14
+14.71.11,3,Payung Sekaki,age_group,10-14,,9104,jiwa,2025,registration,total_population,3.2,24,,10–14
+14.71.11,3,Payung Sekaki,age_group,15-19,laki_laki,4469,jiwa,2025,registration,total_population,3.2,24,,15–19
+14.71.11,3,Payung Sekaki,age_group,15-19,perempuan,3966,jiwa,2025,registration,total_population,3.2,24,,15–19
+14.71.11,3,Payung Sekaki,age_group,15-19,,8435,jiwa,2025,registration,total_population,3.2,24,,15–19
+14.71.11,3,Payung Sekaki,age_group,20-24,laki_laki,4224,jiwa,2025,registration,total_population,3.2,24,,20–24
+14.71.11,3,Payung Sekaki,age_group,20-24,perempuan,4088,jiwa,2025,registration,total_population,3.2,24,,20–24
+14.71.11,3,Payung Sekaki,age_group,20-24,,8312,jiwa,2025,registration,total_population,3.2,24,,20–24
+14.71.11,3,Payung Sekaki,age_group,25-29,laki_laki,4178,jiwa,2025,registration,total_population,3.2,24,,25–29
+14.71.11,3,Payung Sekaki,age_group,25-29,perempuan,4256,jiwa,2025,registration,total_population,3.2,24,,25–29
+14.71.11,3,Payung Sekaki,age_group,25-29,,8434,jiwa,2025,registration,total_population,3.2,24,,25–29
+14.71.11,3,Payung Sekaki,age_group,30-34,laki_laki,4190,jiwa,2025,registration,total_population,3.2,24,,30–34
+14.71.11,3,Payung Sekaki,age_group,30-34,perempuan,4314,jiwa,2025,registration,total_population,3.2,24,,30–34
+14.71.11,3,Payung Sekaki,age_group,30-34,,8504,jiwa,2025,registration,total_population,3.2,24,,30–34
+14.71.11,3,Payung Sekaki,age_group,35-39,laki_laki,4129,jiwa,2025,registration,total_population,3.2,24,,35–39
+14.71.11,3,Payung Sekaki,age_group,35-39,perempuan,4356,jiwa,2025,registration,total_population,3.2,24,,35–39
+14.71.11,3,Payung Sekaki,age_group,35-39,,8485,jiwa,2025,registration,total_population,3.2,24,,35–39
+14.71.11,3,Payung Sekaki,age_group,40-44,laki_laki,4180,jiwa,2025,registration,total_population,3.2,24,,40–44
+14.71.11,3,Payung Sekaki,age_group,40-44,perempuan,4222,jiwa,2025,registration,total_population,3.2,24,,40–44
+14.71.11,3,Payung Sekaki,age_group,40-44,,8402,jiwa,2025,registration,total_population,3.2,24,,40–44
+14.71.11,3,Payung Sekaki,age_group,45-49,laki_laki,3578,jiwa,2025,registration,total_population,3.2,24,,45–49
+14.71.11,3,Payung Sekaki,age_group,45-49,perempuan,3579,jiwa,2025,registration,total_population,3.2,24,,45–49
+14.71.11,3,Payung Sekaki,age_group,45-49,,7157,jiwa,2025,registration,total_population,3.2,24,,45–49
+14.71.11,3,Payung Sekaki,age_group,50-54,laki_laki,3005,jiwa,2025,registration,total_population,3.2,24,,50–54
+14.71.11,3,Payung Sekaki,age_group,50-54,perempuan,3147,jiwa,2025,registration,total_population,3.2,24,,50–54
+14.71.11,3,Payung Sekaki,age_group,50-54,,6152,jiwa,2025,registration,total_population,3.2,24,,50–54
+14.71.11,3,Payung Sekaki,age_group,55-59,laki_laki,2411,jiwa,2025,registration,total_population,3.2,24,,55–59
+14.71.11,3,Payung Sekaki,age_group,55-59,perempuan,2457,jiwa,2025,registration,total_population,3.2,24,,55–59
+14.71.11,3,Payung Sekaki,age_group,55-59,,4868,jiwa,2025,registration,total_population,3.2,24,,55–59
+14.71.11,3,Payung Sekaki,age_group,60-64,laki_laki,1889,jiwa,2025,registration,total_population,3.2,24,,60–64
+14.71.11,3,Payung Sekaki,age_group,60-64,perempuan,2040,jiwa,2025,registration,total_population,3.2,24,,60–64
+14.71.11,3,Payung Sekaki,age_group,60-64,,3929,jiwa,2025,registration,total_population,3.2,24,,60–64
+14.71.11,3,Payung Sekaki,age_group,65-69,laki_laki,1338,jiwa,2025,registration,total_population,3.2,24,,65–69
+14.71.11,3,Payung Sekaki,age_group,65-69,perempuan,1452,jiwa,2025,registration,total_population,3.2,24,,65–69
+14.71.11,3,Payung Sekaki,age_group,65-69,,2790,jiwa,2025,registration,total_population,3.2,24,,65–69
+14.71.11,3,Payung Sekaki,age_group,70-74,laki_laki,844,jiwa,2025,registration,total_population,3.2,24,,70–74
+14.71.11,3,Payung Sekaki,age_group,70-74,perempuan,907,jiwa,2025,registration,total_population,3.2,24,,70–74
+14.71.11,3,Payung Sekaki,age_group,70-74,,1751,jiwa,2025,registration,total_population,3.2,24,,70–74
+14.71.11,3,Payung Sekaki,age_group,75+,laki_laki,589,jiwa,2025,registration,total_population,3.2,24,,75+
+14.71.11,3,Payung Sekaki,age_group,75+,perempuan,821,jiwa,2025,registration,total_population,3.2,24,,75+
+14.71.11,3,Payung Sekaki,age_group,75+,,1410,jiwa,2025,registration,total_population,3.2,24,,75+
+14.71.11,3,Payung Sekaki,sex,laki_laki,,51734,jiwa,2025,registration,total_population,3.2,24,,Laki-Laki
+14.71.11,3,Payung Sekaki,sex,perempuan,,51530,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+14.71.11,3,Payung Sekaki,total,total,,103264,jiwa,2025,registration,total_population,3.2,24,,

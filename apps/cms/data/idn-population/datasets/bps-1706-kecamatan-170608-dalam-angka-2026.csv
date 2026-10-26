@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.06.08.2001,4,Pasar Bantal,sex,laki_laki,,691,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.06.08.2001,4,Pasar Bantal,sex,perempuan,,636,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.06.08.2001,4,Pasar Bantal,total,total,,1327,jiwa,2025,registration,total_population,3.1,26,,
+17.06.08.2006,4,Teramang Jaya,sex,laki_laki,,232,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.06.08.2006,4,Teramang Jaya,sex,perempuan,,197,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.06.08.2006,4,Teramang Jaya,total,total,,429,jiwa,2025,registration,total_population,3.1,26,,
+17.06.08.2002,4,Nenggalo,sex,laki_laki,,240,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.06.08.2002,4,Nenggalo,sex,perempuan,,226,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.06.08.2002,4,Nenggalo,total,total,,466,jiwa,2025,registration,total_population,3.1,26,,
+17.06.08.2003,4,Pondok Baru,sex,laki_laki,,393,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.06.08.2003,4,Pondok Baru,sex,perempuan,,405,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.06.08.2003,4,Pondok Baru,total,total,,798,jiwa,2025,registration,total_population,3.1,26,,
+17.06.08.2004,4,Bunga Tanjung,sex,laki_laki,,1116,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.06.08.2004,4,Bunga Tanjung,sex,perempuan,,1029,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.06.08.2004,4,Bunga Tanjung,total,total,,2145,jiwa,2025,registration,total_population,3.1,26,,
+17.06.08.2008,4,Sido Makmur,sex,laki_laki,,672,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.06.08.2008,4,Sido Makmur,sex,perempuan,,638,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.06.08.2008,4,Sido Makmur,total,total,,1310,jiwa,2025,registration,total_population,3.1,26,,
+17.06.08.2009,4,Lubuk Selandak,sex,laki_laki,,281,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.06.08.2009,4,Lubuk Selandak,sex,perempuan,,231,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.06.08.2009,4,Lubuk Selandak,total,total,,512,jiwa,2025,registration,total_population,3.1,26,,
+17.06.08.2005,4,Bandar Jaya,sex,laki_laki,,884,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.06.08.2005,4,Bandar Jaya,sex,perempuan,,804,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.06.08.2005,4,Bandar Jaya,total,total,,1688,jiwa,2025,registration,total_population,3.1,26,,
+17.06.08.2011,4,Mandi Angin Jaya,sex,laki_laki,,568,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.06.08.2011,4,Mandi Angin Jaya,sex,perempuan,,478,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.06.08.2011,4,Mandi Angin Jaya,total,total,,1046,jiwa,2025,registration,total_population,3.1,26,,
+17.06.08.2010,4,Nelan Indah,sex,laki_laki,,490,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.06.08.2010,4,Nelan Indah,sex,perempuan,,428,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.06.08.2010,4,Nelan Indah,total,total,,918,jiwa,2025,registration,total_population,3.1,26,,
+17.06.08.2013,4,Pernyah,sex,laki_laki,,544,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.06.08.2013,4,Pernyah,sex,perempuan,,502,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.06.08.2013,4,Pernyah,total,total,,1046,jiwa,2025,registration,total_population,3.1,26,,
+17.06.08.2012,4,Batu Ejung,sex,laki_laki,,682,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.06.08.2012,4,Batu Ejung,sex,perempuan,,660,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.06.08.2012,4,Batu Ejung,total,total,,1342,jiwa,2025,registration,total_population,3.1,26,,
+17.06.08.2007,4,Brangan Mulya,sex,laki_laki,,358,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.06.08.2007,4,Brangan Mulya,sex,perempuan,,350,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.06.08.2007,4,Brangan Mulya,total,total,,708,jiwa,2025,registration,total_population,3.1,26,,
+17.06.08,3,Teramang Jaya,age_group,0-4,laki_laki,599,jiwa,2025,registration,total_population,3.3,29,,0-4
+17.06.08,3,Teramang Jaya,age_group,0-4,perempuan,497,jiwa,2025,registration,total_population,3.3,29,,0-4
+17.06.08,3,Teramang Jaya,age_group,0-4,,1096,jiwa,2025,registration,total_population,3.3,29,,0-4
+17.06.08,3,Teramang Jaya,age_group,5-9,laki_laki,748,jiwa,2025,registration,total_population,3.3,29,,5-9
+17.06.08,3,Teramang Jaya,age_group,5-9,perempuan,655,jiwa,2025,registration,total_population,3.3,29,,5-9
+17.06.08,3,Teramang Jaya,age_group,5-9,,1403,jiwa,2025,registration,total_population,3.3,29,,5-9
+17.06.08,3,Teramang Jaya,age_group,10-14,laki_laki,662,jiwa,2025,registration,total_population,3.3,29,,10-14
+17.06.08,3,Teramang Jaya,age_group,10-14,perempuan,618,jiwa,2025,registration,total_population,3.3,29,,10-14
+17.06.08,3,Teramang Jaya,age_group,10-14,,1280,jiwa,2025,registration,total_population,3.3,29,,10-14
+17.06.08,3,Teramang Jaya,age_group,15-19,laki_laki,607,jiwa,2025,registration,total_population,3.3,29,,15-19
+17.06.08,3,Teramang Jaya,age_group,15-19,perempuan,557,jiwa,2025,registration,total_population,3.3,29,,15-19
+17.06.08,3,Teramang Jaya,age_group,15-19,,1164,jiwa,2025,registration,total_population,3.3,29,,15-19
+17.06.08,3,Teramang Jaya,age_group,20-24,laki_laki,625,jiwa,2025,registration,total_population,3.3,29,,20-24
+17.06.08,3,Teramang Jaya,age_group,20-24,perempuan,541,jiwa,2025,registration,total_population,3.3,29,,20-24
+17.06.08,3,Teramang Jaya,age_group,20-24,,1166,jiwa,2025,registration,total_population,3.3,29,,20-24
+17.06.08,3,Teramang Jaya,age_group,25-29,laki_laki,591,jiwa,2025,registration,total_population,3.3,29,,25-29
+17.06.08,3,Teramang Jaya,age_group,25-29,perempuan,544,jiwa,2025,registration,total_population,3.3,29,,25-29
+17.06.08,3,Teramang Jaya,age_group,25-29,,1135,jiwa,2025,registration,total_population,3.3,29,,25-29
+17.06.08,3,Teramang Jaya,age_group,30-34,laki_laki,485,jiwa,2025,registration,total_population,3.3,29,,30-34
+17.06.08,3,Teramang Jaya,age_group,30-34,perempuan,549,jiwa,2025,registration,total_population,3.3,29,,30-34
+17.06.08,3,Teramang Jaya,age_group,30-34,,1034,jiwa,2025,registration,total_population,3.3,29,,30-34
+17.06.08,3,Teramang Jaya,age_group,35-39,laki_laki,559,jiwa,2025,registration,total_population,3.3,29,,35-39
+17.06.08,3,Teramang Jaya,age_group,35-39,perempuan,514,jiwa,2025,registration,total_population,3.3,29,,35-39
+17.06.08,3,Teramang Jaya,age_group,35-39,,1073,jiwa,2025,registration,total_population,3.3,29,,35-39
+17.06.08,3,Teramang Jaya,age_group,40-44,laki_laki,556,jiwa,2025,registration,total_population,3.3,29,,40-44
+17.06.08,3,Teramang Jaya,age_group,40-44,perempuan,542,jiwa,2025,registration,total_population,3.3,29,,40-44
+17.06.08,3,Teramang Jaya,age_group,40-44,,1098,jiwa,2025,registration,total_population,3.3,29,,40-44
+17.06.08,3,Teramang Jaya,age_group,45-49,laki_laki,460,jiwa,2025,registration,total_population,3.3,29,,45-49
+17.06.08,3,Teramang Jaya,age_group,45-49,perempuan,417,jiwa,2025,registration,total_population,3.3,29,,45-49
+17.06.08,3,Teramang Jaya,age_group,45-49,,877,jiwa,2025,registration,total_population,3.3,29,,45-49
+17.06.08,3,Teramang Jaya,age_group,50-54,laki_laki,382,jiwa,2025,registration,total_population,3.3,29,,50-54
+17.06.08,3,Teramang Jaya,age_group,50-54,perempuan,337,jiwa,2025,registration,total_population,3.3,29,,50-54
+17.06.08,3,Teramang Jaya,age_group,50-54,,719,jiwa,2025,registration,total_population,3.3,29,,50-54
+17.06.08,3,Teramang Jaya,age_group,55-59,laki_laki,310,jiwa,2025,registration,total_population,3.3,29,,55-59
+17.06.08,3,Teramang Jaya,age_group,55-59,perempuan,270,jiwa,2025,registration,total_population,3.3,29,,55-59
+17.06.08,3,Teramang Jaya,age_group,55-59,,580,jiwa,2025,registration,total_population,3.3,29,,55-59
+17.06.08,3,Teramang Jaya,age_group,60-64,laki_laki,204,jiwa,2025,registration,total_population,3.3,29,,60-64
+17.06.08,3,Teramang Jaya,age_group,60-64,perempuan,203,jiwa,2025,registration,total_population,3.3,29,,60-64
+17.06.08,3,Teramang Jaya,age_group,60-64,,407,jiwa,2025,registration,total_population,3.3,29,,60-64
+17.06.08,3,Teramang Jaya,age_group,65-69,laki_laki,154,jiwa,2025,registration,total_population,3.3,29,,65-69
+17.06.08,3,Teramang Jaya,age_group,65-69,perempuan,142,jiwa,2025,registration,total_population,3.3,29,,65-69
+17.06.08,3,Teramang Jaya,age_group,65-69,,296,jiwa,2025,registration,total_population,3.3,29,,65-69
+17.06.08,3,Teramang Jaya,age_group,70-74,laki_laki,106,jiwa,2025,registration,total_population,3.3,29,,70-74
+17.06.08,3,Teramang Jaya,age_group,70-74,perempuan,92,jiwa,2025,registration,total_population,3.3,29,,70-74
+17.06.08,3,Teramang Jaya,age_group,70-74,,198,jiwa,2025,registration,total_population,3.3,29,,70-74
+17.06.08,3,Teramang Jaya,age_group,75+,laki_laki,103,jiwa,2025,registration,total_population,3.3,29,,≥75
+17.06.08,3,Teramang Jaya,age_group,75+,perempuan,106,jiwa,2025,registration,total_population,3.3,29,,≥75
+17.06.08,3,Teramang Jaya,age_group,75+,,209,jiwa,2025,registration,total_population,3.3,29,,≥75

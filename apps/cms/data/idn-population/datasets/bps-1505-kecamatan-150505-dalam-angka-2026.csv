@@ -1,0 +1,100 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.05.05.2015,4,Suka Damai,sex,laki_laki,,1181,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.05.05.2015,4,Suka Damai,sex,perempuan,,1076,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.05.05.2015,4,Suka Damai,total,total,,2257,jiwa,2025,registration,total_population,3.1,30,,
+15.05.05.2004,4,Ibru,sex,laki_laki,,488,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.05.05.2004,4,Ibru,sex,perempuan,,471,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.05.05.2004,4,Ibru,total,total,,959,jiwa,2025,registration,total_population,3.1,30,,
+15.05.05.2012,4,Nyogan,sex,laki_laki,,2040,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.05.05.2012,4,Nyogan,sex,perempuan,,1921,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.05.05.2012,4,Nyogan,total,total,,3961,jiwa,2025,registration,total_population,3.1,30,,
+15.05.05.2002,4,Pelempang,sex,laki_laki,,958,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.05.05.2002,4,Pelempang,sex,perempuan,,953,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.05.05.2002,4,Pelempang,total,total,,1911,jiwa,2025,registration,total_population,3.1,30,,
+15.05.05.2011,4,Tanjung Pauh Km. 39,sex,laki_laki,,1080,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.05.05.2011,4,Tanjung Pauh Km. 39,sex,perempuan,,956,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.05.05.2011,4,Tanjung Pauh Km. 39,total,total,,2036,jiwa,2025,registration,total_population,3.1,30,,
+15.05.05.2010,4,Baru,sex,laki_laki,,1201,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.05.05.2010,4,Baru,sex,perempuan,,1083,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.05.05.2010,4,Baru,total,total,,2284,jiwa,2025,registration,total_population,3.1,30,,
+15.05.05.2001,4,Tanjung Pauh Km. 32,sex,laki_laki,,997,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.05.05.2001,4,Tanjung Pauh Km. 32,sex,perempuan,,932,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.05.05.2001,4,Tanjung Pauh Km. 32,total,total,,1929,jiwa,2025,registration,total_population,3.1,30,,
+15.05.05.2005,4,Naga Sari,sex,laki_laki,,955,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.05.05.2005,4,Naga Sari,sex,perempuan,,905,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.05.05.2005,4,Naga Sari,total,total,,1860,jiwa,2025,registration,total_population,3.1,30,,
+15.05.05.2006,4,Sebapo,sex,laki_laki,,2411,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.05.05.2006,4,Sebapo,sex,perempuan,,2319,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.05.05.2006,4,Sebapo,total,total,,4730,jiwa,2025,registration,total_population,3.1,30,,
+15.05.05.2003,4,Sungai Landai,sex,laki_laki,,1752,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.05.05.2003,4,Sungai Landai,sex,perempuan,,1655,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.05.05.2003,4,Sungai Landai,total,total,,3407,jiwa,2025,registration,total_population,3.1,30,,
+15.05.05.2017,4,Suka Maju,sex,laki_laki,,1921,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.05.05.2017,4,Suka Maju,sex,perempuan,,1761,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.05.05.2017,4,Suka Maju,total,total,,3682,jiwa,2025,registration,total_population,3.1,30,,
+15.05.05.2016,4,Pondok Meja,sex,laki_laki,,3757,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.05.05.2016,4,Pondok Meja,sex,perempuan,,3613,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.05.05.2016,4,Pondok Meja,total,total,,7370,jiwa,2025,registration,total_population,3.1,30,,
+15.05.05.2019,4,Muaro Sebapo,sex,laki_laki,,1983,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.05.05.2019,4,Muaro Sebapo,sex,perempuan,,1927,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.05.05.2019,4,Muaro Sebapo,total,total,,3910,jiwa,2025,registration,total_population,3.1,30,,
+15.05.05.2018,4,Tanjung Pauh Talang Pelita,sex,laki_laki,,468,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.05.05.2018,4,Tanjung Pauh Talang Pelita,sex,perempuan,,420,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.05.05.2018,4,Tanjung Pauh Talang Pelita,total,total,,888,jiwa,2025,registration,total_population,3.1,30,,
+15.05.05.1009,4,Tempino,sex,laki_laki,,3303,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.05.05.1009,4,Tempino,sex,perempuan,,3144,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.05.05.1009,4,Tempino,total,total,,6447,jiwa,2025,registration,total_population,3.1,30,,
+15.05.05,3,Mestong,sex,laki_laki,,24495,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+15.05.05,3,Mestong,sex,perempuan,,23136,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+15.05.05,3,Mestong,total,total,,47631,jiwa,2025,registration,total_population,3.1,30,,
+15.05.05,3,Mestong,age_group,0-4,laki_laki,1515,jiwa,2025,registration,total_population,3.2,32,,0-4
+15.05.05,3,Mestong,age_group,0-4,perempuan,1414,jiwa,2025,registration,total_population,3.2,32,,0-4
+15.05.05,3,Mestong,age_group,0-4,,2929,jiwa,2025,registration,total_population,3.2,32,,0-4
+15.05.05,3,Mestong,age_group,5-9,laki_laki,2133,jiwa,2025,registration,total_population,3.2,32,,5-9
+15.05.05,3,Mestong,age_group,5-9,perempuan,1972,jiwa,2025,registration,total_population,3.2,32,,5-9
+15.05.05,3,Mestong,age_group,5-9,,4105,jiwa,2025,registration,total_population,3.2,32,,5-9
+15.05.05,3,Mestong,age_group,10-14,laki_laki,2170,jiwa,2025,registration,total_population,3.2,32,,10-14
+15.05.05,3,Mestong,age_group,10-14,perempuan,1963,jiwa,2025,registration,total_population,3.2,32,,10-14
+15.05.05,3,Mestong,age_group,10-14,,4133,jiwa,2025,registration,total_population,3.2,32,,10-14
+15.05.05,3,Mestong,age_group,15-19,laki_laki,2105,jiwa,2025,registration,total_population,3.2,32,,15-19
+15.05.05,3,Mestong,age_group,15-19,perempuan,1997,jiwa,2025,registration,total_population,3.2,32,,15-19
+15.05.05,3,Mestong,age_group,15-19,,4102,jiwa,2025,registration,total_population,3.2,32,,15-19
+15.05.05,3,Mestong,age_group,20-24,laki_laki,1931,jiwa,2025,registration,total_population,3.2,32,,20-24
+15.05.05,3,Mestong,age_group,20-24,perempuan,1811,jiwa,2025,registration,total_population,3.2,32,,20-24
+15.05.05,3,Mestong,age_group,20-24,,3742,jiwa,2025,registration,total_population,3.2,32,,20-24
+15.05.05,3,Mestong,age_group,25-29,laki_laki,1843,jiwa,2025,registration,total_population,3.2,32,,25-29
+15.05.05,3,Mestong,age_group,25-29,perempuan,1737,jiwa,2025,registration,total_population,3.2,32,,25-29
+15.05.05,3,Mestong,age_group,25-29,,3580,jiwa,2025,registration,total_population,3.2,32,,25-29
+15.05.05,3,Mestong,age_group,30-34,laki_laki,1730,jiwa,2025,registration,total_population,3.2,32,,30-34
+15.05.05,3,Mestong,age_group,30-34,perempuan,1685,jiwa,2025,registration,total_population,3.2,32,,30-34
+15.05.05,3,Mestong,age_group,30-34,,3415,jiwa,2025,registration,total_population,3.2,32,,30-34
+15.05.05,3,Mestong,age_group,35-39,laki_laki,1782,jiwa,2025,registration,total_population,3.2,32,,35-39
+15.05.05,3,Mestong,age_group,35-39,perempuan,1844,jiwa,2025,registration,total_population,3.2,32,,35-39
+15.05.05,3,Mestong,age_group,35-39,,3626,jiwa,2025,registration,total_population,3.2,32,,35-39
+15.05.05,3,Mestong,age_group,40-44,laki_laki,1988,jiwa,2025,registration,total_population,3.2,32,,40-44
+15.05.05,3,Mestong,age_group,40-44,perempuan,1878,jiwa,2025,registration,total_population,3.2,32,,40-44
+15.05.05,3,Mestong,age_group,40-44,,3866,jiwa,2025,registration,total_population,3.2,32,,40-44
+15.05.05,3,Mestong,age_group,45-49,laki_laki,1918,jiwa,2025,registration,total_population,3.2,32,,45-49
+15.05.05,3,Mestong,age_group,45-49,perempuan,1772,jiwa,2025,registration,total_population,3.2,32,,45-49
+15.05.05,3,Mestong,age_group,45-49,,3690,jiwa,2025,registration,total_population,3.2,32,,45-49
+15.05.05,3,Mestong,age_group,50-54,laki_laki,1555,jiwa,2025,registration,total_population,3.2,32,,50-54
+15.05.05,3,Mestong,age_group,50-54,perempuan,1500,jiwa,2025,registration,total_population,3.2,32,,50-54
+15.05.05,3,Mestong,age_group,50-54,,3055,jiwa,2025,registration,total_population,3.2,32,,50-54
+15.05.05,3,Mestong,age_group,55-59,laki_laki,1289,jiwa,2025,registration,total_population,3.2,32,,55-59
+15.05.05,3,Mestong,age_group,55-59,perempuan,1193,jiwa,2025,registration,total_population,3.2,32,,55-59
+15.05.05,3,Mestong,age_group,55-59,,2482,jiwa,2025,registration,total_population,3.2,32,,55-59
+15.05.05,3,Mestong,age_group,60-64,laki_laki,1017,jiwa,2025,registration,total_population,3.2,32,,60-64
+15.05.05,3,Mestong,age_group,60-64,perempuan,970,jiwa,2025,registration,total_population,3.2,32,,60-64
+15.05.05,3,Mestong,age_group,60-64,,1987,jiwa,2025,registration,total_population,3.2,32,,60-64
+15.05.05,3,Mestong,age_group,65-69,laki_laki,744,jiwa,2025,registration,total_population,3.2,32,,65-69
+15.05.05,3,Mestong,age_group,65-69,perempuan,613,jiwa,2025,registration,total_population,3.2,32,,65-69
+15.05.05,3,Mestong,age_group,65-69,,1357,jiwa,2025,registration,total_population,3.2,32,,65-69
+15.05.05,3,Mestong,age_group,70-74,laki_laki,413,jiwa,2025,registration,total_population,3.2,32,,70-74
+15.05.05,3,Mestong,age_group,70-74,perempuan,376,jiwa,2025,registration,total_population,3.2,32,,70-74
+15.05.05,3,Mestong,age_group,70-74,,789,jiwa,2025,registration,total_population,3.2,32,,70-74
+15.05.05,3,Mestong,age_group,75+,laki_laki,362,jiwa,2025,registration,total_population,3.2,32,,75+
+15.05.05,3,Mestong,age_group,75+,perempuan,411,jiwa,2025,registration,total_population,3.2,32,,75+
+15.05.05,3,Mestong,age_group,75+,,773,jiwa,2025,registration,total_population,3.2,32,,75+
+15.05.05,3,Mestong,sex,laki_laki,,24495,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+15.05.05,3,Mestong,sex,perempuan,,23136,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+15.05.05,3,Mestong,total,total,,47631,jiwa,2025,registration,total_population,3.2,32,,

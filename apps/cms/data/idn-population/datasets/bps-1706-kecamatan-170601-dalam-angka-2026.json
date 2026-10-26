@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1706-kecamatan-170601-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "17.06.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lubuk Pinang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Mukomuko",
+  "publisherDomain": "1706",
+  "publisherWebsite": "https://mukomukokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Mukomuko (https://mukomukokab.bps.go.id), publikasi \"Kecamatan Lubuk Pinang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "17060.26011",
+  "issn": "2797-152X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://mukomukokab.bps.go.id/id/publication/2026/09/28/686090b3aa18ea64b8f1fa32/kecamatan-lubuk-pinang-dalam-angka-2026.html",
+  "sourceFileSha256": "4c4ab1aed68977cd29db83a6193531669857aa3b3b323e1715aa0d73cbc0535c",
+  "sourceFileBytes": 10607653,
+  "sourcePages": [25, 26, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Mukomuko.",
+  "csvPath": "datasets/bps-1706-kecamatan-170601-dalam-angka-2026.csv",
+  "csvSha256": "8be652319a4cf5a5a8e91a1b6467bcfb67d7796973f693eba3a1447ec6e3312a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Lubuk Pinang, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lubuk Pinang, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Tumber makmur\": unmatched ",
+    "table 3.1: row not stored: row \"Tumber makmur\": unmatched "
+  ]
+}

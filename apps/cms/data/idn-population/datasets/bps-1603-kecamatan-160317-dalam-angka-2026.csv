@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.03.17.2007,4,Petanang,sex,laki_laki,,980,jiwa,2025,registration,total_population,unnumbered-p7,7,,Laki-Laki/Male
+16.03.17.2007,4,Petanang,sex,perempuan,,972,jiwa,2025,registration,total_population,unnumbered-p7,7,,Perempuan/Female
+16.03.17.2007,4,Petanang,total,total,,1952,jiwa,2025,registration,total_population,unnumbered-p7,7,,
+16.03.17.2008,4,Talang Nangka,sex,laki_laki,,1225,jiwa,2025,registration,total_population,unnumbered-p7,7,,Laki-Laki/Male
+16.03.17.2008,4,Talang Nangka,sex,perempuan,,1244,jiwa,2025,registration,total_population,unnumbered-p7,7,,Perempuan/Female
+16.03.17.2008,4,Talang Nangka,total,total,,2469,jiwa,2025,registration,total_population,unnumbered-p7,7,,
+16.03.17.2009,4,Alai,sex,laki_laki,,1269,jiwa,2025,registration,total_population,unnumbered-p7,7,,Laki-Laki/Male
+16.03.17.2009,4,Alai,sex,perempuan,,1256,jiwa,2025,registration,total_population,unnumbered-p7,7,,Perempuan/Female
+16.03.17.2009,4,Alai,total,total,,2525,jiwa,2025,registration,total_population,unnumbered-p7,7,,
+16.03.17.2010,4,Sungai Duren,sex,laki_laki,,411,jiwa,2025,registration,total_population,unnumbered-p7,7,,Laki-Laki/Male
+16.03.17.2010,4,Sungai Duren,sex,perempuan,,376,jiwa,2025,registration,total_population,unnumbered-p7,7,,Perempuan/Female
+16.03.17.2010,4,Sungai Duren,total,total,,787,jiwa,2025,registration,total_population,unnumbered-p7,7,,
+16.03.17.2011,4,Tapus,sex,laki_laki,,805,jiwa,2025,registration,total_population,unnumbered-p7,7,,Laki-Laki/Male
+16.03.17.2011,4,Tapus,sex,perempuan,,799,jiwa,2025,registration,total_population,unnumbered-p7,7,,Perempuan/Female
+16.03.17.2011,4,Tapus,total,total,,1604,jiwa,2025,registration,total_population,unnumbered-p7,7,,
+16.03.17.2012,4,Lembak,sex,laki_laki,,2451,jiwa,2025,registration,total_population,unnumbered-p7,7,,Laki-Laki/Male
+16.03.17.2012,4,Lembak,sex,perempuan,,2471,jiwa,2025,registration,total_population,unnumbered-p7,7,,Perempuan/Female
+16.03.17.2012,4,Lembak,total,total,,4922,jiwa,2025,registration,total_population,unnumbered-p7,7,,
+16.03.17.2013,4,Kemang,sex,laki_laki,,1261,jiwa,2025,registration,total_population,unnumbered-p7,7,,Laki-Laki/Male
+16.03.17.2013,4,Kemang,sex,perempuan,,1225,jiwa,2025,registration,total_population,unnumbered-p7,7,,Perempuan/Female
+16.03.17.2013,4,Kemang,total,total,,2486,jiwa,2025,registration,total_population,unnumbered-p7,7,,
+16.03.17.2014,4,Lubuk Enau,sex,laki_laki,,525,jiwa,2025,registration,total_population,unnumbered-p7,7,,Laki-Laki/Male
+16.03.17.2014,4,Lubuk Enau,sex,perempuan,,539,jiwa,2025,registration,total_population,unnumbered-p7,7,,Perempuan/Female
+16.03.17.2014,4,Lubuk Enau,total,total,,1064,jiwa,2025,registration,total_population,unnumbered-p7,7,,
+16.03.17.2015,4,Alai Selatan,sex,laki_laki,,722,jiwa,2025,registration,total_population,unnumbered-p7,7,,Laki-Laki/Male
+16.03.17.2015,4,Alai Selatan,sex,perempuan,,804,jiwa,2025,registration,total_population,unnumbered-p7,7,,Perempuan/Female
+16.03.17.2015,4,Alai Selatan,total,total,,1526,jiwa,2025,registration,total_population,unnumbered-p7,7,,
+16.03.17.2019,4,Tanjung Baru,sex,laki_laki,,524,jiwa,2025,registration,total_population,unnumbered-p7,7,,Laki-Laki/Male
+16.03.17.2019,4,Tanjung Baru,sex,perempuan,,508,jiwa,2025,registration,total_population,unnumbered-p7,7,,Perempuan/Female
+16.03.17.2019,4,Tanjung Baru,total,total,,1032,jiwa,2025,registration,total_population,unnumbered-p7,7,,
+16.03.17,3,Lembak,sex,laki_laki,,10173,jiwa,2025,registration,total_population,unnumbered-p7,7,,Laki-Laki/Male
+16.03.17,3,Lembak,sex,perempuan,,10194,jiwa,2025,registration,total_population,unnumbered-p7,7,,Perempuan/Female
+16.03.17,3,Lembak,total,total,,20367,jiwa,2025,registration,total_population,unnumbered-p7,7,,

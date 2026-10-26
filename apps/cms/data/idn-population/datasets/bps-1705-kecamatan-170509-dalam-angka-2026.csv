@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.05.09.2007,4,Tenangan,sex,laki_laki,,690,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.05.09.2007,4,Tenangan,sex,perempuan,,692,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.05.09.2007,4,Tenangan,total,total,,1382,jiwa,2025,registration,total_population,3.1,27,,
+17.05.09.2008,4,Rawasari,sex,laki_laki,,610,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.05.09.2008,4,Rawasari,sex,perempuan,,568,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.05.09.2008,4,Rawasari,total,total,,1178,jiwa,2025,registration,total_population,3.1,27,,
+17.05.09.2001,4,Talang Sali,sex,laki_laki,,957,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.05.09.2001,4,Talang Sali,sex,perempuan,,916,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.05.09.2001,4,Talang Sali,total,total,,1873,jiwa,2025,registration,total_population,3.1,27,,
+17.05.09.2002,4,Kunduran,sex,laki_laki,,542,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.05.09.2002,4,Kunduran,sex,perempuan,,520,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.05.09.2002,4,Kunduran,total,total,,1062,jiwa,2025,registration,total_population,3.1,27,,
+17.05.09.2003,4,Kota Agung,sex,laki_laki,,588,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.05.09.2003,4,Kota Agung,sex,perempuan,,580,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.05.09.2003,4,Kota Agung,total,total,,1168,jiwa,2025,registration,total_population,3.1,27,,
+17.05.09.1004,4,Selebar,sex,laki_laki,,672,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.05.09.1004,4,Selebar,sex,perempuan,,631,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.05.09.1004,4,Selebar,total,total,,1303,jiwa,2025,registration,total_population,3.1,27,,
+17.05.09.1005,4,Sembayat,sex,laki_laki,,855,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.05.09.1005,4,Sembayat,sex,perempuan,,779,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.05.09.1005,4,Sembayat,total,total,,1634,jiwa,2025,registration,total_population,3.1,27,,
+17.05.09.1006,4,Bunga Mas,sex,laki_laki,,1000,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.05.09.1006,4,Bunga Mas,sex,perempuan,,979,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.05.09.1006,4,Bunga Mas,total,total,,1979,jiwa,2025,registration,total_population,3.1,27,,
+17.05.09,3,Seluma Timur,sex,laki_laki,,5914,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.05.09,3,Seluma Timur,sex,perempuan,,5665,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.05.09,3,Seluma Timur,total,total,,11579,jiwa,2025,registration,total_population,3.1,27,,
+17.05.09,3,Seluma Timur,age_group,0-4,laki_laki,406,jiwa,2025,registration,total_population,3.2,29,,0-4
+17.05.09,3,Seluma Timur,age_group,0-4,perempuan,379,jiwa,2025,registration,total_population,3.2,29,,0-4
+17.05.09,3,Seluma Timur,age_group,0-4,,785,jiwa,2025,registration,total_population,3.2,29,,0-4
+17.05.09,3,Seluma Timur,age_group,5-9,laki_laki,469,jiwa,2025,registration,total_population,3.2,29,,5-9
+17.05.09,3,Seluma Timur,age_group,5-9,perempuan,442,jiwa,2025,registration,total_population,3.2,29,,5-9
+17.05.09,3,Seluma Timur,age_group,5-9,,911,jiwa,2025,registration,total_population,3.2,29,,5-9
+17.05.09,3,Seluma Timur,age_group,10-14,laki_laki,509,jiwa,2025,registration,total_population,3.2,29,,10-14
+17.05.09,3,Seluma Timur,age_group,10-14,perempuan,459,jiwa,2025,registration,total_population,3.2,29,,10-14
+17.05.09,3,Seluma Timur,age_group,10-14,,968,jiwa,2025,registration,total_population,3.2,29,,10-14
+17.05.09,3,Seluma Timur,age_group,15-19,laki_laki,490,jiwa,2025,registration,total_population,3.2,29,,15-19
+17.05.09,3,Seluma Timur,age_group,15-19,perempuan,490,jiwa,2025,registration,total_population,3.2,29,,15-19
+17.05.09,3,Seluma Timur,age_group,15-19,,980,jiwa,2025,registration,total_population,3.2,29,,15-19
+17.05.09,3,Seluma Timur,age_group,20-24,laki_laki,504,jiwa,2025,registration,total_population,3.2,29,,20-24
+17.05.09,3,Seluma Timur,age_group,20-24,perempuan,497,jiwa,2025,registration,total_population,3.2,29,,20-24
+17.05.09,3,Seluma Timur,age_group,20-24,,1001,jiwa,2025,registration,total_population,3.2,29,,20-24
+17.05.09,3,Seluma Timur,age_group,25-29,laki_laki,520,jiwa,2025,registration,total_population,3.2,29,,25-29
+17.05.09,3,Seluma Timur,age_group,25-29,perempuan,423,jiwa,2025,registration,total_population,3.2,29,,25-29
+17.05.09,3,Seluma Timur,age_group,25-29,,943,jiwa,2025,registration,total_population,3.2,29,,25-29
+17.05.09,3,Seluma Timur,age_group,30-34,laki_laki,420,jiwa,2025,registration,total_population,3.2,29,,30-34
+17.05.09,3,Seluma Timur,age_group,30-34,perempuan,422,jiwa,2025,registration,total_population,3.2,29,,30-34
+17.05.09,3,Seluma Timur,age_group,30-34,,842,jiwa,2025,registration,total_population,3.2,29,,30-34
+17.05.09,3,Seluma Timur,age_group,35-39,laki_laki,462,jiwa,2025,registration,total_population,3.2,29,,35-39
+17.05.09,3,Seluma Timur,age_group,35-39,perempuan,441,jiwa,2025,registration,total_population,3.2,29,,35-39
+17.05.09,3,Seluma Timur,age_group,35-39,,903,jiwa,2025,registration,total_population,3.2,29,,35-39
+17.05.09,3,Seluma Timur,age_group,40-44,laki_laki,439,jiwa,2025,registration,total_population,3.2,29,,40-44
+17.05.09,3,Seluma Timur,age_group,40-44,perempuan,423,jiwa,2025,registration,total_population,3.2,29,,40-44
+17.05.09,3,Seluma Timur,age_group,40-44,,862,jiwa,2025,registration,total_population,3.2,29,,40-44
+17.05.09,3,Seluma Timur,age_group,45-49,laki_laki,429,jiwa,2025,registration,total_population,3.2,29,,45-49
+17.05.09,3,Seluma Timur,age_group,45-49,perempuan,390,jiwa,2025,registration,total_population,3.2,29,,45-49
+17.05.09,3,Seluma Timur,age_group,45-49,,819,jiwa,2025,registration,total_population,3.2,29,,45-49
+17.05.09,3,Seluma Timur,age_group,50-54,laki_laki,321,jiwa,2025,registration,total_population,3.2,29,,50-54
+17.05.09,3,Seluma Timur,age_group,50-54,perempuan,339,jiwa,2025,registration,total_population,3.2,29,,50-54
+17.05.09,3,Seluma Timur,age_group,50-54,,660,jiwa,2025,registration,total_population,3.2,29,,50-54
+17.05.09,3,Seluma Timur,age_group,55-59,laki_laki,322,jiwa,2025,registration,total_population,3.2,29,,55-59
+17.05.09,3,Seluma Timur,age_group,55-59,perempuan,304,jiwa,2025,registration,total_population,3.2,29,,55-59
+17.05.09,3,Seluma Timur,age_group,55-59,,626,jiwa,2025,registration,total_population,3.2,29,,55-59
+17.05.09,3,Seluma Timur,age_group,60-64,laki_laki,236,jiwa,2025,registration,total_population,3.2,29,,60-64
+17.05.09,3,Seluma Timur,age_group,60-64,perempuan,224,jiwa,2025,registration,total_population,3.2,29,,60-64
+17.05.09,3,Seluma Timur,age_group,60-64,,460,jiwa,2025,registration,total_population,3.2,29,,60-64
+17.05.09,3,Seluma Timur,age_group,65-69,laki_laki,181,jiwa,2025,registration,total_population,3.2,29,,65-69
+17.05.09,3,Seluma Timur,age_group,65-69,perempuan,184,jiwa,2025,registration,total_population,3.2,29,,65-69
+17.05.09,3,Seluma Timur,age_group,65-69,,365,jiwa,2025,registration,total_population,3.2,29,,65-69
+17.05.09,3,Seluma Timur,age_group,70-74,laki_laki,99,jiwa,2025,registration,total_population,3.2,29,,70-74
+17.05.09,3,Seluma Timur,age_group,70-74,perempuan,107,jiwa,2025,registration,total_population,3.2,29,,70-74
+17.05.09,3,Seluma Timur,age_group,70-74,,206,jiwa,2025,registration,total_population,3.2,29,,70-74
+17.05.09,3,Seluma Timur,age_group,75+,laki_laki,107,jiwa,2025,registration,total_population,3.2,29,,>75
+17.05.09,3,Seluma Timur,age_group,75+,perempuan,141,jiwa,2025,registration,total_population,3.2,29,,>75
+17.05.09,3,Seluma Timur,age_group,75+,,248,jiwa,2025,registration,total_population,3.2,29,,>75
+17.05.09,3,Seluma Timur,sex,laki_laki,,5914,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+17.05.09,3,Seluma Timur,sex,perempuan,,5665,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+17.05.09,3,Seluma Timur,total,total,,11579,jiwa,2025,registration,total_population,3.2,29,,

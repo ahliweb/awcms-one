@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.03.03.2003,4,Pangkalan Jambi,sex,laki_laki,,703,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.03.03.2003,4,Pangkalan Jambi,sex,perempuan,,644,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.03.03.2003,4,Pangkalan Jambi,total,total,,1347,jiwa,2025,registration,total_population,3.1,26,,
+14.03.03.2002,4,Dompas,sex,laki_laki,,761,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.03.03.2002,4,Dompas,sex,perempuan,,707,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.03.03.2002,4,Dompas,total,total,,1468,jiwa,2025,registration,total_population,3.1,26,,
+14.03.03.2001,4,Sejangat,sex,laki_laki,,1139,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.03.03.2001,4,Sejangat,sex,perempuan,,1087,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.03.03.2001,4,Sejangat,total,total,,2226,jiwa,2025,registration,total_population,3.1,26,,
+14.03.03.2004,4,Sungai Selari,sex,laki_laki,,1457,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.03.03.2004,4,Sungai Selari,sex,perempuan,,1425,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.03.03.2004,4,Sungai Selari,total,total,,2882,jiwa,2025,registration,total_population,3.1,26,,
+14.03.03.2005,4,Buruk Bakul,sex,laki_laki,,807,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.03.03.2005,4,Buruk Bakul,sex,perempuan,,793,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.03.03.2005,4,Buruk Bakul,total,total,,1600,jiwa,2025,registration,total_population,3.1,26,,
+14.03.03.2006,4,Bukit Batu,sex,laki_laki,,635,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.03.03.2006,4,Bukit Batu,sex,perempuan,,592,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.03.03.2006,4,Bukit Batu,total,total,,1227,jiwa,2025,registration,total_population,3.1,26,,
+14.03.03.2007,4,Sukajadi,sex,laki_laki,,834,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.03.03.2007,4,Sukajadi,sex,perempuan,,800,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.03.03.2007,4,Sukajadi,total,total,,1634,jiwa,2025,registration,total_population,3.1,26,,
+14.03.03.2017,4,Pakning Asal,sex,laki_laki,,1928,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.03.03.2017,4,Pakning Asal,sex,perempuan,,1884,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.03.03.2017,4,Pakning Asal,total,total,,3812,jiwa,2025,registration,total_population,3.1,26,,
+14.03.03.2016,4,Batang Duku,sex,laki_laki,,1608,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.03.03.2016,4,Batang Duku,sex,perempuan,,1505,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.03.03.2016,4,Batang Duku,total,total,,3113,jiwa,2025,registration,total_population,3.1,26,,
+14.03.03.1010,4,Sungai Pakning,sex,laki_laki,,2380,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.03.03.1010,4,Sungai Pakning,sex,perempuan,,2323,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.03.03.1010,4,Sungai Pakning,total,total,,4703,jiwa,2025,registration,total_population,3.1,26,,
+14.03.03,3,Kecamatan Bukit Batu,sex,laki_laki,,12252,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.03.03,3,Kecamatan Bukit Batu,sex,perempuan,,11760,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.03.03,3,Kecamatan Bukit Batu,total,total,,24012,jiwa,2025,registration,total_population,3.1,26,,

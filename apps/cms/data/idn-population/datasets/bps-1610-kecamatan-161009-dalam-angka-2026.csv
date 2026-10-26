@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.10.09.2007,4,Maju Jaya,sex,laki_laki,,494,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.09.2007,4,Maju Jaya,sex,perempuan,,474,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.09.2007,4,Maju Jaya,total,total,,968,jiwa,2025,registration,total_population,3.1,27,,
+16.10.09.2008,4,Naikan Tembakang,sex,laki_laki,,550,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.09.2008,4,Naikan Tembakang,sex,perempuan,,548,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.09.2008,4,Naikan Tembakang,total,total,,1098,jiwa,2025,registration,total_population,3.1,27,,
+16.10.09.2001,4,Pematang Bangsal,sex,laki_laki,,565,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.09.2001,4,Pematang Bangsal,sex,perempuan,,501,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.09.2001,4,Pematang Bangsal,total,total,,1066,jiwa,2025,registration,total_population,3.1,27,,
+16.10.09.2003,4,Sungai Lebung,sex,laki_laki,,1118,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.09.2003,4,Sungai Lebung,sex,perempuan,,1149,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.09.2003,4,Sungai Lebung,total,total,,2267,jiwa,2025,registration,total_population,3.1,27,,
+16.10.09.2010,4,Cahaya Marga,sex,laki_laki,,598,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.09.2010,4,Cahaya Marga,sex,perempuan,,591,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.09.2010,4,Cahaya Marga,total,total,,1189,jiwa,2025,registration,total_population,3.1,27,,
+16.10.09.2002,4,Mayapati,sex,laki_laki,,593,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.09.2002,4,Mayapati,sex,perempuan,,599,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.09.2002,4,Mayapati,total,total,,1192,jiwa,2025,registration,total_population,3.1,27,,
+16.10.09.2005,4,Kapuk,sex,laki_laki,,751,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.09.2005,4,Kapuk,sex,perempuan,,760,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.09.2005,4,Kapuk,total,total,,1511,jiwa,2025,registration,total_population,3.1,27,,
+16.10.09.2009,4,Segayam,sex,laki_laki,,750,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.09.2009,4,Segayam,sex,perempuan,,708,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.09.2009,4,Segayam,total,total,,1458,jiwa,2025,registration,total_population,3.1,27,,
+16.10.09.2006,4,Ulak Aur Standing,sex,laki_laki,,816,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.09.2006,4,Ulak Aur Standing,sex,perempuan,,831,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.09.2006,4,Ulak Aur Standing,total,total,,1647,jiwa,2025,registration,total_population,3.1,27,,
+16.10.09.2015,4,Harimau Tandang,sex,laki_laki,,572,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.09.2015,4,Harimau Tandang,sex,perempuan,,516,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.09.2015,4,Harimau Tandang,total,total,,1088,jiwa,2025,registration,total_population,3.1,27,,
+16.10.09.2012,4,Sungai Keli,sex,laki_laki,,347,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.09.2012,4,Sungai Keli,sex,perempuan,,326,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.09.2012,4,Sungai Keli,total,total,,673,jiwa,2025,registration,total_population,3.1,27,,
+16.10.09.2013,4,Lebak Pering,sex,laki_laki,,578,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.09.2013,4,Lebak Pering,sex,perempuan,,562,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.09.2013,4,Lebak Pering,total,total,,1140,jiwa,2025,registration,total_population,3.1,27,,
+16.10.09.2014,4,Sungai Ondok,sex,laki_laki,,293,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.09.2014,4,Sungai Ondok,sex,perempuan,,295,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.09.2014,4,Sungai Ondok,total,total,,588,jiwa,2025,registration,total_population,3.1,27,,
+16.10.09.2016,4,Pematang Bungur,sex,laki_laki,,674,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.09.2016,4,Pematang Bungur,sex,perempuan,,659,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.09.2016,4,Pematang Bungur,total,total,,1333,jiwa,2025,registration,total_population,3.1,27,,
+16.10.09,3,Pemulutan Selatan,sex,laki_laki,,9398,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.09,3,Pemulutan Selatan,sex,perempuan,,9217,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.09,3,Pemulutan Selatan,total,total,,18615,jiwa,2025,registration,total_population,3.1,27,,
+16.10.09,3,Pemulutan Selatan,age_group,0-4,laki_laki,728,jiwa,2025,registration,total_population,3.2,29,,0–4
+16.10.09,3,Pemulutan Selatan,age_group,0-4,perempuan,679,jiwa,2025,registration,total_population,3.2,29,,0–4
+16.10.09,3,Pemulutan Selatan,age_group,0-4,,1407,jiwa,2025,registration,total_population,3.2,29,,0–4
+16.10.09,3,Pemulutan Selatan,age_group,5-9,laki_laki,871,jiwa,2025,registration,total_population,3.2,29,,5–9
+16.10.09,3,Pemulutan Selatan,age_group,5-9,perempuan,840,jiwa,2025,registration,total_population,3.2,29,,5–9
+16.10.09,3,Pemulutan Selatan,age_group,5-9,,1711,jiwa,2025,registration,total_population,3.2,29,,5–9
+16.10.09,3,Pemulutan Selatan,age_group,10-14,laki_laki,896,jiwa,2025,registration,total_population,3.2,29,,10–14
+16.10.09,3,Pemulutan Selatan,age_group,10-14,perempuan,751,jiwa,2025,registration,total_population,3.2,29,,10–14
+16.10.09,3,Pemulutan Selatan,age_group,10-14,,1647,jiwa,2025,registration,total_population,3.2,29,,10–14
+16.10.09,3,Pemulutan Selatan,age_group,15-19,laki_laki,728,jiwa,2025,registration,total_population,3.2,29,,15–19
+16.10.09,3,Pemulutan Selatan,age_group,15-19,perempuan,748,jiwa,2025,registration,total_population,3.2,29,,15–19
+16.10.09,3,Pemulutan Selatan,age_group,15-19,,1476,jiwa,2025,registration,total_population,3.2,29,,15–19
+16.10.09,3,Pemulutan Selatan,age_group,20-24,laki_laki,732,jiwa,2025,registration,total_population,3.2,29,,20–24
+16.10.09,3,Pemulutan Selatan,age_group,20-24,perempuan,777,jiwa,2025,registration,total_population,3.2,29,,20–24
+16.10.09,3,Pemulutan Selatan,age_group,20-24,,1509,jiwa,2025,registration,total_population,3.2,29,,20–24
+16.10.09,3,Pemulutan Selatan,age_group,25-29,laki_laki,834,jiwa,2025,registration,total_population,3.2,29,,25–29
+16.10.09,3,Pemulutan Selatan,age_group,25-29,perempuan,698,jiwa,2025,registration,total_population,3.2,29,,25–29
+16.10.09,3,Pemulutan Selatan,age_group,25-29,,1532,jiwa,2025,registration,total_population,3.2,29,,25–29
+16.10.09,3,Pemulutan Selatan,age_group,30-34,laki_laki,714,jiwa,2025,registration,total_population,3.2,29,,30–34
+16.10.09,3,Pemulutan Selatan,age_group,30-34,perempuan,573,jiwa,2025,registration,total_population,3.2,29,,30–34
+16.10.09,3,Pemulutan Selatan,age_group,30-34,,1287,jiwa,2025,registration,total_population,3.2,29,,30–34
+16.10.09,3,Pemulutan Selatan,age_group,35-39,laki_laki,761,jiwa,2025,registration,total_population,3.2,29,,35–39
+16.10.09,3,Pemulutan Selatan,age_group,35-39,perempuan,737,jiwa,2025,registration,total_population,3.2,29,,35–39
+16.10.09,3,Pemulutan Selatan,age_group,35-39,,1498,jiwa,2025,registration,total_population,3.2,29,,35–39
+16.10.09,3,Pemulutan Selatan,age_group,40-44,laki_laki,647,jiwa,2025,registration,total_population,3.2,29,,40–44
+16.10.09,3,Pemulutan Selatan,age_group,40-44,perempuan,609,jiwa,2025,registration,total_population,3.2,29,,40–44
+16.10.09,3,Pemulutan Selatan,age_group,40-44,,1256,jiwa,2025,registration,total_population,3.2,29,,40–44
+16.10.09,3,Pemulutan Selatan,age_group,45-49,laki_laki,573,jiwa,2025,registration,total_population,3.2,29,,45–49
+16.10.09,3,Pemulutan Selatan,age_group,45-49,perempuan,582,jiwa,2025,registration,total_population,3.2,29,,45–49
+16.10.09,3,Pemulutan Selatan,age_group,45-49,,1155,jiwa,2025,registration,total_population,3.2,29,,45–49
+16.10.09,3,Pemulutan Selatan,age_group,50-54,laki_laki,530,jiwa,2025,registration,total_population,3.2,29,,50–54
+16.10.09,3,Pemulutan Selatan,age_group,50-54,perempuan,549,jiwa,2025,registration,total_population,3.2,29,,50–54
+16.10.09,3,Pemulutan Selatan,age_group,50-54,,1079,jiwa,2025,registration,total_population,3.2,29,,50–54
+16.10.09,3,Pemulutan Selatan,age_group,55-59,laki_laki,441,jiwa,2025,registration,total_population,3.2,29,,55–59
+16.10.09,3,Pemulutan Selatan,age_group,55-59,perempuan,480,jiwa,2025,registration,total_population,3.2,29,,55–59
+16.10.09,3,Pemulutan Selatan,age_group,55-59,,921,jiwa,2025,registration,total_population,3.2,29,,55–59
+16.10.09,3,Pemulutan Selatan,age_group,60-64,laki_laki,329,jiwa,2025,registration,total_population,3.2,29,,60–64
+16.10.09,3,Pemulutan Selatan,age_group,60-64,perempuan,390,jiwa,2025,registration,total_population,3.2,29,,60–64
+16.10.09,3,Pemulutan Selatan,age_group,60-64,,719,jiwa,2025,registration,total_population,3.2,29,,60–64
+16.10.09,3,Pemulutan Selatan,age_group,65-69,laki_laki,293,jiwa,2025,registration,total_population,3.2,29,,65–69
+16.10.09,3,Pemulutan Selatan,age_group,65-69,perempuan,326,jiwa,2025,registration,total_population,3.2,29,,65–69
+16.10.09,3,Pemulutan Selatan,age_group,65-69,,619,jiwa,2025,registration,total_population,3.2,29,,65–69
+16.10.09,3,Pemulutan Selatan,age_group,70-75,laki_laki,146,jiwa,2025,registration,total_population,3.2,29,,70–75
+16.10.09,3,Pemulutan Selatan,age_group,70-75,perempuan,190,jiwa,2025,registration,total_population,3.2,29,,70–75
+16.10.09,3,Pemulutan Selatan,age_group,70-75,,336,jiwa,2025,registration,total_population,3.2,29,,70–75
+16.10.09,3,Pemulutan Selatan,age_group,75+,laki_laki,175,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.09,3,Pemulutan Selatan,age_group,75+,perempuan,288,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.09,3,Pemulutan Selatan,age_group,75+,,463,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.09,3,Pemulutan Selatan,sex,laki_laki,,9398,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+16.10.09,3,Pemulutan Selatan,sex,perempuan,,9217,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+16.10.09,3,Pemulutan Selatan,total,total,,18615,jiwa,2025,registration,total_population,3.2,29,,

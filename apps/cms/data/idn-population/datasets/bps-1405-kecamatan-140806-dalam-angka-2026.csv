@@ -1,0 +1,53 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.08.06.2008,4,Buana Makmur,sex,perempuan,,867,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.06.2008,4,Buana Makmur,total,total,,1768,jiwa,2025,registration,total_population,3.1,26,,
+14.08.06.2007,4,Pangkalan Makmur,sex,perempuan,,1427,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.06.2007,4,Pangkalan Makmur,total,total,,2932,jiwa,2025,registration,total_population,3.1,26,,
+14.08.06.2002,4,Banjar Seminai,sex,perempuan,,1706,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.06.2002,4,Banjar Seminai,total,total,,3430,jiwa,2025,registration,total_population,3.1,26,,
+14.08.06.2003,4,Teluk Merbau,sex,perempuan,,1187,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.06.2003,4,Teluk Merbau,total,total,,2412,jiwa,2025,registration,total_population,3.1,26,,
+14.08.06.2010,4,Sawit Permai,sex,perempuan,,2450,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.06.2010,4,Sawit Permai,total,total,,5028,jiwa,2025,registration,total_population,3.1,26,,
+14.08.06.2011,4,Sialang Sakti,sex,perempuan,,1782,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.06.2011,4,Sialang Sakti,total,total,,3634,jiwa,2025,registration,total_population,3.1,26,,
+14.08.06.2004,4,Merangkai,sex,perempuan,,679,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.06.2004,4,Merangkai,total,total,,1395,jiwa,2025,registration,total_population,3.1,26,,
+14.08.06.2006,4,Berumbung Baru,sex,perempuan,,1163,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.06.2006,4,Berumbung Baru,total,total,,2439,jiwa,2025,registration,total_population,3.1,26,,
+14.08.06.2005,4,Lubuk Tilan,sex,perempuan,,642,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.06.2005,4,Lubuk Tilan,total,total,,1306,jiwa,2025,registration,total_population,3.1,26,,
+14.08.06,3,Dayun,sex,perempuan,,4804,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.06,3,Dayun,total,total,,10018,jiwa,2025,registration,total_population,3.1,26,,
+14.08.06,3,Dayun,age_group,0-4,perempuan,1206,jiwa,2025,registration,total_population,3.2,28,,0–4
+14.08.06,3,Dayun,age_group,0-4,,2501,jiwa,2025,registration,total_population,3.2,28,,0–4
+14.08.06,3,Dayun,age_group,5-9,perempuan,1616,jiwa,2025,registration,total_population,3.2,28,,5–9
+14.08.06,3,Dayun,age_group,5-9,,3298,jiwa,2025,registration,total_population,3.2,28,,5–9
+14.08.06,3,Dayun,age_group,10-14,perempuan,1639,jiwa,2025,registration,total_population,3.2,28,,10–14
+14.08.06,3,Dayun,age_group,10-14,,3418,jiwa,2025,registration,total_population,3.2,28,,10–14
+14.08.06,3,Dayun,age_group,15-19,perempuan,1457,jiwa,2025,registration,total_population,3.2,28,,15–19
+14.08.06,3,Dayun,age_group,15-19,,3183,jiwa,2025,registration,total_population,3.2,28,,15–19
+14.08.06,3,Dayun,age_group,20-24,perempuan,1459,jiwa,2025,registration,total_population,3.2,28,,20–24
+14.08.06,3,Dayun,age_group,20-24,,2945,jiwa,2025,registration,total_population,3.2,28,,20–24
+14.08.06,3,Dayun,age_group,25-29,perempuan,1511,jiwa,2025,registration,total_population,3.2,28,,25–29
+14.08.06,3,Dayun,age_group,25-29,,3003,jiwa,2025,registration,total_population,3.2,28,,25–29
+14.08.06,3,Dayun,age_group,30-34,perempuan,1320,jiwa,2025,registration,total_population,3.2,28,,30–34
+14.08.06,3,Dayun,age_group,30-34,,2708,jiwa,2025,registration,total_population,3.2,28,,30–34
+14.08.06,3,Dayun,age_group,35-39,perempuan,1413,jiwa,2025,registration,total_population,3.2,28,,35–39
+14.08.06,3,Dayun,age_group,35-39,,2728,jiwa,2025,registration,total_population,3.2,28,,35–39
+14.08.06,3,Dayun,age_group,40-44,perempuan,1277,jiwa,2025,registration,total_population,3.2,28,,40–44
+14.08.06,3,Dayun,age_group,40-44,,2627,jiwa,2025,registration,total_population,3.2,28,,40–44
+14.08.06,3,Dayun,age_group,45-49,perempuan,1113,jiwa,2025,registration,total_population,3.2,28,,45–49
+14.08.06,3,Dayun,age_group,45-49,,2334,jiwa,2025,registration,total_population,3.2,28,,45–49
+14.08.06,3,Dayun,age_group,50-54,perempuan,936,jiwa,2025,registration,total_population,3.2,28,,50–54
+14.08.06,3,Dayun,age_group,50-54,,1901,jiwa,2025,registration,total_population,3.2,28,,50–54
+14.08.06,3,Dayun,age_group,55-59,perempuan,923,jiwa,2025,registration,total_population,3.2,28,,55–59
+14.08.06,3,Dayun,age_group,55-59,,1749,jiwa,2025,registration,total_population,3.2,28,,55–59
+14.08.06,3,Dayun,age_group,60-64,perempuan,602,jiwa,2025,registration,total_population,3.2,28,,60–64
+14.08.06,3,Dayun,age_group,60-64,,1342,jiwa,2025,registration,total_population,3.2,28,,60–64
+14.08.06,3,Dayun,age_group,65-69,perempuan,389,jiwa,2025,registration,total_population,3.2,28,,65–69
+14.08.06,3,Dayun,age_group,65-69,,841,jiwa,2025,registration,total_population,3.2,28,,65–69
+14.08.06,3,Dayun,age_group,70-74,perempuan,187,jiwa,2025,registration,total_population,3.2,28,,70–74
+14.08.06,3,Dayun,age_group,70-74,,440,jiwa,2025,registration,total_population,3.2,28,,70–74
+14.08.06,3,Dayun,age_group,75+,perempuan,139,jiwa,2025,registration,total_population,3.2,28,,75+
+14.08.06,3,Dayun,age_group,75+,,316,jiwa,2025,registration,total_population,3.2,28,,75+

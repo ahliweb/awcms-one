@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.02.06.2006,4,Desa Durian Mas,sex,laki_laki,,1186,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.06.2006,4,Desa Durian Mas,sex,perempuan,,1136,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.06.2006,4,Desa Durian Mas,total,total,,2322,jiwa,2025,registration,total_population,3.1,22,,
+17.02.06.2005,4,Desa Lubuk Mumpo,sex,laki_laki,,978,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.06.2005,4,Desa Lubuk Mumpo,sex,perempuan,,871,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.06.2005,4,Desa Lubuk Mumpo,total,total,,1849,jiwa,2025,registration,total_population,3.1,22,,
+17.02.06.1016,4,Kelurahan Dusun Baru,sex,laki_laki,,410,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.06.1016,4,Kelurahan Dusun Baru,sex,perempuan,,429,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.06.1016,4,Kelurahan Dusun Baru,total,total,,839,jiwa,2025,registration,total_population,3.1,22,,
+17.02.06.1015,4,Kelurahan Bedeng SS,sex,laki_laki,,551,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.06.1015,4,Kelurahan Bedeng SS,sex,perempuan,,486,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.06.1015,4,Kelurahan Bedeng SS,total,total,,1037,jiwa,2025,registration,total_population,3.1,22,,
+17.02.06.2003,4,Desa Suka Rami,sex,laki_laki,,527,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.06.2003,4,Desa Suka Rami,sex,perempuan,,510,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.06.2003,4,Desa Suka Rami,total,total,,1037,jiwa,2025,registration,total_population,3.1,22,,
+17.02.06.2002,4,Desa Taba Anyar,sex,laki_laki,,475,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.06.2002,4,Desa Taba Anyar,sex,perempuan,,438,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.06.2002,4,Desa Taba Anyar,total,total,,913,jiwa,2025,registration,total_population,3.1,22,,
+17.02.06.2001,4,Desa Derati,sex,laki_laki,,624,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.06.2001,4,Desa Derati,sex,perempuan,,591,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.06.2001,4,Desa Derati,total,total,,1215,jiwa,2025,registration,total_population,3.1,22,,
+17.02.06.2020,4,Desa Tanjung gelang,sex,laki_laki,,445,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.06.2020,4,Desa Tanjung gelang,sex,perempuan,,422,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.06.2020,4,Desa Tanjung gelang,total,total,,867,jiwa,2025,registration,total_population,3.1,22,,
+17.02.06,3,Kota Padang,sex,laki_laki,,6598,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.06,3,Kota Padang,sex,perempuan,,6232,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.06,3,Kota Padang,total,total,,12830,jiwa,2025,registration,total_population,3.1,22,,
