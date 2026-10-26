@@ -61,8 +61,8 @@ export function parseFrontMatter(text: string): FrontMatter {
   const cat = /Katalog\/Catalogue:\s*(\d[\d.]*\d)/.exec(flat);
   const pub = /Nomor Publikasi\/Publication Number:\s*(\d[\d.]*\d)/.exec(flat);
   const issn = /ISSN:?\s*(\d{4}-\d{3}[\dX])/.exec(flat);
-  const publisher = /Penerbit\/Publisher:?\s*©\s*(BPS[^/]*?)\s*\//.exec(flat);
-  const terms = /(Dilarang mereproduksi.*?)(?=\s+It is prohibited|\s+It's prohibited|$)/.exec(flat);
+  const publisher = /(?:Penerbit\/Publisher|Diterbitkan oleh\/Published by):?\s*©\s*(BPS[^/]*?)\s*\//.exec(flat);
+  const terms = /(Dilarang (?:mereproduksi|mengumumkan).*?)(?=\s+It is prohibited|\s+It's prohibited|\s+Prohibited to|$)/.exec(flat);
   const running = /([A-Z][A-Z ]+?) DALAM ANGKA (20\d{2})/.exec(flat);
   return {
     catalogueNumber: cat?.[1] ?? null,

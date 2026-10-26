@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.01.05.2006,4,Manduamas Lama,sex,laki_laki,,1165,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05.2006,4,Manduamas Lama,sex,perempuan,,1298,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05.2006,4,Manduamas Lama,total,total,,2463,jiwa,2025,registration,total_population,3.1,39,,
+12.01.05.1001,4,P.O Manduamas,sex,laki_laki,,1503,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05.1001,4,P.O Manduamas,sex,perempuan,,1555,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05.1001,4,P.O Manduamas,total,total,,3058,jiwa,2025,registration,total_population,3.1,39,,
+12.01.05.1003,4,Binjohara,sex,laki_laki,,703,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05.1003,4,Binjohara,sex,perempuan,,645,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05.1003,4,Binjohara,total,total,,1348,jiwa,2025,registration,total_population,3.1,39,,
+12.01.05.2004,4,Pagaran Nauli,sex,laki_laki,,409,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05.2004,4,Pagaran Nauli,sex,perempuan,,406,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05.2004,4,Pagaran Nauli,total,total,,815,jiwa,2025,registration,total_population,3.1,39,,
+12.01.05.2005,4,Sarma Nauli,sex,laki_laki,,589,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05.2005,4,Sarma Nauli,sex,perempuan,,542,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05.2005,4,Sarma Nauli,total,total,,1131,jiwa,2025,registration,total_population,3.1,39,,
+12.01.05.2002,4,Saragih,sex,laki_laki,,591,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05.2002,4,Saragih,sex,perempuan,,548,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05.2002,4,Saragih,total,total,,1139,jiwa,2025,registration,total_population,3.1,39,,
+12.01.05.2007,4,Tumba,sex,laki_laki,,632,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05.2007,4,Tumba,sex,perempuan,,622,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05.2007,4,Tumba,total,total,,1254,jiwa,2025,registration,total_population,3.1,39,,
+12.01.05.2008,4,Tumba Jae,sex,laki_laki,,940,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05.2008,4,Tumba Jae,sex,perempuan,,1019,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05.2008,4,Tumba Jae,total,total,,1959,jiwa,2025,registration,total_population,3.1,39,,
+12.01.05.2009,4,Lae Monong,sex,laki_laki,,883,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05.2009,4,Lae Monong,sex,perempuan,,868,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05.2009,4,Lae Monong,total,total,,1751,jiwa,2025,registration,total_population,3.1,39,,
+12.01.05.2015,4,Manduamas Baru,sex,laki_laki,,1035,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05.2015,4,Manduamas Baru,sex,perempuan,,985,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05.2015,4,Manduamas Baru,total,total,,2020,jiwa,2025,registration,total_population,3.1,39,,
+12.01.05.2011,4,Saragih Timur,sex,laki_laki,,788,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05.2011,4,Saragih Timur,sex,perempuan,,742,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05.2011,4,Saragih Timur,total,total,,1530,jiwa,2025,registration,total_population,3.1,39,,
+12.01.05.2010,4,Saragih Barat,sex,laki_laki,,233,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05.2010,4,Saragih Barat,sex,perempuan,,206,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05.2010,4,Saragih Barat,total,total,,439,jiwa,2025,registration,total_population,3.1,39,,
+12.01.05.2012,4,Binjohara Uruk,sex,laki_laki,,470,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05.2012,4,Binjohara Uruk,sex,perempuan,,443,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05.2012,4,Binjohara Uruk,total,total,,913,jiwa,2025,registration,total_population,3.1,39,,
+12.01.05.2013,4,Binjohara Baru,sex,laki_laki,,354,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05.2013,4,Binjohara Baru,sex,perempuan,,368,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05.2013,4,Binjohara Baru,total,total,,722,jiwa,2025,registration,total_population,3.1,39,,
+12.01.05.2019,4,Tambahan Nanjur,sex,laki_laki,,221,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05.2019,4,Tambahan Nanjur,sex,perempuan,,197,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05.2019,4,Tambahan Nanjur,total,total,,418,jiwa,2025,registration,total_population,3.1,39,,
+12.01.05.2018,4,Parsihotangan,sex,laki_laki,,298,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05.2018,4,Parsihotangan,sex,perempuan,,279,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05.2018,4,Parsihotangan,total,total,,577,jiwa,2025,registration,total_population,3.1,39,,
+12.01.05.2014,4,Tumba Nauli,sex,laki_laki,,297,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05.2014,4,Tumba Nauli,sex,perempuan,,287,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05.2014,4,Tumba Nauli,total,total,,584,jiwa,2025,registration,total_population,3.1,39,,
+12.01.05.1020,4,Perluasan,sex,laki_laki,,576,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05.1020,4,Perluasan,sex,perempuan,,582,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05.1020,4,Perluasan,total,total,,1158,jiwa,2025,registration,total_population,3.1,39,,
+12.01.05.2016,4,Muara Tapus,sex,laki_laki,,230,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05.2016,4,Muara Tapus,sex,perempuan,,232,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05.2016,4,Muara Tapus,total,total,,462,jiwa,2025,registration,total_population,3.1,39,,
+12.01.05.2017,4,Pagaran Baru,sex,laki_laki,,211,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05.2017,4,Pagaran Baru,sex,perempuan,,213,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05.2017,4,Pagaran Baru,total,total,,424,jiwa,2025,registration,total_population,3.1,39,,
+12.01.05,3,Manduamas,sex,laki_laki,,12128,jiwa,2025,registration,total_population,3.1,39,,Laki-Laki
+12.01.05,3,Manduamas,sex,perempuan,,12037,jiwa,2025,registration,total_population,3.1,39,,Perempuan
+12.01.05,3,Manduamas,total,total,,24165,jiwa,2025,registration,total_population,3.1,39,,

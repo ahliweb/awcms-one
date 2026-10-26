@@ -1,0 +1,115 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.18.08.2012,4,Rimbun,sex,laki_laki,,798,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.08.2012,4,Rimbun,sex,perempuan,,739,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.08.2012,4,Rimbun,total,total,,1537,jiwa,2025,registration,total_population,3.1,26,,
+12.18.08.2011,4,Mariah Nagur,sex,laki_laki,,761,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.08.2011,4,Mariah Nagur,sex,perempuan,,677,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.08.2011,4,Mariah Nagur,total,total,,1438,jiwa,2025,registration,total_population,3.1,26,,
+12.18.08.2009,4,Parlambean,sex,laki_laki,,254,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.08.2009,4,Parlambean,sex,perempuan,,237,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.08.2009,4,Parlambean,total,total,,491,jiwa,2025,registration,total_population,3.1,26,,
+12.18.08.2003,4,Bartong,sex,laki_laki,,571,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.08.2003,4,Bartong,sex,perempuan,,619,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.08.2003,4,Bartong,total,total,,1190,jiwa,2025,registration,total_population,3.1,26,,
+12.18.08.2010,4,Naga Raja,sex,laki_laki,,522,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.08.2010,4,Naga Raja,sex,perempuan,,512,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.08.2010,4,Naga Raja,total,total,,1034,jiwa,2025,registration,total_population,3.1,26,,
+12.18.08.2007,4,Tinokkah,sex,laki_laki,,1469,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.08.2007,4,Tinokkah,sex,perempuan,,1538,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.08.2007,4,Tinokkah,total,total,,3007,jiwa,2025,registration,total_population,3.1,26,,
+12.18.08.2008,4,Nagur Pane,sex,laki_laki,,497,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.08.2008,4,Nagur Pane,sex,perempuan,,465,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.08.2008,4,Nagur Pane,total,total,,962,jiwa,2025,registration,total_population,3.1,26,,
+12.18.08.2006,4,Baja Dolok,sex,laki_laki,,783,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.08.2006,4,Baja Dolok,sex,perempuan,,750,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.08.2006,4,Baja Dolok,total,total,,1533,jiwa,2025,registration,total_population,3.1,26,,
+12.18.08.2005,4,Pispis,sex,laki_laki,,523,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.08.2005,4,Pispis,sex,perempuan,,507,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.08.2005,4,Pispis,total,total,,1030,jiwa,2025,registration,total_population,3.1,26,,
+12.18.08.2004,4,Marubun,sex,laki_laki,,882,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.08.2004,4,Marubun,sex,perempuan,,870,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.08.2004,4,Marubun,total,total,,1752,jiwa,2025,registration,total_population,3.1,26,,
+12.18.08.2002,4,Serbananti,sex,laki_laki,,1003,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.08.2002,4,Serbananti,sex,perempuan,,1030,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.08.2002,4,Serbananti,total,total,,2033,jiwa,2025,registration,total_population,3.1,27,,
+12.18.08.2001,4,Sipispis,sex,laki_laki,,947,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.08.2001,4,Sipispis,sex,perempuan,,1006,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.08.2001,4,Sipispis,total,total,,1953,jiwa,2025,registration,total_population,3.1,27,,
+12.18.08.2014,4,Silau Padang,sex,laki_laki,,775,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.08.2014,4,Silau Padang,sex,perempuan,,797,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.08.2014,4,Silau Padang,total,total,,1572,jiwa,2025,registration,total_population,3.1,27,,
+12.18.08.2013,4,Marjanji,sex,laki_laki,,2473,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.08.2013,4,Marjanji,sex,perempuan,,2491,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.08.2013,4,Marjanji,total,total,,4964,jiwa,2025,registration,total_population,3.1,27,,
+12.18.08.2015,4,Buluh Duri,sex,laki_laki,,1589,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.08.2015,4,Buluh Duri,sex,perempuan,,1592,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.08.2015,4,Buluh Duri,total,total,,3181,jiwa,2025,registration,total_population,3.1,27,,
+12.18.08.2016,4,Gunung Monako,sex,laki_laki,,416,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.08.2016,4,Gunung Monako,sex,perempuan,,424,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.08.2016,4,Gunung Monako,total,total,,840,jiwa,2025,registration,total_population,3.1,27,,
+12.18.08.2017,4,Damak Urat,sex,laki_laki,,1492,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.08.2017,4,Damak Urat,sex,perempuan,,1554,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.08.2017,4,Damak Urat,total,total,,3046,jiwa,2025,registration,total_population,3.1,27,,
+12.18.08.2018,4,Simalas,sex,laki_laki,,1409,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.08.2018,4,Simalas,sex,perempuan,,1482,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.08.2018,4,Simalas,total,total,,2891,jiwa,2025,registration,total_population,3.1,27,,
+12.18.08.2020,4,Sibarau,sex,laki_laki,,205,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.08.2020,4,Sibarau,sex,perempuan,,209,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.08.2020,4,Sibarau,total,total,,414,jiwa,2025,registration,total_population,3.1,27,,
+12.18.08.2019,4,Gunung Pane,sex,laki_laki,,612,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.08.2019,4,Gunung Pane,sex,perempuan,,595,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.08.2019,4,Gunung Pane,total,total,,1207,jiwa,2025,registration,total_population,3.1,27,,
+12.18.08,3,Kecamatan Sipispis,sex,laki_laki,,17981,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.08,3,Kecamatan Sipispis,sex,perempuan,,18094,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.08,3,Kecamatan Sipispis,total,total,,36075,jiwa,2025,registration,total_population,3.1,27,,
+12.18.08,3,Sipispis,age_group,0-4,laki_laki,1053,jiwa,2025,registration,total_population,3.2,30,,0-4 tahun
+12.18.08,3,Sipispis,age_group,0-4,perempuan,1008,jiwa,2025,registration,total_population,3.2,30,,0-4 tahun
+12.18.08,3,Sipispis,age_group,0-4,,2061,jiwa,2025,registration,total_population,3.2,30,,0-4 tahun
+12.18.08,3,Sipispis,age_group,5-9,laki_laki,1650,jiwa,2025,registration,total_population,3.2,30,,5-9 tahun
+12.18.08,3,Sipispis,age_group,5-9,perempuan,1595,jiwa,2025,registration,total_population,3.2,30,,5-9 tahun
+12.18.08,3,Sipispis,age_group,5-9,,3245,jiwa,2025,registration,total_population,3.2,30,,5-9 tahun
+12.18.08,3,Sipispis,age_group,10-14,laki_laki,1864,jiwa,2025,registration,total_population,3.2,30,,10-14 tahun
+12.18.08,3,Sipispis,age_group,10-14,perempuan,1696,jiwa,2025,registration,total_population,3.2,30,,10-14 tahun
+12.18.08,3,Sipispis,age_group,10-14,,3560,jiwa,2025,registration,total_population,3.2,30,,10-14 tahun
+12.18.08,3,Sipispis,age_group,15-19,laki_laki,1653,jiwa,2025,registration,total_population,3.2,30,,15-19 tahun
+12.18.08,3,Sipispis,age_group,15-19,perempuan,1585,jiwa,2025,registration,total_population,3.2,30,,15-19 tahun
+12.18.08,3,Sipispis,age_group,15-19,,3238,jiwa,2025,registration,total_population,3.2,30,,15-19 tahun
+12.18.08,3,Sipispis,age_group,20-24,laki_laki,1453,jiwa,2025,registration,total_population,3.2,30,,20-24 tahun
+12.18.08,3,Sipispis,age_group,20-24,perempuan,1408,jiwa,2025,registration,total_population,3.2,30,,20-24 tahun
+12.18.08,3,Sipispis,age_group,20-24,,2861,jiwa,2025,registration,total_population,3.2,30,,20-24 tahun
+12.18.08,3,Sipispis,age_group,25-29,laki_laki,1436,jiwa,2025,registration,total_population,3.2,30,,25-29 tahun
+12.18.08,3,Sipispis,age_group,25-29,perempuan,1344,jiwa,2025,registration,total_population,3.2,30,,25-29 tahun
+12.18.08,3,Sipispis,age_group,25-29,,2780,jiwa,2025,registration,total_population,3.2,30,,25-29 tahun
+12.18.08,3,Sipispis,age_group,30-34,laki_laki,1203,jiwa,2025,registration,total_population,3.2,30,,30-34 tahun
+12.18.08,3,Sipispis,age_group,30-34,perempuan,1187,jiwa,2025,registration,total_population,3.2,30,,30-34 tahun
+12.18.08,3,Sipispis,age_group,30-34,,2390,jiwa,2025,registration,total_population,3.2,30,,30-34 tahun
+12.18.08,3,Sipispis,age_group,35-39,laki_laki,1329,jiwa,2025,registration,total_population,3.2,30,,35-39 tahun
+12.18.08,3,Sipispis,age_group,35-39,perempuan,1277,jiwa,2025,registration,total_population,3.2,30,,35-39 tahun
+12.18.08,3,Sipispis,age_group,35-39,,2606,jiwa,2025,registration,total_population,3.2,30,,35-39 tahun
+12.18.08,3,Sipispis,age_group,40-44,laki_laki,1363,jiwa,2025,registration,total_population,3.2,30,,40-44 tahun
+12.18.08,3,Sipispis,age_group,40-44,perempuan,1262,jiwa,2025,registration,total_population,3.2,30,,40-44 tahun
+12.18.08,3,Sipispis,age_group,40-44,,2625,jiwa,2025,registration,total_population,3.2,30,,40-44 tahun
+12.18.08,3,Sipispis,age_group,45-49,laki_laki,1166,jiwa,2025,registration,total_population,3.2,30,,45-49 tahun
+12.18.08,3,Sipispis,age_group,45-49,perempuan,1169,jiwa,2025,registration,total_population,3.2,30,,45-49 tahun
+12.18.08,3,Sipispis,age_group,45-49,,2335,jiwa,2025,registration,total_population,3.2,30,,45-49 tahun
+12.18.08,3,Sipispis,age_group,50-54,laki_laki,975,jiwa,2025,registration,total_population,3.2,30,,50-54 tahun
+12.18.08,3,Sipispis,age_group,50-54,perempuan,985,jiwa,2025,registration,total_population,3.2,30,,50-54 tahun
+12.18.08,3,Sipispis,age_group,50-54,,1960,jiwa,2025,registration,total_population,3.2,30,,50-54 tahun
+12.18.08,3,Sipispis,age_group,55-59,laki_laki,801,jiwa,2025,registration,total_population,3.2,30,,55-59 tahun
+12.18.08,3,Sipispis,age_group,55-59,perempuan,929,jiwa,2025,registration,total_population,3.2,30,,55-59 tahun
+12.18.08,3,Sipispis,age_group,55-59,,1730,jiwa,2025,registration,total_population,3.2,30,,55-59 tahun
+12.18.08,3,Sipispis,age_group,60-64,laki_laki,714,jiwa,2025,registration,total_population,3.2,30,,60-64 tahun
+12.18.08,3,Sipispis,age_group,60-64,perempuan,881,jiwa,2025,registration,total_population,3.2,30,,60-64 tahun
+12.18.08,3,Sipispis,age_group,60-64,,1595,jiwa,2025,registration,total_population,3.2,30,,60-64 tahun
+12.18.08,3,Sipispis,age_group,65-69,laki_laki,595,jiwa,2025,registration,total_population,3.2,30,,65-69 tahun
+12.18.08,3,Sipispis,age_group,65-69,perempuan,800,jiwa,2025,registration,total_population,3.2,30,,65-69 tahun
+12.18.08,3,Sipispis,age_group,65-69,,1395,jiwa,2025,registration,total_population,3.2,30,,65-69 tahun
+12.18.08,3,Sipispis,age_group,70-74,laki_laki,382,jiwa,2025,registration,total_population,3.2,30,,70-74 tahun
+12.18.08,3,Sipispis,age_group,70-74,perempuan,437,jiwa,2025,registration,total_population,3.2,30,,70-74 tahun
+12.18.08,3,Sipispis,age_group,70-74,,819,jiwa,2025,registration,total_population,3.2,30,,70-74 tahun
+12.18.08,3,Sipispis,age_group,75+,laki_laki,344,jiwa,2025,registration,total_population,3.2,30,,75 tahun ke atas
+12.18.08,3,Sipispis,age_group,75+,perempuan,531,jiwa,2025,registration,total_population,3.2,30,,75 tahun ke atas
+12.18.08,3,Sipispis,age_group,75+,,875,jiwa,2025,registration,total_population,3.2,30,,75 tahun ke atas
+12.18.08,3,Kecamatan Sipispis,sex,laki_laki,,17981,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+12.18.08,3,Kecamatan Sipispis,sex,perempuan,,18094,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+12.18.08,3,Kecamatan Sipispis,total,total,,36075,jiwa,2025,registration,total_population,3.2,30,,

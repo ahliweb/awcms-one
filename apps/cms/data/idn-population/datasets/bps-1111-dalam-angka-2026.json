@@ -1,0 +1,59 @@
+{
+  "datasetCode": "bps-1111-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "11.08",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Aceh Utara Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Utara",
+  "publisherDomain": "1111",
+  "publisherWebsite": "https://acehutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Utara (https://acehutarakab.bps.go.id), publikasi \"Kabupaten Aceh Utara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1111",
+  "publicationNumber": "11110.25001",
+  "issn": "2442-6547",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://acehutarakab.bps.go.id/id/publication/2026/02/27/66115453ee088d11ca6bc014/kabupaten-aceh-utara-dalam-angka-2026.html",
+  "sourceFileSha256": "c829b12896c86942c0942b63cead07b5a73bf3d5cfaacd656d443afbd26af345",
+  "sourceFileBytes": 3533360,
+  "sourcePages": [60, 66, 364],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Utara.",
+  "csvPath": "datasets/bps-1111-dalam-angka-2026.csv",
+  "csvSha256": "83e97cfc62c645fe6eac4055ada83116102a3438ad0dde4f70e6a66d00ec9287",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Aceh Utara, 2025",
+      "printedPages": [60],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Aceh Utara (jiwa) , 2025",
+      "printedPages": [66],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Aceh Utara (rupiah), 2023 dan 2024",
+      "printedPages": [364],
+      "referenceYears": [2023, 2024],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 4.3.1 (religion-by-region) could not be read reliably and is not included (basis not determinable)",
+    "table 3.1.1: row not stored: row \"Simpang Keramat\": unmatched "
+  ]
+}

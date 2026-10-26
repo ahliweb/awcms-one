@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.03.03.1098,4,Pasar Pargarutan,sex,laki_laki,,1544,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.03.1098,4,Pasar Pargarutan,sex,perempuan,,1576,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.03.1098,4,Pasar Pargarutan,total,total,,3120,jiwa,2025,registration,total_population,3.1,26,,
+12.03.03.1099,4,Batang Tura Sirumambe,sex,laki_laki,,1226,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.03.1099,4,Batang Tura Sirumambe,sex,perempuan,,1084,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.03.1099,4,Batang Tura Sirumambe,total,total,,2310,jiwa,2025,registration,total_population,3.1,26,,
+12.03.03.2003,4,Panompuan Jae,sex,laki_laki,,784,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.03.2003,4,Panompuan Jae,sex,perempuan,,766,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.03.2003,4,Panompuan Jae,total,total,,1550,jiwa,2025,registration,total_population,3.1,26,,
+12.03.03.2004,4,Pargarutan Tonga,sex,laki_laki,,332,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.03.2004,4,Pargarutan Tonga,sex,perempuan,,310,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.03.2004,4,Pargarutan Tonga,total,total,,642,jiwa,2025,registration,total_population,3.1,26,,
+12.03.03.2008,4,Huraba,sex,laki_laki,,1100,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.03.2008,4,Huraba,sex,perempuan,,1067,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.03.2008,4,Huraba,total,total,,2167,jiwa,2025,registration,total_population,3.1,26,,
+12.03.03.2012,4,Marisi,sex,laki_laki,,1139,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.03.2012,4,Marisi,sex,perempuan,,1087,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.03.2012,4,Marisi,total,total,,2226,jiwa,2025,registration,total_population,3.1,26,,
+12.03.03.2013,4,Pargarutan Julu,sex,laki_laki,,774,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.03.2013,4,Pargarutan Julu,sex,perempuan,,820,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.03.2013,4,Pargarutan Julu,total,total,,1594,jiwa,2025,registration,total_population,3.1,26,,
+12.03.03.2014,4,Huta Ginjang,sex,laki_laki,,777,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.03.2014,4,Huta Ginjang,sex,perempuan,,796,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.03.2014,4,Huta Ginjang,total,total,,1573,jiwa,2025,registration,total_population,3.1,26,,
+12.03.03.2069,4,Lantosan Rogas,sex,laki_laki,,134,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.03.2069,4,Lantosan Rogas,sex,perempuan,,139,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.03.2069,4,Lantosan Rogas,total,total,,273,jiwa,2025,registration,total_population,3.1,26,,
+12.03.03.2083,4,Pargarutan Jae,sex,laki_laki,,781,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.03.2083,4,Pargarutan Jae,sex,perempuan,,733,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.03.2083,4,Pargarutan Jae,total,total,,1514,jiwa,2025,registration,total_population,3.1,26,,
+12.03.03.2094,4,Panompuan,sex,laki_laki,,987,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.03.2094,4,Panompuan,sex,perempuan,,997,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.03.2094,4,Panompuan,total,total,,1984,jiwa,2025,registration,total_population,3.1,26,,
+12.03.03.2095,4,Pargarutan Dolok,sex,laki_laki,,781,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.03.2095,4,Pargarutan Dolok,sex,perempuan,,727,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.03.2095,4,Pargarutan Dolok,total,total,,1508,jiwa,2025,registration,total_population,3.1,26,,
+12.03.03.2096,4,Sanggapati,sex,laki_laki,,679,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.03.2096,4,Sanggapati,sex,perempuan,,708,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.03.2096,4,Sanggapati,total,total,,1387,jiwa,2025,registration,total_population,3.1,26,,
+12.03.03.2097,4,Pall XI,sex,laki_laki,,755,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.03.2097,4,Pall XI,sex,perempuan,,795,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.03.2097,4,Pall XI,total,total,,1550,jiwa,2025,registration,total_population,3.1,26,,
+12.03.03,3,Angkola Timur,sex,laki_laki,,12266,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.03,3,Angkola Timur,sex,perempuan,,12075,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.03,3,Angkola Timur,total,total,,24341,jiwa,2025,registration,total_population,3.1,26,,

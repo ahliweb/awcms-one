@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-1106-kecamatan-110413-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.04.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Celala Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "1106",
+  "publisherWebsite": "https://acehtengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://acehtengahkab.bps.go.id), publikasi \"Kecamatan Celala Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "110660.26006",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehtengahkab.bps.go.id/id/publication/2026/09/28/dcf81b83996fcb9b75f2b1f0/kecamatan-celala-dalam-angka-2026.html",
+  "sourceFileSha256": "cf94cd2ff5837562d673f78f9d23c404b0589ca7dd085766152aeec6cba71cfb",
+  "sourceFileBytes": 4085943,
+  "sourcePages": [18, 19],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Aceh Tengah",
+  "csvPath": "datasets/bps-1106-kecamatan-110413-dalam-angka-2026.csv",
+  "csvSha256": "b2d1e13ca28a07744665a67c74c54050c017a38d20eb12d58f938a0b136bbca2",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Celala, 2025",
+      "printedPages": [18, 19],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Blang Kekumur\": unmatched ",
+    "table 3.1: row not stored: row \"Blang Kekumur\": unmatched "
+  ]
+}

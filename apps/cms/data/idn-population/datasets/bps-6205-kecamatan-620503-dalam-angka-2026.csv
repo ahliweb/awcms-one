@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.05.03.2004,4,Muara Mea,sex,laki_laki,,201,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.03.2004,4,Muara Mea,sex,perempuan,,186,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.03.2004,4,Muara Mea,total,total,,387,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.03.2005,4,Lawarang,sex,laki_laki,,45,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.03.2005,4,Lawarang,sex,perempuan,,41,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.03.2005,4,Lawarang,total,total,,86,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.03.2007,4,Lampeong II,sex,laki_laki,,393,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.03.2007,4,Lampeong II,sex,perempuan,,338,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.03.2007,4,Lampeong II,total,total,,731,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.03.2006,4,Lampeong I,sex,laki_laki,,140,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.03.2006,4,Lampeong I,sex,perempuan,,137,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.03.2006,4,Lampeong I,total,total,,277,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.03.2009,4,Berong,sex,laki_laki,,117,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.03.2009,4,Berong,sex,perempuan,,100,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.03.2009,4,Berong,total,total,,217,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.03.2010,4,Baok,sex,laki_laki,,154,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.03.2010,4,Baok,sex,perempuan,,151,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.03.2010,4,Baok,total,total,,305,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.03.2008,4,Payang,sex,laki_laki,,162,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.03.2008,4,Payang,sex,perempuan,,148,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.03.2008,4,Payang,total,total,,310,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.03.2003,4,Linon Besi II,sex,laki_laki,,57,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.03.2003,4,Linon Besi II,sex,perempuan,,58,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.03.2003,4,Linon Besi II,total,total,,115,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.03.2001,4,Tanjung Harapan,sex,laki_laki,,42,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.03.2001,4,Tanjung Harapan,sex,perempuan,,31,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.03.2001,4,Tanjung Harapan,total,total,,73,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.03.2002,4,Linon Besi I,sex,laki_laki,,117,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.03.2002,4,Linon Besi I,sex,perempuan,,111,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.03.2002,4,Linon Besi I,total,total,,228,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.03.2011,4,Tambaba,sex,laki_laki,,136,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.03.2011,4,Tambaba,sex,perempuan,,135,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.03.2011,4,Tambaba,total,total,,271,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.03,3,Gunung Purei,sex,laki_laki,,1564,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.03,3,Gunung Purei,sex,perempuan,,1436,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan
+62.05.03,3,Gunung Purei,total,total,,3000,jiwa,2025,registration,total_population,unnumbered-p41,41,,
+62.05.03,3,Gunung Purei,age_group,0-4,laki_laki,93,jiwa,2025,registration,total_population,unnumbered-p43,43,,0–4
+62.05.03,3,Gunung Purei,age_group,0-4,perempuan,77,jiwa,2025,registration,total_population,unnumbered-p43,43,,0–4
+62.05.03,3,Gunung Purei,age_group,0-4,,170,jiwa,2025,registration,total_population,unnumbered-p43,43,,0–4
+62.05.03,3,Gunung Purei,age_group,5-9,laki_laki,113,jiwa,2025,registration,total_population,unnumbered-p43,43,,5–9
+62.05.03,3,Gunung Purei,age_group,5-9,perempuan,110,jiwa,2025,registration,total_population,unnumbered-p43,43,,5–9
+62.05.03,3,Gunung Purei,age_group,5-9,,223,jiwa,2025,registration,total_population,unnumbered-p43,43,,5–9
+62.05.03,3,Gunung Purei,age_group,10-14,laki_laki,141,jiwa,2025,registration,total_population,unnumbered-p43,43,,10–14
+62.05.03,3,Gunung Purei,age_group,10-14,perempuan,117,jiwa,2025,registration,total_population,unnumbered-p43,43,,10–14
+62.05.03,3,Gunung Purei,age_group,10-14,,258,jiwa,2025,registration,total_population,unnumbered-p43,43,,10–14
+62.05.03,3,Gunung Purei,age_group,15-19,laki_laki,116,jiwa,2025,registration,total_population,unnumbered-p43,43,,15–19
+62.05.03,3,Gunung Purei,age_group,15-19,perempuan,119,jiwa,2025,registration,total_population,unnumbered-p43,43,,15–19
+62.05.03,3,Gunung Purei,age_group,15-19,,235,jiwa,2025,registration,total_population,unnumbered-p43,43,,15–19
+62.05.03,3,Gunung Purei,age_group,20-24,laki_laki,130,jiwa,2025,registration,total_population,unnumbered-p43,43,,20–24
+62.05.03,3,Gunung Purei,age_group,20-24,perempuan,136,jiwa,2025,registration,total_population,unnumbered-p43,43,,20–24
+62.05.03,3,Gunung Purei,age_group,20-24,,266,jiwa,2025,registration,total_population,unnumbered-p43,43,,20–24
+62.05.03,3,Gunung Purei,age_group,25-29,laki_laki,118,jiwa,2025,registration,total_population,unnumbered-p43,43,,25–29
+62.05.03,3,Gunung Purei,age_group,25-29,perempuan,115,jiwa,2025,registration,total_population,unnumbered-p43,43,,25–29
+62.05.03,3,Gunung Purei,age_group,25-29,,233,jiwa,2025,registration,total_population,unnumbered-p43,43,,25–29
+62.05.03,3,Gunung Purei,age_group,30-34,laki_laki,83,jiwa,2025,registration,total_population,unnumbered-p43,43,,30–34
+62.05.03,3,Gunung Purei,age_group,30-34,perempuan,95,jiwa,2025,registration,total_population,unnumbered-p43,43,,30–34
+62.05.03,3,Gunung Purei,age_group,30-34,,178,jiwa,2025,registration,total_population,unnumbered-p43,43,,30–34
+62.05.03,3,Gunung Purei,age_group,35-39,laki_laki,106,jiwa,2025,registration,total_population,unnumbered-p43,43,,35–39
+62.05.03,3,Gunung Purei,age_group,35-39,perempuan,93,jiwa,2025,registration,total_population,unnumbered-p43,43,,35–39
+62.05.03,3,Gunung Purei,age_group,35-39,,199,jiwa,2025,registration,total_population,unnumbered-p43,43,,35–39
+62.05.03,3,Gunung Purei,age_group,40-44,laki_laki,132,jiwa,2025,registration,total_population,unnumbered-p43,43,,40–44
+62.05.03,3,Gunung Purei,age_group,40-44,perempuan,124,jiwa,2025,registration,total_population,unnumbered-p43,43,,40–44
+62.05.03,3,Gunung Purei,age_group,40-44,,256,jiwa,2025,registration,total_population,unnumbered-p43,43,,40–44
+62.05.03,3,Gunung Purei,age_group,45-49,laki_laki,137,jiwa,2025,registration,total_population,unnumbered-p43,43,,45–49
+62.05.03,3,Gunung Purei,age_group,45-49,perempuan,103,jiwa,2025,registration,total_population,unnumbered-p43,43,,45–49
+62.05.03,3,Gunung Purei,age_group,45-49,,240,jiwa,2025,registration,total_population,unnumbered-p43,43,,45–49
+62.05.03,3,Gunung Purei,age_group,50-54,laki_laki,104,jiwa,2025,registration,total_population,unnumbered-p43,43,,50–54
+62.05.03,3,Gunung Purei,age_group,50-54,perempuan,86,jiwa,2025,registration,total_population,unnumbered-p43,43,,50–54
+62.05.03,3,Gunung Purei,age_group,50-54,,190,jiwa,2025,registration,total_population,unnumbered-p43,43,,50–54
+62.05.03,3,Gunung Purei,age_group,55-59,laki_laki,95,jiwa,2025,registration,total_population,unnumbered-p43,43,,55–59
+62.05.03,3,Gunung Purei,age_group,55-59,perempuan,73,jiwa,2025,registration,total_population,unnumbered-p43,43,,55–59
+62.05.03,3,Gunung Purei,age_group,55-59,,168,jiwa,2025,registration,total_population,unnumbered-p43,43,,55–59
+62.05.03,3,Gunung Purei,age_group,60-64,laki_laki,83,jiwa,2025,registration,total_population,unnumbered-p43,43,,60–64
+62.05.03,3,Gunung Purei,age_group,60-64,perempuan,64,jiwa,2025,registration,total_population,unnumbered-p43,43,,60–64
+62.05.03,3,Gunung Purei,age_group,60-64,,147,jiwa,2025,registration,total_population,unnumbered-p43,43,,60–64
+62.05.03,3,Gunung Purei,age_group,65-69,laki_laki,48,jiwa,2025,registration,total_population,unnumbered-p43,43,,65–69
+62.05.03,3,Gunung Purei,age_group,65-69,perempuan,54,jiwa,2025,registration,total_population,unnumbered-p43,43,,65–69
+62.05.03,3,Gunung Purei,age_group,65-69,,102,jiwa,2025,registration,total_population,unnumbered-p43,43,,65–69
+62.05.03,3,Gunung Purei,age_group,70-74,laki_laki,28,jiwa,2025,registration,total_population,unnumbered-p43,43,,70–74
+62.05.03,3,Gunung Purei,age_group,70-74,perempuan,22,jiwa,2025,registration,total_population,unnumbered-p43,43,,70–74
+62.05.03,3,Gunung Purei,age_group,70-74,,50,jiwa,2025,registration,total_population,unnumbered-p43,43,,70–74
+62.05.03,3,Gunung Purei,age_group,75+,laki_laki,37,jiwa,2025,registration,total_population,unnumbered-p43,43,,75+
+62.05.03,3,Gunung Purei,age_group,75+,perempuan,48,jiwa,2025,registration,total_population,unnumbered-p43,43,,75+
+62.05.03,3,Gunung Purei,age_group,75+,,85,jiwa,2025,registration,total_population,unnumbered-p43,43,,75+
+62.05.03,3,Gunung Purei,sex,laki_laki,,1564,jiwa,2025,registration,total_population,unnumbered-p43,43,,Laki-laki
+62.05.03,3,Gunung Purei,sex,perempuan,,1436,jiwa,2025,registration,total_population,unnumbered-p43,43,,Perempuan
+62.05.03,3,Gunung Purei,total,total,,3000,jiwa,2025,registration,total_population,unnumbered-p43,43,,

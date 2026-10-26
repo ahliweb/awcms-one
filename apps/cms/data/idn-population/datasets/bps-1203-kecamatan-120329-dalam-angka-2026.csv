@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.03.29.1002,4,Hutaraja,sex,laki_laki,,1581,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.29.1002,4,Hutaraja,sex,perempuan,,1522,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.29.1002,4,Hutaraja,total,total,,3103,jiwa,2025,registration,total_population,3.1,26,,
+12.03.29.1008,4,Muara Manompas,sex,laki_laki,,1767,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.29.1008,4,Muara Manompas,sex,perempuan,,1743,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.29.1008,4,Muara Manompas,total,total,,3510,jiwa,2025,registration,total_population,3.1,26,,
+12.03.29.1009,4,Muara Ampolu,sex,laki_laki,,1798,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.29.1009,4,Muara Ampolu,sex,perempuan,,1668,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.29.1009,4,Muara Ampolu,total,total,,3466,jiwa,2025,registration,total_population,3.1,26,,
+12.03.29.2001,4,Bandar Hapinis,sex,laki_laki,,907,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.29.2001,4,Bandar Hapinis,sex,perempuan,,821,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.29.2001,4,Bandar Hapinis,total,total,,1728,jiwa,2025,registration,total_population,3.1,26,,
+12.03.29.2003,4,Pardamean,sex,laki_laki,,258,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.29.2003,4,Pardamean,sex,perempuan,,227,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.29.2003,4,Pardamean,total,total,,485,jiwa,2025,registration,total_population,3.1,26,,
+12.03.29.2004,4,Tarapung Raya,sex,laki_laki,,1060,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.29.2004,4,Tarapung Raya,sex,perempuan,,1043,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.29.2004,4,Tarapung Raya,total,total,,2103,jiwa,2025,registration,total_population,3.1,26,,
+12.03.29.2007,4,Muara Opu,sex,laki_laki,,728,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.29.2007,4,Muara Opu,sex,perempuan,,692,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.29.2007,4,Muara Opu,total,total,,1420,jiwa,2025,registration,total_population,3.1,26,,
+12.03.29.2010,4,Simarlelan,sex,laki_laki,,603,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.29.2010,4,Simarlelan,sex,perempuan,,565,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.29.2010,4,Simarlelan,total,total,,1168,jiwa,2025,registration,total_population,3.1,26,,
+12.03.29.2011,4,Muara Huta Raja,sex,laki_laki,,916,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.29.2011,4,Muara Huta Raja,sex,perempuan,,867,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.29.2011,4,Muara Huta Raja,total,total,,1783,jiwa,2025,registration,total_population,3.1,26,,
+12.03.29,3,Muara Batang Toru,sex,laki_laki,,9618,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.29,3,Muara Batang Toru,sex,perempuan,,9148,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.29,3,Muara Batang Toru,total,total,,18766,jiwa,2025,registration,total_population,3.1,26,,

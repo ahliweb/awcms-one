@@ -1,0 +1,27 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.13.02.2004,4,Bener,sex,perempuan,,433,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.02.2004,4,Bener,total,total,,862,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.02.2010,4,Rikit Dekat,sex,perempuan,,452,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.02.2010,4,Rikit Dekat,total,total,,943,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.02.2005,4,Ulun Tanoh,sex,perempuan,,329,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.02.2005,4,Ulun Tanoh,total,total,,667,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.02.2011,4,Rema,sex,perempuan,,627,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.02.2011,4,Rema,total,total,,1282,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.02.2002,4,Tampeng,sex,perempuan,,599,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.02.2002,4,Tampeng,total,total,,1187,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.02.2008,4,Beranang,sex,perempuan,,370,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.02.2008,4,Beranang,total,total,,766,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.02.2006,4,Kuta Ujung,sex,perempuan,,477,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.02.2006,4,Kuta Ujung,total,total,,999,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.02.2015,4,Cike,sex,perempuan,,192,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.02.2015,4,Cike,total,total,,369,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.02.2014,4,Rema Baru,sex,perempuan,,400,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.02.2014,4,Rema Baru,total,total,,825,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.02.2016,4,Kerukunan Kuta Panjang,sex,perempuan,,724,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.02.2016,4,Kerukunan Kuta Panjang,total,total,,1431,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.02.2020,4,Tampeng Musara,sex,perempuan,,391,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.02.2020,4,Tampeng Musara,total,total,,807,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.02.2021,4,Kong Paluh,sex,perempuan,,181,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.02.2021,4,Kong Paluh,total,total,,334,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.02,3,Kuta Panjang,sex,perempuan,,5175,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.02,3,Kuta Panjang,total,total,,10472,jiwa,2025,registration,total_population,unnumbered-p29,29,,

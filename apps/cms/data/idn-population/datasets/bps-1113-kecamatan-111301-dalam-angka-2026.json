@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1113-kecamatan-111301-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.13.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Blangkejeren Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Gayo Lues",
+  "publisherDomain": "1113",
+  "publisherWebsite": "https://gayolueskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Gayo Lues (https://gayolueskab.bps.go.id), publikasi \"Kecamatan Blangkejeren Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1113020",
+  "publicationNumber": "11130.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://gayolueskab.bps.go.id/id/publication/2026/09/28/b7951496368f82ab15c8cc59/kecamatan-blangkejeren-dalam-angka-2026.html",
+  "sourceFileSha256": "c574c29691c91d51b9e35a64bcce82b76c93742b571b01b0d2b698a1fc0815d1",
+  "sourceFileBytes": 11964599,
+  "sourcePages": [33, 37],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Gayo Lues.",
+  "csvPath": "datasets/bps-1113-kecamatan-111301-dalam-angka-2026.csv",
+  "csvSha256": "360ba08209b36be495e79426e252a4369c443d8fbec9cdfd114ce0054181bf64",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p33",
+      "title": "Pendu duk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Blangkejeren , 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "unnumbered-p37",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Blangkejeren , 2025",
+      "printedPages": [37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p33: row not stored: row \"Kute Sere\": unmatched ",
+    "table unnumbered-p37: row not stored: row \"Nama Kecamatan\": unmatched "
+  ]
+}

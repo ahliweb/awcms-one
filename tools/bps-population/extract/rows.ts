@@ -93,10 +93,10 @@ export function analysePage(page: Page): PageInfo | null {
   const markers: Marker[] = best.map((w, pos) => ({ pos, cx: cx(w) }));
   const markerY = Math.min(...best.map((w) => w.y0));
 
-  const tabelWords = page.words.filter((w) => /^(tabel|lanjutan)/i.test(w.text) && w.x0 < page.width * 0.45 && w.y1 <= markerY + 1);
+  const tabelWords = page.words.filter((w) => /^(tabel|tabe|tabl|lanjutan)/i.test(w.text) && w.x0 < page.width * 0.45 && w.y1 <= markerY + 1);
   const topY = tabelWords.length ? Math.min(...tabelWords.map((w) => w.y0)) - 2 : Number.NEGATIVE_INFINITY;
   const above = page.words.filter((w) => w.y1 <= markerY + 1 && w.y0 >= topY);
-  const labelWords = page.words.filter((w) => /^(tabel|table|tabel\/continued)$/i.test(w.text) && w.x0 < page.width * 0.6);
+  const labelWords = page.words.filter((w) => /^(tabel|table|tabe|tabl|tabel\/continued)$/i.test(w.text) && w.x0 < page.width * 0.6);
   const headLines = clusterLines(above, 3);
   const dropWord = /^(tabel|table|lanjutan|continued|tabel\/continued|lanjutan\/continued)$/i;
   let tableNumber: string | null = null;
@@ -112,6 +112,8 @@ export function analysePage(page: Page): PageInfo | null {
         continue;
       }
       if (dropWord.test(w.text)) continue;
+      // a narrow label column can wrap "Tabel"/"Table" into "Tabe"+"l" and "Tabl"+"e"
+      if (/^(tabe|tabl)$/i.test(w.text) || (/^[le]$/i.test(w.text) && w.x0 < page.width * 0.2)) continue;
       kept.push(w.text);
     }
     if (kept.length) parts.push(kept.join(" "));

@@ -1,0 +1,41 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.02.10.2007,4,Lawe Beringin Horas,sex,laki_laki,,292,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.10.2007,4,Lawe Beringin Horas,sex,perempuan,,288,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.10.2007,4,Lawe Beringin Horas,total,total,,580,jiwa,2025,registration,total_population,3.1,24,,
+11.02.10.2009,4,Suka Makmur,sex,laki_laki,,597,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.10.2009,4,Suka Makmur,sex,perempuan,,590,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.10.2009,4,Suka Makmur,total,total,,1187,jiwa,2025,registration,total_population,3.1,24,,
+11.02.10.2013,4,Ngkeran Alur Buluh,sex,laki_laki,,336,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.10.2013,4,Ngkeran Alur Buluh,sex,perempuan,,304,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.10.2013,4,Ngkeran Alur Buluh,total,total,,640,jiwa,2025,registration,total_population,3.1,24,,
+11.02.10.2001,4,Simpang Semadam,sex,laki_laki,,585,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.10.2001,4,Simpang Semadam,sex,perempuan,,590,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.10.2001,4,Simpang Semadam,total,total,,1175,jiwa,2025,registration,total_population,3.1,24,,
+11.02.10.2002,4,Semadam Awal,sex,laki_laki,,615,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.10.2002,4,Semadam Awal,sex,perempuan,,681,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.10.2002,4,Semadam Awal,total,total,,1296,jiwa,2025,registration,total_population,3.1,24,,
+11.02.10.2006,4,Kebun Sere,sex,laki_laki,,106,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.10.2006,4,Kebun Sere,sex,perempuan,,109,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.10.2006,4,Kebun Sere,total,total,,215,jiwa,2025,registration,total_population,3.1,24,,
+11.02.10.2003,4,Semadam Asal,sex,laki_laki,,465,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.10.2003,4,Semadam Asal,sex,perempuan,,464,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.10.2003,4,Semadam Asal,total,total,,929,jiwa,2025,registration,total_population,3.1,24,,
+11.02.10.2011,4,Titi Pasir,sex,laki_laki,,542,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.10.2011,4,Titi Pasir,sex,perempuan,,536,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.10.2011,4,Titi Pasir,total,total,,1078,jiwa,2025,registration,total_population,3.1,24,,
+11.02.10.2010,4,Pasar Puntung,sex,laki_laki,,400,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.10.2010,4,Pasar Puntung,sex,perempuan,,384,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.10.2010,4,Pasar Puntung,total,total,,784,jiwa,2025,registration,total_population,3.1,24,,
+11.02.10.2014,4,Kampung Baru,sex,laki_laki,,422,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.10.2014,4,Kampung Baru,sex,perempuan,,455,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.10.2014,4,Kampung Baru,total,total,,877,jiwa,2025,registration,total_population,3.1,24,,
+11.02.10.2016,4,Selamat Indah,sex,laki_laki,,221,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.10.2016,4,Selamat Indah,sex,perempuan,,221,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.10.2016,4,Selamat Indah,total,total,,442,jiwa,2025,registration,total_population,3.1,24,,
+11.02.10.2018,4,Lawe Mejile,sex,laki_laki,,414,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.10.2018,4,Lawe Mejile,sex,perempuan,,393,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.10.2018,4,Lawe Mejile,total,total,,807,jiwa,2025,registration,total_population,3.1,24,,
+11.02.10.2012,4,Lawe Petanduk I,sex,laki_laki,,270,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.10.2012,4,Lawe Petanduk I,sex,perempuan,,300,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.10.2012,4,Lawe Petanduk I,total,total,,570,jiwa,2025,registration,total_population,3.1,24,,
+11.02.10,3,Semadam,total,total,,13986,jiwa,2025,registration,total_population,3.1,24,,

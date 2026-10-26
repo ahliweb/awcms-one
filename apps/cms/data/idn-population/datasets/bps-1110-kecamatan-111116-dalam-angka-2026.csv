@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.11.16.2002,4,Blang Mane,sex,laki_laki,,386,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.11.16.2002,4,Blang Mane,sex,perempuan,,452,jiwa,2025,registration,total_population,3.1,11,,Perempuan/
+11.11.16.2002,4,Blang Mane,total,total,,838,jiwa,2025,registration,total_population,3.1,11,,
+11.11.16.2001,4,Darussalam,sex,laki_laki,,509,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.11.16.2001,4,Darussalam,sex,perempuan,,508,jiwa,2025,registration,total_population,3.1,11,,Perempuan/
+11.11.16.2001,4,Darussalam,total,total,,1017,jiwa,2025,registration,total_population,3.1,11,,
+11.11.16.2003,4,Tanjong Beuridi,sex,laki_laki,,1352,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.11.16.2003,4,Tanjong Beuridi,sex,perempuan,,1382,jiwa,2025,registration,total_population,3.1,11,,Perempuan/
+11.11.16.2003,4,Tanjong Beuridi,total,total,,2734,jiwa,2025,registration,total_population,3.1,11,,
+11.11.16.2004,4,Darul Aman,sex,laki_laki,,725,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.11.16.2004,4,Darul Aman,sex,perempuan,,770,jiwa,2025,registration,total_population,3.1,11,,Perempuan/
+11.11.16.2004,4,Darul Aman,total,total,,1495,jiwa,2025,registration,total_population,3.1,11,,
+11.11.16.2008,4,Paya Crot,sex,laki_laki,,135,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.11.16.2008,4,Paya Crot,sex,perempuan,,156,jiwa,2025,registration,total_population,3.1,11,,Perempuan/
+11.11.16.2008,4,Paya Crot,total,total,,291,jiwa,2025,registration,total_population,3.1,11,,
+11.11.16.2009,4,Pulo Panyang,sex,laki_laki,,417,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.11.16.2009,4,Pulo Panyang,sex,perempuan,,436,jiwa,2025,registration,total_population,3.1,11,,Perempuan/
+11.11.16.2009,4,Pulo Panyang,total,total,,853,jiwa,2025,registration,total_population,3.1,11,,
+11.11.16.2007,4,Ulee Jalan,sex,laki_laki,,426,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.11.16.2007,4,Ulee Jalan,sex,perempuan,,384,jiwa,2025,registration,total_population,3.1,11,,Perempuan/
+11.11.16.2007,4,Ulee Jalan,total,total,,810,jiwa,2025,registration,total_population,3.1,11,,
+11.11.16.2005,4,Geulanggang Labu,sex,laki_laki,,351,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.11.16.2005,4,Geulanggang Labu,sex,perempuan,,367,jiwa,2025,registration,total_population,3.1,11,,Perempuan/
+11.11.16.2005,4,Geulanggang Labu,total,total,,718,jiwa,2025,registration,total_population,3.1,11,,
+11.11.16.2006,4,Teupin Reudeup,sex,laki_laki,,316,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.11.16.2006,4,Teupin Reudeup,sex,perempuan,,277,jiwa,2025,registration,total_population,3.1,11,,Perempuan/
+11.11.16.2006,4,Teupin Reudeup,total,total,,593,jiwa,2025,registration,total_population,3.1,11,,
+11.11.16.2017,4,Krueng Beukah,sex,laki_laki,,150,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.11.16.2017,4,Krueng Beukah,sex,perempuan,,159,jiwa,2025,registration,total_population,3.1,11,,Perempuan/
+11.11.16.2017,4,Krueng Beukah,total,total,,309,jiwa,2025,registration,total_population,3.1,11,,
+11.11.16.2016,4,Blang Pala,sex,laki_laki,,115,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.11.16.2016,4,Blang Pala,sex,perempuan,,120,jiwa,2025,registration,total_population,3.1,11,,Perempuan/
+11.11.16.2016,4,Blang Pala,total,total,,235,jiwa,2025,registration,total_population,3.1,11,,
+11.11.16.2018,4,Ceubrek,sex,laki_laki,,181,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.11.16.2018,4,Ceubrek,sex,perempuan,,194,jiwa,2025,registration,total_population,3.1,11,,Perempuan/
+11.11.16.2018,4,Ceubrek,total,total,,375,jiwa,2025,registration,total_population,3.1,11,,
+11.11.16.2010,4,Me Rayeuk,sex,laki_laki,,334,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.11.16.2010,4,Me Rayeuk,sex,perempuan,,375,jiwa,2025,registration,total_population,3.1,11,,Perempuan/
+11.11.16.2010,4,Me Rayeuk,total,total,,709,jiwa,2025,registration,total_population,3.1,11,,
+11.11.16.2019,4,Uteun Raya,sex,laki_laki,,284,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+11.11.16.2019,4,Uteun Raya,sex,perempuan,,301,jiwa,2025,registration,total_population,3.1,11,,Perempuan/
+11.11.16.2019,4,Uteun Raya,total,total,,585,jiwa,2025,registration,total_population,3.1,11,,

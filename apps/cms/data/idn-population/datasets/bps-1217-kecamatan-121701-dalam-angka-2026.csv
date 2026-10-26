@@ -1,0 +1,118 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.17.01.2014,4,Tanjungan,sex,laki_laki,,385,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.2014,4,Tanjungan,sex,perempuan,,367,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.2014,4,Tanjungan,total,total,,752,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01.2013,4,Parbalohan,sex,laki_laki,,291,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.2013,4,Parbalohan,sex,perempuan,,288,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.2013,4,Parbalohan,total,total,,579,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01.2011,4,Pardomuan,sex,laki_laki,,261,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.2011,4,Pardomuan,sex,perempuan,,289,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.2011,4,Pardomuan,total,total,,550,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01.2012,4,Parmonangan,sex,laki_laki,,493,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.2012,4,Parmonangan,sex,perempuan,,466,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.2012,4,Parmonangan,total,total,,959,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01.2010,4,Huta Ginjang,sex,laki_laki,,790,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.2010,4,Huta Ginjang,sex,perempuan,,774,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.2010,4,Huta Ginjang,total,total,,1564,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01.2001,4,Tomok,sex,laki_laki,,1200,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.2001,4,Tomok,sex,perempuan,,1199,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.2001,4,Tomok,total,total,,2399,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01.2007,4,Garoga,sex,laki_laki,,747,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.2007,4,Garoga,sex,perempuan,,852,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.2007,4,Garoga,total,total,,1599,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01.2005,4,Ambarita,sex,laki_laki,,597,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.2005,4,Ambarita,sex,perempuan,,611,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.2005,4,Ambarita,total,total,,1208,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01.2006,4,Martoba,sex,laki_laki,,501,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.2006,4,Martoba,sex,perempuan,,542,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.2006,4,Martoba,total,total,,1043,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01.2002,4,Sihusapi,sex,laki_laki,,346,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.2002,4,Sihusapi,sex,perempuan,,362,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.2002,4,Sihusapi,total,total,,708,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01.2003,4,Maduma,sex,laki_laki,,441,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.2003,4,Maduma,sex,perempuan,,440,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.2003,4,Maduma,total,total,,881,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01.2008,4,Simanindo Sangkal,sex,laki_laki,,457,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.2008,4,Simanindo Sangkal,sex,perempuan,,458,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.2008,4,Simanindo Sangkal,total,total,,915,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01.2009,4,Cinta Dame,sex,laki_laki,,989,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.2009,4,Cinta Dame,sex,perempuan,,946,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.2009,4,Cinta Dame,total,total,,1935,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01.2015,4,Simarmata,sex,laki_laki,,619,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.2015,4,Simarmata,sex,perempuan,,598,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.2015,4,Simarmata,total,total,,1217,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01.2004,4,Dosroha,sex,laki_laki,,589,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.2004,4,Dosroha,sex,perempuan,,558,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.2004,4,Dosroha,total,total,,1147,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01.2017,4,Tomok Parsaoran,sex,laki_laki,,840,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.2017,4,Tomok Parsaoran,sex,perempuan,,918,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.2017,4,Tomok Parsaoran,total,total,,1758,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01.2020,4,Unjur,sex,laki_laki,,428,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.2020,4,Unjur,sex,perempuan,,459,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.2020,4,Unjur,total,total,,887,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01.2021,4,Siallagan Pinda Raya,sex,laki_laki,,447,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.2021,4,Siallagan Pinda Raya,sex,perempuan,,471,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.2021,4,Siallagan Pinda Raya,total,total,,918,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01.2018,4,Marlumba,sex,laki_laki,,422,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.2018,4,Marlumba,sex,perempuan,,411,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.2018,4,Marlumba,total,total,,833,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01.2019,4,Simanindo,sex,laki_laki,,484,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.2019,4,Simanindo,sex,perempuan,,477,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.2019,4,Simanindo,total,total,,961,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01.1016,4,Tuktuk Siadong,sex,laki_laki,,1322,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01.1016,4,Tuktuk Siadong,sex,perempuan,,1398,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01.1016,4,Tuktuk Siadong,total,total,,2720,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01,3,Kecamatan Simanindo,sex,laki_laki,,12649,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.17.01,3,Kecamatan Simanindo,sex,perempuan,,12884,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.17.01,3,Kecamatan Simanindo,total,total,,25533,jiwa,2025,registration,total_population,3.1,30,,
+12.17.01,3,Simanindo,age_group,0-4,laki_laki,708,jiwa,2025,registration,total_population,3.2,32,,0-4
+12.17.01,3,Simanindo,age_group,0-4,perempuan,617,jiwa,2025,registration,total_population,3.2,32,,0-4
+12.17.01,3,Simanindo,age_group,0-4,,1325,jiwa,2025,registration,total_population,3.2,32,,0-4
+12.17.01,3,Simanindo,age_group,5-9,laki_laki,1078,jiwa,2025,registration,total_population,3.2,32,,5-9
+12.17.01,3,Simanindo,age_group,5-9,perempuan,1040,jiwa,2025,registration,total_population,3.2,32,,5-9
+12.17.01,3,Simanindo,age_group,5-9,,2118,jiwa,2025,registration,total_population,3.2,32,,5-9
+12.17.01,3,Simanindo,age_group,10-14,laki_laki,1349,jiwa,2025,registration,total_population,3.2,32,,10-14
+12.17.01,3,Simanindo,age_group,10-14,perempuan,1207,jiwa,2025,registration,total_population,3.2,32,,10-14
+12.17.01,3,Simanindo,age_group,10-14,,2556,jiwa,2025,registration,total_population,3.2,32,,10-14
+12.17.01,3,Simanindo,age_group,15-19,laki_laki,1233,jiwa,2025,registration,total_population,3.2,32,,15-19
+12.17.01,3,Simanindo,age_group,15-19,perempuan,1189,jiwa,2025,registration,total_population,3.2,32,,15-19
+12.17.01,3,Simanindo,age_group,15-19,,2422,jiwa,2025,registration,total_population,3.2,32,,15-19
+12.17.01,3,Simanindo,age_group,20-24,laki_laki,1233,jiwa,2025,registration,total_population,3.2,32,,20-24
+12.17.01,3,Simanindo,age_group,20-24,perempuan,1204,jiwa,2025,registration,total_population,3.2,32,,20-24
+12.17.01,3,Simanindo,age_group,20-24,,2437,jiwa,2025,registration,total_population,3.2,32,,20-24
+12.17.01,3,Simanindo,age_group,25-29,laki_laki,1082,jiwa,2025,registration,total_population,3.2,32,,25-29
+12.17.01,3,Simanindo,age_group,25-29,perempuan,1007,jiwa,2025,registration,total_population,3.2,32,,25-29
+12.17.01,3,Simanindo,age_group,25-29,,2089,jiwa,2025,registration,total_population,3.2,32,,25-29
+12.17.01,3,Simanindo,age_group,30-34,laki_laki,919,jiwa,2025,registration,total_population,3.2,32,,30-34
+12.17.01,3,Simanindo,age_group,30-34,perempuan,906,jiwa,2025,registration,total_population,3.2,32,,30-34
+12.17.01,3,Simanindo,age_group,30-34,,1825,jiwa,2025,registration,total_population,3.2,32,,30-34
+12.17.01,3,Simanindo,age_group,35-39,laki_laki,930,jiwa,2025,registration,total_population,3.2,32,,35-39
+12.17.01,3,Simanindo,age_group,35-39,perempuan,802,jiwa,2025,registration,total_population,3.2,32,,35-39
+12.17.01,3,Simanindo,age_group,35-39,,1732,jiwa,2025,registration,total_population,3.2,32,,35-39
+12.17.01,3,Simanindo,age_group,40-44,laki_laki,892,jiwa,2025,registration,total_population,3.2,32,,40-44
+12.17.01,3,Simanindo,age_group,40-44,perempuan,864,jiwa,2025,registration,total_population,3.2,32,,40-44
+12.17.01,3,Simanindo,age_group,40-44,,1756,jiwa,2025,registration,total_population,3.2,32,,40-44
+12.17.01,3,Simanindo,age_group,45-49,laki_laki,808,jiwa,2025,registration,total_population,3.2,32,,45-49
+12.17.01,3,Simanindo,age_group,45-49,perempuan,787,jiwa,2025,registration,total_population,3.2,32,,45-49
+12.17.01,3,Simanindo,age_group,45-49,,1595,jiwa,2025,registration,total_population,3.2,32,,45-49
+12.17.01,3,Simanindo,age_group,50-54,laki_laki,667,jiwa,2025,registration,total_population,3.2,32,,50-54
+12.17.01,3,Simanindo,age_group,50-54,perempuan,623,jiwa,2025,registration,total_population,3.2,32,,50-54
+12.17.01,3,Simanindo,age_group,50-54,,1290,jiwa,2025,registration,total_population,3.2,32,,50-54
+12.17.01,3,Simanindo,age_group,55-59,laki_laki,555,jiwa,2025,registration,total_population,3.2,32,,55-59
+12.17.01,3,Simanindo,age_group,55-59,perempuan,631,jiwa,2025,registration,total_population,3.2,32,,55-59
+12.17.01,3,Simanindo,age_group,55-59,,1186,jiwa,2025,registration,total_population,3.2,32,,55-59
+12.17.01,3,Simanindo,age_group,60-64,laki_laki,407,jiwa,2025,registration,total_population,3.2,32,,60-64
+12.17.01,3,Simanindo,age_group,60-64,perempuan,513,jiwa,2025,registration,total_population,3.2,32,,60-64
+12.17.01,3,Simanindo,age_group,60-64,,920,jiwa,2025,registration,total_population,3.2,32,,60-64
+12.17.01,3,Simanindo,age_group,65-69,laki_laki,344,jiwa,2025,registration,total_population,3.2,32,,65-69
+12.17.01,3,Simanindo,age_group,65-69,perempuan,498,jiwa,2025,registration,total_population,3.2,32,,65-69
+12.17.01,3,Simanindo,age_group,65-69,,842,jiwa,2025,registration,total_population,3.2,32,,65-69
+12.17.01,3,Simanindo,age_group,70-74,laki_laki,228,jiwa,2025,registration,total_population,3.2,32,,70-74
+12.17.01,3,Simanindo,age_group,70-74,perempuan,383,jiwa,2025,registration,total_population,3.2,32,,70-74
+12.17.01,3,Simanindo,age_group,70-74,,611,jiwa,2025,registration,total_population,3.2,32,,70-74
+12.17.01,3,Simanindo,age_group,75+,laki_laki,216,jiwa,2025,registration,total_population,3.2,32,,75+
+12.17.01,3,Simanindo,age_group,75+,perempuan,613,jiwa,2025,registration,total_population,3.2,32,,75+
+12.17.01,3,Simanindo,age_group,75+,,829,jiwa,2025,registration,total_population,3.2,32,,75+
+12.17.01,3,Kecamatan Simanindo,sex,laki_laki,,12649,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+12.17.01,3,Kecamatan Simanindo,sex,perempuan,,12884,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+12.17.01,3,Kecamatan Simanindo,total,total,,25533,jiwa,2025,registration,total_population,3.2,32,,

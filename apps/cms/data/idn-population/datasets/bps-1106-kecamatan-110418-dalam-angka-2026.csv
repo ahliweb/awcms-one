@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.04.18.2001,4,Atu Lintang,sex,laki_laki,,666,jiwa,2026,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.18.2001,4,Atu Lintang,sex,perempuan,,633,jiwa,2026,registration,total_population,3.1,19,,Perempuan/Female
+11.04.18.2001,4,Atu Lintang,total,total,,1299,jiwa,2026,registration,total_population,3.1,19,,
+11.04.18.2002,4,Merah Mege,sex,laki_laki,,495,jiwa,2026,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.18.2002,4,Merah Mege,sex,perempuan,,432,jiwa,2026,registration,total_population,3.1,19,,Perempuan/Female
+11.04.18.2002,4,Merah Mege,total,total,,927,jiwa,2026,registration,total_population,3.1,19,,
+11.04.18.2007,4,Tanoh Abu,sex,laki_laki,,272,jiwa,2026,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.18.2007,4,Tanoh Abu,sex,perempuan,,234,jiwa,2026,registration,total_population,3.1,19,,Perempuan/Female
+11.04.18.2007,4,Tanoh Abu,total,total,,506,jiwa,2026,registration,total_population,3.1,19,,
+11.04.18.2004,4,Merah Muyang,sex,laki_laki,,430,jiwa,2026,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.18.2004,4,Merah Muyang,sex,perempuan,,403,jiwa,2026,registration,total_population,3.1,19,,Perempuan/Female
+11.04.18.2004,4,Merah Muyang,total,total,,833,jiwa,2026,registration,total_population,3.1,19,,
+11.04.18.2003,4,Merah pupuk,sex,laki_laki,,305,jiwa,2026,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.18.2003,4,Merah pupuk,sex,perempuan,,295,jiwa,2026,registration,total_population,3.1,19,,Perempuan/Female
+11.04.18.2003,4,Merah pupuk,total,total,,600,jiwa,2026,registration,total_population,3.1,19,,
+11.04.18.2008,4,Bintang Kekelip,sex,laki_laki,,163,jiwa,2026,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.18.2008,4,Bintang Kekelip,sex,perempuan,,162,jiwa,2026,registration,total_population,3.1,19,,Perempuan/Female
+11.04.18.2008,4,Bintang Kekelip,total,total,,325,jiwa,2026,registration,total_population,3.1,19,,
+11.04.18.2009,4,Merah Jernang,sex,laki_laki,,389,jiwa,2026,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.18.2009,4,Merah Jernang,sex,perempuan,,343,jiwa,2026,registration,total_population,3.1,19,,Perempuan/Female
+11.04.18.2009,4,Merah Jernang,total,total,,732,jiwa,2026,registration,total_population,3.1,19,,
+11.04.18.2006,4,Kepala Akal,sex,laki_laki,,224,jiwa,2026,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.18.2006,4,Kepala Akal,sex,perempuan,,217,jiwa,2026,registration,total_population,3.1,19,,Perempuan/Female
+11.04.18.2006,4,Kepala Akal,total,total,,441,jiwa,2026,registration,total_population,3.1,19,,
+11.04.18.2005,4,Gayo Murni,sex,laki_laki,,285,jiwa,2026,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.18.2005,4,Gayo Murni,sex,perempuan,,273,jiwa,2026,registration,total_population,3.1,19,,Perempuan/Female
+11.04.18.2005,4,Gayo Murni,total,total,,558,jiwa,2026,registration,total_population,3.1,19,,
+11.04.18.2011,4,Pantan Damar,sex,laki_laki,,323,jiwa,2026,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.18.2011,4,Pantan Damar,sex,perempuan,,322,jiwa,2026,registration,total_population,3.1,19,,Perempuan/Female
+11.04.18.2011,4,Pantan Damar,total,total,,645,jiwa,2026,registration,total_population,3.1,19,,
+11.04.18.2010,4,Damar Mulyo,sex,laki_laki,,531,jiwa,2026,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.18.2010,4,Damar Mulyo,sex,perempuan,,548,jiwa,2026,registration,total_population,3.1,19,,Perempuan/Female
+11.04.18.2010,4,Damar Mulyo,total,total,,1079,jiwa,2026,registration,total_population,3.1,19,,
+11.04.18,3,Kecamatan Atu Lintang,sex,laki_laki,,4083,jiwa,2026,registration,total_population,3.1,19,,Laki-Laki/Male
+11.04.18,3,Kecamatan Atu Lintang,sex,perempuan,,3862,jiwa,2026,registration,total_population,3.1,19,,Perempuan/Female
+11.04.18,3,Kecamatan Atu Lintang,total,total,,7945,jiwa,2026,registration,total_population,3.1,19,,

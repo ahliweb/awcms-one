@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.03.21.2023,4,Aek Badak Jae,sex,laki_laki,,1257,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.21.2023,4,Aek Badak Jae,sex,perempuan,,1260,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.21.2023,4,Aek Badak Jae,total,total,,2517,jiwa,2025,registration,total_population,3.1,26,,
+12.03.21.2024,4,Aek Badak Julu,sex,laki_laki,,903,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.21.2024,4,Aek Badak Julu,sex,perempuan,,895,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.21.2024,4,Aek Badak Julu,total,total,,1798,jiwa,2025,registration,total_population,3.1,26,,
+12.03.21.2018,4,Aek Libung,sex,laki_laki,,1075,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.21.2018,4,Aek Libung,sex,perempuan,,1116,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.21.2018,4,Aek Libung,total,total,,2191,jiwa,2025,registration,total_population,3.1,26,,
+12.03.21.2012,4,Bange,sex,laki_laki,,840,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.21.2012,4,Bange,sex,perempuan,,813,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.21.2012,4,Bange,total,total,,1653,jiwa,2025,registration,total_population,3.1,26,,
+12.03.21.2013,4,Bulu Gading,sex,laki_laki,,387,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.21.2013,4,Bulu Gading,sex,perempuan,,386,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.21.2013,4,Bulu Gading,total,total,,773,jiwa,2025,registration,total_population,3.1,26,,
+12.03.21.2026,4,Huta Pardomuan,sex,laki_laki,,994,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.21.2026,4,Huta Pardomuan,sex,perempuan,,1025,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.21.2026,4,Huta Pardomuan,total,total,,2019,jiwa,2025,registration,total_population,3.1,26,,
+12.03.21.2003,4,Janji Mauli Baringin,sex,laki_laki,,352,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.21.2003,4,Janji Mauli Baringin,sex,perempuan,,343,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.21.2003,4,Janji Mauli Baringin,total,total,,695,jiwa,2025,registration,total_population,3.1,26,,
+12.03.21.2059,4,Lumban Huayan,sex,laki_laki,,512,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.21.2059,4,Lumban Huayan,sex,perempuan,,525,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.21.2059,4,Lumban Huayan,total,total,,1037,jiwa,2025,registration,total_population,3.1,26,,
+12.03.21.2004,4,Mondang,sex,laki_laki,,313,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.21.2004,4,Mondang,sex,perempuan,,321,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.21.2004,4,Mondang,total,total,,634,jiwa,2025,registration,total_population,3.1,26,,
+12.03.21.1063,4,Sayur Matinggi*,sex,laki_laki,,2318,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.21.1063,4,Sayur Matinggi*,sex,perempuan,,2365,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.21.1063,4,Sayur Matinggi*,total,total,,4683,jiwa,2025,registration,total_population,3.1,26,,
+12.03.21.2005,4,Sialang,sex,laki_laki,,433,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.21.2005,4,Sialang,sex,perempuan,,424,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.21.2005,4,Sialang,total,total,,857,jiwa,2025,registration,total_population,3.1,26,,
+12.03.21.2057,4,Silaiya,sex,laki_laki,,747,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.21.2057,4,Silaiya,sex,perempuan,,750,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.21.2057,4,Silaiya,total,total,,1497,jiwa,2025,registration,total_population,3.1,26,,
+12.03.21.2062,4,Silaiya Tanjung Leuk,sex,laki_laki,,574,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.21.2062,4,Silaiya Tanjung Leuk,sex,perempuan,,582,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.21.2062,4,Silaiya Tanjung Leuk,total,total,,1156,jiwa,2025,registration,total_population,3.1,26,,
+12.03.21.2007,4,Sipange Godang,sex,laki_laki,,554,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.21.2007,4,Sipange Godang,sex,perempuan,,532,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.21.2007,4,Sipange Godang,total,total,,1086,jiwa,2025,registration,total_population,3.1,26,,
+12.03.21.2006,4,Sipange Julu,sex,laki_laki,,425,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.21.2006,4,Sipange Julu,sex,perempuan,,429,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.21.2006,4,Sipange Julu,total,total,,854,jiwa,2025,registration,total_population,3.1,26,,
+12.03.21.2056,4,Sipange Siunjam,sex,laki_laki,,613,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.21.2056,4,Sipange Siunjam,sex,perempuan,,595,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.21.2056,4,Sipange Siunjam,total,total,,1208,jiwa,2025,registration,total_population,3.1,26,,
+12.03.21.2058,4,Somanggal Parmonangan,sex,laki_laki,,361,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.21.2058,4,Somanggal Parmonangan,sex,perempuan,,376,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.21.2058,4,Somanggal Parmonangan,total,total,,737,jiwa,2025,registration,total_population,3.1,26,,
+12.03.21.2009,4,Tolang Jae,sex,laki_laki,,714,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.21.2009,4,Tolang Jae,sex,perempuan,,730,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.21.2009,4,Tolang Jae,total,total,,1444,jiwa,2025,registration,total_population,3.1,26,,
+12.03.21.2008,4,Tolang Julu,sex,laki_laki,,557,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.21.2008,4,Tolang Julu,sex,perempuan,,595,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.21.2008,4,Tolang Julu,total,total,,1152,jiwa,2025,registration,total_population,3.1,26,,
+12.03.21,3,Sayur Matinggi,sex,laki_laki,,13929,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.21,3,Sayur Matinggi,sex,perempuan,,14062,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.21,3,Sayur Matinggi,total,total,,27991,jiwa,2025,registration,total_population,3.1,26,,

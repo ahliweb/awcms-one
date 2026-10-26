@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1108-kecamatan-110608-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.06.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Peukan Bada Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Besar",
+  "publisherDomain": "1108",
+  "publisherWebsite": "https://acehbesarkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Besar (https://acehbesarkab.bps.go.id), publikasi \"Kecamatan Peukan Bada Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1108120",
+  "publicationNumber": "11080.26026",
+  "issn": "2407-5272",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehbesarkab.bps.go.id/id/publication/2026/09/28/571874e6baefeec2a07e2e91/kecamatan-peukan-bada-dalam-angka-2026.html",
+  "sourceFileSha256": "2e34e18a172266f8a146cb3bba0316c053da80255b067d43375bc8c9235fb255",
+  "sourceFileBytes": 4613884,
+  "sourcePages": [29, 30, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Besar.",
+  "csvPath": "datasets/bps-1108-kecamatan-110608-dalam-angka-2026.csv",
+  "csvSha256": "ac9183c1218c69e7941dbc38bbfa76f59cfa46e7552aa2d1dfa8472151acb261",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Peukan bada, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Peukan bada, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"> 75+\": unmatched ",
+    "table 3.2: the rows of region 11.06.08 are not stored: age_group (perempuan) vs sex value: parts sum 12327.0000 != 12510.0000 (diff 183.0000); the source itself is inconsistent"
+  ]
+}

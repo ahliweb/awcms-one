@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.75.04.2011,4,Pulo Belen,sex,laki_laki,,254,jiwa,2025,registration,total_population,1.3,36,,Laki-Laki/Male
+11.75.04.2011,4,Pulo Belen,sex,perempuan,,262,jiwa,2025,registration,total_population,1.3,36,,Perempuan/Female
+11.75.04.2011,4,Pulo Belen,total,total,,516,jiwa,2025,registration,total_population,1.3,36,,
+11.75.04.2010,4,Pulo Kedep,sex,laki_laki,,1083,jiwa,2025,registration,total_population,1.3,36,,Laki-Laki/Male
+11.75.04.2010,4,Pulo Kedep,sex,perempuan,,1067,jiwa,2025,registration,total_population,1.3,36,,Perempuan/Female
+11.75.04.2010,4,Pulo Kedep,total,total,,2150,jiwa,2025,registration,total_population,1.3,36,,
+11.75.04.2007,4,Suka Maju,sex,laki_laki,,955,jiwa,2025,registration,total_population,1.3,36,,Laki-Laki/Male
+11.75.04.2007,4,Suka Maju,sex,perempuan,,938,jiwa,2025,registration,total_population,1.3,36,,Perempuan/Female
+11.75.04.2007,4,Suka Maju,total,total,,1893,jiwa,2025,registration,total_population,1.3,36,,
+11.75.04.2008,4,Gunung Bakti,sex,laki_laki,,1171,jiwa,2025,registration,total_population,1.3,36,,Laki-Laki/Male
+11.75.04.2008,4,Gunung Bakti,sex,perempuan,,1123,jiwa,2025,registration,total_population,1.3,36,,Perempuan/Female
+11.75.04.2008,4,Gunung Bakti,total,total,,2294,jiwa,2025,registration,total_population,1.3,36,,
+11.75.04.2012,4,Singgersing,sex,laki_laki,,492,jiwa,2025,registration,total_population,1.3,36,,Laki-Laki/Male
+11.75.04.2012,4,Singgersing,sex,perempuan,,478,jiwa,2025,registration,total_population,1.3,36,,Perempuan/Female
+11.75.04.2012,4,Singgersing,total,total,,970,jiwa,2025,registration,total_population,1.3,36,,
+11.75.04.2013,4,Namo Buaya,sex,laki_laki,,578,jiwa,2025,registration,total_population,1.3,36,,Laki-Laki/Male
+11.75.04.2013,4,Namo Buaya,sex,perempuan,,534,jiwa,2025,registration,total_population,1.3,36,,Perempuan/Female
+11.75.04.2013,4,Namo Buaya,total,total,,1112,jiwa,2025,registration,total_population,1.3,36,,
+11.75.04.2016,4,Cipar Pari Timur,sex,laki_laki,,602,jiwa,2025,registration,total_population,1.3,36,,Laki-Laki/Male
+11.75.04.2016,4,Cipar Pari Timur,sex,perempuan,,636,jiwa,2025,registration,total_population,1.3,36,,Perempuan/Female
+11.75.04.2016,4,Cipar Pari Timur,total,total,,1238,jiwa,2025,registration,total_population,1.3,36,,
+11.75.04.2005,4,Lae Simolap,sex,laki_laki,,365,jiwa,2025,registration,total_population,1.3,36,,Laki-Laki/Male
+11.75.04.2005,4,Lae Simolap,sex,perempuan,,344,jiwa,2025,registration,total_population,1.3,36,,Perempuan/Female
+11.75.04.2005,4,Lae Simolap,total,total,,709,jiwa,2025,registration,total_population,1.3,36,,
+11.75.04.2018,4,Darul Makmur,sex,laki_laki,,229,jiwa,2025,registration,total_population,1.3,36,,Laki-Laki/Male
+11.75.04.2018,4,Darul Makmur,sex,perempuan,,199,jiwa,2025,registration,total_population,1.3,36,,Perempuan/Female
+11.75.04.2018,4,Darul Makmur,total,total,,428,jiwa,2025,registration,total_population,1.3,36,,
+11.75.04.2001,4,Pasir Belo,sex,laki_laki,,211,jiwa,2025,registration,total_population,1.3,36,,Laki-Laki/Male
+11.75.04.2001,4,Pasir Belo,sex,perempuan,,209,jiwa,2025,registration,total_population,1.3,36,,Perempuan/Female
+11.75.04.2001,4,Pasir Belo,total,total,,420,jiwa,2025,registration,total_population,1.3,36,,
+11.75.04.2002,4,Bawan,sex,laki_laki,,240,jiwa,2025,registration,total_population,1.3,36,,Laki-Laki/Male
+11.75.04.2002,4,Bawan,sex,perempuan,,213,jiwa,2025,registration,total_population,1.3,36,,Perempuan/Female
+11.75.04.2002,4,Bawan,total,total,,453,jiwa,2025,registration,total_population,1.3,36,,
+11.75.04.2003,4,Sigrun,sex,laki_laki,,573,jiwa,2025,registration,total_population,1.3,36,,Laki-Laki/Male
+11.75.04.2003,4,Sigrun,sex,perempuan,,587,jiwa,2025,registration,total_population,1.3,36,,Perempuan/Female
+11.75.04.2003,4,Sigrun,total,total,,1160,jiwa,2025,registration,total_population,1.3,36,,
+11.75.04.2006,4,Lae Langge,sex,laki_laki,,679,jiwa,2025,registration,total_population,1.3,36,,Laki-Laki/Male
+11.75.04.2006,4,Lae Langge,sex,perempuan,,626,jiwa,2025,registration,total_population,1.3,36,,Perempuan/Female
+11.75.04.2006,4,Lae Langge,total,total,,1305,jiwa,2025,registration,total_population,1.3,36,,
+11.75.04.2004,4,Jabi-Jabi,sex,laki_laki,,570,jiwa,2025,registration,total_population,1.3,36,,Laki-Laki/Male
+11.75.04.2004,4,Jabi-Jabi,sex,perempuan,,522,jiwa,2025,registration,total_population,1.3,36,,Perempuan/Female
+11.75.04.2004,4,Jabi-Jabi,total,total,,1092,jiwa,2025,registration,total_population,1.3,36,,
+11.75.04,3,Sultan Daulat,age_group,0-4,laki_laki,1239,jiwa,2025,registration,total_population,1.4,39,,0-4
+11.75.04,3,Sultan Daulat,age_group,0-4,perempuan,1131,jiwa,2025,registration,total_population,1.4,39,,0-4
+11.75.04,3,Sultan Daulat,age_group,0-4,,2370,jiwa,2025,registration,total_population,1.4,39,,0-4
+11.75.04,3,Sultan Daulat,age_group,5-9,laki_laki,1320,jiwa,2025,registration,total_population,1.4,39,,5-9
+11.75.04,3,Sultan Daulat,age_group,5-9,perempuan,1151,jiwa,2025,registration,total_population,1.4,39,,5-9
+11.75.04,3,Sultan Daulat,age_group,5-9,,2471,jiwa,2025,registration,total_population,1.4,39,,5-9
+11.75.04,3,Sultan Daulat,age_group,10-14,laki_laki,1134,jiwa,2025,registration,total_population,1.4,39,,10-14
+11.75.04,3,Sultan Daulat,age_group,10-14,perempuan,1067,jiwa,2025,registration,total_population,1.4,39,,10-14
+11.75.04,3,Sultan Daulat,age_group,10-14,,2201,jiwa,2025,registration,total_population,1.4,39,,10-14
+11.75.04,3,Sultan Daulat,age_group,15-19,laki_laki,924,jiwa,2025,registration,total_population,1.4,39,,15-19
+11.75.04,3,Sultan Daulat,age_group,15-19,perempuan,845,jiwa,2025,registration,total_population,1.4,39,,15-19
+11.75.04,3,Sultan Daulat,age_group,15-19,,1769,jiwa,2025,registration,total_population,1.4,39,,15-19
+11.75.04,3,Sultan Daulat,age_group,20-24,laki_laki,969,jiwa,2025,registration,total_population,1.4,39,,20-24
+11.75.04,3,Sultan Daulat,age_group,20-24,perempuan,894,jiwa,2025,registration,total_population,1.4,39,,20-24
+11.75.04,3,Sultan Daulat,age_group,20-24,,1863,jiwa,2025,registration,total_population,1.4,39,,20-24
+11.75.04,3,Sultan Daulat,age_group,25-29,laki_laki,1114,jiwa,2025,registration,total_population,1.4,39,,25-29
+11.75.04,3,Sultan Daulat,age_group,25-29,perempuan,1073,jiwa,2025,registration,total_population,1.4,39,,25-29
+11.75.04,3,Sultan Daulat,age_group,25-29,,2187,jiwa,2025,registration,total_population,1.4,39,,25-29
+11.75.04,3,Sultan Daulat,age_group,30-34,laki_laki,843,jiwa,2025,registration,total_population,1.4,39,,30-34
+11.75.04,3,Sultan Daulat,age_group,30-34,perempuan,777,jiwa,2025,registration,total_population,1.4,39,,30-34
+11.75.04,3,Sultan Daulat,age_group,30-34,,1620,jiwa,2025,registration,total_population,1.4,39,,30-34
+11.75.04,3,Sultan Daulat,age_group,35-39,laki_laki,705,jiwa,2025,registration,total_population,1.4,39,,35-39
+11.75.04,3,Sultan Daulat,age_group,35-39,perempuan,683,jiwa,2025,registration,total_population,1.4,39,,35-39
+11.75.04,3,Sultan Daulat,age_group,35-39,,1388,jiwa,2025,registration,total_population,1.4,39,,35-39
+11.75.04,3,Sultan Daulat,age_group,40-44,laki_laki,640,jiwa,2025,registration,total_population,1.4,39,,40-44
+11.75.04,3,Sultan Daulat,age_group,40-44,perempuan,645,jiwa,2025,registration,total_population,1.4,39,,40-44
+11.75.04,3,Sultan Daulat,age_group,40-44,,1285,jiwa,2025,registration,total_population,1.4,39,,40-44
+11.75.04,3,Sultan Daulat,age_group,45-49,laki_laki,520,jiwa,2025,registration,total_population,1.4,39,,45-49
+11.75.04,3,Sultan Daulat,age_group,45-49,perempuan,497,jiwa,2025,registration,total_population,1.4,39,,45-49
+11.75.04,3,Sultan Daulat,age_group,45-49,,1017,jiwa,2025,registration,total_population,1.4,39,,45-49
+11.75.04,3,Sultan Daulat,age_group,50-54,laki_laki,403,jiwa,2025,registration,total_population,1.4,39,,50-54
+11.75.04,3,Sultan Daulat,age_group,50-54,perempuan,420,jiwa,2025,registration,total_population,1.4,39,,50-54
+11.75.04,3,Sultan Daulat,age_group,50-54,,823,jiwa,2025,registration,total_population,1.4,39,,50-54
+11.75.04,3,Sultan Daulat,age_group,55-59,laki_laki,304,jiwa,2025,registration,total_population,1.4,39,,55-59
+11.75.04,3,Sultan Daulat,age_group,55-59,perempuan,314,jiwa,2025,registration,total_population,1.4,39,,55-59
+11.75.04,3,Sultan Daulat,age_group,55-59,,618,jiwa,2025,registration,total_population,1.4,39,,55-59
+11.75.04,3,Sultan Daulat,age_group,60-64,laki_laki,189,jiwa,2025,registration,total_population,1.4,39,,60-64
+11.75.04,3,Sultan Daulat,age_group,60-64,perempuan,261,jiwa,2025,registration,total_population,1.4,39,,60-64
+11.75.04,3,Sultan Daulat,age_group,60-64,,450,jiwa,2025,registration,total_population,1.4,39,,60-64
+11.75.04,3,Sultan Daulat,age_group,65-69,laki_laki,136,jiwa,2025,registration,total_population,1.4,39,,65-69
+11.75.04,3,Sultan Daulat,age_group,65-69,perempuan,163,jiwa,2025,registration,total_population,1.4,39,,65-69
+11.75.04,3,Sultan Daulat,age_group,65-69,,299,jiwa,2025,registration,total_population,1.4,39,,65-69
+11.75.04,3,Sultan Daulat,age_group,70-74,laki_laki,79,jiwa,2025,registration,total_population,1.4,39,,70-74
+11.75.04,3,Sultan Daulat,age_group,70-74,perempuan,77,jiwa,2025,registration,total_population,1.4,39,,70-74
+11.75.04,3,Sultan Daulat,age_group,70-74,,156,jiwa,2025,registration,total_population,1.4,39,,70-74
+11.75.04,3,Sultan Daulat,age_group,75+,laki_laki,80,jiwa,2025,registration,total_population,1.4,39,,75+
+11.75.04,3,Sultan Daulat,age_group,75+,perempuan,111,jiwa,2025,registration,total_population,1.4,39,,75+
+11.75.04,3,Sultan Daulat,age_group,75+,,191,jiwa,2025,registration,total_population,1.4,39,,75+
+11.75.04,3,Sultan Daulat,sex,laki_laki,,10599,jiwa,2025,registration,total_population,1.4,39,,Laki-Laki
+11.75.04,3,Sultan Daulat,sex,perempuan,,10109,jiwa,2025,registration,total_population,1.4,39,,Perempuan
+11.75.04,3,Sultan Daulat,total,total,,20708,jiwa,2025,registration,total_population,1.4,39,,

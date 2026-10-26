@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.10.14.2004,4,Kayu Menang,sex,laki_laki,,484,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.10.14.2004,4,Kayu Menang,sex,perempuan,,486,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.10.14.2004,4,Kayu Menang,total,total,,970,jiwa,2025,registration,total_population,3.1,33,,
+11.10.14.2002,4,Kuala Baru Sungai,sex,laki_laki,,425,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.10.14.2002,4,Kuala Baru Sungai,sex,perempuan,,398,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.10.14.2002,4,Kuala Baru Sungai,total,total,,823,jiwa,2025,registration,total_population,3.1,33,,
+11.10.14.2001,4,Kuala Baru Laut,sex,laki_laki,,363,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.10.14.2001,4,Kuala Baru Laut,sex,perempuan,,349,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.10.14.2001,4,Kuala Baru Laut,total,total,,712,jiwa,2025,registration,total_population,3.1,33,,
+11.10.14.2003,4,Suka Jaya,sex,laki_laki,,140,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.10.14.2003,4,Suka Jaya,sex,perempuan,,134,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.10.14.2003,4,Suka Jaya,total,total,,274,jiwa,2025,registration,total_population,3.1,33,,
+11.10.14,3,Kecamatan Kuala Baru,sex,laki_laki,,1412,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.10.14,3,Kecamatan Kuala Baru,sex,perempuan,,1367,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.10.14,3,Kecamatan Kuala Baru,total,total,,2779,jiwa,2025,registration,total_population,3.1,33,,

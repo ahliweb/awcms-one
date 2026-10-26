@@ -1,0 +1,56 @@
+{
+  "datasetCode": "bps-1101-kecamatan-110909-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.09.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Teupah Tengah Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Simeulue",
+  "publisherDomain": "1101",
+  "publisherWebsite": "https://simeuluekab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Simeulue (https://simeuluekab.bps.go.id), publikasi \"Kecamatan Teupah Tengah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "11010.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://simeuluekab.bps.go.id/id/publication/2026/09/28/4bf48e21e50d5480b29c019d/kecamatan-teupah-tengah-dalam-angka-2026.html",
+  "sourceFileSha256": "a2925b80b1d2edaedd7fe642bb7b6b65e951449565dc1f17c9a1f9bfad38fc00",
+  "sourceFileBytes": 8248587,
+  "sourcePages": [24, 25, 26],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Simeulue.",
+  "csvPath": "datasets/bps-1101-kecamatan-110909-dalam-angka-2026.csv",
+  "csvSha256": "13ed4bf466fdc3651607eb84467e7ed6a470495ca5f7e3765d49fe2d55e25f6b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Teupah Tengah, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Teupah Tengah, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: the rows of region 11.09.09.2005 are not stored: sex split vs total: parts sum 628.0000 != 611.0000 (diff 17.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 11.09.09.2004 are not stored: sex split vs total: parts sum 724.0000 != 725.0000 (diff 1.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 11.09.09.2008 are not stored: sex split vs total: parts sum 325.0000 != 308.0000 (diff 17.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 11.09.09.2009 are not stored: sex split vs total: parts sum 551.0000 != 557.0000 (diff 6.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 11.09.09.2007 are not stored: sex split vs total: parts sum 380.0000 != 384.0000 (diff 4.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 11.09.09.2006 are not stored: sex split vs total: parts sum 431.0000 != 421.0000 (diff 10.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 11.09.09.2003 are not stored: sex split vs total: parts sum 445.0000 != 467.0000 (diff 22.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 11.09.09.2002 are not stored: sex split vs total: parts sum 1009.0000 != 1007.0000 (diff 2.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 11.09.09.2001 are not stored: sex split vs total: parts sum 581.0000 != 576.0000 (diff 5.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 11.09.09.2010 are not stored: sex split vs total: parts sum 807.0000 != 812.0000 (diff 5.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 11.09.09.2011 are not stored: sex split vs total: parts sum 747.0000 != 727.0000 (diff 20.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 11.09.09.2012 are not stored: sex split vs total: parts sum 254.0000 != 249.0000 (diff 5.0000); the source itself is inconsistent"
+  ]
+}

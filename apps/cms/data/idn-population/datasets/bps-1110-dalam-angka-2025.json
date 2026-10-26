@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1110-dalam-angka-2025",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "11.11",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Bireuen Dalam Angka 2025",
+  "publisherName": "BPS Kabupaten Bireuen",
+  "publisherDomain": "1110",
+  "publisherWebsite": "https://bireuenkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bireuen (https://bireuenkab.bps.go.id), publikasi \"Kabupaten Bireuen Dalam Angka 2025\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1110",
+  "publicationNumber": "11100.25001",
+  "issn": "2442-8507",
+  "publicationYear": 2025,
+  "releaseDate": "2025-02-28",
+  "publicationUrl": "https://bireuenkab.bps.go.id/id/publication/2025/02/28/48455492d90b94b51c8a8459/kabupaten-bireuen-dalam-angka-2025.html",
+  "sourceFileSha256": "13ca1d7209d201e9cf56bd4849f6e1fe2177d501008faa140a4368fe11975363",
+  "sourceFileBytes": 4596921,
+  "sourcePages": [80],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bireuen.",
+  "csvPath": "datasets/bps-1110-dalam-angka-2025.csv",
+  "csvSha256": "fdca3b2eeb7b3263460d6b85e0b19f19e8acdcc18e6dcb3b7fbc99b182d7df23",
+  "tablesUsed": [
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Bireuen, 2024",
+      "printedPages": [80],
+      "referenceYears": [2024],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication",
+    "table 3.1.1 (total-by-region) could not be read reliably and is not included (population unit not stated in the heading)",
+    "table 4.3.1 (religion-by-region) could not be read reliably and is not included (basis not determinable)",
+    "table 3.1.2: row not stored: row \"Jumlah Total\": unmatched "
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-1207-kecamatan-121018-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.10.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Panai Tengah Dalam Angka 2026",
+  "publisherName": "BPS Labuhanbatu",
+  "publisherDomain": "1207",
+  "publisherWebsite": "https://labuhanbatukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Labuhanbatu (https://labuhanbatukab.bps.go.id), publikasi \"Kecamatan Panai Tengah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1207150",
+  "publicationNumber": "12070.26010",
+  "issn": "2807-5161",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://labuhanbatukab.bps.go.id/id/publication/2026/09/28/d07e43405731bf900cc83234/kecamatan-panai-tengah-dalam-angka-2026.html",
+  "sourceFileSha256": "9fb7a0ca194b73b4a6173d790165008255e27875d1b4bb213002d0459f461e32",
+  "sourceFileBytes": 9798149,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Labuhanbatu.",
+  "csvPath": "datasets/bps-1207-kecamatan-121018-dalam-angka-2026.csv",
+  "csvSha256": "669c00d5e0982d6f27707db1bd8aa44639f97dd0dbc3ac90720dd254a1bb5d84",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Panai Tengah, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Panai Tengah (jiwa), 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "cross-table disagreement, both stored as published: 12.10.18 sex/laki_laki/ 2025: 22523 (table 3.1) vs 22407 (table 3.2)",
+    "cross-table disagreement, both stored as published: 12.10.18 sex/perempuan/ 2025: 21301 (table 3.1) vs 21224 (table 3.2)",
+    "cross-table disagreement, both stored as published: 12.10.18 total/total/ 2025: 43824 (table 3.1) vs 43631 (table 3.2)"
+  ]
+}

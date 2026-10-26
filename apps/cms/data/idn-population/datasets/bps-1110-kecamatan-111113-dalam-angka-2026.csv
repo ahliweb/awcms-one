@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.11.13.2020,4,Cot Peutek,sex,laki_laki,,228,jiwa,2025,registration,total_population,1.2,4068,,Laki-Laki/Male
+11.11.13.2020,4,Cot Peutek,sex,perempuan,,204,jiwa,2025,registration,total_population,1.2,4068,,Perempuan/Fem
+11.11.13.2020,4,Cot Peutek,total,total,,432,jiwa,2025,registration,total_population,1.2,4068,,
+11.11.13.2019,4,Cot Jrat,sex,laki_laki,,232,jiwa,2025,registration,total_population,1.2,4068,,Laki-Laki/Male
+11.11.13.2019,4,Cot Jrat,sex,perempuan,,260,jiwa,2025,registration,total_population,1.2,4068,,Perempuan/Fem
+11.11.13.2019,4,Cot Jrat,total,total,,492,jiwa,2025,registration,total_population,1.2,4068,,
+11.11.13.2021,4,Uteun Reutoh,sex,laki_laki,,384,jiwa,2025,registration,total_population,1.2,4068,,Laki-Laki/Male
+11.11.13.2021,4,Uteun Reutoh,sex,perempuan,,384,jiwa,2025,registration,total_population,1.2,4068,,Perempuan/Fem
+11.11.13.2021,4,Uteun Reutoh,total,total,,768,jiwa,2025,registration,total_population,1.2,4068,,
+11.11.13.2018,4,Blang Reuling,sex,laki_laki,,349,jiwa,2025,registration,total_population,1.2,4068,,Laki-Laki/Male
+11.11.13.2018,4,Blang Reuling,sex,perempuan,,349,jiwa,2025,registration,total_population,1.2,4068,,Perempuan/Fem
+11.11.13.2018,4,Blang Reuling,total,total,,698,jiwa,2025,registration,total_population,1.2,4068,,
+11.11.13.2016,4,Blang Tingkeum,sex,laki_laki,,356,jiwa,2025,registration,total_population,1.2,4068,,Laki-Laki/Male
+11.11.13.2016,4,Blang Tingkeum,sex,perempuan,,340,jiwa,2025,registration,total_population,1.2,4068,,Perempuan/Fem
+11.11.13.2016,4,Blang Tingkeum,total,total,,696,jiwa,2025,registration,total_population,1.2,4068,,

@@ -1,0 +1,139 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.06.16.2026,4,Bak Sukon,sex,laki_laki,,390,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.06.16.2026,4,Bak Sukon,sex,perempuan,,380,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.06.16.2026,4,Bak Sukon,total,total,,770,jiwa,2025,registration,total_population,3.1,32,,
+11.06.16.2032,4,Siron Krueng,sex,laki_laki,,117,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.06.16.2032,4,Siron Krueng,sex,perempuan,,123,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.06.16.2032,4,Siron Krueng,total,total,,240,jiwa,2025,registration,total_population,3.1,32,,
+11.06.16.2031,4,Siron Blang,sex,laki_laki,,250,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.06.16.2031,4,Siron Blang,sex,perempuan,,244,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.06.16.2031,4,Siron Blang,total,total,,494,jiwa,2025,registration,total_population,3.1,32,,
+11.06.16.2012,4,Bueng Simek,sex,laki_laki,,333,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.06.16.2012,4,Bueng Simek,sex,perempuan,,295,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.06.16.2012,4,Bueng Simek,total,total,,628,jiwa,2025,registration,total_population,3.1,32,,
+11.06.16.2014,4,Bithak,sex,laki_laki,,229,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.06.16.2014,4,Bithak,sex,perempuan,,255,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.06.16.2014,4,Bithak,total,total,,484,jiwa,2025,registration,total_population,3.1,32,,
+11.06.16.2019,4,Tutui,sex,laki_laki,,229,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.06.16.2019,4,Tutui,sex,perempuan,,214,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.06.16.2019,4,Tutui,total,total,,443,jiwa,2025,registration,total_population,3.1,32,,
+11.06.16.2016,4,Pakuk,sex,laki_laki,,178,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.06.16.2016,4,Pakuk,sex,perempuan,,154,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.06.16.2016,4,Pakuk,total,total,,332,jiwa,2025,registration,total_population,3.1,32,,
+11.06.16.2020,4,Pasar Lampaku,sex,laki_laki,,100,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.06.16.2020,4,Pasar Lampaku,sex,perempuan,,95,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.06.16.2020,4,Pasar Lampaku,total,total,,195,jiwa,2025,registration,total_population,3.1,32,,
+11.06.16.2018,4,Sigapang,sex,laki_laki,,154,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.06.16.2018,4,Sigapang,sex,perempuan,,137,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.06.16.2018,4,Sigapang,total,total,,291,jiwa,2025,registration,total_population,3.1,32,,
+11.06.16.2028,4,Glee Jai,sex,laki_laki,,172,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.06.16.2028,4,Glee Jai,sex,perempuan,,189,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.06.16.2028,4,Glee Jai,total,total,,361,jiwa,2025,registration,total_population,3.1,32,,
+11.06.16.2001,4,Lampakuk,sex,laki_laki,,349,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.06.16.2001,4,Lampakuk,sex,perempuan,,413,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.06.16.2001,4,Lampakuk,total,total,,762,jiwa,2025,registration,total_population,3.1,32,,
+11.06.16.2013,4,Banda Safa,sex,laki_laki,,298,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.06.16.2013,4,Banda Safa,sex,perempuan,,279,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.06.16.2013,4,Banda Safa,total,total,,577,jiwa,2025,registration,total_population,3.1,32,,
+11.06.16.2010,4,Lamtui,sex,laki_laki,,268,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.06.16.2010,4,Lamtui,sex,perempuan,,255,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.06.16.2010,4,Lamtui,total,total,,523,jiwa,2025,registration,total_population,3.1,32,,
+11.06.16.2015,4,Lambeugak,sex,laki_laki,,379,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.06.16.2015,4,Lambeugak,sex,perempuan,,393,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.06.16.2015,4,Lambeugak,total,total,,772,jiwa,2025,registration,total_population,3.1,32,,
+11.06.16.2004,4,Lamleupung,sex,laki_laki,,435,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.06.16.2004,4,Lamleupung,sex,perempuan,,429,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.06.16.2004,4,Lamleupung,total,total,,864,jiwa,2025,registration,total_population,3.1,33,,
+11.06.16.2027,4,Cot Bayu,sex,laki_laki,,213,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.06.16.2027,4,Cot Bayu,sex,perempuan,,205,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.06.16.2027,4,Cot Bayu,total,total,,418,jiwa,2025,registration,total_population,3.1,33,,
+11.06.16.2023,4,Keumireu,sex,laki_laki,,211,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.06.16.2023,4,Keumireu,sex,perempuan,,205,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.06.16.2023,4,Keumireu,total,total,,416,jiwa,2025,registration,total_population,3.1,33,,
+11.06.16.2024,4,Lamleuot,sex,laki_laki,,102,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.06.16.2024,4,Lamleuot,sex,perempuan,,112,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.06.16.2024,4,Lamleuot,total,total,,214,jiwa,2025,registration,total_population,3.1,33,,
+11.06.16.2008,4,Ie Alang Mesjid,sex,laki_laki,,296,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.06.16.2008,4,Ie Alang Mesjid,sex,perempuan,,290,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.06.16.2008,4,Ie Alang Mesjid,total,total,,586,jiwa,2025,registration,total_population,3.1,33,,
+11.06.16.2009,4,Ie Alang Dayah,sex,laki_laki,,303,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.06.16.2009,4,Ie Alang Dayah,sex,perempuan,,312,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.06.16.2009,4,Ie Alang Dayah,total,total,,615,jiwa,2025,registration,total_population,3.1,33,,
+11.06.16.2007,4,Ie Alang Lamghui,sex,laki_laki,,194,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.06.16.2007,4,Ie Alang Lamghui,sex,perempuan,,224,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.06.16.2007,4,Ie Alang Lamghui,total,total,,418,jiwa,2025,registration,total_population,3.1,33,,
+11.06.16.2021,4,Maheng,sex,laki_laki,,382,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.06.16.2021,4,Maheng,sex,perempuan,,375,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.06.16.2021,4,Maheng,total,total,,757,jiwa,2025,registration,total_population,3.1,33,,
+11.06.16.2022,4,Leupung Bruek,sex,laki_laki,,129,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.06.16.2022,4,Leupung Bruek,sex,perempuan,,113,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.06.16.2022,4,Leupung Bruek,total,total,,242,jiwa,2025,registration,total_population,3.1,33,,
+11.06.16.2003,4,Lam Aling,sex,laki_laki,,379,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.06.16.2003,4,Lam Aling,sex,perempuan,,375,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.06.16.2003,4,Lam Aling,total,total,,754,jiwa,2025,registration,total_population,3.1,33,,
+11.06.16.2017,4,Lamsie,sex,laki_laki,,325,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.06.16.2017,4,Lamsie,sex,perempuan,,330,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.06.16.2017,4,Lamsie,total,total,,655,jiwa,2025,registration,total_population,3.1,33,,
+11.06.16.2002,4,Lampoh Raja,sex,laki_laki,,317,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.06.16.2002,4,Lampoh Raja,sex,perempuan,,316,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.06.16.2002,4,Lampoh Raja,total,total,,633,jiwa,2025,registration,total_population,3.1,33,,
+11.06.16.2011,4,Barih Lhok,sex,laki_laki,,138,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.06.16.2011,4,Barih Lhok,sex,perempuan,,154,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.06.16.2011,4,Barih Lhok,total,total,,292,jiwa,2025,registration,total_population,3.1,33,,
+11.06.16.2005,4,Lamkleng,sex,laki_laki,,168,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.06.16.2005,4,Lamkleng,sex,perempuan,,165,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.06.16.2005,4,Lamkleng,total,total,,333,jiwa,2025,registration,total_population,3.1,33,,
+11.06.16,3,Kuta Cot Glie,sex,laki_laki,,7862,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.06.16,3,Kuta Cot Glie,sex,perempuan,,7824,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.06.16,3,Kuta Cot Glie,total,total,,15686,jiwa,2025,registration,total_population,3.1,33,,
+11.06.16,3,Kuta Cot Glie,age_group,0-4,laki_laki,665,jiwa,2025,registration,total_population,3.2,36,,0–4
+11.06.16,3,Kuta Cot Glie,age_group,0-4,perempuan,638,jiwa,2025,registration,total_population,3.2,36,,0–4
+11.06.16,3,Kuta Cot Glie,age_group,0-4,,1303,jiwa,2025,registration,total_population,3.2,36,,0–4
+11.06.16,3,Kuta Cot Glie,age_group,5-9,laki_laki,824,jiwa,2025,registration,total_population,3.2,36,,5–9
+11.06.16,3,Kuta Cot Glie,age_group,5-9,perempuan,740,jiwa,2025,registration,total_population,3.2,36,,5–9
+11.06.16,3,Kuta Cot Glie,age_group,5-9,,1564,jiwa,2025,registration,total_population,3.2,36,,5–9
+11.06.16,3,Kuta Cot Glie,age_group,10-14,laki_laki,712,jiwa,2025,registration,total_population,3.2,36,,10–14
+11.06.16,3,Kuta Cot Glie,age_group,10-14,perempuan,686,jiwa,2025,registration,total_population,3.2,36,,10–14
+11.06.16,3,Kuta Cot Glie,age_group,10-14,,1398,jiwa,2025,registration,total_population,3.2,36,,10–14
+11.06.16,3,Kuta Cot Glie,age_group,15-19,laki_laki,665,jiwa,2025,registration,total_population,3.2,36,,15–19
+11.06.16,3,Kuta Cot Glie,age_group,15-19,perempuan,673,jiwa,2025,registration,total_population,3.2,36,,15–19
+11.06.16,3,Kuta Cot Glie,age_group,15-19,,1338,jiwa,2025,registration,total_population,3.2,36,,15–19
+11.06.16,3,Kuta Cot Glie,age_group,20-24,laki_laki,695,jiwa,2025,registration,total_population,3.2,36,,20–24
+11.06.16,3,Kuta Cot Glie,age_group,20-24,perempuan,649,jiwa,2025,registration,total_population,3.2,36,,20–24
+11.06.16,3,Kuta Cot Glie,age_group,20-24,,1344,jiwa,2025,registration,total_population,3.2,36,,20–24
+11.06.16,3,Kuta Cot Glie,age_group,25-29,laki_laki,618,jiwa,2025,registration,total_population,3.2,36,,25–29
+11.06.16,3,Kuta Cot Glie,age_group,25-29,perempuan,616,jiwa,2025,registration,total_population,3.2,36,,25–29
+11.06.16,3,Kuta Cot Glie,age_group,25-29,,1234,jiwa,2025,registration,total_population,3.2,36,,25–29
+11.06.16,3,Kuta Cot Glie,age_group,30-34,laki_laki,662,jiwa,2025,registration,total_population,3.2,36,,30–34
+11.06.16,3,Kuta Cot Glie,age_group,30-34,perempuan,613,jiwa,2025,registration,total_population,3.2,36,,30–34
+11.06.16,3,Kuta Cot Glie,age_group,30-34,,1275,jiwa,2025,registration,total_population,3.2,36,,30–34
+11.06.16,3,Kuta Cot Glie,age_group,35-39,laki_laki,614,jiwa,2025,registration,total_population,3.2,36,,35–39
+11.06.16,3,Kuta Cot Glie,age_group,35-39,perempuan,540,jiwa,2025,registration,total_population,3.2,36,,35–39
+11.06.16,3,Kuta Cot Glie,age_group,35-39,,1154,jiwa,2025,registration,total_population,3.2,36,,35–39
+11.06.16,3,Kuta Cot Glie,age_group,40-44,laki_laki,544,jiwa,2025,registration,total_population,3.2,36,,40–44
+11.06.16,3,Kuta Cot Glie,age_group,40-44,perempuan,522,jiwa,2025,registration,total_population,3.2,36,,40–44
+11.06.16,3,Kuta Cot Glie,age_group,40-44,,1066,jiwa,2025,registration,total_population,3.2,36,,40–44
+11.06.16,3,Kuta Cot Glie,age_group,45-49,laki_laki,476,jiwa,2025,registration,total_population,3.2,36,,45–49
+11.06.16,3,Kuta Cot Glie,age_group,45-49,perempuan,446,jiwa,2025,registration,total_population,3.2,36,,45–49
+11.06.16,3,Kuta Cot Glie,age_group,45-49,,922,jiwa,2025,registration,total_population,3.2,36,,45–49
+11.06.16,3,Kuta Cot Glie,age_group,50-54,laki_laki,391,jiwa,2025,registration,total_population,3.2,36,,50–54
+11.06.16,3,Kuta Cot Glie,age_group,50-54,perempuan,382,jiwa,2025,registration,total_population,3.2,36,,50–54
+11.06.16,3,Kuta Cot Glie,age_group,50-54,,773,jiwa,2025,registration,total_population,3.2,36,,50–54
+11.06.16,3,Kuta Cot Glie,age_group,55-59,laki_laki,324,jiwa,2025,registration,total_population,3.2,36,,55–59
+11.06.16,3,Kuta Cot Glie,age_group,55-59,perempuan,357,jiwa,2025,registration,total_population,3.2,36,,55–59
+11.06.16,3,Kuta Cot Glie,age_group,55-59,,681,jiwa,2025,registration,total_population,3.2,36,,55–59
+11.06.16,3,Kuta Cot Glie,age_group,60-64,laki_laki,235,jiwa,2025,registration,total_population,3.2,36,,60–64
+11.06.16,3,Kuta Cot Glie,age_group,60-64,perempuan,288,jiwa,2025,registration,total_population,3.2,36,,60–64
+11.06.16,3,Kuta Cot Glie,age_group,60-64,,523,jiwa,2025,registration,total_population,3.2,36,,60–64
+11.06.16,3,Kuta Cot Glie,age_group,65-69,laki_laki,187,jiwa,2025,registration,total_population,3.2,36,,65–69
+11.06.16,3,Kuta Cot Glie,age_group,65-69,perempuan,234,jiwa,2025,registration,total_population,3.2,36,,65–69
+11.06.16,3,Kuta Cot Glie,age_group,65-69,,421,jiwa,2025,registration,total_population,3.2,36,,65–69
+11.06.16,3,Kuta Cot Glie,age_group,70-74,laki_laki,105,jiwa,2025,registration,total_population,3.2,36,,70–74
+11.06.16,3,Kuta Cot Glie,age_group,70-74,perempuan,157,jiwa,2025,registration,total_population,3.2,36,,70–74
+11.06.16,3,Kuta Cot Glie,age_group,70-74,,262,jiwa,2025,registration,total_population,3.2,36,,70–74
+11.06.16,3,Kuta Cot Glie,age_group,75+,laki_laki,145,jiwa,2025,registration,total_population,3.2,36,,75+
+11.06.16,3,Kuta Cot Glie,age_group,75+,perempuan,283,jiwa,2025,registration,total_population,3.2,36,,75+
+11.06.16,3,Kuta Cot Glie,age_group,75+,,428,jiwa,2025,registration,total_population,3.2,36,,75+
+11.06.16,3,Kuta Cot Glie,sex,laki_laki,,7862,jiwa,2025,registration,total_population,3.2,36,,Laki-Laki
+11.06.16,3,Kuta Cot Glie,sex,perempuan,,7824,jiwa,2025,registration,total_population,3.2,36,,Perempuan
+11.06.16,3,Kuta Cot Glie,total,total,,15686,jiwa,2025,registration,total_population,3.2,36,,

@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.01.12.2010,4,Ladang Tengah,sex,laki_laki,,898,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki
+12.01.12.2010,4,Ladang Tengah,sex,perempuan,,882,jiwa,2025,registration,total_population,3.1,37,,Perempuan
+12.01.12.2010,4,Ladang Tengah,total,total,,1780,jiwa,2025,registration,total_population,3.1,37,,
+12.01.12.2009,4,Uratan,sex,laki_laki,,552,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki
+12.01.12.2009,4,Uratan,sex,perempuan,,583,jiwa,2025,registration,total_population,3.1,37,,Perempuan
+12.01.12.2009,4,Uratan,total,total,,1135,jiwa,2025,registration,total_population,3.1,37,,
+12.01.12.2011,4,Lobu Tua,sex,laki_laki,,1542,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki
+12.01.12.2011,4,Lobu Tua,sex,perempuan,,1560,jiwa,2025,registration,total_population,3.1,37,,Perempuan
+12.01.12.2011,4,Lobu Tua,total,total,,3102,jiwa,2025,registration,total_population,3.1,37,,
+12.01.12.2012,4,Bondar Sihudon II,sex,laki_laki,,743,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki
+12.01.12.2012,4,Bondar Sihudon II,sex,perempuan,,791,jiwa,2025,registration,total_population,3.1,37,,Perempuan
+12.01.12.2012,4,Bondar Sihudon II,total,total,,1534,jiwa,2025,registration,total_population,3.1,37,,
+12.01.12.2008,4,Bondar Sihudon I,sex,laki_laki,,689,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki
+12.01.12.2008,4,Bondar Sihudon I,sex,perempuan,,727,jiwa,2025,registration,total_population,3.1,37,,Perempuan
+12.01.12.2008,4,Bondar Sihudon I,total,total,,1416,jiwa,2025,registration,total_population,3.1,37,,
+12.01.12.1007,4,Rina Bolak,sex,laki_laki,,327,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki
+12.01.12.1007,4,Rina Bolak,sex,perempuan,,306,jiwa,2025,registration,total_population,3.1,37,,Perempuan
+12.01.12.1007,4,Rina Bolak,total,total,,633,jiwa,2025,registration,total_population,3.1,37,,
+12.01.12.2006,4,Sosor Gonting,sex,laki_laki,,366,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki
+12.01.12.2006,4,Sosor Gonting,sex,perempuan,,353,jiwa,2025,registration,total_population,3.1,37,,Perempuan
+12.01.12.2006,4,Sosor Gonting,total,total,,719,jiwa,2025,registration,total_population,3.1,37,,
+12.01.12.2004,4,Sirami Ramian,sex,laki_laki,,255,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki
+12.01.12.2004,4,Sirami Ramian,sex,perempuan,,264,jiwa,2025,registration,total_population,3.1,37,,Perempuan
+12.01.12.2004,4,Sirami Ramian,total,total,,519,jiwa,2025,registration,total_population,3.1,37,,
+12.01.12.2002,4,Pangaribuan,sex,laki_laki,,342,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki
+12.01.12.2002,4,Pangaribuan,sex,perempuan,,371,jiwa,2025,registration,total_population,3.1,37,,Perempuan
+12.01.12.2002,4,Pangaribuan,total,total,,713,jiwa,2025,registration,total_population,3.1,37,,
+12.01.12.2001,4,Sijungkang,sex,laki_laki,,1073,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki
+12.01.12.2001,4,Sijungkang,sex,perempuan,,1018,jiwa,2025,registration,total_population,3.1,37,,Perempuan
+12.01.12.2001,4,Sijungkang,total,total,,2091,jiwa,2025,registration,total_population,3.1,37,,
+12.01.12.2003,4,Sogar,sex,laki_laki,,305,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki
+12.01.12.2003,4,Sogar,sex,perempuan,,285,jiwa,2025,registration,total_population,3.1,37,,Perempuan
+12.01.12.2003,4,Sogar,total,total,,590,jiwa,2025,registration,total_population,3.1,37,,
+12.01.12.2005,4,Sigolang,sex,laki_laki,,406,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki
+12.01.12.2005,4,Sigolang,sex,perempuan,,384,jiwa,2025,registration,total_population,3.1,37,,Perempuan
+12.01.12.2005,4,Sigolang,total,total,,790,jiwa,2025,registration,total_population,3.1,37,,
+12.01.12.2013,4,Sitiris-tiris,sex,laki_laki,,962,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki
+12.01.12.2013,4,Sitiris-tiris,sex,perempuan,,926,jiwa,2025,registration,total_population,3.1,37,,Perempuan
+12.01.12.2013,4,Sitiris-tiris,total,total,,1888,jiwa,2025,registration,total_population,3.1,37,,
+12.01.12.2014,4,Sawah Lamo,sex,laki_laki,,266,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki
+12.01.12.2014,4,Sawah Lamo,sex,perempuan,,273,jiwa,2025,registration,total_population,3.1,37,,Perempuan
+12.01.12.2014,4,Sawah Lamo,total,total,,539,jiwa,2025,registration,total_population,3.1,37,,
+12.01.12,3,Andam Dewi,sex,laki_laki,,8726,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki
+12.01.12,3,Andam Dewi,sex,perempuan,,8723,jiwa,2025,registration,total_population,3.1,37,,Perempuan
+12.01.12,3,Andam Dewi,total,total,,17449,jiwa,2025,registration,total_population,3.1,37,,

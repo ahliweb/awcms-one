@@ -1,0 +1,60 @@
+{
+  "datasetCode": "bps-1111-kecamatan-110823-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.08.23",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lapang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Utara",
+  "publisherDomain": "1111",
+  "publisherWebsite": "https://acehutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Utara (https://acehutarakab.bps.go.id), publikasi \"Kecamatan Lapang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1111151",
+  "publicationNumber": "11110.26011",
+  "issn": "2528-5386",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehutarakab.bps.go.id/id/publication/2026/09/28/7b040a5ec82c4fa91e56d60b/kecamatan-lapang-dalam-angka-2026.html",
+  "sourceFileSha256": "147821a28497e3ffc90486b9523199d373008c7f1e3065bc09d7a8a882cebef5",
+  "sourceFileBytes": 3283348,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Utara.",
+  "csvPath": "datasets/bps-1111-kecamatan-110823-dalam-angka-2026.csv",
+  "csvSha256": "8fd79ca02fb6e539407ac5d5a5e4b7dee5b535fd393ba234db7e302f85615f2a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di KecamatanLapang, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lapang, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Keureutoau\": unmatched ",
+    "table 3.1: row not stored: row \"Tanjung Dama\": unmatched ",
+    "table 3.1: row not stored: row \"Kuala Cangkoi\": unmatched ",
+    "table 3.1: row not stored: row \"Kuala Kereutou\": unmatched ",
+    "table 3.1: row not stored: row \"Keureutoau 6,19%\": unmatched ",
+    "table 3.1: row not stored: row \"Lueng Baro 8,73%\": unmatched ",
+    "table 3.1: row not stored: row \"Merbo Lama 5,56%\": unmatched ",
+    "table 3.1: row not stored: row \"Merbo Jurong 5,93%\": unmatched ",
+    "table 3.1: row not stored: row \"Tanjung Dama 3,22%\": unmatched ",
+    "table 3.1: row not stored: row \"Geulanggang Baro 8,45%\": unmatched ",
+    "table 3.1: row not stored: row \"Matang Tunong 9,58%\": unmatched ",
+    "table 3.1: row not stored: row \"Matang Baroh 15,21%\": unmatched ",
+    "table 3.1: row not stored: row \"Keude Lapang 3,59%\": unmatched ",
+    "table 3.1: row not stored: row \"Kuala Cangkoi 23,89%\": unmatched ",
+    "table 3.1: row not stored: row \"Kuala Kereutou 9,63%\": unmatched ",
+    "table 3.1: row not stored: row \"Lapang 100,00%\": unmatched "
+  ]
+}

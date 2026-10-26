@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1224-kecamatan-122406-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.24.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Alasa Talu Muzoi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Nias Utara",
+  "publisherDomain": "1224",
+  "publisherWebsite": "https://niasutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Nias Utara (https://niasutarakab.bps.go.id), publikasi \"Kecamatan Alasa Talu Muzoi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1224030",
+  "publicationNumber": "12240.26008",
+  "issn": "2597-5366",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://niasutarakab.bps.go.id/id/publication/2026/09/28/7a4c0a5d072bc340615967b7/kecamatan-alasa-talu-muzoi-dalam-angka-2026.html",
+  "sourceFileSha256": "7e668ed8fbbe17d9a9372461cefbdfb389df7a78c80e2786ef444bf44e1c318e",
+  "sourceFileBytes": 5651863,
+  "sourcePages": [41, 42, 43],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Nias Utara.",
+  "csvPath": "datasets/bps-1224-kecamatan-122406-dalam-angka-2026.csv",
+  "csvSha256": "42896cd8c6b8e3fa1ef21fd4759c769d1ad0c9aedb2e801c58bda7514204fba0",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Alasa Talu Muzoi, 2025",
+      "printedPages": [41, 42],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Alasa Talu Muzoi, 2025",
+      "printedPages": [43],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "cross-table disagreement, both stored as published: 12.24.06 sex/perempuan/ 2025: 3595 (table 3.1) vs 3596 (table 3.2)",
+    "cross-table disagreement, both stored as published: 12.24.06 total/total/ 2025: 7248 (table 3.1) vs 7249 (table 3.2)"
+  ]
+}

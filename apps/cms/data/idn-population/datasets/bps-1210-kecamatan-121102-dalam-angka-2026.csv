@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.11.02.2006,4,Pegagan Julu V,sex,laki_laki,,1266,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.02.2006,4,Pegagan Julu V,sex,perempuan,,1314,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.11.02.2006,4,Pegagan Julu V,total,total,,2580,jiwa,2025,registration,total_population,3.1,24,,
+12.11.02.2008,4,Pegagan Julu IV,sex,laki_laki,,1266,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.02.2008,4,Pegagan Julu IV,sex,perempuan,,1287,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.11.02.2008,4,Pegagan Julu IV,total,total,,2553,jiwa,2025,registration,total_population,3.1,24,,
+12.11.02.2010,4,Pegagan Julu II,sex,laki_laki,,1440,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.02.2010,4,Pegagan Julu II,sex,perempuan,,1551,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.11.02.2010,4,Pegagan Julu II,total,total,,2991,jiwa,2025,registration,total_population,3.1,24,,
+12.11.02.2009,4,Pegagan Julu III,sex,laki_laki,,894,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.02.2009,4,Pegagan Julu III,sex,perempuan,,878,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.11.02.2009,4,Pegagan Julu III,total,total,,1772,jiwa,2025,registration,total_population,3.1,24,,
+12.11.02.2005,4,Pegagan Julu VI,sex,laki_laki,,1464,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.02.2005,4,Pegagan Julu VI,sex,perempuan,,1520,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.11.02.2005,4,Pegagan Julu VI,total,total,,2984,jiwa,2025,registration,total_population,3.1,24,,
+12.11.02.2004,4,Pegagan Julu VII,sex,laki_laki,,1876,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.02.2004,4,Pegagan Julu VII,sex,perempuan,,1899,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.11.02.2004,4,Pegagan Julu VII,total,total,,3775,jiwa,2025,registration,total_population,3.1,24,,
+12.11.02.2003,4,Pegagan Julu VIII,sex,laki_laki,,607,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.02.2003,4,Pegagan Julu VIII,sex,perempuan,,604,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.11.02.2003,4,Pegagan Julu VIII,total,total,,1211,jiwa,2025,registration,total_population,3.1,24,,
+12.11.02.2002,4,Pegagan Julu IX,sex,laki_laki,,1195,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.02.2002,4,Pegagan Julu IX,sex,perempuan,,1223,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.11.02.2002,4,Pegagan Julu IX,total,total,,2418,jiwa,2025,registration,total_population,3.1,24,,
+12.11.02.2001,4,Pegagan Julu X,sex,laki_laki,,884,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.02.2001,4,Pegagan Julu X,sex,perempuan,,810,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.11.02.2001,4,Pegagan Julu X,total,total,,1694,jiwa,2025,registration,total_population,3.1,24,,
+12.11.02.2014,4,Tanjung Beringin,sex,laki_laki,,1780,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.02.2014,4,Tanjung Beringin,sex,perempuan,,1785,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.11.02.2014,4,Tanjung Beringin,total,total,,3565,jiwa,2025,registration,total_population,3.1,24,,
+12.11.02.2015,4,Dolok Tolong,sex,laki_laki,,1054,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.02.2015,4,Dolok Tolong,sex,perempuan,,1018,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.11.02.2015,4,Dolok Tolong,total,total,,2072,jiwa,2025,registration,total_population,3.1,24,,
+12.11.02.2020,4,Kuta Gugung,sex,laki_laki,,1065,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.02.2020,4,Kuta Gugung,sex,perempuan,,1073,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.11.02.2020,4,Kuta Gugung,total,total,,2138,jiwa,2025,registration,total_population,3.1,24,,
+12.11.02.2017,4,Pargambiran,sex,laki_laki,,1332,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.02.2017,4,Pargambiran,sex,perempuan,,1331,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.11.02.2017,4,Pargambiran,total,total,,2663,jiwa,2025,registration,total_population,3.1,24,,
+12.11.02.2018,4,Perjuangan,sex,laki_laki,,1569,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.02.2018,4,Perjuangan,sex,perempuan,,1473,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.11.02.2018,4,Perjuangan,total,total,,3042,jiwa,2025,registration,total_population,3.1,24,,
+12.11.02.2024,4,Sileuh-Leuh Parsaoran,sex,laki_laki,,1267,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.02.2024,4,Sileuh-Leuh Parsaoran,sex,perempuan,,1230,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.11.02.2024,4,Sileuh-Leuh Parsaoran,total,total,,2497,jiwa,2025,registration,total_population,3.1,24,,
+12.11.02.2026,4,Pangguruan,sex,laki_laki,,1254,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.02.2026,4,Pangguruan,sex,perempuan,,1228,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.11.02.2026,4,Pangguruan,total,total,,2482,jiwa,2025,registration,total_population,3.1,24,,
+12.11.02.2027,4,Tanjung Beringin I,sex,laki_laki,,896,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.02.2027,4,Tanjung Beringin I,sex,perempuan,,861,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.11.02.2027,4,Tanjung Beringin I,total,total,,1757,jiwa,2025,registration,total_population,3.1,24,,
+12.11.02.2025,4,Barisan Nauli,sex,laki_laki,,603,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.02.2025,4,Barisan Nauli,sex,perempuan,,618,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.11.02.2025,4,Barisan Nauli,total,total,,1221,jiwa,2025,registration,total_population,3.1,24,,
+12.11.02.1007,4,Pegagan Julu I,sex,laki_laki,,3151,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.02.1007,4,Pegagan Julu I,sex,perempuan,,3112,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.11.02.1007,4,Pegagan Julu I,total,total,,6263,jiwa,2025,registration,total_population,3.1,24,,
+12.11.02,3,Sumbul,sex,laki_laki,,24863,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.02,3,Sumbul,sex,perempuan,,24815,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+12.11.02,3,Sumbul,total,total,,49678,jiwa,2025,registration,total_population,3.1,24,,

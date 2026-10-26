@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-1110-kecamatan-111103-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.11.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Peudada Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bireuen",
+  "publisherDomain": "1110",
+  "publisherWebsite": "https://bireuenkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bireuen (https://bireuenkab.bps.go.id), publikasi \"Kecamatan Peudada Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1110070",
+  "publicationNumber": "11100.25005",
+  "issn": "2597-744X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bireuenkab.bps.go.id/id/publication/2026/09/28/1c210d7452686208f53fb624/kecamatan-peudada-dalam-angka-2026.html",
+  "sourceFileSha256": "0c753074f379325c64fc46587f0d305b4c6ecd11e89f74884a503df2cdd374ef",
+  "sourceFileBytes": 2742823,
+  "sourcePages": [579],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bireuen.",
+  "csvPath": "datasets/bps-1110-kecamatan-111103-dalam-angka-2026.csv",
+  "csvSha256": "1d482f8b53d9932f01a850f7b428964dbcb8f0e506fd0b12d13391a9bcc285a8",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Peudada, 2024",
+      "printedPages": [579],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Paya Bunot\": unmatched ",
+    "table 3.1: the rows of region 11.11.03.2027 are not stored: sex split vs total: parts sum 410.0000 != 579.0000 (diff 169.0000); the source itself is inconsistent"
+  ]
+}

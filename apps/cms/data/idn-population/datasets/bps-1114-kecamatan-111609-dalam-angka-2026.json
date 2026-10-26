@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-1114-kecamatan-111609-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.16.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Banda Mulia Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Tamiang",
+  "publisherDomain": "1114",
+  "publisherWebsite": "https://acehtamiangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Tamiang (https://acehtamiangkab.bps.go.id), publikasi \"Kecamatan Banda Mulia Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1114080",
+  "publicationNumber": "11140.26014",
+  "issn": "2962-4916",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehtamiangkab.bps.go.id/id/publication/2026/09/28/d0b04f849942f44cf7b8f2e7/kecamatan-banda-mulia-dalam-angka-2026.html",
+  "sourceFileSha256": "cdff2269a2c5fd3b57ca8de3b8b2ec912c73c4f250050bdb9094d1f03075104e",
+  "sourceFileBytes": 3556748,
+  "sourcePages": [13, 14],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Tamiang",
+  "csvPath": "datasets/bps-1114-kecamatan-111609-dalam-angka-2026.csv",
+  "csvSha256": "83dbdac96f6f8619d342d6a810449084e89d51943129a5870997beac8cdfb972",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Banda Mulia, 2025",
+      "printedPages": [13, 14],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kampung Besar\": unmatched ",
+    "table 3.1: row not stored: row \"Kampung Besar\": unmatched "
+  ]
+}

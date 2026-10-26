@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1210-kecamatan-121110-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.11.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Parbuluan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Dairi",
+  "publisherDomain": "1210",
+  "publisherWebsite": "https://dairikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Dairi (https://dairikab.bps.go.id), publikasi \"Kecamatan Parbuluan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "12100.26008",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://dairikab.bps.go.id/id/publication/2026/09/28/2514dd14afde0a9a5c14749d/kecamatan-parbuluan-dalam-angka-2026.html",
+  "sourceFileSha256": "d3940f13a04bf8037d11018836b5e05cf72b4267f063cf8606d498f8661ab786",
+  "sourceFileBytes": 3299600,
+  "sourcePages": [22, 23, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Dairi.",
+  "csvPath": "datasets/bps-1210-kecamatan-121110-dalam-angka-2026.csv",
+  "csvSha256": "86f995052cba526da945b23becb7d4a870733fa076340dd2340a7d93f168035c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Parbuluan, 2025",
+      "printedPages": [22, 23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Parbuluan, 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"74>\": unmatched ",
+    "table 3.2: the rows of region 12.11.10 are not stored: age_group (perempuan) vs sex value: parts sum 13971.0000 != 14368.0000 (diff 397.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.04.02.2009,4,Rutih,sex,laki_laki,,339,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.04.02.2009,4,Rutih,sex,perempuan,,316,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.04.02.2009,4,Rutih,total,total,,655,jiwa,2025,registration,total_population,3.1,23,,
+11.04.02.2004,4,Genting Gerbang,sex,laki_laki,,810,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.04.02.2004,4,Genting Gerbang,sex,perempuan,,785,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.04.02.2004,4,Genting Gerbang,total,total,,1595,jiwa,2025,registration,total_population,3.1,23,,
+11.04.02.2008,4,Remesen,sex,laki_laki,,424,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.04.02.2008,4,Remesen,sex,perempuan,,454,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.04.02.2008,4,Remesen,total,total,,878,jiwa,2025,registration,total_population,3.1,23,,
+11.04.02.2003,4,Burni Bius,sex,laki_laki,,520,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.04.02.2003,4,Burni Bius,sex,perempuan,,507,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.04.02.2003,4,Burni Bius,total,total,,1027,jiwa,2025,registration,total_population,3.1,23,,
+11.04.02.2013,4,Wihni Bakong,sex,laki_laki,,498,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.04.02.2013,4,Wihni Bakong,sex,perempuan,,517,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.04.02.2013,4,Wihni Bakong,total,total,,1015,jiwa,2025,registration,total_population,3.1,23,,
+11.04.02.2012,4,Wih Porak,sex,laki_laki,,191,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.04.02.2012,4,Wih Porak,sex,perempuan,,202,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.04.02.2012,4,Wih Porak,total,total,,393,jiwa,2025,registration,total_population,3.1,23,,
+11.04.02.2001,4,Arul Gele,sex,laki_laki,,559,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.04.02.2001,4,Arul Gele,sex,perempuan,,553,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.04.02.2001,4,Arul Gele,total,total,,1112,jiwa,2025,registration,total_population,3.1,23,,
+11.04.02.2005,4,Gunung Singit,sex,laki_laki,,309,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.04.02.2005,4,Gunung Singit,sex,perempuan,,303,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.04.02.2005,4,Gunung Singit,total,total,,612,jiwa,2025,registration,total_population,3.1,23,,
+11.04.02.2010,4,Semelit Mutiara,sex,laki_laki,,623,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.04.02.2010,4,Semelit Mutiara,sex,perempuan,,616,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.04.02.2010,4,Semelit Mutiara,total,total,,1239,jiwa,2025,registration,total_population,3.1,23,,
+11.04.02.2002,4,Arul Kumer,sex,laki_laki,,388,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.04.02.2002,4,Arul Kumer,sex,perempuan,,376,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.04.02.2002,4,Arul Kumer,total,total,,764,jiwa,2025,registration,total_population,3.1,23,,
+11.04.02.2014,4,Wihni Durin,sex,laki_laki,,455,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.04.02.2014,4,Wihni Durin,sex,perempuan,,468,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.04.02.2014,4,Wihni Durin,total,total,,923,jiwa,2025,registration,total_population,3.1,23,,
+11.04.02.2022,4,Paya Beke,sex,laki_laki,,454,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.04.02.2022,4,Paya Beke,sex,perempuan,,399,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.04.02.2022,4,Paya Beke,total,total,,853,jiwa,2025,registration,total_population,3.1,23,,
+11.04.02.2019,4,Jerata,sex,laki_laki,,462,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.04.02.2019,4,Jerata,sex,perempuan,,436,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.04.02.2019,4,Jerata,total,total,,898,jiwa,2025,registration,total_population,3.1,23,,
+11.04.02.2032,4,Terang Engon,sex,laki_laki,,103,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.04.02.2032,4,Terang Engon,sex,perempuan,,108,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.04.02.2032,4,Terang Engon,total,total,,211,jiwa,2025,registration,total_population,3.1,23,,
+11.04.02.2030,4,Simpang Kemili,sex,laki_laki,,442,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.04.02.2030,4,Simpang Kemili,sex,perempuan,,449,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.04.02.2030,4,Simpang Kemili,total,total,,891,jiwa,2025,registration,total_population,3.1,23,,
+11.04.02.2018,4,Burni Bius Baru,sex,laki_laki,,326,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.04.02.2018,4,Burni Bius Baru,sex,perempuan,,322,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.04.02.2018,4,Burni Bius Baru,total,total,,648,jiwa,2025,registration,total_population,3.1,23,,
+11.04.02.2026,4,Rebegedung,sex,laki_laki,,156,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.04.02.2026,4,Rebegedung,sex,perempuan,,152,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.04.02.2026,4,Rebegedung,total,total,,308,jiwa,2025,registration,total_population,3.1,23,,
+11.04.02.2029,4,Sanehen,sex,laki_laki,,311,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.04.02.2029,4,Sanehen,sex,perempuan,,316,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.04.02.2029,4,Sanehen,total,total,,627,jiwa,2025,registration,total_population,3.1,23,,

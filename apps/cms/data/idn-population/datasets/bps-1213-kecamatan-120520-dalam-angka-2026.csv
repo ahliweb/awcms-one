@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.05.20.2004,4,Sei Litur Tasik,sex,laki_laki,,1707,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.20.2004,4,Sei Litur Tasik,sex,perempuan,,1781,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.20.2004,4,Sei Litur Tasik,total,total,,3488,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.20.1001,4,Sawit Seberang,sex,laki_laki,,2157,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.20.1001,4,Sawit Seberang,sex,perempuan,,2069,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.20.1001,4,Sawit Seberang,total,total,,4226,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.20.2002,4,Alur Gadung,sex,laki_laki,,930,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.20.2002,4,Alur Gadung,sex,perempuan,,907,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.20.2002,4,Alur Gadung,total,total,,1837,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.20.2005,4,Sawit Hulu,sex,laki_laki,,4080,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.20.2005,4,Sawit Hulu,sex,perempuan,,4079,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.20.2005,4,Sawit Hulu,total,total,,8159,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.20,3,Kecamatan Sawit Seberang,sex,laki_laki,,13981,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.20,3,Kecamatan Sawit Seberang,sex,perempuan,,13891,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.20,3,Kecamatan Sawit Seberang,total,total,,27872,jiwa,2025,registration,total_population,unnumbered-p39,39,,

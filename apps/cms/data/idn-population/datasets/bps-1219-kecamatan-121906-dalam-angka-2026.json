@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-1219-kecamatan-121906-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.19.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tanjung Tiram Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Batu Bara",
+  "publisherDomain": "1219",
+  "publisherWebsite": "https://batubarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Batu Bara (https://batubarakab.bps.go.id), publikasi \"Kecamatan Tanjung Tiram Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1219020",
+  "publicationNumber": "12190.25014",
+  "issn": "2614-6800",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://batubarakab.bps.go.id/id/publication/2026/09/28/1941d811eac4ce4500da4b84/kecamatan-tanjung-tiram-dalam-angka-2026.html",
+  "sourceFileSha256": "d58a1f985d11134dee6968898fa6610bfd78c82159feaeb3cb20551af8d1a495",
+  "sourceFileBytes": 23126020,
+  "sourcePages": [28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Batu Bara.",
+  "csvPath": "datasets/bps-1219-kecamatan-121906-dalam-angka-2026.csv",
+  "csvSha256": "de8c8b3f2f4b74150782f36a5c3970fc3cb00e3909c2a9ccdc3468248a909878",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p28",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa / Kelurahan di Kecamatan Tanjung Tiram, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p28: the rows of region 12.19.06.2017 are not stored: sex split vs total: parts sum 4772.0000 != 4792.0000 (diff 20.0000); the source itself is inconsistent"
+  ]
+}

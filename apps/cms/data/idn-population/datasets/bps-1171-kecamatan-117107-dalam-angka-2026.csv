@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.71.07.2005,4,Lam Ara,sex,laki_laki,,1847,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.07.2005,4,Lam Ara,sex,perempuan,,1862,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.07.2005,4,Lam Ara,total,total,,3709,jiwa,2025,registration,total_population,3.1,27,,
+11.71.07.2007,4,Mibo,sex,laki_laki,,1515,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.07.2007,4,Mibo,sex,perempuan,,1461,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.07.2007,4,Mibo,total,total,,2976,jiwa,2025,registration,total_population,3.1,27,,
+11.71.07.2009,4,Lhong Cut,sex,laki_laki,,1191,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.07.2009,4,Lhong Cut,sex,perempuan,,1236,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.07.2009,4,Lhong Cut,total,total,,2427,jiwa,2025,registration,total_population,3.1,27,,
+11.71.07.2006,4,Lhong Raya,sex,laki_laki,,1682,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.07.2006,4,Lhong Raya,sex,perempuan,,1710,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.07.2006,4,Lhong Raya,total,total,,3392,jiwa,2025,registration,total_population,3.1,27,,
+11.71.07.2002,4,Lam Lagang,sex,laki_laki,,2548,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.07.2002,4,Lam Lagang,sex,perempuan,,2512,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.07.2002,4,Lam Lagang,total,total,,5060,jiwa,2025,registration,total_population,3.1,27,,
+11.71.07.2001,4,Geuceu Komplek,sex,laki_laki,,1413,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.07.2001,4,Geuceu Komplek,sex,perempuan,,1509,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.07.2001,4,Geuceu Komplek,total,total,,2922,jiwa,2025,registration,total_population,3.1,27,,
+11.71.07.2003,4,Geuceu Iniem,sex,laki_laki,,995,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.07.2003,4,Geuceu Iniem,sex,perempuan,,1107,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.07.2003,4,Geuceu Iniem,total,total,,2102,jiwa,2025,registration,total_population,3.1,27,,
+11.71.07.2004,4,Geuceu Kayee Jato,sex,laki_laki,,724,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.07.2004,4,Geuceu Kayee Jato,sex,perempuan,,795,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.07.2004,4,Geuceu Kayee Jato,total,total,,1519,jiwa,2025,registration,total_population,3.1,27,,
+11.71.07,3,Kecamatan Banda Raya,sex,laki_laki,,13686,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+11.71.07,3,Kecamatan Banda Raya,sex,perempuan,,13929,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+11.71.07,3,Kecamatan Banda Raya,total,total,,27615,jiwa,2025,registration,total_population,3.1,27,,

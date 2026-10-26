@@ -59,6 +59,13 @@ export function isIndexToken(text: string): boolean {
 /** BPS age band as printed ("0–4", "5-9", "75+", "60+", "75 +") -> contract key ("0-4", "75+"). */
 export function ageBandKey(label: string): string | null {
   const s = label.replace(/\s+/g, "").replace(/[–—]/g, "-");
+  // "<5" = 0-4 and "5-<15" = 5-14 (ages are whole years, so these are exact)
+  const below = /^<(\d{1,3})$/.exec(s);
+  if (below && Number(below[1]) > 0) return `0-${Number(below[1]) - 1}`;
+  const halfOpen = /^(\d{1,3})-<(\d{1,3})$/.exec(s);
+  if (halfOpen && Number(halfOpen[2]) > Number(halfOpen[1])) return `${Number(halfOpen[1])}-${Number(halfOpen[2]) - 1}`;
+  const atLeast = /^(?:>=?|\u2265)(\d{1,3})$/.exec(s);
+  if (atLeast) return `${Number(atLeast[1])}+`;
   const range = /^(\d{1,3})-(\d{1,3})(?:tahun)?$/i.exec(s);
   if (range) return `${Number(range[1])}-${Number(range[2])}`;
   const open = /^(\d{1,3})\+$/.exec(s) ?? /^(\d{1,3})(?:tahun)?(?:keatas|lebih)$/i.exec(s);

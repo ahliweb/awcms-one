@@ -21,7 +21,7 @@ import {
   resolveLabel,
 } from "../tools/bps-population/extract/regions.ts";
 import { analysePage, joinLabel, readBody } from "../tools/bps-population/extract/rows.ts";
-import { footnoteLabels, industryByRegion, religionByRegion, religionKey, sexTable, shortIndustryKey, villageSex } from "../tools/bps-population/extract/tables.ts";
+import { categoryOfRow, footnoteLabels, industryByRegion, religionByRegion, religionKey, sexTable, shortIndustryKey, villageSex } from "../tools/bps-population/extract/tables.ts";
 import { prettierJson, recordResult, websiteOfHost } from "../tools/bps-population/extract/run.ts";
 import { parseBboxPages } from "../tools/bps-population/extract/words.ts";
 
@@ -298,6 +298,50 @@ describe("dataset JSON layout", () => {
   });
 });
 
+describe("Aceh Kecamatan yearbooks: investigated refusals", () => {
+  const ageTest = (k) => /^jumlahpenduduk(\(ribu\))?menurutkelompokumurdanjeniskelamin/.test(k);
+  const soft = (name, cov) => ({ ...ctxOf(name, cov), soft: true, defaultBasis: "registration" });
+
+  test("open age bands printed as '75', '>75', '<5' and '5-<15' are read as the bands they are", () => {
+    assert.equal(categoryOfRow("75", "70-74").category, "75+");
+    assert.equal(categoryOfRow("75", "60-64"), null); // a lone number is a band only after its predecessor
+    assert.equal(categoryOfRow(">75").category, "75+");
+    assert.equal(categoryOfRow("<5").category, "0-4");
+    assert.equal(categoryOfRow("5-<15").category, "5-14");
+    assert.equal(categoryOfRow("00-04").category, "0-4");
+  });
+
+  test("a last band printed '75' makes the rows add up to the printed total", () => {
+    const res = sexTable(soft("kec-aceh-1113-03-p46-age-lone-75.bbox.xml", "11.13.03"), "t", ageTest, "age");
+    assert.deepEqual(res.problems, []);
+    assert.ok(res.rows.some((r) => r.category === "75+" && r.sex === "laki_laki" && r.value === "35"));
+    assert.equal(runChecks(res.rows, index).failures.length, 0);
+  });
+
+  test("a last band printed '>75' likewise", () => {
+    const res = sexTable(soft("kec-aceh-1106-05-p59-age-gt75.bbox.xml", "11.06.05"), "t", ageTest, "age");
+    assert.ok(res.rows.some((r) => r.category === "75+" && r.value === "793"));
+    assert.equal(runChecks(res.rows, index).failures.length, 0);
+  });
+
+  test("one 'n,ddd' cell among 'n.ddd' thousands is a thousands mark, decided from the whole table", () => {
+    const res = villageSex(soft("kec-aceh-1104-01-p45-village-comma-thousands.bbox.xml", "11.04.01"));
+    assert.deepEqual(res.problems, []);
+    assert.ok(res.rows.some((r) => r.dimension === "total" && r.source_region_name === "Gemboyah" && r.value === "1180"));
+    assert.ok(res.rows.every((r) => !/\.\d{3}$/.test(r.value)));
+    assert.ok(res.gaps.some((g) => g.includes("thousands mark")));
+  });
+
+  test("a village whose printed total is not the sum of its sexes is caught (a source error, not a misread)", () => {
+    const res = villageSex(soft("kec-aceh-1104-02-p47-row-with-wrong-total.bbox.xml", "11.04.02"));
+    const total = res.rows.find((r) => r.region_code === "11.04.02.2007" && r.dimension === "total");
+    const male = res.rows.find((r) => r.region_code === "11.04.02.2007" && r.category === "laki_laki");
+    assert.deepEqual([male.value, total.value], ["1219", "2031"]); // exactly as printed
+    const failures = runChecks(res.rows, index).failures;
+    assert.ok(failures.some((f) => f.check === "sex-sum" && f.region === "11.04.02.2007"));
+  });
+});
+
 describe("extract-results ledger", () => {
   test("one record per sha256, the latest wins, written atomically with relative file names", () => {
     const dir = mkdtempSync(join(tmpdir(), "bps-ledger-"));
@@ -413,6 +457,13 @@ describe("output and metadata", () => {
     assert.equal(websiteOfHost("https://kobarkab.bps.go.id"), "https://kobarkab.bps.go.id");
     assert.equal(websiteOfHost("kobarkab.bps.go.id"), "https://kobarkab.bps.go.id");
     assert.equal(websiteOfHost("http://kobarkab.bps.go.id/"), "https://kobarkab.bps.go.id");
+  });
+
+  test("front matter in the Aceh wording (\"Dilarang mengumumkan\", \"Diterbitkan oleh\")", () => {
+    const fm = parseFrontMatter(fixture("kec-aceh-front-matter.txt"));
+    assert.equal(fm.publisherName, "BPS Kota Banda Aceh");
+    assert.ok(fm.termsOfUse.startsWith("Dilarang mengumumkan, mendistribusikan"));
+    assert.ok(fm.termsOfUse.endsWith("dari Badan Pusat Statistik Kota Banda Aceh."));
   });
 
   test("domain to coverage code, and the attribution sentence", () => {

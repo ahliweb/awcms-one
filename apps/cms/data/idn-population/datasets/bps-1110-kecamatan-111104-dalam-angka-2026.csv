@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.11.04.2058,4,Abeuk Usong,sex,laki_laki,,524,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.04.2058,4,Abeuk Usong,sex,perempuan,,543,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.04.2058,4,Abeuk Usong,total,total,,1067,jiwa,2025,registration,total_population,1.2,,,
+11.11.04.2065,4,Cot Iboeh,sex,laki_laki,,214,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.04.2065,4,Cot Iboeh,sex,perempuan,,201,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.04.2065,4,Cot Iboeh,total,total,,415,jiwa,2025,registration,total_population,1.2,,,
+11.11.04.2073,4,Seuneubok Lhong,sex,laki_laki,,399,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.04.2073,4,Seuneubok Lhong,sex,perempuan,,393,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.04.2073,4,Seuneubok Lhong,total,total,,792,jiwa,2025,registration,total_population,1.2,,,
+11.11.04.2072,4,Paloh Panyang,sex,laki_laki,,242,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.04.2072,4,Paloh Panyang,sex,perempuan,,229,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.04.2072,4,Paloh Panyang,total,total,,471,jiwa,2025,registration,total_population,1.2,,,
+11.11.04.2071,4,Blang Rheum,sex,laki_laki,,426,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.04.2071,4,Blang Rheum,sex,perempuan,,456,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.04.2071,4,Blang Rheum,total,total,,882,jiwa,2025,registration,total_population,1.2,,,
+11.11.04.2064,4,Cot Ulim,sex,laki_laki,,309,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.04.2064,4,Cot Ulim,sex,perempuan,,313,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.04.2064,4,Cot Ulim,total,total,,622,jiwa,2025,registration,total_population,1.2,,,
+11.11.04.2034,4,Cot Leusong,sex,laki_laki,,245,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.04.2034,4,Cot Leusong,sex,perempuan,,238,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.04.2034,4,Cot Leusong,total,total,,483,jiwa,2025,registration,total_population,1.2,,,
+11.11.04.2033,4,Blang Seunong,sex,laki_laki,,331,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.04.2033,4,Blang Seunong,sex,perempuan,,350,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.04.2033,4,Blang Seunong,total,total,,681,jiwa,2025,registration,total_population,1.2,,,
+11.11.04.2047,4,Cot Keutapang,sex,laki_laki,,846,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.04.2047,4,Cot Keutapang,sex,perempuan,,838,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.04.2047,4,Cot Keutapang,total,total,,1684,jiwa,2025,registration,total_population,1.2,,,
+11.11.04.2048,4,Cot Tarom Tunong,sex,laki_laki,,774,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.04.2048,4,Cot Tarom Tunong,sex,perempuan,,743,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.04.2048,4,Cot Tarom Tunong,total,total,,1517,jiwa,2025,registration,total_population,1.2,,,

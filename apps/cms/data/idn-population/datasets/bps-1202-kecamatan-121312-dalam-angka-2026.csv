@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.13.12.2012,4,Ranjo Batu,sex,laki_laki,,909,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.12.2012,4,Ranjo Batu,sex,perempuan,,857,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.12.2012,4,Ranjo Batu,total,total,,1766,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.12.2007,4,Kampung Pinang,sex,laki_laki,,142,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.12.2007,4,Kampung Pinang,sex,perempuan,,169,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.12.2007,4,Kampung Pinang,total,total,,311,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.12.2015,4,Simpang Mandepo,sex,laki_laki,,443,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.12.2015,4,Simpang Mandepo,sex,perempuan,,430,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.12.2015,4,Simpang Mandepo,total,total,,873,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.12.2001,4,Bandar Panjang,sex,laki_laki,,359,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.12.2001,4,Bandar Panjang,sex,perempuan,,338,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.12.2001,4,Bandar Panjang,total,total,,697,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.12.2013,4,Sibinail,sex,laki_laki,,509,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.12.2013,4,Sibinail,sex,perempuan,,479,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.12.2013,4,Sibinail,total,total,,988,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.12.2008,4,Koto Baringin,sex,laki_laki,,423,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.12.2008,4,Koto Baringin,sex,perempuan,,425,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.12.2008,4,Koto Baringin,total,total,,848,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.12.2017,4,Tanjung Alai,sex,laki_laki,,464,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.12.2017,4,Tanjung Alai,sex,perempuan,,444,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.12.2017,4,Tanjung Alai,total,total,,908,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.12.2009,4,Limau Manis,sex,laki_laki,,347,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.12.2009,4,Limau Manis,sex,perempuan,,357,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.12.2009,4,Limau Manis,total,total,,704,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.12.2002,4,Bandar Panjang Tuo,sex,laki_laki,,345,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.12.2002,4,Bandar Panjang Tuo,sex,perempuan,,382,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.12.2002,4,Bandar Panjang Tuo,total,total,,727,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.12.2016,4,Tamiang Mudo,sex,laki_laki,,225,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.12.2016,4,Tamiang Mudo,sex,perempuan,,224,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.12.2016,4,Tamiang Mudo,total,total,,449,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.12.2020,4,Tanjung Medan,sex,laki_laki,,367,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.12.2020,4,Tanjung Medan,sex,perempuan,,351,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.12.2020,4,Tanjung Medan,total,total,,718,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.12.2022,4,Aek Botung,sex,laki_laki,,501,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.12.2022,4,Aek Botung,sex,perempuan,,515,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.12.2022,4,Aek Botung,total,total,,1016,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.12.2023,4,Koto Boru,sex,laki_laki,,423,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.12.2023,4,Koto Boru,sex,perempuan,,432,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.12.2023,4,Koto Boru,total,total,,855,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.12.2021,4,Muara Kumpulan,sex,laki_laki,,530,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.12.2021,4,Muara Kumpulan,sex,perempuan,,543,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.12.2021,4,Muara Kumpulan,total,total,,1073,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.12.2024,4,Tanjung Larangan,sex,laki_laki,,218,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.12.2024,4,Tanjung Larangan,sex,perempuan,,182,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.12.2024,4,Tanjung Larangan,total,total,,400,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.12.1019,4,Pasar Muara Sipongi,sex,laki_laki,,870,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.12.1019,4,Pasar Muara Sipongi,sex,perempuan,,879,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.12.1019,4,Pasar Muara Sipongi,total,total,,1749,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.12,3,Kecamatan Muara Sipongi,sex,laki_laki,,7075,jiwa,2025,registration,total_population,unnumbered-p24,24,,Laki-Laki
+12.13.12,3,Kecamatan Muara Sipongi,sex,perempuan,,7007,jiwa,2025,registration,total_population,unnumbered-p24,24,,Perempuan
+12.13.12,3,Kecamatan Muara Sipongi,total,total,,14082,jiwa,2025,registration,total_population,unnumbered-p24,24,,

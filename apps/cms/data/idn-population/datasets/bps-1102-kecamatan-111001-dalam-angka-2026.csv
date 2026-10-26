@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.10.01.2002,4,Pulau Baguk,sex,laki_laki,,880,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.10.01.2002,4,Pulau Baguk,sex,perempuan,,850,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.10.01.2002,4,Pulau Baguk,total,total,,1730,jiwa,2025,registration,total_population,3.1,33,,
+11.10.01.2001,4,Pulau Balai,sex,laki_laki,,1068,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.10.01.2001,4,Pulau Balai,sex,perempuan,,995,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.10.01.2001,4,Pulau Balai,total,total,,2063,jiwa,2025,registration,total_population,3.1,33,,
+11.10.01.2004,4,Teluk Nibung,sex,laki_laki,,561,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.10.01.2004,4,Teluk Nibung,sex,perempuan,,548,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.10.01.2004,4,Teluk Nibung,total,total,,1109,jiwa,2025,registration,total_population,3.1,33,,
+11.10.01,3,Kecamatan Pulau Banyak,sex,laki_laki,,2509,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.10.01,3,Kecamatan Pulau Banyak,sex,perempuan,,2393,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.10.01,3,Kecamatan Pulau Banyak,total,total,,4902,jiwa,2025,registration,total_population,3.1,33,,

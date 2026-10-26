@@ -1,0 +1,98 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.08,2,Kabupaten Simalungun,age_group,0-4,laki_laki,21331,jiwa,2025,registration,total_population,3.1.2,66,,0–4
+12.08,2,Kabupaten Simalungun,age_group,0-4,perempuan,19453,jiwa,2025,registration,total_population,3.1.2,66,,0–4
+12.08,2,Kabupaten Simalungun,age_group,0-4,,40784,jiwa,2025,registration,total_population,3.1.2,66,,0–4
+12.08,2,Kabupaten Simalungun,age_group,5-9,laki_laki,38195,jiwa,2025,registration,total_population,3.1.2,66,,5–9
+12.08,2,Kabupaten Simalungun,age_group,5-9,perempuan,35862,jiwa,2025,registration,total_population,3.1.2,66,,5–9
+12.08,2,Kabupaten Simalungun,age_group,5-9,,74057,jiwa,2025,registration,total_population,3.1.2,66,,5–9
+12.08,2,Kabupaten Simalungun,age_group,10-14,laki_laki,46402,jiwa,2025,registration,total_population,3.1.2,66,,10–14
+12.08,2,Kabupaten Simalungun,age_group,10-14,perempuan,43625,jiwa,2025,registration,total_population,3.1.2,66,,10–14
+12.08,2,Kabupaten Simalungun,age_group,10-14,,90027,jiwa,2025,registration,total_population,3.1.2,66,,10–14
+12.08,2,Kabupaten Simalungun,age_group,15-19,laki_laki,49862,jiwa,2025,registration,total_population,3.1.2,66,,15–19
+12.08,2,Kabupaten Simalungun,age_group,15-19,perempuan,47468,jiwa,2025,registration,total_population,3.1.2,66,,15–19
+12.08,2,Kabupaten Simalungun,age_group,15-19,,97330,jiwa,2025,registration,total_population,3.1.2,66,,15–19
+12.08,2,Kabupaten Simalungun,age_group,20-24,laki_laki,46501,jiwa,2025,registration,total_population,3.1.2,66,,20–24
+12.08,2,Kabupaten Simalungun,age_group,20-24,perempuan,44073,jiwa,2025,registration,total_population,3.1.2,66,,20–24
+12.08,2,Kabupaten Simalungun,age_group,20-24,,90574,jiwa,2025,registration,total_population,3.1.2,66,,20–24
+12.08,2,Kabupaten Simalungun,age_group,25-29,laki_laki,37705,jiwa,2025,registration,total_population,3.1.2,66,,25–29
+12.08,2,Kabupaten Simalungun,age_group,25-29,perempuan,35201,jiwa,2025,registration,total_population,3.1.2,66,,25–29
+12.08,2,Kabupaten Simalungun,age_group,25-29,,72906,jiwa,2025,registration,total_population,3.1.2,66,,25–29
+12.08,2,Kabupaten Simalungun,age_group,30-34,laki_laki,32605,jiwa,2025,registration,total_population,3.1.2,66,,30–34
+12.08,2,Kabupaten Simalungun,age_group,30-34,perempuan,30604,jiwa,2025,registration,total_population,3.1.2,66,,30–34
+12.08,2,Kabupaten Simalungun,age_group,30-34,,63209,jiwa,2025,registration,total_population,3.1.2,66,,30–34
+12.08,2,Kabupaten Simalungun,age_group,35-39,laki_laki,31110,jiwa,2025,registration,total_population,3.1.2,66,,35–39
+12.08,2,Kabupaten Simalungun,age_group,35-39,perempuan,29999,jiwa,2025,registration,total_population,3.1.2,66,,35–39
+12.08,2,Kabupaten Simalungun,age_group,35-39,,61109,jiwa,2025,registration,total_population,3.1.2,66,,35–39
+12.08,2,Kabupaten Simalungun,age_group,40-44,laki_laki,33618,jiwa,2025,registration,total_population,3.1.2,66,,40–44
+12.08,2,Kabupaten Simalungun,age_group,40-44,perempuan,32837,jiwa,2025,registration,total_population,3.1.2,66,,40–44
+12.08,2,Kabupaten Simalungun,age_group,40-44,,66455,jiwa,2025,registration,total_population,3.1.2,66,,40–44
+12.08,2,Kabupaten Simalungun,age_group,45-49,laki_laki,30996,jiwa,2025,registration,total_population,3.1.2,66,,45–49
+12.08,2,Kabupaten Simalungun,age_group,45-49,perempuan,30119,jiwa,2025,registration,total_population,3.1.2,66,,45–49
+12.08,2,Kabupaten Simalungun,age_group,45-49,,61115,jiwa,2025,registration,total_population,3.1.2,66,,45–49
+12.08,2,Kabupaten Simalungun,age_group,50-54,laki_laki,26914,jiwa,2025,registration,total_population,3.1.2,66,,50–54
+12.08,2,Kabupaten Simalungun,age_group,50-54,perempuan,27965,jiwa,2025,registration,total_population,3.1.2,66,,50–54
+12.08,2,Kabupaten Simalungun,age_group,50-54,,54879,jiwa,2025,registration,total_population,3.1.2,66,,50–54
+12.08,2,Kabupaten Simalungun,age_group,55-59,laki_laki,23345,jiwa,2025,registration,total_population,3.1.2,66,,55–59
+12.08,2,Kabupaten Simalungun,age_group,55-59,perempuan,25687,jiwa,2025,registration,total_population,3.1.2,66,,55–59
+12.08,2,Kabupaten Simalungun,age_group,55-59,,49032,jiwa,2025,registration,total_population,3.1.2,66,,55–59
+12.08,2,Kabupaten Simalungun,age_group,60-64,laki_laki,19193,jiwa,2025,registration,total_population,3.1.2,66,,60–64
+12.08,2,Kabupaten Simalungun,age_group,60-64,perempuan,23573,jiwa,2025,registration,total_population,3.1.2,66,,60–64
+12.08,2,Kabupaten Simalungun,age_group,60-64,,42766,jiwa,2025,registration,total_population,3.1.2,66,,60–64
+12.08,2,Kabupaten Simalungun,age_group,65-69,laki_laki,16531,jiwa,2025,registration,total_population,3.1.2,66,,65–69
+12.08,2,Kabupaten Simalungun,age_group,65-69,perempuan,20653,jiwa,2025,registration,total_population,3.1.2,66,,65–69
+12.08,2,Kabupaten Simalungun,age_group,65-69,,37184,jiwa,2025,registration,total_population,3.1.2,66,,65–69
+12.08,2,Kabupaten Simalungun,age_group,70-74,laki_laki,10479,jiwa,2025,registration,total_population,3.1.2,66,,70–74
+12.08,2,Kabupaten Simalungun,age_group,70-74,perempuan,13740,jiwa,2025,registration,total_population,3.1.2,66,,70–74
+12.08,2,Kabupaten Simalungun,age_group,70-74,,24219,jiwa,2025,registration,total_population,3.1.2,66,,70–74
+12.08,2,Kabupaten Simalungun,age_group,75+,laki_laki,11568,jiwa,2025,registration,total_population,3.1.2,66,,75+
+12.08,2,Kabupaten Simalungun,age_group,75+,perempuan,18406,jiwa,2025,registration,total_population,3.1.2,66,,75+
+12.08,2,Kabupaten Simalungun,age_group,75+,,29974,jiwa,2025,registration,total_population,3.1.2,66,,75+
+12.08,2,Simalungun,sex,laki_laki,,476355,jiwa,2025,registration,total_population,3.1.2,66,,Laki-Laki
+12.08,2,Simalungun,sex,perempuan,,479265,jiwa,2025,registration,total_population,3.1.2,66,,Perempuan
+12.08,2,Simalungun,total,total,,955620,jiwa,2025,registration,total_population,3.1.2,66,,
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/padi_padian,,107195,rupiah,2024,survey_estimate,per_capita,10.1,475,,Padi-padian
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/padi_padian,,103263,rupiah,2025,survey_estimate,per_capita,10.1,475,,Padi-padian
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/umbi_umbian,,7044,rupiah,2024,survey_estimate,per_capita,10.1,475,,Umbi-umbian
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/umbi_umbian,,8090,rupiah,2025,survey_estimate,per_capita,10.1,475,,Umbi-umbian
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,77218,rupiah,2024,survey_estimate,per_capita,10.1,475,,Ikan/udang/cumi/kerang
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,86757,rupiah,2025,survey_estimate,per_capita,10.1,475,,Ikan/udang/cumi/kerang
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/daging,,25679,rupiah,2024,survey_estimate,per_capita,10.1,475,,Daging
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/daging,,31320,rupiah,2025,survey_estimate,per_capita,10.1,475,,Daging
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/telur_dan_susu,,38761,rupiah,2024,survey_estimate,per_capita,10.1,475,,Telur dan susu
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/telur_dan_susu,,40700,rupiah,2025,survey_estimate,per_capita,10.1,475,,Telur dan susu
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/sayur_sayuran,,70279,rupiah,2024,survey_estimate,per_capita,10.1,475,,Sayur-sayuran
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/sayur_sayuran,,79476,rupiah,2025,survey_estimate,per_capita,10.1,475,,Sayur-sayuran
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/kacang_kacangan,,10480,rupiah,2024,survey_estimate,per_capita,10.1,475,,Kacang-kacangan
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/kacang_kacangan,,12865,rupiah,2025,survey_estimate,per_capita,10.1,475,,Kacang-kacangan
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/buah_buahan,,31969,rupiah,2024,survey_estimate,per_capita,10.1,475,,Buah-buahan
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/buah_buahan,,41217,rupiah,2025,survey_estimate,per_capita,10.1,475,,Buah-buahan
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22284,rupiah,2024,survey_estimate,per_capita,10.1,475,,Minyak dan kelapa
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/minyak_dan_kelapa,,27264,rupiah,2025,survey_estimate,per_capita,10.1,475,,Minyak dan kelapa
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/bahan_minuman,,20978,rupiah,2024,survey_estimate,per_capita,10.1,475,,Bahan minuman
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/bahan_minuman,,23018,rupiah,2025,survey_estimate,per_capita,10.1,475,,Bahan minuman
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/bumbu_bumbuan,,11672,rupiah,2024,survey_estimate,per_capita,10.1,475,,Bumbu-bumbuan
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/bumbu_bumbuan,,13133,rupiah,2025,survey_estimate,per_capita,10.1,475,,Bumbu-bumbuan
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/konsumsi_lainnya,,6885,rupiah,2024,survey_estimate,per_capita,10.1,475,,Konsumsi lainnya
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/konsumsi_lainnya,,8784,rupiah,2025,survey_estimate,per_capita,10.1,475,,Konsumsi lainnya
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,160118,rupiah,2024,survey_estimate,per_capita,10.1,475,,Makanan dan minuman jadi
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,165243,rupiah,2025,survey_estimate,per_capita,10.1,475,,Makanan dan minuman jadi
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/rokok,,112130,rupiah,2024,survey_estimate,per_capita,10.1,475,,Rokok
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/rokok,,114380,rupiah,2025,survey_estimate,per_capita,10.1,475,,Rokok
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/jumlah_makanan,,702694,rupiah,2024,survey_estimate,per_capita,10.1,475,,Jumlah makanan
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/jumlah_makanan,,755510,rupiah,2025,survey_estimate,per_capita,10.1,475,,Jumlah makanan
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,235942,rupiah,2024,survey_estimate,per_capita,10.1,475,,Perumahan dan fasilitas rumah tangga
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,257709,rupiah,2025,survey_estimate,per_capita,10.1,475,,Perumahan dan fasilitas rumah tangga
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,135336,rupiah,2024,survey_estimate,per_capita,10.1,475,,Aneka barang dan jasa
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,140258,rupiah,2025,survey_estimate,per_capita,10.1,475,,Aneka barang dan jasa
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,28167,rupiah,2024,survey_estimate,per_capita,10.1,475,,Pakaian. alas kaki. dan tutup kepala
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,32771,rupiah,2025,survey_estimate,per_capita,10.1,475,,Pakaian. alas kaki. dan tutup kepala
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/barang_tahan_lama,,16288,rupiah,2024,survey_estimate,per_capita,10.1,475,,Barang tahan lama
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/barang_tahan_lama,,20904,rupiah,2025,survey_estimate,per_capita,10.1,475,,Barang tahan lama
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,36196,rupiah,2024,survey_estimate,per_capita,10.1,475,,Pajak. pungutan. dan asuransi
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,46512,rupiah,2025,survey_estimate,per_capita,10.1,475,,Pajak. pungutan. dan asuransi
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,9736,rupiah,2024,survey_estimate,per_capita,10.1,475,,Keperluan pesta dan upacara/kenduri
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,11566,rupiah,2025,survey_estimate,per_capita,10.1,475,,Keperluan pesta dan upacara/kenduri
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,461665,rupiah,2024,survey_estimate,per_capita,10.1,475,,Jumlah bukan makanan
+12.08,2,Kabupaten Simalungun,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,509721,rupiah,2025,survey_estimate,per_capita,10.1,475,,Jumlah bukan makanan
+12.08,2,Kabupaten Simalungun,expenditure,total,,1164359,rupiah,2024,survey_estimate,per_capita,10.1,475,,
+12.08,2,Kabupaten Simalungun,expenditure,total,,1265231,rupiah,2025,survey_estimate,per_capita,10.1,475,,

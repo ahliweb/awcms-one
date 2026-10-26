@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.08.32,3,Dolog Masagal,age_group,0-4,laki_laki,244,jiwa,2025,registration,total_population,3.2,32,,0 –4
+12.08.32,3,Dolog Masagal,age_group,0-4,perempuan,235,jiwa,2025,registration,total_population,3.2,32,,0 –4
+12.08.32,3,Dolog Masagal,age_group,0-4,,479,jiwa,2025,registration,total_population,3.2,32,,0 –4
+12.08.32,3,Dolog Masagal,age_group,5-9,laki_laki,556,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+12.08.32,3,Dolog Masagal,age_group,5-9,perempuan,538,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+12.08.32,3,Dolog Masagal,age_group,5-9,,1094,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+12.08.32,3,Dolog Masagal,age_group,10-14,laki_laki,711,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+12.08.32,3,Dolog Masagal,age_group,10-14,perempuan,658,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+12.08.32,3,Dolog Masagal,age_group,10-14,,1369,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+12.08.32,3,Dolog Masagal,age_group,15-19,laki_laki,697,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+12.08.32,3,Dolog Masagal,age_group,15-19,perempuan,630,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+12.08.32,3,Dolog Masagal,age_group,15-19,,1327,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+12.08.32,3,Dolog Masagal,age_group,20-24,laki_laki,582,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+12.08.32,3,Dolog Masagal,age_group,20-24,perempuan,593,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+12.08.32,3,Dolog Masagal,age_group,20-24,,1175,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+12.08.32,3,Dolog Masagal,age_group,25-29,laki_laki,559,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+12.08.32,3,Dolog Masagal,age_group,25-29,perempuan,508,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+12.08.32,3,Dolog Masagal,age_group,25-29,,1067,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+12.08.32,3,Dolog Masagal,age_group,30-34,laki_laki,473,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+12.08.32,3,Dolog Masagal,age_group,30-34,perempuan,415,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+12.08.32,3,Dolog Masagal,age_group,30-34,,888,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+12.08.32,3,Dolog Masagal,age_group,35-39,laki_laki,447,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+12.08.32,3,Dolog Masagal,age_group,35-39,perempuan,450,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+12.08.32,3,Dolog Masagal,age_group,35-39,,897,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+12.08.32,3,Dolog Masagal,age_group,40-44,laki_laki,505,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+12.08.32,3,Dolog Masagal,age_group,40-44,perempuan,473,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+12.08.32,3,Dolog Masagal,age_group,40-44,,978,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+12.08.32,3,Dolog Masagal,age_group,45-49,laki_laki,439,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+12.08.32,3,Dolog Masagal,age_group,45-49,perempuan,368,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+12.08.32,3,Dolog Masagal,age_group,45-49,,807,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+12.08.32,3,Dolog Masagal,age_group,50-54,laki_laki,367,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+12.08.32,3,Dolog Masagal,age_group,50-54,perempuan,351,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+12.08.32,3,Dolog Masagal,age_group,50-54,,718,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+12.08.32,3,Dolog Masagal,age_group,55-59,laki_laki,307,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+12.08.32,3,Dolog Masagal,age_group,55-59,perempuan,355,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+12.08.32,3,Dolog Masagal,age_group,55-59,,662,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+12.08.32,3,Dolog Masagal,age_group,60-64,laki_laki,243,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+12.08.32,3,Dolog Masagal,age_group,60-64,perempuan,325,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+12.08.32,3,Dolog Masagal,age_group,60-64,,568,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+12.08.32,3,Dolog Masagal,age_group,65-69,laki_laki,196,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+12.08.32,3,Dolog Masagal,age_group,65-69,perempuan,281,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+12.08.32,3,Dolog Masagal,age_group,65-69,,477,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+12.08.32,3,Dolog Masagal,age_group,70-74,laki_laki,161,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+12.08.32,3,Dolog Masagal,age_group,70-74,perempuan,234,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+12.08.32,3,Dolog Masagal,age_group,70-74,,395,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+12.08.32,3,Dolog Masagal,age_group,75+,laki_laki,140,jiwa,2025,registration,total_population,3.2,32,,75 +
+12.08.32,3,Dolog Masagal,age_group,75+,perempuan,260,jiwa,2025,registration,total_population,3.2,32,,75 +
+12.08.32,3,Dolog Masagal,age_group,75+,,400,jiwa,2025,registration,total_population,3.2,32,,75 +
+12.08.32,3,Dolog Masagal,sex,laki_laki,,6627,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+12.08.32,3,Dolog Masagal,sex,perempuan,,6674,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+12.08.32,3,Dolog Masagal,total,total,,13301,jiwa,2025,registration,total_population,3.2,32,,

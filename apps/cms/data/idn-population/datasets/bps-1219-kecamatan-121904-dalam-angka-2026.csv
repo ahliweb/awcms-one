@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.19.04.2011,4,Mangkai Baru,sex,laki_laki,,2610,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.04.2011,4,Mangkai Baru,sex,perempuan,,2759,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.04.2011,4,Mangkai Baru,total,total,,5369,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.04.2012,4,Mangkai Lama,sex,laki_laki,,2208,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.04.2012,4,Mangkai Lama,sex,perempuan,,2144,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.04.2012,4,Mangkai Lama,total,total,,4352,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.04.1001,4,Lima Puluh Kota,sex,laki_laki,,2996,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.04.1001,4,Lima Puluh Kota,sex,perempuan,,3159,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.04.1001,4,Lima Puluh Kota,total,total,,6155,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.04.2014,4,Perkebunan Dolok,sex,laki_laki,,535,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.04.2014,4,Perkebunan Dolok,sex,perempuan,,496,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.04.2014,4,Perkebunan Dolok,total,total,,1031,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.04.2027,4,Sumber Padi,sex,laki_laki,,2383,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.04.2027,4,Sumber Padi,sex,perempuan,,2348,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.04.2027,4,Sumber Padi,total,total,,4731,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.04.2018,4,Perkebunan Limau Manis,sex,laki_laki,,175,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.04.2018,4,Perkebunan Limau Manis,sex,perempuan,,173,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.04.2018,4,Perkebunan Limau Manis,total,total,,348,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.04.2016,4,Antara,sex,laki_laki,,1454,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.04.2016,4,Antara,sex,perempuan,,1439,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.04.2016,4,Antara,total,total,,2893,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.04.2015,4,Perkebunan Kwala Gunung,sex,laki_laki,,108,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.04.2015,4,Perkebunan Kwala Gunung,sex,perempuan,,96,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.04.2015,4,Perkebunan Kwala Gunung,total,total,,204,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.04.2017,4,Perkebunan Lima Puluh,sex,laki_laki,,1107,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.04.2017,4,Perkebunan Lima Puluh,sex,perempuan,,1145,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.04.2017,4,Perkebunan Lima Puluh,total,total,,2252,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.04.2026,4,Sumber Makmur,sex,laki_laki,,1230,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.04.2026,4,Sumber Makmur,sex,perempuan,,1237,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.04.2026,4,Sumber Makmur,total,total,,2467,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.04.2019,4,Perkebunan Tanah Gambus,sex,laki_laki,,1663,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.04.2019,4,Perkebunan Tanah Gambus,sex,perempuan,,1660,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.04.2019,4,Perkebunan Tanah Gambus,total,total,,3323,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.04.2025,4,Simpang Gambus,sex,laki_laki,,4272,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.04.2025,4,Simpang Gambus,sex,perempuan,,4176,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.04.2025,4,Simpang Gambus,total,total,,8448,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.04,3,Lima Puluh,sex,laki_laki,,20741,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.04,3,Lima Puluh,sex,perempuan,,20832,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.04,3,Lima Puluh,total,total,,41573,jiwa,2025,registration,total_population,unnumbered-p28,28,,

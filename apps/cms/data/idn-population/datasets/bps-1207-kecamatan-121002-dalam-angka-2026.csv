@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.10.02.1006,4,Lobusona,sex,laki_laki,,962,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.02.1006,4,Lobusona,sex,perempuan,,999,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.02.1006,4,Lobusona,total,total,,1961,jiwa,2025,registration,total_population,3.1,29,,
+12.10.02.1009,4,Sidorejo,sex,laki_laki,,2720,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.02.1009,4,Sidorejo,sex,perempuan,,2579,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.02.1009,4,Sidorejo,total,total,,5299,jiwa,2025,registration,total_population,3.1,29,,
+12.10.02.1005,4,Sigambal,sex,laki_laki,,3748,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.02.1005,4,Sigambal,sex,perempuan,,3551,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.02.1005,4,Sigambal,total,total,,7299,jiwa,2025,registration,total_population,3.1,29,,
+12.10.02.1004,4,Ujung Bandar,sex,laki_laki,,3156,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.02.1004,4,Ujung Bandar,sex,perempuan,,3156,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.02.1004,4,Ujung Bandar,total,total,,6312,jiwa,2025,registration,total_population,3.1,29,,
+12.10.02.1001,4,Bakaran Batu,sex,laki_laki,,8495,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.02.1001,4,Bakaran Batu,sex,perempuan,,8521,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.02.1001,4,Bakaran Batu,total,total,,17016,jiwa,2025,registration,total_population,3.1,29,,
+12.10.02.1003,4,Urung Kompas,sex,laki_laki,,6166,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.02.1003,4,Urung Kompas,sex,perempuan,,6220,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.02.1003,4,Urung Kompas,total,total,,12386,jiwa,2025,registration,total_population,3.1,29,,
+12.10.02.1002,4,Sioldengan,sex,laki_laki,,5947,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.02.1002,4,Sioldengan,sex,perempuan,,5994,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.02.1002,4,Sioldengan,total,total,,11941,jiwa,2025,registration,total_population,3.1,29,,
+12.10.02,3,Rantau Selatan,sex,laki_laki,,40032,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.02,3,Rantau Selatan,sex,perempuan,,39800,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.02,3,Rantau Selatan,total,total,,79832,jiwa,2025,registration,total_population,3.1,29,,
+12.10.02,3,Rantau Selatan,age_group,0-4,laki_laki,2683,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.10.02,3,Rantau Selatan,age_group,0-4,perempuan,2481,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.10.02,3,Rantau Selatan,age_group,0-4,,5164,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.10.02,3,Rantau Selatan,age_group,5-9,laki_laki,3629,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.10.02,3,Rantau Selatan,age_group,5-9,perempuan,3454,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.10.02,3,Rantau Selatan,age_group,5-9,,7083,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.10.02,3,Rantau Selatan,age_group,10-14,laki_laki,4062,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+12.10.02,3,Rantau Selatan,age_group,10-14,perempuan,3767,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+12.10.02,3,Rantau Selatan,age_group,10-14,,7829,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+12.10.02,3,Rantau Selatan,age_group,15-19,laki_laki,3885,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.10.02,3,Rantau Selatan,age_group,15-19,perempuan,3824,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.10.02,3,Rantau Selatan,age_group,15-19,,7709,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.10.02,3,Rantau Selatan,age_group,20-24,laki_laki,3596,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.10.02,3,Rantau Selatan,age_group,20-24,perempuan,3423,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.10.02,3,Rantau Selatan,age_group,20-24,,7019,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.10.02,3,Rantau Selatan,age_group,25-29,laki_laki,3355,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.10.02,3,Rantau Selatan,age_group,25-29,perempuan,3319,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.10.02,3,Rantau Selatan,age_group,25-29,,6674,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.10.02,3,Rantau Selatan,age_group,30-34,laki_laki,3302,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+12.10.02,3,Rantau Selatan,age_group,30-34,perempuan,3137,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+12.10.02,3,Rantau Selatan,age_group,30-34,,6439,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+12.10.02,3,Rantau Selatan,age_group,35-39,laki_laki,3084,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.10.02,3,Rantau Selatan,age_group,35-39,perempuan,3176,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.10.02,3,Rantau Selatan,age_group,35-39,,6260,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.10.02,3,Rantau Selatan,age_group,40-44,laki_laki,3111,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.10.02,3,Rantau Selatan,age_group,40-44,perempuan,3024,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.10.02,3,Rantau Selatan,age_group,40-44,,6135,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.10.02,3,Rantau Selatan,age_group,45-49,laki_laki,2535,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.10.02,3,Rantau Selatan,age_group,45-49,perempuan,2643,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.10.02,3,Rantau Selatan,age_group,45-49,,5178,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.10.02,3,Rantau Selatan,age_group,50-54,laki_laki,2068,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.10.02,3,Rantau Selatan,age_group,50-54,perempuan,2186,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.10.02,3,Rantau Selatan,age_group,50-54,,4254,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.10.02,3,Rantau Selatan,age_group,55-59,laki_laki,1604,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.10.02,3,Rantau Selatan,age_group,55-59,perempuan,1673,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.10.02,3,Rantau Selatan,age_group,55-59,,3277,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.10.02,3,Rantau Selatan,age_group,60-64,laki_laki,1210,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.10.02,3,Rantau Selatan,age_group,60-64,perempuan,1385,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.10.02,3,Rantau Selatan,age_group,60-64,,2595,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.10.02,3,Rantau Selatan,age_group,65-69,laki_laki,934,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.10.02,3,Rantau Selatan,age_group,65-69,perempuan,1033,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.10.02,3,Rantau Selatan,age_group,65-69,,1967,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.10.02,3,Rantau Selatan,age_group,70-74,laki_laki,529,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.10.02,3,Rantau Selatan,age_group,70-74,perempuan,577,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.10.02,3,Rantau Selatan,age_group,70-74,,1106,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.10.02,3,Rantau Selatan,age_group,75+,laki_laki,445,jiwa,2025,registration,total_population,3.2,31,,75+
+12.10.02,3,Rantau Selatan,age_group,75+,perempuan,698,jiwa,2025,registration,total_population,3.2,31,,75+
+12.10.02,3,Rantau Selatan,age_group,75+,,1143,jiwa,2025,registration,total_population,3.2,31,,75+
+12.10.02,3,Rantau Selatan,sex,laki_laki,,40032,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+12.10.02,3,Rantau Selatan,sex,perempuan,,39800,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+12.10.02,3,Rantau Selatan,total,total,,79832,jiwa,2025,registration,total_population,3.2,31,,

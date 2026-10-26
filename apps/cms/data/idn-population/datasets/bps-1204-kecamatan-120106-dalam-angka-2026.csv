@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.01.06.2001,4,Unte Mungkur IV,sex,laki_laki,,1058,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.06.2001,4,Unte Mungkur IV,sex,perempuan,,1067,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.06.2001,4,Unte Mungkur IV,total,total,,2125,jiwa,2025,registration,total_population,3.1,37,,
+12.01.06.2002,4,Unte Mungkur III,sex,laki_laki,,951,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.06.2002,4,Unte Mungkur III,sex,perempuan,,974,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.06.2002,4,Unte Mungkur III,total,total,,1925,jiwa,2025,registration,total_population,3.1,37,,
+12.01.06.2003,4,Unte Mungkur II,sex,laki_laki,,674,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.06.2003,4,Unte Mungkur II,sex,perempuan,,722,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.06.2003,4,Unte Mungkur II,total,total,,1396,jiwa,2025,registration,total_population,3.1,37,,
+12.01.06.2004,4,Unte Mungkur I,sex,laki_laki,,922,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.06.2004,4,Unte Mungkur I,sex,perempuan,,895,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.06.2004,4,Unte Mungkur I,total,total,,1817,jiwa,2025,registration,total_population,3.1,37,,
+12.01.06.2005,4,Satahi Nauli,sex,laki_laki,,1204,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.06.2005,4,Satahi Nauli,sex,perempuan,,1076,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.06.2005,4,Satahi Nauli,total,total,,2280,jiwa,2025,registration,total_population,3.1,37,,
+12.01.06.2008,4,Hurlang Muara Nauli,sex,laki_laki,,752,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.06.2008,4,Hurlang Muara Nauli,sex,perempuan,,789,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.06.2008,4,Hurlang Muara Nauli,total,total,,1541,jiwa,2025,registration,total_population,3.1,37,,
+12.01.06.1007,4,Kolang Nauli,sex,laki_laki,,1017,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.06.1007,4,Kolang Nauli,sex,perempuan,,979,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.06.1007,4,Kolang Nauli,total,total,,1996,jiwa,2025,registration,total_population,3.1,37,,
+12.01.06.1006,4,P.O. Hurlang,sex,laki_laki,,979,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.06.1006,4,P.O. Hurlang,sex,perempuan,,986,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.06.1006,4,P.O. Hurlang,total,total,,1965,jiwa,2025,registration,total_population,3.1,37,,
+12.01.06.2009,4,Sipakpahi Aek Lobu,sex,laki_laki,,846,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.06.2009,4,Sipakpahi Aek Lobu,sex,perempuan,,766,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.06.2009,4,Sipakpahi Aek Lobu,total,total,,1612,jiwa,2025,registration,total_population,3.1,37,,
+12.01.06.2012,4,Rawa Makmur,sex,laki_laki,,390,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.06.2012,4,Rawa Makmur,sex,perempuan,,372,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.06.2012,4,Rawa Makmur,total,total,,762,jiwa,2025,registration,total_population,3.1,37,,
+12.01.06.2011,4,Makarti Nauli,sex,laki_laki,,389,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.06.2011,4,Makarti Nauli,sex,perempuan,,392,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.06.2011,4,Makarti Nauli,total,total,,781,jiwa,2025,registration,total_population,3.1,37,,
+12.01.06.2014,4,Pargaringan,sex,laki_laki,,562,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.06.2014,4,Pargaringan,sex,perempuan,,541,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.06.2014,4,Pargaringan,total,total,,1103,jiwa,2025,registration,total_population,3.1,37,,
+12.01.06,3,Kolang,sex,laki_laki,,10666,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.06,3,Kolang,sex,perempuan,,10444,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.06,3,Kolang,total,total,,21110,jiwa,2025,registration,total_population,3.1,37,,

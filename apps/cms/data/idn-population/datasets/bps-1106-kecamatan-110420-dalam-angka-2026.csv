@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.04.20.2006,4,Atang Jungket,sex,laki_laki,,334,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.04.20.2006,4,Atang Jungket,sex,perempuan,,343,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.04.20.2006,4,Atang Jungket,total,total,,677,jiwa,2025,registration,total_population,3.1,17,,
+11.04.20.2009,4,Lenga,sex,laki_laki,,344,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.04.20.2009,4,Lenga,sex,perempuan,,365,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.04.20.2009,4,Lenga,total,total,,709,jiwa,2025,registration,total_population,3.1,17,,
+11.04.20.2008,4,Pucuk Deku,sex,laki_laki,,227,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.04.20.2008,4,Pucuk Deku,sex,perempuan,,215,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.04.20.2008,4,Pucuk Deku,total,total,,442,jiwa,2025,registration,total_population,3.1,17,,
+11.04.20.2004,4,Arul Latong,sex,laki_laki,,414,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.04.20.2004,4,Arul Latong,sex,perempuan,,426,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.04.20.2004,4,Arul Latong,total,total,,840,jiwa,2025,registration,total_population,3.1,17,,
+11.04.20.2007,4,Tebes Lues,sex,laki_laki,,605,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.04.20.2007,4,Tebes Lues,sex,perempuan,,598,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.04.20.2007,4,Tebes Lues,total,total,,1203,jiwa,2025,registration,total_population,3.1,17,,
+11.04.20.2002,4,Bies Baru,sex,laki_laki,,347,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.04.20.2002,4,Bies Baru,sex,perempuan,,344,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.04.20.2002,4,Bies Baru,total,total,,691,jiwa,2025,registration,total_population,3.1,17,,
+11.04.20.2001,4,Bies Penentanan,sex,laki_laki,,707,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.04.20.2001,4,Bies Penentanan,sex,perempuan,,725,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.04.20.2001,4,Bies Penentanan,total,total,,1432,jiwa,2025,registration,total_population,3.1,17,,
+11.04.20.2011,4,Simpang Uning Niken,sex,laki_laki,,461,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.04.20.2011,4,Simpang Uning Niken,sex,perempuan,,477,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.04.20.2011,4,Simpang Uning Niken,total,total,,938,jiwa,2025,registration,total_population,3.1,17,,
+11.04.20.2003,4,Bies Mulie,sex,laki_laki,,396,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.04.20.2003,4,Bies Mulie,sex,perempuan,,408,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.04.20.2003,4,Bies Mulie,total,total,,804,jiwa,2025,registration,total_population,3.1,17,,
+11.04.20.2005,4,Simpang Lukup Badak,sex,laki_laki,,180,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.04.20.2005,4,Simpang Lukup Badak,sex,perempuan,,167,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.04.20.2005,4,Simpang Lukup Badak,total,total,,347,jiwa,2025,registration,total_population,3.1,17,,
+11.04.20.2010,4,Uning Pegantungen,sex,laki_laki,,251,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.04.20.2010,4,Uning Pegantungen,sex,perempuan,,272,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.04.20.2010,4,Uning Pegantungen,total,total,,523,jiwa,2025,registration,total_population,3.1,17,,
+11.04.20.2012,4,Karang Bayur,sex,laki_laki,,237,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.04.20.2012,4,Karang Bayur,sex,perempuan,,208,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.04.20.2012,4,Karang Bayur,total,total,,445,jiwa,2025,registration,total_population,3.1,17,,
+11.04.20,3,Kecamatan Bies,sex,laki_laki,,4503,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.04.20,3,Kecamatan Bies,sex,perempuan,,4548,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.04.20,3,Kecamatan Bies,total,total,,9051,jiwa,2025,registration,total_population,3.1,17,,

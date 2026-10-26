@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.05.08.2004,4,Besilam Bukit Lembasa,sex,laki_laki,,1767,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.08.2004,4,Besilam Bukit Lembasa,sex,perempuan,,1806,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.08.2004,4,Besilam Bukit Lembasa,total,total,,3573,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.08.2007,4,Gergas,sex,laki_laki,,596,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.08.2007,4,Gergas,sex,perempuan,,587,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.08.2007,4,Gergas,total,total,,1183,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.08.1001,4,Bingai,sex,laki_laki,,1221,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.08.1001,4,Bingai,sex,perempuan,,1210,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.08.1001,4,Bingai,total,total,,2431,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.08.2006,4,Bukit Melintang,sex,laki_laki,,293,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.08.2006,4,Bukit Melintang,sex,perempuan,,311,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.08.2006,4,Bukit Melintang,total,total,,604,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.08.2005,4,Kebun Balok,sex,laki_laki,,1992,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.08.2005,4,Kebun Balok,sex,perempuan,,1920,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.08.2005,4,Kebun Balok,total,total,,3912,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.08.2009,4,Sumber Mulyo,sex,laki_laki,,996,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.08.2009,4,Sumber Mulyo,sex,perempuan,,1007,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.08.2009,4,Sumber Mulyo,total,total,,2003,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.08.2002,4,Gohor Lama,sex,laki_laki,,1457,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.08.2002,4,Gohor Lama,sex,perempuan,,1397,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.08.2002,4,Gohor Lama,total,total,,2854,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.08.2003,4,Stabat Lama,sex,laki_laki,,3355,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.08.2003,4,Stabat Lama,sex,perempuan,,3317,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.08.2003,4,Stabat Lama,total,total,,6672,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.08.2008,4,Stabat Lama Barat,sex,laki_laki,,3292,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.08.2008,4,Stabat Lama Barat,sex,perempuan,,3287,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.08.2008,4,Stabat Lama Barat,total,total,,6579,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.08.2010,4,Pertumbukan,sex,laki_laki,,1158,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.08.2010,4,Pertumbukan,sex,perempuan,,1099,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.08.2010,4,Pertumbukan,total,total,,2257,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.08.2011,4,Paya Tusam,sex,laki_laki,,971,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.08.2011,4,Paya Tusam,sex,perempuan,,935,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.08.2011,4,Paya Tusam,total,total,,1906,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.08.2012,4,Mekar Jaya,sex,laki_laki,,1862,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.08.2012,4,Mekar Jaya,sex,perempuan,,1801,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.08.2012,4,Mekar Jaya,total,total,,3663,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.08.2013,4,Jentera Stabat,sex,laki_laki,,2643,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.08.2013,4,Jentera Stabat,sex,perempuan,,2692,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.08.2013,4,Jentera Stabat,total,total,,5335,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.08.2014,4,Stungkit,sex,laki_laki,,1887,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.08.2014,4,Stungkit,sex,perempuan,,1791,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.08.2014,4,Stungkit,total,total,,3678,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.08,3,Kecamatan Wampu,sex,laki_laki,,23490,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.08,3,Kecamatan Wampu,sex,perempuan,,23160,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.08,3,Kecamatan Wampu,total,total,,46650,jiwa,2025,registration,total_population,unnumbered-p39,39,,

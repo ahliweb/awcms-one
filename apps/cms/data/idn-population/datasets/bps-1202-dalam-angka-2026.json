@@ -1,0 +1,66 @@
+{
+  "datasetCode": "bps-1202-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "12.13",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Mandailing Natal Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Mandailing Natal",
+  "publisherDomain": "1202",
+  "publisherWebsite": "https://mandailingnatalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Mandailing Natal (https://mandailingnatalkab.bps.go.id), publikasi \"Kabupaten Mandailing Natal Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1202.0000",
+  "publicationNumber": "12020.26002",
+  "issn": "2503-4057",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://mandailingnatalkab.bps.go.id/id/publication/2026/02/27/868b85a6642e763867ea08df/kabupaten-mandailing-natal-dalam-angka-2026.html",
+  "sourceFileSha256": "5c8bc2433372fc85b0a708224a29017034a219445014ede246487f6487fb333a",
+  "sourceFileBytes": 14548522,
+  "sourcePages": [55, 56, 74, 77, 370],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Mandailing Natal.",
+  "csvPath": "datasets/bps-1202-dalam-angka-2026.csv",
+  "csvSha256": "84004a7e79d31b20d3fbc3a0a66e6d2badc38f59f078a4cf80724689a34cf64e",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, dan Rasio Jenis Kelamin Penduduk menurut Kecamatan di Kabupaten Mandailing Natal, 2025",
+      "printedPages": [74],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Mandailing Natal (ribu jiwa) , 2025",
+      "printedPages": [77],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "2.3.5",
+      "title": "Jumlah Aparatur Sipil Negara (ASN) Pemerintah Kabupaten Mandailing Natal menurut Agama dan Jenis Kelamin, 2025",
+      "printedPages": [55, 56],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan menurut Kelompok Komoditas di Kabupaten Mandailing Natal (rupiah), 2024 dan 2025",
+      "printedPages": [370],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 2.3.5: the rows of region 12.13 are not stored: religion (perempuan) vs sex value: parts sum 12944.0000 != 3351.0000 (diff 9593.0000); the source itself is inconsistent"
+  ]
+}

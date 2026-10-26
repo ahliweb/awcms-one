@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.07.05.2006,4,Keune,sex,laki_laki,,368,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.07.05.2006,4,Keune,sex,perempuan,,376,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.07.05.2006,4,Keune,total,total,,744,jiwa,2025,registration,total_population,3.1,29,,
+11.07.05.2001,4,Bangkeh,sex,laki_laki,,1194,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.07.05.2001,4,Bangkeh,sex,perempuan,,1222,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.07.05.2001,4,Bangkeh,total,total,,2416,jiwa,2025,registration,total_population,3.1,29,,
+11.07.05.2002,4,Pucok,sex,laki_laki,,703,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.07.05.2002,4,Pucok,sex,perempuan,,693,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.07.05.2002,4,Pucok,total,total,,1396,jiwa,2025,registration,total_population,3.1,29,,
+11.07.05.2004,4,Leupu,sex,laki_laki,,773,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.07.05.2004,4,Leupu,sex,perempuan,,753,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.07.05.2004,4,Leupu,total,total,,1526,jiwa,2025,registration,total_population,3.1,29,,
+11.07.05,3,Geumpang,sex,laki_laki,,3897,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.07.05,3,Geumpang,sex,perempuan,,3904,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.07.05,3,Geumpang,total,total,,7801,jiwa,2025,registration,total_population,3.1,29,,

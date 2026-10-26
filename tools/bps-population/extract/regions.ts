@@ -62,7 +62,7 @@ export function normalizeLabel(value: string): string {
     .replace(/[^a-z0-9]+/g, "");
 }
 
-const TYPE_PREFIX = /^\s*(kabupaten|kab\.?|kota administrasi|kota|kecamatan|kec\.?|kelurahan|kel\.?|desa)\s+/i;
+const TYPE_PREFIX = /^\s*(kabupaten|kab\.?|kota administrasi|kota|kecamatan|kec\.?|kelurahan|kel\.?|desa|gampong)\s+/i;
 
 export function typeOfName(name: string): KindHint | "other" {
   const m = /^\s*(kabupaten|kab\.?|kota)\b/i.exec(name);

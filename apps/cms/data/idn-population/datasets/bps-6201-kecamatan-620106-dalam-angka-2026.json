@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-6201-kecamatan-620106-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.01.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pangkalan Banteng Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kotawaringin Barat",
+  "publisherDomain": "6201",
+  "publisherWebsite": "https://kobarkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kotawaringin Barat (https://kobarkab.bps.go.id), publikasi \"Kecamatan Pangkalan Banteng Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6201061",
+  "publicationNumber": "62010.26012",
+  "issn": "2808-6325",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kobarkab.bps.go.id/id/publication/2026/09/28/e72367a766bd79066fbba492/kecamatan-pangkalan-banteng-dalam-angka-2026.html",
+  "sourceFileSha256": "de6b45e04536db757c9ba49733e7754ec9ca2033959d65e39743fa94a21a7d72",
+  "sourceFileBytes": 12739344,
+  "sourcePages": [37],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kotawaringin Barat.",
+  "csvPath": "datasets/bps-6201-kecamatan-620106-dalam-angka-2026.csv",
+  "csvSha256": "52d8d5bad484825d4256447f30c4115106bc4ce1860d22ceb1123c10adc9815b",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pangkalan Banteng , 2025",
+      "printedPages": [37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

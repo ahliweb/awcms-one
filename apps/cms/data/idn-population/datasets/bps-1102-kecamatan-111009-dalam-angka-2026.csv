@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.10.09.2001,4,Lentong,sex,laki_laki,,333,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.10.09.2001,4,Lentong,sex,perempuan,,315,jiwa,2025,registration,total_population,3.1,21,,Perempuan/
+11.10.09.2001,4,Lentong,total,total,,648,jiwa,2025,registration,total_population,3.1,21,,
+11.10.09.2002,4,Lapahan Buaya,sex,laki_laki,,225,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.10.09.2002,4,Lapahan Buaya,sex,perempuan,,210,jiwa,2025,registration,total_population,3.1,21,,Perempuan/
+11.10.09.2002,4,Lapahan Buaya,total,total,,435,jiwa,2025,registration,total_population,3.1,21,,
+11.10.09.2003,4,Butar,sex,laki_laki,,370,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.10.09.2003,4,Butar,sex,perempuan,,376,jiwa,2025,registration,total_population,3.1,21,,Perempuan/
+11.10.09.2003,4,Butar,total,total,,746,jiwa,2025,registration,total_population,3.1,21,,
+11.10.09.2004,4,Samar Dua,sex,laki_laki,,410,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.10.09.2004,4,Samar Dua,sex,perempuan,,401,jiwa,2025,registration,total_population,3.1,21,,Perempuan/
+11.10.09.2004,4,Samar Dua,total,total,,811,jiwa,2025,registration,total_population,3.1,21,,
+11.10.09.2005,4,Ladang Bisik,sex,laki_laki,,331,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.10.09.2005,4,Ladang Bisik,sex,perempuan,,340,jiwa,2025,registration,total_population,3.1,21,,Perempuan/
+11.10.09.2005,4,Ladang Bisik,total,total,,671,jiwa,2025,registration,total_population,3.1,21,,
+11.10.09.2006,4,Muara Pea,sex,laki_laki,,232,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.10.09.2006,4,Muara Pea,sex,perempuan,,228,jiwa,2025,registration,total_population,3.1,21,,Perempuan/
+11.10.09.2006,4,Muara Pea,total,total,,460,jiwa,2025,registration,total_population,3.1,21,,
+11.10.09.2008,4,Sumber Mukti,sex,laki_laki,,912,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.10.09.2008,4,Sumber Mukti,sex,perempuan,,873,jiwa,2025,registration,total_population,3.1,21,,Perempuan/
+11.10.09.2008,4,Sumber Mukti,total,total,,1785,jiwa,2025,registration,total_population,3.1,21,,
+11.10.09.2010,4,Danau Bungara,sex,laki_laki,,698,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.10.09.2010,4,Danau Bungara,sex,perempuan,,696,jiwa,2025,registration,total_population,3.1,21,,Perempuan/
+11.10.09.2010,4,Danau Bungara,total,total,,1394,jiwa,2025,registration,total_population,3.1,21,,
