@@ -9,10 +9,20 @@ export interface ListedOffice {
   name: string;
 }
 
+/**
+ * Plain text of an HTML fragment. Tag removal repeats until nothing changes, because one pass over
+ * `<<b>x>` leaves `<x>` behind; any `<` or `>` still left after that is dropped too, so the result
+ * never carries markup. The output is data (an office name), never rendered as HTML.
+ */
 function cleanText(s: string): string {
-  return s
-    .replace(/<!--\s*-->/g, "")
-    .replace(/<[^>]+>/g, "")
+  let text = s;
+  let previous: string;
+  do {
+    previous = text;
+    text = text.replace(/<!--[\s\S]*?-->/g, "").replace(/<[^<>]*>/g, "");
+  } while (text !== previous);
+  return text
+    .replace(/[<>]/g, "")
     .replace(/&amp;/g, "&")
     .replace(/\s+/g, " ")
     .trim();

@@ -129,6 +129,14 @@ describe("tautan, server action and list parsing", () => {
     assert.deepEqual(t.regencies, [{ host: "https://acehbaratkab.bps.go.id", name: "Kabupaten Aceh Barat" }]);
     assert.throws(() => parseTautan("<p>nothing</p>"));
   });
+  test("office names never keep markup, even from nested tags", () => {
+    const html =
+      'Website Badan Pusat Statistik Provinsi<ul><li><a href="https://aceh.bps.go.id">Provinsi <<b>script>Aceh</a></li></ul></li>' +
+      '<li>Website Badan Pusat Statistik Kabupaten/Kota<ul><li><a href="https://acehbaratkab.bps.go.id">Kabupaten <!-- x -->Aceh Barat</a></li></ul>';
+    const t = parseTautan(html);
+    assert.equal(t.provinces[0].name, "Provinsi Aceh");
+    assert.equal(t.regencies[0].name, "Kabupaten Aceh Barat");
+  });
   test("action id is read from the chunk", () => {
     const js = 'let s=(0,l.createServerReference)("60624e3a7c825a0b98392f2120a4870bd26b8f90f2",l.callServer,void 0,l.findSourceMapURL,"getListPublication")';
     assert.equal(extractActionId(js), "60624e3a7c825a0b98392f2120a4870bd26b8f90f2");
