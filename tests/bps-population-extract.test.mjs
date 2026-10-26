@@ -5,7 +5,9 @@
  */
 import { describe, test } from "bun:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, readdirSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 
 import { ageBandKey, indonesianPart, parseCell, snakeCase } from "../tools/bps-population/extract/cells.ts";
 import { dedupe, runChecks, toScaled } from "../tools/bps-population/extract/checks.ts";
@@ -20,7 +22,7 @@ import {
 } from "../tools/bps-population/extract/regions.ts";
 import { analysePage, joinLabel, readBody } from "../tools/bps-population/extract/rows.ts";
 import { footnoteLabels, industryByRegion, religionByRegion, religionKey, sexTable, shortIndustryKey, villageSex } from "../tools/bps-population/extract/tables.ts";
-import { websiteOfHost } from "../tools/bps-population/extract/run.ts";
+import { recordResult, websiteOfHost } from "../tools/bps-population/extract/run.ts";
 import { parseBboxPages } from "../tools/bps-population/extract/words.ts";
 
 const FIX = new URL("./fixtures/bps-population/", import.meta.url).pathname;
@@ -273,6 +275,23 @@ describe("Kecamatan yearbooks (village level)", () => {
     const wrongDistrict = { ...ctx, coverage: "62.71.04" };
     const res = villageSex(wrongDistrict);
     assert.ok(res.gaps.some((g) => g.startsWith("row not stored")));
+  });
+});
+
+describe("extract-results ledger", () => {
+  test("one record per sha256, the latest wins, written atomically with relative file names", () => {
+    const dir = mkdtempSync(join(tmpdir(), "bps-ledger-"));
+    const outcome = (status, reason) => ({ year: 2026, reason, datasetCode: "bps-x", status });
+    recordResult(dir, join(dir, "pdf", "kecamatan", "62.01.02-2026.pdf"), "a".repeat(64), outcome("refused", "no rows"));
+    recordResult(dir, join(dir, "pdf", "6208-dalam-angka-2026.pdf"), "b".repeat(64), outcome("gap-only", "no text layer (needs OCR)"));
+    recordResult(dir, join(dir, "pdf", "kecamatan", "62.01.02-2026.pdf"), "a".repeat(64), outcome("written", null));
+    const rows = JSON.parse(readFileSync(join(dir, "extract-results.json"), "utf8"));
+    assert.equal(rows.length, 2);
+    const a = rows.find((r) => r.sha256 === "a".repeat(64));
+    assert.deepEqual([a.file, a.outcome, a.datasetCode, a.reason], ["kecamatan/62.01.02-2026.pdf", "written", "bps-x", null]);
+    const b = rows.find((r) => r.sha256 === "b".repeat(64));
+    assert.deepEqual([b.file, b.outcome, b.datasetCode, b.reason], ["6208-dalam-angka-2026.pdf", "gap_only", null, "no text layer (needs OCR)"]);
+    assert.ok(!readdirSync(dir).some((f) => f.endsWith(".tmp")));
   });
 });
 

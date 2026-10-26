@@ -1,0 +1,64 @@
+{
+  "datasetCode": "bps-6203-kecamatan-620307-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.03.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kapuas Murung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kapuas",
+  "publisherDomain": "6203",
+  "publisherWebsite": "https://kapuaskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kapuas (https://kapuaskab.bps.go.id), publikasi \"Kecamatan Kapuas Murung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6203100",
+  "publicationNumber": "62030.25015",
+  "issn": "2548-2416",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kapuaskab.bps.go.id/id/publication/2026/09/28/8dd31044bb3120e2b5127071/kecamatan-kapuas-murung-dalam-angka-2026.html",
+  "sourceFileSha256": "283d61152f15bc6f65848384663caacbed614b5000542135847ff503f0f5e1fc",
+  "sourceFileBytes": 6520824,
+  "sourcePages": [
+    34,
+    35,
+    36,
+    37,
+    38
+  ],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kapuas.",
+  "csvPath": "datasets/bps-6203-kecamatan-620307-dalam-angka-2026.csv",
+  "csvSha256": "6840e968bcdfcaa200e7d8ef61c025cd7df567fc4194545ea99448d8f03d1077",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kapuas Murung, 2025",
+      "printedPages": [
+        34,
+        35,
+        36,
+        37
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kapuas Murung, 2025",
+      "printedPages": [
+        38
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Talekung Punai\": unmatched ",
+    "table 3.1: row not stored: row \"Talekung Punai\": unmatched ",
+    "table 3.2 is not included: its published figures do not add up (age_group (laki_laki) vs sex value: parts sum 14562.0000 != 14552.0000 (diff 10.0000)); the source itself is inconsistent"
+  ]
+}

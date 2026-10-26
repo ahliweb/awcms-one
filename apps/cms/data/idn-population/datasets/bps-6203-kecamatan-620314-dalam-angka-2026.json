@@ -1,0 +1,57 @@
+{
+  "datasetCode": "bps-6203-kecamatan-620314-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.03.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pasak Talawang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kapuas",
+  "publisherDomain": "6203",
+  "publisherWebsite": "https://kapuaskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kapuas (https://kapuaskab.bps.go.id), publikasi \"Kecamatan Pasak Talawang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6203171",
+  "publicationNumber": "62030.25021",
+  "issn": "2548-2351",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kapuaskab.bps.go.id/id/publication/2026/09/28/c70a770a8da0d9ecbecf545f/kecamatan-pasak-talawang-dalam-angka-2026.html",
+  "sourceFileSha256": "ad9cbc5bd4bb50bc06c1fbe352067ab831471c7fc790c6c7c213022b3fa5c374",
+  "sourceFileBytes": 8049123,
+  "sourcePages": [
+    30,
+    31,
+    32
+  ],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kapuas.",
+  "csvPath": "datasets/bps-6203-kecamatan-620314-dalam-angka-2026.csv",
+  "csvSha256": "9fc164a2e5f77f494b72dba49f8724be4b95e3f6e0797e63c6b062c0c02a2d57",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pasak Talawang, 2025",
+      "printedPages": [
+        30,
+        31
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pasak Talawang, 2025",
+      "printedPages": [
+        32
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

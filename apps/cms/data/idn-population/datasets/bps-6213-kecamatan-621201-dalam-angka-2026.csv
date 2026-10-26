@@ -1,4 +1,52 @@
 region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.12.01.2001,4,Dirung,sex,laki_laki,,226,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.01.2001,4,Dirung,sex,perempuan,,205,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.01.2001,4,Dirung,total,total,,431,jiwa,2025,registration,total_population,3.1,30,,
+62.12.01.2002,4,Malasan,sex,laki_laki,,269,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.01.2002,4,Malasan,sex,perempuan,,206,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.01.2002,4,Malasan,total,total,,475,jiwa,2025,registration,total_population,3.1,30,,
+62.12.01.2003,4,Batu Putih,sex,laki_laki,,394,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.01.2003,4,Batu Putih,sex,perempuan,,354,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.01.2003,4,Batu Putih,total,total,,748,jiwa,2025,registration,total_population,3.1,30,,
+62.12.01.2004,4,Mangkahui,sex,laki_laki,,1616,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.01.2004,4,Mangkahui,sex,perempuan,,1473,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.01.2004,4,Mangkahui,total,total,,3089,jiwa,2025,registration,total_population,3.1,30,,
+62.12.01.2005,4,Panu'ut,sex,laki_laki,,407,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.01.2005,4,Panu'ut,sex,perempuan,,378,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.01.2005,4,Panu'ut,total,total,,785,jiwa,2025,registration,total_population,3.1,30,,
+62.12.01.2006,4,Muara Untu,sex,laki_laki,,1509,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.01.2006,4,Muara Untu,sex,perempuan,,1405,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.01.2006,4,Muara Untu,total,total,,2914,jiwa,2025,registration,total_population,3.1,30,,
+62.12.01.2007,4,Muara Ja'an,sex,laki_laki,,492,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.01.2007,4,Muara Ja'an,sex,perempuan,,452,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.01.2007,4,Muara Ja'an,total,total,,944,jiwa,2025,registration,total_population,3.1,30,,
+62.12.01.2008,4,Bahitom,sex,laki_laki,,2430,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.01.2008,4,Bahitom,sex,perempuan,,2186,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.01.2008,4,Bahitom,total,total,,4616,jiwa,2025,registration,total_population,3.1,30,,
+62.12.01.2009,4,Danau Usung,sex,laki_laki,,1344,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.01.2009,4,Danau Usung,sex,perempuan,,1224,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.01.2009,4,Danau Usung,total,total,,2568,jiwa,2025,registration,total_population,3.1,30,,
+62.12.01.2010,4,Juking Pajang,sex,laki_laki,,1411,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.01.2010,4,Juking Pajang,sex,perempuan,,1351,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.01.2010,4,Juking Pajang,total,total,,2762,jiwa,2025,registration,total_population,3.1,30,,
+62.12.01.1013,4,Beriwit,sex,laki_laki,,10934,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.01.1013,4,Beriwit,sex,perempuan,,10622,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.01.1013,4,Beriwit,total,total,,21556,jiwa,2025,registration,total_population,3.1,30,,
+62.12.01.1012,4,Puruk Cahu,sex,laki_laki,,1461,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.01.1012,4,Puruk Cahu,sex,perempuan,,1374,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.01.1012,4,Puruk Cahu,total,total,,2835,jiwa,2025,registration,total_population,3.1,30,,
+62.12.01.2011,4,Muara Sumpoi,sex,laki_laki,,496,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.01.2011,4,Muara Sumpoi,sex,perempuan,,485,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.01.2011,4,Muara Sumpoi,total,total,,981,jiwa,2025,registration,total_population,3.1,30,,
+62.12.01.2014,4,Muara Bumban,sex,laki_laki,,521,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.01.2014,4,Muara Bumban,sex,perempuan,,464,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.01.2014,4,Muara Bumban,total,total,,985,jiwa,2025,registration,total_population,3.1,30,,
+62.12.01.2015,4,Penyang,sex,laki_laki,,363,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.01.2015,4,Penyang,sex,perempuan,,350,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.01.2015,4,Penyang,total,total,,713,jiwa,2025,registration,total_population,3.1,30,,
+62.12.01,3,Murung,sex,laki_laki,,23873,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.01,3,Murung,sex,perempuan,,22529,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.01,3,Murung,total,total,,46402,jiwa,2025,registration,total_population,3.1,30,,
 62.12.01,3,Murung,age_group,0-4,laki_laki,1846,jiwa,2025,registration,total_population,3.2,32,,0–4
 62.12.01,3,Murung,age_group,0-4,perempuan,1761,jiwa,2025,registration,total_population,3.2,32,,0–4
 62.12.01,3,Murung,age_group,0-4,,3607,jiwa,2025,registration,total_population,3.2,32,,0–4

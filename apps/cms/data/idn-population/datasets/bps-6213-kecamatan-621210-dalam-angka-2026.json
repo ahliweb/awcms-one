@@ -1,0 +1,61 @@
+{
+  "datasetCode": "bps-6213-kecamatan-621210-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.12.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Uut Murung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Murung Raya",
+  "publisherDomain": "6213",
+  "publisherWebsite": "https://murakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Murung Raya (https://murakab.bps.go.id), publikasi \"Kecamatan Uut Murung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6213052",
+  "publicationNumber": "62130.26015",
+  "issn": "2302-7177",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://murakab.bps.go.id/id/publication/2026/09/28/432e81d3ed31fb18f7bb174a/kecamatan-uut-murung-dalam-angka-2026.html",
+  "sourceFileSha256": "0acbcd00699f3674254c49cfc75b0acd9651718b357c4839b5c20c381b5d4a4c",
+  "sourceFileBytes": 13812667,
+  "sourcePages": [
+    30,
+    31,
+    32
+  ],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Murung Raya.",
+  "csvPath": "datasets/bps-6213-kecamatan-621210-dalam-angka-2026.csv",
+  "csvSha256": "7e4ee24ac66a321dad4764c6b3ebd42ff911c4832b123f191767bdcedebc8c86",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa1/ Kelurahan di Kecamatan Uut Murung, 2025",
+      "printedPages": [
+        30,
+        31
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Uut Murung, 2025",
+      "printedPages": [
+        32
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Tumbang Olong\": unmatched ",
+    "table 3.1: row not stored: row \"Tumbang Tupus\": unmatched ",
+    "table 3.1: row not stored: row \"Tumbang Olong\": unmatched ",
+    "table 3.1: row not stored: row \"Tumbang Tupus\": unmatched "
+  ]
+}

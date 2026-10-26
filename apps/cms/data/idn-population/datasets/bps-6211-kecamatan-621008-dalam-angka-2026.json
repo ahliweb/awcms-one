@@ -1,0 +1,75 @@
+{
+  "datasetCode": "bps-6211-kecamatan-621008-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.10.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Damang Batu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Gunung Mas",
+  "publisherDomain": "6211",
+  "publisherWebsite": "https://gumaskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Gunung Mas (https://gumaskab.bps.go.id), publikasi \"Kecamatan Damang Batu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6211010",
+  "publicationNumber": "62110.26015",
+  "issn": "2407-1118",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://gumaskab.bps.go.id/id/publication/2026/09/28/13561e70e41a96c9f41586c6/kecamatan-damang-batu-dalam-angka-2026.html",
+  "sourceFileSha256": "b6f67551f3afefd7d2dc4ef86f6cc71013bcbecf66b02ec5695df4cbde071d06",
+  "sourceFileBytes": 3765116,
+  "sourcePages": [
+    31,
+    32,
+    33
+  ],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Gunung Mas",
+  "csvPath": "datasets/bps-6211-kecamatan-621008-dalam-angka-2026.csv",
+  "csvSha256": "4790205d0aedf0649e9c6f145875d6308c35948b1a974f89ee1bff8159afc8f8",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Damang Batu, 2025",
+      "printedPages": [
+        31,
+        32
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Damang Batu, 2025",
+      "printedPages": [
+        33
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"[001] Lawang Kanji\": unmatched ",
+    "table 3.1: row not stored: row \"[002] Tumbang Maraya\": unmatched ",
+    "table 3.1: row not stored: row \"[003] Tumbang Posu\": unmatched ",
+    "table 3.1: row not stored: row \"[005] Karetau Rambangun\": unmatched ",
+    "table 3.1: row not stored: row \"[006] Tumbang Anoi\": unmatched ",
+    "table 3.1: row not stored: row \"[007] Karetau Sarian\": unmatched ",
+    "table 3.1: row not stored: row \"[008] Tumbang Mahuroi\": unmatched ",
+    "table 3.1: row not stored: row \"[004] Tumbang Marikoi\": unmatched ",
+    "table 3.1: row not stored: row \"[001] Lawang Kanji\": unmatched ",
+    "table 3.1: row not stored: row \"[002] Tumbang Maraya\": unmatched ",
+    "table 3.1: row not stored: row \"[003] Tumbang Posu\": unmatched ",
+    "table 3.1: row not stored: row \"[005] Karetau Rambangun\": unmatched ",
+    "table 3.1: row not stored: row \"[006] Tumbang Anoi\": unmatched ",
+    "table 3.1: row not stored: row \"[007] Karetau Sarian\": unmatched ",
+    "table 3.1: row not stored: row \"[008] Tumbang Mahuroi\": unmatched ",
+    "table 3.1: row not stored: row \"[004] Tumbang Marikoi\": unmatched ",
+    "table 3.2: row not stored: row \"> 75\": unmatched ",
+    "table 3.2 is not included: its published figures do not add up (age_group vs total: parts sum 4991.0000 != 5064.0000 (diff 73.0000)); the source itself is inconsistent"
+  ]
+}

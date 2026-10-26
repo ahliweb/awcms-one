@@ -1,0 +1,43 @@
+{
+  "datasetCode": "bps-6204-kecamatan-620403-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.04.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Karau Kuala Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Barito Selatan",
+  "publisherDomain": "6204",
+  "publisherWebsite": "https://barselkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Barito Selatan (https://barselkab.bps.go.id), publikasi \"Kecamatan Karau Kuala Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6204030",
+  "publicationNumber": "62040.26010",
+  "issn": "2830-2621",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://barselkab.bps.go.id/id/publication/2026/09/28/71167e2c99977ce82c4fcfb8/kecamatan-karau-kuala-dalam-angka-2026.html",
+  "sourceFileSha256": "ebf5a31ff1c1ffea3e71b58a0607ed5f1ce3bcff6717a1dc7ce02c0cbb36c345",
+  "sourceFileBytes": 10884599,
+  "sourcePages": [
+    34
+  ],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Barito Selatan.",
+  "csvPath": "datasets/bps-6204-kecamatan-620403-dalam-angka-2026.csv",
+  "csvSha256": "90bc78929a60b947a6c0cf2cea5ec4844858c0e4bb96a6d97c39a809cc3a76a0",
+  "tablesUsed": [
+    {
+      "table": "3.4",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Karau Kuala, 2025",
+      "printedPages": [
+        34
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

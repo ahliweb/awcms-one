@@ -1,0 +1,4 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.10.04,3,Kecamatan Kahayan Hulu Utara,sex,laki_laki,,4562,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+62.10.04,3,Kecamatan Kahayan Hulu Utara,sex,perempuan,,3995,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+62.10.04,3,Kecamatan Kahayan Hulu Utara,total,total,,8557,jiwa,2025,registration,total_population,3.1,31,,

@@ -112,8 +112,9 @@ export function resolveLabel(
   hint: KindHint = null,
   isTotalRow = true
 ): Resolution {
-  const hadIndex = /^\s*\d{1,3}\.\s*/.test(rawLabel);
-  const label = rawLabel.replace(/^\s*\d{1,3}\.\s*/, "").replace(/(?<=\p{L})\d{1,2}$/u, "").trim();
+  const INDEX = /^\s*\d{1,3}(?:\.\s*|\s+(?=\p{L}))/u; // "3. Kapuas" or a bare village code "001 Malungai"
+  const hadIndex = INDEX.test(rawLabel);
+  const label = rawLabel.replace(INDEX, "").replace(/(?<=\p{L})\d{1,2}$/u, "").trim();
   const dotted = /(\d{2}(?:\.\d{2}(?:\.\d{2}(?:\.\d{4})?)?)?)/.exec(label);
   if (dotted && index.byCode.has(dotted[1]!) && dotted[1]!.startsWith(parent)) {
     const r = index.byCode.get(dotted[1]!)!;

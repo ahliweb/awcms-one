@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.09.05.2006,4,Bukit Makmur,sex,laki_laki,,727,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.05.2006,4,Bukit Makmur,sex,perempuan,,582,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.05.2006,4,Bukit Makmur,total,total,,1309,jiwa,2025,registration,total_population,3.1,28,,
+62.09.05.2008,4,Bukit Raya,sex,laki_laki,,1677,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.05.2008,4,Bukit Raya,sex,perempuan,,1506,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.05.2008,4,Bukit Raya,total,total,,3183,jiwa,2025,registration,total_population,3.1,28,,
+62.09.05.2010,4,Sumber Jaya,sex,laki_laki,,711,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.05.2010,4,Sumber Jaya,sex,perempuan,,674,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.05.2010,4,Sumber Jaya,total,total,,1385,jiwa,2025,registration,total_population,3.1,28,,
+62.09.05.2011,4,Bukit Harum,sex,laki_laki,,912,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.05.2011,4,Bukit Harum,sex,perempuan,,892,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.05.2011,4,Bukit Harum,total,total,,1804,jiwa,2025,registration,total_population,3.1,28,,
+62.09.05.2001,4,Melata,sex,laki_laki,,767,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.05.2001,4,Melata,sex,perempuan,,647,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.05.2001,4,Melata,total,total,,1414,jiwa,2025,registration,total_population,3.1,28,,
+62.09.05.2009,4,Mukti Manunggal,sex,laki_laki,,733,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.05.2009,4,Mukti Manunggal,sex,perempuan,,658,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.05.2009,4,Mukti Manunggal,total,total,,1391,jiwa,2025,registration,total_population,3.1,28,,
+62.09.05.2007,4,Modang Mas,sex,laki_laki,,928,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.05.2007,4,Modang Mas,sex,perempuan,,799,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.05.2007,4,Modang Mas,total,total,,1727,jiwa,2025,registration,total_population,3.1,28,,
+62.09.05.2002,4,Nanuah,sex,laki_laki,,229,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.05.2002,4,Nanuah,sex,perempuan,,192,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.05.2002,4,Nanuah,total,total,,421,jiwa,2025,registration,total_population,3.1,28,,
+62.09.05.2005,4,Topalan,sex,laki_laki,,172,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.05.2005,4,Topalan,sex,perempuan,,138,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.05.2005,4,Topalan,total,total,,310,jiwa,2025,registration,total_population,3.1,28,,
+62.09.05.2003,4,Batu Ampar,sex,laki_laki,,226,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.05.2003,4,Batu Ampar,sex,perempuan,,201,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.05.2003,4,Batu Ampar,total,total,,427,jiwa,2025,registration,total_population,3.1,28,,
+62.09.05.2004,4,Lubuk Hiju,sex,laki_laki,,366,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.05.2004,4,Lubuk Hiju,sex,perempuan,,333,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.05.2004,4,Lubuk Hiju,total,total,,699,jiwa,2025,registration,total_population,3.1,28,,
+62.09.05,3,Kecamatan Menthobi Raya,sex,laki_laki,,7448,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.05,3,Kecamatan Menthobi Raya,sex,perempuan,,6622,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.05,3,Kecamatan Menthobi Raya,total,total,,14070,jiwa,2025,registration,total_population,3.1,28,,
+62.09.05,3,Menthobi Raya,age_group,0-4,laki_laki,531,jiwa,2025,registration,total_population,3.2,30,,0–4
+62.09.05,3,Menthobi Raya,age_group,0-4,perempuan,464,jiwa,2025,registration,total_population,3.2,30,,0–4
+62.09.05,3,Menthobi Raya,age_group,0-4,,995,jiwa,2025,registration,total_population,3.2,30,,0–4
+62.09.05,3,Menthobi Raya,age_group,5-9,laki_laki,678,jiwa,2025,registration,total_population,3.2,30,,5–9
+62.09.05,3,Menthobi Raya,age_group,5-9,perempuan,566,jiwa,2025,registration,total_population,3.2,30,,5–9
+62.09.05,3,Menthobi Raya,age_group,5-9,,1244,jiwa,2025,registration,total_population,3.2,30,,5–9
+62.09.05,3,Menthobi Raya,age_group,10-14,laki_laki,641,jiwa,2025,registration,total_population,3.2,30,,10–14
+62.09.05,3,Menthobi Raya,age_group,10-14,perempuan,567,jiwa,2025,registration,total_population,3.2,30,,10–14
+62.09.05,3,Menthobi Raya,age_group,10-14,,1208,jiwa,2025,registration,total_population,3.2,30,,10–14
+62.09.05,3,Menthobi Raya,age_group,15-19,laki_laki,514,jiwa,2025,registration,total_population,3.2,30,,15–19
+62.09.05,3,Menthobi Raya,age_group,15-19,perempuan,537,jiwa,2025,registration,total_population,3.2,30,,15–19
+62.09.05,3,Menthobi Raya,age_group,15-19,,1051,jiwa,2025,registration,total_population,3.2,30,,15–19
+62.09.05,3,Menthobi Raya,age_group,20-24,laki_laki,602,jiwa,2025,registration,total_population,3.2,30,,20–24
+62.09.05,3,Menthobi Raya,age_group,20-24,perempuan,591,jiwa,2025,registration,total_population,3.2,30,,20–24
+62.09.05,3,Menthobi Raya,age_group,20-24,,1193,jiwa,2025,registration,total_population,3.2,30,,20–24
+62.09.05,3,Menthobi Raya,age_group,25-29,laki_laki,623,jiwa,2025,registration,total_population,3.2,30,,25–29
+62.09.05,3,Menthobi Raya,age_group,25-29,perempuan,561,jiwa,2025,registration,total_population,3.2,30,,25–29
+62.09.05,3,Menthobi Raya,age_group,25-29,,1184,jiwa,2025,registration,total_population,3.2,30,,25–29
+62.09.05,3,Menthobi Raya,age_group,30-34,laki_laki,636,jiwa,2025,registration,total_population,3.2,30,,30–34
+62.09.05,3,Menthobi Raya,age_group,30-34,perempuan,521,jiwa,2025,registration,total_population,3.2,30,,30–34
+62.09.05,3,Menthobi Raya,age_group,30-34,,1157,jiwa,2025,registration,total_population,3.2,30,,30–34
+62.09.05,3,Menthobi Raya,age_group,35-39,laki_laki,599,jiwa,2025,registration,total_population,3.2,30,,35–39
+62.09.05,3,Menthobi Raya,age_group,35-39,perempuan,552,jiwa,2025,registration,total_population,3.2,30,,35–39
+62.09.05,3,Menthobi Raya,age_group,35-39,,1151,jiwa,2025,registration,total_population,3.2,30,,35–39
+62.09.05,3,Menthobi Raya,age_group,40-44,laki_laki,607,jiwa,2025,registration,total_population,3.2,30,,40–44
+62.09.05,3,Menthobi Raya,age_group,40-44,perempuan,565,jiwa,2025,registration,total_population,3.2,30,,40–44
+62.09.05,3,Menthobi Raya,age_group,40-44,,1172,jiwa,2025,registration,total_population,3.2,30,,40–44
+62.09.05,3,Menthobi Raya,age_group,45-49,laki_laki,505,jiwa,2025,registration,total_population,3.2,30,,45–49
+62.09.05,3,Menthobi Raya,age_group,45-49,perempuan,471,jiwa,2025,registration,total_population,3.2,30,,45–49
+62.09.05,3,Menthobi Raya,age_group,45-49,,976,jiwa,2025,registration,total_population,3.2,30,,45–49
+62.09.05,3,Menthobi Raya,age_group,50-54,laki_laki,474,jiwa,2025,registration,total_population,3.2,30,,50–54
+62.09.05,3,Menthobi Raya,age_group,50-54,perempuan,387,jiwa,2025,registration,total_population,3.2,30,,50–54
+62.09.05,3,Menthobi Raya,age_group,50-54,,861,jiwa,2025,registration,total_population,3.2,30,,50–54
+62.09.05,3,Menthobi Raya,age_group,55-59,laki_laki,371,jiwa,2025,registration,total_population,3.2,30,,55–59
+62.09.05,3,Menthobi Raya,age_group,55-59,perempuan,331,jiwa,2025,registration,total_population,3.2,30,,55–59
+62.09.05,3,Menthobi Raya,age_group,55-59,,702,jiwa,2025,registration,total_population,3.2,30,,55–59
+62.09.05,3,Menthobi Raya,age_group,60-64,laki_laki,261,jiwa,2025,registration,total_population,3.2,30,,60–64
+62.09.05,3,Menthobi Raya,age_group,60-64,perempuan,210,jiwa,2025,registration,total_population,3.2,30,,60–64
+62.09.05,3,Menthobi Raya,age_group,60-64,,471,jiwa,2025,registration,total_population,3.2,30,,60–64
+62.09.05,3,Menthobi Raya,age_group,65-69,laki_laki,192,jiwa,2025,registration,total_population,3.2,30,,65–69
+62.09.05,3,Menthobi Raya,age_group,65-69,perempuan,131,jiwa,2025,registration,total_population,3.2,30,,65–69
+62.09.05,3,Menthobi Raya,age_group,65-69,,323,jiwa,2025,registration,total_population,3.2,30,,65–69
+62.09.05,3,Menthobi Raya,age_group,70-74,laki_laki,104,jiwa,2025,registration,total_population,3.2,30,,70–74
+62.09.05,3,Menthobi Raya,age_group,70-74,perempuan,80,jiwa,2025,registration,total_population,3.2,30,,70–74
+62.09.05,3,Menthobi Raya,age_group,70-74,,184,jiwa,2025,registration,total_population,3.2,30,,70–74
+62.09.05,3,Menthobi Raya,age_group,75+,laki_laki,110,jiwa,2025,registration,total_population,3.2,30,,75+
+62.09.05,3,Menthobi Raya,age_group,75+,perempuan,88,jiwa,2025,registration,total_population,3.2,30,,75+
+62.09.05,3,Menthobi Raya,age_group,75+,,198,jiwa,2025,registration,total_population,3.2,30,,75+
+62.09.05,3,Kecamatan Menthobi Raya,sex,laki_laki,,7448,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki/Male
+62.09.05,3,Kecamatan Menthobi Raya,sex,perempuan,,6622,jiwa,2025,registration,total_population,3.2,30,,Perempuan/Female
+62.09.05,3,Kecamatan Menthobi Raya,total,total,,14070,jiwa,2025,registration,total_population,3.2,30,,

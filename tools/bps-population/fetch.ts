@@ -378,6 +378,7 @@ async function districtJob(ctx: Ctx, job: DistrictJob, year: number, tally: Reco
   const rec = blankDistrict(d, o, year, ctx.state.districts[key]);
   try {
     let chosen = false;
+    let hardFail = false;
     const tried: string[] = [];
     for (const y of [year, year - 1]) {
       const item = (await listFor(ctx, o, expected, y)).get(d.code);
@@ -394,12 +395,13 @@ async function districtJob(ctx: Ctx, job: DistrictJob, year: number, tally: Reco
       }
       tried.push(`${y}: ${r.error}`);
       if (r.kind === "failed") {
+        hardFail = true;
         rec.status = "failed";
         rec.error = tried.join("; ");
         break; // a transport failure is retried later, not papered over with an older year
       }
     }
-    if (!chosen && rec.status !== "failed") {
+    if (!chosen && !hardFail) {
       rec.status = "missing";
       rec.error = tried.join("; ");
     }

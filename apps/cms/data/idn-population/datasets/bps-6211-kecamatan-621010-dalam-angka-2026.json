@@ -1,0 +1,58 @@
+{
+  "datasetCode": "bps-6211-kecamatan-621010-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.10.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Rungan Hulu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Gunung Mas",
+  "publisherDomain": "6211",
+  "publisherWebsite": "https://gumaskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Gunung Mas (https://gumaskab.bps.go.id), publikasi \"Kecamatan Rungan Hulu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6211010",
+  "publicationNumber": "62110.26008",
+  "issn": "2407-1118",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://gumaskab.bps.go.id/id/publication/2026/09/28/196f06f1cf365f8d3fb4dbad/kecamatan-rungan-hulu-dalam-angka-2026.html",
+  "sourceFileSha256": "c0d2e1a226ca0648574ed4b4597f7b4493b5403ca3f131e8e698816bfde06a9c",
+  "sourceFileBytes": 3769372,
+  "sourcePages": [
+    30,
+    32
+  ],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Gunung Mas",
+  "csvPath": "datasets/bps-6211-kecamatan-621010-dalam-angka-2026.csv",
+  "csvSha256": "906a700e6a1dce2502c286cd57e817b8c1864cca9e6f20c139b2deb693ca3686",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Rungan Hulu, 2025",
+      "printedPages": [
+        30
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Rungan Hulu, 2025",
+      "printedPages": [
+        32
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Tumbang Tuwe\": unmatched ",
+    "table 3.2: row not stored: row \"> 75\": unmatched ",
+    "table 3.2 is not included: its published figures do not add up (age_group vs total: parts sum 6860.0000 != 6965.0000 (diff 105.0000)); the source itself is inconsistent"
+  ]
+}

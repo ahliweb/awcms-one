@@ -1,4 +1,37 @@
 region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.03.01.2011,4,Pulau Telo,sex,laki_laki,,1850,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.01.2011,4,Pulau Telo,sex,perempuan,,1768,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.01.2011,4,Pulau Telo,total,total,,3618,jiwa,2025,registration,total_population,3.1,30,,
+62.03.01.2020,4,Pulau Telo Baru,sex,laki_laki,,1221,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.01.2020,4,Pulau Telo Baru,sex,perempuan,,1165,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.01.2020,4,Pulau Telo Baru,total,total,,2386,jiwa,2025,registration,total_population,3.1,30,,
+62.03.01.1006,4,Murung Keramat,sex,laki_laki,,1959,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.01.1006,4,Murung Keramat,sex,perempuan,,1724,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.01.1006,4,Murung Keramat,total,total,,3683,jiwa,2025,registration,total_population,3.1,30,,
+62.03.01.1007,4,Selat Hilir,sex,laki_laki,,4285,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.01.1007,4,Selat Hilir,sex,perempuan,,4219,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.01.1007,4,Selat Hilir,total,total,,8504,jiwa,2025,registration,total_population,3.1,30,,
+62.03.01.1008,4,Selat Tengah,sex,laki_laki,,6741,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.01.1008,4,Selat Tengah,sex,perempuan,,6906,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.01.1008,4,Selat Tengah,total,total,,13647,jiwa,2025,registration,total_population,3.1,30,,
+62.03.01.1009,4,Selat Hulu,sex,laki_laki,,6887,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.01.1009,4,Selat Hulu,sex,perempuan,,6730,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.01.1009,4,Selat Hulu,total,total,,13617,jiwa,2025,registration,total_population,3.1,30,,
+62.03.01.1010,4,Selat Dalam,sex,laki_laki,,6505,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.01.1010,4,Selat Dalam,sex,perempuan,,6452,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.01.1010,4,Selat Dalam,total,total,,12957,jiwa,2025,registration,total_population,3.1,30,,
+62.03.01.1023,4,Panamas,sex,laki_laki,,864,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.01.1023,4,Panamas,sex,perempuan,,776,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.01.1023,4,Panamas,total,total,,1640,jiwa,2025,registration,total_population,3.1,30,,
+62.03.01.1022,4,Selat Barat,sex,laki_laki,,3702,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.01.1022,4,Selat Barat,sex,perempuan,,3619,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.01.1022,4,Selat Barat,total,total,,7321,jiwa,2025,registration,total_population,3.1,30,,
+62.03.01.1021,4,Selat Utara,sex,laki_laki,,2476,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.01.1021,4,Selat Utara,sex,perempuan,,2415,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.01.1021,4,Selat Utara,total,total,,4891,jiwa,2025,registration,total_population,3.1,30,,
+62.03.01,3,Selat,sex,laki_laki,,36490,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.01,3,Selat,sex,perempuan,,35774,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.01,3,Selat,total,total,,72264,jiwa,2025,registration,total_population,3.1,30,,
 62.03.01,3,Selat,age_group,0-4,laki_laki,2070,jiwa,2025,registration,total_population,3.2,32,,0 – 4
 62.03.01,3,Selat,age_group,0-4,perempuan,1975,jiwa,2025,registration,total_population,3.2,32,,0 – 4
 62.03.01,3,Selat,age_group,0-4,,4045,jiwa,2025,registration,total_population,3.2,32,,0 – 4

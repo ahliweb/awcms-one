@@ -1,0 +1,57 @@
+{
+  "datasetCode": "bps-6213-kecamatan-621206-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.12.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Barito Tuhup Raya Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Murung Raya",
+  "publisherDomain": "6213",
+  "publisherWebsite": "https://murakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Murung Raya (https://murakab.bps.go.id), publikasi \"Kecamatan Barito Tuhup Raya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6213031",
+  "publicationNumber": "62130.26010",
+  "issn": "2302-7233",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://murakab.bps.go.id/id/publication/2026/09/28/440302fbf75c4b69a5416ffe/kecamatan-barito-tuhup-raya-dalam-angka-2026.html",
+  "sourceFileSha256": "0a360500a6cdda863478ffd693fad8ce4105f1958b3e5b1bd8e097e7771d74e0",
+  "sourceFileBytes": 9561489,
+  "sourcePages": [
+    30,
+    31,
+    32
+  ],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Murung Raya.",
+  "csvPath": "datasets/bps-6213-kecamatan-621206-dalam-angka-2026.csv",
+  "csvSha256": "feaed00e99b7086fd771cb1385e50b094aee3ed56bb094f4e4bec3194c1d0340",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa1/ Kelurahan di Kecamatan Barito Tuhup Raya, 2025",
+      "printedPages": [
+        30,
+        31
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Barito Tuhup Raya, 2025",
+      "printedPages": [
+        32
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

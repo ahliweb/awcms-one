@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.07.09.2001,4,Sebabi,sex,laki_laki,,363,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.09.2001,4,Sebabi,sex,perempuan,,349,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.09.2001,4,Sebabi,total,total,,712,jiwa,2025,registration,total_population,3.1,34,,
+62.07.09.2002,4,Sandul,sex,laki_laki,,1124,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.09.2002,4,Sandul,sex,perempuan,,1083,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.09.2002,4,Sandul,total,total,,2207,jiwa,2025,registration,total_population,3.1,34,,
+62.07.09.2006,4,Suka Mulya,sex,laki_laki,,628,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.09.2006,4,Suka Mulya,sex,perempuan,,612,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.09.2006,4,Suka Mulya,total,total,,1240,jiwa,2025,registration,total_population,3.1,34,,
+62.07.09.2003,4,Kalang,sex,laki_laki,,305,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.09.2003,4,Kalang,sex,perempuan,,296,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.09.2003,4,Kalang,total,total,,601,jiwa,2025,registration,total_population,3.1,34,,
+62.07.09.2007,4,Durian Kait,sex,laki_laki,,430,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.09.2007,4,Durian Kait,sex,perempuan,,402,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.09.2007,4,Durian Kait,total,total,,832,jiwa,2025,registration,total_population,3.1,34,,
+62.07.09.2008,4,Sahabu,sex,laki_laki,,444,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.09.2008,4,Sahabu,sex,perempuan,,401,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.09.2008,4,Sahabu,total,total,,845,jiwa,2025,registration,total_population,3.1,34,,
+62.07.09.2005,4,Wana Tirta,sex,laki_laki,,895,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.09.2005,4,Wana Tirta,sex,perempuan,,798,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.09.2005,4,Wana Tirta,total,total,,1693,jiwa,2025,registration,total_population,3.1,34,,
+62.07.09.2009,4,Batu Menangis,sex,laki_laki,,129,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.09.2009,4,Batu Menangis,sex,perempuan,,135,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.09.2009,4,Batu Menangis,total,total,,264,jiwa,2025,registration,total_population,3.1,34,,
+62.07.09.2004,4,Derawa,sex,laki_laki,,229,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.09.2004,4,Derawa,sex,perempuan,,221,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.09.2004,4,Derawa,total,total,,450,jiwa,2025,registration,total_population,3.1,34,,
+62.07.09,3,Batu Ampar,sex,laki_laki,,4547,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.09,3,Batu Ampar,sex,perempuan,,4297,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.09,3,Batu Ampar,total,total,,8844,jiwa,2025,registration,total_population,3.1,34,,
+62.07.09,3,Batu Ampar,age_group,0-14,laki_laki,1245,jiwa,2025,registration,total_population,3.2,36,,0-14
+62.07.09,3,Batu Ampar,age_group,0-14,perempuan,1217,jiwa,2025,registration,total_population,3.2,36,,0-14
+62.07.09,3,Batu Ampar,age_group,0-14,,2462,jiwa,2025,registration,total_population,3.2,36,,0-14
+62.07.09,3,Batu Ampar,age_group,15-64,laki_laki,3146,jiwa,2025,registration,total_population,3.2,36,,15-64
+62.07.09,3,Batu Ampar,age_group,15-64,perempuan,2951,jiwa,2025,registration,total_population,3.2,36,,15-64
+62.07.09,3,Batu Ampar,age_group,15-64,,6097,jiwa,2025,registration,total_population,3.2,36,,15-64
+62.07.09,3,Batu Ampar,age_group,65+,laki_laki,156,jiwa,2025,registration,total_population,3.2,36,,65+
+62.07.09,3,Batu Ampar,age_group,65+,perempuan,129,jiwa,2025,registration,total_population,3.2,36,,65+
+62.07.09,3,Batu Ampar,age_group,65+,,285,jiwa,2025,registration,total_population,3.2,36,,65+
+62.07.09,3,Batu Ampar,sex,laki_laki,,4547,jiwa,2025,registration,total_population,3.2,36,,Laki-Laki
+62.07.09,3,Batu Ampar,sex,perempuan,,4297,jiwa,2025,registration,total_population,3.2,36,,Perempuan
+62.07.09,3,Batu Ampar,total,total,,8844,jiwa,2025,registration,total_population,3.2,36,,

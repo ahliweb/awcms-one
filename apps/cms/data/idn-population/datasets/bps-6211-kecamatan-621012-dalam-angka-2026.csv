@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.10.12.2001,4,Hujung Pata,sex,laki_laki,,429,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.12.2001,4,Hujung Pata,sex,perempuan,,378,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.12.2001,4,Hujung Pata,total,total,,807,jiwa,2025,registration,total_population,3.1,30,,
+62.10.12.2002,4,Tumbang Jalemu Kajuei,sex,laki_laki,,174,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.12.2002,4,Tumbang Jalemu Kajuei,sex,perempuan,,189,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.12.2002,4,Tumbang Jalemu Kajuei,total,total,,363,jiwa,2025,registration,total_population,3.1,30,,
+62.10.12.2003,4,Jalemu Raya,sex,laki_laki,,401,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.12.2003,4,Jalemu Raya,sex,perempuan,,344,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.12.2003,4,Jalemu Raya,total,total,,745,jiwa,2025,registration,total_population,3.1,30,,
+62.10.12.2004,4,Jalemu Masulan,sex,laki_laki,,187,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.12.2004,4,Jalemu Masulan,sex,perempuan,,175,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.12.2004,4,Jalemu Masulan,total,total,,362,jiwa,2025,registration,total_population,3.1,30,,
+62.10.12.2007,4,Tajah Antang Raya,sex,laki_laki,,183,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.12.2007,4,Tajah Antang Raya,sex,perempuan,,169,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.12.2007,4,Tajah Antang Raya,total,total,,352,jiwa,2025,registration,total_population,3.1,30,,
+62.10.12.2005,4,Mangkawuk,sex,laki_laki,,254,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.12.2005,4,Mangkawuk,sex,perempuan,,198,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.12.2005,4,Mangkawuk,total,total,,452,jiwa,2025,registration,total_population,3.1,30,,
+62.10.12.2008,4,Tumbang Kuayan,sex,laki_laki,,346,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.12.2008,4,Tumbang Kuayan,sex,perempuan,,278,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.12.2008,4,Tumbang Kuayan,total,total,,624,jiwa,2025,registration,total_population,3.1,30,,
+62.10.12.2009,4,Tumbang Langgah,sex,laki_laki,,222,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.12.2009,4,Tumbang Langgah,sex,perempuan,,196,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.12.2009,4,Tumbang Langgah,total,total,,418,jiwa,2025,registration,total_population,3.1,30,,
+62.10.12.2010,4,Tusang Raya,sex,laki_laki,,158,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.12.2010,4,Tusang Raya,sex,perempuan,,140,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.12.2010,4,Tusang Raya,total,total,,298,jiwa,2025,registration,total_population,3.1,30,,
+62.10.12.2011,4,Tumbang Bahanei,sex,laki_laki,,287,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.12.2011,4,Tumbang Bahanei,sex,perempuan,,240,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.12.2011,4,Tumbang Bahanei,total,total,,527,jiwa,2025,registration,total_population,3.1,30,,
+62.10.12.1006,4,Rabambang,sex,laki_laki,,889,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.12.1006,4,Rabambang,sex,perempuan,,769,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.12.1006,4,Rabambang,total,total,,1658,jiwa,2025,registration,total_population,3.1,30,,
+62.10.12,3,Rungan Barat,sex,laki_laki,,3530,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.12,3,Rungan Barat,sex,perempuan,,3076,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.12,3,Rungan Barat,total,total,,6606,jiwa,2025,registration,total_population,3.1,30,,

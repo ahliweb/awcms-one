@@ -1,0 +1,57 @@
+{
+  "datasetCode": "bps-6213-kecamatan-621208-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.12.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sungai Babuat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Murung Raya",
+  "publisherDomain": "6213",
+  "publisherWebsite": "https://murakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Murung Raya (https://murakab.bps.go.id), publikasi \"Kecamatan Sungai Babuat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6213011",
+  "publicationNumber": "62130.26007",
+  "issn": "2302-7258",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://murakab.bps.go.id/id/publication/2026/09/28/e5d5f6c8920d15a08528096c/kecamatan-sungai-babuat-dalam-angka-2026.html",
+  "sourceFileSha256": "6b9fd2d80deca04e618c109a02e6b0ee7fb2a0bc560d334979615baa6ecdb919",
+  "sourceFileBytes": 13717213,
+  "sourcePages": [
+    30,
+    31,
+    32
+  ],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Murung Raya.",
+  "csvPath": "datasets/bps-6213-kecamatan-621208-dalam-angka-2026.csv",
+  "csvSha256": "9c09dc5d0d17bebf4abf82169548202a778604741eadf6bca9e7bfbe2b6969ae",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa1/ Kelurahan di Kecamatan Sungai Babuat, 2025",
+      "printedPages": [
+        30,
+        31
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sungai Babuat , 2025",
+      "printedPages": [
+        32
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

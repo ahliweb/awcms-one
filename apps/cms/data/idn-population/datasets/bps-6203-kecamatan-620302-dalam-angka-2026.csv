@@ -1,4 +1,31 @@
 region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.03.02.2006,4,Bakungin,sex,laki_laki,,759,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.03.02.2006,4,Bakungin,sex,perempuan,,678,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.03.02.2006,4,Bakungin,total,total,,1437,jiwa,2025,registration,total_population,3.1,28,,
+62.03.02.2007,4,Sei Asam,sex,laki_laki,,1272,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.03.02.2007,4,Sei Asam,sex,perempuan,,1201,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.03.02.2007,4,Sei Asam,total,total,,2473,jiwa,2025,registration,total_population,3.1,28,,
+62.03.02.2008,4,Saka Batur,sex,laki_laki,,1128,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.03.02.2008,4,Saka Batur,sex,perempuan,,1071,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.03.02.2008,4,Saka Batur,total,total,,2199,jiwa,2025,registration,total_population,3.1,28,,
+62.03.02.1001,4,Mambulau,sex,laki_laki,,1505,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.03.02.1001,4,Mambulau,sex,perempuan,,1454,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.03.02.1001,4,Mambulau,total,total,,2959,jiwa,2025,registration,total_population,3.1,28,,
+62.03.02.1002,4,Hampatung,sex,laki_laki,,1053,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.03.02.1002,4,Hampatung,sex,perempuan,,1000,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.03.02.1002,4,Hampatung,total,total,,2053,jiwa,2025,registration,total_population,3.1,28,,
+62.03.02.1003,4,Dahirang,sex,laki_laki,,441,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.03.02.1003,4,Dahirang,sex,perempuan,,460,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.03.02.1003,4,Dahirang,total,total,,901,jiwa,2025,registration,total_population,3.1,28,,
+62.03.02.1004,4,Barimba,sex,laki_laki,,915,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.03.02.1004,4,Barimba,sex,perempuan,,859,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.03.02.1004,4,Barimba,total,total,,1774,jiwa,2025,registration,total_population,3.1,28,,
+62.03.02.1005,4,Sei Pasah,sex,laki_laki,,679,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.03.02.1005,4,Sei Pasah,sex,perempuan,,679,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.03.02.1005,4,Sei Pasah,total,total,,1358,jiwa,2025,registration,total_population,3.1,28,,
+62.03.02,3,Kapuas Hilir,sex,laki_laki,,7752,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.03.02,3,Kapuas Hilir,sex,perempuan,,7402,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.03.02,3,Kapuas Hilir,total,total,,15154,jiwa,2025,registration,total_population,3.1,28,,
 62.03.02,3,Kapuas Hilir,age_group,0-4,laki_laki,408,jiwa,2025,registration,total_population,3.2,30,,0 – 4
 62.03.02,3,Kapuas Hilir,age_group,0-4,perempuan,400,jiwa,2025,registration,total_population,3.2,30,,0 – 4
 62.03.02,3,Kapuas Hilir,age_group,0-4,,808,jiwa,2025,registration,total_population,3.2,30,,0 – 4

@@ -5,26 +5,32 @@
  */
 import { describe, test } from "bun:test";
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import {
   archiveOne,
   classifyPdfLocation,
   compareVerification,
+  decideArchivePlacement,
   decideEligibility,
   findArchiveRecord,
   isDeletableArchiveSource,
+  latestExtractBySha,
+  loadExtractLedger,
   mergeArchiveRecord,
   matchesOnly,
   md5Hex,
   normaliseRemoteRoot,
   parseArchiveJson,
   parseArgs,
+  parseExtractLedger,
   parseRcloneMd5,
   parseRcloneSizeJson,
   remoteFilePath,
-  sha256Hex
+  sha256Hex,
+  unextractedFolder
 } from "../tools/bps-population/archive.ts";
 import { parsePopulationManifest } from "../apps/cms/src/modules/idn-admin-regions/domain/population-manifest.ts";
 
@@ -100,7 +106,8 @@ const ITEM = {
   md5: LOCAL.md5,
   bytes: LOCAL.bytes,
   remote: `${REMOTE}/kabkota-provinsi/2026/6271-dalam-angka-2026.pdf`,
-  datasetCode: "bps-9999-dalam-angka-2026"
+  datasetCode: "bps-9999-dalam-angka-2026",
+  kind: "dataset"
 };
 
 describe("eligibility", () => {
@@ -236,12 +243,31 @@ describe("pdf selection", () => {
     assert.equal(matchesOnly("6271-dalam-angka-2026.pdf", null), true);
   });
 
-  test("argv parsing: dry run by default, --commit and --only", () => {
-    assert.deepEqual(parseArgs([]), { commit: false, only: null });
-    assert.deepEqual(parseArgs(["--commit", "--only", "6271"]), { commit: true, only: "6271" });
-    assert.deepEqual(parseArgs(["--only=6271"]), { commit: false, only: "6271" });
+  test("argv parsing: dry run by default, --commit, --only and --include-unextracted", () => {
+    assert.deepEqual(parseArgs([]), { commit: false, only: null, includeUnextracted: false });
+    assert.deepEqual(parseArgs(["--commit", "--only", "6271"]), { commit: true, only: "6271", includeUnextracted: false });
+    assert.deepEqual(parseArgs(["--only=6271"]), { commit: false, only: "6271", includeUnextracted: false });
+    assert.deepEqual(parseArgs(["--commit", "--include-unextracted"]), {
+      commit: true,
+      only: null,
+      includeUnextracted: true
+    });
     assert.throws(() => parseArgs(["--bogus"]));
     assert.throws(() => parseArgs(["--only"]));
+  });
+
+  test("the unextracted folder name is only added for an unextracted PDF", () => {
+    const remote = remoteFilePath(REMOTE, "kecamatan", 2025, "6271010-x.pdf", "belum-diekstrak");
+    assert.equal(remote, "gdrive-test:Folder/Sub/belum-diekstrak/kecamatan/2025/6271010-x.pdf");
+    assert.equal(
+      remoteFilePath(REMOTE, "kabkota-provinsi", 2026, "6271-x.pdf", "perlu-ditinjau"),
+      "gdrive-test:Folder/Sub/perlu-ditinjau/kabkota-provinsi/2026/6271-x.pdf"
+    );
+    assert.equal(
+      remoteFilePath(REMOTE, "kabkota-provinsi", 2026, "6271-x.pdf"),
+      "gdrive-test:Folder/Sub/kabkota-provinsi/2026/6271-x.pdf"
+    );
+    assert.throws(() => remoteFilePath(REMOTE, "kecamatan", 2025, "x.pdf", "../escape"), /plain folder name/);
   });
 });
 
@@ -290,7 +316,20 @@ describe("archive.json", () => {
     remote: ITEM.remote,
     datasetCode: "bps-9999-dalam-angka-2026",
     archivedAt: "2026-10-26T00:00:00.000Z",
+    kind: "dataset",
     ...overrides
+  });
+
+  test("a record written before kind existed reads as a dataset archive", () => {
+    const { kind, ...legacy } = record();
+    const [parsed] = parseArchiveJson(JSON.stringify([legacy]));
+    assert.equal(parsed.kind, "dataset");
+  });
+
+  test("an explicit kind is kept, and an unknown kind is refused", () => {
+    const [gap] = parseArchiveJson(JSON.stringify([record({ kind: "gap_only", datasetCode: "" })]));
+    assert.equal(gap.kind, "gap_only");
+    assert.throws(() => parseArchiveJson(JSON.stringify([record({ kind: "elsewhere" })])), /unknown kind/);
   });
 
   test("merging the same sha256 and remote replaces, never duplicates", () => {
@@ -376,5 +415,123 @@ describe("archiveOne: verification gates the local delete", () => {
     assert.equal(outcome.status, "deleted");
     assert.equal(calls.some((c) => c[0] === "copyto"), false);
     assert.deepEqual(log, [["delete", ITEM.filePath]]);
+  });
+});
+
+describe("extract ledger", () => {
+  const row = (overrides = {}) => ({
+    file: "6271-dalam-angka-2026.pdf",
+    sha256: SHA,
+    outcome: "gap_only",
+    datasetCode: null,
+    reason: "no table could be read",
+    publicationYear: 2026,
+    extractedAt: "2026-10-26T01:00:00.000Z",
+    ...overrides
+  });
+
+  test("a well-formed ledger parses; a malformed entry makes the whole ledger corrupt", () => {
+    assert.equal(parseExtractLedger(JSON.stringify([row()])).length, 1);
+    assert.equal(parseExtractLedger("[]").length, 0);
+    assert.throws(() => parseExtractLedger("{}"), /JSON array/);
+    assert.throws(() => parseExtractLedger(JSON.stringify([row({ outcome: "maybe" })])), /malformed/);
+    assert.throws(() => parseExtractLedger(JSON.stringify([row({ publicationYear: "2026" })])), /malformed/);
+    assert.throws(() => parseExtractLedger("not json"), SyntaxError);
+  });
+
+  test("the latest record per sha256 wins, by extractedAt, and ties go to the later line", () => {
+    const older = row({ outcome: "refused", extractedAt: "2026-10-25T00:00:00.000Z" });
+    const newer = row({ outcome: "gap_only", extractedAt: "2026-10-26T00:00:00.000Z" });
+    assert.equal(latestExtractBySha([newer, older]).get(SHA).outcome, "gap_only");
+    assert.equal(latestExtractBySha([older, newer]).get(SHA).outcome, "gap_only");
+    const tieA = row({ outcome: "refused" });
+    const tieB = row({ outcome: "gap_only" });
+    assert.equal(latestExtractBySha([tieA, tieB]).get(SHA).outcome, "gap_only");
+  });
+
+  test("a corrupt or unreadable ledger is empty and warns; a missing one is empty and silent", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "bps-ledger-"));
+    const warnings = [];
+    assert.equal((await loadExtractLedger(join(dir, "extract-results.json"), warnings)).size, 0);
+    assert.deepEqual(warnings, []);
+    writeFileSync(join(dir, "extract-results.json"), "[{truncated");
+    const map = await loadExtractLedger(join(dir, "extract-results.json"), warnings);
+    assert.equal(map.size, 0);
+    assert.equal(warnings.length, 1);
+    assert.match(warnings[0], /unreadable/);
+  });
+
+  test("gap_only goes to belum-diekstrak, refused to perlu-ditinjau, written to nothing", () => {
+    assert.deepEqual(unextractedFolder(row({ outcome: "gap_only" })), { kind: "gap_only", folder: "belum-diekstrak" });
+    assert.deepEqual(unextractedFolder(row({ outcome: "refused" })), { kind: "refused", folder: "perlu-ditinjau" });
+    assert.equal(unextractedFolder(row({ outcome: "written", datasetCode: "bps-x" })), null);
+    assert.equal(unextractedFolder(undefined), null);
+  });
+});
+
+describe("placement: a PDF is moved only with a dataset or a ledger record and the flag", () => {
+  const eligible = { eligible: true, datasetCode: "bps-6271-dalam-angka-2026", year: 2026 };
+  const none = { eligible: false, reason: "no dataset yet" };
+  const gap = { file: "x.pdf", sha256: SHA, outcome: "gap_only", datasetCode: null, reason: null, publicationYear: 2025, extractedAt: "t" };
+  const refused = { ...gap, outcome: "refused", publicationYear: 2024 };
+  const written = { ...gap, outcome: "written", datasetCode: "bps-x" };
+
+  test("an eligible dataset is always a dataset archive, flag or not", () => {
+    assert.deepEqual(decideArchivePlacement({ eligibility: eligible, extract: gap, includeUnextracted: false }), {
+      place: true,
+      kind: "dataset",
+      year: 2026,
+      datasetCode: "bps-6271-dalam-angka-2026"
+    });
+  });
+
+  test("with the flag: gap_only and refused records place the PDF in their folder, year from the record", () => {
+    assert.deepEqual(decideArchivePlacement({ eligibility: none, extract: gap, includeUnextracted: true }), {
+      place: true,
+      kind: "gap_only",
+      year: 2025,
+      datasetCode: "",
+      folder: "belum-diekstrak"
+    });
+    assert.deepEqual(decideArchivePlacement({ eligibility: none, extract: refused, includeUnextracted: true }), {
+      place: true,
+      kind: "refused",
+      year: 2024,
+      datasetCode: "",
+      folder: "perlu-ditinjau"
+    });
+  });
+
+  test("without the flag, a ledger record changes nothing", () => {
+    const decision = decideArchivePlacement({ eligibility: none, extract: gap, includeUnextracted: false });
+    assert.deepEqual(decision, { place: false, reason: "no dataset yet" });
+  });
+
+  test("no ledger record, or a written outcome with no dataset, is never placed", () => {
+    assert.equal(decideArchivePlacement({ eligibility: none, extract: undefined, includeUnextracted: true }).place, false);
+    assert.equal(decideArchivePlacement({ eligibility: none, extract: written, includeUnextracted: true }).place, false);
+  });
+
+  test("an archived unextracted PDF is recorded with its kind and uploaded to the unextracted folder", async () => {
+    const log = [];
+    const { run, calls } = fakeRclone();
+    const remote = `${REMOTE}/belum-diekstrak/kabkota-provinsi/2025/6271-dalam-angka-2026.pdf`;
+    const outcome = await archiveOne({ ...ITEM, remote, datasetCode: "", kind: "gap_only" }, deps(run, log));
+    assert.equal(outcome.status, "deleted");
+    assert.deepEqual(calls[0], ["copyto", ITEM.filePath, remote, "--checksum"]);
+    assert.deepEqual(log, [
+      ["save", remote],
+      ["delete", ITEM.filePath]
+    ]);
+  });
+
+  test("the saved record for an unextracted PDF carries kind and an empty datasetCode", async () => {
+    const saved = [];
+    const { run } = fakeRclone();
+    const d = deps(run);
+    d.saveRecord = async (record) => saved.push(record);
+    await archiveOne({ ...ITEM, datasetCode: "", kind: "refused" }, d);
+    assert.equal(saved[0].kind, "refused");
+    assert.equal(saved[0].datasetCode, "");
   });
 });

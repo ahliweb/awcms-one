@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.08.02.2003,4,Sungai Baru,sex,laki_laki,,234,jiwa,2025,registration,total_population,3.1,38,,Laki-laki/Male
+62.08.02.2003,4,Sungai Baru,sex,perempuan,,211,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+62.08.02.2003,4,Sungai Baru,total,total,,445,jiwa,2025,registration,total_population,3.1,38,,
+62.08.02.2004,4,Sungai Bundung,sex,laki_laki,,131,jiwa,2025,registration,total_population,3.1,38,,Laki-laki/Male
+62.08.02.2004,4,Sungai Bundung,sex,perempuan,,118,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+62.08.02.2004,4,Sungai Bundung,total,total,,249,jiwa,2025,registration,total_population,3.1,38,,
+62.08.02.2005,4,Sungai Raja,sex,laki_laki,,213,jiwa,2025,registration,total_population,3.1,38,,Laki-laki/Male
+62.08.02.2005,4,Sungai Raja,sex,perempuan,,202,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+62.08.02.2005,4,Sungai Raja,total,total,,415,jiwa,2025,registration,total_population,3.1,38,,
+62.08.02.2002,4,Pulau Nibung,sex,laki_laki,,527,jiwa,2025,registration,total_population,3.1,38,,Laki-laki/Male
+62.08.02.2002,4,Pulau Nibung,sex,perempuan,,449,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+62.08.02.2002,4,Pulau Nibung,total,total,,976,jiwa,2025,registration,total_population,3.1,38,,
+62.08.02.1001,4,Kuala Jelai,sex,laki_laki,,1958,jiwa,2025,registration,total_population,3.1,38,,Laki-laki/Male
+62.08.02.1001,4,Kuala Jelai,sex,perempuan,,1859,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+62.08.02.1001,4,Kuala Jelai,total,total,,3817,jiwa,2025,registration,total_population,3.1,38,,
+62.08.02,3,Jelai,sex,laki_laki,,3063,jiwa,2025,registration,total_population,3.1,38,,Laki-laki/Male
+62.08.02,3,Jelai,sex,perempuan,,2839,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+62.08.02,3,Jelai,total,total,,5902,jiwa,2025,registration,total_population,3.1,38,,
+62.08.02,3,Jelai,age_group,0-4,laki_laki,241,jiwa,2025,registration,total_population,3.2,40,,0–4
+62.08.02,3,Jelai,age_group,0-4,perempuan,231,jiwa,2025,registration,total_population,3.2,40,,0–4
+62.08.02,3,Jelai,age_group,0-4,,472,jiwa,2025,registration,total_population,3.2,40,,0–4
+62.08.02,3,Jelai,age_group,5-9,laki_laki,239,jiwa,2025,registration,total_population,3.2,40,,5–9
+62.08.02,3,Jelai,age_group,5-9,perempuan,256,jiwa,2025,registration,total_population,3.2,40,,5–9
+62.08.02,3,Jelai,age_group,5-9,,495,jiwa,2025,registration,total_population,3.2,40,,5–9
+62.08.02,3,Jelai,age_group,10-14,laki_laki,244,jiwa,2025,registration,total_population,3.2,40,,10–14
+62.08.02,3,Jelai,age_group,10-14,perempuan,259,jiwa,2025,registration,total_population,3.2,40,,10–14
+62.08.02,3,Jelai,age_group,10-14,,503,jiwa,2025,registration,total_population,3.2,40,,10–14
+62.08.02,3,Jelai,age_group,15-19,laki_laki,262,jiwa,2025,registration,total_population,3.2,40,,15–19
+62.08.02,3,Jelai,age_group,15-19,perempuan,225,jiwa,2025,registration,total_population,3.2,40,,15–19
+62.08.02,3,Jelai,age_group,15-19,,487,jiwa,2025,registration,total_population,3.2,40,,15–19
+62.08.02,3,Jelai,age_group,20-24,laki_laki,306,jiwa,2025,registration,total_population,3.2,40,,20–24
+62.08.02,3,Jelai,age_group,20-24,perempuan,287,jiwa,2025,registration,total_population,3.2,40,,20–24
+62.08.02,3,Jelai,age_group,20-24,,593,jiwa,2025,registration,total_population,3.2,40,,20–24
+62.08.02,3,Jelai,age_group,25-29,laki_laki,255,jiwa,2025,registration,total_population,3.2,40,,25–29
+62.08.02,3,Jelai,age_group,25-29,perempuan,240,jiwa,2025,registration,total_population,3.2,40,,25–29
+62.08.02,3,Jelai,age_group,25-29,,495,jiwa,2025,registration,total_population,3.2,40,,25–29
+62.08.02,3,Jelai,age_group,30-34,laki_laki,236,jiwa,2025,registration,total_population,3.2,40,,30–34
+62.08.02,3,Jelai,age_group,30-34,perempuan,194,jiwa,2025,registration,total_population,3.2,40,,30–34
+62.08.02,3,Jelai,age_group,30-34,,430,jiwa,2025,registration,total_population,3.2,40,,30–34
+62.08.02,3,Jelai,age_group,35-39,laki_laki,242,jiwa,2025,registration,total_population,3.2,40,,35–39
+62.08.02,3,Jelai,age_group,35-39,perempuan,241,jiwa,2025,registration,total_population,3.2,40,,35–39
+62.08.02,3,Jelai,age_group,35-39,,483,jiwa,2025,registration,total_population,3.2,40,,35–39
+62.08.02,3,Jelai,age_group,40-44,laki_laki,231,jiwa,2025,registration,total_population,3.2,40,,40–44
+62.08.02,3,Jelai,age_group,40-44,perempuan,223,jiwa,2025,registration,total_population,3.2,40,,40–44
+62.08.02,3,Jelai,age_group,40-44,,454,jiwa,2025,registration,total_population,3.2,40,,40–44
+62.08.02,3,Jelai,age_group,45-49,laki_laki,216,jiwa,2025,registration,total_population,3.2,40,,45–49
+62.08.02,3,Jelai,age_group,45-49,perempuan,200,jiwa,2025,registration,total_population,3.2,40,,45–49
+62.08.02,3,Jelai,age_group,45-49,,416,jiwa,2025,registration,total_population,3.2,40,,45–49
+62.08.02,3,Jelai,age_group,50-54,laki_laki,184,jiwa,2025,registration,total_population,3.2,40,,50–54
+62.08.02,3,Jelai,age_group,50-54,perempuan,174,jiwa,2025,registration,total_population,3.2,40,,50–54
+62.08.02,3,Jelai,age_group,50-54,,358,jiwa,2025,registration,total_population,3.2,40,,50–54
+62.08.02,3,Jelai,age_group,55-59,laki_laki,171,jiwa,2025,registration,total_population,3.2,40,,55–59
+62.08.02,3,Jelai,age_group,55-59,perempuan,105,jiwa,2025,registration,total_population,3.2,40,,55–59
+62.08.02,3,Jelai,age_group,55-59,,276,jiwa,2025,registration,total_population,3.2,40,,55–59
+62.08.02,3,Jelai,age_group,60-64,laki_laki,96,jiwa,2025,registration,total_population,3.2,40,,60–64
+62.08.02,3,Jelai,age_group,60-64,perempuan,76,jiwa,2025,registration,total_population,3.2,40,,60–64
+62.08.02,3,Jelai,age_group,60-64,,172,jiwa,2025,registration,total_population,3.2,40,,60–64
+62.08.02,3,Jelai,age_group,65-69,laki_laki,59,jiwa,2025,registration,total_population,3.2,40,,65–69
+62.08.02,3,Jelai,age_group,65-69,perempuan,52,jiwa,2025,registration,total_population,3.2,40,,65–69
+62.08.02,3,Jelai,age_group,65-69,,111,jiwa,2025,registration,total_population,3.2,40,,65–69
+62.08.02,3,Jelai,age_group,70-74,laki_laki,36,jiwa,2025,registration,total_population,3.2,40,,70–74
+62.08.02,3,Jelai,age_group,70-74,perempuan,37,jiwa,2025,registration,total_population,3.2,40,,70–74
+62.08.02,3,Jelai,age_group,70-74,,73,jiwa,2025,registration,total_population,3.2,40,,70–74
+62.08.02,3,Jelai,age_group,75+,laki_laki,45,jiwa,2025,registration,total_population,3.2,40,,75+
+62.08.02,3,Jelai,age_group,75+,perempuan,39,jiwa,2025,registration,total_population,3.2,40,,75+
+62.08.02,3,Jelai,age_group,75+,,84,jiwa,2025,registration,total_population,3.2,40,,75+
+62.08.02,3,Jelai,sex,laki_laki,,3063,jiwa,2025,registration,total_population,3.2,40,,Laki-laki/Male
+62.08.02,3,Jelai,sex,perempuan,,2839,jiwa,2025,registration,total_population,3.2,40,,Perempuan/Female
+62.08.02,3,Jelai,total,total,,5902,jiwa,2025,registration,total_population,3.2,40,,

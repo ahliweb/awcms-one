@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.13.05.2008,4,Saing,sex,laki_laki,,400,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+62.13.05.2008,4,Saing,sex,perempuan,,372,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+62.13.05.2008,4,Saing,total,total,,772,jiwa,2025,registration,total_population,3.1,33,,
+62.13.05.2009,4,Rodok,sex,laki_laki,,932,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+62.13.05.2009,4,Rodok,sex,perempuan,,908,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+62.13.05.2009,4,Rodok,total,total,,1840,jiwa,2025,registration,total_population,3.1,33,,
+62.13.05.2012,4,Putai,sex,laki_laki,,1158,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+62.13.05.2012,4,Putai,sex,perempuan,,1116,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+62.13.05.2012,4,Putai,total,total,,2274,jiwa,2025,registration,total_population,3.1,33,,
+62.13.05.2018,4,Netampin,sex,laki_laki,,749,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+62.13.05.2018,4,Netampin,sex,perempuan,,682,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+62.13.05.2018,4,Netampin,total,total,,1431,jiwa,2025,registration,total_population,3.1,33,,
+62.13.05.2024,4,Sumber Garunggung,sex,laki_laki,,758,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+62.13.05.2024,4,Sumber Garunggung,sex,perempuan,,707,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+62.13.05.2024,4,Sumber Garunggung,total,total,,1465,jiwa,2025,registration,total_population,3.1,33,,
+62.13.05.2025,4,Muara Awang,sex,laki_laki,,423,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+62.13.05.2025,4,Muara Awang,sex,perempuan,,350,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+62.13.05.2025,4,Muara Awang,total,total,,773,jiwa,2025,registration,total_population,3.1,33,,
+62.13.05.1011,4,Ampah Kota,sex,laki_laki,,8153,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+62.13.05.1011,4,Ampah Kota,sex,perempuan,,7891,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+62.13.05.1011,4,Ampah Kota,total,total,,16044,jiwa,2025,registration,total_population,3.1,33,,
+62.13.05,3,Dusun Tengah,sex,laki_laki,,12903,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+62.13.05,3,Dusun Tengah,sex,perempuan,,12380,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+62.13.05,3,Dusun Tengah,total,total,,25283,jiwa,2025,registration,total_population,3.1,33,,
+62.13.05,3,Dusun Tengah,age_group,0-4,laki_laki,682,jiwa,2025,registration,total_population,3.2,35,,0–4
+62.13.05,3,Dusun Tengah,age_group,0-4,perempuan,641,jiwa,2025,registration,total_population,3.2,35,,0–4
+62.13.05,3,Dusun Tengah,age_group,0-4,,1323,jiwa,2025,registration,total_population,3.2,35,,0–4
+62.13.05,3,Dusun Tengah,age_group,5-9,laki_laki,1067,jiwa,2025,registration,total_population,3.2,35,,5–9
+62.13.05,3,Dusun Tengah,age_group,5-9,perempuan,985,jiwa,2025,registration,total_population,3.2,35,,5–9
+62.13.05,3,Dusun Tengah,age_group,5-9,,2052,jiwa,2025,registration,total_population,3.2,35,,5–9
+62.13.05,3,Dusun Tengah,age_group,10-14,laki_laki,1151,jiwa,2025,registration,total_population,3.2,35,,10–14
+62.13.05,3,Dusun Tengah,age_group,10-14,perempuan,1096,jiwa,2025,registration,total_population,3.2,35,,10–14
+62.13.05,3,Dusun Tengah,age_group,10-14,,2247,jiwa,2025,registration,total_population,3.2,35,,10–14
+62.13.05,3,Dusun Tengah,age_group,15-19,laki_laki,1150,jiwa,2025,registration,total_population,3.2,35,,15–19
+62.13.05,3,Dusun Tengah,age_group,15-19,perempuan,1183,jiwa,2025,registration,total_population,3.2,35,,15–19
+62.13.05,3,Dusun Tengah,age_group,15-19,,2333,jiwa,2025,registration,total_population,3.2,35,,15–19
+62.13.05,3,Dusun Tengah,age_group,20-24,laki_laki,1222,jiwa,2025,registration,total_population,3.2,35,,20–24
+62.13.05,3,Dusun Tengah,age_group,20-24,perempuan,1067,jiwa,2025,registration,total_population,3.2,35,,20–24
+62.13.05,3,Dusun Tengah,age_group,20-24,,2289,jiwa,2025,registration,total_population,3.2,35,,20–24
+62.13.05,3,Dusun Tengah,age_group,25-29,laki_laki,1042,jiwa,2025,registration,total_population,3.2,35,,25–29
+62.13.05,3,Dusun Tengah,age_group,25-29,perempuan,973,jiwa,2025,registration,total_population,3.2,35,,25–29
+62.13.05,3,Dusun Tengah,age_group,25-29,,2015,jiwa,2025,registration,total_population,3.2,35,,25–29
+62.13.05,3,Dusun Tengah,age_group,30-34,laki_laki,985,jiwa,2025,registration,total_population,3.2,35,,30–34
+62.13.05,3,Dusun Tengah,age_group,30-34,perempuan,897,jiwa,2025,registration,total_population,3.2,35,,30–34
+62.13.05,3,Dusun Tengah,age_group,30-34,,1882,jiwa,2025,registration,total_population,3.2,35,,30–34
+62.13.05,3,Dusun Tengah,age_group,35-39,laki_laki,982,jiwa,2025,registration,total_population,3.2,35,,35–39
+62.13.05,3,Dusun Tengah,age_group,35-39,perempuan,909,jiwa,2025,registration,total_population,3.2,35,,35–39
+62.13.05,3,Dusun Tengah,age_group,35-39,,1891,jiwa,2025,registration,total_population,3.2,35,,35–39
+62.13.05,3,Dusun Tengah,age_group,40-44,laki_laki,1005,jiwa,2025,registration,total_population,3.2,35,,40–44
+62.13.05,3,Dusun Tengah,age_group,40-44,perempuan,1031,jiwa,2025,registration,total_population,3.2,35,,40–44
+62.13.05,3,Dusun Tengah,age_group,40-44,,2036,jiwa,2025,registration,total_population,3.2,35,,40–44
+62.13.05,3,Dusun Tengah,age_group,45-49,laki_laki,916,jiwa,2025,registration,total_population,3.2,35,,45–49
+62.13.05,3,Dusun Tengah,age_group,45-49,perempuan,925,jiwa,2025,registration,total_population,3.2,35,,45–49
+62.13.05,3,Dusun Tengah,age_group,45-49,,1841,jiwa,2025,registration,total_population,3.2,35,,45–49
+62.13.05,3,Dusun Tengah,age_group,50-54,laki_laki,856,jiwa,2025,registration,total_population,3.2,35,,50–54
+62.13.05,3,Dusun Tengah,age_group,50-54,perempuan,809,jiwa,2025,registration,total_population,3.2,35,,50–54
+62.13.05,3,Dusun Tengah,age_group,50-54,,1665,jiwa,2025,registration,total_population,3.2,35,,50–54
+62.13.05,3,Dusun Tengah,age_group,55-59,laki_laki,676,jiwa,2025,registration,total_population,3.2,35,,55–59
+62.13.05,3,Dusun Tengah,age_group,55-59,perempuan,621,jiwa,2025,registration,total_population,3.2,35,,55–59
+62.13.05,3,Dusun Tengah,age_group,55-59,,1297,jiwa,2025,registration,total_population,3.2,35,,55–59
+62.13.05,3,Dusun Tengah,age_group,60-64,laki_laki,483,jiwa,2025,registration,total_population,3.2,35,,60–64
+62.13.05,3,Dusun Tengah,age_group,60-64,perempuan,499,jiwa,2025,registration,total_population,3.2,35,,60–64
+62.13.05,3,Dusun Tengah,age_group,60-64,,982,jiwa,2025,registration,total_population,3.2,35,,60–64
+62.13.05,3,Dusun Tengah,age_group,65-69,laki_laki,333,jiwa,2025,registration,total_population,3.2,35,,65–69
+62.13.05,3,Dusun Tengah,age_group,65-69,perempuan,339,jiwa,2025,registration,total_population,3.2,35,,65–69
+62.13.05,3,Dusun Tengah,age_group,65-69,,672,jiwa,2025,registration,total_population,3.2,35,,65–69
+62.13.05,3,Dusun Tengah,age_group,70-74,laki_laki,195,jiwa,2025,registration,total_population,3.2,35,,70–74
+62.13.05,3,Dusun Tengah,age_group,70-74,perempuan,174,jiwa,2025,registration,total_population,3.2,35,,70–74
+62.13.05,3,Dusun Tengah,age_group,70-74,,369,jiwa,2025,registration,total_population,3.2,35,,70–74
+62.13.05,3,Dusun Tengah,age_group,75+,laki_laki,158,jiwa,2025,registration,total_population,3.2,35,,75+
+62.13.05,3,Dusun Tengah,age_group,75+,perempuan,231,jiwa,2025,registration,total_population,3.2,35,,75+
+62.13.05,3,Dusun Tengah,age_group,75+,,389,jiwa,2025,registration,total_population,3.2,35,,75+
+62.13.05,3,Dusun Tengah,sex,laki_laki,,12903,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+62.13.05,3,Dusun Tengah,sex,perempuan,,12380,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+62.13.05,3,Dusun Tengah,total,total,,25283,jiwa,2025,registration,total_population,3.2,35,,

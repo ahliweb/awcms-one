@@ -141,6 +141,7 @@ export function loadDistrictRecords(dir = cacheDir()): DistrictRecord[] {
       publicationNumber: str("publicationNumber") ?? null,
       issn: str("issn") ?? null,
       pdfFile: str("pdfFile") ?? null,
+      sha256: str("sha256") ?? null,
     });
   }
   return out;

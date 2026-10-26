@@ -89,7 +89,7 @@ export function findTable(ctx: Ctx, test: (headKey: string) => boolean, nth = 0)
   let seen = 0;
   for (let i = 0; i < ctx.infos.length; i++) {
     const info = ctx.infos[i]!;
-    if (info.continued || info.tableNumber === null || /^(persentase|distribusipersentase|rata-?rata)/.test(info.headKey) && !/upah|pengeluaran/.test(info.headKey) || !test(info.headKey)) continue;
+    if (info.continued || /^(persentase|distribusipersentase|rata-?rata)/.test(info.headKey) && !/upah|pengeluaran/.test(info.headKey) || !test(info.headKey)) continue;
     if (!levelOk(rowKindOf(info.headKey), coverageLevel)) continue;
     if (seen++ < nth) continue;
     const pages = [info];
@@ -114,7 +114,7 @@ export function indonesianTitle(head: string): string {
 function blank(id: string, found: Found): TableResult {
   return {
     id,
-    table: found.start.tableNumber ?? "?",
+    table: found.start.tableNumber ?? "unnumbered",
     title: indonesianTitle(found.start.head),
     printedPages: [],
     referenceYears: [],
@@ -136,7 +136,7 @@ function unitOfHead(info: PageInfo, fallback?: string): string | null {
 function titleYears(info: PageInfo): number[] {
   // years of the Indonesian title only: stop at the English translation
   const eng = info.head.search(/\b(Population|Average|Monthly|Table|Number)\b/);
-  const text = eng > 0 ? info.head.slice(0, eng) : info.head;
+  const text = (eng > 0 ? info.head.slice(0, eng) : info.head).replace(/\b((?:19|20)\d)\s(\d)\b/g, "$1$2"); // "202 5" is a kerning split of 2025
   return [...new Set([...text.matchAll(/\b((?:19|20)\d{2})\b/g)].map((m) => Number(m[1])))];
 }
 
@@ -198,9 +198,9 @@ function sexColumns(info: PageInfo, firstData: number, titleYear: number | null)
   const groups: { key: string; cx: number; text: string }[] = [];
   for (const w of words) {
     if (cx(w) < info.markers[firstData]!.cx - 40) continue;
-    if (/^laki-?laki\/?$/i.test(w.text)) groups.push({ key: "laki_laki", cx: cx(w), text: w.text });
-    else if (/^perempuan\/?$/i.test(w.text)) groups.push({ key: "perempuan", cx: cx(w), text: w.text });
-    else if (/^jumlah\/?$/i.test(w.text)) groups.push({ key: "jumlah", cx: cx(w), text: w.text });
+    if (/^laki-?laki(\/.*)?$/i.test(w.text)) groups.push({ key: "laki_laki", cx: cx(w), text: w.text });
+    else if (/^perempuan(\/.*)?$/i.test(w.text)) groups.push({ key: "perempuan", cx: cx(w), text: w.text });
+    else if (/^jumlah(\/.*)?$/i.test(w.text)) groups.push({ key: "jumlah", cx: cx(w), text: w.text });
     else if (/^(rasio|laju)$/i.test(w.text)) groups.push({ key: "rasio", cx: cx(w), text: w.text });
   }
   const years = words.filter((w) => /^(?:19|20)\d{2}$/.test(w.text));
@@ -275,7 +275,7 @@ function rowRegion(
   const r = resolveLabel(ctx.index, scope, label, st.hint, row.last);
   if (r.status === "ok") {
     if (m2 === "" && m1 !== "" && r.code !== ctx.coverage) st.district = r.code;
-    return { code: r.code!, name: label.replace(/^\s*\d{1,3}\.\s*/, "").replace(/(?<=\p{L})\d{1,2}$/u, ""), subtotal: false };
+    return { code: r.code!, name: label.replace(/^\s*\d{1,3}(?:\.\s*|\s+(?=\p{L}))/u, "").replace(/(?<=\p{L})\d{1,2}$/u, ""), subtotal: false };
   }
   problems.push(`${ctxSoft ? "row not stored: " : ""}row "${label}": ${r.status} ${r.candidates.join(",")}`);
   return "skip";
@@ -313,7 +313,7 @@ export function totalByRegion(ctx: Ctx): TableResult | null {
   if (!found) return null;
   const res = blank("total-by-region", found);
   const info = found.start;
-  const tbl = info.tableNumber!;
+  const tbl = info.tableNumber ?? "unnumbered";
   const L = labelColumnCount(info);
   const hw = headerWords(info, 70);
   const yearWords = hw.filter((w) => /^(?:19|20)\d{2}$/.test(w.text) && cx(w) > info.markers[1]!.cx - 30);
@@ -386,7 +386,7 @@ export function sexTable(
   const found = findTable(ctx, test, nth);
   if (!found) return null;
   const res = blank(id, found);
-  const tbl = found.start.tableNumber!;
+  const tbl = found.start.tableNumber ?? "unnumbered";
   for (const info of found.pages) {
     const L = labelColumnCount(info);
     const unit = unitOfHead(found.start, rowMode === "religion" || ctx.soft ? "jiwa" : undefined);
@@ -475,7 +475,7 @@ export function ageByRegionColumns(ctx: Ctx): TableResult | null {
   const found = findTable(ctx, (k) => /menurutkelompokumurdan(kabupaten\/kota|kecamatan)/.test(k));
   if (!found) return null;
   const res = blank("age-by-region", found);
-  const tbl = found.start.tableNumber!;
+  const tbl = found.start.tableNumber ?? "unnumbered";
   const unit = unitOfHead(found.start);
   const ty = titleYears(found.start);
   if (!unit || unit === "rupiah" || ty.length !== 1) {
@@ -526,7 +526,7 @@ export function religionByRegion(ctx: Ctx, nth = 0): TableResult | null {
   const found = findTable(ctx, (k) => (/penduduk.*menurut(kabupaten\/kota|kecamatan|kelurahan|desa)danagama/.test(k) || /penduduk.*menurutagama(\/alirankepercayaan)?dan(desa\/kelurahan|kelurahan|desa)/.test(k)), nth);
   if (!found) return null;
   const res = blank("religion-by-region", found);
-  const tbl = found.start.tableNumber!;
+  const tbl = found.start.tableNumber ?? "unnumbered";
   const ty = titleYears(found.start);
   if (ty.length !== 1) {
     res.problems.push("year not determinable");
@@ -637,7 +637,7 @@ export function wageByAge(ctx: Ctx): TableResult | null {
 
 function industryColumns(ctx: Ctx, found: Found, res: TableResult, kind: "employed" | "wage", rows: "region" | "age"): TableResult {
   const info = found.start;
-  const tbl = info.tableNumber!;
+  const tbl = info.tableNumber ?? "unnumbered";
   const ty = titleYears(info);
   if (ty.length !== 1) {
     res.problems.push("year not determinable");
@@ -726,7 +726,7 @@ export function expenditureTable(ctx: Ctx): TableResult | null {
   if (!found) return null;
   const res = blank("expenditure-by-commodity", found);
   const info = found.start;
-  const tbl = info.tableNumber!;
+  const tbl = info.tableNumber ?? "unnumbered";
   const hw = headerWords(info, 45);
   const years = new Map<number, number>();
   for (const w of hw) {

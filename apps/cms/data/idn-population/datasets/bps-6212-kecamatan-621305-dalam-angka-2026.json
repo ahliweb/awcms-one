@@ -1,0 +1,59 @@
+{
+  "datasetCode": "bps-6212-kecamatan-621305-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.13.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Dusun Tengah Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Barito Timur",
+  "publisherDomain": "6212",
+  "publisherWebsite": "https://bartimkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Barito Timur (https://bartimkab.bps.go.id), publikasi \"Kecamatan Dusun Tengah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6212050",
+  "publicationNumber": "62120.26009",
+  "issn": "2302-5093",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bartimkab.bps.go.id/id/publication/2026/09/28/e1ecd512987b12bfe5eca9f4/kecamatan-dusun-tengah-dalam-angka-2026.html",
+  "sourceFileSha256": "cd4482bb58fc96d025b6b59e81dc6b447ba2c71ca23d4101b0b3c2d3b0edd392",
+  "sourceFileBytes": 6776121,
+  "sourcePages": [
+    33,
+    34,
+    35
+  ],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Barito Timur.",
+  "csvPath": "datasets/bps-6212-kecamatan-621305-dalam-angka-2026.csv",
+  "csvSha256": "e91586ae506cee14c2f7d9397eefc019908bdefd231b95bc832c8e0f7c382a3c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Dusun Tengah, 2025",
+      "printedPages": [
+        33,
+        34
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Dusun Tengah, 2025",
+      "printedPages": [
+        35
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Ampah Dua\": unmatched ",
+    "table 3.1: row not stored: row \"Ampah Dua\": unmatched "
+  ]
+}

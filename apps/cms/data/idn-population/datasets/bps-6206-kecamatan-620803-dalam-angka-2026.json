@@ -1,0 +1,57 @@
+{
+  "datasetCode": "bps-6206-kecamatan-620803-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.08.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Balai Riam Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sukamara",
+  "publisherDomain": "6206",
+  "publisherWebsite": "https://sukamarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sukamara (https://sukamarakab.bps.go.id), publikasi \"Kecamatan Balai Riam Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6206030",
+  "publicationNumber": "62060.26013",
+  "issn": "2963-6590",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sukamarakab.bps.go.id/id/publication/2026/09/28/1a93eea90ce46fef68fc8ba1/kecamatan-balai-riam-dalam-angka-2026.html",
+  "sourceFileSha256": "0dd7fef056bab5a0c777203aec75b91fc6915726a98d8bc38f48216d9f9214a0",
+  "sourceFileBytes": 16632753,
+  "sourcePages": [
+    36,
+    37,
+    38
+  ],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sukamara.",
+  "csvPath": "datasets/bps-6206-kecamatan-620803-dalam-angka-2026.csv",
+  "csvSha256": "9676d0af07cb9013ee15c07b741ed2180204a06dc03965094aa0c8823fe615f2",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk menurut Desa di Kecamatan Balai Riam, 2025",
+      "printedPages": [
+        36,
+        37
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Balai Riam, 2025",
+      "printedPages": [
+        38
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

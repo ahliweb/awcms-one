@@ -1,0 +1,59 @@
+{
+  "datasetCode": "bps-6208-kecamatan-620710-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.07.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Suling Tambun Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Seruyan",
+  "publisherDomain": "6208",
+  "publisherWebsite": "https://seruyankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Seruyan (https://seruyankab.bps.go.id), publikasi \"Kecamatan Suling Tambun Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6208051",
+  "publicationNumber": "62080.26016",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://seruyankab.bps.go.id/id/publication/2026/09/28/7a2ba7bc05857ca36952fff1/kecamatan-suling-tambun-dalam-angka-2026.html",
+  "sourceFileSha256": "fd7bebf7be98e4a2ab276b35bcb0da8a94bf5e573f1870cc359511d53ae513e9",
+  "sourceFileBytes": 13243052,
+  "sourcePages": [
+    34,
+    35,
+    36
+  ],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Seruyan",
+  "csvPath": "datasets/bps-6208-kecamatan-620710-dalam-angka-2026.csv",
+  "csvSha256": "cec9a6e30be112bc4e7a25bc16039807fbcd6aa0c6018f1e383f287224537267",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Suling Tambun , 202 5",
+      "printedPages": [
+        34,
+        35
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Suling Tambun , 202 5",
+      "printedPages": [
+        36
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Tumbang Lakai\": unmatched ",
+    "table 3.1: row not stored: row \"Tumbang Lakai\": unmatched "
+  ]
+}

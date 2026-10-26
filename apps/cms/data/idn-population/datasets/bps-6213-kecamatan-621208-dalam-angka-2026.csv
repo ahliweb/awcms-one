@@ -1,0 +1,66 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.12.08.2001,4,Batu Mirau,sex,laki_laki,,347,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.08.2001,4,Batu Mirau,sex,perempuan,,300,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.08.2001,4,Batu Mirau,total,total,,647,jiwa,2025,registration,total_population,3.1,30,,
+62.12.08.2003,4,Tumbang Bantian,sex,laki_laki,,258,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.08.2003,4,Tumbang Bantian,sex,perempuan,,264,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.08.2003,4,Tumbang Bantian,total,total,,522,jiwa,2025,registration,total_population,3.1,30,,
+62.12.08.2004,4,Tumbang Saan,sex,laki_laki,,208,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.08.2004,4,Tumbang Saan,sex,perempuan,,183,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.08.2004,4,Tumbang Saan,total,total,,391,jiwa,2025,registration,total_population,3.1,30,,
+62.12.08.2005,4,Tumbang Kolon,sex,laki_laki,,206,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.08.2005,4,Tumbang Kolon,sex,perempuan,,219,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.08.2005,4,Tumbang Kolon,total,total,,425,jiwa,2025,registration,total_population,3.1,30,,
+62.12.08.2002,4,Tambelum,sex,laki_laki,,280,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.08.2002,4,Tambelum,sex,perempuan,,252,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.08.2002,4,Tambelum,total,total,,532,jiwa,2025,registration,total_population,3.1,30,,
+62.12.08.2006,4,Tumbang Apat,sex,laki_laki,,227,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.08.2006,4,Tumbang Apat,total,total,,447,jiwa,2025,registration,total_population,3.1,30,,
+62.12.08,3,Sungai Babuat,sex,laki_laki,,1526,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.08,3,Sungai Babuat,sex,perempuan,,1438,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.08,3,Sungai Babuat,total,total,,2964,jiwa,2025,registration,total_population,3.1,30,,
+62.12.08,3,Sungai Babuat,age_group,0-4,laki_laki,118,jiwa,2025,registration,total_population,3.2,32,,0 –4
+62.12.08,3,Sungai Babuat,age_group,0-4,perempuan,102,jiwa,2025,registration,total_population,3.2,32,,0 –4
+62.12.08,3,Sungai Babuat,age_group,0-4,,220,jiwa,2025,registration,total_population,3.2,32,,0 –4
+62.12.08,3,Sungai Babuat,age_group,5-9,laki_laki,141,jiwa,2025,registration,total_population,3.2,32,,5–9
+62.12.08,3,Sungai Babuat,age_group,5-9,perempuan,140,jiwa,2025,registration,total_population,3.2,32,,5–9
+62.12.08,3,Sungai Babuat,age_group,5-9,,281,jiwa,2025,registration,total_population,3.2,32,,5–9
+62.12.08,3,Sungai Babuat,age_group,10-14,laki_laki,137,jiwa,2025,registration,total_population,3.2,32,,10–14
+62.12.08,3,Sungai Babuat,age_group,10-14,perempuan,148,jiwa,2025,registration,total_population,3.2,32,,10–14
+62.12.08,3,Sungai Babuat,age_group,10-14,,285,jiwa,2025,registration,total_population,3.2,32,,10–14
+62.12.08,3,Sungai Babuat,age_group,15-19,laki_laki,133,jiwa,2025,registration,total_population,3.2,32,,15–19
+62.12.08,3,Sungai Babuat,age_group,15-19,perempuan,138,jiwa,2025,registration,total_population,3.2,32,,15–19
+62.12.08,3,Sungai Babuat,age_group,15-19,,271,jiwa,2025,registration,total_population,3.2,32,,15–19
+62.12.08,3,Sungai Babuat,age_group,20-24,laki_laki,153,jiwa,2025,registration,total_population,3.2,32,,20–24
+62.12.08,3,Sungai Babuat,age_group,20-24,perempuan,155,jiwa,2025,registration,total_population,3.2,32,,20–24
+62.12.08,3,Sungai Babuat,age_group,20-24,,308,jiwa,2025,registration,total_population,3.2,32,,20–24
+62.12.08,3,Sungai Babuat,age_group,25-29,laki_laki,136,jiwa,2025,registration,total_population,3.2,32,,25–29
+62.12.08,3,Sungai Babuat,age_group,25-29,perempuan,125,jiwa,2025,registration,total_population,3.2,32,,25–29
+62.12.08,3,Sungai Babuat,age_group,25-29,,261,jiwa,2025,registration,total_population,3.2,32,,25–29
+62.12.08,3,Sungai Babuat,age_group,30-34,laki_laki,145,jiwa,2025,registration,total_population,3.2,32,,30–34
+62.12.08,3,Sungai Babuat,age_group,30-34,perempuan,114,jiwa,2025,registration,total_population,3.2,32,,30–34
+62.12.08,3,Sungai Babuat,age_group,30-34,,259,jiwa,2025,registration,total_population,3.2,32,,30–34
+62.12.08,3,Sungai Babuat,age_group,35-39,laki_laki,111,jiwa,2025,registration,total_population,3.2,32,,35–39
+62.12.08,3,Sungai Babuat,age_group,35-39,perempuan,106,jiwa,2025,registration,total_population,3.2,32,,35–39
+62.12.08,3,Sungai Babuat,age_group,35-39,,217,jiwa,2025,registration,total_population,3.2,32,,35–39
+62.12.08,3,Sungai Babuat,age_group,40-44,laki_laki,106,jiwa,2025,registration,total_population,3.2,32,,40–44
+62.12.08,3,Sungai Babuat,age_group,40-44,perempuan,106,jiwa,2025,registration,total_population,3.2,32,,40–44
+62.12.08,3,Sungai Babuat,age_group,40-44,,212,jiwa,2025,registration,total_population,3.2,32,,40–44
+62.12.08,3,Sungai Babuat,age_group,45-49,laki_laki,86,jiwa,2025,registration,total_population,3.2,32,,45–49
+62.12.08,3,Sungai Babuat,age_group,45-49,perempuan,83,jiwa,2025,registration,total_population,3.2,32,,45–49
+62.12.08,3,Sungai Babuat,age_group,45-49,,169,jiwa,2025,registration,total_population,3.2,32,,45–49
+62.12.08,3,Sungai Babuat,age_group,50-54,laki_laki,78,jiwa,2025,registration,total_population,3.2,32,,50–54
+62.12.08,3,Sungai Babuat,age_group,50-54,perempuan,69,jiwa,2025,registration,total_population,3.2,32,,50–54
+62.12.08,3,Sungai Babuat,age_group,50-54,,147,jiwa,2025,registration,total_population,3.2,32,,50–54
+62.12.08,3,Sungai Babuat,age_group,55-59,laki_laki,63,jiwa,2025,registration,total_population,3.2,32,,55–59
+62.12.08,3,Sungai Babuat,age_group,55-59,perempuan,55,jiwa,2025,registration,total_population,3.2,32,,55–59
+62.12.08,3,Sungai Babuat,age_group,55-59,,118,jiwa,2025,registration,total_population,3.2,32,,55–59
+62.12.08,3,Sungai Babuat,age_group,60-64,laki_laki,46,jiwa,2025,registration,total_population,3.2,32,,60–64
+62.12.08,3,Sungai Babuat,age_group,60-64,perempuan,42,jiwa,2025,registration,total_population,3.2,32,,60–64
+62.12.08,3,Sungai Babuat,age_group,60-64,,88,jiwa,2025,registration,total_population,3.2,32,,60–64
+62.12.08,3,Sungai Babuat,age_group,65+,laki_laki,73,jiwa,2025,registration,total_population,3.2,32,,65+
+62.12.08,3,Sungai Babuat,age_group,65+,perempuan,55,jiwa,2025,registration,total_population,3.2,32,,65+
+62.12.08,3,Sungai Babuat,age_group,65+,,128,jiwa,2025,registration,total_population,3.2,32,,65+
+62.12.08,3,Sungai Babuat,sex,laki_laki,,1526,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+62.12.08,3,Sungai Babuat,sex,perempuan,,1438,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+62.12.08,3,Sungai Babuat,total,total,,2964,jiwa,2025,registration,total_population,3.2,32,,

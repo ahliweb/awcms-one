@@ -23,8 +23,21 @@
   ],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Murung Raya.",
   "csvPath": "datasets/bps-6213-kecamatan-621201-dalam-angka-2026.csv",
-  "csvSha256": "6bc02b67e1a47a60b9f75f416f574ec8587ed86767674421f28236c8ef5f8d84",
+  "csvSha256": "cc2da7862b58eec61342af969fc248844abc44f7db6fb273881c9d489b579718",
   "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa1/ Kelurahan di Kecamatan Murung, 2025",
+      "printedPages": [
+        30,
+        31
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
     {
       "table": "3.2",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Murung, 2025",
@@ -55,7 +68,6 @@
     "table 3.1: row not stored: row \"Muara Sumpoi 2.11\": unmatched ",
     "table 3.1: row not stored: row \"Muara Bumban 2.12\": unmatched ",
     "table 3.1: row not stored: row \"Penyang 1.54\": unmatched ",
-    "table 3.1: row not stored: row \"Murung 100.00\": unmatched ",
-    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+    "table 3.1: row not stored: row \"Murung 100.00\": unmatched "
   ]
 }

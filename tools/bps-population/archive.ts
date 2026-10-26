@@ -16,6 +16,14 @@
  * Remote layout: `<remote>/kabkota-provinsi/<year>/<file>` for PDFs directly in
  * `pdf/`, and `<remote>/kecamatan/<year>/<file>` for PDFs in `pdf/kecamatan/`.
  *
+ * With `--include-unextracted`, a PDF that yields no eligible dataset but whose
+ * sha256 has a `$BPS_CACHE_DIR/extract-results.json` record is archived too:
+ * outcome `gap_only` goes to `<remote>/belum-diekstrak/<scope>/<year>/<file>`,
+ * outcome `refused` to `<remote>/perlu-ditinjau/<scope>/<year>/<file>`. Such a
+ * record carries `kind` other than `dataset`. A PDF with neither a dataset nor
+ * a ledger record is never touched, and a missing or corrupt ledger means no
+ * such PDF is ever touched.
+ *
  * Every rclone call is an argv array through Bun.spawn; no shell is involved.
  * The decision logic is exported as pure functions so it can be tested without
  * a network, rclone, or a database.
@@ -42,8 +50,18 @@ import {
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 export const ARCHIVE_FILE_NAME = "archive.json";
+export const EXTRACT_LEDGER_FILE_NAME = "extract-results.json";
 const DEFAULT_CACHE_SUBDIR = path.join(".cache", "awcms-bps-population");
 const DEFAULT_DATASETS_DIR = path.join("apps", "cms", "data", "idn-population", "datasets");
+
+/** Remote folder for PDFs the extractor produced no dataset from, by ledger outcome. */
+export const UNEXTRACTED_FOLDERS = {
+  gap_only: "belum-diekstrak",
+  refused: "perlu-ditinjau"
+} as const;
+
+/** Why a PDF was archived. Records written before `kind` existed are `dataset`. */
+export type ArchiveKind = "dataset" | "gap_only" | "refused";
 
 /** One line of `archive.json`: a PDF that has been verified on the remote. */
 export type ArchiveRecord = {
@@ -52,8 +70,24 @@ export type ArchiveRecord = {
   md5: string;
   bytes: number;
   remote: string;
+  /** The dataset code for `kind: "dataset"`; the empty string otherwise. */
   datasetCode: string;
   archivedAt: string;
+  kind: ArchiveKind;
+};
+
+export type ExtractOutcome = "written" | "gap_only" | "refused";
+
+/** One line of `extract-results.json`, written by the extractor. */
+export type ExtractRecord = {
+  /** Path relative to `$BPS_CACHE_DIR/pdf`. */
+  file: string;
+  sha256: string;
+  outcome: ExtractOutcome;
+  datasetCode: string | null;
+  reason: string | null;
+  publicationYear: number;
+  extractedAt: string;
 };
 
 export type ArchiveScope = "kabkota-provinsi" | "kecamatan";
@@ -115,14 +149,24 @@ export function normaliseRemoteRoot(raw: string | undefined): { ok: true; remote
  * name (no separator, no dot segment) and the year a plain integer, so a value
  * from a dataset JSON cannot escape the scope folder.
  */
-export function remoteFilePath(remoteRoot: string, scope: ArchiveScope, year: number, fileName: string): string {
+export function remoteFilePath(
+  remoteRoot: string,
+  scope: ArchiveScope,
+  year: number,
+  fileName: string,
+  folder?: string
+): string {
   if (!Number.isInteger(year) || year < 1961 || year > 2100) {
     throw new Error(`publication year ${year} is not a plausible integer year.`);
   }
   if (fileName.length === 0 || fileName.includes("/") || fileName.includes("\\") || fileName === "." || fileName === "..") {
     throw new Error(`file name "${fileName}" is not a bare file name.`);
   }
-  return `${remoteRoot.replace(/\/+$/, "")}/${scope}/${year}/${fileName}`;
+  if (folder !== undefined && !/^[a-z][a-z-]*$/.test(folder)) {
+    throw new Error(`folder "${folder}" is not a plain folder name.`);
+  }
+  const prefix = folder === undefined ? "" : `${folder}/`;
+  return `${remoteRoot.replace(/\/+$/, "")}/${prefix}${scope}/${year}/${fileName}`;
 }
 
 /**
@@ -294,8 +338,112 @@ export function parseArchiveJson(text: string): ArchiveRecord[] {
     ) {
       throw new Error(`archive.json entry ${index} is malformed.`);
     }
-    return r as ArchiveRecord;
+    // A record written before `kind` existed is a dataset archive.
+    const kind: unknown = r.kind ?? "dataset";
+    if (kind !== "dataset" && kind !== "gap_only" && kind !== "refused") {
+      throw new Error(`archive.json entry ${index} has an unknown kind.`);
+    }
+    return { ...(r as ArchiveRecord), kind };
   });
+}
+
+const EXTRACT_OUTCOMES: readonly string[] = ["written", "gap_only", "refused"];
+
+/**
+ * Parses `extract-results.json`. Any malformed entry throws, so a partly
+ * readable ledger is treated as corrupt as a whole and nothing is moved on its basis.
+ */
+export function parseExtractLedger(text: string): ExtractRecord[] {
+  const parsed: unknown = JSON.parse(text);
+  if (!Array.isArray(parsed)) throw new Error("extract-results.json must hold a JSON array.");
+  return parsed.map((entry, index) => {
+    const r = entry as Partial<ExtractRecord>;
+    if (
+      typeof r?.file !== "string" ||
+      typeof r.sha256 !== "string" ||
+      typeof r.outcome !== "string" ||
+      !EXTRACT_OUTCOMES.includes(r.outcome) ||
+      (r.datasetCode !== null && typeof r.datasetCode !== "string") ||
+      (r.reason !== null && typeof r.reason !== "string") ||
+      typeof r.publicationYear !== "number" ||
+      typeof r.extractedAt !== "string"
+    ) {
+      throw new Error(`extract-results.json entry ${index} is malformed.`);
+    }
+    return r as ExtractRecord;
+  });
+}
+
+/**
+ * The latest ledger record per sha256 wins. Recency is `extractedAt`; when two
+ * records tie (or a timestamp does not parse), the one later in the file wins.
+ */
+export function latestExtractBySha(records: readonly ExtractRecord[]): Map<string, ExtractRecord> {
+  const latest = new Map<string, ExtractRecord>();
+  for (const record of records) {
+    const current = latest.get(record.sha256);
+    if (!current) {
+      latest.set(record.sha256, record);
+      continue;
+    }
+    const next = Date.parse(record.extractedAt);
+    const prev = Date.parse(current.extractedAt);
+    const unordered = Number.isNaN(next) || Number.isNaN(prev);
+    if (unordered || next >= prev) latest.set(record.sha256, record);
+  }
+  return latest;
+}
+
+/**
+ * Reads the ledger for `--include-unextracted`. A missing ledger is empty. A
+ * corrupt one is also empty, with a warning, so nothing is moved on its basis.
+ */
+export async function loadExtractLedger(ledgerPath: string, warnings: string[]): Promise<Map<string, ExtractRecord>> {
+  if (!existsSync(ledgerPath)) return new Map();
+  try {
+    return latestExtractBySha(parseExtractLedger(await readFile(ledgerPath, "utf8")));
+  } catch (error) {
+    warnings.push(`${EXTRACT_LEDGER_FILE_NAME} is unreadable (${(error as Error).message}); no unextracted PDFs will be archived`);
+    return new Map();
+  }
+}
+
+/** The remote folder for a ledger outcome that has no dataset, or null for `written`. */
+export function unextractedFolder(record: ExtractRecord | undefined): { kind: "gap_only" | "refused"; folder: string } | null {
+  if (!record) return null;
+  if (record.outcome === "gap_only") return { kind: "gap_only", folder: UNEXTRACTED_FOLDERS.gap_only };
+  if (record.outcome === "refused") return { kind: "refused", folder: UNEXTRACTED_FOLDERS.refused };
+  return null;
+}
+
+export type ArchivePlacement =
+  | { place: true; kind: ArchiveKind; year: number; datasetCode: string; folder?: string }
+  | { place: false; reason: string };
+
+/**
+ * Decides where, if anywhere, a PDF goes. An eligible dataset always wins. Without
+ * an eligible dataset, only `--include-unextracted` plus a `gap_only` or `refused`
+ * ledger record for the same sha256 places it; everything else is left alone.
+ */
+export function decideArchivePlacement(input: {
+  eligibility: Eligibility;
+  extract: ExtractRecord | undefined;
+  includeUnextracted: boolean;
+}): ArchivePlacement {
+  if (input.eligibility.eligible) {
+    return { place: true, kind: "dataset", year: input.eligibility.year, datasetCode: input.eligibility.datasetCode };
+  }
+  const unextracted = input.includeUnextracted ? unextractedFolder(input.extract) : null;
+  if (unextracted && input.extract) {
+    return {
+      place: true,
+      kind: unextracted.kind,
+      year: input.extract.publicationYear,
+      datasetCode: "",
+      folder: unextracted.folder
+    };
+  }
+  return { place: false, reason: input.eligibility.reason };
 }
 
 /** Keeps only the PDFs matching `--only`: a domain (first segment of the stem) or the whole stem. */
@@ -305,15 +453,18 @@ export function matchesOnly(fileName: string, only: string | null): boolean {
   return stem === only || stem.split("-")[0] === only;
 }
 
-export type ParsedArgs = { commit: boolean; only: string | null };
+export type ParsedArgs = { commit: boolean; only: string | null; includeUnextracted: boolean };
 
 export function parseArgs(argv: readonly string[]): ParsedArgs {
   let commit = false;
   let only: string | null = null;
+  let includeUnextracted = false;
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i]!;
     if (arg === "--commit") {
       commit = true;
+    } else if (arg === "--include-unextracted") {
+      includeUnextracted = true;
     } else if (arg === "--only") {
       const value = argv[i + 1];
       if (value === undefined || value.startsWith("--")) throw new Error("--only needs a domain or file stem.");
@@ -323,10 +474,12 @@ export function parseArgs(argv: readonly string[]): ParsedArgs {
       only = arg.slice("--only=".length);
       if (only.length === 0) throw new Error("--only needs a domain or file stem.");
     } else {
-      throw new Error(`unknown argument "${arg}". Usage: archive.ts [--commit] [--only <domain-or-file-stem>]`);
+      throw new Error(
+        `unknown argument "${arg}". Usage: archive.ts [--commit] [--only <domain-or-file-stem>] [--include-unextracted]`
+      );
     }
   }
-  return { commit, only };
+  return { commit, only, includeUnextracted };
 }
 
 export type ArchiveOutcome =
@@ -369,7 +522,16 @@ export type ArchiveDeps = {
  * Deletion happens only after the record is durably written.
  */
 export async function archiveOne(
-  item: { filePath: string; fileName: string; sha256: string; md5: string; bytes: number; remote: string; datasetCode: string },
+  item: {
+    filePath: string;
+    fileName: string;
+    sha256: string;
+    md5: string;
+    bytes: number;
+    remote: string;
+    datasetCode: string;
+    kind: ArchiveKind;
+  },
   deps: ArchiveDeps
 ): Promise<ArchiveOutcome> {
   const local = { md5: item.md5, bytes: item.bytes };
@@ -400,7 +562,8 @@ export async function archiveOne(
       bytes: item.bytes,
       remote: item.remote,
       datasetCode: item.datasetCode,
-      archivedAt: deps.now().toISOString()
+      archivedAt: deps.now().toISOString(),
+      kind: item.kind
     });
   } catch (error) {
     return { status: "failed", reason: `could not write archive.json (local kept): ${(error as Error).message}` };
@@ -425,6 +588,8 @@ async function deleteAfterVerify(
 
 export type Summary = {
   eligible: number;
+  /** Of the eligible, those archived without a dataset (`gap_only` or `refused`). */
+  unextracted: number;
   uploaded: number;
   verified: number;
   deleted: number;
@@ -434,13 +599,14 @@ export type Summary = {
 };
 
 export function emptySummary(): Summary {
-  return { eligible: 0, uploaded: 0, verified: 0, deleted: 0, skipped: 0, failed: 0, freedBytes: 0 };
+  return { eligible: 0, unextracted: 0, uploaded: 0, verified: 0, deleted: 0, skipped: 0, failed: 0, freedBytes: 0 };
 }
 
 export function formatSummary(summary: Summary): string {
   const mb = (summary.freedBytes / 1_000_000).toFixed(1);
   return [
     `eligible ${summary.eligible}`,
+    `unextracted ${summary.unextracted}`,
     `uploaded ${summary.uploaded}`,
     `verified ${summary.verified}`,
     `deleted ${summary.deleted}`,
@@ -536,11 +702,13 @@ type PlanItem = {
   scope: ArchiveScope | null;
   refusal: string | null;
   remote: string | null;
+  kind: ArchiveKind;
+  datasetCode: string;
 };
 
 function describeSkip(item: PlanItem): string {
   if (item.refusal) return item.refusal;
-  if (!item.eligibility.eligible) return item.eligibility.reason;
+  if (!item.eligibility.eligible && item.remote === null) return item.eligibility.reason;
   return "";
 }
 
@@ -579,6 +747,11 @@ export async function main(argv: readonly string[], env: NodeJS.ProcessEnv = pro
   for (const warning of warnings) console.log(`warning: ${warning}`);
 
   const pdfs = (await listPdfs(pdfRoot)).filter((p) => matchesOnly(path.basename(p), args.only));
+  const ledgerWarnings: string[] = [];
+  const extractBySha = args.includeUnextracted
+    ? await loadExtractLedger(path.join(cacheDir, EXTRACT_LEDGER_FILE_NAME), ledgerWarnings)
+    : new Map<string, ExtractRecord>();
+  for (const warning of ledgerWarnings) console.log(`warning: ${warning}`);
   const plan: PlanItem[] = [];
   for (const filePath of pdfs) {
     const bytesBuf = new Uint8Array(await readFile(filePath));
@@ -590,12 +763,27 @@ export async function main(argv: readonly string[], env: NodeJS.ProcessEnv = pro
     let remote: string | null = null;
     let scope: ArchiveScope | null = null;
     let refusal: string | null = null;
+    let kind: ArchiveKind = "dataset";
+    let datasetCode = "";
     if (!location.ok) {
       refusal = location.reason;
     } else {
       scope = location.scope;
-      if (eligibility.eligible) {
-        remote = remoteFilePath(remoteRoot, scope, eligibility.year, location.fileName);
+      const placement = decideArchivePlacement({
+        eligibility,
+        extract: extractBySha.get(sha256),
+        includeUnextracted: args.includeUnextracted
+      });
+      if (placement.place) {
+        kind = placement.kind;
+        datasetCode = placement.datasetCode;
+        try {
+          remote = remoteFilePath(remoteRoot, scope, placement.year, location.fileName, placement.folder);
+        } catch (error) {
+          refusal = (error as Error).message;
+        }
+      } else {
+        refusal = placement.reason;
       }
     }
     plan.push({
@@ -608,7 +796,9 @@ export async function main(argv: readonly string[], env: NodeJS.ProcessEnv = pro
       eligibility,
       scope,
       refusal,
-      remote
+      remote,
+      kind,
+      datasetCode
     });
   }
 
@@ -619,10 +809,12 @@ export async function main(argv: readonly string[], env: NodeJS.ProcessEnv = pro
 
   if (!args.commit) {
     for (const item of plan) {
-      const ok = !item.refusal && item.eligibility.eligible;
+      const ok = !item.refusal && item.remote !== null;
       if (ok) {
         summary.eligible++;
-        console.log(`eligible  ${item.relativePath} -> ${item.remote}`);
+        if (item.kind !== "dataset") summary.unextracted++;
+        const tag = item.kind === "dataset" ? "" : ` [${item.kind}]`;
+        console.log(`eligible  ${item.relativePath} -> ${item.remote}${tag}`);
       } else {
         summary.skipped++;
         console.log(`skipped   ${item.relativePath}: ${describeSkip(item)}`);
@@ -647,12 +839,13 @@ export async function main(argv: readonly string[], env: NodeJS.ProcessEnv = pro
   };
 
   for (const item of plan) {
-    if (item.refusal || !item.eligibility.eligible || item.remote === null) {
+    if (item.refusal || item.remote === null) {
       summary.skipped++;
       console.log(`skipped   ${item.relativePath}: ${describeSkip(item)}`);
       continue;
     }
     summary.eligible++;
+    if (item.kind !== "dataset") summary.unextracted++;
     let outcome: ArchiveOutcome;
     try {
       outcome = await archiveOne(
@@ -663,7 +856,8 @@ export async function main(argv: readonly string[], env: NodeJS.ProcessEnv = pro
           md5: item.md5,
           bytes: item.bytes,
           remote: item.remote,
-          datasetCode: item.eligibility.datasetCode
+          datasetCode: item.datasetCode,
+          kind: item.kind
         },
         deps
       );

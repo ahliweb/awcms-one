@@ -1,0 +1,70 @@
+{
+  "datasetCode": "bps-6271-kecamatan-627103-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.71.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jekan Raya Dalam Angka 2026",
+  "publisherName": "BPS Kota Palangka Raya",
+  "publisherDomain": "6271",
+  "publisherWebsite": "https://palangkakota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Palangka Raya (https://palangkakota.bps.go.id), publikasi \"Kecamatan Jekan Raya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6271012",
+  "publicationNumber": "62710.26010",
+  "issn": "2338-6274",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://palangkakota.bps.go.id/id/publication/2026/09/28/23233a216f341b45b68848dd/kecamatan-jekan-raya-dalam-angka-2026.html",
+  "sourceFileSha256": "847baa684c8feedf385a63b6c0f8c62f0b69844a6385d5932a1f3d3bd5b2ef92",
+  "sourceFileBytes": 11144441,
+  "sourcePages": [
+    36,
+    37,
+    38,
+    95,
+    96
+  ],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Palangka Raya.",
+  "csvPath": "datasets/bps-6271-kecamatan-627103-dalam-angka-2026.csv",
+  "csvSha256": "baf6f20363c499c8ef33884fb3827428df7a1654967205de09aef01e658d999e",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Jekan Raya, 2025",
+      "printedPages": [
+        36,
+        37
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jekan Raya, 2025",
+      "printedPages": [
+        38
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.5.1",
+      "title": "Jumlah Penduduk Menurut Agama/Aliran Kepercayaan dan Desa/Kelurahan di Kecamatan Jekan Raya, 2025",
+      "printedPages": [
+        95,
+        96
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": []
+}

@@ -9,8 +9,8 @@
  * A dataset whose tables fail self-validation is NOT written; a review file is
  * left under <cache>/review/ instead. Nothing is invented, rounded or filled.
  */
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { basename, join, resolve } from "node:path";
+import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
+import { basename, join, relative, resolve } from "node:path";
 import { dedupe, runChecks, type CheckReport } from "./checks";
 import { analysePage, type PageInfo } from "./rows";
 import { buildIndex, coreLabel, levelOfCode, parseWilayahSql, typeOfName, type RegionIndex } from "./regions";
@@ -121,6 +121,8 @@ export interface ExtractOptions {
 }
 
 export interface ExtractOutcome {
+  year: number;
+  reason: string | null;
   datasetCode: string;
   status: "written" | "refused" | "gap-only";
   rowCounts: Record<string, number>;
@@ -129,6 +131,52 @@ export interface ExtractOutcome {
   report: CheckReport;
   problems: string[];
   pagesVisited: number[];
+}
+
+export interface LedgerRecord {
+  file: string;
+  sha256: string;
+  outcome: "written" | "gap_only" | "refused";
+  datasetCode: string | null;
+  reason: string | null;
+  publicationYear: number;
+  extractedAt: string;
+}
+
+/**
+ * One record per processed PDF in `<cache>/extract-results.json`: atomic
+ * (temp file + rename), and the latest record for a sha256 replaces earlier ones.
+ * "written" is only recorded after the pre-write gate passed and the files exist.
+ */
+export function recordResult(dir: string, pdf: string, sha256: string, o: ExtractOutcome): void {
+  const path = join(dir, "extract-results.json");
+  let records: LedgerRecord[] = [];
+  if (existsSync(path)) records = JSON.parse(readFileSync(path, "utf8")) as LedgerRecord[];
+  const rel = relative(join(dir, "pdf"), pdf);
+  const outcome = o.status === "gap-only" ? "gap_only" : o.status;
+  const rec: LedgerRecord = {
+    file: rel,
+    sha256,
+    outcome,
+    datasetCode: outcome === "written" ? o.datasetCode : null,
+    reason: outcome === "written" ? null : o.reason,
+    publicationYear: o.year,
+    extractedAt: new Date().toISOString(),
+  };
+  records = records.filter((r) => r.sha256 !== sha256);
+  records.push(rec);
+  mkdirSync(dir, { recursive: true });
+  const tmp = `${path}.${process.pid}.tmp`;
+  writeFileSync(tmp, `${JSON.stringify(records, null, 2)}\n`);
+  renameSync(tmp, path);
+}
+
+/** True when the ledger already holds a result for this exact PDF (same sha256). */
+async function ledgerHas(dir: string, pdf: string): Promise<boolean> {
+  const path = join(dir, "extract-results.json");
+  if (!existsSync(path)) return false;
+  const { sha256 } = await sha256OfFile(pdf);
+  return (JSON.parse(readFileSync(path, "utf8")) as LedgerRecord[]).some((r) => r.sha256 === sha256);
 }
 
 /** A host as state.json records it (with or without a scheme) -> `https://host`, exactly one scheme. */
@@ -176,6 +224,13 @@ async function importerCheck(entry: Record<string, unknown>, csv: string, index:
 }
 
 export async function extractPdf(opt: ExtractOptions): Promise<ExtractOutcome> {
+  const outcome = await extractPdfInner(opt);
+  const { sha256 } = await sha256OfFile(opt.pdf);
+  recordResult(cacheDir(), opt.pdf, sha256, outcome);
+  return outcome;
+}
+
+async function extractPdfInner(opt: ExtractOptions): Promise<ExtractOutcome> {
   const index = regionIndex();
   const isDistrict = opt.districtCode !== undefined;
   if (isDistrict && (levelOfCode(opt.districtCode!) !== 3 || !index.byCode.has(opt.districtCode!))) {
@@ -226,6 +281,7 @@ export async function extractPdf(opt: ExtractOptions): Promise<ExtractOutcome> {
   for (const r of usable) for (const g of r.gaps) gaps.push(`table ${r.table}: ${g}`);
 
   let all: OutRow[] = usable.flatMap((r) => r.rows);
+  let droppedByChecks: string | null = null;
   let report = runChecks(all, index);
   if (opt.dropFailedTables && report.failures.length > 0) {
     // a table whose own figures contradict each other (a printing error in the source) is
@@ -235,6 +291,7 @@ export async function extractPdf(opt: ExtractOptions): Promise<ExtractOutcome> {
       const sample = report.failures.find((f) => f.sourceTable === t)!;
       gaps.push(`table ${t} is not included: its published figures do not add up (${sample.detail}); the source itself is inconsistent`);
     }
+    droppedByChecks = `source tables fail their own consistency checks: ${report.failures[0]!.detail}`;
     all = all.filter((r) => !bad.has(r.source_table));
     report = runChecks(all, index);
   }
@@ -271,14 +328,17 @@ export async function extractPdf(opt: ExtractOptions): Promise<ExtractOutcome> {
 
   const pagesVisited = [...new Set(usable.flatMap((r) => r.printedPages))].sort((a, b) => a - b);
   // nothing readable at all and nothing wrong with what was read: a gap-only publication
-  const gapOnly = all.length === 0 && problems.length === 0 && report.failures.length === 0;
+  const droppedForProblems = failedTables.length > 0 || droppedByChecks !== null;
+  const gapOnly = all.length === 0 && problems.length === 0 && report.failures.length === 0 && !droppedForProblems;
   if (gapOnly) {
     const reason = infos.length < 5 ? "no text layer (needs OCR)" : "no readable figures: every table cell is unavailable or not in the text layer (needs OCR)";
     gaps.unshift(reason);
   }
   const outcome: ExtractOutcome = {
+    year,
+    reason: gapOnly ? gaps[0]! : all.length === 0 && droppedForProblems ? (droppedByChecks ?? failedTables[0]!.problems[0]!) : blocking[0] ?? null,
     datasetCode,
-    status: gapOnly ? "gap-only" : blocking.length ? "refused" : "written",
+    status: gapOnly ? "gap-only" : blocking.length || all.length === 0 ? "refused" : "written",
     rowCounts,
     total: all.length,
     gaps,
@@ -351,6 +411,7 @@ export async function extractPdf(opt: ExtractOptions): Promise<ExtractOutcome> {
   const importerErrors = await importerCheck(entry, csv, index, coverage);
   if (importerErrors.length) {
     outcome.status = "refused";
+    outcome.reason = `importer check: ${importerErrors[0]}`;
     outcome.problems.push(...importerErrors.map((e) => `importer check: ${e}`));
     writeFileSync(reviewPath, `${summary}\n## Importer checks failed\n${importerErrors.map((e) => `- ${e}`).join("\n")}\n`);
     return outcome;
@@ -382,17 +443,38 @@ async function main(): Promise<number> {
   const reviewDir = join(cdir, "review");
   const records = loadStateRecords(cdir);
   const dropFailedTables = flag("drop-failed-tables");
+  if (flag("backfill-ledger")) {
+    // PDFs that were archived and deleted after a dataset was written: record them from state.json + the dataset on disk
+    const existing = existsSync(join(cdir, "extract-results.json")) ? (JSON.parse(readFileSync(join(cdir, "extract-results.json"), "utf8")) as LedgerRecord[]) : [];
+    let added = 0;
+    const all = [
+      ...records.map((r) => ({ r, code: `bps-${r.domain}-dalam-angka-${r.foundYear ?? r.targetYear}` })),
+      ...loadDistrictRecords(cdir).map((r) => ({ r, code: `bps-${r.domain}-kecamatan-${r.districtCode.replace(/\./g, "")}-dalam-angka-${r.foundYear ?? r.targetYear}` })),
+    ];
+    for (const { r, code } of all) {
+      if (r.status !== "done" || !r.sha256 || !r.pdfFile || !existsSync(join(outDir, `${code}.json`))) continue;
+      if (existing.some((e) => e.sha256 === r.sha256)) continue;
+      const file = relative(join(cdir, "pdf"), r.pdfFile.startsWith("/") ? r.pdfFile : join(cdir, "pdf", r.pdfFile));
+      recordResult(cdir, join(cdir, "pdf", file), r.sha256, { year: r.foundYear ?? r.targetYear ?? 0, reason: null, datasetCode: code, status: "written" } as ExtractOutcome);
+      added++;
+    }
+    console.log(`ledger backfilled: ${added} record(s)`);
+    return 0;
+  }
   if (flag("from-state")) {
     const only = arg("only");
+    const province = arg("province");
     let refused = 0;
     for (const rec of flag("districts-only") ? [] : records) {
       if (rec.status !== "done" || !rec.pdfFile) continue;
       if (only && rec.domain !== only) continue;
+      if (province && !rec.domain.startsWith(province)) continue;
       const pdf = rec.pdfFile.startsWith("/") ? rec.pdfFile : join(cdir, "pdf", basename(rec.pdfFile));
       const year = rec.foundYear ?? rec.targetYear;
       const code = `bps-${rec.domain}-dalam-angka-${year}`;
       if (!flag("force") && existsSync(join(outDir, `${code}.json`))) continue;
       if (!existsSync(pdf)) continue;
+      if (!flag("force") && (await ledgerHas(cdir, pdf))) continue;
       try {
         const o = await extractPdf({ pdf, domain: rec.domain, officeName: rec.name, outDir, reviewDir, record: rec, dropFailedTables });
         print(o);
@@ -406,11 +488,13 @@ async function main(): Promise<number> {
       if (rec.status !== "done" || !rec.pdfFile || rec.domain === "") continue;
       const compact = rec.districtCode.replace(/\./g, "");
       if (only && only !== rec.districtCode && only !== compact && only !== rec.domain) continue;
+      if (province && !rec.districtCode.startsWith(`${province}.`)) continue;
       const pdf = rec.pdfFile.startsWith("/") ? rec.pdfFile : join(cdir, "pdf", "kecamatan", basename(rec.pdfFile));
       const year = rec.foundYear ?? rec.targetYear;
       const code = `bps-${rec.domain}-kecamatan-${compact}-dalam-angka-${year}`;
       if (!flag("force") && existsSync(join(outDir, `${code}.json`))) continue;
       if (!existsSync(pdf)) continue;
+      if (!flag("force") && (await ledgerHas(cdir, pdf))) continue;
       try {
         const o = await extractPdf({ pdf, domain: rec.domain, districtCode: rec.districtCode, officeName: records.find((r) => r.domain === rec.domain)?.name, outDir, reviewDir, record: rec, dropFailedTables });
         print(o);
@@ -420,12 +504,13 @@ async function main(): Promise<number> {
         console.log(`ERROR ${code}: ${(e as Error).message}`);
       }
     }
-    return refused ? 2 : 0;
+    void refused;
+    return 0; // the run completed; per-PDF outcomes are in extract-results.json
   }
   const pdf = arg("pdf");
   const domain = arg("domain");
   if (!pdf || !domain) {
-    console.error("usage: run.ts --pdf <path> --domain <dddd> [--district 62.71.01] [--out <dir>] [--url U] [--website W] [--release-date D] [--drop-failed-tables] | --from-state [--only dddd] [--force]");
+    console.error("usage: run.ts --pdf <path> --domain <dddd> [--district 62.71.01] [--out <dir>] [--url U] [--website W] [--release-date D] [--drop-failed-tables] | --from-state [--only dddd] [--province 62] [--districts-only] [--force]");
     return 64;
   }
   const o = await extractPdf({

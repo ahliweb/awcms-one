@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.11.06.2008,4,Gandang,sex,laki_laki,,1598,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.06.2008,4,Gandang,sex,perempuan,,1476,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.06.2008,4,Gandang,total,total,,3074,jiwa,2025,registration,total_population,3.1,35,,
+62.11.06.2007,4,Garantung,sex,laki_laki,,1518,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.06.2007,4,Garantung,sex,perempuan,,1413,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.06.2007,4,Garantung,total,total,,2931,jiwa,2025,registration,total_population,3.1,35,,
+62.11.06.2011,4,Maliku Baru,sex,laki_laki,,1822,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.06.2011,4,Maliku Baru,sex,perempuan,,1655,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.06.2011,4,Maliku Baru,total,total,,3477,jiwa,2025,registration,total_population,3.1,35,,
+62.11.06.2009,4,Badirih,sex,laki_laki,,425,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.06.2009,4,Badirih,sex,perempuan,,363,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.06.2009,4,Badirih,total,total,,788,jiwa,2025,registration,total_population,3.1,35,,
+62.11.06.2001,4,Tahai Jaya,sex,laki_laki,,1537,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.06.2001,4,Tahai Jaya,sex,perempuan,,1463,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.06.2001,4,Tahai Jaya,total,total,,3000,jiwa,2025,registration,total_population,3.1,35,,
+62.11.06.2010,4,Tahai Baru,sex,laki_laki,,1104,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.06.2010,4,Tahai Baru,sex,perempuan,,1058,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.06.2010,4,Tahai Baru,total,total,,2162,jiwa,2025,registration,total_population,3.1,35,,
+62.11.06.2006,4,Kanamit,sex,laki_laki,,1129,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.06.2006,4,Kanamit,sex,perempuan,,997,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.06.2006,4,Kanamit,total,total,,2126,jiwa,2025,registration,total_population,3.1,35,,
+62.11.06.2002,4,Purwodadi,sex,laki_laki,,1192,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.06.2002,4,Purwodadi,sex,perempuan,,1105,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.06.2002,4,Purwodadi,total,total,,2297,jiwa,2025,registration,total_population,3.1,35,,
+62.11.06.2003,4,Wonoagung,sex,laki_laki,,1027,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.06.2003,4,Wonoagung,sex,perempuan,,981,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.06.2003,4,Wonoagung,total,total,,2008,jiwa,2025,registration,total_population,3.1,35,,
+62.11.06.2004,4,Kanamit Barat,sex,laki_laki,,970,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.06.2004,4,Kanamit Barat,sex,perempuan,,952,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.06.2004,4,Kanamit Barat,total,total,,1922,jiwa,2025,registration,total_population,3.1,35,,
+62.11.06.2005,4,Sei Baru Tewu,sex,laki_laki,,299,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.06.2005,4,Sei Baru Tewu,sex,perempuan,,281,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.06.2005,4,Sei Baru Tewu,total,total,,580,jiwa,2025,registration,total_population,3.1,35,,
+62.11.06.2012,4,Sidodadi,sex,laki_laki,,633,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.06.2012,4,Sidodadi,sex,perempuan,,590,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.06.2012,4,Sidodadi,total,total,,1223,jiwa,2025,registration,total_population,3.1,35,,
+62.11.06.2013,4,Kanamit Jaya,sex,laki_laki,,479,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.06.2013,4,Kanamit Jaya,sex,perempuan,,432,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.06.2013,4,Kanamit Jaya,total,total,,911,jiwa,2025,registration,total_population,3.1,35,,
+62.11.06.2014,4,Gandang Barat,sex,laki_laki,,495,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.06.2014,4,Gandang Barat,sex,perempuan,,468,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.06.2014,4,Gandang Barat,total,total,,963,jiwa,2025,registration,total_population,3.1,35,,
+62.11.06.2015,4,Maliku Mulia,sex,laki_laki,,267,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.06.2015,4,Maliku Mulia,sex,perempuan,,261,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.06.2015,4,Maliku Mulia,total,total,,528,jiwa,2025,registration,total_population,3.1,35,,
+62.11.06,3,Maliku,sex,laki_laki,,14495,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.06,3,Maliku,sex,perempuan,,13495,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.06,3,Maliku,total,total,,27990,jiwa,2025,registration,total_population,3.1,35,,

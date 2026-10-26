@@ -1,0 +1,81 @@
+{
+  "datasetCode": "bps-6211-kecamatan-621009-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.10.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Miri Manasa Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Gunung Mas",
+  "publisherDomain": "6211",
+  "publisherWebsite": "https://gumaskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Gunung Mas (https://gumaskab.bps.go.id), publikasi \"Kecamatan Miri Manasa Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6211010",
+  "publicationNumber": "62110.26016",
+  "issn": "2407-1118",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://gumaskab.bps.go.id/id/publication/2026/09/28/6b7de33bd8fc931aba2481f7/kecamatan-miri-manasa-dalam-angka-2026.html",
+  "sourceFileSha256": "fd3d683d870a0baf2dd01e5bdab3aac84ebdd4ad065d35826524a93f50f9cf8f",
+  "sourceFileBytes": 3846033,
+  "sourcePages": [
+    31,
+    32,
+    33
+  ],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Gunung Mas",
+  "csvPath": "datasets/bps-6211-kecamatan-621009-dalam-angka-2026.csv",
+  "csvSha256": "e18015cbddd08b24c165c0ff7e5fc41ff420f86156f64372d6d7e2af012ae869",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Miri Manasa, 2025",
+      "printedPages": [
+        31,
+        32
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Miri Manasa, 2025",
+      "printedPages": [
+        33
+      ],
+      "referenceYears": [
+        2025
+      ],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"[001] Tumbang Lapan\": unmatched ",
+    "table 3.1: row not stored: row \"[002] Tumbang Siruk\": unmatched ",
+    "table 3.1: row not stored: row \"[004] Buntoi\": unmatched ",
+    "table 3.1: row not stored: row \"[005] Tumbang Koroi\": unmatched ",
+    "table 3.1: row not stored: row \"[006] Mangkuhung\": unmatched ",
+    "table 3.1: row not stored: row \"[007] Tumbang Manyoi\": unmatched ",
+    "table 3.1: row not stored: row \"[008] Tumbang Masukih\": unmatched ",
+    "table 3.1: row not stored: row \"[009] Rangan Hiran\": unmatched ",
+    "table 3.1: row not stored: row \"[010] Harowu\": unmatched ",
+    "table 3.1: row not stored: row \"[011] Tumbang Hatung\": unmatched ",
+    "table 3.1: row not stored: row \"[003] Tumbang Napoi\": unmatched ",
+    "table 3.1: row not stored: row \"[001] Tumbang Lapan\": unmatched ",
+    "table 3.1: row not stored: row \"[002] Tumbang Siruk\": unmatched ",
+    "table 3.1: row not stored: row \"[004] Buntoi\": unmatched ",
+    "table 3.1: row not stored: row \"[005] Tumbang Koroi\": unmatched ",
+    "table 3.1: row not stored: row \"[006] Mangkuhung\": unmatched ",
+    "table 3.1: row not stored: row \"[007] Tumbang Manyoi\": unmatched ",
+    "table 3.1: row not stored: row \"[008] Tumbang Masukih\": unmatched ",
+    "table 3.1: row not stored: row \"[009] Rangan Hiran\": unmatched ",
+    "table 3.1: row not stored: row \"[010] Harowu\": unmatched ",
+    "table 3.1: row not stored: row \"[011] Tumbang Hatung\": unmatched ",
+    "table 3.1: row not stored: row \"[003] Tumbang Napoi\": unmatched ",
+    "table 3.2: row not stored: row \"> 75\": unmatched ",
+    "table 3.2 is not included: its published figures do not add up (age_group vs total: parts sum 3898.0000 != 4059.0000 (diff 161.0000)); the source itself is inconsistent"
+  ]
+}
