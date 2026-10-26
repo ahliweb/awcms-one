@@ -16,12 +16,7 @@
   "publicationUrl": "https://pulpiskab.bps.go.id/id/publication/2026/02/27/530de2a8b2d162bdf1b4c58c/kabupaten-pulang-pisau-dalam-angka-2026.html",
   "sourceFileSha256": "f51c9808f6e71ea64058f89c9a9a076b4a693bcb7b39a1d7a3a24562acd8aa40",
   "sourceFileBytes": 16235642,
-  "sourcePages": [
-    65,
-    68,
-    162,
-    338
-  ],
+  "sourcePages": [65, 68, 162, 338],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pulang Pisau.",
   "csvPath": "datasets/bps-6210-dalam-angka-2026.csv",
   "csvSha256": "6ab9c6427626008c1d93d053fa32d49d3ebd540c3abf6996df1bbe6f58ef0b30",
@@ -29,49 +24,32 @@
     {
       "table": "3.1.1",
       "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Pulang Pisau, 2025",
-      "printedPages": [
-        65
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [65],
+      "referenceYears": [2025],
       "figureBasis": "projection+registration",
       "unit": "ribu_jiwa"
     },
     {
       "table": "3.1.2",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Pulang Pisau (ribu jiwa), 2025",
-      "printedPages": [
-        68
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [68],
+      "referenceYears": [2025],
       "figureBasis": "projection",
       "unit": "ribu_jiwa"
     },
     {
       "table": "4.3.1",
       "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Pulang Pisau, 2025",
-      "printedPages": [
-        162
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [162],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     },
     {
       "table": "10.1",
       "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Pulang Pisau (rupiah), 2024 dan 2025",
-      "printedPages": [
-        338
-      ],
-      "referenceYears": [
-        2024,
-        2025
-      ],
+      "printedPages": [338],
+      "referenceYears": [2024, 2025],
       "figureBasis": "survey_estimate",
       "unit": "rupiah"
     }

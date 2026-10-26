@@ -16,12 +16,7 @@
   "publicationUrl": "https://katingankab.bps.go.id/id/publication/2026/02/27/60bad5ee52095795ff7ef752/kabupaten-katingan-dalam-angka-2026.html",
   "sourceFileSha256": "fd53ae5cbea67c1d5bfd886d19f99909a7d8793ad5ec24744b4334f8bfb457db",
   "sourceFileBytes": 12584837,
-  "sourcePages": [
-    53,
-    56,
-    158,
-    370
-  ],
+  "sourcePages": [53, 56, 158, 370],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Katingan .",
   "csvPath": "datasets/bps-6209-dalam-angka-2026.csv",
   "csvSha256": "ef4e110cc84a68df91c648b47e01a0907066030ca007e219eb0f8bcef27dbfd1",
@@ -29,49 +24,32 @@
     {
       "table": "3.1.1",
       "title": "Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Katingan, 2025",
-      "printedPages": [
-        53
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [53],
+      "referenceYears": [2025],
       "figureBasis": "projection",
       "unit": "ribu_jiwa"
     },
     {
       "table": "3.1.2",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Katingan (ribu orang), 2025",
-      "printedPages": [
-        56
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [56],
+      "referenceYears": [2025],
       "figureBasis": "projection",
       "unit": "ribu_jiwa"
     },
     {
       "table": "4.3.1",
       "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Katingan, 2025",
-      "printedPages": [
-        158
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [158],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     },
     {
       "table": "10.1",
       "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Katingan (rupiah), 2024 dan 2025",
-      "printedPages": [
-        370
-      ],
-      "referenceYears": [
-        2024,
-        2025
-      ],
+      "printedPages": [370],
+      "referenceYears": [2024, 2025],
       "figureBasis": "survey_estimate",
       "unit": "rupiah"
     }

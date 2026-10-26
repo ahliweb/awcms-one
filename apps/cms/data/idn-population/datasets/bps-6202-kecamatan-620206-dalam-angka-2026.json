@@ -16,11 +16,7 @@
   "publicationUrl": "https://kotimkab.bps.go.id/id/publication/2026/09/28/a40406df4df797e90c777ed5/kecamatan-mentawa-baru-ketapang-dalam-angka-2026.html",
   "sourceFileSha256": "029cfe22a45fea370fa18f4870891da2f6a5a1c7d94b2ae0d936a0e021de34bc",
   "sourceFileBytes": 8268831,
-  "sourcePages": [
-    35,
-    36,
-    37
-  ],
+  "sourcePages": [35, 36, 37],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kotawaringin Timur.",
   "csvPath": "datasets/bps-6202-kecamatan-620206-dalam-angka-2026.csv",
   "csvSha256": "f245d56a991634b8627ed37e153a964876f3dec9083501fb49317e78bbc11d69",
@@ -28,12 +24,8 @@
     {
       "table": "3.2",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mentawa Baru Ketapang, 2025",
-      "printedPages": [
-        37
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [37],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     }

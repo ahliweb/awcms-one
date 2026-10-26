@@ -16,11 +16,7 @@
   "publicationUrl": "https://gumaskab.bps.go.id/id/publication/2026/02/27/f974371be9a6c6d03fde2cea/kabupaten-gunung-mas-dalam-angka-2026.html",
   "sourceFileSha256": "23915e273fa7907b1e566e14a6df4acda47996c88c90a8758edee59b96ef9161",
   "sourceFileBytes": 4740539,
-  "sourcePages": [
-    57,
-    60,
-    138
-  ],
+  "sourcePages": [57, 60, 138],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Gunung Mas.",
   "csvPath": "datasets/bps-6211-dalam-angka-2026.csv",
   "csvSha256": "fab39a816f0a7732510cf51609222a6b6a2dd97a440afc666050e561b3de4c08",
@@ -28,36 +24,24 @@
     {
       "table": "3.1.1",
       "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Gunung Mas, 2025",
-      "printedPages": [
-        57
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [57],
+      "referenceYears": [2025],
       "figureBasis": "projection",
       "unit": "jiwa"
     },
     {
       "table": "3.1.2",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Gunung Mas (jiwa), 2025",
-      "printedPages": [
-        60
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [60],
+      "referenceYears": [2025],
       "figureBasis": "projection",
       "unit": "ribu_jiwa"
     },
     {
       "table": "4.3.1",
       "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Gunung Mas, 2025",
-      "printedPages": [
-        138
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [138],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     }

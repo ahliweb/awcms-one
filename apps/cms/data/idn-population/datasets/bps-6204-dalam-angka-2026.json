@@ -16,12 +16,7 @@
   "publicationUrl": "https://barselkab.bps.go.id/id/publication/2026/02/27/a5d285841b53d576df5be61a/kabupaten-barito-selatan-dalam-angka-2026.html",
   "sourceFileSha256": "c4c6b085cb620e67140eb100e4e0aabb1126964013832d43d353870c867ec2f9",
   "sourceFileBytes": 36546595,
-  "sourcePages": [
-    54,
-    57,
-    139,
-    309
-  ],
+  "sourcePages": [54, 57, 139, 309],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Barito Selatan.",
   "csvPath": "datasets/bps-6204-dalam-angka-2026.csv",
   "csvSha256": "f9a5b2816408b795c30e618fb04761c248e9256cf6b35c383126674e683687c4",
@@ -29,49 +24,32 @@
     {
       "table": "3.1.1",
       "title": "Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Barito Selatan, 2025",
-      "printedPages": [
-        54
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [54],
+      "referenceYears": [2025],
       "figureBasis": "projection",
       "unit": "jiwa"
     },
     {
       "table": "3.1.2",
       "title": "Jumlah Penduduk (ribu) Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Barito Selatan, 2025",
-      "printedPages": [
-        57
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [57],
+      "referenceYears": [2025],
       "figureBasis": "projection",
       "unit": "ribu_jiwa"
     },
     {
       "table": "4.3.1",
       "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Barito Selatan, 2025",
-      "printedPages": [
-        139
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [139],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     },
     {
       "table": "10.1",
       "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Barito Selatan (rupiah), 2024 dan 2025",
-      "printedPages": [
-        309
-      ],
-      "referenceYears": [
-        2024,
-        2025
-      ],
+      "printedPages": [309],
+      "referenceYears": [2024, 2025],
       "figureBasis": "survey_estimate",
       "unit": "rupiah"
     }

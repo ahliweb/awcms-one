@@ -16,13 +16,7 @@
   "publicationUrl": "https://palangkakota.bps.go.id/id/publication/2026/09/28/31bdc31ee21e6e84e6d7182b/kecamatan-bukit-batu-dalam-angka-2026.html",
   "sourceFileSha256": "fcfd4741361f0c7d7fff84f49dda7d4d0a2d723df2365c8a8937b92d17c0b718",
   "sourceFileBytes": 11400733,
-  "sourcePages": [
-    36,
-    37,
-    38,
-    95,
-    96
-  ],
+  "sourcePages": [36, 37, 38, 95, 96],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Palangka Raya.",
   "csvPath": "datasets/bps-6271-kecamatan-627102-dalam-angka-2026.csv",
   "csvSha256": "bf6c00975b1ce8c528c0576ee65675625d1b74f772ee8c4d390ac30933e85009",
@@ -30,38 +24,24 @@
     {
       "table": "3.1.1",
       "title": "Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Bukit Batu, 2025",
-      "printedPages": [
-        36,
-        37
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [36, 37],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     },
     {
       "table": "3.1.2",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bukit Batu, 2025",
-      "printedPages": [
-        38
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [38],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     },
     {
       "table": "4.5.1",
       "title": "Jumlah Penduduk Menurut Agama/Aliran Kepercayaan dan Desa/Kelurahan di Kecamatan Bukit Batu, 2025",
-      "printedPages": [
-        95,
-        96
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [95, 96],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     }

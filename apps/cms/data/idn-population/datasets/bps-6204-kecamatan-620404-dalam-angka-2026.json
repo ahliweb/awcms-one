@@ -16,9 +16,7 @@
   "publicationUrl": "https://barselkab.bps.go.id/id/publication/2026/09/28/b28074463caaa4c8a5c0cee5/kecamatan-dusun-utara-dalam-angka-2026.html",
   "sourceFileSha256": "9d1cad32e1b2634ec165725c132f227068ef3770eccd5b4d7efcecbcd594e167",
   "sourceFileBytes": 5534611,
-  "sourcePages": [
-    32
-  ],
+  "sourcePages": [32],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Barito Selatan.",
   "csvPath": "datasets/bps-6204-kecamatan-620404-dalam-angka-2026.csv",
   "csvSha256": "fd608f7734e07b5a21a0e61e1d0d5b22741be9ed2c0f89ee2ffd1659dcbb735a",
@@ -26,12 +24,8 @@
     {
       "table": "3.4",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Dusun Utara, 2025",
-      "printedPages": [
-        32
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [32],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     }

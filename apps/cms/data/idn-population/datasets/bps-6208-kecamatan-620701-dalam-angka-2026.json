@@ -16,11 +16,7 @@
   "publicationUrl": "https://seruyankab.bps.go.id/id/publication/2026/09/28/b406a21260ed9995bedecb85/kecamatan-seruyan-hilir-dalam-angka-2026.html",
   "sourceFileSha256": "41ad87c14f1d750a385c13afdf7cee14e9348624313fe76026537d248ebdaf37",
   "sourceFileBytes": 24447985,
-  "sourcePages": [
-    35,
-    36,
-    37
-  ],
+  "sourcePages": [35, 36, 37],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Seruyan",
   "csvPath": "datasets/bps-6208-kecamatan-620701-dalam-angka-2026.csv",
   "csvSha256": "2c70bc52ce541569daaee7f92e636c23bb59559f16ee8fbdf5bd83e284f86bef",
@@ -28,25 +24,16 @@
     {
       "table": "3.1",
       "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Seruyan Hilir, 2025",
-      "printedPages": [
-        35,
-        36
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [35, 36],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     },
     {
       "table": "3.2",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Seruyan Hilir, 2025",
-      "printedPages": [
-        37
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [37],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     }

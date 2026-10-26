@@ -179,6 +179,25 @@ async function ledgerHas(dir: string, pdf: string): Promise<boolean> {
   return (JSON.parse(readFileSync(path, "utf8")) as LedgerRecord[]).some((r) => r.sha256 === sha256);
 }
 
+/**
+ * The repo lints apps/cms with prettier, so the dataset JSON is laid out by the
+ * repo's own prettier (argv spawn, stdin -> stdout, the config of apps/cms).
+ * If prettier is not installed the plain two-space JSON is kept.
+ */
+export async function prettierJson(text: string, datasetCode: string): Promise<string> {
+  const cms = join(REPO_ROOT, "apps/cms");
+  const bin = join(cms, "node_modules/.bin/prettier");
+  if (!existsSync(bin)) return text;
+  const proc = Bun.spawn([bin, "--stdin-filepath", join(cms, "data/idn-population/datasets", `${datasetCode}.json`)], {
+    cwd: cms,
+    stdin: new Blob([text]),
+    stdout: "pipe",
+    stderr: "pipe",
+  });
+  const [out, code] = await Promise.all([new Response(proc.stdout).text(), proc.exited]);
+  return code === 0 && out.length > 0 ? out : text;
+}
+
 /** A host as state.json records it (with or without a scheme) -> `https://host`, exactly one scheme. */
 export function websiteOfHost(host: string): string {
   return `https://${host.trim().replace(/^[a-z]+:\/\//i, "").replace(/\/+$/, "")}`;
@@ -418,7 +437,7 @@ async function extractPdfInner(opt: ExtractOptions): Promise<ExtractOutcome> {
   }
   mkdirSync(opt.outDir, { recursive: true });
   writeFileSync(join(opt.outDir, `${datasetCode}.csv`), csv);
-  writeFileSync(join(opt.outDir, `${datasetCode}.json`), `${JSON.stringify(entry, null, 2)}\n`);
+  writeFileSync(join(opt.outDir, `${datasetCode}.json`), await prettierJson(`${JSON.stringify(entry, null, 2)}\n`, datasetCode));
   return outcome;
 }
 

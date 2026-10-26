@@ -16,12 +16,7 @@
   "publicationUrl": "https://kapuaskab.bps.go.id/id/publication/2026/02/27/ee22ec8a7b750c441e674695/kabupaten-kapuas-dalam-angka-2026.html",
   "sourceFileSha256": "49694f6a127048554b4d21c4426e63a102b5dcf833b842136158188b4f43d5ae",
   "sourceFileBytes": 3940346,
-  "sourcePages": [
-    62,
-    65,
-    156,
-    327
-  ],
+  "sourcePages": [62, 65, 156, 327],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kapuas.",
   "csvPath": "datasets/bps-6203-dalam-angka-2026.csv",
   "csvSha256": "f3a37f091429296294efa034d9f2406c793601851b73e4d18ca4ad14de1daf46",
@@ -29,49 +24,32 @@
     {
       "table": "3.1.1",
       "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Kapuas, 2025",
-      "printedPages": [
-        62
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [62],
+      "referenceYears": [2025],
       "figureBasis": "projection",
       "unit": "ribu_jiwa"
     },
     {
       "table": "3.1.2",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Kapuas (ribu jiwa), 2025",
-      "printedPages": [
-        65
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [65],
+      "referenceYears": [2025],
       "figureBasis": "projection",
       "unit": "ribu_jiwa"
     },
     {
       "table": "4.3.1",
       "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Kapuas, 2025",
-      "printedPages": [
-        156
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [156],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     },
     {
       "table": "10.1",
       "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Kapuas (rupiah), 2024 dan 2025",
-      "printedPages": [
-        327
-      ],
-      "referenceYears": [
-        2024,
-        2025
-      ],
+      "printedPages": [327],
+      "referenceYears": [2024, 2025],
       "figureBasis": "survey_estimate",
       "unit": "rupiah"
     }

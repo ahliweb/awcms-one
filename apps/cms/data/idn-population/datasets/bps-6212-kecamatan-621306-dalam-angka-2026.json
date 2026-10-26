@@ -16,9 +16,7 @@
   "publicationUrl": "https://bartimkab.bps.go.id/id/publication/2026/09/28/f900db840f8f1589e60c585e/kecamatan-pematang-karau-dalam-angka-2026.html",
   "sourceFileSha256": "cacfe715ad8743ba5762ef41693a0cf68c9253f8ccf09af0d4cfae636f5e1e70",
   "sourceFileBytes": 4589027,
-  "sourcePages": [
-    29
-  ],
+  "sourcePages": [29],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Barito Timur.",
   "csvPath": "datasets/bps-6212-kecamatan-621306-dalam-angka-2026.csv",
   "csvSha256": "0c7a868782d2fa5d47ceae1a09cebe48a133eaf684e2e0ce67799d2d0250f902",
@@ -26,12 +24,8 @@
     {
       "table": "3.2",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pematang Karau, 2025",
-      "printedPages": [
-        29
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [29],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     }

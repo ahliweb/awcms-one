@@ -16,10 +16,7 @@
   "publicationUrl": "https://pulpiskab.bps.go.id/id/publication/2026/09/28/9861c26d6ff8966cdfecfe09/kecamatan-kahayan-kuala-dalam-angka-2026.html",
   "sourceFileSha256": "113ba4ac04bcd4f8d87598d63e385230da36364eb14a00959439e22c0181f305",
   "sourceFileBytes": 9244434,
-  "sourcePages": [
-    35,
-    36
-  ],
+  "sourcePages": [35, 36],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pulang Pisau.",
   "csvPath": "datasets/bps-6210-kecamatan-621102-dalam-angka-2026.csv",
   "csvSha256": "2afffca95e20b292020c517e1920f0371432073e55c7cb48d20a35ccf277b282",
@@ -27,13 +24,8 @@
     {
       "table": "3.1",
       "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kahayan Kuala, 2025",
-      "printedPages": [
-        35,
-        36
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [35, 36],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     }

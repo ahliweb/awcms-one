@@ -16,10 +16,7 @@
   "publicationUrl": "https://pulpiskab.bps.go.id/id/publication/2026/09/28/11ea199108b33da6b7e007eb/kecamatan-sebangau-kuala-dalam-angka-2026.html",
   "sourceFileSha256": "12e63172e32f7764043c2fc15cd77565aefaf3d76172caadd441f921aaa423fc",
   "sourceFileBytes": 8941678,
-  "sourcePages": [
-    35,
-    36
-  ],
+  "sourcePages": [35, 36],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pulang Pisau.",
   "csvPath": "datasets/bps-6210-kecamatan-621108-dalam-angka-2026.csv",
   "csvSha256": "ae54bb87c42bbfd8f3bac39a9ddff07473efa7039572d3a150b4e861cde7282a",
@@ -27,13 +24,8 @@
     {
       "table": "3.1",
       "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sebangau Kuala, 2025",
-      "printedPages": [
-        35,
-        36
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [35, 36],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     }

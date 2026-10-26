@@ -22,7 +22,7 @@ import {
 } from "../tools/bps-population/extract/regions.ts";
 import { analysePage, joinLabel, readBody } from "../tools/bps-population/extract/rows.ts";
 import { footnoteLabels, industryByRegion, religionByRegion, religionKey, sexTable, shortIndustryKey, villageSex } from "../tools/bps-population/extract/tables.ts";
-import { recordResult, websiteOfHost } from "../tools/bps-population/extract/run.ts";
+import { prettierJson, recordResult, websiteOfHost } from "../tools/bps-population/extract/run.ts";
 import { parseBboxPages } from "../tools/bps-population/extract/words.ts";
 
 const FIX = new URL("./fixtures/bps-population/", import.meta.url).pathname;
@@ -275,6 +275,15 @@ describe("Kecamatan yearbooks (village level)", () => {
     const wrongDistrict = { ...ctx, coverage: "62.71.04" };
     const res = villageSex(wrongDistrict);
     assert.ok(res.gaps.some((g) => g.startsWith("row not stored")));
+  });
+});
+
+describe("dataset JSON layout", () => {
+  test("the manifest JSON comes out exactly as the repo's prettier lays it out", async () => {
+    const plain = JSON.stringify({ datasetCode: "bps-x", sourcePages: [1, 2, 3], tablesUsed: [{ table: "3.1", printedPages: [34] }], knownGaps: [] }, null, 2) + "\n";
+    const once = await prettierJson(plain, "bps-x");
+    assert.notEqual(once, plain); // prettier collapses the short arrays
+    assert.equal(await prettierJson(once, "bps-x"), once); // and is stable
   });
 });
 

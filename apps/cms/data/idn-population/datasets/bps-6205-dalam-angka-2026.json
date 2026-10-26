@@ -16,12 +16,7 @@
   "publicationUrl": "https://barutkab.bps.go.id/id/publication/2026/02/27/7e26ee00c8a03d19995bd39a/kabupaten-barito-utara-dalam-angka-2026.html",
   "sourceFileSha256": "b737fbb966ab517e50672371c49874291e954d41c29ff00a8a2f6dc55600b08a",
   "sourceFileBytes": 44076093,
-  "sourcePages": [
-    57,
-    60,
-    149,
-    317
-  ],
+  "sourcePages": [57, 60, 149, 317],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik XXX.",
   "csvPath": "datasets/bps-6205-dalam-angka-2026.csv",
   "csvSha256": "e1df11d3887073d1f582fbc6fe9562a07d36bcb1fbc01ed571f27075985f3b4a",
@@ -29,49 +24,32 @@
     {
       "table": "3.1.1",
       "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Barito Utara, 2025",
-      "printedPages": [
-        57
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [57],
+      "referenceYears": [2025],
       "figureBasis": "projection",
       "unit": "jiwa"
     },
     {
       "table": "3.1.2",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Barito Utara (jiwa), 2025",
-      "printedPages": [
-        60
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [60],
+      "referenceYears": [2025],
       "figureBasis": "projection",
       "unit": "ribu_jiwa"
     },
     {
       "table": "4.3.1",
       "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Barito Utara, 2025",
-      "printedPages": [
-        149
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [149],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     },
     {
       "table": "10.1",
       "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Barito Utara (rupiah), 2024 dan 2025",
-      "printedPages": [
-        317
-      ],
-      "referenceYears": [
-        2024,
-        2025
-      ],
+      "printedPages": [317],
+      "referenceYears": [2024, 2025],
       "figureBasis": "survey_estimate",
       "unit": "rupiah"
     }

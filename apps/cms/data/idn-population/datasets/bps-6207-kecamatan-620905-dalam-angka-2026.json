@@ -16,11 +16,7 @@
   "publicationUrl": "https://lamandaukab.bps.go.id/id/publication/2026/09/28/3dbf11ae0aa96d6285487e0d/kecamatan-menthobi-raya-dalam-angka-2026.html",
   "sourceFileSha256": "003718ac27d62a9398618e44fcdb8e71ea9caa49bb86daf34fd9550778478027",
   "sourceFileBytes": 9611994,
-  "sourcePages": [
-    28,
-    29,
-    30
-  ],
+  "sourcePages": [28, 29, 30],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lamandau.",
   "csvPath": "datasets/bps-6207-kecamatan-620905-dalam-angka-2026.csv",
   "csvSha256": "642e47a4bb98c090c47d5ee341f7c793d6e6067e223033f71d048a98ddf7636b",
@@ -28,25 +24,16 @@
     {
       "table": "3.1",
       "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Menthobi Raya, 2025",
-      "printedPages": [
-        28,
-        29
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     },
     {
       "table": "3.2",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Menthobi Raya, 2025",
-      "printedPages": [
-        30
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [30],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     }

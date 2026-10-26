@@ -16,10 +16,7 @@
   "publicationUrl": "https://pulpiskab.bps.go.id/id/publication/2026/09/28/58521d2215bfedaa6c561d98/kecamatan-pandih-batu-dalam-angka-2026.html",
   "sourceFileSha256": "eb440265d6f291c075689966fde9bc23d4ad38711426de6b3498647cd9695dd7",
   "sourceFileBytes": 9442895,
-  "sourcePages": [
-    35,
-    36
-  ],
+  "sourcePages": [35, 36],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pulang Pisau.",
   "csvPath": "datasets/bps-6210-kecamatan-621101-dalam-angka-2026.csv",
   "csvSha256": "1ab4b80e828efc665a95fe6a6863ff0ef0788fbcd43c20955d4ed1ab4f321709",
@@ -27,13 +24,8 @@
     {
       "table": "3.1",
       "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pandih Batu, 2025",
-      "printedPages": [
-        35,
-        36
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [35, 36],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     }

@@ -16,10 +16,7 @@
   "publicationUrl": "https://kobarkab.bps.go.id/id/publication/2026/09/28/d3dceda162387bb62ec342f0/kecamatan-pangkalan-lada-dalam-angka-2026.html",
   "sourceFileSha256": "9fa0c14f671fd25c3d891756dc5e64ad5453ae903988704a871cadd024828758",
   "sourceFileBytes": 11896244,
-  "sourcePages": [
-    30,
-    31
-  ],
+  "sourcePages": [30, 31],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kotawaringin Barat.",
   "csvPath": "datasets/bps-6201-kecamatan-620105-dalam-angka-2026.csv",
   "csvSha256": "42e89fae13e3df19a9d38016496df35977b02ae956927c4549807df704465a10",
@@ -27,13 +24,8 @@
     {
       "table": "3.1",
       "title": "Penduduk, Distribusi Persentase Penduduk, Kepadan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pangkalan Lada , 2025",
-      "printedPages": [
-        30,
-        31
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
       "figureBasis": "projection",
       "unit": "jiwa"
     }

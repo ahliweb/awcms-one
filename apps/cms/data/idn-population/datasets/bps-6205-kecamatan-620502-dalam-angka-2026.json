@@ -16,9 +16,7 @@
   "publicationUrl": "https://barutkab.bps.go.id/id/publication/2026/09/28/e7e6f0d0d2c364bfd399b5a1/kecamatan-gunung-timang-dalam-angka-2026.html",
   "sourceFileSha256": "864fcfe78fbfff0d86821596359280d2068db228808317cc90be92df6f8001a5",
   "sourceFileBytes": 5172401,
-  "sourcePages": [
-    41
-  ],
+  "sourcePages": [41],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Barito Utara",
   "csvPath": "datasets/bps-6205-kecamatan-620502-dalam-angka-2026.csv",
   "csvSha256": "286744a43c72f4352cbf086ffb6f66a29b0fda2df5d90694dbfe177cbb6a1414",
@@ -26,12 +24,8 @@
     {
       "table": "unnumbered",
       "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Gunung Timang, 2025",
-      "printedPages": [
-        41
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [41],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     }

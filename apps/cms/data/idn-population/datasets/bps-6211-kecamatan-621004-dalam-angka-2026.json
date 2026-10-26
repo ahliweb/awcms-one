@@ -16,11 +16,7 @@
   "publicationUrl": "https://gumaskab.bps.go.id/id/publication/2026/09/28/7f13cb400e8a70505c827747/kecamatan-kahayan-hulu-utara-dalam-angka-2026.html",
   "sourceFileSha256": "ba7a48b036adf73bbbaf322c0a608f7e5863b11123fe0b9128d0a3ac9e630d9e",
   "sourceFileBytes": 4036758,
-  "sourcePages": [
-    31,
-    32,
-    33
-  ],
+  "sourcePages": [31, 32, 33],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Gunung Mas",
   "csvPath": "datasets/bps-6211-kecamatan-621004-dalam-angka-2026.csv",
   "csvSha256": "8ce05ccc2ffd7cab39a6b10079cef3997d61ef25d4d46cf6944cb2528acf0bd6",
@@ -28,25 +24,16 @@
     {
       "table": "3.1",
       "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kahayan Hulu Utara, 2025",
-      "printedPages": [
-        31,
-        32
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     },
     {
       "table": "3.2",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kahayan Hulu Utara, 2025",
-      "printedPages": [
-        33
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [33],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     }

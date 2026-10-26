@@ -16,10 +16,7 @@
   "publicationUrl": "https://pulpiskab.bps.go.id/id/publication/2026/09/28/6a264d621d791b20cf483ada/kecamatan-maliku-dalam-angka-2026.html",
   "sourceFileSha256": "d92827d2808a4002df5caaae79b1b9991a2fb1a59eae68a5ed3721c72b7cbe5d",
   "sourceFileBytes": 8847957,
-  "sourcePages": [
-    35,
-    36
-  ],
+  "sourcePages": [35, 36],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pulang Pisau.",
   "csvPath": "datasets/bps-6210-kecamatan-621106-dalam-angka-2026.csv",
   "csvSha256": "6291695c32650d239d3c038a9adb2f597980856b2b1f57ba61da46d51c7fb332",
@@ -27,13 +24,8 @@
     {
       "table": "3.1",
       "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Maliku, 2025",
-      "printedPages": [
-        35,
-        36
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [35, 36],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     }

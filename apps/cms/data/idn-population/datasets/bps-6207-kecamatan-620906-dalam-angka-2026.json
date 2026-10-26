@@ -16,11 +16,7 @@
   "publicationUrl": "https://lamandaukab.bps.go.id/id/publication/2026/09/28/84fc93f1d8eb96b1ee40f26a/kecamatan-sematu-jaya-dalam-angka-2026.html",
   "sourceFileSha256": "282c145e27a4eb144b1d74cb77a22c5c99b7a31b0834a5ac3e469c9a276ea17e",
   "sourceFileBytes": 9724112,
-  "sourcePages": [
-    28,
-    29,
-    30
-  ],
+  "sourcePages": [28, 29, 30],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lamandau.",
   "csvPath": "datasets/bps-6207-kecamatan-620906-dalam-angka-2026.csv",
   "csvSha256": "f0ad08d6d29f132b4941118ee2609181f83a27fb6ead10344053e88686c624bc",
@@ -28,25 +24,16 @@
     {
       "table": "3.1",
       "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sematu Jaya, 2025",
-      "printedPages": [
-        28,
-        29
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     },
     {
       "table": "3.2",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sematu Jaya, 2025",
-      "printedPages": [
-        30
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [30],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     }

@@ -16,12 +16,7 @@
   "publicationUrl": "https://kobarkab.bps.go.id/id/publication/2026/02/27/f3bf495b53ba2768dfb71d8b/kabupaten-kotawaringin-barat-dalam-angka-2026.html",
   "sourceFileSha256": "9f9422363936471f7aa37f40714e5cbad4606477b3b92c18773d89c9305b5a63",
   "sourceFileBytes": 28291576,
-  "sourcePages": [
-    49,
-    52,
-    111,
-    241
-  ],
+  "sourcePages": [49, 52, 111, 241],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kotawaringin Barat.",
   "csvPath": "datasets/bps-6201-dalam-angka-2026.csv",
   "csvSha256": "3164f87b76df366a69133288e4f8c258fa554f61b555bf6602be105f558c5a69",
@@ -29,49 +24,32 @@
     {
       "table": "3.1.1",
       "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Kotawaringin Barat, 2025",
-      "printedPages": [
-        49
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [49],
+      "referenceYears": [2025],
       "figureBasis": "projection",
       "unit": "jiwa"
     },
     {
       "table": "3.1.2",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Kotawaringin Barat (jiwa), 2025",
-      "printedPages": [
-        52
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [52],
+      "referenceYears": [2025],
       "figureBasis": "projection",
       "unit": "ribu_jiwa"
     },
     {
       "table": "4.3.1",
       "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Kotawaringin Barat, 2025",
-      "printedPages": [
-        111
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [111],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     },
     {
       "table": "10.1",
       "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Kotawaringin Barat (rupiah), 2024 dan 2025",
-      "printedPages": [
-        241
-      ],
-      "referenceYears": [
-        2024,
-        2025
-      ],
+      "printedPages": [241],
+      "referenceYears": [2024, 2025],
       "figureBasis": "survey_estimate",
       "unit": "rupiah"
     }

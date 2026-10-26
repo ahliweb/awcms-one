@@ -41,15 +41,15 @@ The CSV header is fixed:
 region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
 ```
 
-| dimension | category | unit | basis | notes |
-| --- | --- | --- | --- | --- |
-| `total` | `total` | `ribu_jiwa` / `jiwa` | census, projection, registration | population per region; for `universe = employed_15_plus` the employed total |
-| `sex` | `laki_laki` / `perempuan` | same | same | |
-| `age_group` | `0-4` … `70-74`, `75+` | same | same | `sex` empty = both sexes |
-| `religion` | `islam`, `kristen`, `katolik`, `hindu`, `buddha`, `khonghucu`, `kepercayaan`, `lainnya` | `jiwa` | registration | `kristen` is BPS's "Protestan" |
-| `occupation` | snake_case of the published industry-group label | `jiwa` | survey_estimate | Sakernas, employed 15+ |
-| `income` | `total` or `lapangan_pekerjaan_utama/<group>` / `kelompok_umur/<band>` | `rupiah` | survey_estimate | average **net wage of employees** (Sakernas); not household income |
-| `expenditure` | `total` or `kelompok_komoditas/<group>` | `rupiah` | survey_estimate | Susenas average **per-capita expenditure**; a welfare proxy, not income |
+| dimension     | category                                                                                | unit                 | basis                            | notes                                                                       |
+| ------------- | --------------------------------------------------------------------------------------- | -------------------- | -------------------------------- | --------------------------------------------------------------------------- |
+| `total`       | `total`                                                                                 | `ribu_jiwa` / `jiwa` | census, projection, registration | population per region; for `universe = employed_15_plus` the employed total |
+| `sex`         | `laki_laki` / `perempuan`                                                               | same                 | same                             |                                                                             |
+| `age_group`   | `0-4` … `70-74`, `75+`                                                                  | same                 | same                             | `sex` empty = both sexes                                                    |
+| `religion`    | `islam`, `kristen`, `katolik`, `hindu`, `buddha`, `khonghucu`, `kepercayaan`, `lainnya` | `jiwa`               | registration                     | `kristen` is BPS's "Protestan"                                              |
+| `occupation`  | snake_case of the published industry-group label                                        | `jiwa`               | survey_estimate                  | Sakernas, employed 15+                                                      |
+| `income`      | `total` or `lapangan_pekerjaan_utama/<group>` / `kelompok_umur/<band>`                  | `rupiah`             | survey_estimate                  | average **net wage of employees** (Sakernas); not household income          |
+| `expenditure` | `total` or `kelompok_komoditas/<group>`                                                 | `rupiah`             | survey_estimate                  | Susenas average **per-capita expenditure**; a welfare proxy, not income     |
 
 `value` is the published number with `.` as the decimal mark and no thousands
 separators (`2.844,99` → `2844.99`, `14.243` → `14243`). The BPS nil symbol

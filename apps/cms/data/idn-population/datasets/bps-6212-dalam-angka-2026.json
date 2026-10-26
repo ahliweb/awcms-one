@@ -16,12 +16,7 @@
   "publicationUrl": "https://bartimkab.bps.go.id/id/publication/2026/02/27/e5a7bba191afb1d9989bf1dd/kabupaten-barito-timur-dalam-angka-2026.html",
   "sourceFileSha256": "550e8165ebb2d82279f7038b5fe55aff160627fd984b0bc0d92b3799d8b93752",
   "sourceFileBytes": 43801055,
-  "sourcePages": [
-    50,
-    53,
-    124,
-    233
-  ],
+  "sourcePages": [50, 53, 124, 233],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Barito Timur.",
   "csvPath": "datasets/bps-6212-dalam-angka-2026.csv",
   "csvSha256": "379443f553c2abebc8288dadced986af8c5f1f101efe8a207a69b93d801875a7",
@@ -29,49 +24,32 @@
     {
       "table": "3.1.1",
       "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Barito Timur, 2025",
-      "printedPages": [
-        50
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [50],
+      "referenceYears": [2025],
       "figureBasis": "projection",
       "unit": "ribu_jiwa"
     },
     {
       "table": "3.1.2",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Barito Timur (ribu jiwa) , 2025",
-      "printedPages": [
-        53
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [53],
+      "referenceYears": [2025],
       "figureBasis": "projection",
       "unit": "ribu_jiwa"
     },
     {
       "table": "4.3.1",
       "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Barito Timur, 2025",
-      "printedPages": [
-        124
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [124],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     },
     {
       "table": "10.1",
       "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Barito Timur (rupiah), 2024 dan 2025",
-      "printedPages": [
-        233
-      ],
-      "referenceYears": [
-        2024,
-        2025
-      ],
+      "printedPages": [233],
+      "referenceYears": [2024, 2025],
       "figureBasis": "survey_estimate",
       "unit": "rupiah"
     }

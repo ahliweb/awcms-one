@@ -16,11 +16,7 @@
   "publicationUrl": "https://kobarkab.bps.go.id/id/publication/2026/09/28/5e1af14476257fa6356f37a4/kecamatan-kumai-dalam-angka-2026.html",
   "sourceFileSha256": "965e9f88a4980df27be9424aa99f6a6ec0c8afcae5b7b130d2bf9ec0b431a92e",
   "sourceFileBytes": 12887662,
-  "sourcePages": [
-    35,
-    36,
-    37
-  ],
+  "sourcePages": [35, 36, 37],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kotawaringin Barat.",
   "csvPath": "datasets/bps-6201-kecamatan-620101-dalam-angka-2026.csv",
   "csvSha256": "3e0c1b55cbdd09213a29e03d29a617889cebdadf436e53bd561480839b080d14",
@@ -28,12 +24,8 @@
     {
       "table": "3.2",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kumai , 2025",
-      "printedPages": [
-        37
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [37],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     }

@@ -16,12 +16,7 @@
   "publicationUrl": "https://murakab.bps.go.id/id/publication/2026/02/27/887772775c3caca35e9c781f/kabupaten-murung-raya-dalam-angka-2026.html",
   "sourceFileSha256": "beae65bd8f01e4ee488840b5ac2feeadc104214529b418894dad8b800c325c33",
   "sourceFileBytes": 5923041,
-  "sourcePages": [
-    65,
-    68,
-    156,
-    347
-  ],
+  "sourcePages": [65, 68, 156, 347],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Murung Raya.",
   "csvPath": "datasets/bps-6213-dalam-angka-2026.csv",
   "csvSha256": "a51f8f245d28a6ce247d82937229a9a1d41b96ec660059fae6daf12bd7b642bb",
@@ -29,49 +24,32 @@
     {
       "table": "3.1.1",
       "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Murung Raya, 2025",
-      "printedPages": [
-        65
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [65],
+      "referenceYears": [2025],
       "figureBasis": "projection",
       "unit": "jiwa"
     },
     {
       "table": "3.1.2",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Murung Raya (ribu orang), 2025",
-      "printedPages": [
-        68
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [68],
+      "referenceYears": [2025],
       "figureBasis": "projection",
       "unit": "ribu_jiwa"
     },
     {
       "table": "4.3.1",
       "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Murung Raya, 2025",
-      "printedPages": [
-        156
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [156],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     },
     {
       "table": "10.1",
       "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Murung Raya (rupiah), 2024 dan 2025",
-      "printedPages": [
-        347
-      ],
-      "referenceYears": [
-        2024,
-        2025
-      ],
+      "printedPages": [347],
+      "referenceYears": [2024, 2025],
       "figureBasis": "survey_estimate",
       "unit": "rupiah"
     }

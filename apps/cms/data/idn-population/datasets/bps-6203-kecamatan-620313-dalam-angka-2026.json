@@ -16,11 +16,7 @@
   "publicationUrl": "https://kapuaskab.bps.go.id/id/publication/2026/09/28/f2b1a6087a88497944b05e8a/kecamatan-tamban-catur-dalam-angka-2026.html",
   "sourceFileSha256": "9785c416a2e28dc4d9878f508cdc1c49471eddb49a742a1e87afe5eee96d5819",
   "sourceFileBytes": 8163684,
-  "sourcePages": [
-    30,
-    31,
-    32
-  ],
+  "sourcePages": [30, 31, 32],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kapuas.",
   "csvPath": "datasets/bps-6203-kecamatan-620313-dalam-angka-2026.csv",
   "csvSha256": "49ddaf8a0f39a01bfdbbf2a227570a981bbc8c19d677282868cb2226119c7d7e",
@@ -28,25 +24,16 @@
     {
       "table": "3.1",
       "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Tamban Catur, 2025",
-      "printedPages": [
-        30,
-        31
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     },
     {
       "table": "3.2",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tamban Catur, 2025",
-      "printedPages": [
-        32
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [32],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     }

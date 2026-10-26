@@ -16,12 +16,7 @@
   "publicationUrl": "https://seruyankab.bps.go.id/id/publication/2026/02/27/e0407164ea7295093a6a2efa/kabupaten-seruyan-dalam-angka-2026.html",
   "sourceFileSha256": "e9188059d62838922cc5eeab6d400c6fb2daa0b190eb8fa5691984161684dbf5",
   "sourceFileBytes": 25668741,
-  "sourcePages": [
-    64,
-    67,
-    136,
-    311
-  ],
+  "sourcePages": [64, 67, 136, 311],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Seruyan.",
   "csvPath": "datasets/bps-6208-dalam-angka-2026.csv",
   "csvSha256": "de2e51b9fbb669a9799e4e275c71c0c0e7553c939b93bef8430c64eb82729b82",
@@ -29,49 +24,32 @@
     {
       "table": "3.1.1",
       "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Seruyan, 2025",
-      "printedPages": [
-        64
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [64],
+      "referenceYears": [2025],
       "figureBasis": "projection",
       "unit": "ribu_jiwa"
     },
     {
       "table": "3.1.2",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Seruyan (ribu jiwa), 2025",
-      "printedPages": [
-        67
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [67],
+      "referenceYears": [2025],
       "figureBasis": "projection",
       "unit": "ribu_jiwa"
     },
     {
       "table": "4.3.1",
       "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Seruyan, 2025",
-      "printedPages": [
-        136
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [136],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     },
     {
       "table": "10.1",
       "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Seruyan (rupiah), 2024 dan 2025",
-      "printedPages": [
-        311
-      ],
-      "referenceYears": [
-        2024,
-        2025
-      ],
+      "printedPages": [311],
+      "referenceYears": [2024, 2025],
       "figureBasis": "survey_estimate",
       "unit": "rupiah"
     }

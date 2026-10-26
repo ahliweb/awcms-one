@@ -16,10 +16,7 @@
   "publicationUrl": "https://gumaskab.bps.go.id/id/publication/2026/09/28/471d28f308eea2864f2c1644/kecamatan-manuhing-raya-dalam-angka-2026.html",
   "sourceFileSha256": "dda5e732b55c7f05cd0b5c7101f5f1c01a99ec60829efe6845f1ce90c295173d",
   "sourceFileBytes": 3739867,
-  "sourcePages": [
-    30,
-    32
-  ],
+  "sourcePages": [30, 32],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Gunung Mas",
   "csvPath": "datasets/bps-6211-kecamatan-621011-dalam-angka-2026.csv",
   "csvSha256": "b48fcabc2a42501b5ce3dbd14a9aa811dbb7340c12d1e479bf67e302104d85fe",
@@ -27,24 +24,16 @@
     {
       "table": "3.1",
       "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Manuhing Raya Raya, 2025",
-      "printedPages": [
-        30
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [30],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     },
     {
       "table": "3.2",
       "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Manuhing Raya Raya, 2025",
-      "printedPages": [
-        32
-      ],
-      "referenceYears": [
-        2025
-      ],
+      "printedPages": [32],
+      "referenceYears": [2025],
       "figureBasis": "registration",
       "unit": "jiwa"
     }
