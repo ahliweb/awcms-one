@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.02.03.2001,4,Tangar,sex,laki_laki,,939,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.03.2001,4,Tangar,sex,perempuan,,813,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.03.2001,4,Tangar,total,total,,1752,jiwa,2025,registration,total_population,3.1,32,,
+62.02.03.2002,4,Baampah,sex,laki_laki,,379,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.03.2002,4,Baampah,sex,perempuan,,337,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.03.2002,4,Baampah,total,total,,716,jiwa,2025,registration,total_population,3.1,32,,
+62.02.03.2003,4,Kawan Batu,sex,laki_laki,,760,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.03.2003,4,Kawan Batu,sex,perempuan,,682,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.03.2003,4,Kawan Batu,total,total,,1442,jiwa,2025,registration,total_population,3.1,32,,
+62.02.03.2004,4,Tanjung Bantur,sex,laki_laki,,466,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.03.2004,4,Tanjung Bantur,sex,perempuan,,426,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.03.2004,4,Tanjung Bantur,total,total,,892,jiwa,2025,registration,total_population,3.1,32,,
+62.02.03.2005,4,Penda Durian,sex,laki_laki,,330,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.03.2005,4,Penda Durian,sex,perempuan,,341,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.03.2005,4,Penda Durian,total,total,,671,jiwa,2025,registration,total_population,3.1,32,,
+62.02.03.2006,4,Pahirangan,sex,laki_laki,,163,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.03.2006,4,Pahirangan,sex,perempuan,,143,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.03.2006,4,Pahirangan,total,total,,306,jiwa,2025,registration,total_population,3.1,32,,
+62.02.03.2008,4,Santilik,sex,laki_laki,,218,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.03.2008,4,Santilik,sex,perempuan,,219,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.03.2008,4,Santilik,total,total,,437,jiwa,2025,registration,total_population,3.1,32,,
+62.02.03.2009,4,Tangka Robah,sex,laki_laki,,718,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.03.2009,4,Tangka Robah,sex,perempuan,,631,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.03.2009,4,Tangka Robah,total,total,,1349,jiwa,2025,registration,total_population,3.1,32,,
+62.02.03.2010,4,Pemantang,sex,laki_laki,,833,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.03.2010,4,Pemantang,sex,perempuan,,770,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.03.2010,4,Pemantang,total,total,,1603,jiwa,2025,registration,total_population,3.1,32,,
+62.02.03.2011,4,Tumbang Sapiri,sex,laki_laki,,253,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.03.2011,4,Tumbang Sapiri,sex,perempuan,,238,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.03.2011,4,Tumbang Sapiri,total,total,,491,jiwa,2025,registration,total_population,3.1,32,,
+62.02.03.1012,4,Kuala Kuayan,sex,laki_laki,,2909,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.03.1012,4,Kuala Kuayan,sex,perempuan,,2614,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.03.1012,4,Kuala Kuayan,total,total,,5523,jiwa,2025,registration,total_population,3.1,32,,
+62.02.03.2014,4,Bawan,sex,laki_laki,,159,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.03.2014,4,Bawan,sex,perempuan,,166,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.03.2014,4,Bawan,total,total,,325,jiwa,2025,registration,total_population,3.1,32,,
+62.02.03.2015,4,Tanjung Jariangau,sex,laki_laki,,1563,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.03.2015,4,Tanjung Jariangau,sex,perempuan,,1354,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.03.2015,4,Tanjung Jariangau,total,total,,2917,jiwa,2025,registration,total_population,3.1,32,,
+62.02.03.2031,4,Kapuk,sex,laki_laki,,761,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.03.2031,4,Kapuk,sex,perempuan,,679,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.03.2031,4,Kapuk,total,total,,1440,jiwa,2025,registration,total_population,3.1,32,,
+62.02.03.2032,4,Pantap,sex,laki_laki,,521,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.03.2032,4,Pantap,sex,perempuan,,442,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.03.2032,4,Pantap,total,total,,963,jiwa,2025,registration,total_population,3.1,32,,
+62.02.03,3,Mentaya Hulu,sex,laki_laki,,11206,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.03,3,Mentaya Hulu,sex,perempuan,,10062,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.03,3,Mentaya Hulu,total,total,,21268,jiwa,2025,registration,total_population,3.1,32,,

@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.07.02,3,Seruyan Tengah,age_group,0-14,laki_laki,3194,jiwa,2025,registration,total_population,3.2,42,,0-14
+62.07.02,3,Seruyan Tengah,age_group,0-14,perempuan,2976,jiwa,2025,registration,total_population,3.2,42,,0-14
+62.07.02,3,Seruyan Tengah,age_group,0-14,,6170,jiwa,2025,registration,total_population,3.2,42,,0-14
+62.07.02,3,Seruyan Tengah,age_group,15-64,laki_laki,8612,jiwa,2025,registration,total_population,3.2,42,,15-64
+62.07.02,3,Seruyan Tengah,age_group,15-64,perempuan,8048,jiwa,2025,registration,total_population,3.2,42,,15-64
+62.07.02,3,Seruyan Tengah,age_group,15-64,,16660,jiwa,2025,registration,total_population,3.2,42,,15-64
+62.07.02,3,Seruyan Tengah,age_group,65+,laki_laki,605,jiwa,2025,registration,total_population,3.2,42,,65+
+62.07.02,3,Seruyan Tengah,age_group,65+,perempuan,483,jiwa,2025,registration,total_population,3.2,42,,65+
+62.07.02,3,Seruyan Tengah,age_group,65+,,1088,jiwa,2025,registration,total_population,3.2,42,,65+
+62.07.02,3,Seruyan Tengah,sex,laki_laki,,12411,jiwa,2025,registration,total_population,3.2,42,,Laki-Laki
+62.07.02,3,Seruyan Tengah,sex,perempuan,,11507,jiwa,2025,registration,total_population,3.2,42,,Perempuan
+62.07.02,3,Seruyan Tengah,total,total,,23918,jiwa,2025,registration,total_population,3.2,42,,

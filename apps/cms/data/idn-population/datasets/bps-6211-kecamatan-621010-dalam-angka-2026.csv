@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.10.10.2001,4,Jangkit,sex,laki_laki,,262,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.10.2001,4,Jangkit,sex,perempuan,,223,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.10.2001,4,Jangkit,total,total,,485,jiwa,2025,registration,total_population,3.1,30,,
+62.10.10.2002,4,Tumbang Lapan,sex,laki_laki,,447,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.10.2002,4,Tumbang Lapan,sex,perempuan,,395,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.10.2002,4,Tumbang Lapan,total,total,,842,jiwa,2025,registration,total_population,3.1,30,,
+62.10.10.2007,4,Sangal,sex,laki_laki,,270,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.10.2007,4,Sangal,sex,perempuan,,245,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.10.2007,4,Sangal,total,total,,515,jiwa,2025,registration,total_population,3.1,30,,
+62.10.10.2003,4,Batu Puter,sex,laki_laki,,600,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.10.2003,4,Batu Puter,sex,perempuan,,584,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.10.2003,4,Batu Puter,total,total,,1184,jiwa,2025,registration,total_population,3.1,30,,
+62.10.10.2006,4,Hantapang,sex,laki_laki,,407,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.10.2006,4,Hantapang,sex,perempuan,,387,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.10.2006,4,Hantapang,total,total,,794,jiwa,2025,registration,total_population,3.1,30,,
+62.10.10.2012,4,Tumbang Mujai,sex,laki_laki,,125,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.10.2012,4,Tumbang Mujai,sex,perempuan,,92,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.10.2012,4,Tumbang Mujai,total,total,,217,jiwa,2025,registration,total_population,3.1,30,,
+62.10.10.2005,4,Sei Antai,sex,laki_laki,,515,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.10.2005,4,Sei Antai,sex,perempuan,,459,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.10.2005,4,Sei Antai,total,total,,974,jiwa,2025,registration,total_population,3.1,30,,
+62.10.10.1004,4,Tumbang Rahuyan,sex,laki_laki,,869,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.10.1004,4,Tumbang Rahuyan,sex,perempuan,,773,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.10.1004,4,Tumbang Rahuyan,total,total,,1642,jiwa,2025,registration,total_population,3.1,30,,
+62.10.10,3,Rungan Hulu,sex,laki_laki,,3664,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.10.10,3,Rungan Hulu,sex,perempuan,,3319,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.10.10,3,Rungan Hulu,total,total,,6983,jiwa,2025,registration,total_population,3.1,30,,

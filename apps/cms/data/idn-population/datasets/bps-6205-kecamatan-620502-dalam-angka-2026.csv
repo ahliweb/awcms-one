@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.05.02.2001,4,Malungai,sex,laki_laki,,279,jiwa,2025,registration,total_population,unnumbered,41,,Laki-laki
+62.05.02.2001,4,Malungai,sex,perempuan,,273,jiwa,2025,registration,total_population,unnumbered,41,,Perempuan
+62.05.02.2001,4,Malungai,total,total,,552,jiwa,2025,registration,total_population,unnumbered,41,,
+62.05.02.2002,4,Rarawa,sex,laki_laki,,177,jiwa,2025,registration,total_population,unnumbered,41,,Laki-laki
+62.05.02.2002,4,Rarawa,sex,perempuan,,179,jiwa,2025,registration,total_population,unnumbered,41,,Perempuan
+62.05.02.2002,4,Rarawa,total,total,,356,jiwa,2025,registration,total_population,unnumbered,41,,
+62.05.02.2003,4,Ketapang,sex,laki_laki,,258,jiwa,2025,registration,total_population,unnumbered,41,,Laki-laki
+62.05.02.2003,4,Ketapang,sex,perempuan,,230,jiwa,2025,registration,total_population,unnumbered,41,,Perempuan
+62.05.02.2003,4,Ketapang,total,total,,488,jiwa,2025,registration,total_population,unnumbered,41,,
+62.05.02.2004,4,Walur,sex,laki_laki,,394,jiwa,2025,registration,total_population,unnumbered,41,,Laki-laki
+62.05.02.2004,4,Walur,sex,perempuan,,336,jiwa,2025,registration,total_population,unnumbered,41,,Perempuan
+62.05.02.2004,4,Walur,total,total,,730,jiwa,2025,registration,total_population,unnumbered,41,,
+62.05.02.2005,4,Baliti,sex,laki_laki,,199,jiwa,2025,registration,total_population,unnumbered,41,,Laki-laki
+62.05.02.2005,4,Baliti,sex,perempuan,,187,jiwa,2025,registration,total_population,unnumbered,41,,Perempuan
+62.05.02.2005,4,Baliti,total,total,,386,jiwa,2025,registration,total_population,unnumbered,41,,
+62.05.02.2006,4,Majangkan,sex,laki_laki,,313,jiwa,2025,registration,total_population,unnumbered,41,,Laki-laki
+62.05.02.2006,4,Majangkan,sex,perempuan,,291,jiwa,2025,registration,total_population,unnumbered,41,,Perempuan
+62.05.02.2006,4,Majangkan,total,total,,604,jiwa,2025,registration,total_population,unnumbered,41,,
+62.05.02.2007,4,Kandui,sex,laki_laki,,1725,jiwa,2025,registration,total_population,unnumbered,41,,Laki-laki
+62.05.02.2007,4,Kandui,sex,perempuan,,1643,jiwa,2025,registration,total_population,unnumbered,41,,Perempuan
+62.05.02.2007,4,Kandui,total,total,,3368,jiwa,2025,registration,total_population,unnumbered,41,,
+62.05.02.2008,4,Payang Ara,sex,laki_laki,,282,jiwa,2025,registration,total_population,unnumbered,41,,Laki-laki
+62.05.02.2008,4,Payang Ara,sex,perempuan,,243,jiwa,2025,registration,total_population,unnumbered,41,,Perempuan
+62.05.02.2008,4,Payang Ara,total,total,,525,jiwa,2025,registration,total_population,unnumbered,41,,
+62.05.02.2009,4,Jaman,sex,laki_laki,,180,jiwa,2025,registration,total_population,unnumbered,41,,Laki-laki
+62.05.02.2009,4,Jaman,sex,perempuan,,181,jiwa,2025,registration,total_population,unnumbered,41,,Perempuan
+62.05.02.2009,4,Jaman,total,total,,361,jiwa,2025,registration,total_population,unnumbered,41,,
+62.05.02.2010,4,Pelari,sex,laki_laki,,227,jiwa,2025,registration,total_population,unnumbered,41,,Laki-laki
+62.05.02.2010,4,Pelari,sex,perempuan,,184,jiwa,2025,registration,total_population,unnumbered,41,,Perempuan
+62.05.02.2010,4,Pelari,total,total,,411,jiwa,2025,registration,total_population,unnumbered,41,,
+62.05.02.2011,4,Sangkorang,sex,laki_laki,,235,jiwa,2025,registration,total_population,unnumbered,41,,Laki-laki
+62.05.02.2011,4,Sangkorang,sex,perempuan,,191,jiwa,2025,registration,total_population,unnumbered,41,,Perempuan
+62.05.02.2011,4,Sangkorang,total,total,,426,jiwa,2025,registration,total_population,unnumbered,41,,
+62.05.02.2012,4,Siwau,sex,laki_laki,,74,jiwa,2025,registration,total_population,unnumbered,41,,Laki-laki
+62.05.02.2012,4,Siwau,sex,perempuan,,63,jiwa,2025,registration,total_population,unnumbered,41,,Perempuan
+62.05.02.2012,4,Siwau,total,total,,137,jiwa,2025,registration,total_population,unnumbered,41,,
+62.05.02.2013,4,Tongka,sex,laki_laki,,558,jiwa,2025,registration,total_population,unnumbered,41,,Laki-laki
+62.05.02.2013,4,Tongka,sex,perempuan,,502,jiwa,2025,registration,total_population,unnumbered,41,,Perempuan
+62.05.02.2013,4,Tongka,total,total,,1060,jiwa,2025,registration,total_population,unnumbered,41,,
+62.05.02.2014,4,Batu Raya I,sex,laki_laki,,1029,jiwa,2025,registration,total_population,unnumbered,41,,Laki-laki
+62.05.02.2014,4,Batu Raya I,sex,perempuan,,936,jiwa,2025,registration,total_population,unnumbered,41,,Perempuan
+62.05.02.2014,4,Batu Raya I,total,total,,1965,jiwa,2025,registration,total_population,unnumbered,41,,
+62.05.02.2015,4,Batu Raya II,sex,laki_laki,,671,jiwa,2025,registration,total_population,unnumbered,41,,Laki-laki
+62.05.02.2015,4,Batu Raya II,sex,perempuan,,582,jiwa,2025,registration,total_population,unnumbered,41,,Perempuan
+62.05.02.2015,4,Batu Raya II,total,total,,1253,jiwa,2025,registration,total_population,unnumbered,41,,
+62.05.02.2016,4,Tapen Raya,sex,laki_laki,,198,jiwa,2025,registration,total_population,unnumbered,41,,Laki-laki
+62.05.02.2016,4,Tapen Raya,sex,perempuan,,202,jiwa,2025,registration,total_population,unnumbered,41,,Perempuan
+62.05.02.2016,4,Tapen Raya,total,total,,400,jiwa,2025,registration,total_population,unnumbered,41,,
+62.05.02,3,Gunung Timang,sex,laki_laki,,6799,jiwa,2025,registration,total_population,unnumbered,41,,Laki-laki
+62.05.02,3,Gunung Timang,sex,perempuan,,6223,jiwa,2025,registration,total_population,unnumbered,41,,Perempuan
+62.05.02,3,Gunung Timang,total,total,,13022,jiwa,2025,registration,total_population,unnumbered,41,,

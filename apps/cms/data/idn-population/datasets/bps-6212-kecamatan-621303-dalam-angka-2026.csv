@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.13.03.2001,4,Pulau Padang,sex,laki_laki,,260,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+62.13.03.2001,4,Pulau Padang,sex,perempuan,,236,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+62.13.03.2001,4,Pulau Padang,total,total,,496,jiwa,2025,registration,total_population,3.1,33,,
+62.13.03.2003,4,Ramania,sex,laki_laki,,270,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+62.13.03.2003,4,Ramania,sex,perempuan,,279,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+62.13.03.2003,4,Ramania,total,total,,549,jiwa,2025,registration,total_population,3.1,33,,
+62.13.03.2002,4,Kambitin,sex,laki_laki,,196,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+62.13.03.2002,4,Kambitin,sex,perempuan,,187,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+62.13.03.2002,4,Kambitin,total,total,,383,jiwa,2025,registration,total_population,3.1,33,,
+62.13.03.2004,4,Bentot,sex,laki_laki,,1170,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+62.13.03.2004,4,Bentot,sex,perempuan,,1100,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+62.13.03.2004,4,Bentot,total,total,,2270,jiwa,2025,registration,total_population,3.1,33,,
+62.13.03.2006,4,Kotam,sex,laki_laki,,354,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+62.13.03.2006,4,Kotam,sex,perempuan,,326,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+62.13.03.2006,4,Kotam,total,total,,680,jiwa,2025,registration,total_population,3.1,33,,
+62.13.03.2008,4,Betang Nalong,sex,laki_laki,,186,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+62.13.03.2008,4,Betang Nalong,sex,perempuan,,179,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+62.13.03.2008,4,Betang Nalong,total,total,,365,jiwa,2025,registration,total_population,3.1,33,,
+62.13.03.2009,4,Mawani,sex,laki_laki,,217,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+62.13.03.2009,4,Mawani,sex,perempuan,,173,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+62.13.03.2009,4,Mawani,total,total,,390,jiwa,2025,registration,total_population,3.1,33,,
+62.13.03.2010,4,Jango,sex,laki_laki,,249,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+62.13.03.2010,4,Jango,sex,perempuan,,238,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+62.13.03.2010,4,Jango,total,total,,487,jiwa,2025,registration,total_population,3.1,33,,
+62.13.03.2011,4,Lalap,sex,laki_laki,,441,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+62.13.03.2011,4,Lalap,sex,perempuan,,406,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+62.13.03.2011,4,Lalap,total,total,,847,jiwa,2025,registration,total_population,3.1,33,,
+62.13.03,3,Patangkep Tutui,sex,laki_laki,,3791,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+62.13.03,3,Patangkep Tutui,sex,perempuan,,3544,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+62.13.03,3,Patangkep Tutui,total,total,,7335,jiwa,2025,registration,total_population,3.1,33,,
+62.13.03,3,Patangkep Tutui,age_group,0-4,laki_laki,198,jiwa,2025,registration,total_population,3.2,35,,0–4
+62.13.03,3,Patangkep Tutui,age_group,0-4,perempuan,182,jiwa,2025,registration,total_population,3.2,35,,0–4
+62.13.03,3,Patangkep Tutui,age_group,0-4,,380,jiwa,2025,registration,total_population,3.2,35,,0–4
+62.13.03,3,Patangkep Tutui,age_group,5-9,laki_laki,289,jiwa,2025,registration,total_population,3.2,35,,5–9
+62.13.03,3,Patangkep Tutui,age_group,5-9,perempuan,283,jiwa,2025,registration,total_population,3.2,35,,5–9
+62.13.03,3,Patangkep Tutui,age_group,5-9,,572,jiwa,2025,registration,total_population,3.2,35,,5–9
+62.13.03,3,Patangkep Tutui,age_group,10-14,laki_laki,383,jiwa,2025,registration,total_population,3.2,35,,10–14
+62.13.03,3,Patangkep Tutui,age_group,10-14,perempuan,303,jiwa,2025,registration,total_population,3.2,35,,10–14
+62.13.03,3,Patangkep Tutui,age_group,10-14,,686,jiwa,2025,registration,total_population,3.2,35,,10–14
+62.13.03,3,Patangkep Tutui,age_group,15-19,laki_laki,346,jiwa,2025,registration,total_population,3.2,35,,15–19
+62.13.03,3,Patangkep Tutui,age_group,15-19,perempuan,330,jiwa,2025,registration,total_population,3.2,35,,15–19
+62.13.03,3,Patangkep Tutui,age_group,15-19,,676,jiwa,2025,registration,total_population,3.2,35,,15–19
+62.13.03,3,Patangkep Tutui,age_group,20-24,laki_laki,381,jiwa,2025,registration,total_population,3.2,35,,20–24
+62.13.03,3,Patangkep Tutui,age_group,20-24,perempuan,293,jiwa,2025,registration,total_population,3.2,35,,20–24
+62.13.03,3,Patangkep Tutui,age_group,20-24,,674,jiwa,2025,registration,total_population,3.2,35,,20–24
+62.13.03,3,Patangkep Tutui,age_group,25-29,laki_laki,276,jiwa,2025,registration,total_population,3.2,35,,25–29
+62.13.03,3,Patangkep Tutui,age_group,25-29,perempuan,248,jiwa,2025,registration,total_population,3.2,35,,25–29
+62.13.03,3,Patangkep Tutui,age_group,25-29,,524,jiwa,2025,registration,total_population,3.2,35,,25–29
+62.13.03,3,Patangkep Tutui,age_group,30-34,laki_laki,284,jiwa,2025,registration,total_population,3.2,35,,30–34
+62.13.03,3,Patangkep Tutui,age_group,30-34,perempuan,266,jiwa,2025,registration,total_population,3.2,35,,30–34
+62.13.03,3,Patangkep Tutui,age_group,30-34,,550,jiwa,2025,registration,total_population,3.2,35,,30–34
+62.13.03,3,Patangkep Tutui,age_group,35-39,laki_laki,267,jiwa,2025,registration,total_population,3.2,35,,35–39
+62.13.03,3,Patangkep Tutui,age_group,35-39,perempuan,311,jiwa,2025,registration,total_population,3.2,35,,35–39
+62.13.03,3,Patangkep Tutui,age_group,35-39,,578,jiwa,2025,registration,total_population,3.2,35,,35–39
+62.13.03,3,Patangkep Tutui,age_group,40-44,laki_laki,302,jiwa,2025,registration,total_population,3.2,35,,40–44
+62.13.03,3,Patangkep Tutui,age_group,40-44,perempuan,307,jiwa,2025,registration,total_population,3.2,35,,40–44
+62.13.03,3,Patangkep Tutui,age_group,40-44,,609,jiwa,2025,registration,total_population,3.2,35,,40–44
+62.13.03,3,Patangkep Tutui,age_group,45-49,laki_laki,322,jiwa,2025,registration,total_population,3.2,35,,45–49
+62.13.03,3,Patangkep Tutui,age_group,45-49,perempuan,286,jiwa,2025,registration,total_population,3.2,35,,45–49
+62.13.03,3,Patangkep Tutui,age_group,45-49,,608,jiwa,2025,registration,total_population,3.2,35,,45–49
+62.13.03,3,Patangkep Tutui,age_group,50-54,laki_laki,252,jiwa,2025,registration,total_population,3.2,35,,50–54
+62.13.03,3,Patangkep Tutui,age_group,50-54,perempuan,223,jiwa,2025,registration,total_population,3.2,35,,50–54
+62.13.03,3,Patangkep Tutui,age_group,50-54,,475,jiwa,2025,registration,total_population,3.2,35,,50–54
+62.13.03,3,Patangkep Tutui,age_group,55-59,laki_laki,168,jiwa,2025,registration,total_population,3.2,35,,55–59
+62.13.03,3,Patangkep Tutui,age_group,55-59,perempuan,173,jiwa,2025,registration,total_population,3.2,35,,55–59
+62.13.03,3,Patangkep Tutui,age_group,55-59,,341,jiwa,2025,registration,total_population,3.2,35,,55–59
+62.13.03,3,Patangkep Tutui,age_group,60-64,laki_laki,119,jiwa,2025,registration,total_population,3.2,35,,60–64
+62.13.03,3,Patangkep Tutui,age_group,60-64,perempuan,130,jiwa,2025,registration,total_population,3.2,35,,60–64
+62.13.03,3,Patangkep Tutui,age_group,60-64,,249,jiwa,2025,registration,total_population,3.2,35,,60–64
+62.13.03,3,Patangkep Tutui,age_group,65-69,laki_laki,94,jiwa,2025,registration,total_population,3.2,35,,65–69
+62.13.03,3,Patangkep Tutui,age_group,65-69,perempuan,89,jiwa,2025,registration,total_population,3.2,35,,65–69
+62.13.03,3,Patangkep Tutui,age_group,65-69,,183,jiwa,2025,registration,total_population,3.2,35,,65–69
+62.13.03,3,Patangkep Tutui,age_group,70-74,laki_laki,63,jiwa,2025,registration,total_population,3.2,35,,70–74
+62.13.03,3,Patangkep Tutui,age_group,70-74,perempuan,52,jiwa,2025,registration,total_population,3.2,35,,70–74
+62.13.03,3,Patangkep Tutui,age_group,70-74,,115,jiwa,2025,registration,total_population,3.2,35,,70–74
+62.13.03,3,Patangkep Tutui,age_group,75+,laki_laki,47,jiwa,2025,registration,total_population,3.2,35,,75+
+62.13.03,3,Patangkep Tutui,age_group,75+,perempuan,68,jiwa,2025,registration,total_population,3.2,35,,75+
+62.13.03,3,Patangkep Tutui,age_group,75+,,115,jiwa,2025,registration,total_population,3.2,35,,75+
+62.13.03,3,Patangkep Tutui,sex,laki_laki,,3791,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+62.13.03,3,Patangkep Tutui,sex,perempuan,,3544,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+62.13.03,3,Patangkep Tutui,total,total,,7335,jiwa,2025,registration,total_population,3.2,35,,

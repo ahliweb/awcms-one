@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.07.06.2005,4,Pematang Panjang,sex,laki_laki,,687,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.06.2005,4,Pematang Panjang,sex,perempuan,,624,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.06.2005,4,Pematang Panjang,total,total,,1311,jiwa,2025,registration,total_population,3.1,34,,
+62.07.06.2006,4,Sungai Bakau,sex,laki_laki,,984,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.06.2006,4,Sungai Bakau,sex,perempuan,,889,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.06.2006,4,Sungai Bakau,total,total,,1873,jiwa,2025,registration,total_population,3.1,34,,
+62.07.06.2004,4,Kartika Bhakti,sex,laki_laki,,704,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.06.2004,4,Kartika Bhakti,sex,perempuan,,623,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.06.2004,4,Kartika Bhakti,total,total,,1327,jiwa,2025,registration,total_population,3.1,34,,
+62.07.06.2003,4,Bangun Harja,sex,laki_laki,,400,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.06.2003,4,Bangun Harja,sex,perempuan,,358,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.06.2003,4,Bangun Harja,total,total,,758,jiwa,2025,registration,total_population,3.1,34,,
+62.07.06.2002,4,Halimaung Jaya,sex,laki_laki,,454,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.06.2002,4,Halimaung Jaya,sex,perempuan,,408,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.06.2002,4,Halimaung Jaya,total,total,,862,jiwa,2025,registration,total_population,3.1,34,,
+62.07.06.2001,4,Mekar Indah,sex,laki_laki,,2292,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.06.2001,4,Mekar Indah,sex,perempuan,,2078,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.06.2001,4,Mekar Indah,total,total,,4370,jiwa,2025,registration,total_population,3.1,34,,
+62.07.06,3,Seruyan Hilir Timur,sex,laki_laki,,5521,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+62.07.06,3,Seruyan Hilir Timur,sex,perempuan,,4980,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+62.07.06,3,Seruyan Hilir Timur,total,total,,10501,jiwa,2025,registration,total_population,3.1,34,,
+62.07.06,3,Seruyan Hilir Timur,age_group,0-14,laki_laki,1363,jiwa,2025,registration,total_population,3.2,36,,0-14
+62.07.06,3,Seruyan Hilir Timur,age_group,0-14,perempuan,1271,jiwa,2025,registration,total_population,3.2,36,,0-14
+62.07.06,3,Seruyan Hilir Timur,age_group,0-14,,2634,jiwa,2025,registration,total_population,3.2,36,,0-14
+62.07.06,3,Seruyan Hilir Timur,age_group,15-64,laki_laki,3873,jiwa,2025,registration,total_population,3.2,36,,15-64
+62.07.06,3,Seruyan Hilir Timur,age_group,15-64,perempuan,3440,jiwa,2025,registration,total_population,3.2,36,,15-64
+62.07.06,3,Seruyan Hilir Timur,age_group,15-64,,7313,jiwa,2025,registration,total_population,3.2,36,,15-64
+62.07.06,3,Seruyan Hilir Timur,age_group,65+,laki_laki,285,jiwa,2025,registration,total_population,3.2,36,,65+
+62.07.06,3,Seruyan Hilir Timur,age_group,65+,perempuan,269,jiwa,2025,registration,total_population,3.2,36,,65+
+62.07.06,3,Seruyan Hilir Timur,age_group,65+,,554,jiwa,2025,registration,total_population,3.2,36,,65+
+62.07.06,3,Seruyan Hilir Timur,sex,laki_laki,,5521,jiwa,2025,registration,total_population,3.2,36,,Laki-Laki
+62.07.06,3,Seruyan Hilir Timur,sex,perempuan,,4980,jiwa,2025,registration,total_population,3.2,36,,Perempuan
+62.07.06,3,Seruyan Hilir Timur,total,total,,10501,jiwa,2025,registration,total_population,3.2,36,,

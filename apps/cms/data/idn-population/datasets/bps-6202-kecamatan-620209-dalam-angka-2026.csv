@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.02.09.2004,4,Satiruk,sex,laki_laki,,686,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.09.2004,4,Satiruk,sex,perempuan,,647,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.09.2004,4,Satiruk,total,total,,1333,jiwa,2025,registration,total_population,3.1,32,,
+62.02.09.2003,4,Bapinang Hilir Laut,sex,laki_laki,,703,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.09.2003,4,Bapinang Hilir Laut,sex,perempuan,,606,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.09.2003,4,Bapinang Hilir Laut,total,total,,1309,jiwa,2025,registration,total_population,3.1,32,,
+62.02.09.2002,4,Bapinang Hilir,sex,laki_laki,,1020,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.09.2002,4,Bapinang Hilir,sex,perempuan,,950,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.09.2002,4,Bapinang Hilir,total,total,,1970,jiwa,2025,registration,total_population,3.1,32,,
+62.02.09.2001,4,Bapinang Hulu,sex,laki_laki,,640,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.09.2001,4,Bapinang Hulu,sex,perempuan,,590,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.09.2001,4,Bapinang Hulu,total,total,,1230,jiwa,2025,registration,total_population,3.1,32,,
+62.02.09.2005,4,Makarti Jaya,sex,laki_laki,,500,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.09.2005,4,Makarti Jaya,sex,perempuan,,457,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.09.2005,4,Makarti Jaya,total,total,,957,jiwa,2025,registration,total_population,3.1,32,,
+62.02.09.2006,4,Rawa Sari,sex,laki_laki,,395,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.09.2006,4,Rawa Sari,sex,perempuan,,373,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.09.2006,4,Rawa Sari,total,total,,768,jiwa,2025,registration,total_population,3.1,32,,
+62.02.09.2008,4,Babirah,sex,laki_laki,,827,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.09.2008,4,Babirah,sex,perempuan,,792,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.09.2008,4,Babirah,total,total,,1619,jiwa,2025,registration,total_population,3.1,32,,
+62.02.09.2007,4,Hanaut,sex,laki_laki,,954,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.09.2007,4,Hanaut,sex,perempuan,,863,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.09.2007,4,Hanaut,total,total,,1817,jiwa,2025,registration,total_population,3.1,32,,
+62.02.09.2009,4,Serambut,sex,laki_laki,,490,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.09.2009,4,Serambut,sex,perempuan,,435,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.09.2009,4,Serambut,total,total,,925,jiwa,2025,registration,total_population,3.1,32,,
+62.02.09.2010,4,Babaung,sex,laki_laki,,1346,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.09.2010,4,Babaung,sex,perempuan,,1239,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.09.2010,4,Babaung,total,total,,2585,jiwa,2025,registration,total_population,3.1,32,,
+62.02.09.2014,4,Bantian,sex,laki_laki,,509,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.09.2014,4,Bantian,sex,perempuan,,513,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.09.2014,4,Bantian,total,total,,1022,jiwa,2025,registration,total_population,3.1,32,,
+62.02.09.2013,4,Hantipan,sex,laki_laki,,357,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.09.2013,4,Hantipan,sex,perempuan,,355,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.09.2013,4,Hantipan,total,total,,712,jiwa,2025,registration,total_population,3.1,32,,
+62.02.09.2012,4,Penyaguan,sex,laki_laki,,383,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.09.2012,4,Penyaguan,sex,perempuan,,354,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.09.2012,4,Penyaguan,total,total,,737,jiwa,2025,registration,total_population,3.1,32,,
+62.02.09.2011,4,Bamadu,sex,laki_laki,,391,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.09.2011,4,Bamadu,sex,perempuan,,354,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.09.2011,4,Bamadu,total,total,,745,jiwa,2025,registration,total_population,3.1,32,,
+62.02.09,3,Pulau Hanaut,sex,laki_laki,,9201,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+62.02.09,3,Pulau Hanaut,sex,perempuan,,8528,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+62.02.09,3,Pulau Hanaut,total,total,,17729,jiwa,2025,registration,total_population,3.1,32,,

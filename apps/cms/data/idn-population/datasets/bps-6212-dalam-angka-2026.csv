@@ -1,0 +1,175 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.13.02,3,Benua Lima,total,total,,6.57,ribu_jiwa,2025,projection,total_population,3.1.1,50,,
+62.13.01,3,Dusun Timur,total,total,,31.60,ribu_jiwa,2025,projection,total_population,3.1.1,50,,
+62.13.07,3,Paju Epat,total,total,,7.17,ribu_jiwa,2025,projection,total_population,3.1.1,50,,
+62.13.04,3,Awang,total,total,,6.25,ribu_jiwa,2025,projection,total_population,3.1.1,50,,
+62.13.03,3,Patangkep Tutui,total,total,,7.08,ribu_jiwa,2025,projection,total_population,3.1.1,50,,
+62.13.05,3,Dusun Tengah,total,total,,24.96,ribu_jiwa,2025,projection,total_population,3.1.1,50,,
+62.13.08,3,Raren Batuah,total,total,,8.54,ribu_jiwa,2025,projection,total_population,3.1.1,50,,
+62.13.09,3,Paku,total,total,,9.12,ribu_jiwa,2025,projection,total_population,3.1.1,50,,
+62.13.10,3,Karusen Janang,total,total,,5.85,ribu_jiwa,2025,projection,total_population,3.1.1,50,,
+62.13.06,3,Pematang Karau,total,total,,13.06,ribu_jiwa,2025,projection,total_population,3.1.1,50,,
+62.13,2,Barito Timur,total,total,,120.20,ribu_jiwa,2025,projection,total_population,3.1.1,50,,
+62.13,2,Kabupaten Barito Timur,age_group,0-4,laki_laki,5.14,ribu_jiwa,2025,projection,total_population,3.1.2,53,,0–4
+62.13,2,Kabupaten Barito Timur,age_group,0-4,perempuan,4.93,ribu_jiwa,2025,projection,total_population,3.1.2,53,,0–4
+62.13,2,Kabupaten Barito Timur,age_group,0-4,,10.07,ribu_jiwa,2025,projection,total_population,3.1.2,53,,0–4
+62.13,2,Kabupaten Barito Timur,age_group,5-9,laki_laki,4.39,ribu_jiwa,2025,projection,total_population,3.1.2,53,,5–9
+62.13,2,Kabupaten Barito Timur,age_group,5-9,perempuan,4.17,ribu_jiwa,2025,projection,total_population,3.1.2,53,,5–9
+62.13,2,Kabupaten Barito Timur,age_group,5-9,,8.56,ribu_jiwa,2025,projection,total_population,3.1.2,53,,5–9
+62.13,2,Kabupaten Barito Timur,age_group,10-14,laki_laki,4.38,ribu_jiwa,2025,projection,total_population,3.1.2,53,,10–14
+62.13,2,Kabupaten Barito Timur,age_group,10-14,perempuan,4.25,ribu_jiwa,2025,projection,total_population,3.1.2,53,,10–14
+62.13,2,Kabupaten Barito Timur,age_group,10-14,,8.63,ribu_jiwa,2025,projection,total_population,3.1.2,53,,10–14
+62.13,2,Kabupaten Barito Timur,age_group,15-19,laki_laki,4.91,ribu_jiwa,2025,projection,total_population,3.1.2,53,,15–19
+62.13,2,Kabupaten Barito Timur,age_group,15-19,perempuan,4.56,ribu_jiwa,2025,projection,total_population,3.1.2,53,,15–19
+62.13,2,Kabupaten Barito Timur,age_group,15-19,,9.47,ribu_jiwa,2025,projection,total_population,3.1.2,53,,15–19
+62.13,2,Kabupaten Barito Timur,age_group,20-24,laki_laki,5.29,ribu_jiwa,2025,projection,total_population,3.1.2,53,,20–24
+62.13,2,Kabupaten Barito Timur,age_group,20-24,perempuan,4.90,ribu_jiwa,2025,projection,total_population,3.1.2,53,,20–24
+62.13,2,Kabupaten Barito Timur,age_group,20-24,,10.18,ribu_jiwa,2025,projection,total_population,3.1.2,53,,20–24
+62.13,2,Kabupaten Barito Timur,age_group,25-29,laki_laki,5.19,ribu_jiwa,2025,projection,total_population,3.1.2,53,,25–29
+62.13,2,Kabupaten Barito Timur,age_group,25-29,perempuan,5.00,ribu_jiwa,2025,projection,total_population,3.1.2,53,,25–29
+62.13,2,Kabupaten Barito Timur,age_group,25-29,,10.18,ribu_jiwa,2025,projection,total_population,3.1.2,53,,25–29
+62.13,2,Kabupaten Barito Timur,age_group,30-34,laki_laki,4.79,ribu_jiwa,2025,projection,total_population,3.1.2,53,,30–34
+62.13,2,Kabupaten Barito Timur,age_group,30-34,perempuan,4.56,ribu_jiwa,2025,projection,total_population,3.1.2,53,,30–34
+62.13,2,Kabupaten Barito Timur,age_group,30-34,,9.35,ribu_jiwa,2025,projection,total_population,3.1.2,53,,30–34
+62.13,2,Kabupaten Barito Timur,age_group,35-39,laki_laki,4.62,ribu_jiwa,2025,projection,total_population,3.1.2,53,,35–39
+62.13,2,Kabupaten Barito Timur,age_group,35-39,perempuan,4.58,ribu_jiwa,2025,projection,total_population,3.1.2,53,,35–39
+62.13,2,Kabupaten Barito Timur,age_group,35-39,,9.19,ribu_jiwa,2025,projection,total_population,3.1.2,53,,35–39
+62.13,2,Kabupaten Barito Timur,age_group,40-44,laki_laki,4.67,ribu_jiwa,2025,projection,total_population,3.1.2,53,,40–44
+62.13,2,Kabupaten Barito Timur,age_group,40-44,perempuan,4.45,ribu_jiwa,2025,projection,total_population,3.1.2,53,,40–44
+62.13,2,Kabupaten Barito Timur,age_group,40-44,,9.12,ribu_jiwa,2025,projection,total_population,3.1.2,53,,40–44
+62.13,2,Kabupaten Barito Timur,age_group,45-49,laki_laki,4.44,ribu_jiwa,2025,projection,total_population,3.1.2,53,,45–49
+62.13,2,Kabupaten Barito Timur,age_group,45-49,perempuan,4.26,ribu_jiwa,2025,projection,total_population,3.1.2,53,,45–49
+62.13,2,Kabupaten Barito Timur,age_group,45-49,,8.70,ribu_jiwa,2025,projection,total_population,3.1.2,53,,45–49
+62.13,2,Kabupaten Barito Timur,age_group,50-54,laki_laki,3.99,ribu_jiwa,2025,projection,total_population,3.1.2,53,,50–54
+62.13,2,Kabupaten Barito Timur,age_group,50-54,perempuan,3.86,ribu_jiwa,2025,projection,total_population,3.1.2,53,,50–54
+62.13,2,Kabupaten Barito Timur,age_group,50-54,,7.85,ribu_jiwa,2025,projection,total_population,3.1.2,53,,50–54
+62.13,2,Kabupaten Barito Timur,age_group,55-59,laki_laki,3.32,ribu_jiwa,2025,projection,total_population,3.1.2,53,,55–59
+62.13,2,Kabupaten Barito Timur,age_group,55-59,perempuan,3.07,ribu_jiwa,2025,projection,total_population,3.1.2,53,,55–59
+62.13,2,Kabupaten Barito Timur,age_group,55-59,,6.39,ribu_jiwa,2025,projection,total_population,3.1.2,53,,55–59
+62.13,2,Kabupaten Barito Timur,age_group,60-64,laki_laki,2.51,ribu_jiwa,2025,projection,total_population,3.1.2,53,,60–64
+62.13,2,Kabupaten Barito Timur,age_group,60-64,perempuan,2.31,ribu_jiwa,2025,projection,total_population,3.1.2,53,,60–64
+62.13,2,Kabupaten Barito Timur,age_group,60-64,,4.83,ribu_jiwa,2025,projection,total_population,3.1.2,53,,60–64
+62.13,2,Kabupaten Barito Timur,age_group,65-69,laki_laki,1.72,ribu_jiwa,2025,projection,total_population,3.1.2,53,,65–69
+62.13,2,Kabupaten Barito Timur,age_group,65-69,perempuan,1.67,ribu_jiwa,2025,projection,total_population,3.1.2,53,,65–69
+62.13,2,Kabupaten Barito Timur,age_group,65-69,,3.38,ribu_jiwa,2025,projection,total_population,3.1.2,53,,65–69
+62.13,2,Kabupaten Barito Timur,age_group,70-74,laki_laki,1.12,ribu_jiwa,2025,projection,total_population,3.1.2,53,,70–74
+62.13,2,Kabupaten Barito Timur,age_group,70-74,perempuan,1.11,ribu_jiwa,2025,projection,total_population,3.1.2,53,,70–74
+62.13,2,Kabupaten Barito Timur,age_group,70-74,,2.22,ribu_jiwa,2025,projection,total_population,3.1.2,53,,70–74
+62.13,2,Kabupaten Barito Timur,age_group,75+,laki_laki,0.92,ribu_jiwa,2025,projection,total_population,3.1.2,53,,75+
+62.13,2,Kabupaten Barito Timur,age_group,75+,perempuan,1.16,ribu_jiwa,2025,projection,total_population,3.1.2,53,,75+
+62.13,2,Kabupaten Barito Timur,age_group,75+,,2.08,ribu_jiwa,2025,projection,total_population,3.1.2,53,,75+
+62.13,2,Barito Timur,sex,laki_laki,,61.39,ribu_jiwa,2025,projection,total_population,3.1.2,53,,Laki-Laki
+62.13,2,Barito Timur,sex,perempuan,,58.82,ribu_jiwa,2025,projection,total_population,3.1.2,53,,Perempuan
+62.13,2,Barito Timur,total,total,,120.20,ribu_jiwa,2025,projection,total_population,3.1.2,53,,
+62.13.02,3,Benua Lima,religion,islam,,3130,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+62.13.02,3,Benua Lima,religion,kristen,,3170,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+62.13.02,3,Benua Lima,religion,katolik,,273,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+62.13.02,3,Benua Lima,religion,hindu,,22,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+62.13.02,3,Benua Lima,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,124,,Budha
+62.13.02,3,Benua Lima,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,124,,Lainnya
+62.13.01,3,Dusun Timur,religion,islam,,12566,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+62.13.01,3,Dusun Timur,religion,kristen,,14575,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+62.13.01,3,Dusun Timur,religion,katolik,,2490,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+62.13.01,3,Dusun Timur,religion,hindu,,333,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+62.13.01,3,Dusun Timur,religion,buddha,,13,jiwa,2025,registration,total_population,4.3.1,124,,Budha
+62.13.01,3,Dusun Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Lainnya
+62.13.07,3,Paju Epat,religion,islam,,4006,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+62.13.07,3,Paju Epat,religion,kristen,,2129,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+62.13.07,3,Paju Epat,religion,katolik,,640,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+62.13.07,3,Paju Epat,religion,hindu,,129,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+62.13.07,3,Paju Epat,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,124,,Budha
+62.13.07,3,Paju Epat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Lainnya
+62.13.04,3,Awang,religion,islam,,745,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+62.13.04,3,Awang,religion,kristen,,3326,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+62.13.04,3,Awang,religion,katolik,,1531,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+62.13.04,3,Awang,religion,hindu,,736,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+62.13.04,3,Awang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Budha
+62.13.04,3,Awang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Lainnya
+62.13.03,3,Patangkep Tutui,religion,islam,,2762,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+62.13.03,3,Patangkep Tutui,religion,kristen,,3272,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+62.13.03,3,Patangkep Tutui,religion,katolik,,769,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+62.13.03,3,Patangkep Tutui,religion,hindu,,520,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+62.13.03,3,Patangkep Tutui,religion,buddha,,11,jiwa,2025,registration,total_population,4.3.1,124,,Budha
+62.13.03,3,Patangkep Tutui,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,124,,Lainnya
+62.13.05,3,Dusun Tengah,religion,islam,,19452,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+62.13.05,3,Dusun Tengah,religion,kristen,,3490,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+62.13.05,3,Dusun Tengah,religion,katolik,,996,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+62.13.05,3,Dusun Tengah,religion,hindu,,1345,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+62.13.05,3,Dusun Tengah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Budha
+62.13.05,3,Dusun Tengah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Lainnya
+62.13.08,3,Raren Batuah,religion,islam,,5376,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+62.13.08,3,Raren Batuah,religion,kristen,,2533,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+62.13.08,3,Raren Batuah,religion,katolik,,903,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+62.13.08,3,Raren Batuah,religion,hindu,,85,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+62.13.08,3,Raren Batuah,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,124,,Budha
+62.13.08,3,Raren Batuah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Lainnya
+62.13.09,3,Paku,religion,islam,,1995,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+62.13.09,3,Paku,religion,kristen,,5042,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+62.13.09,3,Paku,religion,katolik,,1382,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+62.13.09,3,Paku,religion,hindu,,753,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+62.13.09,3,Paku,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Budha
+62.13.09,3,Paku,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Lainnya
+62.13.10,3,Karusen Janang,religion,islam,,1425,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+62.13.10,3,Karusen Janang,religion,kristen,,3165,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+62.13.10,3,Karusen Janang,religion,katolik,,835,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+62.13.10,3,Karusen Janang,religion,hindu,,83,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+62.13.10,3,Karusen Janang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Budha
+62.13.10,3,Karusen Janang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Lainnya
+62.13.06,3,Pematang Karau,religion,islam,,10300,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+62.13.06,3,Pematang Karau,religion,kristen,,2344,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+62.13.06,3,Pematang Karau,religion,katolik,,527,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+62.13.06,3,Pematang Karau,religion,hindu,,141,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+62.13.06,3,Pematang Karau,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Budha
+62.13.06,3,Pematang Karau,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,124,nil,Lainnya
+62.13,2,Barito Timur,religion,islam,,61757,jiwa,2025,registration,total_population,4.3.1,124,,Islam
+62.13,2,Barito Timur,religion,kristen,,43046,jiwa,2025,registration,total_population,4.3.1,124,,Protestan
+62.13,2,Barito Timur,religion,katolik,,10346,jiwa,2025,registration,total_population,4.3.1,124,,Katolik
+62.13,2,Barito Timur,religion,hindu,,4147,jiwa,2025,registration,total_population,4.3.1,124,,Hindu
+62.13,2,Barito Timur,religion,buddha,,29,jiwa,2025,registration,total_population,4.3.1,124,,Budha
+62.13,2,Barito Timur,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,124,,Lainnya
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/padi_padian,,98294,rupiah,2024,survey_estimate,per_capita,10.1,233,,Padi-padian
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/padi_padian,,98532,rupiah,2025,survey_estimate,per_capita,10.1,233,,Padi-padian
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/umbi_umbian,,5350,rupiah,2024,survey_estimate,per_capita,10.1,233,,Umbi-umbian
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/umbi_umbian,,7183,rupiah,2025,survey_estimate,per_capita,10.1,233,,Umbi-umbian
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,93914,rupiah,2024,survey_estimate,per_capita,10.1,233,,Ikan/udang/cumi/kerang
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,113993,rupiah,2025,survey_estimate,per_capita,10.1,233,,Ikan/udang/cumi/kerang
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/daging,,47041,rupiah,2024,survey_estimate,per_capita,10.1,233,,Daging
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/daging,,59546,rupiah,2025,survey_estimate,per_capita,10.1,233,,Daging
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/telur_dan_susu,,42173,rupiah,2024,survey_estimate,per_capita,10.1,233,,Telur dan susu
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/telur_dan_susu,,50199,rupiah,2025,survey_estimate,per_capita,10.1,233,,Telur dan susu
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/sayur_sayuran,,52806,rupiah,2024,survey_estimate,per_capita,10.1,233,,Sayur-sayuran
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/sayur_sayuran,,71739,rupiah,2025,survey_estimate,per_capita,10.1,233,,Sayur-sayuran
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/kacang_kacangan,,10103,rupiah,2024,survey_estimate,per_capita,10.1,233,,Kacang-kacangan
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/kacang_kacangan,,11184,rupiah,2025,survey_estimate,per_capita,10.1,233,,Kacang-kacangan
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/buah_buahan,,47658,rupiah,2024,survey_estimate,per_capita,10.1,233,,Buah-buahan
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/buah_buahan,,52967,rupiah,2025,survey_estimate,per_capita,10.1,233,,Buah-buahan
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19336,rupiah,2024,survey_estimate,per_capita,10.1,233,,Minyak dan kelapa
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23539,rupiah,2025,survey_estimate,per_capita,10.1,233,,Minyak dan kelapa
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/bahan_minuman,,26271,rupiah,2024,survey_estimate,per_capita,10.1,233,,Bahan minuman
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/bahan_minuman,,35949,rupiah,2025,survey_estimate,per_capita,10.1,233,,Bahan minuman
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/bumbu_bumbuan,,20366,rupiah,2024,survey_estimate,per_capita,10.1,233,,Bumbu-bumbuan
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/bumbu_bumbuan,,19670,rupiah,2025,survey_estimate,per_capita,10.1,233,,Bumbu-bumbuan
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/konsumsi_lainnya,,19296,rupiah,2024,survey_estimate,per_capita,10.1,233,,Konsumsi lainnya
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/konsumsi_lainnya,,21707,rupiah,2025,survey_estimate,per_capita,10.1,233,,Konsumsi lainnya
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,222078,rupiah,2024,survey_estimate,per_capita,10.1,233,,Makanan dan minuman jadi
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,248814,rupiah,2025,survey_estimate,per_capita,10.1,233,,Makanan dan minuman jadi
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/rokok,,93976,rupiah,2024,survey_estimate,per_capita,10.1,233,,Rokok
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/rokok,,89063,rupiah,2025,survey_estimate,per_capita,10.1,233,,Rokok
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/jumlah_makanan,,798664,rupiah,2024,survey_estimate,per_capita,10.1,233,,Jumlah makanan
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/jumlah_makanan,,904085,rupiah,2025,survey_estimate,per_capita,10.1,233,,Jumlah makanan
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,397096,rupiah,2024,survey_estimate,per_capita,10.1,233,,Perumahan dan fasilitas rumah tangga
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,426160,rupiah,2025,survey_estimate,per_capita,10.1,233,,Perumahan dan fasilitas rumah tangga
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,143877,rupiah,2024,survey_estimate,per_capita,10.1,233,,Aneka barang dan jasa
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,166105,rupiah,2025,survey_estimate,per_capita,10.1,233,,Aneka barang dan jasa
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,32280,rupiah,2024,survey_estimate,per_capita,10.1,233,,"Pakaian, alas kaki, dan tutup kepala"
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,40362,rupiah,2025,survey_estimate,per_capita,10.1,233,,"Pakaian, alas kaki, dan tutup kepala"
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/barang_tahan_lama,,105871,rupiah,2024,survey_estimate,per_capita,10.1,233,,Barang tahan lama
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/barang_tahan_lama,,158807,rupiah,2025,survey_estimate,per_capita,10.1,233,,Barang tahan lama
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,63895,rupiah,2024,survey_estimate,per_capita,10.1,233,,"Pajak, pungutan, dan asuransi"
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,71300,rupiah,2025,survey_estimate,per_capita,10.1,233,,"Pajak, pungutan, dan asuransi"
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,16453,rupiah,2024,survey_estimate,per_capita,10.1,233,,Keperluan pesta dan upacara/kenduri
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,14747,rupiah,2025,survey_estimate,per_capita,10.1,233,,Keperluan pesta dan upacara/kenduri
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,759472,rupiah,2024,survey_estimate,per_capita,10.1,233,,Jumlah bukan makanan
+62.13,2,Kabupaten Barito Timur,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,877480,rupiah,2025,survey_estimate,per_capita,10.1,233,,Jumlah bukan makanan
+62.13,2,Kabupaten Barito Timur,expenditure,total,,1558135,rupiah,2024,survey_estimate,per_capita,10.1,233,,
+62.13,2,Kabupaten Barito Timur,expenditure,total,,1781565,rupiah,2025,survey_estimate,per_capita,10.1,233,,
