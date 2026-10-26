@@ -1,0 +1,156 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.19.07,3,Sei Balai,total,total,,32298,jiwa,2025,registration,total_population,3.1.1,73,,
+12.19.06,3,Tanjung Tiram,total,total,,42178,jiwa,2025,registration,total_population,3.1.1,73,,
+12.19.12,3,Nibung Hangus,total,total,,37146,jiwa,2025,registration,total_population,3.1.1,73,,
+12.19.05,3,Talawi,total,total,,37870,jiwa,2025,registration,total_population,3.1.1,73,,
+12.19.11,3,Datuk Tanah Datar,total,total,,31388,jiwa,2025,registration,total_population,3.1.1,73,,
+12.19.04,3,Lima Puluh,total,total,,41230,jiwa,2025,registration,total_population,3.1.1,73,,
+12.19.09,3,Lima Puluh Pesisir,total,total,,42263,jiwa,2025,registration,total_population,3.1.1,73,,
+12.19.10,3,Datuk Lima Puluh,total,total,,29235,jiwa,2025,registration,total_population,3.1.1,73,,
+12.19.03,3,Air Putih,total,total,,60300,jiwa,2025,registration,total_population,3.1.1,73,,
+12.19.02,3,Sei Suka,total,total,,38948,jiwa,2025,registration,total_population,3.1.1,73,,
+12.19.08,3,Laut Tador,total,total,,24394,jiwa,2025,registration,total_population,3.1.1,73,,
+12.19.01,3,Medang Deras,total,total,,62417,jiwa,2025,registration,total_population,3.1.1,73,,
+12.19,2,Batu Bara,total,total,,479667,jiwa,2025,registration,total_population,3.1.1,73,,
+12.19,2,Kabupaten Batu Bara,age_group,0-4,laki_laki,13802,jiwa,2025,registration,total_population,3.1.2,76,,0–4
+12.19,2,Kabupaten Batu Bara,age_group,0-4,perempuan,13023,jiwa,2025,registration,total_population,3.1.2,76,,0–4
+12.19,2,Kabupaten Batu Bara,age_group,0-4,,26825,jiwa,2025,registration,total_population,3.1.2,76,,0–4
+12.19,2,Kabupaten Batu Bara,age_group,5-9,laki_laki,23372,jiwa,2025,registration,total_population,3.1.2,76,,5–9
+12.19,2,Kabupaten Batu Bara,age_group,5-9,perempuan,21509,jiwa,2025,registration,total_population,3.1.2,76,,5–9
+12.19,2,Kabupaten Batu Bara,age_group,5-9,,44881,jiwa,2025,registration,total_population,3.1.2,76,,5–9
+12.19,2,Kabupaten Batu Bara,age_group,10-14,laki_laki,24983,jiwa,2025,registration,total_population,3.1.2,76,,10–14
+12.19,2,Kabupaten Batu Bara,age_group,10-14,perempuan,23066,jiwa,2025,registration,total_population,3.1.2,76,,10–14
+12.19,2,Kabupaten Batu Bara,age_group,10-14,,48049,jiwa,2025,registration,total_population,3.1.2,76,,10–14
+12.19,2,Kabupaten Batu Bara,age_group,15-19,laki_laki,22562,jiwa,2025,registration,total_population,3.1.2,76,,15–19
+12.19,2,Kabupaten Batu Bara,age_group,15-19,perempuan,21421,jiwa,2025,registration,total_population,3.1.2,76,,15–19
+12.19,2,Kabupaten Batu Bara,age_group,15-19,,43983,jiwa,2025,registration,total_population,3.1.2,76,,15–19
+12.19,2,Kabupaten Batu Bara,age_group,20-24,laki_laki,21824,jiwa,2025,registration,total_population,3.1.2,76,,20–24
+12.19,2,Kabupaten Batu Bara,age_group,20-24,perempuan,20824,jiwa,2025,registration,total_population,3.1.2,76,,20–24
+12.19,2,Kabupaten Batu Bara,age_group,20-24,,42648,jiwa,2025,registration,total_population,3.1.2,76,,20–24
+12.19,2,Kabupaten Batu Bara,age_group,25-29,laki_laki,19898,jiwa,2025,registration,total_population,3.1.2,76,,25–29
+12.19,2,Kabupaten Batu Bara,age_group,25-29,perempuan,19140,jiwa,2025,registration,total_population,3.1.2,76,,25–29
+12.19,2,Kabupaten Batu Bara,age_group,25-29,,39038,jiwa,2025,registration,total_population,3.1.2,76,,25–29
+12.19,2,Kabupaten Batu Bara,age_group,30-34,laki_laki,18937,jiwa,2025,registration,total_population,3.1.2,76,,30–34
+12.19,2,Kabupaten Batu Bara,age_group,30-34,perempuan,17607,jiwa,2025,registration,total_population,3.1.2,76,,30–34
+12.19,2,Kabupaten Batu Bara,age_group,30-34,,36544,jiwa,2025,registration,total_population,3.1.2,76,,30–34
+12.19,2,Kabupaten Batu Bara,age_group,35-39,laki_laki,17671,jiwa,2025,registration,total_population,3.1.2,76,,35–39
+12.19,2,Kabupaten Batu Bara,age_group,35-39,perempuan,16802,jiwa,2025,registration,total_population,3.1.2,76,,35–39
+12.19,2,Kabupaten Batu Bara,age_group,35-39,,34473,jiwa,2025,registration,total_population,3.1.2,76,,35–39
+12.19,2,Kabupaten Batu Bara,age_group,40-44,laki_laki,17374,jiwa,2025,registration,total_population,3.1.2,76,,40–44
+12.19,2,Kabupaten Batu Bara,age_group,40-44,perempuan,16995,jiwa,2025,registration,total_population,3.1.2,76,,40–44
+12.19,2,Kabupaten Batu Bara,age_group,40-44,,34369,jiwa,2025,registration,total_population,3.1.2,76,,40–44
+12.19,2,Kabupaten Batu Bara,age_group,45-49,laki_laki,15042,jiwa,2025,registration,total_population,3.1.2,76,,45–49
+12.19,2,Kabupaten Batu Bara,age_group,45-49,perempuan,14645,jiwa,2025,registration,total_population,3.1.2,76,,45–49
+12.19,2,Kabupaten Batu Bara,age_group,45-49,,29687,jiwa,2025,registration,total_population,3.1.2,76,,45–49
+12.19,2,Kabupaten Batu Bara,age_group,50-54,laki_laki,12277,jiwa,2025,registration,total_population,3.1.2,76,,50–54
+12.19,2,Kabupaten Batu Bara,age_group,50-54,perempuan,12746,jiwa,2025,registration,total_population,3.1.2,76,,50–54
+12.19,2,Kabupaten Batu Bara,age_group,50-54,,25023,jiwa,2025,registration,total_population,3.1.2,76,,50–54
+12.19,2,Kabupaten Batu Bara,age_group,55-59,laki_laki,10174,jiwa,2025,registration,total_population,3.1.2,76,,55–59
+12.19,2,Kabupaten Batu Bara,age_group,55-59,perempuan,11065,jiwa,2025,registration,total_population,3.1.2,76,,55–59
+12.19,2,Kabupaten Batu Bara,age_group,55-59,,21239,jiwa,2025,registration,total_population,3.1.2,76,,55–59
+12.19,2,Kabupaten Batu Bara,age_group,60-64,laki_laki,8600,jiwa,2025,registration,total_population,3.1.2,76,,60–64
+12.19,2,Kabupaten Batu Bara,age_group,60-64,perempuan,9831,jiwa,2025,registration,total_population,3.1.2,76,,60–64
+12.19,2,Kabupaten Batu Bara,age_group,60-64,,18431,jiwa,2025,registration,total_population,3.1.2,76,,60–64
+12.19,2,Kabupaten Batu Bara,age_group,65-69,laki_laki,7183,jiwa,2025,registration,total_population,3.1.2,76,,65–69
+12.19,2,Kabupaten Batu Bara,age_group,65-69,perempuan,7746,jiwa,2025,registration,total_population,3.1.2,76,,65–69
+12.19,2,Kabupaten Batu Bara,age_group,65-69,,14929,jiwa,2025,registration,total_population,3.1.2,76,,65–69
+12.19,2,Kabupaten Batu Bara,age_group,70-74,laki_laki,4285,jiwa,2025,registration,total_population,3.1.2,76,,70–74
+12.19,2,Kabupaten Batu Bara,age_group,70-74,perempuan,4794,jiwa,2025,registration,total_population,3.1.2,76,,70–74
+12.19,2,Kabupaten Batu Bara,age_group,70-74,,9079,jiwa,2025,registration,total_population,3.1.2,76,,70–74
+12.19,2,Kabupaten Batu Bara,age_group,75+,laki_laki,4318,jiwa,2025,registration,total_population,3.1.2,76,,75+
+12.19,2,Kabupaten Batu Bara,age_group,75+,perempuan,6151,jiwa,2025,registration,total_population,3.1.2,76,,75+
+12.19,2,Kabupaten Batu Bara,age_group,75+,,10469,jiwa,2025,registration,total_population,3.1.2,76,,75+
+12.19,2,Batu Bara,sex,laki_laki,,242302,jiwa,2025,registration,total_population,3.1.2,76,,Laki-Laki
+12.19,2,Batu Bara,sex,perempuan,,237365,jiwa,2025,registration,total_population,3.1.2,76,,Perempuan
+12.19,2,Batu Bara,total,total,,479667,jiwa,2025,registration,total_population,3.1.2,76,,
+12.19.07,3,Sei Balai,religion,islam,,53615,jiwa,2025,registration,total_population,4.3.1,201,,Islam
+12.19.07,3,Sei Balai,religion,kristen,,7799,jiwa,2025,registration,total_population,4.3.1,201,,Protestan
+12.19.07,3,Sei Balai,religion,katolik,,759,jiwa,2025,registration,total_population,4.3.1,201,,Katolik
+12.19.07,3,Sei Balai,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,201,,Hindu
+12.19.07,3,Sei Balai,religion,buddha,,216,jiwa,2025,registration,total_population,4.3.1,201,,Budha
+12.19.07,3,Sei Balai,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Konghucu
+12.19.07,3,Sei Balai,religion,kepercayaan,,25,jiwa,2025,registration,total_population,4.3.1,201,,Kepercayaan
+12.19.06,3,Tanjung Tiram,religion,islam,,33035,jiwa,2025,registration,total_population,4.3.1,201,,Islam
+12.19.06,3,Tanjung Tiram,religion,kristen,,4840,jiwa,2025,registration,total_population,4.3.1,201,,Protestan
+12.19.06,3,Tanjung Tiram,religion,katolik,,965,jiwa,2025,registration,total_population,4.3.1,201,,Katolik
+12.19.06,3,Tanjung Tiram,religion,hindu,,15,jiwa,2025,registration,total_population,4.3.1,201,,Hindu
+12.19.06,3,Tanjung Tiram,religion,buddha,,93,jiwa,2025,registration,total_population,4.3.1,201,,Budha
+12.19.06,3,Tanjung Tiram,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Konghucu
+12.19.06,3,Tanjung Tiram,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Kepercayaan
+12.19.12,3,Nibung Hangus,religion,islam,,46109,jiwa,2025,registration,total_population,4.3.1,201,,Islam
+12.19.12,3,Nibung Hangus,religion,kristen,,10224,jiwa,2025,registration,total_population,4.3.1,201,,Protestan
+12.19.12,3,Nibung Hangus,religion,katolik,,3279,jiwa,2025,registration,total_population,4.3.1,201,,Katolik
+12.19.12,3,Nibung Hangus,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,201,,Hindu
+12.19.12,3,Nibung Hangus,religion,buddha,,493,jiwa,2025,registration,total_population,4.3.1,201,,Budha
+12.19.12,3,Nibung Hangus,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Konghucu
+12.19.12,3,Nibung Hangus,religion,kepercayaan,,190,jiwa,2025,registration,total_population,4.3.1,201,,Kepercayaan
+12.19.05,3,Talawi,religion,islam,,38216,jiwa,2025,registration,total_population,4.3.1,201,,Islam
+12.19.05,3,Talawi,religion,kristen,,2636,jiwa,2025,registration,total_population,4.3.1,201,,Protestan
+12.19.05,3,Talawi,religion,katolik,,302,jiwa,2025,registration,total_population,4.3.1,201,,Katolik
+12.19.05,3,Talawi,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Hindu
+12.19.05,3,Talawi,religion,buddha,,68,jiwa,2025,registration,total_population,4.3.1,201,,Budha
+12.19.05,3,Talawi,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Konghucu
+12.19.05,3,Talawi,religion,kepercayaan,,8,jiwa,2025,registration,total_population,4.3.1,201,,Kepercayaan
+12.19.11,3,Datuk Tanah Datar,religion,islam,,34388,jiwa,2025,registration,total_population,4.3.1,201,,Islam
+12.19.11,3,Datuk Tanah Datar,religion,kristen,,2568,jiwa,2025,registration,total_population,4.3.1,201,,Protestan
+12.19.11,3,Datuk Tanah Datar,religion,katolik,,890,jiwa,2025,registration,total_population,4.3.1,201,,Katolik
+12.19.11,3,Datuk Tanah Datar,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Hindu
+12.19.11,3,Datuk Tanah Datar,religion,buddha,,24,jiwa,2025,registration,total_population,4.3.1,201,,Budha
+12.19.11,3,Datuk Tanah Datar,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Konghucu
+12.19.11,3,Datuk Tanah Datar,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Kepercayaan
+12.19.04,3,Lima Puluh,religion,islam,,42016,jiwa,2025,registration,total_population,4.3.1,201,,Islam
+12.19.04,3,Lima Puluh,religion,kristen,,52,jiwa,2025,registration,total_population,4.3.1,201,,Protestan
+12.19.04,3,Lima Puluh,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,201,,Katolik
+12.19.04,3,Lima Puluh,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Hindu
+12.19.04,3,Lima Puluh,religion,buddha,,109,jiwa,2025,registration,total_population,4.3.1,201,,Budha
+12.19.04,3,Lima Puluh,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Konghucu
+12.19.04,3,Lima Puluh,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Kepercayaan
+12.19.09,3,Lima Puluh Pesisir,religion,islam,,29499,jiwa,2025,registration,total_population,4.3.1,201,,Islam
+12.19.09,3,Lima Puluh Pesisir,religion,kristen,,2702,jiwa,2025,registration,total_population,4.3.1,201,,Protestan
+12.19.09,3,Lima Puluh Pesisir,religion,katolik,,86,jiwa,2025,registration,total_population,4.3.1,201,,Katolik
+12.19.09,3,Lima Puluh Pesisir,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,201,,Hindu
+12.19.09,3,Lima Puluh Pesisir,religion,buddha,,6,jiwa,2025,registration,total_population,4.3.1,201,,Budha
+12.19.09,3,Lima Puluh Pesisir,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Konghucu
+12.19.09,3,Lima Puluh Pesisir,religion,kepercayaan,,3,jiwa,2025,registration,total_population,4.3.1,201,,Kepercayaan
+12.19.10,3,Datuk Lima Puluh,religion,islam,,21618,jiwa,2025,registration,total_population,4.3.1,201,,Islam
+12.19.10,3,Datuk Lima Puluh,religion,kristen,,2561,jiwa,2025,registration,total_population,4.3.1,201,,Protestan
+12.19.10,3,Datuk Lima Puluh,religion,katolik,,191,jiwa,2025,registration,total_population,4.3.1,201,,Katolik
+12.19.10,3,Datuk Lima Puluh,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Hindu
+12.19.10,3,Datuk Lima Puluh,religion,buddha,,22,jiwa,2025,registration,total_population,4.3.1,201,,Budha
+12.19.10,3,Datuk Lima Puluh,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Konghucu
+12.19.10,3,Datuk Lima Puluh,religion,kepercayaan,,2,jiwa,2025,registration,total_population,4.3.1,201,,Kepercayaan
+12.19.03,3,Air Putih,religion,islam,,40475,jiwa,2025,registration,total_population,4.3.1,201,,Islam
+12.19.03,3,Air Putih,religion,kristen,,1350,jiwa,2025,registration,total_population,4.3.1,201,,Protestan
+12.19.03,3,Air Putih,religion,katolik,,432,jiwa,2025,registration,total_population,4.3.1,201,,Katolik
+12.19.03,3,Air Putih,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Hindu
+12.19.03,3,Air Putih,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,201,,Budha
+12.19.03,3,Air Putih,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Konghucu
+12.19.03,3,Air Putih,religion,kepercayaan,,5,jiwa,2025,registration,total_population,4.3.1,201,,Kepercayaan
+12.19.02,3,Sei Suka,religion,islam,,26025,jiwa,2025,registration,total_population,4.3.1,201,,Islam
+12.19.02,3,Sei Suka,religion,kristen,,2772,jiwa,2025,registration,total_population,4.3.1,201,,Protestan
+12.19.02,3,Sei Suka,religion,katolik,,434,jiwa,2025,registration,total_population,4.3.1,201,,Katolik
+12.19.02,3,Sei Suka,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Hindu
+12.19.02,3,Sei Suka,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,201,,Budha
+12.19.02,3,Sei Suka,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Konghucu
+12.19.02,3,Sei Suka,religion,kepercayaan,,1,jiwa,2025,registration,total_population,4.3.1,201,,Kepercayaan
+12.19.08,3,Laut Tador,religion,islam,,29033,jiwa,2025,registration,total_population,4.3.1,201,,Islam
+12.19.08,3,Laut Tador,religion,kristen,,2140,jiwa,2025,registration,total_population,4.3.1,201,,Protestan
+12.19.08,3,Laut Tador,religion,katolik,,156,jiwa,2025,registration,total_population,4.3.1,201,,Katolik
+12.19.08,3,Laut Tador,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Hindu
+12.19.08,3,Laut Tador,religion,buddha,,54,jiwa,2025,registration,total_population,4.3.1,201,,Budha
+12.19.08,3,Laut Tador,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Konghucu
+12.19.08,3,Laut Tador,religion,kepercayaan,,5,jiwa,2025,registration,total_population,4.3.1,201,,Kepercayaan
+12.19.01,3,Medang Deras,religion,islam,,34859,jiwa,2025,registration,total_population,4.3.1,201,,Islam
+12.19.01,3,Medang Deras,religion,kristen,,2173,jiwa,2025,registration,total_population,4.3.1,201,,Protestan
+12.19.01,3,Medang Deras,religion,katolik,,111,jiwa,2025,registration,total_population,4.3.1,201,,Katolik
+12.19.01,3,Medang Deras,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,201,,Hindu
+12.19.01,3,Medang Deras,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,201,,Budha
+12.19.01,3,Medang Deras,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Konghucu
+12.19.01,3,Medang Deras,religion,kepercayaan,,1,jiwa,2025,registration,total_population,4.3.1,201,,Kepercayaan
+12.19,2,Batu Bara,religion,islam,,428888,jiwa,2025,registration,total_population,4.3.1,201,,Islam
+12.19,2,Batu Bara,religion,kristen,,41817,jiwa,2025,registration,total_population,4.3.1,201,,Protestan
+12.19,2,Batu Bara,religion,katolik,,7606,jiwa,2025,registration,total_population,4.3.1,201,,Katolik
+12.19,2,Batu Bara,religion,hindu,,26,jiwa,2025,registration,total_population,4.3.1,201,,Hindu
+12.19,2,Batu Bara,religion,buddha,,1090,jiwa,2025,registration,total_population,4.3.1,201,,Budha
+12.19,2,Batu Bara,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,201,nil,Konghucu
+12.19,2,Batu Bara,religion,kepercayaan,,240,jiwa,2025,registration,total_population,4.3.1,201,,Kepercayaan

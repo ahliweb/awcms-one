@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.08.29,3,Raya,age_group,0-4,laki_laki,608,jiwa,2025,registration,total_population,3.2,33,,0 –4
+12.08.29,3,Raya,age_group,0-4,perempuan,611,jiwa,2025,registration,total_population,3.2,33,,0 –4
+12.08.29,3,Raya,age_group,0-4,,1219,jiwa,2025,registration,total_population,3.2,33,,0 –4
+12.08.29,3,Raya,age_group,5-9,laki_laki,1161,jiwa,2025,registration,total_population,3.2,33,,5 – 9
+12.08.29,3,Raya,age_group,5-9,perempuan,1154,jiwa,2025,registration,total_population,3.2,33,,5 – 9
+12.08.29,3,Raya,age_group,5-9,,2315,jiwa,2025,registration,total_population,3.2,33,,5 – 9
+12.08.29,3,Raya,age_group,10-14,laki_laki,1525,jiwa,2025,registration,total_population,3.2,33,,10 – 14
+12.08.29,3,Raya,age_group,10-14,perempuan,1453,jiwa,2025,registration,total_population,3.2,33,,10 – 14
+12.08.29,3,Raya,age_group,10-14,,2978,jiwa,2025,registration,total_population,3.2,33,,10 – 14
+12.08.29,3,Raya,age_group,15-19,laki_laki,1549,jiwa,2025,registration,total_population,3.2,33,,15 – 19
+12.08.29,3,Raya,age_group,15-19,perempuan,1535,jiwa,2025,registration,total_population,3.2,33,,15 – 19
+12.08.29,3,Raya,age_group,15-19,,3084,jiwa,2025,registration,total_population,3.2,33,,15 – 19
+12.08.29,3,Raya,age_group,20-24,laki_laki,1450,jiwa,2025,registration,total_population,3.2,33,,20 – 24
+12.08.29,3,Raya,age_group,20-24,perempuan,1365,jiwa,2025,registration,total_population,3.2,33,,20 – 24
+12.08.29,3,Raya,age_group,20-24,,2815,jiwa,2025,registration,total_population,3.2,33,,20 – 24
+12.08.29,3,Raya,age_group,25-29,laki_laki,1153,jiwa,2025,registration,total_population,3.2,33,,25 – 29
+12.08.29,3,Raya,age_group,25-29,perempuan,1157,jiwa,2025,registration,total_population,3.2,33,,25 – 29
+12.08.29,3,Raya,age_group,25-29,,2310,jiwa,2025,registration,total_population,3.2,33,,25 – 29
+12.08.29,3,Raya,age_group,30-34,laki_laki,1040,jiwa,2025,registration,total_population,3.2,33,,30 – 34
+12.08.29,3,Raya,age_group,30-34,perempuan,976,jiwa,2025,registration,total_population,3.2,33,,30 – 34
+12.08.29,3,Raya,age_group,30-34,,2016,jiwa,2025,registration,total_population,3.2,33,,30 – 34
+12.08.29,3,Raya,age_group,35-39,laki_laki,1050,jiwa,2025,registration,total_population,3.2,33,,35 – 39
+12.08.29,3,Raya,age_group,35-39,perempuan,990,jiwa,2025,registration,total_population,3.2,33,,35 – 39
+12.08.29,3,Raya,age_group,35-39,,2040,jiwa,2025,registration,total_population,3.2,33,,35 – 39
+12.08.29,3,Raya,age_group,40-44,laki_laki,1058,jiwa,2025,registration,total_population,3.2,33,,40 – 44
+12.08.29,3,Raya,age_group,40-44,perempuan,1056,jiwa,2025,registration,total_population,3.2,33,,40 – 44
+12.08.29,3,Raya,age_group,40-44,,2114,jiwa,2025,registration,total_population,3.2,33,,40 – 44
+12.08.29,3,Raya,age_group,45-49,laki_laki,975,jiwa,2025,registration,total_population,3.2,33,,45 – 49
+12.08.29,3,Raya,age_group,45-49,perempuan,988,jiwa,2025,registration,total_population,3.2,33,,45 – 49
+12.08.29,3,Raya,age_group,45-49,,1963,jiwa,2025,registration,total_population,3.2,33,,45 – 49
+12.08.29,3,Raya,age_group,50-54,laki_laki,910,jiwa,2025,registration,total_population,3.2,33,,50 – 54
+12.08.29,3,Raya,age_group,50-54,perempuan,934,jiwa,2025,registration,total_population,3.2,33,,50 – 54
+12.08.29,3,Raya,age_group,50-54,,1844,jiwa,2025,registration,total_population,3.2,33,,50 – 54
+12.08.29,3,Raya,age_group,55-59,laki_laki,812,jiwa,2025,registration,total_population,3.2,33,,55 – 59
+12.08.29,3,Raya,age_group,55-59,perempuan,870,jiwa,2025,registration,total_population,3.2,33,,55 – 59
+12.08.29,3,Raya,age_group,55-59,,1682,jiwa,2025,registration,total_population,3.2,33,,55 – 59
+12.08.29,3,Raya,age_group,60-64,laki_laki,623,jiwa,2025,registration,total_population,3.2,33,,60 – 64
+12.08.29,3,Raya,age_group,60-64,perempuan,773,jiwa,2025,registration,total_population,3.2,33,,60 – 64
+12.08.29,3,Raya,age_group,60-64,,1396,jiwa,2025,registration,total_population,3.2,33,,60 – 64
+12.08.29,3,Raya,age_group,65-69,laki_laki,474,jiwa,2025,registration,total_population,3.2,33,,65 – 69
+12.08.29,3,Raya,age_group,65-69,perempuan,634,jiwa,2025,registration,total_population,3.2,33,,65 – 69
+12.08.29,3,Raya,age_group,65-69,,1108,jiwa,2025,registration,total_population,3.2,33,,65 – 69
+12.08.29,3,Raya,age_group,70-74,laki_laki,303,jiwa,2025,registration,total_population,3.2,33,,70 – 74
+12.08.29,3,Raya,age_group,70-74,perempuan,462,jiwa,2025,registration,total_population,3.2,33,,70 – 74
+12.08.29,3,Raya,age_group,70-74,,765,jiwa,2025,registration,total_population,3.2,33,,70 – 74
+12.08.29,3,Raya,age_group,75+,laki_laki,408,jiwa,2025,registration,total_population,3.2,33,,75 +
+12.08.29,3,Raya,age_group,75+,perempuan,740,jiwa,2025,registration,total_population,3.2,33,,75 +
+12.08.29,3,Raya,age_group,75+,,1148,jiwa,2025,registration,total_population,3.2,33,,75 +
+12.08.29,3,Raya,sex,laki_laki,,15099,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+12.08.29,3,Raya,sex,perempuan,,15698,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+12.08.29,3,Raya,total,total,,30797,jiwa,2025,registration,total_population,3.2,33,,

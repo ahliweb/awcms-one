@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.23.04.2007,4,Padang Maninjau,sex,laki_laki,,2474,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+12.23.04.2007,4,Padang Maninjau,sex,perempuan,,2385,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.23.04.2007,4,Padang Maninjau,total,total,,4859,jiwa,2025,registration,total_population,3.1,32,,
+12.23.04.2005,4,Sidomulyo,sex,laki_laki,,928,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+12.23.04.2005,4,Sidomulyo,sex,perempuan,,943,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.23.04.2005,4,Sidomulyo,total,total,,1871,jiwa,2025,registration,total_population,3.1,32,,
+12.23.04.2006,4,Karang Anyar,sex,laki_laki,,560,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+12.23.04.2006,4,Karang Anyar,sex,perempuan,,510,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.23.04.2006,4,Karang Anyar,total,total,,1070,jiwa,2025,registration,total_population,3.1,32,,
+12.23.04.2001,4,Aek Korsik,sex,laki_laki,,7593,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+12.23.04.2001,4,Aek Korsik,sex,perempuan,,7147,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.23.04.2001,4,Aek Korsik,total,total,,14740,jiwa,2025,registration,total_population,3.1,32,,
+12.23.04.2008,4,Purworejo,sex,laki_laki,,769,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+12.23.04.2008,4,Purworejo,sex,perempuan,,753,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.23.04.2008,4,Purworejo,total,total,,1522,jiwa,2025,registration,total_population,3.1,32,,
+12.23.04.2002,4,Bandar Selamat,sex,laki_laki,,3251,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+12.23.04.2002,4,Bandar Selamat,sex,perempuan,,3172,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.23.04.2002,4,Bandar Selamat,total,total,,6423,jiwa,2025,registration,total_population,3.1,32,,
+12.23.04,3,Aek Kuo,sex,laki_laki,,17067,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+12.23.04,3,Aek Kuo,sex,perempuan,,16345,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.23.04,3,Aek Kuo,total,total,,33412,jiwa,2025,registration,total_population,3.1,32,,

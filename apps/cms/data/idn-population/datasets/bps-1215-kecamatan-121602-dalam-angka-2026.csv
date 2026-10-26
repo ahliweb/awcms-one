@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.16.02.2009,4,Aek Nauli II,sex,laki_laki,,710,jiwa,2024,registration,total_population,3.1,30,,Laki-Laki/Male
+12.16.02.2009,4,Aek Nauli II,sex,perempuan,,739,jiwa,2024,registration,total_population,3.1,30,,Perempuan/Female
+12.16.02.2009,4,Aek Nauli II,total,total,,1449,jiwa,2024,registration,total_population,3.1,30,,
+12.16.02.2008,4,Aek Nauli I,sex,laki_laki,,789,jiwa,2024,registration,total_population,3.1,30,,Laki-Laki/Male
+12.16.02.2008,4,Aek Nauli I,sex,perempuan,,867,jiwa,2024,registration,total_population,3.1,30,,Perempuan/Female
+12.16.02.2008,4,Aek Nauli I,total,total,,1656,jiwa,2024,registration,total_population,3.1,30,,
+12.16.02.2010,4,Pandumaan,sex,laki_laki,,777,jiwa,2024,registration,total_population,3.1,30,,Laki-Laki/Male
+12.16.02.2010,4,Pandumaan,sex,perempuan,,789,jiwa,2024,registration,total_population,3.1,30,,Perempuan/Female
+12.16.02.2010,4,Pandumaan,total,total,,1566,jiwa,2024,registration,total_population,3.1,30,,
+12.16.02.2011,4,Sipitu Huta,sex,laki_laki,,1317,jiwa,2024,registration,total_population,3.1,30,,Laki-Laki/Male
+12.16.02.2011,4,Sipitu Huta,sex,perempuan,,1277,jiwa,2024,registration,total_population,3.1,30,,Perempuan/Female
+12.16.02.2011,4,Sipitu Huta,total,total,,2594,jiwa,2024,registration,total_population,3.1,30,,
+12.16.02.2006,4,Parsingguran II,sex,laki_laki,,1344,jiwa,2024,registration,total_population,3.1,30,,Laki-Laki/Male
+12.16.02.2006,4,Parsingguran II,sex,perempuan,,1316,jiwa,2024,registration,total_population,3.1,30,,Perempuan/Female
+12.16.02.2006,4,Parsingguran II,total,total,,2660,jiwa,2024,registration,total_population,3.1,30,,
+12.16.02.2003,4,Pollung,sex,laki_laki,,901,jiwa,2024,registration,total_population,3.1,30,,Laki-Laki/Male
+12.16.02.2003,4,Pollung,sex,perempuan,,877,jiwa,2024,registration,total_population,3.1,30,,Perempuan/Female
+12.16.02.2003,4,Pollung,total,total,,1778,jiwa,2024,registration,total_population,3.1,30,,
+12.16.02.2001,4,Parsingguran I,sex,laki_laki,,604,jiwa,2024,registration,total_population,3.1,30,,Laki-Laki/Male
+12.16.02.2001,4,Parsingguran I,sex,perempuan,,667,jiwa,2024,registration,total_population,3.1,30,,Perempuan/Female
+12.16.02.2001,4,Parsingguran I,total,total,,1271,jiwa,2024,registration,total_population,3.1,30,,
+12.16.02.2005,4,Ria Ria,sex,laki_laki,,1265,jiwa,2024,registration,total_population,3.1,30,,Laki-Laki/Male
+12.16.02.2005,4,Ria Ria,sex,perempuan,,1273,jiwa,2024,registration,total_population,3.1,30,,Perempuan/Female
+12.16.02.2005,4,Ria Ria,total,total,,2538,jiwa,2024,registration,total_population,3.1,30,,
+12.16.02.2002,4,Huta Paung,sex,laki_laki,,963,jiwa,2024,registration,total_population,3.1,30,,Laki-Laki/Male
+12.16.02.2002,4,Huta Paung,sex,perempuan,,944,jiwa,2024,registration,total_population,3.1,30,,Perempuan/Female
+12.16.02.2002,4,Huta Paung,total,total,,1907,jiwa,2024,registration,total_population,3.1,30,,
+12.16.02.2007,4,Pansur Batu,sex,laki_laki,,712,jiwa,2024,registration,total_population,3.1,30,,Laki-Laki/Male
+12.16.02.2007,4,Pansur Batu,sex,perempuan,,705,jiwa,2024,registration,total_population,3.1,30,,Perempuan/Female
+12.16.02.2007,4,Pansur Batu,total,total,,1417,jiwa,2024,registration,total_population,3.1,30,,
+12.16.02.2004,4,Huta Julu,sex,laki_laki,,1307,jiwa,2024,registration,total_population,3.1,30,,Laki-Laki/Male
+12.16.02.2004,4,Huta Julu,sex,perempuan,,1305,jiwa,2024,registration,total_population,3.1,30,,Perempuan/Female
+12.16.02.2004,4,Huta Julu,total,total,,2612,jiwa,2024,registration,total_population,3.1,30,,
+12.16.02.2012,4,Pardomuan,sex,laki_laki,,295,jiwa,2024,registration,total_population,3.1,30,,Laki-Laki/Male
+12.16.02.2012,4,Pardomuan,sex,perempuan,,268,jiwa,2024,registration,total_population,3.1,30,,Perempuan/Female
+12.16.02.2012,4,Pardomuan,total,total,,563,jiwa,2024,registration,total_population,3.1,30,,
+12.16.02.2013,4,Hutapaung Utara,sex,laki_laki,,703,jiwa,2024,registration,total_population,3.1,30,,Laki-Laki/Male
+12.16.02.2013,4,Hutapaung Utara,sex,perempuan,,669,jiwa,2024,registration,total_population,3.1,30,,Perempuan/Female
+12.16.02.2013,4,Hutapaung Utara,total,total,,1372,jiwa,2024,registration,total_population,3.1,30,,
+12.16.02,3,Pollung,sex,laki_laki,,11687,jiwa,2024,registration,total_population,3.1,30,,Laki-Laki/Male
+12.16.02,3,Pollung,sex,perempuan,,11696,jiwa,2024,registration,total_population,3.1,30,,Perempuan/Female
+12.16.02,3,Pollung,total,total,,23383,jiwa,2024,registration,total_population,3.1,30,,

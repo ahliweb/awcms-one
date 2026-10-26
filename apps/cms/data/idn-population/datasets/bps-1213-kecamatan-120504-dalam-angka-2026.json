@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1213-kecamatan-120504-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.05.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sei Bingai Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Langkat",
+  "publisherDomain": "1213",
+  "publisherWebsite": "https://langkatkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Langkat (https://langkatkab.bps.go.id), publikasi \"Kecamatan Sei Bingai Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1213030",
+  "publicationNumber": "12130.26014",
+  "issn": "2579-6844",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://langkatkab.bps.go.id/id/publication/2026/09/28/07e4d24c1577b6eacb0ba5d7/kecamatan-sei-bingai-dalam-angka-2026.html",
+  "sourceFileSha256": "fc51fbd29c60f46519ede19c7d64539d93170d4a00a481d0b53f4f45820654c7",
+  "sourceFileBytes": 24468328,
+  "sourcePages": [39],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Langkat.",
+  "csvPath": "datasets/bps-1213-kecamatan-120504-dalam-angka-2026.csv",
+  "csvSha256": "0d8af75b9a31463d1010d11d79703726c5e22d53e2f083f1f811719317564fa4",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p39",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sei Bingai 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.05.21.2009,4,Sumber Jaya,sex,laki_laki,,1122,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.21.2009,4,Sumber Jaya,sex,perempuan,,1045,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.21.2009,4,Sumber Jaya,total,total,,2167,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.21.2008,4,Pulau Semikat,sex,laki_laki,,620,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.21.2008,4,Pulau Semikat,sex,perempuan,,590,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.21.2008,4,Pulau Semikat,total,total,,1210,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.21.2007,4,Sebertung,sex,laki_laki,,987,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.21.2007,4,Sebertung,sex,perempuan,,964,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.21.2007,4,Sebertung,total,total,,1951,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.21.2010,4,Perkebunan Amal Tani,sex,laki_laki,,771,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.21.2010,4,Perkebunan Amal Tani,sex,perempuan,,690,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.21.2010,4,Perkebunan Amal Tani,total,total,,1461,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.21.2003,4,Sidorejo,sex,laki_laki,,689,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.21.2003,4,Sidorejo,sex,perempuan,,690,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.21.2003,4,Sidorejo,total,total,,1379,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.21.2002,4,Gunung Tinggi,sex,laki_laki,,1042,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.21.2002,4,Gunung Tinggi,sex,perempuan,,1039,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.21.2002,4,Gunung Tinggi,total,total,,2081,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.21.2001,4,Serapit,sex,laki_laki,,1102,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.21.2001,4,Serapit,sex,perempuan,,1149,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.21.2001,4,Serapit,total,total,,2251,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.21.2004,4,Suka Pulung,sex,laki_laki,,402,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.21.2004,4,Suka Pulung,sex,perempuan,,391,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.21.2004,4,Suka Pulung,total,total,,793,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.21.2005,4,Aman Damai,sex,laki_laki,,1510,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.21.2005,4,Aman Damai,sex,perempuan,,1473,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.21.2005,4,Aman Damai,total,total,,2983,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.21,3,Kecamatan Sirapit,sex,laki_laki,,9122,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.21,3,Kecamatan Sirapit,sex,perempuan,,8963,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.21,3,Kecamatan Sirapit,total,total,,18085,jiwa,2025,registration,total_population,unnumbered-p39,39,,

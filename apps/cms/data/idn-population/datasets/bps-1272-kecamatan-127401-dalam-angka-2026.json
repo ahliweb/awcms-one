@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1272-kecamatan-127401-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.74.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tanjungbalai Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kota Tanjung Balai",
+  "publisherDomain": "1272",
+  "publisherWebsite": "https://tanjungbalaikota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Tanjung Balai (https://tanjungbalaikota.bps.go.id), publikasi \"Kecamatan Tanjungbalai Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1272020",
+  "publicationNumber": "12720.26008",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tanjungbalaikota.bps.go.id/id/publication/2026/09/28/4608a89387459d41094a0c58/kecamatan-tanjungbalai-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "304617b7c097f88f44011426a52bae9267c3f094aa4be88a205bbd26729e5390",
+  "sourceFileBytes": 5389991,
+  "sourcePages": [37, 40],
+  "termsOfUse": "Dilarang mereproduksi danatau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Tanjung Balai. TIM PENYUSUN Kecamatan Tanjungbalai Selatan Dalam Angka 2026 Volume 45, 2026 a. b ps .g o Penanggung Jawab Nizaruddin .id Pengarah Nizaruddin ba la ik ot Penyunting Andi Luhut Prabowo Panggabean //t an ju ng Pengolah Data dan Penulis Naskah Siti Maryam ht tp s: Penata Letak Andi Luhut Prabowo Panggabean Pembuat Infografis Siti Maryam iii la ik ba ju ng an //t s: tp ht .id ps .g o a. b ot KONTRIBUTOR DATA 1. Kementerian Agama 2. Kementerian Pendidikan dan Kebudayaan 3. Badan Pusat Statistik 4. Direktorat Jenderal Kependudukan dan Pencatatan Sipil .id Kementerian Dalam Negeri Sekretariat Daerah Kota Tanjung Balai 6. Badan Kepegawaian dan Pengembangan SDM Kota Tanjung ps .g o 5. a. b Balai Dinas Perhubungan Kota Tanjung Balai 8. Dinas Pekerjaan Umum dan Tata Ruang Kota Tanjung Balai 9. Dinas Pengendalian Penduduk dan Keluarga Berencana Kota an Tanjung Balai ju ng ba la ik ot 7. s: //t 10. Dinas Perikanan Kota Tanjung Balai tp 11. Dinas Pangan dan Pertanian Kota Tanjung Balai ht 12. Dinas Kependudukan Dan Pencatatan Sipil Kota Tanjung Balai 13. Pemerintah Kecamatan Tanjungbalai Selatan 14. KUA Kecamatan Tanjungbalai Selatan v la ik ba ju ng an //t s: tp ht .id ps .g o a. b ot KATA PENGANTAR ps .g o .id Puji syukur kita panjatkan ke hadirat Allah SWT., Tuhan Yang Maha Esa, karena atas rahmat, taufik, dan hidayah-Nya Publikasi Kecamatan Tanjungbalai Selatan Dalam Angka Tahun 2026 dapat tersusun dengan baik. Publikasi ini merupakan publikasi tahunan yang diterbitkan oleh BPS Kota Tanjung Balai yang berisi berbagai data dan informasi terpilih untuk membantu pembaca dalam memahami perkembangan pembangunan dan potensi Kecamatan Datuk Bandar. ju ng ba la ik ot a. b Materi yang disajikan dalam Kecamatan Tanjungbalai Selatan Dalam Angka Tahun 2026 di antaranya mengenai geografis, pemerintahan, penduduk, sosial, pertanian, dan perekonomian di Kecamatan Tanjungbalai Selatan. Diharapkan publikasi ini dapat menjadi bahan rujukan/kajian untuk mengenal Kecamatan Tanjungbalai Selatan dengan cepat serta sebagai bahan perencanaan dan evaluasi Pembangunan. ht tp s: //t an Kritik dan saran yang membangun dari berbagai pihak sangat kami harapkan untuk penyempurnaan penerbitan publikasi Kecamatan Tanjungbalai Selatan Dalam Angka di masa yang akan datang. Kami sampaikan terima kasih kepada semua pihak yang telah berpartisipasi hingga diterbitkannya publikasi ini. Tanjungbalai, September 2026 Kepala Badan Pusat Statistik Kota Tanjung Balai Nizaruddin vii viii la ik ba ju ng an //t s: tp ht .id ps .g o a. b ot",
+  "csvPath": "datasets/bps-1272-kecamatan-127401-dalam-angka-2026.csv",
+  "csvSha256": "2e5b158678a3824a62b2c61f3e826ad3d21a1d12837feb83063dc2a72abf9955",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Tanjungbalai Selatan , 2025 Penduduk Kelurahan Laki-Laki Perempuan Jumlah",
+      "printedPages": [37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.4",
+      "title": "Jumlah Penduduk Menurut Kelurahan dan Agama yang Dianut di Kecamatan Tanjungbalai Selatan, 2025 Kelurahan Islam Protestan Katolik Hindu Budha Konghucu Lainnya",
+      "printedPages": [40],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "table 3.1: the rows of region 12.74.01.1005 are not stored: sex split vs total: parts sum 4769.0000 != 4767.0000 (diff 2.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 12.74.01 are not stored: sex split vs total: parts sum 20022.0000 != 20020.0000 (diff 2.0000); the source itself is inconsistent"
+  ]
+}

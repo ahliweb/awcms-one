@@ -1,0 +1,35 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.15.03,3,Salak,age_group,0-4,perempuan,361,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+12.15.03,3,Salak,age_group,0-4,,765,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+12.15.03,3,Salak,age_group,5-9,perempuan,545,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+12.15.03,3,Salak,age_group,5-9,,1109,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+12.15.03,3,Salak,age_group,10-14,perempuan,560,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+12.15.03,3,Salak,age_group,10-14,,1168,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+12.15.03,3,Salak,age_group,15-19,perempuan,538,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+12.15.03,3,Salak,age_group,15-19,,1234,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+12.15.03,3,Salak,age_group,20-24,perempuan,485,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+12.15.03,3,Salak,age_group,20-24,,1204,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+12.15.03,3,Salak,age_group,25-29,perempuan,470,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+12.15.03,3,Salak,age_group,25-29,,936,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+12.15.03,3,Salak,age_group,30-34,perempuan,444,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+12.15.03,3,Salak,age_group,30-34,,865,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+12.15.03,3,Salak,age_group,35-39,perempuan,384,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+12.15.03,3,Salak,age_group,35-39,,776,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+12.15.03,3,Salak,age_group,40-44,perempuan,420,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+12.15.03,3,Salak,age_group,40-44,,838,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+12.15.03,3,Salak,age_group,45-49,perempuan,360,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+12.15.03,3,Salak,age_group,45-49,,715,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+12.15.03,3,Salak,age_group,50-54,perempuan,252,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+12.15.03,3,Salak,age_group,50-54,,517,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+12.15.03,3,Salak,age_group,55-59,perempuan,194,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+12.15.03,3,Salak,age_group,55-59,,389,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+12.15.03,3,Salak,age_group,60-64,perempuan,146,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+12.15.03,3,Salak,age_group,60-64,,275,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+12.15.03,3,Salak,age_group,65-69,perempuan,120,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+12.15.03,3,Salak,age_group,65-69,,208,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+12.15.03,3,Salak,age_group,70-74,perempuan,89,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+12.15.03,3,Salak,age_group,70-74,,150,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+12.15.03,3,Salak,age_group,74+,perempuan,147,jiwa,2025,registration,total_population,3.2,34,,>74
+12.15.03,3,Salak,age_group,74+,,228,jiwa,2025,registration,total_population,3.2,34,,>74
+12.15.03,3,Salak,sex,perempuan,,5515,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+12.15.03,3,Salak,total,total,,11377,jiwa,2025,registration,total_population,3.2,34,,

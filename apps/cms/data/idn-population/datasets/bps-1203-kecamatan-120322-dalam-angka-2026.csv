@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.03.22.2003,4,Sigolang,sex,laki_laki,,325,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.22.2003,4,Sigolang,sex,perempuan,,316,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.22.2003,4,Sigolang,total,total,,641,jiwa,2025,registration,total_population,3.1,25,,
+12.03.22.2005,4,Biru,sex,laki_laki,,431,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.22.2005,4,Biru,sex,perempuan,,421,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.22.2005,4,Biru,total,total,,852,jiwa,2025,registration,total_population,3.1,25,,
+12.03.22.2008,4,Tapus Godang,sex,laki_laki,,241,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.22.2008,4,Tapus Godang,sex,perempuan,,229,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.22.2008,4,Tapus Godang,total,total,,470,jiwa,2025,registration,total_population,3.1,25,,
+12.03.22.2020,4,Silangkitang,sex,laki_laki,,410,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.22.2020,4,Silangkitang,sex,perempuan,,366,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.22.2020,4,Silangkitang,total,total,,776,jiwa,2025,registration,total_population,3.1,25,,
+12.03.22.2033,4,Sihulambu,sex,laki_laki,,355,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.22.2033,4,Sihulambu,sex,perempuan,,354,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.22.2033,4,Sihulambu,total,total,,709,jiwa,2025,registration,total_population,3.1,25,,
+12.03.22.2043,4,Tolang,sex,laki_laki,,491,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.22.2043,4,Tolang,sex,perempuan,,512,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.22.2043,4,Tolang,total,total,,1003,jiwa,2025,registration,total_population,3.1,25,,
+12.03.22.2044,4,Tapus Sipagabu,sex,laki_laki,,223,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.22.2044,4,Tapus Sipagabu,sex,perempuan,,225,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.22.2044,4,Tapus Sipagabu,total,total,,448,jiwa,2025,registration,total_population,3.1,25,,
+12.03.22.2045,4,Huta Baru,sex,laki_laki,,313,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.22.2045,4,Huta Baru,sex,perempuan,,325,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.22.2045,4,Huta Baru,total,total,,638,jiwa,2025,registration,total_population,3.1,25,,
+12.03.22.2046,4,Aek Latong,sex,laki_laki,,271,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.22.2046,4,Aek Latong,sex,perempuan,,266,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.22.2046,4,Aek Latong,total,total,,537,jiwa,2025,registration,total_population,3.1,25,,
+12.03.22.2047,4,Aek Urat,sex,laki_laki,,185,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.22.2047,4,Aek Urat,sex,perempuan,,203,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.22.2047,4,Aek Urat,total,total,,388,jiwa,2025,registration,total_population,3.1,25,,
+12.03.22.2048,4,Gorahut,sex,laki_laki,,428,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.22.2048,4,Gorahut,sex,perempuan,,370,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.22.2048,4,Gorahut,total,total,,798,jiwa,2025,registration,total_population,3.1,25,,
+12.03.22,3,Aek Bilah,sex,laki_laki,,3804,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.22,3,Aek Bilah,sex,perempuan,,3725,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.22,3,Aek Bilah,total,total,,7529,jiwa,2025,registration,total_population,3.1,25,,

@@ -1,0 +1,132 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.71.03.1005,4,Cinta Damai,sex,laki_laki,,9882,jiwa,2025,registration,total_population,3.1.1,29,,Laki-Laki/Male
+12.71.03.1005,4,Cinta Damai,sex,perempuan,,10175,jiwa,2025,registration,total_population,3.1.1,29,,Perempuan/Female
+12.71.03.1005,4,Cinta Damai,total,total,,20057,jiwa,2025,registration,total_population,3.1.1,29,,
+12.71.03.1007,4,Sei Sikambing C II,sex,laki_laki,,7356,jiwa,2025,registration,total_population,3.1.1,29,,Laki-Laki/Male
+12.71.03.1007,4,Sei Sikambing C II,sex,perempuan,,7616,jiwa,2025,registration,total_population,3.1.1,29,,Perempuan/Female
+12.71.03.1007,4,Sei Sikambing C II,total,total,,14972,jiwa,2025,registration,total_population,3.1.1,29,,
+12.71.03.1006,4,Dwi Kora,sex,laki_laki,,12946,jiwa,2025,registration,total_population,3.1.1,29,,Laki-Laki/Male
+12.71.03.1006,4,Dwi Kora,sex,perempuan,,13211,jiwa,2025,registration,total_population,3.1.1,29,,Perempuan/Female
+12.71.03.1006,4,Dwi Kora,total,total,,26157,jiwa,2025,registration,total_population,3.1.1,29,,
+12.71.03.1003,4,Helvetia Timur,sex,laki_laki,,14147,jiwa,2025,registration,total_population,3.1.1,29,,Laki-Laki/Male
+12.71.03.1003,4,Helvetia Timur,sex,perempuan,,14424,jiwa,2025,registration,total_population,3.1.1,29,,Perempuan/Female
+12.71.03.1003,4,Helvetia Timur,total,total,,28571,jiwa,2025,registration,total_population,3.1.1,29,,
+12.71.03.1002,4,Helvetia Tengah,sex,laki_laki,,16172,jiwa,2025,registration,total_population,3.1.1,29,,Laki-Laki/Male
+12.71.03.1002,4,Helvetia Tengah,sex,perempuan,,17262,jiwa,2025,registration,total_population,3.1.1,29,,Perempuan/Female
+12.71.03.1002,4,Helvetia Tengah,total,total,,33434,jiwa,2025,registration,total_population,3.1.1,29,,
+12.71.03.1001,4,Helvetia,sex,laki_laki,,7509,jiwa,2025,registration,total_population,3.1.1,29,,Laki-Laki/Male
+12.71.03.1001,4,Helvetia,sex,perempuan,,7854,jiwa,2025,registration,total_population,3.1.1,29,,Perempuan/Female
+12.71.03.1001,4,Helvetia,total,total,,15363,jiwa,2025,registration,total_population,3.1.1,29,,
+12.71.03.1004,4,Tanjung Gusta,sex,laki_laki,,16527,jiwa,2025,registration,total_population,3.1.1,29,,Laki-Laki/Male
+12.71.03.1004,4,Tanjung Gusta,sex,perempuan,,16812,jiwa,2025,registration,total_population,3.1.1,29,,Perempuan/Female
+12.71.03.1004,4,Tanjung Gusta,total,total,,33339,jiwa,2025,registration,total_population,3.1.1,29,,
+12.71.03,3,Medan Helvetia,sex,laki_laki,,84539,jiwa,2025,registration,total_population,3.1.1,29,,Laki-Laki/Male
+12.71.03,3,Medan Helvetia,sex,perempuan,,87354,jiwa,2025,registration,total_population,3.1.1,29,,Perempuan/Female
+12.71.03,3,Medan Helvetia,total,total,,171893,jiwa,2025,registration,total_population,3.1.1,29,,
+12.71.03,3,Medan Helvetia,age_group,0-4,laki_laki,4444,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.71.03,3,Medan Helvetia,age_group,0-4,perempuan,4150,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.71.03,3,Medan Helvetia,age_group,0-4,,8594,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.71.03,3,Medan Helvetia,age_group,5-9,laki_laki,7002,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.71.03,3,Medan Helvetia,age_group,5-9,perempuan,6659,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.71.03,3,Medan Helvetia,age_group,5-9,,13661,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.71.03,3,Medan Helvetia,age_group,10-14,laki_laki,7689,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+12.71.03,3,Medan Helvetia,age_group,10-14,perempuan,7138,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+12.71.03,3,Medan Helvetia,age_group,10-14,,14827,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+12.71.03,3,Medan Helvetia,age_group,15-19,laki_laki,7450,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.71.03,3,Medan Helvetia,age_group,15-19,perempuan,6974,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.71.03,3,Medan Helvetia,age_group,15-19,,14424,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.71.03,3,Medan Helvetia,age_group,20-24,laki_laki,7226,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.71.03,3,Medan Helvetia,age_group,20-24,perempuan,6832,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.71.03,3,Medan Helvetia,age_group,20-24,,14058,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.71.03,3,Medan Helvetia,age_group,25-29,laki_laki,7001,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.71.03,3,Medan Helvetia,age_group,25-29,perempuan,6989,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.71.03,3,Medan Helvetia,age_group,25-29,,13990,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.71.03,3,Medan Helvetia,age_group,30-34,laki_laki,6547,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+12.71.03,3,Medan Helvetia,age_group,30-34,perempuan,6707,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+12.71.03,3,Medan Helvetia,age_group,30-34,,13254,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+12.71.03,3,Medan Helvetia,age_group,35-39,laki_laki,6579,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.71.03,3,Medan Helvetia,age_group,35-39,perempuan,6609,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.71.03,3,Medan Helvetia,age_group,35-39,,13188,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.71.03,3,Medan Helvetia,age_group,40-44,laki_laki,6578,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.71.03,3,Medan Helvetia,age_group,40-44,perempuan,6904,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.71.03,3,Medan Helvetia,age_group,40-44,,13482,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.71.03,3,Medan Helvetia,age_group,45-49,laki_laki,5752,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.71.03,3,Medan Helvetia,age_group,45-49,perempuan,6155,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.71.03,3,Medan Helvetia,age_group,45-49,,11907,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.71.03,3,Medan Helvetia,age_group,50-54,laki_laki,5237,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.71.03,3,Medan Helvetia,age_group,50-54,perempuan,5653,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.71.03,3,Medan Helvetia,age_group,50-54,,10890,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.71.03,3,Medan Helvetia,age_group,55-59,laki_laki,4297,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.71.03,3,Medan Helvetia,age_group,55-59,perempuan,4914,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.71.03,3,Medan Helvetia,age_group,55-59,,9211,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.71.03,3,Medan Helvetia,age_group,60-64,laki_laki,3268,jiwa,2025,registration,total_population,3.2,31,,60 -64
+12.71.03,3,Medan Helvetia,age_group,60-64,perempuan,4106,jiwa,2025,registration,total_population,3.2,31,,60 -64
+12.71.03,3,Medan Helvetia,age_group,60-64,,7374,jiwa,2025,registration,total_population,3.2,31,,60 -64
+12.71.03,3,Medan Helvetia,age_group,65-69,laki_laki,2493,jiwa,2025,registration,total_population,3.2,31,,65 -69
+12.71.03,3,Medan Helvetia,age_group,65-69,perempuan,3188,jiwa,2025,registration,total_population,3.2,31,,65 -69
+12.71.03,3,Medan Helvetia,age_group,65-69,,5681,jiwa,2025,registration,total_population,3.2,31,,65 -69
+12.71.03,3,Medan Helvetia,age_group,70-74,laki_laki,1482,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.71.03,3,Medan Helvetia,age_group,70-74,perempuan,1944,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.71.03,3,Medan Helvetia,age_group,70-74,,3426,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.71.03,3,Medan Helvetia,age_group,75+,laki_laki,1494,jiwa,2025,registration,total_population,3.2,31,,75 +
+12.71.03,3,Medan Helvetia,age_group,75+,perempuan,2432,jiwa,2025,registration,total_population,3.2,31,,75 +
+12.71.03,3,Medan Helvetia,age_group,75+,,3926,jiwa,2025,registration,total_population,3.2,31,,75 +
+12.71.03,3,Medan Helvetia,sex,laki_laki,,84539,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+12.71.03,3,Medan Helvetia,sex,perempuan,,87354,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+12.71.03,3,Medan Helvetia,total,total,,171893,jiwa,2025,registration,total_population,3.2,31,,
+12.71.03.1005,4,Cinta Damai,religion,islam,,7853,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.03.1005,4,Cinta Damai,religion,kristen,,9056,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.03.1005,4,Cinta Damai,religion,katolik,,1407,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.03.1005,4,Cinta Damai,religion,buddha,,1639,jiwa,2025,registration,total_population,3.6,38,,Buddha
+12.71.03.1005,4,Cinta Damai,religion,hindu,,96,jiwa,2025,registration,total_population,3.6,38,,Hindu
+12.71.03.1007,4,Sei Sikambing C II,religion,islam,,12668,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.03.1007,4,Sei Sikambing C II,religion,kristen,,1337,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.03.1007,4,Sei Sikambing C II,religion,katolik,,284,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.03.1007,4,Sei Sikambing C II,religion,buddha,,546,jiwa,2025,registration,total_population,3.6,38,,Buddha
+12.71.03.1007,4,Sei Sikambing C II,religion,hindu,,137,jiwa,2025,registration,total_population,3.6,38,,Hindu
+12.71.03.1006,4,Dwi Kora,religion,islam,,20497,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.03.1006,4,Dwi Kora,religion,kristen,,3779,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.03.1006,4,Dwi Kora,religion,katolik,,820,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.03.1006,4,Dwi Kora,religion,buddha,,992,jiwa,2025,registration,total_population,3.6,38,,Buddha
+12.71.03.1006,4,Dwi Kora,religion,hindu,,66,jiwa,2025,registration,total_population,3.6,38,,Hindu
+12.71.03.1003,4,Helvetia Timur,religion,islam,,20644,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.03.1003,4,Helvetia Timur,religion,kristen,,5899,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.03.1003,4,Helvetia Timur,religion,katolik,,750,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.03.1003,4,Helvetia Timur,religion,buddha,,1243,jiwa,2025,registration,total_population,3.6,38,,Buddha
+12.71.03.1003,4,Helvetia Timur,religion,hindu,,35,jiwa,2025,registration,total_population,3.6,38,,Hindu
+12.71.03.1002,4,Helvetia Tengah,religion,islam,,19163,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.03.1002,4,Helvetia Tengah,religion,kristen,,12188,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.03.1002,4,Helvetia Tengah,religion,katolik,,1547,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.03.1002,4,Helvetia Tengah,religion,buddha,,501,jiwa,2025,registration,total_population,3.6,38,,Buddha
+12.71.03.1002,4,Helvetia Tengah,religion,hindu,,33,jiwa,2025,registration,total_population,3.6,38,,Hindu
+12.71.03.1001,4,Helvetia,religion,islam,,9193,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.03.1001,4,Helvetia,religion,kristen,,5478,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.03.1001,4,Helvetia,religion,katolik,,592,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.03.1001,4,Helvetia,religion,buddha,,85,jiwa,2025,registration,total_population,3.6,38,,Buddha
+12.71.03.1001,4,Helvetia,religion,hindu,,12,jiwa,2025,registration,total_population,3.6,38,,Hindu
+12.71.03.1004,4,Tanjung Gusta,religion,islam,,24542,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.03.1004,4,Tanjung Gusta,religion,kristen,,7468,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.03.1004,4,Tanjung Gusta,religion,katolik,,847,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.03.1004,4,Tanjung Gusta,religion,buddha,,393,jiwa,2025,registration,total_population,3.6,38,,Buddha
+12.71.03.1004,4,Tanjung Gusta,religion,hindu,,89,jiwa,2025,registration,total_population,3.6,38,,Hindu
+12.71.03.1005,4,Cinta Damai,religion,khonghucu,,2,jiwa,2025,registration,total_population,3.6,39,,Khonghucu
+12.71.03.1005,4,Cinta Damai,religion,kepercayaan,,4,jiwa,2025,registration,total_population,3.6,39,,Kepercayaan
+12.71.03.1005,4,Cinta Damai,total,total,,20057,jiwa,2025,registration,total_population,3.6,39,,
+12.71.03.1007,4,Sei Sikambing C II,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,39,nil,Khonghucu
+12.71.03.1007,4,Sei Sikambing C II,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,39,nil,Kepercayaan
+12.71.03.1007,4,Sei Sikambing C II,total,total,,14972,jiwa,2025,registration,total_population,3.6,39,,
+12.71.03.1006,4,Dwi Kora,religion,khonghucu,,3,jiwa,2025,registration,total_population,3.6,39,,Khonghucu
+12.71.03.1006,4,Dwi Kora,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,39,nil,Kepercayaan
+12.71.03.1006,4,Dwi Kora,total,total,,26157,jiwa,2025,registration,total_population,3.6,39,,
+12.71.03.1003,4,Helvetia Timur,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,39,nil,Khonghucu
+12.71.03.1003,4,Helvetia Timur,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,39,nil,Kepercayaan
+12.71.03.1003,4,Helvetia Timur,total,total,,28571,jiwa,2025,registration,total_population,3.6,39,,
+12.71.03.1002,4,Helvetia Tengah,religion,khonghucu,,2,jiwa,2025,registration,total_population,3.6,39,,Khonghucu
+12.71.03.1002,4,Helvetia Tengah,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,39,nil,Kepercayaan
+12.71.03.1002,4,Helvetia Tengah,total,total,,33434,jiwa,2025,registration,total_population,3.6,39,,
+12.71.03.1001,4,Helvetia,religion,khonghucu,,3,jiwa,2025,registration,total_population,3.6,39,,Khonghucu
+12.71.03.1001,4,Helvetia,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,39,nil,Kepercayaan
+12.71.03.1001,4,Helvetia,total,total,,15363,jiwa,2025,registration,total_population,3.6,39,,
+12.71.03.1004,4,Tanjung Gusta,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,39,nil,Khonghucu
+12.71.03.1004,4,Tanjung Gusta,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,39,nil,Kepercayaan
+12.71.03.1004,4,Tanjung Gusta,total,total,,33339,jiwa,2025,registration,total_population,3.6,39,,

@@ -1,0 +1,133 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.78.03.2010,4,Hiligodu Ulu,sex,laki_laki,,369,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03.2010,4,Hiligodu Ulu,sex,laki_laki,,367,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03.2010,4,Hiligodu Ulu,sex,perempuan,,408,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03.2010,4,Hiligodu Ulu,sex,perempuan,,413,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03.2010,4,Hiligodu Ulu,total,total,,777,jiwa,2024,registration,total_population,3.1,32,,
+12.78.03.2010,4,Hiligodu Ulu,total,total,,780,jiwa,2025,registration,total_population,3.1,32,,
+12.78.03.2009,4,Hilimbowo Olora,sex,laki_laki,,355,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03.2009,4,Hilimbowo Olora,sex,laki_laki,,348,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03.2009,4,Hilimbowo Olora,sex,perempuan,,415,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03.2009,4,Hilimbowo Olora,sex,perempuan,,409,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03.2009,4,Hilimbowo Olora,total,total,,770,jiwa,2024,registration,total_population,3.1,32,,
+12.78.03.2009,4,Hilimbowo Olora,total,total,,757,jiwa,2025,registration,total_population,3.1,32,,
+12.78.03.2008,4,Olora,sex,laki_laki,,1205,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03.2008,4,Olora,sex,laki_laki,,1207,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03.2008,4,Olora,sex,perempuan,,1252,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03.2008,4,Olora,sex,perempuan,,1257,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03.2008,4,Olora,total,total,,2457,jiwa,2024,registration,total_population,3.1,32,,
+12.78.03.2008,4,Olora,total,total,,2464,jiwa,2025,registration,total_population,3.1,32,,
+12.78.03.2007,4,Gawu Gawu Bouso,sex,laki_laki,,1238,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03.2007,4,Gawu Gawu Bouso,sex,laki_laki,,1226,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03.2007,4,Gawu Gawu Bouso,sex,perempuan,,1352,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03.2007,4,Gawu Gawu Bouso,sex,perempuan,,1353,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03.2007,4,Gawu Gawu Bouso,total,total,,2590,jiwa,2024,registration,total_population,3.1,32,,
+12.78.03.2007,4,Gawu Gawu Bouso,total,total,,2579,jiwa,2025,registration,total_population,3.1,32,,
+12.78.03.2002,4,Loloanaa / Lolomoyo,sex,laki_laki,,562,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03.2002,4,Loloanaa / Lolomoyo,sex,laki_laki,,568,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03.2002,4,Loloanaa / Lolomoyo,sex,perempuan,,625,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03.2002,4,Loloanaa / Lolomoyo,sex,perempuan,,626,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03.2002,4,Loloanaa / Lolomoyo,total,total,,1187,jiwa,2024,registration,total_population,3.1,32,,
+12.78.03.2002,4,Loloanaa / Lolomoyo,total,total,,1194,jiwa,2025,registration,total_population,3.1,32,,
+12.78.03.2003,4,Lasara Sowu,sex,laki_laki,,944,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03.2003,4,Lasara Sowu,sex,laki_laki,,939,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03.2003,4,Lasara Sowu,sex,perempuan,,1043,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03.2003,4,Lasara Sowu,sex,perempuan,,1032,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03.2003,4,Lasara Sowu,total,total,,1987,jiwa,2024,registration,total_population,3.1,32,,
+12.78.03.2003,4,Lasara Sowu,total,total,,1971,jiwa,2025,registration,total_population,3.1,32,,
+12.78.03.2006,4,Hambawa,sex,laki_laki,,763,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03.2006,4,Hambawa,sex,laki_laki,,769,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03.2006,4,Hambawa,sex,perempuan,,787,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03.2006,4,Hambawa,sex,perempuan,,778,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03.2006,4,Hambawa,total,total,,1550,jiwa,2024,registration,total_population,3.1,32,,
+12.78.03.2006,4,Hambawa,total,total,,1547,jiwa,2025,registration,total_population,3.1,32,,
+12.78.03.2005,4,Tetehosi Afia,sex,laki_laki,,1068,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03.2005,4,Tetehosi Afia,sex,laki_laki,,1065,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03.2005,4,Tetehosi Afia,sex,perempuan,,1169,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03.2005,4,Tetehosi Afia,sex,perempuan,,1174,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03.2005,4,Tetehosi Afia,total,total,,2237,jiwa,2024,registration,total_population,3.1,32,,
+12.78.03.2005,4,Tetehosi Afia,total,total,,2239,jiwa,2025,registration,total_population,3.1,32,,
+12.78.03.2001,4,Afia,sex,laki_laki,,912,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03.2001,4,Afia,sex,laki_laki,,903,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03.2001,4,Afia,sex,perempuan,,1003,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03.2001,4,Afia,sex,perempuan,,1015,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03.2001,4,Afia,total,total,,1915,jiwa,2024,registration,total_population,3.1,32,,
+12.78.03.2001,4,Afia,total,total,,1918,jiwa,2025,registration,total_population,3.1,32,,
+12.78.03.2004,4,Teluk Belukar,sex,laki_laki,,1544,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03.2004,4,Teluk Belukar,sex,laki_laki,,1540,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03.2004,4,Teluk Belukar,sex,perempuan,,1609,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03.2004,4,Teluk Belukar,sex,perempuan,,1621,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03.2004,4,Teluk Belukar,total,total,,3153,jiwa,2024,registration,total_population,3.1,32,,
+12.78.03.2004,4,Teluk Belukar,total,total,,3161,jiwa,2025,registration,total_population,3.1,32,,
+12.78.03,3,Gunungsitoli Utara,sex,laki_laki,,8960,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03,3,Gunungsitoli Utara,sex,laki_laki,,8932,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.03,3,Gunungsitoli Utara,sex,perempuan,,9663,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03,3,Gunungsitoli Utara,sex,perempuan,,9678,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.03,3,Gunungsitoli Utara,total,total,,18623,jiwa,2024,registration,total_population,3.1,32,,
+12.78.03,3,Gunungsitoli Utara,total,total,,18610,jiwa,2025,registration,total_population,3.1,32,,
+12.78.03.2010,4,Hiligodu Ulu,religion,islam,,3,jiwa,2025,registration,total_population,3.4,39,,Islam
+12.78.03.2010,4,Hiligodu Ulu,religion,kristen,,774,jiwa,2025,registration,total_population,3.4,39,,Protestan
+12.78.03.2010,4,Hiligodu Ulu,religion,katolik,,3,jiwa,2025,registration,total_population,3.4,39,,Katolik
+12.78.03.2010,4,Hiligodu Ulu,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Hindu
+12.78.03.2010,4,Hiligodu Ulu,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,39,nil,Budha
+12.78.03.2010,4,Hiligodu Ulu,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Konghucu
+12.78.03.2009,4,Hilimbowo Olora,religion,islam,,6,jiwa,2025,registration,total_population,3.4,39,,Islam
+12.78.03.2009,4,Hilimbowo Olora,religion,kristen,,749,jiwa,2025,registration,total_population,3.4,39,,Protestan
+12.78.03.2009,4,Hilimbowo Olora,religion,katolik,,0,jiwa,2025,registration,total_population,3.4,39,nil,Katolik
+12.78.03.2009,4,Hilimbowo Olora,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Hindu
+12.78.03.2009,4,Hilimbowo Olora,religion,buddha,,2,jiwa,2025,registration,total_population,3.4,39,,Budha
+12.78.03.2009,4,Hilimbowo Olora,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Konghucu
+12.78.03.2008,4,Olora,religion,islam,,2442,jiwa,2025,registration,total_population,3.4,39,,Islam
+12.78.03.2008,4,Olora,religion,kristen,,13,jiwa,2025,registration,total_population,3.4,39,,Protestan
+12.78.03.2008,4,Olora,religion,katolik,,9,jiwa,2025,registration,total_population,3.4,39,,Katolik
+12.78.03.2008,4,Olora,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Hindu
+12.78.03.2008,4,Olora,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,39,nil,Budha
+12.78.03.2008,4,Olora,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Konghucu
+12.78.03.2007,4,Gawu Gawu Bouso,religion,islam,,4,jiwa,2025,registration,total_population,3.4,39,,Islam
+12.78.03.2007,4,Gawu Gawu Bouso,religion,kristen,,2449,jiwa,2025,registration,total_population,3.4,39,,Protestan
+12.78.03.2007,4,Gawu Gawu Bouso,religion,katolik,,126,jiwa,2025,registration,total_population,3.4,39,,Katolik
+12.78.03.2007,4,Gawu Gawu Bouso,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Hindu
+12.78.03.2007,4,Gawu Gawu Bouso,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,39,nil,Budha
+12.78.03.2007,4,Gawu Gawu Bouso,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Konghucu
+12.78.03.2002,4,Loloanaa / Lolomoyo,religion,islam,,0,jiwa,2025,registration,total_population,3.4,39,nil,Islam
+12.78.03.2002,4,Loloanaa / Lolomoyo,religion,kristen,,1194,jiwa,2025,registration,total_population,3.4,39,,Protestan
+12.78.03.2002,4,Loloanaa / Lolomoyo,religion,katolik,,0,jiwa,2025,registration,total_population,3.4,39,nil,Katolik
+12.78.03.2002,4,Loloanaa / Lolomoyo,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Hindu
+12.78.03.2002,4,Loloanaa / Lolomoyo,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,39,nil,Budha
+12.78.03.2002,4,Loloanaa / Lolomoyo,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Konghucu
+12.78.03.2003,4,Lasara Sowu,religion,islam,,0,jiwa,2025,registration,total_population,3.4,39,nil,Islam
+12.78.03.2003,4,Lasara Sowu,religion,kristen,,1836,jiwa,2025,registration,total_population,3.4,39,,Protestan
+12.78.03.2003,4,Lasara Sowu,religion,katolik,,135,jiwa,2025,registration,total_population,3.4,39,,Katolik
+12.78.03.2003,4,Lasara Sowu,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Hindu
+12.78.03.2003,4,Lasara Sowu,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,39,nil,Budha
+12.78.03.2003,4,Lasara Sowu,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Konghucu
+12.78.03.2006,4,Hambawa,religion,islam,,0,jiwa,2025,registration,total_population,3.4,39,nil,Islam
+12.78.03.2006,4,Hambawa,religion,kristen,,1331,jiwa,2025,registration,total_population,3.4,39,,Protestan
+12.78.03.2006,4,Hambawa,religion,katolik,,216,jiwa,2025,registration,total_population,3.4,39,,Katolik
+12.78.03.2006,4,Hambawa,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Hindu
+12.78.03.2006,4,Hambawa,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,39,nil,Budha
+12.78.03.2006,4,Hambawa,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Konghucu
+12.78.03.2005,4,Tetehosi Afia,religion,islam,,0,jiwa,2025,registration,total_population,3.4,39,nil,Islam
+12.78.03.2005,4,Tetehosi Afia,religion,kristen,,2094,jiwa,2025,registration,total_population,3.4,39,,Protestan
+12.78.03.2005,4,Tetehosi Afia,religion,katolik,,145,jiwa,2025,registration,total_population,3.4,39,,Katolik
+12.78.03.2005,4,Tetehosi Afia,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Hindu
+12.78.03.2005,4,Tetehosi Afia,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,39,nil,Budha
+12.78.03.2005,4,Tetehosi Afia,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Konghucu
+12.78.03.2001,4,Afia,religion,islam,,1119,jiwa,2025,registration,total_population,3.4,39,,Islam
+12.78.03.2001,4,Afia,religion,kristen,,722,jiwa,2025,registration,total_population,3.4,39,,Protestan
+12.78.03.2001,4,Afia,religion,katolik,,77,jiwa,2025,registration,total_population,3.4,39,,Katolik
+12.78.03.2001,4,Afia,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Hindu
+12.78.03.2001,4,Afia,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,39,nil,Budha
+12.78.03.2001,4,Afia,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Konghucu
+12.78.03.2004,4,Teluk Belukar,religion,islam,,195,jiwa,2025,registration,total_population,3.4,39,,Islam
+12.78.03.2004,4,Teluk Belukar,religion,kristen,,2933,jiwa,2025,registration,total_population,3.4,39,,Protestan
+12.78.03.2004,4,Teluk Belukar,religion,katolik,,33,jiwa,2025,registration,total_population,3.4,39,,Katolik
+12.78.03.2004,4,Teluk Belukar,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Hindu
+12.78.03.2004,4,Teluk Belukar,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,39,nil,Budha
+12.78.03.2004,4,Teluk Belukar,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Konghucu
+12.78.03,3,Gunungsitoli Utara,religion,islam,,3769,jiwa,2025,registration,total_population,3.4,39,,Islam
+12.78.03,3,Gunungsitoli Utara,religion,kristen,,14095,jiwa,2025,registration,total_population,3.4,39,,Protestan
+12.78.03,3,Gunungsitoli Utara,religion,katolik,,744,jiwa,2025,registration,total_population,3.4,39,,Katolik
+12.78.03,3,Gunungsitoli Utara,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Hindu
+12.78.03,3,Gunungsitoli Utara,religion,buddha,,2,jiwa,2025,registration,total_population,3.4,39,,Budha
+12.78.03,3,Gunungsitoli Utara,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,39,nil,Konghucu

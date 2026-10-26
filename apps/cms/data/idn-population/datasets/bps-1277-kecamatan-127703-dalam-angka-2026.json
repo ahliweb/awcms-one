@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1277-kecamatan-127703-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.77.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Padangsidimpuan Batunadua Dalam Angka 2026",
+  "publisherName": "BPS Kota Padangsidimpuan",
+  "publisherDomain": "1277",
+  "publisherWebsite": "https://padangsidimpuankota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Padangsidimpuan (https://padangsidimpuankota.bps.go.id), publikasi \"Kecamatan Padangsidimpuan Batunadua Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1277030",
+  "publicationNumber": "12770.26010",
+  "issn": "2745-5734",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://padangsidimpuankota.bps.go.id/id/publication/2026/09/28/5ad7a377d577d4cc9406d487/kecamatan-padangsidimpuan-batunadua-dalam-angka-2026.html",
+  "sourceFileSha256": "ab12872c1eac1e124667c9ba9400cb01055341891e3ace0cc747b2731cc2b0af",
+  "sourceFileBytes": 10654087,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Padangsidimpuan.",
+  "csvPath": "datasets/bps-1277-kecamatan-127703-dalam-angka-2026.csv",
+  "csvSha256": "7f09d4f07b609f2ea2c152414c0d621c6f7fc0c81e44f1ab8791f430f7131ae5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Padangsidimpuan Batunadua, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Padangsidimpuan Batunadua, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Gunung Hasatan\": unmatched ",
+    "table 3.1: row not stored: row \"Gunung Hasatan\": unmatched "
+  ]
+}

@@ -1,0 +1,103 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.03.04.1001,4,Pasar Sipirok,sex,laki_laki,,1530,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.03.04.1001,4,Pasar Sipirok,sex,perempuan,,1572,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.03.04.1001,4,Pasar Sipirok,total,total,,3102,jiwa,2025,registration,total_population,3.1,29,,
+12.03.04.1003,4,Hutasuhut,sex,laki_laki,,640,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.03.04.1003,4,Hutasuhut,sex,perempuan,,623,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.03.04.1003,4,Hutasuhut,total,total,,1263,jiwa,2025,registration,total_population,3.1,29,,
+12.03.04.1004,4,Baringin,sex,laki_laki,,732,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.03.04.1004,4,Baringin,sex,perempuan,,742,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.03.04.1004,4,Baringin,total,total,,1474,jiwa,2025,registration,total_population,3.1,29,,
+12.03.04.1005,4,Bunga Bondar,sex,laki_laki,,600,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.03.04.1005,4,Bunga Bondar,sex,perempuan,,592,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.03.04.1005,4,Bunga Bondar,total,total,,1192,jiwa,2025,registration,total_population,3.1,29,,
+12.03.04.1114,4,Sipirok Godang,sex,laki_laki,,781,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.03.04.1114,4,Sipirok Godang,sex,perempuan,,777,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.03.04.1114,4,Sipirok Godang,total,total,,1558,jiwa,2025,registration,total_population,3.1,29,,
+12.03.04.2010,4,Bagas Lombang,sex,laki_laki,,353,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.03.04.2010,4,Bagas Lombang,sex,perempuan,,337,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.03.04.2010,4,Bagas Lombang,total,total,,690,jiwa,2025,registration,total_population,3.1,29,,
+12.03.04.2025,4,Hasang Marsada,sex,laki_laki,,158,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.03.04.2025,4,Hasang Marsada,sex,perempuan,,176,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.03.04.2025,4,Hasang Marsada,total,total,,334,jiwa,2025,registration,total_population,3.1,29,,
+12.03.04.2034,4,Janji Mauli,sex,laki_laki,,99,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.03.04.2034,4,Janji Mauli,sex,perempuan,,101,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.03.04.2034,4,Janji Mauli,total,total,,200,jiwa,2025,registration,total_population,3.1,29,,
+12.03.04.2048,4,Paran Julu,sex,laki_laki,,603,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.03.04.2048,4,Paran Julu,sex,perempuan,,639,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.03.04.2048,4,Paran Julu,total,total,,1242,jiwa,2025,registration,total_population,3.1,29,,
+12.03.04.2051,4,Pangaribuan,sex,laki_laki,,330,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.03.04.2051,4,Pangaribuan,sex,perempuan,,317,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.03.04.2051,4,Pangaribuan,total,total,,647,jiwa,2025,registration,total_population,3.1,29,,
+12.03.04.2052,4,Pargarutan,sex,laki_laki,,239,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.03.04.2052,4,Pargarutan,sex,perempuan,,237,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.03.04.2052,4,Pargarutan,total,total,,476,jiwa,2025,registration,total_population,3.1,29,,
+12.03.04.2054,4,Panaungan,sex,laki_laki,,244,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.03.04.2054,4,Panaungan,sex,perempuan,,219,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.03.04.2054,4,Panaungan,total,total,,463,jiwa,2025,registration,total_population,3.1,29,,
+12.03.04.2059,4,Padang Bujur,sex,laki_laki,,461,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.03.04.2059,4,Padang Bujur,sex,perempuan,,476,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.03.04.2059,4,Padang Bujur,total,total,,937,jiwa,2025,registration,total_population,3.1,29,,
+12.03.04.2069,4,Tolang,sex,laki_laki,,223,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.03.04.2069,4,Tolang,sex,perempuan,,211,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.03.04.2069,4,Tolang,total,total,,434,jiwa,2025,registration,total_population,3.1,29,,
+12.03.04.2072,4,Sampean,sex,laki_laki,,502,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.03.04.2072,4,Sampean,sex,perempuan,,509,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.03.04.2072,4,Sampean,total,total,,1011,jiwa,2025,registration,total_population,3.1,29,,
+12.03.04.2075,4,Simaninggir,sex,laki_laki,,360,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.03.04.2075,4,Simaninggir,sex,perempuan,,369,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.03.04.2075,4,Simaninggir,total,total,,729,jiwa,2025,registration,total_population,3.1,30,,
+12.03.04.2076,4,Sibadoar,sex,laki_laki,,287,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.03.04.2076,4,Sibadoar,sex,perempuan,,305,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.03.04.2076,4,Sibadoar,total,total,,592,jiwa,2025,registration,total_population,3.1,30,,
+12.03.04.2096,4,Bulu Mario,sex,laki_laki,,678,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.03.04.2096,4,Bulu Mario,sex,perempuan,,688,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.03.04.2096,4,Bulu Mario,total,total,,1366,jiwa,2025,registration,total_population,3.1,30,,
+12.03.04.2097,4,Barnang Koling,sex,laki_laki,,141,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.03.04.2097,4,Barnang Koling,sex,perempuan,,122,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.03.04.2097,4,Barnang Koling,total,total,,263,jiwa,2025,registration,total_population,3.1,30,,
+12.03.04.2101,4,Dolok Sordang Julu,sex,laki_laki,,420,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.03.04.2101,4,Dolok Sordang Julu,sex,perempuan,,444,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.03.04.2101,4,Dolok Sordang Julu,total,total,,864,jiwa,2025,registration,total_population,3.1,30,,
+12.03.04.2102,4,Situmba Julu,sex,laki_laki,,532,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.03.04.2102,4,Situmba Julu,sex,perempuan,,531,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.03.04.2102,4,Situmba Julu,total,total,,1063,jiwa,2025,registration,total_population,3.1,30,,
+12.03.04.2103,4,Situmba,sex,laki_laki,,498,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.03.04.2103,4,Situmba,sex,perempuan,,491,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.03.04.2103,4,Situmba,total,total,,989,jiwa,2025,registration,total_population,3.1,30,,
+12.03.04.2104,4,Kilang Papan,sex,laki_laki,,403,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.03.04.2104,4,Kilang Papan,sex,perempuan,,404,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.03.04.2104,4,Kilang Papan,total,total,,807,jiwa,2025,registration,total_population,3.1,30,,
+12.03.04.2105,4,Sialaman,sex,laki_laki,,283,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.03.04.2105,4,Sialaman,sex,perempuan,,271,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.03.04.2105,4,Sialaman,total,total,,554,jiwa,2025,registration,total_population,3.1,30,,
+12.03.04.2107,4,Batang Tura Julu,sex,laki_laki,,311,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.03.04.2107,4,Batang Tura Julu,sex,perempuan,,275,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.03.04.2107,4,Batang Tura Julu,total,total,,586,jiwa,2025,registration,total_population,3.1,30,,
+12.03.04.2108,4,Batang Tura,sex,laki_laki,,335,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.03.04.2108,4,Batang Tura,sex,perempuan,,342,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.03.04.2108,4,Batang Tura,total,total,,677,jiwa,2025,registration,total_population,3.1,30,,
+12.03.04.2109,4,Dolok Sordang,sex,laki_laki,,299,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.03.04.2109,4,Dolok Sordang,sex,perempuan,,276,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.03.04.2109,4,Dolok Sordang,total,total,,575,jiwa,2025,registration,total_population,3.1,30,,
+12.03.04.2110,4,Pahae Aek Sagala,sex,laki_laki,,605,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.03.04.2110,4,Pahae Aek Sagala,sex,perempuan,,607,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.03.04.2110,4,Pahae Aek Sagala,total,total,,1212,jiwa,2025,registration,total_population,3.1,30,,
+12.03.04.2111,4,Marsada,sex,laki_laki,,833,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.03.04.2111,4,Marsada,sex,perempuan,,755,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.03.04.2111,4,Marsada,total,total,,1588,jiwa,2025,registration,total_population,3.1,30,,
+12.03.04.2112,4,Luat Lombang,sex,laki_laki,,927,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.03.04.2112,4,Luat Lombang,sex,perempuan,,866,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.03.04.2112,4,Luat Lombang,total,total,,1793,jiwa,2025,registration,total_population,3.1,30,,
+12.03.04.2113,4,Aek Batang Paya,sex,laki_laki,,459,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.03.04.2113,4,Aek Batang Paya,sex,perempuan,,394,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.03.04.2113,4,Aek Batang Paya,total,total,,853,jiwa,2025,registration,total_population,3.1,30,,
+12.03.04.2115,4,Saba Batang Miha,sex,laki_laki,,273,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.03.04.2115,4,Saba Batang Miha,sex,perempuan,,291,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.03.04.2115,4,Saba Batang Miha,total,total,,564,jiwa,2025,registration,total_population,3.1,30,,
+12.03.04.2116,4,Sarogodung,sex,laki_laki,,361,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.03.04.2116,4,Sarogodung,sex,perempuan,,377,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.03.04.2116,4,Sarogodung,total,total,,738,jiwa,2025,registration,total_population,3.1,30,,
+12.03.04,3,Sipirok,sex,laki_laki,,18563,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.03.04,3,Sipirok,sex,perempuan,,18353,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.03.04,3,Sipirok,total,total,,36916,jiwa,2025,registration,total_population,3.1,30,,

@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.01.15.2009,4,Sitardas,sex,laki_laki,,1509,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.15.2009,4,Sitardas,sex,perempuan,,1408,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.15.2009,4,Sitardas,total,total,,2917,jiwa,2025,registration,total_population,3.1,35,,
+12.01.15.2003,4,Jago Jago,sex,laki_laki,,1254,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.15.2003,4,Jago Jago,sex,perempuan,,1178,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.15.2003,4,Jago Jago,total,total,,2432,jiwa,2025,registration,total_population,3.1,35,,
+12.01.15.1001,4,Hutabalang,sex,laki_laki,,4424,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.15.1001,4,Hutabalang,sex,perempuan,,4231,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.15.1001,4,Hutabalang,total,total,,8655,jiwa,2025,registration,total_population,3.1,35,,
+12.01.15.1002,4,Lopian,sex,laki_laki,,1716,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.15.1002,4,Lopian,sex,perempuan,,1664,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.15.1002,4,Lopian,total,total,,3380,jiwa,2025,registration,total_population,3.1,35,,
+12.01.15.2004,4,Aek Horsik,sex,laki_laki,,1839,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.15.2004,4,Aek Horsik,sex,perempuan,,1675,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.15.2004,4,Aek Horsik,total,total,,3514,jiwa,2025,registration,total_population,3.1,35,,
+12.01.15.2006,4,Kebun Pisang,sex,laki_laki,,1437,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.15.2006,4,Kebun Pisang,sex,perempuan,,1418,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.15.2006,4,Kebun Pisang,total,total,,2855,jiwa,2025,registration,total_population,3.1,35,,
+12.01.15.2005,4,Gunung Kelambu,sex,laki_laki,,1269,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.15.2005,4,Gunung Kelambu,sex,perempuan,,1195,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.15.2005,4,Gunung Kelambu,total,total,,2464,jiwa,2025,registration,total_population,3.1,35,,
+12.01.15.2007,4,Lubuk Ampolu,sex,laki_laki,,822,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.15.2007,4,Lubuk Ampolu,sex,perempuan,,796,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.15.2007,4,Lubuk Ampolu,total,total,,1618,jiwa,2025,registration,total_population,3.1,35,,
+12.01.15.2008,4,Pagaran Honas,sex,laki_laki,,445,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.15.2008,4,Pagaran Honas,sex,perempuan,,427,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.15.2008,4,Pagaran Honas,total,total,,872,jiwa,2025,registration,total_population,3.1,35,,
+12.01.15,3,Badiri,sex,laki_laki,,14715,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.15,3,Badiri,sex,perempuan,,13992,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.15,3,Badiri,total,total,,28707,jiwa,2025,registration,total_population,3.1,35,,

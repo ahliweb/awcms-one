@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.07.33,3,Beringin,age_group,0-4,laki_laki,2320,jiwa,2024,registration,total_population,3.3,40,,0 - 4
+12.07.33,3,Beringin,age_group,0-4,perempuan,2040,jiwa,2024,registration,total_population,3.3,40,,0 - 4
+12.07.33,3,Beringin,age_group,0-4,,4360,jiwa,2024,registration,total_population,3.3,40,,0 - 4
+12.07.33,3,Beringin,age_group,5-9,laki_laki,3168,jiwa,2024,registration,total_population,3.3,40,,5 - 9
+12.07.33,3,Beringin,age_group,5-9,perempuan,2964,jiwa,2024,registration,total_population,3.3,40,,5 - 9
+12.07.33,3,Beringin,age_group,5-9,,6132,jiwa,2024,registration,total_population,3.3,40,,5 - 9
+12.07.33,3,Beringin,age_group,10-14,laki_laki,3457,jiwa,2024,registration,total_population,3.3,40,,10 - 14
+12.07.33,3,Beringin,age_group,10-14,perempuan,3313,jiwa,2024,registration,total_population,3.3,40,,10 - 14
+12.07.33,3,Beringin,age_group,10-14,,6770,jiwa,2024,registration,total_population,3.3,40,,10 - 14
+12.07.33,3,Beringin,age_group,15-19,laki_laki,2812,jiwa,2024,registration,total_population,3.3,40,,15 - 19
+12.07.33,3,Beringin,age_group,15-19,perempuan,2691,jiwa,2024,registration,total_population,3.3,40,,15 - 19
+12.07.33,3,Beringin,age_group,15-19,,5503,jiwa,2024,registration,total_population,3.3,40,,15 - 19
+12.07.33,3,Beringin,age_group,20-24,laki_laki,2987,jiwa,2024,registration,total_population,3.3,40,,20 - 24
+12.07.33,3,Beringin,age_group,20-24,perempuan,2922,jiwa,2024,registration,total_population,3.3,40,,20 - 24
+12.07.33,3,Beringin,age_group,20-24,,5909,jiwa,2024,registration,total_population,3.3,40,,20 - 24
+12.07.33,3,Beringin,age_group,25-29,laki_laki,2765,jiwa,2024,registration,total_population,3.3,40,,25 - 29
+12.07.33,3,Beringin,age_group,25-29,perempuan,2730,jiwa,2024,registration,total_population,3.3,40,,25 - 29
+12.07.33,3,Beringin,age_group,25-29,,5495,jiwa,2024,registration,total_population,3.3,40,,25 - 29
+12.07.33,3,Beringin,age_group,30-34,laki_laki,2681,jiwa,2024,registration,total_population,3.3,40,,30 - 34
+12.07.33,3,Beringin,age_group,30-34,perempuan,2525,jiwa,2024,registration,total_population,3.3,40,,30 - 34
+12.07.33,3,Beringin,age_group,30-34,,5206,jiwa,2024,registration,total_population,3.3,40,,30 - 34
+12.07.33,3,Beringin,age_group,35-39,laki_laki,2441,jiwa,2024,registration,total_population,3.3,40,,35 - 39
+12.07.33,3,Beringin,age_group,35-39,perempuan,2419,jiwa,2024,registration,total_population,3.3,40,,35 - 39
+12.07.33,3,Beringin,age_group,35-39,,4860,jiwa,2024,registration,total_population,3.3,40,,35 - 39
+12.07.33,3,Beringin,age_group,40-44,laki_laki,2488,jiwa,2024,registration,total_population,3.3,40,,40 - 44
+12.07.33,3,Beringin,age_group,40-44,perempuan,2488,jiwa,2024,registration,total_population,3.3,40,,40 - 44
+12.07.33,3,Beringin,age_group,40-44,,4976,jiwa,2024,registration,total_population,3.3,40,,40 - 44
+12.07.33,3,Beringin,age_group,45-49,laki_laki,2212,jiwa,2024,registration,total_population,3.3,40,,45 - 49
+12.07.33,3,Beringin,age_group,45-49,perempuan,2266,jiwa,2024,registration,total_population,3.3,40,,45 - 49
+12.07.33,3,Beringin,age_group,45-49,,4478,jiwa,2024,registration,total_population,3.3,40,,45 - 49
+12.07.33,3,Beringin,age_group,50-54,laki_laki,1858,jiwa,2024,registration,total_population,3.3,40,,50 - 54
+12.07.33,3,Beringin,age_group,50-54,perempuan,2056,jiwa,2024,registration,total_population,3.3,40,,50 - 54
+12.07.33,3,Beringin,age_group,50-54,,3914,jiwa,2024,registration,total_population,3.3,40,,50 - 54
+12.07.33,3,Beringin,age_group,55-59,laki_laki,1654,jiwa,2024,registration,total_population,3.3,40,,55 - 59
+12.07.33,3,Beringin,age_group,55-59,perempuan,1720,jiwa,2024,registration,total_population,3.3,40,,55 - 59
+12.07.33,3,Beringin,age_group,55-59,,3374,jiwa,2024,registration,total_population,3.3,40,,55 - 59
+12.07.33,3,Beringin,age_group,60-64,laki_laki,1265,jiwa,2024,registration,total_population,3.3,40,,60 - 64
+12.07.33,3,Beringin,age_group,60-64,perempuan,1335,jiwa,2024,registration,total_population,3.3,40,,60 - 64
+12.07.33,3,Beringin,age_group,60-64,,2600,jiwa,2024,registration,total_population,3.3,40,,60 - 64
+12.07.33,3,Beringin,age_group,65-69,laki_laki,924,jiwa,2024,registration,total_population,3.3,40,,65 - 69
+12.07.33,3,Beringin,age_group,65-69,perempuan,987,jiwa,2024,registration,total_population,3.3,40,,65 - 69
+12.07.33,3,Beringin,age_group,65-69,,1911,jiwa,2024,registration,total_population,3.3,40,,65 - 69
+12.07.33,3,Beringin,age_group,70-74,laki_laki,592,jiwa,2024,registration,total_population,3.3,40,,70 - 74
+12.07.33,3,Beringin,age_group,70-74,perempuan,646,jiwa,2024,registration,total_population,3.3,40,,70 - 74
+12.07.33,3,Beringin,age_group,70-74,,1238,jiwa,2024,registration,total_population,3.3,40,,70 - 74
+12.07.33,3,Beringin,age_group,75+,laki_laki,508,jiwa,2024,registration,total_population,3.3,40,,75+
+12.07.33,3,Beringin,age_group,75+,perempuan,670,jiwa,2024,registration,total_population,3.3,40,,75+
+12.07.33,3,Beringin,age_group,75+,,1178,jiwa,2024,registration,total_population,3.3,40,,75+

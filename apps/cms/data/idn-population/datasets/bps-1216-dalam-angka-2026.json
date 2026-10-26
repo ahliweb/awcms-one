@@ -1,0 +1,65 @@
+{
+  "datasetCode": "bps-1216-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "12.15",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Pakpak Bharat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pakpak Bharat",
+  "publisherDomain": "1216",
+  "publisherWebsite": "https://pakpakbharatkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pakpak Bharat (https://pakpakbharatkab.bps.go.id), publikasi \"Kabupaten Pakpak Bharat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1216",
+  "publicationNumber": "12160.26003",
+  "issn": "2302-0326",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://pakpakbharatkab.bps.go.id/id/publication/2026/02/27/b488226ab08f62a0d8a7dfc9/kabupaten-pakpak-bharat-dalam-angka-2026.html",
+  "sourceFileSha256": "8afd1a3bea751eff1a54e67332eb98185f922aeb01c67c1aa97d615c3cb0000c",
+  "sourceFileBytes": 11187191,
+  "sourcePages": [78, 81, 178, 425],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pakpak Bharat.",
+  "csvPath": "datasets/bps-1216-dalam-angka-2026.csv",
+  "csvSha256": "a8a90c2acd45e917f4172df6c84f02a5715236a1616d696b1d20417d8d73c62d",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Pakpak Bharat, 2025",
+      "printedPages": [78],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Pakpak Bharat (jiwa), 2025",
+      "printedPages": [81],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Pakpak Bharat, 2025",
+      "printedPages": [178],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Pakpak Bharat (rupiah), 2024 dan 2025",
+      "printedPages": [425],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,121 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.78.06.2008,4,Onozikho,sex,laki_laki,,612,jiwa,2024,registration,total_population,unnumbered-p34,34,,Laki-laki/Male
+12.78.06.2008,4,Onozikho,sex,laki_laki,,609,jiwa,2025,registration,total_population,unnumbered-p34,34,,Laki-laki/Male
+12.78.06.2008,4,Onozikho,sex,perempuan,,633,jiwa,2024,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+12.78.06.2008,4,Onozikho,sex,perempuan,,619,jiwa,2025,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+12.78.06.2008,4,Onozikho,total,total,,1245,jiwa,2024,registration,total_population,unnumbered-p34,34,,
+12.78.06.2008,4,Onozikho,total,total,,1228,jiwa,2025,registration,total_population,unnumbered-p34,34,,
+12.78.06.2004,4,Gada,sex,laki_laki,,460,jiwa,2024,registration,total_population,unnumbered-p34,34,,Laki-laki/Male
+12.78.06.2004,4,Gada,sex,laki_laki,,450,jiwa,2025,registration,total_population,unnumbered-p34,34,,Laki-laki/Male
+12.78.06.2004,4,Gada,sex,perempuan,,508,jiwa,2024,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+12.78.06.2004,4,Gada,sex,perempuan,,509,jiwa,2025,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+12.78.06.2004,4,Gada,total,total,,968,jiwa,2024,registration,total_population,unnumbered-p34,34,,
+12.78.06.2004,4,Gada,total,total,,959,jiwa,2025,registration,total_population,unnumbered-p34,34,,
+12.78.06.2007,4,Hilinakhe,sex,laki_laki,,275,jiwa,2024,registration,total_population,unnumbered-p34,34,,Laki-laki/Male
+12.78.06.2007,4,Hilinakhe,sex,laki_laki,,277,jiwa,2025,registration,total_population,unnumbered-p34,34,,Laki-laki/Male
+12.78.06.2007,4,Hilinakhe,sex,perempuan,,272,jiwa,2024,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+12.78.06.2007,4,Hilinakhe,sex,perempuan,,268,jiwa,2025,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+12.78.06.2007,4,Hilinakhe,total,total,,547,jiwa,2024,registration,total_population,unnumbered-p34,34,,
+12.78.06.2007,4,Hilinakhe,total,total,,545,jiwa,2025,registration,total_population,unnumbered-p34,34,,
+12.78.06.2005,4,Lolomoyo Tuhemberua,sex,laki_laki,,616,jiwa,2024,registration,total_population,unnumbered-p34,34,,Laki-laki/Male
+12.78.06.2005,4,Lolomoyo Tuhemberua,sex,laki_laki,,632,jiwa,2025,registration,total_population,unnumbered-p34,34,,Laki-laki/Male
+12.78.06.2005,4,Lolomoyo Tuhemberua,sex,perempuan,,633,jiwa,2024,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+12.78.06.2005,4,Lolomoyo Tuhemberua,sex,perempuan,,636,jiwa,2025,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+12.78.06.2005,4,Lolomoyo Tuhemberua,total,total,,1249,jiwa,2024,registration,total_population,unnumbered-p34,34,,
+12.78.06.2005,4,Lolomoyo Tuhemberua,total,total,,1268,jiwa,2025,registration,total_population,unnumbered-p34,34,,
+12.78.06.2006,4,Sihareo Siwahili,sex,laki_laki,,477,jiwa,2024,registration,total_population,unnumbered-p34,34,,Laki-laki/Male
+12.78.06.2006,4,Sihareo Siwahili,sex,laki_laki,,469,jiwa,2025,registration,total_population,unnumbered-p34,34,,Laki-laki/Male
+12.78.06.2006,4,Sihareo Siwahili,sex,perempuan,,449,jiwa,2024,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+12.78.06.2006,4,Sihareo Siwahili,sex,perempuan,,457,jiwa,2025,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+12.78.06.2006,4,Sihareo Siwahili,total,total,,926,jiwa,2024,registration,total_population,unnumbered-p34,34,,
+12.78.06.2006,4,Sihareo Siwahili,total,total,,926,jiwa,2025,registration,total_population,unnumbered-p34,34,,
+12.78.06.2002,4,Tumori Balohili,sex,laki_laki,,396,jiwa,2024,registration,total_population,unnumbered-p34,34,,Laki-laki/Male
+12.78.06.2002,4,Tumori Balohili,sex,laki_laki,,386,jiwa,2025,registration,total_population,unnumbered-p34,34,,Laki-laki/Male
+12.78.06.2002,4,Tumori Balohili,sex,perempuan,,400,jiwa,2024,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+12.78.06.2002,4,Tumori Balohili,sex,perempuan,,385,jiwa,2025,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+12.78.06.2002,4,Tumori Balohili,total,total,,796,jiwa,2024,registration,total_population,unnumbered-p34,34,,
+12.78.06.2002,4,Tumori Balohili,total,total,,771,jiwa,2025,registration,total_population,unnumbered-p34,34,,
+12.78.06.2001,4,Tumori,sex,laki_laki,,562,jiwa,2024,registration,total_population,unnumbered-p34,34,,Laki-laki/Male
+12.78.06.2001,4,Tumori,sex,laki_laki,,561,jiwa,2025,registration,total_population,unnumbered-p34,34,,Laki-laki/Male
+12.78.06.2001,4,Tumori,sex,perempuan,,579,jiwa,2024,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+12.78.06.2001,4,Tumori,sex,perempuan,,587,jiwa,2025,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+12.78.06.2001,4,Tumori,total,total,,1141,jiwa,2024,registration,total_population,unnumbered-p34,34,,
+12.78.06.2001,4,Tumori,total,total,,1148,jiwa,2025,registration,total_population,unnumbered-p34,34,,
+12.78.06.2003,4,Orahili Tumori,sex,laki_laki,,405,jiwa,2024,registration,total_population,unnumbered-p34,34,,Laki-laki/Male
+12.78.06.2003,4,Orahili Tumori,sex,laki_laki,,413,jiwa,2025,registration,total_population,unnumbered-p34,34,,Laki-laki/Male
+12.78.06.2003,4,Orahili Tumori,sex,perempuan,,452,jiwa,2024,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+12.78.06.2003,4,Orahili Tumori,sex,perempuan,,455,jiwa,2025,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+12.78.06.2003,4,Orahili Tumori,total,total,,857,jiwa,2024,registration,total_population,unnumbered-p34,34,,
+12.78.06.2003,4,Orahili Tumori,total,total,,868,jiwa,2025,registration,total_population,unnumbered-p34,34,,
+12.78.06.2009,4,Ononamolo II Lot,sex,laki_laki,,473,jiwa,2024,registration,total_population,unnumbered-p34,34,,Laki-laki/Male
+12.78.06.2009,4,Ononamolo II Lot,sex,laki_laki,,467,jiwa,2025,registration,total_population,unnumbered-p34,34,,Laki-laki/Male
+12.78.06.2009,4,Ononamolo II Lot,sex,perempuan,,500,jiwa,2024,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+12.78.06.2009,4,Ononamolo II Lot,sex,perempuan,,501,jiwa,2025,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+12.78.06.2009,4,Ononamolo II Lot,total,total,,973,jiwa,2024,registration,total_population,unnumbered-p34,34,,
+12.78.06.2009,4,Ononamolo II Lot,total,total,,968,jiwa,2025,registration,total_population,unnumbered-p34,34,,
+12.78.06,3,Gunungsitoli Barat,sex,laki_laki,,4276,jiwa,2024,registration,total_population,unnumbered-p34,34,,Laki-laki/Male
+12.78.06,3,Gunungsitoli Barat,sex,laki_laki,,4264,jiwa,2025,registration,total_population,unnumbered-p34,34,,Laki-laki/Male
+12.78.06,3,Gunungsitoli Barat,sex,perempuan,,4426,jiwa,2024,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+12.78.06,3,Gunungsitoli Barat,sex,perempuan,,4417,jiwa,2025,registration,total_population,unnumbered-p34,34,,Perempuan/Female
+12.78.06,3,Gunungsitoli Barat,total,total,,8702,jiwa,2024,registration,total_population,unnumbered-p34,34,,
+12.78.06,3,Gunungsitoli Barat,total,total,,8681,jiwa,2025,registration,total_population,unnumbered-p34,34,,
+12.78.06.2008,4,Onozikho,religion,islam,,1,jiwa,2025,registration,total_population,unnumbered-p39,39,,Islam
+12.78.06.2008,4,Onozikho,religion,kristen,,1133,jiwa,2025,registration,total_population,unnumbered-p39,39,,Protestan
+12.78.06.2008,4,Onozikho,religion,katolik,,94,jiwa,2025,registration,total_population,unnumbered-p39,39,,Katolik
+12.78.06.2008,4,Onozikho,religion,hindu,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Hindu
+12.78.06.2008,4,Onozikho,religion,buddha,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Budha
+12.78.06.2008,4,Onozikho,religion,khonghucu,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Konghucu
+12.78.06.2004,4,Gada,religion,islam,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,,Islam
+12.78.06.2004,4,Gada,religion,kristen,,948,jiwa,2025,registration,total_population,unnumbered-p39,39,,Protestan
+12.78.06.2004,4,Gada,religion,katolik,,11,jiwa,2025,registration,total_population,unnumbered-p39,39,,Katolik
+12.78.06.2004,4,Gada,religion,hindu,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Hindu
+12.78.06.2004,4,Gada,religion,buddha,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Budha
+12.78.06.2004,4,Gada,religion,khonghucu,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Konghucu
+12.78.06.2007,4,Hilinakhe,religion,islam,,1,jiwa,2025,registration,total_population,unnumbered-p39,39,,Islam
+12.78.06.2007,4,Hilinakhe,religion,kristen,,540,jiwa,2025,registration,total_population,unnumbered-p39,39,,Protestan
+12.78.06.2007,4,Hilinakhe,religion,katolik,,4,jiwa,2025,registration,total_population,unnumbered-p39,39,,Katolik
+12.78.06.2007,4,Hilinakhe,religion,hindu,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Hindu
+12.78.06.2007,4,Hilinakhe,religion,buddha,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Budha
+12.78.06.2007,4,Hilinakhe,religion,khonghucu,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Konghucu
+12.78.06.2005,4,Lolomoyo Tuhemberua,religion,islam,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,,Islam
+12.78.06.2005,4,Lolomoyo Tuhemberua,religion,kristen,,1014,jiwa,2025,registration,total_population,unnumbered-p39,39,,Protestan
+12.78.06.2005,4,Lolomoyo Tuhemberua,religion,katolik,,254,jiwa,2025,registration,total_population,unnumbered-p39,39,,Katolik
+12.78.06.2005,4,Lolomoyo Tuhemberua,religion,hindu,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Hindu
+12.78.06.2005,4,Lolomoyo Tuhemberua,religion,buddha,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Budha
+12.78.06.2005,4,Lolomoyo Tuhemberua,religion,khonghucu,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Konghucu
+12.78.06.2006,4,Sihareo Siwahili,religion,islam,,2,jiwa,2025,registration,total_population,unnumbered-p39,39,,Islam
+12.78.06.2006,4,Sihareo Siwahili,religion,kristen,,846,jiwa,2025,registration,total_population,unnumbered-p39,39,,Protestan
+12.78.06.2006,4,Sihareo Siwahili,religion,katolik,,78,jiwa,2025,registration,total_population,unnumbered-p39,39,,Katolik
+12.78.06.2006,4,Sihareo Siwahili,religion,hindu,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Hindu
+12.78.06.2006,4,Sihareo Siwahili,religion,buddha,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Budha
+12.78.06.2006,4,Sihareo Siwahili,religion,khonghucu,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Konghucu
+12.78.06.2002,4,Tumori Balohili,religion,islam,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,,Islam
+12.78.06.2002,4,Tumori Balohili,religion,kristen,,769,jiwa,2025,registration,total_population,unnumbered-p39,39,,Protestan
+12.78.06.2002,4,Tumori Balohili,religion,katolik,,2,jiwa,2025,registration,total_population,unnumbered-p39,39,,Katolik
+12.78.06.2002,4,Tumori Balohili,religion,hindu,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Hindu
+12.78.06.2002,4,Tumori Balohili,religion,buddha,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Budha
+12.78.06.2002,4,Tumori Balohili,religion,khonghucu,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Konghucu
+12.78.06.2001,4,Tumori,religion,islam,,3,jiwa,2025,registration,total_population,unnumbered-p39,39,,Islam
+12.78.06.2001,4,Tumori,religion,kristen,,1124,jiwa,2025,registration,total_population,unnumbered-p39,39,,Protestan
+12.78.06.2001,4,Tumori,religion,katolik,,21,jiwa,2025,registration,total_population,unnumbered-p39,39,,Katolik
+12.78.06.2001,4,Tumori,religion,hindu,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Hindu
+12.78.06.2001,4,Tumori,religion,buddha,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Budha
+12.78.06.2001,4,Tumori,religion,khonghucu,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Konghucu
+12.78.06.2003,4,Orahili Tumori,religion,islam,,1,jiwa,2025,registration,total_population,unnumbered-p39,39,,Islam
+12.78.06.2003,4,Orahili Tumori,religion,kristen,,851,jiwa,2025,registration,total_population,unnumbered-p39,39,,Protestan
+12.78.06.2003,4,Orahili Tumori,religion,katolik,,16,jiwa,2025,registration,total_population,unnumbered-p39,39,,Katolik
+12.78.06.2003,4,Orahili Tumori,religion,hindu,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Hindu
+12.78.06.2003,4,Orahili Tumori,religion,buddha,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Budha
+12.78.06.2003,4,Orahili Tumori,religion,khonghucu,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Konghucu
+12.78.06.2009,4,Ononamolo II Lot,religion,islam,,5,jiwa,2025,registration,total_population,unnumbered-p39,39,,Islam
+12.78.06.2009,4,Ononamolo II Lot,religion,kristen,,932,jiwa,2025,registration,total_population,unnumbered-p39,39,,Protestan
+12.78.06.2009,4,Ononamolo II Lot,religion,katolik,,31,jiwa,2025,registration,total_population,unnumbered-p39,39,,Katolik
+12.78.06.2009,4,Ononamolo II Lot,religion,hindu,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Hindu
+12.78.06.2009,4,Ononamolo II Lot,religion,buddha,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Budha
+12.78.06.2009,4,Ononamolo II Lot,religion,khonghucu,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Konghucu
+12.78.06,3,Gunungsitoli Barat,religion,islam,,13,jiwa,2025,registration,total_population,unnumbered-p39,39,,Islam
+12.78.06,3,Gunungsitoli Barat,religion,kristen,,8157,jiwa,2025,registration,total_population,unnumbered-p39,39,,Protestan
+12.78.06,3,Gunungsitoli Barat,religion,katolik,,511,jiwa,2025,registration,total_population,unnumbered-p39,39,,Katolik
+12.78.06,3,Gunungsitoli Barat,religion,hindu,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Hindu
+12.78.06,3,Gunungsitoli Barat,religion,buddha,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Budha
+12.78.06,3,Gunungsitoli Barat,religion,khonghucu,,0,jiwa,2025,registration,total_population,unnumbered-p39,39,nil,Konghucu

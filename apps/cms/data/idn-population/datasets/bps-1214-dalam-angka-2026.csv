@@ -1,0 +1,136 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.14.04,3,Hibala,total,total,,8417,jiwa,2024,projection,total_population,3.1.1,62,,
+12.14.04,3,Hibala,total,total,,8588,jiwa,2025,projection,total_population,3.1.1,62,,
+12.14.31,3,Tanah Masa,total,total,,5244,jiwa,2024,projection,total_population,3.1.1,62,,
+12.14.31,3,Tanah Masa,total,total,,5350,jiwa,2025,projection,total_population,3.1.1,62,,
+12.14.05,3,Pulau Pulau Batu,total,total,,9902,jiwa,2024,projection,total_population,3.1.1,62,,
+12.14.05,3,Pulau Pulau Batu,total,total,,9929,jiwa,2025,projection,total_population,3.1.1,62,,
+12.14.16,3,Pulau Pulau Batu Timur,total,total,,3313,jiwa,2024,projection,total_population,3.1.1,62,,
+12.14.16,3,Pulau Pulau Batu Timur,total,total,,3365,jiwa,2025,projection,total_population,3.1.1,62,,
+12.14.28,3,Simuk,total,total,,1968,jiwa,2024,projection,total_population,3.1.1,62,,
+12.14.28,3,Simuk,total,total,,1974,jiwa,2025,projection,total_population,3.1.1,62,,
+12.14.29,3,Pulau-Pulau Batu Barat,total,total,,2361,jiwa,2024,projection,total_population,3.1.1,62,,
+12.14.29,3,Pulau-Pulau Batu Barat,total,total,,2367,jiwa,2025,projection,total_population,3.1.1,62,,
+12.14.30,3,Pulau-Pulau Batu Utara,total,total,,3963,jiwa,2024,projection,total_population,3.1.1,62,,
+12.14.30,3,Pulau-Pulau Batu Utara,total,total,,3974,jiwa,2025,projection,total_population,3.1.1,62,,
+12.14.06,3,Telukdalam,total,total,,27103,jiwa,2024,projection,total_population,3.1.1,62,,
+12.14.06,3,Telukdalam,total,total,,27478,jiwa,2025,projection,total_population,3.1.1,62,,
+12.14.18,3,Fanayama,total,total,,20656,jiwa,2024,projection,total_population,3.1.1,62,,
+12.14.18,3,Fanayama,total,total,,21283,jiwa,2025,projection,total_population,3.1.1,62,,
+12.14.12,3,Toma,total,total,,16003,jiwa,2024,projection,total_population,3.1.1,62,,
+12.14.12,3,Toma,total,total,,16729,jiwa,2025,projection,total_population,3.1.1,62,,
+12.14.10,3,Maniamolo,total,total,,13780,jiwa,2024,projection,total_population,3.1.1,62,,
+12.14.10,3,Maniamolo,total,total,,13739,jiwa,2025,projection,total_population,3.1.1,62,,
+12.14.13,3,Mazino,total,total,,8769,jiwa,2024,projection,total_population,3.1.1,62,,
+12.14.13,3,Mazino,total,total,,8763,jiwa,2025,projection,total_population,3.1.1,62,,
+12.14.32,3,Luahagundre Maniamolo,total,total,,11692,jiwa,2024,projection,total_population,3.1.1,62,,
+12.14.32,3,Luahagundre Maniamolo,total,total,,12047,jiwa,2025,projection,total_population,3.1.1,62,,
+12.14.33,3,Onolalu,total,total,,9012,jiwa,2024,projection,total_population,3.1.1,62,,
+12.14.33,3,Onolalu,total,total,,9136,jiwa,2025,projection,total_population,3.1.1,62,,
+12.14.07,3,Amandraya,total,total,,15989,jiwa,2024,projection,total_population,3.1.1,62,,
+12.14.07,3,Amandraya,total,total,,16485,jiwa,2025,projection,total_population,3.1.1,62,,
+12.14.15,3,Aramo,total,total,,10829,jiwa,2024,projection,total_population,3.1.1,62,,
+12.14.15,3,Aramo,total,total,,11035,jiwa,2025,projection,total_population,3.1.1,62,,
+12.14.24,3,Ulususua,total,total,,12132,jiwa,2024,projection,total_population,3.1.1,62,,
+12.14.24,3,Ulususua,total,total,,12508,jiwa,2025,projection,total_population,3.1.1,62,,
+12.14.03,3,Lahusa,total,total,,22923,jiwa,2024,projection,total_population,3.1.1,62,,
+12.14.03,3,Lahusa,total,total,,23432,jiwa,2025,projection,total_population,3.1.1,62,,
+12.14.25,3,Sidua’ori,total,total,,12478,jiwa,2024,projection,total_population,3.1.1,62,,
+12.14.25,3,Sidua’ori,total,total,,12755,jiwa,2025,projection,total_population,3.1.1,62,,
+12.14,2,Kabupaten Nias Selatan,age_group,0-4,laki_laki,25.96,ribu_jiwa,2025,projection,total_population,3.1.2,68,,0–4
+12.14,2,Kabupaten Nias Selatan,age_group,0-4,perempuan,24.90,ribu_jiwa,2025,projection,total_population,3.1.2,68,,0–4
+12.14,2,Kabupaten Nias Selatan,age_group,0-4,,50.86,ribu_jiwa,2025,projection,total_population,3.1.2,68,,0–4
+12.14,2,Kabupaten Nias Selatan,age_group,5-9,laki_laki,14.56,ribu_jiwa,2025,projection,total_population,3.1.2,68,,5–9
+12.14,2,Kabupaten Nias Selatan,age_group,5-9,perempuan,13.84,ribu_jiwa,2025,projection,total_population,3.1.2,68,,5–9
+12.14,2,Kabupaten Nias Selatan,age_group,5-9,,28.39,ribu_jiwa,2025,projection,total_population,3.1.2,68,,5–9
+12.14,2,Kabupaten Nias Selatan,age_group,10-14,laki_laki,15.77,ribu_jiwa,2025,projection,total_population,3.1.2,68,,10–14
+12.14,2,Kabupaten Nias Selatan,age_group,10-14,perempuan,15.39,ribu_jiwa,2025,projection,total_population,3.1.2,68,,10–14
+12.14,2,Kabupaten Nias Selatan,age_group,10-14,,31.15,ribu_jiwa,2025,projection,total_population,3.1.2,68,,10–14
+12.14,2,Kabupaten Nias Selatan,age_group,15-19,laki_laki,20.38,ribu_jiwa,2025,projection,total_population,3.1.2,68,,15–19
+12.14,2,Kabupaten Nias Selatan,age_group,15-19,perempuan,18.89,ribu_jiwa,2025,projection,total_population,3.1.2,68,,15–19
+12.14,2,Kabupaten Nias Selatan,age_group,15-19,,39.26,ribu_jiwa,2025,projection,total_population,3.1.2,68,,15–19
+12.14,2,Kabupaten Nias Selatan,age_group,20-24,laki_laki,21.91,ribu_jiwa,2025,projection,total_population,3.1.2,68,,20–24
+12.14,2,Kabupaten Nias Selatan,age_group,20-24,perempuan,19.58,ribu_jiwa,2025,projection,total_population,3.1.2,68,,20–24
+12.14,2,Kabupaten Nias Selatan,age_group,20-24,,41.49,ribu_jiwa,2025,projection,total_population,3.1.2,68,,20–24
+12.14,2,Kabupaten Nias Selatan,age_group,25-29,laki_laki,21.28,ribu_jiwa,2025,projection,total_population,3.1.2,68,,25–29
+12.14,2,Kabupaten Nias Selatan,age_group,25-29,perempuan,19.92,ribu_jiwa,2025,projection,total_population,3.1.2,68,,25–29
+12.14,2,Kabupaten Nias Selatan,age_group,25-29,,41.20,ribu_jiwa,2025,projection,total_population,3.1.2,68,,25–29
+12.14,2,Kabupaten Nias Selatan,age_group,30-34,laki_laki,17.02,ribu_jiwa,2025,projection,total_population,3.1.2,68,,30–34
+12.14,2,Kabupaten Nias Selatan,age_group,30-34,perempuan,17.12,ribu_jiwa,2025,projection,total_population,3.1.2,68,,30–34
+12.14,2,Kabupaten Nias Selatan,age_group,30-34,,34.14,ribu_jiwa,2025,projection,total_population,3.1.2,68,,30–34
+12.14,2,Kabupaten Nias Selatan,age_group,35-39,laki_laki,13.84,ribu_jiwa,2025,projection,total_population,3.1.2,68,,35–39
+12.14,2,Kabupaten Nias Selatan,age_group,35-39,perempuan,14.41,ribu_jiwa,2025,projection,total_population,3.1.2,68,,35–39
+12.14,2,Kabupaten Nias Selatan,age_group,35-39,,28.24,ribu_jiwa,2025,projection,total_population,3.1.2,68,,35–39
+12.14,2,Kabupaten Nias Selatan,age_group,40-44,laki_laki,10.80,ribu_jiwa,2025,projection,total_population,3.1.2,68,,40–44
+12.14,2,Kabupaten Nias Selatan,age_group,40-44,perempuan,11.42,ribu_jiwa,2025,projection,total_population,3.1.2,68,,40–44
+12.14,2,Kabupaten Nias Selatan,age_group,40-44,,22.22,ribu_jiwa,2025,projection,total_population,3.1.2,68,,40–44
+12.14,2,Kabupaten Nias Selatan,age_group,45-49,laki_laki,10.09,ribu_jiwa,2025,projection,total_population,3.1.2,68,,45–49
+12.14,2,Kabupaten Nias Selatan,age_group,45-49,perempuan,11.07,ribu_jiwa,2025,projection,total_population,3.1.2,68,,45–49
+12.14,2,Kabupaten Nias Selatan,age_group,45-49,,21.16,ribu_jiwa,2025,projection,total_population,3.1.2,68,,45–49
+12.14,2,Kabupaten Nias Selatan,age_group,50-54,laki_laki,8.39,ribu_jiwa,2025,projection,total_population,3.1.2,68,,50–54
+12.14,2,Kabupaten Nias Selatan,age_group,50-54,perempuan,8.86,ribu_jiwa,2025,projection,total_population,3.1.2,68,,50–54
+12.14,2,Kabupaten Nias Selatan,age_group,50-54,,17.25,ribu_jiwa,2025,projection,total_population,3.1.2,68,,50–54
+12.14,2,Kabupaten Nias Selatan,age_group,55-59,laki_laki,6.95,ribu_jiwa,2025,projection,total_population,3.1.2,68,,55–59
+12.14,2,Kabupaten Nias Selatan,age_group,55-59,perempuan,7.67,ribu_jiwa,2025,projection,total_population,3.1.2,68,,55–59
+12.14,2,Kabupaten Nias Selatan,age_group,55-59,,14.62,ribu_jiwa,2025,projection,total_population,3.1.2,68,,55–59
+12.14,2,Kabupaten Nias Selatan,age_group,60-64,laki_laki,5.22,ribu_jiwa,2025,projection,total_population,3.1.2,68,,60–64
+12.14,2,Kabupaten Nias Selatan,age_group,60-64,perempuan,5.48,ribu_jiwa,2025,projection,total_population,3.1.2,68,,60–64
+12.14,2,Kabupaten Nias Selatan,age_group,60-64,,10.69,ribu_jiwa,2025,projection,total_population,3.1.2,68,,60–64
+12.14,2,Kabupaten Nias Selatan,age_group,65-69,laki_laki,3.73,ribu_jiwa,2025,projection,total_population,3.1.2,68,,65–69
+12.14,2,Kabupaten Nias Selatan,age_group,65-69,perempuan,3.91,ribu_jiwa,2025,projection,total_population,3.1.2,68,,65–69
+12.14,2,Kabupaten Nias Selatan,age_group,65-69,,7.64,ribu_jiwa,2025,projection,total_population,3.1.2,68,,65–69
+12.14,2,Kabupaten Nias Selatan,age_group,70-74,laki_laki,2.19,ribu_jiwa,2025,projection,total_population,3.1.2,68,,70–74
+12.14,2,Kabupaten Nias Selatan,age_group,70-74,perempuan,2.41,ribu_jiwa,2025,projection,total_population,3.1.2,68,,70–74
+12.14,2,Kabupaten Nias Selatan,age_group,70-74,,4.59,ribu_jiwa,2025,projection,total_population,3.1.2,68,,70–74
+12.14,2,Kabupaten Nias Selatan,age_group,75+,laki_laki,1.99,ribu_jiwa,2025,projection,total_population,3.1.2,68,,75+
+12.14,2,Kabupaten Nias Selatan,age_group,75+,perempuan,2.31,ribu_jiwa,2025,projection,total_population,3.1.2,68,,75+
+12.14,2,Kabupaten Nias Selatan,age_group,75+,,4.30,ribu_jiwa,2025,projection,total_population,3.1.2,68,,75+
+12.14,2,Nias Selatan,sex,laki_laki,,200.07,ribu_jiwa,2025,projection,total_population,3.1.2,68,,Laki-Laki
+12.14,2,Nias Selatan,sex,perempuan,,197.16,ribu_jiwa,2025,projection,total_population,3.1.2,68,,Perempuan
+12.14,2,Nias Selatan,total,total,,397.22,ribu_jiwa,2025,projection,total_population,3.1.2,68,,
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/padi_padian,,153161,rupiah,2024,survey_estimate,per_capita,10.1,382,,Padi-padian
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/padi_padian,,134180,rupiah,2025,survey_estimate,per_capita,10.1,382,,Padi-padian
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/umbi_umbian,,11162,rupiah,2024,survey_estimate,per_capita,10.1,382,,Umbi-umbian
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/umbi_umbian,,8630,rupiah,2025,survey_estimate,per_capita,10.1,382,,Umbi-umbian
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,58354,rupiah,2024,survey_estimate,per_capita,10.1,382,,Ikan/udang/cumi/kerang
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,63357,rupiah,2025,survey_estimate,per_capita,10.1,382,,Ikan/udang/cumi/kerang
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/daging,,35833,rupiah,2024,survey_estimate,per_capita,10.1,382,,Daging
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/daging,,51160,rupiah,2025,survey_estimate,per_capita,10.1,382,,Daging
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/telur_dan_susu,,26774,rupiah,2024,survey_estimate,per_capita,10.1,382,,Telur dan susu
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/telur_dan_susu,,31518,rupiah,2025,survey_estimate,per_capita,10.1,382,,Telur dan susu
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/sayur_sayuran,,51850,rupiah,2024,survey_estimate,per_capita,10.1,382,,Sayur-sayuran
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/sayur_sayuran,,58554,rupiah,2025,survey_estimate,per_capita,10.1,382,,Sayur-sayuran
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/kacang_kacangan,,4273,rupiah,2024,survey_estimate,per_capita,10.1,382,,Kacang-kacangan
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/kacang_kacangan,,5219,rupiah,2025,survey_estimate,per_capita,10.1,382,,Kacang-kacangan
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/buah_buahan,,10238,rupiah,2024,survey_estimate,per_capita,10.1,382,,Buah-buahan
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/buah_buahan,,15166,rupiah,2025,survey_estimate,per_capita,10.1,382,,Buah-buahan
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20976,rupiah,2024,survey_estimate,per_capita,10.1,382,,Minyak dan kelapa
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,24033,rupiah,2025,survey_estimate,per_capita,10.1,382,,Minyak dan kelapa
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/bahan_minuman,,18729,rupiah,2024,survey_estimate,per_capita,10.1,382,,Bahan minuman
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/bahan_minuman,,24502,rupiah,2025,survey_estimate,per_capita,10.1,382,,Bahan minuman
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/bumbu_bumbuan,,12907,rupiah,2024,survey_estimate,per_capita,10.1,382,,Bumbu-bumbuan
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/bumbu_bumbuan,,12126,rupiah,2025,survey_estimate,per_capita,10.1,382,,Bumbu-bumbuan
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/konsumsi_lainnya,,7745,rupiah,2024,survey_estimate,per_capita,10.1,382,,Konsumsi lainnya
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/konsumsi_lainnya,,8536,rupiah,2025,survey_estimate,per_capita,10.1,382,,Konsumsi lainnya
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,71919,rupiah,2024,survey_estimate,per_capita,10.1,382,,Makanan dan minuman jadi
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,58725,rupiah,2025,survey_estimate,per_capita,10.1,382,,Makanan dan minuman jadi
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/rokok,,44872,rupiah,2024,survey_estimate,per_capita,10.1,382,,Rokok
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/rokok,,37269,rupiah,2025,survey_estimate,per_capita,10.1,382,,Rokok
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/jumlah_makanan,,528794,rupiah,2024,survey_estimate,per_capita,10.1,382,,Jumlah makanan
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/jumlah_makanan,,532975,rupiah,2025,survey_estimate,per_capita,10.1,382,,Jumlah makanan
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,166345,rupiah,2024,survey_estimate,per_capita,10.1,382,,Perumahan dan fasilitas rumah tangga
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,199393,rupiah,2025,survey_estimate,per_capita,10.1,382,,Perumahan dan fasilitas rumah tangga
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,72604,rupiah,2024,survey_estimate,per_capita,10.1,382,,Aneka barang dan jasa
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,82211,rupiah,2025,survey_estimate,per_capita,10.1,382,,Aneka barang dan jasa
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,18465,rupiah,2024,survey_estimate,per_capita,10.1,382,,Pakaian. alas kaki. dan tutup kepala
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,21651,rupiah,2025,survey_estimate,per_capita,10.1,382,,Pakaian. alas kaki. dan tutup kepala
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/barang_tahan_lama,,7505,rupiah,2024,survey_estimate,per_capita,10.1,382,,Barang tahan lama
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/barang_tahan_lama,,16023,rupiah,2025,survey_estimate,per_capita,10.1,382,,Barang tahan lama
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,19238,rupiah,2024,survey_estimate,per_capita,10.1,382,,Pajak. pungutan. dan asuransi
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,23339,rupiah,2025,survey_estimate,per_capita,10.1,382,,Pajak. pungutan. dan asuransi
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,2971,rupiah,2024,survey_estimate,per_capita,10.1,382,,Keperluan pesta dan upacara/kenduri
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,4638,rupiah,2025,survey_estimate,per_capita,10.1,382,,Keperluan pesta dan upacara/kenduri
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,287128,rupiah,2024,survey_estimate,per_capita,10.1,382,,Jumlah bukan makanan
+12.14,2,Kabupaten Nias Selatan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,347255,rupiah,2025,survey_estimate,per_capita,10.1,382,,Jumlah bukan makanan
+12.14,2,Kabupaten Nias Selatan,expenditure,total,,815922,rupiah,2024,survey_estimate,per_capita,10.1,382,,
+12.14,2,Kabupaten Nias Selatan,expenditure,total,,880230,rupiah,2025,survey_estimate,per_capita,10.1,382,,

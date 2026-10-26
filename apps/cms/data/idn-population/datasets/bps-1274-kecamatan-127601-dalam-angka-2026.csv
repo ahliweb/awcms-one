@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.76.01.1001,4,Pabatu,sex,laki_laki,,1748,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.76.01.1001,4,Pabatu,sex,perempuan,,1772,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.76.01.1001,4,Pabatu,total,total,,3520,jiwa,2025,registration,total_population,3.1,27,,
+12.76.01.1002,4,Lubuk Baru,sex,laki_laki,,1429,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.76.01.1002,4,Lubuk Baru,sex,perempuan,,1497,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.76.01.1002,4,Lubuk Baru,total,total,,2926,jiwa,2025,registration,total_population,3.1,27,,
+12.76.01.1006,4,Persiakan,sex,laki_laki,,3705,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.76.01.1006,4,Persiakan,sex,perempuan,,3686,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.76.01.1006,4,Persiakan,total,total,,7391,jiwa,2025,registration,total_population,3.1,27,,
+12.76.01.1007,4,Bandarsono,sex,laki_laki,,2500,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.76.01.1007,4,Bandarsono,sex,perempuan,,2515,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.76.01.1007,4,Bandarsono,total,total,,5015,jiwa,2025,registration,total_population,3.1,27,,
+12.76.01.1010,4,Tualang,sex,laki_laki,,3370,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.76.01.1010,4,Tualang,sex,perempuan,,3273,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.76.01.1010,4,Tualang,total,total,,6643,jiwa,2025,registration,total_population,3.1,27,,
+12.76.01.1012,4,Lubuk Raya,sex,laki_laki,,2306,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.76.01.1012,4,Lubuk Raya,sex,perempuan,,2319,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.76.01.1012,4,Lubuk Raya,total,total,,4625,jiwa,2025,registration,total_population,3.1,27,,
+12.76.01.1011,4,Padang Merbau,sex,laki_laki,,2286,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.76.01.1011,4,Padang Merbau,sex,perempuan,,2344,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.76.01.1011,4,Padang Merbau,total,total,,4630,jiwa,2025,registration,total_population,3.1,27,,
+12.76.01,3,Padang Hulu,sex,laki_laki,,17344,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.76.01,3,Padang Hulu,sex,perempuan,,17406,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.76.01,3,Padang Hulu,total,total,,34750,jiwa,2025,registration,total_population,3.1,27,,
+12.76.01,3,Padang Hulu,age_group,0-4,laki_laki,905,jiwa,2025,registration,total_population,3.2,29,,0-4
+12.76.01,3,Padang Hulu,age_group,0-4,perempuan,881,jiwa,2025,registration,total_population,3.2,29,,0-4
+12.76.01,3,Padang Hulu,age_group,0-4,,1786,jiwa,2025,registration,total_population,3.2,29,,0-4
+12.76.01,3,Padang Hulu,age_group,5-9,laki_laki,1471,jiwa,2025,registration,total_population,3.2,29,,5-9
+12.76.01,3,Padang Hulu,age_group,5-9,perempuan,1359,jiwa,2025,registration,total_population,3.2,29,,5-9
+12.76.01,3,Padang Hulu,age_group,5-9,,2830,jiwa,2025,registration,total_population,3.2,29,,5-9
+12.76.01,3,Padang Hulu,age_group,10-14,laki_laki,1658,jiwa,2025,registration,total_population,3.2,29,,10-14
+12.76.01,3,Padang Hulu,age_group,10-14,perempuan,1483,jiwa,2025,registration,total_population,3.2,29,,10-14
+12.76.01,3,Padang Hulu,age_group,10-14,,3141,jiwa,2025,registration,total_population,3.2,29,,10-14
+12.76.01,3,Padang Hulu,age_group,15-19,laki_laki,1711,jiwa,2025,registration,total_population,3.2,29,,15-19
+12.76.01,3,Padang Hulu,age_group,15-19,perempuan,1566,jiwa,2025,registration,total_population,3.2,29,,15-19
+12.76.01,3,Padang Hulu,age_group,15-19,,3277,jiwa,2025,registration,total_population,3.2,29,,15-19
+12.76.01,3,Padang Hulu,age_group,20-24,laki_laki,1580,jiwa,2025,registration,total_population,3.2,29,,20-24
+12.76.01,3,Padang Hulu,age_group,20-24,perempuan,1406,jiwa,2025,registration,total_population,3.2,29,,20-24
+12.76.01,3,Padang Hulu,age_group,20-24,,2986,jiwa,2025,registration,total_population,3.2,29,,20-24
+12.76.01,3,Padang Hulu,age_group,25-29,laki_laki,1370,jiwa,2025,registration,total_population,3.2,29,,25-29
+12.76.01,3,Padang Hulu,age_group,25-29,perempuan,1361,jiwa,2025,registration,total_population,3.2,29,,25-29
+12.76.01,3,Padang Hulu,age_group,25-29,,2731,jiwa,2025,registration,total_population,3.2,29,,25-29
+12.76.01,3,Padang Hulu,age_group,30-34,laki_laki,1306,jiwa,2025,registration,total_population,3.2,29,,30-34
+12.76.01,3,Padang Hulu,age_group,30-34,perempuan,1289,jiwa,2025,registration,total_population,3.2,29,,30-34
+12.76.01,3,Padang Hulu,age_group,30-34,,2595,jiwa,2025,registration,total_population,3.2,29,,30-34
+12.76.01,3,Padang Hulu,age_group,35-39,laki_laki,1280,jiwa,2025,registration,total_population,3.2,29,,35-39
+12.76.01,3,Padang Hulu,age_group,35-39,perempuan,1282,jiwa,2025,registration,total_population,3.2,29,,35-39
+12.76.01,3,Padang Hulu,age_group,35-39,,2562,jiwa,2025,registration,total_population,3.2,29,,35-39
+12.76.01,3,Padang Hulu,age_group,40-44,laki_laki,1352,jiwa,2025,registration,total_population,3.2,29,,40-44
+12.76.01,3,Padang Hulu,age_group,40-44,perempuan,1327,jiwa,2025,registration,total_population,3.2,29,,40-44
+12.76.01,3,Padang Hulu,age_group,40-44,,2679,jiwa,2025,registration,total_population,3.2,29,,40-44
+12.76.01,3,Padang Hulu,age_group,45-49,laki_laki,1174,jiwa,2025,registration,total_population,3.2,29,,45-49
+12.76.01,3,Padang Hulu,age_group,45-49,perempuan,1156,jiwa,2025,registration,total_population,3.2,29,,45-49
+12.76.01,3,Padang Hulu,age_group,45-49,,2330,jiwa,2025,registration,total_population,3.2,29,,45-49
+12.76.01,3,Padang Hulu,age_group,50-54,laki_laki,980,jiwa,2025,registration,total_population,3.2,29,,50-54
+12.76.01,3,Padang Hulu,age_group,50-54,perempuan,1108,jiwa,2025,registration,total_population,3.2,29,,50-54
+12.76.01,3,Padang Hulu,age_group,50-54,,2088,jiwa,2025,registration,total_population,3.2,29,,50-54
+12.76.01,3,Padang Hulu,age_group,55-59,laki_laki,816,jiwa,2025,registration,total_population,3.2,29,,55-59
+12.76.01,3,Padang Hulu,age_group,55-59,perempuan,962,jiwa,2025,registration,total_population,3.2,29,,55-59
+12.76.01,3,Padang Hulu,age_group,55-59,,1778,jiwa,2025,registration,total_population,3.2,29,,55-59
+12.76.01,3,Padang Hulu,age_group,60-64,laki_laki,700,jiwa,2025,registration,total_population,3.2,29,,60-64
+12.76.01,3,Padang Hulu,age_group,60-64,perempuan,870,jiwa,2025,registration,total_population,3.2,29,,60-64
+12.76.01,3,Padang Hulu,age_group,60-64,,1570,jiwa,2025,registration,total_population,3.2,29,,60-64
+12.76.01,3,Padang Hulu,age_group,65-69,laki_laki,522,jiwa,2025,registration,total_population,3.2,29,,65-69
+12.76.01,3,Padang Hulu,age_group,65-69,perempuan,614,jiwa,2025,registration,total_population,3.2,29,,65-69
+12.76.01,3,Padang Hulu,age_group,65-69,,1136,jiwa,2025,registration,total_population,3.2,29,,65-69
+12.76.01,3,Padang Hulu,age_group,70-74,laki_laki,324,jiwa,2025,registration,total_population,3.2,29,,70-74
+12.76.01,3,Padang Hulu,age_group,70-74,perempuan,366,jiwa,2025,registration,total_population,3.2,29,,70-74
+12.76.01,3,Padang Hulu,age_group,70-74,,690,jiwa,2025,registration,total_population,3.2,29,,70-74
+12.76.01,3,Padang Hulu,age_group,75+,laki_laki,195,jiwa,2025,registration,total_population,3.2,29,,75+
+12.76.01,3,Padang Hulu,age_group,75+,perempuan,376,jiwa,2025,registration,total_population,3.2,29,,75+
+12.76.01,3,Padang Hulu,age_group,75+,,571,jiwa,2025,registration,total_population,3.2,29,,75+
+12.76.01,3,Padang Hulu,sex,laki_laki,,17344,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+12.76.01,3,Padang Hulu,sex,perempuan,,17406,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+12.76.01,3,Padang Hulu,total,total,,34750,jiwa,2025,registration,total_population,3.2,29,,

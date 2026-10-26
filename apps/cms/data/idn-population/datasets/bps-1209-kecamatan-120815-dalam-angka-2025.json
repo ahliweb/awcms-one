@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1209-kecamatan-120815-dalam-angka-2025",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.08.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Haranggaol Horisan Dalam Angka 2025",
+  "publisherName": "BPS Kabupaten Simalungun",
+  "publisherDomain": "1209",
+  "publisherWebsite": "https://simalungunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Simalungun (https://simalungunkab.bps.go.id), publikasi \"Kecamatan Haranggaol Horisan Dalam Angka 2025\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1200210",
+  "publicationNumber": "12090.24017",
+  "issn": "2830-4330",
+  "publicationYear": 2025,
+  "releaseDate": "2025-09-26",
+  "publicationUrl": "https://simalungunkab.bps.go.id/id/publication/2025/09/26/2e21b50b5d70f0dd76d97da6/kecamatan-haranggaol-horisan-dalam-angka-2025.html",
+  "sourceFileSha256": "d3c57ce4063e644ff1970a097ad2651a2dd76dc73b9235ee39b485a51b2231bf",
+  "sourceFileBytes": 11233291,
+  "sourcePages": [32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Simalungun.",
+  "csvPath": "datasets/bps-1209-kecamatan-120815-dalam-angka-2025.csv",
+  "csvSha256": "fad24bb1e3117a64076fa78b84720f45bdd8baa590210e953d6aa6b3a1f5e563",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Haranggaol Horisan, 2024",
+      "printedPages": [32],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

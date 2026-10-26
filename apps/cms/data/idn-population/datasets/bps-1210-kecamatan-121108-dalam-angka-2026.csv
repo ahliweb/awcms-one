@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.11.08.2001,4,Lae Itam,sex,laki_laki,,875,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.08.2001,4,Lae Itam,sex,perempuan,,880,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.08.2001,4,Lae Itam,total,total,,1755,jiwa,2026,registration,total_population,3.1,22,,
+12.11.08.2003,4,Pardomuan,sex,laki_laki,,740,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.08.2003,4,Pardomuan,sex,perempuan,,714,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.08.2003,4,Pardomuan,total,total,,1454,jiwa,2026,registration,total_population,3.1,22,,
+12.11.08.2005,4,Jambur Indonesia,sex,laki_laki,,568,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.08.2005,4,Jambur Indonesia,sex,perempuan,,578,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.08.2005,4,Jambur Indonesia,total,total,,1146,jiwa,2026,registration,total_population,3.1,22,,
+12.11.08.2006,4,Simungun,sex,laki_laki,,549,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.08.2006,4,Simungun,sex,perempuan,,542,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.08.2006,4,Simungun,total,total,,1091,jiwa,2026,registration,total_population,3.1,22,,
+12.11.08.2007,4,Janji,sex,laki_laki,,867,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.08.2007,4,Janji,sex,perempuan,,847,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.08.2007,4,Janji,total,total,,1714,jiwa,2026,registration,total_population,3.1,22,,
+12.11.08.2004,4,Lae Markelang,sex,laki_laki,,787,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.08.2004,4,Lae Markelang,sex,perempuan,,807,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.08.2004,4,Lae Markelang,total,total,,1594,jiwa,2026,registration,total_population,3.1,22,,
+12.11.08.2002,4,Lae Luhung,sex,laki_laki,,599,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.08.2002,4,Lae Luhung,sex,perempuan,,582,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.08.2002,4,Lae Luhung,total,total,,1181,jiwa,2026,registration,total_population,3.1,22,,
+12.11.08.2008,4,Sopo Butar,sex,laki_laki,,409,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.08.2008,4,Sopo Butar,sex,perempuan,,398,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.08.2008,4,Sopo Butar,total,total,,807,jiwa,2026,registration,total_population,3.1,22,,
+12.11.08.2009,4,Lae Sering,sex,laki_laki,,550,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.08.2009,4,Lae Sering,sex,perempuan,,563,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.08.2009,4,Lae Sering,total,total,,1113,jiwa,2026,registration,total_population,3.1,22,,
+12.11.08.2010,4,Lae Haporas,sex,laki_laki,,437,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.08.2010,4,Lae Haporas,sex,perempuan,,409,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.08.2010,4,Lae Haporas,total,total,,846,jiwa,2026,registration,total_population,3.1,22,,
+12.11.08,3,Siempat Nempu Hilir,sex,laki_laki,,6381,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.08,3,Siempat Nempu Hilir,sex,perempuan,,6320,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.08,3,Siempat Nempu Hilir,total,total,,12701,jiwa,2026,registration,total_population,3.1,22,,

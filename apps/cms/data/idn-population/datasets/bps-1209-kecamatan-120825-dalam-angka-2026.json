@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-1209-kecamatan-120825-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.08.25",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Silimakuta Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Simalungun",
+  "publisherDomain": "1209",
+  "publisherWebsite": "https://simalungunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Simalungun (https://simalungunkab.bps.go.id), publikasi \"Kecamatan Silimakuta Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1209010",
+  "publicationNumber": "12090.25007",
+  "issn": "2964-7282",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://simalungunkab.bps.go.id/id/publication/2026/09/28/0af17ddfec882e7f148e40f9/kecamatan-silimakuta-dalam-angka-2026.html",
+  "sourceFileSha256": "75f6b4ffc7e967425c7a6558416649757cceb02c017c8f13539dcf6cc26b7980",
+  "sourceFileBytes": 7555219,
+  "sourcePages": [32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Simalungun.",
+  "csvPath": "datasets/bps-1209-kecamatan-120825-dalam-angka-2026.csv",
+  "csvSha256": "544d323990ce4ca7259ea4e27a0355034a3b419d12e462e3fec4dc3b13e54233",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Silimakuta, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"Nama Kecamatan\": unmatched "
+  ]
+}

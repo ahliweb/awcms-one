@@ -1,0 +1,144 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.15.03,3,Salak,total,total,,11411,jiwa,2025,projection,total_population,3.1.1,78,,
+12.15.01,3,Sitelu Tali Urang Jehe,total,total,,12251,jiwa,2025,projection,total_population,3.1.1,78,,
+12.15.06,3,Pagindar,total,total,,1570,jiwa,2025,projection,total_population,3.1.1,78,,
+12.15.04,3,Sitelu Tali Urang Julu,total,total,,4705,jiwa,2025,projection,total_population,3.1.1,78,,
+12.15.05,3,Pergetteng Getteng Sengkut,total,total,,5154,jiwa,2025,projection,total_population,3.1.1,78,,
+12.15.02,3,Kerajaan,total,total,,10814,jiwa,2025,projection,total_population,3.1.1,78,,
+12.15.07,3,Tinada,total,total,,5348,jiwa,2025,projection,total_population,3.1.1,78,,
+12.15.08,3,Siempat Rube,total,total,,5993,jiwa,2025,projection,total_population,3.1.1,78,,
+12.15,2,Pakpak Bharat,total,total,,57246,jiwa,2025,projection,total_population,3.1.1,78,,
+12.15,2,Kabupaten Pakpak Bharat,age_group,0-4,perempuan,3185,jiwa,2025,projection,total_population,3.1.2,81,,0–4
+12.15,2,Kabupaten Pakpak Bharat,age_group,0-4,,6508,jiwa,2025,projection,total_population,3.1.2,81,,0–4
+12.15,2,Kabupaten Pakpak Bharat,age_group,5-9,perempuan,3331,jiwa,2025,projection,total_population,3.1.2,81,,5–9
+12.15,2,Kabupaten Pakpak Bharat,age_group,5-9,,6830,jiwa,2025,projection,total_population,3.1.2,81,,5–9
+12.15,2,Kabupaten Pakpak Bharat,age_group,10-14,perempuan,2680,jiwa,2025,projection,total_population,3.1.2,81,,10–14
+12.15,2,Kabupaten Pakpak Bharat,age_group,10-14,,5389,jiwa,2025,projection,total_population,3.1.2,81,,10–14
+12.15,2,Kabupaten Pakpak Bharat,age_group,15-19,perempuan,2482,jiwa,2025,projection,total_population,3.1.2,81,,15–19
+12.15,2,Kabupaten Pakpak Bharat,age_group,15-19,,5162,jiwa,2025,projection,total_population,3.1.2,81,,15–19
+12.15,2,Kabupaten Pakpak Bharat,age_group,20-24,perempuan,2465,jiwa,2025,projection,total_population,3.1.2,81,,20–24
+12.15,2,Kabupaten Pakpak Bharat,age_group,20-24,,5101,jiwa,2025,projection,total_population,3.1.2,81,,20–24
+12.15,2,Kabupaten Pakpak Bharat,age_group,25-29,perempuan,2436,jiwa,2025,projection,total_population,3.1.2,81,,25–29
+12.15,2,Kabupaten Pakpak Bharat,age_group,25-29,,4947,jiwa,2025,projection,total_population,3.1.2,81,,25–29
+12.15,2,Kabupaten Pakpak Bharat,age_group,30-34,perempuan,2033,jiwa,2025,projection,total_population,3.1.2,81,,30–34
+12.15,2,Kabupaten Pakpak Bharat,age_group,30-34,,4217,jiwa,2025,projection,total_population,3.1.2,81,,30–34
+12.15,2,Kabupaten Pakpak Bharat,age_group,35-39,perempuan,1845,jiwa,2025,projection,total_population,3.1.2,81,,35–39
+12.15,2,Kabupaten Pakpak Bharat,age_group,35-39,,3708,jiwa,2025,projection,total_population,3.1.2,81,,35–39
+12.15,2,Kabupaten Pakpak Bharat,age_group,40-44,perempuan,1705,jiwa,2025,projection,total_population,3.1.2,81,,40–44
+12.15,2,Kabupaten Pakpak Bharat,age_group,40-44,,3464,jiwa,2025,projection,total_population,3.1.2,81,,40–44
+12.15,2,Kabupaten Pakpak Bharat,age_group,45-49,perempuan,1529,jiwa,2025,projection,total_population,3.1.2,81,,45–49
+12.15,2,Kabupaten Pakpak Bharat,age_group,45-49,,3207,jiwa,2025,projection,total_population,3.1.2,81,,45–49
+12.15,2,Kabupaten Pakpak Bharat,age_group,50-54,perempuan,1205,jiwa,2025,projection,total_population,3.1.2,81,,50–54
+12.15,2,Kabupaten Pakpak Bharat,age_group,50-54,,2520,jiwa,2025,projection,total_population,3.1.2,81,,50–54
+12.15,2,Kabupaten Pakpak Bharat,age_group,55-59,perempuan,1040,jiwa,2025,projection,total_population,3.1.2,81,,55–59
+12.15,2,Kabupaten Pakpak Bharat,age_group,55-59,,1994,jiwa,2025,projection,total_population,3.1.2,81,,55–59
+12.15,2,Kabupaten Pakpak Bharat,age_group,60-64,perempuan,754,jiwa,2025,projection,total_population,3.1.2,81,,60–64
+12.15,2,Kabupaten Pakpak Bharat,age_group,60-64,,1475,jiwa,2025,projection,total_population,3.1.2,81,,60–64
+12.15,2,Kabupaten Pakpak Bharat,age_group,65-69,perempuan,624,jiwa,2025,projection,total_population,3.1.2,81,,65–69
+12.15,2,Kabupaten Pakpak Bharat,age_group,65-69,,1094,jiwa,2025,projection,total_population,3.1.2,81,,65–69
+12.15,2,Kabupaten Pakpak Bharat,age_group,70-74,perempuan,467,jiwa,2025,projection,total_population,3.1.2,81,,70–74
+12.15,2,Kabupaten Pakpak Bharat,age_group,70-74,,795,jiwa,2025,projection,total_population,3.1.2,81,,70–74
+12.15,2,Kabupaten Pakpak Bharat,age_group,75+,perempuan,516,jiwa,2025,projection,total_population,3.1.2,81,,75+
+12.15,2,Kabupaten Pakpak Bharat,age_group,75+,,835,jiwa,2025,projection,total_population,3.1.2,81,,75+
+12.15,2,Pakpak Bharat,sex,perempuan,,28297,jiwa,2025,projection,total_population,3.1.2,81,,Perempuan
+12.15,2,Pakpak Bharat,total,total,,57246,jiwa,2025,projection,total_population,3.1.2,81,,
+12.15.03,3,Salak,religion,islam,,2263,jiwa,2025,registration,total_population,4.3.1,178,,Islam
+12.15.03,3,Salak,religion,kristen,,8061,jiwa,2025,registration,total_population,4.3.1,178,,Protestan
+12.15.03,3,Salak,religion,katolik,,647,jiwa,2025,registration,total_population,4.3.1,178,,Katolik
+12.15.03,3,Salak,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Hindu
+12.15.03,3,Salak,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Budha
+12.15.03,3,Salak,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Lainnya
+12.15.01,3,Sitelu Tali Urang Jehe,religion,islam,,12360,jiwa,2025,registration,total_population,4.3.1,178,,Islam
+12.15.01,3,Sitelu Tali Urang Jehe,religion,kristen,,2995,jiwa,2025,registration,total_population,4.3.1,178,,Protestan
+12.15.01,3,Sitelu Tali Urang Jehe,religion,katolik,,50,jiwa,2025,registration,total_population,4.3.1,178,,Katolik
+12.15.01,3,Sitelu Tali Urang Jehe,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Hindu
+12.15.01,3,Sitelu Tali Urang Jehe,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Budha
+12.15.01,3,Sitelu Tali Urang Jehe,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Lainnya
+12.15.06,3,Pagindar,religion,islam,,440,jiwa,2025,registration,total_population,4.3.1,178,,Islam
+12.15.06,3,Pagindar,religion,kristen,,1152,jiwa,2025,registration,total_population,4.3.1,178,,Protestan
+12.15.06,3,Pagindar,religion,katolik,,45,jiwa,2025,registration,total_population,4.3.1,178,,Katolik
+12.15.06,3,Pagindar,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Hindu
+12.15.06,3,Pagindar,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Budha
+12.15.06,3,Pagindar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Lainnya
+12.15.04,3,Sitelu Tali Urang Julu,religion,islam,,1523,jiwa,2025,registration,total_population,4.3.1,178,,Islam
+12.15.04,3,Sitelu Tali Urang Julu,religion,kristen,,2762,jiwa,2025,registration,total_population,4.3.1,178,,Protestan
+12.15.04,3,Sitelu Tali Urang Julu,religion,katolik,,453,jiwa,2025,registration,total_population,4.3.1,178,,Katolik
+12.15.04,3,Sitelu Tali Urang Julu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Hindu
+12.15.04,3,Sitelu Tali Urang Julu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Budha
+12.15.04,3,Sitelu Tali Urang Julu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Lainnya
+12.15.05,3,Pergetteng Getteng Sengkut,religion,islam,,2037,jiwa,2025,registration,total_population,4.3.1,178,,Islam
+12.15.05,3,Pergetteng Getteng Sengkut,religion,kristen,,3121,jiwa,2025,registration,total_population,4.3.1,178,,Protestan
+12.15.05,3,Pergetteng Getteng Sengkut,religion,katolik,,209,jiwa,2025,registration,total_population,4.3.1,178,,Katolik
+12.15.05,3,Pergetteng Getteng Sengkut,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Hindu
+12.15.05,3,Pergetteng Getteng Sengkut,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Budha
+12.15.05,3,Pergetteng Getteng Sengkut,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Lainnya
+12.15.02,3,Kerajaan,religion,islam,,5022,jiwa,2025,registration,total_population,4.3.1,178,,Islam
+12.15.02,3,Kerajaan,religion,kristen,,6042,jiwa,2025,registration,total_population,4.3.1,178,,Protestan
+12.15.02,3,Kerajaan,religion,katolik,,335,jiwa,2025,registration,total_population,4.3.1,178,,Katolik
+12.15.02,3,Kerajaan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Hindu
+12.15.02,3,Kerajaan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Budha
+12.15.02,3,Kerajaan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Lainnya
+12.15.07,3,Tinada,religion,islam,,1142,jiwa,2025,registration,total_population,4.3.1,178,,Islam
+12.15.07,3,Tinada,religion,kristen,,4055,jiwa,2025,registration,total_population,4.3.1,178,,Protestan
+12.15.07,3,Tinada,religion,katolik,,94,jiwa,2025,registration,total_population,4.3.1,178,,Katolik
+12.15.07,3,Tinada,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Hindu
+12.15.07,3,Tinada,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Budha
+12.15.07,3,Tinada,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Lainnya
+12.15.08,3,Siempat Rube,religion,islam,,870,jiwa,2025,registration,total_population,4.3.1,178,,Islam
+12.15.08,3,Siempat Rube,religion,kristen,,4442,jiwa,2025,registration,total_population,4.3.1,178,,Protestan
+12.15.08,3,Siempat Rube,religion,katolik,,581,jiwa,2025,registration,total_population,4.3.1,178,,Katolik
+12.15.08,3,Siempat Rube,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Hindu
+12.15.08,3,Siempat Rube,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Budha
+12.15.08,3,Siempat Rube,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Lainnya
+12.15,2,Pakpak Bharat,religion,islam,,25657,jiwa,2025,registration,total_population,4.3.1,178,,Islam
+12.15,2,Pakpak Bharat,religion,kristen,,32630,jiwa,2025,registration,total_population,4.3.1,178,,Protestan
+12.15,2,Pakpak Bharat,religion,katolik,,2414,jiwa,2025,registration,total_population,4.3.1,178,,Katolik
+12.15,2,Pakpak Bharat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Hindu
+12.15,2,Pakpak Bharat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Budha
+12.15,2,Pakpak Bharat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,178,nil,Lainnya
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/padi_padian,,113448,rupiah,2025,survey_estimate,per_capita,10.1,425,,Padi-padian
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/padi_padian,,127494,rupiah,2024,survey_estimate,per_capita,10.1,425,,Padi-padian
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/umbi_umbian,,5581,rupiah,2025,survey_estimate,per_capita,10.1,425,,Umbi-umbian
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/umbi_umbian,,5587,rupiah,2024,survey_estimate,per_capita,10.1,425,,Umbi-umbian
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,81895,rupiah,2025,survey_estimate,per_capita,10.1,425,,Ikan/udang/cumi/kerang
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,75381,rupiah,2024,survey_estimate,per_capita,10.1,425,,Ikan/udang/cumi/kerang
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/daging,,39916,rupiah,2025,survey_estimate,per_capita,10.1,425,,Daging
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/daging,,32093,rupiah,2024,survey_estimate,per_capita,10.1,425,,Daging
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/telur_dan_susu,,54877,rupiah,2025,survey_estimate,per_capita,10.1,425,,Telur dan susu
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/telur_dan_susu,,40972,rupiah,2024,survey_estimate,per_capita,10.1,425,,Telur dan susu
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/sayur_sayuran,,58092,rupiah,2025,survey_estimate,per_capita,10.1,425,,Sayur-sayuran
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/sayur_sayuran,,61047,rupiah,2024,survey_estimate,per_capita,10.1,425,,Sayur-sayuran
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/kacang_kacangan,,12400,rupiah,2025,survey_estimate,per_capita,10.1,425,,Kacang-kacangan
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/kacang_kacangan,,9941,rupiah,2024,survey_estimate,per_capita,10.1,425,,Kacang-kacangan
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/buah_buahan,,43688,rupiah,2025,survey_estimate,per_capita,10.1,425,,Buah-buahan
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/buah_buahan,,34545,rupiah,2024,survey_estimate,per_capita,10.1,425,,Buah-buahan
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22090,rupiah,2025,survey_estimate,per_capita,10.1,425,,Minyak dan kelapa
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19832,rupiah,2024,survey_estimate,per_capita,10.1,425,,Minyak dan kelapa
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/bahan_minuman,,21781,rupiah,2025,survey_estimate,per_capita,10.1,425,,Bahan minuman
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/bahan_minuman,,24693,rupiah,2024,survey_estimate,per_capita,10.1,425,,Bahan minuman
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/bumbu_bumbuan,,11214,rupiah,2025,survey_estimate,per_capita,10.1,425,,Bumbu-bumbuan
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/bumbu_bumbuan,,11487,rupiah,2024,survey_estimate,per_capita,10.1,425,,Bumbu-bumbuan
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/konsumsi_lainnya,,7743,rupiah,2025,survey_estimate,per_capita,10.1,425,,Konsumsi lainnya
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/konsumsi_lainnya,,8583,rupiah,2024,survey_estimate,per_capita,10.1,425,,Konsumsi lainnya
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,133363,rupiah,2025,survey_estimate,per_capita,10.1,425,,Makanan dan minuman jadi
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,130590,rupiah,2024,survey_estimate,per_capita,10.1,425,,Makanan dan minuman jadi
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/rokok,,108273,rupiah,2025,survey_estimate,per_capita,10.1,425,,Rokok
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/rokok,,112315,rupiah,2024,survey_estimate,per_capita,10.1,425,,Rokok
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/jumlah_makanan,,714361,rupiah,2025,survey_estimate,per_capita,10.1,425,,Jumlah makanan
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/jumlah_makanan,,694558,rupiah,2024,survey_estimate,per_capita,10.1,425,,Jumlah makanan
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,235670,rupiah,2025,survey_estimate,per_capita,10.1,425,,Perumahan dan fasilitas rumah tangga
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,205764,rupiah,2024,survey_estimate,per_capita,10.1,425,,Perumahan dan fasilitas rumah tangga
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,126427,rupiah,2025,survey_estimate,per_capita,10.1,425,,Aneka barang dan jasa
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,130961,rupiah,2024,survey_estimate,per_capita,10.1,425,,Aneka barang dan jasa
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,35465,rupiah,2025,survey_estimate,per_capita,10.1,425,,"Pakaian, alas kaki, dan tutup kepala"
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,35807,rupiah,2024,survey_estimate,per_capita,10.1,425,,"Pakaian, alas kaki, dan tutup kepala"
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/barang_tahan_lama,,43058,rupiah,2025,survey_estimate,per_capita,10.1,425,,Barang tahan lama
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/barang_tahan_lama,,48115,rupiah,2024,survey_estimate,per_capita,10.1,425,,Barang tahan lama
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,60081,rupiah,2025,survey_estimate,per_capita,10.1,425,,"Pajak, pungutan, dan asuransi"
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,58533,rupiah,2024,survey_estimate,per_capita,10.1,425,,"Pajak, pungutan, dan asuransi"
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,27310,rupiah,2025,survey_estimate,per_capita,10.1,425,,Keperluan pesta dan upacara/kenduri
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,28763,rupiah,2024,survey_estimate,per_capita,10.1,425,,Keperluan pesta dan upacara/kenduri
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,528011,rupiah,2025,survey_estimate,per_capita,10.1,425,,Jumlah bukan makanan
+12.15,2,Kabupaten Pakpak Bharat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,507943,rupiah,2024,survey_estimate,per_capita,10.1,425,,Jumlah bukan makanan
+12.15,2,Kabupaten Pakpak Bharat,expenditure,total,,1242372,rupiah,2025,survey_estimate,per_capita,10.1,425,,
+12.15,2,Kabupaten Pakpak Bharat,expenditure,total,,1202502,rupiah,2024,survey_estimate,per_capita,10.1,425,,

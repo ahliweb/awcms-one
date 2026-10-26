@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.11.14.2001,4,Silalahi II,sex,laki_laki,,634,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.14.2001,4,Silalahi II,sex,perempuan,,646,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.14.2001,4,Silalahi II,total,total,,1280,jiwa,2025,registration,total_population,3.1,22,,
+12.11.14.2002,4,Silalahi I,sex,laki_laki,,682,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.14.2002,4,Silalahi I,sex,perempuan,,737,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.14.2002,4,Silalahi I,total,total,,1419,jiwa,2025,registration,total_population,3.1,22,,
+12.11.14.2003,4,Paropo,sex,laki_laki,,331,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.14.2003,4,Paropo,sex,perempuan,,346,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.14.2003,4,Paropo,total,total,,677,jiwa,2025,registration,total_population,3.1,22,,
+12.11.14.2004,4,Silalahi III,sex,laki_laki,,714,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.14.2004,4,Silalahi III,sex,perempuan,,691,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.14.2004,4,Silalahi III,total,total,,1405,jiwa,2025,registration,total_population,3.1,22,,
+12.11.14.2005,4,Paropo I,sex,laki_laki,,765,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.14.2005,4,Paropo I,sex,perempuan,,736,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.14.2005,4,Paropo I,total,total,,1501,jiwa,2025,registration,total_population,3.1,22,,
+12.11.14,3,Silahisabungan,sex,laki_laki,,3126,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.14,3,Silahisabungan,sex,perempuan,,3156,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.14,3,Silahisabungan,total,total,,6282,jiwa,2025,registration,total_population,3.1,22,,

@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-1203-kecamatan-120303-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.03.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Angkola Timur Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN TAPANULI SELATAN",
+  "publisherDomain": "1203",
+  "publisherWebsite": "https://tapanuliselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN TAPANULI SELATAN (https://tapanuliselatankab.bps.go.id), publikasi \"Kecamatan Angkola Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1203070",
+  "publicationNumber": "12030.2609",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tapanuliselatankab.bps.go.id/id/publication/2026/09/28/cd03a2eaf5c1ee295eb236a6/kecamatan-angkola-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "c32d4b579c1087d98902c935e5994b7c1e456f71c8c273c77afb00f0d7df5f68",
+  "sourceFileBytes": 4063947,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tapanuli Selatan.",
+  "csvPath": "datasets/bps-1203-kecamatan-120303-dalam-angka-2026.csv",
+  "csvSha256": "ccd4a1045dd93152916cedcd1424909fb2b7a0613737d00f3373c29eef635ea5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Angkola Timur, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Angkola Timur, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Suungkang\": unmatched ",
+    "table 3.1: row not stored: row \"Suungkang\": unmatched ",
+    "table 3.2: row not stored: row \"0 4\": unmatched ",
+    "table 3.2: row not stored: row \"5 9\": unmatched ",
+    "table 3.2: the rows of region 12.03.03 are not stored: age_group (perempuan) vs sex value: parts sum 10178.0000 != 12135.0000 (diff 1957.0000); the source itself is inconsistent"
+  ]
+}

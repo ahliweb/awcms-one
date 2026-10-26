@@ -1,0 +1,93 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.22.04,3,Sungai Kanan,total,total,,51280,jiwa,2025,projection,total_population,3.1.1,52,,
+12.22.03,3,Torgamba,total,total,,118687,jiwa,2025,projection,total_population,3.1.1,52,,
+12.22.01,3,Kotapinang,total,total,,72060,jiwa,2025,projection,total_population,3.1.1,52,,
+12.22.05,3,Silangkitang,total,total,,32812,jiwa,2025,projection,total_population,3.1.1,52,,
+12.22.02,3,Kampung Rakyat,total,total,,67386,jiwa,2025,projection,total_population,3.1.1,52,,
+12.22,2,Kabupaten Labuhanbatu Selatan,total,total,,342225,jiwa,2025,projection,total_population,3.1.1,52,,
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,0-4,laki_laki,17668,jiwa,2024,projection,total_population,3.1.2,55,,0–4
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,0-4,perempuan,16985,jiwa,2024,projection,total_population,3.1.2,55,,0–4
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,0-4,,34653,jiwa,2024,projection,total_population,3.1.2,55,,0–4
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,5-9,laki_laki,16590,jiwa,2024,projection,total_population,3.1.2,55,,5–9
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,5-9,perempuan,15816,jiwa,2024,projection,total_population,3.1.2,55,,5–9
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,5-9,,32406,jiwa,2024,projection,total_population,3.1.2,55,,5–9
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,10-14,laki_laki,16788,jiwa,2024,projection,total_population,3.1.2,55,,10–14
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,10-14,perempuan,15966,jiwa,2024,projection,total_population,3.1.2,55,,10–14
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,10-14,,32754,jiwa,2024,projection,total_population,3.1.2,55,,10–14
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,15-19,laki_laki,16155,jiwa,2024,projection,total_population,3.1.2,55,,15–19
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,15-19,perempuan,15089,jiwa,2024,projection,total_population,3.1.2,55,,15–19
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,15-19,,31244,jiwa,2024,projection,total_population,3.1.2,55,,15–19
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,20-24,laki_laki,14932,jiwa,2024,projection,total_population,3.1.2,55,,20–24
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,20-24,perempuan,13791,jiwa,2024,projection,total_population,3.1.2,55,,20–24
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,20-24,,28723,jiwa,2024,projection,total_population,3.1.2,55,,20–24
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,25-29,laki_laki,14181,jiwa,2024,projection,total_population,3.1.2,55,,25–29
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,25-29,perempuan,13511,jiwa,2024,projection,total_population,3.1.2,55,,25–29
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,25-29,,27692,jiwa,2024,projection,total_population,3.1.2,55,,25–29
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,30-34,laki_laki,13974,jiwa,2024,projection,total_population,3.1.2,55,,30–34
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,30-34,perempuan,13551,jiwa,2024,projection,total_population,3.1.2,55,,30–34
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,30-34,,27525,jiwa,2024,projection,total_population,3.1.2,55,,30–34
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,35-39,laki_laki,12854,jiwa,2024,projection,total_population,3.1.2,55,,35–39
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,35-39,perempuan,12718,jiwa,2024,projection,total_population,3.1.2,55,,35–39
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,35-39,,25572,jiwa,2024,projection,total_population,3.1.2,55,,35–39
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,40-44,laki_laki,11649,jiwa,2024,projection,total_population,3.1.2,55,,40–44
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,40-44,perempuan,11461,jiwa,2024,projection,total_population,3.1.2,55,,40–44
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,40-44,,23110,jiwa,2024,projection,total_population,3.1.2,55,,40–44
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,45-49,laki_laki,10482,jiwa,2024,projection,total_population,3.1.2,55,,45–49
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,45-49,perempuan,9979,jiwa,2024,projection,total_population,3.1.2,55,,45–49
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,45-49,,20461,jiwa,2024,projection,total_population,3.1.2,55,,45–49
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,50-54,laki_laki,8439,jiwa,2024,projection,total_population,3.1.2,55,,50–54
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,50-54,perempuan,8475,jiwa,2024,projection,total_population,3.1.2,55,,50–54
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,50-54,,16914,jiwa,2024,projection,total_population,3.1.2,55,,50–54
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,55-59,laki_laki,6913,jiwa,2024,projection,total_population,3.1.2,55,,55–59
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,55-59,perempuan,6829,jiwa,2024,projection,total_population,3.1.2,55,,55–59
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,55-59,,13742,jiwa,2024,projection,total_population,3.1.2,55,,55–59
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,60-64,laki_laki,5139,jiwa,2024,projection,total_population,3.1.2,55,,60–64
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,60-64,perempuan,4922,jiwa,2024,projection,total_population,3.1.2,55,,60–64
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,60-64,,10061,jiwa,2024,projection,total_population,3.1.2,55,,60–64
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,65-69,laki_laki,3216,jiwa,2024,projection,total_population,3.1.2,55,,65–69
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,65-69,perempuan,3201,jiwa,2024,projection,total_population,3.1.2,55,,65–69
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,65-69,,6417,jiwa,2024,projection,total_population,3.1.2,55,,65–69
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,70-74,laki_laki,1693,jiwa,2024,projection,total_population,3.1.2,55,,70–74
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,70-74,perempuan,1655,jiwa,2024,projection,total_population,3.1.2,55,,70–74
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,70-74,,3348,jiwa,2024,projection,total_population,3.1.2,55,,70–74
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,75+,laki_laki,840,jiwa,2024,projection,total_population,3.1.2,55,,75+
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,75+,perempuan,1115,jiwa,2024,projection,total_population,3.1.2,55,,75+
+12.22,2,Kabupaten Labuhanbatu Selatan,age_group,75+,,1955,jiwa,2024,projection,total_population,3.1.2,55,,75+
+12.22,2,Kabupaten Labuhanbatu Selatan,sex,laki_laki,,171513,jiwa,2024,projection,total_population,3.1.2,55,,Laki-Laki
+12.22,2,Kabupaten Labuhanbatu Selatan,sex,perempuan,,165064,jiwa,2024,projection,total_population,3.1.2,55,,Perempuan
+12.22,2,Kabupaten Labuhanbatu Selatan,total,total,,336577,jiwa,2024,projection,total_population,3.1.2,55,,
+12.22.04,3,Sungai Kanan,religion,islam,,49902,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+12.22.04,3,Sungai Kanan,religion,kristen,,1503,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+12.22.04,3,Sungai Kanan,religion,katolik,,118,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+12.22.04,3,Sungai Kanan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+12.22.04,3,Sungai Kanan,religion,buddha,,9,jiwa,2025,registration,total_population,4.3.1,108,,Budha
+12.22.04,3,Sungai Kanan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+12.22.03,3,Torgamba,religion,islam,,89677,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+12.22.03,3,Torgamba,religion,kristen,,27907,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+12.22.03,3,Torgamba,religion,katolik,,1594,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+12.22.03,3,Torgamba,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+12.22.03,3,Torgamba,religion,buddha,,260,jiwa,2025,registration,total_population,4.3.1,108,,Budha
+12.22.03,3,Torgamba,religion,lainnya,,90,jiwa,2025,registration,total_population,4.3.1,108,,Lainnya
+12.22.01,3,Kotapinang,religion,islam,,59383,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+12.22.01,3,Kotapinang,religion,kristen,,5827,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+12.22.01,3,Kotapinang,religion,katolik,,677,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+12.22.01,3,Kotapinang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+12.22.01,3,Kotapinang,religion,buddha,,482,jiwa,2025,registration,total_population,4.3.1,108,,Budha
+12.22.01,3,Kotapinang,religion,lainnya,,6,jiwa,2025,registration,total_population,4.3.1,108,,Lainnya
+12.22.05,3,Silangkitang,religion,islam,,32367,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+12.22.05,3,Silangkitang,religion,kristen,,351,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+12.22.05,3,Silangkitang,religion,katolik,,12,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+12.22.05,3,Silangkitang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+12.22.05,3,Silangkitang,religion,buddha,,6,jiwa,2025,registration,total_population,4.3.1,108,,Budha
+12.22.05,3,Silangkitang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+12.22.02,3,Kampung Rakyat,religion,islam,,57788,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+12.22.02,3,Kampung Rakyat,religion,kristen,,8071,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+12.22.02,3,Kampung Rakyat,religion,katolik,,417,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+12.22.02,3,Kampung Rakyat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+12.22.02,3,Kampung Rakyat,religion,buddha,,15,jiwa,2025,registration,total_population,4.3.1,108,,Budha
+12.22.02,3,Kampung Rakyat,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,108,,Lainnya
+12.22,2,Kabupaten Labuhanbatu Selatan,religion,islam,,289117,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+12.22,2,Kabupaten Labuhanbatu Selatan,religion,kristen,,43659,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+12.22,2,Kabupaten Labuhanbatu Selatan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+12.22,2,Kabupaten Labuhanbatu Selatan,religion,buddha,,772,jiwa,2025,registration,total_population,4.3.1,108,,Budha
+12.22,2,Kabupaten Labuhanbatu Selatan,religion,lainnya,,97,jiwa,2025,registration,total_population,4.3.1,108,,Lainnya

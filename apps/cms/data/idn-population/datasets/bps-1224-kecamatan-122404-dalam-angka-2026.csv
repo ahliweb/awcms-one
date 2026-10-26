@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.24.04.2001,4,Tetehosi Maziaya,sex,laki_laki,,710,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.04.2001,4,Tetehosi Maziaya,sex,perempuan,,723,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.04.2001,4,Tetehosi Maziaya,total,total,,1433,jiwa,2025,registration,total_population,3.1,41,,
+12.24.04.2002,4,Umbubalodano,sex,laki_laki,,1883,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.04.2002,4,Umbubalodano,sex,perempuan,,1810,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.04.2002,4,Umbubalodano,total,total,,3693,jiwa,2025,registration,total_population,3.1,41,,
+12.24.04.2003,4,Hilimbosi,sex,laki_laki,,1597,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.04.2003,4,Hilimbosi,sex,perempuan,,1615,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.04.2003,4,Hilimbosi,total,total,,3212,jiwa,2025,registration,total_population,3.1,41,,
+12.24.04.2004,4,Hilisaloo,sex,laki_laki,,1120,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.04.2004,4,Hilisaloo,sex,perempuan,,1159,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.04.2004,4,Hilisaloo,total,total,,2279,jiwa,2025,registration,total_population,3.1,41,,
+12.24.04.2006,4,Botombawo,sex,laki_laki,,883,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.04.2006,4,Botombawo,sex,perempuan,,888,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.04.2006,4,Botombawo,total,total,,1771,jiwa,2025,registration,total_population,3.1,41,,
+12.24.04.2005,4,Fulolosaloo,sex,laki_laki,,725,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.04.2005,4,Fulolosaloo,sex,perempuan,,729,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.04.2005,4,Fulolosaloo,total,total,,1454,jiwa,2025,registration,total_population,3.1,41,,
+12.24.04,3,Sitolu Ori,sex,laki_laki,,6918,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.04,3,Sitolu Ori,sex,perempuan,,6924,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.04,3,Sitolu Ori,total,total,,13842,jiwa,2025,registration,total_population,3.1,41,,
+12.24.04,3,Sitolu Ori,age_group,0-4,laki_laki,302,jiwa,2025,registration,total_population,3.2,43,,0-4
+12.24.04,3,Sitolu Ori,age_group,0-4,perempuan,332,jiwa,2025,registration,total_population,3.2,43,,0-4
+12.24.04,3,Sitolu Ori,age_group,0-4,,634,jiwa,2025,registration,total_population,3.2,43,,0-4
+12.24.04,3,Sitolu Ori,age_group,5-9,laki_laki,566,jiwa,2025,registration,total_population,3.2,43,,5-9
+12.24.04,3,Sitolu Ori,age_group,5-9,perempuan,502,jiwa,2025,registration,total_population,3.2,43,,5-9
+12.24.04,3,Sitolu Ori,age_group,5-9,,1068,jiwa,2025,registration,total_population,3.2,43,,5-9
+12.24.04,3,Sitolu Ori,age_group,10-14,laki_laki,700,jiwa,2025,registration,total_population,3.2,43,,10-14
+12.24.04,3,Sitolu Ori,age_group,10-14,perempuan,647,jiwa,2025,registration,total_population,3.2,43,,10-14
+12.24.04,3,Sitolu Ori,age_group,10-14,,1347,jiwa,2025,registration,total_population,3.2,43,,10-14
+12.24.04,3,Sitolu Ori,age_group,15-19,laki_laki,834,jiwa,2025,registration,total_population,3.2,43,,15-19
+12.24.04,3,Sitolu Ori,age_group,15-19,perempuan,733,jiwa,2025,registration,total_population,3.2,43,,15-19
+12.24.04,3,Sitolu Ori,age_group,15-19,,1567,jiwa,2025,registration,total_population,3.2,43,,15-19
+12.24.04,3,Sitolu Ori,age_group,20-24,laki_laki,791,jiwa,2025,registration,total_population,3.2,43,,20-24
+12.24.04,3,Sitolu Ori,age_group,20-24,perempuan,743,jiwa,2025,registration,total_population,3.2,43,,20-24
+12.24.04,3,Sitolu Ori,age_group,20-24,,1534,jiwa,2025,registration,total_population,3.2,43,,20-24
+12.24.04,3,Sitolu Ori,age_group,25-29,laki_laki,674,jiwa,2025,registration,total_population,3.2,43,,25-29
+12.24.04,3,Sitolu Ori,age_group,25-29,perempuan,603,jiwa,2025,registration,total_population,3.2,43,,25-29
+12.24.04,3,Sitolu Ori,age_group,25-29,,1277,jiwa,2025,registration,total_population,3.2,43,,25-29
+12.24.04,3,Sitolu Ori,age_group,30-34,laki_laki,554,jiwa,2025,registration,total_population,3.2,43,,30-34
+12.24.04,3,Sitolu Ori,age_group,30-34,perempuan,552,jiwa,2025,registration,total_population,3.2,43,,30-34
+12.24.04,3,Sitolu Ori,age_group,30-34,,1106,jiwa,2025,registration,total_population,3.2,43,,30-34
+12.24.04,3,Sitolu Ori,age_group,35-39,laki_laki,525,jiwa,2025,registration,total_population,3.2,43,,35-39
+12.24.04,3,Sitolu Ori,age_group,35-39,perempuan,580,jiwa,2025,registration,total_population,3.2,43,,35-39
+12.24.04,3,Sitolu Ori,age_group,35-39,,1105,jiwa,2025,registration,total_population,3.2,43,,35-39
+12.24.04,3,Sitolu Ori,age_group,40-44,laki_laki,493,jiwa,2025,registration,total_population,3.2,43,,40-44
+12.24.04,3,Sitolu Ori,age_group,40-44,perempuan,475,jiwa,2025,registration,total_population,3.2,43,,40-44
+12.24.04,3,Sitolu Ori,age_group,40-44,,968,jiwa,2025,registration,total_population,3.2,43,,40-44
+12.24.04,3,Sitolu Ori,age_group,45-49,laki_laki,375,jiwa,2025,registration,total_population,3.2,43,,45-49
+12.24.04,3,Sitolu Ori,age_group,45-49,perempuan,403,jiwa,2025,registration,total_population,3.2,43,,45-49
+12.24.04,3,Sitolu Ori,age_group,45-49,,778,jiwa,2025,registration,total_population,3.2,43,,45-49
+12.24.04,3,Sitolu Ori,age_group,50-54,laki_laki,276,jiwa,2025,registration,total_population,3.2,43,,50-54
+12.24.04,3,Sitolu Ori,age_group,50-54,perempuan,297,jiwa,2025,registration,total_population,3.2,43,,50-54
+12.24.04,3,Sitolu Ori,age_group,50-54,,573,jiwa,2025,registration,total_population,3.2,43,,50-54
+12.24.04,3,Sitolu Ori,age_group,55-59,laki_laki,219,jiwa,2025,registration,total_population,3.2,43,,55-59
+12.24.04,3,Sitolu Ori,age_group,55-59,perempuan,268,jiwa,2025,registration,total_population,3.2,43,,55-59
+12.24.04,3,Sitolu Ori,age_group,55-59,,487,jiwa,2025,registration,total_population,3.2,43,,55-59
+12.24.04,3,Sitolu Ori,age_group,60-64,laki_laki,171,jiwa,2025,registration,total_population,3.2,43,,60-64
+12.24.04,3,Sitolu Ori,age_group,60-64,perempuan,254,jiwa,2025,registration,total_population,3.2,43,,60-64
+12.24.04,3,Sitolu Ori,age_group,60-64,,425,jiwa,2025,registration,total_population,3.2,43,,60-64
+12.24.04,3,Sitolu Ori,age_group,65-69,laki_laki,186,jiwa,2025,registration,total_population,3.2,43,,65-69
+12.24.04,3,Sitolu Ori,age_group,65-69,perempuan,235,jiwa,2025,registration,total_population,3.2,43,,65-69
+12.24.04,3,Sitolu Ori,age_group,65-69,,421,jiwa,2025,registration,total_population,3.2,43,,65-69
+12.24.04,3,Sitolu Ori,age_group,70-74,laki_laki,101,jiwa,2025,registration,total_population,3.2,43,,70-74
+12.24.04,3,Sitolu Ori,age_group,70-74,perempuan,148,jiwa,2025,registration,total_population,3.2,43,,70-74
+12.24.04,3,Sitolu Ori,age_group,70-74,,249,jiwa,2025,registration,total_population,3.2,43,,70-74
+12.24.04,3,Sitolu Ori,age_group,75+,laki_laki,151,jiwa,2025,registration,total_population,3.2,43,,75+
+12.24.04,3,Sitolu Ori,age_group,75+,perempuan,179,jiwa,2025,registration,total_population,3.2,43,,75+
+12.24.04,3,Sitolu Ori,age_group,75+,,330,jiwa,2025,registration,total_population,3.2,43,,75+
+12.24.04,3,Sitolu Ori,sex,laki_laki,,6918,jiwa,2025,registration,total_population,3.2,43,,Laki-Laki
+12.24.04,3,Sitolu Ori,sex,perempuan,,6951,jiwa,2025,registration,total_population,3.2,43,,Perempuan
+12.24.04,3,Sitolu Ori,total,total,,13869,jiwa,2025,registration,total_population,3.2,43,,

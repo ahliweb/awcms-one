@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.05.12.2009,4,Sukaramai,sex,laki_laki,,2034,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.12.2009,4,Sukaramai,sex,perempuan,,2025,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.12.2009,4,Sukaramai,total,total,,4059,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.12.2008,4,Tanjung Putus,sex,laki_laki,,4522,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.12.2008,4,Tanjung Putus,sex,perempuan,,4409,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.12.2008,4,Tanjung Putus,total,total,,8931,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.12.1006,4,Tanjung Selamat,sex,laki_laki,,5308,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.12.1006,4,Tanjung Selamat,sex,perempuan,,5207,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.12.1006,4,Tanjung Selamat,total,total,,10515,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.12.2005,4,Besilam,sex,laki_laki,,2607,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.12.2005,4,Besilam,sex,perempuan,,2510,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.12.2005,4,Besilam,total,total,,5117,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.12.2002,4,Padang Tualang,sex,laki_laki,,1500,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.12.2002,4,Padang Tualang,sex,perempuan,,1485,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.12.2002,4,Padang Tualang,total,total,,2985,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.12.2001,4,Serapuh ABC,sex,laki_laki,,1182,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.12.2001,4,Serapuh ABC,sex,perempuan,,1121,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.12.2001,4,Serapuh ABC,total,total,,2303,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.12.2004,4,Buluh Telang,sex,laki_laki,,1696,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.12.2004,4,Buluh Telang,sex,perempuan,,1649,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.12.2004,4,Buluh Telang,total,total,,3345,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.12.2010,4,Jati Sari,sex,laki_laki,,2012,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.12.2010,4,Jati Sari,sex,perempuan,,1909,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.12.2010,4,Jati Sari,total,total,,3921,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.12.2011,4,Banjaran Raya,sex,laki_laki,,1490,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.12.2011,4,Banjaran Raya,sex,perempuan,,1365,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.12.2011,4,Banjaran Raya,total,total,,2855,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.12.2012,4,Bukit Sari,sex,laki_laki,,424,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.12.2012,4,Bukit Sari,sex,perempuan,,411,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.12.2012,4,Bukit Sari,total,total,,835,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.12,3,Kecamatan Padang Tualang,sex,laki_laki,,29872,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.12,3,Kecamatan Padang Tualang,sex,perempuan,,29049,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.12,3,Kecamatan Padang Tualang,total,total,,58921,jiwa,2025,registration,total_population,unnumbered-p39,39,,
