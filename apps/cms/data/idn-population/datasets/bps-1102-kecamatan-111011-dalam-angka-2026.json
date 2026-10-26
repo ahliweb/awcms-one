@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1102-kecamatan-111011-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.10.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Danau Paris Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Singkil",
+  "publisherDomain": "1102",
+  "publisherWebsite": "https://acehsingkilkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Singkil (https://acehsingkilkab.bps.go.id), publikasi \"Kecamatan Danau Paris Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1102032",
+  "publicationNumber": "11020.26013",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehsingkilkab.bps.go.id/id/publication/2026/09/28/120e95f703750f7996f16f85/kecamatan-danau-paris-dalam-angka-2026.html",
+  "sourceFileSha256": "8e23fd6f55748f8d80b53e569e94d0fcb99eb1fbcb83d49a5455e4cef43550f9",
+  "sourceFileBytes": 4746663,
+  "sourcePages": [19, 20],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Singkil.",
+  "csvPath": "datasets/bps-1102-kecamatan-111011-dalam-angka-2026.csv",
+  "csvSha256": "f516a4775632f8e08ca33129368c114492bb9b8067b6bb4fa0ec4d61951b5d08",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Danau Paris, 2025",
+      "printedPages": [19, 20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"1. Lae Balno 12,91%\": unmatched ",
+    "table 3.1: row not stored: row \"2. Napagaluh 10,78%\": unmatched ",
+    "table 3.1: row not stored: row \"3. Sikoran 9,45%\": unmatched ",
+    "table 3.1: row not stored: row \"4. Situbuh-Tubuh 13,73%\": unmatched ",
+    "table 3.1: row not stored: row \"5. Biskang 20,65%\": unmatched ",
+    "table 3.1: row not stored: row \"6. Sintuban Makmur 32,47%\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Danau Paris 100,00%\": unmatched "
+  ]
+}

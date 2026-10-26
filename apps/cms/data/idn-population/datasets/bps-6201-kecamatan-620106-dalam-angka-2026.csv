@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.01.06,3,Pangkalan Banteng,age_group,0-4,laki_laki,1423,jiwa,2025,registration,total_population,3.2,37,,<5
+62.01.06,3,Pangkalan Banteng,age_group,0-4,perempuan,1294,jiwa,2025,registration,total_population,3.2,37,,<5
+62.01.06,3,Pangkalan Banteng,age_group,0-4,,2717,jiwa,2025,registration,total_population,3.2,37,,<5
+62.01.06,3,Pangkalan Banteng,age_group,5-14,laki_laki,3941,jiwa,2025,registration,total_population,3.2,37,,5-<15
+62.01.06,3,Pangkalan Banteng,age_group,5-14,perempuan,3606,jiwa,2025,registration,total_population,3.2,37,,5-<15
+62.01.06,3,Pangkalan Banteng,age_group,5-14,,7547,jiwa,2025,registration,total_population,3.2,37,,5-<15
+62.01.06,3,Pangkalan Banteng,age_group,15-64,laki_laki,14729,jiwa,2025,registration,total_population,3.2,37,,15-64
+62.01.06,3,Pangkalan Banteng,age_group,15-64,perempuan,13787,jiwa,2025,registration,total_population,3.2,37,,15-64
+62.01.06,3,Pangkalan Banteng,age_group,15-64,,28516,jiwa,2025,registration,total_population,3.2,37,,15-64
+62.01.06,3,Pangkalan Banteng,age_group,65+,laki_laki,996,jiwa,2025,registration,total_population,3.2,37,,65+
+62.01.06,3,Pangkalan Banteng,age_group,65+,perempuan,747,jiwa,2025,registration,total_population,3.2,37,,65+
+62.01.06,3,Pangkalan Banteng,age_group,65+,,1743,jiwa,2025,registration,total_population,3.2,37,,65+
+62.01.06,3,Pangkalan Banteng,sex,laki_laki,,21089,jiwa,2025,registration,total_population,3.2,37,,Laki-Laki
+62.01.06,3,Pangkalan Banteng,sex,perempuan,,19434,jiwa,2025,registration,total_population,3.2,37,,Perempuan
+62.01.06,3,Pangkalan Banteng,total,total,,40523,jiwa,2025,registration,total_population,3.2,37,,

@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.12.07.2007,4,Tangan-Tangan Cut,sex,laki_laki,,686,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.07.2007,4,Tangan-Tangan Cut,sex,perempuan,,673,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.07.2007,4,Tangan-Tangan Cut,total,total,,1359,jiwa,2025,registration,total_population,3.1,21,,
+11.12.07.2001,4,Lhang,sex,laki_laki,,855,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.07.2001,4,Lhang,sex,perempuan,,854,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.07.2001,4,Lhang,total,total,,1709,jiwa,2025,registration,total_population,3.1,21,,
+11.12.07.2004,4,Ujung Tanah,sex,laki_laki,,539,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.07.2004,4,Ujung Tanah,sex,perempuan,,521,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.07.2004,4,Ujung Tanah,total,total,,1060,jiwa,2025,registration,total_population,3.1,21,,
+11.12.07.2002,4,Rambong,sex,laki_laki,,496,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.07.2002,4,Rambong,sex,perempuan,,474,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.07.2002,4,Rambong,total,total,,970,jiwa,2025,registration,total_population,3.1,21,,
+11.12.07.2003,4,Pisang,sex,laki_laki,,408,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.07.2003,4,Pisang,sex,perempuan,,400,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.07.2003,4,Pisang,total,total,,808,jiwa,2025,registration,total_population,3.1,21,,
+11.12.07.2005,4,Alue Dama,sex,laki_laki,,667,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.07.2005,4,Alue Dama,sex,perempuan,,598,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.07.2005,4,Alue Dama,total,total,,1265,jiwa,2025,registration,total_population,3.1,21,,
+11.12.07.2008,4,Mon Mameh,sex,laki_laki,,195,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.07.2008,4,Mon Mameh,sex,perempuan,,204,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.07.2008,4,Mon Mameh,total,total,,399,jiwa,2025,registration,total_population,3.1,21,,
+11.12.07.2009,4,Cinta Makmur,sex,laki_laki,,335,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.07.2009,4,Cinta Makmur,sex,perempuan,,317,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.07.2009,4,Cinta Makmur,total,total,,652,jiwa,2025,registration,total_population,3.1,21,,
+11.12.07.2010,4,Kuta Murni,sex,laki_laki,,394,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.07.2010,4,Kuta Murni,sex,perempuan,,399,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.07.2010,4,Kuta Murni,total,total,,793,jiwa,2025,registration,total_population,3.1,21,,
+11.12.07,3,Setia,sex,laki_laki,,4575,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki/Male
+11.12.07,3,Setia,sex,perempuan,,4440,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+11.12.07,3,Setia,total,total,,9015,jiwa,2025,registration,total_population,3.1,21,,

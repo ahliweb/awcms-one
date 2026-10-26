@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-1118-kecamatan-111803-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.18.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jangka Buya Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pidie Jaya",
+  "publisherDomain": "1118",
+  "publisherWebsite": "https://pidiejayakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pidie Jaya (https://pidiejayakab.bps.go.id), publikasi \"Kecamatan Jangka Buya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1118040",
+  "publicationNumber": "11180.26008",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pidiejayakab.bps.go.id/id/publication/2026/09/28/4c5f035d17235325cadeb257/kecamatan-jangka-buya-dalam-angka-2026.html",
+  "sourceFileSha256": "d6b53f26d3fe7c22207738f31a61f24db31cab35e9df5309637c626f38ab5ce6",
+  "sourceFileBytes": 3233971,
+  "sourcePages": [23],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pidie Jaya",
+  "csvPath": "datasets/bps-1118-kecamatan-111803-dalam-angka-2026.csv",
+  "csvSha256": "179ace89e1d318913122dc96e55400dddcf4ea95bf6b09cd038eb4c7e47a73d0",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Jangka Buya, 2025",
+      "printedPages": [23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Buket Teungeh\": unmatched ",
+    "table 3.1: row not stored: row \"Jurong Teungeh\": unmatched "
+  ]
+}

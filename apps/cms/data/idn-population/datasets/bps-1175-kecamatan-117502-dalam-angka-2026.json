@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1175-kecamatan-117502-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.75.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Penanggalan Dalam Angka 2026",
+  "publisherName": "BPS Kota Subulussalam",
+  "publisherDomain": "1175",
+  "publisherWebsite": "https://subulussalamkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Subulussalam (https://subulussalamkota.bps.go.id), publikasi \"Kecamatan Penanggalan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "11020011175020",
+  "publicationNumber": "11750.26006",
+  "issn": "2746-3931",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://subulussalamkota.bps.go.id/id/publication/2026/09/28/d2b24703e308a001ff826fa9/kecamatan-penanggalan-dalam-angka-2026.html",
+  "sourceFileSha256": "50843709935c8fae0f9fd0f64357f9f5372dbd473fd810515faba3c58b02672c",
+  "sourceFileBytes": 4793182,
+  "sourcePages": [31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota SUBULUSSALAM",
+  "csvPath": "datasets/bps-1175-kecamatan-117502-dalam-angka-2026.csv",
+  "csvSha256": "3fedaa55dc8dabf5776210f6ca4c21fda3cb934227811920d7449931ac8227a9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Penanggalan , 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Penanggalan , 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

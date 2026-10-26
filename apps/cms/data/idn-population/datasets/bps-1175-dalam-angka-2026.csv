@@ -1,0 +1,139 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.75.01,3,Simpang Kiri,total,total,,39365,jiwa,2025,projection,total_population,3.1.1,54,,
+11.75.02,3,Penanggalan,total,total,,19704,jiwa,2025,projection,total_population,3.1.1,54,,
+11.75.03,3,Rundeng,total,total,,15429,jiwa,2025,projection,total_population,3.1.1,54,,
+11.75.04,3,Sultan Daulat,total,total,,18923,jiwa,2025,projection,total_population,3.1.1,54,,
+11.75.05,3,Longkib,total,total,,7861,jiwa,2025,projection,total_population,3.1.1,54,,
+11.75,2,Kota Subulussalam,total,total,,101282,jiwa,2025,projection,total_population,3.1.1,54,,
+11.75,2,Kota Subulussalam,age_group,0-4,laki_laki,6149,jiwa,2025,projection,total_population,3.1.2,57,,0–4
+11.75,2,Kota Subulussalam,age_group,0-4,perempuan,5898,jiwa,2025,projection,total_population,3.1.2,57,,0–4
+11.75,2,Kota Subulussalam,age_group,0-4,,12047,jiwa,2025,projection,total_population,3.1.2,57,,0–4
+11.75,2,Kota Subulussalam,age_group,5-9,laki_laki,5255,jiwa,2025,projection,total_population,3.1.2,57,,5–9
+11.75,2,Kota Subulussalam,age_group,5-9,perempuan,4858,jiwa,2025,projection,total_population,3.1.2,57,,5–9
+11.75,2,Kota Subulussalam,age_group,5-9,,10113,jiwa,2025,projection,total_population,3.1.2,57,,5–9
+11.75,2,Kota Subulussalam,age_group,10-14,laki_laki,5028,jiwa,2025,projection,total_population,3.1.2,57,,10–14
+11.75,2,Kota Subulussalam,age_group,10-14,perempuan,5008,jiwa,2025,projection,total_population,3.1.2,57,,10–14
+11.75,2,Kota Subulussalam,age_group,10-14,,10036,jiwa,2025,projection,total_population,3.1.2,57,,10–14
+11.75,2,Kota Subulussalam,age_group,15-19,laki_laki,4790,jiwa,2025,projection,total_population,3.1.2,57,,15–19
+11.75,2,Kota Subulussalam,age_group,15-19,perempuan,4422,jiwa,2025,projection,total_population,3.1.2,57,,15–19
+11.75,2,Kota Subulussalam,age_group,15-19,,9212,jiwa,2025,projection,total_population,3.1.2,57,,15–19
+11.75,2,Kota Subulussalam,age_group,20-24,laki_laki,4861,jiwa,2025,projection,total_population,3.1.2,57,,20–24
+11.75,2,Kota Subulussalam,age_group,20-24,perempuan,4584,jiwa,2025,projection,total_population,3.1.2,57,,20–24
+11.75,2,Kota Subulussalam,age_group,20-24,,9445,jiwa,2025,projection,total_population,3.1.2,57,,20–24
+11.75,2,Kota Subulussalam,age_group,25-29,laki_laki,4971,jiwa,2025,projection,total_population,3.1.2,57,,25–29
+11.75,2,Kota Subulussalam,age_group,25-29,perempuan,4845,jiwa,2025,projection,total_population,3.1.2,57,,25–29
+11.75,2,Kota Subulussalam,age_group,25-29,,9816,jiwa,2025,projection,total_population,3.1.2,57,,25–29
+11.75,2,Kota Subulussalam,age_group,30-34,laki_laki,4206,jiwa,2025,projection,total_population,3.1.2,57,,30–34
+11.75,2,Kota Subulussalam,age_group,30-34,perempuan,4053,jiwa,2025,projection,total_population,3.1.2,57,,30–34
+11.75,2,Kota Subulussalam,age_group,30-34,,8259,jiwa,2025,projection,total_population,3.1.2,57,,30–34
+11.75,2,Kota Subulussalam,age_group,35-39,laki_laki,3554,jiwa,2025,projection,total_population,3.1.2,57,,35–39
+11.75,2,Kota Subulussalam,age_group,35-39,perempuan,3453,jiwa,2025,projection,total_population,3.1.2,57,,35–39
+11.75,2,Kota Subulussalam,age_group,35-39,,7007,jiwa,2025,projection,total_population,3.1.2,57,,35–39
+11.75,2,Kota Subulussalam,age_group,40-44,laki_laki,3271,jiwa,2025,projection,total_population,3.1.2,57,,40–44
+11.75,2,Kota Subulussalam,age_group,40-44,perempuan,3299,jiwa,2025,projection,total_population,3.1.2,57,,40–44
+11.75,2,Kota Subulussalam,age_group,40-44,,6570,jiwa,2025,projection,total_population,3.1.2,57,,40–44
+11.75,2,Kota Subulussalam,age_group,45-49,laki_laki,2738,jiwa,2025,projection,total_population,3.1.2,57,,45–49
+11.75,2,Kota Subulussalam,age_group,45-49,perempuan,2653,jiwa,2025,projection,total_population,3.1.2,57,,45–49
+11.75,2,Kota Subulussalam,age_group,45-49,,5391,jiwa,2025,projection,total_population,3.1.2,57,,45–49
+11.75,2,Kota Subulussalam,age_group,50-54,laki_laki,2144,jiwa,2025,projection,total_population,3.1.2,57,,50–54
+11.75,2,Kota Subulussalam,age_group,50-54,perempuan,2131,jiwa,2025,projection,total_population,3.1.2,57,,50–54
+11.75,2,Kota Subulussalam,age_group,50-54,,4275,jiwa,2025,projection,total_population,3.1.2,57,,50–54
+11.75,2,Kota Subulussalam,age_group,55-59,laki_laki,1678,jiwa,2025,projection,total_population,3.1.2,57,,55–59
+11.75,2,Kota Subulussalam,age_group,55-59,perempuan,1688,jiwa,2025,projection,total_population,3.1.2,57,,55–59
+11.75,2,Kota Subulussalam,age_group,55-59,,3366,jiwa,2025,projection,total_population,3.1.2,57,,55–59
+11.75,2,Kota Subulussalam,age_group,60-64,laki_laki,1190,jiwa,2025,projection,total_population,3.1.2,57,,60–64
+11.75,2,Kota Subulussalam,age_group,60-64,perempuan,1241,jiwa,2025,projection,total_population,3.1.2,57,,60–64
+11.75,2,Kota Subulussalam,age_group,60-64,,2431,jiwa,2025,projection,total_population,3.1.2,57,,60–64
+11.75,2,Kota Subulussalam,age_group,65-69,laki_laki,761,jiwa,2025,projection,total_population,3.1.2,57,,65–69
+11.75,2,Kota Subulussalam,age_group,65-69,perempuan,808,jiwa,2025,projection,total_population,3.1.2,57,,65–69
+11.75,2,Kota Subulussalam,age_group,65-69,,1569,jiwa,2025,projection,total_population,3.1.2,57,,65–69
+11.75,2,Kota Subulussalam,age_group,70-74,laki_laki,469,jiwa,2025,projection,total_population,3.1.2,57,,70–74
+11.75,2,Kota Subulussalam,age_group,70-74,perempuan,502,jiwa,2025,projection,total_population,3.1.2,57,,70–74
+11.75,2,Kota Subulussalam,age_group,70-74,,971,jiwa,2025,projection,total_population,3.1.2,57,,70–74
+11.75,2,Kota Subulussalam,age_group,75+,laki_laki,331,jiwa,2025,projection,total_population,3.1.2,57,,75+
+11.75,2,Kota Subulussalam,age_group,75+,perempuan,443,jiwa,2025,projection,total_population,3.1.2,57,,75+
+11.75,2,Kota Subulussalam,age_group,75+,,774,jiwa,2025,projection,total_population,3.1.2,57,,75+
+11.75,2,Kota Subulussalam,sex,laki_laki,,51396,jiwa,2025,projection,total_population,3.1.2,57,,Laki-Laki
+11.75,2,Kota Subulussalam,sex,perempuan,,49886,jiwa,2025,projection,total_population,3.1.2,57,,Perempuan
+11.75,2,Kota Subulussalam,total,total,,101282,jiwa,2025,projection,total_population,3.1.2,57,,
+11.75.01,3,Simpang Kiri,religion,islam,,42476,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+11.75.01,3,Simpang Kiri,religion,kristen,,479,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+11.75.01,3,Simpang Kiri,religion,katolik,,71,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+11.75.01,3,Simpang Kiri,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Hindu
+11.75.01,3,Simpang Kiri,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,149,,Budha
+11.75.01,3,Simpang Kiri,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Lainnya
+11.75.02,3,Penanggalan,religion,islam,,17799,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+11.75.02,3,Penanggalan,religion,kristen,,2222,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+11.75.02,3,Penanggalan,religion,katolik,,630,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+11.75.02,3,Penanggalan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Hindu
+11.75.02,3,Penanggalan,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,149,,Budha
+11.75.02,3,Penanggalan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Lainnya
+11.75.03,3,Rundeng,religion,islam,,17189,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+11.75.03,3,Rundeng,religion,kristen,,76,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+11.75.03,3,Rundeng,religion,katolik,,31,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+11.75.03,3,Rundeng,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Hindu
+11.75.03,3,Rundeng,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Budha
+11.75.03,3,Rundeng,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Lainnya
+11.75.04,3,Sultan Daulat,religion,islam,,20322,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+11.75.04,3,Sultan Daulat,religion,kristen,,328,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+11.75.04,3,Sultan Daulat,religion,katolik,,58,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+11.75.04,3,Sultan Daulat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Hindu
+11.75.04,3,Sultan Daulat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Budha
+11.75.04,3,Sultan Daulat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Lainnya
+11.75.05,3,Longkib,religion,islam,,8011,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+11.75.05,3,Longkib,religion,kristen,,144,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+11.75.05,3,Longkib,religion,katolik,,15,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+11.75.05,3,Longkib,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Hindu
+11.75.05,3,Longkib,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Budha
+11.75.05,3,Longkib,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Lainnya
+11.75,2,Subulussalam,religion,islam,,105797,jiwa,2025,registration,total_population,4.3.1,149,,Islam
+11.75,2,Subulussalam,religion,kristen,,3249,jiwa,2025,registration,total_population,4.3.1,149,,Protestan
+11.75,2,Subulussalam,religion,katolik,,805,jiwa,2025,registration,total_population,4.3.1,149,,Katolik
+11.75,2,Subulussalam,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Hindu
+11.75,2,Subulussalam,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,149,,Budha
+11.75,2,Subulussalam,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,149,nil,Lainnya
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/padi_padian,,112739,rupiah,2025,survey_estimate,per_capita,10.1,318,,Padi-padian
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/padi_padian,,108853,rupiah,2024,survey_estimate,per_capita,10.1,318,,Padi-padian
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/umbi_umbian,,7036,rupiah,2025,survey_estimate,per_capita,10.1,318,,Umbi-umbian
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/umbi_umbian,,5220,rupiah,2024,survey_estimate,per_capita,10.1,318,,Umbi-umbian
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,69904,rupiah,2025,survey_estimate,per_capita,10.1,318,,Ikan/udang/cumi/kerang
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,71527,rupiah,2024,survey_estimate,per_capita,10.1,318,,Ikan/udang/cumi/kerang
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/daging,,19436,rupiah,2025,survey_estimate,per_capita,10.1,318,,Daging
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/daging,,13588,rupiah,2024,survey_estimate,per_capita,10.1,318,,Daging
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/telur_dan_susu,,23134,rupiah,2025,survey_estimate,per_capita,10.1,318,,Telur dan susu
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/telur_dan_susu,,20368,rupiah,2024,survey_estimate,per_capita,10.1,318,,Telur dan susu
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/sayur_sayuran,,61385,rupiah,2025,survey_estimate,per_capita,10.1,318,,Sayur-sayuran
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/sayur_sayuran,,58436,rupiah,2024,survey_estimate,per_capita,10.1,318,,Sayur-sayuran
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/kacang_kacangan,,9082,rupiah,2025,survey_estimate,per_capita,10.1,318,,Kacang-kacangan
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/kacang_kacangan,,8383,rupiah,2024,survey_estimate,per_capita,10.1,318,,Kacang-kacangan
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/buah_buahan,,31969,rupiah,2025,survey_estimate,per_capita,10.1,318,,Buah-buahan
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/buah_buahan,,26684,rupiah,2024,survey_estimate,per_capita,10.1,318,,Buah-buahan
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/minyak_dan_kelapa,,27969,rupiah,2025,survey_estimate,per_capita,10.1,318,,Minyak dan kelapa
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23196,rupiah,2024,survey_estimate,per_capita,10.1,318,,Minyak dan kelapa
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/bahan_minuman,,20458,rupiah,2025,survey_estimate,per_capita,10.1,318,,Bahan minuman
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/bahan_minuman,,16947,rupiah,2024,survey_estimate,per_capita,10.1,318,,Bahan minuman
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/bumbu_bumbuan,,12466,rupiah,2025,survey_estimate,per_capita,10.1,318,,Bumbu-bumbuan
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/bumbu_bumbuan,,12902,rupiah,2024,survey_estimate,per_capita,10.1,318,,Bumbu-bumbuan
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/konsumsi_lainnya,,6762,rupiah,2025,survey_estimate,per_capita,10.1,318,,Konsumsi lainnya
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/konsumsi_lainnya,,6726,rupiah,2024,survey_estimate,per_capita,10.1,318,,Konsumsi lainnya
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,155927,rupiah,2025,survey_estimate,per_capita,10.1,318,,Makanan dan minuman jadi
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,131017,rupiah,2024,survey_estimate,per_capita,10.1,318,,Makanan dan minuman jadi
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/rokok,,112474,rupiah,2025,survey_estimate,per_capita,10.1,318,,Rokok
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/rokok,,113846,rupiah,2024,survey_estimate,per_capita,10.1,318,,Rokok
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/jumlah_makanan,,670738,rupiah,2025,survey_estimate,per_capita,10.1,318,,Jumlah makanan
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/jumlah_makanan,,617693,rupiah,2024,survey_estimate,per_capita,10.1,318,,Jumlah makanan
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,217189,rupiah,2025,survey_estimate,per_capita,10.1,318,,Perumahan dan fasilitas rumah tangga
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,206827,rupiah,2024,survey_estimate,per_capita,10.1,318,,Perumahan dan fasilitas rumah tangga
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,112395,rupiah,2025,survey_estimate,per_capita,10.1,318,,Aneka barang dan jasa
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,107678,rupiah,2024,survey_estimate,per_capita,10.1,318,,Aneka barang dan jasa
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,53152,rupiah,2025,survey_estimate,per_capita,10.1,318,,"Pakaian, alas kaki, dan tutup kepala"
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,45557,rupiah,2024,survey_estimate,per_capita,10.1,318,,"Pakaian, alas kaki, dan tutup kepala"
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/barang_tahan_lama,,16641,rupiah,2025,survey_estimate,per_capita,10.1,318,,Barang tahan lama
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,56918,rupiah,2025,survey_estimate,per_capita,10.1,318,,"Pajak, pungutan, dan asuransi"
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,60743,rupiah,2024,survey_estimate,per_capita,10.1,318,,"Pajak, pungutan, dan asuransi"
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,10224,rupiah,2025,survey_estimate,per_capita,10.1,318,,Keperluan pesta dan upacara/kenduri
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,6354,rupiah,2024,survey_estimate,per_capita,10.1,318,,Keperluan pesta dan upacara/kenduri
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,466518,rupiah,2025,survey_estimate,per_capita,10.1,318,,Jumlah bukan makanan
+11.75,2,Kota Subulussalam,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,493477,rupiah,2024,survey_estimate,per_capita,10.1,318,,Jumlah bukan makanan
+11.75,2,Kota Subulussalam,expenditure,total,,1137256,rupiah,2025,survey_estimate,per_capita,10.1,318,,
+11.75,2,Kota Subulussalam,expenditure,total,,1111170,rupiah,2024,survey_estimate,per_capita,10.1,318,,

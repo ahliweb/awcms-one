@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.08.13.2001,4,Alue,sex,laki_laki,,154,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.13.2001,4,Alue,sex,perempuan,,152,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.13.2001,4,Alue,total,total,,306,jiwa,2025,registration,total_population,3.1,28,,
+11.08.13.2003,4,Blang,sex,laki_laki,,380,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.13.2003,4,Blang,sex,perempuan,,397,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.13.2003,4,Blang,total,total,,777,jiwa,2025,registration,total_population,3.1,28,,
+11.08.13.2006,4,Pande,sex,laki_laki,,560,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.13.2006,4,Pande,sex,perempuan,,599,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.13.2006,4,Pande,total,total,,1159,jiwa,2025,registration,total_population,3.1,28,,
+11.08.13.2004,4,Paloh,sex,laki_laki,,603,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.13.2004,4,Paloh,sex,perempuan,,594,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.13.2004,4,Paloh,total,total,,1197,jiwa,2025,registration,total_population,3.1,28,,
+11.08.13.2010,4,Prie,sex,laki_laki,,310,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.13.2010,4,Prie,sex,perempuan,,322,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.13.2010,4,Prie,total,total,,632,jiwa,2025,registration,total_population,3.1,28,,
+11.08.13.2015,4,Me Merbo,sex,laki_laki,,316,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.13.2015,4,Me Merbo,sex,perempuan,,281,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.13.2015,4,Me Merbo,total,total,,597,jiwa,2025,registration,total_population,3.1,28,,
+11.08.13.2016,4,Ulee Tanoh,sex,laki_laki,,493,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.13.2016,4,Ulee Tanoh,sex,perempuan,,459,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.13.2016,4,Ulee Tanoh,total,total,,952,jiwa,2025,registration,total_population,3.1,28,,
+11.08.13.2011,4,Keutapang,sex,laki_laki,,285,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.13.2011,4,Keutapang,sex,perempuan,,275,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.13.2011,4,Keutapang,total,total,,560,jiwa,2025,registration,total_population,3.1,28,,
+11.08.13.2009,4,Kumbang,sex,laki_laki,,244,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.13.2009,4,Kumbang,sex,perempuan,,228,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.13.2009,4,Kumbang,total,total,,472,jiwa,2025,registration,total_population,3.1,28,,
+11.08.13.2008,4,Cangguek,sex,laki_laki,,257,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.13.2008,4,Cangguek,sex,perempuan,,309,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.13.2008,4,Cangguek,total,total,,566,jiwa,2025,registration,total_population,3.1,28,,
+11.08.13.2012,4,Keude Jrat Manyang,sex,laki_laki,,75,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.13.2012,4,Keude Jrat Manyang,sex,perempuan,,79,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.13.2012,4,Keude Jrat Manyang,total,total,,154,jiwa,2025,registration,total_population,3.1,28,,
+11.08.13.2013,4,Teupin Gapeuh,sex,laki_laki,,369,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.13.2013,4,Teupin Gapeuh,sex,perempuan,,393,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.13.2013,4,Teupin Gapeuh,total,total,,762,jiwa,2025,registration,total_population,3.1,28,,
+11.08.13.2014,4,Cibrek,sex,laki_laki,,194,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.13.2014,4,Cibrek,sex,perempuan,,202,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.13.2014,4,Cibrek,total,total,,396,jiwa,2025,registration,total_population,3.1,28,,
+11.08.13.2017,4,Matang Janeng,sex,laki_laki,,358,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.13.2017,4,Matang Janeng,sex,perempuan,,362,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.13.2017,4,Matang Janeng,total,total,,720,jiwa,2025,registration,total_population,3.1,28,,
+11.08.13,3,Tanah Pasir,sex,laki_laki,,5289,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.08.13,3,Tanah Pasir,sex,perempuan,,5332,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.08.13,3,Tanah Pasir,total,total,,10621,jiwa,2025,registration,total_population,3.1,28,,
+11.08.13,3,Tanah Pasir,age_group,0-4,laki_laki,457,jiwa,2025,registration,total_population,3.2,30,,0-4
+11.08.13,3,Tanah Pasir,age_group,0-4,perempuan,462,jiwa,2025,registration,total_population,3.2,30,,0-4
+11.08.13,3,Tanah Pasir,age_group,0-4,,919,jiwa,2025,registration,total_population,3.2,30,,0-4
+11.08.13,3,Tanah Pasir,age_group,5-9,laki_laki,600,jiwa,2025,registration,total_population,3.2,30,,5-9
+11.08.13,3,Tanah Pasir,age_group,5-9,perempuan,511,jiwa,2025,registration,total_population,3.2,30,,5-9
+11.08.13,3,Tanah Pasir,age_group,5-9,,1111,jiwa,2025,registration,total_population,3.2,30,,5-9
+11.08.13,3,Tanah Pasir,age_group,10-14,laki_laki,532,jiwa,2025,registration,total_population,3.2,30,,10-14
+11.08.13,3,Tanah Pasir,age_group,10-14,perempuan,474,jiwa,2025,registration,total_population,3.2,30,,10-14
+11.08.13,3,Tanah Pasir,age_group,10-14,,1006,jiwa,2025,registration,total_population,3.2,30,,10-14
+11.08.13,3,Tanah Pasir,age_group,15-19,laki_laki,434,jiwa,2025,registration,total_population,3.2,30,,15-19
+11.08.13,3,Tanah Pasir,age_group,15-19,perempuan,404,jiwa,2025,registration,total_population,3.2,30,,15-19
+11.08.13,3,Tanah Pasir,age_group,15-19,,838,jiwa,2025,registration,total_population,3.2,30,,15-19
+11.08.13,3,Tanah Pasir,age_group,20-24,laki_laki,447,jiwa,2025,registration,total_population,3.2,30,,20-24
+11.08.13,3,Tanah Pasir,age_group,20-24,perempuan,381,jiwa,2025,registration,total_population,3.2,30,,20-24
+11.08.13,3,Tanah Pasir,age_group,20-24,,828,jiwa,2025,registration,total_population,3.2,30,,20-24
+11.08.13,3,Tanah Pasir,age_group,25-29,laki_laki,415,jiwa,2025,registration,total_population,3.2,30,,25-29
+11.08.13,3,Tanah Pasir,age_group,25-29,perempuan,396,jiwa,2025,registration,total_population,3.2,30,,25-29
+11.08.13,3,Tanah Pasir,age_group,25-29,,811,jiwa,2025,registration,total_population,3.2,30,,25-29
+11.08.13,3,Tanah Pasir,age_group,30-34,laki_laki,363,jiwa,2025,registration,total_population,3.2,30,,30-34
+11.08.13,3,Tanah Pasir,age_group,30-34,perempuan,399,jiwa,2025,registration,total_population,3.2,30,,30-34
+11.08.13,3,Tanah Pasir,age_group,30-34,,762,jiwa,2025,registration,total_population,3.2,30,,30-34
+11.08.13,3,Tanah Pasir,age_group,35-39,laki_laki,432,jiwa,2025,registration,total_population,3.2,30,,35-39
+11.08.13,3,Tanah Pasir,age_group,35-39,perempuan,401,jiwa,2025,registration,total_population,3.2,30,,35-39
+11.08.13,3,Tanah Pasir,age_group,35-39,,833,jiwa,2025,registration,total_population,3.2,30,,35-39
+11.08.13,3,Tanah Pasir,age_group,40-44,laki_laki,352,jiwa,2025,registration,total_population,3.2,30,,40-44
+11.08.13,3,Tanah Pasir,age_group,40-44,perempuan,368,jiwa,2025,registration,total_population,3.2,30,,40-44
+11.08.13,3,Tanah Pasir,age_group,40-44,,720,jiwa,2025,registration,total_population,3.2,30,,40-44
+11.08.13,3,Tanah Pasir,age_group,45-49,laki_laki,300,jiwa,2025,registration,total_population,3.2,30,,45-49
+11.08.13,3,Tanah Pasir,age_group,45-49,perempuan,342,jiwa,2025,registration,total_population,3.2,30,,45-49
+11.08.13,3,Tanah Pasir,age_group,45-49,,642,jiwa,2025,registration,total_population,3.2,30,,45-49
+11.08.13,3,Tanah Pasir,age_group,50-54,laki_laki,286,jiwa,2025,registration,total_population,3.2,30,,50-54
+11.08.13,3,Tanah Pasir,age_group,50-54,perempuan,291,jiwa,2025,registration,total_population,3.2,30,,50-54
+11.08.13,3,Tanah Pasir,age_group,50-54,,577,jiwa,2025,registration,total_population,3.2,30,,50-54
+11.08.13,3,Tanah Pasir,age_group,55-59,laki_laki,217,jiwa,2025,registration,total_population,3.2,30,,55-59
+11.08.13,3,Tanah Pasir,age_group,55-59,perempuan,236,jiwa,2025,registration,total_population,3.2,30,,55-59
+11.08.13,3,Tanah Pasir,age_group,55-59,,453,jiwa,2025,registration,total_population,3.2,30,,55-59
+11.08.13,3,Tanah Pasir,age_group,60-64,laki_laki,146,jiwa,2025,registration,total_population,3.2,30,,60-64
+11.08.13,3,Tanah Pasir,age_group,60-64,perempuan,211,jiwa,2025,registration,total_population,3.2,30,,60-64
+11.08.13,3,Tanah Pasir,age_group,60-64,,357,jiwa,2025,registration,total_population,3.2,30,,60-64
+11.08.13,3,Tanah Pasir,age_group,65+,laki_laki,308,jiwa,2025,registration,total_population,3.2,30,,65+
+11.08.13,3,Tanah Pasir,age_group,65+,perempuan,456,jiwa,2025,registration,total_population,3.2,30,,65+
+11.08.13,3,Tanah Pasir,age_group,65+,,764,jiwa,2025,registration,total_population,3.2,30,,65+
+11.08.13,3,Tanah Pasir,sex,laki_laki,,5289,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+11.08.13,3,Tanah Pasir,sex,perempuan,,5332,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+11.08.13,3,Tanah Pasir,total,total,,10621,jiwa,2025,registration,total_population,3.2,30,,

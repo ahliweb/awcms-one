@@ -1,0 +1,242 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.06,2,Kabupaten Aceh Besar,age_group,0-4,laki_laki,17867,jiwa,2025,registration,total_population,3.1.2,60,,0–4
+11.06,2,Kabupaten Aceh Besar,age_group,0-4,perempuan,16956,jiwa,2025,registration,total_population,3.1.2,60,,0–4
+11.06,2,Kabupaten Aceh Besar,age_group,0-4,,34823,jiwa,2025,registration,total_population,3.1.2,60,,0–4
+11.06,2,Kabupaten Aceh Besar,age_group,5-9,laki_laki,22274,jiwa,2025,registration,total_population,3.1.2,60,,5–9
+11.06,2,Kabupaten Aceh Besar,age_group,5-9,perempuan,20779,jiwa,2025,registration,total_population,3.1.2,60,,5–9
+11.06,2,Kabupaten Aceh Besar,age_group,5-9,,43053,jiwa,2025,registration,total_population,3.1.2,60,,5–9
+11.06,2,Kabupaten Aceh Besar,age_group,10-14,laki_laki,21768,jiwa,2025,registration,total_population,3.1.2,60,,10–14
+11.06,2,Kabupaten Aceh Besar,age_group,10-14,perempuan,20750,jiwa,2025,registration,total_population,3.1.2,60,,10–14
+11.06,2,Kabupaten Aceh Besar,age_group,10-14,,42518,jiwa,2025,registration,total_population,3.1.2,60,,10–14
+11.06,2,Kabupaten Aceh Besar,age_group,15-19,laki_laki,21574,jiwa,2025,registration,total_population,3.1.2,60,,15–19
+11.06,2,Kabupaten Aceh Besar,age_group,15-19,perempuan,20079,jiwa,2025,registration,total_population,3.1.2,60,,15–19
+11.06,2,Kabupaten Aceh Besar,age_group,15-19,,41653,jiwa,2025,registration,total_population,3.1.2,60,,15–19
+11.06,2,Kabupaten Aceh Besar,age_group,20-24,laki_laki,18304,jiwa,2025,registration,total_population,3.1.2,60,,20–24
+11.06,2,Kabupaten Aceh Besar,age_group,20-24,perempuan,17057,jiwa,2025,registration,total_population,3.1.2,60,,20–24
+11.06,2,Kabupaten Aceh Besar,age_group,20-24,,35361,jiwa,2025,registration,total_population,3.1.2,60,,20–24
+11.06,2,Kabupaten Aceh Besar,age_group,25-29,laki_laki,16857,jiwa,2025,registration,total_population,3.1.2,60,,25–29
+11.06,2,Kabupaten Aceh Besar,age_group,25-29,perempuan,16957,jiwa,2025,registration,total_population,3.1.2,60,,25–29
+11.06,2,Kabupaten Aceh Besar,age_group,25-29,,33814,jiwa,2025,registration,total_population,3.1.2,60,,25–29
+11.06,2,Kabupaten Aceh Besar,age_group,30-34,laki_laki,16898,jiwa,2025,registration,total_population,3.1.2,60,,30–34
+11.06,2,Kabupaten Aceh Besar,age_group,30-34,perempuan,17208,jiwa,2025,registration,total_population,3.1.2,60,,30–34
+11.06,2,Kabupaten Aceh Besar,age_group,30-34,,34106,jiwa,2025,registration,total_population,3.1.2,60,,30–34
+11.06,2,Kabupaten Aceh Besar,age_group,35-39,laki_laki,17386,jiwa,2025,registration,total_population,3.1.2,60,,35–39
+11.06,2,Kabupaten Aceh Besar,age_group,35-39,perempuan,18007,jiwa,2025,registration,total_population,3.1.2,60,,35–39
+11.06,2,Kabupaten Aceh Besar,age_group,35-39,,35393,jiwa,2025,registration,total_population,3.1.2,60,,35–39
+11.06,2,Kabupaten Aceh Besar,age_group,40-44,laki_laki,17067,jiwa,2025,registration,total_population,3.1.2,60,,40–44
+11.06,2,Kabupaten Aceh Besar,age_group,40-44,perempuan,17528,jiwa,2025,registration,total_population,3.1.2,60,,40–44
+11.06,2,Kabupaten Aceh Besar,age_group,40-44,,34595,jiwa,2025,registration,total_population,3.1.2,60,,40–44
+11.06,2,Kabupaten Aceh Besar,age_group,45-49,laki_laki,15108,jiwa,2025,registration,total_population,3.1.2,60,,45–49
+11.06,2,Kabupaten Aceh Besar,age_group,45-49,perempuan,14469,jiwa,2025,registration,total_population,3.1.2,60,,45–49
+11.06,2,Kabupaten Aceh Besar,age_group,45-49,,29577,jiwa,2025,registration,total_population,3.1.2,60,,45–49
+11.06,2,Kabupaten Aceh Besar,age_group,50-54,laki_laki,12939,jiwa,2025,registration,total_population,3.1.2,60,,50–54
+11.06,2,Kabupaten Aceh Besar,age_group,50-54,perempuan,12614,jiwa,2025,registration,total_population,3.1.2,60,,50–54
+11.06,2,Kabupaten Aceh Besar,age_group,50-54,,25553,jiwa,2025,registration,total_population,3.1.2,60,,50–54
+11.06,2,Kabupaten Aceh Besar,age_group,55-59,laki_laki,9924,jiwa,2025,registration,total_population,3.1.2,60,,55–59
+11.06,2,Kabupaten Aceh Besar,age_group,55-59,perempuan,9950,jiwa,2025,registration,total_population,3.1.2,60,,55–59
+11.06,2,Kabupaten Aceh Besar,age_group,55-59,,19874,jiwa,2025,registration,total_population,3.1.2,60,,55–59
+11.06,2,Kabupaten Aceh Besar,age_group,60-64,laki_laki,7490,jiwa,2025,registration,total_population,3.1.2,60,,60–64
+11.06,2,Kabupaten Aceh Besar,age_group,60-64,perempuan,7603,jiwa,2025,registration,total_population,3.1.2,60,,60–64
+11.06,2,Kabupaten Aceh Besar,age_group,60-64,,15093,jiwa,2025,registration,total_population,3.1.2,60,,60–64
+11.06,2,Kabupaten Aceh Besar,age_group,65-69,laki_laki,5122,jiwa,2025,registration,total_population,3.1.2,60,,65–69
+11.06,2,Kabupaten Aceh Besar,age_group,65-69,perempuan,5760,jiwa,2025,registration,total_population,3.1.2,60,,65–69
+11.06,2,Kabupaten Aceh Besar,age_group,65-69,,10882,jiwa,2025,registration,total_population,3.1.2,60,,65–69
+11.06,2,Kabupaten Aceh Besar,age_group,70-74,laki_laki,2970,jiwa,2025,registration,total_population,3.1.2,60,,70–74
+11.06,2,Kabupaten Aceh Besar,age_group,70-74,perempuan,3756,jiwa,2025,registration,total_population,3.1.2,60,,70–74
+11.06,2,Kabupaten Aceh Besar,age_group,70-74,,6726,jiwa,2025,registration,total_population,3.1.2,60,,70–74
+11.06,2,Kabupaten Aceh Besar,age_group,75+,laki_laki,3582,jiwa,2025,registration,total_population,3.1.2,60,,75+
+11.06,2,Kabupaten Aceh Besar,age_group,75+,perempuan,6467,jiwa,2025,registration,total_population,3.1.2,60,,75+
+11.06,2,Kabupaten Aceh Besar,age_group,75+,,10049,jiwa,2025,registration,total_population,3.1.2,60,,75+
+11.06,2,Kabupaten Aceh Besar,sex,laki_laki,,227130,jiwa,2025,registration,total_population,3.1.2,60,,Laki-Laki
+11.06,2,Kabupaten Aceh Besar,sex,perempuan,,225940,jiwa,2025,registration,total_population,3.1.2,60,,Perempuan
+11.06,2,Kabupaten Aceh Besar,total,total,,453070,jiwa,2025,registration,total_population,3.1.2,60,,
+11.06.01,3,Lhoong,religion,islam,,10328,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.01,3,Lhoong,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.01,3,Lhoong,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.01,3,Lhoong,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.01,3,Lhoong,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.01,3,Lhoong,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.02,3,Lhoknga,religion,islam,,18357,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.02,3,Lhoknga,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.02,3,Lhoknga,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.02,3,Lhoknga,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.02,3,Lhoknga,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.02,3,Lhoknga,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.22,3,Leupung,religion,islam,,3773,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.22,3,Leupung,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.22,3,Leupung,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.22,3,Leupung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.22,3,Leupung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.22,3,Leupung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.03,3,Indrapuri,religion,islam,,24506,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.03,3,Indrapuri,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.03,3,Indrapuri,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.03,3,Indrapuri,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.03,3,Indrapuri,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.03,3,Indrapuri,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.16,3,Kuta Cot Glie,religion,islam,,15377,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.16,3,Kuta Cot Glie,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.16,3,Kuta Cot Glie,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.16,3,Kuta Cot Glie,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.16,3,Kuta Cot Glie,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.16,3,Kuta Cot Glie,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.04,3,Seulimeum,religion,islam,,24315,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.04,3,Seulimeum,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.04,3,Seulimeum,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.04,3,Seulimeum,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.04,3,Seulimeum,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.04,3,Seulimeum,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.15,3,Kota Jantho,religion,islam,,9632,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.15,3,Kota Jantho,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.15,3,Kota Jantho,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.15,3,Kota Jantho,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.15,3,Kota Jantho,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.15,3,Kota Jantho,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.14,3,Lembah Seulawah,religion,islam,,13265,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.14,3,Lembah Seulawah,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.14,3,Lembah Seulawah,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.14,3,Lembah Seulawah,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.14,3,Lembah Seulawah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.14,3,Lembah Seulawah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.09,3,Mesjid Raya,religion,islam,,22172,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.09,3,Mesjid Raya,religion,kristen,,13,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.09,3,Mesjid Raya,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.09,3,Mesjid Raya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.09,3,Mesjid Raya,religion,buddha,,10,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.09,3,Mesjid Raya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.12,3,Darussalam,religion,islam,,24242,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.12,3,Darussalam,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.12,3,Darussalam,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.12,3,Darussalam,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.12,3,Darussalam,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.12,3,Darussalam,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.20,3,Baitussalam,religion,islam,,25842,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.20,3,Baitussalam,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.20,3,Baitussalam,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.20,3,Baitussalam,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.20,3,Baitussalam,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.20,3,Baitussalam,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.11,3,Kuta Baro,religion,islam,,29060,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.11,3,Kuta Baro,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.11,3,Kuta Baro,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.11,3,Kuta Baro,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.11,3,Kuta Baro,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.11,3,Kuta Baro,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.05,3,Montasik,religion,islam,,21480,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.05,3,Montasik,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.05,3,Montasik,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.05,3,Montasik,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.05,3,Montasik,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.05,3,Montasik,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.23,3,Blang Bintang,religion,islam,,12964,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.23,3,Blang Bintang,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.23,3,Blang Bintang,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.23,3,Blang Bintang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.23,3,Blang Bintang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.23,3,Blang Bintang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.10,3,Ingin Jaya,religion,islam,,37285,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.10,3,Ingin Jaya,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.10,3,Ingin Jaya,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.10,3,Ingin Jaya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.10,3,Ingin Jaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.10,3,Ingin Jaya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.21,3,Krueng Barona Jaya,religion,islam,,19631,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.21,3,Krueng Barona Jaya,religion,kristen,,20,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.21,3,Krueng Barona Jaya,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.21,3,Krueng Barona Jaya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.21,3,Krueng Barona Jaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.21,3,Krueng Barona Jaya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.06,3,Sukamakmur,religion,islam,,17004,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.06,3,Sukamakmur,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.06,3,Sukamakmur,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.06,3,Sukamakmur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.06,3,Sukamakmur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.06,3,Sukamakmur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.17,3,Kuta Malaka,religion,islam,,7403,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.17,3,Kuta Malaka,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.17,3,Kuta Malaka,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.17,3,Kuta Malaka,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.17,3,Kuta Malaka,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.17,3,Kuta Malaka,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.18,3,Simpang Tiga,religion,islam,,7180,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.18,3,Simpang Tiga,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.18,3,Simpang Tiga,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.18,3,Simpang Tiga,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.18,3,Simpang Tiga,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.18,3,Simpang Tiga,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.07,3,Darul Imarah,religion,islam,,56187,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.07,3,Darul Imarah,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.07,3,Darul Imarah,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.07,3,Darul Imarah,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.07,3,Darul Imarah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.07,3,Darul Imarah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.19,3,Darul Kamal,religion,islam,,9383,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.19,3,Darul Kamal,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.19,3,Darul Kamal,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.19,3,Darul Kamal,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.19,3,Darul Kamal,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.19,3,Darul Kamal,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.08,3,Peukan Bada,religion,islam,,24843,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.08,3,Peukan Bada,religion,kristen,,15,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.08,3,Peukan Bada,religion,katolik,,3,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.08,3,Peukan Bada,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.08,3,Peukan Bada,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.08,3,Peukan Bada,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06.13,3,Pulo Aceh,religion,islam,,4942,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06.13,3,Pulo Aceh,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06.13,3,Pulo Aceh,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06.13,3,Pulo Aceh,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06.13,3,Pulo Aceh,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06.13,3,Pulo Aceh,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06,2,Aceh Besar,religion,islam,,439171,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+11.06,2,Aceh Besar,religion,kristen,,49,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+11.06,2,Aceh Besar,religion,katolik,,3,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+11.06,2,Aceh Besar,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+11.06,2,Aceh Besar,religion,buddha,,10,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+11.06,2,Aceh Besar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/padi_padian,,94699,rupiah,2024,survey_estimate,per_capita,10.1,273,,Padi-padian
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/padi_padian,,88241,rupiah,2025,survey_estimate,per_capita,10.1,273,,Padi-padian
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/umbi_umbian,,5728,rupiah,2024,survey_estimate,per_capita,10.1,273,,Umbi-umbian
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/umbi_umbian,,5610,rupiah,2025,survey_estimate,per_capita,10.1,273,,Umbi-umbian
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,90847,rupiah,2024,survey_estimate,per_capita,10.1,273,,Ikan/udang/cumi/kerang
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,97139,rupiah,2025,survey_estimate,per_capita,10.1,273,,Ikan/udang/cumi/kerang
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/daging,,21935,rupiah,2024,survey_estimate,per_capita,10.1,273,,Daging
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/daging,,26675,rupiah,2025,survey_estimate,per_capita,10.1,273,,Daging
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/telur_dan_susu,,30634,rupiah,2024,survey_estimate,per_capita,10.1,273,,Telur dan susu
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/telur_dan_susu,,32581,rupiah,2025,survey_estimate,per_capita,10.1,273,,Telur dan susu
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/sayur_sayuran,,60221,rupiah,2024,survey_estimate,per_capita,10.1,273,,Sayur-sayuran
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/sayur_sayuran,,65295,rupiah,2025,survey_estimate,per_capita,10.1,273,,Sayur-sayuran
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/kacang_kacangan,,7677,rupiah,2024,survey_estimate,per_capita,10.1,273,,Kacang-kacangan
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/kacang_kacangan,,9018,rupiah,2025,survey_estimate,per_capita,10.1,273,,Kacang-kacangan
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/buah_buahan,,28668,rupiah,2024,survey_estimate,per_capita,10.1,273,,Buah-buahan
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/buah_buahan,,37808,rupiah,2025,survey_estimate,per_capita,10.1,273,,Buah-buahan
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18888,rupiah,2024,survey_estimate,per_capita,10.1,273,,Minyak dan kelapa
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20698,rupiah,2025,survey_estimate,per_capita,10.1,273,,Minyak dan kelapa
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/bahan_minuman,,14913,rupiah,2024,survey_estimate,per_capita,10.1,273,,Bahan minuman
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/bahan_minuman,,15929,rupiah,2025,survey_estimate,per_capita,10.1,273,,Bahan minuman
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/bumbu_bumbuan,,11752,rupiah,2024,survey_estimate,per_capita,10.1,273,,Bumbu-bumbuan
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/bumbu_bumbuan,,15424,rupiah,2025,survey_estimate,per_capita,10.1,273,,Bumbu-bumbuan
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/konsumsi_lainnya,,10400,rupiah,2024,survey_estimate,per_capita,10.1,273,,Konsumsi lainnya
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/konsumsi_lainnya,,10829,rupiah,2025,survey_estimate,per_capita,10.1,273,,Konsumsi lainnya
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,243393,rupiah,2024,survey_estimate,per_capita,10.1,273,,Makanan dan minuman jadi
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,273657,rupiah,2025,survey_estimate,per_capita,10.1,273,,Makanan dan minuman jadi
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/rokok,,89351,rupiah,2024,survey_estimate,per_capita,10.1,273,,Rokok
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/rokok,,75534,rupiah,2025,survey_estimate,per_capita,10.1,273,,Rokok
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/jumlah_makanan,,729105,rupiah,2024,survey_estimate,per_capita,10.1,273,,Jumlah makanan
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/jumlah_makanan,,774439,rupiah,2025,survey_estimate,per_capita,10.1,273,,Jumlah makanan
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,295211,rupiah,2024,survey_estimate,per_capita,10.1,273,,Perumahan dan fasilitas rumah tangga
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,290870,rupiah,2025,survey_estimate,per_capita,10.1,273,,Perumahan dan fasilitas rumah tangga
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,128403,rupiah,2024,survey_estimate,per_capita,10.1,273,,Aneka barang dan jasa
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,163016,rupiah,2025,survey_estimate,per_capita,10.1,273,,Aneka barang dan jasa
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,52159,rupiah,2024,survey_estimate,per_capita,10.1,273,,"Pakaian, alas kaki, dan tutup kepala"
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,52952,rupiah,2025,survey_estimate,per_capita,10.1,273,,"Pakaian, alas kaki, dan tutup kepala"
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/barang_tahan_lama,,31951,rupiah,2024,survey_estimate,per_capita,10.1,273,,Barang tahan lama
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/barang_tahan_lama,,61173,rupiah,2025,survey_estimate,per_capita,10.1,273,,Barang tahan lama
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,59856,rupiah,2024,survey_estimate,per_capita,10.1,273,,"Pajak, pungutan, dan asuransi"
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,61986,rupiah,2025,survey_estimate,per_capita,10.1,273,,"Pajak, pungutan, dan asuransi"
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,8712,rupiah,2024,survey_estimate,per_capita,10.1,273,,Keperluan pesta dan upacara/kenduri
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,13514,rupiah,2025,survey_estimate,per_capita,10.1,273,,Keperluan pesta dan upacara/kenduri
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,576292,rupiah,2024,survey_estimate,per_capita,10.1,273,,Jumlah bukan makanan
+11.06,2,Kabupaten Aceh Besar,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,643511,rupiah,2025,survey_estimate,per_capita,10.1,273,,Jumlah bukan makanan
+11.06,2,Kabupaten Aceh Besar,expenditure,total,,1305397,rupiah,2024,survey_estimate,per_capita,10.1,273,,
+11.06,2,Kabupaten Aceh Besar,expenditure,total,,1417950,rupiah,2025,survey_estimate,per_capita,10.1,273,,

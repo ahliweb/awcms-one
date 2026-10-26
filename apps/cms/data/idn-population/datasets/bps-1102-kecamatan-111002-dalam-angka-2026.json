@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-1102-kecamatan-111002-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.10.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Simpang Kanan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Singkil",
+  "publisherDomain": "1102",
+  "publisherWebsite": "https://acehsingkilkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Singkil (https://acehsingkilkab.bps.go.id), publikasi \"Kecamatan Simpang Kanan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1102030",
+  "publicationNumber": "11020.26011",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehsingkilkab.bps.go.id/id/publication/2026/09/28/eb58045ea50c259df3bc7c44/kecamatan-simpang-kanan-dalam-angka-2026.html",
+  "sourceFileSha256": "2af42acb1634f8ae079c4cbbee349ffed801d195b0bb1d593967d8bacb4d9e23",
+  "sourceFileBytes": 5263916,
+  "sourcePages": [24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Singkil.",
+  "csvPath": "datasets/bps-1102-kecamatan-111002-dalam-angka-2026.csv",
+  "csvSha256": "fa6880f9edc1ea3997677cf6e77f2c9b9f4ba01c63eb0f286bad13c9b8ca1c93",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Simpang Kanan, 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: the rows of region 11.10.02.2015 are not stored: sex split vs total: parts sum 739.0000 != 749.0000 (diff 10.0000); the source itself is inconsistent"
+  ]
+}

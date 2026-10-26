@@ -42,6 +42,6 @@
     "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
     "table 3.1: row not stored: row \"Sationg\": unmatched ",
     "table 3.1: row not stored: row \"Sationg\": unmatched ",
-    "table 3.2 is not included: its published figures do not add up (sex split vs total: parts sum 8959.0000 != 21268.0000 (diff 12309.0000)); the source itself is inconsistent"
+    "table 3.2: the rows of region 62.02.03 are not stored: age_group (perempuan) vs sex value: parts sum 10062.0000 != 4233.0000 (diff 5829.0000); the source itself is inconsistent"
   ]
 }

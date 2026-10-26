@@ -1,0 +1,61 @@
+{
+  "datasetCode": "bps-1116-kecamatan-111409-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.14.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pasie Raya Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Jaya",
+  "publisherDomain": "1116",
+  "publisherWebsite": "https://acehjayakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Jaya (https://acehjayakab.bps.go.id), publikasi \"Kecamatan Pasie Raya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "11160.26007",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehjayakab.bps.go.id/id/publication/2026/09/28/6ae175b88d9236ff1554a90c/kecamatan-pasie-raya-dalam-angka-2026.html",
+  "sourceFileSha256": "df4bbdb357301e811683c5deed2a4a426082339a71cd64067b1b2e2b4d4dca91",
+  "sourceFileBytes": 5148364,
+  "sourcePages": [20, 21, 22],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Jaya.",
+  "csvPath": "datasets/bps-1116-kecamatan-111409-dalam-angka-2026.csv",
+  "csvSha256": "89c097e825d222b41118507a969e5469ee96edeaffbf5c29558a3824e7f28cd5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pasie Raya, 2025",
+      "printedPages": [20, 21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pasie Raya, 2025",
+      "printedPages": [22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Timplueng\": unmatched ",
+    "table 3.1: row not stored: row \"Tuwi Perya\": unmatched ",
+    "table 3.1: row not stored: row \"Pulo Tinggi 4,74%\": unmatched ",
+    "table 3.1: row not stored: row \"Alue Krueng 6,57%\": unmatched ",
+    "table 3.1: row not stored: row \"Pasi Teubee 16,01%\": unmatched ",
+    "table 3.1: row not stored: row \"Timplueng 6,38%\": unmatched ",
+    "table 3.1: row not stored: row \"Krueng Beukah 4,28%\": unmatched ",
+    "table 3.1: row not stored: row \"Tuwi Kareung 13,94%\": unmatched ",
+    "table 3.1: row not stored: row \"Lhok Guci 6,29%\": unmatched ",
+    "table 3.1: row not stored: row \"Bintah 7,41%\": unmatched ",
+    "table 3.1: row not stored: row \"Tuwi Perya 8,04%\": unmatched ",
+    "table 3.1: row not stored: row \"Alue Punti 3,42%\": unmatched ",
+    "table 3.1: row not stored: row \"Ceuraceu 4,78%\": unmatched ",
+    "table 3.1: row not stored: row \"Alue Jang 8,68%\": unmatched ",
+    "table 3.1: row not stored: row \"Sarah Raya 7,02%\": unmatched ",
+    "table 3.1: row not stored: row \"Buket Keumuneng 2,42%\": unmatched ",
+    "table 3.1: row not stored: row \"Pasie Raya 100,00%\": unmatched "
+  ]
+}

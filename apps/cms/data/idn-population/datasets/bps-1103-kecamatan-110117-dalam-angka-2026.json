@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1103-kecamatan-110117-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.01.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kota Bahagia Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Selatan",
+  "publisherDomain": "1103",
+  "publisherWebsite": "https://acehselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Selatan (https://acehselatankab.bps.go.id), publikasi \"Kecamatan Kota Bahagia Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1103022",
+  "publicationNumber": "11030.26010",
+  "issn": "2830-7615",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehselatankab.bps.go.id/id/publication/2026/09/28/f8924bcaa8acec36830590e7/kecamatan-kota-bahagia-dalam-angka-2026.html",
+  "sourceFileSha256": "ebc50c552a52cadee402996f068d00ceedd0ba7dabf3589f12136e50e62fffab",
+  "sourceFileBytes": 1257735,
+  "sourcePages": [20, 22],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Selatan",
+  "csvPath": "datasets/bps-1103-kecamatan-110117-dalam-angka-2026.csv",
+  "csvSha256": "959181ecf7ce81136b093c7012e31145dfd6ee1222718c859f41fbf6aa71a784",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kota Bahagia, 2025",
+      "printedPages": [20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kota Bahagia, 2025",
+      "printedPages": [22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Seneubok Alur Buloh\": unmatched "
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "datasetCode": "bps-1116-kecamatan-111402-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.14.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Krueng Sabee Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Jaya",
+  "publisherDomain": "1116",
+  "publisherWebsite": "https://acehjayakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Jaya (https://acehjayakab.bps.go.id), publikasi \"Kecamatan Krueng Sabee Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "11160.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehjayakab.bps.go.id/id/publication/2026/09/28/76cc19a0e058dee9c05875c9/kecamatan-krueng-sabee-dalam-angka-2026.html",
+  "sourceFileSha256": "f409ea39f7ee8e55dd4cc707ab3942667b40601fafe9b07bf6ffd348ee4e8660",
+  "sourceFileBytes": 4946723,
+  "sourcePages": [20, 21, 22],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Jaya.",
+  "csvPath": "datasets/bps-1116-kecamatan-111402-dalam-angka-2026.csv",
+  "csvSha256": "a6d6ca05f0c5b39e86e838a4221fd023be797512b32f34facdb4468e13e094dd",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Krueng Sabee, 2025",
+      "printedPages": [20, 21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Krueng Sabee, 2025",
+      "printedPages": [22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kampung Blang\": unmatched ",
+    "table 3.1: row not stored: row \"Bahagia 3,90%\": unmatched ",
+    "table 3.1: row not stored: row \"Sentosa 4,41%\": unmatched ",
+    "table 3.1: row not stored: row \"Dayah Baro 11,69%\": unmatched ",
+    "table 3.1: row not stored: row \"Kampung Blang 7,75%\": unmatched ",
+    "table 3.1: row not stored: row \"Panton Makmur 5,46%\": unmatched ",
+    "table 3.1: row not stored: row \"Keutapang 15,85%\": unmatched ",
+    "table 3.1: row not stored: row \"Padang Datar 8,72%\": unmatched ",
+    "table 3.1: row not stored: row \"Mon Mata 6,13%\": unmatched ",
+    "table 3.1: row not stored: row \"Keude Krueng Sabee 5,70%\": unmatched ",
+    "table 3.1: row not stored: row \"Kabong 4,43%\": unmatched ",
+    "table 3.1: row not stored: row \"Datar Luas 7,42%\": unmatched ",
+    "table 3.1: row not stored: row \"Paya Seumantok 5,28%\": unmatched ",
+    "table 3.1: row not stored: row \"Ranto Panyang 2,62%\": unmatched ",
+    "table 3.1: row not stored: row \"Curek 2,75%\": unmatched ",
+    "table 3.1: row not stored: row \"Alue Tho 1,70%\": unmatched ",
+    "table 3.1: row not stored: row \"Buntha 2,36%\": unmatched ",
+    "table 3.1: row not stored: row \"Panggong 3,83%\": unmatched ",
+    "table 3.1: row not stored: row \"Krueng Sabee 100,00%\": unmatched "
+  ]
+}

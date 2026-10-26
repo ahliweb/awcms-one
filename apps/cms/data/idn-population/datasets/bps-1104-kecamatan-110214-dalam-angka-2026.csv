@@ -1,0 +1,41 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.02.14.2007,4,Berandang,sex,laki_laki,,391,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.14.2007,4,Berandang,sex,perempuan,,427,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.14.2007,4,Berandang,total,total,,818,jiwa,2025,registration,total_population,3.1,24,,
+11.02.14.2004,4,Lawe Sumur,sex,laki_laki,,276,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.14.2004,4,Lawe Sumur,sex,perempuan,,262,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.14.2004,4,Lawe Sumur,total,total,,538,jiwa,2025,registration,total_population,3.1,24,,
+11.02.14.2001,4,Terutung Megara Lawe Pasaran,sex,laki_laki,,263,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.14.2001,4,Terutung Megara Lawe Pasaran,sex,perempuan,,267,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.14.2001,4,Terutung Megara Lawe Pasaran,total,total,,530,jiwa,2025,registration,total_population,3.1,24,,
+11.02.14.2002,4,Kisam Gabungan,sex,laki_laki,,399,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.14.2002,4,Kisam Gabungan,sex,perempuan,,381,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.14.2002,4,Kisam Gabungan,total,total,,780,jiwa,2025,registration,total_population,3.1,24,,
+11.02.14.2003,4,Kisam Kute Pasir,sex,laki_laki,,219,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.14.2003,4,Kisam Kute Pasir,sex,perempuan,,223,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.14.2003,4,Kisam Kute Pasir,total,total,,442,jiwa,2025,registration,total_population,3.1,24,,
+11.02.14.2009,4,Buah Pala,sex,laki_laki,,420,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.14.2009,4,Buah Pala,sex,perempuan,,411,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.14.2009,4,Buah Pala,total,total,,831,jiwa,2025,registration,total_population,3.1,24,,
+11.02.14.2005,4,Lawe Sumur Baru,sex,laki_laki,,230,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.14.2005,4,Lawe Sumur Baru,sex,perempuan,,213,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.14.2005,4,Lawe Sumur Baru,total,total,,443,jiwa,2025,registration,total_population,3.1,24,,
+11.02.14.2017,4,Setia Baru,sex,laki_laki,,205,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.14.2017,4,Setia Baru,sex,perempuan,,196,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.14.2017,4,Setia Baru,total,total,,401,jiwa,2025,registration,total_population,3.1,24,,
+11.02.14.2015,4,Lawe Polak,sex,laki_laki,,220,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.14.2015,4,Lawe Polak,sex,perempuan,,202,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.14.2015,4,Lawe Polak,total,total,,422,jiwa,2025,registration,total_population,3.1,24,,
+11.02.14.2011,4,Lawe Pasaran Tengku Mbelin,sex,laki_laki,,246,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.14.2011,4,Lawe Pasaran Tengku Mbelin,sex,perempuan,,235,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.14.2011,4,Lawe Pasaran Tengku Mbelin,total,total,,481,jiwa,2025,registration,total_population,3.1,24,,
+11.02.14.2013,4,Kisam Lestari,sex,laki_laki,,279,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.14.2013,4,Kisam Lestari,sex,perempuan,,265,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.14.2013,4,Kisam Lestari,total,total,,544,jiwa,2025,registration,total_population,3.1,24,,
+11.02.14.2014,4,Kisam Kute Rambe,sex,laki_laki,,313,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.14.2014,4,Kisam Kute Rambe,sex,perempuan,,280,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.14.2014,4,Kisam Kute Rambe,total,total,,593,jiwa,2025,registration,total_population,3.1,24,,
+11.02.14.2018,4,Teger Miko,sex,laki_laki,,189,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+11.02.14.2018,4,Teger Miko,sex,perempuan,,192,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+11.02.14.2018,4,Teger Miko,total,total,,381,jiwa,2025,registration,total_population,3.1,24,,
+11.02.14,3,Lawe Sumur,total,total,,9300,jiwa,2025,registration,total_population,3.1,24,,

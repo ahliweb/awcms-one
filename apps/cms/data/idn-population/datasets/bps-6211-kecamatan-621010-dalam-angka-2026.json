@@ -19,7 +19,7 @@
   "sourcePages": [30, 32],
   "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Gunung Mas",
   "csvPath": "datasets/bps-6211-kecamatan-621010-dalam-angka-2026.csv",
-  "csvSha256": "906a700e6a1dce2502c286cd57e817b8c1864cca9e6f20c139b2deb693ca3686",
+  "csvSha256": "4149eba8b30cdb8a41b70bba89cb630fdac050824cf9cbc721fd787b6be5d460",
   "tablesUsed": [
     {
       "table": "3.1",
@@ -41,7 +41,8 @@
   "knownGaps": [
     "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
     "table 3.1: row not stored: row \"Tumbang Tuwe\": unmatched ",
-    "table 3.2: row not stored: row \"> 75\": unmatched ",
-    "table 3.2 is not included: its published figures do not add up (age_group vs total: parts sum 6860.0000 != 6965.0000 (diff 105.0000)); the source itself is inconsistent"
+    "cross-table disagreement, both stored as published: 62.10.10 sex/laki_laki/ 2025: 3664 (table 3.1) vs 3656 (table 3.2)",
+    "cross-table disagreement, both stored as published: 62.10.10 sex/perempuan/ 2025: 3319 (table 3.1) vs 3309 (table 3.2)",
+    "cross-table disagreement, both stored as published: 62.10.10 total/total/ 2025: 6983 (table 3.1) vs 6965 (table 3.2)"
   ]
 }

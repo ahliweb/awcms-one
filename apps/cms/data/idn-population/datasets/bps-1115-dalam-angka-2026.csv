@@ -1,0 +1,129 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.15.05,3,Darul Makmur,total,total,,53463,jiwa,2025,registration,total_population,3.1.1,50,,
+11.15.09,3,Tripa Makmur,total,total,,10087,jiwa,2025,registration,total_population,3.1.1,50,,
+11.15.01,3,Kuala,total,total,,23865,jiwa,2025,registration,total_population,3.1.1,50,,
+11.15.07,3,Kuala Pesisir,total,total,,18724,jiwa,2025,registration,total_population,3.1.1,50,,
+11.15.08,3,Tadu Raya,total,total,,16289,jiwa,2025,registration,total_population,3.1.1,50,,
+11.15.04,3,Beutong,total,total,,14864,jiwa,2025,registration,total_population,3.1.1,50,,
+11.15.10,3,Beutong Ateuh Banggalang,total,total,,2248,jiwa,2025,registration,total_population,3.1.1,50,,
+11.15.02,3,Seunagan,total,total,,16924,jiwa,2025,registration,total_population,3.1.1,50,,
+11.15.06,3,Suka Makmue,total,total,,10517,jiwa,2025,registration,total_population,3.1.1,50,,
+11.15.03,3,Seunagan Timur,total,total,,14972,jiwa,2025,registration,total_population,3.1.1,50,,
+11.15,2,Nagan Raya,total,total,,181953,jiwa,2025,registration,total_population,3.1.1,50,,
+11.15,2,Kabupaten Nagan Raya,age_group,0-4,laki_laki,6843,jiwa,2025,registration,total_population,3.1.2,53,,0–4
+11.15,2,Kabupaten Nagan Raya,age_group,0-4,perempuan,6171,jiwa,2025,registration,total_population,3.1.2,53,,0–4
+11.15,2,Kabupaten Nagan Raya,age_group,0-4,,13014,jiwa,2025,registration,total_population,3.1.2,53,,0–4
+11.15,2,Kabupaten Nagan Raya,age_group,5-9,laki_laki,8839,jiwa,2025,registration,total_population,3.1.2,53,,5–9
+11.15,2,Kabupaten Nagan Raya,age_group,5-9,perempuan,8408,jiwa,2025,registration,total_population,3.1.2,53,,5–9
+11.15,2,Kabupaten Nagan Raya,age_group,5-9,,17247,jiwa,2025,registration,total_population,3.1.2,53,,5–9
+11.15,2,Kabupaten Nagan Raya,age_group,10-14,laki_laki,8243,jiwa,2025,registration,total_population,3.1.2,53,,10–14
+11.15,2,Kabupaten Nagan Raya,age_group,10-14,perempuan,7910,jiwa,2025,registration,total_population,3.1.2,53,,10–14
+11.15,2,Kabupaten Nagan Raya,age_group,10-14,,16153,jiwa,2025,registration,total_population,3.1.2,53,,10–14
+11.15,2,Kabupaten Nagan Raya,age_group,15-19,laki_laki,8014,jiwa,2025,registration,total_population,3.1.2,53,,15–19
+11.15,2,Kabupaten Nagan Raya,age_group,15-19,perempuan,7514,jiwa,2025,registration,total_population,3.1.2,53,,15–19
+11.15,2,Kabupaten Nagan Raya,age_group,15-19,,15528,jiwa,2025,registration,total_population,3.1.2,53,,15–19
+11.15,2,Kabupaten Nagan Raya,age_group,20-24,laki_laki,6812,jiwa,2025,registration,total_population,3.1.2,53,,20–24
+11.15,2,Kabupaten Nagan Raya,age_group,20-24,perempuan,6554,jiwa,2025,registration,total_population,3.1.2,53,,20–24
+11.15,2,Kabupaten Nagan Raya,age_group,20-24,,13366,jiwa,2025,registration,total_population,3.1.2,53,,20–24
+11.15,2,Kabupaten Nagan Raya,age_group,25-29,laki_laki,7571,jiwa,2025,registration,total_population,3.1.2,53,,25–29
+11.15,2,Kabupaten Nagan Raya,age_group,25-29,perempuan,7537,jiwa,2025,registration,total_population,3.1.2,53,,25–29
+11.15,2,Kabupaten Nagan Raya,age_group,25-29,,15108,jiwa,2025,registration,total_population,3.1.2,53,,25–29
+11.15,2,Kabupaten Nagan Raya,age_group,30-34,laki_laki,6995,jiwa,2025,registration,total_population,3.1.2,53,,30–34
+11.15,2,Kabupaten Nagan Raya,age_group,30-34,perempuan,6766,jiwa,2025,registration,total_population,3.1.2,53,,30–34
+11.15,2,Kabupaten Nagan Raya,age_group,30-34,,13761,jiwa,2025,registration,total_population,3.1.2,53,,30–34
+11.15,2,Kabupaten Nagan Raya,age_group,35-39,laki_laki,6834,jiwa,2025,registration,total_population,3.1.2,53,,35–39
+11.15,2,Kabupaten Nagan Raya,age_group,35-39,perempuan,6911,jiwa,2025,registration,total_population,3.1.2,53,,35–39
+11.15,2,Kabupaten Nagan Raya,age_group,35-39,,13745,jiwa,2025,registration,total_population,3.1.2,53,,35–39
+11.15,2,Kabupaten Nagan Raya,age_group,40-44,laki_laki,6643,jiwa,2025,registration,total_population,3.1.2,53,,40–44
+11.15,2,Kabupaten Nagan Raya,age_group,40-44,perempuan,6816,jiwa,2025,registration,total_population,3.1.2,53,,40–44
+11.15,2,Kabupaten Nagan Raya,age_group,40-44,,13459,jiwa,2025,registration,total_population,3.1.2,53,,40–44
+11.15,2,Kabupaten Nagan Raya,age_group,45-49,laki_laki,6375,jiwa,2025,registration,total_population,3.1.2,53,,45–49
+11.15,2,Kabupaten Nagan Raya,age_group,45-49,perempuan,6575,jiwa,2025,registration,total_population,3.1.2,53,,45–49
+11.15,2,Kabupaten Nagan Raya,age_group,45-49,,12950,jiwa,2025,registration,total_population,3.1.2,53,,45–49
+11.15,2,Kabupaten Nagan Raya,age_group,50-54,laki_laki,5439,jiwa,2025,registration,total_population,3.1.2,53,,50–54
+11.15,2,Kabupaten Nagan Raya,age_group,50-54,perempuan,5248,jiwa,2025,registration,total_population,3.1.2,53,,50–54
+11.15,2,Kabupaten Nagan Raya,age_group,50-54,,10687,jiwa,2025,registration,total_population,3.1.2,53,,50–54
+11.15,2,Kabupaten Nagan Raya,age_group,55-59,laki_laki,4226,jiwa,2025,registration,total_population,3.1.2,53,,55–59
+11.15,2,Kabupaten Nagan Raya,age_group,55-59,perempuan,4110,jiwa,2025,registration,total_population,3.1.2,53,,55–59
+11.15,2,Kabupaten Nagan Raya,age_group,55-59,,8336,jiwa,2025,registration,total_population,3.1.2,53,,55–59
+11.15,2,Kabupaten Nagan Raya,age_group,60-64,laki_laki,3033,jiwa,2025,registration,total_population,3.1.2,53,,60–64
+11.15,2,Kabupaten Nagan Raya,age_group,60-64,perempuan,3250,jiwa,2025,registration,total_population,3.1.2,53,,60–64
+11.15,2,Kabupaten Nagan Raya,age_group,60-64,,6283,jiwa,2025,registration,total_population,3.1.2,53,,60–64
+11.15,2,Kabupaten Nagan Raya,age_group,65-69,laki_laki,2602,jiwa,2025,registration,total_population,3.1.2,53,,65–69
+11.15,2,Kabupaten Nagan Raya,age_group,65-69,perempuan,2625,jiwa,2025,registration,total_population,3.1.2,53,,65–69
+11.15,2,Kabupaten Nagan Raya,age_group,65-69,,5227,jiwa,2025,registration,total_population,3.1.2,53,,65–69
+11.15,2,Kabupaten Nagan Raya,age_group,70-74,laki_laki,1386,jiwa,2025,registration,total_population,3.1.2,53,,70–74
+11.15,2,Kabupaten Nagan Raya,age_group,70-74,perempuan,1401,jiwa,2025,registration,total_population,3.1.2,53,,70–74
+11.15,2,Kabupaten Nagan Raya,age_group,70-74,,2787,jiwa,2025,registration,total_population,3.1.2,53,,70–74
+11.15,2,Kabupaten Nagan Raya,age_group,75+,laki_laki,1824,jiwa,2025,registration,total_population,3.1.2,53,,75+
+11.15,2,Kabupaten Nagan Raya,age_group,75+,perempuan,2478,jiwa,2025,registration,total_population,3.1.2,53,,75+
+11.15,2,Kabupaten Nagan Raya,age_group,75+,,4302,jiwa,2025,registration,total_population,3.1.2,53,,75+
+11.15,2,Nagan Raya,sex,laki_laki,,91679,jiwa,2025,registration,total_population,3.1.2,53,,Laki-Laki
+11.15,2,Nagan Raya,sex,perempuan,,90274,jiwa,2025,registration,total_population,3.1.2,53,,Perempuan
+11.15,2,Nagan Raya,total,total,,181953,jiwa,2025,registration,total_population,3.1.2,53,,
+11.15.05,3,Darul Makmur,religion,islam,,52979,jiwa,2025,registration,total_population,4.3.1,113,,Islam
+11.15.05,3,Darul Makmur,religion,kristen,,431,jiwa,2025,registration,total_population,4.3.1,113,,Protestan
+11.15.05,3,Darul Makmur,religion,katolik,,36,jiwa,2025,registration,total_population,4.3.1,113,,Katolik
+11.15.05,3,Darul Makmur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,113,,Hindu
+11.15.05,3,Darul Makmur,religion,buddha,,17,jiwa,2025,registration,total_population,4.3.1,113,,Budha
+11.15.05,3,Darul Makmur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,113,,Lainnya
+11.15.09,3,Tripa Makmur,religion,islam,,10087,jiwa,2025,registration,total_population,4.3.1,113,,Islam
+11.15.09,3,Tripa Makmur,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,113,,Protestan
+11.15.09,3,Tripa Makmur,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,113,,Katolik
+11.15.09,3,Tripa Makmur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,113,,Hindu
+11.15.09,3,Tripa Makmur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,113,,Budha
+11.15.09,3,Tripa Makmur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,113,,Lainnya
+11.15.01,3,Kuala,religion,islam,,23843,jiwa,2025,registration,total_population,4.3.1,113,,Islam
+11.15.01,3,Kuala,religion,kristen,,19,jiwa,2025,registration,total_population,4.3.1,113,,Protestan
+11.15.01,3,Kuala,religion,katolik,,3,jiwa,2025,registration,total_population,4.3.1,113,,Katolik
+11.15.01,3,Kuala,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,113,,Hindu
+11.15.01,3,Kuala,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,113,,Budha
+11.15.01,3,Kuala,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,113,,Lainnya
+11.15.07,3,Kuala Pesisir,religion,islam,,18717,jiwa,2025,registration,total_population,4.3.1,113,,Islam
+11.15.07,3,Kuala Pesisir,religion,kristen,,7,jiwa,2025,registration,total_population,4.3.1,113,,Protestan
+11.15.07,3,Kuala Pesisir,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,113,,Katolik
+11.15.07,3,Kuala Pesisir,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,113,,Hindu
+11.15.07,3,Kuala Pesisir,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,113,,Budha
+11.15.07,3,Kuala Pesisir,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,113,,Lainnya
+11.15.08,3,Tadu Raya,religion,islam,,16214,jiwa,2025,registration,total_population,4.3.1,113,,Islam
+11.15.08,3,Tadu Raya,religion,kristen,,57,jiwa,2025,registration,total_population,4.3.1,113,,Protestan
+11.15.08,3,Tadu Raya,religion,katolik,,18,jiwa,2025,registration,total_population,4.3.1,113,,Katolik
+11.15.08,3,Tadu Raya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,113,,Hindu
+11.15.08,3,Tadu Raya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,113,,Budha
+11.15.08,3,Tadu Raya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,113,,Lainnya
+11.15.04,3,Beutong,religion,islam,,14861,jiwa,2025,registration,total_population,4.3.1,113,,Islam
+11.15.04,3,Beutong,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,113,,Protestan
+11.15.04,3,Beutong,religion,katolik,,3,jiwa,2025,registration,total_population,4.3.1,113,,Katolik
+11.15.04,3,Beutong,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,113,,Hindu
+11.15.04,3,Beutong,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,113,,Budha
+11.15.04,3,Beutong,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,113,,Lainnya
+11.15.10,3,Beutong Ateuh Banggalang,religion,islam,,2248,jiwa,2025,registration,total_population,4.3.1,113,,Islam
+11.15.10,3,Beutong Ateuh Banggalang,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,113,,Protestan
+11.15.10,3,Beutong Ateuh Banggalang,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,113,,Katolik
+11.15.10,3,Beutong Ateuh Banggalang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,113,,Hindu
+11.15.10,3,Beutong Ateuh Banggalang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,113,,Budha
+11.15.10,3,Beutong Ateuh Banggalang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,113,,Lainnya
+11.15.02,3,Seunagan,religion,islam,,16909,jiwa,2025,registration,total_population,4.3.1,113,,Islam
+11.15.02,3,Seunagan,religion,kristen,,7,jiwa,2025,registration,total_population,4.3.1,113,,Protestan
+11.15.02,3,Seunagan,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,113,,Katolik
+11.15.02,3,Seunagan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,113,,Hindu
+11.15.02,3,Seunagan,religion,buddha,,8,jiwa,2025,registration,total_population,4.3.1,113,,Budha
+11.15.02,3,Seunagan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,113,,Lainnya
+11.15.06,3,Suka Makmue,religion,islam,,10511,jiwa,2025,registration,total_population,4.3.1,113,,Islam
+11.15.06,3,Suka Makmue,religion,kristen,,6,jiwa,2025,registration,total_population,4.3.1,113,,Protestan
+11.15.06,3,Suka Makmue,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,113,,Katolik
+11.15.06,3,Suka Makmue,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,113,,Hindu
+11.15.06,3,Suka Makmue,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,113,,Budha
+11.15.06,3,Suka Makmue,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,113,,Lainnya
+11.15.03,3,Seunagan Timur,religion,islam,,14972,jiwa,2025,registration,total_population,4.3.1,113,,Islam
+11.15.03,3,Seunagan Timur,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,113,,Protestan
+11.15.03,3,Seunagan Timur,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,113,,Katolik
+11.15.03,3,Seunagan Timur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,113,,Hindu
+11.15.03,3,Seunagan Timur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,113,,Budha
+11.15.03,3,Seunagan Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,113,,Lainnya
+11.15,2,Nagan Raya,religion,islam,,181341,jiwa,2025,registration,total_population,4.3.1,113,,Islam
+11.15,2,Nagan Raya,religion,kristen,,527,jiwa,2025,registration,total_population,4.3.1,113,,Protestan
+11.15,2,Nagan Raya,religion,katolik,,60,jiwa,2025,registration,total_population,4.3.1,113,,Katolik
+11.15,2,Nagan Raya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,113,,Hindu
+11.15,2,Nagan Raya,religion,buddha,,25,jiwa,2025,registration,total_population,4.3.1,113,,Budha
+11.15,2,Nagan Raya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,113,,Lainnya

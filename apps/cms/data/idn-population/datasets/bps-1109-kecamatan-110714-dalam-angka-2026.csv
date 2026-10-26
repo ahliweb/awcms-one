@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.07.14.2008,4,Seunadeu Kunyet,sex,laki_laki,,216,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+11.07.14.2008,4,Seunadeu Kunyet,sex,perempuan,,194,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+11.07.14.2008,4,Seunadeu Kunyet,total,total,,410,jiwa,2025,registration,total_population,3.1,42,,
+11.07.14.2009,4,Blang Gunci Kunyet,sex,laki_laki,,114,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+11.07.14.2009,4,Blang Gunci Kunyet,sex,perempuan,,133,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+11.07.14.2009,4,Blang Gunci Kunyet,total,total,,247,jiwa,2025,registration,total_population,3.1,42,,
+11.07.14.2007,4,Kambuek Payapi Kunyet,sex,laki_laki,,154,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+11.07.14.2007,4,Kambuek Payapi Kunyet,sex,perempuan,,148,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+11.07.14.2007,4,Kambuek Payapi Kunyet,total,total,,302,jiwa,2025,registration,total_population,3.1,42,,
+11.07.14.2004,4,Baro Kunyet,sex,laki_laki,,243,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+11.07.14.2004,4,Baro Kunyet,sex,perempuan,,251,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+11.07.14.2004,4,Baro Kunyet,total,total,,494,jiwa,2025,registration,total_population,3.1,42,,
+11.07.14.2003,4,Hagu Kunyet,sex,laki_laki,,51,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+11.07.14.2003,4,Hagu Kunyet,sex,perempuan,,62,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+11.07.14.2003,4,Hagu Kunyet,total,total,,113,jiwa,2025,registration,total_population,3.1,42,,
+11.07.14.2002,4,Piala Kunyet,sex,laki_laki,,99,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+11.07.14.2002,4,Piala Kunyet,sex,perempuan,,87,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+11.07.14.2002,4,Piala Kunyet,total,total,,186,jiwa,2025,registration,total_population,3.1,42,,
+11.07.14.2001,4,Mesjid Kunyet,sex,laki_laki,,132,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+11.07.14.2001,4,Mesjid Kunyet,sex,perempuan,,138,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+11.07.14.2001,4,Mesjid Kunyet,total,total,,270,jiwa,2025,registration,total_population,3.1,42,,
+11.07.14.2005,4,Dayah Tanoh Kunyet,sex,laki_laki,,160,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+11.07.14.2005,4,Dayah Tanoh Kunyet,sex,perempuan,,166,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+11.07.14.2005,4,Dayah Tanoh Kunyet,total,total,,326,jiwa,2025,registration,total_population,3.1,42,,
+11.07.14.2036,4,Cot Kunyet,sex,laki_laki,,258,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+11.07.14.2036,4,Cot Kunyet,sex,perempuan,,267,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+11.07.14.2036,4,Cot Kunyet,total,total,,525,jiwa,2025,registration,total_population,3.1,42,,
+11.07.14.2011,4,Blang Geuleudieng,sex,laki_laki,,164,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+11.07.14.2011,4,Blang Geuleudieng,sex,perempuan,,183,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+11.07.14.2011,4,Blang Geuleudieng,total,total,,347,jiwa,2025,registration,total_population,3.1,42,,
+11.07.14.2013,4,Mesjid Geuleudieng,sex,laki_laki,,131,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+11.07.14.2013,4,Mesjid Geuleudieng,sex,perempuan,,152,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+11.07.14.2013,4,Mesjid Geuleudieng,total,total,,283,jiwa,2025,registration,total_population,3.1,42,,
+11.07.14.2018,4,Perlak Peudaya,sex,laki_laki,,216,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+11.07.14.2018,4,Perlak Peudaya,sex,perempuan,,250,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+11.07.14.2018,4,Perlak Peudaya,total,total,,466,jiwa,2025,registration,total_population,3.1,42,,
+11.07.14.2010,4,Dayah Baroh Kunyet,sex,laki_laki,,260,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+11.07.14.2010,4,Dayah Baroh Kunyet,sex,perempuan,,217,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+11.07.14.2010,4,Dayah Baroh Kunyet,total,total,,477,jiwa,2025,registration,total_population,3.1,42,,
+11.07.14.2017,4,Buloh Peudaya,sex,laki_laki,,299,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+11.07.14.2017,4,Buloh Peudaya,sex,perempuan,,295,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+11.07.14.2017,4,Buloh Peudaya,total,total,,594,jiwa,2025,registration,total_population,3.1,42,,
+11.07.14.2015,4,Mesjid Peudaya,sex,laki_laki,,148,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+11.07.14.2015,4,Mesjid Peudaya,sex,perempuan,,161,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+11.07.14.2015,4,Mesjid Peudaya,total,total,,309,jiwa,2025,registration,total_population,3.1,42,,
+11.07.14.2016,4,Cut Peudaya,sex,laki_laki,,90,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+11.07.14.2016,4,Cut Peudaya,sex,perempuan,,117,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+11.07.14.2016,4,Cut Peudaya,total,total,,207,jiwa,2025,registration,total_population,3.1,42,,
+11.07.14.2022,4,Tunong Peudaya,sex,laki_laki,,234,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+11.07.14.2022,4,Tunong Peudaya,sex,perempuan,,245,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+11.07.14.2022,4,Tunong Peudaya,total,total,,479,jiwa,2025,registration,total_population,3.1,42,,

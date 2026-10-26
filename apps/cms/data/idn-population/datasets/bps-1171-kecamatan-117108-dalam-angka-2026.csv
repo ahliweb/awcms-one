@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.71.08.2004,4,Ulee Pata,sex,laki_laki,,552,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki/Male
+11.71.08.2004,4,Ulee Pata,sex,perempuan,,566,jiwa,2025,registration,total_population,3.3,25,,Perempuan/Female
+11.71.08.2004,4,Ulee Pata,total,total,,1118,jiwa,2025,registration,total_population,3.3,25,,
+11.71.08.2003,4,Lamjamee,sex,laki_laki,,1231,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki/Male
+11.71.08.2003,4,Lamjamee,sex,perempuan,,1141,jiwa,2025,registration,total_population,3.3,25,,Perempuan/Female
+11.71.08.2003,4,Lamjamee,total,total,,2372,jiwa,2025,registration,total_population,3.3,25,,
+11.71.08.2005,4,Lampoh Daya,sex,laki_laki,,1192,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki/Male
+11.71.08.2005,4,Lampoh Daya,sex,perempuan,,1217,jiwa,2025,registration,total_population,3.3,25,,Perempuan/Female
+11.71.08.2005,4,Lampoh Daya,total,total,,2409,jiwa,2025,registration,total_population,3.3,25,,
+11.71.08.2006,4,Emperom,sex,laki_laki,,1652,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki/Male
+11.71.08.2006,4,Emperom,sex,perempuan,,1682,jiwa,2025,registration,total_population,3.3,25,,Perempuan/Female
+11.71.08.2006,4,Emperom,total,total,,3334,jiwa,2025,registration,total_population,3.3,25,,
+11.71.08.2007,4,Geuceu Meunara,sex,laki_laki,,1589,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki/Male
+11.71.08.2007,4,Geuceu Meunara,sex,perempuan,,1609,jiwa,2025,registration,total_population,3.3,25,,Perempuan/Female
+11.71.08.2007,4,Geuceu Meunara,total,total,,3198,jiwa,2025,registration,total_population,3.3,25,,
+11.71.08.2009,4,Lamteumen Barat,sex,laki_laki,,1365,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki/Male
+11.71.08.2009,4,Lamteumen Barat,sex,perempuan,,1415,jiwa,2025,registration,total_population,3.3,25,,Perempuan/Female
+11.71.08.2009,4,Lamteumen Barat,total,total,,2780,jiwa,2025,registration,total_population,3.3,25,,
+11.71.08.2002,4,Bitai,sex,laki_laki,,874,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki/Male
+11.71.08.2002,4,Bitai,sex,perempuan,,793,jiwa,2025,registration,total_population,3.3,25,,Perempuan/Female
+11.71.08.2002,4,Bitai,total,total,,1667,jiwa,2025,registration,total_population,3.3,25,,
+11.71.08.2008,4,Lamteumen Timur,sex,laki_laki,,2643,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki/Male
+11.71.08.2008,4,Lamteumen Timur,sex,perempuan,,2659,jiwa,2025,registration,total_population,3.3,25,,Perempuan/Female
+11.71.08.2008,4,Lamteumen Timur,total,total,,5302,jiwa,2025,registration,total_population,3.3,25,,
+11.71.08.2001,4,Punge Blang Cut,sex,laki_laki,,3117,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki/Male
+11.71.08.2001,4,Punge Blang Cut,sex,perempuan,,3132,jiwa,2025,registration,total_population,3.3,25,,Perempuan/Female
+11.71.08.2001,4,Punge Blang Cut,total,total,,6249,jiwa,2025,registration,total_population,3.3,25,,
+11.71.08,3,Kecamatan Jaya Baru,sex,laki_laki,,14215,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki/Male
+11.71.08,3,Kecamatan Jaya Baru,sex,perempuan,,14214,jiwa,2025,registration,total_population,3.3,25,,Perempuan/Female
+11.71.08,3,Kecamatan Jaya Baru,total,total,,28429,jiwa,2025,registration,total_population,3.3,25,,

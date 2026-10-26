@@ -1,0 +1,40 @@
+{
+  "datasetCode": "bps-1110-kecamatan-111101-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.11.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Samalanga Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bireuen",
+  "publisherDomain": "1110",
+  "publisherWebsite": "https://bireuenkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bireuen (https://bireuenkab.bps.go.id), publikasi \"Kecamatan Samalanga Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "11100.25005",
+  "issn": "2597-744X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bireuenkab.bps.go.id/id/publication/2026/09/28/e60808c54a8beb532d951f4e/kecamatan-samalanga-dalam-angka-2026.html",
+  "sourceFileSha256": "d392b33ab3acecf1ef138091075a7a1a979c881be017ffd847ee2eab0023ecda",
+  "sourceFileBytes": 2753703,
+  "sourcePages": [],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bireuen.",
+  "csvPath": "datasets/bps-1110-kecamatan-111101-dalam-angka-2026.csv",
+  "csvSha256": "a02d1201303938609bc0b48631936cd4e426f0ef74c611bc25e3df74796cdea9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Samalanga, 2024",
+      "printedPages": [],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Geulumpang Bungkok\": unmatched ",
+    "table 3.1: the rows of region 11.11.01.2036 are not stored: sex split vs total: parts sum 669.0000 != 668.0000 (diff 1.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 11.11.01.2023 are not stored: sex split vs total: parts sum 348.0000 != 511.0000 (diff 163.0000); the source itself is inconsistent"
+  ]
+}

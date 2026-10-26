@@ -1,0 +1,118 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.16.04.2015,4,Perk. Gedung Biara,sex,laki_laki,,438,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.16.04.2015,4,Perk. Gedung Biara,sex,perempuan,,439,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.16.04.2015,4,Perk. Gedung Biara,total,total,,877,jiwa,2025,registration,total_population,3.1,17,,
+11.16.04.2013,4,Air Masin,sex,laki_laki,,326,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.16.04.2013,4,Air Masin,sex,perempuan,,326,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.16.04.2013,4,Air Masin,total,total,,652,jiwa,2025,registration,total_population,3.1,17,,
+11.16.04.2014,4,Sidodadi,sex,laki_laki,,239,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.16.04.2014,4,Sidodadi,sex,perempuan,,246,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.16.04.2014,4,Sidodadi,total,total,,485,jiwa,2025,registration,total_population,3.1,17,,
+11.16.04.2011,4,Tualang,sex,laki_laki,,364,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.16.04.2011,4,Tualang,sex,perempuan,,339,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.16.04.2011,4,Tualang,total,total,,703,jiwa,2025,registration,total_population,3.1,17,,
+11.16.04.2012,4,Matang Sentang,sex,laki_laki,,223,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.16.04.2012,4,Matang Sentang,sex,perempuan,,222,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.16.04.2012,4,Matang Sentang,total,total,,445,jiwa,2025,registration,total_population,3.1,17,,
+11.16.04.2010,4,Alur Alim,sex,laki_laki,,173,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.16.04.2010,4,Alur Alim,sex,perempuan,,169,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.16.04.2010,4,Alur Alim,total,total,,342,jiwa,2025,registration,total_population,3.1,17,,
+11.16.04.2025,4,Lubuk Damar,sex,laki_laki,,892,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.16.04.2025,4,Lubuk Damar,sex,perempuan,,809,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.16.04.2025,4,Lubuk Damar,total,total,,1701,jiwa,2025,registration,total_population,3.1,17,,
+11.16.04.2023,4,Sungai Kuruk III,sex,laki_laki,,1177,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.16.04.2023,4,Sungai Kuruk III,sex,perempuan,,1141,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.16.04.2023,4,Sungai Kuruk III,total,total,,2318,jiwa,2025,registration,total_population,3.1,17,,
+11.16.04.2022,4,Sungai Kuruk II,sex,laki_laki,,704,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.16.04.2022,4,Sungai Kuruk II,sex,perempuan,,717,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.16.04.2022,4,Sungai Kuruk II,total,total,,1421,jiwa,2025,registration,total_population,3.1,17,,
+11.16.04.2009,4,Gedung Biara,sex,laki_laki,,508,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.16.04.2009,4,Gedung Biara,sex,perempuan,,499,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.16.04.2009,4,Gedung Biara,total,total,,1007,jiwa,2025,registration,total_population,3.1,17,,
+11.16.04.2005,4,Padang Langgis,sex,laki_laki,,356,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.16.04.2005,4,Padang Langgis,sex,perempuan,,379,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.16.04.2005,4,Padang Langgis,total,total,,735,jiwa,2025,registration,total_population,3.1,17,,
+11.16.04.2004,4,Pantai Balai,sex,laki_laki,,485,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.16.04.2004,4,Pantai Balai,sex,perempuan,,490,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.16.04.2004,4,Pantai Balai,total,total,,975,jiwa,2025,registration,total_population,3.1,17,,
+11.16.04.2003,4,Binjai,sex,laki_laki,,807,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.16.04.2003,4,Binjai,sex,perempuan,,839,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.16.04.2003,4,Binjai,total,total,,1646,jiwa,2025,registration,total_population,3.1,17,,
+11.16.04.2024,4,Tangsi Lama,sex,laki_laki,,907,jiwa,2025,registration,total_population,3.1,17,,Laki-Laki/Male
+11.16.04.2024,4,Tangsi Lama,sex,perempuan,,879,jiwa,2025,registration,total_population,3.1,17,,Perempuan/Female
+11.16.04.2024,4,Tangsi Lama,total,total,,1786,jiwa,2025,registration,total_population,3.1,17,,
+11.16.04.2002,4,Pekan Seruway,sex,laki_laki,,691,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+11.16.04.2002,4,Pekan Seruway,sex,perempuan,,647,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+11.16.04.2002,4,Pekan Seruway,total,total,,1338,jiwa,2025,registration,total_population,3.1,18,,
+11.16.04.2016,4,Muka Sungai Kuruk,sex,laki_laki,,1277,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+11.16.04.2016,4,Muka Sungai Kuruk,sex,perempuan,,1252,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+11.16.04.2016,4,Muka Sungai Kuruk,total,total,,2529,jiwa,2025,registration,total_population,3.1,18,,
+11.16.04.2021,4,Sungai Kuruk I,sex,laki_laki,,776,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+11.16.04.2021,4,Sungai Kuruk I,sex,perempuan,,752,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+11.16.04.2021,4,Sungai Kuruk I,total,total,,1528,jiwa,2025,registration,total_population,3.1,18,,
+11.16.04.2017,4,Paya Udang,sex,laki_laki,,793,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+11.16.04.2017,4,Paya Udang,sex,perempuan,,786,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+11.16.04.2017,4,Paya Udang,total,total,,1579,jiwa,2025,registration,total_population,3.1,18,,
+11.16.04.2018,4,Gelung,sex,laki_laki,,377,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+11.16.04.2018,4,Gelung,sex,perempuan,,394,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+11.16.04.2018,4,Gelung,total,total,,771,jiwa,2025,registration,total_population,3.1,18,,
+11.16.04.2019,4,Kampung Baru,sex,laki_laki,,237,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+11.16.04.2019,4,Kampung Baru,sex,perempuan,,225,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+11.16.04.2019,4,Kampung Baru,total,total,,462,jiwa,2025,registration,total_population,3.1,18,,
+11.16.04.2020,4,Kuala Pusung Kapal,sex,laki_laki,,440,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+11.16.04.2020,4,Kuala Pusung Kapal,sex,perempuan,,409,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+11.16.04.2020,4,Kuala Pusung Kapal,total,total,,849,jiwa,2025,registration,total_population,3.1,18,,
+11.16.04,3,Seruway,sex,laki_laki,,14847,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+11.16.04,3,Seruway,sex,perempuan,,14623,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+11.16.04,3,Seruway,total,total,,29470,jiwa,2025,registration,total_population,3.1,18,,
+11.16.04,3,Seruway,age_group,0-4,laki_laki,1089,jiwa,2025,registration,total_population,3.2,21,,0-4
+11.16.04,3,Seruway,age_group,0-4,perempuan,1116,jiwa,2025,registration,total_population,3.2,21,,0-4
+11.16.04,3,Seruway,age_group,0-4,,2205,jiwa,2025,registration,total_population,3.2,21,,0-4
+11.16.04,3,Seruway,age_group,5-9,laki_laki,1431,jiwa,2025,registration,total_population,3.2,21,,5-9
+11.16.04,3,Seruway,age_group,5-9,perempuan,1261,jiwa,2025,registration,total_population,3.2,21,,5-9
+11.16.04,3,Seruway,age_group,5-9,,2692,jiwa,2025,registration,total_population,3.2,21,,5-9
+11.16.04,3,Seruway,age_group,10-14,laki_laki,1411,jiwa,2025,registration,total_population,3.2,21,,10-14
+11.16.04,3,Seruway,age_group,10-14,perempuan,1279,jiwa,2025,registration,total_population,3.2,21,,10-14
+11.16.04,3,Seruway,age_group,10-14,,2690,jiwa,2025,registration,total_population,3.2,21,,10-14
+11.16.04,3,Seruway,age_group,15-19,laki_laki,1334,jiwa,2025,registration,total_population,3.2,21,,15-19
+11.16.04,3,Seruway,age_group,15-19,perempuan,1332,jiwa,2025,registration,total_population,3.2,21,,15-19
+11.16.04,3,Seruway,age_group,15-19,,2666,jiwa,2025,registration,total_population,3.2,21,,15-19
+11.16.04,3,Seruway,age_group,20-24,laki_laki,1318,jiwa,2025,registration,total_population,3.2,21,,20-24
+11.16.04,3,Seruway,age_group,20-24,perempuan,1248,jiwa,2025,registration,total_population,3.2,21,,20-24
+11.16.04,3,Seruway,age_group,20-24,,2566,jiwa,2025,registration,total_population,3.2,21,,20-24
+11.16.04,3,Seruway,age_group,25-29,laki_laki,1318,jiwa,2025,registration,total_population,3.2,21,,25-29
+11.16.04,3,Seruway,age_group,25-29,perempuan,1254,jiwa,2025,registration,total_population,3.2,21,,25-29
+11.16.04,3,Seruway,age_group,25-29,,2572,jiwa,2025,registration,total_population,3.2,21,,25-29
+11.16.04,3,Seruway,age_group,30-34,laki_laki,1111,jiwa,2025,registration,total_population,3.2,21,,30-34
+11.16.04,3,Seruway,age_group,30-34,perempuan,1002,jiwa,2025,registration,total_population,3.2,21,,30-34
+11.16.04,3,Seruway,age_group,30-34,,2113,jiwa,2025,registration,total_population,3.2,21,,30-34
+11.16.04,3,Seruway,age_group,35-39,laki_laki,1138,jiwa,2025,registration,total_population,3.2,21,,35-39
+11.16.04,3,Seruway,age_group,35-39,perempuan,1039,jiwa,2025,registration,total_population,3.2,21,,35-39
+11.16.04,3,Seruway,age_group,35-39,,2177,jiwa,2025,registration,total_population,3.2,21,,35-39
+11.16.04,3,Seruway,age_group,40-44,laki_laki,1024,jiwa,2025,registration,total_population,3.2,21,,40-44
+11.16.04,3,Seruway,age_group,40-44,perempuan,1022,jiwa,2025,registration,total_population,3.2,21,,40-44
+11.16.04,3,Seruway,age_group,40-44,,2046,jiwa,2025,registration,total_population,3.2,21,,40-44
+11.16.04,3,Seruway,age_group,45-49,laki_laki,910,jiwa,2025,registration,total_population,3.2,21,,45-49
+11.16.04,3,Seruway,age_group,45-49,perempuan,981,jiwa,2025,registration,total_population,3.2,21,,45-49
+11.16.04,3,Seruway,age_group,45-49,,1891,jiwa,2025,registration,total_population,3.2,21,,45-49
+11.16.04,3,Seruway,age_group,50-54,laki_laki,838,jiwa,2025,registration,total_population,3.2,21,,50-54
+11.16.04,3,Seruway,age_group,50-54,perempuan,803,jiwa,2025,registration,total_population,3.2,21,,50-54
+11.16.04,3,Seruway,age_group,50-54,,1641,jiwa,2025,registration,total_population,3.2,21,,50-54
+11.16.04,3,Seruway,age_group,55-59,laki_laki,649,jiwa,2025,registration,total_population,3.2,21,,55-59
+11.16.04,3,Seruway,age_group,55-59,perempuan,711,jiwa,2025,registration,total_population,3.2,21,,55-59
+11.16.04,3,Seruway,age_group,55-59,,1360,jiwa,2025,registration,total_population,3.2,21,,55-59
+11.16.04,3,Seruway,age_group,60-64,laki_laki,494,jiwa,2025,registration,total_population,3.2,21,,60-64
+11.16.04,3,Seruway,age_group,60-64,perempuan,596,jiwa,2025,registration,total_population,3.2,21,,60-64
+11.16.04,3,Seruway,age_group,60-64,,1090,jiwa,2025,registration,total_population,3.2,21,,60-64
+11.16.04,3,Seruway,age_group,65-69,laki_laki,416,jiwa,2025,registration,total_population,3.2,21,,65-69
+11.16.04,3,Seruway,age_group,65-69,perempuan,437,jiwa,2025,registration,total_population,3.2,21,,65-69
+11.16.04,3,Seruway,age_group,65-69,,853,jiwa,2025,registration,total_population,3.2,21,,65-69
+11.16.04,3,Seruway,age_group,70-74,laki_laki,207,jiwa,2025,registration,total_population,3.2,21,,70-74
+11.16.04,3,Seruway,age_group,70-74,perempuan,221,jiwa,2025,registration,total_population,3.2,21,,70-74
+11.16.04,3,Seruway,age_group,70-74,,428,jiwa,2025,registration,total_population,3.2,21,,70-74
+11.16.04,3,Seruway,age_group,75+,laki_laki,159,jiwa,2025,registration,total_population,3.2,21,,75+
+11.16.04,3,Seruway,age_group,75+,perempuan,321,jiwa,2025,registration,total_population,3.2,21,,75+
+11.16.04,3,Seruway,age_group,75+,,480,jiwa,2025,registration,total_population,3.2,21,,75+
+11.16.04,3,Seruway,sex,laki_laki,,14847,jiwa,2025,registration,total_population,3.2,21,,Laki-Laki
+11.16.04,3,Seruway,sex,perempuan,,14623,jiwa,2025,registration,total_population,3.2,21,,Perempuan
+11.16.04,3,Seruway,total,total,,29470,jiwa,2025,registration,total_population,3.2,21,,

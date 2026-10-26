@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.06.21.2004,4,Lampermai,sex,laki_laki,,550,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/
+11.06.21.2004,4,Lampermai,sex,perempuan,,546,jiwa,2025,registration,total_population,3.1,23,,Perempuan/
+11.06.21.2004,4,Lampermai,total,total,,1096,jiwa,2025,registration,total_population,3.1,23,,
+11.06.21.2006,4,Miruk,sex,laki_laki,,1057,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/
+11.06.21.2006,4,Miruk,sex,perempuan,,1079,jiwa,2025,registration,total_population,3.1,23,,Perempuan/
+11.06.21.2006,4,Miruk,total,total,,2136,jiwa,2025,registration,total_population,3.1,23,,
+11.06.21.2012,4,Gla Meunasah Baro,sex,laki_laki,,639,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/
+11.06.21.2012,4,Gla Meunasah Baro,sex,perempuan,,652,jiwa,2025,registration,total_population,3.1,23,,Perempuan/
+11.06.21.2012,4,Gla Meunasah Baro,total,total,,1291,jiwa,2025,registration,total_population,3.1,23,,
+11.06.21.2010,4,Meunasah Intan,sex,laki_laki,,703,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/
+11.06.21.2010,4,Meunasah Intan,sex,perempuan,,702,jiwa,2025,registration,total_population,3.1,23,,Perempuan/
+11.06.21.2010,4,Meunasah Intan,total,total,,1405,jiwa,2025,registration,total_population,3.1,23,,
+11.06.21.2009,4,Meunasah Baet,sex,laki_laki,,618,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/
+11.06.21.2009,4,Meunasah Baet,sex,perempuan,,632,jiwa,2025,registration,total_population,3.1,23,,Perempuan/
+11.06.21.2009,4,Meunasah Baet,total,total,,1250,jiwa,2025,registration,total_population,3.1,23,,
+11.06.21.2008,4,Meunasah Manyang,sex,laki_laki,,561,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/
+11.06.21.2008,4,Meunasah Manyang,sex,perempuan,,562,jiwa,2025,registration,total_population,3.1,23,,Perempuan/
+11.06.21.2008,4,Meunasah Manyang,total,total,,1123,jiwa,2025,registration,total_population,3.1,23,,
+11.06.21.2007,4,Lamgapang,sex,laki_laki,,1411,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/
+11.06.21.2007,4,Lamgapang,sex,perempuan,,1359,jiwa,2025,registration,total_population,3.1,23,,Perempuan/
+11.06.21.2007,4,Lamgapang,total,total,,2770,jiwa,2025,registration,total_population,3.1,23,,
+11.06.21.2011,4,Rumpet,sex,laki_laki,,432,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/
+11.06.21.2011,4,Rumpet,sex,perempuan,,410,jiwa,2025,registration,total_population,3.1,23,,Perempuan/
+11.06.21.2011,4,Rumpet,total,total,,842,jiwa,2025,registration,total_population,3.1,23,,
+11.06.21.2001,4,Meunasah Papeun,sex,laki_laki,,2124,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/
+11.06.21.2001,4,Meunasah Papeun,sex,perempuan,,2114,jiwa,2025,registration,total_population,3.1,23,,Perempuan/
+11.06.21.2001,4,Meunasah Papeun,total,total,,4238,jiwa,2025,registration,total_population,3.1,23,,
+11.06.21,3,Krueng Barona jaya,sex,laki_laki,,9833,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/
+11.06.21,3,Krueng Barona jaya,sex,perempuan,,9828,jiwa,2025,registration,total_population,3.1,23,,Perempuan/
+11.06.21,3,Krueng Barona jaya,total,total,,19661,jiwa,2025,registration,total_population,3.1,23,,
+11.06.21,3,Krueng Barona Jaya,age_group,0-4,laki_laki,781,jiwa,2025,registration,total_population,3.2,25,,0 - 4
+11.06.21,3,Krueng Barona Jaya,age_group,0-4,perempuan,707,jiwa,2025,registration,total_population,3.2,25,,0 - 4
+11.06.21,3,Krueng Barona Jaya,age_group,0-4,,1488,jiwa,2025,registration,total_population,3.2,25,,0 - 4
+11.06.21,3,Krueng Barona Jaya,age_group,5-9,laki_laki,910,jiwa,2025,registration,total_population,3.2,25,,5-9
+11.06.21,3,Krueng Barona Jaya,age_group,5-9,perempuan,891,jiwa,2025,registration,total_population,3.2,25,,5-9
+11.06.21,3,Krueng Barona Jaya,age_group,5-9,,1801,jiwa,2025,registration,total_population,3.2,25,,5-9
+11.06.21,3,Krueng Barona Jaya,age_group,10-14,laki_laki,945,jiwa,2025,registration,total_population,3.2,25,,10-14
+11.06.21,3,Krueng Barona Jaya,age_group,10-14,perempuan,866,jiwa,2025,registration,total_population,3.2,25,,10-14
+11.06.21,3,Krueng Barona Jaya,age_group,10-14,,1811,jiwa,2025,registration,total_population,3.2,25,,10-14
+11.06.21,3,Krueng Barona Jaya,age_group,15-19,laki_laki,905,jiwa,2025,registration,total_population,3.2,25,,15 - 19
+11.06.21,3,Krueng Barona Jaya,age_group,15-19,perempuan,837,jiwa,2025,registration,total_population,3.2,25,,15 - 19
+11.06.21,3,Krueng Barona Jaya,age_group,15-19,,1742,jiwa,2025,registration,total_population,3.2,25,,15 - 19
+11.06.21,3,Krueng Barona Jaya,age_group,20-24,laki_laki,801,jiwa,2025,registration,total_population,3.2,25,,20 - 24
+11.06.21,3,Krueng Barona Jaya,age_group,20-24,perempuan,747,jiwa,2025,registration,total_population,3.2,25,,20 - 24
+11.06.21,3,Krueng Barona Jaya,age_group,20-24,,1548,jiwa,2025,registration,total_population,3.2,25,,20 - 24
+11.06.21,3,Krueng Barona Jaya,age_group,25-29,laki_laki,715,jiwa,2025,registration,total_population,3.2,25,,25 - 29
+11.06.21,3,Krueng Barona Jaya,age_group,25-29,perempuan,763,jiwa,2025,registration,total_population,3.2,25,,25 - 29
+11.06.21,3,Krueng Barona Jaya,age_group,25-29,,1478,jiwa,2025,registration,total_population,3.2,25,,25 - 29
+11.06.21,3,Krueng Barona Jaya,age_group,30-34,laki_laki,719,jiwa,2025,registration,total_population,3.2,25,,30 - 34
+11.06.21,3,Krueng Barona Jaya,age_group,30-34,perempuan,759,jiwa,2025,registration,total_population,3.2,25,,30 - 34
+11.06.21,3,Krueng Barona Jaya,age_group,30-34,,1478,jiwa,2025,registration,total_population,3.2,25,,30 - 34
+11.06.21,3,Krueng Barona Jaya,age_group,35-39,laki_laki,764,jiwa,2025,registration,total_population,3.2,25,,35 - 39
+11.06.21,3,Krueng Barona Jaya,age_group,35-39,perempuan,837,jiwa,2025,registration,total_population,3.2,25,,35 - 39
+11.06.21,3,Krueng Barona Jaya,age_group,35-39,,1601,jiwa,2025,registration,total_population,3.2,25,,35 - 39
+11.06.21,3,Krueng Barona Jaya,age_group,40-44,laki_laki,781,jiwa,2025,registration,total_population,3.2,25,,40 - 44
+11.06.21,3,Krueng Barona Jaya,age_group,40-44,perempuan,818,jiwa,2025,registration,total_population,3.2,25,,40 - 44
+11.06.21,3,Krueng Barona Jaya,age_group,40-44,,1599,jiwa,2025,registration,total_population,3.2,25,,40 - 44
+11.06.21,3,Krueng Barona Jaya,age_group,45-49,laki_laki,696,jiwa,2025,registration,total_population,3.2,25,,45 - 49
+11.06.21,3,Krueng Barona Jaya,age_group,45-49,perempuan,670,jiwa,2025,registration,total_population,3.2,25,,45 - 49
+11.06.21,3,Krueng Barona Jaya,age_group,45-49,,1366,jiwa,2025,registration,total_population,3.2,25,,45 - 49
+11.06.21,3,Krueng Barona Jaya,age_group,50-54,laki_laki,595,jiwa,2025,registration,total_population,3.2,25,,50 - 54
+11.06.21,3,Krueng Barona Jaya,age_group,50-54,perempuan,573,jiwa,2025,registration,total_population,3.2,25,,50 - 54
+11.06.21,3,Krueng Barona Jaya,age_group,50-54,,1168,jiwa,2025,registration,total_population,3.2,25,,50 - 54
+11.06.21,3,Krueng Barona Jaya,age_group,55-59,laki_laki,449,jiwa,2025,registration,total_population,3.2,25,,55 - 59
+11.06.21,3,Krueng Barona Jaya,age_group,55-59,perempuan,430,jiwa,2025,registration,total_population,3.2,25,,55 - 59
+11.06.21,3,Krueng Barona Jaya,age_group,55-59,,879,jiwa,2025,registration,total_population,3.2,25,,55 - 59
+11.06.21,3,Krueng Barona Jaya,age_group,60-64,laki_laki,337,jiwa,2025,registration,total_population,3.2,25,,60 - 64
+11.06.21,3,Krueng Barona Jaya,age_group,60-64,perempuan,323,jiwa,2025,registration,total_population,3.2,25,,60 - 64
+11.06.21,3,Krueng Barona Jaya,age_group,60-64,,660,jiwa,2025,registration,total_population,3.2,25,,60 - 64
+11.06.21,3,Krueng Barona Jaya,age_group,65-69,laki_laki,194,jiwa,2025,registration,total_population,3.2,25,,65 - 69
+11.06.21,3,Krueng Barona Jaya,age_group,65-69,perempuan,221,jiwa,2025,registration,total_population,3.2,25,,65 - 69
+11.06.21,3,Krueng Barona Jaya,age_group,65-69,,415,jiwa,2025,registration,total_population,3.2,25,,65 - 69
+11.06.21,3,Krueng Barona Jaya,age_group,70-74,laki_laki,107,jiwa,2025,registration,total_population,3.2,25,,70 - 74
+11.06.21,3,Krueng Barona Jaya,age_group,70-74,perempuan,147,jiwa,2025,registration,total_population,3.2,25,,70 - 74
+11.06.21,3,Krueng Barona Jaya,age_group,70-74,,254,jiwa,2025,registration,total_population,3.2,25,,70 - 74
+11.06.21,3,Krueng Barona Jaya,age_group,74+,laki_laki,134,jiwa,2025,registration,total_population,3.2,25,,> 74
+11.06.21,3,Krueng Barona Jaya,age_group,74+,perempuan,239,jiwa,2025,registration,total_population,3.2,25,,> 74
+11.06.21,3,Krueng Barona Jaya,age_group,74+,,373,jiwa,2025,registration,total_population,3.2,25,,> 74
+11.06.21,3,Krueng Barona Jaya,sex,laki_laki,,9833,jiwa,2025,registration,total_population,3.2,25,,Laki-Laki
+11.06.21,3,Krueng Barona Jaya,sex,perempuan,,9828,jiwa,2025,registration,total_population,3.2,25,,Perempuan
+11.06.21,3,Krueng Barona Jaya,total,total,,19661,jiwa,2025,registration,total_population,3.2,25,,

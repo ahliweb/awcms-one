@@ -1,0 +1,103 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.14.02.2001,4,Bahagia,sex,laki_laki,,369,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.14.02.2001,4,Bahagia,sex,perempuan,,404,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.14.02.2001,4,Bahagia,total,total,,773,jiwa,2025,registration,total_population,3.1,20,,
+11.14.02.2002,4,Sentosa,sex,laki_laki,,447,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.14.02.2002,4,Sentosa,sex,perempuan,,428,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.14.02.2002,4,Sentosa,total,total,,875,jiwa,2025,registration,total_population,3.1,20,,
+11.14.02.2003,4,Dayah Baro,sex,laki_laki,,1185,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.14.02.2003,4,Dayah Baro,sex,perempuan,,1135,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.14.02.2003,4,Dayah Baro,total,total,,2320,jiwa,2025,registration,total_population,3.1,20,,
+11.14.02.2006,4,Panton Makmur,sex,laki_laki,,554,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.14.02.2006,4,Panton Makmur,sex,perempuan,,530,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.14.02.2006,4,Panton Makmur,total,total,,1084,jiwa,2025,registration,total_population,3.1,20,,
+11.14.02.2005,4,Keutapang,sex,laki_laki,,1612,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.14.02.2005,4,Keutapang,sex,perempuan,,1534,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.14.02.2005,4,Keutapang,total,total,,3146,jiwa,2025,registration,total_population,3.1,20,,
+11.14.02.2009,4,Padang Datar,sex,laki_laki,,853,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.14.02.2009,4,Padang Datar,sex,perempuan,,878,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.14.02.2009,4,Padang Datar,total,total,,1731,jiwa,2025,registration,total_population,3.1,20,,
+11.14.02.2016,4,Mon Mata,sex,laki_laki,,588,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.14.02.2016,4,Mon Mata,sex,perempuan,,629,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.14.02.2016,4,Mon Mata,total,total,,1217,jiwa,2025,registration,total_population,3.1,20,,
+11.14.02.2007,4,Keude Krueng Sabee,sex,laki_laki,,566,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.14.02.2007,4,Keude Krueng Sabee,sex,perempuan,,566,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.14.02.2007,4,Keude Krueng Sabee,total,total,,1132,jiwa,2025,registration,total_population,3.1,20,,
+11.14.02.2008,4,Kabong,sex,laki_laki,,433,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.14.02.2008,4,Kabong,sex,perempuan,,447,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.14.02.2008,4,Kabong,total,total,,880,jiwa,2025,registration,total_population,3.1,20,,
+11.14.02.2010,4,Datar Luas,sex,laki_laki,,744,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.14.02.2010,4,Datar Luas,sex,perempuan,,728,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.14.02.2010,4,Datar Luas,total,total,,1472,jiwa,2025,registration,total_population,3.1,20,,
+11.14.02.2017,4,Paya Seumantok,sex,laki_laki,,523,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.14.02.2017,4,Paya Seumantok,sex,perempuan,,524,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.14.02.2017,4,Paya Seumantok,total,total,,1047,jiwa,2025,registration,total_population,3.1,20,,
+11.14.02.2011,4,Ranto Panyang,sex,laki_laki,,282,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.14.02.2011,4,Ranto Panyang,sex,perempuan,,237,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.14.02.2011,4,Ranto Panyang,total,total,,519,jiwa,2025,registration,total_population,3.1,20,,
+11.14.02.2014,4,Curek,sex,laki_laki,,271,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.14.02.2014,4,Curek,sex,perempuan,,274,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.14.02.2014,4,Curek,total,total,,545,jiwa,2025,registration,total_population,3.1,20,,
+11.14.02.2015,4,Alue Tho,sex,laki_laki,,172,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.14.02.2015,4,Alue Tho,sex,perempuan,,166,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.14.02.2015,4,Alue Tho,total,total,,338,jiwa,2025,registration,total_population,3.1,20,,
+11.14.02.2012,4,Buntha,sex,laki_laki,,227,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.14.02.2012,4,Buntha,sex,perempuan,,241,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.14.02.2012,4,Buntha,total,total,,468,jiwa,2025,registration,total_population,3.1,20,,
+11.14.02.2013,4,Panggong,sex,laki_laki,,378,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.14.02.2013,4,Panggong,sex,perempuan,,383,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.14.02.2013,4,Panggong,total,total,,761,jiwa,2025,registration,total_population,3.1,20,,
+11.14.02,3,Krueng Sabee,sex,laki_laki,,9993,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.14.02,3,Krueng Sabee,sex,perempuan,,9852,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.14.02,3,Krueng Sabee,total,total,,19845,jiwa,2025,registration,total_population,3.1,20,,
+11.14.02,3,Krueng Sabee,age_group,0-4,laki_laki,781,jiwa,2025,registration,total_population,3.2,22,,00-04
+11.14.02,3,Krueng Sabee,age_group,0-4,perempuan,791,jiwa,2025,registration,total_population,3.2,22,,00-04
+11.14.02,3,Krueng Sabee,age_group,0-4,,1572,jiwa,2025,registration,total_population,3.2,22,,00-04
+11.14.02,3,Krueng Sabee,age_group,5-9,laki_laki,1012,jiwa,2025,registration,total_population,3.2,22,,05-09
+11.14.02,3,Krueng Sabee,age_group,5-9,perempuan,965,jiwa,2025,registration,total_population,3.2,22,,05-09
+11.14.02,3,Krueng Sabee,age_group,5-9,,1977,jiwa,2025,registration,total_population,3.2,22,,05-09
+11.14.02,3,Krueng Sabee,age_group,10-14,laki_laki,1031,jiwa,2025,registration,total_population,3.2,22,,10-14
+11.14.02,3,Krueng Sabee,age_group,10-14,perempuan,987,jiwa,2025,registration,total_population,3.2,22,,10-14
+11.14.02,3,Krueng Sabee,age_group,10-14,,2018,jiwa,2025,registration,total_population,3.2,22,,10-14
+11.14.02,3,Krueng Sabee,age_group,15-19,laki_laki,1078,jiwa,2025,registration,total_population,3.2,22,,15-19
+11.14.02,3,Krueng Sabee,age_group,15-19,perempuan,1000,jiwa,2025,registration,total_population,3.2,22,,15-19
+11.14.02,3,Krueng Sabee,age_group,15-19,,2078,jiwa,2025,registration,total_population,3.2,22,,15-19
+11.14.02,3,Krueng Sabee,age_group,20-24,laki_laki,619,jiwa,2025,registration,total_population,3.2,22,,20-24
+11.14.02,3,Krueng Sabee,age_group,20-24,perempuan,610,jiwa,2025,registration,total_population,3.2,22,,20-24
+11.14.02,3,Krueng Sabee,age_group,20-24,,1229,jiwa,2025,registration,total_population,3.2,22,,20-24
+11.14.02,3,Krueng Sabee,age_group,25-29,laki_laki,623,jiwa,2025,registration,total_population,3.2,22,,25-29
+11.14.02,3,Krueng Sabee,age_group,25-29,perempuan,664,jiwa,2025,registration,total_population,3.2,22,,25-29
+11.14.02,3,Krueng Sabee,age_group,25-29,,1287,jiwa,2025,registration,total_population,3.2,22,,25-29
+11.14.02,3,Krueng Sabee,age_group,30-34,laki_laki,714,jiwa,2025,registration,total_population,3.2,22,,30-34
+11.14.02,3,Krueng Sabee,age_group,30-34,perempuan,826,jiwa,2025,registration,total_population,3.2,22,,30-34
+11.14.02,3,Krueng Sabee,age_group,30-34,,1540,jiwa,2025,registration,total_population,3.2,22,,30-34
+11.14.02,3,Krueng Sabee,age_group,35-39,laki_laki,794,jiwa,2025,registration,total_population,3.2,22,,35-39
+11.14.02,3,Krueng Sabee,age_group,35-39,perempuan,928,jiwa,2025,registration,total_population,3.2,22,,35-39
+11.14.02,3,Krueng Sabee,age_group,35-39,,1722,jiwa,2025,registration,total_population,3.2,22,,35-39
+11.14.02,3,Krueng Sabee,age_group,40-44,laki_laki,862,jiwa,2025,registration,total_population,3.2,22,,40-44
+11.14.02,3,Krueng Sabee,age_group,40-44,perempuan,896,jiwa,2025,registration,total_population,3.2,22,,40-44
+11.14.02,3,Krueng Sabee,age_group,40-44,,1758,jiwa,2025,registration,total_population,3.2,22,,40-44
+11.14.02,3,Krueng Sabee,age_group,45-49,laki_laki,725,jiwa,2025,registration,total_population,3.2,22,,45-49
+11.14.02,3,Krueng Sabee,age_group,45-49,perempuan,644,jiwa,2025,registration,total_population,3.2,22,,45-49
+11.14.02,3,Krueng Sabee,age_group,45-49,,1369,jiwa,2025,registration,total_population,3.2,22,,45-49
+11.14.02,3,Krueng Sabee,age_group,50-54,laki_laki,571,jiwa,2025,registration,total_population,3.2,22,,50-54
+11.14.02,3,Krueng Sabee,age_group,50-54,perempuan,495,jiwa,2025,registration,total_population,3.2,22,,50-54
+11.14.02,3,Krueng Sabee,age_group,50-54,,1066,jiwa,2025,registration,total_population,3.2,22,,50-54
+11.14.02,3,Krueng Sabee,age_group,55-59,laki_laki,409,jiwa,2025,registration,total_population,3.2,22,,55-59
+11.14.02,3,Krueng Sabee,age_group,55-59,perempuan,358,jiwa,2025,registration,total_population,3.2,22,,55-59
+11.14.02,3,Krueng Sabee,age_group,55-59,,767,jiwa,2025,registration,total_population,3.2,22,,55-59
+11.14.02,3,Krueng Sabee,age_group,60-64,laki_laki,300,jiwa,2025,registration,total_population,3.2,22,,60-64
+11.14.02,3,Krueng Sabee,age_group,60-64,perempuan,224,jiwa,2025,registration,total_population,3.2,22,,60-64
+11.14.02,3,Krueng Sabee,age_group,60-64,,524,jiwa,2025,registration,total_population,3.2,22,,60-64
+11.14.02,3,Krueng Sabee,age_group,65-69,laki_laki,211,jiwa,2025,registration,total_population,3.2,22,,65-69
+11.14.02,3,Krueng Sabee,age_group,65-69,perempuan,160,jiwa,2025,registration,total_population,3.2,22,,65-69
+11.14.02,3,Krueng Sabee,age_group,65-69,,371,jiwa,2025,registration,total_population,3.2,22,,65-69
+11.14.02,3,Krueng Sabee,age_group,70-74,laki_laki,119,jiwa,2025,registration,total_population,3.2,22,,70-74
+11.14.02,3,Krueng Sabee,age_group,70-74,perempuan,98,jiwa,2025,registration,total_population,3.2,22,,70-74
+11.14.02,3,Krueng Sabee,age_group,70-74,,217,jiwa,2025,registration,total_population,3.2,22,,70-74
+11.14.02,3,Krueng Sabee,age_group,75+,laki_laki,144,jiwa,2025,registration,total_population,3.2,22,,75+
+11.14.02,3,Krueng Sabee,age_group,75+,perempuan,206,jiwa,2025,registration,total_population,3.2,22,,75+
+11.14.02,3,Krueng Sabee,age_group,75+,,350,jiwa,2025,registration,total_population,3.2,22,,75+
+11.14.02,3,Krueng Sabee,sex,laki_laki,,9993,jiwa,2025,registration,total_population,3.2,22,,Laki-Laki
+11.14.02,3,Krueng Sabee,sex,perempuan,,9852,jiwa,2025,registration,total_population,3.2,22,,Perempuan
+11.14.02,3,Krueng Sabee,total,total,,19845,jiwa,2025,registration,total_population,3.2,22,,

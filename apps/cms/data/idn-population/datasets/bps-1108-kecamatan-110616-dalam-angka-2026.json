@@ -1,0 +1,52 @@
+{
+  "datasetCode": "bps-1108-kecamatan-110616-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.06.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kuta Cot Glie Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Besar",
+  "publisherDomain": "1108",
+  "publisherWebsite": "https://acehbesarkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Besar (https://acehbesarkab.bps.go.id), publikasi \"Kecamatan Kuta Cot Glie Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "11080.26009",
+  "issn": "2407-5108",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehbesarkab.bps.go.id/id/publication/2026/09/28/dac8262ab58fd45c0f931937/kecamatan-kuta-cot-glie-dalam-angka-2026.html",
+  "sourceFileSha256": "7dc60e24d9b34401efc1c1f894c3436fb088d2bab207b65fedb71f8698e8adb0",
+  "sourceFileBytes": 7897777,
+  "sourcePages": [32, 33, 34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Besar.",
+  "csvPath": "datasets/bps-1108-kecamatan-110616-dalam-angka-2026.csv",
+  "csvSha256": "525edca1cebe0ce2cec005a440062c4dee00f4d7fdd93a6933b185234b5830e7",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Kuta Cot Glie, 2025",
+      "printedPages": [32, 33, 34, 35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kuta Cot Glie, 2025",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Keureuweung Krueng\": unmatched ",
+    "table 3.1: row not stored: row \"Keureuweung Blang\": unmatched ",
+    "table 3.1: row not stored: row \"Leupung Baleu\": unmatched ",
+    "table 3.1: row not stored: row \"Ie Alang Lamkeureumeuh\": unmatched ",
+    "table 3.1: row not stored: row \"Keureuweung Krueng\": unmatched ",
+    "table 3.1: row not stored: row \"Keureuweung Blang\": unmatched ",
+    "table 3.1: row not stored: row \"Leupung Baleu\": unmatched ",
+    "table 3.1: row not stored: row \"Ie Alang Lamkeureumeuh\": unmatched "
+  ]
+}

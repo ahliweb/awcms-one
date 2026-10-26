@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.07.12.2017,4,Tuha Biheue,sex,laki_laki,,301,jiwa,2025,registration,total_population,4.1,36,,Laki-Laki/Male
+11.07.12.2017,4,Tuha Biheue,sex,perempuan,,290,jiwa,2025,registration,total_population,4.1,36,,Perempuan/Female
+11.07.12.2017,4,Tuha Biheue,total,total,,591,jiwa,2025,registration,total_population,4.1,36,,
+11.07.12.2014,4,Batee,sex,laki_laki,,543,jiwa,2025,registration,total_population,4.1,36,,Laki-Laki/Male
+11.07.12.2014,4,Batee,sex,perempuan,,567,jiwa,2025,registration,total_population,4.1,36,,Perempuan/Female
+11.07.12.2014,4,Batee,total,total,,1110,jiwa,2025,registration,total_population,4.1,36,,
+11.07.12.2015,4,Ingin Jaya,sex,laki_laki,,462,jiwa,2025,registration,total_population,4.1,36,,Laki-Laki/Male
+11.07.12.2015,4,Ingin Jaya,sex,perempuan,,489,jiwa,2025,registration,total_population,4.1,36,,Perempuan/Female
+11.07.12.2015,4,Ingin Jaya,total,total,,951,jiwa,2025,registration,total_population,4.1,36,,
+11.07.12.2013,4,Blang Raya,sex,laki_laki,,557,jiwa,2025,registration,total_population,4.1,36,,Laki-Laki/Male
+11.07.12.2013,4,Blang Raya,sex,perempuan,,542,jiwa,2025,registration,total_population,4.1,36,,Perempuan/Female
+11.07.12.2013,4,Blang Raya,total,total,,1099,jiwa,2025,registration,total_population,4.1,36,,
+11.07.12.2012,4,Ujong Pie,sex,laki_laki,,710,jiwa,2025,registration,total_population,4.1,36,,Laki-Laki/Male
+11.07.12.2012,4,Ujong Pie,sex,perempuan,,700,jiwa,2025,registration,total_population,4.1,36,,Perempuan/Female
+11.07.12.2012,4,Ujong Pie,total,total,,1410,jiwa,2025,registration,total_population,4.1,36,,
+11.07.12.2011,4,Sagoe,sex,laki_laki,,684,jiwa,2025,registration,total_population,4.1,36,,Laki-Laki/Male
+11.07.12.2011,4,Sagoe,sex,perempuan,,671,jiwa,2025,registration,total_population,4.1,36,,Perempuan/Female
+11.07.12.2011,4,Sagoe,total,total,,1355,jiwa,2025,registration,total_population,4.1,36,,
+11.07.12.2010,4,Ie Masen,sex,laki_laki,,382,jiwa,2025,registration,total_population,4.1,36,,Laki-Laki/Male
+11.07.12.2010,4,Ie Masen,sex,perempuan,,394,jiwa,2025,registration,total_population,4.1,36,,Perempuan/Female
+11.07.12.2010,4,Ie Masen,total,total,,776,jiwa,2025,registration,total_population,4.1,36,,
+11.07.12.2008,4,Krueng,sex,laki_laki,,49,jiwa,2025,registration,total_population,4.1,36,,Laki-Laki/Male
+11.07.12.2008,4,Krueng,sex,perempuan,,51,jiwa,2025,registration,total_population,4.1,36,,Perempuan/Female
+11.07.12.2008,4,Krueng,total,total,,100,jiwa,2025,registration,total_population,4.1,36,,
+11.07.12.2009,4,Gle Cut,sex,laki_laki,,215,jiwa,2025,registration,total_population,4.1,36,,Laki-Laki/Male
+11.07.12.2009,4,Gle Cut,sex,perempuan,,200,jiwa,2025,registration,total_population,4.1,36,,Perempuan/Female
+11.07.12.2009,4,Gle Cut,total,total,,415,jiwa,2025,registration,total_population,4.1,36,,
+11.07.12.2007,4,Deyah,sex,laki_laki,,241,jiwa,2025,registration,total_population,4.1,36,,Laki-Laki/Male
+11.07.12.2007,4,Deyah,sex,perempuan,,217,jiwa,2025,registration,total_population,4.1,36,,Perempuan/Female
+11.07.12.2007,4,Deyah,total,total,,458,jiwa,2025,registration,total_population,4.1,36,,
+11.07.12.2006,4,Pawod,sex,laki_laki,,272,jiwa,2025,registration,total_population,4.1,36,,Laki-Laki/Male
+11.07.12.2006,4,Pawod,sex,perempuan,,272,jiwa,2025,registration,total_population,4.1,36,,Perempuan/Female
+11.07.12.2006,4,Pawod,total,total,,544,jiwa,2025,registration,total_population,4.1,36,,
+11.07.12.2005,4,Sukajaya,sex,laki_laki,,1021,jiwa,2025,registration,total_population,4.1,36,,Laki-Laki/Male
+11.07.12.2005,4,Sukajaya,sex,perempuan,,1051,jiwa,2025,registration,total_population,4.1,36,,Perempuan/Female
+11.07.12.2005,4,Sukajaya,total,total,,2072,jiwa,2025,registration,total_population,4.1,36,,
+11.07.12.2004,4,Keupula,sex,laki_laki,,1034,jiwa,2025,registration,total_population,4.1,36,,Laki-Laki/Male
+11.07.12.2004,4,Keupula,sex,perempuan,,1045,jiwa,2025,registration,total_population,4.1,36,,Perempuan/Female
+11.07.12.2004,4,Keupula,total,total,,2079,jiwa,2025,registration,total_population,4.1,36,,
+11.07.12.2003,4,Mesjid,sex,laki_laki,,840,jiwa,2025,registration,total_population,4.1,36,,Laki-Laki/Male
+11.07.12.2003,4,Mesjid,sex,perempuan,,880,jiwa,2025,registration,total_population,4.1,36,,Perempuan/Female
+11.07.12.2003,4,Mesjid,total,total,,1720,jiwa,2025,registration,total_population,4.1,36,,
+11.07.12.2001,4,Cot,sex,laki_laki,,1321,jiwa,2025,registration,total_population,4.1,36,,Laki-Laki/Male
+11.07.12.2001,4,Cot,sex,perempuan,,1297,jiwa,2025,registration,total_population,4.1,36,,Perempuan/Female
+11.07.12.2001,4,Cot,total,total,,2618,jiwa,2025,registration,total_population,4.1,36,,

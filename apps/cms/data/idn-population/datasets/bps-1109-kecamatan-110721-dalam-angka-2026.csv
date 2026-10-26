@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.07.21.2018,4,BLANG RIKUI,sex,laki_laki,,199,jiwa,2025,registration,total_population,2.3,34,,Laki-Laki/Male
+11.07.21.2018,4,BLANG RIKUI,sex,perempuan,,201,jiwa,2025,registration,total_population,2.3,34,,Perempuan/Female
+11.07.21.2018,4,BLANG RIKUI,total,total,,400,jiwa,2025,registration,total_population,2.3,34,,
+11.07.21.2019,4,PANTON BEUNOT,sex,laki_laki,,127,jiwa,2025,registration,total_population,2.3,34,,Laki-Laki/Male
+11.07.21.2019,4,PANTON BEUNOT,sex,perempuan,,135,jiwa,2025,registration,total_population,2.3,34,,Perempuan/Female
+11.07.21.2019,4,PANTON BEUNOT,total,total,,262,jiwa,2025,registration,total_population,2.3,34,,
+11.07.21.2017,4,DAYA COT,sex,laki_laki,,254,jiwa,2025,registration,total_population,2.3,34,,Laki-Laki/Male
+11.07.21.2017,4,DAYA COT,sex,perempuan,,262,jiwa,2025,registration,total_population,2.3,34,,Perempuan/Female
+11.07.21.2017,4,DAYA COT,total,total,,516,jiwa,2025,registration,total_population,2.3,34,,
+11.07.21.2014,4,DAYA BAROH,sex,laki_laki,,120,jiwa,2025,registration,total_population,2.3,34,,Laki-Laki/Male
+11.07.21.2014,4,DAYA BAROH,sex,perempuan,,105,jiwa,2025,registration,total_population,2.3,34,,Perempuan/Female
+11.07.21.2014,4,DAYA BAROH,total,total,,225,jiwa,2025,registration,total_population,2.3,34,,
+11.07.21.2015,4,DAYA TEUNGOH,sex,laki_laki,,179,jiwa,2025,registration,total_population,2.3,34,,Laki-Laki/Male
+11.07.21.2015,4,DAYA TEUNGOH,sex,perempuan,,169,jiwa,2025,registration,total_population,2.3,34,,Perempuan/Female
+11.07.21.2015,4,DAYA TEUNGOH,total,total,,348,jiwa,2025,registration,total_population,2.3,34,,
+11.07.21.2007,4,PULO KEUNARI,sex,laki_laki,,287,jiwa,2025,registration,total_population,2.3,34,,Laki-Laki/Male
+11.07.21.2007,4,PULO KEUNARI,sex,perempuan,,288,jiwa,2025,registration,total_population,2.3,34,,Perempuan/Female
+11.07.21.2007,4,PULO KEUNARI,total,total,,575,jiwa,2025,registration,total_population,2.3,34,,
+11.07.21.2004,4,PULO GLUMPANG,sex,laki_laki,,372,jiwa,2025,registration,total_population,2.3,34,,Laki-Laki/Male
+11.07.21.2004,4,PULO GLUMPANG,sex,perempuan,,397,jiwa,2025,registration,total_population,2.3,34,,Perempuan/Female
+11.07.21.2004,4,PULO GLUMPANG,total,total,,769,jiwa,2025,registration,total_population,2.3,34,,
+11.07.21.2008,4,PEUNADOK,sex,laki_laki,,237,jiwa,2025,registration,total_population,2.3,34,,Laki-Laki/Male
+11.07.21.2008,4,PEUNADOK,sex,perempuan,,240,jiwa,2025,registration,total_population,2.3,34,,Perempuan/Female
+11.07.21.2008,4,PEUNADOK,total,total,,477,jiwa,2025,registration,total_population,2.3,34,,
+11.07.21.2006,4,PULO TAMBO,sex,laki_laki,,228,jiwa,2025,registration,total_population,2.3,34,,Laki-Laki/Male
+11.07.21.2006,4,PULO TAMBO,sex,perempuan,,223,jiwa,2025,registration,total_population,2.3,34,,Perempuan/Female
+11.07.21.2006,4,PULO TAMBO,total,total,,451,jiwa,2025,registration,total_population,2.3,34,,
+11.07.21.2009,4,PULO MESJID,sex,laki_laki,,384,jiwa,2025,registration,total_population,2.3,34,,Laki-Laki/Male
+11.07.21.2009,4,PULO MESJID,sex,perempuan,,410,jiwa,2025,registration,total_population,2.3,34,,Perempuan/Female
+11.07.21.2009,4,PULO MESJID,total,total,,794,jiwa,2025,registration,total_population,2.3,34,,
