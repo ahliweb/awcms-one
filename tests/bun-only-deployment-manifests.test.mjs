@@ -376,10 +376,20 @@ const UPSTREAM_BUILD_PREFIX = "apps/cms/";
 const SKIP_DIRS = new Set(["node_modules", ".git", ".astro", "dist", "coverage", "graphify-out", "var"]);
 const SCRIPT_DIRS = ["ops/", "docker/", "tools/deploy/"];
 
+/**
+ * Test inputs, not deployment manifests: a gate's fixtures are deliberately
+ * shaped like a Dockerfile or a compose file (often a WRONG one, to prove the
+ * parser refuses it), and nothing deploys them. `tests/fixtures/deps-freshness/`
+ * (issue #471) is the first such directory.
+ */
+function isTestFixture(rel) {
+  return rel === "tests/fixtures" || rel.endsWith("/tests/fixtures");
+}
+
 function walk(rel = "", out = []) {
   for (const name of readdirSync(join(REPO_ROOT, rel))) {
     const child = rel === "" ? name : `${rel}/${name}`;
-    if (SKIP_DIRS.has(name) || child === "apps/cms") continue;
+    if (SKIP_DIRS.has(name) || child === "apps/cms" || isTestFixture(child)) continue;
     if (statSync(join(REPO_ROOT, child)).isDirectory()) {
       walk(child, out);
     } else {
@@ -476,6 +486,14 @@ describe("the Bun pin is read from package.json, not hard-coded", () => {
 });
 
 describe("manifest discovery", () => {
+  test("skips test fixtures, which are inputs to other gates and are never deployed", () => {
+    expect(isTestFixture("tests/fixtures")).toBe(true);
+    expect(isTestFixture("apps/storefront/tests/fixtures")).toBe(true);
+    expect(isTestFixture("tests/fixtures-not")).toBe(false);
+    expect(isTestFixture("docker/fixtures")).toBe(false);
+    expect(MANIFESTS.some((m) => m.file.startsWith("tests/fixtures/"))).toBe(false);
+  });
+
   test("finds the root manifests that launch jobs and services today", () => {
     const files = MANIFESTS.map((m) => m.file);
     for (const expected of [
