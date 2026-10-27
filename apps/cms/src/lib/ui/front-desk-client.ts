@@ -478,6 +478,23 @@ export function createAttemptKeys(
   };
 }
 
+/**
+ * True when a write's outcome is unknown, so its key must be KEPT for a retry.
+ * That is a dropped connection (`NETWORK_ERROR`) and also any failure without a
+ * server error envelope: a proxy's 502/504 page or a truncated body arrives as
+ * `ok: false, errorCode: null`, and the server may well have committed the
+ * payment behind it. Only an answer carrying an error code is a definite refusal.
+ */
+export function isOutcomeUnknown(result: {
+  readonly ok: boolean;
+  readonly errorCode: string | null;
+}): boolean {
+  return (
+    result.errorCode === "NETWORK_ERROR" ||
+    (!result.ok && result.errorCode === null)
+  );
+}
+
 /** A stable text for a request, so {@link createAttemptKeys} can tell a retry from a new request. */
 export function requestSignature(parts: readonly unknown[]): string {
   return JSON.stringify(parts);

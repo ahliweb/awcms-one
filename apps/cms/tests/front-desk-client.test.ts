@@ -15,6 +15,7 @@ import {
   formatMoney,
   fromCents,
   isFrontDeskCard,
+  isOutcomeUnknown,
   nightsBetween,
   outstandingFromDetails,
   planBalanceTenders,
@@ -479,5 +480,25 @@ describe("validation refusals land on the right line", () => {
     });
     expect(tenderFieldTarget("registerId")).toBeNull();
     expect(tenderFieldTarget("tenders")).toBeNull();
+  });
+});
+
+describe("isOutcomeUnknown - when a write keeps its Idempotency-Key", () => {
+  test("a dropped connection and a reply without an error envelope are unknown", () => {
+    expect(isOutcomeUnknown({ ok: false, errorCode: "NETWORK_ERROR" })).toBe(
+      true
+    );
+    // A proxy's 502/504 page or a truncated 200 body: not JSON, so no code.
+    expect(isOutcomeUnknown({ ok: false, errorCode: null })).toBe(true);
+  });
+
+  test("a coded refusal and a success are definite outcomes", () => {
+    expect(isOutcomeUnknown({ ok: false, errorCode: "VALIDATION_ERROR" })).toBe(
+      false
+    );
+    expect(
+      isOutcomeUnknown({ ok: false, errorCode: "BALANCE_NOT_SETTLED" })
+    ).toBe(false);
+    expect(isOutcomeUnknown({ ok: true, errorCode: null })).toBe(false);
   });
 });

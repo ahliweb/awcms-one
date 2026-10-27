@@ -48,6 +48,7 @@ import {
   formatMoney,
   fromCents,
   isFrontDeskCard,
+  isOutcomeUnknown,
   isStoredValueTender,
   nightsBetween,
   outstandingFromDetails,
@@ -605,9 +606,10 @@ export function initFrontDesk(root: HTMLElement): void {
         { registerId: register },
         { "Idempotency-Key": key }
       );
-      if (result.errorCode === "NETWORK_ERROR") {
-        // The outcome is unknown: the SAME key is kept, so a second press replays
-        // the first outcome instead of writing twice.
+      if (isOutcomeUnknown(result)) {
+        // The outcome is unknown (no connection, or no error envelope behind a
+        // proxy error page): the SAME key is kept, so a second press replays the
+        // first outcome instead of writing twice.
         showResult(msg("msgNetwork"), "danger");
         return;
       }
@@ -725,7 +727,7 @@ export function initFrontDesk(root: HTMLElement): void {
         body,
         { "Idempotency-Key": key }
       );
-      if (result.errorCode === "NETWORK_ERROR") {
+      if (isOutcomeUnknown(result)) {
         showResult(msg("msgNetwork"), "danger");
         return;
       }
