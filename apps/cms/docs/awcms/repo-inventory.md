@@ -415,14 +415,14 @@
 | 354 | `sql/1052_awcms_commerce_commission_attributed_sources.sql`                 |
 | 355 | `sql/1053_awcms_commerce_commission_revoke_payroll_worker_grants.sql`       |
 | 356 | `sql/1054_awcms_commerce_booking_pos_guard_marker.sql`                      |
-| 357 | `sql/1054_awcms_commerce_booking_revenue_export_permission.sql`             |
-| 358 | `sql/1055_awcms_commerce_booking_revenue_refund_payable.sql`                |
-| 359 | `sql/1056_awcms_commerce_customer_push_devices_schema.sql`                  |
-| 360 | `sql/1057_awcms_commerce_customer_push_outbox_schema.sql`                   |
-| 361 | `sql/1058_awcms_commerce_customer_push_worker_grants.sql`                   |
-| 362 | `sql/1059_awcms_commerce_customer_push_permissions.sql`                     |
-| 363 | `sql/1060_awcms_commerce_segment_rule_schema_version.sql`                   |
-| 364 | `sql/1061_awcms_commerce_customer_push_fanout_worker_grants.sql`            |
+| 357 | `sql/1055_awcms_commerce_booking_revenue_refund_payable.sql`                |
+| 358 | `sql/1056_awcms_commerce_customer_push_devices_schema.sql`                  |
+| 359 | `sql/1057_awcms_commerce_customer_push_outbox_schema.sql`                   |
+| 360 | `sql/1058_awcms_commerce_customer_push_worker_grants.sql`                   |
+| 361 | `sql/1059_awcms_commerce_customer_push_permissions.sql`                     |
+| 362 | `sql/1060_awcms_commerce_segment_rule_schema_version.sql`                   |
+| 363 | `sql/1061_awcms_commerce_customer_push_fanout_worker_grants.sql`            |
+| 364 | `sql/1062_awcms_commerce_booking_revenue_export_permission.sql`             |
 
 ### Tables & Row-Level Security
 

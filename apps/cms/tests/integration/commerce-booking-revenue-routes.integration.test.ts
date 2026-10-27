@@ -405,7 +405,7 @@ suite(
       ]);
       const bystander = await seedPrincipal(owner.tenantId, "csv-bystander", [
         // reporting.dashboard.read opens the screen and the JSON route but NOT
-        // the file: the export is its own key (sql/1054).
+        // the file: the export is its own key (sql/1062).
         "reporting.dashboard.read",
         "reporting.projections.read",
         "commerce.report_retention.export",

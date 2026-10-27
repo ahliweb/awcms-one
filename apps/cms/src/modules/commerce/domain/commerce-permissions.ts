@@ -787,7 +787,7 @@ export const COMMERCE_REPORT_RETENTION_ACTIVITY_CODE = "report_retention";
 // reports it sits beside), but the FILE is a bulk read of every paid day's
 // money in a form that leaves the system, so it follows the operational and
 // retention CSVs: a dedicated commerce activity, NOT implied by
-// `reporting.dashboard.read` or by another report key (migration 1054).
+// `reporting.dashboard.read` or by another report key (migration 1062).
 export const COMMERCE_REPORT_BOOKING_REVENUE_ACTIVITY_CODE =
   "report_booking_revenue";
 

@@ -297,7 +297,7 @@ const screen = await loadAdminScreen({
       pipeline: await fetchBookingPipeline(tx, ssr.tenantId),
       // Issue #478: the labelled cash view of refunds, by the day they were paid out.
       cash: await fetchBookingCashRefundReport(tx, ssr.tenantId, range),
-      // The CSV link is gated on its own export key (migration 1054); the
+      // The CSV link is gated on its own export key (migration 1062); the
       // route re-checks it.
       canExport: await can({
         moduleKey: "commerce",

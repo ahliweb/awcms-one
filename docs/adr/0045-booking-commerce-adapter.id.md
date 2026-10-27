@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0045-booking-commerce-adapter.md)
 
-<!-- i18n-source-hash: sha256:c21ed9c509d43da6cd4bad38c0590113f300ba8864fecec61098610e58229b94 -->
+<!-- i18n-source-hash: sha256:aefcde298f2ccbccf3f82554c70d9da70c41aaf1f2f91333a20d57baa03d9a5a -->
 
 # ADR-0045 — Adapter booking-commerce
 
@@ -455,4 +455,4 @@ Pemilik menerima jawaban yang direkomendasikan untuk empat pertanyaan yang ditin
 - **Bobot adalah yang masih belum direfund.** Alokasi menyebar angka gabungan ke komponen yang belum direfund; untuk pesanan tanpa pemisahan eksak itu persis proporsi pesanan itu sendiri. Ditolak: selalu proporsi asli pesanan, yang dapat mendorong sebuah komponen melewati nol sebesar satu sen setelah retur berpemisahan eksak.
 - **Bagian adalah bagian barang; pendamping adalah uang.** Tiga bagian langkah Refund dan pendamping disimpan sebagai bagian dari barang dan tiga komponen lain; `refund_payable` tetap kolom uang agar identitas kendali tidak butuh alokasi. Ditolak: dua belas kolom (tiga bagian kali empat komponen).
 - **Tampilan kas adalah pembacaan langsung, bukan proyeksi kedua.** Satu pembacaan terkelompok atas buku besar append-only lewat indeks yang ada; tidak ada yang perlu di-rebuild atau di-restatement. Tinjau ulang jika volume reversal tenant membuat rentang 366 hari lambat.
-- **CSV air terjun pada kunci ekspornya sendiri, `commerce.report_booking_revenue.export`** (migrasi `sql/1054`), konvensi CSV operasional dan retensi: berkas membawa uang per hari keluar dari sistem, sehingga tidak tersirat dari `reporting.dashboard.read`, yang tetap menjaga layar dan rute JSON. Hanya satu kunci `export` (tanpa kembaran `read`), diaudit seperti ekspor lain; layar menampilkan tautan unduh hanya kepada pemegangnya.
+- **CSV air terjun pada kunci ekspornya sendiri, `commerce.report_booking_revenue.export`** (migrasi `sql/1062`), konvensi CSV operasional dan retensi: berkas membawa uang per hari keluar dari sistem, sehingga tidak tersirat dari `reporting.dashboard.read`, yang tetap menjaga layar dan rute JSON. Hanya satu kunci `export` (tanpa kembaran `read`), diaudit seperti ekspor lain; layar menampilkan tautan unduh hanya kepada pemegangnya.

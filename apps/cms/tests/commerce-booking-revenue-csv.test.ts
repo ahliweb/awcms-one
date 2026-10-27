@@ -152,7 +152,7 @@ describe("serializeBookingRevenueCsv", () => {
   });
 });
 
-describe("the CSV is gated on its own export permission (Issue #478, sql/1054)", () => {
+describe("the CSV is gated on its own export permission (Issue #478, sql/1062)", () => {
   test("the route authorises commerce.report_booking_revenue.export, not reporting.dashboard.read", async () => {
     const source = await readFile(
       "src/pages/api/v1/reports/commerce/booking-revenue.csv.ts",
@@ -174,7 +174,7 @@ describe("the CSV is gated on its own export permission (Issue #478, sql/1054)",
     );
     expect(declared).toBe(true);
     const sql = await readFile(
-      "sql/1054_awcms_commerce_booking_revenue_export_permission.sql",
+      "sql/1062_awcms_commerce_booking_revenue_export_permission.sql",
       "utf8"
     );
     expect(sql).toContain("'commerce', 'report_booking_revenue', 'export'");
