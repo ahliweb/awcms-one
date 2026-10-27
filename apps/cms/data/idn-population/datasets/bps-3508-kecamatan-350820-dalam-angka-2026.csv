@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.08.20.2001,4,Jenggrong,sex,laki_laki,,3149,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.20.2001,4,Jenggrong,sex,perempuan,,3309,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.20.2001,4,Jenggrong,total,total,,6458,jiwa,2025,registration,total_population,3.1,31,,
+35.08.20.2002,4,Meninjo,sex,laki_laki,,1184,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.20.2002,4,Meninjo,sex,perempuan,,1177,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.20.2002,4,Meninjo,total,total,,2361,jiwa,2025,registration,total_population,3.1,31,,
+35.08.20.2003,4,Tegalbangsri,sex,laki_laki,,1145,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.20.2003,4,Tegalbangsri,sex,perempuan,,1224,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.20.2003,4,Tegalbangsri,total,total,,2369,jiwa,2025,registration,total_population,3.1,31,,
+35.08.20.2004,4,Sumberpetung,sex,laki_laki,,2094,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.20.2004,4,Sumberpetung,sex,perempuan,,2123,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.20.2004,4,Sumberpetung,total,total,,4217,jiwa,2025,registration,total_population,3.1,31,,
+35.08.20.2005,4,Alun-Alun,sex,laki_laki,,1798,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.20.2005,4,Alun-Alun,sex,perempuan,,1806,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.20.2005,4,Alun-Alun,total,total,,3604,jiwa,2025,registration,total_population,3.1,31,,
+35.08.20.2006,4,Ranubedali,sex,laki_laki,,3195,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.20.2006,4,Ranubedali,sex,perempuan,,3355,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.20.2006,4,Ranubedali,total,total,,6550,jiwa,2025,registration,total_population,3.1,31,,
+35.08.20.2007,4,Ranuyoso,sex,laki_laki,,3186,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.20.2007,4,Ranuyoso,sex,perempuan,,3362,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.20.2007,4,Ranuyoso,total,total,,6548,jiwa,2025,registration,total_population,3.1,31,,
+35.08.20.2008,4,Wonoayu,sex,laki_laki,,1950,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.20.2008,4,Wonoayu,sex,perempuan,,1967,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.20.2008,4,Wonoayu,total,total,,3917,jiwa,2025,registration,total_population,3.1,31,,
+35.08.20.2009,4,Penawungan,sex,laki_laki,,1945,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.20.2009,4,Penawungan,sex,perempuan,,1985,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.20.2009,4,Penawungan,total,total,,3930,jiwa,2025,registration,total_population,3.1,31,,
+35.08.20.2011,4,Wates Wetan,sex,laki_laki,,2499,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.20.2011,4,Wates Wetan,sex,perempuan,,2555,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.20.2011,4,Wates Wetan,total,total,,5054,jiwa,2025,registration,total_population,3.1,31,,
+35.08.20,3,Kecamatan Ranuyoso,sex,laki_laki,,24355,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.20,3,Kecamatan Ranuyoso,sex,perempuan,,25112,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.20,3,Kecamatan Ranuyoso,total,total,,49467,jiwa,2025,registration,total_population,3.1,31,,

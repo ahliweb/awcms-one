@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.09.05.2004,4,Sikakak,sex,laki_laki,,1097,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.05.2004,4,Sikakak,sex,perempuan,,1078,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.05.2004,4,Sikakak,total,total,,2175,jiwa,2025,registration,total_population,3.1,22,,
+14.09.05.2006,4,Pulau Jambu,sex,laki_laki,,451,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.05.2006,4,Pulau Jambu,sex,perempuan,,419,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.05.2006,4,Pulau Jambu,total,total,,870,jiwa,2025,registration,total_population,3.1,22,,
+14.09.05.2008,4,Pulau Bayur,sex,laki_laki,,366,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.05.2008,4,Pulau Bayur,sex,perempuan,,343,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.05.2008,4,Pulau Bayur,total,total,,709,jiwa,2025,registration,total_population,3.1,22,,
+14.09.05.2009,4,Pulau Panjang Cerenti,sex,laki_laki,,951,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.05.2009,4,Pulau Panjang Cerenti,sex,perempuan,,875,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.05.2009,4,Pulau Panjang Cerenti,total,total,,1826,jiwa,2025,registration,total_population,3.1,22,,
+14.09.05.2011,4,Teluk Pauh,sex,laki_laki,,634,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.05.2011,4,Teluk Pauh,sex,perempuan,,656,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.05.2011,4,Teluk Pauh,total,total,,1290,jiwa,2025,registration,total_population,3.1,22,,
+14.09.05.2010,4,Pesikaian,sex,laki_laki,,1269,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.05.2010,4,Pesikaian,sex,perempuan,,1151,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.05.2010,4,Pesikaian,total,total,,2420,jiwa,2025,registration,total_population,3.1,22,,
+14.09.05.2007,4,Koto Cerenti,sex,laki_laki,,612,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.05.2007,4,Koto Cerenti,sex,perempuan,,604,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.05.2007,4,Koto Cerenti,total,total,,1216,jiwa,2025,registration,total_population,3.1,22,,
+14.09.05.1002,4,Koto Peraku,sex,laki_laki,,665,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.05.1002,4,Koto Peraku,sex,perempuan,,645,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.05.1002,4,Koto Peraku,total,total,,1310,jiwa,2025,registration,total_population,3.1,22,,
+14.09.05.1001,4,Pasar Cerenti,sex,laki_laki,,410,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.05.1001,4,Pasar Cerenti,sex,perempuan,,364,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.05.1001,4,Pasar Cerenti,total,total,,774,jiwa,2025,registration,total_population,3.1,22,,
+14.09.05.2005,4,Kampung Baru,sex,laki_laki,,271,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.05.2005,4,Kampung Baru,sex,perempuan,,285,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.05.2005,4,Kampung Baru,total,total,,556,jiwa,2025,registration,total_population,3.1,22,,
+14.09.05.2003,4,Kompe Berangin,sex,laki_laki,,761,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.05.2003,4,Kompe Berangin,sex,perempuan,,723,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.05.2003,4,Kompe Berangin,total,total,,1484,jiwa,2025,registration,total_population,3.1,22,,
+14.09.05.2012,4,Tanjung Medan,sex,laki_laki,,699,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.05.2012,4,Tanjung Medan,sex,perempuan,,613,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.05.2012,4,Tanjung Medan,total,total,,1312,jiwa,2025,registration,total_population,3.1,22,,
+14.09.05.2013,4,Kampung Baru Timur,sex,laki_laki,,692,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.05.2013,4,Kampung Baru Timur,sex,perempuan,,702,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.05.2013,4,Kampung Baru Timur,total,total,,1394,jiwa,2025,registration,total_population,3.1,22,,
+14.09.05,3,Cerenti,sex,laki_laki,,8878,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.05,3,Cerenti,sex,perempuan,,8458,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.05,3,Cerenti,total,total,,17336,jiwa,2025,registration,total_population,3.1,22,,

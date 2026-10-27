@@ -1,0 +1,84 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.73.20.1005,4,Antapani Kidul,sex,laki_laki,,12973,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.73.20.1005,4,Antapani Kidul,sex,perempuan,,13389,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.73.20.1005,4,Antapani Kidul,total,total,,26362,jiwa,2025,registration,total_population,3.1,36,,
+32.73.20.1004,4,Antapani Tengah,sex,laki_laki,,12262,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.73.20.1004,4,Antapani Tengah,sex,perempuan,,12439,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.73.20.1004,4,Antapani Tengah,total,total,,24701,jiwa,2025,registration,total_population,3.1,36,,
+32.73.20.1006,4,Antapani Wetan,sex,laki_laki,,10134,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.73.20.1006,4,Antapani Wetan,sex,perempuan,,10259,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.73.20.1006,4,Antapani Wetan,total,total,,20393,jiwa,2025,registration,total_population,3.1,36,,
+32.73.20.1001,4,Antapani Kulon,sex,laki_laki,,5659,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.73.20.1001,4,Antapani Kulon,sex,perempuan,,5712,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.73.20.1001,4,Antapani Kulon,total,total,,11371,jiwa,2025,registration,total_population,3.1,36,,
+32.73.20,3,Antapani,age_group,0-4,laki_laki,2617,jiwa,2025,registration,total_population,3.2,38,,0-4
+32.73.20,3,Antapani,age_group,0-4,perempuan,2396,jiwa,2025,registration,total_population,3.2,38,,0-4
+32.73.20,3,Antapani,age_group,0-4,,5013,jiwa,2025,registration,total_population,3.2,38,,0-4
+32.73.20,3,Antapani,age_group,5-9,laki_laki,3515,jiwa,2025,registration,total_population,3.2,38,,5-9
+32.73.20,3,Antapani,age_group,5-9,perempuan,3319,jiwa,2025,registration,total_population,3.2,38,,5-9
+32.73.20,3,Antapani,age_group,5-9,,6834,jiwa,2025,registration,total_population,3.2,38,,5-9
+32.73.20,3,Antapani,age_group,10-14,laki_laki,3424,jiwa,2025,registration,total_population,3.2,38,,10-14
+32.73.20,3,Antapani,age_group,10-14,perempuan,3156,jiwa,2025,registration,total_population,3.2,38,,10-14
+32.73.20,3,Antapani,age_group,10-14,,6580,jiwa,2025,registration,total_population,3.2,38,,10-14
+32.73.20,3,Antapani,age_group,15-19,laki_laki,2988,jiwa,2025,registration,total_population,3.2,38,,15-19
+32.73.20,3,Antapani,age_group,15-19,perempuan,2807,jiwa,2025,registration,total_population,3.2,38,,15-19
+32.73.20,3,Antapani,age_group,15-19,,5795,jiwa,2025,registration,total_population,3.2,38,,15-19
+32.73.20,3,Antapani,age_group,20-24,laki_laki,2924,jiwa,2025,registration,total_population,3.2,38,,20-24
+32.73.20,3,Antapani,age_group,20-24,perempuan,2872,jiwa,2025,registration,total_population,3.2,38,,20-24
+32.73.20,3,Antapani,age_group,20-24,,5796,jiwa,2025,registration,total_population,3.2,38,,20-24
+32.73.20,3,Antapani,age_group,25-29,laki_laki,3028,jiwa,2025,registration,total_population,3.2,38,,25-29
+32.73.20,3,Antapani,age_group,25-29,perempuan,3072,jiwa,2025,registration,total_population,3.2,38,,25-29
+32.73.20,3,Antapani,age_group,25-29,,6100,jiwa,2025,registration,total_population,3.2,38,,25-29
+32.73.20,3,Antapani,age_group,30-34,laki_laki,3333,jiwa,2025,registration,total_population,3.2,38,,30-34
+32.73.20,3,Antapani,age_group,30-34,perempuan,3642,jiwa,2025,registration,total_population,3.2,38,,30-34
+32.73.20,3,Antapani,age_group,30-34,,6975,jiwa,2025,registration,total_population,3.2,38,,30-34
+32.73.20,3,Antapani,age_group,35-39,laki_laki,3283,jiwa,2025,registration,total_population,3.2,38,,35-39
+32.73.20,3,Antapani,age_group,35-39,perempuan,3259,jiwa,2025,registration,total_population,3.2,38,,35-39
+32.73.20,3,Antapani,age_group,35-39,,6542,jiwa,2025,registration,total_population,3.2,38,,35-39
+32.73.20,3,Antapani,age_group,40-44,laki_laki,3326,jiwa,2025,registration,total_population,3.2,38,,40-44
+32.73.20,3,Antapani,age_group,40-44,perempuan,3269,jiwa,2025,registration,total_population,3.2,38,,40-44
+32.73.20,3,Antapani,age_group,40-44,,6595,jiwa,2025,registration,total_population,3.2,38,,40-44
+32.73.20,3,Antapani,age_group,45-49,laki_laki,2858,jiwa,2025,registration,total_population,3.2,38,,45-49
+32.73.20,3,Antapani,age_group,45-49,perempuan,2982,jiwa,2025,registration,total_population,3.2,38,,45-49
+32.73.20,3,Antapani,age_group,45-49,,5840,jiwa,2025,registration,total_population,3.2,38,,45-49
+32.73.20,3,Antapani,age_group,50-54,laki_laki,2323,jiwa,2025,registration,total_population,3.2,38,,50-54
+32.73.20,3,Antapani,age_group,50-54,perempuan,2498,jiwa,2025,registration,total_population,3.2,38,,50-54
+32.73.20,3,Antapani,age_group,50-54,,4821,jiwa,2025,registration,total_population,3.2,38,,50-54
+32.73.20,3,Antapani,age_group,55-59,laki_laki,1965,jiwa,2025,registration,total_population,3.2,38,,55-59
+32.73.20,3,Antapani,age_group,55-59,perempuan,2218,jiwa,2025,registration,total_population,3.2,38,,55-59
+32.73.20,3,Antapani,age_group,55-59,,4183,jiwa,2025,registration,total_population,3.2,38,,55-59
+32.73.20,3,Antapani,age_group,60-64,laki_laki,1659,jiwa,2025,registration,total_population,3.2,38,,60-64
+32.73.20,3,Antapani,age_group,60-64,perempuan,2382,jiwa,2025,registration,total_population,3.2,38,,60-64
+32.73.20,3,Antapani,age_group,60-64,,4041,jiwa,2025,registration,total_population,3.2,38,,60-64
+32.73.20,3,Antapani,age_group,65-69,laki_laki,1736,jiwa,2025,registration,total_population,3.2,38,,65-69
+32.73.20,3,Antapani,age_group,65-69,perempuan,1979,jiwa,2025,registration,total_population,3.2,38,,65-69
+32.73.20,3,Antapani,age_group,65-69,,3715,jiwa,2025,registration,total_population,3.2,38,,65-69
+32.73.20,3,Antapani,age_group,70-74,laki_laki,1214,jiwa,2025,registration,total_population,3.2,38,,70-74
+32.73.20,3,Antapani,age_group,70-74,perempuan,1078,jiwa,2025,registration,total_population,3.2,38,,70-74
+32.73.20,3,Antapani,age_group,70-74,,2292,jiwa,2025,registration,total_population,3.2,38,,70-74
+32.73.20,3,Antapani,age_group,75+,laki_laki,835,jiwa,2025,registration,total_population,3.2,38,,75+
+32.73.20,3,Antapani,age_group,75+,perempuan,870,jiwa,2025,registration,total_population,3.2,38,,75+
+32.73.20,3,Antapani,age_group,75+,,1705,jiwa,2025,registration,total_population,3.2,38,,75+
+32.73.20,3,Antapani,sex,laki_laki,,41028,jiwa,2025,registration,total_population,3.2,38,,Laki-Laki
+32.73.20,3,Antapani,sex,perempuan,,41799,jiwa,2025,registration,total_population,3.2,38,,Perempuan
+32.73.20,3,Antapani,total,total,,82827,jiwa,2025,registration,total_population,3.2,38,,
+32.73.20.1005,4,Antapani Kidul,religion,islam,,24109,jiwa,2025,registration,total_population,4.4.5,90,,Islam
+32.73.20.1005,4,Antapani Kidul,religion,kristen,,1499,jiwa,2025,registration,total_population,4.4.5,90,,Protestan
+32.73.20.1005,4,Antapani Kidul,religion,katolik,,654,jiwa,2025,registration,total_population,4.4.5,90,,Catholic
+32.73.20.1005,4,Antapani Kidul,religion,hindu,,36,jiwa,2025,registration,total_population,4.4.5,90,,Hindu
+32.73.20.1004,4,Antapani Tengah,religion,islam,,22945,jiwa,2025,registration,total_population,4.4.5,90,,Islam
+32.73.20.1004,4,Antapani Tengah,religion,kristen,,1222,jiwa,2025,registration,total_population,4.4.5,90,,Protestan
+32.73.20.1004,4,Antapani Tengah,religion,katolik,,484,jiwa,2025,registration,total_population,4.4.5,90,,Catholic
+32.73.20.1004,4,Antapani Tengah,religion,hindu,,27,jiwa,2025,registration,total_population,4.4.5,90,,Hindu
+32.73.20.1006,4,Antapani Wetan,religion,islam,,18910,jiwa,2025,registration,total_population,4.4.5,90,,Islam
+32.73.20.1006,4,Antapani Wetan,religion,kristen,,948,jiwa,2025,registration,total_population,4.4.5,90,,Protestan
+32.73.20.1006,4,Antapani Wetan,religion,katolik,,497,jiwa,2025,registration,total_population,4.4.5,90,,Catholic
+32.73.20.1006,4,Antapani Wetan,religion,hindu,,13,jiwa,2025,registration,total_population,4.4.5,90,,Hindu
+32.73.20.1001,4,Antapani Kulon,religion,islam,,10732,jiwa,2025,registration,total_population,4.4.5,90,,Islam
+32.73.20.1001,4,Antapani Kulon,religion,kristen,,440,jiwa,2025,registration,total_population,4.4.5,90,,Protestan
+32.73.20.1001,4,Antapani Kulon,religion,katolik,,173,jiwa,2025,registration,total_population,4.4.5,90,,Catholic
+32.73.20.1001,4,Antapani Kulon,religion,hindu,,7,jiwa,2025,registration,total_population,4.4.5,90,,Hindu
+32.73.20.1005,4,Antapani Kidul,religion,buddha,,57,jiwa,2025,registration,total_population,4.4.5,91,,Budha
+32.73.20.1004,4,Antapani Tengah,religion,buddha,,23,jiwa,2025,registration,total_population,4.4.5,91,,Budha
+32.73.20.1006,4,Antapani Wetan,religion,buddha,,24,jiwa,2025,registration,total_population,4.4.5,91,,Budha
+32.73.20.1001,4,Antapani Kulon,religion,buddha,,18,jiwa,2025,registration,total_population,4.4.5,91,,Budha

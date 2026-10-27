@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.71.08.1003,4,Galur,sex,laki_laki,,10880,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+31.71.08.1003,4,Galur,sex,perempuan,,10271,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+31.71.08.1003,4,Galur,total,total,,21151,jiwa,2025,registration,total_population,3.1,27,,
+31.71.08.1001,4,Johar Baru,sex,laki_laki,,20962,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+31.71.08.1001,4,Johar Baru,sex,perempuan,,21178,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+31.71.08.1001,4,Johar Baru,total,total,,42140,jiwa,2025,registration,total_population,3.1,27,,
+31.71.08.1002,4,Kampung Rawa,sex,laki_laki,,12814,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+31.71.08.1002,4,Kampung Rawa,sex,perempuan,,12391,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+31.71.08.1002,4,Kampung Rawa,total,total,,25205,jiwa,2025,registration,total_population,3.1,27,,
+31.71.08.1004,4,Tanah Tinggi,sex,laki_laki,,22770,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+31.71.08.1004,4,Tanah Tinggi,sex,perempuan,,22051,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+31.71.08.1004,4,Tanah Tinggi,total,total,,44821,jiwa,2025,registration,total_population,3.1,27,,
+31.71.08,3,Johar Baru,sex,laki_laki,,67426,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+31.71.08,3,Johar Baru,sex,perempuan,,65891,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+31.71.08,3,Johar Baru,total,total,,133317,jiwa,2025,registration,total_population,3.1,27,,

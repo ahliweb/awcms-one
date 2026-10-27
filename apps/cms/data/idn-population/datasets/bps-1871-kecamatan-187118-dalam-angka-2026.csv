@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.71.18.1007,4,Tanjung Gading,sex,laki_laki,,2504,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.18.1007,4,Tanjung Gading,sex,perempuan,,2520,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.18.1007,4,Tanjung Gading,total,total,,5024,jiwa,2025,registration,total_population,3.1,26,,
+18.71.18.1006,4,Tanjung Raya,sex,laki_laki,,4355,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.18.1006,4,Tanjung Raya,sex,perempuan,,4173,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.18.1006,4,Tanjung Raya,total,total,,8528,jiwa,2025,registration,total_population,3.1,26,,
+18.71.18.1001,4,Kedamaian,sex,laki_laki,,4913,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.18.1001,4,Kedamaian,sex,perempuan,,4940,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.18.1001,4,Kedamaian,total,total,,9853,jiwa,2025,registration,total_population,3.1,26,,
+18.71.18.1005,4,Kalibalau Kencana,sex,laki_laki,,4734,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.18.1005,4,Kalibalau Kencana,sex,perempuan,,4649,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.18.1005,4,Kalibalau Kencana,total,total,,9383,jiwa,2025,registration,total_population,3.1,26,,
+18.71.18.1004,4,Tanjung Baru,sex,laki_laki,,4514,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.18.1004,4,Tanjung Baru,sex,perempuan,,4489,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.18.1004,4,Tanjung Baru,total,total,,9003,jiwa,2025,registration,total_population,3.1,26,,
+18.71.18.1002,4,Bumi Kedamaian,sex,laki_laki,,4411,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.18.1002,4,Bumi Kedamaian,sex,perempuan,,4373,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.18.1002,4,Bumi Kedamaian,total,total,,8784,jiwa,2025,registration,total_population,3.1,26,,
+18.71.18.1003,4,Tanjung Agung Raya,sex,laki_laki,,1081,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.18.1003,4,Tanjung Agung Raya,sex,perempuan,,1055,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.18.1003,4,Tanjung Agung Raya,total,total,,2136,jiwa,2025,registration,total_population,3.1,26,,
+18.71.18,3,Kedamaian,sex,laki_laki,,26512,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.18,3,Kedamaian,sex,perempuan,,26199,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.18,3,Kedamaian,total,total,,52711,jiwa,2025,registration,total_population,3.1,26,,

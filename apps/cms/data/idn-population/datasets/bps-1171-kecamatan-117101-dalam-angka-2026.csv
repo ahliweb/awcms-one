@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.71.01.2008,4,Ateuk Jawo,sex,laki_laki,,1737,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.01.2008,4,Ateuk Jawo,sex,perempuan,,1653,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.01.2008,4,Ateuk Jawo,total,total,,3390,jiwa,2025,registration,total_population,3.1,25,,
+11.71.01.2009,4,Ateuk Deah Tanoh,sex,laki_laki,,553,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.01.2009,4,Ateuk Deah Tanoh,sex,perempuan,,572,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.01.2009,4,Ateuk Deah Tanoh,total,total,,1125,jiwa,2025,registration,total_population,3.1,25,,
+11.71.01.2007,4,Ateuk Pahlawan,sex,laki_laki,,2067,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.01.2007,4,Ateuk Pahlawan,sex,perempuan,,2049,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.01.2007,4,Ateuk Pahlawan,total,total,,4116,jiwa,2025,registration,total_population,3.1,25,,
+11.71.01.2010,4,Ateuk Munjeng,sex,laki_laki,,1131,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.01.2010,4,Ateuk Munjeng,sex,perempuan,,1106,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.01.2010,4,Ateuk Munjeng,total,total,,2237,jiwa,2025,registration,total_population,3.1,25,,
+11.71.01.2006,4,Neusu Aceh,sex,laki_laki,,2022,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.01.2006,4,Neusu Aceh,sex,perempuan,,1992,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.01.2006,4,Neusu Aceh,total,total,,4014,jiwa,2025,registration,total_population,3.1,25,,
+11.71.01.2004,4,Seutui,sex,laki_laki,,1582,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.01.2004,4,Seutui,sex,perempuan,,1613,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.01.2004,4,Seutui,total,total,,3195,jiwa,2025,registration,total_population,3.1,25,,
+11.71.01.2003,4,Sukaramai,sex,laki_laki,,2003,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.01.2003,4,Sukaramai,sex,perempuan,,2084,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.01.2003,4,Sukaramai,total,total,,4087,jiwa,2025,registration,total_population,3.1,25,,
+11.71.01.2002,4,Neusu Jaya,sex,laki_laki,,1163,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.01.2002,4,Neusu Jaya,sex,perempuan,,1150,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.01.2002,4,Neusu Jaya,total,total,,2313,jiwa,2025,registration,total_population,3.1,25,,
+11.71.01.2005,4,Peuniti,sex,laki_laki,,3000,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.01.2005,4,Peuniti,sex,perempuan,,2940,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.01.2005,4,Peuniti,total,total,,5940,jiwa,2025,registration,total_population,3.1,25,,
+11.71.01.2001,4,Kampung Baru,sex,laki_laki,,1396,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.01.2001,4,Kampung Baru,sex,perempuan,,1242,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.01.2001,4,Kampung Baru,total,total,,2638,jiwa,2025,registration,total_population,3.1,25,,
+11.71.01,3,Kecamatan Baiturrahman,sex,laki_laki,,16654,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.01,3,Kecamatan Baiturrahman,sex,perempuan,,16401,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.01,3,Kecamatan Baiturrahman,total,total,,33055,jiwa,2025,registration,total_population,3.1,25,,

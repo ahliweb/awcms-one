@@ -1,0 +1,98 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.71.05.1001,4,Petuk Bukit,sex,perempuan,,540,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan
+62.71.05.1001,4,Petuk Bukit,total,total,,1136,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.05.1005,4,Pager,sex,perempuan,,250,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan
+62.71.05.1005,4,Pager,total,total,,543,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.05.1002,4,Panjehang,sex,perempuan,,115,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan
+62.71.05.1002,4,Panjehang,total,total,,255,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.05.1006,4,Gaung Baru,sex,perempuan,,134,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan
+62.71.05.1006,4,Gaung Baru,total,total,,279,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.05.1004,4,Mungku Baru,sex,perempuan,,360,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan
+62.71.05.1004,4,Mungku Baru,total,total,,779,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.05.1007,4,Bukit Sua,sex,perempuan,,119,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan
+62.71.05.1007,4,Bukit Sua,total,total,,287,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.05,3,Rakumpit,sex,perempuan,,1987,jiwa,2025,registration,total_population,3.1.1,36,,Perempuan
+62.71.05,3,Rakumpit,total,total,,4266,jiwa,2025,registration,total_population,3.1.1,36,,
+62.71.05,3,Rakumpit,age_group,0-4,perempuan,110,jiwa,2025,registration,total_population,3.1.2,38,,0–4
+62.71.05,3,Rakumpit,age_group,0-4,,227,jiwa,2025,registration,total_population,3.1.2,38,,0–4
+62.71.05,3,Rakumpit,age_group,5-9,perempuan,208,jiwa,2025,registration,total_population,3.1.2,38,,5–9
+62.71.05,3,Rakumpit,age_group,5-9,,441,jiwa,2025,registration,total_population,3.1.2,38,,5–9
+62.71.05,3,Rakumpit,age_group,10-14,perempuan,217,jiwa,2025,registration,total_population,3.1.2,38,,10–14
+62.71.05,3,Rakumpit,age_group,10-14,,453,jiwa,2025,registration,total_population,3.1.2,38,,10–14
+62.71.05,3,Rakumpit,age_group,15-19,perempuan,171,jiwa,2025,registration,total_population,3.1.2,38,,15–19
+62.71.05,3,Rakumpit,age_group,15-19,,357,jiwa,2025,registration,total_population,3.1.2,38,,15–19
+62.71.05,3,Rakumpit,age_group,20-24,perempuan,188,jiwa,2025,registration,total_population,3.1.2,38,,20–24
+62.71.05,3,Rakumpit,age_group,20-24,,415,jiwa,2025,registration,total_population,3.1.2,38,,20–24
+62.71.05,3,Rakumpit,age_group,25-29,perempuan,165,jiwa,2025,registration,total_population,3.1.2,38,,25–29
+62.71.05,3,Rakumpit,age_group,25-29,,362,jiwa,2025,registration,total_population,3.1.2,38,,25–29
+62.71.05,3,Rakumpit,age_group,30-34,perempuan,166,jiwa,2025,registration,total_population,3.1.2,38,,30–34
+62.71.05,3,Rakumpit,age_group,30-34,,346,jiwa,2025,registration,total_population,3.1.2,38,,30–34
+62.71.05,3,Rakumpit,age_group,35-39,perempuan,151,jiwa,2025,registration,total_population,3.1.2,38,,35–39
+62.71.05,3,Rakumpit,age_group,35-39,,323,jiwa,2025,registration,total_population,3.1.2,38,,35–39
+62.71.05,3,Rakumpit,age_group,40-44,perempuan,160,jiwa,2025,registration,total_population,3.1.2,38,,40–44
+62.71.05,3,Rakumpit,age_group,40-44,,317,jiwa,2025,registration,total_population,3.1.2,38,,40–44
+62.71.05,3,Rakumpit,age_group,45-49,perempuan,119,jiwa,2025,registration,total_population,3.1.2,38,,45–49
+62.71.05,3,Rakumpit,age_group,45-49,,275,jiwa,2025,registration,total_population,3.1.2,38,,45–49
+62.71.05,3,Rakumpit,age_group,50-54,perempuan,107,jiwa,2025,registration,total_population,3.1.2,38,,50–54
+62.71.05,3,Rakumpit,age_group,50-54,,247,jiwa,2025,registration,total_population,3.1.2,38,,50–54
+62.71.05,3,Rakumpit,age_group,55-59,perempuan,85,jiwa,2025,registration,total_population,3.1.2,38,,55–59
+62.71.05,3,Rakumpit,age_group,55-59,,205,jiwa,2025,registration,total_population,3.1.2,38,,55–59
+62.71.05,3,Rakumpit,age_group,60-64,perempuan,60,jiwa,2025,registration,total_population,3.1.2,38,,60–64
+62.71.05,3,Rakumpit,age_group,60-64,,126,jiwa,2025,registration,total_population,3.1.2,38,,60–64
+62.71.05,3,Rakumpit,age_group,65-69,perempuan,42,jiwa,2025,registration,total_population,3.1.2,38,,65–69
+62.71.05,3,Rakumpit,age_group,65-69,,87,jiwa,2025,registration,total_population,3.1.2,38,,65–69
+62.71.05,3,Rakumpit,age_group,70-74,perempuan,16,jiwa,2025,registration,total_population,3.1.2,38,,70–74
+62.71.05,3,Rakumpit,age_group,70-74,,44,jiwa,2025,registration,total_population,3.1.2,38,,70–74
+62.71.05,3,Rakumpit,age_group,75+,perempuan,22,jiwa,2025,registration,total_population,3.1.2,38,,75+
+62.71.05,3,Rakumpit,age_group,75+,,41,jiwa,2025,registration,total_population,3.1.2,38,,75+
+62.71.05,3,Rakumpit,sex,perempuan,,1987,jiwa,2025,registration,total_population,3.1.2,38,,Perempuan
+62.71.05,3,Rakumpit,total,total,,4266,jiwa,2025,registration,total_population,3.1.2,38,,
+62.71.05.1001,4,Petuk Bukit,religion,islam,,824,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.05.1001,4,Petuk Bukit,religion,kristen,,214,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.05.1001,4,Petuk Bukit,religion,katolik,,1,jiwa,2025,registration,total_population,4.5.1,95,,Katolik
+62.71.05.1001,4,Petuk Bukit,religion,hindu,,98,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.05.1005,4,Pager,religion,islam,,360,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.05.1005,4,Pager,religion,kristen,,155,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.05.1005,4,Pager,religion,katolik,,0,jiwa,2025,registration,total_population,4.5.1,95,nil,Katolik
+62.71.05.1005,4,Pager,religion,hindu,,8,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.05.1002,4,Panjehang,religion,islam,,110,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.05.1002,4,Panjehang,religion,kristen,,120,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.05.1002,4,Panjehang,religion,katolik,,0,jiwa,2025,registration,total_population,4.5.1,95,nil,Katolik
+62.71.05.1002,4,Panjehang,religion,hindu,,11,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.05.1006,4,Gaung Baru,religion,islam,,22,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.05.1006,4,Gaung Baru,religion,kristen,,235,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.05.1006,4,Gaung Baru,religion,katolik,,0,jiwa,2025,registration,total_population,4.5.1,95,nil,Katolik
+62.71.05.1006,4,Gaung Baru,religion,hindu,,30,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.05.1004,4,Mungku Baru,religion,islam,,89,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.05.1004,4,Mungku Baru,religion,kristen,,665,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.05.1004,4,Mungku Baru,religion,katolik,,8,jiwa,2025,registration,total_population,4.5.1,95,,Katolik
+62.71.05.1004,4,Mungku Baru,religion,hindu,,12,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.05.1007,4,Bukit Sua,religion,islam,,19,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.05.1007,4,Bukit Sua,religion,kristen,,253,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.05.1007,4,Bukit Sua,religion,katolik,,0,jiwa,2025,registration,total_population,4.5.1,95,nil,Katolik
+62.71.05.1007,4,Bukit Sua,religion,hindu,,5,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.05,3,Rakumpit,religion,islam,,2018,jiwa,2025,registration,total_population,4.5.1,95,,Islam
+62.71.05,3,Rakumpit,religion,kristen,,920,jiwa,2025,registration,total_population,4.5.1,95,,Kristen
+62.71.05,3,Rakumpit,religion,katolik,,16,jiwa,2025,registration,total_population,4.5.1,95,,Katolik
+62.71.05,3,Rakumpit,religion,hindu,,194,jiwa,2025,registration,total_population,4.5.1,95,,Hindu
+62.71.05.1001,4,Petuk Bukit,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Budha
+62.71.05.1001,4,Petuk Bukit,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.05.1001,4,Petuk Bukit,religion,kepercayaan,,1,jiwa,2025,registration,total_population,4.5.1,96,,Aliran
+62.71.05.1005,4,Pager,religion,buddha,,3,jiwa,2025,registration,total_population,4.5.1,96,,Budha
+62.71.05.1005,4,Pager,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.05.1005,4,Pager,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Aliran
+62.71.05.1002,4,Panjehang,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Budha
+62.71.05.1002,4,Panjehang,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.05.1002,4,Panjehang,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Aliran
+62.71.05.1006,4,Gaung Baru,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Budha
+62.71.05.1006,4,Gaung Baru,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.05.1006,4,Gaung Baru,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Aliran
+62.71.05.1004,4,Mungku Baru,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Budha
+62.71.05.1004,4,Mungku Baru,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.05.1004,4,Mungku Baru,religion,kepercayaan,,2,jiwa,2025,registration,total_population,4.5.1,96,,Aliran
+62.71.05.1007,4,Bukit Sua,religion,buddha,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Budha
+62.71.05.1007,4,Bukit Sua,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.05.1007,4,Bukit Sua,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Aliran
+62.71.05,3,Rakumpit,religion,buddha,,3,jiwa,2025,registration,total_population,4.5.1,96,,Budha
+62.71.05,3,Rakumpit,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Konghucu
+62.71.05,3,Rakumpit,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.5.1,96,nil,Aliran

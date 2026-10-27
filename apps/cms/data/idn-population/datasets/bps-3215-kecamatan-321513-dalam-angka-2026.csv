@@ -1,0 +1,23 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.15.13.2002,4,Kalihurip,sex,perempuan,,2754,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+32.15.13.2002,4,Kalihurip,total,total,,5622,jiwa,2025,registration,total_population,3.1,,,
+32.15.13.2010,4,Kamojing,sex,perempuan,,2624,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+32.15.13.2010,4,Kamojing,total,total,,5342,jiwa,2025,registration,total_population,3.1,,,
+32.15.13.2009,4,CIkampek Timur,sex,perempuan,,5270,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+32.15.13.2009,4,CIkampek Timur,total,total,,10766,jiwa,2025,registration,total_population,3.1,,,
+32.15.13.2007,4,Cikampek Pusaka,sex,perempuan,,2827,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+32.15.13.2007,4,Cikampek Pusaka,total,total,,5798,jiwa,2025,registration,total_population,3.1,,,
+32.15.13.2006,4,Cikampek Selatan,sex,perempuan,,5412,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+32.15.13.2006,4,Cikampek Selatan,total,total,,10968,jiwa,2025,registration,total_population,3.1,,,
+32.15.13.2003,4,Cikampek Kota,sex,perempuan,,3248,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+32.15.13.2003,4,Cikampek Kota,total,total,,6646,jiwa,2025,registration,total_population,3.1,,,
+32.15.13.2008,4,Cikampek Barat,sex,perempuan,,13328,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+32.15.13.2008,4,Cikampek Barat,total,total,,26887,jiwa,2025,registration,total_population,3.1,,,
+32.15.13.2001,4,Dawuan Timur,sex,perempuan,,8951,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+32.15.13.2001,4,Dawuan Timur,total,total,,18201,jiwa,2025,registration,total_population,3.1,,,
+32.15.13.2004,4,Dawuan Tengah,sex,perempuan,,10215,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+32.15.13.2004,4,Dawuan Tengah,total,total,,20645,jiwa,2025,registration,total_population,3.1,,,
+32.15.13.2011,4,Dawuan Barat,sex,perempuan,,8761,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+32.15.13.2011,4,Dawuan Barat,total,total,,17709,jiwa,2025,registration,total_population,3.1,,,
+32.15.13,3,Kecamatan Cikampek,sex,perempuan,,63390,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+32.15.13,3,Kecamatan Cikampek,total,total,,128584,jiwa,2025,registration,total_population,3.1,,,

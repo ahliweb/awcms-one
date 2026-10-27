@@ -1,0 +1,66 @@
+{
+  "datasetCode": "bps-3301-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "33.01",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Cilacap Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Cilacap",
+  "publisherDomain": "3301",
+  "publisherWebsite": "https://cilacapkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Cilacap (https://cilacapkab.bps.go.id), publikasi \"Kabupaten Cilacap Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": null,
+  "publicationNumber": "33010.26003",
+  "issn": "0215-5214",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://cilacapkab.bps.go.id/id/publication/2026/02/27/7e270b8000229c170e79bb12/kabupaten-cilacap-dalam-angka-2026.html",
+  "sourceFileSha256": "20f444431e3d12a7d335226e7a8bd2586d293ae6bd955e095682c76191378dc6",
+  "sourceFileBytes": 13663014,
+  "sourcePages": [91, 94, 97, 174],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Cilacap.",
+  "csvPath": "datasets/bps-3301-dalam-angka-2026.csv",
+  "csvSha256": "94f131321d88e5033a52a1dc419bafd03e549bcfe9326035db69ff901931b7d7",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Cilacap, 2025",
+      "printedPages": [91],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Cilacap, 2025",
+      "printedPages": [94],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.5",
+      "title": "Jumlah Penduduk dan Rasio Jenis Kelamin Penduduk Menurut Kecamatan dan Jenis Kelamin Berdasarkan Catatan Registrasi Kependudukan di Kabupaten Cilacap, 2025",
+      "printedPages": [97],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Cilacap, 2025",
+      "printedPages": [174],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication",
+    "table 3.1.1 is not included: its published figures do not add up (total/total/- 2025: parts sum 24.0600 != 1.0100 (diff 23.0500)); the source itself is inconsistent"
+  ]
+}

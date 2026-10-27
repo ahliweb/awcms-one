@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.71,2,Kota Medan,age_group,0-4,laki_laki,91464,jiwa,2025,projection,total_population,3.1.2,65,,0 - 4
+12.71,2,Kota Medan,age_group,0-4,perempuan,87743,jiwa,2025,projection,total_population,3.1.2,65,,0 - 4
+12.71,2,Kota Medan,age_group,0-4,,179207,jiwa,2025,projection,total_population,3.1.2,65,,0 - 4
+12.71,2,Kota Medan,age_group,5-9,laki_laki,102111,jiwa,2025,projection,total_population,3.1.2,65,,5 - 9
+12.71,2,Kota Medan,age_group,5-9,perempuan,97555,jiwa,2025,projection,total_population,3.1.2,65,,5 - 9
+12.71,2,Kota Medan,age_group,5-9,,199666,jiwa,2025,projection,total_population,3.1.2,65,,5 - 9
+12.71,2,Kota Medan,age_group,10-14,laki_laki,97217,jiwa,2025,projection,total_population,3.1.2,65,,10 - 14
+12.71,2,Kota Medan,age_group,10-14,perempuan,92665,jiwa,2025,projection,total_population,3.1.2,65,,10 - 14
+12.71,2,Kota Medan,age_group,10-14,,189882,jiwa,2025,projection,total_population,3.1.2,65,,10 - 14
+12.71,2,Kota Medan,age_group,15-19,laki_laki,95348,jiwa,2025,projection,total_population,3.1.2,65,,15 - 19
+12.71,2,Kota Medan,age_group,15-19,perempuan,89719,jiwa,2025,projection,total_population,3.1.2,65,,15 - 19
+12.71,2,Kota Medan,age_group,15-19,,185067,jiwa,2025,projection,total_population,3.1.2,65,,15 - 19
+12.71,2,Kota Medan,age_group,20-24,laki_laki,96764,jiwa,2025,projection,total_population,3.1.2,65,,20 - 24
+12.71,2,Kota Medan,age_group,20-24,perempuan,91191,jiwa,2025,projection,total_population,3.1.2,65,,20 - 24
+12.71,2,Kota Medan,age_group,20-24,,187955,jiwa,2025,projection,total_population,3.1.2,65,,20 - 24
+12.71,2,Kota Medan,age_group,25-29,laki_laki,99763,jiwa,2025,projection,total_population,3.1.2,65,,25 - 29
+12.71,2,Kota Medan,age_group,25-29,perempuan,94857,jiwa,2025,projection,total_population,3.1.2,65,,25 - 29
+12.71,2,Kota Medan,age_group,25-29,,194620,jiwa,2025,projection,total_population,3.1.2,65,,25 - 29
+12.71,2,Kota Medan,age_group,30-34,laki_laki,99526,jiwa,2025,projection,total_population,3.1.2,65,,30 - 34
+12.71,2,Kota Medan,age_group,30-34,perempuan,98297,jiwa,2025,projection,total_population,3.1.2,65,,30 - 34
+12.71,2,Kota Medan,age_group,30-34,,197823,jiwa,2025,projection,total_population,3.1.2,65,,30 - 34
+12.71,2,Kota Medan,age_group,35-39,laki_laki,98825,jiwa,2025,projection,total_population,3.1.2,65,,35 - 39
+12.71,2,Kota Medan,age_group,35-39,perempuan,97905,jiwa,2025,projection,total_population,3.1.2,65,,35 - 39
+12.71,2,Kota Medan,age_group,35-39,,196730,jiwa,2025,projection,total_population,3.1.2,65,,35 - 39
+12.71,2,Kota Medan,age_group,40-44,laki_laki,95156,jiwa,2025,projection,total_population,3.1.2,65,,40 - 44
+12.71,2,Kota Medan,age_group,40-44,perempuan,96323,jiwa,2025,projection,total_population,3.1.2,65,,40 - 44
+12.71,2,Kota Medan,age_group,40-44,,191479,jiwa,2025,projection,total_population,3.1.2,65,,40 - 44
+12.71,2,Kota Medan,age_group,45-49,laki_laki,87157,jiwa,2025,projection,total_population,3.1.2,65,,45 - 49
+12.71,2,Kota Medan,age_group,45-49,perempuan,91393,jiwa,2025,projection,total_population,3.1.2,65,,45 - 49
+12.71,2,Kota Medan,age_group,45-49,,178550,jiwa,2025,projection,total_population,3.1.2,65,,45 - 49
+12.71,2,Kota Medan,age_group,50-54,laki_laki,78590,jiwa,2025,projection,total_population,3.1.2,65,,50 - 54
+12.71,2,Kota Medan,age_group,50-54,perempuan,83389,jiwa,2025,projection,total_population,3.1.2,65,,50 - 54
+12.71,2,Kota Medan,age_group,50-54,,161979,jiwa,2025,projection,total_population,3.1.2,65,,50 - 54
+12.71,2,Kota Medan,age_group,55-59,laki_laki,66192,jiwa,2025,projection,total_population,3.1.2,65,,55 - 59
+12.71,2,Kota Medan,age_group,55-59,perempuan,71278,jiwa,2025,projection,total_population,3.1.2,65,,55 - 59
+12.71,2,Kota Medan,age_group,55-59,,137470,jiwa,2025,projection,total_population,3.1.2,65,,55 - 59
+12.71,2,Kota Medan,age_group,60-64,laki_laki,51495,jiwa,2025,projection,total_population,3.1.2,65,,60 - 64
+12.71,2,Kota Medan,age_group,60-64,perempuan,57264,jiwa,2025,projection,total_population,3.1.2,65,,60 - 64
+12.71,2,Kota Medan,age_group,60-64,,108759,jiwa,2025,projection,total_population,3.1.2,65,,60 - 64
+12.71,2,Kota Medan,age_group,65-69,laki_laki,37705,jiwa,2025,projection,total_population,3.1.2,65,,65 - 69
+12.71,2,Kota Medan,age_group,65-69,perempuan,43794,jiwa,2025,projection,total_population,3.1.2,65,,65 - 69
+12.71,2,Kota Medan,age_group,65-69,,81499,jiwa,2025,projection,total_population,3.1.2,65,,65 - 69
+12.71,2,Kota Medan,age_group,70-74,laki_laki,25504,jiwa,2025,projection,total_population,3.1.2,65,,70 - 74
+12.71,2,Kota Medan,age_group,70-74,perempuan,30509,jiwa,2025,projection,total_population,3.1.2,65,,70 - 74
+12.71,2,Kota Medan,age_group,70-74,,56013,jiwa,2025,projection,total_population,3.1.2,65,,70 - 74
+12.71,2,Kota Medan,age_group,75+,laki_laki,20605,jiwa,2025,projection,total_population,3.1.2,65,,75+
+12.71,2,Kota Medan,age_group,75+,perempuan,30989,jiwa,2025,projection,total_population,3.1.2,65,,75+
+12.71,2,Kota Medan,age_group,75+,,51594,jiwa,2025,projection,total_population,3.1.2,65,,75+
+12.71,2,MEDAN,sex,laki_laki,,1243422,jiwa,2025,projection,total_population,3.1.2,65,,Laki-laki
+12.71,2,MEDAN,sex,perempuan,,1254871,jiwa,2025,projection,total_population,3.1.2,65,,Perempuan
+12.71,2,MEDAN,total,total,,2498293,jiwa,2025,projection,total_population,3.1.2,65,,

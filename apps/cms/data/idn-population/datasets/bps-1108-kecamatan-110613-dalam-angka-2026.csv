@@ -1,0 +1,100 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.06.13.2001,4,RINON,sex,laki_laki,,101,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.06.13.2001,4,RINON,sex,perempuan,,99,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.06.13.2001,4,RINON,total,total,,200,jiwa,2025,registration,total_population,3.1,28,,
+11.06.13.2002,4,ALUE RAYA,sex,laki_laki,,83,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.06.13.2002,4,ALUE RAYA,sex,perempuan,,89,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.06.13.2002,4,ALUE RAYA,total,total,,172,jiwa,2025,registration,total_population,3.1,28,,
+11.06.13.2003,4,MELINGGE,sex,laki_laki,,199,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.06.13.2003,4,MELINGGE,sex,perempuan,,172,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.06.13.2003,4,MELINGGE,total,total,,371,jiwa,2025,registration,total_population,3.1,28,,
+11.06.13.2004,4,LAPENG,sex,laki_laki,,127,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.06.13.2004,4,LAPENG,sex,perempuan,,97,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.06.13.2004,4,LAPENG,total,total,,224,jiwa,2025,registration,total_population,3.1,28,,
+11.06.13.2005,4,ULEE PAYA,sex,laki_laki,,110,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.06.13.2005,4,ULEE PAYA,sex,perempuan,,107,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.06.13.2005,4,ULEE PAYA,total,total,,217,jiwa,2025,registration,total_population,3.1,28,,
+11.06.13.2006,4,GUGOP,sex,laki_laki,,232,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.06.13.2006,4,GUGOP,sex,perempuan,,220,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.06.13.2006,4,GUGOP,total,total,,452,jiwa,2025,registration,total_population,3.1,28,,
+11.06.13.2007,4,SEURAPONG,sex,laki_laki,,173,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.06.13.2007,4,SEURAPONG,sex,perempuan,,160,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.06.13.2007,4,SEURAPONG,total,total,,333,jiwa,2025,registration,total_population,3.1,28,,
+11.06.13.2008,4,BLANG SITUNGKOH,sex,laki_laki,,114,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.06.13.2008,4,BLANG SITUNGKOH,sex,perempuan,,137,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.06.13.2008,4,BLANG SITUNGKOH,total,total,,251,jiwa,2025,registration,total_population,3.1,28,,
+11.06.13.2009,4,PALOH,sex,laki_laki,,121,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.06.13.2009,4,PALOH,sex,perempuan,,100,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.06.13.2009,4,PALOH,total,total,,221,jiwa,2025,registration,total_population,3.1,28,,
+11.06.13.2010,4,LAMPUYANG,sex,laki_laki,,309,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.06.13.2010,4,LAMPUYANG,sex,perempuan,,254,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.06.13.2010,4,LAMPUYANG,total,total,,563,jiwa,2025,registration,total_population,3.1,28,,
+11.06.13.2011,4,LHOK,sex,laki_laki,,91,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.06.13.2011,4,LHOK,sex,perempuan,,85,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.06.13.2011,4,LHOK,total,total,,176,jiwa,2025,registration,total_population,3.1,28,,
+11.06.13.2012,4,TEUNOM,sex,laki_laki,,98,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.06.13.2012,4,TEUNOM,sex,perempuan,,100,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.06.13.2012,4,TEUNOM,total,total,,198,jiwa,2025,registration,total_population,3.1,28,,
+11.06.13.2013,4,LAMTENG,sex,laki_laki,,118,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.06.13.2013,4,LAMTENG,sex,perempuan,,101,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.06.13.2013,4,LAMTENG,total,total,,219,jiwa,2025,registration,total_population,3.1,28,,
+11.06.13.2014,4,PASI JANENG,sex,laki_laki,,159,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.06.13.2014,4,PASI JANENG,sex,perempuan,,125,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.06.13.2014,4,PASI JANENG,total,total,,284,jiwa,2025,registration,total_population,3.1,28,,
+11.06.13.2015,4,RABO,sex,laki_laki,,209,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.06.13.2015,4,RABO,sex,perempuan,,203,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.06.13.2015,4,RABO,total,total,,412,jiwa,2025,registration,total_population,3.1,28,,
+11.06.13.2016,4,ALUE REUYEUENG,sex,laki_laki,,218,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.06.13.2016,4,ALUE REUYEUENG,sex,perempuan,,190,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.06.13.2016,4,ALUE REUYEUENG,total,total,,408,jiwa,2025,registration,total_population,3.1,28,,
+11.06.13.2017,4,DEUDAP,sex,laki_laki,,115,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+11.06.13.2017,4,DEUDAP,sex,perempuan,,133,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+11.06.13.2017,4,DEUDAP,total,total,,248,jiwa,2025,registration,total_population,3.1,28,,
+11.06.13,3,Pulo Aceh,age_group,0-4,laki_laki,175,jiwa,2025,registration,total_population,3.2,30,,0–4
+11.06.13,3,Pulo Aceh,age_group,0-4,perempuan,175,jiwa,2025,registration,total_population,3.2,30,,0–4
+11.06.13,3,Pulo Aceh,age_group,0-4,,350,jiwa,2025,registration,total_population,3.2,30,,0–4
+11.06.13,3,Pulo Aceh,age_group,5-9,laki_laki,229,jiwa,2025,registration,total_population,3.2,30,,5–9
+11.06.13,3,Pulo Aceh,age_group,5-9,perempuan,202,jiwa,2025,registration,total_population,3.2,30,,5–9
+11.06.13,3,Pulo Aceh,age_group,5-9,,431,jiwa,2025,registration,total_population,3.2,30,,5–9
+11.06.13,3,Pulo Aceh,age_group,10-14,laki_laki,243,jiwa,2025,registration,total_population,3.2,30,,10–14
+11.06.13,3,Pulo Aceh,age_group,10-14,perempuan,222,jiwa,2025,registration,total_population,3.2,30,,10–14
+11.06.13,3,Pulo Aceh,age_group,10-14,,465,jiwa,2025,registration,total_population,3.2,30,,10–14
+11.06.13,3,Pulo Aceh,age_group,15-19,laki_laki,263,jiwa,2025,registration,total_population,3.2,30,,15–19
+11.06.13,3,Pulo Aceh,age_group,15-19,perempuan,232,jiwa,2025,registration,total_population,3.2,30,,15–19
+11.06.13,3,Pulo Aceh,age_group,15-19,,495,jiwa,2025,registration,total_population,3.2,30,,15–19
+11.06.13,3,Pulo Aceh,age_group,20-24,laki_laki,175,jiwa,2025,registration,total_population,3.2,30,,20–24
+11.06.13,3,Pulo Aceh,age_group,20-24,perempuan,129,jiwa,2025,registration,total_population,3.2,30,,20–24
+11.06.13,3,Pulo Aceh,age_group,20-24,,304,jiwa,2025,registration,total_population,3.2,30,,20–24
+11.06.13,3,Pulo Aceh,age_group,25-29,laki_laki,138,jiwa,2025,registration,total_population,3.2,30,,25–29
+11.06.13,3,Pulo Aceh,age_group,25-29,perempuan,121,jiwa,2025,registration,total_population,3.2,30,,25–29
+11.06.13,3,Pulo Aceh,age_group,25-29,,259,jiwa,2025,registration,total_population,3.2,30,,25–29
+11.06.13,3,Pulo Aceh,age_group,30-34,laki_laki,163,jiwa,2025,registration,total_population,3.2,30,,30–34
+11.06.13,3,Pulo Aceh,age_group,30-34,perempuan,194,jiwa,2025,registration,total_population,3.2,30,,30–34
+11.06.13,3,Pulo Aceh,age_group,30-34,,357,jiwa,2025,registration,total_population,3.2,30,,30–34
+11.06.13,3,Pulo Aceh,age_group,35-39,laki_laki,178,jiwa,2025,registration,total_population,3.2,30,,35–39
+11.06.13,3,Pulo Aceh,age_group,35-39,perempuan,209,jiwa,2025,registration,total_population,3.2,30,,35–39
+11.06.13,3,Pulo Aceh,age_group,35-39,,387,jiwa,2025,registration,total_population,3.2,30,,35–39
+11.06.13,3,Pulo Aceh,age_group,40-44,laki_laki,193,jiwa,2025,registration,total_population,3.2,30,,40–44
+11.06.13,3,Pulo Aceh,age_group,40-44,perempuan,183,jiwa,2025,registration,total_population,3.2,30,,40–44
+11.06.13,3,Pulo Aceh,age_group,40-44,,376,jiwa,2025,registration,total_population,3.2,30,,40–44
+11.06.13,3,Pulo Aceh,age_group,45-49,laki_laki,180,jiwa,2025,registration,total_population,3.2,30,,45–49
+11.06.13,3,Pulo Aceh,age_group,45-49,perempuan,147,jiwa,2025,registration,total_population,3.2,30,,45–49
+11.06.13,3,Pulo Aceh,age_group,45-49,,327,jiwa,2025,registration,total_population,3.2,30,,45–49
+11.06.13,3,Pulo Aceh,age_group,50-54,laki_laki,145,jiwa,2025,registration,total_population,3.2,30,,50–54
+11.06.13,3,Pulo Aceh,age_group,50-54,perempuan,103,jiwa,2025,registration,total_population,3.2,30,,50–54
+11.06.13,3,Pulo Aceh,age_group,50-54,,248,jiwa,2025,registration,total_population,3.2,30,,50–54
+11.06.13,3,Pulo Aceh,age_group,55-59,laki_laki,101,jiwa,2025,registration,total_population,3.2,30,,55–59
+11.06.13,3,Pulo Aceh,age_group,55-59,perempuan,88,jiwa,2025,registration,total_population,3.2,30,,55–59
+11.06.13,3,Pulo Aceh,age_group,55-59,,189,jiwa,2025,registration,total_population,3.2,30,,55–59
+11.06.13,3,Pulo Aceh,age_group,60-64,laki_laki,63,jiwa,2025,registration,total_population,3.2,30,,60–64
+11.06.13,3,Pulo Aceh,age_group,60-64,perempuan,63,jiwa,2025,registration,total_population,3.2,30,,60–64
+11.06.13,3,Pulo Aceh,age_group,60-64,,126,jiwa,2025,registration,total_population,3.2,30,,60–64
+11.06.13,3,Pulo Aceh,age_group,65-69,laki_laki,60,jiwa,2025,registration,total_population,3.2,30,,65–69
+11.06.13,3,Pulo Aceh,age_group,65-69,perempuan,53,jiwa,2025,registration,total_population,3.2,30,,65–69
+11.06.13,3,Pulo Aceh,age_group,65-69,,113,jiwa,2025,registration,total_population,3.2,30,,65–69
+11.06.13,3,Pulo Aceh,age_group,70-74,laki_laki,29,jiwa,2025,registration,total_population,3.2,30,,70–74
+11.06.13,3,Pulo Aceh,age_group,70-74,perempuan,25,jiwa,2025,registration,total_population,3.2,30,,70–74
+11.06.13,3,Pulo Aceh,age_group,70-74,,54,jiwa,2025,registration,total_population,3.2,30,,70–74
+11.06.13,3,Pulo Aceh,age_group,75+,laki_laki,43,jiwa,2025,registration,total_population,3.2,30,,75+
+11.06.13,3,Pulo Aceh,age_group,75+,perempuan,54,jiwa,2025,registration,total_population,3.2,30,,75+
+11.06.13,3,Pulo Aceh,age_group,75+,,97,jiwa,2025,registration,total_population,3.2,30,,75+

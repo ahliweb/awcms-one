@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3517-kecamatan-351704-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.17.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bareng Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Jombang",
+  "publisherDomain": "3517",
+  "publisherWebsite": "https://jombangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Jombang (https://jombangkab.bps.go.id), publikasi \"Kecamatan Bareng Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3517070",
+  "publicationNumber": "35170.26017",
+  "issn": "2615-0530",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jombangkab.bps.go.id/id/publication/2026/09/28/f4a4cb1d017ac38e9d7f9932/kecamatan-bareng-dalam-angka-2026.html",
+  "sourceFileSha256": "06ee7f4998d543c05fccda8fe340e62cfb7bb6c0e5902b4cf723f807c0b6b1f7",
+  "sourceFileBytes": 9963400,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jombang.",
+  "csvPath": "datasets/bps-3517-kecamatan-351704-dalam-angka-2026.csv",
+  "csvSha256": "a1c04a94bde1fcfa9771847e666b9bc0837ebd8a524952a239a8c7b74d61db1d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bareng, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bareng, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1 is not included: its published figures do not add up (sex/perempuan/- 2025: parts sum 29515.0000 != 30287.0000 (diff 772.0000)); the source itself is inconsistent"
+  ]
+}

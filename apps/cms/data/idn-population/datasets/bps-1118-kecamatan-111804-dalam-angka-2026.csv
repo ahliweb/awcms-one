@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.18.04.2018,4,Gahru,sex,laki_laki,,349,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.18.04.2018,4,Gahru,sex,perempuan,,335,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.18.04.2018,4,Gahru,total,total,,684,jiwa,2025,registration,total_population,3.1,33,,
+11.18.04.2010,4,Kumba,sex,laki_laki,,515,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.18.04.2010,4,Kumba,sex,perempuan,,532,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.18.04.2010,4,Kumba,total,total,,1047,jiwa,2025,registration,total_population,3.1,33,,
+11.18.04.2034,4,Blang Miroe,sex,laki_laki,,299,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.18.04.2034,4,Blang Miroe,sex,perempuan,,309,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.18.04.2034,4,Blang Miroe,total,total,,608,jiwa,2025,registration,total_population,3.1,33,,
+11.18.04.2035,4,Beurasan,sex,laki_laki,,181,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.18.04.2035,4,Beurasan,sex,perempuan,,187,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.18.04.2035,4,Beurasan,total,total,,368,jiwa,2025,registration,total_population,3.1,33,,
+11.18.04.2036,4,Cot Keng,sex,laki_laki,,177,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.18.04.2036,4,Cot Keng,sex,perempuan,,170,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.18.04.2036,4,Cot Keng,total,total,,347,jiwa,2025,registration,total_population,3.1,33,,
+11.18.04.2037,4,Krueng Kiran,sex,laki_laki,,261,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.18.04.2037,4,Krueng Kiran,sex,perempuan,,314,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.18.04.2037,4,Krueng Kiran,total,total,,575,jiwa,2025,registration,total_population,3.1,33,,
+11.18.04.2038,4,Asan Kumbang,sex,laki_laki,,262,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.18.04.2038,4,Asan Kumbang,sex,perempuan,,235,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.18.04.2038,4,Asan Kumbang,total,total,,497,jiwa,2025,registration,total_population,3.1,33,,
+11.18.04.2033,4,Pulo Gapu,sex,laki_laki,,118,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.18.04.2033,4,Pulo Gapu,sex,perempuan,,116,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.18.04.2033,4,Pulo Gapu,total,total,,234,jiwa,2025,registration,total_population,3.1,33,,
+11.18.04.2017,4,Alue Sane,sex,laki_laki,,372,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.18.04.2017,4,Alue Sane,sex,perempuan,,423,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.18.04.2017,4,Alue Sane,total,total,,795,jiwa,2025,registration,total_population,3.1,33,,
+11.18.04.2019,4,Lhok Pusong,sex,laki_laki,,249,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.18.04.2019,4,Lhok Pusong,sex,perempuan,,290,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.18.04.2019,4,Lhok Pusong,total,total,,539,jiwa,2025,registration,total_population,3.1,33,,
+11.18.04.2031,4,Jeulanga Mata Ie,sex,laki_laki,,142,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.18.04.2031,4,Jeulanga Mata Ie,sex,perempuan,,127,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.18.04.2031,4,Jeulanga Mata Ie,total,total,,269,jiwa,2025,registration,total_population,3.1,33,,
+11.18.04.2030,4,Meunasah Paku,sex,laki_laki,,209,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.18.04.2030,4,Meunasah Paku,sex,perempuan,,207,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.18.04.2030,4,Meunasah Paku,total,total,,416,jiwa,2025,registration,total_population,3.1,33,,
+11.18.04.2028,4,Meurandeh Alue,sex,laki_laki,,729,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.18.04.2028,4,Meurandeh Alue,sex,perempuan,,793,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.18.04.2028,4,Meurandeh Alue,total,total,,1522,jiwa,2025,registration,total_population,3.1,33,,

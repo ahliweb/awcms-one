@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1108-kecamatan-110614-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.06.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lembah Seulawah Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Besar",
+  "publisherDomain": "1108",
+  "publisherWebsite": "https://acehbesarkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Besar (https://acehbesarkab.bps.go.id), publikasi \"Kecamatan Lembah Seulawah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1108042",
+  "publicationNumber": "11080.26012",
+  "issn": "2407-5132",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehbesarkab.bps.go.id/id/publication/2026/09/28/be37d66c4140b4a4c9939694/kecamatan-lembah-seulawah-dalam-angka-2026.html",
+  "sourceFileSha256": "a0b72476543d8f838febfa223403052c0c6c088539d67699f1b65d9fdfb875ca",
+  "sourceFileBytes": 8394047,
+  "sourcePages": [23, 24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Besar.",
+  "csvPath": "datasets/bps-1108-kecamatan-110614-dalam-angka-2026.csv",
+  "csvSha256": "4d29cfd1adea6d9946952af8e39b7f4ddc4ba9a890c7be494500e97b197d5109",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Lembah Seulawah, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lembah Seulawah, 2025",
+      "printedPages": [25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

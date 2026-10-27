@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1273-kecamatan-127208-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.72.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Siantar Marimbun Dalam Angka 2026",
+  "publisherName": "BPS Kota Pematangsiantar",
+  "publisherDomain": "1273",
+  "publisherWebsite": "https://siantarkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Pematangsiantar (https://siantarkota.bps.go.id), publikasi \"Kecamatan Siantar Marimbun Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1273011",
+  "publicationNumber": "12730.26007",
+  "issn": "3109-8355",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://siantarkota.bps.go.id/id/publication/2026/09/28/104bb7abb3748d1410a5d3d7/kecamatan-siantar-marimbun-dalam-angka-2026.html",
+  "sourceFileSha256": "3218b783aadb3d132abcc05e78406dc0a9b693686cc276a7dc902da3de3a2e22",
+  "sourceFileBytes": 13222732,
+  "sourcePages": [41, 42, 43],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Pematangsiantar.",
+  "csvPath": "datasets/bps-1273-kecamatan-127208-dalam-angka-2026.csv",
+  "csvSha256": "46d8ef05ffa91fbe8a6d22263e17a817dd3af790c57e8766acb6c5451fd3ac87",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Siantar Marimbun, 2026",
+      "printedPages": [41, 42],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Siantar Marimbun, 2025",
+      "printedPages": [43],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

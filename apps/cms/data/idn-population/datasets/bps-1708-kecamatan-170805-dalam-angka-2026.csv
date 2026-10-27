@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.08.05.2004,4,Desa Lubuk Penyamun,sex,laki_laki,,567,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.08.05.2004,4,Desa Lubuk Penyamun,sex,perempuan,,523,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.08.05.2004,4,Desa Lubuk Penyamun,total,total,,1090,jiwa,2025,registration,total_population,3.1,28,,
+17.08.05.2006,4,Desa Bukit Barisan,sex,laki_laki,,471,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.08.05.2006,4,Desa Bukit Barisan,sex,perempuan,,456,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.08.05.2006,4,Desa Bukit Barisan,total,total,,927,jiwa,2025,registration,total_population,3.1,28,,
+17.08.05.1002,4,Kelurahan Durian Depun,sex,laki_laki,,1890,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.08.05.1002,4,Kelurahan Durian Depun,sex,perempuan,,1825,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.08.05.1002,4,Kelurahan Durian Depun,total,total,,3715,jiwa,2025,registration,total_population,3.1,28,,
+17.08.05.2001,4,Desa Pulo Geto,sex,laki_laki,,674,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.08.05.2001,4,Desa Pulo Geto,sex,perempuan,,654,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.08.05.2001,4,Desa Pulo Geto,total,total,,1328,jiwa,2025,registration,total_population,3.1,28,,
+17.08.05.2003,4,Desa Taba Mulan,sex,laki_laki,,699,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.08.05.2003,4,Desa Taba Mulan,sex,perempuan,,706,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.08.05.2003,4,Desa Taba Mulan,total,total,,1405,jiwa,2025,registration,total_population,3.1,28,,
+17.08.05.2007,4,Desa Batu Ampar,sex,laki_laki,,441,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.08.05.2007,4,Desa Batu Ampar,sex,perempuan,,429,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.08.05.2007,4,Desa Batu Ampar,total,total,,870,jiwa,2025,registration,total_population,3.1,28,,
+17.08.05.2008,4,Desa Pulo Geto Baru,sex,laki_laki,,536,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.08.05.2008,4,Desa Pulo Geto Baru,sex,perempuan,,480,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.08.05.2008,4,Desa Pulo Geto Baru,total,total,,1016,jiwa,2025,registration,total_population,3.1,28,,
+17.08.05,3,Merigi,sex,laki_laki,,5998,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.08.05,3,Merigi,sex,perempuan,,5739,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.08.05,3,Merigi,total,total,,11737,jiwa,2025,registration,total_population,3.1,28,,
+17.08.05,3,Merigi,age_group,0-4,laki_laki,322,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+17.08.05,3,Merigi,age_group,0-4,perempuan,300,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+17.08.05,3,Merigi,age_group,0-4,,622,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+17.08.05,3,Merigi,age_group,5-9,laki_laki,451,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+17.08.05,3,Merigi,age_group,5-9,perempuan,416,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+17.08.05,3,Merigi,age_group,5-9,,867,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+17.08.05,3,Merigi,age_group,10-14,laki_laki,509,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+17.08.05,3,Merigi,age_group,10-14,perempuan,511,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+17.08.05,3,Merigi,age_group,10-14,,1020,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+17.08.05,3,Merigi,age_group,15-19,laki_laki,508,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+17.08.05,3,Merigi,age_group,15-19,perempuan,464,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+17.08.05,3,Merigi,age_group,15-19,,972,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+17.08.05,3,Merigi,age_group,20-24,laki_laki,548,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+17.08.05,3,Merigi,age_group,20-24,perempuan,495,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+17.08.05,3,Merigi,age_group,20-24,,1043,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+17.08.05,3,Merigi,age_group,25-29,laki_laki,496,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+17.08.05,3,Merigi,age_group,25-29,perempuan,443,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+17.08.05,3,Merigi,age_group,25-29,,939,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+17.08.05,3,Merigi,age_group,30-34,laki_laki,405,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+17.08.05,3,Merigi,age_group,30-34,perempuan,380,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+17.08.05,3,Merigi,age_group,30-34,,785,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+17.08.05,3,Merigi,age_group,35-39,laki_laki,423,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+17.08.05,3,Merigi,age_group,35-39,perempuan,419,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+17.08.05,3,Merigi,age_group,35-39,,842,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+17.08.05,3,Merigi,age_group,40-44,laki_laki,451,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+17.08.05,3,Merigi,age_group,40-44,perempuan,456,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+17.08.05,3,Merigi,age_group,40-44,,907,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+17.08.05,3,Merigi,age_group,45-49,laki_laki,471,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+17.08.05,3,Merigi,age_group,45-49,perempuan,472,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+17.08.05,3,Merigi,age_group,45-49,,943,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+17.08.05,3,Merigi,age_group,50-54,laki_laki,382,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+17.08.05,3,Merigi,age_group,50-54,perempuan,393,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+17.08.05,3,Merigi,age_group,50-54,,775,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+17.08.05,3,Merigi,age_group,55-59,laki_laki,346,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+17.08.05,3,Merigi,age_group,55-59,perempuan,334,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+17.08.05,3,Merigi,age_group,55-59,,680,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+17.08.05,3,Merigi,age_group,60-64,laki_laki,270,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+17.08.05,3,Merigi,age_group,60-64,perempuan,264,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+17.08.05,3,Merigi,age_group,60-64,,534,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+17.08.05,3,Merigi,age_group,65-69,laki_laki,203,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+17.08.05,3,Merigi,age_group,65-69,perempuan,160,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+17.08.05,3,Merigi,age_group,65-69,,363,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+17.08.05,3,Merigi,age_group,70-74,laki_laki,102,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+17.08.05,3,Merigi,age_group,70-74,perempuan,109,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+17.08.05,3,Merigi,age_group,70-74,,211,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+17.08.05,3,Merigi,age_group,75+,laki_laki,111,jiwa,2025,registration,total_population,3.2,30,,> 75
+17.08.05,3,Merigi,age_group,75+,perempuan,123,jiwa,2025,registration,total_population,3.2,30,,> 75
+17.08.05,3,Merigi,age_group,75+,,234,jiwa,2025,registration,total_population,3.2,30,,> 75
+17.08.05,3,Merigi,sex,laki_laki,,5998,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+17.08.05,3,Merigi,sex,perempuan,,5739,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+17.08.05,3,Merigi,total,total,,11737,jiwa,2025,registration,total_population,3.2,30,,

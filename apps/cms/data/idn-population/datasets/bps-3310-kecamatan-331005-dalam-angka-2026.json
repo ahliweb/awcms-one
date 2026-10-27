@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3310-kecamatan-331005-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.10.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cawas Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Klaten",
+  "publisherDomain": "3310",
+  "publisherWebsite": "https://klatenkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Klaten (https://klatenkab.bps.go.id), publikasi \"Kecamatan Cawas Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "33100.26012",
+  "issn": "0853-649X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://klatenkab.bps.go.id/id/publication/2026/09/28/bbe2cd3fd49f7391f8011a20/kecamatan-cawas-dalam-angka-2026.html",
+  "sourceFileSha256": "af0ebf8191dcd870f41b178b94d6a2f500b6c60239e3195560eb647866153784",
+  "sourceFileBytes": 9973726,
+  "sourcePages": [28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Klaten.",
+  "csvPath": "datasets/bps-3310-kecamatan-331005-dalam-angka-2026.csv",
+  "csvSha256": "5700f276d04a43d1493899cea82d46960de8f822f0cadc7bde98211945cd0c3d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Cawas, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2 (age-by-sex) could not be read reliably and is not included (figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?))"
+  ]
+}

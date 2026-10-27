@@ -1,0 +1,103 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.26.16.2001,4,Kadipaten,sex,laki_laki,,1997,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.16.2001,4,Kadipaten,sex,perempuan,,1865,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.16.2001,4,Kadipaten,total,total,,3862,jiwa,2025,registration,total_population,3.1,34,,
+33.26.16.2002,4,Delegtukang,sex,laki_laki,,1100,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.16.2002,4,Delegtukang,sex,perempuan,,1094,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.16.2002,4,Delegtukang,total,total,,2194,jiwa,2025,registration,total_population,3.1,34,,
+33.26.16.2003,4,Karangjati,sex,laki_laki,,1457,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.16.2003,4,Karangjati,sex,perempuan,,1390,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.16.2003,4,Karangjati,total,total,,2847,jiwa,2025,registration,total_population,3.1,34,,
+33.26.16.2004,4,Petukangan,sex,laki_laki,,1424,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.16.2004,4,Petukangan,sex,perempuan,,1339,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.16.2004,4,Petukangan,total,total,,2763,jiwa,2025,registration,total_population,3.1,34,,
+33.26.16.2005,4,Wiradesa,sex,laki_laki,,3337,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.16.2005,4,Wiradesa,sex,perempuan,,3148,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.16.2005,4,Wiradesa,total,total,,6485,jiwa,2025,registration,total_population,3.1,34,,
+33.26.16.2006,4,Warukidul,sex,laki_laki,,1328,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.16.2006,4,Warukidul,sex,perempuan,,1320,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.16.2006,4,Warukidul,total,total,,2648,jiwa,2025,registration,total_population,3.1,34,,
+33.26.16.2007,4,Bondansari,sex,laki_laki,,2184,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.16.2007,4,Bondansari,sex,perempuan,,2099,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.16.2007,4,Bondansari,total,total,,4283,jiwa,2025,registration,total_population,3.1,34,,
+33.26.16.2008,4,Warulor,sex,laki_laki,,1932,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.16.2008,4,Warulor,sex,perempuan,,1875,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.16.2008,4,Warulor,total,total,,3807,jiwa,2025,registration,total_population,3.1,34,,
+33.26.16.2009,4,Kampil,sex,laki_laki,,2178,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.16.2009,4,Kampil,sex,perempuan,,2042,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.16.2009,4,Kampil,total,total,,4220,jiwa,2025,registration,total_population,3.1,34,,
+33.26.16.1010,4,Gumawang,sex,laki_laki,,1855,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.16.1010,4,Gumawang,sex,perempuan,,1859,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.16.1010,4,Gumawang,total,total,,3714,jiwa,2025,registration,total_population,3.1,34,,
+33.26.16.1011,4,Kepatihan,sex,laki_laki,,1788,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.16.1011,4,Kepatihan,sex,perempuan,,1800,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.16.1011,4,Kepatihan,total,total,,3588,jiwa,2025,registration,total_population,3.1,34,,
+33.26.16.1012,4,Mayangan,sex,laki_laki,,1934,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.16.1012,4,Mayangan,sex,perempuan,,1897,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.16.1012,4,Mayangan,total,total,,3831,jiwa,2025,registration,total_population,3.1,34,,
+33.26.16.1013,4,Pekuncen,sex,laki_laki,,3886,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.16.1013,4,Pekuncen,sex,perempuan,,3857,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.16.1013,4,Pekuncen,total,total,,7743,jiwa,2025,registration,total_population,3.1,34,,
+33.26.16.1014,4,Bener,sex,laki_laki,,2627,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.16.1014,4,Bener,sex,perempuan,,2609,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.16.1014,4,Bener,total,total,,5236,jiwa,2025,registration,total_population,3.1,34,,
+33.26.16.2015,4,Kemplong,sex,laki_laki,,2025,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.16.2015,4,Kemplong,sex,perempuan,,1991,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.16.2015,4,Kemplong,total,total,,4016,jiwa,2025,registration,total_population,3.1,34,,
+33.26.16.2016,4,Kauman,sex,laki_laki,,2038,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.16.2016,4,Kauman,sex,perempuan,,2003,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.16.2016,4,Kauman,total,total,,4041,jiwa,2025,registration,total_population,3.1,34,,
+33.26.16,3,Kecamatan Wiradesa,sex,laki_laki,,33090,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.16,3,Kecamatan Wiradesa,sex,perempuan,,32188,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.16,3,Kecamatan Wiradesa,total,total,,65278,jiwa,2025,registration,total_population,3.1,34,,
+33.26.16,3,Wiradesa,age_group,0-4,laki_laki,2163,jiwa,2025,registration,total_population,3.2,36,,0 - 4
+33.26.16,3,Wiradesa,age_group,0-4,perempuan,2007,jiwa,2025,registration,total_population,3.2,36,,0 - 4
+33.26.16,3,Wiradesa,age_group,0-4,,4170,jiwa,2025,registration,total_population,3.2,36,,0 - 4
+33.26.16,3,Wiradesa,age_group,5-9,laki_laki,2787,jiwa,2025,registration,total_population,3.2,36,,5 - 9
+33.26.16,3,Wiradesa,age_group,5-9,perempuan,2584,jiwa,2025,registration,total_population,3.2,36,,5 - 9
+33.26.16,3,Wiradesa,age_group,5-9,,5371,jiwa,2025,registration,total_population,3.2,36,,5 - 9
+33.26.16,3,Wiradesa,age_group,10-14,laki_laki,2815,jiwa,2025,registration,total_population,3.2,36,,10 - 14
+33.26.16,3,Wiradesa,age_group,10-14,perempuan,2635,jiwa,2025,registration,total_population,3.2,36,,10 - 14
+33.26.16,3,Wiradesa,age_group,10-14,,5450,jiwa,2025,registration,total_population,3.2,36,,10 - 14
+33.26.16,3,Wiradesa,age_group,15-19,laki_laki,2657,jiwa,2025,registration,total_population,3.2,36,,15 - 19
+33.26.16,3,Wiradesa,age_group,15-19,perempuan,2410,jiwa,2025,registration,total_population,3.2,36,,15 - 19
+33.26.16,3,Wiradesa,age_group,15-19,,5067,jiwa,2025,registration,total_population,3.2,36,,15 - 19
+33.26.16,3,Wiradesa,age_group,20-24,laki_laki,2522,jiwa,2025,registration,total_population,3.2,36,,20 - 24
+33.26.16,3,Wiradesa,age_group,20-24,perempuan,2442,jiwa,2025,registration,total_population,3.2,36,,20 - 24
+33.26.16,3,Wiradesa,age_group,20-24,,4964,jiwa,2025,registration,total_population,3.2,36,,20 - 24
+33.26.16,3,Wiradesa,age_group,25-29,laki_laki,2594,jiwa,2025,registration,total_population,3.2,36,,25 - 29
+33.26.16,3,Wiradesa,age_group,25-29,perempuan,2399,jiwa,2025,registration,total_population,3.2,36,,25 - 29
+33.26.16,3,Wiradesa,age_group,25-29,,4993,jiwa,2025,registration,total_population,3.2,36,,25 - 29
+33.26.16,3,Wiradesa,age_group,30-34,laki_laki,2657,jiwa,2025,registration,total_population,3.2,36,,30 - 34
+33.26.16,3,Wiradesa,age_group,30-34,perempuan,2422,jiwa,2025,registration,total_population,3.2,36,,30 - 34
+33.26.16,3,Wiradesa,age_group,30-34,,5079,jiwa,2025,registration,total_population,3.2,36,,30 - 34
+33.26.16,3,Wiradesa,age_group,35-39,laki_laki,2362,jiwa,2025,registration,total_population,3.2,36,,35 - 39
+33.26.16,3,Wiradesa,age_group,35-39,perempuan,2314,jiwa,2025,registration,total_population,3.2,36,,35 - 39
+33.26.16,3,Wiradesa,age_group,35-39,,4676,jiwa,2025,registration,total_population,3.2,36,,35 - 39
+33.26.16,3,Wiradesa,age_group,40-44,laki_laki,2714,jiwa,2025,registration,total_population,3.2,36,,40 - 44
+33.26.16,3,Wiradesa,age_group,40-44,perempuan,2410,jiwa,2025,registration,total_population,3.2,36,,40 - 44
+33.26.16,3,Wiradesa,age_group,40-44,,5124,jiwa,2025,registration,total_population,3.2,36,,40 - 44
+33.26.16,3,Wiradesa,age_group,45-49,laki_laki,2419,jiwa,2025,registration,total_population,3.2,36,,45 - 49
+33.26.16,3,Wiradesa,age_group,45-49,perempuan,2358,jiwa,2025,registration,total_population,3.2,36,,45 - 49
+33.26.16,3,Wiradesa,age_group,45-49,,4777,jiwa,2025,registration,total_population,3.2,36,,45 - 49
+33.26.16,3,Wiradesa,age_group,50-54,laki_laki,2067,jiwa,2025,registration,total_population,3.2,36,,50 - 54
+33.26.16,3,Wiradesa,age_group,50-54,perempuan,2027,jiwa,2025,registration,total_population,3.2,36,,50 - 54
+33.26.16,3,Wiradesa,age_group,50-54,,4094,jiwa,2025,registration,total_population,3.2,36,,50 - 54
+33.26.16,3,Wiradesa,age_group,55-59,laki_laki,1753,jiwa,2025,registration,total_population,3.2,36,,55 - 59
+33.26.16,3,Wiradesa,age_group,55-59,perempuan,1813,jiwa,2025,registration,total_population,3.2,36,,55 - 59
+33.26.16,3,Wiradesa,age_group,55-59,,3566,jiwa,2025,registration,total_population,3.2,36,,55 - 59
+33.26.16,3,Wiradesa,age_group,60-64,laki_laki,1377,jiwa,2025,registration,total_population,3.2,36,,60 - 64
+33.26.16,3,Wiradesa,age_group,60-64,perempuan,1594,jiwa,2025,registration,total_population,3.2,36,,60 - 64
+33.26.16,3,Wiradesa,age_group,60-64,,2971,jiwa,2025,registration,total_population,3.2,36,,60 - 64
+33.26.16,3,Wiradesa,age_group,65-69,laki_laki,1018,jiwa,2025,registration,total_population,3.2,36,,65 - 69
+33.26.16,3,Wiradesa,age_group,65-69,perempuan,1236,jiwa,2025,registration,total_population,3.2,36,,65 - 69
+33.26.16,3,Wiradesa,age_group,65-69,,2254,jiwa,2025,registration,total_population,3.2,36,,65 - 69
+33.26.16,3,Wiradesa,age_group,70-74,laki_laki,649,jiwa,2025,registration,total_population,3.2,36,,70 - 74
+33.26.16,3,Wiradesa,age_group,70-74,perempuan,720,jiwa,2025,registration,total_population,3.2,36,,70 - 74
+33.26.16,3,Wiradesa,age_group,70-74,,1369,jiwa,2025,registration,total_population,3.2,36,,70 - 74
+33.26.16,3,Wiradesa,age_group,75+,laki_laki,536,jiwa,2025,registration,total_population,3.2,36,,>75
+33.26.16,3,Wiradesa,age_group,75+,perempuan,817,jiwa,2025,registration,total_population,3.2,36,,>75
+33.26.16,3,Wiradesa,age_group,75+,,1353,jiwa,2025,registration,total_population,3.2,36,,>75
+33.26.16,3,Kecamatan Wiradesa,sex,laki_laki,,33090,jiwa,2025,registration,total_population,3.2,36,,Laki-Laki
+33.26.16,3,Kecamatan Wiradesa,sex,perempuan,,32188,jiwa,2025,registration,total_population,3.2,36,,Perempuan
+33.26.16,3,Kecamatan Wiradesa,total,total,,65278,jiwa,2025,registration,total_population,3.2,36,,

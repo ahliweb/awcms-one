@@ -1,0 +1,50 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.02.07,3,Mentaya Hilir Utara,age_group,0-4,laki_laki,740,jiwa,2025,registration,total_population,3.2,37,,0 – 4
+62.02.07,3,Mentaya Hilir Utara,age_group,0-4,perempuan,623,jiwa,2025,registration,total_population,3.2,37,,0 – 4
+62.02.07,3,Mentaya Hilir Utara,age_group,0-4,,1363,jiwa,2025,registration,total_population,3.2,37,,0 – 4
+62.02.07,3,Mentaya Hilir Utara,age_group,5-9,laki_laki,897,jiwa,2025,registration,total_population,3.2,37,,5 – 9
+62.02.07,3,Mentaya Hilir Utara,age_group,5-9,perempuan,903,jiwa,2025,registration,total_population,3.2,37,,5 – 9
+62.02.07,3,Mentaya Hilir Utara,age_group,5-9,,1800,jiwa,2025,registration,total_population,3.2,37,,5 – 9
+62.02.07,3,Mentaya Hilir Utara,age_group,10-14,laki_laki,908,jiwa,2025,registration,total_population,3.2,37,,10 – 14
+62.02.07,3,Mentaya Hilir Utara,age_group,10-14,perempuan,847,jiwa,2025,registration,total_population,3.2,37,,10 – 14
+62.02.07,3,Mentaya Hilir Utara,age_group,10-14,,1755,jiwa,2025,registration,total_population,3.2,37,,10 – 14
+62.02.07,3,Mentaya Hilir Utara,age_group,15-19,laki_laki,752,jiwa,2025,registration,total_population,3.2,37,,15 – 19
+62.02.07,3,Mentaya Hilir Utara,age_group,15-19,perempuan,752,jiwa,2025,registration,total_population,3.2,37,,15 – 19
+62.02.07,3,Mentaya Hilir Utara,age_group,15-19,,1504,jiwa,2025,registration,total_population,3.2,37,,15 – 19
+62.02.07,3,Mentaya Hilir Utara,age_group,20-24,laki_laki,847,jiwa,2025,registration,total_population,3.2,37,,20 – 24
+62.02.07,3,Mentaya Hilir Utara,age_group,20-24,perempuan,878,jiwa,2025,registration,total_population,3.2,37,,20 – 24
+62.02.07,3,Mentaya Hilir Utara,age_group,20-24,,1725,jiwa,2025,registration,total_population,3.2,37,,20 – 24
+62.02.07,3,Mentaya Hilir Utara,age_group,25-29,laki_laki,773,jiwa,2025,registration,total_population,3.2,37,,25 – 29
+62.02.07,3,Mentaya Hilir Utara,age_group,25-29,perempuan,690,jiwa,2025,registration,total_population,3.2,37,,25 – 29
+62.02.07,3,Mentaya Hilir Utara,age_group,25-29,,1463,jiwa,2025,registration,total_population,3.2,37,,25 – 29
+62.02.07,3,Mentaya Hilir Utara,age_group,30-34,laki_laki,790,jiwa,2025,registration,total_population,3.2,37,,30 – 34
+62.02.07,3,Mentaya Hilir Utara,age_group,30-34,perempuan,754,jiwa,2025,registration,total_population,3.2,37,,30 – 34
+62.02.07,3,Mentaya Hilir Utara,age_group,30-34,,1544,jiwa,2025,registration,total_population,3.2,37,,30 – 34
+62.02.07,3,Mentaya Hilir Utara,age_group,35-39,laki_laki,778,jiwa,2025,registration,total_population,3.2,37,,35 – 39
+62.02.07,3,Mentaya Hilir Utara,age_group,35-39,perempuan,784,jiwa,2025,registration,total_population,3.2,37,,35 – 39
+62.02.07,3,Mentaya Hilir Utara,age_group,35-39,,1562,jiwa,2025,registration,total_population,3.2,37,,35 – 39
+62.02.07,3,Mentaya Hilir Utara,age_group,40-44,laki_laki,787,jiwa,2025,registration,total_population,3.2,37,,40 – 44
+62.02.07,3,Mentaya Hilir Utara,age_group,40-44,perempuan,719,jiwa,2025,registration,total_population,3.2,37,,40 – 44
+62.02.07,3,Mentaya Hilir Utara,age_group,40-44,,1506,jiwa,2025,registration,total_population,3.2,37,,40 – 44
+62.02.07,3,Mentaya Hilir Utara,age_group,45-49,laki_laki,662,jiwa,2025,registration,total_population,3.2,37,,45 – 49
+62.02.07,3,Mentaya Hilir Utara,age_group,45-49,perempuan,631,jiwa,2025,registration,total_population,3.2,37,,45 – 49
+62.02.07,3,Mentaya Hilir Utara,age_group,45-49,,1293,jiwa,2025,registration,total_population,3.2,37,,45 – 49
+62.02.07,3,Mentaya Hilir Utara,age_group,50-54,laki_laki,594,jiwa,2025,registration,total_population,3.2,37,,50 – 54
+62.02.07,3,Mentaya Hilir Utara,age_group,50-54,perempuan,493,jiwa,2025,registration,total_population,3.2,37,,50 – 54
+62.02.07,3,Mentaya Hilir Utara,age_group,50-54,,1087,jiwa,2025,registration,total_population,3.2,37,,50 – 54
+62.02.07,3,Mentaya Hilir Utara,age_group,55-59,laki_laki,403,jiwa,2025,registration,total_population,3.2,37,,55 – 59
+62.02.07,3,Mentaya Hilir Utara,age_group,55-59,perempuan,342,jiwa,2025,registration,total_population,3.2,37,,55 – 59
+62.02.07,3,Mentaya Hilir Utara,age_group,55-59,,745,jiwa,2025,registration,total_population,3.2,37,,55 – 59
+62.02.07,3,Mentaya Hilir Utara,age_group,60-64,laki_laki,300,jiwa,2025,registration,total_population,3.2,37,,60 – 64
+62.02.07,3,Mentaya Hilir Utara,age_group,60-64,perempuan,267,jiwa,2025,registration,total_population,3.2,37,,60 – 64
+62.02.07,3,Mentaya Hilir Utara,age_group,60-64,,567,jiwa,2025,registration,total_population,3.2,37,,60 – 64
+62.02.07,3,Mentaya Hilir Utara,age_group,65-69,laki_laki,206,jiwa,2025,registration,total_population,3.2,37,,65 – 69
+62.02.07,3,Mentaya Hilir Utara,age_group,65-69,perempuan,152,jiwa,2025,registration,total_population,3.2,37,,65 – 69
+62.02.07,3,Mentaya Hilir Utara,age_group,65-69,,358,jiwa,2025,registration,total_population,3.2,37,,65 – 69
+62.02.07,3,Mentaya Hilir Utara,age_group,70-74,laki_laki,104,jiwa,2025,registration,total_population,3.2,37,,70 – 74
+62.02.07,3,Mentaya Hilir Utara,age_group,70-74,perempuan,100,jiwa,2025,registration,total_population,3.2,37,,70 – 74
+62.02.07,3,Mentaya Hilir Utara,age_group,70-74,,204,jiwa,2025,registration,total_population,3.2,37,,70 – 74
+62.02.07,3,Mentaya Hilir Utara,age_group,75+,laki_laki,138,jiwa,2025,registration,total_population,3.2,37,,75+
+62.02.07,3,Mentaya Hilir Utara,age_group,75+,perempuan,141,jiwa,2025,registration,total_population,3.2,37,,75+
+62.02.07,3,Mentaya Hilir Utara,age_group,75+,,279,jiwa,2025,registration,total_population,3.2,37,,75+
+62.02.07,3,Mentaya Hilir Utara,total,total,,18755,jiwa,2025,registration,total_population,3.2,37,,

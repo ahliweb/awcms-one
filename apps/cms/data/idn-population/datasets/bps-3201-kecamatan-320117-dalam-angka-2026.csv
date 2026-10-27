@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.01.17.2001,4,Purwabakti,sex,laki_laki,,4455,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.17.2001,4,Purwabakti,sex,perempuan,,4095,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.17.2001,4,Purwabakti,total,total,,8550,jiwa,2025,registration,total_population,3.1,36,,
+32.01.17.2002,4,Cibunian,sex,laki_laki,,7070,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.17.2002,4,Cibunian,sex,perempuan,,6731,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.17.2002,4,Cibunian,total,total,,13801,jiwa,2025,registration,total_population,3.1,36,,
+32.01.17.2003,4,Cibitung Wetan,sex,laki_laki,,3960,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.17.2003,4,Cibitung Wetan,sex,perempuan,,3692,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.17.2003,4,Cibitung Wetan,total,total,,7652,jiwa,2025,registration,total_population,3.1,36,,
+32.01.17.2004,4,Gunung Menyan,sex,laki_laki,,3923,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.17.2004,4,Gunung Menyan,sex,perempuan,,3772,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.17.2004,4,Gunung Menyan,total,total,,7695,jiwa,2025,registration,total_population,3.1,36,,
+32.01.17.2005,4,Gunung Bunder II,sex,laki_laki,,5719,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.17.2005,4,Gunung Bunder II,sex,perempuan,,5468,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.17.2005,4,Gunung Bunder II,total,total,,11187,jiwa,2025,registration,total_population,3.1,36,,
+32.01.17.2006,4,Pasarean,sex,laki_laki,,7441,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.17.2006,4,Pasarean,sex,perempuan,,6869,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.17.2006,4,Pasarean,total,total,,14310,jiwa,2025,registration,total_population,3.1,36,,
+32.01.17.2007,4,Cimayang,sex,laki_laki,,4259,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.17.2007,4,Cimayang,sex,perempuan,,4099,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.17.2007,4,Cimayang,total,total,,8358,jiwa,2025,registration,total_population,3.1,36,,
+32.01.17.2008,4,Pamijahan,sex,laki_laki,,7746,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.17.2008,4,Pamijahan,sex,perempuan,,7012,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.17.2008,4,Pamijahan,total,total,,14758,jiwa,2025,registration,total_population,3.1,36,,
+32.01.17.2009,4,Cibening,sex,laki_laki,,8046,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.17.2009,4,Cibening,sex,perempuan,,7688,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.17.2009,4,Cibening,total,total,,15734,jiwa,2025,registration,total_population,3.1,36,,
+32.01.17.2011,4,Cibitung Kulon,sex,laki_laki,,4196,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.17.2011,4,Cibitung Kulon,sex,perempuan,,3886,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.17.2011,4,Cibitung Kulon,total,total,,8082,jiwa,2025,registration,total_population,3.1,36,,
+32.01.17.2012,4,Gunung Picung,sex,laki_laki,,8345,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.17.2012,4,Gunung Picung,sex,perempuan,,7953,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.17.2012,4,Gunung Picung,total,total,,16298,jiwa,2025,registration,total_population,3.1,36,,
+32.01.17.2013,4,Ciasihan,sex,laki_laki,,7018,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.17.2013,4,Ciasihan,sex,perempuan,,6387,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.17.2013,4,Ciasihan,total,total,,13405,jiwa,2025,registration,total_population,3.1,36,,
+32.01.17.2014,4,Gunung Sari,sex,laki_laki,,8725,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.17.2014,4,Gunung Sari,sex,perempuan,,8027,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.17.2014,4,Gunung Sari,total,total,,16752,jiwa,2025,registration,total_population,3.1,36,,
+32.01.17.2015,4,Ciasmara,sex,laki_laki,,5189,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.17.2015,4,Ciasmara,sex,perempuan,,4844,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.17.2015,4,Ciasmara,total,total,,10033,jiwa,2025,registration,total_population,3.1,36,,
+32.01.17,3,Kecamatan Pamijahan,sex,laki_laki,,91689,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.17,3,Kecamatan Pamijahan,sex,perempuan,,85681,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.17,3,Kecamatan Pamijahan,total,total,,177370,jiwa,2025,registration,total_population,3.1,36,,

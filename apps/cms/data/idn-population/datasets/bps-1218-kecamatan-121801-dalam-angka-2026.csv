@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.18.01.2005,4,Ujung Rambung,sex,laki_laki,,1556,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.01.2005,4,Ujung Rambung,sex,perempuan,,1522,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+12.18.01.2005,4,Ujung Rambung,total,total,,3078,jiwa,2025,registration,total_population,3.1,28,,
+12.18.01.2004,4,Celawan,sex,laki_laki,,4068,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.01.2004,4,Celawan,sex,perempuan,,3992,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+12.18.01.2004,4,Celawan,total,total,,8060,jiwa,2025,registration,total_population,3.1,28,,
+12.18.01.2007,4,Besar II Terjun,sex,laki_laki,,2688,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.01.2007,4,Besar II Terjun,sex,perempuan,,2619,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+12.18.01.2007,4,Besar II Terjun,total,total,,5307,jiwa,2025,registration,total_population,3.1,28,,
+12.18.01.2008,4,Sementara,sex,laki_laki,,1262,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.01.2008,4,Sementara,sex,perempuan,,1284,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+12.18.01.2008,4,Sementara,total,total,,2546,jiwa,2025,registration,total_population,3.1,28,,
+12.18.01.2009,4,Ara Payung,sex,laki_laki,,1326,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.01.2009,4,Ara Payung,sex,perempuan,,1301,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+12.18.01.2009,4,Ara Payung,total,total,,2627,jiwa,2025,registration,total_population,3.1,28,,
+12.18.01.2010,4,Pematang Kasih,sex,laki_laki,,783,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.01.2010,4,Pematang Kasih,sex,perempuan,,759,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+12.18.01.2010,4,Pematang Kasih,total,total,,1542,jiwa,2025,registration,total_population,3.1,28,,
+12.18.01.2012,4,Naga Kisar,sex,laki_laki,,2123,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.01.2012,4,Naga Kisar,sex,perempuan,,2129,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+12.18.01.2012,4,Naga Kisar,total,total,,4252,jiwa,2025,registration,total_population,3.1,28,,
+12.18.01.2011,4,Lubuk Saban,sex,laki_laki,,1671,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.01.2011,4,Lubuk Saban,sex,perempuan,,1602,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+12.18.01.2011,4,Lubuk Saban,total,total,,3273,jiwa,2025,registration,total_population,3.1,28,,
+12.18.01.2006,4,Kuala Lama,sex,laki_laki,,2728,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.01.2006,4,Kuala Lama,sex,perempuan,,2601,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+12.18.01.2006,4,Kuala Lama,total,total,,5329,jiwa,2025,registration,total_population,3.1,28,,
+12.18.01.2002,4,Pantai Cermin Kiri,sex,laki_laki,,2349,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.01.2002,4,Pantai Cermin Kiri,sex,perempuan,,2283,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+12.18.01.2002,4,Pantai Cermin Kiri,total,total,,4632,jiwa,2025,registration,total_population,3.1,28,,
+12.18.01.2001,4,Pantai Cermin Kanan,sex,laki_laki,,2371,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.01.2001,4,Pantai Cermin Kanan,sex,perempuan,,2282,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+12.18.01.2001,4,Pantai Cermin Kanan,total,total,,4653,jiwa,2025,registration,total_population,3.1,28,,
+12.18.01.2003,4,Kota Pari,sex,laki_laki,,3951,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.01.2003,4,Kota Pari,sex,perempuan,,3778,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+12.18.01.2003,4,Kota Pari,total,total,,7729,jiwa,2025,registration,total_population,3.1,28,,
+12.18.01,3,Pantai Cermin,sex,laki_laki,,26876,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.01,3,Pantai Cermin,sex,perempuan,,26152,jiwa,2025,registration,total_population,3.1,28,,Perempuan/
+12.18.01,3,Pantai Cermin,total,total,,53028,jiwa,2025,registration,total_population,3.1,28,,

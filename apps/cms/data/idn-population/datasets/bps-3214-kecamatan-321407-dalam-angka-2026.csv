@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.14.07.2004,4,Tegaldatar,sex,laki_laki,,3798,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.07.2004,4,Tegaldatar,sex,perempuan,,3510,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.07.2004,4,Tegaldatar,total,total,,7308,jiwa,2025,registration,total_population,3.1,22,,
+32.14.07.2003,4,Sinargalih,sex,laki_laki,,4007,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.07.2003,4,Sinargalih,sex,perempuan,,3779,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.07.2003,4,Sinargalih,total,total,,7786,jiwa,2025,registration,total_population,3.1,22,,
+32.14.07.2002,4,Citamiang,sex,laki_laki,,2451,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.07.2002,4,Citamiang,sex,perempuan,,2337,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.07.2002,4,Citamiang,total,total,,4788,jiwa,2025,registration,total_population,3.1,22,,
+32.14.07.2005,4,Cijati,sex,laki_laki,,1626,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.07.2005,4,Cijati,sex,perempuan,,1563,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.07.2005,4,Cijati,total,total,,3189,jiwa,2025,registration,total_population,3.1,22,,
+32.14.07.2001,4,Gunungkarung,sex,laki_laki,,2700,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.07.2001,4,Gunungkarung,sex,perempuan,,2571,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.07.2001,4,Gunungkarung,total,total,,5271,jiwa,2025,registration,total_population,3.1,22,,
+32.14.07.2008,4,Pasirjambu,sex,laki_laki,,2318,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.07.2008,4,Pasirjambu,sex,perempuan,,2179,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.07.2008,4,Pasirjambu,total,total,,4497,jiwa,2025,registration,total_population,3.1,22,,
+32.14.07.2006,4,Ciramahilir,sex,laki_laki,,2072,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.07.2006,4,Ciramahilir,sex,perempuan,,1985,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.07.2006,4,Ciramahilir,total,total,,4057,jiwa,2025,registration,total_population,3.1,22,,
+32.14.07.2007,4,Sukamukti,sex,laki_laki,,1842,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.07.2007,4,Sukamukti,sex,perempuan,,1786,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.07.2007,4,Sukamukti,total,total,,3628,jiwa,2025,registration,total_population,3.1,22,,
+32.14.07,3,Kecamatan Maniis,sex,laki_laki,,20814,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.07,3,Kecamatan Maniis,sex,perempuan,,19710,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.07,3,Kecamatan Maniis,total,total,,40524,jiwa,2025,registration,total_population,3.1,22,,

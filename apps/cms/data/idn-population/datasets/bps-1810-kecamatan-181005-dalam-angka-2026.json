@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1810-kecamatan-181005-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.10.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pagelaran Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pringsewu",
+  "publisherDomain": "1810",
+  "publisherWebsite": "https://pringsewukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pringsewu (https://pringsewukab.bps.go.id), publikasi \"Kecamatan Pagelaran Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1810030",
+  "publicationNumber": "18100.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pringsewukab.bps.go.id/id/publication/2026/09/28/466f0ed2141e8c56ece54d54/kecamatan-pagelaran-dalam-angka-2026.html",
+  "sourceFileSha256": "1f95b3b4de8cb281be314410e6891fc45cc02c3eba0d40d633aa56305bf8cf4d",
+  "sourceFileBytes": 18770323,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pringsewu.",
+  "csvPath": "datasets/bps-1810-kecamatan-181005-dalam-angka-2026.csv",
+  "csvSha256": "b77f13571dd5da110b641c3671b4a8aa56a1bbaddf16fb4801d28bbb5b15e5e7",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pagelaran, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pagelaran, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Tanjung Dalam\": unmatched ",
+    "table 3.1: row not stored: row \"Tanjung Dalam\": unmatched "
+  ]
+}

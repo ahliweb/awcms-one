@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-6203-kecamatan-620309-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.03.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mantangai Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kapuas",
+  "publisherDomain": "6203",
+  "publisherWebsite": "https://kapuaskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kapuas (https://kapuaskab.bps.go.id), publikasi \"Kecamatan Mantangai Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6203150",
+  "publicationNumber": "62030.25018",
+  "issn": "2548-236X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kapuaskab.bps.go.id/id/publication/2026/09/28/2879cbae27788ec78641c862/kecamatan-mantangai-dalam-angka-2026.html",
+  "sourceFileSha256": "097c7abc9ef11330795f7c96c4a0d51e8920316ac62028e3ba48ed2c815c6e4e",
+  "sourceFileBytes": 8636688,
+  "sourcePages": [38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kapuas.",
+  "csvPath": "datasets/bps-6203-kecamatan-620309-dalam-angka-2026.csv",
+  "csvSha256": "3f80c1cbd50b05b28b9a94e44ed2662a779d25d0e6b6e68e8ae8f92ac984c6ab",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mantangai, 2025",
+      "printedPages": [38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1 (sex-by-village) could not be read reliably and is not included (heading says jiwa but only some figures carry decimals)"
+  ]
+}

@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.03.17.1001,4,Curug Kulon,sex,laki_laki,,10781,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.17.1001,4,Curug Kulon,sex,perempuan,,10488,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.17.1001,4,Curug Kulon,total,total,,21269,jiwa,2025,registration,total_population,3.1,25,,
+36.03.17.2002,4,Curug Wetan,sex,laki_laki,,8835,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.17.2002,4,Curug Wetan,sex,perempuan,,8462,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.17.2002,4,Curug Wetan,total,total,,17297,jiwa,2025,registration,total_population,3.1,25,,
+36.03.17.1005,4,Suka Bakti,sex,laki_laki,,10882,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.17.1005,4,Suka Bakti,sex,perempuan,,10814,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.17.1005,4,Suka Bakti,total,total,,21696,jiwa,2025,registration,total_population,3.1,25,,
+36.03.17.2010,4,Cukang Galih,sex,laki_laki,,8516,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.17.2010,4,Cukang Galih,sex,perempuan,,8175,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.17.2010,4,Cukang Galih,total,total,,16691,jiwa,2025,registration,total_population,3.1,25,,
+36.03.17.2004,4,Kadu Jaya,sex,laki_laki,,9268,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.17.2004,4,Kadu Jaya,sex,perempuan,,8967,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.17.2004,4,Kadu Jaya,total,total,,18235,jiwa,2025,registration,total_population,3.1,25,,
+36.03.17.2003,4,Kadu,sex,laki_laki,,16201,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.17.2003,4,Kadu,sex,perempuan,,15596,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.17.2003,4,Kadu,total,total,,31797,jiwa,2025,registration,total_population,3.1,25,,
+36.03.17.1006,4,Binong,sex,laki_laki,,30672,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.17.1006,4,Binong,sex,perempuan,,31015,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.17.1006,4,Binong,total,total,,61687,jiwa,2025,registration,total_population,3.1,25,,
+36.03.17,3,Curug,age_group,0-4,laki_laki,6073,jiwa,2025,registration,total_population,3.2,27,,00–04
+36.03.17,3,Curug,age_group,0-4,perempuan,5694,jiwa,2025,registration,total_population,3.2,27,,00–04
+36.03.17,3,Curug,age_group,0-4,,11767,jiwa,2025,registration,total_population,3.2,27,,00–04
+36.03.17,3,Curug,age_group,5-9,laki_laki,8553,jiwa,2025,registration,total_population,3.2,27,,05–09
+36.03.17,3,Curug,age_group,5-9,perempuan,8212,jiwa,2025,registration,total_population,3.2,27,,05–09
+36.03.17,3,Curug,age_group,5-9,,16765,jiwa,2025,registration,total_population,3.2,27,,05–09
+36.03.17,3,Curug,age_group,10-14,laki_laki,8582,jiwa,2025,registration,total_population,3.2,27,,10–14
+36.03.17,3,Curug,age_group,10-14,perempuan,7854,jiwa,2025,registration,total_population,3.2,27,,10–14
+36.03.17,3,Curug,age_group,10-14,,16436,jiwa,2025,registration,total_population,3.2,27,,10–14
+36.03.17,3,Curug,age_group,15-19,laki_laki,7440,jiwa,2025,registration,total_population,3.2,27,,15–19
+36.03.17,3,Curug,age_group,15-19,perempuan,7097,jiwa,2025,registration,total_population,3.2,27,,15–19
+36.03.17,3,Curug,age_group,15-19,,14537,jiwa,2025,registration,total_population,3.2,27,,15–19
+36.03.17,3,Curug,age_group,20-24,laki_laki,7670,jiwa,2025,registration,total_population,3.2,27,,20–24
+36.03.17,3,Curug,age_group,20-24,perempuan,7417,jiwa,2025,registration,total_population,3.2,27,,20–24
+36.03.17,3,Curug,age_group,20-24,,15087,jiwa,2025,registration,total_population,3.2,27,,20–24
+36.03.17,3,Curug,age_group,25-29,laki_laki,7630,jiwa,2025,registration,total_population,3.2,27,,25–29
+36.03.17,3,Curug,age_group,25-29,perempuan,7764,jiwa,2025,registration,total_population,3.2,27,,25–29
+36.03.17,3,Curug,age_group,25-29,,15394,jiwa,2025,registration,total_population,3.2,27,,25–29
+36.03.17,3,Curug,age_group,30-34,laki_laki,8061,jiwa,2025,registration,total_population,3.2,27,,30–34
+36.03.17,3,Curug,age_group,30-34,perempuan,8004,jiwa,2025,registration,total_population,3.2,27,,30–34
+36.03.17,3,Curug,age_group,30-34,,16065,jiwa,2025,registration,total_population,3.2,27,,30–34
+36.03.17,3,Curug,age_group,35-39,laki_laki,7627,jiwa,2025,registration,total_population,3.2,27,,35–39
+36.03.17,3,Curug,age_group,35-39,perempuan,7480,jiwa,2025,registration,total_population,3.2,27,,35–39
+36.03.17,3,Curug,age_group,35-39,,15107,jiwa,2025,registration,total_population,3.2,27,,35–39
+36.03.17,3,Curug,age_group,40-44,laki_laki,7836,jiwa,2025,registration,total_population,3.2,27,,40–44
+36.03.17,3,Curug,age_group,40-44,perempuan,7960,jiwa,2025,registration,total_population,3.2,27,,40–44
+36.03.17,3,Curug,age_group,40-44,,15796,jiwa,2025,registration,total_population,3.2,27,,40–44
+36.03.17,3,Curug,age_group,45-49,laki_laki,7175,jiwa,2025,registration,total_population,3.2,27,,45–49
+36.03.17,3,Curug,age_group,45-49,perempuan,7345,jiwa,2025,registration,total_population,3.2,27,,45–49
+36.03.17,3,Curug,age_group,45-49,,14520,jiwa,2025,registration,total_population,3.2,27,,45–49
+36.03.17,3,Curug,age_group,50-54,laki_laki,5885,jiwa,2025,registration,total_population,3.2,27,,50–54
+36.03.17,3,Curug,age_group,50-54,perempuan,6175,jiwa,2025,registration,total_population,3.2,27,,50–54
+36.03.17,3,Curug,age_group,50-54,,12060,jiwa,2025,registration,total_population,3.2,27,,50–54
+36.03.17,3,Curug,age_group,55-59,laki_laki,4884,jiwa,2025,registration,total_population,3.2,27,,55–59
+36.03.17,3,Curug,age_group,55-59,perempuan,4869,jiwa,2025,registration,total_population,3.2,27,,55–59
+36.03.17,3,Curug,age_group,55-59,,9753,jiwa,2025,registration,total_population,3.2,27,,55–59
+36.03.17,3,Curug,age_group,60-64,laki_laki,3313,jiwa,2025,registration,total_population,3.2,27,,60–64
+36.03.17,3,Curug,age_group,60-64,perempuan,3324,jiwa,2025,registration,total_population,3.2,27,,60–64
+36.03.17,3,Curug,age_group,60-64,,6637,jiwa,2025,registration,total_population,3.2,27,,60–64
+36.03.17,3,Curug,age_group,65-69,laki_laki,2236,jiwa,2025,registration,total_population,3.2,27,,65–69
+36.03.17,3,Curug,age_group,65-69,perempuan,2052,jiwa,2025,registration,total_population,3.2,27,,65–69
+36.03.17,3,Curug,age_group,65-69,,4288,jiwa,2025,registration,total_population,3.2,27,,65–69
+36.03.17,3,Curug,age_group,70-74,laki_laki,1234,jiwa,2025,registration,total_population,3.2,27,,70–74
+36.03.17,3,Curug,age_group,70-74,perempuan,1100,jiwa,2025,registration,total_population,3.2,27,,70–74
+36.03.17,3,Curug,age_group,70-74,,2334,jiwa,2025,registration,total_population,3.2,27,,70–74
+36.03.17,3,Curug,age_group,75+,laki_laki,956,jiwa,2025,registration,total_population,3.2,27,,>75
+36.03.17,3,Curug,age_group,75+,perempuan,1170,jiwa,2025,registration,total_population,3.2,27,,>75
+36.03.17,3,Curug,age_group,75+,,2126,jiwa,2025,registration,total_population,3.2,27,,>75

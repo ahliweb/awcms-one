@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.03.11.2001,4,Masaran,sex,laki_laki,,497,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.11.2001,4,Masaran,sex,perempuan,,461,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.11.2001,4,Masaran,total,total,,958,jiwa,2025,registration,total_population,3.1,30,,
+62.03.11.2002,4,Kayu Bulan,sex,laki_laki,,802,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.11.2002,4,Kayu Bulan,sex,perempuan,,729,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.11.2002,4,Kayu Bulan,total,total,,1531,jiwa,2025,registration,total_population,3.1,30,,
+62.03.11.2003,4,Kota Baru,sex,laki_laki,,573,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.11.2003,4,Kota Baru,sex,perempuan,,525,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.11.2003,4,Kota Baru,total,total,,1098,jiwa,2025,registration,total_population,3.1,30,,
+62.03.11.2004,4,Penda Muntei,sex,laki_laki,,380,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.11.2004,4,Penda Muntei,sex,perempuan,,364,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.11.2004,4,Penda Muntei,total,total,,744,jiwa,2025,registration,total_population,3.1,30,,
+62.03.11.2005,4,Tapen,sex,laki_laki,,663,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.11.2005,4,Tapen,sex,perempuan,,655,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.11.2005,4,Tapen,total,total,,1318,jiwa,2025,registration,total_population,3.1,30,,
+62.03.11.2006,4,Pujon,sex,laki_laki,,3245,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.11.2006,4,Pujon,sex,perempuan,,2980,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.11.2006,4,Pujon,total,total,,6225,jiwa,2025,registration,total_population,3.1,30,,
+62.03.11.2007,4,Marapit,sex,laki_laki,,1162,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.11.2007,4,Marapit,sex,perempuan,,1109,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.11.2007,4,Marapit,total,total,,2271,jiwa,2025,registration,total_population,3.1,30,,
+62.03.11.2008,4,Manis,sex,laki_laki,,288,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.11.2008,4,Manis,sex,perempuan,,238,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.11.2008,4,Manis,total,total,,526,jiwa,2025,registration,total_population,3.1,30,,
+62.03.11.2010,4,Bajuh,sex,laki_laki,,782,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.11.2010,4,Bajuh,sex,perempuan,,723,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.11.2010,4,Bajuh,total,total,,1505,jiwa,2025,registration,total_population,3.1,30,,
+62.03.11.2009,4,Karukus,sex,laki_laki,,137,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.11.2009,4,Karukus,sex,perempuan,,129,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.11.2009,4,Karukus,total,total,,266,jiwa,2025,registration,total_population,3.1,30,,
+62.03.11.2011,4,Barunang,sex,laki_laki,,1049,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.11.2011,4,Barunang,sex,perempuan,,887,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.11.2011,4,Barunang,total,total,,1936,jiwa,2025,registration,total_population,3.1,30,,
+62.03.11.2019,4,Buhut Jaya,sex,laki_laki,,925,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.11.2019,4,Buhut Jaya,sex,perempuan,,861,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.11.2019,4,Buhut Jaya,total,total,,1786,jiwa,2025,registration,total_population,3.1,30,,
+62.03.11.2021,4,Hurung Pukung,sex,laki_laki,,330,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.11.2021,4,Hurung Pukung,sex,perempuan,,294,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.11.2021,4,Hurung Pukung,total,total,,624,jiwa,2025,registration,total_population,3.1,30,,
+62.03.11,3,Kapuas Tengah,sex,laki_laki,,10833,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.11,3,Kapuas Tengah,sex,perempuan,,9955,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.11,3,Kapuas Tengah,total,total,,20788,jiwa,2025,registration,total_population,3.1,30,,

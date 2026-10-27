@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+34.02.15.2001,4,Pendowoharjo,sex,laki_laki,,11817,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.15.2001,4,Pendowoharjo,sex,perempuan,,11771,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.15.2001,4,Pendowoharjo,total,total,,23588,jiwa,2025,registration,total_population,3.1,27,,
+34.02.15.2002,4,Timbulharjo,sex,laki_laki,,11990,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.15.2002,4,Timbulharjo,sex,perempuan,,11894,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.15.2002,4,Timbulharjo,total,total,,23884,jiwa,2025,registration,total_population,3.1,27,,
+34.02.15.2003,4,Bangunharjo,sex,laki_laki,,13557,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.15.2003,4,Bangunharjo,sex,perempuan,,13628,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.15.2003,4,Bangunharjo,total,total,,27185,jiwa,2025,registration,total_population,3.1,27,,
+34.02.15.2004,4,Panggungharjo,sex,laki_laki,,14488,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.15.2004,4,Panggungharjo,sex,perempuan,,14593,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.15.2004,4,Panggungharjo,total,total,,29081,jiwa,2025,registration,total_population,3.1,27,,
+34.02.15,3,Sewon,sex,laki_laki,,51852,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.15,3,Sewon,sex,perempuan,,51886,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.15,3,Sewon,total,total,,103738,jiwa,2025,registration,total_population,3.1,27,,
+34.02.15,3,Sewon,age_group,0-4,laki_laki,2708,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+34.02.15,3,Sewon,age_group,0-4,perempuan,2501,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+34.02.15,3,Sewon,age_group,0-4,,5209,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+34.02.15,3,Sewon,age_group,5-9,laki_laki,3659,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+34.02.15,3,Sewon,age_group,5-9,perempuan,3442,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+34.02.15,3,Sewon,age_group,5-9,,7101,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+34.02.15,3,Sewon,age_group,10-14,laki_laki,3941,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+34.02.15,3,Sewon,age_group,10-14,perempuan,3687,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+34.02.15,3,Sewon,age_group,10-14,,7628,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+34.02.15,3,Sewon,age_group,15-19,laki_laki,3999,jiwa,2025,registration,total_population,3.2,29,,15 - 19
+34.02.15,3,Sewon,age_group,15-19,perempuan,3820,jiwa,2025,registration,total_population,3.2,29,,15 - 19
+34.02.15,3,Sewon,age_group,15-19,,7819,jiwa,2025,registration,total_population,3.2,29,,15 - 19
+34.02.15,3,Sewon,age_group,20-24,laki_laki,3713,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+34.02.15,3,Sewon,age_group,20-24,perempuan,3627,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+34.02.15,3,Sewon,age_group,20-24,,7340,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+34.02.15,3,Sewon,age_group,25-29,laki_laki,3681,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+34.02.15,3,Sewon,age_group,25-29,perempuan,3640,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+34.02.15,3,Sewon,age_group,25-29,,7321,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+34.02.15,3,Sewon,age_group,30-34,laki_laki,3593,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+34.02.15,3,Sewon,age_group,30-34,perempuan,3545,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+34.02.15,3,Sewon,age_group,30-34,,7138,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+34.02.15,3,Sewon,age_group,35-39,laki_laki,3516,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+34.02.15,3,Sewon,age_group,35-39,perempuan,3587,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+34.02.15,3,Sewon,age_group,35-39,,7103,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+34.02.15,3,Sewon,age_group,40-44,laki_laki,4227,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+34.02.15,3,Sewon,age_group,40-44,perempuan,4204,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+34.02.15,3,Sewon,age_group,40-44,,8431,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+34.02.15,3,Sewon,age_group,45-49,laki_laki,3955,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+34.02.15,3,Sewon,age_group,45-49,perempuan,3958,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+34.02.15,3,Sewon,age_group,45-49,,7913,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+34.02.15,3,Sewon,age_group,50-54,laki_laki,3644,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+34.02.15,3,Sewon,age_group,50-54,perempuan,3647,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+34.02.15,3,Sewon,age_group,50-54,,7291,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+34.02.15,3,Sewon,age_group,55-59,laki_laki,3384,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+34.02.15,3,Sewon,age_group,55-59,perempuan,3557,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+34.02.15,3,Sewon,age_group,55-59,,6941,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+34.02.15,3,Sewon,age_group,60-64,laki_laki,2805,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+34.02.15,3,Sewon,age_group,60-64,perempuan,3141,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+34.02.15,3,Sewon,age_group,60-64,,5946,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+34.02.15,3,Sewon,age_group,65-69,laki_laki,2246,jiwa,2025,registration,total_population,3.2,29,,65 - 69
+34.02.15,3,Sewon,age_group,65-69,perempuan,2488,jiwa,2025,registration,total_population,3.2,29,,65 - 69
+34.02.15,3,Sewon,age_group,65-69,,4734,jiwa,2025,registration,total_population,3.2,29,,65 - 69
+34.02.15,3,Sewon,age_group,70-74,laki_laki,1500,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+34.02.15,3,Sewon,age_group,70-74,perempuan,1401,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+34.02.15,3,Sewon,age_group,70-74,,2901,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+34.02.15,3,Sewon,age_group,75+,laki_laki,1281,jiwa,2025,registration,total_population,3.2,29,,75 +
+34.02.15,3,Sewon,age_group,75+,perempuan,1641,jiwa,2025,registration,total_population,3.2,29,,75 +
+34.02.15,3,Sewon,age_group,75+,,2922,jiwa,2025,registration,total_population,3.2,29,,75 +
+34.02.15,3,Sewon,sex,laki_laki,,51852,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+34.02.15,3,Sewon,sex,perempuan,,51886,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+34.02.15,3,Sewon,total,total,,103738,jiwa,2025,registration,total_population,3.2,29,,

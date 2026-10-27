@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3215-kecamatan-321512-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.15.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pakisjaya Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Karawang",
+  "publisherDomain": "3215",
+  "publisherWebsite": "https://karawangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Karawang (https://karawangkab.bps.go.id), publikasi \"Kecamatan Pakisjaya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3215200",
+  "publicationNumber": "32150.26021",
+  "issn": "2828-7576",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://karawangkab.bps.go.id/id/publication/2026/09/28/e53dabc8ed26a7c6b9f2603c/kecamatan-pakisjaya-dalam-angka-2026.html",
+  "sourceFileSha256": "c8265c18d1d2f5dcdec7fd7461c40030b25c28fd7447b85e1970b6c0a1ba9477",
+  "sourceFileBytes": 4937699,
+  "sourcePages": [23, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Karawang",
+  "csvPath": "datasets/bps-3215-kecamatan-321512-dalam-angka-2026.csv",
+  "csvSha256": "706cd43e1cf4a1cce55a2aa7eea05d6b658e6715fec92c7eb4f17d3d3b7cb562",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pakisjaya , 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"TALAGAJAYA\": unmatched ",
+    "table 3.1: row not stored: row \"TALAGAJAYA 10.49\": unmatched ",
+    "table 3.1: row not stored: row \"TELUKBUYUNG 15.15\": unmatched ",
+    "table 3.1: row not stored: row \"TANAHBARU 15.72\": unmatched ",
+    "table 3.1: row not stored: row \"SOLOKAN 14.34\": unmatched ",
+    "table 3.1: row not stored: row \"TANJUNGPAKIS 13.90\": unmatched ",
+    "table 3.1: row not stored: row \"TELUKJAYA 13.61\": unmatched "
+  ]
+}

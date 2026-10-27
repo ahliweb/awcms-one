@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.02.23.2008,4,Air Liki,sex,laki_laki,,290,jiwa,2025,registration,total_population,unnumbered-p48,,,Laki-Laki/Male
+15.02.23.2008,4,Air Liki,sex,perempuan,,279,jiwa,2025,registration,total_population,unnumbered-p48,,,Perempuan/Female
+15.02.23.2008,4,Air Liki,total,total,,569,jiwa,2025,registration,total_population,unnumbered-p48,,,
+15.02.23.2007,4,Ngaol,sex,laki_laki,,619,jiwa,2025,registration,total_population,unnumbered-p48,,,Laki-Laki/Male
+15.02.23.2007,4,Ngaol,sex,perempuan,,585,jiwa,2025,registration,total_population,unnumbered-p48,,,Perempuan/Female
+15.02.23.2007,4,Ngaol,total,total,,1204,jiwa,2025,registration,total_population,unnumbered-p48,,,
+15.02.23.2006,4,Telentam,sex,laki_laki,,699,jiwa,2025,registration,total_population,unnumbered-p48,,,Laki-Laki/Male
+15.02.23.2006,4,Telentam,sex,perempuan,,692,jiwa,2025,registration,total_population,unnumbered-p48,,,Perempuan/Female
+15.02.23.2006,4,Telentam,total,total,,1391,jiwa,2025,registration,total_population,unnumbered-p48,,,
+15.02.23.2005,4,Sungai Tabir,sex,laki_laki,,190,jiwa,2025,registration,total_population,unnumbered-p48,,,Laki-Laki/Male
+15.02.23.2005,4,Sungai Tabir,sex,perempuan,,199,jiwa,2025,registration,total_population,unnumbered-p48,,,Perempuan/Female
+15.02.23.2005,4,Sungai Tabir,total,total,,389,jiwa,2025,registration,total_population,unnumbered-p48,,,
+15.02.23.2004,4,Batang Kibul,sex,laki_laki,,461,jiwa,2025,registration,total_population,unnumbered-p48,,,Laki-Laki/Male
+15.02.23.2004,4,Batang Kibul,sex,perempuan,,436,jiwa,2025,registration,total_population,unnumbered-p48,,,Perempuan/Female
+15.02.23.2004,4,Batang Kibul,total,total,,897,jiwa,2025,registration,total_population,unnumbered-p48,,,
+15.02.23.2001,4,Muara Kibul,sex,laki_laki,,644,jiwa,2025,registration,total_population,unnumbered-p48,,,Laki-Laki/Male
+15.02.23.2001,4,Muara Kibul,sex,perempuan,,615,jiwa,2025,registration,total_population,unnumbered-p48,,,Perempuan/Female
+15.02.23.2001,4,Muara Kibul,total,total,,1259,jiwa,2025,registration,total_population,unnumbered-p48,,,
+15.02.23.2002,4,Tanjung Putus,sex,laki_laki,,544,jiwa,2025,registration,total_population,unnumbered-p48,,,Laki-Laki/Male
+15.02.23.2002,4,Tanjung Putus,sex,perempuan,,520,jiwa,2025,registration,total_population,unnumbered-p48,,,Perempuan/Female
+15.02.23.2002,4,Tanjung Putus,total,total,,1064,jiwa,2025,registration,total_population,unnumbered-p48,,,
+15.02.23.2009,4,Pulau Lebar,sex,laki_laki,,185,jiwa,2025,registration,total_population,unnumbered-p48,,,Laki-Laki/Male
+15.02.23.2009,4,Pulau Lebar,sex,perempuan,,182,jiwa,2025,registration,total_population,unnumbered-p48,,,Perempuan/Female
+15.02.23.2009,4,Pulau Lebar,total,total,,367,jiwa,2025,registration,total_population,unnumbered-p48,,,
+15.02.23.2014,4,Air Liki Baru,sex,laki_laki,,254,jiwa,2025,registration,total_population,unnumbered-p48,,,Laki-Laki/Male
+15.02.23.2014,4,Air Liki Baru,sex,perempuan,,276,jiwa,2025,registration,total_population,unnumbered-p48,,,Perempuan/Female
+15.02.23.2014,4,Air Liki Baru,total,total,,530,jiwa,2025,registration,total_population,unnumbered-p48,,,
+15.02.23.2013,4,Ngaol Ilir,sex,laki_laki,,230,jiwa,2025,registration,total_population,unnumbered-p48,,,Laki-Laki/Male
+15.02.23.2013,4,Ngaol Ilir,sex,perempuan,,269,jiwa,2025,registration,total_population,unnumbered-p48,,,Perempuan/Female
+15.02.23.2013,4,Ngaol Ilir,total,total,,499,jiwa,2025,registration,total_population,unnumbered-p48,,,
+15.02.23.2012,4,Baru Kibul,sex,laki_laki,,183,jiwa,2025,registration,total_population,unnumbered-p48,,,Laki-Laki/Male
+15.02.23.2012,4,Baru Kibul,sex,perempuan,,190,jiwa,2025,registration,total_population,unnumbered-p48,,,Perempuan/Female
+15.02.23.2012,4,Baru Kibul,total,total,,373,jiwa,2025,registration,total_population,unnumbered-p48,,,
+15.02.23.2011,4,Tanjung Beringin,sex,laki_laki,,260,jiwa,2025,registration,total_population,unnumbered-p48,,,Laki-Laki/Male
+15.02.23.2011,4,Tanjung Beringin,sex,perempuan,,262,jiwa,2025,registration,total_population,unnumbered-p48,,,Perempuan/Female
+15.02.23.2011,4,Tanjung Beringin,total,total,,522,jiwa,2025,registration,total_population,unnumbered-p48,,,
+15.02.23,3,Tabir Barat,sex,laki_laki,,5321,jiwa,2025,registration,total_population,unnumbered-p48,,,Laki-Laki/Male
+15.02.23,3,Tabir Barat,sex,perempuan,,5309,jiwa,2025,registration,total_population,unnumbered-p48,,,Perempuan/Female
+15.02.23,3,Tabir Barat,total,total,,10630,jiwa,2025,registration,total_population,unnumbered-p48,,,

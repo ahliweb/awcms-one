@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.15.26.2006,4,Warungbambu,sex,laki_laki,,5178,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.15.26.2006,4,Warungbambu,sex,perempuan,,5259,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.15.26.2006,4,Warungbambu,total,total,,10437,jiwa,2025,registration,total_population,3.1,25,,
+32.15.26.2007,4,Kondangjaya,sex,laki_laki,,11874,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.15.26.2007,4,Kondangjaya,sex,perempuan,,11429,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.15.26.2007,4,Kondangjaya,total,total,,23303,jiwa,2025,registration,total_population,3.1,25,,
+32.15.26.2005,4,Margasari,sex,laki_laki,,5972,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.15.26.2005,4,Margasari,sex,perempuan,,6214,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.15.26.2005,4,Margasari,total,total,,12186,jiwa,2025,registration,total_population,3.1,25,,
+32.15.26.2008,4,Tegalsawah,sex,laki_laki,,4682,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.15.26.2008,4,Tegalsawah,sex,perempuan,,4473,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.15.26.2008,4,Tegalsawah,total,total,,9155,jiwa,2025,registration,total_population,3.1,25,,
+32.15.26.1002,4,Adiarsa Timur,sex,laki_laki,,5791,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.15.26.1002,4,Adiarsa Timur,sex,perempuan,,5863,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.15.26.1002,4,Adiarsa Timur,total,total,,11654,jiwa,2025,registration,total_population,3.1,25,,
+32.15.26.1001,4,Karawang Wetan,sex,laki_laki,,15591,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.15.26.1001,4,Karawang Wetan,sex,perempuan,,15286,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.15.26.1001,4,Karawang Wetan,total,total,,30877,jiwa,2025,registration,total_population,3.1,25,,
+32.15.26.1003,4,Palumbonsari,sex,laki_laki,,15749,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.15.26.1003,4,Palumbonsari,sex,perempuan,,15492,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.15.26.1003,4,Palumbonsari,total,total,,31241,jiwa,2025,registration,total_population,3.1,25,,
+32.15.26.1004,4,Plawad,sex,laki_laki,,5380,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.15.26.1004,4,Plawad,sex,perempuan,,5173,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.15.26.1004,4,Plawad,total,total,,10553,jiwa,2025,registration,total_population,3.1,25,,
+32.15.26,3,Karawang Timur,sex,laki_laki,,70217,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.15.26,3,Karawang Timur,sex,perempuan,,69189,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.15.26,3,Karawang Timur,total,total,,139406,jiwa,2025,registration,total_population,3.1,25,,
+32.15.26,3,Karawang Timur,age_group,0-4,laki_laki,6842,jiwa,2025,registration,total_population,3.2,27,,00-04
+32.15.26,3,Karawang Timur,age_group,0-4,perempuan,5983,jiwa,2025,registration,total_population,3.2,27,,00-04
+32.15.26,3,Karawang Timur,age_group,0-4,,12825,jiwa,2025,registration,total_population,3.2,27,,00-04
+32.15.26,3,Karawang Timur,age_group,5-9,laki_laki,7940,jiwa,2025,registration,total_population,3.2,27,,05-09
+32.15.26,3,Karawang Timur,age_group,5-9,perempuan,7742,jiwa,2025,registration,total_population,3.2,27,,05-09
+32.15.26,3,Karawang Timur,age_group,5-9,,15682,jiwa,2025,registration,total_population,3.2,27,,05-09
+32.15.26,3,Karawang Timur,age_group,10-14,laki_laki,7642,jiwa,2025,registration,total_population,3.2,27,,10-14
+32.15.26,3,Karawang Timur,age_group,10-14,perempuan,6941,jiwa,2025,registration,total_population,3.2,27,,10-14
+32.15.26,3,Karawang Timur,age_group,10-14,,14583,jiwa,2025,registration,total_population,3.2,27,,10-14
+32.15.26,3,Karawang Timur,age_group,15-19,laki_laki,3891,jiwa,2025,registration,total_population,3.2,27,,15-19
+32.15.26,3,Karawang Timur,age_group,15-19,perempuan,2853,jiwa,2025,registration,total_population,3.2,27,,15-19
+32.15.26,3,Karawang Timur,age_group,15-19,,6744,jiwa,2025,registration,total_population,3.2,27,,15-19
+32.15.26,3,Karawang Timur,age_group,20-24,laki_laki,5844,jiwa,2025,registration,total_population,3.2,27,,20-24
+32.15.26,3,Karawang Timur,age_group,20-24,perempuan,4948,jiwa,2025,registration,total_population,3.2,27,,20-24
+32.15.26,3,Karawang Timur,age_group,20-24,,10792,jiwa,2025,registration,total_population,3.2,27,,20-24
+32.15.26,3,Karawang Timur,age_group,25-29,laki_laki,6021,jiwa,2025,registration,total_population,3.2,27,,25-29
+32.15.26,3,Karawang Timur,age_group,25-29,perempuan,4973,jiwa,2025,registration,total_population,3.2,27,,25-29
+32.15.26,3,Karawang Timur,age_group,25-29,,10994,jiwa,2025,registration,total_population,3.2,27,,25-29
+32.15.26,3,Karawang Timur,age_group,30-34,laki_laki,6972,jiwa,2025,registration,total_population,3.2,27,,30-34
+32.15.26,3,Karawang Timur,age_group,30-34,perempuan,5942,jiwa,2025,registration,total_population,3.2,27,,30-34
+32.15.26,3,Karawang Timur,age_group,30-34,,12914,jiwa,2025,registration,total_population,3.2,27,,30-34
+32.15.26,3,Karawang Timur,age_group,35-39,laki_laki,5931,jiwa,2025,registration,total_population,3.2,27,,35-39
+32.15.26,3,Karawang Timur,age_group,35-39,perempuan,5844,jiwa,2025,registration,total_population,3.2,27,,35-39
+32.15.26,3,Karawang Timur,age_group,35-39,,11775,jiwa,2025,registration,total_population,3.2,27,,35-39
+32.15.26,3,Karawang Timur,age_group,40-44,laki_laki,6077,jiwa,2025,registration,total_population,3.2,27,,40-44
+32.15.26,3,Karawang Timur,age_group,40-44,perempuan,6188,jiwa,2025,registration,total_population,3.2,27,,40-44
+32.15.26,3,Karawang Timur,age_group,40-44,,12265,jiwa,2025,registration,total_population,3.2,27,,40-44
+32.15.26,3,Karawang Timur,age_group,45-49,laki_laki,4681,jiwa,2025,registration,total_population,3.2,27,,45-49
+32.15.26,3,Karawang Timur,age_group,45-49,perempuan,4972,jiwa,2025,registration,total_population,3.2,27,,45-49
+32.15.26,3,Karawang Timur,age_group,45-49,,9653,jiwa,2025,registration,total_population,3.2,27,,45-49
+32.15.26,3,Karawang Timur,age_group,50-54,laki_laki,3482,jiwa,2025,registration,total_population,3.2,27,,50-54
+32.15.26,3,Karawang Timur,age_group,50-54,perempuan,3987,jiwa,2025,registration,total_population,3.2,27,,50-54
+32.15.26,3,Karawang Timur,age_group,50-54,,7469,jiwa,2025,registration,total_population,3.2,27,,50-54
+32.15.26,3,Karawang Timur,age_group,55-59,laki_laki,2160,jiwa,2025,registration,total_population,3.2,27,,55-59
+32.15.26,3,Karawang Timur,age_group,55-59,perempuan,2569,jiwa,2025,registration,total_population,3.2,27,,55-59
+32.15.26,3,Karawang Timur,age_group,55-59,,4729,jiwa,2025,registration,total_population,3.2,27,,55-59
+32.15.26,3,Karawang Timur,age_group,60-64,laki_laki,1538,jiwa,2025,registration,total_population,3.2,27,,60-64
+32.15.26,3,Karawang Timur,age_group,60-64,perempuan,1480,jiwa,2025,registration,total_population,3.2,27,,60-64
+32.15.26,3,Karawang Timur,age_group,60-64,,3018,jiwa,2025,registration,total_population,3.2,27,,60-64
+32.15.26,3,Karawang Timur,age_group,65-69,laki_laki,1239,jiwa,2025,registration,total_population,3.2,27,,65-69
+32.15.26,3,Karawang Timur,age_group,65-69,perempuan,1484,jiwa,2025,registration,total_population,3.2,27,,65-69
+32.15.26,3,Karawang Timur,age_group,65-69,,2723,jiwa,2025,registration,total_population,3.2,27,,65-69
+32.15.26,3,Karawang Timur,age_group,70-74,laki_laki,831,jiwa,2025,registration,total_population,3.2,27,,70-74
+32.15.26,3,Karawang Timur,age_group,70-74,perempuan,826,jiwa,2025,registration,total_population,3.2,27,,70-74
+32.15.26,3,Karawang Timur,age_group,70-74,,1657,jiwa,2025,registration,total_population,3.2,27,,70-74
+32.15.26,3,Karawang Timur,age_group,75+,laki_laki,742,jiwa,2025,registration,total_population,3.2,27,,75+
+32.15.26,3,Karawang Timur,age_group,75+,perempuan,841,jiwa,2025,registration,total_population,3.2,27,,75+
+32.15.26,3,Karawang Timur,age_group,75+,,1583,jiwa,2025,registration,total_population,3.2,27,,75+
+32.15.26,3,Karawang Timur,sex,laki_laki,,71833,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+32.15.26,3,Karawang Timur,sex,perempuan,,67573,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+32.15.26,3,Karawang Timur,total,total,,139406,jiwa,2025,registration,total_population,3.2,27,,

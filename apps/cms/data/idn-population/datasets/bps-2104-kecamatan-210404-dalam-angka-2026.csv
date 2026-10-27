@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.04.04.2003,4,Marok Tua,sex,laki_laki,,1264,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.04.2003,4,Marok Tua,sex,perempuan,,1118,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.04.2003,4,Marok Tua,total,total,,2382,jiwa,2025,registration,total_population,3.1,19,,
+21.04.04.2005,4,Sungai Buluh,sex,laki_laki,,789,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.04.2005,4,Sungai Buluh,sex,perempuan,,744,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.04.2005,4,Sungai Buluh,total,total,,1533,jiwa,2025,registration,total_population,3.1,19,,
+21.04.04.2002,4,Kuala Raya,sex,laki_laki,,511,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.04.2002,4,Kuala Raya,sex,perempuan,,447,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.04.2002,4,Kuala Raya,total,total,,958,jiwa,2025,registration,total_population,3.1,19,,
+21.04.04.2001,4,Bakong,sex,laki_laki,,540,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.04.2001,4,Bakong,sex,perempuan,,478,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.04.2001,4,Bakong,total,total,,1018,jiwa,2025,registration,total_population,3.1,19,,
+21.04.04.2008,4,Sungai Harapan,sex,laki_laki,,754,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.04.2008,4,Sungai Harapan,sex,perempuan,,732,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.04.2008,4,Sungai Harapan,total,total,,1486,jiwa,2025,registration,total_population,3.1,19,,
+21.04.04.2009,4,Jagoh,sex,laki_laki,,390,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.04.2009,4,Jagoh,sex,perempuan,,353,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.04.2009,4,Jagoh,total,total,,743,jiwa,2025,registration,total_population,3.1,19,,
+21.04.04.2007,4,Sungai Raya,sex,laki_laki,,552,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.04.2007,4,Sungai Raya,sex,perempuan,,516,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.04.2007,4,Sungai Raya,total,total,,1068,jiwa,2025,registration,total_population,3.1,19,,
+21.04.04.1006,4,Raya,sex,laki_laki,,773,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.04.1006,4,Raya,sex,perempuan,,766,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.04.1006,4,Raya,total,total,,1539,jiwa,2025,registration,total_population,3.1,19,,
+21.04.04.2015,4,Bukit Belah,sex,laki_laki,,241,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.04.2015,4,Bukit Belah,sex,perempuan,,230,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.04.2015,4,Bukit Belah,total,total,,471,jiwa,2025,registration,total_population,3.1,19,,
+21.04.04.2014,4,Tanjung Irat,sex,laki_laki,,545,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.04.2014,4,Tanjung Irat,sex,perempuan,,531,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.04.2014,4,Tanjung Irat,total,total,,1076,jiwa,2025,registration,total_population,3.1,19,,
+21.04.04.2013,4,Langkap,sex,laki_laki,,396,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.04.2013,4,Langkap,sex,perempuan,,324,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.04.2013,4,Langkap,total,total,,720,jiwa,2025,registration,total_population,3.1,19,,
+21.04.04.2012,4,Tinjul,sex,laki_laki,,505,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.04.2012,4,Tinjul,sex,perempuan,,440,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.04.2012,4,Tinjul,total,total,,945,jiwa,2025,registration,total_population,3.1,19,,
+21.04.04,3,Kecamatan Singkep Barat,sex,laki_laki,,7260,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.04,3,Kecamatan Singkep Barat,sex,perempuan,,6679,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.04,3,Kecamatan Singkep Barat,total,total,,13939,jiwa,2025,registration,total_population,3.1,19,,

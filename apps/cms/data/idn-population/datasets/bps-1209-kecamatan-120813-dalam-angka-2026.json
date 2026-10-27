@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1209-kecamatan-120813-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.08.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Dolok Panribuan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Simalungun",
+  "publisherDomain": "1209",
+  "publisherWebsite": "https://simalungunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Simalungun (https://simalungunkab.bps.go.id), publikasi \"Kecamatan Dolok Panribuan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1209070",
+  "publicationNumber": "12090.25017",
+  "issn": "2830-4489",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://simalungunkab.bps.go.id/id/publication/2026/09/28/fe352f9bb0d07554ccbf9bc6/kecamatan-dolok-panribuan-dalam-angka-2026.html",
+  "sourceFileSha256": "0468dfde5572d8ed2eadf9576661842029c65d08155683ac705a11664f53d8fe",
+  "sourceFileBytes": 10513333,
+  "sourcePages": [32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Simalungun.",
+  "csvPath": "datasets/bps-1209-kecamatan-120813-dalam-angka-2026.csv",
+  "csvSha256": "75060e42c820444f98ab332750e088fb0176950c78b92fcbdc911ee1ebafcded",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Dolok Panribuan, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

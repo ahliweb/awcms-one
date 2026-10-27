@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1603-kecamatan-160322-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.03.22",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Muara Belida Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Muara Enim",
+  "publisherDomain": "1603",
+  "publisherWebsite": "https://muaraenimkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Muara Enim (https://muaraenimkab.bps.go.id), publikasi \"Kecamatan Muara Belida Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1603093",
+  "publicationNumber": "16030.26024",
+  "issn": "2745-3103",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://muaraenimkab.bps.go.id/id/publication/2026/09/28/c17d98e39d49735d7754e961/kecamatan-muara-belida-dalam-angka-2026.html",
+  "sourceFileSha256": "6f90ca925d6be948a2a469de5ae3987792173d4f8c472de18525a20d63b0ceda",
+  "sourceFileBytes": 2427856,
+  "sourcePages": [23, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Muara Enim.",
+  "csvPath": "datasets/bps-1603-kecamatan-160322-dalam-angka-2026.csv",
+  "csvSha256": "a09274617788b74bb8ebe804b586fb07629b87e9d20d1e0476ae14f58d0357ea",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Muara Belida, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

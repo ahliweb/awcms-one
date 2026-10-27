@@ -1,0 +1,53 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.73.05.1002,4,Merjosari,sex,laki_laki,,8996,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.05.1002,4,Merjosari,sex,perempuan,,9020,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.05.1002,4,Merjosari,total,total,,18016,jiwa,2025,registration,total_population,3.1,32,,
+35.73.05.1004,4,Dinoyo,sex,laki_laki,,5607,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.05.1004,4,Dinoyo,sex,perempuan,,5792,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.05.1004,4,Dinoyo,total,total,,11399,jiwa,2025,registration,total_population,3.1,32,,
+35.73.05.1005,4,Sumbersari,sex,laki_laki,,3995,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.05.1005,4,Sumbersari,sex,perempuan,,4121,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.05.1005,4,Sumbersari,total,total,,8116,jiwa,2025,registration,total_population,3.1,32,,
+35.73.05.1006,4,Ketawanggede,sex,laki_laki,,2511,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.05.1006,4,Ketawanggede,sex,perempuan,,2571,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.05.1006,4,Ketawanggede,total,total,,5082,jiwa,2025,registration,total_population,3.1,32,,
+35.73.05.1007,4,Jatimulyo,sex,laki_laki,,9754,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.05.1007,4,Jatimulyo,sex,perempuan,,10098,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.05.1007,4,Jatimulyo,total,total,,19852,jiwa,2025,registration,total_population,3.1,32,,
+35.73.05.1011,4,Lowokwaru,sex,laki_laki,,9129,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.05.1011,4,Lowokwaru,sex,perempuan,,9621,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.05.1011,4,Lowokwaru,total,total,,18750,jiwa,2025,registration,total_population,3.1,32,,
+35.73.05.1010,4,Tulusrejo,sex,laki_laki,,8216,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.05.1010,4,Tulusrejo,sex,perempuan,,8550,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.05.1010,4,Tulusrejo,total,total,,16766,jiwa,2025,registration,total_population,3.1,32,,
+35.73.05.1009,4,Mojolangu,sex,laki_laki,,11308,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.05.1009,4,Mojolangu,sex,perempuan,,11589,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.05.1009,4,Mojolangu,total,total,,22897,jiwa,2025,registration,total_population,3.1,32,,
+35.73.05.1008,4,Tunjungsekar,sex,laki_laki,,9026,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.05.1008,4,Tunjungsekar,sex,perempuan,,9044,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.05.1008,4,Tunjungsekar,total,total,,18070,jiwa,2025,registration,total_population,3.1,32,,
+35.73.05.1012,4,Tasik Madu,sex,laki_laki,,4261,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.05.1012,4,Tasik Madu,sex,perempuan,,4246,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.05.1012,4,Tasik Madu,total,total,,8507,jiwa,2025,registration,total_population,3.1,32,,
+35.73.05.1001,4,Tunggulwulung,sex,laki_laki,,4986,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.05.1001,4,Tunggulwulung,sex,perempuan,,5089,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.05.1001,4,Tunggulwulung,total,total,,10075,jiwa,2025,registration,total_population,3.1,32,,
+35.73.05.1003,4,Tlogomas,sex,laki_laki,,7264,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.05.1003,4,Tlogomas,sex,perempuan,,7419,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.05.1003,4,Tlogomas,total,total,,14683,jiwa,2025,registration,total_population,3.1,32,,
+35.73.05,3,Lowokwaru,age_group,0-4,,8267,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+35.73.05,3,Lowokwaru,age_group,5-9,,12825,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+35.73.05,3,Lowokwaru,age_group,10-14,,13567,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+35.73.05,3,Lowokwaru,age_group,15-19,,13165,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+35.73.05,3,Lowokwaru,age_group,20-24,,12678,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+35.73.05,3,Lowokwaru,age_group,25-29,,12542,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+35.73.05,3,Lowokwaru,age_group,30-34,,12843,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+35.73.05,3,Lowokwaru,age_group,35-39,,12607,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+35.73.05,3,Lowokwaru,age_group,40-44,,13783,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+35.73.05,3,Lowokwaru,age_group,45-49,,13078,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+35.73.05,3,Lowokwaru,age_group,50-54,,11519,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+35.73.05,3,Lowokwaru,age_group,55-59,,10205,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+35.73.05,3,Lowokwaru,age_group,60-64,,8538,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+35.73.05,3,Lowokwaru,age_group,65-69,,6943,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+35.73.05,3,Lowokwaru,age_group,70-74,,4665,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+35.73.05,3,Lowokwaru,age_group,75+,,4988,jiwa,2025,registration,total_population,3.2,34,,75 +

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3507-kecamatan-350704-dalam-angka-2025",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.07.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sumbermanjing Wetan Dalam Angka 2025",
+  "publisherName": "BPS Kabupaten Malang",
+  "publisherDomain": "3507",
+  "publisherWebsite": "https://malangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Malang (https://malangkab.bps.go.id), publikasi \"Kecamatan Sumbermanjing Wetan Dalam Angka 2025\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3507060",
+  "publicationNumber": "35070.25011",
+  "issn": "2828-9870",
+  "publicationYear": 2025,
+  "releaseDate": "2025-09-26",
+  "publicationUrl": "https://malangkab.bps.go.id/id/publication/2025/09/26/3add01564d48acf859835255/kecamatan-sumbermanjing-wetan-dalam-angka-2025.html",
+  "sourceFileSha256": "2c639c93e252c4d917feac705f2a149eef4d2bfc499980b03f71c6ddac411de6",
+  "sourceFileBytes": 8882924,
+  "sourcePages": [23, 24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Malang.",
+  "csvPath": "datasets/bps-3507-kecamatan-350704-dalam-angka-2025.csv",
+  "csvSha256": "13dcec589b564fbaa43c3167834ca6786144154cca1fdd6956e971e44386e980",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sumbermanjing Wetan, 2024",
+      "printedPages": [23, 24],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sumbermanjing Wetan, 2024",
+      "printedPages": [25],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

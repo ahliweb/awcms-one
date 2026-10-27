@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1204-kecamatan-120107-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.01.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tapian Nauli Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tapanuli Tengah",
+  "publisherDomain": "1204",
+  "publisherWebsite": "https://tapanulitengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tapanuli Tengah (https://tapanulitengahkab.bps.go.id), publikasi \"Kecamatan Tapian Nauli Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1204040",
+  "publicationNumber": "12040.26016",
+  "issn": "3031-5441",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tapanulitengahkab.bps.go.id/id/publication/2026/09/28/abf61701788d848826972496/kecamatan-tapian-nauli-dalam-angka-2026.html",
+  "sourceFileSha256": "db2f32bbb2edf30ebdb73ded28114415f4b15d8d1aebae9934e6b3991bc7e1df",
+  "sourceFileBytes": 11635115,
+  "sourcePages": [35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tapanuli Tengah .",
+  "csvPath": "datasets/bps-1204-kecamatan-120107-dalam-angka-2026.csv",
+  "csvSha256": "8c02d8313a5098112648564a9b63e8a7092d9f8c1e63499c2eac30a63ef50632",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Tapian Nauli , 202 5",
+      "printedPages": [35, 36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

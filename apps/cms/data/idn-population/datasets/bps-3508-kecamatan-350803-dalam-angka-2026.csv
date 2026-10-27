@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.08.03.2001,4,Jugosari,sex,laki_laki,,2002,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.03.2001,4,Jugosari,sex,perempuan,,1995,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.03.2001,4,Jugosari,total,total,,3997,jiwa,2025,registration,total_population,3.1,31,,
+35.08.03.2002,4,Jarit,sex,laki_laki,,6630,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.03.2002,4,Jarit,sex,perempuan,,6761,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.03.2002,4,Jarit,total,total,,13391,jiwa,2025,registration,total_population,3.1,31,,
+35.08.03.2003,4,Candipuro,sex,laki_laki,,4268,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.03.2003,4,Candipuro,sex,perempuan,,4178,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.03.2003,4,Candipuro,total,total,,8446,jiwa,2025,registration,total_population,3.1,31,,
+35.08.03.2004,4,Sumberejo,sex,laki_laki,,3264,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.03.2004,4,Sumberejo,sex,perempuan,,3143,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.03.2004,4,Sumberejo,total,total,,6407,jiwa,2025,registration,total_population,3.1,31,,
+35.08.03.2005,4,Sumberwuluh,sex,laki_laki,,4225,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.03.2005,4,Sumberwuluh,sex,perempuan,,4161,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.03.2005,4,Sumberwuluh,total,total,,8386,jiwa,2025,registration,total_population,3.1,31,,
+35.08.03.2006,4,Sumbermujur,sex,laki_laki,,6679,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.03.2006,4,Sumbermujur,sex,perempuan,,6564,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.03.2006,4,Sumbermujur,total,total,,13243,jiwa,2025,registration,total_population,3.1,31,,
+35.08.03.2007,4,Penanggal,sex,laki_laki,,4119,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.03.2007,4,Penanggal,sex,perempuan,,4233,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.03.2007,4,Penanggal,total,total,,8352,jiwa,2025,registration,total_population,3.1,31,,
+35.08.03.2008,4,Tambahrejo,sex,laki_laki,,1932,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.03.2008,4,Tambahrejo,sex,perempuan,,1947,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.03.2008,4,Tambahrejo,total,total,,3879,jiwa,2025,registration,total_population,3.1,31,,
+35.08.03.2009,4,Kloposawit,sex,laki_laki,,2318,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.03.2009,4,Kloposawit,sex,perempuan,,2268,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.03.2009,4,Kloposawit,total,total,,4586,jiwa,2025,registration,total_population,3.1,31,,
+35.08.03.2010,4,Tumpeng,sex,laki_laki,,3171,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.03.2010,4,Tumpeng,sex,perempuan,,3187,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.03.2010,4,Tumpeng,total,total,,6358,jiwa,2025,registration,total_population,3.1,31,,
+35.08.03,3,Kecamatan Candipuro,sex,laki_laki,,38608,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.03,3,Kecamatan Candipuro,sex,perempuan,,38437,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.03,3,Kecamatan Candipuro,total,total,,77045,jiwa,2025,registration,total_population,3.1,31,,

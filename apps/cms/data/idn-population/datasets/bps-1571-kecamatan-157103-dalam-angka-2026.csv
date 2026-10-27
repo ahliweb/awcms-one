@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.71.03.1005,4,Sulanjana,sex,perempuan,,1768,jiwa,2025,registration,total_population,3.1,,,Perempuan/Fem
+15.71.03.1005,4,Sulanjana,total,total,,3578,jiwa,2025,registration,total_population,3.1,,,
+15.71.03.1004,4,Budiman,sex,perempuan,,2220,jiwa,2025,registration,total_population,3.1,,,Perempuan/Fem
+15.71.03.1004,4,Budiman,total,total,,4500,jiwa,2025,registration,total_population,3.1,,,
+15.71.03.1003,4,Talang Banjar,sex,perempuan,,7086,jiwa,2025,registration,total_population,3.1,,,Perempuan/Fem
+15.71.03.1003,4,Talang Banjar,total,total,,14089,jiwa,2025,registration,total_population,3.1,,,
+15.71.03.1007,4,Tanjung Sari,sex,perempuan,,4283,jiwa,2025,registration,total_population,3.1,,,Perempuan/Fem
+15.71.03.1007,4,Tanjung Sari,total,total,,8632,jiwa,2025,registration,total_population,3.1,,,
+15.71.03.1010,4,Tanjung Pinang,sex,perempuan,,5964,jiwa,2025,registration,total_population,3.1,,,Perempuan/Fem
+15.71.03.1010,4,Tanjung Pinang,total,total,,12035,jiwa,2025,registration,total_population,3.1,,,
+15.71.03.1008,4,Rajawali,sex,perempuan,,3591,jiwa,2025,registration,total_population,3.1,,,Perempuan/Fem
+15.71.03.1008,4,Rajawali,total,total,,7218,jiwa,2025,registration,total_population,3.1,,,
+15.71.03.1006,4,Kasang,sex,perempuan,,2673,jiwa,2025,registration,total_population,3.1,,,Perempuan/Fem
+15.71.03.1006,4,Kasang,total,total,,5464,jiwa,2025,registration,total_population,3.1,,,
+15.71.03.1002,4,Kasang Jaya,sex,perempuan,,3265,jiwa,2025,registration,total_population,3.1,,,Perempuan/Fem
+15.71.03.1002,4,Kasang Jaya,total,total,,6723,jiwa,2025,registration,total_population,3.1,,,
+15.71.03.1001,4,Sijenjang,sex,perempuan,,2287,jiwa,2025,registration,total_population,3.1,,,Perempuan/Fem
+15.71.03.1001,4,Sijenjang,total,total,,4534,jiwa,2025,registration,total_population,3.1,,,
+15.71.03,3,Jambi Timur,sex,perempuan,,33137,jiwa,2025,registration,total_population,3.1,,,Perempuan/Fem
+15.71.03,3,Jambi Timur,total,total,,66773,jiwa,2025,registration,total_population,3.1,,,
+15.71.03,3,Jambi Timur,age_group,0-4,perempuan,1739,jiwa,2025,registration,total_population,3.2,,,0–4
+15.71.03,3,Jambi Timur,age_group,0-4,,3571,jiwa,2025,registration,total_population,3.2,,,0–4
+15.71.03,3,Jambi Timur,age_group,5-9,perempuan,2521,jiwa,2025,registration,total_population,3.2,,,5–9
+15.71.03,3,Jambi Timur,age_group,5-9,,5269,jiwa,2025,registration,total_population,3.2,,,5–9
+15.71.03,3,Jambi Timur,age_group,10-14,perempuan,2726,jiwa,2025,registration,total_population,3.2,,,10–14
+15.71.03,3,Jambi Timur,age_group,10-14,,5639,jiwa,2025,registration,total_population,3.2,,,10–14
+15.71.03,3,Jambi Timur,age_group,15-19,perempuan,2585,jiwa,2025,registration,total_population,3.2,,,15–19
+15.71.03,3,Jambi Timur,age_group,15-19,,5307,jiwa,2025,registration,total_population,3.2,,,15–19
+15.71.03,3,Jambi Timur,age_group,20-24,perempuan,2624,jiwa,2025,registration,total_population,3.2,,,20–24
+15.71.03,3,Jambi Timur,age_group,20-24,,5363,jiwa,2025,registration,total_population,3.2,,,20–24
+15.71.03,3,Jambi Timur,age_group,25-29,perempuan,2494,jiwa,2025,registration,total_population,3.2,,,25–29
+15.71.03,3,Jambi Timur,age_group,25-29,,5176,jiwa,2025,registration,total_population,3.2,,,25–29
+15.71.03,3,Jambi Timur,age_group,30-34,perempuan,2224,jiwa,2025,registration,total_population,3.2,,,30–34
+15.71.03,3,Jambi Timur,age_group,30-34,,4674,jiwa,2025,registration,total_population,3.2,,,30–34
+15.71.03,3,Jambi Timur,age_group,35-39,perempuan,2315,jiwa,2025,registration,total_population,3.2,,,35–39
+15.71.03,3,Jambi Timur,age_group,35-39,,4692,jiwa,2025,registration,total_population,3.2,,,35–39
+15.71.03,3,Jambi Timur,age_group,40-44,perempuan,2679,jiwa,2025,registration,total_population,3.2,,,40–44
+15.71.03,3,Jambi Timur,age_group,40-44,,5370,jiwa,2025,registration,total_population,3.2,,,40–44
+15.71.03,3,Jambi Timur,age_group,45-49,perempuan,2538,jiwa,2025,registration,total_population,3.2,,,45–49
+15.71.03,3,Jambi Timur,age_group,45-49,,5059,jiwa,2025,registration,total_population,3.2,,,45–49
+15.71.03,3,Jambi Timur,age_group,50-54,perempuan,2113,jiwa,2025,registration,total_population,3.2,,,50–54
+15.71.03,3,Jambi Timur,age_group,50-54,,4175,jiwa,2025,registration,total_population,3.2,,,50–54
+15.71.03,3,Jambi Timur,age_group,55-59,perempuan,1896,jiwa,2025,registration,total_population,3.2,,,55–59
+15.71.03,3,Jambi Timur,age_group,55-59,,3688,jiwa,2025,registration,total_population,3.2,,,55–59
+15.71.03,3,Jambi Timur,age_group,60-64,perempuan,1652,jiwa,2025,registration,total_population,3.2,,,60–64
+15.71.03,3,Jambi Timur,age_group,60-64,,3113,jiwa,2025,registration,total_population,3.2,,,60–64
+15.71.03,3,Jambi Timur,age_group,65-69,perempuan,1284,jiwa,2025,registration,total_population,3.2,,,65–69
+15.71.03,3,Jambi Timur,age_group,65-69,,2475,jiwa,2025,registration,total_population,3.2,,,65–69
+15.71.03,3,Jambi Timur,age_group,70-74,perempuan,859,jiwa,2025,registration,total_population,3.2,,,70–74
+15.71.03,3,Jambi Timur,age_group,70-74,,1626,jiwa,2025,registration,total_population,3.2,,,70–74
+15.71.03,3,Jambi Timur,age_group,75+,perempuan,888,jiwa,2025,registration,total_population,3.2,,,75+
+15.71.03,3,Jambi Timur,age_group,75+,,1576,jiwa,2025,registration,total_population,3.2,,,75+
+15.71.03,3,Jambi Timur,sex,perempuan,,33137,jiwa,2025,registration,total_population,3.2,,,Perempuan
+15.71.03,3,Jambi Timur,total,total,,66773,jiwa,2025,registration,total_population,3.2,,,

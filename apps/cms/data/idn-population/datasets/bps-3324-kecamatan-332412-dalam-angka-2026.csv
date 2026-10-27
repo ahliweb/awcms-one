@@ -1,0 +1,65 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.24.12.2001,4,Sidomukti,sex,perempuan,,2974,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.12.2001,4,Sidomukti,total,total,,6077,jiwa,2025,registration,total_population,3.1,27,,
+33.24.12.2002,4,Penyangkringan,sex,perempuan,,4221,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.12.2002,4,Penyangkringan,total,total,,8523,jiwa,2025,registration,total_population,3.1,27,,
+33.24.12.2003,4,Bumiayu,sex,perempuan,,2258,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.12.2003,4,Bumiayu,total,total,,4591,jiwa,2025,registration,total_population,3.1,27,,
+33.24.12.2004,4,Manggungsari,sex,perempuan,,1802,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.12.2004,4,Manggungsari,total,total,,3688,jiwa,2025,registration,total_population,3.1,27,,
+33.24.12.2005,4,Sumberagung,sex,perempuan,,2002,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.12.2005,4,Sumberagung,total,total,,4079,jiwa,2025,registration,total_population,3.1,27,,
+33.24.12.2006,4,Ngasinan,sex,perempuan,,841,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.12.2006,4,Ngasinan,total,total,,1658,jiwa,2025,registration,total_population,3.1,27,,
+33.24.12.2007,4,Weleri,sex,perempuan,,2513,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.12.2007,4,Weleri,total,total,,5043,jiwa,2025,registration,total_population,3.1,27,,
+33.24.12.2008,4,Nawangsari,sex,perempuan,,1467,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.12.2008,4,Nawangsari,total,total,,2950,jiwa,2025,registration,total_population,3.1,27,,
+33.24.12.2009,4,Karangdowo,sex,perempuan,,1361,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.12.2009,4,Karangdowo,total,total,,2674,jiwa,2025,registration,total_population,3.1,27,,
+33.24.12.2010,4,Penaruban,sex,perempuan,,2227,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.12.2010,4,Penaruban,total,total,,4486,jiwa,2025,registration,total_population,3.1,27,,
+33.24.12.2011,4,Sambongsari,sex,perempuan,,2810,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.12.2011,4,Sambongsari,total,total,,5644,jiwa,2025,registration,total_population,3.1,27,,
+33.24.12.2012,4,Karanganom,sex,perempuan,,1962,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.12.2012,4,Karanganom,total,total,,3991,jiwa,2025,registration,total_population,3.1,27,,
+33.24.12.2013,4,Payung,sex,perempuan,,765,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.12.2013,4,Payung,total,total,,1516,jiwa,2025,registration,total_population,3.1,27,,
+33.24.12.2014,4,Pucuksari,sex,perempuan,,1181,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.12.2014,4,Pucuksari,total,total,,2459,jiwa,2025,registration,total_population,3.1,27,,
+33.24.12.2015,4,Tratemulyo,sex,perempuan,,1763,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.12.2015,4,Tratemulyo,total,total,,3500,jiwa,2025,registration,total_population,3.1,27,,
+33.24.12.2016,4,Montongsari,sex,perempuan,,1557,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.12.2016,4,Montongsari,total,total,,3059,jiwa,2025,registration,total_population,3.1,27,,
+33.24.12,3,Weleri,age_group,0-4,perempuan,1656,jiwa,2025,registration,total_population,3.2,29,,00 – 04
+33.24.12,3,Weleri,age_group,0-4,,3474,jiwa,2025,registration,total_population,3.2,29,,00 – 04
+33.24.12,3,Weleri,age_group,5-9,perempuan,2242,jiwa,2025,registration,total_population,3.2,29,,05 – 09
+33.24.12,3,Weleri,age_group,5-9,,4700,jiwa,2025,registration,total_population,3.2,29,,05 – 09
+33.24.12,3,Weleri,age_group,10-14,perempuan,2375,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+33.24.12,3,Weleri,age_group,10-14,,5022,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+33.24.12,3,Weleri,age_group,15-19,perempuan,2305,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+33.24.12,3,Weleri,age_group,15-19,,4745,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+33.24.12,3,Weleri,age_group,20-24,perempuan,2234,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+33.24.12,3,Weleri,age_group,20-24,,4635,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+33.24.12,3,Weleri,age_group,25-29,perempuan,2228,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+33.24.12,3,Weleri,age_group,25-29,,4730,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+33.24.12,3,Weleri,age_group,30-34,perempuan,2335,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+33.24.12,3,Weleri,age_group,30-34,,4895,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+33.24.12,3,Weleri,age_group,35-39,perempuan,2360,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+33.24.12,3,Weleri,age_group,35-39,,4846,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+33.24.12,3,Weleri,age_group,40-44,perempuan,2632,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+33.24.12,3,Weleri,age_group,40-44,,5318,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+33.24.12,3,Weleri,age_group,45-49,perempuan,2472,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+33.24.12,3,Weleri,age_group,45-49,,4926,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+33.24.12,3,Weleri,age_group,50-54,perempuan,2193,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+33.24.12,3,Weleri,age_group,50-54,,4142,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+33.24.12,3,Weleri,age_group,55-59,perempuan,1987,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+33.24.12,3,Weleri,age_group,55-59,,3748,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+33.24.12,3,Weleri,age_group,60-64,perempuan,1819,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+33.24.12,3,Weleri,age_group,60-64,,3389,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+33.24.12,3,Weleri,age_group,65-69,perempuan,1359,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+33.24.12,3,Weleri,age_group,65-69,,2624,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+33.24.12,3,Weleri,age_group,70-74,perempuan,778,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+33.24.12,3,Weleri,age_group,70-74,,1521,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+33.24.12,3,Weleri,age_group,75+,perempuan,729,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.24.12,3,Weleri,age_group,75+,,1223,jiwa,2025,registration,total_population,3.2,29,,> 75

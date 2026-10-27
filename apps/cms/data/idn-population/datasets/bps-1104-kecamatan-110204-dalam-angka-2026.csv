@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.02.04.2016,4,KUTACANE LAMA,sex,laki_laki,,866,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.04.2016,4,KUTACANE LAMA,sex,perempuan,,820,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.04.2016,4,KUTACANE LAMA,total,total,,1686,jiwa,2025,registration,total_population,3.1,28,,
+11.02.04.2002,4,PERAPAT HILIR,sex,laki_laki,,666,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.04.2002,4,PERAPAT HILIR,sex,perempuan,,662,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.04.2002,4,PERAPAT HILIR,total,total,,1328,jiwa,2025,registration,total_population,3.1,28,,
+11.02.04.2003,4,PERAPAT HULU,sex,laki_laki,,794,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.04.2003,4,PERAPAT HULU,sex,perempuan,,820,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.04.2003,4,PERAPAT HULU,total,total,,1614,jiwa,2025,registration,total_population,3.1,28,,
+11.02.04.2015,4,PULO LATONG,sex,laki_laki,,626,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.04.2015,4,PULO LATONG,sex,perempuan,,617,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.04.2015,4,PULO LATONG,total,total,,1243,jiwa,2025,registration,total_population,3.1,28,,
+11.02.04.2001,4,KOTA KUTACANE,sex,laki_laki,,1639,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.04.2001,4,KOTA KUTACANE,sex,perempuan,,1714,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.04.2001,4,KOTA KUTACANE,total,total,,3353,jiwa,2025,registration,total_population,3.1,28,,
+11.02.04.2004,4,MUARA LAWE BULAN,sex,laki_laki,,484,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.04.2004,4,MUARA LAWE BULAN,sex,perempuan,,509,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.04.2004,4,MUARA LAWE BULAN,total,total,,993,jiwa,2025,registration,total_population,3.1,28,,
+11.02.04.2005,4,MBARUNG,sex,laki_laki,,669,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.04.2005,4,MBARUNG,sex,perempuan,,647,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.04.2005,4,MBARUNG,total,total,,1316,jiwa,2025,registration,total_population,3.1,28,,
+11.02.04.2010,4,PULONAS,sex,laki_laki,,1194,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.04.2010,4,PULONAS,sex,perempuan,,1167,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.04.2010,4,PULONAS,total,total,,2361,jiwa,2025,registration,total_population,3.1,28,,
+11.02.04.2009,4,KAMPUNG RAJA,sex,laki_laki,,402,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.04.2009,4,KAMPUNG RAJA,sex,perempuan,,423,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.04.2009,4,KAMPUNG RAJA,total,total,,825,jiwa,2025,registration,total_population,3.1,28,,
+11.02.04.2011,4,KAMPUNG MELAYU GABUNGAN,sex,laki_laki,,283,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.04.2011,4,KAMPUNG MELAYU GABUNGAN,sex,perempuan,,284,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.04.2011,4,KAMPUNG MELAYU GABUNGAN,total,total,,567,jiwa,2025,registration,total_population,3.1,28,,
+11.02.04.2012,4,TERUTUNG PEDI,sex,laki_laki,,518,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.04.2012,4,TERUTUNG PEDI,sex,perempuan,,517,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.04.2012,4,TERUTUNG PEDI,total,total,,1035,jiwa,2025,registration,total_population,3.1,28,,
+11.02.04.2014,4,GUMPANG JAYA,sex,laki_laki,,296,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.04.2014,4,GUMPANG JAYA,sex,perempuan,,303,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.04.2014,4,GUMPANG JAYA,total,total,,599,jiwa,2025,registration,total_population,3.1,28,,
+11.02.04.2020,4,UJUNG BARAT,sex,laki_laki,,147,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.04.2020,4,UJUNG BARAT,sex,perempuan,,140,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.04.2020,4,UJUNG BARAT,total,total,,287,jiwa,2025,registration,total_population,3.1,28,,
+11.02.04.2018,4,PULO PEDING,sex,laki_laki,,232,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+11.02.04.2018,4,PULO PEDING,sex,perempuan,,224,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+11.02.04.2018,4,PULO PEDING,total,total,,456,jiwa,2025,registration,total_population,3.1,28,,
+11.02.04.2027,4,MBARUNG DATUK SAUDANE,sex,laki_laki,,186,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.04.2027,4,MBARUNG DATUK SAUDANE,sex,perempuan,,175,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.04.2027,4,MBARUNG DATUK SAUDANE,total,total,,361,jiwa,2025,registration,total_population,3.1,29,,
+11.02.04,3,Babussalam,sex,laki_laki,,14700,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.04,3,Babussalam,sex,perempuan,,14620,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.04,3,Babussalam,total,total,,29320,jiwa,2025,registration,total_population,3.1,29,,

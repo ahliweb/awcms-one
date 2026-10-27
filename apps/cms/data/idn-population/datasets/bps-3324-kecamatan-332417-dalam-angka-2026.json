@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-3324-kecamatan-332417-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.24.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kangkung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kendal",
+  "publisherDomain": "3324",
+  "publisherWebsite": "https://kendalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kendal (https://kendalkab.bps.go.id), publikasi \"Kecamatan Kangkung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3324140",
+  "publicationNumber": "33240.26022",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kendalkab.bps.go.id/id/publication/2026/09/28/c965cdb348680bd3b72b2e98/kecamatan-kangkung-dalam-angka-2026.html",
+  "sourceFileSha256": "0e2feebbd4a5b32f0c95f8919f220e3c5a1f984c0e2b83454c3328cea760e5b7",
+  "sourceFileBytes": 8745692,
+  "sourcePages": [29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kendal.",
+  "csvPath": "datasets/bps-3324-kecamatan-332417-dalam-angka-2026.csv",
+  "csvSha256": "ef2d2296010b3796776e30d4c0175651a97a44731b7a4b25177c6c5a9ee65f49",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kangkung. 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"Kecamatan Kangkung Kangkung District\": unmatched "
+  ]
+}

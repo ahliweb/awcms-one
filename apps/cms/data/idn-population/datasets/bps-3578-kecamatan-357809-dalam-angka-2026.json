@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3578-kecamatan-357809-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.78.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sukolilo Dalam Angka 2026",
+  "publisherName": "BPS Kota Surabaya",
+  "publisherDomain": "3578",
+  "publisherWebsite": "https://surabayakota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Surabaya (https://surabayakota.bps.go.id), publikasi \"Kecamatan Sukolilo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3578080",
+  "publicationNumber": "35780.25016",
+  "issn": "3110-5254",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://surabayakota.bps.go.id/id/publication/2026/09/28/e138c8da82d43c21dc69f397/kecamatan-sukolilo-dalam-angka-2026.html",
+  "sourceFileSha256": "d5729b7bc26daa5e118b215f790164f43fb1b3186297af97c656469faf9734da",
+  "sourceFileBytes": 24366000,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Surabaya.",
+  "csvPath": "datasets/bps-3578-kecamatan-357809-dalam-angka-2026.csv",
+  "csvSha256": "a1da148b68a511b44708245d0fe602a83f48914b147881000cdc23dc5d47157b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sukolilo, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sukolilo, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Ngiden Jangkungan\": unmatched ",
+    "table 3.1: row not stored: row \"Ngiden Jangkungan\": unmatched "
+  ]
+}

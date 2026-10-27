@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.44.2006,4,Jatisari,sex,laki_laki,,4538,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.44.2006,4,Jatisari,sex,perempuan,,4300,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.44.2006,4,Jatisari,total,total,,8838,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.44.2003,4,Nagrak,sex,laki_laki,,9628,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.44.2003,4,Nagrak,sex,perempuan,,9216,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.44.2003,4,Nagrak,total,total,,18844,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.44.2004,4,Bandasari,sex,laki_laki,,5657,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.44.2004,4,Bandasari,sex,perempuan,,5496,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.44.2004,4,Bandasari,total,total,,11153,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.44.2005,4,Pananjung,sex,laki_laki,,6488,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.44.2005,4,Pananjung,sex,perempuan,,6251,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.44.2005,4,Pananjung,total,total,,12739,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.44.2002,4,Ciluncat,sex,laki_laki,,8325,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.44.2002,4,Ciluncat,sex,perempuan,,8229,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.44.2002,4,Ciluncat,total,total,,16554,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.44.2001,4,Cangkuang,sex,laki_laki,,5659,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.44.2001,4,Cangkuang,sex,perempuan,,5533,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.44.2001,4,Cangkuang,total,total,,11192,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.44.2007,4,Tanjungsari,sex,laki_laki,,4954,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.44.2007,4,Tanjungsari,sex,perempuan,,4639,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.44.2007,4,Tanjungsari,total,total,,9593,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.44,3,Kecamatan Cangkuang,sex,laki_laki,,45249,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.44,3,Kecamatan Cangkuang,sex,perempuan,,43664,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.44,3,Kecamatan Cangkuang,total,total,,88913,jiwa,2025,registration,total_population,unnumbered-p28,28,,

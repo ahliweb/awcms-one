@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1209-kecamatan-120805-dalam-angka-2025",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.08.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Panombeian Panei Dalam Angka 2025",
+  "publisherName": "BPS Kabupaten Simalungun",
+  "publisherDomain": "1209",
+  "publisherWebsite": "https://simalungunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Simalungun (https://simalungunkab.bps.go.id), publikasi \"Kecamatan Panombeian Panei Dalam Angka 2025\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1209091",
+  "publicationNumber": "12090.25020",
+  "issn": "2961-7154",
+  "publicationYear": 2025,
+  "releaseDate": "2025-09-26",
+  "publicationUrl": "https://simalungunkab.bps.go.id/id/publication/2025/09/26/f123e8555fb0d1e90dabfcce/kecamatan-panombeian-panei-dalam-angka-2025.html",
+  "sourceFileSha256": "2a8d7790298b290dc95bd718ddd4ff8358d9771cc2dbe869090a7b6e10e93576",
+  "sourceFileBytes": 10646005,
+  "sourcePages": [28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Simalungun.",
+  "csvPath": "datasets/bps-1209-kecamatan-120805-dalam-angka-2025.csv",
+  "csvSha256": "b894c01de748f3f89d6ecc5a5f3e1561d8577b82fd06921c9ec0efdc13131bf0",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Panombeian Panei, 2024",
+      "printedPages": [28],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

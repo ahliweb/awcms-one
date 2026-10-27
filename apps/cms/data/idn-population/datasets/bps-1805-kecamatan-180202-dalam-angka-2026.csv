@@ -1,0 +1,69 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.02.02.2001,4,Purwodadi,sex,perempuan,,2516,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.02.2001,4,Purwodadi,total,total,,5215,jiwa,2025,registration,total_population,3.1,37,,
+18.02.02.2002,4,Sidodadi,sex,perempuan,,2287,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.02.2002,4,Sidodadi,total,total,,4672,jiwa,2025,registration,total_population,3.1,37,,
+18.02.02.2003,4,Sidorejo,sex,perempuan,,2211,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.02.2003,4,Sidorejo,total,total,,4467,jiwa,2025,registration,total_population,3.1,37,,
+18.02.02.2004,4,Cimarias,sex,perempuan,,1882,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.02.2004,4,Cimarias,total,total,,3853,jiwa,2025,registration,total_population,3.1,37,,
+18.02.02.2005,4,Bangun Rejo,sex,perempuan,,3315,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.02.2005,4,Bangun Rejo,total,total,,6704,jiwa,2025,registration,total_population,3.1,37,,
+18.02.02.2006,4,Sidoluhur,sex,perempuan,,2812,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.02.2006,4,Sidoluhur,total,total,,5729,jiwa,2025,registration,total_population,3.1,37,,
+18.02.02.2007,4,Sidomulyo,sex,perempuan,,2480,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.02.2007,4,Sidomulyo,total,total,,5006,jiwa,2025,registration,total_population,3.1,37,,
+18.02.02.2008,4,Timbul Rejo,sex,perempuan,,755,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.02.2008,4,Timbul Rejo,total,total,,1577,jiwa,2025,registration,total_population,3.1,37,,
+18.02.02.2009,4,Suka Negara,sex,perempuan,,2858,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.02.2009,4,Suka Negara,total,total,,5760,jiwa,2025,registration,total_population,3.1,37,,
+18.02.02.2014,4,Sri Pendowo,sex,perempuan,,1700,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.02.2014,4,Sri Pendowo,total,total,,3432,jiwa,2025,registration,total_population,3.1,37,,
+18.02.02.2010,4,Sinar Seputih,sex,perempuan,,943,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.02.2010,4,Sinar Seputih,total,total,,1937,jiwa,2025,registration,total_population,3.1,37,,
+18.02.02.2011,4,Sinar Luas,sex,perempuan,,1269,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.02.2011,4,Sinar Luas,total,total,,2586,jiwa,2025,registration,total_population,3.1,37,,
+18.02.02.2013,4,Tanjung Jaya,sex,perempuan,,1192,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.02.2013,4,Tanjung Jaya,total,total,,2419,jiwa,2025,registration,total_population,3.1,37,,
+18.02.02.2012,4,Tanjung Pandan,sex,perempuan,,3779,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.02.2012,4,Tanjung Pandan,total,total,,7666,jiwa,2025,registration,total_population,3.1,37,,
+18.02.02.2016,4,Mekar Jaya,sex,perempuan,,1999,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.02.2016,4,Mekar Jaya,total,total,,4133,jiwa,2025,registration,total_population,3.1,37,,
+18.02.02.2017,4,Suka Negeri,sex,perempuan,,818,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.02.2017,4,Suka Negeri,total,total,,1646,jiwa,2025,registration,total_population,3.1,37,,
+18.02.02,3,Bangun Rejo,sex,perempuan,,34197,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+18.02.02,3,Bangun Rejo,total,total,,69643,jiwa,2025,registration,total_population,3.1,37,,
+18.02.02,3,Bangun Rejo,age_group,0-4,perempuan,2110,jiwa,2025,registration,total_population,3.2,39,,0–4
+18.02.02,3,Bangun Rejo,age_group,0-4,,4337,jiwa,2025,registration,total_population,3.2,39,,0–4
+18.02.02,3,Bangun Rejo,age_group,5-9,perempuan,2686,jiwa,2025,registration,total_population,3.2,39,,5–9
+18.02.02,3,Bangun Rejo,age_group,5-9,,5521,jiwa,2025,registration,total_population,3.2,39,,5–9
+18.02.02,3,Bangun Rejo,age_group,10-14,perempuan,2843,jiwa,2025,registration,total_population,3.2,39,,10–14
+18.02.02,3,Bangun Rejo,age_group,10-14,,5897,jiwa,2025,registration,total_population,3.2,39,,10–14
+18.02.02,3,Bangun Rejo,age_group,15-19,perempuan,2521,jiwa,2025,registration,total_population,3.2,39,,15–19
+18.02.02,3,Bangun Rejo,age_group,15-19,,5132,jiwa,2025,registration,total_population,3.2,39,,15–19
+18.02.02,3,Bangun Rejo,age_group,20-24,perempuan,2463,jiwa,2025,registration,total_population,3.2,39,,20–24
+18.02.02,3,Bangun Rejo,age_group,20-24,,5020,jiwa,2025,registration,total_population,3.2,39,,20–24
+18.02.02,3,Bangun Rejo,age_group,25-29,perempuan,2455,jiwa,2025,registration,total_population,3.2,39,,25–29
+18.02.02,3,Bangun Rejo,age_group,25-29,,5048,jiwa,2025,registration,total_population,3.2,39,,25–29
+18.02.02,3,Bangun Rejo,age_group,30-34,perempuan,2332,jiwa,2025,registration,total_population,3.2,39,,30–34
+18.02.02,3,Bangun Rejo,age_group,30-34,,4773,jiwa,2025,registration,total_population,3.2,39,,30–34
+18.02.02,3,Bangun Rejo,age_group,35-39,perempuan,2562,jiwa,2025,registration,total_population,3.2,39,,35–39
+18.02.02,3,Bangun Rejo,age_group,35-39,,5094,jiwa,2025,registration,total_population,3.2,39,,35–39
+18.02.02,3,Bangun Rejo,age_group,40-44,perempuan,2630,jiwa,2025,registration,total_population,3.2,39,,40–44
+18.02.02,3,Bangun Rejo,age_group,40-44,,5328,jiwa,2025,registration,total_population,3.2,39,,40–44
+18.02.02,3,Bangun Rejo,age_group,45-49,perempuan,2647,jiwa,2025,registration,total_population,3.2,39,,45–49
+18.02.02,3,Bangun Rejo,age_group,45-49,,5314,jiwa,2025,registration,total_population,3.2,39,,45–49
+18.02.02,3,Bangun Rejo,age_group,50-54,perempuan,2235,jiwa,2025,registration,total_population,3.2,39,,50–54
+18.02.02,3,Bangun Rejo,age_group,50-54,,4539,jiwa,2025,registration,total_population,3.2,39,,50–54
+18.02.02,3,Bangun Rejo,age_group,55-59,perempuan,1705,jiwa,2025,registration,total_population,3.2,39,,55–59
+18.02.02,3,Bangun Rejo,age_group,55-59,,3465,jiwa,2025,registration,total_population,3.2,39,,55–59
+18.02.02,3,Bangun Rejo,age_group,60-64,perempuan,1624,jiwa,2025,registration,total_population,3.2,39,,60–64
+18.02.02,3,Bangun Rejo,age_group,60-64,,3225,jiwa,2025,registration,total_population,3.2,39,,60–64
+18.02.02,3,Bangun Rejo,age_group,65-69,perempuan,1198,jiwa,2025,registration,total_population,3.2,39,,65–69
+18.02.02,3,Bangun Rejo,age_group,65-69,,2476,jiwa,2025,registration,total_population,3.2,39,,65–69
+18.02.02,3,Bangun Rejo,age_group,70-74,perempuan,871,jiwa,2025,registration,total_population,3.2,39,,70–74
+18.02.02,3,Bangun Rejo,age_group,70-74,,1825,jiwa,2025,registration,total_population,3.2,39,,70–74
+18.02.02,3,Bangun Rejo,age_group,75+,perempuan,1315,jiwa,2025,registration,total_population,3.2,39,,75+
+18.02.02,3,Bangun Rejo,age_group,75+,,2649,jiwa,2025,registration,total_population,3.2,39,,75+
+18.02.02,3,Bangun Rejo,sex,perempuan,,34197,jiwa,2025,registration,total_population,3.2,39,,Perempuan
+18.02.02,3,Bangun Rejo,total,total,,69643,jiwa,2025,registration,total_population,3.2,39,,

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3320-kecamatan-332010-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.20.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Karimunjawa Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Jepara",
+  "publisherDomain": "3320",
+  "publisherWebsite": "https://jeparakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Jepara (https://jeparakab.bps.go.id), publikasi \"Kecamatan Karimunjawa Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3320160",
+  "publicationNumber": "33200.26022",
+  "issn": "2614-9044",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jeparakab.bps.go.id/id/publication/2026/09/28/58abdad2ce1a059cf8716dbd/kecamatan-karimunjawa-dalam-angka-2026.html",
+  "sourceFileSha256": "50fc2b9f9212dd6b0ef97a10f86b720cab703e2f5567be0c8889a0789da2d596",
+  "sourceFileBytes": 11160018,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jepara.",
+  "csvPath": "datasets/bps-3320-kecamatan-332010-dalam-angka-2026.csv",
+  "csvSha256": "94c7e340b33dc02e77482b4d3a7273537557d43bab3b8b09141d05b93f18bf33",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Karimunjawa, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"001 Karimunjawa 2.823\": unmatched ",
+    "table 3.1: row not stored: row \"002 Kemujan 1.757\": unmatched ",
+    "table 3.1: row not stored: row \"003 Parang 647\": unmatched ",
+    "table 3.1: row not stored: row \"004 Nyamuk 334\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Karimunjawa 5.561 Karimunjawa District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Karimunjawa Karimunjawa District\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)",
+    "table 3.2: row not stored: row \"Kecamatan Karimunjawa Karimunjawa District\": unmatched "
+  ]
+}

@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.09.08.2002,4,Mojomulyo,sex,laki_laki,,4865,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.08.2002,4,Mojomulyo,sex,perempuan,,4773,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.08.2002,4,Mojomulyo,total,total,,9638,jiwa,2025,registration,total_population,3.1,33,,
+35.09.08.2003,4,Mojosari,sex,laki_laki,,5645,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.08.2003,4,Mojosari,sex,perempuan,,5483,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.08.2003,4,Mojosari,total,total,,11128,jiwa,2025,registration,total_population,3.1,33,,
+35.09.08.2004,4,Puger Kulon,sex,laki_laki,,8339,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.08.2004,4,Puger Kulon,sex,perempuan,,8000,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.08.2004,4,Puger Kulon,total,total,,16339,jiwa,2025,registration,total_population,3.1,33,,
+35.09.08.2012,4,Puger Wetan,sex,laki_laki,,5700,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.08.2012,4,Puger Wetan,sex,perempuan,,5482,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.08.2012,4,Puger Wetan,total,total,,11182,jiwa,2025,registration,total_population,3.1,33,,
+35.09.08.2011,4,Grenden,sex,laki_laki,,7993,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.08.2011,4,Grenden,sex,perempuan,,7906,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.08.2011,4,Grenden,total,total,,15899,jiwa,2025,registration,total_population,3.1,33,,
+35.09.08.2001,4,Mlokorejo,sex,laki_laki,,5674,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.08.2001,4,Mlokorejo,sex,perempuan,,5626,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.08.2001,4,Mlokorejo,total,total,,11300,jiwa,2025,registration,total_population,3.1,33,,
+35.09.08.2006,4,Kasiyan,sex,laki_laki,,4435,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.08.2006,4,Kasiyan,sex,perempuan,,4296,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.08.2006,4,Kasiyan,total,total,,8731,jiwa,2025,registration,total_population,3.1,33,,
+35.09.08.2008,4,Kasiyan Timur,sex,laki_laki,,6665,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.08.2008,4,Kasiyan Timur,sex,perempuan,,6646,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.08.2008,4,Kasiyan Timur,total,total,,13311,jiwa,2025,registration,total_population,3.1,33,,
+35.09.08.2009,4,Wonosari,sex,laki_laki,,4362,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.08.2009,4,Wonosari,sex,perempuan,,4309,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.08.2009,4,Wonosari,total,total,,8671,jiwa,2025,registration,total_population,3.1,33,,
+35.09.08.2010,4,Jambearum,sex,laki_laki,,3898,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.08.2010,4,Jambearum,sex,perempuan,,3725,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.08.2010,4,Jambearum,total,total,,7623,jiwa,2025,registration,total_population,3.1,33,,
+35.09.08.2007,4,Bagon,sex,laki_laki,,3174,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.08.2007,4,Bagon,sex,perempuan,,3157,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.08.2007,4,Bagon,total,total,,6331,jiwa,2025,registration,total_population,3.1,33,,
+35.09.08.2005,4,Wringintelu,sex,laki_laki,,3547,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.08.2005,4,Wringintelu,sex,perempuan,,3443,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.08.2005,4,Wringintelu,total,total,,6990,jiwa,2025,registration,total_population,3.1,33,,
+35.09.08,3,Kecamatan Puger,sex,laki_laki,,64297,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.08,3,Kecamatan Puger,sex,perempuan,,62846,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.08,3,Kecamatan Puger,total,total,,127143,jiwa,2025,registration,total_population,3.1,33,,
+35.09.08,3,Puger,age_group,0-4,laki_laki,2843,jiwa,2025,registration,total_population,3.2,35,,0-4
+35.09.08,3,Puger,age_group,0-4,perempuan,2817,jiwa,2025,registration,total_population,3.2,35,,0-4
+35.09.08,3,Puger,age_group,0-4,,5660,jiwa,2025,registration,total_population,3.2,35,,0-4
+35.09.08,3,Puger,age_group,5-9,laki_laki,4480,jiwa,2025,registration,total_population,3.2,35,,5-9
+35.09.08,3,Puger,age_group,5-9,perempuan,4262,jiwa,2025,registration,total_population,3.2,35,,5-9
+35.09.08,3,Puger,age_group,5-9,,8742,jiwa,2025,registration,total_population,3.2,35,,5-9
+35.09.08,3,Puger,age_group,10-14,laki_laki,4855,jiwa,2025,registration,total_population,3.2,35,,10-14
+35.09.08,3,Puger,age_group,10-14,perempuan,4625,jiwa,2025,registration,total_population,3.2,35,,10-14
+35.09.08,3,Puger,age_group,10-14,,9480,jiwa,2025,registration,total_population,3.2,35,,10-14
+35.09.08,3,Puger,age_group,15-19,laki_laki,4368,jiwa,2025,registration,total_population,3.2,35,,15-19
+35.09.08,3,Puger,age_group,15-19,perempuan,4209,jiwa,2025,registration,total_population,3.2,35,,15-19
+35.09.08,3,Puger,age_group,15-19,,8577,jiwa,2025,registration,total_population,3.2,35,,15-19
+35.09.08,3,Puger,age_group,20-24,laki_laki,4717,jiwa,2025,registration,total_population,3.2,35,,20-24
+35.09.08,3,Puger,age_group,20-24,perempuan,4568,jiwa,2025,registration,total_population,3.2,35,,20-24
+35.09.08,3,Puger,age_group,20-24,,9285,jiwa,2025,registration,total_population,3.2,35,,20-24
+35.09.08,3,Puger,age_group,25-29,laki_laki,4909,jiwa,2025,registration,total_population,3.2,35,,25-29
+35.09.08,3,Puger,age_group,25-29,perempuan,4537,jiwa,2025,registration,total_population,3.2,35,,25-29
+35.09.08,3,Puger,age_group,25-29,,9446,jiwa,2025,registration,total_population,3.2,35,,25-29
+35.09.08,3,Puger,age_group,30-34,laki_laki,4843,jiwa,2025,registration,total_population,3.2,35,,30-34
+35.09.08,3,Puger,age_group,30-34,perempuan,4298,jiwa,2025,registration,total_population,3.2,35,,30-34
+35.09.08,3,Puger,age_group,30-34,,9141,jiwa,2025,registration,total_population,3.2,35,,30-34
+35.09.08,3,Puger,age_group,35-39,laki_laki,4474,jiwa,2025,registration,total_population,3.2,35,,35-39
+35.09.08,3,Puger,age_group,35-39,perempuan,4237,jiwa,2025,registration,total_population,3.2,35,,35-39
+35.09.08,3,Puger,age_group,35-39,,8711,jiwa,2025,registration,total_population,3.2,35,,35-39
+35.09.08,3,Puger,age_group,40-44,laki_laki,4826,jiwa,2025,registration,total_population,3.2,35,,40-44
+35.09.08,3,Puger,age_group,40-44,perempuan,4839,jiwa,2025,registration,total_population,3.2,35,,40-44
+35.09.08,3,Puger,age_group,40-44,,9665,jiwa,2025,registration,total_population,3.2,35,,40-44
+35.09.08,3,Puger,age_group,45-49,laki_laki,4458,jiwa,2025,registration,total_population,3.2,35,,45-49
+35.09.08,3,Puger,age_group,45-49,perempuan,4734,jiwa,2025,registration,total_population,3.2,35,,45-49
+35.09.08,3,Puger,age_group,45-49,,9192,jiwa,2025,registration,total_population,3.2,35,,45-49
+35.09.08,3,Puger,age_group,50-54,laki_laki,4605,jiwa,2025,registration,total_population,3.2,35,,50-54
+35.09.08,3,Puger,age_group,50-54,perempuan,4817,jiwa,2025,registration,total_population,3.2,35,,50-54
+35.09.08,3,Puger,age_group,50-54,,9422,jiwa,2025,registration,total_population,3.2,35,,50-54
+35.09.08,3,Puger,age_group,55-59,laki_laki,4217,jiwa,2025,registration,total_population,3.2,35,,55-59
+35.09.08,3,Puger,age_group,55-59,perempuan,4157,jiwa,2025,registration,total_population,3.2,35,,55-59
+35.09.08,3,Puger,age_group,55-59,,8374,jiwa,2025,registration,total_population,3.2,35,,55-59
+35.09.08,3,Puger,age_group,60-64,laki_laki,3511,jiwa,2025,registration,total_population,3.2,35,,60-64
+35.09.08,3,Puger,age_group,60-64,perempuan,3625,jiwa,2025,registration,total_population,3.2,35,,60-64
+35.09.08,3,Puger,age_group,60-64,,7136,jiwa,2025,registration,total_population,3.2,35,,60-64
+35.09.08,3,Puger,age_group,65-69,laki_laki,2740,jiwa,2025,registration,total_population,3.2,35,,65-69
+35.09.08,3,Puger,age_group,65-69,perempuan,2766,jiwa,2025,registration,total_population,3.2,35,,65-69
+35.09.08,3,Puger,age_group,65-69,,5506,jiwa,2025,registration,total_population,3.2,35,,65-69
+35.09.08,3,Puger,age_group,70-74,laki_laki,1953,jiwa,2025,registration,total_population,3.2,35,,70-74
+35.09.08,3,Puger,age_group,70-74,perempuan,1827,jiwa,2025,registration,total_population,3.2,35,,70-74
+35.09.08,3,Puger,age_group,70-74,,3780,jiwa,2025,registration,total_population,3.2,35,,70-74
+35.09.08,3,Puger,age_group,75+,laki_laki,2498,jiwa,2025,registration,total_population,3.2,35,,75+
+35.09.08,3,Puger,age_group,75+,perempuan,2528,jiwa,2025,registration,total_population,3.2,35,,75+
+35.09.08,3,Puger,age_group,75+,,5026,jiwa,2025,registration,total_population,3.2,35,,75+
+35.09.08,3,Kecamatan Puger,sex,laki_laki,,64297,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+35.09.08,3,Kecamatan Puger,sex,perempuan,,62846,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+35.09.08,3,Kecamatan Puger,total,total,,127143,jiwa,2025,registration,total_population,3.2,35,,

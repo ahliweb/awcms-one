@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.02.14.2010,4,Gelangkulon,sex,laki_laki,,1975,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.02.14.2010,4,Gelangkulon,sex,perempuan,,2007,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.02.14.2010,4,Gelangkulon,total,total,,3982,jiwa,2025,registration,total_population,3.1,31,,
+35.02.14.2011,4,Karang Waluh,sex,laki_laki,,1351,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.02.14.2011,4,Karang Waluh,sex,perempuan,,1356,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.02.14.2011,4,Karang Waluh,total,total,,2707,jiwa,2025,registration,total_population,3.1,31,,
+35.02.14.2009,4,Glinggang,sex,laki_laki,,869,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.02.14.2009,4,Glinggang,sex,perempuan,,874,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.02.14.2009,4,Glinggang,total,total,,1743,jiwa,2025,registration,total_population,3.1,31,,
+35.02.14.2006,4,Carang Rejo,sex,laki_laki,,2547,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.02.14.2006,4,Carang Rejo,sex,perempuan,,2583,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.02.14.2006,4,Carang Rejo,total,total,,5130,jiwa,2025,registration,total_population,3.1,31,,
+35.02.14.2005,4,Tulung,sex,laki_laki,,1836,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.02.14.2005,4,Tulung,sex,perempuan,,1864,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.02.14.2005,4,Tulung,total,total,,3700,jiwa,2025,registration,total_population,3.1,31,,
+35.02.14.2008,4,Kunti,sex,laki_laki,,1904,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.02.14.2008,4,Kunti,sex,perempuan,,1918,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.02.14.2008,4,Kunti,total,total,,3822,jiwa,2025,registration,total_population,3.1,31,,
+35.02.14.2007,4,Pagerukir,sex,laki_laki,,1075,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.02.14.2007,4,Pagerukir,sex,perempuan,,1049,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.02.14.2007,4,Pagerukir,total,total,,2124,jiwa,2025,registration,total_population,3.1,31,,
+35.02.14.2002,4,Pohijo,sex,laki_laki,,1889,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.02.14.2002,4,Pohijo,sex,perempuan,,1992,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.02.14.2002,4,Pohijo,total,total,,3881,jiwa,2025,registration,total_population,3.1,31,,
+35.02.14.2003,4,Jenangan,sex,laki_laki,,1189,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.02.14.2003,4,Jenangan,sex,perempuan,,1275,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.02.14.2003,4,Jenangan,total,total,,2464,jiwa,2025,registration,total_population,3.1,31,,
+35.02.14.2004,4,Nglurup,sex,laki_laki,,1169,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.02.14.2004,4,Nglurup,sex,perempuan,,1233,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.02.14.2004,4,Nglurup,total,total,,2402,jiwa,2025,registration,total_population,3.1,31,,
+35.02.14.2001,4,Sampung,sex,laki_laki,,2680,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.02.14.2001,4,Sampung,sex,perempuan,,2747,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.02.14.2001,4,Sampung,total,total,,5427,jiwa,2025,registration,total_population,3.1,31,,
+35.02.14.2012,4,Ringin Putih,sex,laki_laki,,1702,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.02.14.2012,4,Ringin Putih,sex,perempuan,,1787,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.02.14.2012,4,Ringin Putih,total,total,,3489,jiwa,2025,registration,total_population,3.1,31,,
+35.02.14,3,Sampung,sex,laki_laki,,20186,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.02.14,3,Sampung,sex,perempuan,,20685,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.02.14,3,Sampung,total,total,,40871,jiwa,2025,registration,total_population,3.1,31,,
+35.02.14,3,Sampung,age_group,0-4,laki_laki,935,jiwa,2025,registration,total_population,3.2,33,,0-4
+35.02.14,3,Sampung,age_group,0-4,perempuan,821,jiwa,2025,registration,total_population,3.2,33,,0-4
+35.02.14,3,Sampung,age_group,0-4,,1756,jiwa,2025,registration,total_population,3.2,33,,0-4
+35.02.14,3,Sampung,age_group,5-9,laki_laki,1151,jiwa,2025,registration,total_population,3.2,33,,5-9
+35.02.14,3,Sampung,age_group,5-9,perempuan,1085,jiwa,2025,registration,total_population,3.2,33,,5-9
+35.02.14,3,Sampung,age_group,5-9,,2236,jiwa,2025,registration,total_population,3.2,33,,5-9
+35.02.14,3,Sampung,age_group,10-14,laki_laki,1204,jiwa,2025,registration,total_population,3.2,33,,10-14
+35.02.14,3,Sampung,age_group,10-14,perempuan,1241,jiwa,2025,registration,total_population,3.2,33,,10-14
+35.02.14,3,Sampung,age_group,10-14,,2445,jiwa,2025,registration,total_population,3.2,33,,10-14
+35.02.14,3,Sampung,age_group,15-19,laki_laki,1363,jiwa,2025,registration,total_population,3.2,33,,15-19
+35.02.14,3,Sampung,age_group,15-19,perempuan,1235,jiwa,2025,registration,total_population,3.2,33,,15-19
+35.02.14,3,Sampung,age_group,15-19,,2598,jiwa,2025,registration,total_population,3.2,33,,15-19
+35.02.14,3,Sampung,age_group,20-24,laki_laki,1300,jiwa,2025,registration,total_population,3.2,33,,20-24
+35.02.14,3,Sampung,age_group,20-24,perempuan,1192,jiwa,2025,registration,total_population,3.2,33,,20-24
+35.02.14,3,Sampung,age_group,20-24,,2492,jiwa,2025,registration,total_population,3.2,33,,20-24
+35.02.14,3,Sampung,age_group,25-29,laki_laki,1443,jiwa,2025,registration,total_population,3.2,33,,25-29
+35.02.14,3,Sampung,age_group,25-29,perempuan,1241,jiwa,2025,registration,total_population,3.2,33,,25-29
+35.02.14,3,Sampung,age_group,25-29,,2684,jiwa,2025,registration,total_population,3.2,33,,25-29
+35.02.14,3,Sampung,age_group,30-34,laki_laki,1408,jiwa,2025,registration,total_population,3.2,33,,30-34
+35.02.14,3,Sampung,age_group,30-34,perempuan,1310,jiwa,2025,registration,total_population,3.2,33,,30-34
+35.02.14,3,Sampung,age_group,30-34,,2718,jiwa,2025,registration,total_population,3.2,33,,30-34
+35.02.14,3,Sampung,age_group,35-39,laki_laki,1294,jiwa,2025,registration,total_population,3.2,33,,35-39
+35.02.14,3,Sampung,age_group,35-39,perempuan,1272,jiwa,2025,registration,total_population,3.2,33,,35-39
+35.02.14,3,Sampung,age_group,35-39,,2566,jiwa,2025,registration,total_population,3.2,33,,35-39
+35.02.14,3,Sampung,age_group,40-44,laki_laki,1455,jiwa,2025,registration,total_population,3.2,33,,40-44
+35.02.14,3,Sampung,age_group,40-44,perempuan,1584,jiwa,2025,registration,total_population,3.2,33,,40-44
+35.02.14,3,Sampung,age_group,40-44,,3039,jiwa,2025,registration,total_population,3.2,33,,40-44
+35.02.14,3,Sampung,age_group,45-49,laki_laki,1293,jiwa,2025,registration,total_population,3.2,33,,45-49
+35.02.14,3,Sampung,age_group,45-49,perempuan,1402,jiwa,2025,registration,total_population,3.2,33,,45-49
+35.02.14,3,Sampung,age_group,45-49,,2695,jiwa,2025,registration,total_population,3.2,33,,45-49
+35.02.14,3,Sampung,age_group,50-54,laki_laki,1448,jiwa,2025,registration,total_population,3.2,33,,50-54
+35.02.14,3,Sampung,age_group,50-54,perempuan,1619,jiwa,2025,registration,total_population,3.2,33,,50-54
+35.02.14,3,Sampung,age_group,50-54,,3067,jiwa,2025,registration,total_population,3.2,33,,50-54
+35.02.14,3,Sampung,age_group,55-59,laki_laki,1458,jiwa,2025,registration,total_population,3.2,33,,55-59
+35.02.14,3,Sampung,age_group,55-59,perempuan,1540,jiwa,2025,registration,total_population,3.2,33,,55-59
+35.02.14,3,Sampung,age_group,55-59,,2998,jiwa,2025,registration,total_population,3.2,33,,55-59
+35.02.14,3,Sampung,age_group,60-64,laki_laki,1277,jiwa,2025,registration,total_population,3.2,33,,60-64
+35.02.14,3,Sampung,age_group,60-64,perempuan,1394,jiwa,2025,registration,total_population,3.2,33,,60-64
+35.02.14,3,Sampung,age_group,60-64,,2671,jiwa,2025,registration,total_population,3.2,33,,60-64
+35.02.14,3,Sampung,age_group,65-69,laki_laki,1105,jiwa,2025,registration,total_population,3.2,33,,65-69
+35.02.14,3,Sampung,age_group,65-69,perempuan,1256,jiwa,2025,registration,total_population,3.2,33,,65-69
+35.02.14,3,Sampung,age_group,65-69,,2361,jiwa,2025,registration,total_population,3.2,33,,65-69
+35.02.14,3,Sampung,age_group,70-74,laki_laki,910,jiwa,2025,registration,total_population,3.2,33,,70-74
+35.02.14,3,Sampung,age_group,70-74,perempuan,920,jiwa,2025,registration,total_population,3.2,33,,70-74
+35.02.14,3,Sampung,age_group,70-74,,1830,jiwa,2025,registration,total_population,3.2,33,,70-74
+35.02.14,3,Sampung,age_group,75+,laki_laki,1142,jiwa,2025,registration,total_population,3.2,33,,>75
+35.02.14,3,Sampung,age_group,75+,perempuan,1573,jiwa,2025,registration,total_population,3.2,33,,>75
+35.02.14,3,Sampung,age_group,75+,,2715,jiwa,2025,registration,total_population,3.2,33,,>75
+35.02.14,3,Sampung,sex,laki_laki,,20186,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+35.02.14,3,Sampung,sex,perempuan,,20685,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+35.02.14,3,Sampung,total,total,,40871,jiwa,2025,registration,total_population,3.2,33,,

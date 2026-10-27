@@ -1,0 +1,143 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.07.01,3,Wadaslintang,religion,islam,,65740,jiwa,2025,registration,total_population,4.3.1,239,,Islam
+33.07.01,3,Wadaslintang,religion,kristen,,169,jiwa,2025,registration,total_population,4.3.1,239,,Protestan
+33.07.01,3,Wadaslintang,religion,katolik,,37,jiwa,2025,registration,total_population,4.3.1,239,,Katolik
+33.07.01,3,Wadaslintang,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,239,,Hindu
+33.07.01,3,Wadaslintang,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,239,,Budha
+33.07.01,3,Wadaslintang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,239,nil,Lainnya
+33.07.02,3,Kepil,religion,islam,,69955,jiwa,2025,registration,total_population,4.3.1,239,,Islam
+33.07.02,3,Kepil,religion,kristen,,20,jiwa,2025,registration,total_population,4.3.1,239,,Protestan
+33.07.02,3,Kepil,religion,katolik,,6,jiwa,2025,registration,total_population,4.3.1,239,,Katolik
+33.07.02,3,Kepil,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,239,nil,Hindu
+33.07.02,3,Kepil,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,239,,Budha
+33.07.02,3,Kepil,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,239,,Lainnya
+33.07.03,3,Sapuran,religion,islam,,66494,jiwa,2025,registration,total_population,4.3.1,239,,Islam
+33.07.03,3,Sapuran,religion,kristen,,278,jiwa,2025,registration,total_population,4.3.1,239,,Protestan
+33.07.03,3,Sapuran,religion,katolik,,57,jiwa,2025,registration,total_population,4.3.1,239,,Katolik
+33.07.03,3,Sapuran,religion,hindu,,42,jiwa,2025,registration,total_population,4.3.1,239,,Hindu
+33.07.03,3,Sapuran,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,239,nil,Budha
+33.07.03,3,Sapuran,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,239,nil,Lainnya
+33.07.15,3,Kalibawang,religion,islam,,29974,jiwa,2025,registration,total_population,4.3.1,239,,Islam
+33.07.15,3,Kalibawang,religion,kristen,,6,jiwa,2025,registration,total_population,4.3.1,239,,Protestan
+33.07.15,3,Kalibawang,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,239,nil,Katolik
+33.07.15,3,Kalibawang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,239,nil,Hindu
+33.07.15,3,Kalibawang,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,239,,Budha
+33.07.15,3,Kalibawang,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,239,,Lainnya
+33.07.04,3,Kaliwiro,religion,islam,,56270,jiwa,2025,registration,total_population,4.3.1,239,,Islam
+33.07.04,3,Kaliwiro,religion,kristen,,247,jiwa,2025,registration,total_population,4.3.1,239,,Protestan
+33.07.04,3,Kaliwiro,religion,katolik,,90,jiwa,2025,registration,total_population,4.3.1,239,,Katolik
+33.07.04,3,Kaliwiro,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,239,nil,Hindu
+33.07.04,3,Kaliwiro,religion,buddha,,12,jiwa,2025,registration,total_population,4.3.1,239,,Budha
+33.07.04,3,Kaliwiro,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,239,,Lainnya
+33.07.05,3,Leksono,religion,islam,,48968,jiwa,2025,registration,total_population,4.3.1,239,,Islam
+33.07.05,3,Leksono,religion,kristen,,314,jiwa,2025,registration,total_population,4.3.1,239,,Protestan
+33.07.05,3,Leksono,religion,katolik,,32,jiwa,2025,registration,total_population,4.3.1,239,,Katolik
+33.07.05,3,Leksono,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,239,,Hindu
+33.07.05,3,Leksono,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,239,,Budha
+33.07.05,3,Leksono,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,239,,Lainnya
+33.07.14,3,Sukoharjo,religion,islam,,37231,jiwa,2025,registration,total_population,4.3.1,239,,Islam
+33.07.14,3,Sukoharjo,religion,kristen,,118,jiwa,2025,registration,total_population,4.3.1,239,,Protestan
+33.07.14,3,Sukoharjo,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,239,,Katolik
+33.07.14,3,Sukoharjo,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,239,,Hindu
+33.07.14,3,Sukoharjo,religion,buddha,,42,jiwa,2025,registration,total_population,4.3.1,239,,Budha
+33.07.14,3,Sukoharjo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,239,nil,Lainnya
+33.07.06,3,Selomerto,religion,islam,,56359,jiwa,2025,registration,total_population,4.3.1,239,,Islam
+33.07.06,3,Selomerto,religion,kristen,,1209,jiwa,2025,registration,total_population,4.3.1,239,,Protestan
+33.07.06,3,Selomerto,religion,katolik,,278,jiwa,2025,registration,total_population,4.3.1,239,,Katolik
+33.07.06,3,Selomerto,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,239,,Hindu
+33.07.06,3,Selomerto,religion,buddha,,68,jiwa,2025,registration,total_population,4.3.1,239,,Budha
+33.07.06,3,Selomerto,religion,lainnya,,18,jiwa,2025,registration,total_population,4.3.1,239,,Lainnya
+33.07.07,3,Kalikajar,religion,islam,,77627,jiwa,2025,registration,total_population,4.3.1,239,,Islam
+33.07.07,3,Kalikajar,religion,kristen,,167,jiwa,2025,registration,total_population,4.3.1,239,,Protestan
+33.07.07,3,Kalikajar,religion,katolik,,48,jiwa,2025,registration,total_population,4.3.1,239,,Katolik
+33.07.07,3,Kalikajar,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,239,nil,Hindu
+33.07.07,3,Kalikajar,religion,buddha,,160,jiwa,2025,registration,total_population,4.3.1,239,,Budha
+33.07.07,3,Kalikajar,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,239,,Lainnya
+33.07.08,3,Kertek,religion,islam,,96315,jiwa,2025,registration,total_population,4.3.1,239,,Islam
+33.07.08,3,Kertek,religion,kristen,,314,jiwa,2025,registration,total_population,4.3.1,239,,Protestan
+33.07.08,3,Kertek,religion,katolik,,1025,jiwa,2025,registration,total_population,4.3.1,239,,Katolik
+33.07.08,3,Kertek,religion,hindu,,83,jiwa,2025,registration,total_population,4.3.1,239,,Hindu
+33.07.08,3,Kertek,religion,buddha,,34,jiwa,2025,registration,total_population,4.3.1,239,,Budha
+33.07.08,3,Kertek,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,239,nil,Lainnya
+33.07.09,3,Wonosobo,religion,islam,,94378,jiwa,2025,registration,total_population,4.3.1,239,,Islam
+33.07.09,3,Wonosobo,religion,kristen,,2141,jiwa,2025,registration,total_population,4.3.1,239,,Protestan
+33.07.09,3,Wonosobo,religion,katolik,,1377,jiwa,2025,registration,total_population,4.3.1,239,,Katolik
+33.07.09,3,Wonosobo,religion,hindu,,18,jiwa,2025,registration,total_population,4.3.1,239,,Hindu
+33.07.09,3,Wonosobo,religion,buddha,,210,jiwa,2025,registration,total_population,4.3.1,239,,Budha
+33.07.09,3,Wonosobo,religion,lainnya,,10,jiwa,2025,registration,total_population,4.3.1,239,,Lainnya
+33.07.10,3,Watumalang,religion,islam,,60332,jiwa,2025,registration,total_population,4.3.1,239,,Islam
+33.07.10,3,Watumalang,religion,kristen,,147,jiwa,2025,registration,total_population,4.3.1,239,,Protestan
+33.07.10,3,Watumalang,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,239,,Katolik
+33.07.10,3,Watumalang,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,239,,Hindu
+33.07.10,3,Watumalang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,239,nil,Budha
+33.07.10,3,Watumalang,religion,lainnya,,7,jiwa,2025,registration,total_population,4.3.1,239,,Lainnya
+33.07.11,3,Mojotengah,religion,islam,,71468,jiwa,2025,registration,total_population,4.3.1,239,,Islam
+33.07.11,3,Mojotengah,religion,kristen,,75,jiwa,2025,registration,total_population,4.3.1,239,,Protestan
+33.07.11,3,Mojotengah,religion,katolik,,125,jiwa,2025,registration,total_population,4.3.1,239,,Katolik
+33.07.11,3,Mojotengah,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,239,,Hindu
+33.07.11,3,Mojotengah,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,239,,Budha
+33.07.11,3,Mojotengah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,239,nil,Lainnya
+33.07.12,3,Garung,religion,islam,,61751,jiwa,2025,registration,total_population,4.3.1,239,,Islam
+33.07.12,3,Garung,religion,kristen,,19,jiwa,2025,registration,total_population,4.3.1,239,,Protestan
+33.07.12,3,Garung,religion,katolik,,49,jiwa,2025,registration,total_population,4.3.1,239,,Katolik
+33.07.12,3,Garung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,239,nil,Hindu
+33.07.12,3,Garung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,239,nil,Budha
+33.07.12,3,Garung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,239,nil,Lainnya
+33.07.13,3,Kejajar,religion,islam,,49358,jiwa,2025,registration,total_population,4.3.1,239,,Islam
+33.07.13,3,Kejajar,religion,kristen,,14,jiwa,2025,registration,total_population,4.3.1,239,,Protestan
+33.07.13,3,Kejajar,religion,katolik,,168,jiwa,2025,registration,total_population,4.3.1,239,,Katolik
+33.07.13,3,Kejajar,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,239,nil,Hindu
+33.07.13,3,Kejajar,religion,buddha,,64,jiwa,2025,registration,total_population,4.3.1,239,,Budha
+33.07.13,3,Kejajar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,239,nil,Lainnya
+33.07,2,Wonosobo,religion,islam,,942220,jiwa,2025,registration,total_population,4.3.1,239,,Islam
+33.07,2,Wonosobo,religion,kristen,,5238,jiwa,2025,registration,total_population,4.3.1,239,,Protestan
+33.07,2,Wonosobo,religion,katolik,,3297,jiwa,2025,registration,total_population,4.3.1,239,,Katolik
+33.07,2,Wonosobo,religion,hindu,,153,jiwa,2025,registration,total_population,4.3.1,239,,Hindu
+33.07,2,Wonosobo,religion,buddha,,598,jiwa,2025,registration,total_population,4.3.1,239,,Budha
+33.07,2,Wonosobo,religion,lainnya,,44,jiwa,2025,registration,total_population,4.3.1,239,,Lainnya
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/padi_padian,,67455,rupiah,2024,survey_estimate,per_capita,10.1,483,,Padi-padian
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/padi_padian,,66801,rupiah,2025,survey_estimate,per_capita,10.1,483,,Padi-padian
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/umbi_umbian,,5048,rupiah,2024,survey_estimate,per_capita,10.1,483,,Umbi-umbian
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/umbi_umbian,,5958,rupiah,2025,survey_estimate,per_capita,10.1,483,,Umbi-umbian
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,16862,rupiah,2024,survey_estimate,per_capita,10.1,483,,Ikan/udang/cumi/kerang
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,19070,rupiah,2025,survey_estimate,per_capita,10.1,483,,Ikan/udang/cumi/kerang
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/daging,,23691,rupiah,2024,survey_estimate,per_capita,10.1,483,,Daging
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/daging,,27238,rupiah,2025,survey_estimate,per_capita,10.1,483,,Daging
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/telur_dan_susu,,25136,rupiah,2024,survey_estimate,per_capita,10.1,483,,Telur dan susu
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/telur_dan_susu,,36360,rupiah,2025,survey_estimate,per_capita,10.1,483,,Telur dan susu
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/sayur_sayuran,,36852,rupiah,2024,survey_estimate,per_capita,10.1,483,,Sayur-sayuran
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/sayur_sayuran,,47490,rupiah,2025,survey_estimate,per_capita,10.1,483,,Sayur-sayuran
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/kacang_kacangan,,15077,rupiah,2024,survey_estimate,per_capita,10.1,483,,Kacang-kacangan
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/kacang_kacangan,,17533,rupiah,2025,survey_estimate,per_capita,10.1,483,,Kacang-kacangan
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/buah_buahan,,29158,rupiah,2024,survey_estimate,per_capita,10.1,483,,Buah-buahan
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/buah_buahan,,41511,rupiah,2025,survey_estimate,per_capita,10.1,483,,Buah-buahan
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14940,rupiah,2024,survey_estimate,per_capita,10.1,483,,Minyak dan kelapa
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19259,rupiah,2025,survey_estimate,per_capita,10.1,483,,Minyak dan kelapa
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/bahan_minuman,,20949,rupiah,2024,survey_estimate,per_capita,10.1,483,,Bahan minuman
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/bahan_minuman,,25134,rupiah,2025,survey_estimate,per_capita,10.1,483,,Bahan minuman
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/bumbu_bumbuan,,11194,rupiah,2024,survey_estimate,per_capita,10.1,483,,Bumbu-bumbuan
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/bumbu_bumbuan,,13236,rupiah,2025,survey_estimate,per_capita,10.1,483,,Bumbu-bumbuan
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/konsumsi_lainnya,,10637,rupiah,2024,survey_estimate,per_capita,10.1,483,,Konsumsi lainnya
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/konsumsi_lainnya,,12407,rupiah,2025,survey_estimate,per_capita,10.1,483,,Konsumsi lainnya
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,184208,rupiah,2024,survey_estimate,per_capita,10.1,483,,Makanan dan minuman jadi
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,226165,rupiah,2025,survey_estimate,per_capita,10.1,483,,Makanan dan minuman jadi
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/rokok,,74286,rupiah,2024,survey_estimate,per_capita,10.1,483,,Rokok
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/rokok,,75903,rupiah,2025,survey_estimate,per_capita,10.1,483,,Rokok
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/jumlah_makanan,,535491,rupiah,2024,survey_estimate,per_capita,10.1,483,,Jumlah makanan
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/jumlah_makanan,,634064,rupiah,2025,survey_estimate,per_capita,10.1,483,,Jumlah makanan
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,209706,rupiah,2024,survey_estimate,per_capita,10.1,483,,Perumahan dan fasilitas rumah tangga
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,246500,rupiah,2025,survey_estimate,per_capita,10.1,483,,Perumahan dan fasilitas rumah tangga
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,103163,rupiah,2024,survey_estimate,per_capita,10.1,483,,Aneka barang dan jasa
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,152024,rupiah,2025,survey_estimate,per_capita,10.1,483,,Aneka barang dan jasa
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,28908,rupiah,2024,survey_estimate,per_capita,10.1,483,,"Pakaian, alas kaki, dan tutup kepala"
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,34171,rupiah,2025,survey_estimate,per_capita,10.1,483,,"Pakaian, alas kaki, dan tutup kepala"
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/barang_tahan_lama,,44641,rupiah,2024,survey_estimate,per_capita,10.1,483,,Barang tahan lama
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/barang_tahan_lama,,85344,rupiah,2025,survey_estimate,per_capita,10.1,483,,Barang tahan lama
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,38670,rupiah,2024,survey_estimate,per_capita,10.1,483,,"Pajak, pungutan, dan asuransi"
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,43770,rupiah,2025,survey_estimate,per_capita,10.1,483,,"Pajak, pungutan, dan asuransi"
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,19467,rupiah,2024,survey_estimate,per_capita,10.1,483,,Keperluan pesta dan upacara/kenduri
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,22928,rupiah,2025,survey_estimate,per_capita,10.1,483,,Keperluan pesta dan upacara/kenduri
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,444556,rupiah,2024,survey_estimate,per_capita,10.1,483,,Jumlah bukan makanan
+33.07,2,Kabupaten Wonosobo,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,584737,rupiah,2025,survey_estimate,per_capita,10.1,483,,Jumlah bukan makanan
+33.07,2,Kabupaten Wonosobo,expenditure,total,,980047,rupiah,2024,survey_estimate,per_capita,10.1,483,,
+33.07,2,Kabupaten Wonosobo,expenditure,total,,1218801,rupiah,2025,survey_estimate,per_capita,10.1,483,,

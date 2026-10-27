@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.01.40.2001,4,Tapos I,sex,laki_laki,,5663,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.40.2001,4,Tapos I,sex,perempuan,,5381,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.40.2001,4,Tapos I,total,total,,11044,jiwa,2025,registration,total_population,3.1,34,,
+32.01.40.2006,4,Gunung Malang,sex,laki_laki,,4708,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.40.2006,4,Gunung Malang,sex,perempuan,,4432,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.40.2006,4,Gunung Malang,total,total,,9140,jiwa,2025,registration,total_population,3.1,34,,
+32.01.40.2002,4,Tapos II,sex,laki_laki,,6678,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.40.2002,4,Tapos II,sex,perempuan,,6383,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.40.2002,4,Tapos II,total,total,,13061,jiwa,2025,registration,total_population,3.1,34,,
+32.01.40.2004,4,Situ Daun,sex,laki_laki,,5869,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.40.2004,4,Situ Daun,sex,perempuan,,5325,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.40.2004,4,Situ Daun,total,total,,11194,jiwa,2025,registration,total_population,3.1,34,,
+32.01.40.2003,4,Cibitung Tengah,sex,laki_laki,,5717,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.40.2003,4,Cibitung Tengah,sex,perempuan,,5342,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.40.2003,4,Cibitung Tengah,total,total,,11059,jiwa,2025,registration,total_population,3.1,34,,
+32.01.40.2005,4,Cinangneng,sex,laki_laki,,4260,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.40.2005,4,Cinangneng,sex,perempuan,,4141,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.40.2005,4,Cinangneng,total,total,,8401,jiwa,2025,registration,total_population,3.1,34,,
+32.01.40.2007,4,Gunung Mulya,sex,laki_laki,,4314,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.40.2007,4,Gunung Mulya,sex,perempuan,,4079,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.40.2007,4,Gunung Mulya,total,total,,8393,jiwa,2025,registration,total_population,3.1,34,,
+32.01.40,3,Kecamatan Tenjolaya,sex,laki_laki,,37209,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.40,3,Kecamatan Tenjolaya,sex,perempuan,,35083,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.40,3,Kecamatan Tenjolaya,total,total,,72292,jiwa,2025,registration,total_population,3.1,34,,
+32.01.40,3,Tenjolaya,age_group,0-4,laki_laki,2783,jiwa,2025,registration,total_population,3.2,36,,0-4
+32.01.40,3,Tenjolaya,age_group,0-4,perempuan,2599,jiwa,2025,registration,total_population,3.2,36,,0-4
+32.01.40,3,Tenjolaya,age_group,0-4,,5382,jiwa,2025,registration,total_population,3.2,36,,0-4
+32.01.40,3,Tenjolaya,age_group,5-9,laki_laki,3499,jiwa,2025,registration,total_population,3.2,36,,5-9
+32.01.40,3,Tenjolaya,age_group,5-9,perempuan,3322,jiwa,2025,registration,total_population,3.2,36,,5-9
+32.01.40,3,Tenjolaya,age_group,5-9,,6821,jiwa,2025,registration,total_population,3.2,36,,5-9
+32.01.40,3,Tenjolaya,age_group,10-14,laki_laki,3404,jiwa,2025,registration,total_population,3.2,36,,10-14
+32.01.40,3,Tenjolaya,age_group,10-14,perempuan,3214,jiwa,2025,registration,total_population,3.2,36,,10-14
+32.01.40,3,Tenjolaya,age_group,10-14,,6618,jiwa,2025,registration,total_population,3.2,36,,10-14
+32.01.40,3,Tenjolaya,age_group,15-19,laki_laki,2935,jiwa,2025,registration,total_population,3.2,36,,15-19
+32.01.40,3,Tenjolaya,age_group,15-19,perempuan,2776,jiwa,2025,registration,total_population,3.2,36,,15-19
+32.01.40,3,Tenjolaya,age_group,15-19,,5711,jiwa,2025,registration,total_population,3.2,36,,15-19
+32.01.40,3,Tenjolaya,age_group,20-24,laki_laki,3025,jiwa,2025,registration,total_population,3.2,36,,20-24
+32.01.40,3,Tenjolaya,age_group,20-24,perempuan,2887,jiwa,2025,registration,total_population,3.2,36,,20-24
+32.01.40,3,Tenjolaya,age_group,20-24,,5912,jiwa,2025,registration,total_population,3.2,36,,20-24
+32.01.40,3,Tenjolaya,age_group,25-29,laki_laki,3297,jiwa,2025,registration,total_population,3.2,36,,25-29
+32.01.40,3,Tenjolaya,age_group,25-29,perempuan,2955,jiwa,2025,registration,total_population,3.2,36,,25-29
+32.01.40,3,Tenjolaya,age_group,25-29,,6252,jiwa,2025,registration,total_population,3.2,36,,25-29
+32.01.40,3,Tenjolaya,age_group,30-34,laki_laki,2937,jiwa,2025,registration,total_population,3.2,36,,30-34
+32.01.40,3,Tenjolaya,age_group,30-34,perempuan,2744,jiwa,2025,registration,total_population,3.2,36,,30-34
+32.01.40,3,Tenjolaya,age_group,30-34,,5681,jiwa,2025,registration,total_population,3.2,36,,30-34
+32.01.40,3,Tenjolaya,age_group,35-39,laki_laki,2945,jiwa,2025,registration,total_population,3.2,36,,35-39
+32.01.40,3,Tenjolaya,age_group,35-39,perempuan,2704,jiwa,2025,registration,total_population,3.2,36,,35-39
+32.01.40,3,Tenjolaya,age_group,35-39,,5649,jiwa,2025,registration,total_population,3.2,36,,35-39
+32.01.40,3,Tenjolaya,age_group,40-44,laki_laki,2791,jiwa,2025,registration,total_population,3.2,36,,40-44
+32.01.40,3,Tenjolaya,age_group,40-44,perempuan,2567,jiwa,2025,registration,total_population,3.2,36,,40-44
+32.01.40,3,Tenjolaya,age_group,40-44,,5358,jiwa,2025,registration,total_population,3.2,36,,40-44
+32.01.40,3,Tenjolaya,age_group,45-49,laki_laki,2389,jiwa,2025,registration,total_population,3.2,36,,45-49
+32.01.40,3,Tenjolaya,age_group,45-49,perempuan,2151,jiwa,2025,registration,total_population,3.2,36,,45-49
+32.01.40,3,Tenjolaya,age_group,45-49,,4540,jiwa,2025,registration,total_population,3.2,36,,45-49
+32.01.40,3,Tenjolaya,age_group,50-54,laki_laki,2050,jiwa,2025,registration,total_population,3.2,36,,50-54
+32.01.40,3,Tenjolaya,age_group,50-54,perempuan,1837,jiwa,2025,registration,total_population,3.2,36,,50-54
+32.01.40,3,Tenjolaya,age_group,50-54,,3887,jiwa,2025,registration,total_population,3.2,36,,50-54
+32.01.40,3,Tenjolaya,age_group,55-59,laki_laki,1549,jiwa,2025,registration,total_population,3.2,36,,55-59
+32.01.40,3,Tenjolaya,age_group,55-59,perempuan,1567,jiwa,2025,registration,total_population,3.2,36,,55-59
+32.01.40,3,Tenjolaya,age_group,55-59,,3116,jiwa,2025,registration,total_population,3.2,36,,55-59
+32.01.40,3,Tenjolaya,age_group,60-64,laki_laki,1242,jiwa,2025,registration,total_population,3.2,36,,60-64
+32.01.40,3,Tenjolaya,age_group,60-64,perempuan,1236,jiwa,2025,registration,total_population,3.2,36,,60-64
+32.01.40,3,Tenjolaya,age_group,60-64,,2478,jiwa,2025,registration,total_population,3.2,36,,60-64
+32.01.40,3,Tenjolaya,age_group,65-69,laki_laki,975,jiwa,2025,registration,total_population,3.2,36,,65-69
+32.01.40,3,Tenjolaya,age_group,65-69,perempuan,1062,jiwa,2025,registration,total_population,3.2,36,,65-69
+32.01.40,3,Tenjolaya,age_group,65-69,,2037,jiwa,2025,registration,total_population,3.2,36,,65-69
+32.01.40,3,Tenjolaya,age_group,70-74,laki_laki,657,jiwa,2025,registration,total_population,3.2,36,,70-74
+32.01.40,3,Tenjolaya,age_group,70-74,perempuan,580,jiwa,2025,registration,total_population,3.2,36,,70-74
+32.01.40,3,Tenjolaya,age_group,70-74,,1237,jiwa,2025,registration,total_population,3.2,36,,70-74
+32.01.40,3,Tenjolaya,age_group,75+,laki_laki,731,jiwa,2025,registration,total_population,3.2,36,,75+
+32.01.40,3,Tenjolaya,age_group,75+,perempuan,882,jiwa,2025,registration,total_population,3.2,36,,75+
+32.01.40,3,Tenjolaya,age_group,75+,,1613,jiwa,2025,registration,total_population,3.2,36,,75+
+32.01.40,3,Kecamatan Tenjolaya,sex,laki_laki,,37209,jiwa,2025,registration,total_population,3.2,36,,Laki-Laki
+32.01.40,3,Kecamatan Tenjolaya,sex,perempuan,,35083,jiwa,2025,registration,total_population,3.2,36,,Perempuan
+32.01.40,3,Kecamatan Tenjolaya,total,total,,72292,jiwa,2025,registration,total_population,3.2,36,,

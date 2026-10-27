@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.12.06.2002,4,Makunjung,sex,laki_laki,,507,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.06.2002,4,Makunjung,sex,perempuan,,483,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.06.2002,4,Makunjung,total,total,,990,jiwa,2025,registration,total_population,3.1,30,,
+62.12.06.2011,4,Cinta Budiman,sex,laki_laki,,181,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.06.2011,4,Cinta Budiman,sex,perempuan,,156,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.06.2011,4,Cinta Budiman,total,total,,337,jiwa,2025,registration,total_population,3.1,30,,
+62.12.06.2001,4,Bumban Tuhup,sex,laki_laki,,402,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.06.2001,4,Bumban Tuhup,sex,perempuan,,360,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.06.2001,4,Bumban Tuhup,total,total,,762,jiwa,2025,registration,total_population,3.1,30,,
+62.12.06.2003,4,Dirung Sararong,sex,laki_laki,,363,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.06.2003,4,Dirung Sararong,sex,perempuan,,293,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.06.2003,4,Dirung Sararong,total,total,,656,jiwa,2025,registration,total_population,3.1,30,,
+62.12.06.2004,4,Kohong,sex,laki_laki,,304,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.06.2004,4,Kohong,sex,perempuan,,263,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.06.2004,4,Kohong,total,total,,567,jiwa,2025,registration,total_population,3.1,30,,
+62.12.06.2006,4,Liang Nyaling,sex,laki_laki,,87,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.06.2006,4,Liang Nyaling,sex,perempuan,,86,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.06.2006,4,Liang Nyaling,total,total,,173,jiwa,2025,registration,total_population,3.1,30,,
+62.12.06.2008,4,Tumbang Masalo,sex,laki_laki,,80,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.06.2008,4,Tumbang Masalo,sex,perempuan,,78,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.06.2008,4,Tumbang Masalo,total,total,,158,jiwa,2025,registration,total_population,3.1,30,,
+62.12.06.2007,4,Tumbang Bauh,sex,laki_laki,,353,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.06.2007,4,Tumbang Bauh,sex,perempuan,,313,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.06.2007,4,Tumbang Bauh,total,total,,666,jiwa,2025,registration,total_population,3.1,30,,
+62.12.06.2005,4,Hingan Tokung,sex,laki_laki,,178,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.06.2005,4,Hingan Tokung,sex,perempuan,,154,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.06.2005,4,Hingan Tokung,total,total,,332,jiwa,2025,registration,total_population,3.1,30,,
+62.12.06.2009,4,Batu Tojah,sex,laki_laki,,216,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.06.2009,4,Batu Tojah,sex,perempuan,,188,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.06.2009,4,Batu Tojah,total,total,,404,jiwa,2025,registration,total_population,3.1,30,,
+62.12.06.2010,4,Tumbang Baloi,sex,laki_laki,,410,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.06.2010,4,Tumbang Baloi,sex,perempuan,,397,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.06.2010,4,Tumbang Baloi,total,total,,807,jiwa,2025,registration,total_population,3.1,30,,
+62.12.06,3,Barito Tuhup Raya,sex,laki_laki,,3081,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.06,3,Barito Tuhup Raya,sex,perempuan,,2771,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.06,3,Barito Tuhup Raya,total,total,,5852,jiwa,2025,registration,total_population,3.1,30,,
+62.12.06,3,Barito Tuhup Raya,age_group,0-4,laki_laki,225,jiwa,2025,registration,total_population,3.2,32,,0–4
+62.12.06,3,Barito Tuhup Raya,age_group,0-4,perempuan,222,jiwa,2025,registration,total_population,3.2,32,,0–4
+62.12.06,3,Barito Tuhup Raya,age_group,0-4,,447,jiwa,2025,registration,total_population,3.2,32,,0–4
+62.12.06,3,Barito Tuhup Raya,age_group,5-9,laki_laki,286,jiwa,2025,registration,total_population,3.2,32,,5–9
+62.12.06,3,Barito Tuhup Raya,age_group,5-9,perempuan,278,jiwa,2025,registration,total_population,3.2,32,,5–9
+62.12.06,3,Barito Tuhup Raya,age_group,5-9,,564,jiwa,2025,registration,total_population,3.2,32,,5–9
+62.12.06,3,Barito Tuhup Raya,age_group,10-14,laki_laki,304,jiwa,2025,registration,total_population,3.2,32,,10–14
+62.12.06,3,Barito Tuhup Raya,age_group,10-14,perempuan,281,jiwa,2025,registration,total_population,3.2,32,,10–14
+62.12.06,3,Barito Tuhup Raya,age_group,10-14,,585,jiwa,2025,registration,total_population,3.2,32,,10–14
+62.12.06,3,Barito Tuhup Raya,age_group,15-19,laki_laki,255,jiwa,2025,registration,total_population,3.2,32,,15–19
+62.12.06,3,Barito Tuhup Raya,age_group,15-19,perempuan,270,jiwa,2025,registration,total_population,3.2,32,,15–19
+62.12.06,3,Barito Tuhup Raya,age_group,15-19,,525,jiwa,2025,registration,total_population,3.2,32,,15–19
+62.12.06,3,Barito Tuhup Raya,age_group,20-24,laki_laki,338,jiwa,2025,registration,total_population,3.2,32,,20–24
+62.12.06,3,Barito Tuhup Raya,age_group,20-24,perempuan,298,jiwa,2025,registration,total_population,3.2,32,,20–24
+62.12.06,3,Barito Tuhup Raya,age_group,20-24,,636,jiwa,2025,registration,total_population,3.2,32,,20–24
+62.12.06,3,Barito Tuhup Raya,age_group,25-29,laki_laki,305,jiwa,2025,registration,total_population,3.2,32,,25–29
+62.12.06,3,Barito Tuhup Raya,age_group,25-29,perempuan,243,jiwa,2025,registration,total_population,3.2,32,,25–29
+62.12.06,3,Barito Tuhup Raya,age_group,25-29,,548,jiwa,2025,registration,total_population,3.2,32,,25–29
+62.12.06,3,Barito Tuhup Raya,age_group,30-34,laki_laki,230,jiwa,2025,registration,total_population,3.2,32,,30–34
+62.12.06,3,Barito Tuhup Raya,age_group,30-34,perempuan,184,jiwa,2025,registration,total_population,3.2,32,,30–34
+62.12.06,3,Barito Tuhup Raya,age_group,30-34,,414,jiwa,2025,registration,total_population,3.2,32,,30–34
+62.12.06,3,Barito Tuhup Raya,age_group,35-39,laki_laki,260,jiwa,2025,registration,total_population,3.2,32,,35–39
+62.12.06,3,Barito Tuhup Raya,age_group,35-39,perempuan,246,jiwa,2025,registration,total_population,3.2,32,,35–39
+62.12.06,3,Barito Tuhup Raya,age_group,35-39,,506,jiwa,2025,registration,total_population,3.2,32,,35–39
+62.12.06,3,Barito Tuhup Raya,age_group,40-44,laki_laki,223,jiwa,2025,registration,total_population,3.2,32,,40–44
+62.12.06,3,Barito Tuhup Raya,age_group,40-44,perempuan,200,jiwa,2025,registration,total_population,3.2,32,,40–44
+62.12.06,3,Barito Tuhup Raya,age_group,40-44,,423,jiwa,2025,registration,total_population,3.2,32,,40–44
+62.12.06,3,Barito Tuhup Raya,age_group,45-49,laki_laki,205,jiwa,2025,registration,total_population,3.2,32,,45–49
+62.12.06,3,Barito Tuhup Raya,age_group,45-49,perempuan,178,jiwa,2025,registration,total_population,3.2,32,,45–49
+62.12.06,3,Barito Tuhup Raya,age_group,45-49,,383,jiwa,2025,registration,total_population,3.2,32,,45–49
+62.12.06,3,Barito Tuhup Raya,age_group,50-54,laki_laki,175,jiwa,2025,registration,total_population,3.2,32,,50–54
+62.12.06,3,Barito Tuhup Raya,age_group,50-54,perempuan,135,jiwa,2025,registration,total_population,3.2,32,,50–54
+62.12.06,3,Barito Tuhup Raya,age_group,50-54,,310,jiwa,2025,registration,total_population,3.2,32,,50–54
+62.12.06,3,Barito Tuhup Raya,age_group,55-59,laki_laki,105,jiwa,2025,registration,total_population,3.2,32,,55–59
+62.12.06,3,Barito Tuhup Raya,age_group,55-59,perempuan,85,jiwa,2025,registration,total_population,3.2,32,,55–59
+62.12.06,3,Barito Tuhup Raya,age_group,55-59,,190,jiwa,2025,registration,total_population,3.2,32,,55–59
+62.12.06,3,Barito Tuhup Raya,age_group,60-64,laki_laki,69,jiwa,2025,registration,total_population,3.2,32,,60–64
+62.12.06,3,Barito Tuhup Raya,age_group,60-64,perempuan,56,jiwa,2025,registration,total_population,3.2,32,,60–64
+62.12.06,3,Barito Tuhup Raya,age_group,60-64,,125,jiwa,2025,registration,total_population,3.2,32,,60–64
+62.12.06,3,Barito Tuhup Raya,age_group,65+,laki_laki,101,jiwa,2025,registration,total_population,3.2,32,,65+
+62.12.06,3,Barito Tuhup Raya,age_group,65+,perempuan,95,jiwa,2025,registration,total_population,3.2,32,,65+
+62.12.06,3,Barito Tuhup Raya,age_group,65+,,196,jiwa,2025,registration,total_population,3.2,32,,65+
+62.12.06,3,Barito Tuhup Raya,sex,laki_laki,,3081,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+62.12.06,3,Barito Tuhup Raya,sex,perempuan,,2771,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+62.12.06,3,Barito Tuhup Raya,total,total,,5852,jiwa,2025,registration,total_population,3.2,32,,

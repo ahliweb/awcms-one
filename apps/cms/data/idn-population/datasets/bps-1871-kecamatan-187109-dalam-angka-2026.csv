@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.71.09.1001,4,Kupang Kota,sex,laki_laki,,5017,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.09.1001,4,Kupang Kota,sex,perempuan,,4967,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.09.1001,4,Kupang Kota,total,total,,9984,jiwa,2025,registration,total_population,3.1,26,,
+18.71.09.1004,4,Kupang Teba,sex,laki_laki,,6200,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.09.1004,4,Kupang Teba,sex,perempuan,,6153,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.09.1004,4,Kupang Teba,total,total,,12353,jiwa,2025,registration,total_population,3.1,26,,
+18.71.09.1003,4,Kupang Raya,sex,laki_laki,,1883,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.09.1003,4,Kupang Raya,sex,perempuan,,1808,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.09.1003,4,Kupang Raya,total,total,,3691,jiwa,2025,registration,total_population,3.1,26,,
+18.71.09.1008,4,Sumur Batu,sex,laki_laki,,4174,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.09.1008,4,Sumur Batu,sex,perempuan,,4198,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.09.1008,4,Sumur Batu,total,total,,8372,jiwa,2025,registration,total_population,3.1,26,,
+18.71.09.1007,4,Gulak Galik,sex,laki_laki,,4143,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.09.1007,4,Gulak Galik,sex,perempuan,,3959,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.09.1007,4,Gulak Galik,total,total,,8102,jiwa,2025,registration,total_population,3.1,26,,
+18.71.09.1006,4,Pengajaran,sex,laki_laki,,3294,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.09.1006,4,Pengajaran,sex,perempuan,,3294,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.09.1006,4,Pengajaran,total,total,,6588,jiwa,2025,registration,total_population,3.1,26,,
+18.71.09,3,Teluk Betung Utara,sex,laki_laki,,24711,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.09,3,Teluk Betung Utara,sex,perempuan,,24379,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.09,3,Teluk Betung Utara,total,total,,49090,jiwa,2025,registration,total_population,3.1,26,,

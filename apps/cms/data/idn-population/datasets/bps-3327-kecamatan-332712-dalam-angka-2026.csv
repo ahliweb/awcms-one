@@ -1,0 +1,106 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.27.12.2001,4,Tumbal,sex,laki_laki,,2430,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+33.27.12.2001,4,Tumbal,sex,perempuan,,2289,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.12.2001,4,Tumbal,total,total,,4719,jiwa,2025,registration,total_population,3.1,47,,
+33.27.12.2003,4,Sikayu,sex,laki_laki,,2108,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+33.27.12.2003,4,Sikayu,sex,perempuan,,2095,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.12.2003,4,Sikayu,total,total,,4203,jiwa,2025,registration,total_population,3.1,47,,
+33.27.12.2004,4,Purwosari,sex,laki_laki,,5499,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+33.27.12.2004,4,Purwosari,sex,perempuan,,5405,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.12.2004,4,Purwosari,total,total,,10904,jiwa,2025,registration,total_population,3.1,47,,
+33.27.12.1005,4,Purwoharjo,sex,laki_laki,,5717,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+33.27.12.1005,4,Purwoharjo,sex,perempuan,,5680,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.12.1005,4,Purwoharjo,total,total,,11397,jiwa,2025,registration,total_population,3.1,47,,
+33.27.12.2018,4,Kauman,sex,laki_laki,,3463,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+33.27.12.2018,4,Kauman,sex,perempuan,,3328,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.12.2018,4,Kauman,total,total,,6791,jiwa,2025,registration,total_population,3.1,47,,
+33.27.12.2006,4,Sidorejo,sex,laki_laki,,4433,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+33.27.12.2006,4,Sidorejo,sex,perempuan,,4264,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.12.2006,4,Sidorejo,total,total,,8697,jiwa,2025,registration,total_population,3.1,47,,
+33.27.12.2007,4,Lowa,sex,laki_laki,,875,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+33.27.12.2007,4,Lowa,sex,perempuan,,854,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.12.2007,4,Lowa,total,total,,1729,jiwa,2025,registration,total_population,3.1,47,,
+33.27.12.2008,4,Ambokulon,sex,laki_laki,,1368,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+33.27.12.2008,4,Ambokulon,sex,perempuan,,1358,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.12.2008,4,Ambokulon,total,total,,2726,jiwa,2025,registration,total_population,3.1,47,,
+33.27.12.2010,4,Gedeg,sex,laki_laki,,1614,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+33.27.12.2010,4,Gedeg,sex,perempuan,,1564,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.12.2010,4,Gedeg,total,total,,3178,jiwa,2025,registration,total_population,3.1,47,,
+33.27.12.2011,4,Gintung,sex,laki_laki,,1724,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+33.27.12.2011,4,Gintung,sex,perempuan,,1760,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.12.2011,4,Gintung,total,total,,3484,jiwa,2025,registration,total_population,3.1,47,,
+33.27.12.2009,4,Gandu,sex,laki_laki,,2074,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+33.27.12.2009,4,Gandu,sex,perempuan,,2067,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.12.2009,4,Gandu,total,total,,4141,jiwa,2025,registration,total_population,3.1,47,,
+33.27.12.2012,4,Sarwodadi,sex,laki_laki,,3015,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+33.27.12.2012,4,Sarwodadi,sex,perempuan,,2917,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.12.2012,4,Sarwodadi,total,total,,5932,jiwa,2025,registration,total_population,3.1,47,,
+33.27.12.2013,4,Susukan,sex,laki_laki,,3035,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+33.27.12.2013,4,Susukan,sex,perempuan,,2948,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.12.2013,4,Susukan,total,total,,5983,jiwa,2025,registration,total_population,3.1,47,,
+33.27.12.2014,4,Klegen,sex,laki_laki,,1709,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+33.27.12.2014,4,Klegen,sex,perempuan,,1675,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.12.2014,4,Klegen,total,total,,3384,jiwa,2025,registration,total_population,3.1,47,,
+33.27.12.2015,4,Wonokromo,sex,laki_laki,,2811,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+33.27.12.2015,4,Wonokromo,sex,perempuan,,2721,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.12.2015,4,Wonokromo,total,total,,5532,jiwa,2025,registration,total_population,3.1,47,,
+33.27.12.2016,4,Kebojongan,sex,laki_laki,,2912,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+33.27.12.2016,4,Kebojongan,sex,perempuan,,2711,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.12.2016,4,Kebojongan,total,total,,5623,jiwa,2025,registration,total_population,3.1,47,,
+33.27.12.2017,4,Kandang,sex,laki_laki,,2562,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+33.27.12.2017,4,Kandang,sex,perempuan,,2484,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.12.2017,4,Kandang,total,total,,5046,jiwa,2025,registration,total_population,3.1,47,,
+33.27.12,3,Kecamatan Comal,sex,laki_laki,,51629,jiwa,2025,registration,total_population,3.1,47,,Laki-Laki/Male
+33.27.12,3,Kecamatan Comal,sex,perempuan,,50138,jiwa,2025,registration,total_population,3.1,47,,Perempuan/Female
+33.27.12,3,Kecamatan Comal,total,total,,101767,jiwa,2025,registration,total_population,3.1,47,,
+33.27.12,3,Comal,age_group,0-4,laki_laki,3475,jiwa,2025,registration,total_population,3.2,49,,0-4
+33.27.12,3,Comal,age_group,0-4,perempuan,3044,jiwa,2025,registration,total_population,3.2,49,,0-4
+33.27.12,3,Comal,age_group,0-4,,6519,jiwa,2025,registration,total_population,3.2,49,,0-4
+33.27.12,3,Comal,age_group,5-9,laki_laki,4201,jiwa,2025,registration,total_population,3.2,49,,5-9
+33.27.12,3,Comal,age_group,5-9,perempuan,3965,jiwa,2025,registration,total_population,3.2,49,,5-9
+33.27.12,3,Comal,age_group,5-9,,8166,jiwa,2025,registration,total_population,3.2,49,,5-9
+33.27.12,3,Comal,age_group,10-14,laki_laki,4362,jiwa,2025,registration,total_population,3.2,49,,10-14
+33.27.12,3,Comal,age_group,10-14,perempuan,3984,jiwa,2025,registration,total_population,3.2,49,,10-14
+33.27.12,3,Comal,age_group,10-14,,8346,jiwa,2025,registration,total_population,3.2,49,,10-14
+33.27.12,3,Comal,age_group,15-19,laki_laki,3951,jiwa,2025,registration,total_population,3.2,49,,15-19
+33.27.12,3,Comal,age_group,15-19,perempuan,3789,jiwa,2025,registration,total_population,3.2,49,,15-19
+33.27.12,3,Comal,age_group,15-19,,7740,jiwa,2025,registration,total_population,3.2,49,,15-19
+33.27.12,3,Comal,age_group,20-24,laki_laki,3946,jiwa,2025,registration,total_population,3.2,49,,20-24
+33.27.12,3,Comal,age_group,20-24,perempuan,3728,jiwa,2025,registration,total_population,3.2,49,,20-24
+33.27.12,3,Comal,age_group,20-24,,7674,jiwa,2025,registration,total_population,3.2,49,,20-24
+33.27.12,3,Comal,age_group,25-29,laki_laki,4345,jiwa,2025,registration,total_population,3.2,49,,25-29
+33.27.12,3,Comal,age_group,25-29,perempuan,3826,jiwa,2025,registration,total_population,3.2,49,,25-29
+33.27.12,3,Comal,age_group,25-29,,8171,jiwa,2025,registration,total_population,3.2,49,,25-29
+33.27.12,3,Comal,age_group,30-34,laki_laki,4164,jiwa,2025,registration,total_population,3.2,49,,30-34
+33.27.12,3,Comal,age_group,30-34,perempuan,3830,jiwa,2025,registration,total_population,3.2,49,,30-34
+33.27.12,3,Comal,age_group,30-34,,7994,jiwa,2025,registration,total_population,3.2,49,,30-34
+33.27.12,3,Comal,age_group,35-39,laki_laki,3787,jiwa,2025,registration,total_population,3.2,49,,35-39
+33.27.12,3,Comal,age_group,35-39,perempuan,3633,jiwa,2025,registration,total_population,3.2,49,,35-39
+33.27.12,3,Comal,age_group,35-39,,7420,jiwa,2025,registration,total_population,3.2,49,,35-39
+33.27.12,3,Comal,age_group,40-44,laki_laki,4129,jiwa,2025,registration,total_population,3.2,49,,40-44
+33.27.12,3,Comal,age_group,40-44,perempuan,3886,jiwa,2025,registration,total_population,3.2,49,,40-44
+33.27.12,3,Comal,age_group,40-44,,8015,jiwa,2025,registration,total_population,3.2,49,,40-44
+33.27.12,3,Comal,age_group,45-49,laki_laki,3846,jiwa,2025,registration,total_population,3.2,49,,45-49
+33.27.12,3,Comal,age_group,45-49,perempuan,3652,jiwa,2025,registration,total_population,3.2,49,,45-49
+33.27.12,3,Comal,age_group,45-49,,7498,jiwa,2025,registration,total_population,3.2,49,,45-49
+33.27.12,3,Comal,age_group,50-54,laki_laki,2961,jiwa,2025,registration,total_population,3.2,49,,50-54
+33.27.12,3,Comal,age_group,50-54,perempuan,3092,jiwa,2025,registration,total_population,3.2,49,,50-54
+33.27.12,3,Comal,age_group,50-54,,6053,jiwa,2025,registration,total_population,3.2,49,,50-54
+33.27.12,3,Comal,age_group,55-59,laki_laki,2595,jiwa,2025,registration,total_population,3.2,49,,55-59
+33.27.12,3,Comal,age_group,55-59,perempuan,2698,jiwa,2025,registration,total_population,3.2,49,,55-59
+33.27.12,3,Comal,age_group,55-59,,5293,jiwa,2025,registration,total_population,3.2,49,,55-59
+33.27.12,3,Comal,age_group,60-64,laki_laki,2052,jiwa,2025,registration,total_population,3.2,49,,60-64
+33.27.12,3,Comal,age_group,60-64,perempuan,2534,jiwa,2025,registration,total_population,3.2,49,,60-64
+33.27.12,3,Comal,age_group,60-64,,4586,jiwa,2025,registration,total_population,3.2,49,,60-64
+33.27.12,3,Comal,age_group,65-69,laki_laki,1657,jiwa,2025,registration,total_population,3.2,49,,65-69
+33.27.12,3,Comal,age_group,65-69,perempuan,1889,jiwa,2025,registration,total_population,3.2,49,,65-69
+33.27.12,3,Comal,age_group,65-69,,3546,jiwa,2025,registration,total_population,3.2,49,,65-69
+33.27.12,3,Comal,age_group,70-74,laki_laki,1189,jiwa,2025,registration,total_population,3.2,49,,70-74
+33.27.12,3,Comal,age_group,70-74,perempuan,1169,jiwa,2025,registration,total_population,3.2,49,,70-74
+33.27.12,3,Comal,age_group,70-74,,2358,jiwa,2025,registration,total_population,3.2,49,,70-74
+33.27.12,3,Comal,age_group,75+,laki_laki,969,jiwa,2025,registration,total_population,3.2,49,,>= 75
+33.27.12,3,Comal,age_group,75+,perempuan,1419,jiwa,2025,registration,total_population,3.2,49,,>= 75
+33.27.12,3,Comal,age_group,75+,,2388,jiwa,2025,registration,total_population,3.2,49,,>= 75
+33.27.12,3,Kecamatan Comal,sex,laki_laki,,51629,jiwa,2025,registration,total_population,3.2,49,,Laki-Laki
+33.27.12,3,Kecamatan Comal,sex,perempuan,,50138,jiwa,2025,registration,total_population,3.2,49,,Perempuan
+33.27.12,3,Kecamatan Comal,total,total,,101767,jiwa,2025,registration,total_population,3.2,49,,

@@ -1,0 +1,237 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.03.01,3,Tanjung Agung,total,total,,30981,jiwa,2025,registration,total_population,3.1.1,79,,
+16.03.27,3,Panang Enim,total,total,,13492,jiwa,2025,registration,total_population,3.1.1,79,,
+16.03.15,3,Rambang,total,total,,29675,jiwa,2025,registration,total_population,3.1.1,79,,
+16.03.14,3,Lubai,total,total,,28622,jiwa,2025,registration,total_population,3.1.1,79,,
+16.03.25,3,Lubai Ulu,total,total,,36121,jiwa,2025,registration,total_population,3.1.1,79,,
+16.03.07,3,Lawang Kidul,total,total,,79550,jiwa,2025,registration,total_population,3.1.1,79,,
+16.03.02,3,Muara Enim,total,total,,84879,jiwa,2025,registration,total_population,3.1.1,79,,
+16.03.11,3,Ujan Mas,total,total,,27648,jiwa,2025,registration,total_population,3.1.1,79,,
+16.03.04,3,Gunung Megang,total,total,,36924,jiwa,2025,registration,total_population,3.1.1,79,,
+16.03.19,3,Benakat,total,total,,11079,jiwa,2025,registration,total_population,3.1.1,79,,
+16.03.23,3,Belimbing,total,total,,27533,jiwa,2025,registration,total_population,3.1.1,79,,
+16.03.03,3,Rambang Niru,total,total,,36383,jiwa,2025,registration,total_population,3.1.1,79,,
+16.03.26,3,Empat Petulai Dangku,total,total,,20925,jiwa,2025,registration,total_population,3.1.1,79,,
+16.03.06,3,Gelumbang,total,total,,66224,jiwa,2025,registration,total_population,3.1.1,79,,
+16.03.17,3,Lembak,total,total,,20367,jiwa,2025,registration,total_population,3.1.1,79,,
+16.03.16,3,Sungai Rotan,total,total,,34655,jiwa,2025,registration,total_population,3.1.1,79,,
+16.03.22,3,Muara Belida,total,total,,8559,jiwa,2025,registration,total_population,3.1.1,79,,
+16.03.21,3,Kelekar,total,total,,12113,jiwa,2025,registration,total_population,3.1.1,79,,
+16.03.24,3,Belida Darat,total,total,,13844,jiwa,2025,registration,total_population,3.1.1,79,,
+16.03,2,Kabupaten Muara Enim,age_group,0-4,laki_laki,23037,jiwa,2025,registration,total_population,3.1.2,82,,0–4
+16.03,2,Kabupaten Muara Enim,age_group,0-4,perempuan,21642,jiwa,2025,registration,total_population,3.1.2,82,,0–4
+16.03,2,Kabupaten Muara Enim,age_group,0-4,,44679,jiwa,2025,registration,total_population,3.1.2,82,,0–4
+16.03,2,Kabupaten Muara Enim,age_group,5-9,laki_laki,30947,jiwa,2025,registration,total_population,3.1.2,82,,5–9
+16.03,2,Kabupaten Muara Enim,age_group,5-9,perempuan,28634,jiwa,2025,registration,total_population,3.1.2,82,,5–9
+16.03,2,Kabupaten Muara Enim,age_group,5-9,,59581,jiwa,2025,registration,total_population,3.1.2,82,,5–9
+16.03,2,Kabupaten Muara Enim,age_group,10-14,laki_laki,32345,jiwa,2025,registration,total_population,3.1.2,82,,10–14
+16.03,2,Kabupaten Muara Enim,age_group,10-14,perempuan,30380,jiwa,2025,registration,total_population,3.1.2,82,,10–14
+16.03,2,Kabupaten Muara Enim,age_group,10-14,,62725,jiwa,2025,registration,total_population,3.1.2,82,,10–14
+16.03,2,Kabupaten Muara Enim,age_group,15-19,laki_laki,29181,jiwa,2025,registration,total_population,3.1.2,82,,15–19
+16.03,2,Kabupaten Muara Enim,age_group,15-19,perempuan,27718,jiwa,2025,registration,total_population,3.1.2,82,,15–19
+16.03,2,Kabupaten Muara Enim,age_group,15-19,,56899,jiwa,2025,registration,total_population,3.1.2,82,,15–19
+16.03,2,Kabupaten Muara Enim,age_group,20-24,laki_laki,29271,jiwa,2025,registration,total_population,3.1.2,82,,20–24
+16.03,2,Kabupaten Muara Enim,age_group,20-24,perempuan,27185,jiwa,2025,registration,total_population,3.1.2,82,,20–24
+16.03,2,Kabupaten Muara Enim,age_group,20-24,,56456,jiwa,2025,registration,total_population,3.1.2,82,,20–24
+16.03,2,Kabupaten Muara Enim,age_group,25-29,laki_laki,27117,jiwa,2025,registration,total_population,3.1.2,82,,25–29
+16.03,2,Kabupaten Muara Enim,age_group,25-29,perempuan,25136,jiwa,2025,registration,total_population,3.1.2,82,,25–29
+16.03,2,Kabupaten Muara Enim,age_group,25-29,,52253,jiwa,2025,registration,total_population,3.1.2,82,,25–29
+16.03,2,Kabupaten Muara Enim,age_group,30-34,laki_laki,24527,jiwa,2025,registration,total_population,3.1.2,82,,30–34
+16.03,2,Kabupaten Muara Enim,age_group,30-34,perempuan,23305,jiwa,2025,registration,total_population,3.1.2,82,,30–34
+16.03,2,Kabupaten Muara Enim,age_group,30-34,,47832,jiwa,2025,registration,total_population,3.1.2,82,,30–34
+16.03,2,Kabupaten Muara Enim,age_group,35-39,laki_laki,26729,jiwa,2025,registration,total_population,3.1.2,82,,35–39
+16.03,2,Kabupaten Muara Enim,age_group,35-39,perempuan,25565,jiwa,2025,registration,total_population,3.1.2,82,,35–39
+16.03,2,Kabupaten Muara Enim,age_group,35-39,,52294,jiwa,2025,registration,total_population,3.1.2,82,,35–39
+16.03,2,Kabupaten Muara Enim,age_group,40-44,laki_laki,25545,jiwa,2025,registration,total_population,3.1.2,82,,40–44
+16.03,2,Kabupaten Muara Enim,age_group,40-44,perempuan,24769,jiwa,2025,registration,total_population,3.1.2,82,,40–44
+16.03,2,Kabupaten Muara Enim,age_group,40-44,,50314,jiwa,2025,registration,total_population,3.1.2,82,,40–44
+16.03,2,Kabupaten Muara Enim,age_group,45-49,laki_laki,23378,jiwa,2025,registration,total_population,3.1.2,82,,45–49
+16.03,2,Kabupaten Muara Enim,age_group,45-49,perempuan,22675,jiwa,2025,registration,total_population,3.1.2,82,,45–49
+16.03,2,Kabupaten Muara Enim,age_group,45-49,,46053,jiwa,2025,registration,total_population,3.1.2,82,,45–49
+16.03,2,Kabupaten Muara Enim,age_group,50-54,laki_laki,19193,jiwa,2025,registration,total_population,3.1.2,82,,50–54
+16.03,2,Kabupaten Muara Enim,age_group,50-54,perempuan,18904,jiwa,2025,registration,total_population,3.1.2,82,,50–54
+16.03,2,Kabupaten Muara Enim,age_group,50-54,,38097,jiwa,2025,registration,total_population,3.1.2,82,,50–54
+16.03,2,Kabupaten Muara Enim,age_group,55-59,laki_laki,15565,jiwa,2025,registration,total_population,3.1.2,82,,55–59
+16.03,2,Kabupaten Muara Enim,age_group,55-59,perempuan,15532,jiwa,2025,registration,total_population,3.1.2,82,,55–59
+16.03,2,Kabupaten Muara Enim,age_group,55-59,,31097,jiwa,2025,registration,total_population,3.1.2,82,,55–59
+16.03,2,Kabupaten Muara Enim,age_group,60-64,laki_laki,12473,jiwa,2025,registration,total_population,3.1.2,82,,60–64
+16.03,2,Kabupaten Muara Enim,age_group,60-64,perempuan,12696,jiwa,2025,registration,total_population,3.1.2,82,,60–64
+16.03,2,Kabupaten Muara Enim,age_group,60-64,,25169,jiwa,2025,registration,total_population,3.1.2,82,,60–64
+16.03,2,Kabupaten Muara Enim,age_group,65-69,laki_laki,9730,jiwa,2025,registration,total_population,3.1.2,82,,65–69
+16.03,2,Kabupaten Muara Enim,age_group,65-69,perempuan,9707,jiwa,2025,registration,total_population,3.1.2,82,,65–69
+16.03,2,Kabupaten Muara Enim,age_group,65-69,,19437,jiwa,2025,registration,total_population,3.1.2,82,,65–69
+16.03,2,Kabupaten Muara Enim,age_group,70-74,laki_laki,5651,jiwa,2025,registration,total_population,3.1.2,82,,70–74
+16.03,2,Kabupaten Muara Enim,age_group,70-74,perempuan,5667,jiwa,2025,registration,total_population,3.1.2,82,,70–74
+16.03,2,Kabupaten Muara Enim,age_group,70-74,,11318,jiwa,2025,registration,total_population,3.1.2,82,,70–74
+16.03,2,Kabupaten Muara Enim,age_group,75+,laki_laki,5679,jiwa,2025,registration,total_population,3.1.2,82,,75+
+16.03,2,Kabupaten Muara Enim,age_group,75+,perempuan,7200,jiwa,2025,registration,total_population,3.1.2,82,,75+
+16.03,2,Kabupaten Muara Enim,age_group,75+,,12879,jiwa,2025,registration,total_population,3.1.2,82,,75+
+16.03,2,Muara Enim,sex,laki_laki,,340368,jiwa,2025,registration,total_population,3.1.2,82,,Laki-Laki
+16.03,2,Muara Enim,sex,perempuan,,326715,jiwa,2025,registration,total_population,3.1.2,82,,Perempuan
+16.03,2,Muara Enim,total,total,,667083,jiwa,2025,registration,total_population,3.1.2,82,,
+16.03.01,3,Tanjung Agung,religion,islam,,30902,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.03.01,3,Tanjung Agung,religion,kristen,,71,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.03.01,3,Tanjung Agung,religion,katolik,,8,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.03.01,3,Tanjung Agung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Hindu
+16.03.01,3,Tanjung Agung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Budha
+16.03.01,3,Tanjung Agung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Lainnya
+16.03.27,3,Panang Enim,religion,islam,,13482,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.03.27,3,Panang Enim,religion,kristen,,10,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.03.27,3,Panang Enim,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Katolik
+16.03.27,3,Panang Enim,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Hindu
+16.03.27,3,Panang Enim,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Budha
+16.03.27,3,Panang Enim,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Lainnya
+16.03.15,3,Rambang,religion,islam,,29603,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.03.15,3,Rambang,religion,kristen,,48,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.03.15,3,Rambang,religion,katolik,,16,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.03.15,3,Rambang,religion,hindu,,8,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.03.15,3,Rambang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Budha
+16.03.15,3,Rambang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Lainnya
+16.03.14,3,Lubai,religion,islam,,27998,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.03.14,3,Lubai,religion,kristen,,40,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.03.14,3,Lubai,religion,katolik,,11,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.03.14,3,Lubai,religion,hindu,,573,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.03.14,3,Lubai,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Budha
+16.03.14,3,Lubai,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Lainnya
+16.03.25,3,Lubai Ulu,religion,islam,,35615,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.03.25,3,Lubai Ulu,religion,kristen,,374,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.03.25,3,Lubai Ulu,religion,katolik,,60,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.03.25,3,Lubai Ulu,religion,hindu,,70,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.03.25,3,Lubai Ulu,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,155,,Budha
+16.03.25,3,Lubai Ulu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Lainnya
+16.03.07,3,Lawang Kidul,religion,islam,,77809,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.03.07,3,Lawang Kidul,religion,kristen,,1240,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.03.07,3,Lawang Kidul,religion,katolik,,399,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.03.07,3,Lawang Kidul,religion,hindu,,12,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.03.07,3,Lawang Kidul,religion,buddha,,90,jiwa,2025,registration,total_population,4.3.1,155,,Budha
+16.03.07,3,Lawang Kidul,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Lainnya
+16.03.02,3,Muara Enim,religion,islam,,82947,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.03.02,3,Muara Enim,religion,kristen,,1134,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.03.02,3,Muara Enim,religion,katolik,,221,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.03.02,3,Muara Enim,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.03.02,3,Muara Enim,religion,buddha,,571,jiwa,2025,registration,total_population,4.3.1,155,,Budha
+16.03.02,3,Muara Enim,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Lainnya
+16.03.11,3,Ujan Mas,religion,islam,,27178,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.03.11,3,Ujan Mas,religion,kristen,,61,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.03.11,3,Ujan Mas,religion,katolik,,404,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.03.11,3,Ujan Mas,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.03.11,3,Ujan Mas,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Budha
+16.03.11,3,Ujan Mas,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Lainnya
+16.03.04,3,Gunung Megang,religion,islam,,36557,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.03.04,3,Gunung Megang,religion,kristen,,299,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.03.04,3,Gunung Megang,religion,katolik,,67,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.03.04,3,Gunung Megang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Hindu
+16.03.04,3,Gunung Megang,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,155,,Budha
+16.03.04,3,Gunung Megang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Lainnya
+16.03.19,3,Benakat,religion,islam,,11078,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.03.19,3,Benakat,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.03.19,3,Benakat,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Katolik
+16.03.19,3,Benakat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Hindu
+16.03.19,3,Benakat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Budha
+16.03.19,3,Benakat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Lainnya
+16.03.23,3,Belimbing,religion,islam,,27472,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.03.23,3,Belimbing,religion,kristen,,54,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.03.23,3,Belimbing,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.03.23,3,Belimbing,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.03.23,3,Belimbing,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,155,,Budha
+16.03.23,3,Belimbing,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Lainnya
+16.03.03,3,Rambang Niru,religion,islam,,35393,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.03.03,3,Rambang Niru,religion,kristen,,153,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.03.03,3,Rambang Niru,religion,katolik,,76,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.03.03,3,Rambang Niru,religion,hindu,,742,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.03.03,3,Rambang Niru,religion,buddha,,19,jiwa,2025,registration,total_population,4.3.1,155,,Budha
+16.03.03,3,Rambang Niru,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Lainnya
+16.03.26,3,Empat Petulai Dangku,religion,islam,,20784,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.03.26,3,Empat Petulai Dangku,religion,kristen,,118,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.03.26,3,Empat Petulai Dangku,religion,katolik,,23,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.03.26,3,Empat Petulai Dangku,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Hindu
+16.03.26,3,Empat Petulai Dangku,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Budha
+16.03.26,3,Empat Petulai Dangku,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Lainnya
+16.03.06,3,Gelumbang,religion,islam,,65582,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.03.06,3,Gelumbang,religion,kristen,,431,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.03.06,3,Gelumbang,religion,katolik,,164,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.03.06,3,Gelumbang,religion,hindu,,32,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.03.06,3,Gelumbang,religion,buddha,,15,jiwa,2025,registration,total_population,4.3.1,155,,Budha
+16.03.06,3,Gelumbang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Lainnya
+16.03.17,3,Lembak,religion,islam,,20085,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.03.17,3,Lembak,religion,kristen,,273,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.03.17,3,Lembak,religion,katolik,,8,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.03.17,3,Lembak,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Hindu
+16.03.17,3,Lembak,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,155,,Budha
+16.03.17,3,Lembak,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Lainnya
+16.03.16,3,Sungai Rotan,religion,islam,,34639,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.03.16,3,Sungai Rotan,religion,kristen,,10,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.03.16,3,Sungai Rotan,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.03.16,3,Sungai Rotan,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.03.16,3,Sungai Rotan,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,155,,Budha
+16.03.16,3,Sungai Rotan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Lainnya
+16.03.22,3,Muara Belida,religion,islam,,8502,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.03.22,3,Muara Belida,religion,kristen,,11,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.03.22,3,Muara Belida,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.03.22,3,Muara Belida,religion,hindu,,24,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.03.22,3,Muara Belida,religion,buddha,,21,jiwa,2025,registration,total_population,4.3.1,155,,Budha
+16.03.22,3,Muara Belida,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Lainnya
+16.03.21,3,Kelekar,religion,islam,,12098,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.03.21,3,Kelekar,religion,kristen,,11,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.03.21,3,Kelekar,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.03.21,3,Kelekar,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Hindu
+16.03.21,3,Kelekar,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Budha
+16.03.21,3,Kelekar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Lainnya
+16.03.24,3,Belida Darat,religion,islam,,13843,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.03.24,3,Belida Darat,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.03.24,3,Belida Darat,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Katolik
+16.03.24,3,Belida Darat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Hindu
+16.03.24,3,Belida Darat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Budha
+16.03.24,3,Belida Darat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Lainnya
+16.03,2,Muara Enim,religion,islam,,659074,jiwa,2025,registration,total_population,4.3.1,155,,Islam
+16.03,2,Muara Enim,religion,kristen,,4342,jiwa,2025,registration,total_population,4.3.1,155,,Protestan
+16.03,2,Muara Enim,religion,katolik,,1465,jiwa,2025,registration,total_population,4.3.1,155,,Katolik
+16.03,2,Muara Enim,religion,hindu,,1479,jiwa,2025,registration,total_population,4.3.1,155,,Hindu
+16.03,2,Muara Enim,religion,buddha,,723,jiwa,2025,registration,total_population,4.3.1,155,,Budha
+16.03,2,Muara Enim,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,155,nil,Lainnya
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/padi_padian,,97772,rupiah,2024,survey_estimate,per_capita,10.1,321,,Padi-padian
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/padi_padian,,90593,rupiah,2025,survey_estimate,per_capita,10.1,321,,Padi-padian
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/umbi_umbian,,7094,rupiah,2024,survey_estimate,per_capita,10.1,321,,Umbi-umbian
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/umbi_umbian,,6056,rupiah,2025,survey_estimate,per_capita,10.1,321,,Umbi-umbian
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,56509,rupiah,2024,survey_estimate,per_capita,10.1,321,,Ikan/udang/cumi/kerang
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,53133,rupiah,2025,survey_estimate,per_capita,10.1,321,,Ikan/udang/cumi/kerang
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/daging,,29955,rupiah,2024,survey_estimate,per_capita,10.1,321,,Daging
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/daging,,2392,rupiah,2025,survey_estimate,per_capita,10.1,321,,Daging
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/telur_dan_susu,,40597,rupiah,2024,survey_estimate,per_capita,10.1,321,,Telur dan susu
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/telur_dan_susu,,36799,rupiah,2025,survey_estimate,per_capita,10.1,321,,Telur dan susu
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/sayur_sayuran,,70579,rupiah,2024,survey_estimate,per_capita,10.1,321,,Sayur-sayuran
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/sayur_sayuran,,62784,rupiah,2025,survey_estimate,per_capita,10.1,321,,Sayur-sayuran
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/kacang_kacangan,,11713,rupiah,2024,survey_estimate,per_capita,10.1,321,,Kacang-kacangan
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/kacang_kacangan,,999,rupiah,2025,survey_estimate,per_capita,10.1,321,,Kacang-kacangan
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/buah_buahan,,40019,rupiah,2024,survey_estimate,per_capita,10.1,321,,Buah-buahan
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/buah_buahan,,39426,rupiah,2025,survey_estimate,per_capita,10.1,321,,Buah-buahan
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16295,rupiah,2024,survey_estimate,per_capita,10.1,321,,Minyak dan kelapa
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16365,rupiah,2025,survey_estimate,per_capita,10.1,321,,Minyak dan kelapa
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/bahan_minuman,,26129,rupiah,2024,survey_estimate,per_capita,10.1,321,,Bahan minuman
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/bahan_minuman,,27424,rupiah,2025,survey_estimate,per_capita,10.1,321,,Bahan minuman
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/bumbu_bumbuan,,17921,rupiah,2024,survey_estimate,per_capita,10.1,321,,Bumbu-bumbuan
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/bumbu_bumbuan,,16846,rupiah,2025,survey_estimate,per_capita,10.1,321,,Bumbu-bumbuan
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/konsumsi_lainnya,,19043,rupiah,2024,survey_estimate,per_capita,10.1,321,,Konsumsi lainnya
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/konsumsi_lainnya,,17358,rupiah,2025,survey_estimate,per_capita,10.1,321,,Konsumsi lainnya
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,159584,rupiah,2024,survey_estimate,per_capita,10.1,321,,Makanan dan minuman jadi
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,140625,rupiah,2025,survey_estimate,per_capita,10.1,321,,Makanan dan minuman jadi
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/rokok,,98833,rupiah,2024,survey_estimate,per_capita,10.1,321,,Rokok
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/rokok,,89995,rupiah,2025,survey_estimate,per_capita,10.1,321,,Rokok
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/jumlah_makanan,,692043,rupiah,2024,survey_estimate,per_capita,10.1,321,,Jumlah makanan
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/jumlah_makanan,,600795,rupiah,2025,survey_estimate,per_capita,10.1,321,,Jumlah makanan
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,327177,rupiah,2024,survey_estimate,per_capita,10.1,321,,Perumahan dan fasilitas rumah tangga
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,267623,rupiah,2025,survey_estimate,per_capita,10.1,321,,Perumahan dan fasilitas rumah tangga
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,112193,rupiah,2024,survey_estimate,per_capita,10.1,321,,Aneka barang dan jasa
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,109103,rupiah,2025,survey_estimate,per_capita,10.1,321,,Aneka barang dan jasa
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,30356,rupiah,2024,survey_estimate,per_capita,10.1,321,,"Pakaian, alas kaki, dan tutup kepala"
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,32431,rupiah,2025,survey_estimate,per_capita,10.1,321,,"Pakaian, alas kaki, dan tutup kepala"
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/barang_tahan_lama,,32602,rupiah,2024,survey_estimate,per_capita,10.1,321,,Barang tahan lama
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/barang_tahan_lama,,23746,rupiah,2025,survey_estimate,per_capita,10.1,321,,Barang tahan lama
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,51175,rupiah,2024,survey_estimate,per_capita,10.1,321,,"Pajak, pungutan, dan asuransi"
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,47546,rupiah,2025,survey_estimate,per_capita,10.1,321,,"Pajak, pungutan, dan asuransi"
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,23219,rupiah,2024,survey_estimate,per_capita,10.1,321,,Keperluan pesta dan upacara/kenduri
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,24335,rupiah,2025,survey_estimate,per_capita,10.1,321,,Keperluan pesta dan upacara/kenduri
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,576722,rupiah,2024,survey_estimate,per_capita,10.1,321,,Jumlah bukan makanan
+16.03,2,Kabupaten Muara Enim,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,504784,rupiah,2025,survey_estimate,per_capita,10.1,321,,Jumlah bukan makanan
+16.03,2,Kabupaten Muara Enim,expenditure,total,,1268766,rupiah,2024,survey_estimate,per_capita,10.1,321,,
+16.03,2,Kabupaten Muara Enim,expenditure,total,,1105579,rupiah,2025,survey_estimate,per_capita,10.1,321,,

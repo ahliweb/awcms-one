@@ -1,0 +1,146 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.71.04,3,Rangkui,total,total,,39752,jiwa,2025,registration,total_population,3.1.1,53,,
+19.71.01,3,Bukit Intan,total,total,,45146,jiwa,2025,registration,total_population,3.1.1,53,,
+19.71.07,3,Girimaya,total,total,,19409,jiwa,2025,registration,total_population,3.1.1,53,,
+19.71.03,3,Pangkal Balam,total,total,,23116,jiwa,2025,registration,total_population,3.1.1,53,,
+19.71.06,3,Gabek,total,total,,39553,jiwa,2025,registration,total_population,3.1.1,53,,
+19.71.02,3,Taman Sari,total,total,,20450,jiwa,2025,registration,total_population,3.1.1,53,,
+19.71.05,3,Gerunggang,total,total,,57315,jiwa,2025,registration,total_population,3.1.1,53,,
+19.71,2,Pangkal Pinang,total,total,,244741,jiwa,2025,registration,total_population,3.1.1,53,,
+19.71,2,Kota Pangkal Pinang,age_group,0-4,laki_laki,10295,jiwa,2025,projection,total_population,3.1.2,56,,0–4
+19.71,2,Kota Pangkal Pinang,age_group,0-4,perempuan,9886,jiwa,2025,projection,total_population,3.1.2,56,,0–4
+19.71,2,Kota Pangkal Pinang,age_group,0-4,,20181,jiwa,2025,projection,total_population,3.1.2,56,,0–4
+19.71,2,Kota Pangkal Pinang,age_group,5-9,laki_laki,10201,jiwa,2025,projection,total_population,3.1.2,56,,5–9
+19.71,2,Kota Pangkal Pinang,age_group,5-9,perempuan,9729,jiwa,2025,projection,total_population,3.1.2,56,,5–9
+19.71,2,Kota Pangkal Pinang,age_group,5-9,,19930,jiwa,2025,projection,total_population,3.1.2,56,,5–9
+19.71,2,Kota Pangkal Pinang,age_group,10-14,laki_laki,9110,jiwa,2025,projection,total_population,3.1.2,56,,10–14
+19.71,2,Kota Pangkal Pinang,age_group,10-14,perempuan,8369,jiwa,2025,projection,total_population,3.1.2,56,,10–14
+19.71,2,Kota Pangkal Pinang,age_group,10-14,,17479,jiwa,2025,projection,total_population,3.1.2,56,,10–14
+19.71,2,Kota Pangkal Pinang,age_group,15-19,laki_laki,9385,jiwa,2025,projection,total_population,3.1.2,56,,15–19
+19.71,2,Kota Pangkal Pinang,age_group,15-19,perempuan,8836,jiwa,2025,projection,total_population,3.1.2,56,,15–19
+19.71,2,Kota Pangkal Pinang,age_group,15-19,,18221,jiwa,2025,projection,total_population,3.1.2,56,,15–19
+19.71,2,Kota Pangkal Pinang,age_group,20-24,laki_laki,8876,jiwa,2025,projection,total_population,3.1.2,56,,20–24
+19.71,2,Kota Pangkal Pinang,age_group,20-24,perempuan,8353,jiwa,2025,projection,total_population,3.1.2,56,,20–24
+19.71,2,Kota Pangkal Pinang,age_group,20-24,,17229,jiwa,2025,projection,total_population,3.1.2,56,,20–24
+19.71,2,Kota Pangkal Pinang,age_group,25-29,laki_laki,8982,jiwa,2025,projection,total_population,3.1.2,56,,25–29
+19.71,2,Kota Pangkal Pinang,age_group,25-29,perempuan,9020,jiwa,2025,projection,total_population,3.1.2,56,,25–29
+19.71,2,Kota Pangkal Pinang,age_group,25-29,,18002,jiwa,2025,projection,total_population,3.1.2,56,,25–29
+19.71,2,Kota Pangkal Pinang,age_group,30-34,laki_laki,9628,jiwa,2025,projection,total_population,3.1.2,56,,30–34
+19.71,2,Kota Pangkal Pinang,age_group,30-34,perempuan,9758,jiwa,2025,projection,total_population,3.1.2,56,,30–34
+19.71,2,Kota Pangkal Pinang,age_group,30-34,,19386,jiwa,2025,projection,total_population,3.1.2,56,,30–34
+19.71,2,Kota Pangkal Pinang,age_group,35-39,laki_laki,9887,jiwa,2025,projection,total_population,3.1.2,56,,35–39
+19.71,2,Kota Pangkal Pinang,age_group,35-39,perempuan,9500,jiwa,2025,projection,total_population,3.1.2,56,,35–39
+19.71,2,Kota Pangkal Pinang,age_group,35-39,,19387,jiwa,2025,projection,total_population,3.1.2,56,,35–39
+19.71,2,Kota Pangkal Pinang,age_group,40-44,laki_laki,9227,jiwa,2025,projection,total_population,3.1.2,56,,40–44
+19.71,2,Kota Pangkal Pinang,age_group,40-44,perempuan,8807,jiwa,2025,projection,total_population,3.1.2,56,,40–44
+19.71,2,Kota Pangkal Pinang,age_group,40-44,,18034,jiwa,2025,projection,total_population,3.1.2,56,,40–44
+19.71,2,Kota Pangkal Pinang,age_group,45-49,laki_laki,8283,jiwa,2025,projection,total_population,3.1.2,56,,45–49
+19.71,2,Kota Pangkal Pinang,age_group,45-49,perempuan,7814,jiwa,2025,projection,total_population,3.1.2,56,,45–49
+19.71,2,Kota Pangkal Pinang,age_group,45-49,,16097,jiwa,2025,projection,total_population,3.1.2,56,,45–49
+19.71,2,Kota Pangkal Pinang,age_group,50-54,laki_laki,6894,jiwa,2025,projection,total_population,3.1.2,56,,50–54
+19.71,2,Kota Pangkal Pinang,age_group,50-54,perempuan,6546,jiwa,2025,projection,total_population,3.1.2,56,,50–54
+19.71,2,Kota Pangkal Pinang,age_group,50-54,,13440,jiwa,2025,projection,total_population,3.1.2,56,,50–54
+19.71,2,Kota Pangkal Pinang,age_group,55-59,laki_laki,5525,jiwa,2025,projection,total_population,3.1.2,56,,55–59
+19.71,2,Kota Pangkal Pinang,age_group,55-59,perempuan,5498,jiwa,2025,projection,total_population,3.1.2,56,,55–59
+19.71,2,Kota Pangkal Pinang,age_group,55-59,,11023,jiwa,2025,projection,total_population,3.1.2,56,,55–59
+19.71,2,Kota Pangkal Pinang,age_group,60-64,laki_laki,4354,jiwa,2025,projection,total_population,3.1.2,56,,60–64
+19.71,2,Kota Pangkal Pinang,age_group,60-64,perempuan,4606,jiwa,2025,projection,total_population,3.1.2,56,,60–64
+19.71,2,Kota Pangkal Pinang,age_group,60-64,,8960,jiwa,2025,projection,total_population,3.1.2,56,,60–64
+19.71,2,Kota Pangkal Pinang,age_group,65-69,laki_laki,3506,jiwa,2025,projection,total_population,3.1.2,56,,65–69
+19.71,2,Kota Pangkal Pinang,age_group,65-69,perempuan,3721,jiwa,2025,projection,total_population,3.1.2,56,,65–69
+19.71,2,Kota Pangkal Pinang,age_group,65-69,,7227,jiwa,2025,projection,total_population,3.1.2,56,,65–69
+19.71,2,Kota Pangkal Pinang,age_group,70-74,laki_laki,2394,jiwa,2025,projection,total_population,3.1.2,56,,70–74
+19.71,2,Kota Pangkal Pinang,age_group,70-74,perempuan,2581,jiwa,2025,projection,total_population,3.1.2,56,,70–74
+19.71,2,Kota Pangkal Pinang,age_group,70-74,,4975,jiwa,2025,projection,total_population,3.1.2,56,,70–74
+19.71,2,Kota Pangkal Pinang,age_group,75+,laki_laki,1679,jiwa,2025,projection,total_population,3.1.2,56,,75+
+19.71,2,Kota Pangkal Pinang,age_group,75+,perempuan,2216,jiwa,2025,projection,total_population,3.1.2,56,,75+
+19.71,2,Kota Pangkal Pinang,age_group,75+,,3895,jiwa,2025,projection,total_population,3.1.2,56,,75+
+19.71,2,Pangkal Pinang,sex,laki_laki,,118226,jiwa,2025,projection,total_population,3.1.2,56,,Laki-Laki
+19.71,2,Pangkal Pinang,sex,perempuan,,115240,jiwa,2025,projection,total_population,3.1.2,56,,Perempuan
+19.71,2,Pangkal Pinang,total,total,,233466,jiwa,2025,projection,total_population,3.1.2,56,,
+19.71.04,3,Rangkui,religion,islam,,33803,jiwa,2025,registration,total_population,4.3.1,146,,Islam
+19.71.04,3,Rangkui,religion,kristen,,1140,jiwa,2025,registration,total_population,4.3.1,146,,Protestan
+19.71.04,3,Rangkui,religion,katolik,,1586,jiwa,2025,registration,total_population,4.3.1,146,,Katolik
+19.71.04,3,Rangkui,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,146,,Hindu
+19.71.04,3,Rangkui,religion,buddha,,1970,jiwa,2025,registration,total_population,4.3.1,146,,Budha
+19.71.01,3,Bukit Intan,religion,islam,,33498,jiwa,2025,registration,total_population,4.3.1,146,,Islam
+19.71.01,3,Bukit Intan,religion,kristen,,2747,jiwa,2025,registration,total_population,4.3.1,146,,Protestan
+19.71.01,3,Bukit Intan,religion,katolik,,1766,jiwa,2025,registration,total_population,4.3.1,146,,Katolik
+19.71.01,3,Bukit Intan,religion,hindu,,35,jiwa,2025,registration,total_population,4.3.1,146,,Hindu
+19.71.01,3,Bukit Intan,religion,buddha,,4211,jiwa,2025,registration,total_population,4.3.1,146,,Budha
+19.71.07,3,Girimaya,religion,islam,,12011,jiwa,2025,registration,total_population,4.3.1,146,,Islam
+19.71.07,3,Girimaya,religion,kristen,,1355,jiwa,2025,registration,total_population,4.3.1,146,,Protestan
+19.71.07,3,Girimaya,religion,katolik,,1469,jiwa,2025,registration,total_population,4.3.1,146,,Katolik
+19.71.07,3,Girimaya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,146,,Hindu
+19.71.07,3,Girimaya,religion,buddha,,2815,jiwa,2025,registration,total_population,4.3.1,146,,Budha
+19.71.03,3,Pangkal Balam,religion,islam,,19509,jiwa,2025,registration,total_population,4.3.1,146,,Islam
+19.71.03,3,Pangkal Balam,religion,kristen,,1392,jiwa,2025,registration,total_population,4.3.1,146,,Protestan
+19.71.03,3,Pangkal Balam,religion,katolik,,718,jiwa,2025,registration,total_population,4.3.1,146,,Katolik
+19.71.03,3,Pangkal Balam,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,146,,Hindu
+19.71.03,3,Pangkal Balam,religion,buddha,,772,jiwa,2025,registration,total_population,4.3.1,146,,Budha
+19.71.06,3,Gabek,religion,islam,,34365,jiwa,2025,registration,total_population,4.3.1,146,,Islam
+19.71.06,3,Gabek,religion,kristen,,2013,jiwa,2025,registration,total_population,4.3.1,146,,Protestan
+19.71.06,3,Gabek,religion,katolik,,1031,jiwa,2025,registration,total_population,4.3.1,146,,Katolik
+19.71.06,3,Gabek,religion,hindu,,14,jiwa,2025,registration,total_population,4.3.1,146,,Hindu
+19.71.06,3,Gabek,religion,buddha,,1187,jiwa,2025,registration,total_population,4.3.1,146,,Budha
+19.71.02,3,Tamansari,religion,islam,,19395,jiwa,2025,registration,total_population,4.3.1,146,,Islam
+19.71.02,3,Tamansari,religion,kristen,,293,jiwa,2025,registration,total_population,4.3.1,146,,Protestan
+19.71.02,3,Tamansari,religion,katolik,,261,jiwa,2025,registration,total_population,4.3.1,146,,Katolik
+19.71.02,3,Tamansari,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,146,,Hindu
+19.71.02,3,Tamansari,religion,buddha,,321,jiwa,2025,registration,total_population,4.3.1,146,,Budha
+19.71.05,3,Gerunggang,religion,islam,,55825,jiwa,2025,registration,total_population,4.3.1,146,,Islam
+19.71.05,3,Gerunggang,religion,kristen,,919,jiwa,2025,registration,total_population,4.3.1,146,,Protestan
+19.71.05,3,Gerunggang,religion,katolik,,295,jiwa,2025,registration,total_population,4.3.1,146,,Katolik
+19.71.05,3,Gerunggang,religion,hindu,,12,jiwa,2025,registration,total_population,4.3.1,146,,Hindu
+19.71.05,3,Gerunggang,religion,buddha,,125,jiwa,2025,registration,total_population,4.3.1,146,,Budha
+19.71,2,Pangkal Pinang,religion,islam,,208406,jiwa,2025,registration,total_population,4.3.1,146,,Islam
+19.71,2,Pangkal Pinang,religion,kristen,,9859,jiwa,2025,registration,total_population,4.3.1,146,,Protestan
+19.71,2,Pangkal Pinang,religion,katolik,,7126,jiwa,2025,registration,total_population,4.3.1,146,,Katolik
+19.71,2,Pangkal Pinang,religion,hindu,,73,jiwa,2025,registration,total_population,4.3.1,146,,Hindu
+19.71,2,Pangkal Pinang,religion,buddha,,11401,jiwa,2025,registration,total_population,4.3.1,146,,Budha
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/padi_padian,,94761,rupiah,2025,survey_estimate,per_capita,10.1,346,,Padi-padian
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/padi_padian,,83288,rupiah,2024,survey_estimate,per_capita,10.1,346,,Padi-padian
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/umbi_umbian,,9937,rupiah,2025,survey_estimate,per_capita,10.1,346,,Umbi-umbian
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/umbi_umbian,,8819,rupiah,2024,survey_estimate,per_capita,10.1,346,,Umbi-umbian
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,122108,rupiah,2025,survey_estimate,per_capita,10.1,346,,Ikan/udang/cumi/kerang
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,124320,rupiah,2024,survey_estimate,per_capita,10.1,346,,Ikan/udang/cumi/kerang
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/daging,,72470,rupiah,2025,survey_estimate,per_capita,10.1,346,,Daging
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/daging,,62282,rupiah,2024,survey_estimate,per_capita,10.1,346,,Daging
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/telur_dan_susu,,65607,rupiah,2025,survey_estimate,per_capita,10.1,346,,Telur dan susu
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/telur_dan_susu,,56714,rupiah,2024,survey_estimate,per_capita,10.1,346,,Telur dan susu
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/sayur_sayuran,,94412,rupiah,2025,survey_estimate,per_capita,10.1,346,,Sayur-sayuran
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/sayur_sayuran,,78088,rupiah,2024,survey_estimate,per_capita,10.1,346,,Sayur-sayuran
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/kacang_kacangan,,12551,rupiah,2025,survey_estimate,per_capita,10.1,346,,Kacang-kacangan
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/kacang_kacangan,,12726,rupiah,2024,survey_estimate,per_capita,10.1,346,,Kacang-kacangan
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/buah_buahan,,75894,rupiah,2025,survey_estimate,per_capita,10.1,346,,Buah-buahan
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/buah_buahan,,59115,rupiah,2024,survey_estimate,per_capita,10.1,346,,Buah-buahan
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18840,rupiah,2025,survey_estimate,per_capita,10.1,346,,Minyak dan kelapa
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18958,rupiah,2024,survey_estimate,per_capita,10.1,346,,Minyak dan kelapa
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/bahan_minuman,,21291,rupiah,2025,survey_estimate,per_capita,10.1,346,,Bahan minuman
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/bahan_minuman,,20993,rupiah,2024,survey_estimate,per_capita,10.1,346,,Bahan minuman
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/bumbu_bumbuan,,28718,rupiah,2025,survey_estimate,per_capita,10.1,346,,Bumbu-bumbuan
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/bumbu_bumbuan,,20474,rupiah,2024,survey_estimate,per_capita,10.1,346,,Bumbu-bumbuan
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/konsumsi_lainnya,,18932,rupiah,2025,survey_estimate,per_capita,10.1,346,,Konsumsi lainnya
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/konsumsi_lainnya,,17800,rupiah,2024,survey_estimate,per_capita,10.1,346,,Konsumsi lainnya
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,299515,rupiah,2025,survey_estimate,per_capita,10.1,346,,Makanan dan minuman jadi
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,250494,rupiah,2024,survey_estimate,per_capita,10.1,346,,Makanan dan minuman jadi
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/rokok,,104345,rupiah,2025,survey_estimate,per_capita,10.1,346,,Rokok
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/rokok,,117175,rupiah,2024,survey_estimate,per_capita,10.1,346,,Rokok
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/jumlah_makanan,,1039382,rupiah,2025,survey_estimate,per_capita,10.1,346,,Jumlah makanan
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/jumlah_makanan,,931246,rupiah,2024,survey_estimate,per_capita,10.1,346,,Jumlah makanan
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,636306,rupiah,2025,survey_estimate,per_capita,10.1,346,,Perumahan dan fasilitas rumah tangga
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,582035,rupiah,2024,survey_estimate,per_capita,10.1,346,,Perumahan dan fasilitas rumah tangga
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,331541,rupiah,2025,survey_estimate,per_capita,10.1,346,,Aneka barang dan jasa
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,257637,rupiah,2024,survey_estimate,per_capita,10.1,346,,Aneka barang dan jasa
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,59311,rupiah,2025,survey_estimate,per_capita,10.1,346,,"Pakaian, alas kaki, dan tutup kepala"
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,55911,rupiah,2024,survey_estimate,per_capita,10.1,346,,"Pakaian, alas kaki, dan tutup kepala"
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/barang_tahan_lama,,108816,rupiah,2025,survey_estimate,per_capita,10.1,346,,Barang tahan lama
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/barang_tahan_lama,,75359,rupiah,2024,survey_estimate,per_capita,10.1,346,,Barang tahan lama
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,103211,rupiah,2025,survey_estimate,per_capita,10.1,346,,"Pajak, pungutan, dan asuransi"
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,93794,rupiah,2024,survey_estimate,per_capita,10.1,346,,"Pajak, pungutan, dan asuransi"
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,55493,rupiah,2025,survey_estimate,per_capita,10.1,346,,Keperluan pesta dan upacara/kenduri
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,24386,rupiah,2024,survey_estimate,per_capita,10.1,346,,Keperluan pesta dan upacara/kenduri
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1294678,rupiah,2025,survey_estimate,per_capita,10.1,346,,Jumlah bukan makanan
+19.71,2,Kota Pangkal Pinang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1089121,rupiah,2024,survey_estimate,per_capita,10.1,346,,Jumlah bukan makanan
+19.71,2,Kota Pangkal Pinang,expenditure,total,,2334060,rupiah,2025,survey_estimate,per_capita,10.1,346,,
+19.71,2,Kota Pangkal Pinang,expenditure,total,,2020368,rupiah,2024,survey_estimate,per_capita,10.1,346,,

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1278-kecamatan-127803-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.78.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gunungsitoli Utara Dalam Angka 2026",
+  "publisherName": "BPS Kota Gunungsitoli",
+  "publisherDomain": "1278",
+  "publisherWebsite": "https://gunungsitolikota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Gunungsitoli (https://gunungsitolikota.bps.go.id), publikasi \"Kecamatan Gunungsitoli Utara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1278060",
+  "publicationNumber": "12780.26011",
+  "issn": "2797-555X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://gunungsitolikota.bps.go.id/id/publication/2026/09/28/62af9f4c414d33d172e8427c/kecamatan-gunungsitoli-utara-dalam-angka-2026.html",
+  "sourceFileSha256": "88fb7896328c778a71c45d45c4e680d7f787929418eea9800839f61b57cd772b",
+  "sourceFileBytes": 9689655,
+  "sourcePages": [32, 33, 34, 39],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Gunungsitoli.",
+  "csvPath": "datasets/bps-1278-kecamatan-127803-dalam-angka-2026.csv",
+  "csvSha256": "ce9920a5c43217b8c37344bd6b4faf1f43933ba76a9a917e0f6ec9b23440e960",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk dan Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Gunungsitoli Utara (Jiwa), 2024-2025",
+      "printedPages": [32, 33, 34],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.4",
+      "title": "Jumlah Penduduk Menurut Desa dan Agama di Kecamatan Gunungsitoli Utara (Jiwa), 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication"
+  ]
+}

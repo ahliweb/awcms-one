@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.03.16.2009,4,Modong,sex,laki_laki,,1283,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.16.2009,4,Modong,sex,perempuan,,1276,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.16.2009,4,Modong,total,total,,2559,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.16.2001,4,Tanjung Miring,sex,laki_laki,,769,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.16.2001,4,Tanjung Miring,sex,perempuan,,779,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.16.2001,4,Tanjung Miring,total,total,,1548,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.16.2010,4,Sukacinta,sex,laki_laki,,1088,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.16.2010,4,Sukacinta,sex,perempuan,,1019,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.16.2010,4,Sukacinta,total,total,,2107,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.16.2011,4,Penandingan,sex,laki_laki,,1027,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.16.2011,4,Penandingan,sex,perempuan,,1042,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.16.2011,4,Penandingan,total,total,,2069,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.16.2012,4,Danau Rata,sex,laki_laki,,1839,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.16.2012,4,Danau Rata,sex,perempuan,,1725,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.16.2012,4,Danau Rata,total,total,,3564,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.16.2017,4,Suka Maju,sex,laki_laki,,471,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.16.2017,4,Suka Maju,sex,perempuan,,464,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.16.2017,4,Suka Maju,total,total,,935,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.16.2014,4,Sukarami,sex,laki_laki,,1257,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.16.2014,4,Sukarami,sex,perempuan,,1210,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.16.2014,4,Sukarami,total,total,,2467,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.16.2016,4,Suka Jadi,sex,laki_laki,,963,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.16.2016,4,Suka Jadi,sex,perempuan,,928,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.16.2016,4,Suka Jadi,total,total,,1891,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.16.2008,4,Suka Dana,sex,laki_laki,,817,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.16.2008,4,Suka Dana,sex,perempuan,,779,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.16.2008,4,Suka Dana,total,total,,1596,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.16.2015,4,Petar Dalam,sex,laki_laki,,563,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.16.2015,4,Petar Dalam,sex,perempuan,,584,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.16.2015,4,Petar Dalam,total,total,,1147,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.16.2013,4,Paya Angus,sex,laki_laki,,845,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.16.2013,4,Paya Angus,sex,perempuan,,787,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.16.2013,4,Paya Angus,total,total,,1632,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.16.2002,4,Danau Tampang,sex,laki_laki,,617,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.16.2002,4,Danau Tampang,sex,perempuan,,592,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.16.2002,4,Danau Tampang,total,total,,1209,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.16.2003,4,Kasai,sex,laki_laki,,635,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.16.2003,4,Kasai,sex,perempuan,,668,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.16.2003,4,Kasai,total,total,,1303,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.16.2004,4,Sungai Rotan,sex,laki_laki,,907,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.16.2004,4,Sungai Rotan,sex,perempuan,,890,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.16.2004,4,Sungai Rotan,total,total,,1797,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.16.2005,4,Suka Merindu,sex,laki_laki,,1381,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.16.2005,4,Suka Merindu,sex,perempuan,,1281,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.16.2005,4,Suka Merindu,total,total,,2662,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.16.2006,4,Tanding Marga,sex,laki_laki,,1051,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.16.2006,4,Tanding Marga,sex,perempuan,,992,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.16.2006,4,Tanding Marga,total,total,,2043,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.16.2007,4,Muara Lematang,sex,laki_laki,,729,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.16.2007,4,Muara Lematang,sex,perempuan,,696,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.16.2007,4,Muara Lematang,total,total,,1425,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.16.2018,4,Danau Baru,sex,laki_laki,,411,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.16.2018,4,Danau Baru,sex,perempuan,,394,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.16.2018,4,Danau Baru,total,total,,805,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.16.2019,4,Petar Luar,sex,laki_laki,,935,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.16.2019,4,Petar Luar,sex,perempuan,,961,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.16.2019,4,Petar Luar,total,total,,1896,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.16,3,Sungai Rotan,sex,laki_laki,,17588,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.16,3,Sungai Rotan,sex,perempuan,,17067,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.16,3,Sungai Rotan,total,total,,34655,jiwa,2025,registration,total_population,unnumbered-p23,23,,

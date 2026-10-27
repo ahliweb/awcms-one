@@ -1,0 +1,142 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.75.01.1007,4,Krapyakrejo,sex,laki_laki,,3781,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+35.75.01.1007,4,Krapyakrejo,sex,perempuan,,3684,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+35.75.01.1007,4,Krapyakrejo,total,total,,7465,jiwa,2025,registration,total_population,3.1,34,,
+35.75.01.1005,4,Bukir,sex,laki_laki,,2221,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+35.75.01.1005,4,Bukir,sex,perempuan,,2198,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+35.75.01.1005,4,Bukir,total,total,,4419,jiwa,2025,registration,total_population,3.1,34,,
+35.75.01.1003,4,Sebani,sex,laki_laki,,2382,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+35.75.01.1003,4,Sebani,sex,perempuan,,2260,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+35.75.01.1003,4,Sebani,total,total,,4642,jiwa,2025,registration,total_population,3.1,34,,
+35.75.01.1002,4,Gentong,sex,laki_laki,,2705,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+35.75.01.1002,4,Gentong,sex,perempuan,,2741,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+35.75.01.1002,4,Gentong,total,total,,5446,jiwa,2025,registration,total_population,3.1,34,,
+35.75.01.1009,4,Gadingrejo,sex,laki_laki,,6082,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+35.75.01.1009,4,Gadingrejo,sex,perempuan,,5732,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+35.75.01.1009,4,Gadingrejo,total,total,,11814,jiwa,2025,registration,total_population,3.1,34,,
+35.75.01.1004,4,Petahunan,sex,laki_laki,,3820,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+35.75.01.1004,4,Petahunan,sex,perempuan,,3773,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+35.75.01.1004,4,Petahunan,total,total,,7593,jiwa,2025,registration,total_population,3.1,34,,
+35.75.01.1006,4,Randusari,sex,laki_laki,,1560,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+35.75.01.1006,4,Randusari,sex,perempuan,,1519,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+35.75.01.1006,4,Randusari,total,total,,3079,jiwa,2025,registration,total_population,3.1,34,,
+35.75.01.1001,4,Karangketug,sex,laki_laki,,3684,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+35.75.01.1001,4,Karangketug,sex,perempuan,,3638,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+35.75.01.1001,4,Karangketug,total,total,,7322,jiwa,2025,registration,total_population,3.1,34,,
+35.75.01,3,Kecamatan Gadingrejo,sex,laki_laki,,26235,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+35.75.01,3,Kecamatan Gadingrejo,sex,perempuan,,25545,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+35.75.01,3,Kecamatan Gadingrejo,total,total,,51780,jiwa,2025,registration,total_population,3.1,34,,
+35.75.01,3,Gadingrejo,age_group,0-4,laki_laki,2007,jiwa,2025,registration,total_population,3.2,36,,0-4
+35.75.01,3,Gadingrejo,age_group,0-4,perempuan,1784,jiwa,2025,registration,total_population,3.2,36,,0-4
+35.75.01,3,Gadingrejo,age_group,0-4,,3791,jiwa,2025,registration,total_population,3.2,36,,0-4
+35.75.01,3,Gadingrejo,age_group,5-9,laki_laki,2296,jiwa,2025,registration,total_population,3.2,36,,5-9
+35.75.01,3,Gadingrejo,age_group,5-9,perempuan,2214,jiwa,2025,registration,total_population,3.2,36,,5-9
+35.75.01,3,Gadingrejo,age_group,5-9,,4510,jiwa,2025,registration,total_population,3.2,36,,5-9
+35.75.01,3,Gadingrejo,age_group,10-14,laki_laki,2309,jiwa,2025,registration,total_population,3.2,36,,10-14
+35.75.01,3,Gadingrejo,age_group,10-14,perempuan,2154,jiwa,2025,registration,total_population,3.2,36,,10-14
+35.75.01,3,Gadingrejo,age_group,10-14,,4463,jiwa,2025,registration,total_population,3.2,36,,10-14
+35.75.01,3,Gadingrejo,age_group,15-19,laki_laki,2144,jiwa,2025,registration,total_population,3.2,36,,15-19
+35.75.01,3,Gadingrejo,age_group,15-19,perempuan,1972,jiwa,2025,registration,total_population,3.2,36,,15-19
+35.75.01,3,Gadingrejo,age_group,15-19,,4116,jiwa,2025,registration,total_population,3.2,36,,15-19
+35.75.01,3,Gadingrejo,age_group,20-24,laki_laki,2090,jiwa,2025,registration,total_population,3.2,36,,20-24
+35.75.01,3,Gadingrejo,age_group,20-24,perempuan,1940,jiwa,2025,registration,total_population,3.2,36,,20-24
+35.75.01,3,Gadingrejo,age_group,20-24,,4030,jiwa,2025,registration,total_population,3.2,36,,20-24
+35.75.01,3,Gadingrejo,age_group,25-29,laki_laki,2250,jiwa,2025,registration,total_population,3.2,36,,25-29
+35.75.01,3,Gadingrejo,age_group,25-29,perempuan,2074,jiwa,2025,registration,total_population,3.2,36,,25-29
+35.75.01,3,Gadingrejo,age_group,25-29,,4324,jiwa,2025,registration,total_population,3.2,36,,25-29
+35.75.01,3,Gadingrejo,age_group,30-34,laki_laki,2151,jiwa,2025,registration,total_population,3.2,36,,30-34
+35.75.01,3,Gadingrejo,age_group,30-34,perempuan,2085,jiwa,2025,registration,total_population,3.2,36,,30-34
+35.75.01,3,Gadingrejo,age_group,30-34,,4236,jiwa,2025,registration,total_population,3.2,36,,30-34
+35.75.01,3,Gadingrejo,age_group,35-39,laki_laki,1848,jiwa,2025,registration,total_population,3.2,36,,35-39
+35.75.01,3,Gadingrejo,age_group,35-39,perempuan,1820,jiwa,2025,registration,total_population,3.2,36,,35-39
+35.75.01,3,Gadingrejo,age_group,35-39,,3668,jiwa,2025,registration,total_population,3.2,36,,35-39
+35.75.01,3,Gadingrejo,age_group,40-44,laki_laki,2058,jiwa,2025,registration,total_population,3.2,36,,40-44
+35.75.01,3,Gadingrejo,age_group,40-44,perempuan,2030,jiwa,2025,registration,total_population,3.2,36,,40-44
+35.75.01,3,Gadingrejo,age_group,40-44,,4088,jiwa,2025,registration,total_population,3.2,36,,40-44
+35.75.01,3,Gadingrejo,age_group,45-49,laki_laki,1786,jiwa,2025,registration,total_population,3.2,36,,45-49
+35.75.01,3,Gadingrejo,age_group,45-49,perempuan,1777,jiwa,2025,registration,total_population,3.2,36,,45-49
+35.75.01,3,Gadingrejo,age_group,45-49,,3563,jiwa,2025,registration,total_population,3.2,36,,45-49
+35.75.01,3,Gadingrejo,age_group,50-54,laki_laki,1661,jiwa,2025,registration,total_population,3.2,36,,50-54
+35.75.01,3,Gadingrejo,age_group,50-54,perempuan,1596,jiwa,2025,registration,total_population,3.2,36,,50-54
+35.75.01,3,Gadingrejo,age_group,50-54,,3257,jiwa,2025,registration,total_population,3.2,36,,50-54
+35.75.01,3,Gadingrejo,age_group,55-59,laki_laki,1245,jiwa,2025,registration,total_population,3.2,36,,55-59
+35.75.01,3,Gadingrejo,age_group,55-59,perempuan,1338,jiwa,2025,registration,total_population,3.2,36,,55-59
+35.75.01,3,Gadingrejo,age_group,55-59,,2583,jiwa,2025,registration,total_population,3.2,36,,55-59
+35.75.01,3,Gadingrejo,age_group,60-64,laki_laki,960,jiwa,2025,registration,total_population,3.2,36,,60-64
+35.75.01,3,Gadingrejo,age_group,60-64,perempuan,1170,jiwa,2025,registration,total_population,3.2,36,,60-64
+35.75.01,3,Gadingrejo,age_group,60-64,,2130,jiwa,2025,registration,total_population,3.2,36,,60-64
+35.75.01,3,Gadingrejo,age_group,65-69,laki_laki,768,jiwa,2025,registration,total_population,3.2,36,,65-69
+35.75.01,3,Gadingrejo,age_group,65-69,perempuan,786,jiwa,2025,registration,total_population,3.2,36,,65-69
+35.75.01,3,Gadingrejo,age_group,65-69,,1554,jiwa,2025,registration,total_population,3.2,36,,65-69
+35.75.01,3,Gadingrejo,age_group,70-74,laki_laki,394,jiwa,2025,registration,total_population,3.2,36,,70-74
+35.75.01,3,Gadingrejo,age_group,70-74,perempuan,408,jiwa,2025,registration,total_population,3.2,36,,70-74
+35.75.01,3,Gadingrejo,age_group,70-74,,802,jiwa,2025,registration,total_population,3.2,36,,70-74
+35.75.01,3,Gadingrejo,age_group,75+,laki_laki,268,jiwa,2025,registration,total_population,3.2,36,,>75
+35.75.01,3,Gadingrejo,age_group,75+,perempuan,397,jiwa,2025,registration,total_population,3.2,36,,>75
+35.75.01,3,Gadingrejo,age_group,75+,,665,jiwa,2025,registration,total_population,3.2,36,,>75
+35.75.01,3,Kecamatan Gadingrejo,sex,laki_laki,,26235,jiwa,2025,registration,total_population,3.2,36,,Laki-Laki
+35.75.01,3,Kecamatan Gadingrejo,sex,perempuan,,25545,jiwa,2025,registration,total_population,3.2,36,,Perempuan
+35.75.01,3,Kecamatan Gadingrejo,total,total,,51780,jiwa,2025,registration,total_population,3.2,36,,
+35.75.01.1007,4,Krapyakrejo,religion,islam,,7419,jiwa,2025,registration,total_population,4.4.5,60,,Islam
+35.75.01.1007,4,Krapyakrejo,religion,kristen,,27,jiwa,2025,registration,total_population,4.4.5,60,,Protestan
+35.75.01.1007,4,Krapyakrejo,religion,katolik,,8,jiwa,2025,registration,total_population,4.4.5,60,,Katolik
+35.75.01.1007,4,Krapyakrejo,religion,hindu,,9,jiwa,2025,registration,total_population,4.4.5,60,,Hindu
+35.75.01.1007,4,Krapyakrejo,religion,buddha,,2,jiwa,2025,registration,total_population,4.4.5,60,,Budha
+35.75.01.1007,4,Krapyakrejo,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.5,60,nil,Konghucu
+35.75.01.1007,4,Krapyakrejo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,60,nil,Lainnya
+35.75.01.1005,4,Bukir,religion,islam,,4417,jiwa,2025,registration,total_population,4.4.5,60,,Islam
+35.75.01.1005,4,Bukir,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.5,60,nil,Protestan
+35.75.01.1005,4,Bukir,religion,katolik,,2,jiwa,2025,registration,total_population,4.4.5,60,,Katolik
+35.75.01.1005,4,Bukir,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.5,60,nil,Hindu
+35.75.01.1005,4,Bukir,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.5,60,nil,Budha
+35.75.01.1005,4,Bukir,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.5,60,nil,Konghucu
+35.75.01.1005,4,Bukir,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,60,nil,Lainnya
+35.75.01.1003,4,Sebani,religion,islam,,4598,jiwa,2025,registration,total_population,4.4.5,60,,Islam
+35.75.01.1003,4,Sebani,religion,kristen,,26,jiwa,2025,registration,total_population,4.4.5,60,,Protestan
+35.75.01.1003,4,Sebani,religion,katolik,,11,jiwa,2025,registration,total_population,4.4.5,60,,Katolik
+35.75.01.1003,4,Sebani,religion,hindu,,4,jiwa,2025,registration,total_population,4.4.5,60,,Hindu
+35.75.01.1003,4,Sebani,religion,buddha,,3,jiwa,2025,registration,total_population,4.4.5,60,,Budha
+35.75.01.1003,4,Sebani,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.5,60,nil,Konghucu
+35.75.01.1003,4,Sebani,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,60,nil,Lainnya
+35.75.01.1002,4,Gentong,religion,islam,,5120,jiwa,2025,registration,total_population,4.4.5,60,,Islam
+35.75.01.1002,4,Gentong,religion,kristen,,178,jiwa,2025,registration,total_population,4.4.5,60,,Protestan
+35.75.01.1002,4,Gentong,religion,katolik,,77,jiwa,2025,registration,total_population,4.4.5,60,,Katolik
+35.75.01.1002,4,Gentong,religion,hindu,,6,jiwa,2025,registration,total_population,4.4.5,60,,Hindu
+35.75.01.1002,4,Gentong,religion,buddha,,65,jiwa,2025,registration,total_population,4.4.5,60,,Budha
+35.75.01.1002,4,Gentong,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.5,60,nil,Konghucu
+35.75.01.1002,4,Gentong,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,60,nil,Lainnya
+35.75.01.1009,4,Gadingrejo,religion,islam,,11647,jiwa,2025,registration,total_population,4.4.5,60,,Islam
+35.75.01.1009,4,Gadingrejo,religion,kristen,,90,jiwa,2025,registration,total_population,4.4.5,60,,Protestan
+35.75.01.1009,4,Gadingrejo,religion,katolik,,48,jiwa,2025,registration,total_population,4.4.5,60,,Katolik
+35.75.01.1009,4,Gadingrejo,religion,hindu,,25,jiwa,2025,registration,total_population,4.4.5,60,,Hindu
+35.75.01.1009,4,Gadingrejo,religion,buddha,,2,jiwa,2025,registration,total_population,4.4.5,60,,Budha
+35.75.01.1009,4,Gadingrejo,religion,khonghucu,,2,jiwa,2025,registration,total_population,4.4.5,60,,Konghucu
+35.75.01.1009,4,Gadingrejo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,60,nil,Lainnya
+35.75.01.1004,4,Petahunan,religion,islam,,7341,jiwa,2025,registration,total_population,4.4.5,60,,Islam
+35.75.01.1004,4,Petahunan,religion,kristen,,160,jiwa,2025,registration,total_population,4.4.5,60,,Protestan
+35.75.01.1004,4,Petahunan,religion,katolik,,57,jiwa,2025,registration,total_population,4.4.5,60,,Katolik
+35.75.01.1004,4,Petahunan,religion,hindu,,8,jiwa,2025,registration,total_population,4.4.5,60,,Hindu
+35.75.01.1004,4,Petahunan,religion,buddha,,27,jiwa,2025,registration,total_population,4.4.5,60,,Budha
+35.75.01.1004,4,Petahunan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.5,60,nil,Konghucu
+35.75.01.1004,4,Petahunan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,60,nil,Lainnya
+35.75.01.1006,4,Randusari,religion,islam,,3074,jiwa,2025,registration,total_population,4.4.5,60,,Islam
+35.75.01.1006,4,Randusari,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.5,60,nil,Protestan
+35.75.01.1006,4,Randusari,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.5,60,nil,Katolik
+35.75.01.1006,4,Randusari,religion,hindu,,5,jiwa,2025,registration,total_population,4.4.5,60,,Hindu
+35.75.01.1006,4,Randusari,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.5,60,nil,Budha
+35.75.01.1006,4,Randusari,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.5,60,nil,Konghucu
+35.75.01.1006,4,Randusari,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,60,nil,Lainnya
+35.75.01.1001,4,Karangketug,religion,islam,,7250,jiwa,2025,registration,total_population,4.4.5,60,,Islam
+35.75.01.1001,4,Karangketug,religion,kristen,,26,jiwa,2025,registration,total_population,4.4.5,60,,Protestan
+35.75.01.1001,4,Karangketug,religion,katolik,,31,jiwa,2025,registration,total_population,4.4.5,60,,Katolik
+35.75.01.1001,4,Karangketug,religion,hindu,,3,jiwa,2025,registration,total_population,4.4.5,60,,Hindu
+35.75.01.1001,4,Karangketug,religion,buddha,,11,jiwa,2025,registration,total_population,4.4.5,60,,Budha
+35.75.01.1001,4,Karangketug,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.5,60,nil,Konghucu
+35.75.01.1001,4,Karangketug,religion,lainnya,,1,jiwa,2025,registration,total_population,4.4.5,60,,Lainnya
+35.75.01,3,Kecamatan Gadingrejo,religion,islam,,50866,jiwa,2025,registration,total_population,4.4.5,60,,Islam
+35.75.01,3,Kecamatan Gadingrejo,religion,kristen,,507,jiwa,2025,registration,total_population,4.4.5,60,,Protestan
+35.75.01,3,Kecamatan Gadingrejo,religion,katolik,,234,jiwa,2025,registration,total_population,4.4.5,60,,Katolik
+35.75.01,3,Kecamatan Gadingrejo,religion,hindu,,60,jiwa,2025,registration,total_population,4.4.5,60,,Hindu
+35.75.01,3,Kecamatan Gadingrejo,religion,buddha,,110,jiwa,2025,registration,total_population,4.4.5,60,,Budha
+35.75.01,3,Kecamatan Gadingrejo,religion,khonghucu,,2,jiwa,2025,registration,total_population,4.4.5,60,,Konghucu
+35.75.01,3,Kecamatan Gadingrejo,religion,lainnya,,1,jiwa,2025,registration,total_population,4.4.5,60,,Lainnya

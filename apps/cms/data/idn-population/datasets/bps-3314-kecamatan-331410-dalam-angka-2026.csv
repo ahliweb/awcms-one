@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.14.10.1001,4,Sine,sex,laki_laki,,3175,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.10.1001,4,Sine,sex,perempuan,,3263,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.10.1001,4,Sine,total,total,,6438,jiwa,2025,registration,total_population,3.1,32,,
+33.14.10.1002,4,Sragen Kulon,sex,laki_laki,,8168,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.10.1002,4,Sragen Kulon,sex,perempuan,,8355,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.10.1002,4,Sragen Kulon,total,total,,16523,jiwa,2025,registration,total_population,3.1,32,,
+33.14.10.1003,4,Sragen Tengah,sex,laki_laki,,4043,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.10.1003,4,Sragen Tengah,sex,perempuan,,4136,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.10.1003,4,Sragen Tengah,total,total,,8179,jiwa,2025,registration,total_population,3.1,32,,
+33.14.10.1004,4,Sragen Wetan,sex,laki_laki,,7636,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.10.1004,4,Sragen Wetan,sex,perempuan,,8012,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.10.1004,4,Sragen Wetan,total,total,,15648,jiwa,2025,registration,total_population,3.1,32,,
+33.14.10.1005,4,Nglorog,sex,laki_laki,,3939,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.10.1005,4,Nglorog,sex,perempuan,,3964,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.10.1005,4,Nglorog,total,total,,7903,jiwa,2025,registration,total_population,3.1,32,,
+33.14.10.1006,4,Karang Tengah,sex,laki_laki,,2847,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.10.1006,4,Karang Tengah,sex,perempuan,,2922,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.10.1006,4,Karang Tengah,total,total,,5769,jiwa,2025,registration,total_population,3.1,32,,
+33.14.10.2007,4,Tangkil,sex,laki_laki,,2797,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.10.2007,4,Tangkil,sex,perempuan,,2889,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.10.2007,4,Tangkil,total,total,,5686,jiwa,2025,registration,total_population,3.1,32,,
+33.14.10.2008,4,Kedungupit,sex,laki_laki,,3466,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.10.2008,4,Kedungupit,sex,perempuan,,3552,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.10.2008,4,Kedungupit,total,total,,7018,jiwa,2025,registration,total_population,3.1,32,,
+33.14.10,3,Kecamatan Sragen,sex,laki_laki,,36071,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.10,3,Kecamatan Sragen,sex,perempuan,,37093,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.10,3,Kecamatan Sragen,total,total,,73164,jiwa,2025,registration,total_population,3.1,32,,
+33.14.10,3,Sragen,age_group,0-4,laki_laki,1899,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.10,3,Sragen,age_group,0-4,perempuan,1738,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.10,3,Sragen,age_group,0-4,,3637,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.10,3,Sragen,age_group,5-9,laki_laki,2601,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.10,3,Sragen,age_group,5-9,perempuan,2471,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.10,3,Sragen,age_group,5-9,,5072,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.10,3,Sragen,age_group,10-14,laki_laki,2912,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.10,3,Sragen,age_group,10-14,perempuan,2806,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.10,3,Sragen,age_group,10-14,,5718,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.10,3,Sragen,age_group,15-19,laki_laki,3075,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.10,3,Sragen,age_group,15-19,perempuan,2959,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.10,3,Sragen,age_group,15-19,,6034,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.10,3,Sragen,age_group,20-24,laki_laki,2649,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.10,3,Sragen,age_group,20-24,perempuan,2752,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.10,3,Sragen,age_group,20-24,,5401,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.10,3,Sragen,age_group,25-29,laki_laki,2683,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.10,3,Sragen,age_group,25-29,perempuan,2508,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.10,3,Sragen,age_group,25-29,,5191,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.10,3,Sragen,age_group,30-34,laki_laki,2366,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.10,3,Sragen,age_group,30-34,perempuan,2334,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.10,3,Sragen,age_group,30-34,,4700,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.10,3,Sragen,age_group,35-39,laki_laki,2352,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.10,3,Sragen,age_group,35-39,perempuan,2384,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.10,3,Sragen,age_group,35-39,,4736,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.10,3,Sragen,age_group,40-44,laki_laki,2967,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.10,3,Sragen,age_group,40-44,perempuan,3130,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.10,3,Sragen,age_group,40-44,,6097,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.10,3,Sragen,age_group,45-49,laki_laki,2980,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.10,3,Sragen,age_group,45-49,perempuan,2883,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.10,3,Sragen,age_group,45-49,,5863,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.10,3,Sragen,age_group,50-54,laki_laki,2416,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.10,3,Sragen,age_group,50-54,perempuan,2537,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.10,3,Sragen,age_group,50-54,,4953,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.10,3,Sragen,age_group,55-59,laki_laki,2158,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.10,3,Sragen,age_group,55-59,perempuan,2351,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.10,3,Sragen,age_group,55-59,,4509,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.10,3,Sragen,age_group,60-64,laki_laki,1653,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.10,3,Sragen,age_group,60-64,perempuan,2016,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.10,3,Sragen,age_group,60-64,,3669,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.10,3,Sragen,age_group,65-69,laki_laki,1490,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.10,3,Sragen,age_group,65-69,perempuan,1745,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.10,3,Sragen,age_group,65-69,,3235,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.10,3,Sragen,age_group,70-74,laki_laki,985,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.10,3,Sragen,age_group,70-74,perempuan,1049,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.10,3,Sragen,age_group,70-74,,2034,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.10,3,Sragen,age_group,75+,laki_laki,885,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.10,3,Sragen,age_group,75+,perempuan,1430,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.10,3,Sragen,age_group,75+,,2315,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.10,3,Kecamatan Sragen,sex,laki_laki,,36071,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+33.14.10,3,Kecamatan Sragen,sex,perempuan,,37093,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+33.14.10,3,Kecamatan Sragen,total,total,,73164,jiwa,2025,registration,total_population,3.2,34,,

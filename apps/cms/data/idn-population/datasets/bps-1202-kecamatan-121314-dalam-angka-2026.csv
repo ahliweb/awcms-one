@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.13.14.2023,4,Simpang Durian,sex,laki_laki,,2265,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.14.2023,4,Simpang Durian,sex,perempuan,,2138,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.14.2023,4,Simpang Durian,total,total,,4403,jiwa,2025,registration,total_population,3.1,21,,
+12.13.14.2021,4,Simpang Bajole,sex,laki_laki,,677,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.14.2021,4,Simpang Bajole,sex,perempuan,,663,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.14.2021,4,Simpang Bajole,total,total,,1340,jiwa,2025,registration,total_population,3.1,21,,
+12.13.14.2003,4,Bandar Limabung,sex,laki_laki,,327,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.14.2003,4,Bandar Limabung,sex,perempuan,,317,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.14.2003,4,Bandar Limabung,total,total,,644,jiwa,2025,registration,total_population,3.1,21,,
+12.13.14.2002,4,Aek Manyuruk,sex,laki_laki,,420,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.14.2002,4,Aek Manyuruk,sex,perempuan,,417,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.14.2002,4,Aek Manyuruk,total,total,,837,jiwa,2025,registration,total_population,3.1,21,,
+12.13.14.2022,4,Simpang Duku,sex,laki_laki,,385,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.14.2022,4,Simpang Duku,sex,perempuan,,404,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.14.2022,4,Simpang Duku,total,total,,789,jiwa,2025,registration,total_population,3.1,21,,
+12.13.14.2025,4,Simpang Koje,sex,laki_laki,,1371,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.14.2025,4,Simpang Koje,sex,perempuan,,1275,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.14.2025,4,Simpang Koje,total,total,,2646,jiwa,2025,registration,total_population,3.1,21,,
+12.13.14.2014,4,Pangkalan,sex,laki_laki,,683,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.14.2014,4,Pangkalan,sex,perempuan,,643,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.14.2014,4,Pangkalan,total,total,,1326,jiwa,2025,registration,total_population,3.1,21,,
+12.13.14.2006,4,Lancat,sex,laki_laki,,535,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.14.2006,4,Lancat,sex,perempuan,,547,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.14.2006,4,Lancat,total,total,,1082,jiwa,2025,registration,total_population,3.1,21,,
+12.13.14.2019,4,Sikumbu,sex,laki_laki,,333,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.14.2019,4,Sikumbu,sex,perempuan,,300,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.14.2019,4,Sikumbu,total,total,,633,jiwa,2025,registration,total_population,3.1,21,,
+12.13.14.2001,4,Aek Garingging,sex,laki_laki,,564,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.14.2001,4,Aek Garingging,sex,perempuan,,570,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.14.2001,4,Aek Garingging,total,total,,1134,jiwa,2025,registration,total_population,3.1,21,,
+12.13.14.2015,4,Perk. Simpang Gambir,sex,laki_laki,,387,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.14.2015,4,Perk. Simpang Gambir,sex,perempuan,,395,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.14.2015,4,Perk. Simpang Gambir,total,total,,782,jiwa,2025,registration,total_population,3.1,21,,
+12.13.14.2011,4,Lobung,sex,laki_laki,,326,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.14.2011,4,Lobung,sex,perempuan,,295,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.14.2011,4,Lobung,total,total,,621,jiwa,2025,registration,total_population,3.1,21,,
+12.13.14.2010,4,Kampung Baru,sex,laki_laki,,829,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.14.2010,4,Kampung Baru,sex,perempuan,,801,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.14.2010,4,Kampung Baru,total,total,,1630,jiwa,2025,registration,total_population,3.1,21,,
+12.13.14.2031,4,Bonca Bayuon,sex,laki_laki,,398,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.14.2031,4,Bonca Bayuon,sex,perempuan,,375,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.14.2031,4,Bonca Bayuon,total,total,,773,jiwa,2025,registration,total_population,3.1,21,,
+12.13.14.2029,4,Dalan Lidang,sex,laki_laki,,529,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.14.2029,4,Dalan Lidang,sex,perempuan,,528,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.14.2029,4,Dalan Lidang,total,total,,1057,jiwa,2025,registration,total_population,3.1,21,,
+12.13.14.2034,4,Perbatasan,sex,laki_laki,,608,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.14.2034,4,Perbatasan,sex,perempuan,,593,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.14.2034,4,Perbatasan,total,total,,1201,jiwa,2025,registration,total_population,3.1,21,,
+12.13.14.2035,4,Tangsi Atas,sex,laki_laki,,238,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.14.2035,4,Tangsi Atas,sex,perempuan,,231,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.14.2035,4,Tangsi Atas,total,total,,469,jiwa,2025,registration,total_population,3.1,21,,
+12.13.14.1028,4,Tapus,sex,laki_laki,,1049,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.14.1028,4,Tapus,sex,perempuan,,1024,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.14.1028,4,Tapus,total,total,,2073,jiwa,2025,registration,total_population,3.1,21,,
+12.13.14.1024,4,Simpang Gambir,sex,laki_laki,,2120,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.14.1024,4,Simpang Gambir,sex,perempuan,,2108,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.14.1024,4,Simpang Gambir,total,total,,4228,jiwa,2025,registration,total_population,3.1,21,,
+12.13.14,3,Kecamatan Lingga Bayu,sex,laki_laki,,14044,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.14,3,Kecamatan Lingga Bayu,sex,perempuan,,13624,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.14,3,Kecamatan Lingga Bayu,total,total,,27668,jiwa,2025,registration,total_population,3.1,21,,

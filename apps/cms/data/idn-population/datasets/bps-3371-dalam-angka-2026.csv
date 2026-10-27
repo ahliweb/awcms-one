@@ -1,0 +1,130 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.71.01,3,Magelang Selatan,total,total,,42494,jiwa,2025,registration,total_population,3.1.1,49,,
+33.71.03,3,Magelang Tengah,total,total,,48700,jiwa,2025,registration,total_population,3.1.1,49,,
+33.71.02,3,Magelang Utara,total,total,,37849,jiwa,2025,registration,total_population,3.1.1,49,,
+33.71,2,Kota Magelang,total,total,,129043,jiwa,2025,registration,total_population,3.1.1,49,,
+33.71,2,Kota Magelang,age_group,0-4,laki_laki,3413,jiwa,2025,registration,total_population,3.1.2,52,,0–4
+33.71,2,Kota Magelang,age_group,0-4,perempuan,3156,jiwa,2025,registration,total_population,3.1.2,52,,0–4
+33.71,2,Kota Magelang,age_group,0-4,,6569,jiwa,2025,registration,total_population,3.1.2,52,,0–4
+33.71,2,Kota Magelang,age_group,5-9,laki_laki,4427,jiwa,2025,registration,total_population,3.1.2,52,,5–9
+33.71,2,Kota Magelang,age_group,5-9,perempuan,4160,jiwa,2025,registration,total_population,3.1.2,52,,5–9
+33.71,2,Kota Magelang,age_group,5-9,,8587,jiwa,2025,registration,total_population,3.1.2,52,,5–9
+33.71,2,Kota Magelang,age_group,10-14,laki_laki,4752,jiwa,2025,registration,total_population,3.1.2,52,,10–14
+33.71,2,Kota Magelang,age_group,10-14,perempuan,4572,jiwa,2025,registration,total_population,3.1.2,52,,10–14
+33.71,2,Kota Magelang,age_group,10-14,,9324,jiwa,2025,registration,total_population,3.1.2,52,,10–14
+33.71,2,Kota Magelang,age_group,15-19,laki_laki,5160,jiwa,2025,registration,total_population,3.1.2,52,,15–19
+33.71,2,Kota Magelang,age_group,15-19,perempuan,4920,jiwa,2025,registration,total_population,3.1.2,52,,15–19
+33.71,2,Kota Magelang,age_group,15-19,,10080,jiwa,2025,registration,total_population,3.1.2,52,,15–19
+33.71,2,Kota Magelang,age_group,20-24,laki_laki,5165,jiwa,2025,registration,total_population,3.1.2,52,,20–24
+33.71,2,Kota Magelang,age_group,20-24,perempuan,4829,jiwa,2025,registration,total_population,3.1.2,52,,20–24
+33.71,2,Kota Magelang,age_group,20-24,,9994,jiwa,2025,registration,total_population,3.1.2,52,,20–24
+33.71,2,Kota Magelang,age_group,25-29,laki_laki,5146,jiwa,2025,registration,total_population,3.1.2,52,,25–29
+33.71,2,Kota Magelang,age_group,25-29,perempuan,4827,jiwa,2025,registration,total_population,3.1.2,52,,25–29
+33.71,2,Kota Magelang,age_group,25-29,,9973,jiwa,2025,registration,total_population,3.1.2,52,,25–29
+33.71,2,Kota Magelang,age_group,30-34,laki_laki,4824,jiwa,2025,registration,total_population,3.1.2,52,,30–34
+33.71,2,Kota Magelang,age_group,30-34,perempuan,4607,jiwa,2025,registration,total_population,3.1.2,52,,30–34
+33.71,2,Kota Magelang,age_group,30-34,,9431,jiwa,2025,registration,total_population,3.1.2,52,,30–34
+33.71,2,Kota Magelang,age_group,35-39,laki_laki,4315,jiwa,2025,registration,total_population,3.1.2,52,,35–39
+33.71,2,Kota Magelang,age_group,35-39,perempuan,4134,jiwa,2025,registration,total_population,3.1.2,52,,35–39
+33.71,2,Kota Magelang,age_group,35-39,,8449,jiwa,2025,registration,total_population,3.1.2,52,,35–39
+33.71,2,Kota Magelang,age_group,40-44,laki_laki,4749,jiwa,2025,registration,total_population,3.1.2,52,,40–44
+33.71,2,Kota Magelang,age_group,40-44,perempuan,4792,jiwa,2025,registration,total_population,3.1.2,52,,40–44
+33.71,2,Kota Magelang,age_group,40-44,,9541,jiwa,2025,registration,total_population,3.1.2,52,,40–44
+33.71,2,Kota Magelang,age_group,45-49,laki_laki,4712,jiwa,2025,registration,total_population,3.1.2,52,,45–49
+33.71,2,Kota Magelang,age_group,45-49,perempuan,4609,jiwa,2025,registration,total_population,3.1.2,52,,45–49
+33.71,2,Kota Magelang,age_group,45-49,,9321,jiwa,2025,registration,total_population,3.1.2,52,,45–49
+33.71,2,Kota Magelang,age_group,50-54,laki_laki,4205,jiwa,2025,registration,total_population,3.1.2,52,,50–54
+33.71,2,Kota Magelang,age_group,50-54,perempuan,4490,jiwa,2025,registration,total_population,3.1.2,52,,50–54
+33.71,2,Kota Magelang,age_group,50-54,,8695,jiwa,2025,registration,total_population,3.1.2,52,,50–54
+33.71,2,Kota Magelang,age_group,55-59,laki_laki,3900,jiwa,2025,registration,total_population,3.1.2,52,,55–59
+33.71,2,Kota Magelang,age_group,55-59,perempuan,4424,jiwa,2025,registration,total_population,3.1.2,52,,55–59
+33.71,2,Kota Magelang,age_group,55-59,,8324,jiwa,2025,registration,total_population,3.1.2,52,,55–59
+33.71,2,Kota Magelang,age_group,60-64,laki_laki,3207,jiwa,2025,registration,total_population,3.1.2,52,,60–64
+33.71,2,Kota Magelang,age_group,60-64,perempuan,4084,jiwa,2025,registration,total_population,3.1.2,52,,60–64
+33.71,2,Kota Magelang,age_group,60-64,,7291,jiwa,2025,registration,total_population,3.1.2,52,,60–64
+33.71,2,Kota Magelang,age_group,65-69,laki_laki,2618,jiwa,2025,registration,total_population,3.1.2,52,,65–69
+33.71,2,Kota Magelang,age_group,65-69,perempuan,3191,jiwa,2025,registration,total_population,3.1.2,52,,65–69
+33.71,2,Kota Magelang,age_group,65-69,,5809,jiwa,2025,registration,total_population,3.1.2,52,,65–69
+33.71,2,Kota Magelang,age_group,70-74,laki_laki,1805,jiwa,2025,registration,total_population,3.1.2,52,,70–74
+33.71,2,Kota Magelang,age_group,70-74,perempuan,2078,jiwa,2025,registration,total_population,3.1.2,52,,70–74
+33.71,2,Kota Magelang,age_group,70-74,,3883,jiwa,2025,registration,total_population,3.1.2,52,,70–74
+33.71,2,Kota Magelang,age_group,75+,laki_laki,1425,jiwa,2025,registration,total_population,3.1.2,52,,75+
+33.71,2,Kota Magelang,age_group,75+,perempuan,2347,jiwa,2025,registration,total_population,3.1.2,52,,75+
+33.71,2,Kota Magelang,age_group,75+,,3772,jiwa,2025,registration,total_population,3.1.2,52,,75+
+33.71,2,Kota Magelang,sex,laki_laki,,63823,jiwa,2025,registration,total_population,3.1.2,52,,Laki-Laki
+33.71,2,Kota Magelang,sex,perempuan,,65220,jiwa,2025,registration,total_population,3.1.2,52,,Perempuan
+33.71,2,Kota Magelang,total,total,,129043,jiwa,2025,registration,total_population,3.1.2,52,,
+33.71.01,3,Magelang Selatan,religion,islam,,38250,jiwa,2025,registration,total_population,4.3.1,143,,Islam
+33.71.01,3,Magelang Selatan,religion,kristen,,2767,jiwa,2025,registration,total_population,4.3.1,143,,Protestan
+33.71.01,3,Magelang Selatan,religion,katolik,,1321,jiwa,2025,registration,total_population,4.3.1,143,,Katolik
+33.71.01,3,Magelang Selatan,religion,hindu,,20,jiwa,2025,registration,total_population,4.3.1,143,,Hindu
+33.71.01,3,Magelang Selatan,religion,buddha,,132,jiwa,2025,registration,total_population,4.3.1,143,,Budha
+33.71.01,3,Magelang Selatan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,143,nil,Konghucu
+33.71.01,3,Magelang Selatan,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,143,,Lainnya
+33.71.03,3,Magelang Tengah,religion,islam,,39437,jiwa,2025,registration,total_population,4.3.1,143,,Islam
+33.71.03,3,Magelang Tengah,religion,kristen,,5969,jiwa,2025,registration,total_population,4.3.1,143,,Protestan
+33.71.03,3,Magelang Tengah,religion,katolik,,2902,jiwa,2025,registration,total_population,4.3.1,143,,Katolik
+33.71.03,3,Magelang Tengah,religion,hindu,,44,jiwa,2025,registration,total_population,4.3.1,143,,Hindu
+33.71.03,3,Magelang Tengah,religion,buddha,,342,jiwa,2025,registration,total_population,4.3.1,143,,Budha
+33.71.03,3,Magelang Tengah,religion,khonghucu,,2,jiwa,2025,registration,total_population,4.3.1,143,,Konghucu
+33.71.03,3,Magelang Tengah,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,143,,Lainnya
+33.71.02,3,Magelang Utara,religion,islam,,33703,jiwa,2025,registration,total_population,4.3.1,143,,Islam
+33.71.02,3,Magelang Utara,religion,kristen,,2152,jiwa,2025,registration,total_population,4.3.1,143,,Protestan
+33.71.02,3,Magelang Utara,religion,katolik,,1922,jiwa,2025,registration,total_population,4.3.1,143,,Katolik
+33.71.02,3,Magelang Utara,religion,hindu,,42,jiwa,2025,registration,total_population,4.3.1,143,,Hindu
+33.71.02,3,Magelang Utara,religion,buddha,,21,jiwa,2025,registration,total_population,4.3.1,143,,Budha
+33.71.02,3,Magelang Utara,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.3.1,143,,Konghucu
+33.71.02,3,Magelang Utara,religion,lainnya,,8,jiwa,2025,registration,total_population,4.3.1,143,,Lainnya
+33.71,2,Kota Magelang,religion,islam,,111390,jiwa,2025,registration,total_population,4.3.1,143,,Islam
+33.71,2,Kota Magelang,religion,kristen,,10888,jiwa,2025,registration,total_population,4.3.1,143,,Protestan
+33.71,2,Kota Magelang,religion,katolik,,6145,jiwa,2025,registration,total_population,4.3.1,143,,Katolik
+33.71,2,Kota Magelang,religion,hindu,,106,jiwa,2025,registration,total_population,4.3.1,143,,Hindu
+33.71,2,Kota Magelang,religion,buddha,,495,jiwa,2025,registration,total_population,4.3.1,143,,Budha
+33.71,2,Kota Magelang,religion,khonghucu,,3,jiwa,2025,registration,total_population,4.3.1,143,,Konghucu
+33.71,2,Kota Magelang,religion,lainnya,,16,jiwa,2025,registration,total_population,4.3.1,143,,Lainnya
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/padi_padian,,67962,rupiah,2024,survey_estimate,per_capita,10.1,294,,Padi-padian
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/padi_padian,,64215,rupiah,2025,survey_estimate,per_capita,10.1,294,,Padi-padian
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/umbi_umbian,,5301,rupiah,2024,survey_estimate,per_capita,10.1,294,,Umbi-umbian
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/umbi_umbian,,5871,rupiah,2025,survey_estimate,per_capita,10.1,294,,Umbi-umbian
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,25704,rupiah,2024,survey_estimate,per_capita,10.1,294,,Ikan/udang/cumi/kerang
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,30057,rupiah,2025,survey_estimate,per_capita,10.1,294,,Ikan/udang/cumi/kerang
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/daging,,41979,rupiah,2024,survey_estimate,per_capita,10.1,294,,Daging
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/daging,,39327,rupiah,2025,survey_estimate,per_capita,10.1,294,,Daging
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/telur_dan_susu,,47553,rupiah,2024,survey_estimate,per_capita,10.1,294,,Telur dan susu
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/telur_dan_susu,,48374,rupiah,2025,survey_estimate,per_capita,10.1,294,,Telur dan susu
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/sayur_sayuran,,54253,rupiah,2024,survey_estimate,per_capita,10.1,294,,Sayur-sayuran
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/sayur_sayuran,,55753,rupiah,2025,survey_estimate,per_capita,10.1,294,,Sayur-sayuran
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/kacang_kacangan,,13522,rupiah,2024,survey_estimate,per_capita,10.1,294,,Kacang-kacangan
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/kacang_kacangan,,14882,rupiah,2025,survey_estimate,per_capita,10.1,294,,Kacang-kacangan
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/buah_buahan,,42911,rupiah,2024,survey_estimate,per_capita,10.1,294,,Buah-buahan
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/buah_buahan,,53911,rupiah,2025,survey_estimate,per_capita,10.1,294,,Buah-buahan
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14399,rupiah,2024,survey_estimate,per_capita,10.1,294,,Minyak dan kelapa
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14819,rupiah,2025,survey_estimate,per_capita,10.1,294,,Minyak dan kelapa
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/bahan_minuman,,18775,rupiah,2024,survey_estimate,per_capita,10.1,294,,Bahan minuman
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/bahan_minuman,,21061,rupiah,2025,survey_estimate,per_capita,10.1,294,,Bahan minuman
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/bumbu_bumbuan,,10138,rupiah,2024,survey_estimate,per_capita,10.1,294,,Bumbu-bumbuan
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/bumbu_bumbuan,,11729,rupiah,2025,survey_estimate,per_capita,10.1,294,,Bumbu-bumbuan
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/konsumsi_lainnya,,11593,rupiah,2024,survey_estimate,per_capita,10.1,294,,Konsumsi lainnya
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/konsumsi_lainnya,,11081,rupiah,2025,survey_estimate,per_capita,10.1,294,,Konsumsi lainnya
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,261604,rupiah,2024,survey_estimate,per_capita,10.1,294,,Makanan dan minuman jadi
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,237065,rupiah,2025,survey_estimate,per_capita,10.1,294,,Makanan dan minuman jadi
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/rokok,,73511,rupiah,2024,survey_estimate,per_capita,10.1,294,,Rokok
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/rokok,,59058,rupiah,2025,survey_estimate,per_capita,10.1,294,,Rokok
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/jumlah_makanan,,689207,rupiah,2024,survey_estimate,per_capita,10.1,294,,Jumlah makanan
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/jumlah_makanan,,667203,rupiah,2025,survey_estimate,per_capita,10.1,294,,Jumlah makanan
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,434243,rupiah,2024,survey_estimate,per_capita,10.1,294,,Perumahan dan fasilitas rumah tangga
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,420297,rupiah,2025,survey_estimate,per_capita,10.1,294,,Perumahan dan fasilitas rumah tangga
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,264149,rupiah,2024,survey_estimate,per_capita,10.1,294,,Aneka barang dan jasa
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,291107,rupiah,2025,survey_estimate,per_capita,10.1,294,,Aneka barang dan jasa
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,34322,rupiah,2024,survey_estimate,per_capita,10.1,294,,"Pakaian, alas kaki, dan tutup kepala"
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,44256,rupiah,2025,survey_estimate,per_capita,10.1,294,,"Pakaian, alas kaki, dan tutup kepala"
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/barang_tahan_lama,,125645,rupiah,2024,survey_estimate,per_capita,10.1,294,,Barang tahan lama
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/barang_tahan_lama,,94558,rupiah,2025,survey_estimate,per_capita,10.1,294,,Barang tahan lama
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,88269,rupiah,2024,survey_estimate,per_capita,10.1,294,,"Pajak, pungutan, dan asuransi"
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,90169,rupiah,2025,survey_estimate,per_capita,10.1,294,,"Pajak, pungutan, dan asuransi"
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,34436,rupiah,2024,survey_estimate,per_capita,10.1,294,,Keperluan pesta dan upacara/kenduri
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,26654,rupiah,2025,survey_estimate,per_capita,10.1,294,,Keperluan pesta dan upacara/kenduri
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,981065,rupiah,2024,survey_estimate,per_capita,10.1,294,,Jumlah bukan makanan
+33.71,2,Kota Magelang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,967041,rupiah,2025,survey_estimate,per_capita,10.1,294,,Jumlah bukan makanan
+33.71,2,Kota Magelang,expenditure,total,,1670272,rupiah,2024,survey_estimate,per_capita,10.1,294,,
+33.71,2,Kota Magelang,expenditure,total,,1634244,rupiah,2025,survey_estimate,per_capita,10.1,294,,

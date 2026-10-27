@@ -1,0 +1,115 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.04.03.2017,4,Singkawang,sex,laki_laki,,1276,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03.2017,4,Singkawang,sex,perempuan,,1245,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03.2017,4,Singkawang,total,total,,2521,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03.2020,4,Kilangan,sex,laki_laki,,1004,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03.2020,4,Kilangan,sex,perempuan,,946,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03.2020,4,Kilangan,total,total,,1950,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03.2014,4,Rantau Puri,sex,laki_laki,,1788,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03.2014,4,Rantau Puri,sex,perempuan,,1726,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03.2014,4,Rantau Puri,total,total,,3514,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03.2019,4,Sungai Buluh,sex,laki_laki,,841,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03.2019,4,Sungai Buluh,sex,perempuan,,758,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03.2019,4,Sungai Buluh,total,total,,1599,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03.2018,4,Tenam,sex,laki_laki,,1336,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03.2018,4,Tenam,sex,perempuan,,1284,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03.2018,4,Tenam,total,total,,2620,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03.2007,4,Simpang Terusan,sex,laki_laki,,1469,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03.2007,4,Simpang Terusan,sex,perempuan,,1387,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03.2007,4,Simpang Terusan,total,total,,2856,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03.2006,4,Pasar Terusan,sex,laki_laki,,1742,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03.2006,4,Pasar Terusan,sex,perempuan,,1676,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03.2006,4,Pasar Terusan,total,total,,3418,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03.2009,4,Napal Sisik,sex,laki_laki,,444,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03.2009,4,Napal Sisik,sex,perempuan,,432,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03.2009,4,Napal Sisik,total,total,,876,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03.2008,4,Malapari,sex,laki_laki,,1198,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03.2008,4,Malapari,sex,perempuan,,1117,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03.2008,4,Malapari,total,total,,2315,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03.2011,4,Olak,sex,laki_laki,,641,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03.2011,4,Olak,sex,perempuan,,647,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03.2011,4,Olak,total,total,,1288,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03.2016,4,Bajubang Laut,sex,laki_laki,,863,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03.2016,4,Bajubang Laut,sex,perempuan,,859,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03.2016,4,Bajubang Laut,total,total,,1722,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03.2015,4,Sungai Baung,sex,laki_laki,,1566,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03.2015,4,Sungai Baung,sex,perempuan,,1508,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03.2015,4,Sungai Baung,total,total,,3074,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03.2013,4,Aro,sex,laki_laki,,908,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03.2013,4,Aro,sex,perempuan,,849,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03.2013,4,Aro,total,total,,1757,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03.2010,4,Rambahan,sex,laki_laki,,604,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03.2010,4,Rambahan,sex,perempuan,,533,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03.2010,4,Rambahan,total,total,,1137,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03.2021,4,Pelayangan,sex,laki_laki,,389,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03.2021,4,Pelayangan,sex,perempuan,,367,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03.2021,4,Pelayangan,total,total,,756,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03.1001,4,Muara Bulian,sex,laki_laki,,5016,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03.1001,4,Muara Bulian,sex,perempuan,,4871,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03.1001,4,Muara Bulian,total,total,,9887,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03.1003,4,Sri Dadi,sex,laki_laki,,3736,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03.1003,4,Sri Dadi,sex,perempuan,,3617,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03.1003,4,Sri Dadi,total,total,,7353,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03.1002,4,Teratai,sex,laki_laki,,4465,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03.1002,4,Teratai,sex,perempuan,,4379,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03.1002,4,Teratai,total,total,,8844,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03.1005,4,Rengas Condong,sex,laki_laki,,5136,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03.1005,4,Rengas Condong,sex,perempuan,,5112,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03.1005,4,Rengas Condong,total,total,,10248,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03.1004,4,Pasar Baru,sex,laki_laki,,2168,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03.1004,4,Pasar Baru,sex,perempuan,,2120,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03.1004,4,Pasar Baru,total,total,,4288,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03,3,Muara Bulian,sex,laki_laki,,37197,jiwa,2025,projection,total_population,3.1,29,,Laki-Laki/
+15.04.03,3,Muara Bulian,sex,perempuan,,35995,jiwa,2025,projection,total_population,3.1,29,,Perempuan/
+15.04.03,3,Muara Bulian,total,total,,73192,jiwa,2025,projection,total_population,3.1,29,,
+15.04.03,3,Muara Bulian,age_group,0-4,laki_laki,3509,jiwa,2025,projection,total_population,3.2,31,,0-4
+15.04.03,3,Muara Bulian,age_group,0-4,perempuan,3407,jiwa,2025,projection,total_population,3.2,31,,0-4
+15.04.03,3,Muara Bulian,age_group,0-4,,6916,jiwa,2025,projection,total_population,3.2,31,,0-4
+15.04.03,3,Muara Bulian,age_group,5-9,laki_laki,3038,jiwa,2025,projection,total_population,3.2,31,,5-9
+15.04.03,3,Muara Bulian,age_group,5-9,perempuan,2936,jiwa,2025,projection,total_population,3.2,31,,5-9
+15.04.03,3,Muara Bulian,age_group,5-9,,5974,jiwa,2025,projection,total_population,3.2,31,,5-9
+15.04.03,3,Muara Bulian,age_group,10-14,laki_laki,2870,jiwa,2025,projection,total_population,3.2,31,,10-14
+15.04.03,3,Muara Bulian,age_group,10-14,perempuan,2778,jiwa,2025,projection,total_population,3.2,31,,10-14
+15.04.03,3,Muara Bulian,age_group,10-14,,5648,jiwa,2025,projection,total_population,3.2,31,,10-14
+15.04.03,3,Muara Bulian,age_group,15-19,laki_laki,3008,jiwa,2025,projection,total_population,3.2,31,,15-19
+15.04.03,3,Muara Bulian,age_group,15-19,perempuan,2836,jiwa,2025,projection,total_population,3.2,31,,15-19
+15.04.03,3,Muara Bulian,age_group,15-19,,5844,jiwa,2025,projection,total_population,3.2,31,,15-19
+15.04.03,3,Muara Bulian,age_group,20-24,laki_laki,3096,jiwa,2025,projection,total_population,3.2,31,,20-24
+15.04.03,3,Muara Bulian,age_group,20-24,perempuan,2917,jiwa,2025,projection,total_population,3.2,31,,20-24
+15.04.03,3,Muara Bulian,age_group,20-24,,6013,jiwa,2025,projection,total_population,3.2,31,,20-24
+15.04.03,3,Muara Bulian,age_group,25-29,laki_laki,2993,jiwa,2025,projection,total_population,3.2,31,,25-29
+15.04.03,3,Muara Bulian,age_group,25-29,perempuan,2952,jiwa,2025,projection,total_population,3.2,31,,25-29
+15.04.03,3,Muara Bulian,age_group,25-29,,5945,jiwa,2025,projection,total_population,3.2,31,,25-29
+15.04.03,3,Muara Bulian,age_group,30-34,laki_laki,2889,jiwa,2025,projection,total_population,3.2,31,,30-34
+15.04.03,3,Muara Bulian,age_group,30-34,perempuan,2868,jiwa,2025,projection,total_population,3.2,31,,30-34
+15.04.03,3,Muara Bulian,age_group,30-34,,5757,jiwa,2025,projection,total_population,3.2,31,,30-34
+15.04.03,3,Muara Bulian,age_group,35-39,laki_laki,2800,jiwa,2025,projection,total_population,3.2,31,,35-39
+15.04.03,3,Muara Bulian,age_group,35-39,perempuan,2747,jiwa,2025,projection,total_population,3.2,31,,35-39
+15.04.03,3,Muara Bulian,age_group,35-39,,5547,jiwa,2025,projection,total_population,3.2,31,,35-39
+15.04.03,3,Muara Bulian,age_group,40-44,laki_laki,2653,jiwa,2025,projection,total_population,3.2,31,,40-44
+15.04.03,3,Muara Bulian,age_group,40-44,perempuan,2595,jiwa,2025,projection,total_population,3.2,31,,40-44
+15.04.03,3,Muara Bulian,age_group,40-44,,5248,jiwa,2025,projection,total_population,3.2,31,,40-44
+15.04.03,3,Muara Bulian,age_group,45-49,laki_laki,2573,jiwa,2025,projection,total_population,3.2,31,,45-49
+15.04.03,3,Muara Bulian,age_group,45-49,perempuan,2515,jiwa,2025,projection,total_population,3.2,31,,45-49
+15.04.03,3,Muara Bulian,age_group,45-49,,5088,jiwa,2025,projection,total_population,3.2,31,,45-49
+15.04.03,3,Muara Bulian,age_group,50-54,laki_laki,2381,jiwa,2025,projection,total_population,3.2,31,,50-54
+15.04.03,3,Muara Bulian,age_group,50-54,perempuan,2295,jiwa,2025,projection,total_population,3.2,31,,50-54
+15.04.03,3,Muara Bulian,age_group,50-54,,4676,jiwa,2025,projection,total_population,3.2,31,,50-54
+15.04.03,3,Muara Bulian,age_group,55-59,laki_laki,1914,jiwa,2025,projection,total_population,3.2,31,,55-59
+15.04.03,3,Muara Bulian,age_group,55-59,perempuan,1791,jiwa,2025,projection,total_population,3.2,31,,55-59
+15.04.03,3,Muara Bulian,age_group,55-59,,3705,jiwa,2025,projection,total_population,3.2,31,,55-59
+15.04.03,3,Muara Bulian,age_group,60-64,laki_laki,1524,jiwa,2025,projection,total_population,3.2,31,,60-64
+15.04.03,3,Muara Bulian,age_group,60-64,perempuan,1436,jiwa,2025,projection,total_population,3.2,31,,60-64
+15.04.03,3,Muara Bulian,age_group,60-64,,2960,jiwa,2025,projection,total_population,3.2,31,,60-64
+15.04.03,3,Muara Bulian,age_group,65-69,laki_laki,922,jiwa,2025,projection,total_population,3.2,31,,65-69
+15.04.03,3,Muara Bulian,age_group,65-69,perempuan,867,jiwa,2025,projection,total_population,3.2,31,,65-69
+15.04.03,3,Muara Bulian,age_group,65-69,,1789,jiwa,2025,projection,total_population,3.2,31,,65-69
+15.04.03,3,Muara Bulian,age_group,70-74,laki_laki,586,jiwa,2025,projection,total_population,3.2,31,,70-74
+15.04.03,3,Muara Bulian,age_group,70-74,perempuan,561,jiwa,2025,projection,total_population,3.2,31,,70-74
+15.04.03,3,Muara Bulian,age_group,70-74,,1147,jiwa,2025,projection,total_population,3.2,31,,70-74
+15.04.03,3,Muara Bulian,age_group,75+,laki_laki,441,jiwa,2025,projection,total_population,3.2,31,,75+
+15.04.03,3,Muara Bulian,age_group,75+,perempuan,494,jiwa,2025,projection,total_population,3.2,31,,75+
+15.04.03,3,Muara Bulian,age_group,75+,,935,jiwa,2025,projection,total_population,3.2,31,,75+
+15.04.03,3,Muara Bulian,sex,laki_laki,,37197,jiwa,2025,projection,total_population,3.2,31,,Laki-Laki
+15.04.03,3,Muara Bulian,sex,perempuan,,35995,jiwa,2025,projection,total_population,3.2,31,,Perempuan
+15.04.03,3,Muara Bulian,total,total,,73192,jiwa,2025,projection,total_population,3.2,31,,

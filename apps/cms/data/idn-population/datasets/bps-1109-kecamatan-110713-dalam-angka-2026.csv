@@ -1,0 +1,4 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.07.13.2028,4,Lingkok,sex,laki_laki,,268,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+11.07.13.2028,4,Lingkok,sex,perempuan,,319,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+11.07.13.2028,4,Lingkok,total,total,,587,jiwa,2025,registration,total_population,3.1,42,,

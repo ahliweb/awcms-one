@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.71.03.1003,4,Harapan Mulia,sex,laki_laki,,13472,jiwa,2026,registration,total_population,3.1,27,,Laki-Laki/
+31.71.03.1003,4,Harapan Mulia,sex,perempuan,,13336,jiwa,2026,registration,total_population,3.1,27,,Perempuan/
+31.71.03.1003,4,Harapan Mulia,total,total,,26808,jiwa,2026,registration,total_population,3.1,27,,
+31.71.03.1006,4,Cempaka Baru,sex,laki_laki,,19267,jiwa,2026,registration,total_population,3.1,27,,Laki-Laki/
+31.71.03.1006,4,Cempaka Baru,sex,perempuan,,19408,jiwa,2026,registration,total_population,3.1,27,,Perempuan/
+31.71.03.1006,4,Cempaka Baru,total,total,,38675,jiwa,2026,registration,total_population,3.1,27,,
+31.71.03.1007,4,Sumur Batu,sex,laki_laki,,13456,jiwa,2026,registration,total_population,3.1,27,,Laki-Laki/
+31.71.03.1007,4,Sumur Batu,sex,perempuan,,13581,jiwa,2026,registration,total_population,3.1,27,,Perempuan/
+31.71.03.1007,4,Sumur Batu,total,total,,27037,jiwa,2026,registration,total_population,3.1,27,,
+31.71.03.1004,4,Serdang,sex,laki_laki,,17670,jiwa,2026,registration,total_population,3.1,27,,Laki-Laki/
+31.71.03.1004,4,Serdang,sex,perempuan,,17786,jiwa,2026,registration,total_population,3.1,27,,Perempuan/
+31.71.03.1004,4,Serdang,total,total,,35456,jiwa,2026,registration,total_population,3.1,27,,
+31.71.03.1008,4,Utan Panjang,sex,laki_laki,,17747,jiwa,2026,registration,total_population,3.1,27,,Laki-Laki/
+31.71.03.1008,4,Utan Panjang,sex,perempuan,,17211,jiwa,2026,registration,total_population,3.1,27,,Perempuan/
+31.71.03.1008,4,Utan Panjang,total,total,,34958,jiwa,2026,registration,total_population,3.1,27,,
+31.71.03.1002,4,Kebon Kosong,sex,laki_laki,,18472,jiwa,2026,registration,total_population,3.1,27,,Laki-Laki/
+31.71.03.1002,4,Kebon Kosong,sex,perempuan,,18534,jiwa,2026,registration,total_population,3.1,27,,Perempuan/
+31.71.03.1002,4,Kebon Kosong,total,total,,37006,jiwa,2026,registration,total_population,3.1,27,,
+31.71.03.1001,4,Kemayoran,sex,laki_laki,,12166,jiwa,2026,registration,total_population,3.1,27,,Laki-Laki/
+31.71.03.1001,4,Kemayoran,sex,perempuan,,12002,jiwa,2026,registration,total_population,3.1,27,,Perempuan/
+31.71.03.1001,4,Kemayoran,total,total,,24168,jiwa,2026,registration,total_population,3.1,27,,
+31.71.03.1005,4,Gunung Sahari Selatan,sex,laki_laki,,10929,jiwa,2026,registration,total_population,3.1,27,,Laki-Laki/
+31.71.03.1005,4,Gunung Sahari Selatan,sex,perempuan,,10769,jiwa,2026,registration,total_population,3.1,27,,Perempuan/
+31.71.03.1005,4,Gunung Sahari Selatan,total,total,,21698,jiwa,2026,registration,total_population,3.1,27,,
+31.71.03,3,Kemayoran,sex,laki_laki,,123179,jiwa,2026,registration,total_population,3.1,27,,Laki-Laki/
+31.71.03,3,Kemayoran,sex,perempuan,,122627,jiwa,2026,registration,total_population,3.1,27,,Perempuan/
+31.71.03,3,Kemayoran,total,total,,245806,jiwa,2026,registration,total_population,3.1,27,,

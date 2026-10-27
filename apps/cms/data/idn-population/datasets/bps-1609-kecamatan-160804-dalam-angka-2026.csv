@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.08.04.2001,4,GUNUNG BATU,sex,laki_laki,,1809,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.04.2001,4,GUNUNG BATU,sex,perempuan,,1741,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.04.2001,4,GUNUNG BATU,total,total,,3550,jiwa,2025,registration,total_population,3.1,28,,
+16.08.04.2010,4,ULAK BARU,sex,laki_laki,,508,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.04.2010,4,ULAK BARU,sex,perempuan,,501,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.04.2010,4,ULAK BARU,total,total,,1009,jiwa,2025,registration,total_population,3.1,28,,
+16.08.04.2011,4,GUNUNG JATI,sex,laki_laki,,1196,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.04.2011,4,GUNUNG JATI,sex,perempuan,,1139,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.04.2011,4,GUNUNG JATI,total,total,,2335,jiwa,2025,registration,total_population,3.1,28,,
+16.08.04.2012,4,KURIPAN,sex,laki_laki,,353,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.04.2012,4,KURIPAN,sex,perempuan,,359,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.04.2012,4,KURIPAN,total,total,,712,jiwa,2025,registration,total_population,3.1,28,,
+16.08.04.2013,4,NEGERI SAKTI,sex,laki_laki,,201,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.04.2013,4,NEGERI SAKTI,sex,perempuan,,187,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.04.2013,4,NEGERI SAKTI,total,total,,388,jiwa,2025,registration,total_population,3.1,28,,
+16.08.04.2015,4,SUKARAJA,sex,laki_laki,,208,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.04.2015,4,SUKARAJA,sex,perempuan,,213,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.04.2015,4,SUKARAJA,total,total,,421,jiwa,2025,registration,total_population,3.1,28,,
+16.08.04.2016,4,CEMPAKA,sex,laki_laki,,1782,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.04.2016,4,CEMPAKA,sex,perempuan,,1752,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.04.2016,4,CEMPAKA,total,total,,3534,jiwa,2025,registration,total_population,3.1,28,,
+16.08.04.2017,4,SUKABUMI,sex,laki_laki,,1375,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.04.2017,4,SUKABUMI,sex,perempuan,,1319,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.04.2017,4,SUKABUMI,total,total,,2694,jiwa,2025,registration,total_population,3.1,28,,
+16.08.04.2018,4,CAMPANG TIGA ILIR,sex,laki_laki,,1260,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.04.2018,4,CAMPANG TIGA ILIR,sex,perempuan,,1234,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.04.2018,4,CAMPANG TIGA ILIR,total,total,,2494,jiwa,2025,registration,total_population,3.1,28,,
+16.08.04.2019,4,MALUAI INDAH,sex,laki_laki,,1001,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.04.2019,4,MALUAI INDAH,sex,perempuan,,928,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.04.2019,4,MALUAI INDAH,total,total,,1929,jiwa,2025,registration,total_population,3.1,28,,
+16.08.04.2020,4,HARISAN JAYA,sex,laki_laki,,744,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.04.2020,4,HARISAN JAYA,sex,perempuan,,646,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.04.2020,4,HARISAN JAYA,total,total,,1390,jiwa,2025,registration,total_population,3.1,28,,
+16.08.04.2021,4,CAMPANG TIGA JAYA,sex,laki_laki,,1197,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.04.2021,4,CAMPANG TIGA JAYA,sex,perempuan,,1073,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.04.2021,4,CAMPANG TIGA JAYA,total,total,,2270,jiwa,2025,registration,total_population,3.1,28,,
+16.08.04,3,Cempaka,sex,laki_laki,,13816,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.08.04,3,Cempaka,sex,perempuan,,13165,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.08.04,3,Cempaka,total,total,,26981,jiwa,2025,registration,total_population,3.1,28,,
+16.08.04,3,Cempaka,age_group,0-4,laki_laki,729,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.08.04,3,Cempaka,age_group,0-4,perempuan,700,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.08.04,3,Cempaka,age_group,0-4,,1429,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.08.04,3,Cempaka,age_group,5-9,laki_laki,1138,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.08.04,3,Cempaka,age_group,5-9,perempuan,1020,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.08.04,3,Cempaka,age_group,5-9,,2158,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.08.04,3,Cempaka,age_group,10-14,laki_laki,1230,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.08.04,3,Cempaka,age_group,10-14,perempuan,1169,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.08.04,3,Cempaka,age_group,10-14,,2399,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.08.04,3,Cempaka,age_group,15-19,laki_laki,1160,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.08.04,3,Cempaka,age_group,15-19,perempuan,1066,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.08.04,3,Cempaka,age_group,15-19,,2226,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.08.04,3,Cempaka,age_group,20-24,laki_laki,1150,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.08.04,3,Cempaka,age_group,20-24,perempuan,1097,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.08.04,3,Cempaka,age_group,20-24,,2247,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.08.04,3,Cempaka,age_group,25-29,laki_laki,1122,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.08.04,3,Cempaka,age_group,25-29,perempuan,987,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.08.04,3,Cempaka,age_group,25-29,,2109,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.08.04,3,Cempaka,age_group,30-34,laki_laki,977,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.08.04,3,Cempaka,age_group,30-34,perempuan,811,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.08.04,3,Cempaka,age_group,30-34,,1788,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.08.04,3,Cempaka,age_group,35-39,laki_laki,1063,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.08.04,3,Cempaka,age_group,35-39,perempuan,855,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.08.04,3,Cempaka,age_group,35-39,,1918,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.08.04,3,Cempaka,age_group,40-44,laki_laki,929,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.08.04,3,Cempaka,age_group,40-44,perempuan,838,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.08.04,3,Cempaka,age_group,40-44,,1767,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.08.04,3,Cempaka,age_group,45-49,laki_laki,855,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.08.04,3,Cempaka,age_group,45-49,perempuan,805,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.08.04,3,Cempaka,age_group,45-49,,1660,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.08.04,3,Cempaka,age_group,50-54,laki_laki,761,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.08.04,3,Cempaka,age_group,50-54,perempuan,765,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.08.04,3,Cempaka,age_group,50-54,,1526,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.08.04,3,Cempaka,age_group,55-59,laki_laki,753,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.08.04,3,Cempaka,age_group,55-59,perempuan,790,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.08.04,3,Cempaka,age_group,55-59,,1543,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.08.04,3,Cempaka,age_group,60-64,laki_laki,631,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.08.04,3,Cempaka,age_group,60-64,perempuan,665,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.08.04,3,Cempaka,age_group,60-64,,1296,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.08.04,3,Cempaka,age_group,65-69,laki_laki,535,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.08.04,3,Cempaka,age_group,65-69,perempuan,590,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.08.04,3,Cempaka,age_group,65-69,,1125,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.08.04,3,Cempaka,age_group,70-74,laki_laki,345,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.08.04,3,Cempaka,age_group,70-74,perempuan,437,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.08.04,3,Cempaka,age_group,70-74,,782,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.08.04,3,Cempaka,age_group,75+,laki_laki,438,jiwa,2025,registration,total_population,3.2,30,,75+
+16.08.04,3,Cempaka,age_group,75+,perempuan,570,jiwa,2025,registration,total_population,3.2,30,,75+
+16.08.04,3,Cempaka,age_group,75+,,1008,jiwa,2025,registration,total_population,3.2,30,,75+
+16.08.04,3,Cempaka,sex,laki_laki,,13816,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+16.08.04,3,Cempaka,sex,perempuan,,13165,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+16.08.04,3,Cempaka,total,total,,26981,jiwa,2025,registration,total_population,3.2,30,,

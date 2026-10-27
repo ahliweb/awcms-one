@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-1507-kecamatan-150607-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.06.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Batang Asam Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tanjung Jabung Barat",
+  "publisherDomain": "1507",
+  "publisherWebsite": "https://tanjabbarkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tanjung Jabung Barat (https://tanjabbarkab.bps.go.id), publikasi \"Kecamatan Batang Asam Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1507012",
+  "publicationNumber": "15070.25009",
+  "issn": "0215-3904",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tanjabbarkab.bps.go.id/id/publication/2026/09/28/2f2905a45a15be230f948fc0/kecamatan-batang-asam-dalam-angka-2026.html",
+  "sourceFileSha256": "7764b3483777db47e035f6ff244acb3b4a463bf02c938b2c19235aaf9d3fca5e",
+  "sourceFileBytes": 3550070,
+  "sourcePages": [18, 20],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tanjung Jabung Barat.",
+  "csvPath": "datasets/bps-1507-kecamatan-150607-dalam-angka-2026.csv",
+  "csvSha256": "436966895d7e51b43d6485235d51c85fcea7403386eafa74462795ff9860e3fb",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Batang Asam, 2025",
+      "printedPages": [18],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Batang Asam, 2025",
+      "printedPages": [20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: 36 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "cross-table disagreement, both stored as published: 15.06.07 sex/laki_laki/ 2025: 18946 (table 3.1) vs 19703 (table 3.2)",
+    "cross-table disagreement, both stored as published: 15.06.07 sex/perempuan/ 2025: 17616 (table 3.1) vs 18321 (table 3.2)",
+    "cross-table disagreement, both stored as published: 15.06.07 total/total/ 2025: 36562 (table 3.1) vs 38024 (table 3.2)"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-6203-kecamatan-620315-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.03.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mandau Talawang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kapuas",
+  "publisherDomain": "6203",
+  "publisherWebsite": "https://kapuaskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kapuas (https://kapuaskab.bps.go.id), publikasi \"Kecamatan Mandau Talawang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6203181",
+  "publicationNumber": "62030.25023",
+  "issn": "2548-2084",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kapuaskab.bps.go.id/id/publication/2026/09/28/4d77c6e89015c63071d125bb/kecamatan-mandau-talawang-dalam-angka-2026.html",
+  "sourceFileSha256": "12ae8caa5380f0205aa9fa4b78f4ffb28aff423bdc7c50f229d24d2e4b745a74",
+  "sourceFileBytes": 8164080,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kapuas.",
+  "csvPath": "datasets/bps-6203-kecamatan-620315-dalam-angka-2026.csv",
+  "csvSha256": "b723f95930efa0319a283c7c08d1bb6f5e1a12480157265040e1dd96e7ea5b7d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Mandau Talawang, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mandau Talawang, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Tumbang Bokoi\": unmatched ",
+    "table 3.1: row not stored: row \"Tumbang Bokoi\": unmatched "
+  ]
+}

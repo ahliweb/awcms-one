@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1406-kecamatan-140113-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.01.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Salo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kampar",
+  "publisherDomain": "1406",
+  "publisherWebsite": "https://kamparkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kampar (https://kamparkab.bps.go.id), publikasi \"Kecamatan Salo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1406031",
+  "publicationNumber": "14060.26014",
+  "issn": "2987-0666",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kamparkab.bps.go.id/id/publication/2026/09/28/2108b1464a484acaafd1eb1c/kecamatan-salo-dalam-angka-2026.html",
+  "sourceFileSha256": "67bac70021cc7aa3d56be3a499d0cc019ae59d7c5732ac3199192522fead18fd",
+  "sourceFileBytes": 2925548,
+  "sourcePages": [11, 12, 13],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kampar.",
+  "csvPath": "datasets/bps-1406-kecamatan-140113-dalam-angka-2026.csv",
+  "csvSha256": "eddb9445e600a4ca30da4a9b184f390099eb8d36161400719b94ad412b52e6d6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Salo, 2025",
+      "printedPages": [11, 12],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Salo, 2025",
+      "printedPages": [13],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \">75 Tahun\": unmatched ",
+    "table 3.2: the rows of region 14.01.13 are not stored: age_group (perempuan) vs sex value: parts sum 13925.0000 != 14207.0000 (diff 282.0000); the source itself is inconsistent"
+  ]
+}

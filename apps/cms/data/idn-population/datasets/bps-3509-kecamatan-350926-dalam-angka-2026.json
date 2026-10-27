@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3509-kecamatan-350926-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.09.26",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mayang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Jember",
+  "publisherDomain": "3509",
+  "publisherWebsite": "https://jemberkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Jember (https://jemberkab.bps.go.id), publikasi \"Kecamatan Mayang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3509080",
+  "publicationNumber": "35090.26012",
+  "issn": "2620-4606",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jemberkab.bps.go.id/id/publication/2026/09/28/c7cbefd7207df5c23fff6e4c/kecamatan-mayang-dalam-angka-2026.html",
+  "sourceFileSha256": "60bf1bfc18b34db7257f053390d5437330ed666cd25943f74746a9df5bf671c8",
+  "sourceFileBytes": 18679935,
+  "sourcePages": [33, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jember.",
+  "csvPath": "datasets/bps-3509-kecamatan-350926-dalam-angka-2026.csv",
+  "csvSha256": "4daebbc7214a948543c8526ddd11cf4126f7b73bdd7235deeb3d47f0b47934fb",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Semboro, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"1. Rejo Agung\": unmatched ",
+    "table 3.1: row not stored: row \"2. Semboro\": unmatched ",
+    "table 3.1: row not stored: row \"3. Sidomekar\": unmatched ",
+    "table 3.1: row not stored: row \"4. Sidomulyo\": unmatched ",
+    "table 3.1: row not stored: row \"5. Pondok Joyo\": unmatched ",
+    "table 3.1: row not stored: row \"6. Pondok Dalem\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Semboro\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)",
+    "table 3.2: row not stored: row \"Kecamatan Semboro\": unmatched "
+  ]
+}

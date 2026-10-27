@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3401-kecamatan-340106-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "34.01.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sentolo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kulon Progo",
+  "publisherDomain": "3401",
+  "publisherWebsite": "https://kulonprogokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kulon Progo (https://kulonprogokab.bps.go.id), publikasi \"Kecamatan Sentolo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3401060",
+  "publicationNumber": "34010.25014",
+  "issn": "2614-9222",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kulonprogokab.bps.go.id/id/publication/2026/09/28/8f61991b0146a48b53d1a372/kecamatan-sentolo-dalam-angka-2026.html",
+  "sourceFileSha256": "2bbb91aaa25d318c2116e272db6875b237544106695785b60acf709b624dabec",
+  "sourceFileBytes": 10267823,
+  "sourcePages": [22],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kulon Progo.",
+  "csvPath": "datasets/bps-3401-kecamatan-340106-dalam-angka-2026.csv",
+  "csvSha256": "e8e84590733360471eef0a9272e174fa46938d06728b75d89ec9ec77072b56b9",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sentolo, 2025",
+      "printedPages": [22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.28.11.2001,4,Bujur Barat,sex,perempuan,,4973,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.11.2001,4,Bujur Barat,total,total,,9713,jiwa,2025,registration,total_population,3.1,25,,
+35.28.11.2012,4,Bujur Tengah,sex,perempuan,,5744,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.11.2012,4,Bujur Tengah,total,total,,11371,jiwa,2025,registration,total_population,3.1,25,,
+35.28.11.2013,4,Bujur Timur,sex,perempuan,,6416,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.11.2013,4,Bujur Timur,total,total,,12675,jiwa,2025,registration,total_population,3.1,25,,
+35.28.11.2006,4,Ponjanan Timur,sex,perempuan,,3674,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.11.2006,4,Ponjanan Timur,total,total,,7308,jiwa,2025,registration,total_population,3.1,25,,
+35.28.11.2005,4,Ponjanan Barat,sex,perempuan,,1892,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.11.2005,4,Ponjanan Barat,total,total,,3776,jiwa,2025,registration,total_population,3.1,25,,
+35.28.11.2004,4,Lesong Laok,sex,perempuan,,1640,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.11.2004,4,Lesong Laok,total,total,,3219,jiwa,2025,registration,total_population,3.1,25,,
+35.28.11.2010,4,Blaban,sex,perempuan,,3394,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.11.2010,4,Blaban,total,total,,6603,jiwa,2025,registration,total_population,3.1,25,,
+35.28.11.2011,4,Tamberu,sex,perempuan,,1256,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.11.2011,4,Tamberu,total,total,,2450,jiwa,2025,registration,total_population,3.1,25,,
+35.28.11.2009,4,Batubintang,sex,perempuan,,5545,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.11.2009,4,Batubintang,total,total,,10868,jiwa,2025,registration,total_population,3.1,25,,
+35.28.11.2008,4,Lesong Daja,sex,perempuan,,1766,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.11.2008,4,Lesong Daja,total,total,,3429,jiwa,2025,registration,total_population,3.1,25,,
+35.28.11.2007,4,Kapong,sex,perempuan,,1441,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.28.11.2007,4,Kapong,total,total,,2867,jiwa,2025,registration,total_population,3.1,25,,
+35.28.11,3,Batumarmar,age_group,0-4,perempuan,2675,jiwa,2025,registration,total_population,3.2,27,,0–4
+35.28.11,3,Batumarmar,age_group,0-4,,5458,jiwa,2025,registration,total_population,3.2,27,,0–4
+35.28.11,3,Batumarmar,age_group,5-9,perempuan,3951,jiwa,2025,registration,total_population,3.2,27,,5–9
+35.28.11,3,Batumarmar,age_group,5-9,,8072,jiwa,2025,registration,total_population,3.2,27,,5–9
+35.28.11,3,Batumarmar,age_group,10-14,perempuan,3460,jiwa,2025,registration,total_population,3.2,27,,10–14
+35.28.11,3,Batumarmar,age_group,10-14,,7153,jiwa,2025,registration,total_population,3.2,27,,10–14
+35.28.11,3,Batumarmar,age_group,15-19,perempuan,2343,jiwa,2025,registration,total_population,3.2,27,,15–19
+35.28.11,3,Batumarmar,age_group,15-19,,4950,jiwa,2025,registration,total_population,3.2,27,,15–19
+35.28.11,3,Batumarmar,age_group,20-24,perempuan,2872,jiwa,2025,registration,total_population,3.2,27,,20–24
+35.28.11,3,Batumarmar,age_group,20-24,,5810,jiwa,2025,registration,total_population,3.2,27,,20–24
+35.28.11,3,Batumarmar,age_group,25-29,perempuan,3336,jiwa,2025,registration,total_population,3.2,27,,25–29
+35.28.11,3,Batumarmar,age_group,25-29,,6930,jiwa,2025,registration,total_population,3.2,27,,25–29
+35.28.11,3,Batumarmar,age_group,30-34,perempuan,2747,jiwa,2025,registration,total_population,3.2,27,,30–34
+35.28.11,3,Batumarmar,age_group,30-34,,5500,jiwa,2025,registration,total_population,3.2,27,,30–34
+35.28.11,3,Batumarmar,age_group,35-39,perempuan,2949,jiwa,2025,registration,total_population,3.2,27,,35–39
+35.28.11,3,Batumarmar,age_group,35-39,,5624,jiwa,2025,registration,total_population,3.2,27,,35–39
+35.28.11,3,Batumarmar,age_group,40-44,perempuan,3553,jiwa,2025,registration,total_population,3.2,27,,40–44
+35.28.11,3,Batumarmar,age_group,40-44,,6253,jiwa,2025,registration,total_population,3.2,27,,40–44
+35.28.11,3,Batumarmar,age_group,45-49,perempuan,3895,jiwa,2025,registration,total_population,3.2,27,,45–49
+35.28.11,3,Batumarmar,age_group,45-49,,7248,jiwa,2025,registration,total_population,3.2,27,,45–49
+35.28.11,3,Batumarmar,age_group,50-54,perempuan,2865,jiwa,2025,registration,total_population,3.2,27,,50–54
+35.28.11,3,Batumarmar,age_group,50-54,,5547,jiwa,2025,registration,total_population,3.2,27,,50–54
+35.28.11,3,Batumarmar,age_group,55-59,perempuan,2562,jiwa,2025,registration,total_population,3.2,27,,55–59
+35.28.11,3,Batumarmar,age_group,55-59,,4898,jiwa,2025,registration,total_population,3.2,27,,55–59
+35.28.11,3,Batumarmar,age_group,60-64,perempuan,2008,jiwa,2025,registration,total_population,3.2,27,,60–64
+35.28.11,3,Batumarmar,age_group,60-64,,3815,jiwa,2025,registration,total_population,3.2,27,,60–64
+35.28.11,3,Batumarmar,age_group,65-69,perempuan,1347,jiwa,2025,registration,total_population,3.2,27,,65–69
+35.28.11,3,Batumarmar,age_group,65-69,,2636,jiwa,2025,registration,total_population,3.2,27,,65–69
+35.28.11,3,Batumarmar,age_group,70-74,perempuan,861,jiwa,2025,registration,total_population,3.2,27,,70–74
+35.28.11,3,Batumarmar,age_group,70-74,,1691,jiwa,2025,registration,total_population,3.2,27,,70–74
+35.28.11,3,Batumarmar,age_group,75+,perempuan,1289,jiwa,2025,registration,total_population,3.2,27,,75+
+35.28.11,3,Batumarmar,age_group,75+,,2337,jiwa,2025,registration,total_population,3.2,27,,75+

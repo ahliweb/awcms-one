@@ -1,0 +1,57 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.02.28.2004,4,Joharan,sex,perempuan,,1037,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+18.02.28.2004,4,Joharan,total,total,,2136,jiwa,2025,registration,total_population,3.1,38,,
+18.02.28.2006,4,Rantau Jaya Ilir,sex,perempuan,,1127,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+18.02.28.2006,4,Rantau Jaya Ilir,total,total,,2307,jiwa,2025,registration,total_population,3.1,38,,
+18.02.28.2003,4,Bina Karya Sakti,sex,perempuan,,921,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+18.02.28.2003,4,Bina Karya Sakti,total,total,,1869,jiwa,2025,registration,total_population,3.1,38,,
+18.02.28.2001,4,Bina Karya Jaya,sex,perempuan,,1474,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+18.02.28.2001,4,Bina Karya Jaya,total,total,,3105,jiwa,2025,registration,total_population,3.1,38,,
+18.02.28.2002,4,Bina Karya Utama,sex,perempuan,,1695,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+18.02.28.2002,4,Bina Karya Utama,total,total,,3442,jiwa,2025,registration,total_population,3.1,38,,
+18.02.28.2005,4,Rantau Jaya Baru,sex,perempuan,,937,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+18.02.28.2005,4,Rantau Jaya Baru,total,total,,1907,jiwa,2025,registration,total_population,3.1,38,,
+18.02.28.2008,4,Meranggi Jaya,sex,perempuan,,834,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+18.02.28.2008,4,Meranggi Jaya,total,total,,1688,jiwa,2025,registration,total_population,3.1,38,,
+18.02.28.2009,4,Mekar Jaya,sex,perempuan,,1265,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+18.02.28.2009,4,Mekar Jaya,total,total,,2588,jiwa,2025,registration,total_population,3.1,38,,
+18.02.28.2007,4,Bina Karya Baru,sex,perempuan,,759,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+18.02.28.2007,4,Bina Karya Baru,total,total,,1601,jiwa,2025,registration,total_population,3.1,38,,
+18.02.28.2010,4,Rantau Jaya Makmur,sex,perempuan,,867,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+18.02.28.2010,4,Rantau Jaya Makmur,total,total,,1799,jiwa,2025,registration,total_population,3.1,38,,
+18.02.28,3,Putra Rumbia,sex,perempuan,,10916,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+18.02.28,3,Putra Rumbia,total,total,,22442,jiwa,2025,registration,total_population,3.1,38,,
+18.02.28,3,Putra Rumbia,age_group,0-4,perempuan,669,jiwa,2025,registration,total_population,3.2,40,,0–4
+18.02.28,3,Putra Rumbia,age_group,0-4,,1389,jiwa,2025,registration,total_population,3.2,40,,0–4
+18.02.28,3,Putra Rumbia,age_group,5-9,perempuan,928,jiwa,2025,registration,total_population,3.2,40,,5–9
+18.02.28,3,Putra Rumbia,age_group,5-9,,1897,jiwa,2025,registration,total_population,3.2,40,,5–9
+18.02.28,3,Putra Rumbia,age_group,10-14,perempuan,903,jiwa,2025,registration,total_population,3.2,40,,10–14
+18.02.28,3,Putra Rumbia,age_group,10-14,,1936,jiwa,2025,registration,total_population,3.2,40,,10–14
+18.02.28,3,Putra Rumbia,age_group,15-19,perempuan,768,jiwa,2025,registration,total_population,3.2,40,,15–19
+18.02.28,3,Putra Rumbia,age_group,15-19,,1599,jiwa,2025,registration,total_population,3.2,40,,15–19
+18.02.28,3,Putra Rumbia,age_group,20-24,perempuan,750,jiwa,2025,registration,total_population,3.2,40,,20–24
+18.02.28,3,Putra Rumbia,age_group,20-24,,1542,jiwa,2025,registration,total_population,3.2,40,,20–24
+18.02.28,3,Putra Rumbia,age_group,25-29,perempuan,874,jiwa,2025,registration,total_population,3.2,40,,25–29
+18.02.28,3,Putra Rumbia,age_group,25-29,,1704,jiwa,2025,registration,total_population,3.2,40,,25–29
+18.02.28,3,Putra Rumbia,age_group,30-34,perempuan,797,jiwa,2025,registration,total_population,3.2,40,,30–34
+18.02.28,3,Putra Rumbia,age_group,30-34,,1628,jiwa,2025,registration,total_population,3.2,40,,30–34
+18.02.28,3,Putra Rumbia,age_group,35-39,perempuan,958,jiwa,2025,registration,total_population,3.2,40,,35–39
+18.02.28,3,Putra Rumbia,age_group,35-39,,1843,jiwa,2025,registration,total_population,3.2,40,,35–39
+18.02.28,3,Putra Rumbia,age_group,40-44,perempuan,958,jiwa,2025,registration,total_population,3.2,40,,40–44
+18.02.28,3,Putra Rumbia,age_group,40-44,,1958,jiwa,2025,registration,total_population,3.2,40,,40–44
+18.02.28,3,Putra Rumbia,age_group,45-49,perempuan,736,jiwa,2025,registration,total_population,3.2,40,,45–49
+18.02.28,3,Putra Rumbia,age_group,45-49,,1645,jiwa,2025,registration,total_population,3.2,40,,45–49
+18.02.28,3,Putra Rumbia,age_group,50-54,perempuan,562,jiwa,2025,registration,total_population,3.2,40,,50–54
+18.02.28,3,Putra Rumbia,age_group,50-54,,1166,jiwa,2025,registration,total_population,3.2,40,,50–54
+18.02.28,3,Putra Rumbia,age_group,55-59,perempuan,516,jiwa,2025,registration,total_population,3.2,40,,55–59
+18.02.28,3,Putra Rumbia,age_group,55-59,,961,jiwa,2025,registration,total_population,3.2,40,,55–59
+18.02.28,3,Putra Rumbia,age_group,60-64,perempuan,555,jiwa,2025,registration,total_population,3.2,40,,60–64
+18.02.28,3,Putra Rumbia,age_group,60-64,,1098,jiwa,2025,registration,total_population,3.2,40,,60–64
+18.02.28,3,Putra Rumbia,age_group,65-69,perempuan,422,jiwa,2025,registration,total_population,3.2,40,,65–69
+18.02.28,3,Putra Rumbia,age_group,65-69,,864,jiwa,2025,registration,total_population,3.2,40,,65–69
+18.02.28,3,Putra Rumbia,age_group,70-74,perempuan,221,jiwa,2025,registration,total_population,3.2,40,,70–74
+18.02.28,3,Putra Rumbia,age_group,70-74,,567,jiwa,2025,registration,total_population,3.2,40,,70–74
+18.02.28,3,Putra Rumbia,age_group,75+,perempuan,299,jiwa,2025,registration,total_population,3.2,40,,75+
+18.02.28,3,Putra Rumbia,age_group,75+,,645,jiwa,2025,registration,total_population,3.2,40,,75+
+18.02.28,3,Putra Rumbia,sex,perempuan,,10916,jiwa,2025,registration,total_population,3.2,40,,Perempuan
+18.02.28,3,Putra Rumbia,total,total,,22442,jiwa,2025,registration,total_population,3.2,40,,

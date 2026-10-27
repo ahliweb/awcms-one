@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-6208-kecamatan-620701-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.07.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Seruyan Hilir Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Seruyan",
+  "publisherDomain": "6208",
+  "publisherWebsite": "https://seruyankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Seruyan (https://seruyankab.bps.go.id), publikasi \"Kecamatan Seruyan Hilir Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6208010",
+  "publicationNumber": "62080.25008",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://seruyankab.bps.go.id/id/publication/2026/09/28/b406a21260ed9995bedecb85/kecamatan-seruyan-hilir-dalam-angka-2026.html",
+  "sourceFileSha256": "41ad87c14f1d750a385c13afdf7cee14e9348624313fe76026537d248ebdaf37",
+  "sourceFileBytes": 24447985,
+  "sourcePages": [35, 36, 37],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Seruyan",
+  "csvPath": "datasets/bps-6208-kecamatan-620701-dalam-angka-2026.csv",
+  "csvSha256": "2c70bc52ce541569daaee7f92e636c23bb59559f16ee8fbdf5bd83e284f86bef",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Seruyan Hilir, 2025",
+      "printedPages": [35, 36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Seruyan Hilir, 2025",
+      "printedPages": [37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

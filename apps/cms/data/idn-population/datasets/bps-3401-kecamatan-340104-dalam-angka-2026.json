@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3401-kecamatan-340104-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "34.01.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Galur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kulon Progo",
+  "publisherDomain": "3401",
+  "publisherWebsite": "https://kulonprogokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kulon Progo (https://kulonprogokab.bps.go.id), publikasi \"Kecamatan Galur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3401040",
+  "publicationNumber": "34010.26009",
+  "issn": "2598-4578",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kulonprogokab.bps.go.id/id/publication/2026/09/28/6550eebcd372cc3f2f011c2b/kecamatan-galur-dalam-angka-2026.html",
+  "sourceFileSha256": "ebf10f19796c243531a8ba5a8dbfdda5ce350cd95e502f4d84f2dd07c11462aa",
+  "sourceFileBytes": 10039782,
+  "sourcePages": [21, 22, 23],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kulon Progo.",
+  "csvPath": "datasets/bps-3401-kecamatan-340104-dalam-angka-2026.csv",
+  "csvSha256": "5e7ad41dfbcfea1060b7c9158d0410d52bf45f315259069f09bc726782d21f4e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Galur, 2025",
+      "printedPages": [21, 22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Galur, 2025",
+      "printedPages": [23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

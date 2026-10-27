@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-1502-kecamatan-150207-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.02.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tabir Ulu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Merangin",
+  "publisherDomain": "1502",
+  "publisherWebsite": "https://meranginkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Merangin (https://meranginkab.bps.go.id), publikasi \"Kecamatan Tabir Ulu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "15020.26015",
+  "issn": "3064-5654",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://meranginkab.bps.go.id/id/publication/2026/09/28/a2fe83313dca895ff3529671/kecamatan-tabir-ulu-dalam-angka-2026.html",
+  "sourceFileSha256": "aab50a218118e27851d9896fdab0a509bd523774706ab7ce9b8ee0f3b6385591",
+  "sourceFileBytes": 4403611,
+  "sourcePages": [45, 46, 47],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Merangin.",
+  "csvPath": "datasets/bps-1502-kecamatan-150207-dalam-angka-2026.csv",
+  "csvSha256": "2f03e8f29af183825849c452f716bea7d66f8911276873df195abbce6ddfdaac",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Tabir Ulu , 2025",
+      "printedPages": [45, 46],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tabir Ulu , 2025",
+      "printedPages": [47],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Muara Seketuk\": unmatched ",
+    "table 3.1: row not stored: row \"Muara Seketuk\": unmatched ",
+    "table 3.1: the rows of region 15.02.07 are not stored: sex split vs total: parts sum 18688.0000 != 9344.0000 (diff 9344.0000); the source itself is inconsistent"
+  ]
+}

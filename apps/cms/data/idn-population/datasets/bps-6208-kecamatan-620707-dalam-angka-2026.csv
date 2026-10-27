@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.07.07.2006,4,Tabiku,sex,laki_laki,,669,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+62.07.07.2006,4,Tabiku,sex,perempuan,,554,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+62.07.07.2006,4,Tabiku,total,total,,1223,jiwa,2025,registration,total_population,3.1,,,
+62.07.07.2005,4,Bangkal,sex,laki_laki,,2884,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+62.07.07.2005,4,Bangkal,sex,perempuan,,2544,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+62.07.07.2005,4,Bangkal,total,total,,5428,jiwa,2025,registration,total_population,3.1,,,
+62.07.07.2003,4,Lanpasa,sex,laki_laki,,1264,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+62.07.07.2003,4,Lanpasa,sex,perempuan,,1160,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+62.07.07.2003,4,Lanpasa,total,total,,2424,jiwa,2025,registration,total_population,3.1,,,
+62.07.07.2001,4,Terawan,sex,laki_laki,,1971,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+62.07.07.2001,4,Terawan,sex,perempuan,,1836,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+62.07.07.2001,4,Terawan,total,total,,3807,jiwa,2025,registration,total_population,3.1,,,
+62.07.07,3,Seruyan Raya,sex,laki_laki,,9376,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+62.07.07,3,Seruyan Raya,sex,perempuan,,8408,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+62.07.07,3,Seruyan Raya,total,total,,17784,jiwa,2025,registration,total_population,3.1,,,

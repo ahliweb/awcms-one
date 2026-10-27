@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-2171-kecamatan-217111-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.71.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sagulung Dalam Angka 2026",
+  "publisherName": "BPS Kota Batam",
+  "publisherDomain": "2171",
+  "publisherWebsite": "https://batamkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Batam (https://batamkota.bps.go.id), publikasi \"Kecamatan Sagulung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2171041",
+  "publicationNumber": "21710.26017",
+  "issn": "2987-3495",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://batamkota.bps.go.id/id/publication/2026/09/28/b94f2bfc29b2a2d5261c5e5c/kecamatan-sagulung-dalam-angka-2026.html",
+  "sourceFileSha256": "f3f9f44d2b9995b62d32ad6c76bedf50aac50d21470e059b3f8ad5498c41d0db",
+  "sourceFileBytes": 5168870,
+  "sourcePages": [21],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Batam.",
+  "csvPath": "datasets/bps-2171-kecamatan-217111-dalam-angka-2026.csv",
+  "csvSha256": "44ec52889f5337f1e7a5ff831d5974004770091808b6f8442dcbf6befa527564",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p21",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sagulung, 2025",
+      "printedPages": [21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p21: row not stored: row \"Kecamatan Sagulung Sagulung District\": unmatched "
+  ]
+}

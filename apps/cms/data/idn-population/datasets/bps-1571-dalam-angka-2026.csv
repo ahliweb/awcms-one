@@ -1,0 +1,192 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.71.07,3,Kota Baru,total,total,,87153,jiwa,2025,projection,total_population,3.1.1,72,,
+15.71.09,3,Alam Barajo,total,total,,118297,jiwa,2025,projection,total_population,3.1.1,72,,
+15.71.02,3,Jambi Selatan,total,total,,60148,jiwa,2025,projection,total_population,3.1.1,72,,
+15.71.11,3,Paal Merah,total,total,,115062,jiwa,2025,projection,total_population,3.1.1,72,,
+15.71.08,3,Jelutung,total,total,,60944,jiwa,2025,projection,total_population,3.1.1,72,,
+15.71.04,3,Pasar Jambi,total,total,,11470,jiwa,2025,projection,total_population,3.1.1,72,,
+15.71.01,3,Telanaipura,total,total,,50530,jiwa,2025,projection,total_population,3.1.1,72,,
+15.71.10,3,Danau Sipin,total,total,,44515,jiwa,2025,projection,total_population,3.1.1,72,,
+15.71.06,3,Danau Teluk,total,total,,13152,jiwa,2025,projection,total_population,3.1.1,72,,
+15.71.05,3,Pelayangan,total,total,,13266,jiwa,2025,projection,total_population,3.1.1,72,,
+15.71.03,3,Jambi Timur,total,total,,67727,jiwa,2025,projection,total_population,3.1.1,72,,
+15.71,2,Kota Jambi,total,total,,642264,jiwa,2025,projection,total_population,3.1.1,72,,
+15.71,2,Kota Jambi,age_group,0-4,laki_laki,26167,jiwa,2025,projection,total_population,3.1.2,75,,0–4
+15.71,2,Kota Jambi,age_group,0-4,perempuan,25359,jiwa,2025,projection,total_population,3.1.2,75,,0–4
+15.71,2,Kota Jambi,age_group,0-4,,51526,jiwa,2025,projection,total_population,3.1.2,75,,0–4
+15.71,2,Kota Jambi,age_group,5-9,laki_laki,25184,jiwa,2025,projection,total_population,3.1.2,75,,5–9
+15.71,2,Kota Jambi,age_group,5-9,perempuan,24079,jiwa,2025,projection,total_population,3.1.2,75,,5–9
+15.71,2,Kota Jambi,age_group,5-9,,49263,jiwa,2025,projection,total_population,3.1.2,75,,5–9
+15.71,2,Kota Jambi,age_group,10-14,laki_laki,24969,jiwa,2025,projection,total_population,3.1.2,75,,10–14
+15.71,2,Kota Jambi,age_group,10-14,perempuan,23835,jiwa,2025,projection,total_population,3.1.2,75,,10–14
+15.71,2,Kota Jambi,age_group,10-14,,48804,jiwa,2025,projection,total_population,3.1.2,75,,10–14
+15.71,2,Kota Jambi,age_group,15-19,laki_laki,26225,jiwa,2025,projection,total_population,3.1.2,75,,15–19
+15.71,2,Kota Jambi,age_group,15-19,perempuan,24820,jiwa,2025,projection,total_population,3.1.2,75,,15–19
+15.71,2,Kota Jambi,age_group,15-19,,51045,jiwa,2025,projection,total_population,3.1.2,75,,15–19
+15.71,2,Kota Jambi,age_group,20-24,laki_laki,26258,jiwa,2025,projection,total_population,3.1.2,75,,20–24
+15.71,2,Kota Jambi,age_group,20-24,perempuan,25077,jiwa,2025,projection,total_population,3.1.2,75,,20–24
+15.71,2,Kota Jambi,age_group,20-24,,51335,jiwa,2025,projection,total_population,3.1.2,75,,20–24
+15.71,2,Kota Jambi,age_group,25-29,laki_laki,26066,jiwa,2025,projection,total_population,3.1.2,75,,25–29
+15.71,2,Kota Jambi,age_group,25-29,perempuan,25379,jiwa,2025,projection,total_population,3.1.2,75,,25–29
+15.71,2,Kota Jambi,age_group,25-29,,51445,jiwa,2025,projection,total_population,3.1.2,75,,25–29
+15.71,2,Kota Jambi,age_group,30-34,laki_laki,25503,jiwa,2025,projection,total_population,3.1.2,75,,30–34
+15.71,2,Kota Jambi,age_group,30-34,perempuan,25215,jiwa,2025,projection,total_population,3.1.2,75,,30–34
+15.71,2,Kota Jambi,age_group,30-34,,50718,jiwa,2025,projection,total_population,3.1.2,75,,30–34
+15.71,2,Kota Jambi,age_group,35-39,laki_laki,25142,jiwa,2025,projection,total_population,3.1.2,75,,35–39
+15.71,2,Kota Jambi,age_group,35-39,perempuan,25164,jiwa,2025,projection,total_population,3.1.2,75,,35–39
+15.71,2,Kota Jambi,age_group,35-39,,50306,jiwa,2025,projection,total_population,3.1.2,75,,35–39
+15.71,2,Kota Jambi,age_group,40-44,laki_laki,24035,jiwa,2025,projection,total_population,3.1.2,75,,40–44
+15.71,2,Kota Jambi,age_group,40-44,perempuan,24094,jiwa,2025,projection,total_population,3.1.2,75,,40–44
+15.71,2,Kota Jambi,age_group,40-44,,48129,jiwa,2025,projection,total_population,3.1.2,75,,40–44
+15.71,2,Kota Jambi,age_group,45-49,laki_laki,22803,jiwa,2025,projection,total_population,3.1.2,75,,45–49
+15.71,2,Kota Jambi,age_group,45-49,perempuan,23124,jiwa,2025,projection,total_population,3.1.2,75,,45–49
+15.71,2,Kota Jambi,age_group,45-49,,45927,jiwa,2025,projection,total_population,3.1.2,75,,45–49
+15.71,2,Kota Jambi,age_group,50-54,laki_laki,20215,jiwa,2025,projection,total_population,3.1.2,75,,50–54
+15.71,2,Kota Jambi,age_group,50-54,perempuan,20537,jiwa,2025,projection,total_population,3.1.2,75,,50–54
+15.71,2,Kota Jambi,age_group,50-54,,40752,jiwa,2025,projection,total_population,3.1.2,75,,50–54
+15.71,2,Kota Jambi,age_group,55-59,laki_laki,16946,jiwa,2025,projection,total_population,3.1.2,75,,55–59
+15.71,2,Kota Jambi,age_group,55-59,perempuan,17164,jiwa,2025,projection,total_population,3.1.2,75,,55–59
+15.71,2,Kota Jambi,age_group,55-59,,34110,jiwa,2025,projection,total_population,3.1.2,75,,55–59
+15.71,2,Kota Jambi,age_group,60-64,laki_laki,13390,jiwa,2025,projection,total_population,3.1.2,75,,60–64
+15.71,2,Kota Jambi,age_group,60-64,perempuan,13674,jiwa,2025,projection,total_population,3.1.2,75,,60–64
+15.71,2,Kota Jambi,age_group,60-64,,27064,jiwa,2025,projection,total_population,3.1.2,75,,60–64
+15.71,2,Kota Jambi,age_group,65-69,laki_laki,9508,jiwa,2025,projection,total_population,3.1.2,75,,65–69
+15.71,2,Kota Jambi,age_group,65-69,perempuan,9870,jiwa,2025,projection,total_population,3.1.2,75,,65–69
+15.71,2,Kota Jambi,age_group,65-69,,19378,jiwa,2025,projection,total_population,3.1.2,75,,65–69
+15.71,2,Kota Jambi,age_group,70-74,laki_laki,6105,jiwa,2025,projection,total_population,3.1.2,75,,70–74
+15.71,2,Kota Jambi,age_group,70-74,perempuan,6575,jiwa,2025,projection,total_population,3.1.2,75,,70–74
+15.71,2,Kota Jambi,age_group,70-74,,12680,jiwa,2025,projection,total_population,3.1.2,75,,70–74
+15.71,2,Kota Jambi,age_group,75+,laki_laki,4331,jiwa,2025,projection,total_population,3.1.2,75,,75+
+15.71,2,Kota Jambi,age_group,75+,perempuan,5451,jiwa,2025,projection,total_population,3.1.2,75,,75+
+15.71,2,Kota Jambi,age_group,75+,,9782,jiwa,2025,projection,total_population,3.1.2,75,,75+
+15.71,2,Kota Jambi,sex,laki_laki,,322847,jiwa,2025,projection,total_population,3.1.2,75,,Laki-Laki
+15.71,2,Kota Jambi,sex,perempuan,,319417,jiwa,2025,projection,total_population,3.1.2,75,,Perempuan
+15.71,2,Kota Jambi,total,total,,642264,jiwa,2025,projection,total_population,3.1.2,75,,
+15.71.07,3,Kota Baru,religion,islam,,83588,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+15.71.07,3,Kota Baru,religion,kristen,,6219,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+15.71.07,3,Kota Baru,religion,katolik,,1280,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+15.71.07,3,Kota Baru,religion,hindu,,27,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+15.71.07,3,Kota Baru,religion,buddha,,2091,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+15.71.07,3,Kota Baru,religion,khonghucu,,44,jiwa,2025,registration,total_population,4.3.1,139,,Khonghucu
+15.71.07,3,Kota Baru,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,139,,Lainnya
+15.71.09,3,Alam Barajo,religion,islam,,103971,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+15.71.09,3,Alam Barajo,religion,kristen,,12134,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+15.71.09,3,Alam Barajo,religion,katolik,,2292,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+15.71.09,3,Alam Barajo,religion,hindu,,16,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+15.71.09,3,Alam Barajo,religion,buddha,,1049,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+15.71.09,3,Alam Barajo,religion,khonghucu,,23,jiwa,2025,registration,total_population,4.3.1,139,,Khonghucu
+15.71.09,3,Alam Barajo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Lainnya
+15.71.02,3,Jambi Selatan,religion,islam,,51077,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+15.71.02,3,Jambi Selatan,religion,kristen,,3199,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+15.71.02,3,Jambi Selatan,religion,katolik,,1033,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+15.71.02,3,Jambi Selatan,religion,hindu,,39,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+15.71.02,3,Jambi Selatan,religion,buddha,,3468,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+15.71.02,3,Jambi Selatan,religion,khonghucu,,54,jiwa,2025,registration,total_population,4.3.1,139,,Khonghucu
+15.71.02,3,Jambi Selatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Lainnya
+15.71.11,3,Paal Merah,religion,islam,,100662,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+15.71.11,3,Paal Merah,religion,kristen,,8899,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+15.71.11,3,Paal Merah,religion,katolik,,2396,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+15.71.11,3,Paal Merah,religion,hindu,,67,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+15.71.11,3,Paal Merah,religion,buddha,,4202,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+15.71.11,3,Paal Merah,religion,khonghucu,,70,jiwa,2025,registration,total_population,4.3.1,139,,Khonghucu
+15.71.11,3,Paal Merah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Lainnya
+15.71.08,3,Jelutung,religion,islam,,50188,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+15.71.08,3,Jelutung,religion,kristen,,2858,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+15.71.08,3,Jelutung,religion,katolik,,867,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+15.71.08,3,Jelutung,religion,hindu,,13,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+15.71.08,3,Jelutung,religion,buddha,,6647,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+15.71.08,3,Jelutung,religion,khonghucu,,225,jiwa,2025,registration,total_population,4.3.1,139,,Khonghucu
+15.71.08,3,Jelutung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Lainnya
+15.71.04,3,Pasar Jambi,religion,islam,,8148,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+15.71.04,3,Pasar Jambi,religion,kristen,,480,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+15.71.04,3,Pasar Jambi,religion,katolik,,274,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+15.71.04,3,Pasar Jambi,religion,hindu,,7,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+15.71.04,3,Pasar Jambi,religion,buddha,,1972,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+15.71.04,3,Pasar Jambi,religion,khonghucu,,19,jiwa,2025,registration,total_population,4.3.1,139,,Khonghucu
+15.71.04,3,Pasar Jambi,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Lainnya
+15.71.01,3,Telanaipura,religion,islam,,53075,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+15.71.01,3,Telanaipura,religion,kristen,,3326,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+15.71.01,3,Telanaipura,religion,katolik,,510,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+15.71.01,3,Telanaipura,religion,hindu,,12,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+15.71.01,3,Telanaipura,religion,buddha,,205,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+15.71.01,3,Telanaipura,religion,khonghucu,,3,jiwa,2025,registration,total_population,4.3.1,139,,Khonghucu
+15.71.01,3,Telanaipura,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Lainnya
+15.71.10,3,Danau Sipin,religion,islam,,41399,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+15.71.10,3,Danau Sipin,religion,kristen,,898,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+15.71.10,3,Danau Sipin,religion,katolik,,348,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+15.71.10,3,Danau Sipin,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Hindu
+15.71.10,3,Danau Sipin,religion,buddha,,416,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+15.71.10,3,Danau Sipin,religion,khonghucu,,5,jiwa,2025,registration,total_population,4.3.1,139,,Khonghucu
+15.71.10,3,Danau Sipin,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Lainnya
+15.71.06,3,Danau Teluk,religion,islam,,13762,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+15.71.06,3,Danau Teluk,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+15.71.06,3,Danau Teluk,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Katolik
+15.71.06,3,Danau Teluk,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Hindu
+15.71.06,3,Danau Teluk,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Budha
+15.71.06,3,Danau Teluk,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Khonghucu
+15.71.06,3,Danau Teluk,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Lainnya
+15.71.05,3,Pelayangan,religion,islam,,13835,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+15.71.05,3,Pelayangan,religion,kristen,,25,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+15.71.05,3,Pelayangan,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Katolik
+15.71.05,3,Pelayangan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Hindu
+15.71.05,3,Pelayangan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Budha
+15.71.05,3,Pelayangan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Khonghucu
+15.71.05,3,Pelayangan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Lainnya
+15.71.03,3,Jambi Timur,religion,islam,,53633,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+15.71.03,3,Jambi Timur,religion,kristen,,2795,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+15.71.03,3,Jambi Timur,religion,katolik,,1485,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+15.71.03,3,Jambi Timur,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+15.71.03,3,Jambi Timur,religion,buddha,,8712,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+15.71.03,3,Jambi Timur,religion,khonghucu,,144,jiwa,2025,registration,total_population,4.3.1,139,,Khonghucu
+15.71.03,3,Jambi Timur,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,139,,Lainnya
+15.71,2,Kota Jambi,religion,islam,,573338,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+15.71,2,Kota Jambi,religion,kristen,,40834,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+15.71,2,Kota Jambi,religion,katolik,,10485,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+15.71,2,Kota Jambi,religion,hindu,,184,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+15.71,2,Kota Jambi,religion,buddha,,28762,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+15.71,2,Kota Jambi,religion,khonghucu,,587,jiwa,2025,registration,total_population,4.3.1,139,,Khonghucu
+15.71,2,Kota Jambi,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,139,,Lainnya
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/padi_padian,,70224,rupiah,2024,survey_estimate,per_capita,10.1,273,,Padi-padian
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/padi_padian,,73665,rupiah,2025,survey_estimate,per_capita,10.1,273,,Padi-padian
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/umbi_umbian,,8920,rupiah,2024,survey_estimate,per_capita,10.1,273,,Umbi-umbian
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/umbi_umbian,,9839,rupiah,2025,survey_estimate,per_capita,10.1,273,,Umbi-umbian
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,78515,rupiah,2024,survey_estimate,per_capita,10.1,273,,Ikan/udang/cumi/kerang
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,81952,rupiah,2025,survey_estimate,per_capita,10.1,273,,Ikan/udang/cumi/kerang
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/daging,,42325,rupiah,2024,survey_estimate,per_capita,10.1,273,,Daging
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/daging,,41752,rupiah,2025,survey_estimate,per_capita,10.1,273,,Daging
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/telur_dan_susu,,48376,rupiah,2024,survey_estimate,per_capita,10.1,273,,Telur dan susu
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/telur_dan_susu,,54979,rupiah,2025,survey_estimate,per_capita,10.1,273,,Telur dan susu
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/sayur_sayuran,,74756,rupiah,2024,survey_estimate,per_capita,10.1,273,,Sayur-sayuran
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/sayur_sayuran,,79513,rupiah,2025,survey_estimate,per_capita,10.1,273,,Sayur-sayuran
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/kacang_kacangan,,12298,rupiah,2024,survey_estimate,per_capita,10.1,273,,Kacang-kacangan
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/kacang_kacangan,,15154,rupiah,2025,survey_estimate,per_capita,10.1,273,,Kacang-kacangan
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/buah_buahan,,58894,rupiah,2024,survey_estimate,per_capita,10.1,273,,Buah-buahan
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/buah_buahan,,58759,rupiah,2025,survey_estimate,per_capita,10.1,273,,Buah-buahan
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19421,rupiah,2024,survey_estimate,per_capita,10.1,273,,Minyak dan kelapa
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22510,rupiah,2025,survey_estimate,per_capita,10.1,273,,Minyak dan kelapa
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/bahan_minuman,,20405,rupiah,2024,survey_estimate,per_capita,10.1,273,,Bahan minuman
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/bahan_minuman,,23064,rupiah,2025,survey_estimate,per_capita,10.1,273,,Bahan minuman
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/bumbu_bumbuan,,14718,rupiah,2024,survey_estimate,per_capita,10.1,273,,Bumbu-bumbuan
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/bumbu_bumbuan,,14864,rupiah,2025,survey_estimate,per_capita,10.1,273,,Bumbu-bumbuan
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/konsumsi_lainnya,,17181,rupiah,2024,survey_estimate,per_capita,10.1,273,,Konsumsi lainnya
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/konsumsi_lainnya,,16492,rupiah,2025,survey_estimate,per_capita,10.1,273,,Konsumsi lainnya
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,315932,rupiah,2024,survey_estimate,per_capita,10.1,273,,Makanan dan minuman jadi
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,313143,rupiah,2025,survey_estimate,per_capita,10.1,273,,Makanan dan minuman jadi
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/rokok,,86660,rupiah,2024,survey_estimate,per_capita,10.1,273,,Rokok
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/rokok,,88786,rupiah,2025,survey_estimate,per_capita,10.1,273,,Rokok
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/jumlah_makanan,,868627,rupiah,2024,survey_estimate,per_capita,10.1,273,,Jumlah makanan
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/jumlah_makanan,,894473,rupiah,2025,survey_estimate,per_capita,10.1,273,,Jumlah makanan
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,585379,rupiah,2024,survey_estimate,per_capita,10.1,273,,Perumahan dan fasilitas rumah tangga
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,473200,rupiah,2025,survey_estimate,per_capita,10.1,273,,Perumahan dan fasilitas rumah tangga
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,299015,rupiah,2024,survey_estimate,per_capita,10.1,273,,Aneka barang dan jasa
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,300806,rupiah,2025,survey_estimate,per_capita,10.1,273,,Aneka barang dan jasa
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,58788,rupiah,2024,survey_estimate,per_capita,10.1,273,,"Pakaian, alas kaki, dan tutup kepala"
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,69026,rupiah,2025,survey_estimate,per_capita,10.1,273,,"Pakaian, alas kaki, dan tutup kepala"
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/barang_tahan_lama,,169504,rupiah,2024,survey_estimate,per_capita,10.1,273,,Barang tahan lama
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/barang_tahan_lama,,92781,rupiah,2025,survey_estimate,per_capita,10.1,273,,Barang tahan lama
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,101094,rupiah,2024,survey_estimate,per_capita,10.1,273,,"Pajak, pungutan, dan asuransi"
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,103755,rupiah,2025,survey_estimate,per_capita,10.1,273,,"Pajak, pungutan, dan asuransi"
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1253395,rupiah,2024,survey_estimate,per_capita,10.1,273,,Jumlah bukan makanan
+15.71,2,Kota Jambi,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1100614,rupiah,2025,survey_estimate,per_capita,10.1,273,,Jumlah bukan makanan
+15.71,2,Kota Jambi,expenditure,total,,2122022,rupiah,2024,survey_estimate,per_capita,10.1,273,,
+15.71,2,Kota Jambi,expenditure,total,,1995087,rupiah,2025,survey_estimate,per_capita,10.1,273,,

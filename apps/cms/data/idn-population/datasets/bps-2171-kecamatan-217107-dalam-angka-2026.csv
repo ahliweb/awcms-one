@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.71.07.1004,4,Tanjung Piayu,sex,laki_laki,,18834,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.07.1004,4,Tanjung Piayu,sex,perempuan,,18408,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.07.1004,4,Tanjung Piayu,total,total,,37242,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.07.1001,4,Muka Kuning,sex,laki_laki,,4027,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.07.1001,4,Muka Kuning,sex,perempuan,,3937,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.07.1001,4,Muka Kuning,total,total,,7964,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.07.1002,4,Duriangkang,sex,laki_laki,,11753,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.07.1002,4,Duriangkang,sex,perempuan,,11302,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.07.1002,4,Duriangkang,total,total,,23055,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.07.1003,4,Mangsang,sex,laki_laki,,21650,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.07.1003,4,Mangsang,sex,perempuan,,21346,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.07.1003,4,Mangsang,total,total,,42996,jiwa,2025,registration,total_population,unnumbered-p21,21,,

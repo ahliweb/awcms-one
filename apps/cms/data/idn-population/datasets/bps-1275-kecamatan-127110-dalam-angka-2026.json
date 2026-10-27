@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1275-kecamatan-127110-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.71.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Medan Area Dalam Angka 2026",
+  "publisherName": "BPS Kota Medan",
+  "publisherDomain": "1275",
+  "publisherWebsite": "https://medankota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Medan (https://medankota.bps.go.id), publikasi \"Kecamatan Medan Area Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1275050",
+  "publicationNumber": "12750.26012",
+  "issn": "2830-2095",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://medankota.bps.go.id/id/publication/2026/09/28/93ed49f81ab14919b9814491/kecamatan-medan-area-dalam-angka-2026.html",
+  "sourceFileSha256": "f4a0875c25f429cff7edb080daf6f23d182933b03e639178c483d3a020b18c02",
+  "sourceFileBytes": 16333661,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kota Medan.",
+  "csvPath": "datasets/bps-1275-kecamatan-127110-dalam-angka-2026.csv",
+  "csvSha256": "77aa1e018b84ad264110347f75e1ea30628212628b269d969619e1197208c6bd",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Medan Area, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Medan Area, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.6 (religion-by-region) could not be read reliably and is not included (religion column 8 header \"Kepercaya- an\" not recognised)",
+    "table 3.1: row not stored: row \"Sei Rengas Permata\": unmatched ",
+    "table 3.1: row not stored: row \"Sei Rengas Permata\": unmatched "
+  ]
+}

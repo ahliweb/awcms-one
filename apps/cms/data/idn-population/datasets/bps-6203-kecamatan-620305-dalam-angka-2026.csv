@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.03.05.2001,4,Sei Kayu,sex,laki_laki,,1300,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.05.2001,4,Sei Kayu,sex,perempuan,,1196,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.05.2001,4,Sei Kayu,total,total,,2496,jiwa,2025,registration,total_population,3.1,30,,
+62.03.05.2002,4,Saka Mangkahai,sex,laki_laki,,1236,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.05.2002,4,Saka Mangkahai,sex,perempuan,,1205,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.05.2002,4,Saka Mangkahai,total,total,,2441,jiwa,2025,registration,total_population,3.1,30,,
+62.03.05.2003,4,Anjir Kalampan,sex,laki_laki,,1578,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.05.2003,4,Anjir Kalampan,sex,perempuan,,1467,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.05.2003,4,Anjir Kalampan,total,total,,3045,jiwa,2025,registration,total_population,3.1,30,,
+62.03.05.2005,4,Pantai,sex,laki_laki,,1002,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.05.2005,4,Pantai,sex,perempuan,,919,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.05.2005,4,Pantai,total,total,,1921,jiwa,2025,registration,total_population,3.1,30,,
+62.03.05.2006,4,Saka Tamiang,sex,laki_laki,,1026,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.05.2006,4,Saka Tamiang,sex,perempuan,,884,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.05.2006,4,Saka Tamiang,total,total,,1910,jiwa,2025,registration,total_population,3.1,30,,
+62.03.05.2008,4,Teluk Hiri,sex,laki_laki,,263,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.05.2008,4,Teluk Hiri,sex,perempuan,,221,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.05.2008,4,Teluk Hiri,total,total,,484,jiwa,2025,registration,total_population,3.1,30,,
+62.03.05.2009,4,Sei Dusun,sex,laki_laki,,763,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.05.2009,4,Sei Dusun,sex,perempuan,,710,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.05.2009,4,Sei Dusun,total,total,,1473,jiwa,2025,registration,total_population,3.1,30,,
+62.03.05.2012,4,Basuta Raya,sex,laki_laki,,353,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.05.2012,4,Basuta Raya,sex,perempuan,,301,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.05.2012,4,Basuta Raya,total,total,,654,jiwa,2025,registration,total_population,3.1,30,,
+62.03.05.2010,4,Sei Pitung,sex,laki_laki,,1100,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.05.2010,4,Sei Pitung,sex,perempuan,,976,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.05.2010,4,Sei Pitung,total,total,,2076,jiwa,2025,registration,total_population,3.1,30,,
+62.03.05.2011,4,Maju Bersama,sex,laki_laki,,465,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.05.2011,4,Maju Bersama,sex,perempuan,,425,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.05.2011,4,Maju Bersama,total,total,,890,jiwa,2025,registration,total_population,3.1,30,,
+62.03.05.1004,4,Mandomai,sex,laki_laki,,2050,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.05.1004,4,Mandomai,sex,perempuan,,1887,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.05.1004,4,Mandomai,total,total,,3937,jiwa,2025,registration,total_population,3.1,30,,
+62.03.05,3,Kapuas Barat,sex,laki_laki,,11734,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.03.05,3,Kapuas Barat,sex,perempuan,,10725,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.03.05,3,Kapuas Barat,total,total,,22459,jiwa,2025,registration,total_population,3.1,30,,
+62.03.05,3,Kapuas Barat,age_group,0-4,laki_laki,582,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+62.03.05,3,Kapuas Barat,age_group,0-4,perempuan,536,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+62.03.05,3,Kapuas Barat,age_group,0-4,,1118,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+62.03.05,3,Kapuas Barat,age_group,5-9,laki_laki,931,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+62.03.05,3,Kapuas Barat,age_group,5-9,perempuan,833,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+62.03.05,3,Kapuas Barat,age_group,5-9,,1764,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+62.03.05,3,Kapuas Barat,age_group,10-14,laki_laki,1046,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+62.03.05,3,Kapuas Barat,age_group,10-14,perempuan,956,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+62.03.05,3,Kapuas Barat,age_group,10-14,,2002,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+62.03.05,3,Kapuas Barat,age_group,15-19,laki_laki,1053,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+62.03.05,3,Kapuas Barat,age_group,15-19,perempuan,995,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+62.03.05,3,Kapuas Barat,age_group,15-19,,2048,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+62.03.05,3,Kapuas Barat,age_group,20-24,laki_laki,1011,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+62.03.05,3,Kapuas Barat,age_group,20-24,perempuan,935,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+62.03.05,3,Kapuas Barat,age_group,20-24,,1946,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+62.03.05,3,Kapuas Barat,age_group,25-29,laki_laki,975,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+62.03.05,3,Kapuas Barat,age_group,25-29,perempuan,755,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+62.03.05,3,Kapuas Barat,age_group,25-29,,1730,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+62.03.05,3,Kapuas Barat,age_group,30-34,laki_laki,958,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+62.03.05,3,Kapuas Barat,age_group,30-34,perempuan,797,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+62.03.05,3,Kapuas Barat,age_group,30-34,,1755,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+62.03.05,3,Kapuas Barat,age_group,35-39,laki_laki,963,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+62.03.05,3,Kapuas Barat,age_group,35-39,perempuan,792,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+62.03.05,3,Kapuas Barat,age_group,35-39,,1755,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+62.03.05,3,Kapuas Barat,age_group,40-44,laki_laki,952,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+62.03.05,3,Kapuas Barat,age_group,40-44,perempuan,851,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+62.03.05,3,Kapuas Barat,age_group,40-44,,1803,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+62.03.05,3,Kapuas Barat,age_group,45-49,laki_laki,899,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+62.03.05,3,Kapuas Barat,age_group,45-49,perempuan,744,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+62.03.05,3,Kapuas Barat,age_group,45-49,,1643,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+62.03.05,3,Kapuas Barat,age_group,50-54,laki_laki,687,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+62.03.05,3,Kapuas Barat,age_group,50-54,perempuan,618,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+62.03.05,3,Kapuas Barat,age_group,50-54,,1305,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+62.03.05,3,Kapuas Barat,age_group,55-59,laki_laki,583,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+62.03.05,3,Kapuas Barat,age_group,55-59,perempuan,586,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+62.03.05,3,Kapuas Barat,age_group,55-59,,1169,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+62.03.05,3,Kapuas Barat,age_group,60-64,laki_laki,407,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+62.03.05,3,Kapuas Barat,age_group,60-64,perempuan,427,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+62.03.05,3,Kapuas Barat,age_group,60-64,,834,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+62.03.05,3,Kapuas Barat,age_group,65-69,laki_laki,314,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+62.03.05,3,Kapuas Barat,age_group,65-69,perempuan,376,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+62.03.05,3,Kapuas Barat,age_group,65-69,,690,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+62.03.05,3,Kapuas Barat,age_group,70-74,laki_laki,200,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+62.03.05,3,Kapuas Barat,age_group,70-74,perempuan,235,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+62.03.05,3,Kapuas Barat,age_group,70-74,,435,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+62.03.05,3,Kapuas Barat,age_group,75+,laki_laki,173,jiwa,2025,registration,total_population,3.2,32,,75+
+62.03.05,3,Kapuas Barat,age_group,75+,perempuan,289,jiwa,2025,registration,total_population,3.2,32,,75+
+62.03.05,3,Kapuas Barat,age_group,75+,,462,jiwa,2025,registration,total_population,3.2,32,,75+
+62.03.05,3,Kapuas Barat,sex,laki_laki,,11734,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+62.03.05,3,Kapuas Barat,sex,perempuan,,10725,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+62.03.05,3,Kapuas Barat,total,total,,22459,jiwa,2025,registration,total_population,3.2,32,,

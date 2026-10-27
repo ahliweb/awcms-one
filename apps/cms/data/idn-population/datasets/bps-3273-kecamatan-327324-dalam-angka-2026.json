@@ -1,0 +1,56 @@
+{
+  "datasetCode": "bps-3273-kecamatan-327324-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.73.24",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Arcamanik Dalam Angka 2026",
+  "publisherName": "BPS Kota Bandung",
+  "publisherDomain": "3273",
+  "publisherWebsite": "https://bandungkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bandung (https://bandungkota.bps.go.id), publikasi \"Kecamatan Arcamanik Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3273130",
+  "publicationNumber": "32730.26015",
+  "issn": "2797-474X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandungkota.bps.go.id/id/publication/2026/09/28/fc98b7cc414ae8b072afdebd/kecamatan-arcamanik-dalam-angka-2026.html",
+  "sourceFileSha256": "d7fa5a5421dc196a5dc830d9f2295bec60413bb5c013822652c7a24d68dbc45b",
+  "sourceFileBytes": 9070735,
+  "sourcePages": [37, 38, 39, 91],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bandung.",
+  "csvPath": "datasets/bps-3273-kecamatan-327324-dalam-angka-2026.csv",
+  "csvSha256": "e0ae9d9dbabb76f2dc4992fba2590647ce13545504dc2e6267c3982dda9caab7",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Arcamanik, 2025",
+      "printedPages": [37, 38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Arcamanik, 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.0.21",
+      "title": "Penduduk Menurut Kelurahan dan Agama yang dianut di Kecamatan Arcamanik, 2025",
+      "printedPages": [91],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1: row not stored: row \"Arcamanik District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Arcamanik Arcamanik District\": unmatched ",
+    "table 3.2: row not stored: row \"Dependency Ratio\": unmatched ",
+    "table 3.2: row not stored: row \"Jumlah Total\": unmatched ",
+    "table 4.0.21: row not stored: row \"Kecamatan Arcamanik Arcamanik District\": unmatched "
+  ]
+}

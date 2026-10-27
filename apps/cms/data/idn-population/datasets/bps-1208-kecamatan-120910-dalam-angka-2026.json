@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1208-kecamatan-120910-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.09.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tanjung Balai Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Asahan",
+  "publisherDomain": "1208",
+  "publisherWebsite": "https://asahankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Asahan (https://asahankab.bps.go.id), publikasi \"Kecamatan Tanjung Balai Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1208050",
+  "publicationNumber": "12080.240031",
+  "issn": "3110-2670",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://asahankab.bps.go.id/id/publication/2026/09/28/4b87f98892e2d09e4b242011/kecamatan-tanjung-balai-dalam-angka-2026.html",
+  "sourceFileSha256": "9618d83090c017032da629b8b32904585aaffccad959359ccf659bb20aaca5a3",
+  "sourceFileBytes": 6639218,
+  "sourcePages": [24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Asahan.",
+  "csvPath": "datasets/bps-1208-kecamatan-120910-dalam-angka-2026.csv",
+  "csvSha256": "8ced11ddc7454cfba460d996c6a4e3c4b27f8aadaa222675a5571fd030981ccf",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Tanjung Balai, 2024",
+      "printedPages": [24, 25],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

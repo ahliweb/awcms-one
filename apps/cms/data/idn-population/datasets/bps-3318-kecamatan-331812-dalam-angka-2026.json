@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3318-kecamatan-331812-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.18.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Margorejo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pati",
+  "publisherDomain": "3318",
+  "publisherWebsite": "https://patikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pati (https://patikab.bps.go.id), publikasi \"Kecamatan Margorejo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3318120",
+  "publicationNumber": "33180.26020",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://patikab.bps.go.id/id/publication/2026/09/28/fdee7508b71f2f55fa336da4/kecamatan-margorejo-dalam-angka-2026.html",
+  "sourceFileSha256": "3fb04334d08eb727e26e1ab1f337d2b0f1b9edeaa09431de8881f6e4b8575c7a",
+  "sourceFileBytes": 30537908,
+  "sourcePages": [22, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statsistik Kabupaten Pati",
+  "csvPath": "datasets/bps-3318-kecamatan-331812-dalam-angka-2026.csv",
+  "csvSha256": "52e44a9d62fd1386724d09ba95bb156907de40f8192da6bfb226ea5eba6d7e0e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Margorejo, 2025",
+      "printedPages": [22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Margorejo, 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"014 Sukobubuk\": unmatched ",
+    "table 3.1: row not stored: row \"017 Metaraman\": unmatched "
+  ]
+}

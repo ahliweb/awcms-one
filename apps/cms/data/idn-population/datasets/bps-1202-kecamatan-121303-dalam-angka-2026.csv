@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.13.03.2012,4,Tebing Tinggi,sex,laki_laki,,542,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.03.2012,4,Tebing Tinggi,sex,perempuan,,565,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.03.2012,4,Tebing Tinggi,total,total,,1107,jiwa,2025,registration,total_population,3.1,21,,
+12.13.03.2011,4,Tanjung,sex,laki_laki,,309,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.03.2011,4,Tanjung,sex,perempuan,,305,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.03.2011,4,Tanjung,total,total,,614,jiwa,2025,registration,total_population,3.1,21,,
+12.13.03.2001,4,Aek Nabara,sex,laki_laki,,37,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.03.2001,4,Aek Nabara,sex,perempuan,,38,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.03.2001,4,Aek Nabara,total,total,,75,jiwa,2025,registration,total_population,3.1,21,,
+12.13.03.2006,4,Pagur,sex,laki_laki,,1085,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.03.2006,4,Pagur,sex,perempuan,,1049,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.03.2006,4,Pagur,total,total,,2134,jiwa,2025,registration,total_population,3.1,21,,
+12.13.03.2009,4,Ranto Natas,sex,laki_laki,,426,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.03.2009,4,Ranto Natas,sex,perempuan,,397,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.03.2009,4,Ranto Natas,total,total,,823,jiwa,2025,registration,total_population,3.1,21,,
+12.13.03.2007,4,Pardomuan,sex,laki_laki,,386,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.03.2007,4,Pardomuan,sex,perempuan,,410,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.03.2007,4,Pardomuan,total,total,,796,jiwa,2025,registration,total_population,3.1,21,,
+12.13.03.2010,4,Sirangkap,sex,laki_laki,,678,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.03.2010,4,Sirangkap,sex,perempuan,,651,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.03.2010,4,Sirangkap,total,total,,1329,jiwa,2025,registration,total_population,3.1,21,,
+12.13.03.2005,4,Huta Tinggi,sex,laki_laki,,225,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.03.2005,4,Huta Tinggi,sex,perempuan,,214,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.03.2005,4,Huta Tinggi,total,total,,439,jiwa,2025,registration,total_population,3.1,21,,
+12.13.03.2004,4,Huta Bangun,sex,laki_laki,,419,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.03.2004,4,Huta Bangun,sex,perempuan,,416,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.03.2004,4,Huta Bangun,total,total,,835,jiwa,2025,registration,total_population,3.1,21,,
+12.13.03.2008,4,Parmompang,sex,laki_laki,,613,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.03.2008,4,Parmompang,sex,perempuan,,588,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.03.2008,4,Parmompang,total,total,,1201,jiwa,2025,registration,total_population,3.1,21,,
+12.13.03.2013,4,Tanjung Julu,sex,laki_laki,,500,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.03.2013,4,Tanjung Julu,sex,perempuan,,543,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.03.2013,4,Tanjung Julu,total,total,,1043,jiwa,2025,registration,total_population,3.1,21,,
+12.13.03.2014,4,Banjar Lancat,sex,laki_laki,,139,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.03.2014,4,Banjar Lancat,sex,perempuan,,121,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.03.2014,4,Banjar Lancat,total,total,,260,jiwa,2025,registration,total_population,3.1,21,,
+12.13.03.2015,4,Padang Laru,sex,laki_laki,,477,jiwa,2025,registration,total_population,3.1,21,,Laki-Laki
+12.13.03.2015,4,Padang Laru,sex,perempuan,,512,jiwa,2025,registration,total_population,3.1,21,,Perempuan
+12.13.03.2015,4,Padang Laru,total,total,,989,jiwa,2025,registration,total_population,3.1,21,,

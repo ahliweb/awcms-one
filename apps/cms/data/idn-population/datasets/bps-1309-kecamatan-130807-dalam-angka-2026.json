@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1309-kecamatan-130807-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "13.08.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Panti Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pasaman",
+  "publisherDomain": "1309",
+  "publisherWebsite": "https://pasamankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pasaman (https://pasamankab.bps.go.id), publikasi \"Kecamatan Panti Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1309110",
+  "publicationNumber": "13090.25016",
+  "issn": "2987-1751",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pasamankab.bps.go.id/id/publication/2026/09/28/20fec1ddeba9dbf9219cb39f/kecamatan-panti-dalam-angka-2026.html",
+  "sourceFileSha256": "b7543a6cc2fd0935e5e5e2fa9fd556214dec621e32b9fcc090d4a5cc606ee224",
+  "sourceFileBytes": 7217505,
+  "sourcePages": [35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pasaman",
+  "csvPath": "datasets/bps-1309-kecamatan-130807-dalam-angka-2026.csv",
+  "csvSha256": "da16d1ce4dfef0baf6014a8b9772960975ab316d0bcf46fe7269607084014aa9",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Panti, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1601-kecamatan-160130-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.01.30",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lubuk Raja Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ogan Komering Ulu",
+  "publisherDomain": "1601",
+  "publisherWebsite": "https://okukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ogan Komering Ulu (https://okukab.bps.go.id), publikasi \"Kecamatan Lubuk Raja Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "16010.25005",
+  "issn": "3063-9107",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://okukab.bps.go.id/id/publication/2026/09/28/152158c5e98696562e5a71a9/kecamatan-lubuk-raja-dalam-angka-2026.html",
+  "sourceFileSha256": "ee79fb0b1a00c0a27ca6ad92cf890d2a7768d9177b27fffa20e64d16e90a2ffe",
+  "sourceFileBytes": 4474521,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ogan Komering Ulu.",
+  "csvPath": "datasets/bps-1601-kecamatan-160130-dalam-angka-2026.csv",
+  "csvSha256": "8b3683c82d0e57af8f5ce3014e54d9d4d48bfcdeea6309505926ab084adb51ac",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Lubuk Raja, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lubuk Raja, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-1606-kecamatan-160601-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.06.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sekayu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Musi Banyuasin",
+  "publisherDomain": "1606",
+  "publisherWebsite": "https://musibanyuasinkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Musi Banyuasin (https://musibanyuasinkab.bps.go.id), publikasi \"Kecamatan Sekayu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1606040",
+  "publicationNumber": "16060.26012",
+  "issn": "2745-3251",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://musibanyuasinkab.bps.go.id/id/publication/2026/09/28/78c2cfd018770a6b3f9a4893/kecamatan-sekayu-dalam-angka-2026.html",
+  "sourceFileSha256": "ec78b0e1bce6f37a336ab3aa451061cf0748b5672d0d93502abb2131b2f681c5",
+  "sourceFileBytes": 9562959,
+  "sourcePages": [36, 37, 38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Musi Banyuasin.",
+  "csvPath": "datasets/bps-1606-kecamatan-160601-dalam-angka-2026.csv",
+  "csvSha256": "cc97234ec5ba16ca4b6af3b9ff39a69337f0ce646b273f597e5dba93717cae3e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sekayu, 2026",
+      "printedPages": [36, 37],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sekayu, 2026",
+      "printedPages": [38],
+      "referenceYears": [2026],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Rimbah Ukur\": unmatched ",
+    "table 3.1: row not stored: row \"Lumpatan II\": unmatched ",
+    "table 3.1: row not stored: row \"Bailangu Timur\": unmatched ",
+    "table 3.1: row not stored: row \"Rimbah Ukur\": unmatched ",
+    "table 3.1: row not stored: row \"Lumpatan II\": unmatched ",
+    "table 3.1: row not stored: row \"Bailangu Timur\": unmatched "
+  ]
+}

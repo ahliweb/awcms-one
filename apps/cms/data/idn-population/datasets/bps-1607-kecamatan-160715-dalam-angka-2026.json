@@ -1,0 +1,52 @@
+{
+  "datasetCode": "bps-1607-kecamatan-160715-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.07.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tungkal Ilir Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Banyuasin",
+  "publisherDomain": "1607",
+  "publisherWebsite": "https://banyuasinkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Banyuasin (https://banyuasinkab.bps.go.id), publikasi \"Kecamatan Tungkal Ilir Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1607031",
+  "publicationNumber": "16070.26009",
+  "issn": "3064-5174",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banyuasinkab.bps.go.id/id/publication/2026/09/28/3da8728aa30231a08c5636d9/kecamatan-tungkal-ilir-dalam-angka-2026.html",
+  "sourceFileSha256": "c246f2970e65125ef435f0f04c0534381d6212b467c8bf2e03e63b501a330a14",
+  "sourceFileBytes": 11439011,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Banyuasin.",
+  "csvPath": "datasets/bps-1607-kecamatan-160715-dalam-angka-2026.csv",
+  "csvSha256": "6484208b3a0b6b82f613ac7e0e41ab0aa6eee78a6b33f333c65953d437f7f15e",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tungkal Ilir, 2026",
+      "printedPages": [36],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Teluk Tenggulang 2.079\": unmatched ",
+    "table 3.1: row not stored: row \"Suka Mulya 1.578\": unmatched ",
+    "table 3.1: row not stored: row \"Suka Raja 996\": unmatched ",
+    "table 3.1: row not stored: row \"Karang Anyar 552\": unmatched ",
+    "table 3.1: row not stored: row \"Karang Mulya 678\": unmatched ",
+    "table 3.1: row not stored: row \"Karang Asem 449\": unmatched ",
+    "table 3.1: row not stored: row \"Marga Rahayu 562\": unmatched ",
+    "table 3.1: row not stored: row \"Bumi Serdang 952\": unmatched ",
+    "table 3.1: row not stored: row \"Sido Mulyo 3.022\": unmatched ",
+    "table 3.1: row not stored: row \"Keluang 2.746\": unmatched ",
+    "table 3.1: row not stored: row \"Bentayan 2.486\": unmatched ",
+    "table 3.1: row not stored: row \"Panca Mulya 301\": unmatched ",
+    "table 3.1: row not stored: row \"Suka Jaya 316\": unmatched ",
+    "table 3.1: row not stored: row \"Suka Karya 439\": unmatched ",
+    "table 3.1: row not stored: row \"Tungkal Ilir 17.156\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

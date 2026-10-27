@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.74.01.1001,4,Kejaksan,sex,laki_laki,,5044,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.74.01.1001,4,Kejaksan,sex,perempuan,,5201,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+32.74.01.1001,4,Kejaksan,total,total,,10245,jiwa,2025,registration,total_population,3.1,25,,
+32.74.01.1004,4,Kebonbaru,sex,laki_laki,,4700,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.74.01.1004,4,Kebonbaru,sex,perempuan,,4928,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+32.74.01.1004,4,Kebonbaru,total,total,,9628,jiwa,2025,registration,total_population,3.1,25,,
+32.74.01.1002,4,Sukapura,sex,laki_laki,,8873,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.74.01.1002,4,Sukapura,sex,perempuan,,8877,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+32.74.01.1002,4,Sukapura,total,total,,17750,jiwa,2025,registration,total_population,3.1,25,,
+32.74.01.1003,4,Kesenden,sex,laki_laki,,7237,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.74.01.1003,4,Kesenden,sex,perempuan,,7253,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+32.74.01.1003,4,Kesenden,total,total,,14490,jiwa,2025,registration,total_population,3.1,25,,
+32.74.01,3,Kecamatan Kejaksan,sex,laki_laki,,25854,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.74.01,3,Kecamatan Kejaksan,sex,perempuan,,26259,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+32.74.01,3,Kecamatan Kejaksan,total,total,,52113,jiwa,2025,registration,total_population,3.1,25,,
+32.74.01,3,Kejaksan,age_group,0-4,laki_laki,1574,jiwa,2025,registration,total_population,3.2,27,,0-4
+32.74.01,3,Kejaksan,age_group,0-4,perempuan,1497,jiwa,2025,registration,total_population,3.2,27,,0-4
+32.74.01,3,Kejaksan,age_group,0-4,,3071,jiwa,2025,registration,total_population,3.2,27,,0-4
+32.74.01,3,Kejaksan,age_group,5-9,laki_laki,2144,jiwa,2025,registration,total_population,3.2,27,,5-9
+32.74.01,3,Kejaksan,age_group,5-9,perempuan,2104,jiwa,2025,registration,total_population,3.2,27,,5-9
+32.74.01,3,Kejaksan,age_group,5-9,,4248,jiwa,2025,registration,total_population,3.2,27,,5-9
+32.74.01,3,Kejaksan,age_group,10-14,laki_laki,2346,jiwa,2025,registration,total_population,3.2,27,,10-14
+32.74.01,3,Kejaksan,age_group,10-14,perempuan,2254,jiwa,2025,registration,total_population,3.2,27,,10-14
+32.74.01,3,Kejaksan,age_group,10-14,,4600,jiwa,2025,registration,total_population,3.2,27,,10-14
+32.74.01,3,Kejaksan,age_group,15-19,laki_laki,2284,jiwa,2025,registration,total_population,3.2,27,,15-19
+32.74.01,3,Kejaksan,age_group,15-19,perempuan,2260,jiwa,2025,registration,total_population,3.2,27,,15-19
+32.74.01,3,Kejaksan,age_group,15-19,,4544,jiwa,2025,registration,total_population,3.2,27,,15-19
+32.74.01,3,Kejaksan,age_group,20-24,laki_laki,2206,jiwa,2025,registration,total_population,3.2,27,,20-24
+32.74.01,3,Kejaksan,age_group,20-24,perempuan,1981,jiwa,2025,registration,total_population,3.2,27,,20-24
+32.74.01,3,Kejaksan,age_group,20-24,,4187,jiwa,2025,registration,total_population,3.2,27,,20-24
+32.74.01,3,Kejaksan,age_group,25-29,laki_laki,2131,jiwa,2025,registration,total_population,3.2,27,,25-29
+32.74.01,3,Kejaksan,age_group,25-29,perempuan,2003,jiwa,2025,registration,total_population,3.2,27,,25-29
+32.74.01,3,Kejaksan,age_group,25-29,,4134,jiwa,2025,registration,total_population,3.2,27,,25-29
+32.74.01,3,Kejaksan,age_group,30-34,laki_laki,1934,jiwa,2025,registration,total_population,3.2,27,,30-34
+32.74.01,3,Kejaksan,age_group,30-34,perempuan,1801,jiwa,2025,registration,total_population,3.2,27,,30-34
+32.74.01,3,Kejaksan,age_group,30-34,,3735,jiwa,2025,registration,total_population,3.2,27,,30-34
+32.74.01,3,Kejaksan,age_group,35-39,laki_laki,1878,jiwa,2025,registration,total_population,3.2,27,,35-39
+32.74.01,3,Kejaksan,age_group,35-39,perempuan,1814,jiwa,2025,registration,total_population,3.2,27,,35-39
+32.74.01,3,Kejaksan,age_group,35-39,,3692,jiwa,2025,registration,total_population,3.2,27,,35-39
+32.74.01,3,Kejaksan,age_group,40-44,laki_laki,1966,jiwa,2025,registration,total_population,3.2,27,,40-44
+32.74.01,3,Kejaksan,age_group,40-44,perempuan,1967,jiwa,2025,registration,total_population,3.2,27,,40-44
+32.74.01,3,Kejaksan,age_group,40-44,,3933,jiwa,2025,registration,total_population,3.2,27,,40-44
+32.74.01,3,Kejaksan,age_group,45-49,laki_laki,1931,jiwa,2025,registration,total_population,3.2,27,,45-49
+32.74.01,3,Kejaksan,age_group,45-49,perempuan,1966,jiwa,2025,registration,total_population,3.2,27,,45-49
+32.74.01,3,Kejaksan,age_group,45-49,,3897,jiwa,2025,registration,total_population,3.2,27,,45-49
+32.74.01,3,Kejaksan,age_group,50-54,laki_laki,1575,jiwa,2025,registration,total_population,3.2,27,,50-54
+32.74.01,3,Kejaksan,age_group,50-54,perempuan,1683,jiwa,2025,registration,total_population,3.2,27,,50-54
+32.74.01,3,Kejaksan,age_group,50-54,,3258,jiwa,2025,registration,total_population,3.2,27,,50-54
+32.74.01,3,Kejaksan,age_group,55-59,laki_laki,1362,jiwa,2025,registration,total_population,3.2,27,,55-59
+32.74.01,3,Kejaksan,age_group,55-59,perempuan,1455,jiwa,2025,registration,total_population,3.2,27,,55-59
+32.74.01,3,Kejaksan,age_group,55-59,,2817,jiwa,2025,registration,total_population,3.2,27,,55-59
+32.74.01,3,Kejaksan,age_group,60-64,laki_laki,973,jiwa,2025,registration,total_population,3.2,27,,60-64
+32.74.01,3,Kejaksan,age_group,60-64,perempuan,1243,jiwa,2025,registration,total_population,3.2,27,,60-64
+32.74.01,3,Kejaksan,age_group,60-64,,2216,jiwa,2025,registration,total_population,3.2,27,,60-64
+32.74.01,3,Kejaksan,age_group,65-69,laki_laki,724,jiwa,2025,registration,total_population,3.2,27,,65-69
+32.74.01,3,Kejaksan,age_group,65-69,perempuan,947,jiwa,2025,registration,total_population,3.2,27,,65-69
+32.74.01,3,Kejaksan,age_group,65-69,,1671,jiwa,2025,registration,total_population,3.2,27,,65-69
+32.74.01,3,Kejaksan,age_group,70-74,laki_laki,473,jiwa,2025,registration,total_population,3.2,27,,70-74
+32.74.01,3,Kejaksan,age_group,70-74,perempuan,639,jiwa,2025,registration,total_population,3.2,27,,70-74
+32.74.01,3,Kejaksan,age_group,70-74,,1112,jiwa,2025,registration,total_population,3.2,27,,70-74
+32.74.01,3,Kejaksan,age_group,75+,laki_laki,353,jiwa,2025,registration,total_population,3.2,27,,>75
+32.74.01,3,Kejaksan,age_group,75+,perempuan,645,jiwa,2025,registration,total_population,3.2,27,,>75
+32.74.01,3,Kejaksan,age_group,75+,,998,jiwa,2025,registration,total_population,3.2,27,,>75
+32.74.01,3,Kecamatan Kejaksan,sex,laki_laki,,25854,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+32.74.01,3,Kecamatan Kejaksan,sex,perempuan,,26259,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+32.74.01,3,Kecamatan Kejaksan,total,total,,52113,jiwa,2025,registration,total_population,3.2,27,,

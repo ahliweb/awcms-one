@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-1503-kecamatan-150302-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.03.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Limun Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sarolangun",
+  "publisherDomain": "1503",
+  "publisherWebsite": "https://sarolangunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sarolangun (https://sarolangunkab.bps.go.id), publikasi \"Kecamatan Limun Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1503020",
+  "publicationNumber": "15030.26006",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sarolangunkab.bps.go.id/id/publication/2026/09/28/a9835bfa9091bcba3c67d267/kecamatan-limun-dalam-angka-2026.html",
+  "sourceFileSha256": "b288e48a17bce514138a35f911e97170ff1a34a86b3f45f5c666e119934850d6",
+  "sourceFileBytes": 11068756,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sarolangun.",
+  "csvPath": "datasets/bps-1503-kecamatan-150302-dalam-angka-2026.csv",
+  "csvSha256": "39dc5f41d2c5da6b03883e4a46710e265e51bc7b5413e1836e7b7dcc726e8870",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Limun, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Muara Mansao\": unmatched ",
+    "table 3.1: row not stored: row \"Muara Mansao\": unmatched ",
+    "table 3.2: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

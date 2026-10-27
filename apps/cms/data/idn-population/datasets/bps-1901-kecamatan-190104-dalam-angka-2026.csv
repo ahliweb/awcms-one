@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.01.04.2010,4,Kota Kapur,sex,perempuan,,1108,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.04.2010,4,Kota Kapur,total,total,,2355,jiwa,2025,registration,total_population,3.1,26,,
+19.01.04.2002,4,Penagan,sex,perempuan,,2933,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.04.2002,4,Penagan,total,total,,6225,jiwa,2025,registration,total_population,3.1,26,,
+19.01.04.2012,4,Rukam,sex,perempuan,,609,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.04.2012,4,Rukam,total,total,,1279,jiwa,2025,registration,total_population,3.1,26,,
+19.01.04.2011,4,Air Buluh,sex,perempuan,,924,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.04.2011,4,Air Buluh,total,total,,1887,jiwa,2025,registration,total_population,3.1,26,,
+19.01.04.2007,4,Kace,sex,perempuan,,3979,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.04.2007,4,Kace,total,total,,8183,jiwa,2025,registration,total_population,3.1,26,,
+19.01.04.2006,4,Cengkong Abang,sex,perempuan,,1922,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.04.2006,4,Cengkong Abang,total,total,,4007,jiwa,2025,registration,total_population,3.1,26,,
+19.01.04.2009,4,Air Duren,sex,perempuan,,646,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.04.2009,4,Air Duren,total,total,,1373,jiwa,2025,registration,total_population,3.1,26,,
+19.01.04.2001,4,Petaling,sex,perempuan,,1777,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.04.2001,4,Petaling,total,total,,3688,jiwa,2025,registration,total_population,3.1,26,,
+19.01.04.2004,4,Mendo,sex,perempuan,,1301,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.04.2004,4,Mendo,total,total,,2854,jiwa,2025,registration,total_population,3.1,26,,
+19.01.04.2005,4,Paya Benua,sex,perempuan,,2179,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.04.2005,4,Paya Benua,total,total,,4573,jiwa,2025,registration,total_population,3.1,26,,
+19.01.04.2008,4,Kemuja,sex,perempuan,,2608,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.04.2008,4,Kemuja,total,total,,5394,jiwa,2025,registration,total_population,3.1,26,,
+19.01.04.2003,4,Zed,sex,perempuan,,1554,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.04.2003,4,Zed,total,total,,3242,jiwa,2025,registration,total_population,3.1,26,,
+19.01.04.2013,4,Labuh Air Pandan,sex,perempuan,,694,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.04.2013,4,Labuh Air Pandan,total,total,,1449,jiwa,2025,registration,total_population,3.1,26,,
+19.01.04.2014,4,Kace Timur,sex,perempuan,,1459,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.04.2014,4,Kace Timur,total,total,,2933,jiwa,2025,registration,total_population,3.1,26,,
+19.01.04.2015,4,Petaling Banjar,sex,perempuan,,1839,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.04.2015,4,Petaling Banjar,total,total,,3796,jiwa,2025,registration,total_population,3.1,26,,
+19.01.04,3,Kecamatan Mendo Barat,sex,perempuan,,25532,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.04,3,Kecamatan Mendo Barat,total,total,,53238,jiwa,2025,registration,total_population,3.1,26,,
+19.01.04,3,Mendo Barat,age_group,0-4,perempuan,1857,jiwa,2025,registration,total_population,3.2,28,,0-4
+19.01.04,3,Mendo Barat,age_group,0-4,,3829,jiwa,2025,registration,total_population,3.2,28,,0-4
+19.01.04,3,Mendo Barat,age_group,5-9,perempuan,2428,jiwa,2025,registration,total_population,3.2,28,,5-9
+19.01.04,3,Mendo Barat,age_group,5-9,,4976,jiwa,2025,registration,total_population,3.2,28,,5-9
+19.01.04,3,Mendo Barat,age_group,10-14,perempuan,2616,jiwa,2025,registration,total_population,3.2,28,,10-14
+19.01.04,3,Mendo Barat,age_group,10-14,,5422,jiwa,2025,registration,total_population,3.2,28,,10-14
+19.01.04,3,Mendo Barat,age_group,15-19,perempuan,2405,jiwa,2025,registration,total_population,3.2,28,,15-19
+19.01.04,3,Mendo Barat,age_group,15-19,,4851,jiwa,2025,registration,total_population,3.2,28,,15-19
+19.01.04,3,Mendo Barat,age_group,20-24,perempuan,2173,jiwa,2025,registration,total_population,3.2,28,,20-24
+19.01.04,3,Mendo Barat,age_group,20-24,,4594,jiwa,2025,registration,total_population,3.2,28,,20-24
+19.01.04,3,Mendo Barat,age_group,25-29,perempuan,2189,jiwa,2025,registration,total_population,3.2,28,,25-29
+19.01.04,3,Mendo Barat,age_group,25-29,,4531,jiwa,2025,registration,total_population,3.2,28,,25-29
+19.01.04,3,Mendo Barat,age_group,30-34,perempuan,1881,jiwa,2025,registration,total_population,3.2,28,,30-34
+19.01.04,3,Mendo Barat,age_group,30-34,,3937,jiwa,2025,registration,total_population,3.2,28,,30-34
+19.01.04,3,Mendo Barat,age_group,35-39,perempuan,2148,jiwa,2025,registration,total_population,3.2,28,,35-39
+19.01.04,3,Mendo Barat,age_group,35-39,,4642,jiwa,2025,registration,total_population,3.2,28,,35-39
+19.01.04,3,Mendo Barat,age_group,40-44,perempuan,1795,jiwa,2025,registration,total_population,3.2,28,,40-44
+19.01.04,3,Mendo Barat,age_group,40-44,,3912,jiwa,2025,registration,total_population,3.2,28,,40-44
+19.01.04,3,Mendo Barat,age_group,45-49,perempuan,1559,jiwa,2025,registration,total_population,3.2,28,,45-49
+19.01.04,3,Mendo Barat,age_group,45-49,,3426,jiwa,2025,registration,total_population,3.2,28,,45-49
+19.01.04,3,Mendo Barat,age_group,50-54,perempuan,1362,jiwa,2025,registration,total_population,3.2,28,,50-54
+19.01.04,3,Mendo Barat,age_group,50-54,,2812,jiwa,2025,registration,total_population,3.2,28,,50-54
+19.01.04,3,Mendo Barat,age_group,55-59,perempuan,1067,jiwa,2025,registration,total_population,3.2,28,,55-59
+19.01.04,3,Mendo Barat,age_group,55-59,,2220,jiwa,2025,registration,total_population,3.2,28,,55-59
+19.01.04,3,Mendo Barat,age_group,60-64,perempuan,766,jiwa,2025,registration,total_population,3.2,28,,60-64
+19.01.04,3,Mendo Barat,age_group,60-64,,1632,jiwa,2025,registration,total_population,3.2,28,,60-64
+19.01.04,3,Mendo Barat,age_group,65-69,perempuan,564,jiwa,2025,registration,total_population,3.2,28,,65-69
+19.01.04,3,Mendo Barat,age_group,65-69,,1123,jiwa,2025,registration,total_population,3.2,28,,65-69
+19.01.04,3,Mendo Barat,age_group,70-74,perempuan,338,jiwa,2025,registration,total_population,3.2,28,,70-74
+19.01.04,3,Mendo Barat,age_group,70-74,,662,jiwa,2025,registration,total_population,3.2,28,,70-74
+19.01.04,3,Mendo Barat,age_group,75+,perempuan,384,jiwa,2025,registration,total_population,3.2,28,,75+
+19.01.04,3,Mendo Barat,age_group,75+,,669,jiwa,2025,registration,total_population,3.2,28,,75+
+19.01.04,3,Mendo Barat,sex,perempuan,,25532,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+19.01.04,3,Mendo Barat,total,total,,53238,jiwa,2025,registration,total_population,3.2,28,,

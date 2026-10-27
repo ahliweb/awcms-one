@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.14.13.2001,4,Baujeng,sex,laki_laki,,3667,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.13.2001,4,Baujeng,sex,perempuan,,3659,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.13.2001,4,Baujeng,total,total,,7326,jiwa,2025,registration,total_population,3.1,29,,
+35.14.13.2002,4,Ngembe,sex,laki_laki,,2079,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.13.2002,4,Ngembe,sex,perempuan,,2043,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.13.2002,4,Ngembe,total,total,,4122,jiwa,2025,registration,total_population,3.1,29,,
+35.14.13.2003,4,Kenep,sex,laki_laki,,1840,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.13.2003,4,Kenep,sex,perempuan,,1817,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.13.2003,4,Kenep,total,total,,3657,jiwa,2025,registration,total_population,3.1,29,,
+35.14.13.2004,4,Sidowayah,sex,laki_laki,,2293,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.13.2004,4,Sidowayah,sex,perempuan,,2286,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.13.2004,4,Sidowayah,total,total,,4579,jiwa,2025,registration,total_population,3.1,29,,
+35.14.13.2005,4,Gajah Bendo,sex,laki_laki,,1988,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.13.2005,4,Gajah Bendo,sex,perempuan,,1975,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.13.2005,4,Gajah Bendo,total,total,,3963,jiwa,2025,registration,total_population,3.1,29,,
+35.14.13.2012,4,Beji,sex,laki_laki,,6123,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.13.2012,4,Beji,sex,perempuan,,5906,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.13.2012,4,Beji,total,total,,12029,jiwa,2025,registration,total_population,3.1,29,,
+35.14.13.2008,4,Gunung Sari,sex,laki_laki,,2272,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.13.2008,4,Gunung Sari,sex,perempuan,,2318,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.13.2008,4,Gunung Sari,total,total,,4590,jiwa,2025,registration,total_population,3.1,29,,
+35.14.13.2007,4,Wonokoyo,sex,laki_laki,,3571,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.13.2007,4,Wonokoyo,sex,perempuan,,3551,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.13.2007,4,Wonokoyo,total,total,,7122,jiwa,2025,registration,total_population,3.1,29,,
+35.14.13.2006,4,Gunung Gangsir,sex,laki_laki,,7125,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.13.2006,4,Gunung Gangsir,sex,perempuan,,7083,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.13.2006,4,Gunung Gangsir,total,total,,14208,jiwa,2025,registration,total_population,3.1,29,,
+35.14.13.2009,4,Cangkring Malang,sex,laki_laki,,5780,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.13.2009,4,Cangkring Malang,sex,perempuan,,5631,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.13.2009,4,Cangkring Malang,total,total,,11411,jiwa,2025,registration,total_population,3.1,29,,
+35.14.13.2010,4,Kedung Ringin,sex,laki_laki,,4190,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.13.2010,4,Kedung Ringin,sex,perempuan,,4264,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.13.2010,4,Kedung Ringin,total,total,,8454,jiwa,2025,registration,total_population,3.1,29,,
+35.14.13.1014,4,Pagak,sex,laki_laki,,2545,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.13.1014,4,Pagak,sex,perempuan,,2606,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.13.1014,4,Pagak,total,total,,5151,jiwa,2025,registration,total_population,3.1,29,,
+35.14.13.2011,4,Kedung Boto,sex,laki_laki,,1204,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.13.2011,4,Kedung Boto,sex,perempuan,,1200,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.13.2011,4,Kedung Boto,total,total,,2404,jiwa,2025,registration,total_population,3.1,29,,
+35.14.13.1013,4,Glanggang,sex,laki_laki,,1989,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.13.1013,4,Glanggang,sex,perempuan,,1977,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.13.1013,4,Glanggang,total,total,,3966,jiwa,2025,registration,total_population,3.1,29,,
+35.14.13,3,Kecamatan Beji,sex,laki_laki,,46666,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.13,3,Kecamatan Beji,sex,perempuan,,46316,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.13,3,Kecamatan Beji,total,total,,92982,jiwa,2025,registration,total_population,3.1,29,,

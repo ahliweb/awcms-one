@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.19.08.2003,4,Dempelan,sex,laki_laki,,1664,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+35.19.08.2003,4,Dempelan,sex,perempuan,,1707,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+35.19.08.2003,4,Dempelan,total,total,,3371,jiwa,2025,registration,total_population,3.1,24,,
+35.19.08.2004,4,Betek,sex,laki_laki,,967,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+35.19.08.2004,4,Betek,sex,perempuan,,967,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+35.19.08.2004,4,Betek,total,total,,1934,jiwa,2025,registration,total_population,3.1,24,,
+35.19.08.2002,4,Sendangrejo,sex,laki_laki,,776,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+35.19.08.2002,4,Sendangrejo,sex,perempuan,,862,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+35.19.08.2002,4,Sendangrejo,total,total,,1638,jiwa,2025,registration,total_population,3.1,24,,
+35.19.08.2005,4,Sirapan,sex,laki_laki,,1848,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+35.19.08.2005,4,Sirapan,sex,perempuan,,1888,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+35.19.08.2005,4,Sirapan,total,total,,3736,jiwa,2025,registration,total_population,3.1,24,,
+35.19.08.2006,4,Dimong,sex,laki_laki,,1636,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+35.19.08.2006,4,Dimong,sex,perempuan,,1794,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+35.19.08.2006,4,Dimong,total,total,,3430,jiwa,2025,registration,total_population,3.1,24,,
+35.19.08.2007,4,Tulungrejo,sex,laki_laki,,1002,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+35.19.08.2007,4,Tulungrejo,sex,perempuan,,1047,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+35.19.08.2007,4,Tulungrejo,total,total,,2049,jiwa,2025,registration,total_population,3.1,24,,
+35.19.08.2009,4,Sumberejo,sex,laki_laki,,1319,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+35.19.08.2009,4,Sumberejo,sex,perempuan,,1357,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+35.19.08.2009,4,Sumberejo,total,total,,2676,jiwa,2025,registration,total_population,3.1,24,,
+35.19.08.2008,4,Tanjungrejo,sex,laki_laki,,791,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+35.19.08.2008,4,Tanjungrejo,sex,perempuan,,807,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+35.19.08.2008,4,Tanjungrejo,total,total,,1598,jiwa,2025,registration,total_population,3.1,24,,
+35.19.08.2010,4,Banjarsari,sex,laki_laki,,1564,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+35.19.08.2010,4,Banjarsari,sex,perempuan,,1630,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+35.19.08.2010,4,Banjarsari,total,total,,3194,jiwa,2025,registration,total_population,3.1,24,,
+35.19.08.1001,4,Nglames,sex,laki_laki,,1642,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+35.19.08.1001,4,Nglames,sex,perempuan,,1738,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+35.19.08.1001,4,Nglames,total,total,,3380,jiwa,2025,registration,total_population,3.1,24,,
+35.19.08.2011,4,Tiron,sex,laki_laki,,2373,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+35.19.08.2011,4,Tiron,sex,perempuan,,2491,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+35.19.08.2011,4,Tiron,total,total,,4864,jiwa,2025,registration,total_population,3.1,24,,
+35.19.08.2012,4,Gunungsari,sex,laki_laki,,962,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+35.19.08.2012,4,Gunungsari,sex,perempuan,,1017,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+35.19.08.2012,4,Gunungsari,total,total,,1979,jiwa,2025,registration,total_population,3.1,24,,
+35.19.08.2013,4,Bagi,sex,laki_laki,,2195,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+35.19.08.2013,4,Bagi,sex,perempuan,,2345,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+35.19.08.2013,4,Bagi,total,total,,4540,jiwa,2025,registration,total_population,3.1,24,,
+35.19.08,3,Kecamatan Madiun,sex,laki_laki,,18739,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+35.19.08,3,Kecamatan Madiun,sex,perempuan,,19650,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+35.19.08,3,Kecamatan Madiun,total,total,,38389,jiwa,2025,registration,total_population,3.1,24,,

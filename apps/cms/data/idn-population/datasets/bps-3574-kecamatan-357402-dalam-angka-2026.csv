@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.74.02.1007,4,Wonoasih,sex,laki_laki,,2037,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.02.1007,4,Wonoasih,sex,perempuan,,2066,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.02.1007,4,Wonoasih,total,total,,4103,jiwa,2025,registration,total_population,3.1,25,,
+35.74.02.1001,4,Jrebeng Kidul,sex,laki_laki,,2729,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.02.1001,4,Jrebeng Kidul,sex,perempuan,,2677,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.02.1001,4,Jrebeng Kidul,total,total,,5406,jiwa,2025,registration,total_population,3.1,25,,
+35.74.02.1002,4,Pakistaji,sex,laki_laki,,2688,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.02.1002,4,Pakistaji,sex,perempuan,,2623,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.02.1002,4,Pakistaji,total,total,,5311,jiwa,2025,registration,total_population,3.1,25,,
+35.74.02.1003,4,Kedunggaleng,sex,laki_laki,,1540,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.02.1003,4,Kedunggaleng,sex,perempuan,,1465,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.02.1003,4,Kedunggaleng,total,total,,3005,jiwa,2025,registration,total_population,3.1,25,,
+35.74.02.1005,4,Kedungasem,sex,laki_laki,,3803,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.02.1005,4,Kedungasem,sex,perempuan,,3791,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.02.1005,4,Kedungasem,total,total,,7594,jiwa,2025,registration,total_population,3.1,25,,
+35.74.02.1006,4,Sumbertaman,sex,laki_laki,,5170,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.74.02.1006,4,Sumbertaman,sex,perempuan,,5247,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+35.74.02.1006,4,Sumbertaman,total,total,,10417,jiwa,2025,registration,total_population,3.1,25,,
+35.74.02,3,Wonoasih,age_group,0-14,laki_laki,4325,jiwa,2025,registration,total_population,3.2,27,,0 – 14
+35.74.02,3,Wonoasih,age_group,0-14,perempuan,4096,jiwa,2025,registration,total_population,3.2,27,,0 – 14
+35.74.02,3,Wonoasih,age_group,0-14,,8421,jiwa,2025,registration,total_population,3.2,27,,0 – 14
+35.74.02,3,Wonoasih,age_group,15-64,laki_laki,12485,jiwa,2025,registration,total_population,3.2,27,,15 – 64
+35.74.02,3,Wonoasih,age_group,15-64,perempuan,12512,jiwa,2025,registration,total_population,3.2,27,,15 – 64
+35.74.02,3,Wonoasih,age_group,15-64,,24997,jiwa,2025,registration,total_population,3.2,27,,15 – 64
+35.74.02,3,Wonoasih,age_group,65+,laki_laki,1157,jiwa,2025,registration,total_population,3.2,27,,65+
+35.74.02,3,Wonoasih,age_group,65+,perempuan,1261,jiwa,2025,registration,total_population,3.2,27,,65+
+35.74.02,3,Wonoasih,age_group,65+,,2418,jiwa,2025,registration,total_population,3.2,27,,65+
+35.74.02.1007,4,Wonoasih,religion,islam,,4077,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.02.1007,4,Wonoasih,religion,kristen,,14,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.02.1007,4,Wonoasih,religion,katolik,,7,jiwa,2025,registration,total_population,4.4.5,55,,Katolik
+35.74.02.1007,4,Wonoasih,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Hindu
+35.74.02.1007,4,Wonoasih,religion,buddha,,5,jiwa,2025,registration,total_population,4.4.5,55,,Budha
+35.74.02.1007,4,Wonoasih,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Lainnya
+35.74.02.1001,4,Jrebeng Kidul,religion,islam,,5389,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.02.1001,4,Jrebeng Kidul,religion,kristen,,12,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.02.1001,4,Jrebeng Kidul,religion,katolik,,5,jiwa,2025,registration,total_population,4.4.5,55,,Katolik
+35.74.02.1001,4,Jrebeng Kidul,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Hindu
+35.74.02.1001,4,Jrebeng Kidul,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Budha
+35.74.02.1001,4,Jrebeng Kidul,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Lainnya
+35.74.02.1002,4,Pakistaji,religion,islam,,5306,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.02.1002,4,Pakistaji,religion,kristen,,1,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.02.1002,4,Pakistaji,religion,katolik,,4,jiwa,2025,registration,total_population,4.4.5,55,,Katolik
+35.74.02.1002,4,Pakistaji,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Hindu
+35.74.02.1002,4,Pakistaji,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Budha
+35.74.02.1002,4,Pakistaji,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Lainnya
+35.74.02.1003,4,Kedunggaleng,religion,islam,,3004,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.02.1003,4,Kedunggaleng,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Protestan
+35.74.02.1003,4,Kedunggaleng,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Katolik
+35.74.02.1003,4,Kedunggaleng,religion,hindu,,1,jiwa,2025,registration,total_population,4.4.5,55,,Hindu
+35.74.02.1003,4,Kedunggaleng,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Budha
+35.74.02.1003,4,Kedunggaleng,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Lainnya
+35.74.02.1005,4,Kedungasem,religion,islam,,7577,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.02.1005,4,Kedungasem,religion,kristen,,4,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.02.1005,4,Kedungasem,religion,katolik,,1,jiwa,2025,registration,total_population,4.4.5,55,,Katolik
+35.74.02.1005,4,Kedungasem,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Hindu
+35.74.02.1005,4,Kedungasem,religion,buddha,,12,jiwa,2025,registration,total_population,4.4.5,55,,Budha
+35.74.02.1005,4,Kedungasem,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Lainnya
+35.74.02.1006,4,Sumbertaman,religion,islam,,10203,jiwa,2025,registration,total_population,4.4.5,55,,Islam
+35.74.02.1006,4,Sumbertaman,religion,kristen,,130,jiwa,2025,registration,total_population,4.4.5,55,,Protestan
+35.74.02.1006,4,Sumbertaman,religion,katolik,,79,jiwa,2025,registration,total_population,4.4.5,55,,Katolik
+35.74.02.1006,4,Sumbertaman,religion,hindu,,2,jiwa,2025,registration,total_population,4.4.5,55,,Hindu
+35.74.02.1006,4,Sumbertaman,religion,buddha,,3,jiwa,2025,registration,total_population,4.4.5,55,,Budha
+35.74.02.1006,4,Sumbertaman,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,55,nil,Lainnya

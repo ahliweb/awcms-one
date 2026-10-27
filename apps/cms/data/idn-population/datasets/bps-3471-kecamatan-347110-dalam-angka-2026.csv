@@ -1,0 +1,10 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+34.71.10.1001,4,Ngupasan,sex,laki_laki,,2694,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+34.71.10.1001,4,Ngupasan,sex,perempuan,,2859,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+34.71.10.1001,4,Ngupasan,total,total,,5553,jiwa,2025,registration,total_population,3.1,28,,
+34.71.10.1002,4,Prawirodirjan,sex,laki_laki,,4366,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+34.71.10.1002,4,Prawirodirjan,sex,perempuan,,4577,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+34.71.10.1002,4,Prawirodirjan,total,total,,8943,jiwa,2025,registration,total_population,3.1,28,,
+34.71.10,3,Gondomanan,sex,laki_laki,,7060,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+34.71.10,3,Gondomanan,sex,perempuan,,7436,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+34.71.10,3,Gondomanan,total,total,,14496,jiwa,2025,registration,total_population,3.1,28,,

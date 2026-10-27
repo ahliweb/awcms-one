@@ -1,0 +1,35 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.17.13.2001,4,Sanetan,sex,perempuan,,856,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.17.13.2001,4,Sanetan,total,total,,1713,jiwa,2025,registration,total_population,3.1,26,,
+33.17.13.2002,4,Rakitan,sex,perempuan,,402,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.17.13.2002,4,Rakitan,total,total,,802,jiwa,2025,registration,total_population,3.1,26,,
+33.17.13.2003,4,Bendo,sex,perempuan,,1272,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.17.13.2003,4,Bendo,total,total,,2536,jiwa,2025,registration,total_population,3.1,26,,
+33.17.13.2004,4,Labuhan Kidul,sex,perempuan,,1963,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.17.13.2004,4,Labuhan Kidul,total,total,,3964,jiwa,2025,registration,total_population,3.1,26,,
+33.17.13.2005,4,Sendangmulyo,sex,perempuan,,1107,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.17.13.2005,4,Sendangmulyo,total,total,,2186,jiwa,2025,registration,total_population,3.1,26,,
+33.17.13.2006,4,Blimbing,sex,perempuan,,182,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.17.13.2006,4,Blimbing,total,total,,354,jiwa,2025,registration,total_population,3.1,26,,
+33.17.13.2007,4,Manggar,sex,perempuan,,1781,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.17.13.2007,4,Manggar,total,total,,3635,jiwa,2025,registration,total_population,3.1,26,,
+33.17.13.2008,4,Jatisari,sex,perempuan,,489,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.17.13.2008,4,Jatisari,total,total,,1025,jiwa,2025,registration,total_population,3.1,26,,
+33.17.13.2009,4,Langgar,sex,perempuan,,897,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.17.13.2009,4,Langgar,total,total,,1784,jiwa,2025,registration,total_population,3.1,26,,
+33.17.13.2010,4,Sluke,sex,perempuan,,1865,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.17.13.2010,4,Sluke,total,total,,3700,jiwa,2025,registration,total_population,3.1,26,,
+33.17.13.2011,4,Jurangjero,sex,perempuan,,1388,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.17.13.2011,4,Jurangjero,total,total,,2816,jiwa,2025,registration,total_population,3.1,26,,
+33.17.13.2012,4,Leran,sex,perempuan,,1100,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.17.13.2012,4,Leran,total,total,,2178,jiwa,2025,registration,total_population,3.1,26,,
+33.17.13.2013,4,Trahan,sex,perempuan,,1167,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.17.13.2013,4,Trahan,total,total,,2403,jiwa,2025,registration,total_population,3.1,26,,
+33.17.13.2014,4,Pangkalan,sex,perempuan,,795,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.17.13.2014,4,Pangkalan,total,total,,1625,jiwa,2025,registration,total_population,3.1,26,,
+33.17.13,3,Sluke,age_group,0-14,perempuan,906,jiwa,2025,projection,total_population,3.2,28,,00–14
+33.17.13,3,Sluke,age_group,0-14,,1910,jiwa,2025,projection,total_population,3.2,28,,00–14
+33.17.13,3,Sluke,age_group,15-64,perempuan,1112,jiwa,2025,projection,total_population,3.2,28,,15–64
+33.17.13,3,Sluke,age_group,15-64,,2321,jiwa,2025,projection,total_population,3.2,28,,15–64
+33.17.13,3,Sluke,age_group,65+,perempuan,1063,jiwa,2025,projection,total_population,3.2,28,,65+
+33.17.13,3,Sluke,age_group,65+,,2276,jiwa,2025,projection,total_population,3.2,28,,65+

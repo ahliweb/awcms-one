@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-1610-kecamatan-161011-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.10.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Rantau Panjang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ogan lir",
+  "publisherDomain": "1610",
+  "publisherWebsite": "https://oganilirkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ogan lir (https://oganilirkab.bps.go.id), publikasi \"Kecamatan Rantau Panjang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1610040",
+  "publicationNumber": "16100.26015",
+  "issn": "2987-6133",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://oganilirkab.bps.go.id/id/publication/2026/09/28/5ac23519fff7b022412496fb/kecamatan-rantau-panjang-dalam-angka-2026.html",
+  "sourceFileSha256": "0b305b8add26ac965bba046c5ed1e442ab2c9ae049fe07ab031352dbffb9da05",
+  "sourceFileBytes": 8199039,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ogan lir.",
+  "csvPath": "datasets/bps-1610-kecamatan-161011-dalam-angka-2026.csv",
+  "csvSha256": "83c511c33ed8725015bd032c23702406b8d8414dfbfd2b43ce875528944c6d7d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Rantau Panjang, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Rantau Panjang, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Jagalana\": unmatched ",
+    "table 3.1: row not stored: row \"Jagalana\": unmatched ",
+    "table 3.2: 2 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.09.15.2003,4,Bandar Pulau Pekan,sex,laki_laki,,962,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.15.2003,4,Bandar Pulau Pekan,sex,perempuan,,941,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.15.2003,4,Bandar Pulau Pekan,total,total,,1903,jiwa,2025,registration,total_population,3.1,30,,
+12.09.15.2010,4,Padang Pulau,sex,laki_laki,,1979,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.15.2010,4,Padang Pulau,sex,perempuan,,1937,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.15.2010,4,Padang Pulau,total,total,,3916,jiwa,2025,registration,total_population,3.1,30,,
+12.09.15.2005,4,Buntu Maraja,sex,laki_laki,,885,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.15.2005,4,Buntu Maraja,sex,perempuan,,911,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.15.2005,4,Buntu Maraja,total,total,,1796,jiwa,2025,registration,total_population,3.1,30,,
+12.09.15.2006,4,Gonting Malaha,sex,laki_laki,,1758,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.15.2006,4,Gonting Malaha,sex,perempuan,,1681,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.15.2006,4,Gonting Malaha,total,total,,3439,jiwa,2025,registration,total_population,3.1,30,,
+12.09.15.2021,4,Gajah Sakti,sex,laki_laki,,1301,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.15.2021,4,Gajah Sakti,sex,perempuan,,1214,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.15.2021,4,Gajah Sakti,total,total,,2515,jiwa,2025,registration,total_population,3.1,30,,
+12.09.15.2022,4,Gunung Berkat,sex,laki_laki,,1003,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.15.2022,4,Gunung Berkat,sex,perempuan,,980,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.15.2022,4,Gunung Berkat,total,total,,1983,jiwa,2025,registration,total_population,3.1,30,,
+12.09.15.2019,4,Hutarao,sex,laki_laki,,1379,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.15.2019,4,Hutarao,sex,perempuan,,1267,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.15.2019,4,Hutarao,total,total,,2646,jiwa,2025,registration,total_population,3.1,30,,
+12.09.15.2020,4,Aek Nagali,sex,laki_laki,,1521,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.15.2020,4,Aek Nagali,sex,perempuan,,1457,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.15.2020,4,Aek Nagali,total,total,,2978,jiwa,2025,registration,total_population,3.1,30,,
+12.09.15,3,Bandar Pulau,sex,laki_laki,,12748,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.09.15,3,Bandar Pulau,sex,perempuan,,12188,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.09.15,3,Bandar Pulau,total,total,,24936,jiwa,2025,registration,total_population,3.1,30,,

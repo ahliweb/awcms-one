@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.10.10.2003,4,Lubuk Besar,sex,laki_laki,,1078,jiwa,2025,registration,total_population,3.2.1,23,,Laki-Laki
+13.10.10.2003,4,Lubuk Besar,sex,perempuan,,962,jiwa,2025,registration,total_population,3.2.1,23,,Perempuan
+13.10.10.2003,4,Lubuk Besar,total,total,,2040,jiwa,2025,registration,total_population,3.2.1,23,,
+13.10.10.2002,4,Alahan Nan Tigo,sex,laki_laki,,1617,jiwa,2025,registration,total_population,3.2.1,23,,Laki-Laki
+13.10.10.2002,4,Alahan Nan Tigo,sex,perempuan,,1475,jiwa,2025,registration,total_population,3.2.1,23,,Perempuan
+13.10.10.2002,4,Alahan Nan Tigo,total,total,,3092,jiwa,2025,registration,total_population,3.2.1,23,,
+13.10.10.2001,4,Sungai Limau,sex,laki_laki,,1177,jiwa,2025,registration,total_population,3.2.1,23,,Laki-Laki
+13.10.10.2001,4,Sungai Limau,sex,perempuan,,1063,jiwa,2025,registration,total_population,3.2.1,23,,Perempuan
+13.10.10.2001,4,Sungai Limau,total,total,,2240,jiwa,2025,registration,total_population,3.2.1,23,,
+13.10.10.2005,4,Sinamar,sex,laki_laki,,865,jiwa,2025,registration,total_population,3.2.1,23,,Laki-Laki
+13.10.10.2005,4,Sinamar,sex,perempuan,,794,jiwa,2025,registration,total_population,3.2.1,23,,Perempuan
+13.10.10.2005,4,Sinamar,total,total,,1659,jiwa,2025,registration,total_population,3.2.1,23,,
+13.10.10.2004,4,Tanjung Alam,sex,laki_laki,,402,jiwa,2025,registration,total_population,3.2.1,23,,Laki-Laki
+13.10.10.2004,4,Tanjung Alam,sex,perempuan,,387,jiwa,2025,registration,total_population,3.2.1,23,,Perempuan
+13.10.10.2004,4,Tanjung Alam,total,total,,789,jiwa,2025,registration,total_population,3.2.1,23,,
+13.10.10,3,Kecamatan Asam Jujuhan,sex,laki_laki,,5139,jiwa,2025,registration,total_population,3.2.1,23,,Laki-Laki
+13.10.10,3,Kecamatan Asam Jujuhan,sex,perempuan,,4681,jiwa,2025,registration,total_population,3.2.1,23,,Perempuan
+13.10.10,3,Kecamatan Asam Jujuhan,total,total,,9820,jiwa,2025,registration,total_population,3.2.1,23,,
+13.10.10,3,Asam Jujuhan,age_group,0-4,laki_laki,424,jiwa,2025,registration,total_population,3.2.2,25,,0-4
+13.10.10,3,Asam Jujuhan,age_group,0-4,perempuan,386,jiwa,2025,registration,total_population,3.2.2,25,,0-4
+13.10.10,3,Asam Jujuhan,age_group,0-4,,810,jiwa,2025,registration,total_population,3.2.2,25,,0-4
+13.10.10,3,Asam Jujuhan,age_group,5-9,laki_laki,533,jiwa,2025,registration,total_population,3.2.2,25,,5-9
+13.10.10,3,Asam Jujuhan,age_group,5-9,perempuan,492,jiwa,2025,registration,total_population,3.2.2,25,,5-9
+13.10.10,3,Asam Jujuhan,age_group,5-9,,1025,jiwa,2025,registration,total_population,3.2.2,25,,5-9
+13.10.10,3,Asam Jujuhan,age_group,10-14,laki_laki,537,jiwa,2025,registration,total_population,3.2.2,25,,10-14
+13.10.10,3,Asam Jujuhan,age_group,10-14,perempuan,471,jiwa,2025,registration,total_population,3.2.2,25,,10-14
+13.10.10,3,Asam Jujuhan,age_group,10-14,,1008,jiwa,2025,registration,total_population,3.2.2,25,,10-14
+13.10.10,3,Asam Jujuhan,age_group,15-19,laki_laki,435,jiwa,2025,registration,total_population,3.2.2,25,,15-19
+13.10.10,3,Asam Jujuhan,age_group,15-19,perempuan,430,jiwa,2025,registration,total_population,3.2.2,25,,15-19
+13.10.10,3,Asam Jujuhan,age_group,15-19,,865,jiwa,2025,registration,total_population,3.2.2,25,,15-19
+13.10.10,3,Asam Jujuhan,age_group,20-24,laki_laki,467,jiwa,2025,registration,total_population,3.2.2,25,,20-24
+13.10.10,3,Asam Jujuhan,age_group,20-24,perempuan,411,jiwa,2025,registration,total_population,3.2.2,25,,20-24
+13.10.10,3,Asam Jujuhan,age_group,20-24,,878,jiwa,2025,registration,total_population,3.2.2,25,,20-24
+13.10.10,3,Asam Jujuhan,age_group,25-29,laki_laki,487,jiwa,2025,registration,total_population,3.2.2,25,,25-29
+13.10.10,3,Asam Jujuhan,age_group,25-29,perempuan,458,jiwa,2025,registration,total_population,3.2.2,25,,25-29
+13.10.10,3,Asam Jujuhan,age_group,25-29,,945,jiwa,2025,registration,total_population,3.2.2,25,,25-29
+13.10.10,3,Asam Jujuhan,age_group,30-34,laki_laki,400,jiwa,2025,registration,total_population,3.2.2,25,,30-34
+13.10.10,3,Asam Jujuhan,age_group,30-34,perempuan,410,jiwa,2025,registration,total_population,3.2.2,25,,30-34
+13.10.10,3,Asam Jujuhan,age_group,30-34,,810,jiwa,2025,registration,total_population,3.2.2,25,,30-34
+13.10.10,3,Asam Jujuhan,age_group,35-39,laki_laki,414,jiwa,2025,registration,total_population,3.2.2,25,,35-39
+13.10.10,3,Asam Jujuhan,age_group,35-39,perempuan,363,jiwa,2025,registration,total_population,3.2.2,25,,35-39
+13.10.10,3,Asam Jujuhan,age_group,35-39,,777,jiwa,2025,registration,total_population,3.2.2,25,,35-39
+13.10.10,3,Asam Jujuhan,age_group,40-44,laki_laki,402,jiwa,2025,registration,total_population,3.2.2,25,,40-44
+13.10.10,3,Asam Jujuhan,age_group,40-44,perempuan,382,jiwa,2025,registration,total_population,3.2.2,25,,40-44
+13.10.10,3,Asam Jujuhan,age_group,40-44,,784,jiwa,2025,registration,total_population,3.2.2,25,,40-44
+13.10.10,3,Asam Jujuhan,age_group,45-49,laki_laki,338,jiwa,2025,registration,total_population,3.2.2,25,,45-49
+13.10.10,3,Asam Jujuhan,age_group,45-49,perempuan,300,jiwa,2025,registration,total_population,3.2.2,25,,45-49
+13.10.10,3,Asam Jujuhan,age_group,45-49,,638,jiwa,2025,registration,total_population,3.2.2,25,,45-49
+13.10.10,3,Asam Jujuhan,age_group,50-54,laki_laki,285,jiwa,2025,registration,total_population,3.2.2,25,,50-54
+13.10.10,3,Asam Jujuhan,age_group,50-54,perempuan,230,jiwa,2025,registration,total_population,3.2.2,25,,50-54
+13.10.10,3,Asam Jujuhan,age_group,50-54,,515,jiwa,2025,registration,total_population,3.2.2,25,,50-54
+13.10.10,3,Asam Jujuhan,age_group,55-59,laki_laki,188,jiwa,2025,registration,total_population,3.2.2,25,,55-59
+13.10.10,3,Asam Jujuhan,age_group,55-59,perempuan,142,jiwa,2025,registration,total_population,3.2.2,25,,55-59
+13.10.10,3,Asam Jujuhan,age_group,55-59,,330,jiwa,2025,registration,total_population,3.2.2,25,,55-59
+13.10.10,3,Asam Jujuhan,age_group,60-64,laki_laki,111,jiwa,2025,registration,total_population,3.2.2,25,,60-64
+13.10.10,3,Asam Jujuhan,age_group,60-64,perempuan,80,jiwa,2025,registration,total_population,3.2.2,25,,60-64
+13.10.10,3,Asam Jujuhan,age_group,60-64,,191,jiwa,2025,registration,total_population,3.2.2,25,,60-64
+13.10.10,3,Asam Jujuhan,age_group,65-69,laki_laki,56,jiwa,2025,registration,total_population,3.2.2,25,,65-69
+13.10.10,3,Asam Jujuhan,age_group,65-69,perempuan,57,jiwa,2025,registration,total_population,3.2.2,25,,65-69
+13.10.10,3,Asam Jujuhan,age_group,65-69,,113,jiwa,2025,registration,total_population,3.2.2,25,,65-69
+13.10.10,3,Asam Jujuhan,age_group,70+,laki_laki,62,jiwa,2025,registration,total_population,3.2.2,25,,70+
+13.10.10,3,Asam Jujuhan,age_group,70+,perempuan,69,jiwa,2025,registration,total_population,3.2.2,25,,70+
+13.10.10,3,Asam Jujuhan,age_group,70+,,131,jiwa,2025,registration,total_population,3.2.2,25,,70+
+13.10.10,3,Kecamatan Asam Jujuhan,sex,laki_laki,,5139,jiwa,2025,registration,total_population,3.2.2,25,,Laki-Laki
+13.10.10,3,Kecamatan Asam Jujuhan,sex,perempuan,,4681,jiwa,2025,registration,total_population,3.2.2,25,,Perempuan
+13.10.10,3,Kecamatan Asam Jujuhan,total,total,,9820,jiwa,2025,registration,total_population,3.2.2,25,,

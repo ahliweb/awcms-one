@@ -1,0 +1,10 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.05.19.2001,4,Sumber Jaya,sex,laki_laki,,510,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.19.2001,4,Sumber Jaya,sex,perempuan,,493,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.19.2001,4,Sumber Jaya,total,total,,1003,jiwa,2025,registration,total_population,3.1,23,,
+16.05.19.1002,4,Sumber Harta,sex,laki_laki,,1947,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.19.1002,4,Sumber Harta,sex,perempuan,,1852,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.19.1002,4,Sumber Harta,total,total,,3799,jiwa,2025,registration,total_population,3.1,23,,
+16.05.19,3,Sumber Harta,sex,laki_laki,,10132,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.19,3,Sumber Harta,sex,perempuan,,9801,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.19,3,Sumber Harta,total,total,,19933,jiwa,2025,registration,total_population,3.1,23,,

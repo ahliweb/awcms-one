@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.09.06.2021,4,Koto Benai,sex,laki_laki,,248,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.06.2021,4,Koto Benai,sex,perempuan,,251,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.06.2021,4,Koto Benai,total,total,,499,jiwa,2025,registration,total_population,3.1,22,,
+14.09.06.2003,4,Banjar Benai,sex,laki_laki,,1734,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.06.2003,4,Banjar Benai,sex,perempuan,,1596,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.06.2003,4,Banjar Benai,total,total,,3330,jiwa,2025,registration,total_population,3.1,22,,
+14.09.06.2005,4,Gunung Kesiangan,sex,laki_laki,,386,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.06.2005,4,Gunung Kesiangan,sex,perempuan,,387,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.06.2005,4,Gunung Kesiangan,total,total,,773,jiwa,2025,registration,total_population,3.1,22,,
+14.09.06.2007,4,Banjar Lopak,sex,laki_laki,,397,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.06.2007,4,Banjar Lopak,sex,perempuan,,388,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.06.2007,4,Banjar Lopak,total,total,,785,jiwa,2025,registration,total_population,3.1,22,,
+14.09.06.2006,4,Pulau Kalimanting,sex,laki_laki,,247,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.06.2006,4,Pulau Kalimanting,sex,perempuan,,260,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.06.2006,4,Pulau Kalimanting,total,total,,507,jiwa,2025,registration,total_population,3.1,22,,
+14.09.06.2012,4,Pulau Ingu,sex,laki_laki,,842,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.06.2012,4,Pulau Ingu,sex,perempuan,,858,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.06.2012,4,Pulau Ingu,total,total,,1700,jiwa,2025,registration,total_population,3.1,22,,
+14.09.06.2013,4,Simandolak,sex,laki_laki,,233,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.06.2013,4,Simandolak,sex,perempuan,,229,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.06.2013,4,Simandolak,total,total,,462,jiwa,2025,registration,total_population,3.1,22,,
+14.09.06.2014,4,Tebing Tinggi,sex,laki_laki,,955,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.06.2014,4,Tebing Tinggi,sex,perempuan,,1003,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.06.2014,4,Tebing Tinggi,total,total,,1958,jiwa,2025,registration,total_population,3.1,22,,
+14.09.06.2015,4,Pulau Lancang,sex,laki_laki,,347,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.06.2015,4,Pulau Lancang,sex,perempuan,,349,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.06.2015,4,Pulau Lancang,total,total,,696,jiwa,2025,registration,total_population,3.1,22,,
+14.09.06.2010,4,Pulau Tongah,sex,laki_laki,,367,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.06.2010,4,Pulau Tongah,sex,perempuan,,351,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.06.2010,4,Pulau Tongah,total,total,,718,jiwa,2025,registration,total_population,3.1,22,,
+14.09.06.2011,4,Ujung Tanjung,sex,laki_laki,,280,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.06.2011,4,Ujung Tanjung,sex,perempuan,,288,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.06.2011,4,Ujung Tanjung,total,total,,568,jiwa,2025,registration,total_population,3.1,22,,
+14.09.06.2009,4,Siberakun,sex,laki_laki,,562,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.06.2009,4,Siberakun,sex,perempuan,,566,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.06.2009,4,Siberakun,total,total,,1128,jiwa,2025,registration,total_population,3.1,22,,
+14.09.06.1001,4,Benai,sex,laki_laki,,769,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.06.1001,4,Benai,sex,perempuan,,790,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.06.1001,4,Benai,total,total,,1559,jiwa,2025,registration,total_population,3.1,22,,
+14.09.06.2016,4,Benai Kecil,sex,laki_laki,,420,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.06.2016,4,Benai Kecil,sex,perempuan,,413,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.06.2016,4,Benai Kecil,total,total,,833,jiwa,2025,registration,total_population,3.1,22,,
+14.09.06,3,Benai,sex,laki_laki,,9120,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.06,3,Benai,sex,perempuan,,9081,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.06,3,Benai,total,total,,18201,jiwa,2025,registration,total_population,3.1,22,,

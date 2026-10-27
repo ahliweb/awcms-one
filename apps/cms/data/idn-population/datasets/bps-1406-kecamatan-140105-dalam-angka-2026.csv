@@ -1,0 +1,21 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.01.05.2001,4,Kuok,sex,perempuan,,4335,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.05.2001,4,Kuok,total,total,,8784,jiwa,2025,registration,total_population,3.1,11,,
+14.01.05.2005,4,Merangin,sex,perempuan,,827,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.05.2005,4,Merangin,total,total,,1696,jiwa,2025,registration,total_population,3.1,11,,
+14.01.05.2006,4,Empat Balai,sex,perempuan,,1559,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.05.2006,4,Empat Balai,total,total,,3120,jiwa,2025,registration,total_population,3.1,11,,
+14.01.05.2007,4,Pulau Jambu,sex,perempuan,,1647,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.05.2007,4,Pulau Jambu,total,total,,3363,jiwa,2025,registration,total_population,3.1,11,,
+14.01.05.2008,4,Silam,sex,perempuan,,1403,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.05.2008,4,Silam,total,total,,2899,jiwa,2025,registration,total_population,3.1,11,,
+14.01.05.2010,4,Bukit Melintang,sex,perempuan,,572,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.05.2010,4,Bukit Melintang,total,total,,1196,jiwa,2025,registration,total_population,3.1,11,,
+14.01.05.2012,4,Lereng,sex,perempuan,,1447,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.05.2012,4,Lereng,total,total,,2947,jiwa,2025,registration,total_population,3.1,11,,
+14.01.05.2011,4,Pulau Terap,sex,perempuan,,1131,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.05.2011,4,Pulau Terap,total,total,,2328,jiwa,2025,registration,total_population,3.1,11,,
+14.01.05.2013,4,Batu Langka Kecil,sex,perempuan,,1123,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.05.2013,4,Batu Langka Kecil,total,total,,2307,jiwa,2025,registration,total_population,3.1,11,,
+14.01.05,3,Kuok,sex,perempuan,,14044,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.05,3,Kuok,total,total,,28640,jiwa,2025,registration,total_population,3.1,11,,

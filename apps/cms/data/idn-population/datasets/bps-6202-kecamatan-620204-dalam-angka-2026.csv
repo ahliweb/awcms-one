@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.02.04,3,Parenggean,age_group,0-4,laki_laki,1035,jiwa,2025,registration,total_population,3.2,35,,0 – 4
+62.02.04,3,Parenggean,age_group,0-4,perempuan,972,jiwa,2025,registration,total_population,3.2,35,,0 – 4
+62.02.04,3,Parenggean,age_group,0-4,,2007,jiwa,2025,registration,total_population,3.2,35,,0 – 4
+62.02.04,3,Parenggean,age_group,5-9,laki_laki,1422,jiwa,2025,registration,total_population,3.2,35,,5 – 9
+62.02.04,3,Parenggean,age_group,5-9,perempuan,1436,jiwa,2025,registration,total_population,3.2,35,,5 – 9
+62.02.04,3,Parenggean,age_group,5-9,,2858,jiwa,2025,registration,total_population,3.2,35,,5 – 9
+62.02.04,3,Parenggean,age_group,10-14,laki_laki,1520,jiwa,2025,registration,total_population,3.2,35,,10 – 14
+62.02.04,3,Parenggean,age_group,10-14,perempuan,1416,jiwa,2025,registration,total_population,3.2,35,,10 – 14
+62.02.04,3,Parenggean,age_group,10-14,,2936,jiwa,2025,registration,total_population,3.2,35,,10 – 14
+62.02.04,3,Parenggean,age_group,15-19,laki_laki,1243,jiwa,2025,registration,total_population,3.2,35,,15 – 19
+62.02.04,3,Parenggean,age_group,15-19,perempuan,1207,jiwa,2025,registration,total_population,3.2,35,,15 – 19
+62.02.04,3,Parenggean,age_group,15-19,,2450,jiwa,2025,registration,total_population,3.2,35,,15 – 19
+62.02.04,3,Parenggean,age_group,20-24,laki_laki,1367,jiwa,2025,registration,total_population,3.2,35,,20 – 24
+62.02.04,3,Parenggean,age_group,20-24,perempuan,1292,jiwa,2025,registration,total_population,3.2,35,,20 – 24
+62.02.04,3,Parenggean,age_group,20-24,,2659,jiwa,2025,registration,total_population,3.2,35,,20 – 24
+62.02.04,3,Parenggean,age_group,25-29,laki_laki,1152,jiwa,2025,registration,total_population,3.2,35,,25 – 29
+62.02.04,3,Parenggean,age_group,25-29,perempuan,1112,jiwa,2025,registration,total_population,3.2,35,,25 – 29
+62.02.04,3,Parenggean,age_group,25-29,,2264,jiwa,2025,registration,total_population,3.2,35,,25 – 29
+62.02.04,3,Parenggean,age_group,30-34,laki_laki,1189,jiwa,2025,registration,total_population,3.2,35,,30 – 34
+62.02.04,3,Parenggean,age_group,30-34,perempuan,1166,jiwa,2025,registration,total_population,3.2,35,,30 – 34
+62.02.04,3,Parenggean,age_group,30-34,,2355,jiwa,2025,registration,total_population,3.2,35,,30 – 34
+62.02.04,3,Parenggean,age_group,35-39,laki_laki,1250,jiwa,2025,registration,total_population,3.2,35,,35 – 39
+62.02.04,3,Parenggean,age_group,35-39,perempuan,1324,jiwa,2025,registration,total_population,3.2,35,,35 – 39
+62.02.04,3,Parenggean,age_group,35-39,,2574,jiwa,2025,registration,total_population,3.2,35,,35 – 39
+62.02.04,3,Parenggean,age_group,40-44,laki_laki,1301,jiwa,2025,registration,total_population,3.2,35,,40 – 44
+62.02.04,3,Parenggean,age_group,40-44,perempuan,1261,jiwa,2025,registration,total_population,3.2,35,,40 – 44
+62.02.04,3,Parenggean,age_group,40-44,,2562,jiwa,2025,registration,total_population,3.2,35,,40 – 44
+62.02.04,3,Parenggean,age_group,45-49,laki_laki,1154,jiwa,2025,registration,total_population,3.2,35,,45 – 49
+62.02.04,3,Parenggean,age_group,45-49,perempuan,1021,jiwa,2025,registration,total_population,3.2,35,,45 – 49
+62.02.04,3,Parenggean,age_group,45-49,,2175,jiwa,2025,registration,total_population,3.2,35,,45 – 49
+62.02.04,3,Parenggean,age_group,50-54,laki_laki,895,jiwa,2025,registration,total_population,3.2,35,,50 – 54
+62.02.04,3,Parenggean,age_group,50-54,perempuan,840,jiwa,2025,registration,total_population,3.2,35,,50 – 54
+62.02.04,3,Parenggean,age_group,50-54,,1735,jiwa,2025,registration,total_population,3.2,35,,50 – 54
+62.02.04,3,Parenggean,age_group,55-59,laki_laki,706,jiwa,2025,registration,total_population,3.2,35,,55 – 59
+62.02.04,3,Parenggean,age_group,55-59,perempuan,591,jiwa,2025,registration,total_population,3.2,35,,55 – 59
+62.02.04,3,Parenggean,age_group,55-59,,1297,jiwa,2025,registration,total_population,3.2,35,,55 – 59
+62.02.04,3,Parenggean,age_group,60-64,laki_laki,551,jiwa,2025,registration,total_population,3.2,35,,60 – 64
+62.02.04,3,Parenggean,age_group,60-64,perempuan,461,jiwa,2025,registration,total_population,3.2,35,,60 – 64
+62.02.04,3,Parenggean,age_group,60-64,,1012,jiwa,2025,registration,total_population,3.2,35,,60 – 64
+62.02.04,3,Parenggean,age_group,65-69,laki_laki,424,jiwa,2025,registration,total_population,3.2,35,,65 – 69
+62.02.04,3,Parenggean,age_group,65-69,perempuan,346,jiwa,2025,registration,total_population,3.2,35,,65 – 69
+62.02.04,3,Parenggean,age_group,65-69,,770,jiwa,2025,registration,total_population,3.2,35,,65 – 69
+62.02.04,3,Parenggean,age_group,70-74,laki_laki,231,jiwa,2025,registration,total_population,3.2,35,,70 – 74
+62.02.04,3,Parenggean,age_group,70-74,perempuan,155,jiwa,2025,registration,total_population,3.2,35,,70 – 74
+62.02.04,3,Parenggean,age_group,70-74,,386,jiwa,2025,registration,total_population,3.2,35,,70 – 74
+62.02.04,3,Parenggean,age_group,75+,laki_laki,267,jiwa,2025,registration,total_population,3.2,35,,75+
+62.02.04,3,Parenggean,age_group,75+,perempuan,184,jiwa,2025,registration,total_population,3.2,35,,75+
+62.02.04,3,Parenggean,age_group,75+,,451,jiwa,2025,registration,total_population,3.2,35,,75+
+62.02.04,3,Parenggean,sex,laki_laki,,15707,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+62.02.04,3,Parenggean,sex,perempuan,,14784,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+62.02.04,3,Parenggean,total,total,,30491,jiwa,2025,registration,total_population,3.2,35,,

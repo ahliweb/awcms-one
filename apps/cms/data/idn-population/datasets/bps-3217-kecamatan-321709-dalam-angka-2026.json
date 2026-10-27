@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3217-kecamatan-321709-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.17.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Batujajar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bandung Barat",
+  "publisherDomain": "3217",
+  "publisherWebsite": "https://bandungbaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bandung Barat (https://bandungbaratkab.bps.go.id), publikasi \"Kecamatan Batujajar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3217070",
+  "publicationNumber": "32170.26011",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandungbaratkab.bps.go.id/id/publication/2026/09/28/3aa29428dcf1e8ac3e1ea96e/kecamatan-batujajar-dalam-angka-2026.html",
+  "sourceFileSha256": "f0bb83fa24b0b3e6bdb5ab33dc853c0d68426d66a927ad6e73e68606a0e0d31a",
+  "sourceFileBytes": 1405104,
+  "sourcePages": [26, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bandung Barat.",
+  "csvPath": "datasets/bps-3217-kecamatan-321709-dalam-angka-2026.csv",
+  "csvSha256": "7f8deae411e7a6263fc29b775c2cbbc48487ca4d2314c241e0857e2f0a3298a2",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Batujajar, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Batujajar, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

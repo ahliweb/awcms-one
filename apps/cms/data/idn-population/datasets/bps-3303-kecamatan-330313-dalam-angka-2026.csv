@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.03.13.2001,4,Wlahar,sex,laki_laki,,1973,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.13.2001,4,Wlahar,sex,perempuan,,1841,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.13.2001,4,Wlahar,total,total,,3814,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.13.2002,4,Bantarbarang,sex,laki_laki,,4753,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.13.2002,4,Bantarbarang,sex,perempuan,,4381,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.13.2002,4,Bantarbarang,total,total,,9134,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.13.2003,4,Karangbawang,sex,laki_laki,,1085,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.13.2003,4,Karangbawang,sex,perempuan,,1039,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.13.2003,4,Karangbawang,total,total,,2124,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.13.2004,4,Gunungwuled,sex,laki_laki,,2982,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.13.2004,4,Gunungwuled,sex,perempuan,,2820,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.13.2004,4,Gunungwuled,total,total,,5802,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.13.2005,4,Losari,sex,laki_laki,,4688,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.13.2005,4,Losari,sex,perempuan,,4516,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.13.2005,4,Losari,total,total,,9204,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.13.2006,4,Bodas Karangjati,sex,laki_laki,,2108,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.13.2006,4,Bodas Karangjati,sex,perempuan,,2017,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.13.2006,4,Bodas Karangjati,total,total,,4125,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.13.2007,4,Wanogara Wetan,sex,laki_laki,,1482,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.13.2007,4,Wanogara Wetan,sex,perempuan,,1444,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.13.2007,4,Wanogara Wetan,total,total,,2926,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.13.2008,4,Wanogara Kulon,sex,laki_laki,,1140,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.13.2008,4,Wanogara Kulon,sex,perempuan,,1133,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.13.2008,4,Wanogara Kulon,total,total,,2273,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.13.2009,4,Makam,sex,laki_laki,,5203,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.13.2009,4,Makam,sex,perempuan,,4984,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.13.2009,4,Makam,total,total,,10187,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.13.2010,4,Sumampir,sex,laki_laki,,5234,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.13.2010,4,Sumampir,sex,perempuan,,4875,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.13.2010,4,Sumampir,total,total,,10109,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.13.2011,4,Tanalum,sex,laki_laki,,2242,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.13.2011,4,Tanalum,sex,perempuan,,2139,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.13.2011,4,Tanalum,total,total,,4381,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.13.2012,4,Panusupan,sex,laki_laki,,4634,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.13.2012,4,Panusupan,sex,perempuan,,4423,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.13.2012,4,Panusupan,total,total,,9057,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.13,3,Kecamatan Rembang,sex,laki_laki,,37524,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.13,3,Kecamatan Rembang,sex,perempuan,,35612,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.13,3,Kecamatan Rembang,total,total,,73136,jiwa,2025,registration,total_population,3.1.1,19,,

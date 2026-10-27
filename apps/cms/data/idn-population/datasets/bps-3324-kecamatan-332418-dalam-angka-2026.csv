@@ -1,0 +1,57 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.24.18.2001,4,Ngerjo,sex,perempuan,,1153,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.18.2001,4,Ngerjo,total,total,,2331,jiwa,2025,registration,total_population,3.1,27,,
+33.24.18.2002,4,Kedungasri,sex,perempuan,,1516,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.18.2002,4,Kedungasri,total,total,,3155,jiwa,2025,registration,total_population,3.1,27,,
+33.24.18.2003,4,Kedunggading,sex,perempuan,,2106,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.18.2003,4,Kedunggading,total,total,,4250,jiwa,2025,registration,total_population,3.1,27,,
+33.24.18.2004,4,Ringinarum,sex,perempuan,,2546,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.18.2004,4,Ringinarum,total,total,,5002,jiwa,2025,registration,total_population,3.1,27,,
+33.24.18.2005,4,Ngawensari,sex,perempuan,,1114,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.18.2005,4,Ngawensari,total,total,,2230,jiwa,2025,registration,total_population,3.1,27,,
+33.24.18.2006,4,Tejorejo,sex,perempuan,,2415,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.18.2006,4,Tejorejo,total,total,,4908,jiwa,2025,registration,total_population,3.1,27,,
+33.24.18.2007,4,Wungurejo,sex,perempuan,,1411,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.18.2007,4,Wungurejo,total,total,,2827,jiwa,2025,registration,total_population,3.1,27,,
+33.24.18.2008,4,Rowobranten,sex,perempuan,,1255,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.18.2008,4,Rowobranten,total,total,,2514,jiwa,2025,registration,total_population,3.1,27,,
+33.24.18.2009,4,Caruban,sex,perempuan,,2420,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.18.2009,4,Caruban,total,total,,4975,jiwa,2025,registration,total_population,3.1,27,,
+33.24.18.2010,4,Mojo,sex,perempuan,,1367,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.18.2010,4,Mojo,total,total,,2768,jiwa,2025,registration,total_population,3.1,27,,
+33.24.18.2011,4,Purworejo,sex,perempuan,,1485,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.18.2011,4,Purworejo,total,total,,2983,jiwa,2025,registration,total_population,3.1,27,,
+33.24.18.2012,4,Pagerdawung,sex,perempuan,,1192,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.18.2012,4,Pagerdawung,total,total,,2357,jiwa,2025,registration,total_population,3.1,27,,
+33.24.18,3,Ringinarum,age_group,0-4,perempuan,1111,jiwa,2025,registration,total_population,3.2,29,,00 – 04
+33.24.18,3,Ringinarum,age_group,0-4,,2312,jiwa,2025,registration,total_population,3.2,29,,00 – 04
+33.24.18,3,Ringinarum,age_group,5-9,perempuan,1346,jiwa,2025,registration,total_population,3.2,29,,05 – 09
+33.24.18,3,Ringinarum,age_group,5-9,,2808,jiwa,2025,registration,total_population,3.2,29,,05 – 09
+33.24.18,3,Ringinarum,age_group,10-14,perempuan,1385,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+33.24.18,3,Ringinarum,age_group,10-14,,2871,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+33.24.18,3,Ringinarum,age_group,15-19,perempuan,1321,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+33.24.18,3,Ringinarum,age_group,15-19,,2710,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+33.24.18,3,Ringinarum,age_group,20-24,perempuan,1275,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+33.24.18,3,Ringinarum,age_group,20-24,,2666,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+33.24.18,3,Ringinarum,age_group,25-29,perempuan,1379,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+33.24.18,3,Ringinarum,age_group,25-29,,2870,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+33.24.18,3,Ringinarum,age_group,30-34,perempuan,1465,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+33.24.18,3,Ringinarum,age_group,30-34,,3082,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+33.24.18,3,Ringinarum,age_group,35-39,perempuan,1547,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+33.24.18,3,Ringinarum,age_group,35-39,,3319,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+33.24.18,3,Ringinarum,age_group,40-44,perempuan,1663,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+33.24.18,3,Ringinarum,age_group,40-44,,3368,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+33.24.18,3,Ringinarum,age_group,45-49,perempuan,1695,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+33.24.18,3,Ringinarum,age_group,45-49,,3259,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+33.24.18,3,Ringinarum,age_group,50-54,perempuan,1464,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+33.24.18,3,Ringinarum,age_group,50-54,,2785,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+33.24.18,3,Ringinarum,age_group,55-59,perempuan,1335,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+33.24.18,3,Ringinarum,age_group,55-59,,2535,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+33.24.18,3,Ringinarum,age_group,60-64,perempuan,1025,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+33.24.18,3,Ringinarum,age_group,60-64,,2012,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+33.24.18,3,Ringinarum,age_group,65-69,perempuan,887,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+33.24.18,3,Ringinarum,age_group,65-69,,1731,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+33.24.18,3,Ringinarum,age_group,70-74,perempuan,515,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+33.24.18,3,Ringinarum,age_group,70-74,,1027,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+33.24.18,3,Ringinarum,age_group,75+,perempuan,567,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.24.18,3,Ringinarum,age_group,75+,,945,jiwa,2025,registration,total_population,3.2,29,,> 75

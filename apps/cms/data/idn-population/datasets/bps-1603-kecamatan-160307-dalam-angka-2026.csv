@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.03.07.1001,4,Tanjung Enim,sex,laki_laki,,7970,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.03.07.1001,4,Tanjung Enim,sex,perempuan,,7824,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.03.07.1001,4,Tanjung Enim,total,total,,15794,jiwa,2025,registration,total_population,3.1,,,
+16.03.07.1002,4,Pasar Tanjung Enim,sex,laki_laki,,3624,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.03.07.1002,4,Pasar Tanjung Enim,sex,perempuan,,3574,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.03.07.1002,4,Pasar Tanjung Enim,total,total,,7198,jiwa,2025,registration,total_population,3.1,,,
+16.03.07.1003,4,Tanjung Enim Selatan,sex,laki_laki,,5053,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.03.07.1003,4,Tanjung Enim Selatan,sex,perempuan,,4981,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.03.07.1003,4,Tanjung Enim Selatan,total,total,,10034,jiwa,2025,registration,total_population,3.1,,,
+16.03.07.2004,4,Tegal Rejo,sex,laki_laki,,8451,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.03.07.2004,4,Tegal Rejo,sex,perempuan,,8286,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.03.07.2004,4,Tegal Rejo,total,total,,16737,jiwa,2025,registration,total_population,3.1,,,
+16.03.07.2005,4,Lingga,sex,laki_laki,,4468,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.03.07.2005,4,Lingga,sex,perempuan,,4207,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.03.07.2005,4,Lingga,total,total,,8675,jiwa,2025,registration,total_population,3.1,,,
+16.03.07.2006,4,Keban Agung,sex,laki_laki,,8203,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.03.07.2006,4,Keban Agung,sex,perempuan,,7966,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.03.07.2006,4,Keban Agung,total,total,,16169,jiwa,2025,registration,total_population,3.1,,,
+16.03.07.2007,4,Darmo,sex,laki_laki,,2506,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.03.07.2007,4,Darmo,sex,perempuan,,2437,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.03.07.2007,4,Darmo,total,total,,4943,jiwa,2025,registration,total_population,3.1,,,
+16.03.07,3,Lawang Kidul,sex,laki_laki,,40275,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+16.03.07,3,Lawang Kidul,sex,perempuan,,39275,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+16.03.07,3,Lawang Kidul,total,total,,79550,jiwa,2025,registration,total_population,3.1,,,

@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.02.06.2010,4,Suka Maju,sex,laki_laki,,464,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.06.2010,4,Suka Maju,sex,perempuan,,473,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.06.2010,4,Suka Maju,total,total,,937,jiwa,2025,registration,total_population,3.1,26,,
+12.02.06.2005,4,Sitolu Ompu,sex,laki_laki,,299,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.06.2005,4,Sitolu Ompu,sex,perempuan,,343,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.06.2005,4,Sitolu Ompu,total,total,,642,jiwa,2025,registration,total_population,3.1,26,,
+12.02.06.2006,4,Siopat Bahal,sex,laki_laki,,338,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.06.2006,4,Siopat Bahal,sex,perempuan,,346,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.06.2006,4,Siopat Bahal,total,total,,684,jiwa,2025,registration,total_population,3.1,26,,
+12.02.06.2008,4,Nahornop Marsada,sex,laki_laki,,777,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.06.2008,4,Nahornop Marsada,sex,perempuan,,848,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.06.2008,4,Nahornop Marsada,total,total,,1625,jiwa,2025,registration,total_population,3.1,26,,
+12.02.06.2011,4,Setia,sex,laki_laki,,632,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.06.2011,4,Setia,sex,perempuan,,673,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.06.2011,4,Setia,total,total,,1305,jiwa,2025,registration,total_population,3.1,26,,
+12.02.06.2009,4,Parsaoran Samosir,sex,laki_laki,,462,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.06.2009,4,Parsaoran Samosir,sex,perempuan,,512,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.06.2009,4,Parsaoran Samosir,total,total,,974,jiwa,2025,registration,total_population,3.1,26,,
+12.02.06.2007,4,Pardomuan Nainggolan,sex,laki_laki,,493,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.06.2007,4,Pardomuan Nainggolan,sex,perempuan,,503,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.06.2007,4,Pardomuan Nainggolan,total,total,,996,jiwa,2025,registration,total_population,3.1,26,,
+12.02.06.2012,4,Parsaoran Nainggolan,sex,laki_laki,,356,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.06.2012,4,Parsaoran Nainggolan,sex,perempuan,,351,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.06.2012,4,Parsaoran Nainggolan,total,total,,707,jiwa,2025,registration,total_population,3.1,26,,
+12.02.06.2013,4,Pardamean Nainggolan,sex,laki_laki,,444,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.06.2013,4,Pardamean Nainggolan,sex,perempuan,,428,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.06.2013,4,Pardamean Nainggolan,total,total,,872,jiwa,2025,registration,total_population,3.1,26,,
+12.02.06.2003,4,Sigurunggurung,sex,laki_laki,,445,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.06.2003,4,Sigurunggurung,sex,perempuan,,478,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.06.2003,4,Sigurunggurung,total,total,,923,jiwa,2025,registration,total_population,3.1,26,,
+12.02.06.2004,4,Silangkitang,sex,laki_laki,,514,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.06.2004,4,Silangkitang,sex,perempuan,,521,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.06.2004,4,Silangkitang,total,total,,1035,jiwa,2025,registration,total_population,3.1,26,,
+12.02.06,3,Pahae Jae,sex,laki_laki,,5995,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.06,3,Pahae Jae,sex,perempuan,,6335,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.06,3,Pahae Jae,total,total,,12330,jiwa,2025,registration,total_population,3.1,26,,

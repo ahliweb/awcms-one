@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3515-kecamatan-351515-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.15.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Buduran Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sidoarjo",
+  "publisherDomain": "3515",
+  "publisherWebsite": "https://sidoarjokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sidoarjo (https://sidoarjokab.bps.go.id), publikasi \"Kecamatan Buduran Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3515120",
+  "publicationNumber": "35150.26016",
+  "issn": "2620-7087",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sidoarjokab.bps.go.id/id/publication/2026/09/28/e3f63bed69e54dbd42a4f97c/kecamatan-buduran-dalam-angka-2026.html",
+  "sourceFileSha256": "47101ae083a33fa58147b3b8a57c847888eaa7c92fa3a1ce56ce1bf9d2ad492e",
+  "sourceFileBytes": 23630544,
+  "sourcePages": [38, 39, 40],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sidoarjo.",
+  "csvPath": "datasets/bps-3515-kecamatan-351515-dalam-angka-2026.csv",
+  "csvSha256": "50e8b6d75446505284f885e35e8e38b75ec7187f8fb4ec86c5f4fb288d446261",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Buduran, 2025",
+      "printedPages": [38, 39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Buduran, 2025",
+      "printedPages": [40],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-1809-kecamatan-180903-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.09.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tegineneng Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pesawaran",
+  "publisherDomain": "1809",
+  "publisherWebsite": "https://pesawarankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pesawaran (https://pesawarankab.bps.go.id), publikasi \"Kecamatan Tegineneng Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1809070",
+  "publicationNumber": "18090.26010",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pesawarankab.bps.go.id/id/publication/2026/09/28/5a5be462ec45d4e716f1241d/kecamatan-tegineneng-dalam-angka-2026.html",
+  "sourceFileSha256": "e77b02face46d6460e721f85a0f980d3a50e0961b92e09e9fa1fa2e78c842726",
+  "sourceFileBytes": 17559526,
+  "sourcePages": [30, 31, 32, 56, 57],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pesawaran.",
+  "csvPath": "datasets/bps-1809-kecamatan-180903-dalam-angka-2026.csv",
+  "csvSha256": "d8e3b5f159b880a72b13004a77f1fab3e0d7ac3aaf74abb88b923838deb44404",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Tegineneg, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tegineneng, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.4.3",
+      "title": "Jumlah Penduduk Menurut Desa dan Agama yang Dianut di Kecamatan Tegineneng, 2025",
+      "printedPages": [56, 57],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": []
+}

@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1405-kecamatan-140806-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.08.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Dayun Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Siak",
+  "publisherDomain": "1405",
+  "publisherWebsite": "https://siakkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Siak (https://siakkab.bps.go.id), publikasi \"Kecamatan Dayun Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1405",
+  "publicationNumber": "14050.26013",
+  "issn": "2715-0852",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://siakkab.bps.go.id/id/publication/2026/09/28/79ac8c511c3c344482563805/kecamatan-dayun-dalam-angka-2026.html",
+  "sourceFileSha256": "2db8a44423d805653ac76568d3392ae0e8cff29ca3b8035125d7994974e41180",
+  "sourceFileBytes": 6104710,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Siak.",
+  "csvPath": "datasets/bps-1405-kecamatan-140806-dalam-angka-2026.csv",
+  "csvSha256": "2f94f1319f19954760646a01465d66f0d327dc640f9746341e04981a144d5aa9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Dayun, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Dayun, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Suka Mulia\": unmatched ",
+    "table 3.1: row not stored: row \"Suka Mulia\": unmatched "
+  ]
+}

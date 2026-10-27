@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3501-kecamatan-350108-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.01.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bandar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pacitan",
+  "publisherDomain": "3501",
+  "publisherWebsite": "https://pacitankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pacitan (https://pacitankab.bps.go.id), publikasi \"Kecamatan Bandar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3501080",
+  "publicationNumber": "35010.26012",
+  "issn": "3110-4584",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pacitankab.bps.go.id/id/publication/2026/09/28/a876ea2ec29dda766b618d8c/kecamatan-bandar-dalam-angka-2026.html",
+  "sourceFileSha256": "5671f23623b711a9d84752dcd8473a61f924bdd70c54c8020d5ad73402abdad7",
+  "sourceFileBytes": 3005127,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pacitan.",
+  "csvPath": "datasets/bps-3501-kecamatan-350108-dalam-angka-2026.csv",
+  "csvSha256": "8282517568b021714300a7c359184bc7240e37921db13e491cb4c4db6f3a67c6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bandar, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bandar, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

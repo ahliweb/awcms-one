@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.72.01.2006,4,Gedang,sex,laki_laki,,2495,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.72.01.2006,4,Gedang,sex,perempuan,,2514,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+15.72.01.2006,4,Gedang,total,total,,5009,jiwa,2025,registration,total_population,3.1,33,,
+15.72.01.2004,4,Pasar Baru,sex,laki_laki,,428,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.72.01.2004,4,Pasar Baru,sex,perempuan,,419,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+15.72.01.2004,4,Pasar Baru,total,total,,847,jiwa,2025,registration,total_population,3.1,33,,
+15.72.01.1001,4,Sungai Penuh,sex,laki_laki,,1314,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.72.01.1001,4,Sungai Penuh,sex,perempuan,,1382,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+15.72.01.1001,4,Sungai Penuh,total,total,,2696,jiwa,2025,registration,total_population,3.1,33,,
+15.72.01.1003,4,Pasar Sungai Penuh,sex,laki_laki,,703,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.72.01.1003,4,Pasar Sungai Penuh,sex,perempuan,,689,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+15.72.01.1003,4,Pasar Sungai Penuh,total,total,,1392,jiwa,2025,registration,total_population,3.1,33,,
+15.72.01.2014,4,Amar Sakti,sex,laki_laki,,362,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.72.01.2014,4,Amar Sakti,sex,perempuan,,299,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+15.72.01.2014,4,Amar Sakti,total,total,,661,jiwa,2025,registration,total_population,3.1,33,,
+15.72.01,3,Kecamatan Sungai Penuh,sex,laki_laki,,5302,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+15.72.01,3,Kecamatan Sungai Penuh,sex,perempuan,,5303,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+15.72.01,3,Kecamatan Sungai Penuh,total,total,,10605,jiwa,2025,registration,total_population,3.1,33,,
+15.72.01,3,Sungai Penuh,age_group,0-4,laki_laki,308,jiwa,2025,registration,total_population,3.2,35,,0 – 4
+15.72.01,3,Sungai Penuh,age_group,0-4,perempuan,273,jiwa,2025,registration,total_population,3.2,35,,0 – 4
+15.72.01,3,Sungai Penuh,age_group,0-4,,581,jiwa,2025,registration,total_population,3.2,35,,0 – 4
+15.72.01,3,Sungai Penuh,age_group,5-9,laki_laki,409,jiwa,2025,registration,total_population,3.2,35,,5 – 9
+15.72.01,3,Sungai Penuh,age_group,5-9,perempuan,382,jiwa,2025,registration,total_population,3.2,35,,5 – 9
+15.72.01,3,Sungai Penuh,age_group,5-9,,791,jiwa,2025,registration,total_population,3.2,35,,5 – 9
+15.72.01,3,Sungai Penuh,age_group,10-14,laki_laki,452,jiwa,2025,registration,total_population,3.2,35,,10 – 14
+15.72.01,3,Sungai Penuh,age_group,10-14,perempuan,427,jiwa,2025,registration,total_population,3.2,35,,10 – 14
+15.72.01,3,Sungai Penuh,age_group,10-14,,879,jiwa,2025,registration,total_population,3.2,35,,10 – 14
+15.72.01,3,Sungai Penuh,age_group,15-19,laki_laki,479,jiwa,2025,registration,total_population,3.2,35,,15 – 19
+15.72.01,3,Sungai Penuh,age_group,15-19,perempuan,430,jiwa,2025,registration,total_population,3.2,35,,15 – 19
+15.72.01,3,Sungai Penuh,age_group,15-19,,909,jiwa,2025,registration,total_population,3.2,35,,15 – 19
+15.72.01,3,Sungai Penuh,age_group,20-24,laki_laki,445,jiwa,2025,registration,total_population,3.2,35,,20 – 24
+15.72.01,3,Sungai Penuh,age_group,20-24,perempuan,448,jiwa,2025,registration,total_population,3.2,35,,20 – 24
+15.72.01,3,Sungai Penuh,age_group,20-24,,893,jiwa,2025,registration,total_population,3.2,35,,20 – 24
+15.72.01,3,Sungai Penuh,age_group,25-29,laki_laki,409,jiwa,2025,registration,total_population,3.2,35,,25 – 29
+15.72.01,3,Sungai Penuh,age_group,25-29,perempuan,411,jiwa,2025,registration,total_population,3.2,35,,25 – 29
+15.72.01,3,Sungai Penuh,age_group,25-29,,820,jiwa,2025,registration,total_population,3.2,35,,25 – 29
+15.72.01,3,Sungai Penuh,age_group,30-34,laki_laki,346,jiwa,2025,registration,total_population,3.2,35,,30 – 34
+15.72.01,3,Sungai Penuh,age_group,30-34,perempuan,322,jiwa,2025,registration,total_population,3.2,35,,30 – 34
+15.72.01,3,Sungai Penuh,age_group,30-34,,668,jiwa,2025,registration,total_population,3.2,35,,30 – 34
+15.72.01,3,Sungai Penuh,age_group,35-39,laki_laki,331,jiwa,2025,registration,total_population,3.2,35,,35 – 39
+15.72.01,3,Sungai Penuh,age_group,35-39,perempuan,348,jiwa,2025,registration,total_population,3.2,35,,35 – 39
+15.72.01,3,Sungai Penuh,age_group,35-39,,679,jiwa,2025,registration,total_population,3.2,35,,35 – 39
+15.72.01,3,Sungai Penuh,age_group,40-44,laki_laki,379,jiwa,2025,registration,total_population,3.2,35,,40 – 44
+15.72.01,3,Sungai Penuh,age_group,40-44,perempuan,384,jiwa,2025,registration,total_population,3.2,35,,40 – 44
+15.72.01,3,Sungai Penuh,age_group,40-44,,763,jiwa,2025,registration,total_population,3.2,35,,40 – 44
+15.72.01,3,Sungai Penuh,age_group,45-49,laki_laki,418,jiwa,2025,registration,total_population,3.2,35,,45 – 49
+15.72.01,3,Sungai Penuh,age_group,45-49,perempuan,368,jiwa,2025,registration,total_population,3.2,35,,45 – 49
+15.72.01,3,Sungai Penuh,age_group,45-49,,786,jiwa,2025,registration,total_population,3.2,35,,45 – 49
+15.72.01,3,Sungai Penuh,age_group,50-54,laki_laki,352,jiwa,2025,registration,total_population,3.2,35,,50 – 54
+15.72.01,3,Sungai Penuh,age_group,50-54,perempuan,351,jiwa,2025,registration,total_population,3.2,35,,50 – 54
+15.72.01,3,Sungai Penuh,age_group,50-54,,703,jiwa,2025,registration,total_population,3.2,35,,50 – 54
+15.72.01,3,Sungai Penuh,age_group,55-59,laki_laki,269,jiwa,2025,registration,total_population,3.2,35,,55 – 59
+15.72.01,3,Sungai Penuh,age_group,55-59,perempuan,277,jiwa,2025,registration,total_population,3.2,35,,55 – 59
+15.72.01,3,Sungai Penuh,age_group,55-59,,546,jiwa,2025,registration,total_population,3.2,35,,55 – 59
+15.72.01,3,Sungai Penuh,age_group,60-64,laki_laki,209,jiwa,2025,registration,total_population,3.2,35,,60 – 64
+15.72.01,3,Sungai Penuh,age_group,60-64,perempuan,253,jiwa,2025,registration,total_population,3.2,35,,60 – 64
+15.72.01,3,Sungai Penuh,age_group,60-64,,462,jiwa,2025,registration,total_population,3.2,35,,60 – 64
+15.72.01,3,Sungai Penuh,age_group,65-69,laki_laki,212,jiwa,2025,registration,total_population,3.2,35,,65 – 69
+15.72.01,3,Sungai Penuh,age_group,65-69,perempuan,234,jiwa,2025,registration,total_population,3.2,35,,65 – 69
+15.72.01,3,Sungai Penuh,age_group,65-69,,446,jiwa,2025,registration,total_population,3.2,35,,65 – 69
+15.72.01,3,Sungai Penuh,age_group,70-74,laki_laki,140,jiwa,2025,registration,total_population,3.2,35,,70 - 74
+15.72.01,3,Sungai Penuh,age_group,70-74,perempuan,184,jiwa,2025,registration,total_population,3.2,35,,70 - 74
+15.72.01,3,Sungai Penuh,age_group,70-74,,324,jiwa,2025,registration,total_population,3.2,35,,70 - 74
+15.72.01,3,Sungai Penuh,age_group,75+,laki_laki,144,jiwa,2025,registration,total_population,3.2,35,,75+
+15.72.01,3,Sungai Penuh,age_group,75+,perempuan,211,jiwa,2025,registration,total_population,3.2,35,,75+
+15.72.01,3,Sungai Penuh,age_group,75+,,355,jiwa,2025,registration,total_population,3.2,35,,75+
+15.72.01,3,Kecamatan Sungai Penuh,sex,laki_laki,,5302,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+15.72.01,3,Kecamatan Sungai Penuh,sex,perempuan,,5303,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+15.72.01,3,Kecamatan Sungai Penuh,total,total,,10605,jiwa,2025,registration,total_population,3.2,35,,

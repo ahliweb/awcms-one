@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1671-kecamatan-167112-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.71.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gandus Dalam Angka 2026",
+  "publisherName": "BPS Kota Palembang",
+  "publisherDomain": "1671",
+  "publisherWebsite": "https://palembangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Palembang (https://palembangkota.bps.go.id), publikasi \"Kecamatan Gandus Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1671011",
+  "publicationNumber": "16710.26014",
+  "issn": "2723-8482",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://palembangkota.bps.go.id/id/publication/2026/09/28/71c076b9e7861de77bd09fb3/kecamatan-gandus-dalam-angka-2026.html",
+  "sourceFileSha256": "e44d4ae1947588d68f3cb8f82abf1ccaafb7c653d241c49a61e678e039ec7030",
+  "sourceFileBytes": 12672983,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Palembang.",
+  "csvPath": "datasets/bps-1671-kecamatan-167112-dalam-angka-2026.csv",
+  "csvSha256": "b672f5dcaca5cf17b7e42f8e7f65000ce96a1c16cde532f41edfbcb2b3176aed",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Gandus, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Gandus, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"+ 75\": unmatched ",
+    "table 3.2: the rows of region 16.71.12 are not stored: age_group (perempuan) vs sex value: parts sum 40727.0000 != 41398.0000 (diff 671.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.03.25.2002,4,Campakawarna,sex,laki_laki,,3141,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+32.03.25.2002,4,Campakawarna,sex,perempuan,,2911,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+32.03.25.2002,4,Campakawarna,total,total,,6052,jiwa,2025,registration,total_population,3.1,19,,
+32.03.25.2004,4,Campakamulya,sex,laki_laki,,3723,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+32.03.25.2004,4,Campakamulya,sex,perempuan,,3612,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+32.03.25.2004,4,Campakamulya,total,total,,7335,jiwa,2025,registration,total_population,3.1,19,,
+32.03.25.2005,4,Sukabungah,sex,laki_laki,,2916,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+32.03.25.2005,4,Sukabungah,sex,perempuan,,2656,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+32.03.25.2005,4,Sukabungah,total,total,,5572,jiwa,2025,registration,total_population,3.1,19,,
+32.03.25.2001,4,Cibanggala,sex,laki_laki,,1547,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+32.03.25.2001,4,Cibanggala,sex,perempuan,,1403,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+32.03.25.2001,4,Cibanggala,total,total,,2950,jiwa,2025,registration,total_population,3.1,19,,
+32.03.25.2003,4,Sukasirna,sex,laki_laki,,2234,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+32.03.25.2003,4,Sukasirna,sex,perempuan,,1997,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+32.03.25.2003,4,Sukasirna,total,total,,4231,jiwa,2025,registration,total_population,3.1,19,,
+32.03.25,3,Kecamatan Campakamulya,sex,laki_laki,,13561,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+32.03.25,3,Kecamatan Campakamulya,sex,perempuan,,12579,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+32.03.25,3,Kecamatan Campakamulya,total,total,,26140,jiwa,2025,registration,total_population,3.1,19,,
+32.03.25,3,Campakamulya,age_group,0-4,laki_laki,727,jiwa,2025,registration,total_population,3.2,21,,0-4
+32.03.25,3,Campakamulya,age_group,0-4,perempuan,678,jiwa,2025,registration,total_population,3.2,21,,0-4
+32.03.25,3,Campakamulya,age_group,0-4,,1405,jiwa,2025,registration,total_population,3.2,21,,0-4
+32.03.25,3,Campakamulya,age_group,5-9,laki_laki,1144,jiwa,2025,registration,total_population,3.2,21,,5-9
+32.03.25,3,Campakamulya,age_group,5-9,perempuan,1062,jiwa,2025,registration,total_population,3.2,21,,5-9
+32.03.25,3,Campakamulya,age_group,5-9,,2206,jiwa,2025,registration,total_population,3.2,21,,5-9
+32.03.25,3,Campakamulya,age_group,10-14,laki_laki,1114,jiwa,2025,registration,total_population,3.2,21,,10-14
+32.03.25,3,Campakamulya,age_group,10-14,perempuan,1076,jiwa,2025,registration,total_population,3.2,21,,10-14
+32.03.25,3,Campakamulya,age_group,10-14,,2190,jiwa,2025,registration,total_population,3.2,21,,10-14
+32.03.25,3,Campakamulya,age_group,15-19,laki_laki,884,jiwa,2025,registration,total_population,3.2,21,,15-19
+32.03.25,3,Campakamulya,age_group,15-19,perempuan,844,jiwa,2025,registration,total_population,3.2,21,,15-19
+32.03.25,3,Campakamulya,age_group,15-19,,1728,jiwa,2025,registration,total_population,3.2,21,,15-19
+32.03.25,3,Campakamulya,age_group,20-24,laki_laki,971,jiwa,2025,registration,total_population,3.2,21,,20-24
+32.03.25,3,Campakamulya,age_group,20-24,perempuan,862,jiwa,2025,registration,total_population,3.2,21,,20-24
+32.03.25,3,Campakamulya,age_group,20-24,,1833,jiwa,2025,registration,total_population,3.2,21,,20-24
+32.03.25,3,Campakamulya,age_group,25-29,laki_laki,991,jiwa,2025,registration,total_population,3.2,21,,25-29
+32.03.25,3,Campakamulya,age_group,25-29,perempuan,851,jiwa,2025,registration,total_population,3.2,21,,25-29
+32.03.25,3,Campakamulya,age_group,25-29,,1842,jiwa,2025,registration,total_population,3.2,21,,25-29
+32.03.25,3,Campakamulya,age_group,30-34,laki_laki,919,jiwa,2025,registration,total_population,3.2,21,,30-34
+32.03.25,3,Campakamulya,age_group,30-34,perempuan,901,jiwa,2025,registration,total_population,3.2,21,,30-34
+32.03.25,3,Campakamulya,age_group,30-34,,1820,jiwa,2025,registration,total_population,3.2,21,,30-34
+32.03.25,3,Campakamulya,age_group,35-39,laki_laki,918,jiwa,2025,registration,total_population,3.2,21,,35-39
+32.03.25,3,Campakamulya,age_group,35-39,perempuan,825,jiwa,2025,registration,total_population,3.2,21,,35-39
+32.03.25,3,Campakamulya,age_group,35-39,,1743,jiwa,2025,registration,total_population,3.2,21,,35-39
+32.03.25,3,Campakamulya,age_group,40-44,laki_laki,960,jiwa,2025,registration,total_population,3.2,21,,40-44
+32.03.25,3,Campakamulya,age_group,40-44,perempuan,949,jiwa,2025,registration,total_population,3.2,21,,40-44
+32.03.25,3,Campakamulya,age_group,40-44,,1909,jiwa,2025,registration,total_population,3.2,21,,40-44
+32.03.25,3,Campakamulya,age_group,45-49,laki_laki,885,jiwa,2025,registration,total_population,3.2,21,,45-49
+32.03.25,3,Campakamulya,age_group,45-49,perempuan,939,jiwa,2025,registration,total_population,3.2,21,,45-49
+32.03.25,3,Campakamulya,age_group,45-49,,1824,jiwa,2025,registration,total_population,3.2,21,,45-49
+32.03.25,3,Campakamulya,age_group,50-54,laki_laki,978,jiwa,2025,registration,total_population,3.2,21,,50-54
+32.03.25,3,Campakamulya,age_group,50-54,perempuan,969,jiwa,2025,registration,total_population,3.2,21,,50-54
+32.03.25,3,Campakamulya,age_group,50-54,,1947,jiwa,2025,registration,total_population,3.2,21,,50-54
+32.03.25,3,Campakamulya,age_group,55-59,laki_laki,852,jiwa,2025,registration,total_population,3.2,21,,55-59
+32.03.25,3,Campakamulya,age_group,55-59,perempuan,666,jiwa,2025,registration,total_population,3.2,21,,55-59
+32.03.25,3,Campakamulya,age_group,55-59,,1518,jiwa,2025,registration,total_population,3.2,21,,55-59
+32.03.25,3,Campakamulya,age_group,60-64,laki_laki,668,jiwa,2025,registration,total_population,3.2,21,,60-64
+32.03.25,3,Campakamulya,age_group,60-64,perempuan,599,jiwa,2025,registration,total_population,3.2,21,,60-64
+32.03.25,3,Campakamulya,age_group,60-64,,1267,jiwa,2025,registration,total_population,3.2,21,,60-64
+32.03.25,3,Campakamulya,age_group,65-69,laki_laki,535,jiwa,2025,registration,total_population,3.2,21,,65-69
+32.03.25,3,Campakamulya,age_group,65-69,perempuan,481,jiwa,2025,registration,total_population,3.2,21,,65-69
+32.03.25,3,Campakamulya,age_group,65-69,,1016,jiwa,2025,registration,total_population,3.2,21,,65-69
+32.03.25,3,Campakamulya,age_group,70-74,laki_laki,379,jiwa,2025,registration,total_population,3.2,21,,70-74
+32.03.25,3,Campakamulya,age_group,70-74,perempuan,317,jiwa,2025,registration,total_population,3.2,21,,70-74
+32.03.25,3,Campakamulya,age_group,70-74,,696,jiwa,2025,registration,total_population,3.2,21,,70-74
+32.03.25,3,Campakamulya,age_group,75+,laki_laki,636,jiwa,2025,registration,total_population,3.2,21,,75+
+32.03.25,3,Campakamulya,age_group,75+,perempuan,560,jiwa,2025,registration,total_population,3.2,21,,75+
+32.03.25,3,Campakamulya,age_group,75+,,1196,jiwa,2025,registration,total_population,3.2,21,,75+
+32.03.25,3,Kecamatan Campakamulya,sex,laki_laki,,13561,jiwa,2025,registration,total_population,3.2,21,,Laki-Laki
+32.03.25,3,Kecamatan Campakamulya,sex,perempuan,,12579,jiwa,2025,registration,total_population,3.2,21,,Perempuan
+32.03.25,3,Kecamatan Campakamulya,total,total,,26140,jiwa,2025,registration,total_population,3.2,21,,

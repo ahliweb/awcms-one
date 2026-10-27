@@ -1,0 +1,58 @@
+{
+  "datasetCode": "bps-3212-kecamatan-321230-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.12.30",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tukdana Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN INDRAMAYU",
+  "publisherDomain": "3212",
+  "publisherWebsite": "https://indramayukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN INDRAMAYU (https://indramayukab.bps.go.id), publikasi \"Kecamatan Tukdana Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3212061",
+  "publicationNumber": "32120.24019",
+  "issn": "2807-7172",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://indramayukab.bps.go.id/id/publication/2026/09/28/a0808836bb4048f88c8a6cec/kecamatan-tukdana-dalam-angka-2026.html",
+  "sourceFileSha256": "ad0c32e44a0ed9d1f8ca75336bf9797de2d9cb505410b103182bb04eedf7feaf",
+  "sourceFileBytes": 21340397,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Indramayu.",
+  "csvPath": "datasets/bps-3212-kecamatan-321230-dalam-angka-2026.csv",
+  "csvSha256": "1062eefb37853e217003dc5e1c4624eb4cc998cdae5f31a0bf63a4cb8811c8ad",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Tukdana, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tukdana, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Bodas 3.11\": unmatched ",
+    "table 3.1: row not stored: row \"Gadel 8.99\": unmatched ",
+    "table 3.1: row not stored: row \"Rancajawat 8.68\": unmatched ",
+    "table 3.1: row not stored: row \"Kerticala 7.84\": unmatched ",
+    "table 3.1: row not stored: row \"Sukamulya 10.47\": unmatched ",
+    "table 3.1: row not stored: row \"Karangkerta 6.85\": unmatched ",
+    "table 3.1: row not stored: row \"Cangko 7.10\": unmatched ",
+    "table 3.1: row not stored: row \"Pagedangan 4.03\": unmatched ",
+    "table 3.1: row not stored: row \"Sukaperna 9.21\": unmatched ",
+    "table 3.1: row not stored: row \"Sukadana 10.81\": unmatched ",
+    "table 3.1: row not stored: row \"Tukdana 10.15\": unmatched ",
+    "table 3.1: row not stored: row \"Lajer 8.99\": unmatched ",
+    "table 3.1: row not stored: row \"Mekarsari 4.60\": unmatched ",
+    "table 3.1: 41 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

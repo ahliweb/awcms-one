@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.75.06.1002,4,Harapan Mulya,sex,laki_laki,,12820,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.75.06.1002,4,Harapan Mulya,sex,perempuan,,12478,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.75.06.1002,4,Harapan Mulya,total,total,,25298,jiwa,2025,registration,total_population,3.1,25,,
+32.75.06.1004,4,Kali Baru,sex,laki_laki,,15688,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.75.06.1004,4,Kali Baru,sex,perempuan,,15292,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.75.06.1004,4,Kali Baru,total,total,,30980,jiwa,2025,registration,total_population,3.1,25,,
+32.75.06.1001,4,Medansatria,sex,laki_laki,,14431,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.75.06.1001,4,Medansatria,sex,perempuan,,13921,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.75.06.1001,4,Medansatria,total,total,,28352,jiwa,2025,registration,total_population,3.1,25,,
+32.75.06.1003,4,Pejuang,sex,laki_laki,,38675,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.75.06.1003,4,Pejuang,sex,perempuan,,38974,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.75.06.1003,4,Pejuang,total,total,,77649,jiwa,2025,registration,total_population,3.1,25,,
+32.75.06,3,Medan Satria,sex,laki_laki,,81614,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+32.75.06,3,Medan Satria,sex,perempuan,,80665,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+32.75.06,3,Medan Satria,total,total,,162279,jiwa,2025,registration,total_population,3.1,25,,
+32.75.06,3,Medansatria,age_group,0-4,laki_laki,5200,jiwa,2025,registration,total_population,3.2,27,,0 - 4
+32.75.06,3,Medansatria,age_group,0-4,perempuan,4787,jiwa,2025,registration,total_population,3.2,27,,0 - 4
+32.75.06,3,Medansatria,age_group,0-4,,9987,jiwa,2025,registration,total_population,3.2,27,,0 - 4
+32.75.06,3,Medansatria,age_group,5-9,laki_laki,6970,jiwa,2025,registration,total_population,3.2,27,,5 - 9
+32.75.06,3,Medansatria,age_group,5-9,perempuan,6376,jiwa,2025,registration,total_population,3.2,27,,5 - 9
+32.75.06,3,Medansatria,age_group,5-9,,13346,jiwa,2025,registration,total_population,3.2,27,,5 - 9
+32.75.06,3,Medansatria,age_group,10-14,laki_laki,6870,jiwa,2025,registration,total_population,3.2,27,,10 - 14
+32.75.06,3,Medansatria,age_group,10-14,perempuan,6413,jiwa,2025,registration,total_population,3.2,27,,10 - 14
+32.75.06,3,Medansatria,age_group,10-14,,13283,jiwa,2025,registration,total_population,3.2,27,,10 - 14
+32.75.06,3,Medansatria,age_group,15-19,laki_laki,6395,jiwa,2025,registration,total_population,3.2,27,,15 -19
+32.75.06,3,Medansatria,age_group,15-19,perempuan,5969,jiwa,2025,registration,total_population,3.2,27,,15 -19
+32.75.06,3,Medansatria,age_group,15-19,,12364,jiwa,2025,registration,total_population,3.2,27,,15 -19
+32.75.06,3,Medansatria,age_group,20-24,laki_laki,6806,jiwa,2025,registration,total_population,3.2,27,,20 - 24
+32.75.06,3,Medansatria,age_group,20-24,perempuan,6363,jiwa,2025,registration,total_population,3.2,27,,20 - 24
+32.75.06,3,Medansatria,age_group,20-24,,13169,jiwa,2025,registration,total_population,3.2,27,,20 - 24
+32.75.06,3,Medansatria,age_group,25-29,laki_laki,6917,jiwa,2025,registration,total_population,3.2,27,,25 - 29
+32.75.06,3,Medansatria,age_group,25-29,perempuan,6582,jiwa,2025,registration,total_population,3.2,27,,25 - 29
+32.75.06,3,Medansatria,age_group,25-29,,13499,jiwa,2025,registration,total_population,3.2,27,,25 - 29
+32.75.06,3,Medansatria,age_group,30-34,laki_laki,6590,jiwa,2025,registration,total_population,3.2,27,,30 - 34
+32.75.06,3,Medansatria,age_group,30-34,perempuan,6723,jiwa,2025,registration,total_population,3.2,27,,30 - 34
+32.75.06,3,Medansatria,age_group,30-34,,13313,jiwa,2025,registration,total_population,3.2,27,,30 - 34
+32.75.06,3,Medansatria,age_group,35-39,laki_laki,6403,jiwa,2025,registration,total_population,3.2,27,,35 - 39
+32.75.06,3,Medansatria,age_group,35-39,perempuan,6084,jiwa,2025,registration,total_population,3.2,27,,35 - 39
+32.75.06,3,Medansatria,age_group,35-39,,12487,jiwa,2025,registration,total_population,3.2,27,,35 - 39
+32.75.06,3,Medansatria,age_group,40-44,laki_laki,6344,jiwa,2025,registration,total_population,3.2,27,,40 - 44
+32.75.06,3,Medansatria,age_group,40-44,perempuan,6415,jiwa,2025,registration,total_population,3.2,27,,40 - 44
+32.75.06,3,Medansatria,age_group,40-44,,12759,jiwa,2025,registration,total_population,3.2,27,,40 - 44
+32.75.06,3,Medansatria,age_group,45-49,laki_laki,5563,jiwa,2025,registration,total_population,3.2,27,,45 - 49
+32.75.06,3,Medansatria,age_group,45-49,perempuan,5911,jiwa,2025,registration,total_population,3.2,27,,45 - 49
+32.75.06,3,Medansatria,age_group,45-49,,11474,jiwa,2025,registration,total_population,3.2,27,,45 - 49
+32.75.06,3,Medansatria,age_group,50-54,laki_laki,5010,jiwa,2025,registration,total_population,3.2,27,,50 - 54
+32.75.06,3,Medansatria,age_group,50-54,perempuan,5510,jiwa,2025,registration,total_population,3.2,27,,50 - 54
+32.75.06,3,Medansatria,age_group,50-54,,10520,jiwa,2025,registration,total_population,3.2,27,,50 - 54
+32.75.06,3,Medansatria,age_group,55-59,laki_laki,4434,jiwa,2025,registration,total_population,3.2,27,,55 - 59
+32.75.06,3,Medansatria,age_group,55-59,perempuan,4895,jiwa,2025,registration,total_population,3.2,27,,55 - 59
+32.75.06,3,Medansatria,age_group,55-59,,9329,jiwa,2025,registration,total_population,3.2,27,,55 - 59
+32.75.06,3,Medansatria,age_group,60-64,laki_laki,3414,jiwa,2025,registration,total_population,3.2,27,,60 - 64
+32.75.06,3,Medansatria,age_group,60-64,perempuan,3963,jiwa,2025,registration,total_population,3.2,27,,60 - 64
+32.75.06,3,Medansatria,age_group,60-64,,7377,jiwa,2025,registration,total_population,3.2,27,,60 - 64
+32.75.06,3,Medansatria,age_group,65-69,laki_laki,2606,jiwa,2025,registration,total_population,3.2,27,,65 -69
+32.75.06,3,Medansatria,age_group,65-69,perempuan,2376,jiwa,2025,registration,total_population,3.2,27,,65 -69
+32.75.06,3,Medansatria,age_group,65-69,,4982,jiwa,2025,registration,total_population,3.2,27,,65 -69
+32.75.06,3,Medansatria,age_group,70-74,laki_laki,1250,jiwa,2025,registration,total_population,3.2,27,,70 - 74
+32.75.06,3,Medansatria,age_group,70-74,perempuan,1186,jiwa,2025,registration,total_population,3.2,27,,70 - 74
+32.75.06,3,Medansatria,age_group,70-74,,2436,jiwa,2025,registration,total_population,3.2,27,,70 - 74
+32.75.06,3,Medansatria,age_group,75+,laki_laki,842,jiwa,2025,registration,total_population,3.2,27,,75+
+32.75.06,3,Medansatria,age_group,75+,perempuan,1112,jiwa,2025,registration,total_population,3.2,27,,75+
+32.75.06,3,Medansatria,age_group,75+,,1954,jiwa,2025,registration,total_population,3.2,27,,75+
+32.75.06,3,Medan Satria,sex,laki_laki,,81614,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+32.75.06,3,Medan Satria,sex,perempuan,,80665,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+32.75.06,3,Medan Satria,total,total,,162279,jiwa,2025,registration,total_population,3.2,27,,

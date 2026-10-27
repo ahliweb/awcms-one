@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.19.02.2007,4,Sei Suka Deras,sex,laki_laki,,2546,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.02.2007,4,Sei Suka Deras,sex,perempuan,,2637,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.02.2007,4,Sei Suka Deras,total,total,,5183,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.02.1001,4,Perkebunan Sipare-pare,sex,laki_laki,,1953,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.02.1001,4,Perkebunan Sipare-pare,sex,perempuan,,1834,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.02.1001,4,Perkebunan Sipare-pare,total,total,,3787,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.02.2008,4,Simodong,sex,laki_laki,,1319,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.02.2008,4,Simodong,sex,perempuan,,1412,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.02.2008,4,Simodong,total,total,,2731,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.02.2009,4,Pematang Jering,sex,laki_laki,,2108,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.02.2009,4,Pematang Jering,sex,perempuan,,2054,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.02.2009,4,Pematang Jering,total,total,,4162,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.02.2012,4,Kuala Tanjung,sex,laki_laki,,3887,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.02.2012,4,Kuala Tanjung,sex,perempuan,,3773,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.02.2012,4,Kuala Tanjung,total,total,,7660,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.02.2011,4,Kuala Indah,sex,laki_laki,,2370,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.02.2011,4,Kuala Indah,sex,perempuan,,2375,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.02.2011,4,Kuala Indah,total,total,,4745,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.02.2018,4,Tanjung Gading,sex,laki_laki,,1023,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.02.2018,4,Tanjung Gading,sex,perempuan,,1022,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.02.2018,4,Tanjung Gading,total,total,,2045,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.02.2019,4,Simpang Kopi,sex,laki_laki,,1061,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.02.2019,4,Simpang Kopi,sex,perempuan,,1071,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.02.2019,4,Simpang Kopi,total,total,,2132,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.02.2020,4,Brohol,sex,laki_laki,,1466,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.02.2020,4,Brohol,sex,perempuan,,1536,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.02.2020,4,Brohol,total,total,,3002,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+12.19.02,3,Sei Suka,sex,laki_laki,,19688,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+12.19.02,3,Sei Suka,sex,perempuan,,19587,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+12.19.02,3,Sei Suka,total,total,,39275,jiwa,2025,registration,total_population,unnumbered-p28,28,,

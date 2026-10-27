@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-1208-kecamatan-120930-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.09.30",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pulo Bandring Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Asahan",
+  "publisherDomain": "1208",
+  "publisherWebsite": "https://asahankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Asahan (https://asahankab.bps.go.id), publikasi \"Kecamatan Pulo Bandring Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1208091",
+  "publicationNumber": "12080.26024",
+  "issn": "2774-6763",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://asahankab.bps.go.id/id/publication/2026/09/28/71a4899d10f08f714eb61034/kecamatan-pulo-bandring-dalam-angka-2026.html",
+  "sourceFileSha256": "8144d2ace4981de3d17fc9f88102f418a8cb4e4e4369a7d4c677f46fc50ee34b",
+  "sourceFileBytes": 7253683,
+  "sourcePages": [24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Asahan.",
+  "csvPath": "datasets/bps-1208-kecamatan-120930-dalam-angka-2026.csv",
+  "csvSha256": "b05b04c3ffc2029e3f0381d4054f851e59d93364ba7fef190112dce90feffbcd",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Pulo Bandring, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Bunut Sebrang\": unmatched ",
+    "table 3.1: row not stored: row \"Bunut Sebrang\": unmatched "
+  ]
+}

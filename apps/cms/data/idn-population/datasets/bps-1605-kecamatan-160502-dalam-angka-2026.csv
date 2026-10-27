@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.05.02.2017,4,Pian Raya,sex,laki_laki,,891,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+16.05.02.2017,4,Pian Raya,sex,perempuan,,829,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+16.05.02.2017,4,Pian Raya,total,total,,1720,jiwa,2025,registration,total_population,3.1,25,,
+16.05.02.2014,4,Bumi Makmur,sex,laki_laki,,1687,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+16.05.02.2014,4,Bumi Makmur,sex,perempuan,,1534,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+16.05.02.2014,4,Bumi Makmur,total,total,,3221,jiwa,2025,registration,total_population,3.1,25,,
+16.05.02.2016,4,Harapan Makmur,sex,laki_laki,,791,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+16.05.02.2016,4,Harapan Makmur,sex,perempuan,,723,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+16.05.02.2016,4,Harapan Makmur,total,total,,1514,jiwa,2025,registration,total_population,3.1,25,,
+16.05.02.2015,4,Mukti Karya,sex,laki_laki,,261,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+16.05.02.2015,4,Mukti Karya,sex,perempuan,,230,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+16.05.02.2015,4,Mukti Karya,total,total,,491,jiwa,2025,registration,total_population,3.1,25,,
+16.05.02.2018,4,Sindang Laya,sex,laki_laki,,360,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+16.05.02.2018,4,Sindang Laya,sex,perempuan,,315,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+16.05.02.2018,4,Sindang Laya,total,total,,675,jiwa,2025,registration,total_population,3.1,25,,
+16.05.02.2002,4,Semangus,sex,laki_laki,,1170,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+16.05.02.2002,4,Semangus,sex,perempuan,,1118,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+16.05.02.2002,4,Semangus,total,total,,2288,jiwa,2025,registration,total_population,3.1,25,,
+16.05.02.2013,4,Pendingan,sex,laki_laki,,628,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+16.05.02.2013,4,Pendingan,sex,perempuan,,610,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+16.05.02.2013,4,Pendingan,total,total,,1238,jiwa,2025,registration,total_population,3.1,25,,
+16.05.02.2003,4,Anyar,sex,laki_laki,,697,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+16.05.02.2003,4,Anyar,sex,perempuan,,685,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+16.05.02.2003,4,Anyar,total,total,,1382,jiwa,2025,registration,total_population,3.1,25,,
+16.05.02.2004,4,Muara Rengas,sex,laki_laki,,710,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+16.05.02.2004,4,Muara Rengas,sex,perempuan,,627,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+16.05.02.2004,4,Muara Rengas,total,total,,1337,jiwa,2025,registration,total_population,3.1,25,,
+16.05.02.2005,4,Sungai Pinang,sex,laki_laki,,2094,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+16.05.02.2005,4,Sungai Pinang,sex,perempuan,,2009,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+16.05.02.2005,4,Sungai Pinang,total,total,,4103,jiwa,2025,registration,total_population,3.1,25,,
+16.05.02.2006,4,Semeteh,sex,laki_laki,,967,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+16.05.02.2006,4,Semeteh,sex,perempuan,,925,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+16.05.02.2006,4,Semeteh,total,total,,1892,jiwa,2025,registration,total_population,3.1,25,,
+16.05.02.2009,4,Lubuk Pandan,sex,laki_laki,,918,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+16.05.02.2009,4,Lubuk Pandan,sex,perempuan,,835,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+16.05.02.2009,4,Lubuk Pandan,total,total,,1753,jiwa,2025,registration,total_population,3.1,25,,
+16.05.02.1019,4,Muara Lakitan,sex,laki_laki,,2152,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+16.05.02.1019,4,Muara Lakitan,sex,perempuan,,2027,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+16.05.02.1019,4,Muara Lakitan,total,total,,4179,jiwa,2025,registration,total_population,3.1,25,,
+16.05.02.2008,4,Prabumulih I,sex,laki_laki,,1068,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+16.05.02.2008,4,Prabumulih I,sex,perempuan,,1019,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+16.05.02.2008,4,Prabumulih I,total,total,,2087,jiwa,2025,registration,total_population,3.1,25,,
+16.05.02.2007,4,Prabumulih Ii,sex,laki_laki,,837,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+16.05.02.2007,4,Prabumulih Ii,sex,perempuan,,773,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+16.05.02.2007,4,Prabumulih Ii,total,total,,1610,jiwa,2025,registration,total_population,3.1,25,,
+16.05.02.2010,4,Pelita Jaya,sex,laki_laki,,1448,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+16.05.02.2010,4,Pelita Jaya,sex,perempuan,,1481,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+16.05.02.2010,4,Pelita Jaya,total,total,,2929,jiwa,2025,registration,total_population,3.1,25,,
+16.05.02.2011,4,Sido Mulyo,sex,laki_laki,,1426,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+16.05.02.2011,4,Sido Mulyo,sex,perempuan,,1339,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+16.05.02.2011,4,Sido Mulyo,total,total,,2765,jiwa,2025,registration,total_population,3.1,25,,
+16.05.02.2012,4,Marga Baru,sex,laki_laki,,3063,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+16.05.02.2012,4,Marga Baru,sex,perempuan,,2961,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+16.05.02.2012,4,Marga Baru,total,total,,6024,jiwa,2025,registration,total_population,3.1,25,,

@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.01.16.2001,4,Suga suga Hutagodang,sex,laki_laki,,691,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.16.2001,4,Suga suga Hutagodang,sex,perempuan,,743,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.16.2001,4,Suga suga Hutagodang,total,total,,1434,jiwa,2025,registration,total_population,3.1,35,,
+12.01.16.2002,4,Suka Maju,sex,laki_laki,,526,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.16.2002,4,Suka Maju,sex,perempuan,,577,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.16.2002,4,Suka Maju,total,total,,1103,jiwa,2025,registration,total_population,3.1,35,,
+12.01.16.2005,4,Aek Nadua,sex,laki_laki,,259,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.16.2005,4,Aek Nadua,sex,perempuan,,253,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.16.2005,4,Aek Nadua,total,total,,512,jiwa,2025,registration,total_population,3.1,35,,
+12.01.16.2004,4,Pasaribu Tobing,sex,laki_laki,,511,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.16.2004,4,Pasaribu Tobing,sex,perempuan,,539,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.16.2004,4,Pasaribu Tobing,total,total,,1050,jiwa,2025,registration,total_population,3.1,35,,
+12.01.16.2003,4,Makmur,sex,laki_laki,,477,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.16.2003,4,Makmur,sex,perempuan,,487,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.16.2003,4,Makmur,total,total,,964,jiwa,2025,registration,total_population,3.1,35,,
+12.01.16.2006,4,Simargarap,sex,laki_laki,,370,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.16.2006,4,Simargarap,sex,perempuan,,396,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.16.2006,4,Simargarap,total,total,,766,jiwa,2025,registration,total_population,3.1,35,,
+12.01.16.2007,4,Sidaling,sex,laki_laki,,281,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.16.2007,4,Sidaling,sex,perempuan,,230,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.16.2007,4,Sidaling,total,total,,511,jiwa,2025,registration,total_population,3.1,35,,
+12.01.16.2008,4,Sipakpahi,sex,laki_laki,,281,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.16.2008,4,Sipakpahi,sex,perempuan,,290,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.16.2008,4,Sipakpahi,total,total,,571,jiwa,2025,registration,total_population,3.1,35,,
+12.01.16.2009,4,PO Simargarap,sex,laki_laki,,324,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.16.2009,4,PO Simargarap,sex,perempuan,,343,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.16.2009,4,PO Simargarap,total,total,,667,jiwa,2025,registration,total_population,3.1,35,,
+12.01.16,3,Pasaribu Tobing,sex,laki_laki,,3720,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.16,3,Pasaribu Tobing,sex,perempuan,,3858,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.16,3,Pasaribu Tobing,total,total,,7578,jiwa,2025,registration,total_population,3.1,35,,

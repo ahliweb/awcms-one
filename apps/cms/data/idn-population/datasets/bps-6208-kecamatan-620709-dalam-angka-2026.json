@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-6208-kecamatan-620709-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.07.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Batu Ampar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Seruyan",
+  "publisherDomain": "6208",
+  "publisherWebsite": "https://seruyankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Seruyan (https://seruyankab.bps.go.id), publikasi \"Kecamatan Batu Ampar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6208041",
+  "publicationNumber": "62080.26014",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://seruyankab.bps.go.id/id/publication/2026/09/28/d63a1bf764160b00652aa40b/kecamatan-batu-ampar-dalam-angka-2026.html",
+  "sourceFileSha256": "61f4136e81f896a3729ad647ed920fba2e56a8d4e08b69fa21314970402bdc80",
+  "sourceFileBytes": 13276883,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Seruyan",
+  "csvPath": "datasets/bps-6208-kecamatan-620709-dalam-angka-2026.csv",
+  "csvSha256": "6a636538cf9539191803c138152fa99cb9a4a8c92d7e6bda9b101c368424cde4",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Batu Ampar , 202 5",
+      "printedPages": [34, 35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Batu Ampar , 202 5",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

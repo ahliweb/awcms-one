@@ -1,0 +1,33 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.02.08.2001,4,Sindang Jaya,sex,laki_laki,,732,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.08.2001,4,Sindang Jaya,sex,perempuan,,739,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.08.2001,4,Sindang Jaya,total,total,,1471,jiwa,2025,registration,total_population,3.1,22,,
+17.02.08.2002,4,Sindang Jati,sex,laki_laki,,873,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.08.2002,4,Sindang Jati,sex,perempuan,,857,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.08.2009,4,Air Dingin,sex,laki_laki,,454,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.08.2009,4,Air Dingin,sex,perempuan,,445,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.08.2009,4,Air Dingin,total,total,,899,jiwa,2025,registration,total_population,3.1,22,,
+17.02.08.2005,4,Kayu Manis,sex,laki_laki,,360,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.08.2005,4,Kayu Manis,sex,perempuan,,343,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.08.2005,4,Kayu Manis,total,total,,703,jiwa,2025,registration,total_population,3.1,22,,
+17.02.08.1006,4,Beringin Tiga,sex,laki_laki,,696,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.08.1006,4,Beringin Tiga,sex,perempuan,,668,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.08.1006,4,Beringin Tiga,total,total,,1364,jiwa,2025,registration,total_population,3.1,22,,
+17.02.08.2004,4,Pelalo,sex,laki_laki,,971,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.08.2004,4,Pelalo,sex,perempuan,,916,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.08.2004,4,Pelalo,total,total,,1887,jiwa,2025,registration,total_population,3.1,22,,
+17.02.08.2003,4,Belitar Muka,sex,laki_laki,,1428,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.08.2003,4,Belitar Muka,sex,perempuan,,1394,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.08.2003,4,Belitar Muka,total,total,,2822,jiwa,2025,registration,total_population,3.1,22,,
+17.02.08.2011,4,Belitar Seberang,sex,laki_laki,,554,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.08.2011,4,Belitar Seberang,sex,perempuan,,503,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.08.2011,4,Belitar Seberang,total,total,,1057,jiwa,2025,registration,total_population,3.1,22,,
+17.02.08.2014,4,Tanjung Aur,sex,laki_laki,,491,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.08.2014,4,Tanjung Aur,sex,perempuan,,500,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.08.2014,4,Tanjung Aur,total,total,,991,jiwa,2025,registration,total_population,3.1,22,,
+17.02.08.2013,4,Cahaya Negeri,sex,laki_laki,,456,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.08.2013,4,Cahaya Negeri,sex,perempuan,,417,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.08.2013,4,Cahaya Negeri,total,total,,873,jiwa,2025,registration,total_population,3.1,22,,
+17.02.08,3,Sindang Kelingi,sex,laki_laki,,7015,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.08,3,Sindang Kelingi,sex,perempuan,,6782,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.08,3,Sindang Kelingi,total,total,,13797,jiwa,2025,registration,total_population,3.1,22,,

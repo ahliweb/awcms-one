@@ -1,0 +1,112 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.09.12.2001,4,Tanjung Kemala,sex,laki_laki,,2856,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.2001,4,Tanjung Kemala,sex,perempuan,,2672,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.2001,4,Tanjung Kemala,total,total,,5528,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12.2002,4,Sukamarga,sex,laki_laki,,367,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.2002,4,Sukamarga,sex,perempuan,,336,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.2002,4,Sukamarga,total,total,,703,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12.2003,4,Subik,sex,laki_laki,,693,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.2003,4,Subik,sex,perempuan,,632,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.2003,4,Subik,total,total,,1325,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12.2004,4,Jepara,sex,laki_laki,,145,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.2004,4,Jepara,sex,perempuan,,146,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.2004,4,Jepara,total,total,,291,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12.2005,4,Hangkusa,sex,laki_laki,,286,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.2005,4,Hangkusa,sex,perempuan,,298,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.2005,4,Hangkusa,total,total,,584,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12.2006,4,Sukarami,sex,laki_laki,,328,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.2006,4,Sukarami,sex,perempuan,,313,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.2006,4,Sukarami,total,total,,641,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12.1013,4,Simpang Sender,sex,laki_laki,,639,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.1013,4,Simpang Sender,sex,perempuan,,583,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.1013,4,Simpang Sender,total,total,,1222,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12.2012,4,Sumber Mulia,sex,laki_laki,,321,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.2012,4,Sumber Mulia,sex,perempuan,,292,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.2012,4,Sumber Mulia,total,total,,613,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12.2008,4,Tanjung Setia,sex,laki_laki,,759,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.2008,4,Tanjung Setia,sex,perempuan,,722,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.2008,4,Tanjung Setia,total,total,,1481,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12.2009,4,Gedung Baru,sex,laki_laki,,237,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.2009,4,Gedung Baru,sex,perempuan,,225,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.2009,4,Gedung Baru,total,total,,462,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12.2007,4,Padang Ratu,sex,laki_laki,,234,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.2007,4,Padang Ratu,sex,perempuan,,225,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.2007,4,Padang Ratu,total,total,,459,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12.2010,4,Tanjung Sari,sex,laki_laki,,348,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.2010,4,Tanjung Sari,sex,perempuan,,303,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.2010,4,Tanjung Sari,total,total,,651,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12.2011,4,Sukabumi,sex,laki_laki,,1372,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.2011,4,Sukabumi,sex,perempuan,,1201,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.2011,4,Sukabumi,total,total,,2573,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12.2014,4,Way Relai,sex,laki_laki,,359,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.2014,4,Way Relai,sex,perempuan,,338,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.2014,4,Way Relai,total,total,,697,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12.2015,4,Tanjung Baru Ranau,sex,laki_laki,,210,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.2015,4,Tanjung Baru Ranau,sex,perempuan,,202,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.2015,4,Tanjung Baru Ranau,total,total,,412,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12.2017,4,Simpang Sender Utara,sex,laki_laki,,565,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.2017,4,Simpang Sender Utara,sex,perempuan,,548,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.2017,4,Simpang Sender Utara,total,total,,1113,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12.2016,4,Simpang Sender Selatan,sex,laki_laki,,1046,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.2016,4,Simpang Sender Selatan,sex,perempuan,,932,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.2016,4,Simpang Sender Selatan,total,total,,1978,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12.2018,4,Simpang Sender Timur,sex,laki_laki,,598,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.2018,4,Simpang Sender Timur,sex,perempuan,,534,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.2018,4,Simpang Sender Timur,total,total,,1132,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12.2019,4,Simpang Sender Tengah,sex,laki_laki,,621,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.2019,4,Simpang Sender Tengah,sex,perempuan,,570,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.2019,4,Simpang Sender Tengah,total,total,,1191,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12.2020,4,Sumber Jaya,sex,laki_laki,,1143,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.2020,4,Sumber Jaya,sex,perempuan,,1041,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.2020,4,Sumber Jaya,total,total,,2184,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12.2022,4,Serumpun Jaya,sex,laki_laki,,263,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/
+16.09.12.2022,4,Serumpun Jaya,sex,perempuan,,241,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.12.2022,4,Serumpun Jaya,total,total,,504,jiwa,2025,registration,total_population,3.1,27,,
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,0-4,laki_laki,848,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,0-4,perempuan,779,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,0-4,,1627,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,5-9,laki_laki,1141,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,5-9,perempuan,1112,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,5-9,,2253,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,10-14,laki_laki,1172,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,10-14,perempuan,1092,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,10-14,,2264,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,15-19,laki_laki,1129,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,15-19,perempuan,1014,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,15-19,,2143,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,20-24,laki_laki,1058,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,20-24,perempuan,954,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,20-24,,2012,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,25-29,laki_laki,991,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,25-29,perempuan,948,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,25-29,,1939,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,30-34,laki_laki,928,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,30-34,perempuan,903,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,30-34,,1831,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,35-39,laki_laki,1193,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,35-39,perempuan,1051,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,35-39,,2244,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,40-44,laki_laki,1063,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,40-44,perempuan,923,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,40-44,,1986,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,45-49,laki_laki,958,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,45-49,perempuan,844,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,45-49,,1802,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,50-54,laki_laki,756,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,50-54,perempuan,687,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,50-54,,1443,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,55-59,laki_laki,627,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,55-59,perempuan,683,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,55-59,,1310,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,60-64,laki_laki,521,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,60-64,perempuan,498,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,60-64,,1019,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,65-69,laki_laki,517,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,65-69,perempuan,449,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,65-69,,966,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,70-74,laki_laki,332,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,70-74,perempuan,253,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,70-74,,585,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,75+,laki_laki,321,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,75+,perempuan,303,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.12,3,Buay Pematang Ribu Ranau Tengah,age_group,75+,,624,jiwa,2025,registration,total_population,3.2,29,,75+

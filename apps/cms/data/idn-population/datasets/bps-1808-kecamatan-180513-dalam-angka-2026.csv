@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.05.13.2010,4,Boga Tama,sex,laki_laki,,2218,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.13.2010,4,Boga Tama,sex,perempuan,,2089,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.13.2010,4,Boga Tama,total,total,,4307,jiwa,2025,registration,total_population,3.1,32,,
+18.05.13.2001,4,Tri Rejo Mulyo,sex,laki_laki,,2076,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.13.2001,4,Tri Rejo Mulyo,sex,perempuan,,1994,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.13.2001,4,Tri Rejo Mulyo,total,total,,4070,jiwa,2025,registration,total_population,3.1,32,,
+18.05.13.2005,4,Sidoharjo,sex,laki_laki,,2422,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.13.2005,4,Sidoharjo,sex,perempuan,,2329,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.13.2005,4,Sidoharjo,total,total,,4751,jiwa,2025,registration,total_population,3.1,32,,
+18.05.13.2006,4,Sidomulyo,sex,laki_laki,,1796,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.13.2006,4,Sidomulyo,sex,perempuan,,1729,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.13.2006,4,Sidomulyo,total,total,,3525,jiwa,2025,registration,total_population,3.1,32,,
+18.05.13.2002,4,Tri Jaya,sex,laki_laki,,1054,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.13.2002,4,Tri Jaya,sex,perempuan,,979,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.13.2002,4,Tri Jaya,total,total,,2033,jiwa,2025,registration,total_population,3.1,32,,
+18.05.13.2013,4,Tri Tunggal Jaya,sex,laki_laki,,1730,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.13.2013,4,Tri Tunggal Jaya,sex,perempuan,,1608,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.13.2013,4,Tri Tunggal Jaya,total,total,,3338,jiwa,2025,registration,total_population,3.1,32,,
+18.05.13.2011,4,Wiratama,sex,laki_laki,,1313,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.13.2011,4,Wiratama,sex,perempuan,,1261,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.13.2011,4,Wiratama,total,total,,2574,jiwa,2025,registration,total_population,3.1,32,,
+18.05.13.2019,4,Pulo Gadung,sex,laki_laki,,551,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.13.2019,4,Pulo Gadung,sex,perempuan,,518,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.13.2019,4,Pulo Gadung,total,total,,1069,jiwa,2025,registration,total_population,3.1,32,,
+18.05.13.2020,4,Sidodadi,sex,laki_laki,,753,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.13.2020,4,Sidodadi,sex,perempuan,,737,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.13.2020,4,Sidodadi,total,total,,1490,jiwa,2025,registration,total_population,3.1,32,,
+18.05.13.2021,4,Dwimulyo,sex,laki_laki,,625,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.13.2021,4,Dwimulyo,sex,perempuan,,579,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.13.2021,4,Dwimulyo,total,total,,1204,jiwa,2025,registration,total_population,3.1,32,,
+18.05.13.2022,4,Rejo Sari,sex,laki_laki,,671,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.13.2022,4,Rejo Sari,sex,perempuan,,655,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.13.2022,4,Rejo Sari,total,total,,1326,jiwa,2025,registration,total_population,3.1,32,,
+18.05.13.2023,4,Wira Agung Sari,sex,laki_laki,,651,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.13.2023,4,Wira Agung Sari,sex,perempuan,,594,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.13.2023,4,Wira Agung Sari,total,total,,1245,jiwa,2025,registration,total_population,3.1,32,,
+18.05.13.2024,4,Sidomakmur,sex,laki_laki,,846,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.13.2024,4,Sidomakmur,sex,perempuan,,780,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.13.2024,4,Sidomakmur,total,total,,1626,jiwa,2025,registration,total_population,3.1,32,,
+18.05.13.2025,4,Trikarya,sex,laki_laki,,605,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.13.2025,4,Trikarya,sex,perempuan,,578,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.13.2025,4,Trikarya,total,total,,1183,jiwa,2025,registration,total_population,3.1,32,,
+18.05.13,3,Penawar Tama,sex,laki_laki,,17311,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.13,3,Penawar Tama,sex,perempuan,,16430,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.13,3,Penawar Tama,total,total,,33741,jiwa,2025,registration,total_population,3.1,32,,
+18.05.13,3,Penawar Tama,age_group,0-4,laki_laki,1034,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.13,3,Penawar Tama,age_group,0-4,perempuan,971,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.13,3,Penawar Tama,age_group,0-4,,2005,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.13,3,Penawar Tama,age_group,5-9,laki_laki,1392,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.13,3,Penawar Tama,age_group,5-9,perempuan,1264,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.13,3,Penawar Tama,age_group,5-9,,2656,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.13,3,Penawar Tama,age_group,10-14,laki_laki,1521,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.13,3,Penawar Tama,age_group,10-14,perempuan,1427,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.13,3,Penawar Tama,age_group,10-14,,2948,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.13,3,Penawar Tama,age_group,15-19,laki_laki,1317,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.13,3,Penawar Tama,age_group,15-19,perempuan,1329,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.13,3,Penawar Tama,age_group,15-19,,2646,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.13,3,Penawar Tama,age_group,20-24,laki_laki,1198,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.13,3,Penawar Tama,age_group,20-24,perempuan,1143,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.13,3,Penawar Tama,age_group,20-24,,2341,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.13,3,Penawar Tama,age_group,25-29,laki_laki,1266,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.13,3,Penawar Tama,age_group,25-29,perempuan,1225,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.13,3,Penawar Tama,age_group,25-29,,2491,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.13,3,Penawar Tama,age_group,30-34,laki_laki,1368,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.13,3,Penawar Tama,age_group,30-34,perempuan,1370,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.13,3,Penawar Tama,age_group,30-34,,2738,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.13,3,Penawar Tama,age_group,35-39,laki_laki,1335,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.13,3,Penawar Tama,age_group,35-39,perempuan,1285,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.13,3,Penawar Tama,age_group,35-39,,2620,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.13,3,Penawar Tama,age_group,40-44,laki_laki,1256,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.13,3,Penawar Tama,age_group,40-44,perempuan,1245,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.13,3,Penawar Tama,age_group,40-44,,2501,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.13,3,Penawar Tama,age_group,45-49,laki_laki,1242,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.13,3,Penawar Tama,age_group,45-49,perempuan,1171,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.13,3,Penawar Tama,age_group,45-49,,2413,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.13,3,Penawar Tama,age_group,50-54,laki_laki,1077,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.13,3,Penawar Tama,age_group,50-54,perempuan,1092,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.13,3,Penawar Tama,age_group,50-54,,2169,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.13,3,Penawar Tama,age_group,55-59,laki_laki,893,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.13,3,Penawar Tama,age_group,55-59,perempuan,880,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.13,3,Penawar Tama,age_group,55-59,,1773,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.13,3,Penawar Tama,age_group,60-64,laki_laki,801,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.13,3,Penawar Tama,age_group,60-64,perempuan,751,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.13,3,Penawar Tama,age_group,60-64,,1552,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.13,3,Penawar Tama,age_group,65-69,laki_laki,602,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.13,3,Penawar Tama,age_group,65-69,perempuan,498,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.13,3,Penawar Tama,age_group,65-69,,1100,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.13,3,Penawar Tama,age_group,70-74,laki_laki,404,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.13,3,Penawar Tama,age_group,70-74,perempuan,295,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.13,3,Penawar Tama,age_group,70-74,,699,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.13,3,Penawar Tama,age_group,75+,laki_laki,605,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.13,3,Penawar Tama,age_group,75+,perempuan,484,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.13,3,Penawar Tama,age_group,75+,,1089,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.13,3,Penawar Tama,sex,laki_laki,,17311,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+18.05.13,3,Penawar Tama,sex,perempuan,,16430,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+18.05.13,3,Penawar Tama,total,total,,33741,jiwa,2025,registration,total_population,3.2,34,,

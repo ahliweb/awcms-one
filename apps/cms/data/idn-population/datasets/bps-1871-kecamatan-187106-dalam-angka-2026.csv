@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.71.06.1001,4,Durian Payung,sex,laki_laki,,5021,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.06.1001,4,Durian Payung,sex,perempuan,,5104,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.06.1001,4,Durian Payung,total,total,,10125,jiwa,2025,registration,total_population,3.1,26,,
+18.71.06.1002,4,Gotong Royong,sex,laki_laki,,2838,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.06.1002,4,Gotong Royong,sex,perempuan,,2929,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.06.1002,4,Gotong Royong,total,total,,5767,jiwa,2025,registration,total_population,3.1,26,,
+18.71.06.1005,4,Palapa,sex,laki_laki,,1862,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.06.1005,4,Palapa,sex,perempuan,,1896,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.06.1005,4,Palapa,total,total,,3758,jiwa,2025,registration,total_population,3.1,26,,
+18.71.06.1006,4,Kaliawi,sex,laki_laki,,5625,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.06.1006,4,Kaliawi,sex,perempuan,,5178,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.06.1006,4,Kaliawi,total,total,,10803,jiwa,2025,registration,total_population,3.1,26,,
+18.71.06.1007,4,Kelapa Tiga,sex,laki_laki,,3953,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.06.1007,4,Kelapa Tiga,sex,perempuan,,3817,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.06.1007,4,Kelapa Tiga,total,total,,7770,jiwa,2025,registration,total_population,3.1,26,,
+18.71.06.1010,4,Pasir Gintung,sex,laki_laki,,3204,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.06.1010,4,Pasir Gintung,sex,perempuan,,3077,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.06.1010,4,Pasir Gintung,total,total,,6281,jiwa,2025,registration,total_population,3.1,26,,
+18.71.06.1012,4,Kaliawi Persada,sex,laki_laki,,2260,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.06.1012,4,Kaliawi Persada,sex,perempuan,,2190,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.06.1012,4,Kaliawi Persada,total,total,,4450,jiwa,2025,registration,total_population,3.1,26,,
+18.71.06,3,Tanjung Karang Pusat,sex,laki_laki,,24763,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.06,3,Tanjung Karang Pusat,sex,perempuan,,24191,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.06,3,Tanjung Karang Pusat,total,total,,48954,jiwa,2025,registration,total_population,3.1,26,,

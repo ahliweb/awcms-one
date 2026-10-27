@@ -1,0 +1,66 @@
+{
+  "datasetCode": "bps-1701-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "17.01",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Bengkulu Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bengkulu Selatan",
+  "publisherDomain": "1701",
+  "publisherWebsite": "https://bengkuluselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bengkulu Selatan (https://bengkuluselatankab.bps.go.id), publikasi \"Kabupaten Bengkulu Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1701",
+  "publicationNumber": "17010.26004",
+  "issn": "0215-403X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://bengkuluselatankab.bps.go.id/id/publication/2026/02/27/482f066295e1c829d3e7fb83/kabupaten-bengkulu-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "31285ef2053e863690a3bc75b1be05fb85701d5ac0fd9336fb074b42c9993dea",
+  "sourceFileBytes": 6169778,
+  "sourcePages": [76, 79, 173, 355],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Bengkulu Selatan.",
+  "csvPath": "datasets/bps-1701-dalam-angka-2026.csv",
+  "csvSha256": "1eb64c6e2f0052c75dfe0f5edf93b9fb0946688f0943df83d9d1f0b2c56f4c0c",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Bengkulu Selatan, 2025",
+      "printedPages": [76],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Bengkulu Selatan (jiwa) , 2025",
+      "printedPages": [79],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Bengkulu Selatan, 2025",
+      "printedPages": [173],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Bengkulu Selatan (rupiah), 2024 dan 2025",
+      "printedPages": [355],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 4.3.1 is not included: its published figures do not add up (religion/hindu/- 2025: parts sum 19.0000 != 17.0000 (diff 2.0000)); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.24.04.2001,4,Pakisan,sex,perempuan,,1109,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.04.2001,4,Pakisan,total,total,,2231,jiwa,2025,registration,total_population,3.1,27,,
+33.24.04.2003,4,Mlatiharjo,sex,perempuan,,1803,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.04.2003,4,Mlatiharjo,total,total,,3713,jiwa,2025,registration,total_population,3.1,27,,
+33.24.04.2002,4,Plososari,sex,perempuan,,3454,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.04.2002,4,Plososari,total,total,,7004,jiwa,2025,registration,total_population,3.1,27,,
+33.24.04.2004,4,Wirosari,sex,perempuan,,1148,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.04.2004,4,Wirosari,total,total,,2294,jiwa,2025,registration,total_population,3.1,27,,
+33.24.04.2005,4,Pagersari,sex,perempuan,,2091,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.04.2005,4,Pagersari,total,total,,4291,jiwa,2025,registration,total_population,3.1,27,,
+33.24.04.2006,4,Selo,sex,perempuan,,942,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.04.2006,4,Selo,total,total,,1853,jiwa,2025,registration,total_population,3.1,27,,
+33.24.04.2007,4,Curugsewu,sex,perempuan,,2956,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.04.2007,4,Curugsewu,total,total,,5894,jiwa,2025,registration,total_population,3.1,27,,
+33.24.04.2008,4,Gedong,sex,perempuan,,2914,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.04.2008,4,Gedong,total,total,,5897,jiwa,2025,registration,total_population,3.1,27,,
+33.24.04.2009,4,Sukomangli,sex,perempuan,,538,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.04.2009,4,Sukomangli,total,total,,1066,jiwa,2025,registration,total_population,3.1,27,,
+33.24.04.2010,4,Kalibareng,sex,perempuan,,1041,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.04.2010,4,Kalibareng,total,total,,2067,jiwa,2025,registration,total_population,3.1,27,,
+33.24.04.2011,4,Kalilumpang,sex,perempuan,,1469,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.04.2011,4,Kalilumpang,total,total,,2917,jiwa,2025,registration,total_population,3.1,27,,
+33.24.04.2012,4,Kalices,sex,perempuan,,898,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.04.2012,4,Kalices,total,total,,1844,jiwa,2025,registration,total_population,3.1,27,,
+33.24.04.2013,4,Sidokumpul,sex,perempuan,,4088,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.04.2013,4,Sidokumpul,total,total,,8250,jiwa,2025,registration,total_population,3.1,27,,
+33.24.04.2014,4,Sidodadi,sex,perempuan,,3705,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.04.2014,4,Sidodadi,total,total,,7511,jiwa,2025,registration,total_population,3.1,27,,
+33.24.04,3,Patean,age_group,0-4,perempuan,1579,jiwa,2025,registration,total_population,3.2,29,,00 – 04
+33.24.04,3,Patean,age_group,0-4,,3233,jiwa,2025,registration,total_population,3.2,29,,00 – 04
+33.24.04,3,Patean,age_group,5-9,perempuan,1998,jiwa,2025,registration,total_population,3.2,29,,05 – 09
+33.24.04,3,Patean,age_group,5-9,,4055,jiwa,2025,registration,total_population,3.2,29,,05 – 09
+33.24.04,3,Patean,age_group,10-14,perempuan,2068,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+33.24.04,3,Patean,age_group,10-14,,4383,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+33.24.04,3,Patean,age_group,15-19,perempuan,2038,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+33.24.04,3,Patean,age_group,15-19,,4153,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+33.24.04,3,Patean,age_group,20-24,perempuan,1994,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+33.24.04,3,Patean,age_group,20-24,,4012,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+33.24.04,3,Patean,age_group,25-29,perempuan,2105,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+33.24.04,3,Patean,age_group,25-29,,4290,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+33.24.04,3,Patean,age_group,30-34,perempuan,2047,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+33.24.04,3,Patean,age_group,30-34,,4255,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+33.24.04,3,Patean,age_group,35-39,perempuan,1948,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+33.24.04,3,Patean,age_group,35-39,,4047,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+33.24.04,3,Patean,age_group,40-44,perempuan,2165,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+33.24.04,3,Patean,age_group,40-44,,4302,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+33.24.04,3,Patean,age_group,45-49,perempuan,2050,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+33.24.04,3,Patean,age_group,45-49,,4143,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+33.24.04,3,Patean,age_group,50-54,perempuan,2014,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+33.24.04,3,Patean,age_group,50-54,,3929,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+33.24.04,3,Patean,age_group,55-59,perempuan,1760,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+33.24.04,3,Patean,age_group,55-59,,3496,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+33.24.04,3,Patean,age_group,60-64,perempuan,1508,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+33.24.04,3,Patean,age_group,60-64,,2985,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+33.24.04,3,Patean,age_group,65-69,perempuan,1232,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+33.24.04,3,Patean,age_group,65-69,,2463,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+33.24.04,3,Patean,age_group,70-74,perempuan,768,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+33.24.04,3,Patean,age_group,70-74,,1508,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+33.24.04,3,Patean,age_group,75+,perempuan,882,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.24.04,3,Patean,age_group,75+,,1578,jiwa,2025,registration,total_population,3.2,29,,> 75

@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1218-kecamatan-121806-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.18.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bandar Khalipah Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Serdang Bedagai",
+  "publisherDomain": "1218",
+  "publisherWebsite": "https://serdangbedagaikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Serdang Bedagai (https://serdangbedagaikab.bps.go.id), publikasi \"Kecamatan Bandar Khalipah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1218060",
+  "publicationNumber": "12180.26015",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://serdangbedagaikab.bps.go.id/id/publication/2026/09/28/e9c3678ef4354da1a2fe8baf/kecamatan-bandar-khalipah-dalam-angka-2026.html",
+  "sourceFileSha256": "e5f6282929f2c4d6d18761917b15d4a5bb815904b173da9006f6cb3a4a9474f1",
+  "sourceFileBytes": 11714141,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau mengandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik kabupaten Serdang Bedagai.",
+  "csvPath": "datasets/bps-1218-kecamatan-121806-dalam-angka-2026.csv",
+  "csvSha256": "9b68c001b104cdfb3b67e40e8c1fda00c931072e5e8f3261df0b904ee6ec0fcb",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bandar Khalipah, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bandar Khalipah , 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Gelam Sei Sarimah\": unmatched ",
+    "table 3.1: row not stored: row \"Gelam Sei Sarimah\": unmatched "
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "datasetCode": "bps-1603-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "16.03",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Muara Enim Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Muara Enim",
+  "publisherDomain": "1603",
+  "publisherWebsite": "https://muaraenimkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Muara Enim (https://muaraenimkab.bps.go.id), publikasi \"Kabupaten Muara Enim Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1603",
+  "publicationNumber": "16030.26002",
+  "issn": "0215-3955",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://muaraenimkab.bps.go.id/id/publication/2026/02/27/0c902ffdae4f6ba472bca03d/kabupaten-muara-enim-dalam-angka-2026.html",
+  "sourceFileSha256": "f1b7973a6dd71b27042bf40946a8d6fd61544561294723dd8491242624882032",
+  "sourceFileBytes": 8573237,
+  "sourcePages": [79, 82, 155, 321],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Muara Enim.",
+  "csvPath": "datasets/bps-1603-dalam-angka-2026.csv",
+  "csvSha256": "0ad1820489f9c85ec97c8b35557fd619a3e104340ed891cf3e77a0f986e9b3fd",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Muara Enim, 2025",
+      "printedPages": [79],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Muara Enim (jiwa), 2025",
+      "printedPages": [82],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Muara Enim, 2025",
+      "printedPages": [155],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Muara Enim (rupiah), 2024 dan 2025",
+      "printedPages": [321],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 3.1.1: row not stored: row \"Semendo Darat Laut\": unmatched ",
+    "table 3.1.1: row not stored: row \"Semendo Darat Ulu\": unmatched ",
+    "table 3.1.1: row not stored: row \"Semendo Darat Tengah\": unmatched ",
+    "table 4.3.1: row not stored: row \"Semendo Darat Laut\": unmatched ",
+    "table 4.3.1: row not stored: row \"Semendo Darat Ulu\": unmatched ",
+    "table 4.3.1: row not stored: row \"Semendo Darat Tengah\": unmatched "
+  ]
+}

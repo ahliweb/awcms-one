@@ -1,0 +1,112 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.04.22.2001,4,Kedaton,sex,laki_laki,,589,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.22.2001,4,Kedaton,sex,perempuan,,559,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.22.2001,4,Kedaton,total,total,,1148,jiwa,2025,registration,total_population,3.1,28,,
+16.04.22.2002,4,Tanjung Agung,sex,laki_laki,,637,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.22.2002,4,Tanjung Agung,sex,perempuan,,617,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.22.2002,4,Tanjung Agung,total,total,,1254,jiwa,2025,registration,total_population,3.1,28,,
+16.04.22.2018,4,Muara Dua,sex,laki_laki,,186,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.22.2018,4,Muara Dua,sex,perempuan,,162,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.22.2018,4,Muara Dua,total,total,,348,jiwa,2025,registration,total_population,3.1,28,,
+16.04.22.2019,4,Penantian,sex,laki_laki,,341,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.22.2019,4,Penantian,sex,perempuan,,301,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.22.2019,4,Penantian,total,total,,642,jiwa,2025,registration,total_population,3.1,28,,
+16.04.22.2020,4,Merindu,sex,laki_laki,,205,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.22.2020,4,Merindu,sex,perempuan,,201,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.22.2020,4,Merindu,total,total,,406,jiwa,2025,registration,total_population,3.1,28,,
+16.04.22.2016,4,Germidar Ulu,sex,laki_laki,,245,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.22.2016,4,Germidar Ulu,sex,perempuan,,212,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.22.2016,4,Germidar Ulu,total,total,,457,jiwa,2025,registration,total_population,3.1,28,,
+16.04.22.2014,4,Germidar Ilir,sex,laki_laki,,213,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.22.2014,4,Germidar Ilir,sex,perempuan,,204,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.22.2014,4,Germidar Ilir,total,total,,417,jiwa,2025,registration,total_population,3.1,28,,
+16.04.22.2013,4,Rimba Sujud,sex,laki_laki,,193,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.22.2013,4,Rimba Sujud,sex,perempuan,,198,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.22.2013,4,Rimba Sujud,total,total,,391,jiwa,2025,registration,total_population,3.1,28,,
+16.04.22.2012,4,Pagar Alam,sex,laki_laki,,165,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.22.2012,4,Pagar Alam,sex,perempuan,,143,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.22.2012,4,Pagar Alam,total,total,,308,jiwa,2025,registration,total_population,3.1,28,,
+16.04.22.2017,4,Padang Pagun,sex,laki_laki,,674,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.22.2017,4,Padang Pagun,sex,perempuan,,649,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.22.2017,4,Padang Pagun,total,total,,1323,jiwa,2025,registration,total_population,3.1,28,,
+16.04.22.2008,4,Kupang,sex,laki_laki,,280,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.22.2008,4,Kupang,sex,perempuan,,251,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.22.2008,4,Kupang,total,total,,531,jiwa,2025,registration,total_population,3.1,28,,
+16.04.22.2010,4,Danau,sex,laki_laki,,222,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.22.2010,4,Danau,sex,perempuan,,184,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.22.2010,4,Danau,total,total,,406,jiwa,2025,registration,total_population,3.1,28,,
+16.04.22.2011,4,Siring Agung,sex,laki_laki,,258,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.22.2011,4,Siring Agung,sex,perempuan,,248,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.22.2011,4,Siring Agung,total,total,,506,jiwa,2025,registration,total_population,3.1,28,,
+16.04.22.2007,4,Batu Rusa,sex,laki_laki,,235,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.22.2007,4,Batu Rusa,sex,perempuan,,210,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.22.2007,4,Batu Rusa,total,total,,445,jiwa,2025,registration,total_population,3.1,28,,
+16.04.22.2003,4,Karang Agung,sex,laki_laki,,446,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.22.2003,4,Karang Agung,sex,perempuan,,453,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.22.2003,4,Karang Agung,total,total,,899,jiwa,2025,registration,total_population,3.1,28,,
+16.04.22.2009,4,Sawah Darat,sex,laki_laki,,185,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.22.2009,4,Sawah Darat,sex,perempuan,,188,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.22.2009,4,Sawah Darat,total,total,,373,jiwa,2025,registration,total_population,3.1,28,,
+16.04.22.2006,4,Air Lingkar,sex,laki_laki,,577,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.22.2006,4,Air Lingkar,sex,perempuan,,535,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.22.2006,4,Air Lingkar,total,total,,1112,jiwa,2025,registration,total_population,3.1,28,,
+16.04.22.2005,4,Lesung Batu,sex,laki_laki,,778,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.22.2005,4,Lesung Batu,sex,perempuan,,724,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.22.2005,4,Lesung Batu,total,total,,1502,jiwa,2025,registration,total_population,3.1,28,,
+16.04.22.2004,4,Bandung Agung,sex,laki_laki,,309,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.22.2004,4,Bandung Agung,sex,perempuan,,295,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.22.2004,4,Bandung Agung,total,total,,604,jiwa,2025,registration,total_population,3.1,28,,
+16.04.22,3,Pagar Gunung,sex,laki_laki,,6826,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.22,3,Pagar Gunung,sex,perempuan,,6399,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.22,3,Pagar Gunung,total,total,,13225,jiwa,2025,registration,total_population,3.1,28,,
+16.04.22,3,Pagar Gunung,age_group,0-4,laki_laki,360,jiwa,2025,registration,total_population,3.2,30,,0–4
+16.04.22,3,Pagar Gunung,age_group,0-4,perempuan,337,jiwa,2025,registration,total_population,3.2,30,,0–4
+16.04.22,3,Pagar Gunung,age_group,0-4,,697,jiwa,2025,registration,total_population,3.2,30,,0–4
+16.04.22,3,Pagar Gunung,age_group,5-9,laki_laki,470,jiwa,2025,registration,total_population,3.2,30,,5–9
+16.04.22,3,Pagar Gunung,age_group,5-9,perempuan,439,jiwa,2025,registration,total_population,3.2,30,,5–9
+16.04.22,3,Pagar Gunung,age_group,5-9,,909,jiwa,2025,registration,total_population,3.2,30,,5–9
+16.04.22,3,Pagar Gunung,age_group,10-14,laki_laki,561,jiwa,2025,registration,total_population,3.2,30,,10–14
+16.04.22,3,Pagar Gunung,age_group,10-14,perempuan,498,jiwa,2025,registration,total_population,3.2,30,,10–14
+16.04.22,3,Pagar Gunung,age_group,10-14,,1059,jiwa,2025,registration,total_population,3.2,30,,10–14
+16.04.22,3,Pagar Gunung,age_group,15-19,laki_laki,523,jiwa,2025,registration,total_population,3.2,30,,15–19
+16.04.22,3,Pagar Gunung,age_group,15-19,perempuan,557,jiwa,2025,registration,total_population,3.2,30,,15–19
+16.04.22,3,Pagar Gunung,age_group,15-19,,1080,jiwa,2025,registration,total_population,3.2,30,,15–19
+16.04.22,3,Pagar Gunung,age_group,20-24,laki_laki,510,jiwa,2025,registration,total_population,3.2,30,,20–24
+16.04.22,3,Pagar Gunung,age_group,20-24,perempuan,463,jiwa,2025,registration,total_population,3.2,30,,20–24
+16.04.22,3,Pagar Gunung,age_group,20-24,,973,jiwa,2025,registration,total_population,3.2,30,,20–24
+16.04.22,3,Pagar Gunung,age_group,25-29,laki_laki,477,jiwa,2025,registration,total_population,3.2,30,,25–29
+16.04.22,3,Pagar Gunung,age_group,25-29,perempuan,378,jiwa,2025,registration,total_population,3.2,30,,25–29
+16.04.22,3,Pagar Gunung,age_group,25-29,,855,jiwa,2025,registration,total_population,3.2,30,,25–29
+16.04.22,3,Pagar Gunung,age_group,30-34,laki_laki,401,jiwa,2025,registration,total_population,3.2,30,,30–34
+16.04.22,3,Pagar Gunung,age_group,30-34,perempuan,352,jiwa,2025,registration,total_population,3.2,30,,30–34
+16.04.22,3,Pagar Gunung,age_group,30-34,,753,jiwa,2025,registration,total_population,3.2,30,,30–34
+16.04.22,3,Pagar Gunung,age_group,35-39,laki_laki,542,jiwa,2025,registration,total_population,3.2,30,,35–39
+16.04.22,3,Pagar Gunung,age_group,35-39,perempuan,475,jiwa,2025,registration,total_population,3.2,30,,35–39
+16.04.22,3,Pagar Gunung,age_group,35-39,,1017,jiwa,2025,registration,total_population,3.2,30,,35–39
+16.04.22,3,Pagar Gunung,age_group,40-44,laki_laki,578,jiwa,2025,registration,total_population,3.2,30,,40–44
+16.04.22,3,Pagar Gunung,age_group,40-44,perempuan,499,jiwa,2025,registration,total_population,3.2,30,,40–44
+16.04.22,3,Pagar Gunung,age_group,40-44,,1077,jiwa,2025,registration,total_population,3.2,30,,40–44
+16.04.22,3,Pagar Gunung,age_group,45-49,laki_laki,574,jiwa,2025,registration,total_population,3.2,30,,45–49
+16.04.22,3,Pagar Gunung,age_group,45-49,perempuan,477,jiwa,2025,registration,total_population,3.2,30,,45–49
+16.04.22,3,Pagar Gunung,age_group,45-49,,1051,jiwa,2025,registration,total_population,3.2,30,,45–49
+16.04.22,3,Pagar Gunung,age_group,50-54,laki_laki,485,jiwa,2025,registration,total_population,3.2,30,,50–54
+16.04.22,3,Pagar Gunung,age_group,50-54,perempuan,418,jiwa,2025,registration,total_population,3.2,30,,50–54
+16.04.22,3,Pagar Gunung,age_group,50-54,,903,jiwa,2025,registration,total_population,3.2,30,,50–54
+16.04.22,3,Pagar Gunung,age_group,55-59,laki_laki,393,jiwa,2025,registration,total_population,3.2,30,,55–59
+16.04.22,3,Pagar Gunung,age_group,55-59,perempuan,353,jiwa,2025,registration,total_population,3.2,30,,55–59
+16.04.22,3,Pagar Gunung,age_group,55-59,,746,jiwa,2025,registration,total_population,3.2,30,,55–59
+16.04.22,3,Pagar Gunung,age_group,60-64,laki_laki,331,jiwa,2025,registration,total_population,3.2,30,,60–64
+16.04.22,3,Pagar Gunung,age_group,60-64,perempuan,324,jiwa,2025,registration,total_population,3.2,30,,60–64
+16.04.22,3,Pagar Gunung,age_group,60-64,,655,jiwa,2025,registration,total_population,3.2,30,,60–64
+16.04.22,3,Pagar Gunung,age_group,65-69,laki_laki,261,jiwa,2025,registration,total_population,3.2,30,,65–69
+16.04.22,3,Pagar Gunung,age_group,65-69,perempuan,307,jiwa,2025,registration,total_population,3.2,30,,65–69
+16.04.22,3,Pagar Gunung,age_group,65-69,,568,jiwa,2025,registration,total_population,3.2,30,,65–69
+16.04.22,3,Pagar Gunung,age_group,70-74,laki_laki,163,jiwa,2025,registration,total_population,3.2,30,,70–74
+16.04.22,3,Pagar Gunung,age_group,70-74,perempuan,195,jiwa,2025,registration,total_population,3.2,30,,70–74
+16.04.22,3,Pagar Gunung,age_group,70-74,,358,jiwa,2025,registration,total_population,3.2,30,,70–74
+16.04.22,3,Pagar Gunung,age_group,75+,laki_laki,197,jiwa,2025,registration,total_population,3.2,30,,75+
+16.04.22,3,Pagar Gunung,age_group,75+,perempuan,327,jiwa,2025,registration,total_population,3.2,30,,75+
+16.04.22,3,Pagar Gunung,age_group,75+,,524,jiwa,2025,registration,total_population,3.2,30,,75+
+16.04.22,3,PagarGunung,sex,laki_laki,,6826,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+16.04.22,3,PagarGunung,sex,perempuan,,6399,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+16.04.22,3,PagarGunung,total,total,,13225,jiwa,2025,registration,total_population,3.2,30,,

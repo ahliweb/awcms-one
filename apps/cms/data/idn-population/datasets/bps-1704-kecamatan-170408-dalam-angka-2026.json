@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-1704-kecamatan-170408-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "17.04.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Semidang Gumay Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kaur",
+  "publisherDomain": "1704",
+  "publisherWebsite": "https://kaurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kaur (https://kaurkab.bps.go.id), publikasi \"Kecamatan Semidang Gumay Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1704051",
+  "publicationNumber": "17040.26018",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kaurkab.bps.go.id/id/publication/2026/09/28/927067d7097f6554553f0d5a/kecamatan-semidang-gumay-dalam-angka-2026.html",
+  "sourceFileSha256": "aa39b5dd8206a26203f52bf4625f0e40db36def2f970ff9483593afbccfb536f",
+  "sourceFileBytes": 7245870,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kaur.",
+  "csvPath": "datasets/bps-1704-kecamatan-170408-dalam-angka-2026.csv",
+  "csvSha256": "004a0be6c7f13994800f53e551e849077b631409811385ddff133d0a53d25c38",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Semidang Gumay, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Semidang Gumay, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Mentiring I\": unmatched ",
+    "table 3.1: row not stored: row \"Cahaya Bathin\": unmatched ",
+    "table 3.1: row not stored: row \"Gunung Tiga I\": unmatched ",
+    "table 3.1: row not stored: row \"Mentiring I\": unmatched ",
+    "table 3.1: row not stored: row \"Cahaya Bathin\": unmatched ",
+    "table 3.1: row not stored: row \"Gunung Tiga I\": unmatched "
+  ]
+}

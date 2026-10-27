@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1113-kecamatan-111302-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.13.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kuta Panjang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Gayo Lues",
+  "publisherDomain": "1113",
+  "publisherWebsite": "https://gayolueskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Gayo Lues (https://gayolueskab.bps.go.id), publikasi \"Kecamatan Kuta Panjang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1113010",
+  "publicationNumber": "11130.26005",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://gayolueskab.bps.go.id/id/publication/2026/09/28/e09f30f3e2ac4303e3d34df0/kecamatan-kuta-panjang-dalam-angka-2026.html",
+  "sourceFileSha256": "8f0ef67f6356c1f8e52cb3b0f05dacec4d666355c29c7a5d511d019f4ea9a5e2",
+  "sourceFileBytes": 11583137,
+  "sourcePages": [29, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Gayo Lues.",
+  "csvPath": "datasets/bps-1113-kecamatan-111302-dalam-angka-2026.csv",
+  "csvSha256": "13a3fc28af0db49ce5dbc2090793bdead1fdf0e2614bf567c91f5bb9b4f46894",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p29",
+      "title": "Pendu duk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kuta Panjang , 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "unnumbered-p31",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kuta Panjang , 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p31: the rows of region 11.13.02 are not stored: age_group (perempuan) vs sex value: parts sum 5185.0000 != 5175.0000 (diff 10.0000); the source itself is inconsistent"
+  ]
+}

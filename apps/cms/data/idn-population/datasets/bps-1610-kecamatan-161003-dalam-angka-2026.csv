@@ -1,0 +1,112 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.10.03.2007,4,Tanjung Temiang,sex,laki_laki,,1434,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.03.2007,4,Tanjung Temiang,sex,perempuan,,1362,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.03.2007,4,Tanjung Temiang,total,total,,2796,jiwa,2025,registration,total_population,3.1,27,,
+16.10.03.2008,4,Seridalam,sex,laki_laki,,1241,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.03.2008,4,Seridalam,sex,perempuan,,1232,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.03.2008,4,Seridalam,total,total,,2473,jiwa,2025,registration,total_population,3.1,27,,
+16.10.03.1001,4,Tanjung Raja,sex,laki_laki,,2722,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.03.1001,4,Tanjung Raja,sex,perempuan,,2663,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.03.1001,4,Tanjung Raja,total,total,,5385,jiwa,2025,registration,total_population,3.1,27,,
+16.10.03.1027,4,Tanjung Raja Barat,sex,laki_laki,,2003,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.03.1027,4,Tanjung Raja Barat,sex,perempuan,,2026,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.03.1027,4,Tanjung Raja Barat,total,total,,4029,jiwa,2025,registration,total_population,3.1,27,,
+16.10.03.1028,4,Tanjung Raja Utara,sex,laki_laki,,1344,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.03.1028,4,Tanjung Raja Utara,sex,perempuan,,1405,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.03.1028,4,Tanjung Raja Utara,total,total,,2749,jiwa,2025,registration,total_population,3.1,27,,
+16.10.03.2023,4,Talang Balai Baru I,sex,laki_laki,,1101,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.03.2023,4,Talang Balai Baru I,sex,perempuan,,1141,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.03.2023,4,Talang Balai Baru I,total,total,,2242,jiwa,2025,registration,total_population,3.1,27,,
+16.10.03.2022,4,Siring Alam,sex,laki_laki,,623,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.03.2022,4,Siring Alam,sex,perempuan,,608,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.03.2022,4,Siring Alam,total,total,,1231,jiwa,2025,registration,total_population,3.1,27,,
+16.10.03.2021,4,Tanjung Agas,sex,laki_laki,,723,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.03.2021,4,Tanjung Agas,sex,perempuan,,767,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.03.2021,4,Tanjung Agas,total,total,,1490,jiwa,2025,registration,total_population,3.1,27,,
+16.10.03.2024,4,Talang Balai Lama,sex,laki_laki,,832,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.03.2024,4,Talang Balai Lama,sex,perempuan,,831,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.03.2024,4,Talang Balai Lama,total,total,,1663,jiwa,2025,registration,total_population,3.1,27,,
+16.10.03.2002,4,Suka Pindah,sex,laki_laki,,726,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.03.2002,4,Suka Pindah,sex,perempuan,,680,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.03.2002,4,Suka Pindah,total,total,,1406,jiwa,2025,registration,total_population,3.1,27,,
+16.10.03.2020,4,Ulak Kerbau Lama,sex,laki_laki,,1182,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.03.2020,4,Ulak Kerbau Lama,sex,perempuan,,1148,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.03.2020,4,Ulak Kerbau Lama,total,total,,2330,jiwa,2025,registration,total_population,3.1,27,,
+16.10.03.2019,4,Ulak Kerbau Baru,sex,laki_laki,,885,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.03.2019,4,Ulak Kerbau Baru,sex,perempuan,,930,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.03.2019,4,Ulak Kerbau Baru,total,total,,1815,jiwa,2025,registration,total_population,3.1,27,,
+16.10.03.2018,4,Kerinjing,sex,laki_laki,,706,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.03.2018,4,Kerinjing,sex,perempuan,,727,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.03.2018,4,Kerinjing,total,total,,1433,jiwa,2025,registration,total_population,3.1,27,,
+16.10.03.1035,4,Tanjung Raja Timur,sex,laki_laki,,1823,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.03.1035,4,Tanjung Raja Timur,sex,perempuan,,1790,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.03.1035,4,Tanjung Raja Timur,total,total,,3613,jiwa,2025,registration,total_population,3.1,27,,
+16.10.03.2032,4,Belanti,sex,laki_laki,,1540,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.03.2032,4,Belanti,sex,perempuan,,1441,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.03.2032,4,Belanti,total,total,,2981,jiwa,2025,registration,total_population,3.1,27,,
+16.10.03.2031,4,Tanjung Raja Selatan,sex,laki_laki,,1922,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.03.2031,4,Tanjung Raja Selatan,sex,perempuan,,1933,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.03.2031,4,Tanjung Raja Selatan,total,total,,3855,jiwa,2025,registration,total_population,3.1,27,,
+16.10.03.2034,4,Talang Balai Baru II,sex,laki_laki,,1017,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.03.2034,4,Talang Balai Baru II,sex,perempuan,,1007,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.03.2034,4,Talang Balai Baru II,total,total,,2024,jiwa,2025,registration,total_population,3.1,27,,
+16.10.03.2030,4,Skonjing,sex,laki_laki,,937,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.03.2030,4,Skonjing,sex,perempuan,,955,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.03.2030,4,Skonjing,total,total,,1892,jiwa,2025,registration,total_population,3.1,27,,
+16.10.03.2033,4,Tanjung Harapan,sex,laki_laki,,684,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.03.2033,4,Tanjung Harapan,sex,perempuan,,647,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.03.2033,4,Tanjung Harapan,total,total,,1331,jiwa,2025,registration,total_population,3.1,27,,
+16.10.03,3,Tanjung Raja,sex,laki_laki,,23445,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.03,3,Tanjung Raja,sex,perempuan,,23293,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.03,3,Tanjung Raja,total,total,,46738,jiwa,2025,registration,total_population,3.1,27,,
+16.10.03,3,Tanjung Raja,age_group,0-4,laki_laki,1584,jiwa,2025,registration,total_population,3.2,29,,0–4
+16.10.03,3,Tanjung Raja,age_group,0-4,perempuan,1465,jiwa,2025,registration,total_population,3.2,29,,0–4
+16.10.03,3,Tanjung Raja,age_group,0-4,,3049,jiwa,2025,registration,total_population,3.2,29,,0–4
+16.10.03,3,Tanjung Raja,age_group,5-9,laki_laki,2086,jiwa,2025,registration,total_population,3.2,29,,5–9
+16.10.03,3,Tanjung Raja,age_group,5-9,perempuan,1864,jiwa,2025,registration,total_population,3.2,29,,5–9
+16.10.03,3,Tanjung Raja,age_group,5-9,,3950,jiwa,2025,registration,total_population,3.2,29,,5–9
+16.10.03,3,Tanjung Raja,age_group,10-14,laki_laki,2154,jiwa,2025,registration,total_population,3.2,29,,10–14
+16.10.03,3,Tanjung Raja,age_group,10-14,perempuan,1989,jiwa,2025,registration,total_population,3.2,29,,10–14
+16.10.03,3,Tanjung Raja,age_group,10-14,,4143,jiwa,2025,registration,total_population,3.2,29,,10–14
+16.10.03,3,Tanjung Raja,age_group,15-19,laki_laki,1921,jiwa,2025,registration,total_population,3.2,29,,15–19
+16.10.03,3,Tanjung Raja,age_group,15-19,perempuan,1888,jiwa,2025,registration,total_population,3.2,29,,15–19
+16.10.03,3,Tanjung Raja,age_group,15-19,,3809,jiwa,2025,registration,total_population,3.2,29,,15–19
+16.10.03,3,Tanjung Raja,age_group,20-24,laki_laki,1906,jiwa,2025,registration,total_population,3.2,29,,20–24
+16.10.03,3,Tanjung Raja,age_group,20-24,perempuan,1851,jiwa,2025,registration,total_population,3.2,29,,20–24
+16.10.03,3,Tanjung Raja,age_group,20-24,,3757,jiwa,2025,registration,total_population,3.2,29,,20–24
+16.10.03,3,Tanjung Raja,age_group,25-29,laki_laki,1829,jiwa,2025,registration,total_population,3.2,29,,25–29
+16.10.03,3,Tanjung Raja,age_group,25-29,perempuan,1765,jiwa,2025,registration,total_population,3.2,29,,25–29
+16.10.03,3,Tanjung Raja,age_group,25-29,,3594,jiwa,2025,registration,total_population,3.2,29,,25–29
+16.10.03,3,Tanjung Raja,age_group,30-34,laki_laki,1719,jiwa,2025,registration,total_population,3.2,29,,30–34
+16.10.03,3,Tanjung Raja,age_group,30-34,perempuan,1612,jiwa,2025,registration,total_population,3.2,29,,30–34
+16.10.03,3,Tanjung Raja,age_group,30-34,,3331,jiwa,2025,registration,total_population,3.2,29,,30–34
+16.10.03,3,Tanjung Raja,age_group,35-39,laki_laki,1886,jiwa,2025,registration,total_population,3.2,29,,35–39
+16.10.03,3,Tanjung Raja,age_group,35-39,perempuan,1750,jiwa,2025,registration,total_population,3.2,29,,35–39
+16.10.03,3,Tanjung Raja,age_group,35-39,,3636,jiwa,2025,registration,total_population,3.2,29,,35–39
+16.10.03,3,Tanjung Raja,age_group,40-44,laki_laki,1706,jiwa,2025,registration,total_population,3.2,29,,40–44
+16.10.03,3,Tanjung Raja,age_group,40-44,perempuan,1641,jiwa,2025,registration,total_population,3.2,29,,40–44
+16.10.03,3,Tanjung Raja,age_group,40-44,,3347,jiwa,2025,registration,total_population,3.2,29,,40–44
+16.10.03,3,Tanjung Raja,age_group,45-49,laki_laki,1510,jiwa,2025,registration,total_population,3.2,29,,45–49
+16.10.03,3,Tanjung Raja,age_group,45-49,perempuan,1527,jiwa,2025,registration,total_population,3.2,29,,45–49
+16.10.03,3,Tanjung Raja,age_group,45-49,,3037,jiwa,2025,registration,total_population,3.2,29,,45–49
+16.10.03,3,Tanjung Raja,age_group,50-54,laki_laki,1327,jiwa,2025,registration,total_population,3.2,29,,50–54
+16.10.03,3,Tanjung Raja,age_group,50-54,perempuan,1463,jiwa,2025,registration,total_population,3.2,29,,50–54
+16.10.03,3,Tanjung Raja,age_group,50-54,,2790,jiwa,2025,registration,total_population,3.2,29,,50–54
+16.10.03,3,Tanjung Raja,age_group,55-59,laki_laki,1087,jiwa,2025,registration,total_population,3.2,29,,55–59
+16.10.03,3,Tanjung Raja,age_group,55-59,perempuan,1321,jiwa,2025,registration,total_population,3.2,29,,55–59
+16.10.03,3,Tanjung Raja,age_group,55-59,,2408,jiwa,2025,registration,total_population,3.2,29,,55–59
+16.10.03,3,Tanjung Raja,age_group,60-64,laki_laki,1059,jiwa,2025,registration,total_population,3.2,29,,60–64
+16.10.03,3,Tanjung Raja,age_group,60-64,perempuan,1112,jiwa,2025,registration,total_population,3.2,29,,60–64
+16.10.03,3,Tanjung Raja,age_group,60-64,,2171,jiwa,2025,registration,total_population,3.2,29,,60–64
+16.10.03,3,Tanjung Raja,age_group,65-69,laki_laki,823,jiwa,2025,registration,total_population,3.2,29,,65–69
+16.10.03,3,Tanjung Raja,age_group,65-69,perempuan,913,jiwa,2025,registration,total_population,3.2,29,,65–69
+16.10.03,3,Tanjung Raja,age_group,65-69,,1736,jiwa,2025,registration,total_population,3.2,29,,65–69
+16.10.03,3,Tanjung Raja,age_group,70-75,laki_laki,466,jiwa,2025,registration,total_population,3.2,29,,70–75
+16.10.03,3,Tanjung Raja,age_group,70-75,perempuan,513,jiwa,2025,registration,total_population,3.2,29,,70–75
+16.10.03,3,Tanjung Raja,age_group,70-75,,979,jiwa,2025,registration,total_population,3.2,29,,70–75
+16.10.03,3,Tanjung Raja,age_group,75+,laki_laki,382,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.03,3,Tanjung Raja,age_group,75+,perempuan,619,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.03,3,Tanjung Raja,age_group,75+,,1001,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.03,3,Tanjung Raja,sex,laki_laki,,23445,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+16.10.03,3,Tanjung Raja,sex,perempuan,,23293,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+16.10.03,3,Tanjung Raja,total,total,,46738,jiwa,2025,registration,total_population,3.2,29,,

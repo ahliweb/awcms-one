@@ -1,0 +1,21 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.01.15.2001,4,Pulau Lawas,sex,perempuan,,1858,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.15.2001,4,Pulau Lawas,total,total,,3766,jiwa,2025,registration,total_population,3.1,11,,
+14.01.15.2002,4,Muara Uwai,sex,perempuan,,2094,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.15.2002,4,Muara Uwai,total,total,,4216,jiwa,2025,registration,total_population,3.1,11,,
+14.01.15.1007,4,Pulau,sex,perempuan,,1660,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.15.1007,4,Pulau,total,total,,3355,jiwa,2025,registration,total_population,3.1,11,,
+14.01.15.1008,4,Pasir Sialang,sex,perempuan,,5200,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.15.1008,4,Pasir Sialang,total,total,,10685,jiwa,2025,registration,total_population,3.1,11,,
+14.01.15.2006,4,Bukit Sembilan,sex,perempuan,,1244,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.15.2006,4,Bukit Sembilan,total,total,,2534,jiwa,2025,registration,total_population,3.1,11,,
+14.01.15.2003,4,Laboy Jaya,sex,perempuan,,1841,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.15.2003,4,Laboy Jaya,total,total,,3680,jiwa,2025,registration,total_population,3.1,11,,
+14.01.15.2005,4,Suka Mulya,sex,perempuan,,2059,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.15.2005,4,Suka Mulya,total,total,,4109,jiwa,2025,registration,total_population,3.1,11,,
+14.01.15.2004,4,Bukit Payung,sex,perempuan,,1720,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.15.2004,4,Bukit Payung,total,total,,3517,jiwa,2025,registration,total_population,3.1,11,,
+14.01.15.2009,4,Binuang,sex,perempuan,,1013,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.15.2009,4,Binuang,total,total,,2054,jiwa,2025,registration,total_population,3.1,11,,
+14.01.15,3,BANGKINANG,sex,perempuan,,18689,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.15,3,BANGKINANG,total,total,,37916,jiwa,2025,registration,total_population,3.1,11,,

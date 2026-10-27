@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.07.10.1002,4,Air Batu,sex,laki_laki,,5076,jiwa,2026,registration,total_population,3.1,36,,Laki-Laki/Male
+16.07.10.1002,4,Air Batu,sex,perempuan,,4824,jiwa,2026,registration,total_population,3.1,36,,Perempuan/Female
+16.07.10.1002,4,Air Batu,total,total,,9900,jiwa,2026,registration,total_population,3.1,36,,
+16.07.10.1004,4,Sukajadi,sex,laki_laki,,8526,jiwa,2026,registration,total_population,3.1,36,,Laki-Laki/Male
+16.07.10.1004,4,Sukajadi,sex,perempuan,,8295,jiwa,2026,registration,total_population,3.1,36,,Perempuan/Female
+16.07.10.1004,4,Sukajadi,total,total,,16821,jiwa,2026,registration,total_population,3.1,36,,
+16.07.10.2005,4,Pangkalan Benteng,sex,laki_laki,,3623,jiwa,2026,registration,total_population,3.1,36,,Laki-Laki/Male
+16.07.10.2005,4,Pangkalan Benteng,sex,perempuan,,3474,jiwa,2026,registration,total_population,3.1,36,,Perempuan/Female
+16.07.10.2005,4,Pangkalan Benteng,total,total,,7097,jiwa,2026,registration,total_population,3.1,36,,
+16.07.10.2007,4,Gasing,sex,laki_laki,,3721,jiwa,2026,registration,total_population,3.1,36,,Laki-Laki/Male
+16.07.10.2007,4,Gasing,sex,perempuan,,3584,jiwa,2026,registration,total_population,3.1,36,,Perempuan/Female
+16.07.10.2007,4,Gasing,total,total,,7305,jiwa,2026,registration,total_population,3.1,36,,
+16.07.10.1006,4,Kenten,sex,laki_laki,,6888,jiwa,2026,registration,total_population,3.1,36,,Laki-Laki/Male
+16.07.10.1006,4,Kenten,sex,perempuan,,6724,jiwa,2026,registration,total_population,3.1,36,,Perempuan/Female
+16.07.10.1006,4,Kenten,total,total,,13612,jiwa,2026,registration,total_population,3.1,36,,
+16.07.10.2001,4,Sungai Rengit,sex,laki_laki,,4462,jiwa,2026,registration,total_population,3.1,36,,Laki-Laki/Male
+16.07.10.2001,4,Sungai Rengit,sex,perempuan,,4350,jiwa,2026,registration,total_population,3.1,36,,Perempuan/Female
+16.07.10.2001,4,Sungai Rengit,total,total,,8812,jiwa,2026,registration,total_population,3.1,36,,
+16.07.10.2019,4,Talang Buluh,sex,laki_laki,,1985,jiwa,2026,registration,total_population,3.1,36,,Laki-Laki/Male
+16.07.10.2019,4,Talang Buluh,sex,perempuan,,1948,jiwa,2026,registration,total_population,3.1,36,,Perempuan/Female
+16.07.10.2019,4,Talang Buluh,total,total,,3933,jiwa,2026,registration,total_population,3.1,36,,
+16.07.10.1022,4,Tanah Mas,sex,laki_laki,,6183,jiwa,2026,registration,total_population,3.1,36,,Laki-Laki/Male
+16.07.10.1022,4,Tanah Mas,sex,perempuan,,6116,jiwa,2026,registration,total_population,3.1,36,,Perempuan/Female
+16.07.10.1022,4,Tanah Mas,total,total,,12299,jiwa,2026,registration,total_population,3.1,36,,
+16.07.10.2021,4,Kenten Laut,sex,laki_laki,,5832,jiwa,2026,registration,total_population,3.1,36,,Laki-Laki/Male
+16.07.10.2021,4,Kenten Laut,sex,perempuan,,5559,jiwa,2026,registration,total_population,3.1,36,,Perempuan/Female
+16.07.10.2021,4,Kenten Laut,total,total,,11391,jiwa,2026,registration,total_population,3.1,36,,
+16.07.10.1023,4,Talang Keramat,sex,laki_laki,,2540,jiwa,2026,registration,total_population,3.1,36,,Laki-Laki/Male
+16.07.10.1023,4,Talang Keramat,sex,perempuan,,2482,jiwa,2026,registration,total_population,3.1,36,,Perempuan/Female
+16.07.10.1023,4,Talang Keramat,total,total,,5022,jiwa,2026,registration,total_population,3.1,36,,
+16.07.10.2020,4,Sungai Rengit Murni,sex,laki_laki,,1277,jiwa,2026,registration,total_population,3.1,36,,Laki-Laki/Male
+16.07.10.2020,4,Sungai Rengit Murni,sex,perempuan,,1197,jiwa,2026,registration,total_population,3.1,36,,Perempuan/Female
+16.07.10.2020,4,Sungai Rengit Murni,total,total,,2474,jiwa,2026,registration,total_population,3.1,36,,
+16.07.10.1027,4,Air Batu Jaya,sex,laki_laki,,1955,jiwa,2026,registration,total_population,3.1,36,,Laki-Laki/Male
+16.07.10.1027,4,Air Batu Jaya,sex,perempuan,,1843,jiwa,2026,registration,total_population,3.1,36,,Perempuan/Female
+16.07.10.1027,4,Air Batu Jaya,total,total,,3798,jiwa,2026,registration,total_population,3.1,36,,
+16.07.10.1026,4,Rawa Maju,sex,laki_laki,,2923,jiwa,2026,registration,total_population,3.1,36,,Laki-Laki/Male
+16.07.10.1026,4,Rawa Maju,sex,perempuan,,2771,jiwa,2026,registration,total_population,3.1,36,,Perempuan/Female
+16.07.10.1026,4,Rawa Maju,total,total,,5694,jiwa,2026,registration,total_population,3.1,36,,
+16.07.10.1024,4,Sukajadi Timur,sex,laki_laki,,8468,jiwa,2026,registration,total_population,3.1,36,,Laki-Laki/Male
+16.07.10.1024,4,Sukajadi Timur,sex,perempuan,,8333,jiwa,2026,registration,total_population,3.1,36,,Perempuan/Female
+16.07.10.1024,4,Sukajadi Timur,total,total,,16801,jiwa,2026,registration,total_population,3.1,36,,
+16.07.10.1028,4,Sei Sedapat,sex,laki_laki,,2340,jiwa,2026,registration,total_population,3.1,36,,Laki-Laki/Male
+16.07.10.1028,4,Sei Sedapat,sex,perempuan,,2337,jiwa,2026,registration,total_population,3.1,36,,Perempuan/Female
+16.07.10.1028,4,Sei Sedapat,total,total,,4677,jiwa,2026,registration,total_population,3.1,36,,
+16.07.10.1029,4,Azhar Permai,sex,laki_laki,,3326,jiwa,2026,registration,total_population,3.1,36,,Laki-Laki/Male
+16.07.10.1029,4,Azhar Permai,sex,perempuan,,3312,jiwa,2026,registration,total_population,3.1,36,,Perempuan/Female
+16.07.10.1029,4,Azhar Permai,total,total,,6638,jiwa,2026,registration,total_population,3.1,36,,
+16.07.10.1025,4,Tanah Mas Indah,sex,laki_laki,,4412,jiwa,2026,registration,total_population,3.1,36,,Laki-Laki/Male
+16.07.10.1025,4,Tanah Mas Indah,sex,perempuan,,4243,jiwa,2026,registration,total_population,3.1,36,,Perempuan/Female
+16.07.10.1025,4,Tanah Mas Indah,total,total,,8655,jiwa,2026,registration,total_population,3.1,36,,
+16.07.10.1030,4,Keramat Raya,sex,laki_laki,,2319,jiwa,2026,registration,total_population,3.1,36,,Laki-Laki/Male
+16.07.10.1030,4,Keramat Raya,sex,perempuan,,2214,jiwa,2026,registration,total_population,3.1,36,,Perempuan/Female
+16.07.10.1030,4,Keramat Raya,total,total,,4533,jiwa,2026,registration,total_population,3.1,36,,
+16.07.10,3,Talang Kelapa,sex,laki_laki,,84307,jiwa,2026,registration,total_population,3.1,36,,Laki-Laki/Male
+16.07.10,3,Talang Kelapa,sex,perempuan,,81624,jiwa,2026,registration,total_population,3.1,36,,Perempuan/Female
+16.07.10,3,Talang Kelapa,total,total,,165931,jiwa,2026,registration,total_population,3.1,36,,

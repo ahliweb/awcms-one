@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.17.09.2003,4,Cemparam Jaya,sex,laki_laki,,232,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.09.2003,4,Cemparam Jaya,sex,perempuan,,229,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.09.2003,4,Cemparam Jaya,total,total,,461,jiwa,2025,registration,total_population,3.1,26,,
+11.17.09.2006,4,Jamur Atu Jaya,sex,laki_laki,,476,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.09.2006,4,Jamur Atu Jaya,sex,perempuan,,432,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.09.2006,4,Jamur Atu Jaya,total,total,,908,jiwa,2025,registration,total_population,3.1,26,,
+11.17.09.2008,4,Gunung Sayang,sex,laki_laki,,127,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.09.2008,4,Gunung Sayang,sex,perempuan,,127,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.09.2008,4,Gunung Sayang,total,total,,254,jiwa,2025,registration,total_population,3.1,26,,
+11.17.09.2011,4,Wih Resap,sex,laki_laki,,257,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.09.2011,4,Wih Resap,sex,perempuan,,238,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.09.2011,4,Wih Resap,total,total,,495,jiwa,2025,registration,total_population,3.1,26,,
+11.17.09.2015,4,Simpur,sex,laki_laki,,245,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.09.2015,4,Simpur,sex,perempuan,,213,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.09.2015,4,Simpur,total,total,,458,jiwa,2025,registration,total_population,3.1,26,,
+11.17.09.2009,4,Amor,sex,laki_laki,,336,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.09.2009,4,Amor,sex,perempuan,,308,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.09.2009,4,Amor,total,total,,644,jiwa,2025,registration,total_population,3.1,26,,
+11.17.09.2010,4,Buntul Gayo,sex,laki_laki,,302,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.09.2010,4,Buntul Gayo,sex,perempuan,,261,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.09.2010,4,Buntul Gayo,total,total,,563,jiwa,2025,registration,total_population,3.1,26,,
+11.17.09.2012,4,Wer Tingkem,sex,laki_laki,,270,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.09.2012,4,Wer Tingkem,sex,perempuan,,230,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.09.2012,4,Wer Tingkem,total,total,,500,jiwa,2025,registration,total_population,3.1,26,,
+11.17.09.2014,4,Hakim Peteri Pintu,sex,laki_laki,,134,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.09.2014,4,Hakim Peteri Pintu,sex,perempuan,,118,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.09.2014,4,Hakim Peteri Pintu,total,total,,252,jiwa,2025,registration,total_population,3.1,26,,
+11.17.09.2013,4,Perumpaken Benjadi,sex,laki_laki,,91,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.09.2013,4,Perumpaken Benjadi,sex,perempuan,,62,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.09.2013,4,Perumpaken Benjadi,total,total,,153,jiwa,2025,registration,total_population,3.1,26,,
+11.17.09.2001,4,Cemparam Lama,sex,laki_laki,,235,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.09.2001,4,Cemparam Lama,sex,perempuan,,221,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.09.2001,4,Cemparam Lama,total,total,,456,jiwa,2025,registration,total_population,3.1,26,,
+11.17.09.2002,4,Cemparam Pakat Jeroh,sex,laki_laki,,177,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.09.2002,4,Cemparam Pakat Jeroh,sex,perempuan,,132,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.09.2002,4,Cemparam Pakat Jeroh,total,total,,309,jiwa,2025,registration,total_population,3.1,26,,
+11.17.09.2005,4,Simpang Renggali,sex,laki_laki,,115,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.09.2005,4,Simpang Renggali,sex,perempuan,,116,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.09.2005,4,Simpang Renggali,total,total,,231,jiwa,2025,registration,total_population,3.1,26,,
+11.17.09.2007,4,Sosial,sex,laki_laki,,272,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.09.2007,4,Sosial,sex,perempuan,,203,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.09.2007,4,Sosial,total,total,,475,jiwa,2025,registration,total_population,3.1,26,,
+11.17.09.2004,4,Pantan Kuli,sex,laki_laki,,97,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.09.2004,4,Pantan Kuli,sex,perempuan,,90,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.09.2004,4,Pantan Kuli,total,total,,187,jiwa,2025,registration,total_population,3.1,26,,
+11.17.09,3,Mesidah,sex,laki_laki,,3366,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.09,3,Mesidah,sex,perempuan,,2980,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.09,3,Mesidah,total,total,,6346,jiwa,2025,registration,total_population,3.1,26,,

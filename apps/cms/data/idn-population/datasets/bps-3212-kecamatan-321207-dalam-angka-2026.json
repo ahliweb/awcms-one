@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3212-kecamatan-321207-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.12.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Widasari Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN INDRAMAYU",
+  "publisherDomain": "3212",
+  "publisherWebsite": "https://indramayukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN INDRAMAYU (https://indramayukab.bps.go.id), publikasi \"Kecamatan Widasari Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3212070",
+  "publicationNumber": "32120.24020",
+  "issn": "2807-7199",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://indramayukab.bps.go.id/id/publication/2026/09/28/2fb9c36ec6595088a6077e40/kecamatan-widasari-dalam-angka-2026.html",
+  "sourceFileSha256": "c9d6cb6495e3f216058c768a43aed1c11a34eae64b7b83477ac9593b1ad27f88",
+  "sourceFileBytes": 21504924,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Indramayu.",
+  "csvPath": "datasets/bps-3212-kecamatan-321207-dalam-angka-2026.csv",
+  "csvSha256": "c216e66a3b9a8360d892f44e98a7e22da8bb1c9cb8965098fc0985046df63e50",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Widasari, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Widasari, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Ujungpendokjaya\": unmatched ",
+    "table 3.1: row not stored: row \"Ujungpendokjaya\": unmatched "
+  ]
+}

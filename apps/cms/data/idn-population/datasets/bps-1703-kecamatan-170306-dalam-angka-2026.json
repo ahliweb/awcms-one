@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1703-kecamatan-170306-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "17.03.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kerkap Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bengkulu Utara",
+  "publisherDomain": "1703",
+  "publisherWebsite": "https://bengkuluutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bengkulu Utara (https://bengkuluutarakab.bps.go.id), publikasi \"Kecamatan Kerkap Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1703050",
+  "publicationNumber": "17030.26018",
+  "issn": "2622-7231",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bengkuluutarakab.bps.go.id/id/publication/2026/09/28/6046408e63bfc148e3985e73/kecamatan-kerkap-dalam-angka-2026.html",
+  "sourceFileSha256": "17a067ff21f4c4a4a31b0cfe58d7bbf24b4285581b276603e0f9b4769a840897",
+  "sourceFileBytes": 11934574,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Bengkulu Utara",
+  "csvPath": "datasets/bps-1703-kecamatan-170306-dalam-angka-2026.csv",
+  "csvSha256": "55d037ab7832efd6766bc74aea737ebc9284a9d8da60883a258c537fe03355b7",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kerkap , 202 5",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kerkap , 202 5",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Jogya Baru\": unmatched ",
+    "table 3.1: row not stored: row \"Jogya Baru\": unmatched "
+  ]
+}

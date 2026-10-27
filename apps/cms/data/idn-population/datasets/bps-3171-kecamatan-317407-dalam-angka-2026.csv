@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.74.07.1009,4,Gandaria utara,sex,laki_laki,,23079,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+31.74.07.1009,4,Gandaria utara,sex,perempuan,,23556,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+31.74.07.1009,4,Gandaria utara,total,total,,46635,jiwa,2025,registration,total_population,3.1,24,,
+31.74.07.1010,4,Cipete Utara,sex,laki_laki,,18831,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+31.74.07.1010,4,Cipete Utara,sex,perempuan,,18876,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+31.74.07.1010,4,Cipete Utara,total,total,,37707,jiwa,2025,registration,total_population,3.1,24,,
+31.74.07.1007,4,Pulo,sex,laki_laki,,2924,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+31.74.07.1007,4,Pulo,sex,perempuan,,3310,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+31.74.07.1007,4,Pulo,total,total,,6234,jiwa,2025,registration,total_population,3.1,24,,
+31.74.07.1008,4,Petogogan,sex,laki_laki,,6357,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+31.74.07.1008,4,Petogogan,sex,perempuan,,6466,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+31.74.07.1008,4,Petogogan,total,total,,12823,jiwa,2025,registration,total_population,3.1,24,,
+31.74.07.1001,4,Melawai,sex,laki_laki,,1315,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+31.74.07.1001,4,Melawai,sex,perempuan,,1423,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+31.74.07.1001,4,Melawai,total,total,,2738,jiwa,2025,registration,total_population,3.1,24,,
+31.74.07.1003,4,Kramat Pela,sex,laki_laki,,8051,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+31.74.07.1003,4,Kramat Pela,sex,perempuan,,7946,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+31.74.07.1003,4,Kramat Pela,total,total,,15997,jiwa,2025,registration,total_population,3.1,24,,
+31.74.07.1004,4,Selong,sex,laki_laki,,1401,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+31.74.07.1004,4,Selong,sex,perempuan,,1511,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+31.74.07.1004,4,Selong,total,total,,2912,jiwa,2025,registration,total_population,3.1,24,,
+31.74.07.1005,4,Rawa Barat,sex,laki_laki,,3058,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+31.74.07.1005,4,Rawa Barat,sex,perempuan,,3259,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+31.74.07.1005,4,Rawa Barat,total,total,,6317,jiwa,2025,registration,total_population,3.1,24,,
+31.74.07.1006,4,Senayan,sex,laki_laki,,1372,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+31.74.07.1006,4,Senayan,sex,perempuan,,1505,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+31.74.07.1006,4,Senayan,total,total,,2877,jiwa,2025,registration,total_population,3.1,24,,
+31.74.07,3,Kebayoran Baru,sex,laki_laki,,71306,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+31.74.07,3,Kebayoran Baru,sex,perempuan,,72852,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+31.74.07,3,Kebayoran Baru,total,total,,144158,jiwa,2025,registration,total_population,3.1,24,,
+31.74.07,3,Kebayoran Baru,age_group,0-10,laki_laki,9879,jiwa,2025,registration,total_population,3.2,26,,0-10
+31.74.07,3,Kebayoran Baru,age_group,0-10,perempuan,9371,jiwa,2025,registration,total_population,3.2,26,,0-10
+31.74.07,3,Kebayoran Baru,age_group,0-10,,19250,jiwa,2025,registration,total_population,3.2,26,,0-10
+31.74.07,3,Kebayoran Baru,age_group,11-20,laki_laki,11229,jiwa,2025,registration,total_population,3.2,26,,11-20
+31.74.07,3,Kebayoran Baru,age_group,11-20,perempuan,10876,jiwa,2025,registration,total_population,3.2,26,,11-20
+31.74.07,3,Kebayoran Baru,age_group,11-20,,22105,jiwa,2025,registration,total_population,3.2,26,,11-20
+31.74.07,3,Kebayoran Baru,age_group,21-30,laki_laki,11123,jiwa,2025,registration,total_population,3.2,26,,21-30
+31.74.07,3,Kebayoran Baru,age_group,21-30,perempuan,11100,jiwa,2025,registration,total_population,3.2,26,,21-30
+31.74.07,3,Kebayoran Baru,age_group,21-30,,22223,jiwa,2025,registration,total_population,3.2,26,,21-30
+31.74.07,3,Kebayoran Baru,age_group,31-40,laki_laki,10087,jiwa,2025,registration,total_population,3.2,26,,31-40
+31.74.07,3,Kebayoran Baru,age_group,31-40,perempuan,10634,jiwa,2025,registration,total_population,3.2,26,,31-40
+31.74.07,3,Kebayoran Baru,age_group,31-40,,20721,jiwa,2025,registration,total_population,3.2,26,,31-40
+31.74.07,3,Kebayoran Baru,age_group,41-50,laki_laki,11257,jiwa,2025,registration,total_population,3.2,26,,41-50
+31.74.07,3,Kebayoran Baru,age_group,41-50,perempuan,11661,jiwa,2025,registration,total_population,3.2,26,,41-50
+31.74.07,3,Kebayoran Baru,age_group,41-50,,22918,jiwa,2025,registration,total_population,3.2,26,,41-50
+31.74.07,3,Kebayoran Baru,age_group,51-60,laki_laki,9642,jiwa,2025,registration,total_population,3.2,26,,51-60
+31.74.07,3,Kebayoran Baru,age_group,51-60,perempuan,9898,jiwa,2025,registration,total_population,3.2,26,,51-60
+31.74.07,3,Kebayoran Baru,age_group,51-60,,19540,jiwa,2025,registration,total_population,3.2,26,,51-60
+31.74.07,3,Kebayoran Baru,age_group,61-70,laki_laki,5610,jiwa,2025,registration,total_population,3.2,26,,61-70
+31.74.07,3,Kebayoran Baru,age_group,61-70,perempuan,5898,jiwa,2025,registration,total_population,3.2,26,,61-70
+31.74.07,3,Kebayoran Baru,age_group,61-70,,11508,jiwa,2025,registration,total_population,3.2,26,,61-70
+31.74.07,3,Kebayoran Baru,age_group,71-80,laki_laki,1966,jiwa,2025,registration,total_population,3.2,26,,71-80
+31.74.07,3,Kebayoran Baru,age_group,71-80,perempuan,2503,jiwa,2025,registration,total_population,3.2,26,,71-80
+31.74.07,3,Kebayoran Baru,age_group,71-80,,4469,jiwa,2025,registration,total_population,3.2,26,,71-80
+31.74.07,3,Kebayoran Baru,age_group,81+,laki_laki,513,jiwa,2025,registration,total_population,3.2,26,,81+
+31.74.07,3,Kebayoran Baru,age_group,81+,perempuan,911,jiwa,2025,registration,total_population,3.2,26,,81+
+31.74.07,3,Kebayoran Baru,age_group,81+,,1424,jiwa,2025,registration,total_population,3.2,26,,81+
+31.74.07,3,Kebayoran Baru,sex,laki_laki,,71306,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+31.74.07,3,Kebayoran Baru,sex,perempuan,,72852,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+31.74.07,3,Kebayoran Baru,total,total,,144158,jiwa,2025,registration,total_population,3.2,26,,

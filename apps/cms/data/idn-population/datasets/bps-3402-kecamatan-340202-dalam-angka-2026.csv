@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+34.02.02.2001,4,Gadingsari,sex,laki_laki,,4964,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.02.2001,4,Gadingsari,sex,perempuan,,5100,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.02.2001,4,Gadingsari,total,total,,10064,jiwa,2025,registration,total_population,3.1,27,,
+34.02.02.2002,4,Gadingharjo,sex,laki_laki,,1907,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.02.2002,4,Gadingharjo,sex,perempuan,,1909,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.02.2002,4,Gadingharjo,total,total,,3816,jiwa,2025,registration,total_population,3.1,27,,
+34.02.02.2003,4,Srigading,sex,laki_laki,,4710,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.02.2003,4,Srigading,sex,perempuan,,4885,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.02.2003,4,Srigading,total,total,,9595,jiwa,2025,registration,total_population,3.1,27,,
+34.02.02.2004,4,Murtigading,sex,laki_laki,,4192,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.02.2004,4,Murtigading,sex,perempuan,,4278,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.02.2004,4,Murtigading,total,total,,8470,jiwa,2025,registration,total_population,3.1,27,,
+34.02.02,3,Sanden,sex,laki_laki,,15773,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.02,3,Sanden,sex,perempuan,,16172,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.02,3,Sanden,total,total,,31945,jiwa,2025,registration,total_population,3.1,27,,
+34.02.02,3,Sanden,age_group,0-4,laki_laki,805,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+34.02.02,3,Sanden,age_group,0-4,perempuan,800,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+34.02.02,3,Sanden,age_group,0-4,,1605,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+34.02.02,3,Sanden,age_group,5-9,laki_laki,928,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+34.02.02,3,Sanden,age_group,5-9,perempuan,940,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+34.02.02,3,Sanden,age_group,5-9,,1868,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+34.02.02,3,Sanden,age_group,10-14,laki_laki,1057,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+34.02.02,3,Sanden,age_group,10-14,perempuan,973,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+34.02.02,3,Sanden,age_group,10-14,,2030,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+34.02.02,3,Sanden,age_group,15-19,laki_laki,1118,jiwa,2025,registration,total_population,3.2,29,,15 - 19
+34.02.02,3,Sanden,age_group,15-19,perempuan,1068,jiwa,2025,registration,total_population,3.2,29,,15 - 19
+34.02.02,3,Sanden,age_group,15-19,,2186,jiwa,2025,registration,total_population,3.2,29,,15 - 19
+34.02.02,3,Sanden,age_group,20-24,laki_laki,1038,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+34.02.02,3,Sanden,age_group,20-24,perempuan,1005,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+34.02.02,3,Sanden,age_group,20-24,,2043,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+34.02.02,3,Sanden,age_group,25-29,laki_laki,1138,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+34.02.02,3,Sanden,age_group,25-29,perempuan,1178,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+34.02.02,3,Sanden,age_group,25-29,,2316,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+34.02.02,3,Sanden,age_group,30-34,laki_laki,1120,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+34.02.02,3,Sanden,age_group,30-34,perempuan,1064,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+34.02.02,3,Sanden,age_group,30-34,,2184,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+34.02.02,3,Sanden,age_group,35-39,laki_laki,962,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+34.02.02,3,Sanden,age_group,35-39,perempuan,970,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+34.02.02,3,Sanden,age_group,35-39,,1932,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+34.02.02,3,Sanden,age_group,40-44,laki_laki,1076,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+34.02.02,3,Sanden,age_group,40-44,perempuan,1105,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+34.02.02,3,Sanden,age_group,40-44,,2181,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+34.02.02,3,Sanden,age_group,45-49,laki_laki,1134,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+34.02.02,3,Sanden,age_group,45-49,perempuan,1123,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+34.02.02,3,Sanden,age_group,45-49,,2257,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+34.02.02,3,Sanden,age_group,50-54,laki_laki,1048,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+34.02.02,3,Sanden,age_group,50-54,perempuan,1102,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+34.02.02,3,Sanden,age_group,50-54,,2150,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+34.02.02,3,Sanden,age_group,55-59,laki_laki,1192,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+34.02.02,3,Sanden,age_group,55-59,perempuan,1154,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+34.02.02,3,Sanden,age_group,55-59,,2346,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+34.02.02,3,Sanden,age_group,60-64,laki_laki,982,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+34.02.02,3,Sanden,age_group,60-64,perempuan,1067,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+34.02.02,3,Sanden,age_group,60-64,,2049,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+34.02.02,3,Sanden,age_group,65-69,laki_laki,835,jiwa,2025,registration,total_population,3.2,29,,65 - 69
+34.02.02,3,Sanden,age_group,65-69,perempuan,875,jiwa,2025,registration,total_population,3.2,29,,65 - 69
+34.02.02,3,Sanden,age_group,65-69,,1710,jiwa,2025,registration,total_population,3.2,29,,65 - 69
+34.02.02,3,Sanden,age_group,70-74,laki_laki,548,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+34.02.02,3,Sanden,age_group,70-74,perempuan,613,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+34.02.02,3,Sanden,age_group,70-74,,1161,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+34.02.02,3,Sanden,age_group,75+,laki_laki,792,jiwa,2025,registration,total_population,3.2,29,,75 +
+34.02.02,3,Sanden,age_group,75+,perempuan,1135,jiwa,2025,registration,total_population,3.2,29,,75 +
+34.02.02,3,Sanden,age_group,75+,,1927,jiwa,2025,registration,total_population,3.2,29,,75 +
+34.02.02,3,Sanden,sex,laki_laki,,15773,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+34.02.02,3,Sanden,sex,perempuan,,16172,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+34.02.02,3,Sanden,total,total,,31945,jiwa,2025,registration,total_population,3.2,29,,

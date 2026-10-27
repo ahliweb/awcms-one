@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.02.06.2003,4,Tanjung Hutan,sex,laki_laki,,938,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+21.02.06.2003,4,Tanjung Hutan,sex,perempuan,,868,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+21.02.06.2003,4,Tanjung Hutan,total,total,,1806,jiwa,2025,registration,total_population,3.1,,,
+21.02.06.1001,4,Buru,sex,laki_laki,,1616,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+21.02.06.1001,4,Buru,sex,perempuan,,1564,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+21.02.06.1001,4,Buru,total,total,,3180,jiwa,2025,registration,total_population,3.1,,,
+21.02.06.1002,4,Lubuk Puding,sex,laki_laki,,1843,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+21.02.06.1002,4,Lubuk Puding,sex,perempuan,,1736,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+21.02.06.1002,4,Lubuk Puding,total,total,,3579,jiwa,2025,registration,total_population,3.1,,,
+21.02.06.2004,4,Tanjung Batu Kecil,sex,laki_laki,,966,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+21.02.06.2004,4,Tanjung Batu Kecil,sex,perempuan,,981,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+21.02.06.2004,4,Tanjung Batu Kecil,total,total,,1947,jiwa,2025,registration,total_population,3.1,,,
+21.02.06,3,Buru,sex,laki_laki,,5363,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+21.02.06,3,Buru,sex,perempuan,,5149,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+21.02.06,3,Buru,total,total,,10512,jiwa,2025,registration,total_population,3.1,,,
+21.02.06,3,Buru,age_group,0-4,laki_laki,280,jiwa,2025,registration,total_population,3.2,34,,0–4
+21.02.06,3,Buru,age_group,0-4,perempuan,291,jiwa,2025,registration,total_population,3.2,34,,0–4
+21.02.06,3,Buru,age_group,0-4,,571,jiwa,2025,registration,total_population,3.2,34,,0–4
+21.02.06,3,Buru,age_group,5-9,laki_laki,396,jiwa,2025,registration,total_population,3.2,34,,5–9
+21.02.06,3,Buru,age_group,5-9,perempuan,422,jiwa,2025,registration,total_population,3.2,34,,5–9
+21.02.06,3,Buru,age_group,5-9,,818,jiwa,2025,registration,total_population,3.2,34,,5–9
+21.02.06,3,Buru,age_group,10-14,laki_laki,469,jiwa,2025,registration,total_population,3.2,34,,10–14
+21.02.06,3,Buru,age_group,10-14,perempuan,442,jiwa,2025,registration,total_population,3.2,34,,10–14
+21.02.06,3,Buru,age_group,10-14,,911,jiwa,2025,registration,total_population,3.2,34,,10–14
+21.02.06,3,Buru,age_group,15-19,laki_laki,401,jiwa,2025,registration,total_population,3.2,34,,15–19
+21.02.06,3,Buru,age_group,15-19,perempuan,378,jiwa,2025,registration,total_population,3.2,34,,15–19
+21.02.06,3,Buru,age_group,15-19,,779,jiwa,2025,registration,total_population,3.2,34,,15–19
+21.02.06,3,Buru,age_group,20-24,laki_laki,413,jiwa,2025,registration,total_population,3.2,34,,20–24
+21.02.06,3,Buru,age_group,20-24,perempuan,366,jiwa,2025,registration,total_population,3.2,34,,20–24
+21.02.06,3,Buru,age_group,20-24,,779,jiwa,2025,registration,total_population,3.2,34,,20–24
+21.02.06,3,Buru,age_group,25-29,laki_laki,402,jiwa,2025,registration,total_population,3.2,34,,25–29
+21.02.06,3,Buru,age_group,25-29,perempuan,374,jiwa,2025,registration,total_population,3.2,34,,25–29
+21.02.06,3,Buru,age_group,25-29,,776,jiwa,2025,registration,total_population,3.2,34,,25–29
+21.02.06,3,Buru,age_group,30-34,laki_laki,371,jiwa,2025,registration,total_population,3.2,34,,30–34
+21.02.06,3,Buru,age_group,30-34,perempuan,336,jiwa,2025,registration,total_population,3.2,34,,30–34
+21.02.06,3,Buru,age_group,30-34,,707,jiwa,2025,registration,total_population,3.2,34,,30–34
+21.02.06,3,Buru,age_group,35-39,laki_laki,366,jiwa,2025,registration,total_population,3.2,34,,35–39
+21.02.06,3,Buru,age_group,35-39,perempuan,361,jiwa,2025,registration,total_population,3.2,34,,35–39
+21.02.06,3,Buru,age_group,35-39,,727,jiwa,2025,registration,total_population,3.2,34,,35–39
+21.02.06,3,Buru,age_group,40-44,laki_laki,432,jiwa,2025,registration,total_population,3.2,34,,40–44
+21.02.06,3,Buru,age_group,40-44,perempuan,394,jiwa,2025,registration,total_population,3.2,34,,40–44
+21.02.06,3,Buru,age_group,40-44,,826,jiwa,2025,registration,total_population,3.2,34,,40–44
+21.02.06,3,Buru,age_group,45-49,laki_laki,423,jiwa,2025,registration,total_population,3.2,34,,45–49
+21.02.06,3,Buru,age_group,45-49,perempuan,390,jiwa,2025,registration,total_population,3.2,34,,45–49
+21.02.06,3,Buru,age_group,45-49,,813,jiwa,2025,registration,total_population,3.2,34,,45–49
+21.02.06,3,Buru,age_group,50-54,laki_laki,356,jiwa,2025,registration,total_population,3.2,34,,50–54
+21.02.06,3,Buru,age_group,50-54,perempuan,305,jiwa,2025,registration,total_population,3.2,34,,50–54
+21.02.06,3,Buru,age_group,50-54,,661,jiwa,2025,registration,total_population,3.2,34,,50–54
+21.02.06,3,Buru,age_group,55-59,laki_laki,297,jiwa,2025,registration,total_population,3.2,34,,55–59
+21.02.06,3,Buru,age_group,55-59,perempuan,274,jiwa,2025,registration,total_population,3.2,34,,55–59
+21.02.06,3,Buru,age_group,55-59,,571,jiwa,2025,registration,total_population,3.2,34,,55–59
+21.02.06,3,Buru,age_group,60-64,laki_laki,264,jiwa,2025,registration,total_population,3.2,34,,60–64
+21.02.06,3,Buru,age_group,60-64,perempuan,260,jiwa,2025,registration,total_population,3.2,34,,60–64
+21.02.06,3,Buru,age_group,60-64,,524,jiwa,2025,registration,total_population,3.2,34,,60–64
+21.02.06,3,Buru,age_group,65-69,laki_laki,209,jiwa,2025,registration,total_population,3.2,34,,65–69
+21.02.06,3,Buru,age_group,65-69,perempuan,213,jiwa,2025,registration,total_population,3.2,34,,65–69
+21.02.06,3,Buru,age_group,65-69,,422,jiwa,2025,registration,total_population,3.2,34,,65–69
+21.02.06,3,Buru,age_group,70-74,laki_laki,130,jiwa,2025,registration,total_population,3.2,34,,70–74
+21.02.06,3,Buru,age_group,70-74,perempuan,143,jiwa,2025,registration,total_population,3.2,34,,70–74
+21.02.06,3,Buru,age_group,70-74,,273,jiwa,2025,registration,total_population,3.2,34,,70–74
+21.02.06,3,Buru,age_group,75+,laki_laki,154,jiwa,2025,registration,total_population,3.2,34,,75+
+21.02.06,3,Buru,age_group,75+,perempuan,200,jiwa,2025,registration,total_population,3.2,34,,75+
+21.02.06,3,Buru,age_group,75+,,354,jiwa,2025,registration,total_population,3.2,34,,75+
+21.02.06,3,Buru,sex,laki_laki,,5363,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+21.02.06,3,Buru,sex,perempuan,,5149,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+21.02.06,3,Buru,total,total,,10512,jiwa,2025,registration,total_population,3.2,34,,

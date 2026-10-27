@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.15.05.2001,4,Rambat,sex,laki_laki,,1196,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+33.15.05.2001,4,Rambat,sex,perempuan,,1204,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+33.15.05.2001,4,Rambat,total,total,,2400,jiwa,2025,registration,total_population,3.1,28,,
+33.15.05.2002,4,Kalangbancar,sex,laki_laki,,970,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+33.15.05.2002,4,Kalangbancar,sex,perempuan,,969,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+33.15.05.2002,4,Kalangbancar,total,total,,1939,jiwa,2025,registration,total_population,3.1,28,,
+33.15.05.2003,4,Juworo,sex,laki_laki,,1764,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+33.15.05.2003,4,Juworo,sex,perempuan,,1750,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+33.15.05.2003,4,Juworo,total,total,,3514,jiwa,2025,registration,total_population,3.1,28,,
+33.15.05.2004,4,Monggot,sex,laki_laki,,2900,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+33.15.05.2004,4,Monggot,sex,perempuan,,2896,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+33.15.05.2004,4,Monggot,total,total,,5796,jiwa,2025,registration,total_population,3.1,28,,
+33.15.05.2005,4,Ngrandu,sex,laki_laki,,2509,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+33.15.05.2005,4,Ngrandu,sex,perempuan,,2437,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+33.15.05.2005,4,Ngrandu,total,total,,4946,jiwa,2025,registration,total_population,3.1,28,,
+33.15.05.2006,4,Bangsri,sex,laki_laki,,1883,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+33.15.05.2006,4,Bangsri,sex,perempuan,,1872,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+33.15.05.2006,4,Bangsri,total,total,,3755,jiwa,2025,registration,total_population,3.1,28,,
+33.15.05.2007,4,Karanganyar,sex,laki_laki,,4132,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+33.15.05.2007,4,Karanganyar,sex,perempuan,,4047,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+33.15.05.2007,4,Karanganyar,total,total,,8179,jiwa,2025,registration,total_population,3.1,28,,
+33.15.05.2008,4,Asemrudung,sex,laki_laki,,2999,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+33.15.05.2008,4,Asemrudung,sex,perempuan,,2934,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+33.15.05.2008,4,Asemrudung,total,total,,5933,jiwa,2025,registration,total_population,3.1,28,,
+33.15.05.2009,4,Jambangan,sex,laki_laki,,3596,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+33.15.05.2009,4,Jambangan,sex,perempuan,,3747,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+33.15.05.2009,4,Jambangan,total,total,,7343,jiwa,2025,registration,total_population,3.1,28,,
+33.15.05.2010,4,Geyer,sex,laki_laki,,2800,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+33.15.05.2010,4,Geyer,sex,perempuan,,2882,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+33.15.05.2010,4,Geyer,total,total,,5682,jiwa,2025,registration,total_population,3.1,28,,
+33.15.05.2011,4,Ledokdawan,sex,laki_laki,,3257,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+33.15.05.2011,4,Ledokdawan,sex,perempuan,,3221,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+33.15.05.2011,4,Ledokdawan,total,total,,6478,jiwa,2025,registration,total_population,3.1,28,,
+33.15.05.2012,4,Sobo,sex,laki_laki,,3276,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+33.15.05.2012,4,Sobo,sex,perempuan,,3177,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+33.15.05.2012,4,Sobo,total,total,,6453,jiwa,2025,registration,total_population,3.1,28,,
+33.15.05.2013,4,Suru,sex,laki_laki,,3118,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+33.15.05.2013,4,Suru,sex,perempuan,,3043,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+33.15.05.2013,4,Suru,total,total,,6161,jiwa,2025,registration,total_population,3.1,28,,
+33.15.05,3,Kecamatan Geyer,sex,laki_laki,,34400,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+33.15.05,3,Kecamatan Geyer,sex,perempuan,,34179,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+33.15.05,3,Kecamatan Geyer,total,total,,68579,jiwa,2025,registration,total_population,3.1,28,,
+33.15.05,3,Geyer,age_group,0-4,laki_laki,2038,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+33.15.05,3,Geyer,age_group,0-4,perempuan,1917,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+33.15.05,3,Geyer,age_group,0-4,,3955,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+33.15.05,3,Geyer,age_group,5-9,laki_laki,2490,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+33.15.05,3,Geyer,age_group,5-9,perempuan,2262,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+33.15.05,3,Geyer,age_group,5-9,,4752,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+33.15.05,3,Geyer,age_group,10-14,laki_laki,2672,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+33.15.05,3,Geyer,age_group,10-14,perempuan,2396,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+33.15.05,3,Geyer,age_group,10-14,,5068,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+33.15.05,3,Geyer,age_group,15-19,laki_laki,2522,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+33.15.05,3,Geyer,age_group,15-19,perempuan,2395,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+33.15.05,3,Geyer,age_group,15-19,,4917,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+33.15.05,3,Geyer,age_group,20-24,laki_laki,2440,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+33.15.05,3,Geyer,age_group,20-24,perempuan,2337,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+33.15.05,3,Geyer,age_group,20-24,,4777,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+33.15.05,3,Geyer,age_group,25-29,laki_laki,2675,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+33.15.05,3,Geyer,age_group,25-29,perempuan,2492,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+33.15.05,3,Geyer,age_group,25-29,,5167,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+33.15.05,3,Geyer,age_group,30-34,laki_laki,2564,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+33.15.05,3,Geyer,age_group,30-34,perempuan,2438,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+33.15.05,3,Geyer,age_group,30-34,,5002,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+33.15.05,3,Geyer,age_group,35-39,laki_laki,2454,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+33.15.05,3,Geyer,age_group,35-39,perempuan,2273,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+33.15.05,3,Geyer,age_group,35-39,,4727,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+33.15.05,3,Geyer,age_group,40-44,laki_laki,2611,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+33.15.05,3,Geyer,age_group,40-44,perempuan,2467,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+33.15.05,3,Geyer,age_group,40-44,,5078,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+33.15.05,3,Geyer,age_group,45-49,laki_laki,2376,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+33.15.05,3,Geyer,age_group,45-49,perempuan,2225,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+33.15.05,3,Geyer,age_group,45-49,,4601,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+33.15.05,3,Geyer,age_group,50-54,laki_laki,2068,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+33.15.05,3,Geyer,age_group,50-54,perempuan,2159,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+33.15.05,3,Geyer,age_group,50-54,,4227,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+33.15.05,3,Geyer,age_group,55-59,laki_laki,1969,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+33.15.05,3,Geyer,age_group,55-59,perempuan,2139,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+33.15.05,3,Geyer,age_group,55-59,,4108,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+33.15.05,3,Geyer,age_group,60-64,laki_laki,1759,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+33.15.05,3,Geyer,age_group,60-64,perempuan,2116,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+33.15.05,3,Geyer,age_group,60-64,,3875,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+33.15.05,3,Geyer,age_group,65-69,laki_laki,1537,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+33.15.05,3,Geyer,age_group,65-69,perempuan,1746,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+33.15.05,3,Geyer,age_group,65-69,,3283,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+33.15.05,3,Geyer,age_group,70-74,laki_laki,1016,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+33.15.05,3,Geyer,age_group,70-74,perempuan,1042,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+33.15.05,3,Geyer,age_group,70-74,,2058,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+33.15.05,3,Geyer,age_group,75+,laki_laki,1209,jiwa,2025,registration,total_population,3.2,30,,75+
+33.15.05,3,Geyer,age_group,75+,perempuan,1775,jiwa,2025,registration,total_population,3.2,30,,75+
+33.15.05,3,Geyer,age_group,75+,,2984,jiwa,2025,registration,total_population,3.2,30,,75+
+33.15.05,3,Kecamatan Geyer,sex,laki_laki,,34400,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+33.15.05,3,Kecamatan Geyer,sex,perempuan,,34179,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+33.15.05,3,Kecamatan Geyer,total,total,,68579,jiwa,2025,registration,total_population,3.2,30,,

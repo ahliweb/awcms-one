@@ -1,0 +1,61 @@
+{
+  "datasetCode": "bps-3326-kecamatan-332607-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.26.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Karanganyar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pekalongan",
+  "publisherDomain": "3326",
+  "publisherWebsite": "https://pekalongankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pekalongan (https://pekalongankab.bps.go.id), publikasi \"Kecamatan Karanganyar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3326070",
+  "publicationNumber": "33260.25021",
+  "issn": "0853-6155",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pekalongankab.bps.go.id/id/publication/2026/09/28/28531c3f51db70a9887187ce/kecamatan-karanganyar-dalam-angka-2026.html",
+  "sourceFileSha256": "c719d2199934830a614e71d14c94dcf036c5f098db146c2882118b7ffb8e1344",
+  "sourceFileBytes": 11461131,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pekalongan.",
+  "csvPath": "datasets/bps-3326-kecamatan-332607-dalam-angka-2026.csv",
+  "csvSha256": "a0ed6d46a7086d86f52720df0f58b0882083ddb14b4b86bc4361e3de156465ba",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Karanganyar, 2025",
+      "printedPages": [34, 35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Karanganyar, 2025",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"LEGOKKALONG\": unmatched ",
+    "table 3.1: row not stored: row \"GUTOMO 6,23%\": unmatched ",
+    "table 3.1: row not stored: row \"LIMBANGAN 5,67%\": unmatched ",
+    "table 3.1: row not stored: row \"KARANGGONDANG 5,09%\": unmatched ",
+    "table 3.1: row not stored: row \"LOLONG 4,51%\": unmatched ",
+    "table 3.1: row not stored: row \"PEDAWANG 5,87%\": unmatched ",
+    "table 3.1: row not stored: row \"PODODADI 9,47%\": unmatched ",
+    "table 3.1: row not stored: row \"LEGOKKALONG 10,32%\": unmatched ",
+    "table 3.1: row not stored: row \"KARANGSARI 11,56%\": unmatched ",
+    "table 3.1: row not stored: row \"KULU 6,33%\": unmatched ",
+    "table 3.1: row not stored: row \"BANJAREJO 5,73%\": unmatched ",
+    "table 3.1: row not stored: row \"WONOSARI 5,65%\": unmatched ",
+    "table 3.1: row not stored: row \"SOKOSARI 5,02%\": unmatched ",
+    "table 3.1: row not stored: row \"SIDOMUKTI 6,96%\": unmatched ",
+    "table 3.1: row not stored: row \"KAYUGERITAN 6,46%\": unmatched ",
+    "table 3.1: row not stored: row \"KUTOSARI 5,14%\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Karanganyar 100%\": unmatched "
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "datasetCode": "bps-1400-dalam-angka-2026",
+  "publicationSeries": "provinsi_dalam_angka",
+  "coverageRegionCode": "14",
+  "coverageRegionLevel": 1,
+  "publicationTitle": "Provinsi Riau Dalam Angka 2026",
+  "publisherName": "BPS Provinsi Riau",
+  "publisherDomain": "1400",
+  "publisherWebsite": "https://riau.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Provinsi Riau (https://riau.bps.go.id), publikasi \"Provinsi Riau Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.14",
+  "publicationNumber": "14000.26007",
+  "issn": "2723-3138",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://riau.bps.go.id/id/publication/2026/02/27/b759cb7340902bbc1cfd0881/provinsi-riau-dalam-angka-2026.html",
+  "sourceFileSha256": "1bdc435b63a6fb6f85e6013a844f56838988e955407bcd11f85cb4da32ff2dfb",
+  "sourceFileBytes": 14334325,
+  "sourcePages": [67, 99, 109],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Provinsi Riau",
+  "csvPath": "datasets/bps-1400-dalam-angka-2026.csv",
+  "csvSha256": "9c74e32503fc0aaf5e9b93f23ddc0d69ab25bca198b0101649400c910162365a",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, dan Rasio Jenis Kelamin Penduduk di Provinsi Riau Menurut Kabupaten/Kota, 2020, 2024, 2025, dan 2026.",
+      "printedPages": [67],
+      "referenceYears": [2020, 2025, 2026],
+      "figureBasis": "census+projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "3.2.14",
+      "title": "Penduduk Berumur 15 Tahun ke Atas yang Bekerja Selama Seminggu Terakhir di Provinsi Riau Menurut Kabupaten/ Kota dan Lapangan Pekerjaan Utama, 2025",
+      "printedPages": [99],
+      "referenceYears": [2025],
+      "figureBasis": "survey_estimate",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2.21",
+      "title": "Rata-Rata Upah/Gaji Bersih Sebulan Buruh/Karyawan/ Pegawai di Provinsi Riau Menurut Kabupaten/Kota dan Lapangan Pekerjaan Utama (rupiah), 2025",
+      "printedPages": [109],
+      "referenceYears": [2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication",
+    "table 3.2.22 (wage-by-age) could not be read reliably and is not included (no average column)",
+    "table 3.2.14: industry group 2: footnote label not parseable; its column is not stored",
+    "table 3.2.21: industry group 2: footnote label not parseable; its column is not stored",
+    "table 3.2.14: the rows of region 14.09 are not stored: occupation vs total: parts sum 151903.0000 != 170381.0000 (diff 18478.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 14.02 are not stored: occupation vs total: parts sum 210016.0000 != 229467.0000 (diff 19451.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 14.04 are not stored: occupation vs total: parts sum 281823.0000 != 328351.0000 (diff 46528.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 14.05 are not stored: occupation vs total: parts sum 180484.0000 != 207875.0000 (diff 27391.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 14.08 are not stored: occupation vs total: parts sum 180150.0000 != 222978.0000 (diff 42828.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 14.01 are not stored: occupation vs total: parts sum 342437.0000 != 408847.0000 (diff 66410.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 14.06 are not stored: occupation vs total: parts sum 254601.0000 != 285775.0000 (diff 31174.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 14.03 are not stored: occupation vs total: parts sum 214520.0000 != 280345.0000 (diff 65825.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 14.07 are not stored: occupation vs total: parts sum 270445.0000 != 308056.0000 (diff 37611.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 14.10 are not stored: occupation vs total: parts sum 85375.0000 != 107202.0000 (diff 21827.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 14.71 are not stored: occupation vs total: parts sum 398134.0000 != 500043.0000 (diff 101909.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 14.72 are not stored: occupation vs total: parts sum 123338.0000 != 161609.0000 (diff 38271.0000); the source itself is inconsistent",
+    "table 3.2.14: the rows of region 14 are not stored: occupation vs total: parts sum 2693226.0000 != 3210929.0000 (diff 517703.0000); the source itself is inconsistent"
+  ]
+}

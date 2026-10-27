@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-3603-kecamatan-360312-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.03.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pasarkemis Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tangerang",
+  "publisherDomain": "3603",
+  "publisherWebsite": "https://tangerangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tangerang (https://tangerangkab.bps.go.id), publikasi \"Kecamatan Pasarkemis Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3603120",
+  "publicationNumber": "36030.26017",
+  "issn": "2407-4721",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tangerangkab.bps.go.id/id/publication/2026/09/28/b6625552a1fed53a2de09625/kecamatan-pasarkemis-dalam-angka-2026.html",
+  "sourceFileSha256": "e3d1af482fc5482715b34a932c4e125185a86c6d760cfd4892ecb38ab588f3e2",
+  "sourceFileBytes": 16620407,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tangerang.",
+  "csvPath": "datasets/bps-3603-kecamatan-360312-dalam-angka-2026.csv",
+  "csvSha256": "da05aa52385697541943b9a3425858e6459d33fc1b6abaae4f05731d5001fb52",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pasar Kemis, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pasar Kemis, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Pasarkemis Pasarkemis District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Pasarkemis Pasarkemis District\": unmatched ",
+    "table 3.2: row not stored: row \">75 Tahun\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Pasarkemis Pasarkemis District\": unmatched "
+  ]
+}

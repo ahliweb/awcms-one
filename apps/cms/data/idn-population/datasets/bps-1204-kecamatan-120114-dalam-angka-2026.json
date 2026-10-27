@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-1204-kecamatan-120114-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.01.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tukka Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tapanuli Tengah",
+  "publisherDomain": "1204",
+  "publisherWebsite": "https://tapanulitengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tapanuli Tengah (https://tapanulitengahkab.bps.go.id), publikasi \"Kecamatan Tukka Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1204031",
+  "publicationNumber": "12040.26014",
+  "issn": "3031-5468",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tapanulitengahkab.bps.go.id/id/publication/2026/09/28/4a43fe9778dd3d949fe5ff24/kecamatan-tukka-dalam-angka-2026.html",
+  "sourceFileSha256": "67ddea656e8e46e8b4576ba00538b5e9383c0ad658e397ac0ba3b1e3c4bfc371",
+  "sourceFileBytes": 11053315,
+  "sourcePages": [35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tapanuli Tengah .",
+  "csvPath": "datasets/bps-1204-kecamatan-120114-dalam-angka-2026.csv",
+  "csvSha256": "7eb61e4894c816ef7b233139625c13f9e8487b8fba7ca1ca324a465136a5ceb6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Tukka , 202 5",
+      "printedPages": [35, 36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Aek Bontar\": unmatched ",
+    "table 3.1: row not stored: row \"Aek Bontar\": unmatched "
+  ]
+}

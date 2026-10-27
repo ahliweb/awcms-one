@@ -1,0 +1,41 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.01.22.2001,4,Merbau,sex,laki_laki,,1223,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.22.2001,4,Merbau,sex,perempuan,,1116,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.22.2001,4,Merbau,total,total,,2339,jiwa,2025,registration,total_population,3.1,30,,
+16.01.22.2002,4,Gunung Meraksa,sex,laki_laki,,1883,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.22.2002,4,Gunung Meraksa,sex,perempuan,,1746,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.22.2002,4,Gunung Meraksa,total,total,,3629,jiwa,2025,registration,total_population,3.1,30,,
+16.01.22.2003,4,Kurup,sex,laki_laki,,1457,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.22.2003,4,Kurup,sex,perempuan,,1394,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.22.2003,4,Kurup,total,total,,2851,jiwa,2025,registration,total_population,3.1,30,,
+16.01.22.2004,4,Banu Ayu,sex,laki_laki,,2071,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.22.2004,4,Banu Ayu,sex,perempuan,,1938,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.22.2004,4,Banu Ayu,total,total,,4009,jiwa,2025,registration,total_population,3.1,30,,
+16.01.22.2005,4,Tanjung Dalam,sex,laki_laki,,905,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.22.2005,4,Tanjung Dalam,sex,perempuan,,833,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.22.2005,4,Tanjung Dalam,total,total,,1738,jiwa,2025,registration,total_population,3.1,30,,
+16.01.22.2006,4,Lubuk Batang Baru,sex,laki_laki,,2255,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.22.2006,4,Lubuk Batang Baru,total,total,,4395,jiwa,2025,registration,total_population,3.1,30,,
+16.01.22.2007,4,Lubuk Batang Lama,sex,perempuan,,1442,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.22.2007,4,Lubuk Batang Lama,total,total,,2852,jiwa,2025,registration,total_population,3.1,30,,
+16.01.22.2008,4,Belatung,sex,laki_laki,,863,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.22.2008,4,Belatung,sex,perempuan,,779,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.22.2008,4,Belatung,total,total,,1642,jiwa,2025,registration,total_population,3.1,30,,
+16.01.22.2015,4,Markisa,sex,laki_laki,,820,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.22.2015,4,Markisa,sex,perempuan,,815,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.22.2015,4,Markisa,total,total,,1635,jiwa,2025,registration,total_population,3.1,30,,
+16.01.22.2010,4,Lunggaian,sex,laki_laki,,629,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.22.2010,4,Lunggaian,sex,perempuan,,633,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.22.2010,4,Lunggaian,total,total,,1262,jiwa,2025,registration,total_population,3.1,30,,
+16.01.22.2012,4,Tanjung Manggus,sex,laki_laki,,805,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.22.2012,4,Tanjung Manggus,sex,perempuan,,768,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.22.2012,4,Tanjung Manggus,total,total,,1573,jiwa,2025,registration,total_population,3.1,30,,
+16.01.22.2011,4,Bandar Agung,sex,laki_laki,,618,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.22.2011,4,Bandar Agung,sex,perempuan,,605,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.22.2011,4,Bandar Agung,total,total,,1223,jiwa,2025,registration,total_population,3.1,30,,
+16.01.22.2017,4,Sumber Bahagia,sex,laki_laki,,1543,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.22.2017,4,Sumber Bahagia,sex,perempuan,,1478,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.22.2017,4,Sumber Bahagia,total,total,,3021,jiwa,2025,registration,total_population,3.1,30,,
+16.01.22,3,Lubuk Batang,sex,laki_laki,,18505,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.22,3,Lubuk Batang,sex,perempuan,,17543,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.22,3,Lubuk Batang,total,total,,36048,jiwa,2025,registration,total_population,3.1,30,,

@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.71.04.2006,4,Pineung,sex,laki_laki,,2074,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki/Male
+11.71.04.2006,4,Pineung,sex,perempuan,,2247,jiwa,2025,registration,total_population,3.3,25,,Perempuan/Female
+11.71.04.2006,4,Pineung,total,total,,4321,jiwa,2025,registration,total_population,3.3,25,,
+11.71.04.2007,4,Lamgugob,sex,laki_laki,,2194,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki/Male
+11.71.04.2007,4,Lamgugob,sex,perempuan,,2272,jiwa,2025,registration,total_population,3.3,25,,Perempuan/Female
+11.71.04.2007,4,Lamgugob,total,total,,4466,jiwa,2025,registration,total_population,3.3,25,,
+11.71.04.2008,4,Kopelma Darussalam,sex,laki_laki,,1522,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki/Male
+11.71.04.2008,4,Kopelma Darussalam,sex,perempuan,,1610,jiwa,2025,registration,total_population,3.3,25,,Perempuan/Female
+11.71.04.2008,4,Kopelma Darussalam,total,total,,3132,jiwa,2025,registration,total_population,3.3,25,,
+11.71.04.2009,4,Rukoh,sex,laki_laki,,2069,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki/Male
+11.71.04.2009,4,Rukoh,sex,perempuan,,2063,jiwa,2025,registration,total_population,3.3,25,,Perempuan/Female
+11.71.04.2009,4,Rukoh,total,total,,4132,jiwa,2025,registration,total_population,3.3,25,,
+11.71.04.2001,4,Jeulingke,sex,laki_laki,,3068,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki/Male
+11.71.04.2001,4,Jeulingke,sex,perempuan,,3022,jiwa,2025,registration,total_population,3.3,25,,Perempuan/Female
+11.71.04.2001,4,Jeulingke,total,total,,6090,jiwa,2025,registration,total_population,3.3,25,,
+11.71.04.2002,4,Tibang,sex,laki_laki,,1118,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki/Male
+11.71.04.2002,4,Tibang,sex,perempuan,,1140,jiwa,2025,registration,total_population,3.3,25,,Perempuan/Female
+11.71.04.2002,4,Tibang,total,total,,2258,jiwa,2025,registration,total_population,3.3,25,,
+11.71.04.2003,4,Deah Raya,sex,laki_laki,,748,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki/Male
+11.71.04.2003,4,Deah Raya,sex,perempuan,,730,jiwa,2025,registration,total_population,3.3,25,,Perempuan/Female
+11.71.04.2003,4,Deah Raya,total,total,,1478,jiwa,2025,registration,total_population,3.3,25,,
+11.71.04.2004,4,Alue Naga,sex,laki_laki,,1220,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki/Male
+11.71.04.2004,4,Alue Naga,sex,perempuan,,1215,jiwa,2025,registration,total_population,3.3,25,,Perempuan/Female
+11.71.04.2004,4,Alue Naga,total,total,,2435,jiwa,2025,registration,total_population,3.3,25,,
+11.71.04.2010,4,Peurada,sex,laki_laki,,1292,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki/Male
+11.71.04.2010,4,Peurada,sex,perempuan,,1424,jiwa,2025,registration,total_population,3.3,25,,Perempuan/Female
+11.71.04.2010,4,Peurada,total,total,,2716,jiwa,2025,registration,total_population,3.3,25,,
+11.71.04,3,Kecamatan Syiah Kuala,sex,laki_laki,,17684,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki/Male
+11.71.04,3,Kecamatan Syiah Kuala,sex,perempuan,,18190,jiwa,2025,registration,total_population,3.3,25,,Perempuan/Female
+11.71.04,3,Kecamatan Syiah Kuala,total,total,,35874,jiwa,2025,registration,total_population,3.3,25,,

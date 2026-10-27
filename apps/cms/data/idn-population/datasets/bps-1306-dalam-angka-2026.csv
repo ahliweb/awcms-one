@@ -1,0 +1,277 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.05.02,3,Batang Anai,total,total,,58.21,ribu_jiwa,2024,projection,total_population,3.1.1,133,,
+13.05.02,3,Batang Anai,total,total,,59.68,ribu_jiwa,2025,projection,total_population,3.1.1,133,,
+13.05.01,3,Lubuak Aluang,total,total,,50.00,ribu_jiwa,2024,projection,total_population,3.1.1,133,,
+13.05.01,3,Lubuak Aluang,total,total,,50.85,ribu_jiwa,2025,projection,total_population,3.1.1,133,,
+13.05.11,3,Sintuak Toboh Gadang,total,total,,20.36,ribu_jiwa,2024,projection,total_population,3.1.1,133,,
+13.05.11,3,Sintuak Toboh Gadang,total,total,,20.66,ribu_jiwa,2025,projection,total_population,3.1.1,133,,
+13.05.10,3,Ulakan Tapakih,total,total,,22.02,ribu_jiwa,2024,projection,total_population,3.1.1,133,,
+13.05.10,3,Ulakan Tapakih,total,total,,22.40,ribu_jiwa,2025,projection,total_population,3.1.1,133,,
+13.05.03,3,Nan Sabaris,total,total,,32.27,ribu_jiwa,2024,projection,total_population,3.1.1,133,,
+13.05.03,3,Nan Sabaris,total,total,,32.88,ribu_jiwa,2025,projection,total_population,3.1.1,133,,
+13.05.04,3,2 X 11 Anam Lingkuang,total,total,,19.42,ribu_jiwa,2024,projection,total_population,3.1.1,133,,
+13.05.04,3,2 X 11 Anam Lingkuang,total,total,,19.62,ribu_jiwa,2025,projection,total_population,3.1.1,133,,
+13.05.15,3,2 X 11 Kayu Tanam,total,total,,29.86,ribu_jiwa,2024,projection,total_population,3.1.1,133,,
+13.05.15,3,2 X 11 Kayu Tanam,total,total,,30.36,ribu_jiwa,2025,projection,total_population,3.1.1,133,,
+13.05.05,3,VII Koto,total,total,,37.29,ribu_jiwa,2024,projection,total_population,3.1.1,133,,
+13.05.05,3,VII Koto,total,total,,37.78,ribu_jiwa,2025,projection,total_population,3.1.1,133,,
+13.05.16,3,Koto Patamuan,total,total,,18.72,ribu_jiwa,2024,projection,total_population,3.1.1,133,,
+13.05.16,3,Koto Patamuan,total,total,,19.05,ribu_jiwa,2025,projection,total_population,3.1.1,133,,
+13.05.12,3,VII Koto Padang Sago,total,total,,9.17,ribu_jiwa,2024,projection,total_population,3.1.1,133,,
+13.05.12,3,VII Koto Padang Sago,total,total,,9.31,ribu_jiwa,2025,projection,total_population,3.1.1,133,,
+13.05.06,3,V Koto,total,total,,24.86,ribu_jiwa,2024,projection,total_population,3.1.1,133,,
+13.05.06,3,V Koto,total,total,,25.18,ribu_jiwa,2025,projection,total_population,3.1.1,133,,
+13.05.14,3,V Koto Timur,total,total,,14.94,ribu_jiwa,2024,projection,total_population,3.1.1,133,,
+13.05.14,3,V Koto Timur,total,total,,15.08,ribu_jiwa,2025,projection,total_population,3.1.1,133,,
+13.05.08,3,Sungai Limau,total,total,,31.48,ribu_jiwa,2024,projection,total_population,3.1.1,133,,
+13.05.08,3,Sungai Limau,total,total,,31.94,ribu_jiwa,2025,projection,total_population,3.1.1,133,,
+13.05.13,3,Batang Gasan,total,total,,11.46,ribu_jiwa,2024,projection,total_population,3.1.1,133,,
+13.05.13,3,Batang Gasan,total,total,,11.60,ribu_jiwa,2025,projection,total_population,3.1.1,133,,
+13.05.09,3,IV Koto Aua Malintang,total,total,,22.17,ribu_jiwa,2024,projection,total_population,3.1.1,133,,
+13.05.09,3,IV Koto Aua Malintang,total,total,,22.49,ribu_jiwa,2025,projection,total_population,3.1.1,133,,
+13.05,2,Padang Pariaman,total,total,,459.17,ribu_jiwa,2024,projection,total_population,3.1.1,133,,
+13.05,2,Padang Pariaman,total,total,,467.04,ribu_jiwa,2025,projection,total_population,3.1.1,133,,
+13.05,2,Kabupaten Padang Pariaman,age_group,0-4,laki_laki,19.26,ribu_jiwa,2024,projection,total_population,3.1.2,136,,0–4
+13.05,2,Kabupaten Padang Pariaman,age_group,0-4,laki_laki,20.89,ribu_jiwa,2025,projection,total_population,3.1.2,136,,0–4
+13.05,2,Kabupaten Padang Pariaman,age_group,0-4,perempuan,18.51,ribu_jiwa,2024,projection,total_population,3.1.2,136,,0–4
+13.05,2,Kabupaten Padang Pariaman,age_group,0-4,perempuan,20.03,ribu_jiwa,2025,projection,total_population,3.1.2,136,,0–4
+13.05,2,Kabupaten Padang Pariaman,age_group,0-4,,37.77,ribu_jiwa,2024,projection,total_population,3.1.2,136,,0–4
+13.05,2,Kabupaten Padang Pariaman,age_group,0-4,,40.92,ribu_jiwa,2025,projection,total_population,3.1.2,136,,0–4
+13.05,2,Kabupaten Padang Pariaman,age_group,5-9,laki_laki,18.40,ribu_jiwa,2024,projection,total_population,3.1.2,136,,5–9
+13.05,2,Kabupaten Padang Pariaman,age_group,5-9,laki_laki,18.19,ribu_jiwa,2025,projection,total_population,3.1.2,136,,5–9
+13.05,2,Kabupaten Padang Pariaman,age_group,5-9,perempuan,17.55,ribu_jiwa,2024,projection,total_population,3.1.2,136,,5–9
+13.05,2,Kabupaten Padang Pariaman,age_group,5-9,perempuan,17.46,ribu_jiwa,2025,projection,total_population,3.1.2,136,,5–9
+13.05,2,Kabupaten Padang Pariaman,age_group,5-9,,35.95,ribu_jiwa,2024,projection,total_population,3.1.2,136,,5–9
+13.05,2,Kabupaten Padang Pariaman,age_group,5-9,,35.65,ribu_jiwa,2025,projection,total_population,3.1.2,136,,5–9
+13.05,2,Kabupaten Padang Pariaman,age_group,10-14,laki_laki,19.81,ribu_jiwa,2024,projection,total_population,3.1.2,136,,10–14
+13.05,2,Kabupaten Padang Pariaman,age_group,10-14,laki_laki,19.32,ribu_jiwa,2025,projection,total_population,3.1.2,136,,10–14
+13.05,2,Kabupaten Padang Pariaman,age_group,10-14,perempuan,18.45,ribu_jiwa,2024,projection,total_population,3.1.2,136,,10–14
+13.05,2,Kabupaten Padang Pariaman,age_group,10-14,perempuan,18.12,ribu_jiwa,2025,projection,total_population,3.1.2,136,,10–14
+13.05,2,Kabupaten Padang Pariaman,age_group,10-14,,38.26,ribu_jiwa,2024,projection,total_population,3.1.2,136,,10–14
+13.05,2,Kabupaten Padang Pariaman,age_group,10-14,,37.43,ribu_jiwa,2025,projection,total_population,3.1.2,136,,10–14
+13.05,2,Kabupaten Padang Pariaman,age_group,15-19,laki_laki,21.26,ribu_jiwa,2024,projection,total_population,3.1.2,136,,15–19
+13.05,2,Kabupaten Padang Pariaman,age_group,15-19,laki_laki,21.10,ribu_jiwa,2025,projection,total_population,3.1.2,136,,15–19
+13.05,2,Kabupaten Padang Pariaman,age_group,15-19,perempuan,19.65,ribu_jiwa,2024,projection,total_population,3.1.2,136,,15–19
+13.05,2,Kabupaten Padang Pariaman,age_group,15-19,perempuan,19.51,ribu_jiwa,2025,projection,total_population,3.1.2,136,,15–19
+13.05,2,Kabupaten Padang Pariaman,age_group,15-19,,40.92,ribu_jiwa,2024,projection,total_population,3.1.2,136,,15–19
+13.05,2,Kabupaten Padang Pariaman,age_group,15-19,,40.61,ribu_jiwa,2025,projection,total_population,3.1.2,136,,15–19
+13.05,2,Kabupaten Padang Pariaman,age_group,20-24,laki_laki,21.39,ribu_jiwa,2024,projection,total_population,3.1.2,136,,20–24
+13.05,2,Kabupaten Padang Pariaman,age_group,20-24,laki_laki,21.52,ribu_jiwa,2025,projection,total_population,3.1.2,136,,20–24
+13.05,2,Kabupaten Padang Pariaman,age_group,20-24,perempuan,19.63,ribu_jiwa,2024,projection,total_population,3.1.2,136,,20–24
+13.05,2,Kabupaten Padang Pariaman,age_group,20-24,perempuan,19.63,ribu_jiwa,2025,projection,total_population,3.1.2,136,,20–24
+13.05,2,Kabupaten Padang Pariaman,age_group,20-24,,41.01,ribu_jiwa,2024,projection,total_population,3.1.2,136,,20–24
+13.05,2,Kabupaten Padang Pariaman,age_group,20-24,,41.15,ribu_jiwa,2025,projection,total_population,3.1.2,136,,20–24
+13.05,2,Kabupaten Padang Pariaman,age_group,25-29,laki_laki,21.04,ribu_jiwa,2024,projection,total_population,3.1.2,136,,25–29
+13.05,2,Kabupaten Padang Pariaman,age_group,25-29,laki_laki,21.72,ribu_jiwa,2025,projection,total_population,3.1.2,136,,25–29
+13.05,2,Kabupaten Padang Pariaman,age_group,25-29,perempuan,18.69,ribu_jiwa,2024,projection,total_population,3.1.2,136,,25–29
+13.05,2,Kabupaten Padang Pariaman,age_group,25-29,perempuan,19.56,ribu_jiwa,2025,projection,total_population,3.1.2,136,,25–29
+13.05,2,Kabupaten Padang Pariaman,age_group,25-29,,39.73,ribu_jiwa,2024,projection,total_population,3.1.2,136,,25–29
+13.05,2,Kabupaten Padang Pariaman,age_group,25-29,,41.28,ribu_jiwa,2025,projection,total_population,3.1.2,136,,25–29
+13.05,2,Kabupaten Padang Pariaman,age_group,30-34,laki_laki,18.32,ribu_jiwa,2024,projection,total_population,3.1.2,136,,30–34
+13.05,2,Kabupaten Padang Pariaman,age_group,30-34,laki_laki,20.24,ribu_jiwa,2025,projection,total_population,3.1.2,136,,30–34
+13.05,2,Kabupaten Padang Pariaman,age_group,30-34,perempuan,16.03,ribu_jiwa,2024,projection,total_population,3.1.2,136,,30–34
+13.05,2,Kabupaten Padang Pariaman,age_group,30-34,perempuan,17.42,ribu_jiwa,2025,projection,total_population,3.1.2,136,,30–34
+13.05,2,Kabupaten Padang Pariaman,age_group,30-34,,34.35,ribu_jiwa,2024,projection,total_population,3.1.2,136,,30–34
+13.05,2,Kabupaten Padang Pariaman,age_group,30-34,,37.67,ribu_jiwa,2025,projection,total_population,3.1.2,136,,30–34
+13.05,2,Kabupaten Padang Pariaman,age_group,35-39,laki_laki,14.74,ribu_jiwa,2024,projection,total_population,3.1.2,136,,35–39
+13.05,2,Kabupaten Padang Pariaman,age_group,35-39,laki_laki,16.02,ribu_jiwa,2025,projection,total_population,3.1.2,136,,35–39
+13.05,2,Kabupaten Padang Pariaman,age_group,35-39,perempuan,13.71,ribu_jiwa,2024,projection,total_population,3.1.2,136,,35–39
+13.05,2,Kabupaten Padang Pariaman,age_group,35-39,perempuan,14.69,ribu_jiwa,2025,projection,total_population,3.1.2,136,,35–39
+13.05,2,Kabupaten Padang Pariaman,age_group,35-39,,28.45,ribu_jiwa,2024,projection,total_population,3.1.2,136,,35–39
+13.05,2,Kabupaten Padang Pariaman,age_group,35-39,,30.71,ribu_jiwa,2025,projection,total_population,3.1.2,136,,35–39
+13.05,2,Kabupaten Padang Pariaman,age_group,40-44,laki_laki,13.40,ribu_jiwa,2024,projection,total_population,3.1.2,136,,40–44
+13.05,2,Kabupaten Padang Pariaman,age_group,40-44,laki_laki,13.90,ribu_jiwa,2025,projection,total_population,3.1.2,136,,40–44
+13.05,2,Kabupaten Padang Pariaman,age_group,40-44,perempuan,13.07,ribu_jiwa,2024,projection,total_population,3.1.2,136,,40–44
+13.05,2,Kabupaten Padang Pariaman,age_group,40-44,perempuan,13.12,ribu_jiwa,2025,projection,total_population,3.1.2,136,,40–44
+13.05,2,Kabupaten Padang Pariaman,age_group,40-44,,26.47,ribu_jiwa,2024,projection,total_population,3.1.2,136,,40–44
+13.05,2,Kabupaten Padang Pariaman,age_group,40-44,,27.02,ribu_jiwa,2025,projection,total_population,3.1.2,136,,40–44
+13.05,2,Kabupaten Padang Pariaman,age_group,45-49,laki_laki,12.76,ribu_jiwa,2024,projection,total_population,3.1.2,136,,45–49
+13.05,2,Kabupaten Padang Pariaman,age_group,45-49,laki_laki,13.12,ribu_jiwa,2025,projection,total_population,3.1.2,136,,45–49
+13.05,2,Kabupaten Padang Pariaman,age_group,45-49,perempuan,13.35,ribu_jiwa,2024,projection,total_population,3.1.2,136,,45–49
+13.05,2,Kabupaten Padang Pariaman,age_group,45-49,perempuan,13.44,ribu_jiwa,2025,projection,total_population,3.1.2,136,,45–49
+13.05,2,Kabupaten Padang Pariaman,age_group,45-49,,26.11,ribu_jiwa,2024,projection,total_population,3.1.2,136,,45–49
+13.05,2,Kabupaten Padang Pariaman,age_group,45-49,,26.56,ribu_jiwa,2025,projection,total_population,3.1.2,136,,45–49
+13.05,2,Kabupaten Padang Pariaman,age_group,50-54,laki_laki,11.91,ribu_jiwa,2024,projection,total_population,3.1.2,136,,50–54
+13.05,2,Kabupaten Padang Pariaman,age_group,50-54,laki_laki,12.33,ribu_jiwa,2025,projection,total_population,3.1.2,136,,50–54
+13.05,2,Kabupaten Padang Pariaman,age_group,50-54,perempuan,12.62,ribu_jiwa,2024,projection,total_population,3.1.2,136,,50–54
+13.05,2,Kabupaten Padang Pariaman,age_group,50-54,perempuan,13.05,ribu_jiwa,2025,projection,total_population,3.1.2,136,,50–54
+13.05,2,Kabupaten Padang Pariaman,age_group,50-54,,24.53,ribu_jiwa,2024,projection,total_population,3.1.2,136,,50–54
+13.05,2,Kabupaten Padang Pariaman,age_group,50-54,,25.38,ribu_jiwa,2025,projection,total_population,3.1.2,136,,50–54
+13.05,2,Kabupaten Padang Pariaman,age_group,55-59,laki_laki,10.23,ribu_jiwa,2024,projection,total_population,3.1.2,136,,55–59
+13.05,2,Kabupaten Padang Pariaman,age_group,55-59,laki_laki,10.92,ribu_jiwa,2025,projection,total_population,3.1.2,136,,55–59
+13.05,2,Kabupaten Padang Pariaman,age_group,55-59,perempuan,11.29,ribu_jiwa,2024,projection,total_population,3.1.2,136,,55–59
+13.05,2,Kabupaten Padang Pariaman,age_group,55-59,perempuan,11.77,ribu_jiwa,2025,projection,total_population,3.1.2,136,,55–59
+13.05,2,Kabupaten Padang Pariaman,age_group,55-59,,21.52,ribu_jiwa,2024,projection,total_population,3.1.2,136,,55–59
+13.05,2,Kabupaten Padang Pariaman,age_group,55-59,,22.69,ribu_jiwa,2025,projection,total_population,3.1.2,136,,55–59
+13.05,2,Kabupaten Padang Pariaman,age_group,60-64,laki_laki,8.33,ribu_jiwa,2024,projection,total_population,3.1.2,136,,60–64
+13.05,2,Kabupaten Padang Pariaman,age_group,60-64,laki_laki,8.69,ribu_jiwa,2025,projection,total_population,3.1.2,136,,60–64
+13.05,2,Kabupaten Padang Pariaman,age_group,60-64,perempuan,10.08,ribu_jiwa,2024,projection,total_population,3.1.2,136,,60–64
+13.05,2,Kabupaten Padang Pariaman,age_group,60-64,perempuan,10.37,ribu_jiwa,2025,projection,total_population,3.1.2,136,,60–64
+13.05,2,Kabupaten Padang Pariaman,age_group,60-64,,18.41,ribu_jiwa,2024,projection,total_population,3.1.2,136,,60–64
+13.05,2,Kabupaten Padang Pariaman,age_group,60-64,,19.05,ribu_jiwa,2025,projection,total_population,3.1.2,136,,60–64
+13.05,2,Kabupaten Padang Pariaman,age_group,65-70,laki_laki,6.68,ribu_jiwa,2024,projection,total_population,3.1.2,136,,65–70
+13.05,2,Kabupaten Padang Pariaman,age_group,65-70,laki_laki,7.09,ribu_jiwa,2025,projection,total_population,3.1.2,136,,65–70
+13.05,2,Kabupaten Padang Pariaman,age_group,65-70,perempuan,8.55,ribu_jiwa,2024,projection,total_population,3.1.2,136,,65–70
+13.05,2,Kabupaten Padang Pariaman,age_group,65-70,perempuan,9.06,ribu_jiwa,2025,projection,total_population,3.1.2,136,,65–70
+13.05,2,Kabupaten Padang Pariaman,age_group,65-70,,15.23,ribu_jiwa,2024,projection,total_population,3.1.2,136,,65–70
+13.05,2,Kabupaten Padang Pariaman,age_group,65-70,,16.15,ribu_jiwa,2025,projection,total_population,3.1.2,136,,65–70
+13.05,2,Kabupaten Padang Pariaman,age_group,70-74,laki_laki,4.58,ribu_jiwa,2024,projection,total_population,3.1.2,136,,70–74
+13.05,2,Kabupaten Padang Pariaman,age_group,70-74,laki_laki,5.00,ribu_jiwa,2025,projection,total_population,3.1.2,136,,70–74
+13.05,2,Kabupaten Padang Pariaman,age_group,70-74,perempuan,6.30,ribu_jiwa,2024,projection,total_population,3.1.2,136,,70–74
+13.05,2,Kabupaten Padang Pariaman,age_group,70-74,perempuan,6.81,ribu_jiwa,2025,projection,total_population,3.1.2,136,,70–74
+13.05,2,Kabupaten Padang Pariaman,age_group,70-74,,10.89,ribu_jiwa,2024,projection,total_population,3.1.2,136,,70–74
+13.05,2,Kabupaten Padang Pariaman,age_group,70-74,,11.81,ribu_jiwa,2025,projection,total_population,3.1.2,136,,70–74
+13.05,2,Kabupaten Padang Pariaman,age_group,75+,laki_laki,4.33,ribu_jiwa,2024,projection,total_population,3.1.2,136,,75+
+13.05,2,Kabupaten Padang Pariaman,age_group,75+,laki_laki,4.82,ribu_jiwa,2025,projection,total_population,3.1.2,136,,75+
+13.05,2,Kabupaten Padang Pariaman,age_group,75+,perempuan,7.49,ribu_jiwa,2024,projection,total_population,3.1.2,136,,75+
+13.05,2,Kabupaten Padang Pariaman,age_group,75+,perempuan,8.15,ribu_jiwa,2025,projection,total_population,3.1.2,136,,75+
+13.05,2,Kabupaten Padang Pariaman,age_group,75+,,11.81,ribu_jiwa,2024,projection,total_population,3.1.2,136,,75+
+13.05,2,Kabupaten Padang Pariaman,age_group,75+,,12.97,ribu_jiwa,2025,projection,total_population,3.1.2,136,,75+
+13.05,2,Padang Pariaman,sex,laki_laki,,226.44,ribu_jiwa,2024,projection,total_population,3.1.2,136,,Laki-laki
+13.05,2,Padang Pariaman,sex,laki_laki,,234.86,ribu_jiwa,2025,projection,total_population,3.1.2,136,,Laki-laki
+13.05,2,Padang Pariaman,sex,perempuan,,224.95,ribu_jiwa,2024,projection,total_population,3.1.2,136,,Perempuan
+13.05,2,Padang Pariaman,sex,perempuan,,232.18,ribu_jiwa,2025,projection,total_population,3.1.2,136,,Perempuan
+13.05,2,Padang Pariaman,total,total,,451.39,ribu_jiwa,2024,projection,total_population,3.1.2,136,,
+13.05,2,Padang Pariaman,total,total,,467.04,ribu_jiwa,2025,projection,total_population,3.1.2,136,,
+13.05.02,3,Batang Anai,sex,laki_laki,,29.50,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Laki-laki
+13.05.02,3,Batang Anai,sex,laki_laki,,30.25,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Laki-laki
+13.05.02,3,Batang Anai,sex,perempuan,,28.70,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Perempuan
+13.05.02,3,Batang Anai,sex,perempuan,,29.43,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Perempuan
+13.05.01,3,Lubuak Aluang,sex,laki_laki,,25.35,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Laki-laki
+13.05.01,3,Lubuak Aluang,sex,laki_laki,,25.79,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Laki-laki
+13.05.01,3,Lubuak Aluang,sex,perempuan,,24.65,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Perempuan
+13.05.01,3,Lubuak Aluang,sex,perempuan,,25.06,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Perempuan
+13.05.11,3,Sintuak Toboh Gadang,sex,laki_laki,,9.95,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Laki-laki
+13.05.11,3,Sintuak Toboh Gadang,sex,laki_laki,,10.08,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Laki-laki
+13.05.11,3,Sintuak Toboh Gadang,sex,perempuan,,10.41,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Perempuan
+13.05.11,3,Sintuak Toboh Gadang,sex,perempuan,,10.58,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Perempuan
+13.05.10,3,Ulakan Tapakih,sex,laki_laki,,11.24,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Laki-laki
+13.05.10,3,Ulakan Tapakih,sex,laki_laki,,11.49,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Laki-laki
+13.05.10,3,Ulakan Tapakih,sex,perempuan,,10.78,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Perempuan
+13.05.10,3,Ulakan Tapakih,sex,perempuan,,10.91,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Perempuan
+13.05.03,3,Nan Sabaris,sex,laki_laki,,15.87,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Laki-laki
+13.05.03,3,Nan Sabaris,sex,laki_laki,,16.14,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Laki-laki
+13.05.03,3,Nan Sabaris,sex,perempuan,,16.40,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Perempuan
+13.05.03,3,Nan Sabaris,sex,perempuan,,16.74,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Perempuan
+13.05.04,3,2 X 11 Anam Lingkuang,sex,laki_laki,,9.52,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Laki-laki
+13.05.04,3,2 X 11 Anam Lingkuang,sex,laki_laki,,9.61,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Laki-laki
+13.05.04,3,2 X 11 Anam Lingkuang,sex,perempuan,,9.90,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Perempuan
+13.05.04,3,2 X 11 Anam Lingkuang,sex,perempuan,,10.00,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Perempuan
+13.05.15,3,2 X 11 Kayu Tanam,sex,laki_laki,,15.07,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Laki-laki
+13.05.15,3,2 X 11 Kayu Tanam,sex,laki_laki,,15.34,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Laki-laki
+13.05.15,3,2 X 11 Kayu Tanam,sex,perempuan,,14.79,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Perempuan
+13.05.15,3,2 X 11 Kayu Tanam,sex,perempuan,,15.02,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Perempuan
+13.05.05,3,VII Koto,sex,laki_laki,,18.57,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Laki-laki
+13.05.05,3,VII Koto,sex,laki_laki,,18.87,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Laki-laki
+13.05.05,3,VII Koto,sex,perempuan,,18.72,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Perempuan
+13.05.05,3,VII Koto,sex,perempuan,,18.91,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Perempuan
+13.05.16,3,Koto Patamuan,sex,laki_laki,,9.37,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Laki-laki
+13.05.16,3,Koto Patamuan,sex,laki_laki,,9.54,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Laki-laki
+13.05.16,3,Koto Patamuan,sex,perempuan,,9.35,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Perempuan
+13.05.16,3,Koto Patamuan,sex,perempuan,,9.51,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Perempuan
+13.05.12,3,VII Koto Padang Sago,sex,laki_laki,,4.54,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Laki-laki
+13.05.12,3,VII Koto Padang Sago,sex,laki_laki,,4.61,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Laki-laki
+13.05.12,3,VII Koto Padang Sago,sex,perempuan,,4.64,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Perempuan
+13.05.12,3,VII Koto Padang Sago,sex,perempuan,,4.69,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Perempuan
+13.05.06,3,V Koto,sex,laki_laki,,12.61,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Laki-laki
+13.05.06,3,V Koto,sex,laki_laki,,12.79,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Laki-laki
+13.05.06,3,V Koto,sex,perempuan,,12.25,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Perempuan
+13.05.06,3,V Koto,sex,perempuan,,12.40,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Perempuan
+13.05.14,3,V Koto Timur,sex,laki_laki,,7.53,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Laki-laki
+13.05.14,3,V Koto Timur,sex,laki_laki,,7.61,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Laki-laki
+13.05.14,3,V Koto Timur,sex,perempuan,,7.42,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Perempuan
+13.05.14,3,V Koto Timur,sex,perempuan,,7.47,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Perempuan
+13.05.08,3,Sungai Limau,sex,laki_laki,,15.95,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Laki-laki
+13.05.08,3,Sungai Limau,sex,laki_laki,,16.23,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Laki-laki
+13.05.08,3,Sungai Limau,sex,perempuan,,15.52,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Perempuan
+13.05.08,3,Sungai Limau,sex,perempuan,,15.72,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Perempuan
+13.05.13,3,Batang Gasan,sex,laki_laki,,5.80,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Laki-laki
+13.05.13,3,Batang Gasan,sex,laki_laki,,5.89,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Laki-laki
+13.05.13,3,Batang Gasan,sex,perempuan,,5.66,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Perempuan
+13.05.13,3,Batang Gasan,sex,perempuan,,5.71,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Perempuan
+13.05.09,3,IV Koto Aua Malintang,sex,laki_laki,,10.90,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Laki-laki
+13.05.09,3,IV Koto Aua Malintang,sex,laki_laki,,11.06,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Laki-laki
+13.05.09,3,IV Koto Aua Malintang,sex,perempuan,,11.27,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Perempuan
+13.05.09,3,IV Koto Aua Malintang,sex,perempuan,,11.43,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Perempuan
+13.05,2,Padang Pariaman,sex,laki_laki,,230.62,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Laki-laki
+13.05,2,Padang Pariaman,sex,laki_laki,,234.86,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Laki-laki
+13.05,2,Padang Pariaman,sex,perempuan,,228.55,ribu_jiwa,2024,projection,total_population,3.1.3,137,,Perempuan
+13.05,2,Padang Pariaman,sex,perempuan,,232.18,ribu_jiwa,2025,projection,total_population,3.1.3,137,,Perempuan
+13.05.02,3,Batang Anai,total,total,,58.21,ribu_jiwa,2024,projection,total_population,3.1.3,138,,
+13.05.02,3,Batang Anai,total,total,,59.68,ribu_jiwa,2025,projection,total_population,3.1.3,138,,
+13.05.01,3,Lubuak Aluang,total,total,,50.00,ribu_jiwa,2024,projection,total_population,3.1.3,138,,
+13.05.01,3,Lubuak Aluang,total,total,,50.85,ribu_jiwa,2025,projection,total_population,3.1.3,138,,
+13.05.11,3,Sintuak Toboh Gadang,total,total,,20.36,ribu_jiwa,2024,projection,total_population,3.1.3,138,,
+13.05.11,3,Sintuak Toboh Gadang,total,total,,20.66,ribu_jiwa,2025,projection,total_population,3.1.3,138,,
+13.05.10,3,Ulakan Tapakih,total,total,,22.02,ribu_jiwa,2024,projection,total_population,3.1.3,138,,
+13.05.10,3,Ulakan Tapakih,total,total,,22.40,ribu_jiwa,2025,projection,total_population,3.1.3,138,,
+13.05.03,3,Nan Sabaris,total,total,,32.27,ribu_jiwa,2024,projection,total_population,3.1.3,138,,
+13.05.03,3,Nan Sabaris,total,total,,32.88,ribu_jiwa,2025,projection,total_population,3.1.3,138,,
+13.05.04,3,2 X 11 Anam Lingkuang,total,total,,19.42,ribu_jiwa,2024,projection,total_population,3.1.3,138,,
+13.05.04,3,2 X 11 Anam Lingkuang,total,total,,19.62,ribu_jiwa,2025,projection,total_population,3.1.3,138,,
+13.05.15,3,2 X 11 Kayu Tanam,total,total,,29.86,ribu_jiwa,2024,projection,total_population,3.1.3,138,,
+13.05.15,3,2 X 11 Kayu Tanam,total,total,,30.36,ribu_jiwa,2025,projection,total_population,3.1.3,138,,
+13.05.05,3,VII Koto,total,total,,37.29,ribu_jiwa,2024,projection,total_population,3.1.3,138,,
+13.05.05,3,VII Koto,total,total,,37.78,ribu_jiwa,2025,projection,total_population,3.1.3,138,,
+13.05.16,3,Koto Patamuan,total,total,,18.72,ribu_jiwa,2024,projection,total_population,3.1.3,138,,
+13.05.16,3,Koto Patamuan,total,total,,19.05,ribu_jiwa,2025,projection,total_population,3.1.3,138,,
+13.05.12,3,VII Koto Padang Sago,total,total,,9.17,ribu_jiwa,2024,projection,total_population,3.1.3,138,,
+13.05.12,3,VII Koto Padang Sago,total,total,,9.31,ribu_jiwa,2025,projection,total_population,3.1.3,138,,
+13.05.06,3,V Koto,total,total,,24.86,ribu_jiwa,2024,projection,total_population,3.1.3,138,,
+13.05.06,3,V Koto,total,total,,25.18,ribu_jiwa,2025,projection,total_population,3.1.3,138,,
+13.05.14,3,V Koto Timur,total,total,,14.94,ribu_jiwa,2024,projection,total_population,3.1.3,138,,
+13.05.14,3,V Koto Timur,total,total,,15.08,ribu_jiwa,2025,projection,total_population,3.1.3,138,,
+13.05.08,3,Sungai Limau,total,total,,31.48,ribu_jiwa,2024,projection,total_population,3.1.3,138,,
+13.05.08,3,Sungai Limau,total,total,,31.94,ribu_jiwa,2025,projection,total_population,3.1.3,138,,
+13.05.13,3,Batang Gasan,total,total,,11.46,ribu_jiwa,2024,projection,total_population,3.1.3,138,,
+13.05.13,3,Batang Gasan,total,total,,11.60,ribu_jiwa,2025,projection,total_population,3.1.3,138,,
+13.05.09,3,IV Koto Aua Malintang,total,total,,22.17,ribu_jiwa,2024,projection,total_population,3.1.3,138,,
+13.05.09,3,IV Koto Aua Malintang,total,total,,22.49,ribu_jiwa,2025,projection,total_population,3.1.3,138,,
+13.05,2,Padang Pariaman,total,total,,459.17,ribu_jiwa,2024,projection,total_population,3.1.3,138,,
+13.05,2,Padang Pariaman,total,total,,467.04,ribu_jiwa,2025,projection,total_population,3.1.3,138,,
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/padi_padian,,95276,rupiah,2024,survey_estimate,per_capita,10.1,681,,Padi-padian
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/padi_padian,,96036,rupiah,2025,survey_estimate,per_capita,10.1,681,,Padi-padian
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/umbi_umbian,,7282,rupiah,2024,survey_estimate,per_capita,10.1,681,,Umbi-umbian
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/umbi_umbian,,6793,rupiah,2025,survey_estimate,per_capita,10.1,681,,Umbi-umbian
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,63012,rupiah,2024,survey_estimate,per_capita,10.1,681,,Ikan/udang/cumi/kerang
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,72594,rupiah,2025,survey_estimate,per_capita,10.1,681,,Ikan/udang/cumi/kerang
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/daging,,20944,rupiah,2024,survey_estimate,per_capita,10.1,681,,Daging
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/daging,,24059,rupiah,2025,survey_estimate,per_capita,10.1,681,,Daging
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/telur_dan_susu,,28117,rupiah,2024,survey_estimate,per_capita,10.1,681,,Telur dan Susu
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/telur_dan_susu,,33610,rupiah,2025,survey_estimate,per_capita,10.1,681,,Telur dan Susu
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/sayur_sayuran,,77381,rupiah,2024,survey_estimate,per_capita,10.1,681,,Sayur-sayuran
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/sayur_sayuran,,79779,rupiah,2025,survey_estimate,per_capita,10.1,681,,Sayur-sayuran
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/kacang_kacangan,,8926,rupiah,2024,survey_estimate,per_capita,10.1,681,,Kacang-kacangan
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/kacang_kacangan,,8704,rupiah,2025,survey_estimate,per_capita,10.1,681,,Kacang-kacangan
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/buah_buahan,,26873,rupiah,2024,survey_estimate,per_capita,10.1,681,,Buah-buahan
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/buah_buahan,,27615,rupiah,2025,survey_estimate,per_capita,10.1,681,,Buah-buahan
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/minyak_dan_lemak,,24656,rupiah,2024,survey_estimate,per_capita,10.1,681,,Minyak dan lemak
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/minyak_dan_lemak,,30788,rupiah,2025,survey_estimate,per_capita,10.1,681,,Minyak dan lemak
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/bahan_minuman,,15454,rupiah,2024,survey_estimate,per_capita,10.1,681,,Bahan Minuman
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/bahan_minuman,,15635,rupiah,2025,survey_estimate,per_capita,10.1,681,,Bahan Minuman
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/bumbu_bumbuan,,9788,rupiah,2024,survey_estimate,per_capita,10.1,681,,Bumbu-bumbuan
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/bumbu_bumbuan,,8896,rupiah,2025,survey_estimate,per_capita,10.1,681,,Bumbu-bumbuan
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/konsumsi_lainnya,,7910,rupiah,2024,survey_estimate,per_capita,10.1,681,,Konsumsi Lainnya
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/konsumsi_lainnya,,9602,rupiah,2025,survey_estimate,per_capita,10.1,681,,Konsumsi Lainnya
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,233457,rupiah,2024,survey_estimate,per_capita,10.1,681,,Makanan dan Minuman Jadi
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,238773,rupiah,2025,survey_estimate,per_capita,10.1,681,,Makanan dan Minuman Jadi
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/rokok,,96241,rupiah,2024,survey_estimate,per_capita,10.1,681,,Rokok
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/rokok,,99948,rupiah,2025,survey_estimate,per_capita,10.1,681,,Rokok
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/jumlah_makanan,,715317,rupiah,2024,survey_estimate,per_capita,10.1,681,,Jumlah Makanan
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/jumlah_makanan,,752831,rupiah,2025,survey_estimate,per_capita,10.1,681,,Jumlah Makanan
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/perumahan_bahan_bakar_penerangan_air,,275213,rupiah,2024,survey_estimate,per_capita,10.1,681,,"Perumahan, Bahan Bakar, Penerangan, Air"
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/perumahan_bahan_bakar_penerangan_air,,283840,rupiah,2025,survey_estimate,per_capita,10.1,681,,"Perumahan, Bahan Bakar, Penerangan, Air"
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,139212,rupiah,2024,survey_estimate,per_capita,10.1,681,,Aneka Barang dan Jasa
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,149848,rupiah,2025,survey_estimate,per_capita,10.1,681,,Aneka Barang dan Jasa
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/pakaian_alas_kaki_tutup_kepala,,32615,rupiah,2024,survey_estimate,per_capita,10.1,681,,"Pakaian, Alas Kaki, Tutup Kepala"
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/pakaian_alas_kaki_tutup_kepala,,41898,rupiah,2025,survey_estimate,per_capita,10.1,681,,"Pakaian, Alas Kaki, Tutup Kepala"
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/barang_yang_tahan_lama,,91267,rupiah,2024,survey_estimate,per_capita,10.1,681,,Barang yang Tahan Lama
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/barang_yang_tahan_lama,,76930,rupiah,2025,survey_estimate,per_capita,10.1,681,,Barang yang Tahan Lama
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/pajak_dan_asuransi,,41025,rupiah,2024,survey_estimate,per_capita,10.1,681,,Pajak dan Asuransi
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/pajak_dan_asuransi,,44867,rupiah,2025,survey_estimate,per_capita,10.1,681,,Pajak dan Asuransi
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/keperluan_pesta,,23098,rupiah,2024,survey_estimate,per_capita,10.1,681,,Keperluan Pesta
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/keperluan_pesta,,29551,rupiah,2025,survey_estimate,per_capita,10.1,681,,Keperluan Pesta
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,602430,rupiah,2024,survey_estimate,per_capita,10.1,681,,Jumlah Bukan Makanan
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,626934,rupiah,2025,survey_estimate,per_capita,10.1,681,,Jumlah Bukan Makanan
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/jumlah_total,,1317747,rupiah,2024,survey_estimate,per_capita,10.1,681,,Jumlah Total
+13.05,2,Kabupaten Padang Pariaman,expenditure,kelompok_komoditas/jumlah_total,,1379765,rupiah,2025,survey_estimate,per_capita,10.1,681,,Jumlah Total

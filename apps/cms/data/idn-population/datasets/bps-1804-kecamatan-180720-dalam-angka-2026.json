@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1804-kecamatan-180720-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.07.20",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Waway Karya Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lampung Timur",
+  "publisherDomain": "1804",
+  "publisherWebsite": "https://lampungtimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lampung Timur (https://lampungtimurkab.bps.go.id), publikasi \"Kecamatan Waway Karya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1804062",
+  "publicationNumber": "18040.26017",
+  "issn": "2797-5401",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lampungtimurkab.bps.go.id/id/publication/2026/09/28/93f2c53b9cf5e42f6a55ee17/kecamatan-waway-karya-dalam-angka-2026.html",
+  "sourceFileSha256": "2108abee719387788b17d3cdcc590393ca9933fbec9099afa31f76af1b5da2ce",
+  "sourceFileBytes": 7856485,
+  "sourcePages": [],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lampung Timur.",
+  "csvPath": "datasets/bps-1804-kecamatan-180720-dalam-angka-2026.csv",
+  "csvSha256": "b727ce22ca96fb17e9942888385504abc82e0f3d9e23a45cd198c45d129bbd0b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio ───── Jenis Kelamin Penduduk Menurut Desa di Kecamatan Waway Karya, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di ───── Kecamatan Waway Karya, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sumber Rejo\": unmatched ",
+    "table 3.1: row not stored: row \"Sumber Rejo\": unmatched "
+  ]
+}

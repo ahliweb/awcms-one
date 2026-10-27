@@ -1,0 +1,106 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.06.03,3,Dendang,total,total,,11148,jiwa,2025,registration,total_population,3.1.1,46,,
+19.06.07,3,Simpang Pesak,total,total,,8818,jiwa,2025,registration,total_population,3.1.1,46,,
+19.06.02,3,Gantung,total,total,,31248,jiwa,2025,registration,total_population,3.1.1,46,,
+19.06.06,3,Simpang Renggiang,total,total,,7770,jiwa,2025,registration,total_population,3.1.1,46,,
+19.06.01,3,Manggar,total,total,,40839,jiwa,2025,registration,total_population,3.1.1,46,,
+19.06.05,3,Damar,total,total,,13970,jiwa,2025,registration,total_population,3.1.1,46,,
+19.06.04,3,Kelapa Kampit,total,total,,19650,jiwa,2025,registration,total_population,3.1.1,46,,
+19.06,2,Belitung Timur,total,total,,133443,jiwa,2025,registration,total_population,3.1.1,46,,
+19.06,2,Kabupaten Belitung Timur,age_group,0-4,laki_laki,4288,jiwa,2025,registration,total_population,3.1.2,49,,0–4
+19.06,2,Kabupaten Belitung Timur,age_group,0-4,perempuan,4096,jiwa,2025,registration,total_population,3.1.2,49,,0–4
+19.06,2,Kabupaten Belitung Timur,age_group,0-4,,8384,jiwa,2025,registration,total_population,3.1.2,49,,0–4
+19.06,2,Kabupaten Belitung Timur,age_group,5-9,laki_laki,5288,jiwa,2025,registration,total_population,3.1.2,49,,5–9
+19.06,2,Kabupaten Belitung Timur,age_group,5-9,perempuan,4956,jiwa,2025,registration,total_population,3.1.2,49,,5–9
+19.06,2,Kabupaten Belitung Timur,age_group,5-9,,10244,jiwa,2025,registration,total_population,3.1.2,49,,5–9
+19.06,2,Kabupaten Belitung Timur,age_group,10-14,laki_laki,5960,jiwa,2025,registration,total_population,3.1.2,49,,10–14
+19.06,2,Kabupaten Belitung Timur,age_group,10-14,perempuan,5542,jiwa,2025,registration,total_population,3.1.2,49,,10–14
+19.06,2,Kabupaten Belitung Timur,age_group,10-14,,11502,jiwa,2025,registration,total_population,3.1.2,49,,10–14
+19.06,2,Kabupaten Belitung Timur,age_group,15-19,laki_laki,5520,jiwa,2025,registration,total_population,3.1.2,49,,15–19
+19.06,2,Kabupaten Belitung Timur,age_group,15-19,perempuan,5156,jiwa,2025,registration,total_population,3.1.2,49,,15–19
+19.06,2,Kabupaten Belitung Timur,age_group,15-19,,10676,jiwa,2025,registration,total_population,3.1.2,49,,15–19
+19.06,2,Kabupaten Belitung Timur,age_group,20-24,laki_laki,5613,jiwa,2025,registration,total_population,3.1.2,49,,20–24
+19.06,2,Kabupaten Belitung Timur,age_group,20-24,perempuan,5383,jiwa,2025,registration,total_population,3.1.2,49,,20–24
+19.06,2,Kabupaten Belitung Timur,age_group,20-24,,10996,jiwa,2025,registration,total_population,3.1.2,49,,20–24
+19.06,2,Kabupaten Belitung Timur,age_group,25-29,laki_laki,5288,jiwa,2025,registration,total_population,3.1.2,49,,25–29
+19.06,2,Kabupaten Belitung Timur,age_group,25-29,perempuan,4839,jiwa,2025,registration,total_population,3.1.2,49,,25–29
+19.06,2,Kabupaten Belitung Timur,age_group,25-29,,10127,jiwa,2025,registration,total_population,3.1.2,49,,25–29
+19.06,2,Kabupaten Belitung Timur,age_group,30-34,laki_laki,4904,jiwa,2025,registration,total_population,3.1.2,49,,30–34
+19.06,2,Kabupaten Belitung Timur,age_group,30-34,perempuan,4568,jiwa,2025,registration,total_population,3.1.2,49,,30–34
+19.06,2,Kabupaten Belitung Timur,age_group,30-34,,9472,jiwa,2025,registration,total_population,3.1.2,49,,30–34
+19.06,2,Kabupaten Belitung Timur,age_group,35-39,laki_laki,4890,jiwa,2025,registration,total_population,3.1.2,49,,35–39
+19.06,2,Kabupaten Belitung Timur,age_group,35-39,perempuan,4632,jiwa,2025,registration,total_population,3.1.2,49,,35–39
+19.06,2,Kabupaten Belitung Timur,age_group,35-39,,9522,jiwa,2025,registration,total_population,3.1.2,49,,35–39
+19.06,2,Kabupaten Belitung Timur,age_group,40-44,laki_laki,5622,jiwa,2025,registration,total_population,3.1.2,49,,40–44
+19.06,2,Kabupaten Belitung Timur,age_group,40-44,perempuan,5204,jiwa,2025,registration,total_population,3.1.2,49,,40–44
+19.06,2,Kabupaten Belitung Timur,age_group,40-44,,10826,jiwa,2025,registration,total_population,3.1.2,49,,40–44
+19.06,2,Kabupaten Belitung Timur,age_group,45-49,laki_laki,5785,jiwa,2025,registration,total_population,3.1.2,49,,45–49
+19.06,2,Kabupaten Belitung Timur,age_group,45-49,perempuan,5191,jiwa,2025,registration,total_population,3.1.2,49,,45–49
+19.06,2,Kabupaten Belitung Timur,age_group,45-49,,10976,jiwa,2025,registration,total_population,3.1.2,49,,45–49
+19.06,2,Kabupaten Belitung Timur,age_group,50-54,laki_laki,4620,jiwa,2025,registration,total_population,3.1.2,49,,50–54
+19.06,2,Kabupaten Belitung Timur,age_group,50-54,perempuan,4054,jiwa,2025,registration,total_population,3.1.2,49,,50–54
+19.06,2,Kabupaten Belitung Timur,age_group,50-54,,8674,jiwa,2025,registration,total_population,3.1.2,49,,50–54
+19.06,2,Kabupaten Belitung Timur,age_group,55-59,laki_laki,3614,jiwa,2025,registration,total_population,3.1.2,49,,55–59
+19.06,2,Kabupaten Belitung Timur,age_group,55-59,perempuan,3185,jiwa,2025,registration,total_population,3.1.2,49,,55–59
+19.06,2,Kabupaten Belitung Timur,age_group,55-59,,6799,jiwa,2025,registration,total_population,3.1.2,49,,55–59
+19.06,2,Kabupaten Belitung Timur,age_group,60-64,laki_laki,2643,jiwa,2025,registration,total_population,3.1.2,49,,60–64
+19.06,2,Kabupaten Belitung Timur,age_group,60-64,perempuan,2548,jiwa,2025,registration,total_population,3.1.2,49,,60–64
+19.06,2,Kabupaten Belitung Timur,age_group,60-64,,5191,jiwa,2025,registration,total_population,3.1.2,49,,60–64
+19.06,2,Kabupaten Belitung Timur,age_group,65-69,laki_laki,1981,jiwa,2025,registration,total_population,3.1.2,49,,65–69
+19.06,2,Kabupaten Belitung Timur,age_group,65-69,perempuan,2192,jiwa,2025,registration,total_population,3.1.2,49,,65–69
+19.06,2,Kabupaten Belitung Timur,age_group,65-69,,4173,jiwa,2025,registration,total_population,3.1.2,49,,65–69
+19.06,2,Kabupaten Belitung Timur,age_group,70-74,laki_laki,1331,jiwa,2025,registration,total_population,3.1.2,49,,70–74
+19.06,2,Kabupaten Belitung Timur,age_group,70-74,perempuan,1523,jiwa,2025,registration,total_population,3.1.2,49,,70–74
+19.06,2,Kabupaten Belitung Timur,age_group,70-74,,2854,jiwa,2025,registration,total_population,3.1.2,49,,70–74
+19.06,2,Kabupaten Belitung Timur,age_group,75+,laki_laki,1232,jiwa,2025,registration,total_population,3.1.2,49,,75+
+19.06,2,Kabupaten Belitung Timur,age_group,75+,perempuan,1795,jiwa,2025,registration,total_population,3.1.2,49,,75+
+19.06,2,Kabupaten Belitung Timur,age_group,75+,,3027,jiwa,2025,registration,total_population,3.1.2,49,,75+
+19.06,2,Belitung Timur,sex,laki_laki,,68579,jiwa,2025,registration,total_population,3.1.2,49,,Laki-Laki
+19.06,2,Belitung Timur,sex,perempuan,,64864,jiwa,2025,registration,total_population,3.1.2,49,,Perempuan
+19.06,2,Belitung Timur,total,total,,133443,jiwa,2025,registration,total_population,3.1.2,49,,
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/padi_padian,,101011,rupiah,2025,survey_estimate,per_capita,10.1,296,,Padi-padian
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/padi_padian,,106812,rupiah,2024,survey_estimate,per_capita,10.1,296,,Padi-padian
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/umbi_umbian,,7507,rupiah,2025,survey_estimate,per_capita,10.1,296,,Umbi-umbian
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/umbi_umbian,,5483,rupiah,2024,survey_estimate,per_capita,10.1,296,,Umbi-umbian
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,131746,rupiah,2025,survey_estimate,per_capita,10.1,296,,Ikan/udang/cumi/kerang
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,125926,rupiah,2024,survey_estimate,per_capita,10.1,296,,Ikan/udang/cumi/kerang
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/daging,,60200,rupiah,2025,survey_estimate,per_capita,10.1,296,,Daging
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/daging,,53699,rupiah,2024,survey_estimate,per_capita,10.1,296,,Daging
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/telur_dan_susu,,63508,rupiah,2025,survey_estimate,per_capita,10.1,296,,Telur dan susu
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/telur_dan_susu,,60045,rupiah,2024,survey_estimate,per_capita,10.1,296,,Telur dan susu
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/sayur_sayuran,,85473,rupiah,2025,survey_estimate,per_capita,10.1,296,,Sayur-sayuran
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/sayur_sayuran,,83266,rupiah,2024,survey_estimate,per_capita,10.1,296,,Sayur-sayuran
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/kacang_kacangan,,12471,rupiah,2025,survey_estimate,per_capita,10.1,296,,Kacang-kacangan
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/kacang_kacangan,,13068,rupiah,2024,survey_estimate,per_capita,10.1,296,,Kacang-kacangan
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/buah_buahan,,42306,rupiah,2025,survey_estimate,per_capita,10.1,296,,Buah-buahan
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/buah_buahan,,56902,rupiah,2024,survey_estimate,per_capita,10.1,296,,Buah-buahan
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23182,rupiah,2025,survey_estimate,per_capita,10.1,296,,Minyak dan kelapa
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20658,rupiah,2024,survey_estimate,per_capita,10.1,296,,Minyak dan kelapa
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/bahan_minuman,,28325,rupiah,2025,survey_estimate,per_capita,10.1,296,,Bahan minuman
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/bahan_minuman,,24308,rupiah,2024,survey_estimate,per_capita,10.1,296,,Bahan minuman
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/bumbu_bumbuan,,21258,rupiah,2025,survey_estimate,per_capita,10.1,296,,Bumbu-bumbuan
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/bumbu_bumbuan,,22119,rupiah,2024,survey_estimate,per_capita,10.1,296,,Bumbu-bumbuan
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/konsumsi_lainnya,,19944,rupiah,2025,survey_estimate,per_capita,10.1,296,,Konsumsi lainnya
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/konsumsi_lainnya,,21178,rupiah,2024,survey_estimate,per_capita,10.1,296,,Konsumsi lainnya
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,211983,rupiah,2025,survey_estimate,per_capita,10.1,296,,Makanan dan minuman jadi
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,230574,rupiah,2024,survey_estimate,per_capita,10.1,296,,Makanan dan minuman jadi
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/rokok,,140438,rupiah,2025,survey_estimate,per_capita,10.1,296,,Rokok
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/rokok,,178565,rupiah,2024,survey_estimate,per_capita,10.1,296,,Rokok
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/jumlah_makanan,,949352,rupiah,2025,survey_estimate,per_capita,10.1,296,,Jumlah makanan
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/jumlah_makanan,,1002601,rupiah,2024,survey_estimate,per_capita,10.1,296,,Jumlah makanan
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,574499,rupiah,2025,survey_estimate,per_capita,10.1,296,,Perumahan dan fasilitas rumah tangga
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,578154,rupiah,2024,survey_estimate,per_capita,10.1,296,,Perumahan dan fasilitas rumah tangga
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,190941,rupiah,2025,survey_estimate,per_capita,10.1,296,,Aneka barang dan jasa
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,193393,rupiah,2024,survey_estimate,per_capita,10.1,296,,Aneka barang dan jasa
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,49036,rupiah,2025,survey_estimate,per_capita,10.1,296,,"Pakaian, alas kaki, dan tutup kepala"
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,44724,rupiah,2024,survey_estimate,per_capita,10.1,296,,"Pakaian, alas kaki, dan tutup kepala"
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/barang_tahan_lama,,86872,rupiah,2025,survey_estimate,per_capita,10.1,296,,Barang tahan lama
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/barang_tahan_lama,,87570,rupiah,2024,survey_estimate,per_capita,10.1,296,,Barang tahan lama
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,84077,rupiah,2025,survey_estimate,per_capita,10.1,296,,"Pajak, pungutan, dan asuransi"
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,78027,rupiah,2024,survey_estimate,per_capita,10.1,296,,"Pajak, pungutan, dan asuransi"
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,17943,rupiah,2025,survey_estimate,per_capita,10.1,296,,Keperluan pesta dan upacara/kenduri
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,21108,rupiah,2024,survey_estimate,per_capita,10.1,296,,Keperluan pesta dan upacara/kenduri
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1003369,rupiah,2025,survey_estimate,per_capita,10.1,296,,Jumlah bukan makanan
+19.06,2,Kabupaten Belitung Timur,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1002978,rupiah,2024,survey_estimate,per_capita,10.1,296,,Jumlah bukan makanan
+19.06,2,Kabupaten Belitung Timur,expenditure,total,,1952721,rupiah,2025,survey_estimate,per_capita,10.1,296,,
+19.06,2,Kabupaten Belitung Timur,expenditure,total,,2005579,rupiah,2024,survey_estimate,per_capita,10.1,296,,

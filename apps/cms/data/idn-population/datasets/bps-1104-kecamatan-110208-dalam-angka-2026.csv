@@ -1,0 +1,53 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.02.08.2002,4,Pasir Penjengakan,sex,laki_laki,,350,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.08.2002,4,Pasir Penjengakan,sex,perempuan,,361,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.08.2002,4,Pasir Penjengakan,total,total,,711,jiwa,2025,registration,total_population,3.1,29,,
+11.02.08.2003,4,Kutambaru,sex,laki_laki,,532,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.08.2003,4,Kutambaru,sex,perempuan,,505,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.08.2003,4,Kutambaru,total,total,,1037,jiwa,2025,registration,total_population,3.1,29,,
+11.02.08.2001,4,Pasir Gala,sex,laki_laki,,313,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.08.2001,4,Pasir Gala,sex,perempuan,,299,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.08.2001,4,Pasir Gala,total,total,,612,jiwa,2025,registration,total_population,3.1,29,,
+11.02.08.2012,4,Lawe Rutung,sex,laki_laki,,1012,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.08.2012,4,Lawe Rutung,sex,perempuan,,1005,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.08.2012,4,Lawe Rutung,total,total,,2017,jiwa,2025,registration,total_population,3.1,29,,
+11.02.08.2004,4,Lawe Sagu Hulu,sex,laki_laki,,443,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.08.2004,4,Lawe Sagu Hulu,sex,perempuan,,412,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.08.2004,4,Lawe Sagu Hulu,total,total,,855,jiwa,2025,registration,total_population,3.1,29,,
+11.02.08.2014,4,Tenembak Juhar,sex,laki_laki,,211,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.08.2014,4,Tenembak Juhar,sex,perempuan,,213,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.08.2014,4,Tenembak Juhar,total,total,,424,jiwa,2025,registration,total_population,3.1,29,,
+11.02.08.2005,4,Lawe Sagu Hilir,sex,laki_laki,,355,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.08.2005,4,Lawe Sagu Hilir,sex,perempuan,,385,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.08.2005,4,Lawe Sagu Hilir,total,total,,740,jiwa,2025,registration,total_population,3.1,29,,
+11.02.08.2021,4,Telaga Mekar,sex,laki_laki,,329,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.08.2021,4,Telaga Mekar,sex,perempuan,,335,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.08.2021,4,Telaga Mekar,total,total,,664,jiwa,2025,registration,total_population,3.1,29,,
+11.02.08.2016,4,Kuta Buluh Botong,sex,laki_laki,,207,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.08.2016,4,Kuta Buluh Botong,sex,perempuan,,200,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.08.2016,4,Kuta Buluh Botong,total,total,,407,jiwa,2025,registration,total_population,3.1,29,,
+11.02.08.2023,4,Pulonas Baru,sex,laki_laki,,704,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.08.2023,4,Pulonas Baru,sex,perempuan,,699,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.08.2023,4,Pulonas Baru,total,total,,1403,jiwa,2025,registration,total_population,3.1,29,,
+11.02.08.2015,4,Simpang Empat,sex,laki_laki,,593,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.08.2015,4,Simpang Empat,sex,perempuan,,560,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.08.2015,4,Simpang Empat,total,total,,1153,jiwa,2025,registration,total_population,3.1,29,,
+11.02.08.2019,4,Kandang Mbelang Mandiri,sex,laki_laki,,291,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.08.2019,4,Kandang Mbelang Mandiri,sex,perempuan,,276,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.08.2019,4,Kandang Mbelang Mandiri,total,total,,567,jiwa,2025,registration,total_population,3.1,29,,
+11.02.08.2020,4,Mbacang Racun,sex,laki_laki,,164,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.08.2020,4,Mbacang Racun,sex,perempuan,,146,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.08.2020,4,Mbacang Racun,total,total,,310,jiwa,2025,registration,total_population,3.1,29,,
+11.02.08.2018,4,Lawe Kinge,sex,laki_laki,,254,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki
+11.02.08.2018,4,Lawe Kinge,sex,perempuan,,260,jiwa,2025,registration,total_population,3.1,29,,Perempuan
+11.02.08.2018,4,Lawe Kinge,total,total,,514,jiwa,2025,registration,total_population,3.1,29,,
+11.02.08.2029,4,Bahagia,sex,laki_laki,,214,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki
+11.02.08.2029,4,Bahagia,sex,perempuan,,206,jiwa,2025,registration,total_population,3.1,30,,Perempuan
+11.02.08.2029,4,Bahagia,total,total,,420,jiwa,2025,registration,total_population,3.1,30,,
+11.02.08.2025,4,Kuta Genting,sex,laki_laki,,209,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki
+11.02.08.2025,4,Kuta Genting,sex,perempuan,,230,jiwa,2025,registration,total_population,3.1,30,,Perempuan
+11.02.08.2025,4,Kuta Genting,total,total,,439,jiwa,2025,registration,total_population,3.1,30,,
+11.02.08.2027,4,Lawe Sagu,sex,laki_laki,,255,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki
+11.02.08.2027,4,Lawe Sagu,sex,perempuan,,230,jiwa,2025,registration,total_population,3.1,30,,Perempuan
+11.02.08.2027,4,Lawe Sagu,total,total,,485,jiwa,2025,registration,total_population,3.1,30,,
+11.02.08,3,Lawe Bulan,total,total,,17190,jiwa,2025,registration,total_population,3.1,30,,

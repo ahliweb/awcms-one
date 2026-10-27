@@ -1,0 +1,154 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.08.11.2027,4,Meudang Ara,sex,laki_laki,,151,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2027,4,Meudang Ara,sex,perempuan,,162,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2027,4,Meudang Ara,total,total,,313,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2038,4,Siren Tujoh,sex,laki_laki,,130,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2038,4,Siren Tujoh,sex,perempuan,,150,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2038,4,Siren Tujoh,total,total,,280,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2029,4,Tumpeun,sex,laki_laki,,233,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2029,4,Tumpeun,sex,perempuan,,248,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2029,4,Tumpeun,total,total,,481,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2030,4,Alen,sex,laki_laki,,262,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2030,4,Alen,sex,perempuan,,254,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2030,4,Alen,total,total,,516,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2031,4,Dayah Blang Seureukuy,sex,laki_laki,,208,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2031,4,Dayah Blang Seureukuy,sex,perempuan,,242,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2031,4,Dayah Blang Seureukuy,total,total,,450,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2032,4,Blang Patra,sex,laki_laki,,193,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2032,4,Blang Patra,sex,perempuan,,173,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2032,4,Blang Patra,total,total,,366,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2035,4,Buket Glumpang,sex,laki_laki,,164,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2035,4,Buket Glumpang,sex,perempuan,,180,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2035,4,Buket Glumpang,total,total,,344,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2037,4,Alue Majron,sex,laki_laki,,487,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2037,4,Alue Majron,sex,perempuan,,463,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2037,4,Alue Majron,total,total,,950,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2033,4,Blang Majron,sex,laki_laki,,335,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2033,4,Blang Majron,sex,perempuan,,331,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2033,4,Blang Majron,total,total,,666,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2047,4,Blang Seureukuy,sex,laki_laki,,228,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2047,4,Blang Seureukuy,sex,perempuan,,229,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2047,4,Blang Seureukuy,total,total,,457,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2018,4,Kayee Panyang,sex,laki_laki,,405,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2018,4,Kayee Panyang,sex,perempuan,,416,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2018,4,Kayee Panyang,total,total,,821,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2017,4,Ulee Meuria,sex,laki_laki,,126,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2017,4,Ulee Meuria,sex,perempuan,,121,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2017,4,Ulee Meuria,total,total,,247,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2026,4,Pulo Blang Trieng,sex,laki_laki,,231,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2026,4,Pulo Blang Trieng,sex,perempuan,,220,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2026,4,Pulo Blang Trieng,total,total,,451,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2019,4,Rheng,sex,laki_laki,,346,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2019,4,Rheng,sex,perempuan,,340,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2019,4,Rheng,total,total,,686,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2020,4,Trieng Meudurou,sex,laki_laki,,222,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2020,4,Trieng Meudurou,sex,perempuan,,238,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2020,4,Trieng Meudurou,total,total,,460,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2025,4,Cibrek,sex,laki_laki,,189,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2025,4,Cibrek,sex,perempuan,,198,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2025,4,Cibrek,total,total,,387,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2023,4,Blang Awe,sex,laki_laki,,472,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2023,4,Blang Awe,sex,perempuan,,434,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2023,4,Blang Awe,total,total,,906,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2024,4,Pulo Blang Mangat,sex,laki_laki,,214,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2024,4,Pulo Blang Mangat,sex,perempuan,,209,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2024,4,Pulo Blang Mangat,total,total,,423,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2021,4,Ulee Gampong,sex,laki_laki,,172,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2021,4,Ulee Gampong,sex,perempuan,,184,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2021,4,Ulee Gampong,total,total,,356,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2001,4,Bale,sex,laki_laki,,392,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2001,4,Bale,sex,perempuan,,375,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2001,4,Bale,total,total,,767,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2002,4,Bie,sex,laki_laki,,463,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2002,4,Bie,sex,perempuan,,446,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2002,4,Bie,total,total,,909,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2006,4,Nibong,sex,laki_laki,,312,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2006,4,Nibong,sex,perempuan,,353,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2006,4,Nibong,total,total,,665,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2004,4,Baro Kulam Gajah,sex,laki_laki,,253,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.08.11.2004,4,Baro Kulam Gajah,sex,perempuan,,254,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.08.11.2004,4,Baro Kulam Gajah,total,total,,507,jiwa,2025,registration,total_population,3.1,30,,
+11.08.11.2003,4,Beurandang,sex,laki_laki,,306,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.08.11.2003,4,Beurandang,sex,perempuan,,299,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.08.11.2003,4,Beurandang,total,total,,605,jiwa,2025,registration,total_population,3.1,32,,
+11.08.11.2005,4,Glong,sex,laki_laki,,354,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.08.11.2005,4,Glong,sex,perempuan,,340,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.08.11.2005,4,Glong,total,total,,694,jiwa,2025,registration,total_population,3.1,32,,
+11.08.11.2007,4,Langa,sex,laki_laki,,420,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.08.11.2007,4,Langa,sex,perempuan,,432,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.08.11.2007,4,Langa,total,total,,852,jiwa,2025,registration,total_population,3.1,32,,
+11.08.11.2008,4,Beunot,sex,laki_laki,,1139,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.08.11.2008,4,Beunot,sex,perempuan,,1055,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.08.11.2008,4,Beunot,total,total,,2194,jiwa,2025,registration,total_population,3.1,32,,
+11.08.11.2009,4,Keude Bayu,sex,laki_laki,,166,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.08.11.2009,4,Keude Bayu,sex,perempuan,,166,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.08.11.2009,4,Keude Bayu,total,total,,332,jiwa,2025,registration,total_population,3.1,32,,
+11.08.11.2010,4,Blang Bayu,sex,laki_laki,,490,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.08.11.2010,4,Blang Bayu,sex,perempuan,,509,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.08.11.2010,4,Blang Bayu,total,total,,999,jiwa,2025,registration,total_population,3.1,32,,
+11.08.11.2012,4,Dayah Baro,sex,laki_laki,,176,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.08.11.2012,4,Dayah Baro,sex,perempuan,,204,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.08.11.2012,4,Dayah Baro,total,total,,380,jiwa,2025,registration,total_population,3.1,32,,
+11.08.11.2011,4,Dayah Tuha,sex,laki_laki,,349,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.08.11.2011,4,Dayah Tuha,sex,perempuan,,362,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.08.11.2011,4,Dayah Tuha,total,total,,711,jiwa,2025,registration,total_population,3.1,32,,
+11.08.11.2015,4,Bungong,sex,laki_laki,,241,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.08.11.2015,4,Bungong,sex,perempuan,,241,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.08.11.2015,4,Bungong,total,total,,482,jiwa,2025,registration,total_population,3.1,32,,
+11.08.11.2014,4,Punti,sex,laki_laki,,536,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.08.11.2014,4,Punti,sex,perempuan,,570,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.08.11.2014,4,Punti,total,total,,1106,jiwa,2025,registration,total_population,3.1,32,,
+11.08.11.2016,4,Baroh Blang Rimueng,sex,laki_laki,,227,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.08.11.2016,4,Baroh Blang Rimueng,sex,perempuan,,209,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.08.11.2016,4,Baroh Blang Rimueng,total,total,,436,jiwa,2025,registration,total_population,3.1,32,,
+11.08.11.2013,4,Lancok,sex,laki_laki,,832,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.08.11.2013,4,Lancok,sex,perempuan,,707,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.08.11.2013,4,Lancok,total,total,,1539,jiwa,2025,registration,total_population,3.1,32,,
+11.08.11,3,Syamtalira Bayu,sex,laki_laki,,12043,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.08.11,3,Syamtalira Bayu,sex,perempuan,,11986,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.08.11,3,Syamtalira Bayu,total,total,,24029,jiwa,2025,registration,total_population,3.1,32,,
+11.08.11,3,Syamtalira Bayu,age_group,0-4,laki_laki,1071,jiwa,2025,registration,total_population,3.2,34,,0-4
+11.08.11,3,Syamtalira Bayu,age_group,0-4,perempuan,1026,jiwa,2025,registration,total_population,3.2,34,,0-4
+11.08.11,3,Syamtalira Bayu,age_group,0-4,,2097,jiwa,2025,registration,total_population,3.2,34,,0-4
+11.08.11,3,Syamtalira Bayu,age_group,5-9,laki_laki,1309,jiwa,2025,registration,total_population,3.2,34,,5-9
+11.08.11,3,Syamtalira Bayu,age_group,5-9,perempuan,1215,jiwa,2025,registration,total_population,3.2,34,,5-9
+11.08.11,3,Syamtalira Bayu,age_group,5-9,,2524,jiwa,2025,registration,total_population,3.2,34,,5-9
+11.08.11,3,Syamtalira Bayu,age_group,10-14,laki_laki,1212,jiwa,2025,registration,total_population,3.2,34,,10-14
+11.08.11,3,Syamtalira Bayu,age_group,10-14,perempuan,1125,jiwa,2025,registration,total_population,3.2,34,,10-14
+11.08.11,3,Syamtalira Bayu,age_group,10-14,,2337,jiwa,2025,registration,total_population,3.2,34,,10-14
+11.08.11,3,Syamtalira Bayu,age_group,15-19,laki_laki,1045,jiwa,2025,registration,total_population,3.2,34,,15-19
+11.08.11,3,Syamtalira Bayu,age_group,15-19,perempuan,961,jiwa,2025,registration,total_population,3.2,34,,15-19
+11.08.11,3,Syamtalira Bayu,age_group,15-19,,2006,jiwa,2025,registration,total_population,3.2,34,,15-19
+11.08.11,3,Syamtalira Bayu,age_group,20-24,laki_laki,1010,jiwa,2025,registration,total_population,3.2,34,,20-24
+11.08.11,3,Syamtalira Bayu,age_group,20-24,perempuan,950,jiwa,2025,registration,total_population,3.2,34,,20-24
+11.08.11,3,Syamtalira Bayu,age_group,20-24,,1960,jiwa,2025,registration,total_population,3.2,34,,20-24
+11.08.11,3,Syamtalira Bayu,age_group,25-29,laki_laki,1010,jiwa,2025,registration,total_population,3.2,34,,25-29
+11.08.11,3,Syamtalira Bayu,age_group,25-29,perempuan,961,jiwa,2025,registration,total_population,3.2,34,,25-29
+11.08.11,3,Syamtalira Bayu,age_group,25-29,,1971,jiwa,2025,registration,total_population,3.2,34,,25-29
+11.08.11,3,Syamtalira Bayu,age_group,30-34,laki_laki,866,jiwa,2025,registration,total_population,3.2,34,,30-34
+11.08.11,3,Syamtalira Bayu,age_group,30-34,perempuan,855,jiwa,2025,registration,total_population,3.2,34,,30-34
+11.08.11,3,Syamtalira Bayu,age_group,30-34,,1721,jiwa,2025,registration,total_population,3.2,34,,30-34
+11.08.11,3,Syamtalira Bayu,age_group,35-39,laki_laki,925,jiwa,2025,registration,total_population,3.2,34,,35-39
+11.08.11,3,Syamtalira Bayu,age_group,35-39,perempuan,960,jiwa,2025,registration,total_population,3.2,34,,35-39
+11.08.11,3,Syamtalira Bayu,age_group,35-39,,1885,jiwa,2025,registration,total_population,3.2,34,,35-39
+11.08.11,3,Syamtalira Bayu,age_group,40-44,laki_laki,876,jiwa,2025,registration,total_population,3.2,34,,40-44
+11.08.11,3,Syamtalira Bayu,age_group,40-44,perempuan,838,jiwa,2025,registration,total_population,3.2,34,,40-44
+11.08.11,3,Syamtalira Bayu,age_group,40-44,,1714,jiwa,2025,registration,total_population,3.2,34,,40-44
+11.08.11,3,Syamtalira Bayu,age_group,45-49,laki_laki,706,jiwa,2025,registration,total_population,3.2,34,,45-49
+11.08.11,3,Syamtalira Bayu,age_group,45-49,perempuan,719,jiwa,2025,registration,total_population,3.2,34,,45-49
+11.08.11,3,Syamtalira Bayu,age_group,45-49,,1425,jiwa,2025,registration,total_population,3.2,34,,45-49
+11.08.11,3,Syamtalira Bayu,age_group,50-54,laki_laki,596,jiwa,2025,registration,total_population,3.2,34,,50-54
+11.08.11,3,Syamtalira Bayu,age_group,50-54,perempuan,609,jiwa,2025,registration,total_population,3.2,34,,50-54
+11.08.11,3,Syamtalira Bayu,age_group,50-54,,1205,jiwa,2025,registration,total_population,3.2,34,,50-54
+11.08.11,3,Syamtalira Bayu,age_group,55-59,laki_laki,487,jiwa,2025,registration,total_population,3.2,34,,55-59
+11.08.11,3,Syamtalira Bayu,age_group,55-59,perempuan,498,jiwa,2025,registration,total_population,3.2,34,,55-59
+11.08.11,3,Syamtalira Bayu,age_group,55-59,,985,jiwa,2025,registration,total_population,3.2,34,,55-59
+11.08.11,3,Syamtalira Bayu,age_group,60-64,laki_laki,310,jiwa,2025,registration,total_population,3.2,34,,60-64
+11.08.11,3,Syamtalira Bayu,age_group,60-64,perempuan,385,jiwa,2025,registration,total_population,3.2,34,,60-64
+11.08.11,3,Syamtalira Bayu,age_group,60-64,,695,jiwa,2025,registration,total_population,3.2,34,,60-64
+11.08.11,3,Syamtalira Bayu,age_group,65+,laki_laki,620,jiwa,2025,registration,total_population,3.2,34,,65+
+11.08.11,3,Syamtalira Bayu,age_group,65+,perempuan,884,jiwa,2025,registration,total_population,3.2,34,,65+
+11.08.11,3,Syamtalira Bayu,age_group,65+,,1504,jiwa,2025,registration,total_population,3.2,34,,65+
+11.08.11,3,Syamtalira Bayu,sex,laki_laki,,12043,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+11.08.11,3,Syamtalira Bayu,sex,perempuan,,11986,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+11.08.11,3,Syamtalira Bayu,total,total,,24029,jiwa,2025,registration,total_population,3.2,34,,

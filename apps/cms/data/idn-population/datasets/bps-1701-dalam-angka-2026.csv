@@ -1,0 +1,92 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.01.04,3,Manna,total,total,,17.73,ribu_jiwa,2025,projection,total_population,3.1.1,76,,
+17.01.05,3,Kota Manna,total,total,,33.75,ribu_jiwa,2025,projection,total_population,3.1.1,76,,
+17.01.01,3,Kedurang,total,total,,12.64,ribu_jiwa,2025,projection,total_population,3.1.1,76,,
+17.01.10,3,Bunga Mas,total,total,,7.23,ribu_jiwa,2025,projection,total_population,3.1.1,76,,
+17.01.11,3,Pasar Manna,total,total,,17.77,ribu_jiwa,2025,projection,total_population,3.1.1,76,,
+17.01.07,3,Kedurang Ilir,total,total,,9.71,ribu_jiwa,2025,projection,total_population,3.1.1,76,,
+17.01.02,3,Seginim,total,total,,17.90,ribu_jiwa,2025,projection,total_population,3.1.1,76,,
+17.01.08,3,Air Nipis,total,total,,13.33,ribu_jiwa,2025,projection,total_population,3.1.1,76,,
+17.01.03,3,Pino,total,total,,13.28,ribu_jiwa,2025,projection,total_population,3.1.1,76,,
+17.01.06,3,Pino Raya,total,total,,23.42,ribu_jiwa,2025,projection,total_population,3.1.1,76,,
+17.01.09,3,Ulu Manna,total,total,,8.37,ribu_jiwa,2025,projection,total_population,3.1.1,76,,
+17.01,2,Kabupaten Bengkulu Selatan,total,total,,175.13,ribu_jiwa,2025,projection,total_population,3.1.1,76,,
+17.01,2,Kabupaten Bengkulu Selatan,age_group,0-4,perempuan,7322,jiwa,2025,projection,total_population,3.1.2,79,,0–4
+17.01,2,Kabupaten Bengkulu Selatan,age_group,0-4,,14961,jiwa,2025,projection,total_population,3.1.2,79,,0–4
+17.01,2,Kabupaten Bengkulu Selatan,age_group,5-9,perempuan,6659,jiwa,2025,projection,total_population,3.1.2,79,,5–9
+17.01,2,Kabupaten Bengkulu Selatan,age_group,5-9,,13642,jiwa,2025,projection,total_population,3.1.2,79,,5–9
+17.01,2,Kabupaten Bengkulu Selatan,age_group,10-14,perempuan,6969,jiwa,2025,projection,total_population,3.1.2,79,,10–14
+17.01,2,Kabupaten Bengkulu Selatan,age_group,10-14,,14247,jiwa,2025,projection,total_population,3.1.2,79,,10–14
+17.01,2,Kabupaten Bengkulu Selatan,age_group,15-19,perempuan,6996,jiwa,2025,projection,total_population,3.1.2,79,,15–19
+17.01,2,Kabupaten Bengkulu Selatan,age_group,15-19,,14429,jiwa,2025,projection,total_population,3.1.2,79,,15–19
+17.01,2,Kabupaten Bengkulu Selatan,age_group,20-24,perempuan,7066,jiwa,2025,projection,total_population,3.1.2,79,,20–24
+17.01,2,Kabupaten Bengkulu Selatan,age_group,20-24,,14409,jiwa,2025,projection,total_population,3.1.2,79,,20–24
+17.01,2,Kabupaten Bengkulu Selatan,age_group,25-29,perempuan,6617,jiwa,2025,projection,total_population,3.1.2,79,,25–29
+17.01,2,Kabupaten Bengkulu Selatan,age_group,25-29,,13494,jiwa,2025,projection,total_population,3.1.2,79,,25–29
+17.01,2,Kabupaten Bengkulu Selatan,age_group,30-34,perempuan,6137,jiwa,2025,projection,total_population,3.1.2,79,,30–34
+17.01,2,Kabupaten Bengkulu Selatan,age_group,30-34,,12747,jiwa,2025,projection,total_population,3.1.2,79,,30–34
+17.01,2,Kabupaten Bengkulu Selatan,age_group,35-39,perempuan,6038,jiwa,2025,projection,total_population,3.1.2,79,,35–39
+17.01,2,Kabupaten Bengkulu Selatan,age_group,35-39,,12522,jiwa,2025,projection,total_population,3.1.2,79,,35–39
+17.01,2,Kabupaten Bengkulu Selatan,age_group,40-44,perempuan,5953,jiwa,2025,projection,total_population,3.1.2,79,,40–44
+17.01,2,Kabupaten Bengkulu Selatan,age_group,40-44,,12222,jiwa,2025,projection,total_population,3.1.2,79,,40–44
+17.01,2,Kabupaten Bengkulu Selatan,age_group,45-49,perempuan,5827,jiwa,2025,projection,total_population,3.1.2,79,,45–49
+17.01,2,Kabupaten Bengkulu Selatan,age_group,45-49,,11827,jiwa,2025,projection,total_population,3.1.2,79,,45–49
+17.01,2,Kabupaten Bengkulu Selatan,age_group,50-54,perempuan,5517,jiwa,2025,projection,total_population,3.1.2,79,,50–54
+17.01,2,Kabupaten Bengkulu Selatan,age_group,50-54,,11210,jiwa,2025,projection,total_population,3.1.2,79,,50–54
+17.01,2,Kabupaten Bengkulu Selatan,age_group,55-59,perempuan,4684,jiwa,2025,projection,total_population,3.1.2,79,,55–59
+17.01,2,Kabupaten Bengkulu Selatan,age_group,55-59,,9507,jiwa,2025,projection,total_population,3.1.2,79,,55–59
+17.01,2,Kabupaten Bengkulu Selatan,age_group,60-64,perempuan,3650,jiwa,2025,projection,total_population,3.1.2,79,,60–64
+17.01,2,Kabupaten Bengkulu Selatan,age_group,60-64,,7366,jiwa,2025,projection,total_population,3.1.2,79,,60–64
+17.01,2,Kabupaten Bengkulu Selatan,age_group,65-69,perempuan,2708,jiwa,2025,projection,total_population,3.1.2,79,,65–69
+17.01,2,Kabupaten Bengkulu Selatan,age_group,65-69,,5394,jiwa,2025,projection,total_population,3.1.2,79,,65–69
+17.01,2,Kabupaten Bengkulu Selatan,age_group,70-74,perempuan,1900,jiwa,2025,projection,total_population,3.1.2,79,,70–74
+17.01,2,Kabupaten Bengkulu Selatan,age_group,70-74,,3637,jiwa,2025,projection,total_population,3.1.2,79,,70–74
+17.01,2,Kabupaten Bengkulu Selatan,age_group,75+,perempuan,2029,jiwa,2025,projection,total_population,3.1.2,79,,75+
+17.01,2,Kabupaten Bengkulu Selatan,age_group,75+,,3512,jiwa,2025,projection,total_population,3.1.2,79,,75+
+17.01,2,Kabupaten Bengkulu Selatan,sex,perempuan,,86072,jiwa,2025,projection,total_population,3.1.2,79,,Perempuan
+17.01,2,Kabupaten Bengkulu Selatan,total,total,,175126,jiwa,2025,projection,total_population,3.1.2,79,,
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/padi_padian,,85551,rupiah,2025,survey_estimate,per_capita,10.1,355,,Padi-padian
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/padi_padian,,106830,rupiah,2024,survey_estimate,per_capita,10.1,355,,Padi-padian
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/umbi_umbian,,4719,rupiah,2025,survey_estimate,per_capita,10.1,355,,Umbi-umbian
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/umbi_umbian,,3528,rupiah,2024,survey_estimate,per_capita,10.1,355,,Umbi-umbian
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,70671,rupiah,2025,survey_estimate,per_capita,10.1,355,,Ikan/udang/cumi/kerang
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,65608,rupiah,2024,survey_estimate,per_capita,10.1,355,,Ikan/udang/cumi/kerang
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/daging,,27137,rupiah,2025,survey_estimate,per_capita,10.1,355,,Daging
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/daging,,26437,rupiah,2024,survey_estimate,per_capita,10.1,355,,Daging
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/telur_dan_susu,,31689,rupiah,2025,survey_estimate,per_capita,10.1,355,,Telur dan susu
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/telur_dan_susu,,28900,rupiah,2024,survey_estimate,per_capita,10.1,355,,Telur dan susu
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/sayur_sayuran,,70145,rupiah,2025,survey_estimate,per_capita,10.1,355,,Sayur-sayuran
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/sayur_sayuran,,72025,rupiah,2024,survey_estimate,per_capita,10.1,355,,Sayur-sayuran
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/kacang_kacangan,,10052,rupiah,2025,survey_estimate,per_capita,10.1,355,,Kacang-kacangan
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/kacang_kacangan,,11578,rupiah,2024,survey_estimate,per_capita,10.1,355,,Kacang-kacangan
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/buah_buahan,,35742,rupiah,2025,survey_estimate,per_capita,10.1,355,,Buah-buahan
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/buah_buahan,,42405,rupiah,2024,survey_estimate,per_capita,10.1,355,,Buah-buahan
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,24298,rupiah,2025,survey_estimate,per_capita,10.1,355,,Minyak dan kelapa
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22363,rupiah,2024,survey_estimate,per_capita,10.1,355,,Minyak dan kelapa
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/bahan_minuman,,19865,rupiah,2025,survey_estimate,per_capita,10.1,355,,Bahan minuman
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/bahan_minuman,,18632,rupiah,2024,survey_estimate,per_capita,10.1,355,,Bahan minuman
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/bumbu_bumbuan,,9837,rupiah,2025,survey_estimate,per_capita,10.1,355,,Bumbu-bumbuan
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/bumbu_bumbuan,,9312,rupiah,2024,survey_estimate,per_capita,10.1,355,,Bumbu-bumbuan
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/konsumsi_lainnya,,10968,rupiah,2025,survey_estimate,per_capita,10.1,355,,Konsumsi lainnya
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/konsumsi_lainnya,,11440,rupiah,2024,survey_estimate,per_capita,10.1,355,,Konsumsi lainnya
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,152487,rupiah,2025,survey_estimate,per_capita,10.1,355,,Makanan dan minuman jadi
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,145437,rupiah,2024,survey_estimate,per_capita,10.1,355,,Makanan dan minuman jadi
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/rokok,,106168,rupiah,2025,survey_estimate,per_capita,10.1,355,,Rokok
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/rokok,,106464,rupiah,2024,survey_estimate,per_capita,10.1,355,,Rokok
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/jumlah_makanan,,659328,rupiah,2025,survey_estimate,per_capita,10.1,355,,Jumlah makanan
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/jumlah_makanan,,670959,rupiah,2024,survey_estimate,per_capita,10.1,355,,Jumlah makanan
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,306035,rupiah,2025,survey_estimate,per_capita,10.1,355,,Perumahan dan fasilitas rumah tangga
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,283621,rupiah,2024,survey_estimate,per_capita,10.1,355,,Perumahan dan fasilitas rumah tangga
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,164313,rupiah,2025,survey_estimate,per_capita,10.1,355,,Aneka barang dan jasa
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,104818,rupiah,2024,survey_estimate,per_capita,10.1,355,,Aneka barang dan jasa
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,34798,rupiah,2025,survey_estimate,per_capita,10.1,355,,"Pakaian, alas kaki, dan tutup kepala"
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,24844,rupiah,2024,survey_estimate,per_capita,10.1,355,,"Pakaian, alas kaki, dan tutup kepala"
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/barang_tahan_lama,,61329,rupiah,2025,survey_estimate,per_capita,10.1,355,,Barang tahan lama
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/barang_tahan_lama,,37157,rupiah,2024,survey_estimate,per_capita,10.1,355,,Barang tahan lama
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,61468,rupiah,2025,survey_estimate,per_capita,10.1,355,,"Pajak, pungutan, dan asuransi"
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,54309,rupiah,2024,survey_estimate,per_capita,10.1,355,,"Pajak, pungutan, dan asuransi"
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,28252,rupiah,2025,survey_estimate,per_capita,10.1,355,,Keperluan pesta dan upacara/kenduri
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,656195,rupiah,2025,survey_estimate,per_capita,10.1,355,,Jumlah bukan makanan
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,544566,rupiah,2024,survey_estimate,per_capita,10.1,355,,Jumlah bukan makanan
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,total,,1315523,rupiah,2025,survey_estimate,per_capita,10.1,355,,
+17.01,2,Kabupaten Bengkulu Selatan,expenditure,total,,1215525,rupiah,2024,survey_estimate,per_capita,10.1,355,,

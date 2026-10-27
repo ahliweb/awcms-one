@@ -1,0 +1,68 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.71.14.1001,4,Indra Kasih,sex,laki_laki,,12387,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.14.1001,4,Indra Kasih,sex,perempuan,,12909,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.14.1002,4,Sidorejo Hilir,sex,laki_laki,,10821,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.14.1002,4,Sidorejo Hilir,sex,perempuan,,10999,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.14.1003,4,Sidorejo,sex,laki_laki,,10656,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.14.1003,4,Sidorejo,sex,perempuan,,10966,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.14.1007,4,Bantan Timur,sex,laki_laki,,8529,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.14.1007,4,Bantan Timur,sex,perempuan,,8808,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.14.1006,4,Bandar Selamat,sex,laki_laki,,10599,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.14.1006,4,Bandar Selamat,sex,perempuan,,10691,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.14.1004,4,BANTAN,sex,laki_laki,,17201,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.14.1004,4,BANTAN,sex,perempuan,,17295,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.14.1005,4,TEMBUNG,sex,laki_laki,,5979,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.14.1005,4,TEMBUNG,sex,perempuan,,6168,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.14,3,Medan Tembung,sex,laki_laki,,76172,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.14,3,Medan Tembung,sex,perempuan,,77836,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.14,3,Medan Tembung,age_group,0-4,laki_laki,3728,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.71.14,3,Medan Tembung,age_group,0-4,perempuan,3587,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.71.14,3,Medan Tembung,age_group,0-4,,7315,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.71.14,3,Medan Tembung,age_group,5-9,laki_laki,6041,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.71.14,3,Medan Tembung,age_group,5-9,perempuan,5850,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.71.14,3,Medan Tembung,age_group,5-9,,11891,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.71.14,3,Medan Tembung,age_group,10-14,laki_laki,7088,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+12.71.14,3,Medan Tembung,age_group,10-14,perempuan,6427,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+12.71.14,3,Medan Tembung,age_group,10-14,,13515,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+12.71.14,3,Medan Tembung,age_group,15-19,laki_laki,6780,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.71.14,3,Medan Tembung,age_group,15-19,perempuan,6467,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.71.14,3,Medan Tembung,age_group,15-19,,13247,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.71.14,3,Medan Tembung,age_group,20-24,laki_laki,6255,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.71.14,3,Medan Tembung,age_group,20-24,perempuan,6304,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.71.14,3,Medan Tembung,age_group,20-24,,12559,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.71.14,3,Medan Tembung,age_group,25-29,laki_laki,6343,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.71.14,3,Medan Tembung,age_group,25-29,perempuan,6190,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.71.14,3,Medan Tembung,age_group,25-29,,12533,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.71.14,3,Medan Tembung,age_group,30-34,laki_laki,6150,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+12.71.14,3,Medan Tembung,age_group,30-34,perempuan,5899,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+12.71.14,3,Medan Tembung,age_group,30-34,,12049,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+12.71.14,3,Medan Tembung,age_group,35-39,laki_laki,6038,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.71.14,3,Medan Tembung,age_group,35-39,perempuan,5847,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.71.14,3,Medan Tembung,age_group,35-39,,11885,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.71.14,3,Medan Tembung,age_group,40-44,laki_laki,6122,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.71.14,3,Medan Tembung,age_group,40-44,perempuan,6097,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.71.14,3,Medan Tembung,age_group,40-44,,12219,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.71.14,3,Medan Tembung,age_group,45-49,laki_laki,5311,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.71.14,3,Medan Tembung,age_group,45-49,perempuan,5414,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.71.14,3,Medan Tembung,age_group,45-49,,10725,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.71.14,3,Medan Tembung,age_group,50-54,laki_laki,4470,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.71.14,3,Medan Tembung,age_group,50-54,perempuan,4979,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.71.14,3,Medan Tembung,age_group,50-54,,9449,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.71.14,3,Medan Tembung,age_group,55-59,laki_laki,3819,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.71.14,3,Medan Tembung,age_group,55-59,perempuan,4465,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.71.14,3,Medan Tembung,age_group,55-59,,8284,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.71.14,3,Medan Tembung,age_group,60-64,laki_laki,3047,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.71.14,3,Medan Tembung,age_group,60-64,perempuan,3640,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.71.14,3,Medan Tembung,age_group,60-64,,6687,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.71.14,3,Medan Tembung,age_group,65-69,laki_laki,2301,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.71.14,3,Medan Tembung,age_group,65-69,perempuan,2846,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.71.14,3,Medan Tembung,age_group,65-69,,5147,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.71.14,3,Medan Tembung,age_group,70-74,laki_laki,1407,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.71.14,3,Medan Tembung,age_group,70-74,perempuan,1792,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.71.14,3,Medan Tembung,age_group,70-74,,3199,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.71.14,3,Medan Tembung,age_group,75+,laki_laki,1272,jiwa,2025,registration,total_population,3.2,31,,75 +
+12.71.14,3,Medan Tembung,age_group,75+,perempuan,2032,jiwa,2025,registration,total_population,3.2,31,,75 +
+12.71.14,3,Medan Tembung,age_group,75+,,3304,jiwa,2025,registration,total_population,3.2,31,,75 +
+12.71.14,3,Medan Tembung,sex,laki_laki,,76172,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+12.71.14,3,Medan Tembung,sex,perempuan,,77836,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+12.71.14,3,Medan Tembung,total,total,,154008,jiwa,2025,registration,total_population,3.2,31,,

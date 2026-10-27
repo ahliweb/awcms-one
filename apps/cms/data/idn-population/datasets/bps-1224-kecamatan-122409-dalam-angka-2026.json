@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-1224-kecamatan-122409-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.24.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Afulu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Nias Utara",
+  "publisherDomain": "1224",
+  "publisherWebsite": "https://niasutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Nias Utara (https://niasutarakab.bps.go.id), publikasi \"Kecamatan Afulu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1224100",
+  "publicationNumber": "12240.26015",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://niasutarakab.bps.go.id/id/publication/2026/09/28/b7cab433e4effe4714435bd4/kecamatan-afulu-dalam-angka-2026.html",
+  "sourceFileSha256": "96379f193a77b7ff57bb78f747f11e68dc5c4380076878ea09546e769fd63f25",
+  "sourceFileBytes": 5457563,
+  "sourcePages": [41, 42, 43],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Nias Utara.",
+  "csvPath": "datasets/bps-1224-kecamatan-122409-dalam-angka-2026.csv",
+  "csvSha256": "016f1072a7daecc3410261d4d5bbfe525e811e8ff0b9b66f9014a618935ab6d5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Afulu, 2025",
+      "printedPages": [41, 42],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Afulu, 2025",
+      "printedPages": [43],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Lauru I Afulu\": unmatched ",
+    "table 3.1: row not stored: row \"Lauru I Afulu\": unmatched ",
+    "cross-table disagreement, both stored as published: 12.24.09 sex/perempuan/ 2025: 6085 (table 3.1) vs 6074 (table 3.2)",
+    "cross-table disagreement, both stored as published: 12.24.09 total/total/ 2025: 12131 (table 3.1) vs 12120 (table 3.2)"
+  ]
+}

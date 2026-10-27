@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.09.16.2001,4,Tanjung Harapan,sex,laki_laki,,471,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.16.2001,4,Tanjung Harapan,sex,perempuan,,441,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.16.2001,4,Tanjung Harapan,total,total,,912,jiwa,2025,registration,total_population,3.1,27,,
+16.09.16.2002,4,Muara Sindang Ilir,sex,laki_laki,,820,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.16.2002,4,Muara Sindang Ilir,sex,perempuan,,789,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.16.2002,4,Muara Sindang Ilir,total,total,,1609,jiwa,2025,registration,total_population,3.1,27,,
+16.09.16.2003,4,Muara Sindang Tengah,sex,laki_laki,,389,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.16.2003,4,Muara Sindang Tengah,sex,perempuan,,355,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.16.2003,4,Muara Sindang Tengah,total,total,,744,jiwa,2025,registration,total_population,3.1,27,,
+16.09.16.2004,4,Pematang Danau,sex,laki_laki,,658,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.16.2004,4,Pematang Danau,sex,perempuan,,630,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.16.2004,4,Pematang Danau,total,total,,1288,jiwa,2025,registration,total_population,3.1,27,,
+16.09.16.2005,4,Ulu Danau,sex,laki_laki,,2671,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.16.2005,4,Ulu Danau,sex,perempuan,,2498,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.16.2005,4,Ulu Danau,total,total,,5169,jiwa,2025,registration,total_population,3.1,27,,
+16.09.16.2007,4,Watas,sex,laki_laki,,406,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.16.2007,4,Watas,sex,perempuan,,332,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.16.2007,4,Watas,total,total,,738,jiwa,2025,registration,total_population,3.1,27,,
+16.09.16.2006,4,Tebat Layang,sex,laki_laki,,670,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.16.2006,4,Tebat Layang,sex,perempuan,,615,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.16.2006,4,Tebat Layang,total,total,,1285,jiwa,2025,registration,total_population,3.1,27,,
+16.09.16,3,Sindang Danau,sex,laki_laki,,6085,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.16,3,Sindang Danau,sex,perempuan,,5660,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.16,3,Sindang Danau,total,total,,11745,jiwa,2025,registration,total_population,3.1,27,,
+16.09.16,3,Sindang Danau,age_group,0-4,laki_laki,391,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.16,3,Sindang Danau,age_group,0-4,perempuan,374,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.16,3,Sindang Danau,age_group,0-4,,765,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.16,3,Sindang Danau,age_group,5-9,laki_laki,520,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.16,3,Sindang Danau,age_group,5-9,perempuan,470,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.16,3,Sindang Danau,age_group,5-9,,990,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.16,3,Sindang Danau,age_group,10-14,laki_laki,463,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.16,3,Sindang Danau,age_group,10-14,perempuan,478,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.16,3,Sindang Danau,age_group,10-14,,941,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.16,3,Sindang Danau,age_group,15-19,laki_laki,590,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.16,3,Sindang Danau,age_group,15-19,perempuan,528,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.16,3,Sindang Danau,age_group,15-19,,1118,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.16,3,Sindang Danau,age_group,20-24,laki_laki,577,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.16,3,Sindang Danau,age_group,20-24,perempuan,578,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.16,3,Sindang Danau,age_group,20-24,,1155,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.16,3,Sindang Danau,age_group,25-29,laki_laki,539,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.16,3,Sindang Danau,age_group,25-29,perempuan,446,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.16,3,Sindang Danau,age_group,25-29,,985,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.16,3,Sindang Danau,age_group,30-34,laki_laki,416,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.16,3,Sindang Danau,age_group,30-34,perempuan,399,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.16,3,Sindang Danau,age_group,30-34,,815,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.16,3,Sindang Danau,age_group,35-39,laki_laki,412,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.16,3,Sindang Danau,age_group,35-39,perempuan,399,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.16,3,Sindang Danau,age_group,35-39,,811,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.16,3,Sindang Danau,age_group,40-44,laki_laki,418,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.16,3,Sindang Danau,age_group,40-44,perempuan,402,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.16,3,Sindang Danau,age_group,40-44,,820,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.16,3,Sindang Danau,age_group,45-49,laki_laki,441,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.16,3,Sindang Danau,age_group,45-49,perempuan,360,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.16,3,Sindang Danau,age_group,45-49,,801,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.16,3,Sindang Danau,age_group,50-54,laki_laki,351,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.16,3,Sindang Danau,age_group,50-54,perempuan,312,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.16,3,Sindang Danau,age_group,50-54,,663,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.16,3,Sindang Danau,age_group,55-59,laki_laki,269,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.16,3,Sindang Danau,age_group,55-59,perempuan,242,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.16,3,Sindang Danau,age_group,55-59,,511,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.16,3,Sindang Danau,age_group,60-64,laki_laki,223,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.16,3,Sindang Danau,age_group,60-64,perempuan,234,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.16,3,Sindang Danau,age_group,60-64,,457,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.16,3,Sindang Danau,age_group,65-69,laki_laki,194,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.16,3,Sindang Danau,age_group,65-69,perempuan,165,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.16,3,Sindang Danau,age_group,65-69,,359,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.16,3,Sindang Danau,age_group,70-74,laki_laki,124,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.16,3,Sindang Danau,age_group,70-74,perempuan,110,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.16,3,Sindang Danau,age_group,70-74,,234,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.16,3,Sindang Danau,age_group,75+,laki_laki,157,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.16,3,Sindang Danau,age_group,75+,perempuan,163,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.16,3,Sindang Danau,age_group,75+,,320,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.16,3,Sindang Danau,sex,laki_laki,,6085,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+16.09.16,3,Sindang Danau,sex,perempuan,,5660,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+16.09.16,3,Sindang Danau,total,total,,11745,jiwa,2025,registration,total_population,3.2,29,,

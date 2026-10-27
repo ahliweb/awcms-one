@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-3575-kecamatan-357503-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.75.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bugulkidul Dalam Angka 2026",
+  "publisherName": "BPS KOTA PASURUAN",
+  "publisherDomain": "3575",
+  "publisherWebsite": "https://pasuruankota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KOTA PASURUAN (https://pasuruankota.bps.go.id), publikasi \"Kecamatan Bugulkidul Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3575030",
+  "publicationNumber": "35750.26007",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pasuruankota.bps.go.id/id/publication/2026/09/28/ef9bd0a62d4d733f42097684/kecamatan-bugulkidul-dalam-angka-2026.html",
+  "sourceFileSha256": "5e457373124936f96e1ef3d1eda7f9012e260fa30451c68c0e247b11b2b31dab",
+  "sourceFileBytes": 8780975,
+  "sourcePages": [34, 35, 36, 59],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik. ISSN: - TIM PENYUSUN/COMPILERS KECAMATAN BUGULKIDUL DALAM ANGKA Bugulkidul District in Figures 2026 Volume 38, 2026 Pengarah/Director Noyo Purwoko s. go .id Penanggung Jawab/Persons in Charge Noyo Purwoko nk ot a. bp Penyunting/Editors Khoirunnisa as ur ua Pengolah Data dan Penulis Naskah/Data Processor and Writers • Khoirunnisa • Yahya Abdulhafidz • Alfian Rafid Rabbani • Mochammad Chamdani • Refky Aditya Nugraha • Muhammad End Win ht tp s: //p Penata Letak/Layout Designers • Khoirunnisa • Putri Ramadhani • Alfitra Wuriyandhini Penerjemah/Translators Khoirunnisa nk ot a. ua ur as //p s: ht tp s. go .id bp KONTRIBUTOR DATA/DATA CONTRIBUTORS Kementerian Agama/Ministry of Religious Affair Kementerian Pendidikan dan Kebudayaan/Ministry of Education and Culture Badan Meteorologi Klimatologi dan Geofisika/Meteorological, Climatology, and Geophysical Agency 4. Badan Pusat Statistik/BPS-Statistics Indonesia 5. Badan Pertanahan Negara Kota Pasuruan 6. Dinas Kependudukan dan Pencatatan Sipil Kota Pasuruan 7. Dinas Sosial Kota Pasuruan 8. Dinas Pemberdayaan Perempuan, Perlindungan Anak, dan Keluarga Berencana Kota Pasuruan 9. Dinas Pertanian dan Ketahanan Pangan Kota Pasuruan 10. Dinas Perindustrian dan Perdagangan Kota Pasuruan 11. Dinas Koperasi dan Usaha Mikro Kota Pasuruan 12. Perusahaan Listrik Negara Kota Pasuruan 13. Perusahaan Daerah Air Minum Kota Pasuruan 14. Kecamatan Bugulkidul ht tp s: //p as ur ua nk ot a. bp s. go .id 1. 2. 3. nk ot a. ua ur as //p s: ht tp s. go .id bp Kata Pengantar ht tp s: //p as ur ua nk ot a. bp s. go .id Kecamatan Bugulkidul Dalam Angka 2026 merupakan publikasi tahunan yang diterbitkan oleh BPS Kota Pasuruan. Sama halnya dengan publikasi tahun-tahun sebelumnya, yang di terbitkan pada bulan September. Secara umum cakupan tabel yang disajikan sama dengan Kecamatan Bugulkidul Dalam Angka tahun-tahun sebelumnya. Diharapkan data yang di sajikan dapat membantu melengkapi penyusunan rencana pembangunan di Kecamatan Bugulkidul. Publikasi ini dapat terwujud berkat kerja sama dan bantuan dari berbagai pihak baik instansi pemerintah maupun swasta. Kepada semua pihak yang telah memberikan bantuan disampaikan penghargaan dan terima kasih yang sebesar – besarnya. Walaupun publikasi ini telah disiapkan sebaik-baiknya, namun disadari masih ada kekurangan dalam penyajian dan kelengkapan data yang di perlukan pengguna data. Untuk perbaikan publikasi ini, tanggapan dan saran yang bersifat konstruktif dari para pemakai sangat diharapkan Kota Pasuruan , September 2026 Kepala BPS Kota Pasuruan NOYO PURWOKO vii Preface ht tp s: //p as ur ua nk ot a. bp s. go .id Bugulkidul District in Figuress 2026, In contrast to the publication of previous years, which was published in September. In general, the table coverage presented is the same as Pangungrejo Subdistrict in FIGURESS in previous years. It is hoped that the data presented can help complete the development plan in Bugulkidul Subdistrict This publication was made possible thanks to the cooperation and assistance of various parties, both government and private agencies. To all parties who have provided assistance, a big appreciation and gratitude was expressed. Although this publication has been prepared as well as possible, but it is realized there are still shortcomings and errors that occur. To improve this publication, constructive responses and suggestions from users are highly expected This comprehensive publication has been made possible with the assistance and contribution from several governmental institutions and private organizations. To all parties who have been involved in the preparation of this publication, I would like to express my sincerest appreciation and gratitude. Comments and constructive suggestions for the improvement of this publication are always welcome. Pasuruan Municipality , September 2026 Head of BPS-Statistics Pasuruan Municipality NOYO PURWOKO",
+  "csvPath": "datasets/bps-3575-kecamatan-357503-dalam-angka-2026.csv",
+  "csvSha256": "88b4386ac4297cd95e63204f9dbb743a34011c39005e79e6fe6a079567343377",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Bugul Kidul, 2025",
+      "printedPages": [34, 35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bugul Kidul, 2025",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.4.5",
+      "title": "Jumlah Penduduk Menurut Kelurahan dan Agama yang Dianut di Kecamatan Bugul Kidul, 2025",
+      "printedPages": [59],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": []
+}

@@ -1,0 +1,53 @@
+{
+  "datasetCode": "bps-3524-kecamatan-352412-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.24.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sugio Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lamongan",
+  "publisherDomain": "3524",
+  "publisherWebsite": "https://lamongankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lamongan (https://lamongankab.bps.go.id), publikasi \"Kecamatan Sugio Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3524070",
+  "publicationNumber": "37",
+  "issn": "2798-9690",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lamongankab.bps.go.id/id/publication/2026/09/28/714b699728a6d973f076e6f1/kecamatan-sugio-dalam-angka-2026.html",
+  "sourceFileSha256": "6b0a626ba6860072ff9709047b90941e9348fc52cca22c80c6aa50528a2722fd",
+  "sourceFileBytes": 3827033,
+  "sourcePages": [37],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lamongan",
+  "csvPath": "datasets/bps-3524-kecamatan-352412-dalam-angka-2026.csv",
+  "csvSha256": "353af247227f91415004bad374bd4db944ebf1c2c5ee5de8350cbae7368b8f91",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Sugio, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Gondang\": unmatched ",
+    "table 3.1: row not stored: row \"Jubel\": unmatched ",
+    "table 3.1: 38 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: row not stored: row \"Usia 0-4\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 5-9\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 10-14\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 15-19\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 20-24\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 25-29\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 30-34\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 35-39\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 40-44\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 45-49\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 50-54\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 55-59\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 60-64\": unmatched ",
+    "table 3.2: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

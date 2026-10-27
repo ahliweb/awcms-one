@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.07.19.2014,4,Krueng Meuriam,sex,laki_laki,,577,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.19.2014,4,Krueng Meuriam,sex,perempuan,,542,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.19.2014,4,Krueng Meuriam,total,total,,1119,jiwa,2025,registration,total_population,3.1,36,,
+11.07.19.2013,4,Peunalom Ii,sex,laki_laki,,497,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.19.2013,4,Peunalom Ii,sex,perempuan,,504,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.19.2013,4,Peunalom Ii,total,total,,1001,jiwa,2025,registration,total_population,3.1,36,,
+11.07.19.2012,4,Peunalom I,sex,laki_laki,,509,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.19.2012,4,Peunalom I,sex,perempuan,,538,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.19.2012,4,Peunalom I,total,total,,1047,jiwa,2025,registration,total_population,3.1,36,,
+11.07.19.2009,4,Pulo Baro,sex,laki_laki,,528,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.19.2009,4,Pulo Baro,sex,perempuan,,535,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.19.2009,4,Pulo Baro,total,total,,1063,jiwa,2025,registration,total_population,3.1,36,,
+11.07.19.2001,4,Keude Tangse,sex,laki_laki,,364,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.19.2001,4,Keude Tangse,sex,perempuan,,351,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.19.2001,4,Keude Tangse,total,total,,715,jiwa,2025,registration,total_population,3.1,36,,
+11.07.19.2002,4,Pulo Mesjid I,sex,laki_laki,,473,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.19.2002,4,Pulo Mesjid I,sex,perempuan,,496,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.19.2002,4,Pulo Mesjid I,total,total,,969,jiwa,2025,registration,total_population,3.1,36,,
+11.07.19.2003,4,Pulo Mesjid Ii,sex,laki_laki,,393,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.19.2003,4,Pulo Mesjid Ii,sex,perempuan,,391,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.19.2003,4,Pulo Mesjid Ii,total,total,,784,jiwa,2025,registration,total_population,3.1,36,,
+11.07.19.2008,4,Blang Jeurat,sex,laki_laki,,405,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.19.2008,4,Blang Jeurat,sex,perempuan,,439,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.19.2008,4,Blang Jeurat,total,total,,844,jiwa,2025,registration,total_population,3.1,36,,
+11.07.19.2010,4,Layan,sex,laki_laki,,329,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.19.2010,4,Layan,sex,perempuan,,341,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.19.2010,4,Layan,total,total,,670,jiwa,2025,registration,total_population,3.1,36,,
+11.07.19.2011,4,Blang Dalam,sex,laki_laki,,295,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.19.2011,4,Blang Dalam,sex,perempuan,,314,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.19.2011,4,Blang Dalam,total,total,,609,jiwa,2025,registration,total_population,3.1,36,,
+11.07.19.2021,4,Ranto Panyang,sex,laki_laki,,465,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.19.2021,4,Ranto Panyang,sex,perempuan,,488,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.19.2021,4,Ranto Panyang,total,total,,953,jiwa,2025,registration,total_population,3.1,36,,
+11.07.19.2015,4,Blang Teungoh,sex,laki_laki,,415,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.19.2015,4,Blang Teungoh,sex,perempuan,,423,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.19.2015,4,Blang Teungoh,total,total,,838,jiwa,2025,registration,total_population,3.1,36,,
+11.07.19.2017,4,Blang Bungong,sex,laki_laki,,399,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.19.2017,4,Blang Bungong,sex,perempuan,,420,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.19.2017,4,Blang Bungong,total,total,,819,jiwa,2025,registration,total_population,3.1,36,,
+11.07.19.2020,4,Paya Guci,sex,laki_laki,,350,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.19.2020,4,Paya Guci,sex,perempuan,,392,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.19.2020,4,Paya Guci,total,total,,742,jiwa,2025,registration,total_population,3.1,36,,
+11.07.19.2018,4,Ulee Gunong,sex,laki_laki,,414,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.19.2018,4,Ulee Gunong,sex,perempuan,,432,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.19.2018,4,Ulee Gunong,total,total,,846,jiwa,2025,registration,total_population,3.1,36,,
+11.07.19.2019,4,Keubon Nilam,sex,laki_laki,,146,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.19.2019,4,Keubon Nilam,sex,perempuan,,126,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.19.2019,4,Keubon Nilam,total,total,,272,jiwa,2025,registration,total_population,3.1,36,,
+11.07.19.2006,4,Pulo Seunong,sex,laki_laki,,506,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.19.2006,4,Pulo Seunong,sex,perempuan,,509,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.19.2006,4,Pulo Seunong,total,total,,1015,jiwa,2025,registration,total_population,3.1,36,,
+11.07.19.2005,4,Pulo Kawa,sex,laki_laki,,494,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+11.07.19.2005,4,Pulo Kawa,sex,perempuan,,535,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+11.07.19.2005,4,Pulo Kawa,total,total,,1029,jiwa,2025,registration,total_population,3.1,36,,
+11.07.19.2022,4,Blang Malo,sex,laki_laki,,610,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+11.07.19.2022,4,Blang Malo,sex,perempuan,,630,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+11.07.19.2022,4,Blang Malo,total,total,,1240,jiwa,2025,registration,total_population,3.1,37,,
+11.07.19.2024,4,Beungga,sex,laki_laki,,914,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+11.07.19.2024,4,Beungga,sex,perempuan,,859,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+11.07.19.2024,4,Beungga,total,total,,1773,jiwa,2025,registration,total_population,3.1,37,,
+11.07.19.2025,4,Alue Calong,sex,laki_laki,,427,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+11.07.19.2025,4,Alue Calong,sex,perempuan,,412,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+11.07.19.2025,4,Alue Calong,total,total,,839,jiwa,2025,registration,total_population,3.1,37,,
+11.07.19.2027,4,Lhok Keutapang,sex,laki_laki,,820,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+11.07.19.2027,4,Lhok Keutapang,sex,perempuan,,817,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+11.07.19.2027,4,Lhok Keutapang,total,total,,1637,jiwa,2025,registration,total_population,3.1,37,,

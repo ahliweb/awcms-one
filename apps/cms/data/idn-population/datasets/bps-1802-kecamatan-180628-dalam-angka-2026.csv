@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.06.28.2002,4,Sidoharjo,sex,laki_laki,,2726,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+18.06.28.2002,4,Sidoharjo,sex,perempuan,,2605,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+18.06.28.2002,4,Sidoharjo,total,total,,5331,jiwa,2025,registration,total_population,3.1,28,,
+18.06.28.2001,4,Lengkukai,sex,laki_laki,,1417,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+18.06.28.2001,4,Lengkukai,sex,perempuan,,1253,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+18.06.28.2001,4,Lengkukai,total,total,,2670,jiwa,2025,registration,total_population,3.1,28,,
+18.06.28.2003,4,Merbau,sex,laki_laki,,1026,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+18.06.28.2003,4,Merbau,sex,perempuan,,968,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+18.06.28.2003,4,Merbau,total,total,,1994,jiwa,2025,registration,total_population,3.1,28,,
+18.06.28.2004,4,Batu Patah,sex,laki_laki,,683,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+18.06.28.2004,4,Batu Patah,sex,perempuan,,633,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+18.06.28.2004,4,Batu Patah,total,total,,1316,jiwa,2025,registration,total_population,3.1,28,,
+18.06.28.2005,4,Purwosari,sex,laki_laki,,1035,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+18.06.28.2005,4,Purwosari,sex,perempuan,,907,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+18.06.28.2005,4,Purwosari,total,total,,1942,jiwa,2025,registration,total_population,3.1,28,,
+18.06.28.2006,4,Margamulya,sex,laki_laki,,744,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+18.06.28.2006,4,Margamulya,sex,perempuan,,702,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+18.06.28.2006,4,Margamulya,total,total,,1446,jiwa,2025,registration,total_population,3.1,28,,
+18.06.28,3,Kelumbayan Barat,age_group,0-4,laki_laki,540,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.06.28,3,Kelumbayan Barat,age_group,0-4,perempuan,542,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.06.28,3,Kelumbayan Barat,age_group,0-4,,1082,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.06.28,3,Kelumbayan Barat,age_group,5-9,laki_laki,735,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.06.28,3,Kelumbayan Barat,age_group,5-9,perempuan,669,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.06.28,3,Kelumbayan Barat,age_group,5-9,,1404,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.06.28,3,Kelumbayan Barat,age_group,10-14,laki_laki,690,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.06.28,3,Kelumbayan Barat,age_group,10-14,perempuan,651,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.06.28,3,Kelumbayan Barat,age_group,10-14,,1341,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.06.28,3,Kelumbayan Barat,age_group,15-19,laki_laki,641,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.06.28,3,Kelumbayan Barat,age_group,15-19,perempuan,580,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.06.28,3,Kelumbayan Barat,age_group,15-19,,1221,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.06.28,3,Kelumbayan Barat,age_group,20-24,laki_laki,600,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.06.28,3,Kelumbayan Barat,age_group,20-24,perempuan,568,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.06.28,3,Kelumbayan Barat,age_group,20-24,,1168,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.06.28,3,Kelumbayan Barat,age_group,25-29,laki_laki,671,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.06.28,3,Kelumbayan Barat,age_group,25-29,perempuan,617,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.06.28,3,Kelumbayan Barat,age_group,25-29,,1288,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.06.28,3,Kelumbayan Barat,age_group,30-34,laki_laki,569,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.06.28,3,Kelumbayan Barat,age_group,30-34,perempuan,526,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.06.28,3,Kelumbayan Barat,age_group,30-34,,1095,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.06.28,3,Kelumbayan Barat,age_group,35-39,laki_laki,570,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.06.28,3,Kelumbayan Barat,age_group,35-39,perempuan,521,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.06.28,3,Kelumbayan Barat,age_group,35-39,,1091,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.06.28,3,Kelumbayan Barat,age_group,40-44,laki_laki,606,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.06.28,3,Kelumbayan Barat,age_group,40-44,perempuan,558,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.06.28,3,Kelumbayan Barat,age_group,40-44,,1164,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.06.28,3,Kelumbayan Barat,age_group,45-49,laki_laki,577,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.06.28,3,Kelumbayan Barat,age_group,45-49,perempuan,494,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.06.28,3,Kelumbayan Barat,age_group,45-49,,1071,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.06.28,3,Kelumbayan Barat,age_group,50-54,laki_laki,371,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.06.28,3,Kelumbayan Barat,age_group,50-54,perempuan,345,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.06.28,3,Kelumbayan Barat,age_group,50-54,,716,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.06.28,3,Kelumbayan Barat,age_group,55-59,laki_laki,258,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.06.28,3,Kelumbayan Barat,age_group,55-59,perempuan,286,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.06.28,3,Kelumbayan Barat,age_group,55-59,,544,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.06.28,3,Kelumbayan Barat,age_group,60-64,laki_laki,263,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.06.28,3,Kelumbayan Barat,age_group,60-64,perempuan,228,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.06.28,3,Kelumbayan Barat,age_group,60-64,,491,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.06.28,3,Kelumbayan Barat,age_group,65-69,laki_laki,191,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.06.28,3,Kelumbayan Barat,age_group,65-69,perempuan,198,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.06.28,3,Kelumbayan Barat,age_group,65-69,,389,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.06.28,3,Kelumbayan Barat,age_group,70-74,laki_laki,159,jiwa,2025,registration,total_population,3.2,30,,70-74
+18.06.28,3,Kelumbayan Barat,age_group,70-74,perempuan,124,jiwa,2025,registration,total_population,3.2,30,,70-74
+18.06.28,3,Kelumbayan Barat,age_group,70-74,,283,jiwa,2025,registration,total_population,3.2,30,,70-74
+18.06.28,3,Kelumbayan Barat,age_group,75+,laki_laki,190,jiwa,2025,registration,total_population,3.2,30,,75+
+18.06.28,3,Kelumbayan Barat,age_group,75+,perempuan,161,jiwa,2025,registration,total_population,3.2,30,,75+
+18.06.28,3,Kelumbayan Barat,age_group,75+,,351,jiwa,2025,registration,total_population,3.2,30,,75+
+18.06.28,3,Kelumbayan Barat,sex,laki_laki,,7631,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+18.06.28,3,Kelumbayan Barat,sex,perempuan,,7068,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+18.06.28,3,Kelumbayan Barat,total,total,,14699,jiwa,2025,registration,total_population,3.2,30,,

@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.71.06.1001,4,Selindung,sex,laki_laki,,4048,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+19.71.06.1001,4,Selindung,sex,perempuan,,3933,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+19.71.06.1001,4,Selindung,total,total,,7981,jiwa,2025,registration,total_population,3.1,30,,
+19.71.06.1002,4,Selindung Baru,sex,laki_laki,,3249,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+19.71.06.1002,4,Selindung Baru,sex,perempuan,,3286,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+19.71.06.1002,4,Selindung Baru,total,total,,6535,jiwa,2025,registration,total_population,3.1,30,,
+19.71.06.1003,4,Gabek Satu,sex,laki_laki,,2820,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+19.71.06.1003,4,Gabek Satu,sex,perempuan,,2799,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+19.71.06.1003,4,Gabek Satu,total,total,,5619,jiwa,2025,registration,total_population,3.1,30,,
+19.71.06.1004,4,Gabek Dua,sex,laki_laki,,3480,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+19.71.06.1004,4,Gabek Dua,sex,perempuan,,3458,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+19.71.06.1004,4,Gabek Dua,total,total,,6938,jiwa,2025,registration,total_population,3.1,30,,
+19.71.06.1005,4,Air Salemba,sex,laki_laki,,1924,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+19.71.06.1005,4,Air Salemba,sex,perempuan,,1960,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+19.71.06.1005,4,Air Salemba,total,total,,3884,jiwa,2025,registration,total_population,3.1,30,,
+19.71.06.1006,4,Jerambah Gantung,sex,laki_laki,,4628,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+19.71.06.1006,4,Jerambah Gantung,sex,perempuan,,4583,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+19.71.06.1006,4,Jerambah Gantung,total,total,,9211,jiwa,2025,registration,total_population,3.1,30,,
+19.71.06,3,Gabek,sex,laki_laki,,20149,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+19.71.06,3,Gabek,sex,perempuan,,20019,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+19.71.06,3,Gabek,total,total,,40168,jiwa,2025,registration,total_population,3.1,30,,

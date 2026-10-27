@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1809-kecamatan-180911-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.09.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Way Ratai Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pesawaran",
+  "publisherDomain": "1809",
+  "publisherWebsite": "https://pesawarankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pesawaran (https://pesawarankab.bps.go.id), publikasi \"Kecamatan Way Ratai Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "18090.26009",
+  "issn": "2830-7356",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pesawarankab.bps.go.id/id/publication/2026/09/28/c654e3755ef5bc4e9b51eda3/kecamatan-way-ratai-dalam-angka-2026.html",
+  "sourceFileSha256": "5e845fb2fdaf931e6f8720fed18bed78dd3bc69c49e20cf9f20cd0d7bff52966",
+  "sourceFileBytes": 11143472,
+  "sourcePages": [32, 56, 57],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pesawaran.",
+  "csvPath": "datasets/bps-1809-kecamatan-180911-dalam-angka-2026.csv",
+  "csvSha256": "520a80582b2b75adae7e472329017a377ade7a32f84e3bcb58659b4ab9bf7f35",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Way Ratai, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.4.3",
+      "title": "Jumlah Penduduk Menurut Desa dan Agama yang Dianut di Kecamatan Way Ratai, 2025",
+      "printedPages": [56, 57],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1 (sex-by-village) could not be read reliably and is not included (figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?))"
+  ]
+}

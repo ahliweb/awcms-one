@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.06.11.2001,4,Karang Agung,sex,laki_laki,,2429,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+16.06.11.2001,4,Karang Agung,sex,perempuan,,2161,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+16.06.11.2001,4,Karang Agung,total,total,,4590,jiwa,2025,registration,total_population,3.1,42,,
+16.06.11.2005,4,Galih Sari,sex,laki_laki,,1285,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+16.06.11.2005,4,Galih Sari,sex,perempuan,,1224,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+16.06.11.2005,4,Galih Sari,total,total,,2509,jiwa,2025,registration,total_population,3.1,42,,
+16.06.11.2004,4,Perumpung Raya,sex,laki_laki,,1012,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+16.06.11.2004,4,Perumpung Raya,sex,perempuan,,909,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+16.06.11.2004,4,Perumpung Raya,total,total,,1921,jiwa,2025,registration,total_population,3.1,42,,
+16.06.11.2003,4,Karang Makmur,sex,laki_laki,,1398,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+16.06.11.2003,4,Karang Makmur,sex,perempuan,,1307,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+16.06.11.2003,4,Karang Makmur,total,total,,2705,jiwa,2025,registration,total_population,3.1,42,,
+16.06.11.2002,4,Karang Rejo,sex,laki_laki,,1377,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+16.06.11.2002,4,Karang Rejo,sex,perempuan,,1326,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+16.06.11.2002,4,Karang Rejo,total,total,,2703,jiwa,2025,registration,total_population,3.1,42,,
+16.06.11.2008,4,Karya Mukti,sex,laki_laki,,574,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+16.06.11.2008,4,Karya Mukti,sex,perempuan,,498,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+16.06.11.2008,4,Karya Mukti,total,total,,1072,jiwa,2025,registration,total_population,3.1,42,,
+16.06.11.2019,4,Mulya Agung,sex,laki_laki,,804,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+16.06.11.2019,4,Mulya Agung,sex,perempuan,,766,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+16.06.11.2019,4,Mulya Agung,total,total,,1570,jiwa,2025,registration,total_population,3.1,42,,
+16.06.11.2021,4,Madya Mulya,sex,laki_laki,,653,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+16.06.11.2021,4,Madya Mulya,sex,perempuan,,630,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+16.06.11.2021,4,Madya Mulya,total,total,,1283,jiwa,2025,registration,total_population,3.1,42,,
+16.06.11.2006,4,Karang Tirta,sex,laki_laki,,1199,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+16.06.11.2006,4,Karang Tirta,sex,perempuan,,1189,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+16.06.11.2006,4,Karang Tirta,total,total,,2388,jiwa,2025,registration,total_population,3.1,42,,
+16.06.11.2026,4,Tri Mulya Agung,sex,laki_laki,,893,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+16.06.11.2026,4,Tri Mulya Agung,sex,perempuan,,804,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+16.06.11.2026,4,Tri Mulya Agung,total,total,,1697,jiwa,2025,registration,total_population,3.1,42,,
+16.06.11.2025,4,Ringin Agung,sex,laki_laki,,803,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+16.06.11.2025,4,Ringin Agung,sex,perempuan,,764,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+16.06.11.2025,4,Ringin Agung,total,total,,1567,jiwa,2025,registration,total_population,3.1,42,,
+16.06.11.2010,4,Mekar Sari,sex,laki_laki,,540,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+16.06.11.2010,4,Mekar Sari,sex,perempuan,,478,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+16.06.11.2010,4,Mekar Sari,total,total,,1018,jiwa,2025,registration,total_population,3.1,42,,
+16.06.11.2009,4,Sri Karang Rejo,sex,laki_laki,,620,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+16.06.11.2009,4,Sri Karang Rejo,sex,perempuan,,551,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+16.06.11.2009,4,Sri Karang Rejo,total,total,,1171,jiwa,2025,registration,total_population,3.1,42,,
+16.06.11.2020,4,Karang Mukti,sex,laki_laki,,646,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+16.06.11.2020,4,Karang Mukti,sex,perempuan,,612,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+16.06.11.2020,4,Karang Mukti,total,total,,1258,jiwa,2025,registration,total_population,3.1,42,,
+16.06.11.2017,4,Karang Sari,sex,laki_laki,,539,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+16.06.11.2017,4,Karang Sari,sex,perempuan,,502,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+16.06.11.2017,4,Karang Sari,total,total,,1041,jiwa,2025,registration,total_population,3.1,42,,
+16.06.11.2022,4,Mulya Jaya,sex,laki_laki,,1107,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+16.06.11.2022,4,Mulya Jaya,sex,perempuan,,1056,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+16.06.11.2022,4,Mulya Jaya,total,total,,2163,jiwa,2025,registration,total_population,3.1,42,,
+16.06.11.2023,4,Sari Agung,sex,laki_laki,,991,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+16.06.11.2023,4,Sari Agung,sex,perempuan,,920,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+16.06.11.2023,4,Sari Agung,total,total,,1911,jiwa,2025,registration,total_population,3.1,42,,
+16.06.11.2024,4,Suka Jadi,sex,laki_laki,,1411,jiwa,2025,registration,total_population,3.1,42,,Laki-Laki/Male
+16.06.11.2024,4,Suka Jadi,sex,perempuan,,1348,jiwa,2025,registration,total_population,3.1,42,,Perempuan/Female
+16.06.11.2024,4,Suka Jadi,total,total,,2759,jiwa,2025,registration,total_population,3.1,42,,
+16.06.11.2016,4,Bandar Agung,sex,laki_laki,,985,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+16.06.11.2016,4,Bandar Agung,sex,perempuan,,935,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+16.06.11.2016,4,Bandar Agung,total,total,,1920,jiwa,2025,registration,total_population,3.1,43,,
+16.06.11.2015,4,Mandala Sari,sex,laki_laki,,707,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+16.06.11.2015,4,Mandala Sari,sex,perempuan,,619,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+16.06.11.2015,4,Mandala Sari,total,total,,1326,jiwa,2025,registration,total_population,3.1,43,,
+16.06.11.2018,4,Sri Gading,sex,laki_laki,,1021,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+16.06.11.2018,4,Sri Gading,sex,perempuan,,929,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+16.06.11.2018,4,Sri Gading,total,total,,1950,jiwa,2025,registration,total_population,3.1,43,,
+16.06.11.2012,4,Bumi Agung,sex,laki_laki,,981,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+16.06.11.2012,4,Bumi Agung,sex,perempuan,,914,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+16.06.11.2012,4,Bumi Agung,total,total,,1895,jiwa,2025,registration,total_population,3.1,43,,
+16.06.11.2011,4,Agung Jaya,sex,laki_laki,,676,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+16.06.11.2011,4,Agung Jaya,sex,perempuan,,640,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+16.06.11.2011,4,Agung Jaya,total,total,,1316,jiwa,2025,registration,total_population,3.1,43,,
+16.06.11.2013,4,Jaya Agung,sex,laki_laki,,222,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+16.06.11.2013,4,Jaya Agung,sex,perempuan,,230,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+16.06.11.2013,4,Jaya Agung,total,total,,452,jiwa,2025,registration,total_population,3.1,43,,
+16.06.11.2014,4,Suka Makmur,sex,laki_laki,,365,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+16.06.11.2014,4,Suka Makmur,sex,perempuan,,334,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+16.06.11.2014,4,Suka Makmur,total,total,,699,jiwa,2025,registration,total_population,3.1,43,,
+16.06.11.2027,4,Mekar Jaya,sex,laki_laki,,542,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+16.06.11.2027,4,Mekar Jaya,sex,perempuan,,525,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+16.06.11.2027,4,Mekar Jaya,total,total,,1067,jiwa,2025,registration,total_population,3.1,43,,
+16.06.11,3,Lalan,sex,laki_laki,,24586,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+16.06.11,3,Lalan,sex,perempuan,,22963,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+16.06.11,3,Lalan,total,total,,47549,jiwa,2025,registration,total_population,3.1,43,,
+16.06.11,3,Lalan,age_group,0-14,laki_laki,4958,jiwa,2026,projection,total_population,3.2,46,,0-14
+16.06.11,3,Lalan,age_group,0-14,perempuan,4941,jiwa,2026,projection,total_population,3.2,46,,0-14
+16.06.11,3,Lalan,age_group,0-14,,9899,jiwa,2026,projection,total_population,3.2,46,,0-14
+16.06.11,3,Lalan,age_group,15-64,laki_laki,14737,jiwa,2026,projection,total_population,3.2,46,,15-64
+16.06.11,3,Lalan,age_group,15-64,perempuan,13360,jiwa,2026,projection,total_population,3.2,46,,15-64
+16.06.11,3,Lalan,age_group,15-64,,28097,jiwa,2026,projection,total_population,3.2,46,,15-64
+16.06.11,3,Lalan,age_group,65+,laki_laki,1638,jiwa,2026,projection,total_population,3.2,46,,65+
+16.06.11,3,Lalan,age_group,65+,perempuan,1147,jiwa,2026,projection,total_population,3.2,46,,65+
+16.06.11,3,Lalan,age_group,65+,,2785,jiwa,2026,projection,total_population,3.2,46,,65+
+16.06.11,3,Lalan,sex,laki_laki,,21333,jiwa,2026,projection,total_population,3.2,46,,Laki-Laki
+16.06.11,3,Lalan,sex,perempuan,,19448,jiwa,2026,projection,total_population,3.2,46,,Perempuan
+16.06.11,3,Lalan,total,total,,40781,jiwa,2026,projection,total_population,3.2,46,,

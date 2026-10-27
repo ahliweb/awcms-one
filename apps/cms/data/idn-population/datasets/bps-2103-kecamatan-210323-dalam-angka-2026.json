@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-2103-kecamatan-210323-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.03.23",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pulau Panjang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Natuna",
+  "publisherDomain": "2103",
+  "publisherWebsite": "https://natunakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Natuna (https://natunakab.bps.go.id), publikasi \"Kecamatan Pulau Panjang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2103063",
+  "publicationNumber": "2103.26024",
+  "issn": "3089-0551",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://natunakab.bps.go.id/id/publication/2026/09/28/897032225a925013b3cebc8f/kecamatan-pulau-panjang-dalam-angka-2026.html",
+  "sourceFileSha256": "09fa2c23940a39df6b0f6b8f19d55067c3af0ed58c8da8db763ca501250d93c0",
+  "sourceFileBytes": 3633263,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Natuna.",
+  "csvPath": "datasets/bps-2103-kecamatan-210323-dalam-angka-2026.csv",
+  "csvSha256": "6053918c678b8d1c49349b6e632680e75b57afa64b63d4f52127d47bd975c4e4",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pulau Panjang, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pulau Panjang, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Pulau Panjang Pulau Panjang District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Pulau Panjang Pulau Panjang District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Pulau Panjang Pulau Panjang District\": unmatched "
+  ]
+}

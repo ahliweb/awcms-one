@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.09.13.2008,4,Tanjung Pisang,sex,laki_laki,,73,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.13.2008,4,Tanjung Pisang,sex,perempuan,,72,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.13.2008,4,Tanjung Pisang,total,total,,145,jiwa,2025,registration,total_population,3.1,22,,
+14.09.13.2010,4,Kasang Limau Sundai,sex,laki_laki,,327,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.13.2010,4,Kasang Limau Sundai,sex,perempuan,,328,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.13.2010,4,Kasang Limau Sundai,total,total,,655,jiwa,2025,registration,total_population,3.1,22,,
+14.09.13.2007,4,Teratak Jering,sex,laki_laki,,291,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.13.2007,4,Teratak Jering,sex,perempuan,,292,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.13.2007,4,Teratak Jering,total,total,,583,jiwa,2025,registration,total_population,3.1,22,,
+14.09.13.2011,4,Koto Rajo,sex,laki_laki,,653,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.13.2011,4,Koto Rajo,sex,perempuan,,624,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.13.2011,4,Koto Rajo,total,total,,1277,jiwa,2025,registration,total_population,3.1,22,,
+14.09.13.2009,4,Danau,sex,laki_laki,,517,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.13.2009,4,Danau,sex,perempuan,,514,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.13.2009,4,Danau,total,total,,1031,jiwa,2025,registration,total_population,3.1,22,,
+14.09.13.2006,4,Lumbok,sex,laki_laki,,223,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.13.2006,4,Lumbok,sex,perempuan,,206,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.13.2006,4,Lumbok,total,total,,429,jiwa,2025,registration,total_population,3.1,22,,
+14.09.13.2004,4,Pelukahan,sex,laki_laki,,355,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.13.2004,4,Pelukahan,sex,perempuan,,355,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.13.2004,4,Pelukahan,total,total,,710,jiwa,2025,registration,total_population,3.1,22,,
+14.09.13.2001,4,Pulau Baru,sex,laki_laki,,481,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.13.2001,4,Pulau Baru,sex,perempuan,,504,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.13.2001,4,Pulau Baru,total,total,,985,jiwa,2025,registration,total_population,3.1,22,,
+14.09.13.2012,4,Tanjung,sex,laki_laki,,331,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.13.2012,4,Tanjung,sex,perempuan,,324,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.13.2012,4,Tanjung,total,total,,655,jiwa,2025,registration,total_population,3.1,22,,
+14.09.13.2014,4,Rawang Oguang,sex,laki_laki,,529,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.13.2014,4,Rawang Oguang,sex,perempuan,,502,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.13.2014,4,Rawang Oguang,total,total,,1031,jiwa,2025,registration,total_population,3.1,22,,
+14.09.13.2003,4,Pulau Kulur,sex,laki_laki,,500,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.13.2003,4,Pulau Kulur,sex,perempuan,,497,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.13.2003,4,Pulau Kulur,total,total,,997,jiwa,2025,registration,total_population,3.1,22,,
+14.09.13.2002,4,Pulau Beralo,sex,laki_laki,,868,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.13.2002,4,Pulau Beralo,sex,perempuan,,898,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.13.2002,4,Pulau Beralo,total,total,,1766,jiwa,2025,registration,total_population,3.1,22,,
+14.09.13,3,Kuantan Hilir Seberang,sex,laki_laki,,5825,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.13,3,Kuantan Hilir Seberang,sex,perempuan,,5831,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.13,3,Kuantan Hilir Seberang,total,total,,11656,jiwa,2025,registration,total_population,3.1,22,,

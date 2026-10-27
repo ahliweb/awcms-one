@@ -1,0 +1,126 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.71.01,3,Mojoroto,total,total,,117610,jiwa,2025,registration,total_population,3.1.1,62,,
+35.71.02,3,Kota,total,total,,91053,jiwa,2025,registration,total_population,3.1.1,62,,
+35.71.03,3,Pesantren,total,total,,93152,jiwa,2025,registration,total_population,3.1.1,62,,
+35.71,2,Kota Kediri,total,total,,301815,jiwa,2025,registration,total_population,3.1.1,62,,
+35.71,2,Kota Kediri,age_group,0-4,laki_laki,7922,jiwa,2025,registration,total_population,3.1.2,65,,0–4
+35.71,2,Kota Kediri,age_group,0-4,perempuan,7465,jiwa,2025,registration,total_population,3.1.2,65,,0–4
+35.71,2,Kota Kediri,age_group,0-4,,15387,jiwa,2025,registration,total_population,3.1.2,65,,0–4
+35.71,2,Kota Kediri,age_group,5-9,laki_laki,11210,jiwa,2025,registration,total_population,3.1.2,65,,5–9
+35.71,2,Kota Kediri,age_group,5-9,perempuan,10610,jiwa,2025,registration,total_population,3.1.2,65,,5–9
+35.71,2,Kota Kediri,age_group,5-9,,21820,jiwa,2025,registration,total_population,3.1.2,65,,5–9
+35.71,2,Kota Kediri,age_group,10-14,laki_laki,12588,jiwa,2025,registration,total_population,3.1.2,65,,10–14
+35.71,2,Kota Kediri,age_group,10-14,perempuan,11708,jiwa,2025,registration,total_population,3.1.2,65,,10–14
+35.71,2,Kota Kediri,age_group,10-14,,24296,jiwa,2025,registration,total_population,3.1.2,65,,10–14
+35.71,2,Kota Kediri,age_group,15-19,laki_laki,12424,jiwa,2025,registration,total_population,3.1.2,65,,15–19
+35.71,2,Kota Kediri,age_group,15-19,perempuan,12111,jiwa,2025,registration,total_population,3.1.2,65,,15–19
+35.71,2,Kota Kediri,age_group,15-19,,24535,jiwa,2025,registration,total_population,3.1.2,65,,15–19
+35.71,2,Kota Kediri,age_group,20-24,laki_laki,12123,jiwa,2025,registration,total_population,3.1.2,65,,20–24
+35.71,2,Kota Kediri,age_group,20-24,perempuan,11836,jiwa,2025,registration,total_population,3.1.2,65,,20–24
+35.71,2,Kota Kediri,age_group,20-24,,23959,jiwa,2025,registration,total_population,3.1.2,65,,20–24
+35.71,2,Kota Kediri,age_group,25-29,laki_laki,11199,jiwa,2025,registration,total_population,3.1.2,65,,25–29
+35.71,2,Kota Kediri,age_group,25-29,perempuan,11224,jiwa,2025,registration,total_population,3.1.2,65,,25–29
+35.71,2,Kota Kediri,age_group,25-29,,22423,jiwa,2025,registration,total_population,3.1.2,65,,25–29
+35.71,2,Kota Kediri,age_group,30-34,laki_laki,10610,jiwa,2025,registration,total_population,3.1.2,65,,30–34
+35.71,2,Kota Kediri,age_group,30-34,perempuan,10538,jiwa,2025,registration,total_population,3.1.2,65,,30–34
+35.71,2,Kota Kediri,age_group,30-34,,21148,jiwa,2025,registration,total_population,3.1.2,65,,30–34
+35.71,2,Kota Kediri,age_group,35-39,laki_laki,10011,jiwa,2025,registration,total_population,3.1.2,65,,35–39
+35.71,2,Kota Kediri,age_group,35-39,perempuan,10015,jiwa,2025,registration,total_population,3.1.2,65,,35–39
+35.71,2,Kota Kediri,age_group,35-39,,20026,jiwa,2025,registration,total_population,3.1.2,65,,35–39
+35.71,2,Kota Kediri,age_group,40-44,laki_laki,12575,jiwa,2025,registration,total_population,3.1.2,65,,40–44
+35.71,2,Kota Kediri,age_group,40-44,perempuan,12607,jiwa,2025,registration,total_population,3.1.2,65,,40–44
+35.71,2,Kota Kediri,age_group,40-44,,25182,jiwa,2025,registration,total_population,3.1.2,65,,40–44
+35.71,2,Kota Kediri,age_group,45-49,laki_laki,11738,jiwa,2025,registration,total_population,3.1.2,65,,45–49
+35.71,2,Kota Kediri,age_group,45-49,perempuan,11315,jiwa,2025,registration,total_population,3.1.2,65,,45–49
+35.71,2,Kota Kediri,age_group,45-49,,23053,jiwa,2025,registration,total_population,3.1.2,65,,45–49
+35.71,2,Kota Kediri,age_group,50-54,laki_laki,10136,jiwa,2025,registration,total_population,3.1.2,65,,50–54
+35.71,2,Kota Kediri,age_group,50-54,perempuan,9959,jiwa,2025,registration,total_population,3.1.2,65,,50–54
+35.71,2,Kota Kediri,age_group,50-54,,20095,jiwa,2025,registration,total_population,3.1.2,65,,50–54
+35.71,2,Kota Kediri,age_group,55-59,laki_laki,8661,jiwa,2025,registration,total_population,3.1.2,65,,55–59
+35.71,2,Kota Kediri,age_group,55-59,perempuan,9165,jiwa,2025,registration,total_population,3.1.2,65,,55–59
+35.71,2,Kota Kediri,age_group,55-59,,17826,jiwa,2025,registration,total_population,3.1.2,65,,55–59
+35.71,2,Kota Kediri,age_group,60-64,laki_laki,6912,jiwa,2025,registration,total_population,3.1.2,65,,60–64
+35.71,2,Kota Kediri,age_group,60-64,perempuan,8311,jiwa,2025,registration,total_population,3.1.2,65,,60–64
+35.71,2,Kota Kediri,age_group,60-64,,15223,jiwa,2025,registration,total_population,3.1.2,65,,60–64
+35.71,2,Kota Kediri,age_group,65-69,laki_laki,5368,jiwa,2025,registration,total_population,3.1.2,65,,65–69
+35.71,2,Kota Kediri,age_group,65-69,perempuan,6212,jiwa,2025,registration,total_population,3.1.2,65,,65–69
+35.71,2,Kota Kediri,age_group,65-69,,11580,jiwa,2025,registration,total_population,3.1.2,65,,65–69
+35.71,2,Kota Kediri,age_group,70-74,laki_laki,3338,jiwa,2025,registration,total_population,3.1.2,65,,70–74
+35.71,2,Kota Kediri,age_group,70-74,perempuan,4028,jiwa,2025,registration,total_population,3.1.2,65,,70–74
+35.71,2,Kota Kediri,age_group,70-74,,7366,jiwa,2025,registration,total_population,3.1.2,65,,70–74
+35.71,2,Kota Kediri,age_group,75+,laki_laki,3036,jiwa,2025,registration,total_population,3.1.2,65,,75+
+35.71,2,Kota Kediri,age_group,75+,perempuan,4860,jiwa,2025,registration,total_population,3.1.2,65,,75+
+35.71,2,Kota Kediri,age_group,75+,,7896,jiwa,2025,registration,total_population,3.1.2,65,,75+
+35.71,2,Kota Kediri,sex,laki_laki,,149851,jiwa,2025,registration,total_population,3.1.2,65,,Laki-Laki
+35.71,2,Kota Kediri,sex,perempuan,,151964,jiwa,2025,registration,total_population,3.1.2,65,,Perempuan
+35.71,2,Kota Kediri,total,total,,301815,jiwa,2025,registration,total_population,3.1.2,65,,
+35.71.01,3,Mojoroto,religion,islam,,111838,jiwa,2025,registration,total_population,4.4.3,175,,Islam
+35.71.01,3,Mojoroto,religion,kristen,,3335,jiwa,2025,registration,total_population,4.4.3,175,,Protestan
+35.71.01,3,Mojoroto,religion,katolik,,2235,jiwa,2025,registration,total_population,4.4.3,175,,Katolik
+35.71.01,3,Mojoroto,religion,hindu,,124,jiwa,2025,registration,total_population,4.4.3,175,,Hindu
+35.71.01,3,Mojoroto,religion,buddha,,59,jiwa,2025,registration,total_population,4.4.3,175,,Budha
+35.71.01,3,Mojoroto,religion,lainnya,,22,jiwa,2025,registration,total_population,4.4.3,175,,Lainnya
+35.71.02,3,Kota,religion,islam,,79295,jiwa,2025,registration,total_population,4.4.3,175,,Islam
+35.71.02,3,Kota,religion,kristen,,7962,jiwa,2025,registration,total_population,4.4.3,175,,Protestan
+35.71.02,3,Kota,religion,katolik,,2876,jiwa,2025,registration,total_population,4.4.3,175,,Katolik
+35.71.02,3,Kota,religion,hindu,,82,jiwa,2025,registration,total_population,4.4.3,175,,Hindu
+35.71.02,3,Kota,religion,buddha,,748,jiwa,2025,registration,total_population,4.4.3,175,,Budha
+35.71.02,3,Kota,religion,lainnya,,66,jiwa,2025,registration,total_population,4.4.3,175,,Lainnya
+35.71.03,3,Pesantren,religion,islam,,87568,jiwa,2025,registration,total_population,4.4.3,175,,Islam
+35.71.03,3,Pesantren,religion,kristen,,4637,jiwa,2025,registration,total_population,4.4.3,175,,Protestan
+35.71.03,3,Pesantren,religion,katolik,,931,jiwa,2025,registration,total_population,4.4.3,175,,Katolik
+35.71.03,3,Pesantren,religion,hindu,,50,jiwa,2025,registration,total_population,4.4.3,175,,Hindu
+35.71.03,3,Pesantren,religion,buddha,,154,jiwa,2025,registration,total_population,4.4.3,175,,Budha
+35.71.03,3,Pesantren,religion,lainnya,,28,jiwa,2025,registration,total_population,4.4.3,175,,Lainnya
+35.71,2,Kota Kediri,religion,islam,,278701,jiwa,2025,registration,total_population,4.4.3,175,,Islam
+35.71,2,Kota Kediri,religion,kristen,,15934,jiwa,2025,registration,total_population,4.4.3,175,,Protestan
+35.71,2,Kota Kediri,religion,katolik,,6042,jiwa,2025,registration,total_population,4.4.3,175,,Katolik
+35.71,2,Kota Kediri,religion,hindu,,256,jiwa,2025,registration,total_population,4.4.3,175,,Hindu
+35.71,2,Kota Kediri,religion,buddha,,961,jiwa,2025,registration,total_population,4.4.3,175,,Budha
+35.71,2,Kota Kediri,religion,lainnya,,116,jiwa,2025,registration,total_population,4.4.3,175,,Lainnya
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/padi_padian,,71065,rupiah,2024,survey_estimate,per_capita,10.1,317,,Padi-padian
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/padi_padian,,68097,rupiah,2025,survey_estimate,per_capita,10.1,317,,Padi-padian
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/umbi_umbian,,5780,rupiah,2024,survey_estimate,per_capita,10.1,317,,Umbi-umbian
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/umbi_umbian,,6041,rupiah,2025,survey_estimate,per_capita,10.1,317,,Umbi-umbian
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,23811,rupiah,2024,survey_estimate,per_capita,10.1,317,,Ikan/udang/cumi/kerang
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,25642,rupiah,2025,survey_estimate,per_capita,10.1,317,,Ikan/udang/cumi/kerang
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/daging,,36205,rupiah,2024,survey_estimate,per_capita,10.1,317,,Daging
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/daging,,34288,rupiah,2025,survey_estimate,per_capita,10.1,317,,Daging
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/telur_dan_susu,,45074,rupiah,2024,survey_estimate,per_capita,10.1,317,,Telur dan susu
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/telur_dan_susu,,48172,rupiah,2025,survey_estimate,per_capita,10.1,317,,Telur dan susu
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/sayur_sayuran,,53811,rupiah,2024,survey_estimate,per_capita,10.1,317,,Sayur-sayuran
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/sayur_sayuran,,56724,rupiah,2025,survey_estimate,per_capita,10.1,317,,Sayur-sayuran
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/kacang_kacangan,,19914,rupiah,2024,survey_estimate,per_capita,10.1,317,,Kacang-kacangan
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/kacang_kacangan,,19456,rupiah,2025,survey_estimate,per_capita,10.1,317,,Kacang-kacangan
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/buah_buahan,,42310,rupiah,2024,survey_estimate,per_capita,10.1,317,,Buah-buahan
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/buah_buahan,,42258,rupiah,2025,survey_estimate,per_capita,10.1,317,,Buah-buahan
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/minyak_dan_kelapa,,17916,rupiah,2024,survey_estimate,per_capita,10.1,317,,Minyak dan kelapa
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18762,rupiah,2025,survey_estimate,per_capita,10.1,317,,Minyak dan kelapa
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/bahan_minuman,,16980,rupiah,2024,survey_estimate,per_capita,10.1,317,,Bahan minuman
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/bahan_minuman,,18812,rupiah,2025,survey_estimate,per_capita,10.1,317,,Bahan minuman
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/bumbu_bumbuan,,11967,rupiah,2024,survey_estimate,per_capita,10.1,317,,Bumbu-bumbuan
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/bumbu_bumbuan,,13515,rupiah,2025,survey_estimate,per_capita,10.1,317,,Bumbu-bumbuan
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/konsumsi_lainnya,,11542,rupiah,2024,survey_estimate,per_capita,10.1,317,,Konsumsi lainnya
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/konsumsi_lainnya,,10471,rupiah,2025,survey_estimate,per_capita,10.1,317,,Konsumsi lainnya
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,303435,rupiah,2024,survey_estimate,per_capita,10.1,317,,Makanan dan minuman jadi
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,299276,rupiah,2025,survey_estimate,per_capita,10.1,317,,Makanan dan minuman jadi
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/rokok,,63967,rupiah,2024,survey_estimate,per_capita,10.1,317,,Rokok
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/rokok,,63537,rupiah,2025,survey_estimate,per_capita,10.1,317,,Rokok
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/jumlah_makanan,,723775,rupiah,2024,survey_estimate,per_capita,10.1,317,,Jumlah makanan
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/jumlah_makanan,,725051,rupiah,2025,survey_estimate,per_capita,10.1,317,,Jumlah makanan
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,411241,rupiah,2024,survey_estimate,per_capita,10.1,317,,Perumahan dan fasilitas rumah tangga
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,393876,rupiah,2025,survey_estimate,per_capita,10.1,317,,Perumahan dan fasilitas rumah tangga
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,210420,rupiah,2024,survey_estimate,per_capita,10.1,317,,Aneka barang dan jasa
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,205304,rupiah,2025,survey_estimate,per_capita,10.1,317,,Aneka barang dan jasa
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,33225,rupiah,2024,survey_estimate,per_capita,10.1,317,,"Pakaian, alas kaki, dan tutup kepala"
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,35757,rupiah,2025,survey_estimate,per_capita,10.1,317,,"Pakaian, alas kaki, dan tutup kepala"
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/barang_tahan_lama,,56843,rupiah,2024,survey_estimate,per_capita,10.1,317,,Barang tahan lama
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/barang_tahan_lama,,115617,rupiah,2025,survey_estimate,per_capita,10.1,317,,Barang tahan lama
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,79253,rupiah,2024,survey_estimate,per_capita,10.1,317,,"Pajak, pungutan, dan asuransi"
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,77854,rupiah,2025,survey_estimate,per_capita,10.1,317,,"Pajak, pungutan, dan asuransi"
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,17921,rupiah,2024,survey_estimate,per_capita,10.1,317,,Keperluan pesta dan upacara/kenduri
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,36537,rupiah,2025,survey_estimate,per_capita,10.1,317,,Keperluan pesta dan upacara/kenduri
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,808902,rupiah,2024,survey_estimate,per_capita,10.1,317,,Jumlah bukan makanan
+35.71,2,Kota Kediri,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,864955,rupiah,2025,survey_estimate,per_capita,10.1,317,,Jumlah bukan makanan
+35.71,2,Kota Kediri,expenditure,total,,1532678,rupiah,2024,survey_estimate,per_capita,10.1,317,,
+35.71,2,Kota Kediri,expenditure,total,,1590006,rupiah,2025,survey_estimate,per_capita,10.1,317,,

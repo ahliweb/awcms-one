@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-1219-kecamatan-121902-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.19.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sei Suka Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Batu Bara",
+  "publisherDomain": "1219",
+  "publisherWebsite": "https://batubarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Batu Bara (https://batubarakab.bps.go.id), publikasi \"Kecamatan Sei Suka Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1219060",
+  "publicationNumber": "12190.25015",
+  "issn": "2614-6843",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://batubarakab.bps.go.id/id/publication/2026/09/28/44c95c12aa84e87304a4343e/kecamatan-sei-suka-dalam-angka-2026.html",
+  "sourceFileSha256": "1715da51ed01f98bdb0cb4d817eb0341c06c84176d75d019aad3a41e1888645b",
+  "sourceFileBytes": 23395916,
+  "sourcePages": [28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Batu Bara.",
+  "csvPath": "datasets/bps-1219-kecamatan-121902-dalam-angka-2026.csv",
+  "csvSha256": "e6e583da25b78752d4cd55133a6f74170d9612a6c1fc1877dd2b8af1de42efe5",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p28",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa / Kelurahan di Kecamatan Sei Suka, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p28: row not stored: row \"Pematang Kuing\": unmatched "
+  ]
+}

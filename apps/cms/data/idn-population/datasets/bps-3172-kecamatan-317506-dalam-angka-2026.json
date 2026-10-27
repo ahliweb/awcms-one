@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3172-kecamatan-317506-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "31.75.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cakung Dalam Angka 2026",
+  "publisherName": "BPS Kota Jakarta Timur",
+  "publisherDomain": "3172",
+  "publisherWebsite": "https://jaktimkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jakarta Timur (https://jaktimkota.bps.go.id), publikasi \"Kecamatan Cakung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3172080",
+  "publicationNumber": "31720.25014",
+  "issn": "0852-2065",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jaktimkota.bps.go.id/id/publication/2026/09/28/6484885e91d50c1eb05c7bbe/kecamatan-cakung-dalam-angka-2026.html",
+  "sourceFileSha256": "f26f130b874d40dfdfc17e42c770e9f9d7eb473014e5ed37f8c6302983b40e17",
+  "sourceFileBytes": 5388567,
+  "sourcePages": [28, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Jakarta Timur.",
+  "csvPath": "datasets/bps-3172-kecamatan-317506-dalam-angka-2026.csv",
+  "csvSha256": "337559966c9deef6de1fdc8debb627b37395e81959b00064c49d16a91a7eb728",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Cakung, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cakung, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-1603-kecamatan-160304-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.03.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gunung Megang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Muara Enim",
+  "publisherDomain": "1603",
+  "publisherWebsite": "https://muaraenimkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Muara Enim (https://muaraenimkab.bps.go.id), publikasi \"Kecamatan Gunung Megang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.163060",
+  "publicationNumber": "16030.26021",
+  "issn": "2745-3162",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://muaraenimkab.bps.go.id/id/publication/2026/09/28/f86ca93bbdf62f23191e4baf/kecamatan-gunung-megang-dalam-angka-2026.html",
+  "sourceFileSha256": "56011508027e928aa6250925e4df5516f3fca7160484eb77118ff9331bc8832c",
+  "sourceFileBytes": 31788325,
+  "sourcePages": [23],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Muara Enim.",
+  "csvPath": "datasets/bps-1603-kecamatan-160304-dalam-angka-2026.csv",
+  "csvSha256": "39b35a32485be1ea9f5cbe6a3e52fdbd1cc39d48522120f4d6daaf65272890af",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p23",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Gunung Megang , 2025",
+      "printedPages": [23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p23: row not stored: row \"Tanung Terang\": unmatched "
+  ]
+}

@@ -1,0 +1,103 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.09.06.2007,4,Sukarami,sex,laki_laki,,747,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.06.2007,4,Sukarami,sex,perempuan,,667,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.09.06.2007,4,Sukarami,total,total,,1414,jiwa,2025,registration,total_population,3.1,27,,
+16.09.06.2008,4,Tanjung Raya,sex,laki_laki,,580,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.06.2008,4,Tanjung Raya,sex,perempuan,,526,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.09.06.2008,4,Tanjung Raya,total,total,,1106,jiwa,2025,registration,total_population,3.1,27,,
+16.09.06.2010,4,Tanjung Menang Ilir,sex,laki_laki,,384,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.06.2010,4,Tanjung Menang Ilir,sex,perempuan,,371,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.09.06.2010,4,Tanjung Menang Ilir,total,total,,755,jiwa,2025,registration,total_population,3.1,27,,
+16.09.06.2011,4,Tanjung Menang Ulu,sex,laki_laki,,562,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.06.2011,4,Tanjung Menang Ulu,sex,perempuan,,526,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.09.06.2011,4,Tanjung Menang Ulu,total,total,,1088,jiwa,2025,registration,total_population,3.1,27,,
+16.09.06.2012,4,Kenali,sex,laki_laki,,1068,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.06.2012,4,Kenali,sex,perempuan,,906,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.09.06.2012,4,Kenali,total,total,,1974,jiwa,2025,registration,total_population,3.1,27,,
+16.09.06.2013,4,Negeri Cahya,sex,laki_laki,,717,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.06.2013,4,Negeri Cahya,sex,perempuan,,620,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.09.06.2013,4,Negeri Cahya,total,total,,1337,jiwa,2025,registration,total_population,3.1,27,,
+16.09.06.2014,4,Sukaraja I,sex,laki_laki,,609,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.06.2014,4,Sukaraja I,sex,perempuan,,566,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.09.06.2014,4,Sukaraja I,total,total,,1175,jiwa,2025,registration,total_population,3.1,27,,
+16.09.06.2015,4,Tanjung Iman,sex,laki_laki,,466,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.06.2015,4,Tanjung Iman,sex,perempuan,,410,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.09.06.2015,4,Tanjung Iman,total,total,,876,jiwa,2025,registration,total_population,3.1,27,,
+16.09.06.2016,4,Bunga Mas,sex,laki_laki,,457,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.06.2016,4,Bunga Mas,sex,perempuan,,385,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.09.06.2016,4,Bunga Mas,total,total,,842,jiwa,2025,registration,total_population,3.1,27,,
+16.09.06.2017,4,Lubuk Liku,sex,laki_laki,,364,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.06.2017,4,Lubuk Liku,sex,perempuan,,301,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.09.06.2017,4,Lubuk Liku,total,total,,665,jiwa,2025,registration,total_population,3.1,27,,
+16.09.06.2018,4,Kota Karang,sex,laki_laki,,467,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.06.2018,4,Kota Karang,sex,perempuan,,431,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.09.06.2018,4,Kota Karang,total,total,,898,jiwa,2025,registration,total_population,3.1,27,,
+16.09.06.2019,4,Negeri Batin,sex,laki_laki,,1064,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.06.2019,4,Negeri Batin,sex,perempuan,,981,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.09.06.2019,4,Negeri Batin,total,total,,2045,jiwa,2025,registration,total_population,3.1,27,,
+16.09.06.2020,4,Madura,sex,laki_laki,,788,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.06.2020,4,Madura,sex,perempuan,,758,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.09.06.2020,4,Madura,total,total,,1546,jiwa,2025,registration,total_population,3.1,27,,
+16.09.06.2021,4,Negeri Agung,sex,laki_laki,,709,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.06.2021,4,Negeri Agung,sex,perempuan,,675,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.09.06.2021,4,Negeri Agung,total,total,,1384,jiwa,2025,registration,total_population,3.1,27,,
+16.09.06.2022,4,Gunung Terang,sex,laki_laki,,1569,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.06.2022,4,Gunung Terang,sex,perempuan,,1486,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.09.06.2022,4,Gunung Terang,total,total,,3055,jiwa,2025,registration,total_population,3.1,27,,
+16.09.06.2023,4,Talang Baru,sex,laki_laki,,437,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.06.2023,4,Talang Baru,sex,perempuan,,388,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.09.06.2023,4,Talang Baru,total,total,,825,jiwa,2025,registration,total_population,3.1,27,,
+16.09.06,3,Buay Sandang Aji,sex,laki_laki,,10988,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.06,3,Buay Sandang Aji,sex,perempuan,,9997,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.09.06,3,Buay Sandang Aji,total,total,,20985,jiwa,2025,registration,total_population,3.1,27,,
+16.09.06,3,Buay Sandang Aji,age_group,0-4,laki_laki,585,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.06,3,Buay Sandang Aji,age_group,0-4,perempuan,543,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.06,3,Buay Sandang Aji,age_group,0-4,,1128,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.06,3,Buay Sandang Aji,age_group,5-9,laki_laki,841,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.06,3,Buay Sandang Aji,age_group,5-9,perempuan,704,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.06,3,Buay Sandang Aji,age_group,5-9,,1545,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.06,3,Buay Sandang Aji,age_group,10-14,laki_laki,891,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.06,3,Buay Sandang Aji,age_group,10-14,perempuan,779,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.06,3,Buay Sandang Aji,age_group,10-14,,1670,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.06,3,Buay Sandang Aji,age_group,15-19,laki_laki,931,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.06,3,Buay Sandang Aji,age_group,15-19,perempuan,805,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.06,3,Buay Sandang Aji,age_group,15-19,,1736,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.06,3,Buay Sandang Aji,age_group,20-24,laki_laki,930,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.06,3,Buay Sandang Aji,age_group,20-24,perempuan,815,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.06,3,Buay Sandang Aji,age_group,20-24,,1745,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.06,3,Buay Sandang Aji,age_group,25-29,laki_laki,834,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.06,3,Buay Sandang Aji,age_group,25-29,perempuan,741,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.06,3,Buay Sandang Aji,age_group,25-29,,1575,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.06,3,Buay Sandang Aji,age_group,30-34,laki_laki,818,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.06,3,Buay Sandang Aji,age_group,30-34,perempuan,770,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.06,3,Buay Sandang Aji,age_group,30-34,,1588,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.06,3,Buay Sandang Aji,age_group,35-39,laki_laki,909,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.06,3,Buay Sandang Aji,age_group,35-39,perempuan,936,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.06,3,Buay Sandang Aji,age_group,35-39,,1845,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.06,3,Buay Sandang Aji,age_group,40-44,laki_laki,854,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.06,3,Buay Sandang Aji,age_group,40-44,perempuan,740,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.06,3,Buay Sandang Aji,age_group,40-44,,1594,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.06,3,Buay Sandang Aji,age_group,45-49,laki_laki,880,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.06,3,Buay Sandang Aji,age_group,45-49,perempuan,773,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.06,3,Buay Sandang Aji,age_group,45-49,,1653,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.06,3,Buay Sandang Aji,age_group,50-54,laki_laki,651,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.06,3,Buay Sandang Aji,age_group,50-54,perempuan,584,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.06,3,Buay Sandang Aji,age_group,50-54,,1235,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.06,3,Buay Sandang Aji,age_group,55-59,laki_laki,539,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.06,3,Buay Sandang Aji,age_group,55-59,perempuan,573,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.06,3,Buay Sandang Aji,age_group,55-59,,1112,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.06,3,Buay Sandang Aji,age_group,60-64,laki_laki,457,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.06,3,Buay Sandang Aji,age_group,60-64,perempuan,438,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.06,3,Buay Sandang Aji,age_group,60-64,,895,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.06,3,Buay Sandang Aji,age_group,65-69,laki_laki,401,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.06,3,Buay Sandang Aji,age_group,65-69,perempuan,341,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.06,3,Buay Sandang Aji,age_group,65-69,,742,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.06,3,Buay Sandang Aji,age_group,70-74,laki_laki,200,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.06,3,Buay Sandang Aji,age_group,70-74,perempuan,171,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.06,3,Buay Sandang Aji,age_group,70-74,,371,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.06,3,Buay Sandang Aji,age_group,75+,laki_laki,267,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.06,3,Buay Sandang Aji,age_group,75+,perempuan,284,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.06,3,Buay Sandang Aji,age_group,75+,,551,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.06,3,Buay Sandang Aji,sex,laki_laki,,10988,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+16.09.06,3,Buay Sandang Aji,sex,perempuan,,9997,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+16.09.06,3,Buay Sandang Aji,total,total,,20985,jiwa,2025,registration,total_population,3.2,29,,

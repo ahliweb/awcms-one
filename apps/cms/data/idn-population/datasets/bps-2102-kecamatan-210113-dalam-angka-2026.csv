@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.01.13.2004,4,Dendun,sex,laki_laki,,601,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.13.2004,4,Dendun,sex,perempuan,,553,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.13.2004,4,Dendun,total,total,,1154,jiwa,2025,registration,total_population,3.1,23,,
+21.01.13.2003,4,Mantang Lama,sex,laki_laki,,523,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.13.2003,4,Mantang Lama,sex,perempuan,,471,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.13.2003,4,Mantang Lama,total,total,,994,jiwa,2025,registration,total_population,3.1,23,,
+21.01.13.2002,4,Mantang Besar,sex,laki_laki,,736,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.13.2002,4,Mantang Besar,sex,perempuan,,617,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.13.2002,4,Mantang Besar,total,total,,1353,jiwa,2025,registration,total_population,3.1,23,,
+21.01.13.2001,4,Mantang Baru,sex,laki_laki,,592,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.13.2001,4,Mantang Baru,sex,perempuan,,541,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.13.2001,4,Mantang Baru,total,total,,1133,jiwa,2025,registration,total_population,3.1,23,,
+21.01.13,3,Mantang,sex,laki_laki,,2452,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.13,3,Mantang,sex,perempuan,,2182,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.13,3,Mantang,total,total,,4634,jiwa,2025,registration,total_population,3.1,23,,
+21.01.13,3,Mantang,age_group,0-4,laki_laki,171,jiwa,2025,registration,total_population,3.2,25,,0-4
+21.01.13,3,Mantang,age_group,0-4,perempuan,149,jiwa,2025,registration,total_population,3.2,25,,0-4
+21.01.13,3,Mantang,age_group,0-4,,320,jiwa,2025,registration,total_population,3.2,25,,0-4
+21.01.13,3,Mantang,age_group,5-9,laki_laki,220,jiwa,2025,registration,total_population,3.2,25,,5-9
+21.01.13,3,Mantang,age_group,5-9,perempuan,197,jiwa,2025,registration,total_population,3.2,25,,5-9
+21.01.13,3,Mantang,age_group,5-9,,417,jiwa,2025,registration,total_population,3.2,25,,5-9
+21.01.13,3,Mantang,age_group,10-14,laki_laki,226,jiwa,2025,registration,total_population,3.2,25,,10-14
+21.01.13,3,Mantang,age_group,10-14,perempuan,223,jiwa,2025,registration,total_population,3.2,25,,10-14
+21.01.13,3,Mantang,age_group,10-14,,449,jiwa,2025,registration,total_population,3.2,25,,10-14
+21.01.13,3,Mantang,age_group,15-19,laki_laki,228,jiwa,2025,registration,total_population,3.2,25,,15-19
+21.01.13,3,Mantang,age_group,15-19,perempuan,199,jiwa,2025,registration,total_population,3.2,25,,15-19
+21.01.13,3,Mantang,age_group,15-19,,427,jiwa,2025,registration,total_population,3.2,25,,15-19
+21.01.13,3,Mantang,age_group,20-24,laki_laki,252,jiwa,2025,registration,total_population,3.2,25,,20-24
+21.01.13,3,Mantang,age_group,20-24,perempuan,207,jiwa,2025,registration,total_population,3.2,25,,20-24
+21.01.13,3,Mantang,age_group,20-24,,459,jiwa,2025,registration,total_population,3.2,25,,20-24
+21.01.13,3,Mantang,age_group,25-29,laki_laki,175,jiwa,2025,registration,total_population,3.2,25,,25-29
+21.01.13,3,Mantang,age_group,25-29,perempuan,180,jiwa,2025,registration,total_population,3.2,25,,25-29
+21.01.13,3,Mantang,age_group,25-29,,355,jiwa,2025,registration,total_population,3.2,25,,25-29
+21.01.13,3,Mantang,age_group,30-34,laki_laki,176,jiwa,2025,registration,total_population,3.2,25,,30-34
+21.01.13,3,Mantang,age_group,30-34,perempuan,150,jiwa,2025,registration,total_population,3.2,25,,30-34
+21.01.13,3,Mantang,age_group,30-34,,326,jiwa,2025,registration,total_population,3.2,25,,30-34
+21.01.13,3,Mantang,age_group,35-39,laki_laki,180,jiwa,2025,registration,total_population,3.2,25,,35-39
+21.01.13,3,Mantang,age_group,35-39,perempuan,148,jiwa,2025,registration,total_population,3.2,25,,35-39
+21.01.13,3,Mantang,age_group,35-39,,328,jiwa,2025,registration,total_population,3.2,25,,35-39
+21.01.13,3,Mantang,age_group,40-44,laki_laki,217,jiwa,2025,registration,total_population,3.2,25,,40-44
+21.01.13,3,Mantang,age_group,40-44,perempuan,196,jiwa,2025,registration,total_population,3.2,25,,40-44
+21.01.13,3,Mantang,age_group,40-44,,413,jiwa,2025,registration,total_population,3.2,25,,40-44
+21.01.13,3,Mantang,age_group,45-49,laki_laki,178,jiwa,2025,registration,total_population,3.2,25,,45-49
+21.01.13,3,Mantang,age_group,45-49,perempuan,153,jiwa,2025,registration,total_population,3.2,25,,45-49
+21.01.13,3,Mantang,age_group,45-49,,331,jiwa,2025,registration,total_population,3.2,25,,45-49
+21.01.13,3,Mantang,age_group,50-54,laki_laki,146,jiwa,2025,registration,total_population,3.2,25,,50-54
+21.01.13,3,Mantang,age_group,50-54,perempuan,133,jiwa,2025,registration,total_population,3.2,25,,50-54
+21.01.13,3,Mantang,age_group,50-54,,279,jiwa,2025,registration,total_population,3.2,25,,50-54
+21.01.13,3,Mantang,age_group,55-59,laki_laki,118,jiwa,2025,registration,total_population,3.2,25,,55-59
+21.01.13,3,Mantang,age_group,55-59,perempuan,86,jiwa,2025,registration,total_population,3.2,25,,55-59
+21.01.13,3,Mantang,age_group,55-59,,204,jiwa,2025,registration,total_population,3.2,25,,55-59
+21.01.13,3,Mantang,age_group,60-64,laki_laki,73,jiwa,2025,registration,total_population,3.2,25,,60-64
+21.01.13,3,Mantang,age_group,60-64,perempuan,57,jiwa,2025,registration,total_population,3.2,25,,60-64
+21.01.13,3,Mantang,age_group,60-64,,130,jiwa,2025,registration,total_population,3.2,25,,60-64
+21.01.13,3,Mantang,age_group,65-69,laki_laki,50,jiwa,2025,registration,total_population,3.2,25,,65-69
+21.01.13,3,Mantang,age_group,65-69,perempuan,51,jiwa,2025,registration,total_population,3.2,25,,65-69
+21.01.13,3,Mantang,age_group,65-69,,101,jiwa,2025,registration,total_population,3.2,25,,65-69
+21.01.13,3,Mantang,age_group,70-74,laki_laki,19,jiwa,2025,registration,total_population,3.2,25,,70-74
+21.01.13,3,Mantang,age_group,70-74,perempuan,24,jiwa,2025,registration,total_population,3.2,25,,70-74
+21.01.13,3,Mantang,age_group,70-74,,43,jiwa,2025,registration,total_population,3.2,25,,70-74
+21.01.13,3,Mantang,age_group,75+,laki_laki,23,jiwa,2025,registration,total_population,3.2,25,,>75
+21.01.13,3,Mantang,age_group,75+,perempuan,29,jiwa,2025,registration,total_population,3.2,25,,>75
+21.01.13,3,Mantang,age_group,75+,,52,jiwa,2025,registration,total_population,3.2,25,,>75
+21.01.13,3,Mantang,sex,laki_laki,,2452,jiwa,2025,registration,total_population,3.2,25,,Laki-Laki
+21.01.13,3,Mantang,sex,perempuan,,2182,jiwa,2025,registration,total_population,3.2,25,,Perempuan
+21.01.13,3,Mantang,total,total,,4634,jiwa,2025,registration,total_population,3.2,25,,

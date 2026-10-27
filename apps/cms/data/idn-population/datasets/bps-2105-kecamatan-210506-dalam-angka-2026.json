@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-2105-kecamatan-210506-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.05.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jemaja Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kepulauan Anambas",
+  "publisherDomain": "2105",
+  "publisherWebsite": "https://anambaskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kepulauan Anambas (https://anambaskab.bps.go.id), publikasi \"Kecamatan Jemaja Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "21050.26014",
+  "issn": "2721-7361",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://anambaskab.bps.go.id/id/publication/2026/09/28/3d4245fc030b752fb4d26357/kecamatan-jemaja-dalam-angka-2026.html",
+  "sourceFileSha256": "bee2cda884969011fbad46eab24a5f3c8003f96d06a1da0835b6b3ab22d900b4",
+  "sourceFileBytes": 11068127,
+  "sourcePages": [31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kepulauan Anambas.",
+  "csvPath": "datasets/bps-2105-kecamatan-210506-dalam-angka-2026.csv",
+  "csvSha256": "d5020990036cde7daa77b87022d424a173e6dd53a4363f7b8c4f82cc05b27e33",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Jemaja, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jemaja, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.13.10.2001,4,Buran,sex,laki_laki,,3873,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.10.2001,4,Buran,sex,perempuan,,4024,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.10.2001,4,Buran,total,total,,7897,jiwa,2025,registration,total_population,3.1,27,,
+33.13.10.2002,4,Papahan,sex,laki_laki,,2711,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.10.2002,4,Papahan,sex,perempuan,,2843,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.10.2002,4,Papahan,total,total,,5554,jiwa,2025,registration,total_population,3.1,27,,
+33.13.10.2003,4,Ngijo,sex,laki_laki,,3804,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.10.2003,4,Ngijo,sex,perempuan,,3922,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.10.2003,4,Ngijo,total,total,,7726,jiwa,2025,registration,total_population,3.1,27,,
+33.13.10.2004,4,Gaum,sex,laki_laki,,3952,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.10.2004,4,Gaum,sex,perempuan,,4053,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.10.2004,4,Gaum,total,total,,8005,jiwa,2025,registration,total_population,3.1,27,,
+33.13.10.2005,4,Suruh,sex,laki_laki,,3447,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.10.2005,4,Suruh,sex,perempuan,,3507,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.10.2005,4,Suruh,total,total,,6954,jiwa,2025,registration,total_population,3.1,27,,
+33.13.10.2006,4,Pandeyan,sex,laki_laki,,2691,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.10.2006,4,Pandeyan,sex,perempuan,,2746,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.10.2006,4,Pandeyan,total,total,,5437,jiwa,2025,registration,total_population,3.1,27,,
+33.13.10.2007,4,Karangmojo,sex,laki_laki,,3527,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.10.2007,4,Karangmojo,sex,perempuan,,3451,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.10.2007,4,Karangmojo,total,total,,6978,jiwa,2025,registration,total_population,3.1,27,,
+33.13.10.2008,4,Kaling,sex,laki_laki,,3375,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.10.2008,4,Kaling,sex,perempuan,,3403,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.10.2008,4,Kaling,total,total,,6778,jiwa,2025,registration,total_population,3.1,27,,
+33.13.10.2009,4,Wonolopo,sex,laki_laki,,2455,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.10.2009,4,Wonolopo,sex,perempuan,,2424,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.10.2009,4,Wonolopo,total,total,,4879,jiwa,2025,registration,total_population,3.1,27,,
+33.13.10.2010,4,Kalijirak,sex,laki_laki,,3191,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.10.2010,4,Kalijirak,sex,perempuan,,3246,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.10.2010,4,Kalijirak,total,total,,6437,jiwa,2025,registration,total_population,3.1,27,,
+33.13.10,3,Kecamatan Tasikmadu,sex,laki_laki,,33026,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.10,3,Kecamatan Tasikmadu,sex,perempuan,,33619,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.10,3,Kecamatan Tasikmadu,total,total,,66645,jiwa,2025,registration,total_population,3.1,27,,
+33.13.10,3,Tasikmadu,age_group,0-4,laki_laki,1918,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.10,3,Tasikmadu,age_group,0-4,perempuan,1856,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.10,3,Tasikmadu,age_group,0-4,,3774,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.10,3,Tasikmadu,age_group,5-9,laki_laki,2549,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.10,3,Tasikmadu,age_group,5-9,perempuan,2354,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.10,3,Tasikmadu,age_group,5-9,,4903,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.10,3,Tasikmadu,age_group,10-14,laki_laki,2676,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.10,3,Tasikmadu,age_group,10-14,perempuan,2527,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.10,3,Tasikmadu,age_group,10-14,,5203,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.10,3,Tasikmadu,age_group,15-19,laki_laki,2654,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.10,3,Tasikmadu,age_group,15-19,perempuan,2558,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.10,3,Tasikmadu,age_group,15-19,,5212,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.10,3,Tasikmadu,age_group,20-24,laki_laki,2472,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.10,3,Tasikmadu,age_group,20-24,perempuan,2518,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.10,3,Tasikmadu,age_group,20-24,,4990,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.10,3,Tasikmadu,age_group,25-29,laki_laki,2506,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.10,3,Tasikmadu,age_group,25-29,perempuan,2421,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.10,3,Tasikmadu,age_group,25-29,,4927,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.10,3,Tasikmadu,age_group,30-34,laki_laki,2364,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.10,3,Tasikmadu,age_group,30-34,perempuan,2387,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.10,3,Tasikmadu,age_group,30-34,,4751,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.10,3,Tasikmadu,age_group,35-39,laki_laki,2215,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.10,3,Tasikmadu,age_group,35-39,perempuan,2364,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.10,3,Tasikmadu,age_group,35-39,,4579,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.10,3,Tasikmadu,age_group,40-44,laki_laki,2764,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.10,3,Tasikmadu,age_group,40-44,perempuan,2675,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.10,3,Tasikmadu,age_group,40-44,,5439,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.10,3,Tasikmadu,age_group,45-49,laki_laki,2515,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.10,3,Tasikmadu,age_group,45-49,perempuan,2548,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.10,3,Tasikmadu,age_group,45-49,,5063,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.10,3,Tasikmadu,age_group,50-54,laki_laki,2183,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.10,3,Tasikmadu,age_group,50-54,perempuan,2428,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.10,3,Tasikmadu,age_group,50-54,,4611,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.10,3,Tasikmadu,age_group,55-59,laki_laki,2033,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.10,3,Tasikmadu,age_group,55-59,perempuan,2185,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.10,3,Tasikmadu,age_group,55-59,,4218,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.10,3,Tasikmadu,age_group,60-64,laki_laki,1535,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.10,3,Tasikmadu,age_group,60-64,perempuan,1768,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.10,3,Tasikmadu,age_group,60-64,,3303,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.10,3,Tasikmadu,age_group,65-69,laki_laki,1260,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.10,3,Tasikmadu,age_group,65-69,perempuan,1300,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.10,3,Tasikmadu,age_group,65-69,,2560,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.10,3,Tasikmadu,age_group,70-74,laki_laki,760,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.10,3,Tasikmadu,age_group,70-74,perempuan,808,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.10,3,Tasikmadu,age_group,70-74,,1568,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.10,3,Tasikmadu,age_group,75+,laki_laki,622,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.10,3,Tasikmadu,age_group,75+,perempuan,922,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.10,3,Tasikmadu,age_group,75+,,1544,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.10,3,Kecamatan Tasikmadu,sex,laki_laki,,33026,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+33.13.10,3,Kecamatan Tasikmadu,sex,perempuan,,33619,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+33.13.10,3,Kecamatan Tasikmadu,total,total,,66645,jiwa,2025,registration,total_population,3.2,29,,

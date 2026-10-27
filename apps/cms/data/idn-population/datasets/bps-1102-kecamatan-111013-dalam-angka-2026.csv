@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.10.13.2001,4,Singkohor,sex,laki_laki,,1372,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.10.13.2001,4,Singkohor,sex,perempuan,,1338,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+11.10.13.2001,4,Singkohor,total,total,,2710,jiwa,2025,registration,total_population,3.1,20,,
+11.10.13.2002,4,Lae Sipola,sex,laki_laki,,221,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.10.13.2002,4,Lae Sipola,sex,perempuan,,205,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+11.10.13.2002,4,Lae Sipola,total,total,,426,jiwa,2025,registration,total_population,3.1,20,,
+11.10.13.2003,4,Lae Pinang,sex,laki_laki,,853,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.10.13.2003,4,Lae Pinang,sex,perempuan,,910,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+11.10.13.2003,4,Lae Pinang,total,total,,1763,jiwa,2025,registration,total_population,3.1,20,,
+11.10.13.2004,4,Mukti Jaya,sex,laki_laki,,601,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.10.13.2004,4,Mukti Jaya,sex,perempuan,,566,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+11.10.13.2004,4,Mukti Jaya,total,total,,1167,jiwa,2025,registration,total_population,3.1,20,,
+11.10.13.2006,4,Sri Kayu,sex,laki_laki,,733,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.10.13.2006,4,Sri Kayu,sex,perempuan,,733,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+11.10.13.2006,4,Sri Kayu,total,total,,1466,jiwa,2025,registration,total_population,3.1,20,,
+11.10.13.2007,4,Pea Jambu,sex,laki_laki,,373,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.10.13.2007,4,Pea Jambu,sex,perempuan,,367,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+11.10.13.2007,4,Pea Jambu,total,total,,740,jiwa,2025,registration,total_population,3.1,20,,
+11.10.13,3,Kecamatan S ingkohor,sex,laki_laki,,4153,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.10.13,3,Kecamatan S ingkohor,sex,perempuan,,4119,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+11.10.13,3,Kecamatan S ingkohor,total,total,,8272,jiwa,2025,registration,total_population,3.1,20,,

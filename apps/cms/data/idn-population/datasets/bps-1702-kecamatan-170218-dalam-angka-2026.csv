@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.02.18.2011,4,Air Lanang,sex,laki_laki,,852,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.18.2011,4,Air Lanang,sex,perempuan,,806,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.18.2011,4,Air Lanang,total,total,,1658,jiwa,2025,registration,total_population,3.1,22,,
+17.02.18.2010,4,Tanjung Dalam,sex,laki_laki,,769,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.18.2010,4,Tanjung Dalam,sex,perempuan,,752,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.18.2010,4,Tanjung Dalam,total,total,,1521,jiwa,2025,registration,total_population,3.1,22,,
+17.02.18.2009,4,Turan Baru,sex,laki_laki,,424,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.18.2009,4,Turan Baru,sex,perempuan,,435,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.18.2009,4,Turan Baru,total,total,,859,jiwa,2025,registration,total_population,3.1,22,,
+17.02.18.2008,4,Pungguk Lalang,sex,laki_laki,,1052,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.18.2008,4,Pungguk Lalang,sex,perempuan,,974,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.18.2008,4,Pungguk Lalang,total,total,,2026,jiwa,2025,registration,total_population,3.1,22,,
+17.02.18.2004,4,Watas Marga,sex,laki_laki,,634,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.18.2004,4,Watas Marga,sex,perempuan,,631,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.18.2004,4,Watas Marga,total,total,,1265,jiwa,2025,registration,total_population,3.1,22,,
+17.02.18.2007,4,Lubuk Ubar,sex,laki_laki,,695,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.18.2007,4,Lubuk Ubar,sex,perempuan,,680,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.18.2007,4,Lubuk Ubar,total,total,,1375,jiwa,2025,registration,total_population,3.1,22,,
+17.02.18.2003,4,Rimbo Recap,sex,laki_laki,,822,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.18.2003,4,Rimbo Recap,sex,perempuan,,742,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.18.2003,4,Rimbo Recap,total,total,,1564,jiwa,2025,registration,total_population,3.1,22,,
+17.02.18.2006,4,Suka Marga,sex,laki_laki,,526,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.18.2006,4,Suka Marga,sex,perempuan,,518,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.18.2006,4,Suka Marga,total,total,,1044,jiwa,2025,registration,total_population,3.1,22,,
+17.02.18.1002,4,Tempel Rejo,sex,laki_laki,,3063,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.18.1002,4,Tempel Rejo,sex,perempuan,,2956,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.18.1002,4,Tempel Rejo,total,total,,6019,jiwa,2025,registration,total_population,3.1,22,,
+17.02.18.1001,4,Air Putih Baru,sex,laki_laki,,2325,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.18.1001,4,Air Putih Baru,sex,perempuan,,2222,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.18.1001,4,Air Putih Baru,total,total,,4547,jiwa,2025,registration,total_population,3.1,22,,
+17.02.18.2005,4,Desa Teladan,sex,laki_laki,,1685,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.18.2005,4,Desa Teladan,sex,perempuan,,1759,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.18.2005,4,Desa Teladan,total,total,,3444,jiwa,2025,registration,total_population,3.1,22,,
+17.02.18,3,Curup Selatan,sex,laki_laki,,12847,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.18,3,Curup Selatan,sex,perempuan,,12475,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.18,3,Curup Selatan,total,total,,25322,jiwa,2025,registration,total_population,3.1,22,,

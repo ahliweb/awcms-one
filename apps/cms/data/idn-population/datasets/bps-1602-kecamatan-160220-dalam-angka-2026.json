@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-1602-kecamatan-160220-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.02.20",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mesuji Makmur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ogan Komering Ilir",
+  "publisherDomain": "1602",
+  "publisherWebsite": "https://okikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ogan Komering Ilir (https://okikab.bps.go.id), publikasi \"Kecamatan Mesuji Makmur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1602022",
+  "publicationNumber": "16020.26008",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://okikab.bps.go.id/id/publication/2026/09/28/673b378cc3211f4b950a53ed/kecamatan-mesuji-makmur-dalam-angka-2026.html",
+  "sourceFileSha256": "b2b2cceb043cd86a591f603906090d3fe9cedc40a4052e30dd48d9e49743015b",
+  "sourceFileBytes": 11930036,
+  "sourcePages": [31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ogan Komering Ilir",
+  "csvPath": "datasets/bps-1602-kecamatan-160220-dalam-angka-2026.csv",
+  "csvSha256": "d00124143975caf3f8cd03275f850c58a99faff38b750d4e06458daba5230f4e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Mesuji Makmur , 202 5",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mesuji Makmur , 202 5",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Pematang Bhina Tani\": unmatched ",
+    "table 3.1: row not stored: row \"Bhina Karsa\": unmatched ",
+    "table 3.1: row not stored: row \"Pematang Bhina Tani\": unmatched ",
+    "table 3.1: row not stored: row \"Bhina Karsa\": unmatched "
+  ]
+}

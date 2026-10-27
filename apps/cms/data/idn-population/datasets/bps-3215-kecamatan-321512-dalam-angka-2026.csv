@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.15.12.2003,4,TELUKBUYUNG,sex,laki_laki,,3519,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.12.2003,4,TELUKBUYUNG,sex,perempuan,,3469,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.12.2003,4,TELUKBUYUNG,total,total,,6988,jiwa,2025,registration,total_population,3.1,23,,
+32.15.12.2004,4,TANAHBARU,sex,laki_laki,,3619,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.12.2004,4,TANAHBARU,sex,perempuan,,3431,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.12.2004,4,TANAHBARU,total,total,,7050,jiwa,2025,registration,total_population,3.1,23,,
+32.15.12.2005,4,SOLOKAN,sex,laki_laki,,3241,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.12.2005,4,SOLOKAN,sex,perempuan,,3189,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.12.2005,4,SOLOKAN,total,total,,6430,jiwa,2025,registration,total_population,3.1,23,,
+32.15.12.2006,4,TANJUNGBUNGIN,sex,laki_laki,,1808,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.12.2006,4,TANJUNGBUNGIN,sex,perempuan,,1686,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.12.2006,4,TANJUNGBUNGIN,total,total,,3494,jiwa,2025,registration,total_population,3.1,23,,
+32.15.12.2001,4,TANJUNGMEKAR,sex,laki_laki,,1936,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.12.2001,4,TANJUNGMEKAR,sex,perempuan,,1906,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.12.2001,4,TANJUNGMEKAR,total,total,,3842,jiwa,2025,registration,total_population,3.1,23,,
+32.15.12.2008,4,TANJUNGPAKIS,sex,laki_laki,,3226,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.12.2008,4,TANJUNGPAKIS,sex,perempuan,,3006,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.12.2008,4,TANJUNGPAKIS,total,total,,6232,jiwa,2025,registration,total_population,3.1,23,,
+32.15.12.2007,4,TELUKJAYA,sex,laki_laki,,3086,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.12.2007,4,TELUKJAYA,sex,perempuan,,3018,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.12.2007,4,TELUKJAYA,total,total,,6104,jiwa,2025,registration,total_population,3.1,23,,
+32.15.12,3,Kecamatan Pakisjaya,sex,laki_laki,,22823,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.12,3,Kecamatan Pakisjaya,sex,perempuan,,22021,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.12,3,Kecamatan Pakisjaya,total,total,,44844,jiwa,2025,registration,total_population,3.1,23,,

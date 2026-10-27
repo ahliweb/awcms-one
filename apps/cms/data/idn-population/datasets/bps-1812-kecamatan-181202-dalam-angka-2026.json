@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1812-kecamatan-181202-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.12.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tumi Jajar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tulang Bawang Barat",
+  "publisherDomain": "1812",
+  "publisherWebsite": "https://tubabakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tulang Bawang Barat (https://tubabakab.bps.go.id), publikasi \"Kecamatan Tumi Jajar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1812020",
+  "publicationNumber": "18120.26008",
+  "issn": "3109-533X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tubabakab.bps.go.id/id/publication/2026/09/28/05b9d2354f78c3c87d631d38/kecamatan-tumi-jajar-dalam-angka-2026.html",
+  "sourceFileSha256": "902ac6926e9c394149cc7d40637c81b3437fb99d452d5a50a4ec7f64b122c8de",
+  "sourceFileBytes": 9433673,
+  "sourcePages": [28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tulang Bawang Barat.",
+  "csvPath": "datasets/bps-1812-kecamatan-181202-dalam-angka-2026.csv",
+  "csvSha256": "152432ee0313c2a43544e91363e27186ae1d8ca84e75db7782dcac605815d4fd",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Tumi Jajar, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

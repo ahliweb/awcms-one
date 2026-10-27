@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-1306-kecamatan-130502-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "13.05.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Batang Anai Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Padang Pariaman BPS-Statistics Padang Pariaman Regency Sumber Ilustrasi",
+  "publisherDomain": "1306",
+  "publisherWebsite": "https://padangpariamankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Padang Pariaman BPS-Statistics Padang Pariaman Regency Sumber Ilustrasi (https://padangpariamankab.bps.go.id), publikasi \"Kecamatan Batang Anai Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1306010",
+  "publicationNumber": "13060.26010",
+  "issn": "3021-7962",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://padangpariamankab.bps.go.id/id/publication/2026/09/28/a84797589c8c6882ce22aaf8/kecamatan-batang-anai-dalam-angka-2026.html",
+  "sourceFileSha256": "695334b3866e24017a32be37b541c381fab0569c90932cd24f3a88602bf614ab",
+  "sourceFileBytes": 22896805,
+  "sourcePages": [39],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Padang Pariaman.",
+  "csvPath": "datasets/bps-1306-kecamatan-130502-dalam-angka-2026.csv",
+  "csvSha256": "c87988085275b6bd3c4f7be7d57e30028ae1d7a7672f64394d555dd7527ff024",
+  "tablesUsed": [
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Tables Kecamatan Batang Anai (jiwa), 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.3: row not stored: row \"Jumlah Total\": unmatched "
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-1218-kecamatan-121811-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.18.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Silinda Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Serdang Bedagai",
+  "publisherDomain": "1218",
+  "publisherWebsite": "https://serdangbedagaikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Serdang Bedagai (https://serdangbedagaikab.bps.go.id), publikasi \"Kecamatan Silinda Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1218011",
+  "publicationNumber": "12180.26017",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://serdangbedagaikab.bps.go.id/id/publication/2026/09/28/4f490288659dfd0e5c858aab/kecamatan-silinda-dalam-angka-2026.html",
+  "sourceFileSha256": "04d187324c8a259423bc15f660cbd91e17b2d24c2ed6aafdf5f0a3e3b983ef56",
+  "sourceFileBytes": 7098458,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau mengandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik kabupaten Serdang Bedagai.",
+  "csvPath": "datasets/bps-1218-kecamatan-121811-dalam-angka-2026.csv",
+  "csvSha256": "5f53c75ab87d50128267b1945d6f2a9de3fc025ca8f456f17b9b12ef72fdb6d5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Silinda, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Silinda, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.5 (religion-by-region) could not be read reliably and is not included (religion column 4 header \"Khatolik/ Catholik\" not recognised)",
+    "table 3.2: row not stored: row \">74T\": unmatched ",
+    "table 3.1: the rows of region 12.18.11.2004 are not stored: sex split vs total: parts sum 326.0000 != 316.0000 (diff 10.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 12.18.11 are not stored: age_group (perempuan) vs sex value: parts sum 5026.0000 != 5176.0000 (diff 150.0000); the source itself is inconsistent"
+  ]
+}

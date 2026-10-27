@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+34.71.09.1001,4,Patehan,sex,laki_laki,,2837,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+34.71.09.1001,4,Patehan,sex,perempuan,,3012,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+34.71.09.1001,4,Patehan,total,total,,5849,jiwa,2025,registration,total_population,3.1,32,,
+34.71.09.1002,4,Panembahan,sex,laki_laki,,4376,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+34.71.09.1002,4,Panembahan,sex,perempuan,,4587,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+34.71.09.1002,4,Panembahan,total,total,,8963,jiwa,2025,registration,total_population,3.1,32,,
+34.71.09.1003,4,Kadipaten,sex,laki_laki,,3154,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+34.71.09.1003,4,Kadipaten,sex,perempuan,,3359,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+34.71.09.1003,4,Kadipaten,total,total,,6513,jiwa,2025,registration,total_population,3.1,32,,
+34.71.09,3,Kraton,sex,laki_laki,,10367,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+34.71.09,3,Kraton,sex,perempuan,,10958,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+34.71.09,3,Kraton,total,total,,21325,jiwa,2025,registration,total_population,3.1,32,,

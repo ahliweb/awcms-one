@@ -1,0 +1,69 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.74.06.1002,4,Lebak Bulus,sex,laki_laki,,22970,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.74.06.1002,4,Lebak Bulus,sex,perempuan,,23577,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.74.06.1002,4,Lebak Bulus,total,total,,46547,jiwa,2025,registration,total_population,3.1,28,,
+31.74.06.1003,4,Pondok Labu,sex,laki_laki,,28040,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.74.06.1003,4,Pondok Labu,sex,perempuan,,28762,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.74.06.1003,4,Pondok Labu,total,total,,56802,jiwa,2025,registration,total_population,3.1,28,,
+31.74.06.1001,4,Cilandak Barat,sex,laki_laki,,29554,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.74.06.1001,4,Cilandak Barat,sex,perempuan,,30272,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.74.06.1001,4,Cilandak Barat,total,total,,59826,jiwa,2025,registration,total_population,3.1,28,,
+31.74.06.1004,4,Gandaria Selatan,sex,laki_laki,,12992,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.74.06.1004,4,Gandaria Selatan,sex,perempuan,,13129,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.74.06.1004,4,Gandaria Selatan,total,total,,26121,jiwa,2025,registration,total_population,3.1,28,,
+31.74.06.1005,4,Cipete Selatan,sex,laki_laki,,15432,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.74.06.1005,4,Cipete Selatan,sex,perempuan,,15931,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.74.06.1005,4,Cipete Selatan,total,total,,31363,jiwa,2025,registration,total_population,3.1,28,,
+31.74.06,3,Kecamatan Cilandak,sex,laki_laki,,108988,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.74.06,3,Kecamatan Cilandak,sex,perempuan,,111671,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.74.06,3,Cilandak,age_group,0-4,laki_laki,6002,jiwa,2025,registration,total_population,3.2,30,,0 - 4
+31.74.06,3,Cilandak,age_group,0-4,perempuan,5516,jiwa,2025,registration,total_population,3.2,30,,0 - 4
+31.74.06,3,Cilandak,age_group,0-4,,11518,jiwa,2025,registration,total_population,3.2,30,,0 - 4
+31.74.06,3,Cilandak,age_group,5-9,laki_laki,8259,jiwa,2025,registration,total_population,3.2,30,,5 - 9
+31.74.06,3,Cilandak,age_group,5-9,perempuan,7845,jiwa,2025,registration,total_population,3.2,30,,5 - 9
+31.74.06,3,Cilandak,age_group,5-9,,16104,jiwa,2025,registration,total_population,3.2,30,,5 - 9
+31.74.06,3,Cilandak,age_group,10-14,laki_laki,8895,jiwa,2025,registration,total_population,3.2,30,,10 - 14
+31.74.06,3,Cilandak,age_group,10-14,perempuan,8374,jiwa,2025,registration,total_population,3.2,30,,10 - 14
+31.74.06,3,Cilandak,age_group,10-14,,17269,jiwa,2025,registration,total_population,3.2,30,,10 - 14
+31.74.06,3,Cilandak,age_group,15-19,laki_laki,8882,jiwa,2025,registration,total_population,3.2,30,,15 - 19
+31.74.06,3,Cilandak,age_group,15-19,perempuan,8304,jiwa,2025,registration,total_population,3.2,30,,15 - 19
+31.74.06,3,Cilandak,age_group,15-19,,17186,jiwa,2025,registration,total_population,3.2,30,,15 - 19
+31.74.06,3,Cilandak,age_group,20-24,laki_laki,8975,jiwa,2025,registration,total_population,3.2,30,,20 - 24
+31.74.06,3,Cilandak,age_group,20-24,perempuan,8705,jiwa,2025,registration,total_population,3.2,30,,20 - 24
+31.74.06,3,Cilandak,age_group,20-24,,17680,jiwa,2025,registration,total_population,3.2,30,,20 - 24
+31.74.06,3,Cilandak,age_group,25-29,laki_laki,8131,jiwa,2025,registration,total_population,3.2,30,,25 - 29
+31.74.06,3,Cilandak,age_group,25-29,perempuan,8299,jiwa,2025,registration,total_population,3.2,30,,25 - 29
+31.74.06,3,Cilandak,age_group,25-29,,16430,jiwa,2025,registration,total_population,3.2,30,,25 - 29
+31.74.06,3,Cilandak,age_group,30-34,laki_laki,7727,jiwa,2025,registration,total_population,3.2,30,,30 - 34
+31.74.06,3,Cilandak,age_group,30-34,perempuan,8264,jiwa,2025,registration,total_population,3.2,30,,30 - 34
+31.74.06,3,Cilandak,age_group,30-34,,15991,jiwa,2025,registration,total_population,3.2,30,,30 - 34
+31.74.06,3,Cilandak,age_group,35-39,laki_laki,7440,jiwa,2025,registration,total_population,3.2,30,,35 - 39
+31.74.06,3,Cilandak,age_group,35-39,perempuan,8041,jiwa,2025,registration,total_population,3.2,30,,35 - 39
+31.74.06,3,Cilandak,age_group,35-39,,15481,jiwa,2025,registration,total_population,3.2,30,,35 - 39
+31.74.06,3,Cilandak,age_group,40-44,laki_laki,8456,jiwa,2025,registration,total_population,3.2,30,,40 - 44
+31.74.06,3,Cilandak,age_group,40-44,perempuan,9244,jiwa,2025,registration,total_population,3.2,30,,40 - 44
+31.74.06,3,Cilandak,age_group,40-44,,17700,jiwa,2025,registration,total_population,3.2,30,,40 - 44
+31.74.06,3,Cilandak,age_group,45-49,laki_laki,8587,jiwa,2025,registration,total_population,3.2,30,,45 - 49
+31.74.06,3,Cilandak,age_group,45-49,perempuan,9077,jiwa,2025,registration,total_population,3.2,30,,45 - 49
+31.74.06,3,Cilandak,age_group,45-49,,17664,jiwa,2025,registration,total_population,3.2,30,,45 - 49
+31.74.06,3,Cilandak,age_group,50-54,laki_laki,8006,jiwa,2025,registration,total_population,3.2,30,,50 - 54
+31.74.06,3,Cilandak,age_group,50-54,perempuan,8289,jiwa,2025,registration,total_population,3.2,30,,50 - 54
+31.74.06,3,Cilandak,age_group,50-54,,16295,jiwa,2025,registration,total_population,3.2,30,,50 - 54
+31.74.06,3,Cilandak,age_group,55-59,laki_laki,6694,jiwa,2025,registration,total_population,3.2,30,,55 - 59
+31.74.06,3,Cilandak,age_group,55-59,perempuan,6595,jiwa,2025,registration,total_population,3.2,30,,55 - 59
+31.74.06,3,Cilandak,age_group,55-59,,13289,jiwa,2025,registration,total_population,3.2,30,,55 - 59
+31.74.06,3,Cilandak,age_group,60-64,laki_laki,4917,jiwa,2025,registration,total_population,3.2,30,,60 - 64
+31.74.06,3,Cilandak,age_group,60-64,perempuan,5169,jiwa,2025,registration,total_population,3.2,30,,60 - 64
+31.74.06,3,Cilandak,age_group,60-64,,10086,jiwa,2025,registration,total_population,3.2,30,,60 - 64
+31.74.06,3,Cilandak,age_group,65-69,laki_laki,3028,jiwa,2025,registration,total_population,3.2,30,,65 - 69
+31.74.06,3,Cilandak,age_group,65-69,perempuan,3489,jiwa,2025,registration,total_population,3.2,30,,65 - 69
+31.74.06,3,Cilandak,age_group,65-69,,6517,jiwa,2025,registration,total_population,3.2,30,,65 - 69
+31.74.06,3,Cilandak,age_group,70-74,laki_laki,1902,jiwa,2025,registration,total_population,3.2,30,,70 - 74
+31.74.06,3,Cilandak,age_group,70-74,perempuan,2221,jiwa,2025,registration,total_population,3.2,30,,70 - 74
+31.74.06,3,Cilandak,age_group,70-74,,4123,jiwa,2025,registration,total_population,3.2,30,,70 - 74
+31.74.06,3,Cilandak,age_group,75+,laki_laki,1886,jiwa,2025,registration,total_population,3.2,30,,75 +
+31.74.06,3,Cilandak,age_group,75+,perempuan,2823,jiwa,2025,registration,total_population,3.2,30,,75 +
+31.74.06,3,Cilandak,age_group,75+,,4709,jiwa,2025,registration,total_population,3.2,30,,75 +
+31.74.06,3,Kecamatan Cilandak,sex,laki_laki,,107787,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+31.74.06,3,Kecamatan Cilandak,sex,perempuan,,110255,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+31.74.06,3,Kecamatan Cilandak,total,total,,218042,jiwa,2025,registration,total_population,3.2,30,,

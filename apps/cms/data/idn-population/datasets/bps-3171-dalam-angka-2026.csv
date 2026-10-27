@@ -1,0 +1,107 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.74.04,3,Pasar Minggu,religion,islam,,303332,jiwa,2025,registration,total_population,4.3.1,124,,Islam*
+31.74.04,3,Pasar Minggu,religion,kristen,,13449,jiwa,2025,registration,total_population,4.3.1,124,,Protestan*
+31.74.04,3,Pasar Minggu,religion,katolik,,5704,jiwa,2025,registration,total_population,4.3.1,124,,Katolik*
+31.74.04,3,Pasar Minggu,religion,hindu,,667,jiwa,2025,registration,total_population,4.3.1,124,,Hindu*
+31.74.04,3,Pasar Minggu,religion,buddha,,585,jiwa,2025,registration,total_population,4.3.1,124,,Budha*
+31.74.04,3,Pasar Minggu,religion,lainnya,,20,jiwa,2025,registration,total_population,4.3.1,124,,Lainnya*
+31.74.06,3,Cilandak,religion,islam,,198936,jiwa,2025,registration,total_population,4.3.1,124,,Islam*
+31.74.06,3,Cilandak,religion,kristen,,13439,jiwa,2025,registration,total_population,4.3.1,124,,Protestan*
+31.74.06,3,Cilandak,religion,katolik,,7061,jiwa,2025,registration,total_population,4.3.1,124,,Katolik*
+31.74.06,3,Cilandak,religion,hindu,,698,jiwa,2025,registration,total_population,4.3.1,124,,Hindu*
+31.74.06,3,Cilandak,religion,buddha,,512,jiwa,2025,registration,total_population,4.3.1,124,,Budha*
+31.74.06,3,Cilandak,religion,lainnya,,13,jiwa,2025,registration,total_population,4.3.1,124,,Lainnya*
+31.74.10,3,Pesanggrahan,religion,islam,,243459,jiwa,2025,registration,total_population,4.3.1,124,,Islam*
+31.74.10,3,Pesanggrahan,religion,kristen,,13202,jiwa,2025,registration,total_population,4.3.1,124,,Protestan*
+31.74.10,3,Pesanggrahan,religion,katolik,,5781,jiwa,2025,registration,total_population,4.3.1,124,,Katolik*
+31.74.10,3,Pesanggrahan,religion,hindu,,663,jiwa,2025,registration,total_population,4.3.1,124,,Hindu*
+31.74.10,3,Pesanggrahan,religion,buddha,,260,jiwa,2025,registration,total_population,4.3.1,124,,Budha*
+31.74.10,3,Pesanggrahan,religion,lainnya,,14,jiwa,2025,registration,total_population,4.3.1,124,,Lainnya*
+31.74.05,3,Kebayoran Lama,religion,islam,,285006,jiwa,2025,registration,total_population,4.3.1,124,,Islam*
+31.74.05,3,Kebayoran Lama,religion,kristen,,19030,jiwa,2025,registration,total_population,4.3.1,124,,Protestan*
+31.74.05,3,Kebayoran Lama,religion,katolik,,12484,jiwa,2025,registration,total_population,4.3.1,124,,Katolik*
+31.74.05,3,Kebayoran Lama,religion,hindu,,3919,jiwa,2025,registration,total_population,4.3.1,124,,Hindu*
+31.74.05,3,Kebayoran Lama,religion,buddha,,421,jiwa,2025,registration,total_population,4.3.1,124,,Budha*
+31.74.05,3,Kebayoran Lama,religion,lainnya,,20,jiwa,2025,registration,total_population,4.3.1,124,,Lainnya*
+31.74.07,3,Kebayoran Baru,religion,islam,,131040,jiwa,2025,registration,total_population,4.3.1,124,,Islam*
+31.74.07,3,Kebayoran Baru,religion,kristen,,8731,jiwa,2025,registration,total_population,4.3.1,124,,Protestan*
+31.74.07,3,Kebayoran Baru,religion,katolik,,5847,jiwa,2025,registration,total_population,4.3.1,124,,Katolik*
+31.74.07,3,Kebayoran Baru,religion,hindu,,1205,jiwa,2025,registration,total_population,4.3.1,124,,Hindu*
+31.74.07,3,Kebayoran Baru,religion,buddha,,315,jiwa,2025,registration,total_population,4.3.1,124,,Budha*
+31.74.07,3,Kebayoran Baru,religion,lainnya,,34,jiwa,2025,registration,total_population,4.3.1,124,,Lainnya*
+31.74.03,3,Mampang Prapatan,religion,islam,,142614,jiwa,2025,registration,total_population,4.3.1,124,,Islam*
+31.74.03,3,Mampang Prapatan,religion,kristen,,5253,jiwa,2025,registration,total_population,4.3.1,124,,Protestan*
+31.74.03,3,Mampang Prapatan,religion,katolik,,2995,jiwa,2025,registration,total_population,4.3.1,124,,Katolik*
+31.74.03,3,Mampang Prapatan,religion,hindu,,324,jiwa,2025,registration,total_population,4.3.1,124,,Hindu*
+31.74.03,3,Mampang Prapatan,religion,buddha,,158,jiwa,2025,registration,total_population,4.3.1,124,,Budha*
+31.74.03,3,Mampang Prapatan,religion,lainnya,,8,jiwa,2025,registration,total_population,4.3.1,124,,Lainnya*
+31.74.08,3,Pancoran,religion,islam,,160619,jiwa,2025,registration,total_population,4.3.1,124,,Islam*
+31.74.08,3,Pancoran,religion,kristen,,9135,jiwa,2025,registration,total_population,4.3.1,124,,Protestan*
+31.74.08,3,Pancoran,religion,katolik,,3136,jiwa,2025,registration,total_population,4.3.1,124,,Katolik*
+31.74.08,3,Pancoran,religion,hindu,,386,jiwa,2025,registration,total_population,4.3.1,124,,Hindu*
+31.74.08,3,Pancoran,religion,buddha,,440,jiwa,2025,registration,total_population,4.3.1,124,,Budha*
+31.74.08,3,Pancoran,religion,lainnya,,7,jiwa,2025,registration,total_population,4.3.1,124,,Lainnya*
+31.74.01,3,Tebet,religion,islam,,210938,jiwa,2025,registration,total_population,4.3.1,124,,Islam*
+31.74.01,3,Tebet,religion,kristen,,12397,jiwa,2025,registration,total_population,4.3.1,124,,Protestan*
+31.74.01,3,Tebet,religion,katolik,,5562,jiwa,2025,registration,total_population,4.3.1,124,,Katolik*
+31.74.01,3,Tebet,religion,hindu,,708,jiwa,2025,registration,total_population,4.3.1,124,,Hindu*
+31.74.01,3,Tebet,religion,buddha,,207,jiwa,2025,registration,total_population,4.3.1,124,,Budha*
+31.74.01,3,Tebet,religion,lainnya,,18,jiwa,2025,registration,total_population,4.3.1,124,,Lainnya*
+31.74.02,3,Setiabudi,religion,islam,,95801,jiwa,2025,registration,total_population,4.3.1,124,,Islam*
+31.74.02,3,Setiabudi,religion,kristen,,9947,jiwa,2025,registration,total_population,4.3.1,124,,Protestan*
+31.74.02,3,Setiabudi,religion,katolik,,4710,jiwa,2025,registration,total_population,4.3.1,124,,Katolik*
+31.74.02,3,Setiabudi,religion,hindu,,2167,jiwa,2025,registration,total_population,4.3.1,124,,Hindu*
+31.74.02,3,Setiabudi,religion,buddha,,248,jiwa,2025,registration,total_population,4.3.1,124,,Budha*
+31.74.02,3,Setiabudi,religion,lainnya,,17,jiwa,2025,registration,total_population,4.3.1,124,,Lainnya*
+31.74,2,Jakarta Selatan,religion,islam,,2131227,jiwa,2025,registration,total_population,4.3.1,124,,Islam*
+31.74,2,Jakarta Selatan,religion,kristen,,118590,jiwa,2025,registration,total_population,4.3.1,124,,Protestan*
+31.74,2,Jakarta Selatan,religion,katolik,,58751,jiwa,2025,registration,total_population,4.3.1,124,,Katolik*
+31.74,2,Jakarta Selatan,religion,hindu,,11136,jiwa,2025,registration,total_population,4.3.1,124,,Hindu*
+31.74,2,Jakarta Selatan,religion,buddha,,3755,jiwa,2025,registration,total_population,4.3.1,124,,Budha*
+31.74,2,Jakarta Selatan,religion,lainnya,,185,jiwa,2025,registration,total_population,4.3.1,124,,Lainnya*
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/padi_padian,,90792,rupiah,2025,survey_estimate,per_capita,10.1,235,,Padi-padian
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/padi_padian,,93854,rupiah,2024,survey_estimate,per_capita,10.1,235,,Padi-padian
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/umbi_umbian,,15342,rupiah,2025,survey_estimate,per_capita,10.1,235,,Umbi-umbian
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/umbi_umbian,,13763,rupiah,2024,survey_estimate,per_capita,10.1,235,,Umbi-umbian
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,94400,rupiah,2025,survey_estimate,per_capita,10.1,235,,Ikan/udang/cumi/kerang
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,88521,rupiah,2024,survey_estimate,per_capita,10.1,235,,Ikan/udang/cumi/kerang
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/daging,,78879,rupiah,2025,survey_estimate,per_capita,10.1,235,,Daging
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/daging,,82238,rupiah,2024,survey_estimate,per_capita,10.1,235,,Daging
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/telur_dan_susu,,71992,rupiah,2025,survey_estimate,per_capita,10.1,235,,Telur dan susu
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/telur_dan_susu,,73028,rupiah,2024,survey_estimate,per_capita,10.1,235,,Telur dan susu
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/sayur_sayuran,,102030,rupiah,2025,survey_estimate,per_capita,10.1,235,,Sayur-sayuran
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/sayur_sayuran,,95158,rupiah,2024,survey_estimate,per_capita,10.1,235,,Sayur-sayuran
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/kacang_kacangan,,23765,rupiah,2025,survey_estimate,per_capita,10.1,235,,Kacang-kacangan
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/kacang_kacangan,,23135,rupiah,2024,survey_estimate,per_capita,10.1,235,,Kacang-kacangan
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/buah_buahan,,80202,rupiah,2025,survey_estimate,per_capita,10.1,235,,Buah-buahan
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/buah_buahan,,65925,rupiah,2024,survey_estimate,per_capita,10.1,235,,Buah-buahan
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,25271,rupiah,2025,survey_estimate,per_capita,10.1,235,,Minyak dan kelapa
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,24879,rupiah,2024,survey_estimate,per_capita,10.1,235,,Minyak dan kelapa
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/bahan_minuman,,24524,rupiah,2025,survey_estimate,per_capita,10.1,235,,Bahan minuman
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/bahan_minuman,,24159,rupiah,2024,survey_estimate,per_capita,10.1,235,,Bahan minuman
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/bumbu_bumbuan,,23100,rupiah,2025,survey_estimate,per_capita,10.1,235,,Bumbu-bumbuan
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/bumbu_bumbuan,,21447,rupiah,2024,survey_estimate,per_capita,10.1,235,,Bumbu-bumbuan
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/konsumsi_lainnya,,17576,rupiah,2025,survey_estimate,per_capita,10.1,235,,Konsumsi lainnya
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/konsumsi_lainnya,,18463,rupiah,2024,survey_estimate,per_capita,10.1,235,,Konsumsi lainnya
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,566126,rupiah,2025,survey_estimate,per_capita,10.1,235,,Makanan dan minuman jadi
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,548414,rupiah,2024,survey_estimate,per_capita,10.1,235,,Makanan dan minuman jadi
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/rokok,,106918,rupiah,2025,survey_estimate,per_capita,10.1,235,,Rokok
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/rokok,,100871,rupiah,2024,survey_estimate,per_capita,10.1,235,,Rokok
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/jumlah_makanan,,1320918,rupiah,2025,survey_estimate,per_capita,10.1,235,,Jumlah makanan
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/jumlah_makanan,,1273855,rupiah,2024,survey_estimate,per_capita,10.1,235,,Jumlah makanan
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,1166341,rupiah,2025,survey_estimate,per_capita,10.1,235,,Perumahan dan fasilitas rumah tangga
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,1079715,rupiah,2024,survey_estimate,per_capita,10.1,235,,Perumahan dan fasilitas rumah tangga
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,672254,rupiah,2025,survey_estimate,per_capita,10.1,235,,Aneka barang dan jasa
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,576844,rupiah,2024,survey_estimate,per_capita,10.1,235,,Aneka barang dan jasa
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,93097,rupiah,2025,survey_estimate,per_capita,10.1,235,,"Pakaian, alas kaki, dan tutup kepala"
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,70838,rupiah,2024,survey_estimate,per_capita,10.1,235,,"Pakaian, alas kaki, dan tutup kepala"
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/barang_tahan_lama,,134219,rupiah,2025,survey_estimate,per_capita,10.1,235,,Barang tahan lama
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/barang_tahan_lama,,95060,rupiah,2024,survey_estimate,per_capita,10.1,235,,Barang tahan lama
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,182940,rupiah,2025,survey_estimate,per_capita,10.1,235,,"Pajak, pungutan, dan asuransi"
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,149914,rupiah,2024,survey_estimate,per_capita,10.1,235,,"Pajak, pungutan, dan asuransi"
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,66637,rupiah,2025,survey_estimate,per_capita,10.1,235,,Keperluan pesta dan upacara/kenduri
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,28488,rupiah,2024,survey_estimate,per_capita,10.1,235,,Keperluan pesta dan upacara/kenduri
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,2315487,rupiah,2025,survey_estimate,per_capita,10.1,235,,Jumlah bukan makanan
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,2000859,rupiah,2024,survey_estimate,per_capita,10.1,235,,Jumlah bukan makanan
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,total,,3636405,rupiah,2025,survey_estimate,per_capita,10.1,235,,
+31.74,2,Kota Administrasi Jakarta Selatan,expenditure,total,,3274714,rupiah,2024,survey_estimate,per_capita,10.1,235,,

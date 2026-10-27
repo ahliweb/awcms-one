@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-1174-kecamatan-117303-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.73.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Blang Mangat Dalam Angka 2026",
+  "publisherName": "BPS Kota Lhokseumawe",
+  "publisherDomain": "1174",
+  "publisherWebsite": "https://lhokseumawekota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Lhokseumawe (https://lhokseumawekota.bps.go.id), publikasi \"Kecamatan Blang Mangat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1174010",
+  "publicationNumber": "11740.26006",
+  "issn": "3110-4401",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lhokseumawekota.bps.go.id/id/publication/2026/09/28/19d149a388907e16046bdf2a/kecamatan-blang-mangat-dalam-angka-2026.html",
+  "sourceFileSha256": "c6397462701a68db7cb503c169ae3ece520feeee7fbe710535749eee6e32b169",
+  "sourceFileBytes": 12650051,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kota Lhokseumawe.",
+  "csvPath": "datasets/bps-1174-kecamatan-117303-dalam-angka-2026.csv",
+  "csvSha256": "55645437b9840d7244ad3213debad6dbd96b48d73d35c81771006ef6d4df7a0f",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Blang Mangat, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Blang Mangat, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "cross-table disagreement, both stored as published: 11.73.03 sex/laki_laki/ 2025: 14622 (table 3.1) vs 14360 (table 3.2)",
+    "cross-table disagreement, both stored as published: 11.73.03 sex/perempuan/ 2025: 14664 (table 3.1) vs 14415 (table 3.2)",
+    "cross-table disagreement, both stored as published: 11.73.03 total/total/ 2025: 29286 (table 3.1) vs 28775 (table 3.2)"
+  ]
+}

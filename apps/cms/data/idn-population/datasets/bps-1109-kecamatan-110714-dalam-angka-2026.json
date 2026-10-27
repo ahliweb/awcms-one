@@ -1,0 +1,40 @@
+{
+  "datasetCode": "bps-1109-kecamatan-110714-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.07.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Padang Tiji Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "1109",
+  "publisherWebsite": "https://pidiekab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://pidiekab.bps.go.id), publikasi \"Kecamatan Padang Tiji Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.140",
+  "publicationNumber": "11090.26018",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pidiekab.bps.go.id/id/publication/2026/09/28/4033dce555268669e500a6f3/kecamatan-padang-tiji-dalam-angka-2026.html",
+  "sourceFileSha256": "c1757ce971b93a61afa7fbbecdf7edfcdee972ad64a7222f8688be45ecbee015",
+  "sourceFileBytes": 3811380,
+  "sourcePages": [42],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pidie",
+  "csvPath": "datasets/bps-1109-kecamatan-110714-dalam-angka-2026.csv",
+  "csvSha256": "c817ba49c9b456ec852bc2b385a69b81a95be163bcb8096f3cf5a20d35263682",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Padang Tiji, 2025",
+      "printedPages": [42],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kambuek Nicah\": unmatched ",
+    "table 3.1: row not stored: row \"Buni Reuling Peudaya\": unmatched ",
+    "table 3.1: row not stored: row \"Seukeun Peudaya\": unmatched "
+  ]
+}

@@ -1,0 +1,98 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.04,2,Kabupaten Serang,age_group,0-4,laki_laki,62530,jiwa,2025,projection,total_population,3.1.2,66,,0–4
+36.04,2,Kabupaten Serang,age_group,0-4,perempuan,57864,jiwa,2025,projection,total_population,3.1.2,66,,0–4
+36.04,2,Kabupaten Serang,age_group,0-4,,120394,jiwa,2025,projection,total_population,3.1.2,66,,0–4
+36.04,2,Kabupaten Serang,age_group,5-9,laki_laki,88988,jiwa,2025,projection,total_population,3.1.2,66,,5–9
+36.04,2,Kabupaten Serang,age_group,5-9,perempuan,82951,jiwa,2025,projection,total_population,3.1.2,66,,5–9
+36.04,2,Kabupaten Serang,age_group,5-9,,171939,jiwa,2025,projection,total_population,3.1.2,66,,5–9
+36.04,2,Kabupaten Serang,age_group,10-14,laki_laki,85179,jiwa,2025,projection,total_population,3.1.2,66,,10–14
+36.04,2,Kabupaten Serang,age_group,10-14,perempuan,79936,jiwa,2025,projection,total_population,3.1.2,66,,10–14
+36.04,2,Kabupaten Serang,age_group,10-14,,165115,jiwa,2025,projection,total_population,3.1.2,66,,10–14
+36.04,2,Kabupaten Serang,age_group,15-19,laki_laki,70001,jiwa,2025,projection,total_population,3.1.2,66,,15–19
+36.04,2,Kabupaten Serang,age_group,15-19,perempuan,67410,jiwa,2025,projection,total_population,3.1.2,66,,15–19
+36.04,2,Kabupaten Serang,age_group,15-19,,137411,jiwa,2025,projection,total_population,3.1.2,66,,15–19
+36.04,2,Kabupaten Serang,age_group,20-24,laki_laki,75500,jiwa,2025,projection,total_population,3.1.2,66,,20–24
+36.04,2,Kabupaten Serang,age_group,20-24,perempuan,72348,jiwa,2025,projection,total_population,3.1.2,66,,20–24
+36.04,2,Kabupaten Serang,age_group,20-24,,147848,jiwa,2025,projection,total_population,3.1.2,66,,20–24
+36.04,2,Kabupaten Serang,age_group,25-29,laki_laki,83628,jiwa,2025,projection,total_population,3.1.2,66,,25–29
+36.04,2,Kabupaten Serang,age_group,25-29,perempuan,76677,jiwa,2025,projection,total_population,3.1.2,66,,25–29
+36.04,2,Kabupaten Serang,age_group,25-29,,160305,jiwa,2025,projection,total_population,3.1.2,66,,25–29
+36.04,2,Kabupaten Serang,age_group,30-34,laki_laki,79056,jiwa,2025,projection,total_population,3.1.2,66,,30–34
+36.04,2,Kabupaten Serang,age_group,30-34,perempuan,73033,jiwa,2025,projection,total_population,3.1.2,66,,30–34
+36.04,2,Kabupaten Serang,age_group,30-34,,152089,jiwa,2025,projection,total_population,3.1.2,66,,30–34
+36.04,2,Kabupaten Serang,age_group,35-39,laki_laki,77584,jiwa,2025,projection,total_population,3.1.2,66,,35–39
+36.04,2,Kabupaten Serang,age_group,35-39,perempuan,71346,jiwa,2025,projection,total_population,3.1.2,66,,35–39
+36.04,2,Kabupaten Serang,age_group,35-39,,148930,jiwa,2025,projection,total_population,3.1.2,66,,35–39
+36.04,2,Kabupaten Serang,age_group,40-44,laki_laki,68499,jiwa,2025,projection,total_population,3.1.2,66,,40–44
+36.04,2,Kabupaten Serang,age_group,40-44,perempuan,66262,jiwa,2025,projection,total_population,3.1.2,66,,40–44
+36.04,2,Kabupaten Serang,age_group,40-44,,134761,jiwa,2025,projection,total_population,3.1.2,66,,40–44
+36.04,2,Kabupaten Serang,age_group,45-49,laki_laki,60190,jiwa,2025,projection,total_population,3.1.2,66,,45–49
+36.04,2,Kabupaten Serang,age_group,45-49,perempuan,62099,jiwa,2025,projection,total_population,3.1.2,66,,45–49
+36.04,2,Kabupaten Serang,age_group,45-49,,122289,jiwa,2025,projection,total_population,3.1.2,66,,45–49
+36.04,2,Kabupaten Serang,age_group,50-54,laki_laki,50760,jiwa,2025,projection,total_population,3.1.2,66,,50–54
+36.04,2,Kabupaten Serang,age_group,50-54,perempuan,50037,jiwa,2025,projection,total_population,3.1.2,66,,50–54
+36.04,2,Kabupaten Serang,age_group,50-54,,100797,jiwa,2025,projection,total_population,3.1.2,66,,50–54
+36.04,2,Kabupaten Serang,age_group,55-59,laki_laki,42855,jiwa,2025,projection,total_population,3.1.2,66,,55–59
+36.04,2,Kabupaten Serang,age_group,55-59,perempuan,42853,jiwa,2025,projection,total_population,3.1.2,66,,55–59
+36.04,2,Kabupaten Serang,age_group,55-59,,85708,jiwa,2025,projection,total_population,3.1.2,66,,55–59
+36.04,2,Kabupaten Serang,age_group,60-64,laki_laki,30571,jiwa,2025,projection,total_population,3.1.2,66,,60–64
+36.04,2,Kabupaten Serang,age_group,60-64,perempuan,30112,jiwa,2025,projection,total_population,3.1.2,66,,60–64
+36.04,2,Kabupaten Serang,age_group,60-64,,60683,jiwa,2025,projection,total_population,3.1.2,66,,60–64
+36.04,2,Kabupaten Serang,age_group,65-69,laki_laki,23472,jiwa,2025,projection,total_population,3.1.2,66,,65–69
+36.04,2,Kabupaten Serang,age_group,65-69,perempuan,24159,jiwa,2025,projection,total_population,3.1.2,66,,65–69
+36.04,2,Kabupaten Serang,age_group,65-69,,47631,jiwa,2025,projection,total_population,3.1.2,66,,65–69
+36.04,2,Kabupaten Serang,age_group,70-74,laki_laki,12932,jiwa,2025,projection,total_population,3.1.2,66,,70–74
+36.04,2,Kabupaten Serang,age_group,70-74,perempuan,13267,jiwa,2025,projection,total_population,3.1.2,66,,70–74
+36.04,2,Kabupaten Serang,age_group,70-74,,26199,jiwa,2025,projection,total_population,3.1.2,66,,70–74
+36.04,2,Kabupaten Serang,age_group,75+,laki_laki,14399,jiwa,2025,projection,total_population,3.1.2,66,,75+
+36.04,2,Kabupaten Serang,age_group,75+,perempuan,19053,jiwa,2025,projection,total_population,3.1.2,66,,75+
+36.04,2,Kabupaten Serang,age_group,75+,,33452,jiwa,2025,projection,total_population,3.1.2,66,,75+
+36.04,2,Kabupaten Serang,sex,laki_laki,,926144,jiwa,2025,projection,total_population,3.1.2,66,,Laki-Laki
+36.04,2,Kabupaten Serang,sex,perempuan,,889407,jiwa,2025,projection,total_population,3.1.2,66,,Perempuan
+36.04,2,Kabupaten Serang,total,total,,1815551,jiwa,2025,projection,total_population,3.1.2,66,,
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/padi_padian,,96691,rupiah,2024,survey_estimate,per_capita,10.1,397,,Padi-padian
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/padi_padian,,80765,rupiah,2025,survey_estimate,per_capita,10.1,397,,Padi-padian
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/umbi_umbian,,4570,rupiah,2024,survey_estimate,per_capita,10.1,397,,Umbi-umbian
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/umbi_umbian,,4907,rupiah,2025,survey_estimate,per_capita,10.1,397,,Umbi-umbian
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,54377,rupiah,2024,survey_estimate,per_capita,10.1,397,,Ikan/udang/cumi/kerang
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,49289,rupiah,2025,survey_estimate,per_capita,10.1,397,,Ikan/udang/cumi/kerang
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/daging,,27019,rupiah,2024,survey_estimate,per_capita,10.1,397,,Daging
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/daging,,25149,rupiah,2025,survey_estimate,per_capita,10.1,397,,Daging
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/telur_dan_susu,,27640,rupiah,2024,survey_estimate,per_capita,10.1,397,,Telur dan susu
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/telur_dan_susu,,29004,rupiah,2025,survey_estimate,per_capita,10.1,397,,Telur dan susu
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/sayur_sayuran,,56912,rupiah,2024,survey_estimate,per_capita,10.1,397,,Sayur-sayuran
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/sayur_sayuran,,59220,rupiah,2025,survey_estimate,per_capita,10.1,397,,Sayur-sayuran
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/kacang_kacangan,,13604,rupiah,2024,survey_estimate,per_capita,10.1,397,,Kacang-kacangan
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/kacang_kacangan,,15835,rupiah,2025,survey_estimate,per_capita,10.1,397,,Kacang-kacangan
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/buah_buahan,,39981,rupiah,2024,survey_estimate,per_capita,10.1,397,,Buah-buahan
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/buah_buahan,,41813,rupiah,2025,survey_estimate,per_capita,10.1,397,,Buah-buahan
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14644,rupiah,2024,survey_estimate,per_capita,10.1,397,,Minyak dan kelapa
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18294,rupiah,2025,survey_estimate,per_capita,10.1,397,,Minyak dan kelapa
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/bahan_minuman,,17670,rupiah,2024,survey_estimate,per_capita,10.1,397,,Bahan minuman
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/bahan_minuman,,21266,rupiah,2025,survey_estimate,per_capita,10.1,397,,Bahan minuman
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/bumbu_bumbuan,,16073,rupiah,2024,survey_estimate,per_capita,10.1,397,,Bumbu-bumbuan
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/bumbu_bumbuan,,15192,rupiah,2025,survey_estimate,per_capita,10.1,397,,Bumbu-bumbuan
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/konsumsi_lainnya,,14969,rupiah,2024,survey_estimate,per_capita,10.1,397,,Konsumsi lainnya
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/konsumsi_lainnya,,13855,rupiah,2025,survey_estimate,per_capita,10.1,397,,Konsumsi lainnya
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,226377,rupiah,2024,survey_estimate,per_capita,10.1,397,,Makanan dan minuman jadi
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,223214,rupiah,2025,survey_estimate,per_capita,10.1,397,,Makanan dan minuman jadi
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/rokok,,134777,rupiah,2024,survey_estimate,per_capita,10.1,397,,Rokok
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/rokok,,128550,rupiah,2025,survey_estimate,per_capita,10.1,397,,Rokok
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/jumlah_makanan,,745324,rupiah,2024,survey_estimate,per_capita,10.1,397,,Jumlah makanan
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/jumlah_makanan,,726352,rupiah,2025,survey_estimate,per_capita,10.1,397,,Jumlah makanan
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,295674,rupiah,2024,survey_estimate,per_capita,10.1,397,,Perumahan dan fasilitas rumah tangga
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,298956,rupiah,2025,survey_estimate,per_capita,10.1,397,,Perumahan dan fasilitas rumah tangga
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,119805,rupiah,2024,survey_estimate,per_capita,10.1,397,,Aneka barang dan jasa
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,130858,rupiah,2025,survey_estimate,per_capita,10.1,397,,Aneka barang dan jasa
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,34125,rupiah,2024,survey_estimate,per_capita,10.1,397,,"Pakaian, alas kaki, dan tutup kepala"
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,31959,rupiah,2025,survey_estimate,per_capita,10.1,397,,"Pakaian, alas kaki, dan tutup kepala"
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/barang_tahan_lama,,30171,rupiah,2024,survey_estimate,per_capita,10.1,397,,Barang tahan lama
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/barang_tahan_lama,,29904,rupiah,2025,survey_estimate,per_capita,10.1,397,,Barang tahan lama
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,41835,rupiah,2024,survey_estimate,per_capita,10.1,397,,"Pajak, pungutan, dan asuransi"
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,46047,rupiah,2025,survey_estimate,per_capita,10.1,397,,"Pajak, pungutan, dan asuransi"
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,21125,rupiah,2024,survey_estimate,per_capita,10.1,397,,Keperluan pesta dan upacara/kenduri
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,16230,rupiah,2025,survey_estimate,per_capita,10.1,397,,Keperluan pesta dan upacara/kenduri
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,542735,rupiah,2024,survey_estimate,per_capita,10.1,397,,Jumlah bukan makanan
+36.04,2,Kabupaten Serang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,553954,rupiah,2025,survey_estimate,per_capita,10.1,397,,Jumlah bukan makanan
+36.04,2,Kabupaten Serang,expenditure,total,,1288059,rupiah,2024,survey_estimate,per_capita,10.1,397,,
+36.04,2,Kabupaten Serang,expenditure,total,,1280306,rupiah,2025,survey_estimate,per_capita,10.1,397,,

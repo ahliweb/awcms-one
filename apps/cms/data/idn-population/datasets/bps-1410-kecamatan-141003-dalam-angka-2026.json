@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1410-kecamatan-141003-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.10.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Rangsang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kepulauan Meranti",
+  "publisherDomain": "1410",
+  "publisherWebsite": "https://merantikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kepulauan Meranti (https://merantikab.bps.go.id), publikasi \"Kecamatan Rangsang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1410030",
+  "publicationNumber": "14100.26014",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://merantikab.bps.go.id/id/publication/2026/09/28/bc65697eae14ddac3e66a208/kecamatan-rangsang-dalam-angka-2026.html",
+  "sourceFileSha256": "5c690c708feca4454d09dacab6a15344b58f36bbbe266aacaeefdf4841ad7ef1",
+  "sourceFileBytes": 3663688,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kepulauan Meranti.",
+  "csvPath": "datasets/bps-1410-kecamatan-141003-dalam-angka-2026.csv",
+  "csvSha256": "88d20044528d2f8e3d58e215e9bd63896e9fe89f21a4108740611aa7d4d4b0e8",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Rangsang , 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

@@ -1,0 +1,149 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.73.02.1001,4,Kasemen,sex,laki_laki,,11101,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+36.73.02.1001,4,Kasemen,sex,perempuan,,10575,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+36.73.02.1001,4,Kasemen,total,total,,21676,jiwa,2026,registration,total_population,3.1,34,,
+36.73.02.1004,4,Warung Jaud,sex,laki_laki,,7437,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+36.73.02.1004,4,Warung Jaud,sex,perempuan,,7050,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+36.73.02.1004,4,Warung Jaud,total,total,,14487,jiwa,2026,registration,total_population,3.1,34,,
+36.73.02.1002,4,Mesjid Priyayi,sex,laki_laki,,5254,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+36.73.02.1002,4,Mesjid Priyayi,sex,perempuan,,4857,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+36.73.02.1002,4,Mesjid Priyayi,total,total,,10111,jiwa,2026,registration,total_population,3.1,34,,
+36.73.02.1006,4,Bendung,sex,laki_laki,,4543,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+36.73.02.1006,4,Bendung,sex,perempuan,,4122,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+36.73.02.1006,4,Bendung,total,total,,8665,jiwa,2026,registration,total_population,3.1,34,,
+36.73.02.1003,4,Terumbu,sex,laki_laki,,5630,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+36.73.02.1003,4,Terumbu,sex,perempuan,,5160,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+36.73.02.1003,4,Terumbu,total,total,,10790,jiwa,2026,registration,total_population,3.1,34,,
+36.73.02.1008,4,Sawah Luhur,sex,laki_laki,,6126,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+36.73.02.1008,4,Sawah Luhur,sex,perempuan,,5967,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+36.73.02.1008,4,Sawah Luhur,total,total,,12093,jiwa,2026,registration,total_population,3.1,34,,
+36.73.02.1009,4,Kilasah,sex,laki_laki,,5051,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+36.73.02.1009,4,Kilasah,sex,perempuan,,4602,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+36.73.02.1009,4,Kilasah,total,total,,9653,jiwa,2026,registration,total_population,3.1,34,,
+36.73.02.1011,4,Margaluyu,sex,laki_laki,,4343,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+36.73.02.1011,4,Margaluyu,sex,perempuan,,4050,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+36.73.02.1011,4,Margaluyu,total,total,,8393,jiwa,2026,registration,total_population,3.1,34,,
+36.73.02.1010,4,Kasunyatan,sex,laki_laki,,5375,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+36.73.02.1010,4,Kasunyatan,sex,perempuan,,5118,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+36.73.02.1010,4,Kasunyatan,total,total,,10493,jiwa,2026,registration,total_population,3.1,34,,
+36.73.02.1007,4,Banten,sex,laki_laki,,8867,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+36.73.02.1007,4,Banten,sex,perempuan,,8499,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+36.73.02.1007,4,Banten,total,total,,17366,jiwa,2026,registration,total_population,3.1,34,,
+36.73.02,3,Kasemen,age_group,0-4,laki_laki,5151,jiwa,2026,registration,total_population,3.2,36,,0–4
+36.73.02,3,Kasemen,age_group,0-4,perempuan,4848,jiwa,2026,registration,total_population,3.2,36,,0–4
+36.73.02,3,Kasemen,age_group,0-4,,9999,jiwa,2026,registration,total_population,3.2,36,,0–4
+36.73.02,3,Kasemen,age_group,5-9,laki_laki,6380,jiwa,2026,registration,total_population,3.2,36,,5–9
+36.73.02,3,Kasemen,age_group,5-9,perempuan,6073,jiwa,2026,registration,total_population,3.2,36,,5–9
+36.73.02,3,Kasemen,age_group,5-9,,12453,jiwa,2026,registration,total_population,3.2,36,,5–9
+36.73.02,3,Kasemen,age_group,10-14,laki_laki,6156,jiwa,2026,registration,total_population,3.2,36,,10–14
+36.73.02,3,Kasemen,age_group,10-14,perempuan,5754,jiwa,2026,registration,total_population,3.2,36,,10–14
+36.73.02,3,Kasemen,age_group,10-14,,11910,jiwa,2026,registration,total_population,3.2,36,,10–14
+36.73.02,3,Kasemen,age_group,15-19,laki_laki,5086,jiwa,2026,registration,total_population,3.2,36,,15–19
+36.73.02,3,Kasemen,age_group,15-19,perempuan,4773,jiwa,2026,registration,total_population,3.2,36,,15–19
+36.73.02,3,Kasemen,age_group,15-19,,9859,jiwa,2026,registration,total_population,3.2,36,,15–19
+36.73.02,3,Kasemen,age_group,20-24,laki_laki,5407,jiwa,2026,registration,total_population,3.2,36,,20–24
+36.73.02,3,Kasemen,age_group,20-24,perempuan,4937,jiwa,2026,registration,total_population,3.2,36,,20–24
+36.73.02,3,Kasemen,age_group,20-24,,10344,jiwa,2026,registration,total_population,3.2,36,,20–24
+36.73.02,3,Kasemen,age_group,25-29,laki_laki,6043,jiwa,2026,registration,total_population,3.2,36,,25–29
+36.73.02,3,Kasemen,age_group,25-29,perempuan,5546,jiwa,2026,registration,total_population,3.2,36,,25–29
+36.73.02,3,Kasemen,age_group,25-29,,11589,jiwa,2026,registration,total_population,3.2,36,,25–29
+36.73.02,3,Kasemen,age_group,30-34,laki_laki,5747,jiwa,2026,registration,total_population,3.2,36,,30–34
+36.73.02,3,Kasemen,age_group,30-34,perempuan,5245,jiwa,2026,registration,total_population,3.2,36,,30–34
+36.73.02,3,Kasemen,age_group,30-34,,10992,jiwa,2026,registration,total_population,3.2,36,,30–34
+36.73.02,3,Kasemen,age_group,35-39,laki_laki,5398,jiwa,2026,registration,total_population,3.2,36,,35–39
+36.73.02,3,Kasemen,age_group,35-39,perempuan,4568,jiwa,2026,registration,total_population,3.2,36,,35–39
+36.73.02,3,Kasemen,age_group,35-39,,9966,jiwa,2026,registration,total_population,3.2,36,,35–39
+36.73.02,3,Kasemen,age_group,40-44,laki_laki,4661,jiwa,2026,registration,total_population,3.2,36,,40–44
+36.73.02,3,Kasemen,age_group,40-44,perempuan,4112,jiwa,2026,registration,total_population,3.2,36,,40–44
+36.73.02,3,Kasemen,age_group,40-44,,8773,jiwa,2026,registration,total_population,3.2,36,,40–44
+36.73.02,3,Kasemen,age_group,45-49,laki_laki,3646,jiwa,2026,registration,total_population,3.2,36,,45–49
+36.73.02,3,Kasemen,age_group,45-49,perempuan,3608,jiwa,2026,registration,total_population,3.2,36,,45–49
+36.73.02,3,Kasemen,age_group,45-49,,7254,jiwa,2026,registration,total_population,3.2,36,,45–49
+36.73.02,3,Kasemen,age_group,50-54,laki_laki,3064,jiwa,2026,registration,total_population,3.2,36,,50–54
+36.73.02,3,Kasemen,age_group,50-54,perempuan,3180,jiwa,2026,registration,total_population,3.2,36,,50–54
+36.73.02,3,Kasemen,age_group,50-54,,6244,jiwa,2026,registration,total_population,3.2,36,,50–54
+36.73.02,3,Kasemen,age_group,55-59,laki_laki,2536,jiwa,2026,registration,total_population,3.2,36,,55–59
+36.73.02,3,Kasemen,age_group,55-59,perempuan,2543,jiwa,2026,registration,total_population,3.2,36,,55–59
+36.73.02,3,Kasemen,age_group,55-59,,5079,jiwa,2026,registration,total_population,3.2,36,,55–59
+36.73.02,3,Kasemen,age_group,60-64,laki_laki,1749,jiwa,2026,registration,total_population,3.2,36,,60–64
+36.73.02,3,Kasemen,age_group,60-64,perempuan,1881,jiwa,2026,registration,total_population,3.2,36,,60–64
+36.73.02,3,Kasemen,age_group,60-64,,3630,jiwa,2026,registration,total_population,3.2,36,,60–64
+36.73.02,3,Kasemen,age_group,65-69,laki_laki,1338,jiwa,2026,registration,total_population,3.2,36,,65–69
+36.73.02,3,Kasemen,age_group,65-69,perempuan,1396,jiwa,2026,registration,total_population,3.2,36,,65–69
+36.73.02,3,Kasemen,age_group,65-69,,2734,jiwa,2026,registration,total_population,3.2,36,,65–69
+36.73.02,3,Kasemen,age_group,70-74,laki_laki,744,jiwa,2026,registration,total_population,3.2,36,,70–74
+36.73.02,3,Kasemen,age_group,70-74,perempuan,724,jiwa,2026,registration,total_population,3.2,36,,70–74
+36.73.02,3,Kasemen,age_group,70-74,,1468,jiwa,2026,registration,total_population,3.2,36,,70–74
+36.73.02,3,Kasemen,age_group,75+,laki_laki,621,jiwa,2026,registration,total_population,3.2,36,,≥75
+36.73.02,3,Kasemen,age_group,75+,perempuan,812,jiwa,2026,registration,total_population,3.2,36,,≥75
+36.73.02,3,Kasemen,age_group,75+,,1433,jiwa,2026,registration,total_population,3.2,36,,≥75
+36.73.02.1001,4,Kasemen,religion,islam,,21515,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.02.1001,4,Kasemen,religion,kristen,,127,jiwa,2026,registration,total_population,3.5,39,,Kristen
+36.73.02.1001,4,Kasemen,religion,katolik,,27,jiwa,2026,registration,total_population,3.5,39,,Catholic
+36.73.02.1001,4,Kasemen,religion,hindu,,0,jiwa,2026,registration,total_population,3.5,39,nil,Hindu
+36.73.02.1004,4,Warung Jaud,religion,islam,,14414,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.02.1004,4,Warung Jaud,religion,kristen,,56,jiwa,2026,registration,total_population,3.5,39,,Kristen
+36.73.02.1004,4,Warung Jaud,religion,katolik,,14,jiwa,2026,registration,total_population,3.5,39,,Catholic
+36.73.02.1004,4,Warung Jaud,religion,hindu,,0,jiwa,2026,registration,total_population,3.5,39,nil,Hindu
+36.73.02.1002,4,Mesjid Priyayi,religion,islam,,10107,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.02.1002,4,Mesjid Priyayi,religion,kristen,,4,jiwa,2026,registration,total_population,3.5,39,,Kristen
+36.73.02.1002,4,Mesjid Priyayi,religion,katolik,,0,jiwa,2026,registration,total_population,3.5,39,nil,Catholic
+36.73.02.1002,4,Mesjid Priyayi,religion,hindu,,0,jiwa,2026,registration,total_population,3.5,39,nil,Hindu
+36.73.02.1006,4,Bendung,religion,islam,,8647,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.02.1006,4,Bendung,religion,kristen,,10,jiwa,2026,registration,total_population,3.5,39,,Kristen
+36.73.02.1006,4,Bendung,religion,katolik,,0,jiwa,2026,registration,total_population,3.5,39,nil,Catholic
+36.73.02.1006,4,Bendung,religion,hindu,,0,jiwa,2026,registration,total_population,3.5,39,nil,Hindu
+36.73.02.1003,4,Terumbu,religion,islam,,10790,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.02.1003,4,Terumbu,religion,kristen,,0,jiwa,2026,registration,total_population,3.5,39,nil,Kristen
+36.73.02.1003,4,Terumbu,religion,katolik,,0,jiwa,2026,registration,total_population,3.5,39,nil,Catholic
+36.73.02.1003,4,Terumbu,religion,hindu,,0,jiwa,2026,registration,total_population,3.5,39,nil,Hindu
+36.73.02.1008,4,Sawah Luhur,religion,islam,,12084,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.02.1008,4,Sawah Luhur,religion,kristen,,8,jiwa,2026,registration,total_population,3.5,39,,Kristen
+36.73.02.1008,4,Sawah Luhur,religion,katolik,,1,jiwa,2026,registration,total_population,3.5,39,,Catholic
+36.73.02.1008,4,Sawah Luhur,religion,hindu,,0,jiwa,2026,registration,total_population,3.5,39,nil,Hindu
+36.73.02.1009,4,Kilasah,religion,islam,,9647,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.02.1009,4,Kilasah,religion,kristen,,0,jiwa,2026,registration,total_population,3.5,39,nil,Kristen
+36.73.02.1009,4,Kilasah,religion,katolik,,2,jiwa,2026,registration,total_population,3.5,39,,Catholic
+36.73.02.1009,4,Kilasah,religion,hindu,,0,jiwa,2026,registration,total_population,3.5,39,nil,Hindu
+36.73.02.1011,4,Margaluyu,religion,islam,,8389,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.02.1011,4,Margaluyu,religion,kristen,,4,jiwa,2026,registration,total_population,3.5,39,,Kristen
+36.73.02.1011,4,Margaluyu,religion,katolik,,0,jiwa,2026,registration,total_population,3.5,39,nil,Catholic
+36.73.02.1011,4,Margaluyu,religion,hindu,,0,jiwa,2026,registration,total_population,3.5,39,nil,Hindu
+36.73.02.1010,4,Kasunyatan,religion,islam,,10474,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.02.1010,4,Kasunyatan,religion,kristen,,6,jiwa,2026,registration,total_population,3.5,39,,Kristen
+36.73.02.1010,4,Kasunyatan,religion,katolik,,8,jiwa,2026,registration,total_population,3.5,39,,Catholic
+36.73.02.1010,4,Kasunyatan,religion,hindu,,0,jiwa,2026,registration,total_population,3.5,39,nil,Hindu
+36.73.02.1007,4,Banten,religion,islam,,17313,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.02.1007,4,Banten,religion,kristen,,17,jiwa,2026,registration,total_population,3.5,39,,Kristen
+36.73.02.1007,4,Banten,religion,katolik,,29,jiwa,2026,registration,total_population,3.5,39,,Catholic
+36.73.02.1007,4,Banten,religion,hindu,,0,jiwa,2026,registration,total_population,3.5,39,nil,Hindu
+36.73.02.1001,4,Kasemen,religion,buddha,,7,jiwa,2026,registration,total_population,3.5,40,,Budha
+36.73.02.1001,4,Kasemen,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,40,nil,Khonghucu
+36.73.02.1001,4,Kasemen,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,40,nil,Kepercayaan
+36.73.02.1004,4,Warung Jaud,religion,buddha,,3,jiwa,2026,registration,total_population,3.5,40,,Budha
+36.73.02.1004,4,Warung Jaud,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,40,nil,Khonghucu
+36.73.02.1004,4,Warung Jaud,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,40,nil,Kepercayaan
+36.73.02.1002,4,Mesjid Priyayi,religion,buddha,,0,jiwa,2026,registration,total_population,3.5,40,nil,Budha
+36.73.02.1002,4,Mesjid Priyayi,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,40,nil,Khonghucu
+36.73.02.1002,4,Mesjid Priyayi,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,40,nil,Kepercayaan
+36.73.02.1006,4,Bendung,religion,buddha,,8,jiwa,2026,registration,total_population,3.5,40,,Budha
+36.73.02.1006,4,Bendung,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,40,nil,Khonghucu
+36.73.02.1006,4,Bendung,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,40,nil,Kepercayaan
+36.73.02.1003,4,Terumbu,religion,buddha,,0,jiwa,2026,registration,total_population,3.5,40,nil,Budha
+36.73.02.1003,4,Terumbu,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,40,nil,Khonghucu
+36.73.02.1003,4,Terumbu,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,40,nil,Kepercayaan
+36.73.02.1008,4,Sawah Luhur,religion,buddha,,0,jiwa,2026,registration,total_population,3.5,40,nil,Budha
+36.73.02.1008,4,Sawah Luhur,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,40,nil,Khonghucu
+36.73.02.1008,4,Sawah Luhur,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,40,nil,Kepercayaan
+36.73.02.1009,4,Kilasah,religion,buddha,,4,jiwa,2026,registration,total_population,3.5,40,,Budha
+36.73.02.1009,4,Kilasah,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,40,nil,Khonghucu
+36.73.02.1009,4,Kilasah,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,40,nil,Kepercayaan
+36.73.02.1011,4,Margaluyu,religion,buddha,,0,jiwa,2026,registration,total_population,3.5,40,nil,Budha
+36.73.02.1011,4,Margaluyu,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,40,nil,Khonghucu
+36.73.02.1011,4,Margaluyu,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,40,nil,Kepercayaan
+36.73.02.1010,4,Kasunyatan,religion,buddha,,5,jiwa,2026,registration,total_population,3.5,40,,Budha
+36.73.02.1010,4,Kasunyatan,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,40,nil,Khonghucu
+36.73.02.1010,4,Kasunyatan,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,40,nil,Kepercayaan
+36.73.02.1007,4,Banten,religion,buddha,,7,jiwa,2026,registration,total_population,3.5,40,,Budha
+36.73.02.1007,4,Banten,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,40,nil,Khonghucu
+36.73.02.1007,4,Banten,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,40,nil,Kepercayaan

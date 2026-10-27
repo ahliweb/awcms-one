@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.03.03.2011,4,Cileles,sex,laki_laki,,5260,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.03.2011,4,Cileles,sex,perempuan,,5100,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.03.2011,4,Cileles,total,total,,10360,jiwa,2025,registration,total_population,3.1,25,,
+36.03.03.2014,4,Bantar Panjang,sex,laki_laki,,4833,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.03.2014,4,Bantar Panjang,sex,perempuan,,4689,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.03.2014,4,Bantar Panjang,total,total,,9522,jiwa,2025,registration,total_population,3.1,25,,
+36.03.03.2012,4,Sodong,sex,laki_laki,,6816,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.03.2012,4,Sodong,sex,perempuan,,6652,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.03.2012,4,Sodong,total,total,,13468,jiwa,2025,registration,total_population,3.1,25,,
+36.03.03.2013,4,Tapos,sex,laki_laki,,5381,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.03.2013,4,Tapos,sex,perempuan,,5221,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.03.2013,4,Tapos,total,total,,10602,jiwa,2025,registration,total_population,3.1,25,,
+36.03.03.2010,4,Marga Sari,sex,laki_laki,,8043,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.03.2010,4,Marga Sari,sex,perempuan,,7874,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.03.2010,4,Marga Sari,total,total,,15917,jiwa,2025,registration,total_population,3.1,25,,
+36.03.03.1007,4,Kadu Agung,sex,laki_laki,,4488,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.03.1007,4,Kadu Agung,sex,perempuan,,4462,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.03.1007,4,Kadu Agung,total,total,,8950,jiwa,2025,registration,total_population,3.1,25,,
+36.03.03.2003,4,Mata Gara,sex,laki_laki,,6723,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.03.2003,4,Mata Gara,sex,perempuan,,6587,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.03.2003,4,Mata Gara,total,total,,13310,jiwa,2025,registration,total_population,3.1,25,,
+36.03.03.1001,4,Tigaraksa,sex,laki_laki,,9455,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.03.1001,4,Tigaraksa,sex,perempuan,,9452,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.03.1001,4,Tigaraksa,total,total,,18907,jiwa,2025,registration,total_population,3.1,25,,
+36.03.03.2005,4,Pete,sex,laki_laki,,8212,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.03.2005,4,Pete,sex,perempuan,,7961,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.03.2005,4,Pete,total,total,,16173,jiwa,2025,registration,total_population,3.1,25,,
+36.03.03.2006,4,Tegalsari,sex,laki_laki,,2954,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.03.2006,4,Tegalsari,sex,perempuan,,2739,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.03.2006,4,Tegalsari,total,total,,5693,jiwa,2025,registration,total_population,3.1,25,,
+36.03.03.2008,4,Pematang,sex,laki_laki,,6236,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.03.2008,4,Pematang,sex,perempuan,,5948,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.03.2008,4,Pematang,total,total,,12184,jiwa,2025,registration,total_population,3.1,25,,
+36.03.03.2004,4,Pasir Nangka,sex,laki_laki,,13968,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.03.2004,4,Pasir Nangka,sex,perempuan,,13611,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.03.2004,4,Pasir Nangka,total,total,,27579,jiwa,2025,registration,total_population,3.1,25,,
+36.03.03.2009,4,Cisereh,sex,laki_laki,,3549,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.03.2009,4,Cisereh,sex,perempuan,,3306,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.03.2009,4,Cisereh,total,total,,6855,jiwa,2025,registration,total_population,3.1,25,,
+36.03.03.2002,4,Pasir Bolang,sex,laki_laki,,3309,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.03.2002,4,Pasir Bolang,sex,perempuan,,3213,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.03.2002,4,Pasir Bolang,total,total,,6522,jiwa,2025,registration,total_population,3.1,25,,
+36.03.03,3,Tigaraksa,age_group,0-4,laki_laki,6260,jiwa,2025,registration,total_population,3.2,27,,00–04
+36.03.03,3,Tigaraksa,age_group,0-4,perempuan,6015,jiwa,2025,registration,total_population,3.2,27,,00–04
+36.03.03,3,Tigaraksa,age_group,0-4,,12275,jiwa,2025,registration,total_population,3.2,27,,00–04
+36.03.03,3,Tigaraksa,age_group,5-9,laki_laki,8566,jiwa,2025,registration,total_population,3.2,27,,05–09
+36.03.03,3,Tigaraksa,age_group,5-9,perempuan,8137,jiwa,2025,registration,total_population,3.2,27,,05–09
+36.03.03,3,Tigaraksa,age_group,5-9,,16703,jiwa,2025,registration,total_population,3.2,27,,05–09
+36.03.03,3,Tigaraksa,age_group,10-14,laki_laki,8513,jiwa,2025,registration,total_population,3.2,27,,10–14
+36.03.03,3,Tigaraksa,age_group,10-14,perempuan,8093,jiwa,2025,registration,total_population,3.2,27,,10–14
+36.03.03,3,Tigaraksa,age_group,10-14,,16606,jiwa,2025,registration,total_population,3.2,27,,10–14
+36.03.03,3,Tigaraksa,age_group,15-19,laki_laki,7688,jiwa,2025,registration,total_population,3.2,27,,15–19
+36.03.03,3,Tigaraksa,age_group,15-19,perempuan,7248,jiwa,2025,registration,total_population,3.2,27,,15–19
+36.03.03,3,Tigaraksa,age_group,15-19,,14936,jiwa,2025,registration,total_population,3.2,27,,15–19
+36.03.03,3,Tigaraksa,age_group,20-24,laki_laki,7199,jiwa,2025,registration,total_population,3.2,27,,20–24
+36.03.03,3,Tigaraksa,age_group,20-24,perempuan,7236,jiwa,2025,registration,total_population,3.2,27,,20–24
+36.03.03,3,Tigaraksa,age_group,20-24,,14435,jiwa,2025,registration,total_population,3.2,27,,20–24
+36.03.03,3,Tigaraksa,age_group,25-29,laki_laki,7425,jiwa,2025,registration,total_population,3.2,27,,25–29
+36.03.03,3,Tigaraksa,age_group,25-29,perempuan,7354,jiwa,2025,registration,total_population,3.2,27,,25–29
+36.03.03,3,Tigaraksa,age_group,25-29,,14779,jiwa,2025,registration,total_population,3.2,27,,25–29
+36.03.03,3,Tigaraksa,age_group,30-34,laki_laki,7335,jiwa,2025,registration,total_population,3.2,27,,30–34
+36.03.03,3,Tigaraksa,age_group,30-34,perempuan,7181,jiwa,2025,registration,total_population,3.2,27,,30–34
+36.03.03,3,Tigaraksa,age_group,30-34,,14516,jiwa,2025,registration,total_population,3.2,27,,30–34
+36.03.03,3,Tigaraksa,age_group,35-39,laki_laki,6949,jiwa,2025,registration,total_population,3.2,27,,35–39
+36.03.03,3,Tigaraksa,age_group,35-39,perempuan,6753,jiwa,2025,registration,total_population,3.2,27,,35–39
+36.03.03,3,Tigaraksa,age_group,35-39,,13702,jiwa,2025,registration,total_population,3.2,27,,35–39
+36.03.03,3,Tigaraksa,age_group,40-44,laki_laki,7017,jiwa,2025,registration,total_population,3.2,27,,40–44
+36.03.03,3,Tigaraksa,age_group,40-44,perempuan,7055,jiwa,2025,registration,total_population,3.2,27,,40–44
+36.03.03,3,Tigaraksa,age_group,40-44,,14072,jiwa,2025,registration,total_population,3.2,27,,40–44
+36.03.03,3,Tigaraksa,age_group,45-49,laki_laki,6537,jiwa,2025,registration,total_population,3.2,27,,45–49
+36.03.03,3,Tigaraksa,age_group,45-49,perempuan,6782,jiwa,2025,registration,total_population,3.2,27,,45–49
+36.03.03,3,Tigaraksa,age_group,45-49,,13319,jiwa,2025,registration,total_population,3.2,27,,45–49
+36.03.03,3,Tigaraksa,age_group,50-54,laki_laki,5677,jiwa,2025,registration,total_population,3.2,27,,50–54
+36.03.03,3,Tigaraksa,age_group,50-54,perempuan,5555,jiwa,2025,registration,total_population,3.2,27,,50–54
+36.03.03,3,Tigaraksa,age_group,50-54,,11232,jiwa,2025,registration,total_population,3.2,27,,50–54
+36.03.03,3,Tigaraksa,age_group,55-59,laki_laki,4347,jiwa,2025,registration,total_population,3.2,27,,55–59
+36.03.03,3,Tigaraksa,age_group,55-59,perempuan,3688,jiwa,2025,registration,total_population,3.2,27,,55–59
+36.03.03,3,Tigaraksa,age_group,55-59,,8035,jiwa,2025,registration,total_population,3.2,27,,55–59
+36.03.03,3,Tigaraksa,age_group,60-64,laki_laki,2341,jiwa,2025,registration,total_population,3.2,27,,60–64
+36.03.03,3,Tigaraksa,age_group,60-64,perempuan,2126,jiwa,2025,registration,total_population,3.2,27,,60–64
+36.03.03,3,Tigaraksa,age_group,60-64,,4467,jiwa,2025,registration,total_population,3.2,27,,60–64
+36.03.03,3,Tigaraksa,age_group,65-69,laki_laki,1561,jiwa,2025,registration,total_population,3.2,27,,65–69
+36.03.03,3,Tigaraksa,age_group,65-69,perempuan,1629,jiwa,2025,registration,total_population,3.2,27,,65–69
+36.03.03,3,Tigaraksa,age_group,65-69,,3190,jiwa,2025,registration,total_population,3.2,27,,65–69
+36.03.03,3,Tigaraksa,age_group,70-74,laki_laki,899,jiwa,2025,registration,total_population,3.2,27,,70–74
+36.03.03,3,Tigaraksa,age_group,70-74,perempuan,833,jiwa,2025,registration,total_population,3.2,27,,70–74
+36.03.03,3,Tigaraksa,age_group,70-74,,1732,jiwa,2025,registration,total_population,3.2,27,,70–74
+36.03.03,3,Tigaraksa,age_group,75+,laki_laki,913,jiwa,2025,registration,total_population,3.2,27,,>75
+36.03.03,3,Tigaraksa,age_group,75+,perempuan,1130,jiwa,2025,registration,total_population,3.2,27,,>75
+36.03.03,3,Tigaraksa,age_group,75+,,2043,jiwa,2025,registration,total_population,3.2,27,,>75

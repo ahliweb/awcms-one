@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.18.03.2001,4,Meuko Jurong,sex,laki_laki,,233,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.18.03.2001,4,Meuko Jurong,sex,perempuan,,249,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.18.03.2001,4,Meuko Jurong,total,total,,482,jiwa,2025,registration,total_population,3.1,23,,
+11.18.03.2017,4,Jurong Ara,sex,laki_laki,,340,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.18.03.2017,4,Jurong Ara,sex,perempuan,,386,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.18.03.2017,4,Jurong Ara,total,total,,726,jiwa,2025,registration,total_population,3.1,23,,
+11.18.03.2015,4,Jurong Binje,sex,laki_laki,,631,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.18.03.2015,4,Jurong Binje,sex,perempuan,,627,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.18.03.2015,4,Jurong Binje,total,total,,1258,jiwa,2025,registration,total_population,3.1,23,,
+11.18.03.2013,4,Reului Mangat,sex,laki_laki,,290,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.18.03.2013,4,Reului Mangat,sex,perempuan,,325,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.18.03.2013,4,Reului Mangat,total,total,,615,jiwa,2025,registration,total_population,3.1,23,,
+11.18.03.2009,4,Meunasah Mee,sex,laki_laki,,302,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.18.03.2009,4,Meunasah Mee,sex,perempuan,,222,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.18.03.2009,4,Meunasah Mee,total,total,,524,jiwa,2025,registration,total_population,3.1,23,,
+11.18.03.2010,4,Meunasah Kumbang,sex,laki_laki,,245,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.18.03.2010,4,Meunasah Kumbang,sex,perempuan,,273,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.18.03.2010,4,Meunasah Kumbang,total,total,,518,jiwa,2025,registration,total_population,3.1,23,,
+11.18.03.2002,4,Kuta Baroh,sex,laki_laki,,216,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.18.03.2002,4,Kuta Baroh,sex,perempuan,,221,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.18.03.2002,4,Kuta Baroh,total,total,,437,jiwa,2025,registration,total_population,3.1,23,,
+11.18.03.2003,4,Meuko Meugit,sex,laki_laki,,190,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.18.03.2003,4,Meuko Meugit,sex,perempuan,,215,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.18.03.2003,4,Meuko Meugit,total,total,,405,jiwa,2025,registration,total_population,3.1,23,,
+11.18.03.2006,4,Keurisi Meunasah Raya,sex,laki_laki,,297,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.18.03.2006,4,Keurisi Meunasah Raya,sex,perempuan,,289,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.18.03.2006,4,Keurisi Meunasah Raya,total,total,,586,jiwa,2025,registration,total_population,3.1,23,,
+11.18.03.2004,4,Kiran Dayah,sex,laki_laki,,210,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.18.03.2004,4,Kiran Dayah,sex,perempuan,,229,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.18.03.2004,4,Kiran Dayah,total,total,,439,jiwa,2025,registration,total_population,3.1,23,,
+11.18.03.2005,4,Kiran Baroh,sex,laki_laki,,302,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.18.03.2005,4,Kiran Baroh,sex,perempuan,,305,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.18.03.2005,4,Kiran Baroh,total,total,,607,jiwa,2025,registration,total_population,3.1,23,,
+11.18.03.2011,4,Kiran Krueng,sex,laki_laki,,271,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.18.03.2011,4,Kiran Krueng,sex,perempuan,,257,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.18.03.2011,4,Kiran Krueng,total,total,,528,jiwa,2025,registration,total_population,3.1,23,,
+11.18.03.2007,4,Keurisi Meunasah Lueng,sex,laki_laki,,180,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.18.03.2007,4,Keurisi Meunasah Lueng,sex,perempuan,,239,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.18.03.2007,4,Keurisi Meunasah Lueng,total,total,,419,jiwa,2025,registration,total_population,3.1,23,,
+11.18.03.2018,4,Keude Jangka Buya,sex,laki_laki,,196,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.18.03.2018,4,Keude Jangka Buya,sex,perempuan,,173,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.18.03.2018,4,Keude Jangka Buya,total,total,,369,jiwa,2025,registration,total_population,3.1,23,,
+11.18.03.2014,4,Gampong Cot,sex,laki_laki,,372,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+11.18.03.2014,4,Gampong Cot,sex,perempuan,,299,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+11.18.03.2014,4,Gampong Cot,total,total,,671,jiwa,2025,registration,total_population,3.1,23,,

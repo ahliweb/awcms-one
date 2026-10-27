@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.05.36.2003,4,Cimahi,sex,laki_laki,,2149,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.36.2003,4,Cimahi,sex,perempuan,,2103,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.36.2003,4,Cimahi,total,total,,4252,jiwa,2025,registration,total_population,3.1,22,,
+32.05.36.2002,4,Indralayang,sex,laki_laki,,2835,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.36.2002,4,Indralayang,sex,perempuan,,2697,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.36.2002,4,Indralayang,total,total,,5532,jiwa,2025,registration,total_population,3.1,22,,
+32.05.36.2005,4,Purbayani,sex,laki_laki,,3901,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.36.2005,4,Purbayani,sex,perempuan,,3758,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.36.2005,4,Purbayani,total,total,,7659,jiwa,2025,registration,total_population,3.1,22,,
+32.05.36.2001,4,Caringin,sex,laki_laki,,3517,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.36.2001,4,Caringin,sex,perempuan,,3316,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.36.2001,4,Caringin,total,total,,6833,jiwa,2025,registration,total_population,3.1,22,,
+32.05.36.2004,4,Sukarame,sex,laki_laki,,4542,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.36.2004,4,Sukarame,sex,perempuan,,4284,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.36.2004,4,Sukarame,total,total,,8826,jiwa,2025,registration,total_population,3.1,22,,
+32.05.36,3,Kecamatan Caringin,sex,laki_laki,,19309,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.36,3,Kecamatan Caringin,sex,perempuan,,18483,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.36,3,Kecamatan Caringin,total,total,,37792,jiwa,2025,registration,total_population,3.1,22,,
+32.05.36,3,Caringin,age_group,0-4,laki_laki,1449,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.36,3,Caringin,age_group,0-4,perempuan,1371,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.36,3,Caringin,age_group,0-4,,2820,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.36,3,Caringin,age_group,5-9,laki_laki,1833,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.36,3,Caringin,age_group,5-9,perempuan,1818,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.36,3,Caringin,age_group,5-9,,3651,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.36,3,Caringin,age_group,10-14,laki_laki,1768,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.36,3,Caringin,age_group,10-14,perempuan,1740,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.36,3,Caringin,age_group,10-14,,3508,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.36,3,Caringin,age_group,15-19,laki_laki,1511,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.36,3,Caringin,age_group,15-19,perempuan,1384,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.36,3,Caringin,age_group,15-19,,2895,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.36,3,Caringin,age_group,20-24,laki_laki,1741,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.36,3,Caringin,age_group,20-24,perempuan,1624,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.36,3,Caringin,age_group,20-24,,3365,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.36,3,Caringin,age_group,25-29,laki_laki,1781,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.36,3,Caringin,age_group,25-29,perempuan,1564,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.36,3,Caringin,age_group,25-29,,3345,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.36,3,Caringin,age_group,30-34,laki_laki,1473,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.36,3,Caringin,age_group,30-34,perempuan,1382,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.36,3,Caringin,age_group,30-34,,2855,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.36,3,Caringin,age_group,35-39,laki_laki,1168,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.36,3,Caringin,age_group,35-39,perempuan,1177,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.36,3,Caringin,age_group,35-39,,2345,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.36,3,Caringin,age_group,40-44,laki_laki,1157,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.36,3,Caringin,age_group,40-44,perempuan,1157,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.36,3,Caringin,age_group,40-44,,2314,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.36,3,Caringin,age_group,45-49,laki_laki,1101,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.36,3,Caringin,age_group,45-49,perempuan,1178,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.36,3,Caringin,age_group,45-49,,2279,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.36,3,Caringin,age_group,50-54,laki_laki,1231,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.36,3,Caringin,age_group,50-54,perempuan,1211,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.36,3,Caringin,age_group,50-54,,2442,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.36,3,Caringin,age_group,55-59,laki_laki,975,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.36,3,Caringin,age_group,55-59,perempuan,913,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.36,3,Caringin,age_group,55-59,,1888,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.36,3,Caringin,age_group,60-64,laki_laki,672,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.36,3,Caringin,age_group,60-64,perempuan,663,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.36,3,Caringin,age_group,60-64,,1335,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.36,3,Caringin,age_group,65-69,laki_laki,542,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.36,3,Caringin,age_group,65-69,perempuan,489,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.36,3,Caringin,age_group,65-69,,1031,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.36,3,Caringin,age_group,70-74,laki_laki,350,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.36,3,Caringin,age_group,70-74,perempuan,331,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.36,3,Caringin,age_group,70-74,,681,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.36,3,Caringin,age_group,75+,laki_laki,557,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.36,3,Caringin,age_group,75+,perempuan,481,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.36,3,Caringin,age_group,75+,,1038,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.36,3,Kecamatan Caringin,sex,laki_laki,,19309,jiwa,2025,registration,total_population,3.2,24,,Laki-Laki
+32.05.36,3,Kecamatan Caringin,sex,perempuan,,18483,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+32.05.36,3,Kecamatan Caringin,total,total,,37792,jiwa,2025,registration,total_population,3.2,24,,

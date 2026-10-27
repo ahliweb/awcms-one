@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-3328-kecamatan-332806-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.28.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lebaksiu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tegal",
+  "publisherDomain": "3328",
+  "publisherWebsite": "https://tegalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tegal (https://tegalkab.bps.go.id), publikasi \"Kecamatan Lebaksiu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3328060",
+  "publicationNumber": "33280",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tegalkab.bps.go.id/id/publication/2026/09/28/c1653ec05029d464033822b8/kecamatan-lebaksiu-dalam-angka-2026.html",
+  "sourceFileSha256": "7a615026c79bee8a7bf5b3139ba6dd84bdb7db0d85bf291d3e48fb7574458fd2",
+  "sourceFileBytes": 5962136,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tegal.",
+  "csvPath": "datasets/bps-3328-kecamatan-332806-dalam-angka-2026.csv",
+  "csvSha256": "a355e1aed8f6489bd93eda6a7f7887f0e0d54a053c6b1df8b0750d9a6b055768",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Lebaksiu, 2026",
+      "printedPages": [34, 35],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lebaksiu, 2026",
+      "printedPages": [36],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Jatimulyo\": unmatched ",
+    "table 3.1: row not stored: row \"Lebak Goah\": unmatched ",
+    "table 3.1: row not stored: row \"Jatimulyo\": unmatched ",
+    "table 3.1: row not stored: row \"Lebak Goah\": unmatched "
+  ]
+}

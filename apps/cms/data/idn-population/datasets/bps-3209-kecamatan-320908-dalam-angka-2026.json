@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3209-kecamatan-320908-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.09.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Susukanlebak Dalam Angka 2026",
+  "publisherName": "BPS BPS Kabupaten Cirebon",
+  "publisherDomain": "3209",
+  "publisherWebsite": "https://cirebonkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS BPS Kabupaten Cirebon (https://cirebonkab.bps.go.id), publikasi \"Kecamatan Susukanlebak Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3209061",
+  "publicationNumber": "32090.26016",
+  "issn": "2656-209X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cirebonkab.bps.go.id/id/publication/2026/09/28/76beabc6dfbad5e7776de30f/kecamatan-susukanlebak-dalam-angka-2026.html",
+  "sourceFileSha256": "6955eee838ccee82f2dc924ee2fdba9e38e7f842810fab068a67811108ed4713",
+  "sourceFileBytes": 9292020,
+  "sourcePages": [52, 53, 54],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Cirebon.",
+  "csvPath": "datasets/bps-3209-kecamatan-320908-dalam-angka-2026.csv",
+  "csvSha256": "f7ddc8ad7d42f7bdfc81d354d4f66e7ffcb0952c3cf5de4839a84c2d9a30d14e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Susukan Lebak, 2025",
+      "printedPages": [52, 53],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Susukan Lebak, 2025",
+      "printedPages": [54],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"001 Karangmangu\": unmatched ",
+    "table 3.1: row not stored: row \"001 Karangmangu\": unmatched "
+  ]
+}

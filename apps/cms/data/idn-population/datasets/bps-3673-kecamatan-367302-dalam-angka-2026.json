@@ -1,0 +1,56 @@
+{
+  "datasetCode": "bps-3673-kecamatan-367302-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.73.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kasemen Dalam Angka 2026",
+  "publisherName": "BPS Kota Serang",
+  "publisherDomain": "3673",
+  "publisherWebsite": "https://serangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Serang (https://serangkota.bps.go.id), publikasi \"Kecamatan Kasemen Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3673060",
+  "publicationNumber": "36730.26010",
+  "issn": "2714-375X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://serangkota.bps.go.id/id/publication/2026/09/28/426745c5553cb2fe980e1aa1/kecamatan-kasemen-dalam-angka-2026.html",
+  "sourceFileSha256": "004553c381a146bece622033bafe66a6f8df2696ca121bc47069a80deaeee476",
+  "sourceFileBytes": 7371492,
+  "sourcePages": [34, 35, 36, 39, 40],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Serang.",
+  "csvPath": "datasets/bps-3673-kecamatan-367302-dalam-angka-2026.csv",
+  "csvSha256": "b635361ec44a87291417ac63bf478087501f14fe426324c69a5bb6cd1a8ebfba",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk dan Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Kasemen, 2026",
+      "printedPages": [34, 35],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kasemen, 2026",
+      "printedPages": [36],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.5",
+      "title": "Jumlah Penduduk Menurut Agama dan Kelurahan di Kecamatan Kasemen, 2026",
+      "printedPages": [39, 40],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1: row not stored: row \"Kecamatan Kasemen Kasemen District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Kasemen Kasemen District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Kasemen Kasemen District\": unmatched ",
+    "table 3.5: row not stored: row \"Kecamatan Kasemen Kasemen District\": unmatched ",
+    "table 3.5: row not stored: row \"Kecamatan Kasemen Kasemen District\": unmatched "
+  ]
+}

@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.05.22.2004,4,Kaperas,sex,laki_laki,,382,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.22.2004,4,Kaperas,sex,perempuan,,380,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.22.2004,4,Kaperas,total,total,,762,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.22.2007,4,Sulkam,sex,laki_laki,,273,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.22.2007,4,Sulkam,sex,perempuan,,313,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.22.2007,4,Sulkam,total,total,,586,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.22.2006,4,Rampah,sex,laki_laki,,694,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.22.2006,4,Rampah,sex,perempuan,,684,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.22.2006,4,Rampah,total,total,,1378,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.22.2005,4,Namoteras,sex,laki_laki,,734,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.22.2005,4,Namoteras,sex,perempuan,,704,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.22.2005,4,Namoteras,total,total,,1438,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.22.2008,4,Kutambaru,sex,laki_laki,,1807,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.22.2008,4,Kutambaru,sex,perempuan,,1772,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.22.2008,4,Kutambaru,total,total,,3579,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.22.2003,4,Perkebunan Marike,sex,laki_laki,,742,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.22.2003,4,Perkebunan Marike,sex,perempuan,,755,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.22.2003,4,Perkebunan Marike,total,total,,1497,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.22.2002,4,Kutagajah,sex,laki_laki,,1239,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.22.2002,4,Kutagajah,sex,perempuan,,1264,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.22.2002,4,Kutagajah,total,total,,2503,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.22.2001,4,Namotogan,sex,laki_laki,,1557,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.22.2001,4,Namotogan,sex,perempuan,,1520,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.22.2001,4,Namotogan,total,total,,3077,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.22,3,Kecamatan Kutambaru,sex,laki_laki,,7428,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.22,3,Kecamatan Kutambaru,sex,perempuan,,7392,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.22,3,Kecamatan Kutambaru,total,total,,14820,jiwa,2025,registration,total_population,unnumbered-p39,39,,

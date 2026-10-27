@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-1872-kecamatan-187201-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.72.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Metro Pusat Dalam Angka 2026",
+  "publisherName": "BPS Kota Metro",
+  "publisherDomain": "1872",
+  "publisherWebsite": "https://metrokota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Metro (https://metrokota.bps.go.id), publikasi \"Kecamatan Metro Pusat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "18720.26008",
+  "issn": "3109-1369",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://metrokota.bps.go.id/id/publication/2026/09/28/956e108e5e50be28955745d5/kecamatan-metro-pusat-dalam-angka-2026.html",
+  "sourceFileSha256": "f70bb581b00f3a1b42ceb2571a300f1239ae7f5df0e14775d43acf8d043ddafe",
+  "sourceFileBytes": 28441417,
+  "sourcePages": [31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Metro.",
+  "csvPath": "datasets/bps-1872-kecamatan-187201-dalam-angka-2026.csv",
+  "csvSha256": "39ebe603fa5c84122a964d7ff9697ac014356d1af178d590fefaa66c761843af",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Metro Pusat, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Metro Pusat, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Hadimulyo Barat 24,00%\": unmatched ",
+    "table 3.1: row not stored: row \"Hadimulyo Timur 20,00%\": unmatched ",
+    "table 3.1: row not stored: row \"Imopuro 11,00%\": unmatched ",
+    "table 3.1: row not stored: row \"Metro 26,00%\": unmatched ",
+    "table 3.1: row not stored: row \"Yosomulyo 19,00%\": unmatched ",
+    "table 3.1: row not stored: row \"Metro Pusat 100%\": unmatched "
+  ]
+}

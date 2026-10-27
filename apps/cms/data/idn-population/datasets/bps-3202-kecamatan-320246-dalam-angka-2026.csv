@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.02.46.2005,4,Boregah Indah,sex,laki_laki,,2146,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.46.2005,4,Boregah Indah,sex,perempuan,,2145,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.46.2005,4,Boregah Indah,total,total,,4291,jiwa,2025,registration,total_population,3.1,24,,
+32.02.46.2001,4,Cimanggu,sex,laki_laki,,2874,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.46.2001,4,Cimanggu,sex,perempuan,,2739,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.46.2001,4,Cimanggu,total,total,,5613,jiwa,2025,registration,total_population,3.1,24,,
+32.02.46.2002,4,Sukamaju,sex,laki_laki,,2575,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.46.2002,4,Sukamaju,sex,perempuan,,2513,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.46.2002,4,Sukamaju,total,total,,5088,jiwa,2025,registration,total_population,3.1,24,,
+32.02.46.2003,4,Sukajadi,sex,laki_laki,,2834,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.46.2003,4,Sukajadi,sex,perempuan,,2653,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.46.2003,4,Sukajadi,total,total,,5487,jiwa,2025,registration,total_population,3.1,24,,
+32.02.46.2004,4,Karangmekar,sex,laki_laki,,1894,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.46.2004,4,Karangmekar,sex,perempuan,,1865,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.46.2004,4,Karangmekar,total,total,,3759,jiwa,2025,registration,total_population,3.1,24,,
+32.02.46.2006,4,Sukamanah,sex,laki_laki,,2299,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.46.2006,4,Sukamanah,sex,perempuan,,2271,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.46.2006,4,Sukamanah,total,total,,4570,jiwa,2025,registration,total_population,3.1,24,,
+32.02.46,3,Cimanggu,sex,laki_laki,,14622,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.46,3,Cimanggu,sex,perempuan,,14186,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.46,3,Cimanggu,total,total,,28808,jiwa,2025,registration,total_population,3.1,24,,

@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.73.01,3,Sibolga Utara,total,total,,22096,jiwa,2025,projection,total_population,3.1.1,65,,
+12.73.02,3,Sibolga Kota,total,total,,15608,jiwa,2025,projection,total_population,3.1.1,65,,
+12.73.03,3,Sibolga Selatan,total,total,,34681,jiwa,2025,projection,total_population,3.1.1,65,,
+12.73.04,3,Sibolga Sambas,total,total,,19859,jiwa,2025,projection,total_population,3.1.1,65,,
+12.73,2,Sibolga,total,total,,92244,jiwa,2025,projection,total_population,3.1.1,65,,
+12.73,2,Kota Sibolga,age_group,0-4,perempuan,3.85,ribu_jiwa,2025,projection,total_population,3.1.2,68,,0 – 4
+12.73,2,Kota Sibolga,age_group,0-4,,7.86,ribu_jiwa,2025,projection,total_population,3.1.2,68,,0 – 4
+12.73,2,Kota Sibolga,age_group,5-9,perempuan,4.35,ribu_jiwa,2025,projection,total_population,3.1.2,68,,5 – 9
+12.73,2,Kota Sibolga,age_group,5-9,,8.85,ribu_jiwa,2025,projection,total_population,3.1.2,68,,5 – 9
+12.73,2,Kota Sibolga,age_group,10-14,perempuan,3.78,ribu_jiwa,2025,projection,total_population,3.1.2,68,,10 – 14
+12.73,2,Kota Sibolga,age_group,10-14,,7.67,ribu_jiwa,2025,projection,total_population,3.1.2,68,,10 – 14
+12.73,2,Kota Sibolga,age_group,15-19,perempuan,3.87,ribu_jiwa,2025,projection,total_population,3.1.2,68,,15 – 19
+12.73,2,Kota Sibolga,age_group,15-19,,7.98,ribu_jiwa,2025,projection,total_population,3.1.2,68,,15 – 19
+12.73,2,Kota Sibolga,age_group,20-24,perempuan,3.76,ribu_jiwa,2025,projection,total_population,3.1.2,68,,20 – 24
+12.73,2,Kota Sibolga,age_group,20-24,,7.82,ribu_jiwa,2025,projection,total_population,3.1.2,68,,20 – 24
+12.73,2,Kota Sibolga,age_group,25-29,perempuan,3.85,ribu_jiwa,2025,projection,total_population,3.1.2,68,,25 – 29
+12.73,2,Kota Sibolga,age_group,25-29,,7.71,ribu_jiwa,2025,projection,total_population,3.1.2,68,,25 – 29
+12.73,2,Kota Sibolga,age_group,30-34,perempuan,3.46,ribu_jiwa,2025,projection,total_population,3.1.2,68,,30 – 34
+12.73,2,Kota Sibolga,age_group,30-34,,7.25,ribu_jiwa,2025,projection,total_population,3.1.2,68,,30 – 34
+12.73,2,Kota Sibolga,age_group,35-39,perempuan,3.16,ribu_jiwa,2025,projection,total_population,3.1.2,68,,35 –39
+12.73,2,Kota Sibolga,age_group,35-39,,6.80,ribu_jiwa,2025,projection,total_population,3.1.2,68,,35 –39
+12.73,2,Kota Sibolga,age_group,40-44,perempuan,3.25,ribu_jiwa,2025,projection,total_population,3.1.2,68,,40 – 44
+12.73,2,Kota Sibolga,age_group,40-44,,6.47,ribu_jiwa,2025,projection,total_population,3.1.2,68,,40 – 44
+12.73,2,Kota Sibolga,age_group,45-49,perempuan,2.96,ribu_jiwa,2025,projection,total_population,3.1.2,68,,45 – 49
+12.73,2,Kota Sibolga,age_group,45-49,,6.04,ribu_jiwa,2025,projection,total_population,3.1.2,68,,45 – 49
+12.73,2,Kota Sibolga,age_group,50-54,perempuan,2.50,ribu_jiwa,2025,projection,total_population,3.1.2,68,,50 – 54
+12.73,2,Kota Sibolga,age_group,50-54,,5.05,ribu_jiwa,2025,projection,total_population,3.1.2,68,,50 – 54
+12.73,2,Kota Sibolga,age_group,55-59,perempuan,2.14,ribu_jiwa,2025,projection,total_population,3.1.2,68,,55 – 59
+12.73,2,Kota Sibolga,age_group,55-59,,4.09,ribu_jiwa,2025,projection,total_population,3.1.2,68,,55 – 59
+12.73,2,Kota Sibolga,age_group,60-64,perempuan,1.75,ribu_jiwa,2025,projection,total_population,3.1.2,68,,60 – 64
+12.73,2,Kota Sibolga,age_group,60-64,,3.25,ribu_jiwa,2025,projection,total_population,3.1.2,68,,60 – 64
+12.73,2,Kota Sibolga,age_group,65-69,perempuan,1.44,ribu_jiwa,2025,projection,total_population,3.1.2,68,,65 – 69
+12.73,2,Kota Sibolga,age_group,65-69,,2.53,ribu_jiwa,2025,projection,total_population,3.1.2,68,,65 – 69
+12.73,2,Kota Sibolga,age_group,70-74,perempuan,0.95,ribu_jiwa,2025,projection,total_population,3.1.2,68,,70 – 74
+12.73,2,Kota Sibolga,age_group,70-74,,1.65,ribu_jiwa,2025,projection,total_population,3.1.2,68,,70 – 74
+12.73,2,Kota Sibolga,age_group,75+,perempuan,0.82,ribu_jiwa,2025,projection,total_population,3.1.2,68,,75 +
+12.73,2,Kota Sibolga,age_group,75+,,1.22,ribu_jiwa,2025,projection,total_population,3.1.2,68,,75 +
+12.73,2,Sibolga,sex,perempuan,,45.88,ribu_jiwa,2025,projection,total_population,3.1.2,68,,Perempuan/Female
+12.73,2,Sibolga,total,total,,92.24,ribu_jiwa,2025,projection,total_population,3.1.2,68,,

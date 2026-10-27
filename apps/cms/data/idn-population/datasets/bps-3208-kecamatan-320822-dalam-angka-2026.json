@@ -1,0 +1,60 @@
+{
+  "datasetCode": "bps-3208-kecamatan-320822-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.08.22",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pancalang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kuningan",
+  "publisherDomain": "3208",
+  "publisherWebsite": "https://kuningankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kuningan (https://kuningankab.bps.go.id), publikasi \"Kecamatan Pancalang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3208181",
+  "publicationNumber": "32080.25026",
+  "issn": "2830-4314",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kuningankab.bps.go.id/id/publication/2026/09/28/2702021b0a5defff03ee5a4d/kecamatan-pancalang-dalam-angka-2026.html",
+  "sourceFileSha256": "8a63937f41fb7560e6bb49b41f8d77bee95dabd25d1087143282b63885aa5d4d",
+  "sourceFileBytes": 3262977,
+  "sourcePages": [37, 38, 39, 40, 144],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Kuningan.",
+  "csvPath": "datasets/bps-3208-kecamatan-320822-dalam-angka-2026.csv",
+  "csvSha256": "91fb5d8bbd46f5492c2b76facf7b80e783a1cdce458c38ede78686cebbf6a8bd",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pancalang 2025",
+      "printedPages": [37, 38, 39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pancalang, 2025",
+      "printedPages": [40],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Desa dan Agama yang Dianut di Kecamatan Pancalang, 2025",
+      "printedPages": [144],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1.1: row not stored: row \"Kecamatan Pancalang Pancalang District\": unmatched ",
+    "table 3.1.1: row not stored: row \"Kecamatan Pancalang Pancalang District\": unmatched ",
+    "table 3.1.1: row not stored: row \"Kecamatan Pancalang Pancalang District\": unmatched ",
+    "table 3.1.2: row not stored: row \"75++\": unmatched ",
+    "table 3.1.2: row not stored: row \"Kecamatan Pancalang Pancalang District\": unmatched ",
+    "table 4.3.1: row not stored: row \"Kecamatan Pancalang Pancalang District\": unmatched ",
+    "table 4.3.1: row not stored: row \"2024/2025\": unmatched ",
+    "table 4.3.1: row not stored: row \"2023/2024\": unmatched ",
+    "table 4.3.1: row not stored: row \"2022/2023\": unmatched "
+  ]
+}

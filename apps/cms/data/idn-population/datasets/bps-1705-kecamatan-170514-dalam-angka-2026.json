@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1705-kecamatan-170514-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "17.05.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ilir Talo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Seluma",
+  "publisherDomain": "1705",
+  "publisherWebsite": "https://selumakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Seluma (https://selumakab.bps.go.id), publikasi \"Kecamatan Ilir Talo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1705030",
+  "publicationNumber": "17050.26010",
+  "issn": "2622-2574",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://selumakab.bps.go.id/id/publication/2026/09/28/c078181dd2c67407ca466372/kecamatan-ilir-talo-dalam-angka-2026.html",
+  "sourceFileSha256": "49ed1fc73fcf3b4a8497d349891e0022672eb8f0f9a11ba53f104ccbb288894b",
+  "sourceFileBytes": 10466830,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Seluma.",
+  "csvPath": "datasets/bps-1705-kecamatan-170514-dalam-angka-2026.csv",
+  "csvSha256": "e3ae7a84e8376820af092b3cca4490a1798facb88921b98f6ef78b781ca3fdd7",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Ilir Talo, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ilir Talo (jiwa), 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Rawa Indah\": unmatched ",
+    "table 3.1: row not stored: row \"Rawa Indah\": unmatched "
+  ]
+}

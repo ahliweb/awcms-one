@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.71.08,3,Jelutung,age_group,0-4,laki_laki,1697,jiwa,2026,registration,total_population,3.2,23,,0 - 4
+15.71.08,3,Jelutung,age_group,0-4,perempuan,1627,jiwa,2026,registration,total_population,3.2,23,,0 - 4
+15.71.08,3,Jelutung,age_group,0-4,,3324,jiwa,2026,registration,total_population,3.2,23,,0 - 4
+15.71.08,3,Jelutung,age_group,5-9,laki_laki,2465,jiwa,2026,registration,total_population,3.2,23,,5 - 9
+15.71.08,3,Jelutung,age_group,5-9,perempuan,2334,jiwa,2026,registration,total_population,3.2,23,,5 - 9
+15.71.08,3,Jelutung,age_group,5-9,,4799,jiwa,2026,registration,total_population,3.2,23,,5 - 9
+15.71.08,3,Jelutung,age_group,10-14,laki_laki,2653,jiwa,2026,registration,total_population,3.2,23,,10 - 14
+15.71.08,3,Jelutung,age_group,10-14,perempuan,2504,jiwa,2026,registration,total_population,3.2,23,,10 - 14
+15.71.08,3,Jelutung,age_group,10-14,,5157,jiwa,2026,registration,total_population,3.2,23,,10 - 14
+15.71.08,3,Jelutung,age_group,15-19,laki_laki,2536,jiwa,2026,registration,total_population,3.2,23,,15 - 19
+15.71.08,3,Jelutung,age_group,15-19,perempuan,2325,jiwa,2026,registration,total_population,3.2,23,,15 - 19
+15.71.08,3,Jelutung,age_group,15-19,,4861,jiwa,2026,registration,total_population,3.2,23,,15 - 19
+15.71.08,3,Jelutung,age_group,20-24,laki_laki,2530,jiwa,2026,registration,total_population,3.2,23,,20 - 24
+15.71.08,3,Jelutung,age_group,20-24,perempuan,2452,jiwa,2026,registration,total_population,3.2,23,,20 - 24
+15.71.08,3,Jelutung,age_group,20-24,,4982,jiwa,2026,registration,total_population,3.2,23,,20 - 24
+15.71.08,3,Jelutung,age_group,25-29,laki_laki,2403,jiwa,2026,registration,total_population,3.2,23,,25 - 29
+15.71.08,3,Jelutung,age_group,25-29,perempuan,2331,jiwa,2026,registration,total_population,3.2,23,,25 - 29
+15.71.08,3,Jelutung,age_group,25-29,,4734,jiwa,2026,registration,total_population,3.2,23,,25 - 29
+15.71.08,3,Jelutung,age_group,30-34,laki_laki,2210,jiwa,2026,registration,total_population,3.2,23,,30 - 34
+15.71.08,3,Jelutung,age_group,30-34,perempuan,2113,jiwa,2026,registration,total_population,3.2,23,,30 - 34
+15.71.08,3,Jelutung,age_group,30-34,,4323,jiwa,2026,registration,total_population,3.2,23,,30 - 34
+15.71.08,3,Jelutung,age_group,35-39,laki_laki,2207,jiwa,2026,registration,total_population,3.2,23,,35 - 39
+15.71.08,3,Jelutung,age_group,35-39,perempuan,2238,jiwa,2026,registration,total_population,3.2,23,,35 - 39
+15.71.08,3,Jelutung,age_group,35-39,,4445,jiwa,2026,registration,total_population,3.2,23,,35 - 39
+15.71.08,3,Jelutung,age_group,40-44,laki_laki,2337,jiwa,2026,registration,total_population,3.2,23,,40 - 44
+15.71.08,3,Jelutung,age_group,40-44,perempuan,2387,jiwa,2026,registration,total_population,3.2,23,,40 - 44
+15.71.08,3,Jelutung,age_group,40-44,,4724,jiwa,2026,registration,total_population,3.2,23,,40 - 44
+15.71.08,3,Jelutung,age_group,45-49,laki_laki,2215,jiwa,2026,registration,total_population,3.2,23,,45 - 49
+15.71.08,3,Jelutung,age_group,45-49,perempuan,2297,jiwa,2026,registration,total_population,3.2,23,,45 - 49
+15.71.08,3,Jelutung,age_group,45-49,,4512,jiwa,2026,registration,total_population,3.2,23,,45 - 49
+15.71.08,3,Jelutung,age_group,50-54,laki_laki,1906,jiwa,2026,registration,total_population,3.2,23,,50 - 54
+15.71.08,3,Jelutung,age_group,50-54,perempuan,1984,jiwa,2026,registration,total_population,3.2,23,,50 - 54
+15.71.08,3,Jelutung,age_group,50-54,,3890,jiwa,2026,registration,total_population,3.2,23,,50 - 54
+15.71.08,3,Jelutung,age_group,55-59,laki_laki,1598,jiwa,2026,registration,total_population,3.2,23,,55 - 59
+15.71.08,3,Jelutung,age_group,55-59,perempuan,1686,jiwa,2026,registration,total_population,3.2,23,,55 - 59
+15.71.08,3,Jelutung,age_group,55-59,,3284,jiwa,2026,registration,total_population,3.2,23,,55 - 59
+15.71.08,3,Jelutung,age_group,60-64,laki_laki,1271,jiwa,2026,registration,total_population,3.2,23,,60 - 64
+15.71.08,3,Jelutung,age_group,60-64,perempuan,1439,jiwa,2026,registration,total_population,3.2,23,,60 - 64
+15.71.08,3,Jelutung,age_group,60-64,,2710,jiwa,2026,registration,total_population,3.2,23,,60 - 64
+15.71.08,3,Jelutung,age_group,65-69,laki_laki,1036,jiwa,2026,registration,total_population,3.2,23,,65 - 69
+15.71.08,3,Jelutung,age_group,65-69,perempuan,1177,jiwa,2026,registration,total_population,3.2,23,,65 - 69
+15.71.08,3,Jelutung,age_group,65-69,,2213,jiwa,2026,registration,total_population,3.2,23,,65 - 69
+15.71.08,3,Jelutung,age_group,70-74,laki_laki,717,jiwa,2026,registration,total_population,3.2,23,,70 - 74
+15.71.08,3,Jelutung,age_group,70-74,perempuan,775,jiwa,2026,registration,total_population,3.2,23,,70 - 74
+15.71.08,3,Jelutung,age_group,70-74,,1492,jiwa,2026,registration,total_population,3.2,23,,70 - 74
+15.71.08,3,Jelutung,age_group,75+,laki_laki,563,jiwa,2026,registration,total_population,3.2,23,,75+
+15.71.08,3,Jelutung,age_group,75+,perempuan,785,jiwa,2026,registration,total_population,3.2,23,,75+
+15.71.08,3,Jelutung,age_group,75+,,1348,jiwa,2026,registration,total_population,3.2,23,,75+
+15.71.08,3,Kecamatan Jelutung,sex,laki_laki,,30344,jiwa,2026,registration,total_population,3.2,23,,Laki-Laki
+15.71.08,3,Kecamatan Jelutung,sex,perempuan,,30454,jiwa,2026,registration,total_population,3.2,23,,Perempuan
+15.71.08,3,Kecamatan Jelutung,total,total,,60798,jiwa,2026,registration,total_population,3.2,23,,

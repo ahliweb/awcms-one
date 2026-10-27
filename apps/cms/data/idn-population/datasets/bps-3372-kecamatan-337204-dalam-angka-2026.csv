@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.72.04.1001,4,Kepatihan Kulon,religion,islam,,1139,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.04.1001,4,Kepatihan Kulon,religion,kristen,,1050,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.04.1001,4,Kepatihan Kulon,religion,katolik,,294,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.04.1001,4,Kepatihan Kulon,religion,hindu,,2,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.04.1002,4,Kepatihan Wetan,religion,islam,,1422,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.04.1002,4,Kepatihan Wetan,religion,kristen,,530,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.04.1002,4,Kepatihan Wetan,religion,katolik,,606,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.04.1002,4,Kepatihan Wetan,religion,hindu,,2,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.04.1003,4,Sudiroprajan,religion,islam,,1419,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.04.1003,4,Sudiroprajan,religion,kristen,,1409,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.04.1003,4,Sudiroprajan,religion,katolik,,843,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.04.1003,4,Sudiroprajan,religion,hindu,,1,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.04.1004,4,Gandekan,religion,islam,,5822,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.04.1004,4,Gandekan,religion,kristen,,2259,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.04.1004,4,Gandekan,religion,katolik,,1065,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.04.1004,4,Gandekan,religion,hindu,,6,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.04.1005,4,Sewu,religion,islam,,5811,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.04.1005,4,Sewu,religion,kristen,,755,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.04.1005,4,Sewu,religion,katolik,,537,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.04.1005,4,Sewu,religion,hindu,,0,jiwa,2025,registration,total_population,3.1.6,59,nil,Hindu
+33.72.04.1006,4,Pucangsawit,religion,islam,,11353,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.04.1006,4,Pucangsawit,religion,kristen,,1665,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.04.1006,4,Pucangsawit,religion,katolik,,1431,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.04.1006,4,Pucangsawit,religion,hindu,,0,jiwa,2025,registration,total_population,3.1.6,59,nil,Hindu
+33.72.04.1007,4,Jagalan,religion,islam,,7730,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.04.1007,4,Jagalan,religion,kristen,,2534,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.04.1007,4,Jagalan,religion,katolik,,1924,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.04.1007,4,Jagalan,religion,hindu,,4,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.04.1008,4,Purwodiningratan,religion,islam,,2583,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.04.1008,4,Purwodiningratan,religion,kristen,,1658,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.04.1008,4,Purwodiningratan,religion,katolik,,599,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.04.1008,4,Purwodiningratan,religion,hindu,,2,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.04.1009,4,Tegalharjo,religion,islam,,2647,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.04.1009,4,Tegalharjo,religion,kristen,,1734,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.04.1009,4,Tegalharjo,religion,katolik,,650,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.04.1009,4,Tegalharjo,religion,hindu,,9,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.04.1010,4,Jebres,religion,islam,,26464,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.04.1010,4,Jebres,religion,kristen,,5210,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.04.1010,4,Jebres,religion,katolik,,2239,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.04.1010,4,Jebres,religion,hindu,,44,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.04.1011,4,Mojosongo,religion,islam,,42881,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.04.1011,4,Mojosongo,religion,kristen,,9046,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.04.1011,4,Mojosongo,religion,katolik,,3918,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.04.1011,4,Mojosongo,religion,hindu,,25,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.04,3,Kecamatan Jebres,religion,islam,,109271,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.04,3,Kecamatan Jebres,religion,kristen,,27850,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.04,3,Kecamatan Jebres,religion,katolik,,14106,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.04,3,Kecamatan Jebres,religion,hindu,,95,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.04.1001,4,Kepatihan Kulon,religion,buddha,,63,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.04.1001,4,Kepatihan Kulon,religion,khonghucu,,6,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.04.1001,4,Kepatihan Kulon,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Kepercayaan
+33.72.04.1002,4,Kepatihan Wetan,religion,buddha,,49,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.04.1002,4,Kepatihan Wetan,religion,khonghucu,,4,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.04.1002,4,Kepatihan Wetan,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Kepercayaan
+33.72.04.1003,4,Sudiroprajan,religion,buddha,,68,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.04.1003,4,Sudiroprajan,religion,khonghucu,,12,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.04.1003,4,Sudiroprajan,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Kepercayaan
+33.72.04.1004,4,Gandekan,religion,buddha,,21,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.04.1004,4,Gandekan,religion,khonghucu,,4,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.04.1004,4,Gandekan,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Kepercayaan
+33.72.04.1005,4,Sewu,religion,buddha,,10,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.04.1005,4,Sewu,religion,khonghucu,,2,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.04.1005,4,Sewu,religion,kepercayaan,,1,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.04.1006,4,Pucangsawit,religion,buddha,,10,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.04.1006,4,Pucangsawit,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.04.1006,4,Pucangsawit,religion,kepercayaan,,5,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.04.1007,4,Jagalan,religion,buddha,,43,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.04.1007,4,Jagalan,religion,khonghucu,,23,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.04.1007,4,Jagalan,religion,kepercayaan,,1,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.04.1008,4,Purwodiningratan,religion,buddha,,52,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.04.1008,4,Purwodiningratan,religion,khonghucu,,12,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.04.1008,4,Purwodiningratan,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Kepercayaan
+33.72.04.1009,4,Tegalharjo,religion,buddha,,37,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.04.1009,4,Tegalharjo,religion,khonghucu,,5,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.04.1009,4,Tegalharjo,religion,kepercayaan,,1,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.04.1010,4,Jebres,religion,buddha,,36,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.04.1010,4,Jebres,religion,khonghucu,,3,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.04.1010,4,Jebres,religion,kepercayaan,,1,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.04.1011,4,Mojosongo,religion,buddha,,52,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.04.1011,4,Mojosongo,religion,khonghucu,,15,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.04.1011,4,Mojosongo,religion,kepercayaan,,2,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.04,3,Kecamatan Jebres,religion,buddha,,441,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.04,3,Kecamatan Jebres,religion,khonghucu,,86,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.04,3,Kecamatan Jebres,religion,kepercayaan,,11,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan

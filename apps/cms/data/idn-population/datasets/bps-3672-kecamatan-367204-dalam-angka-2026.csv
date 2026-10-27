@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.72.04.1004,4,Gunung Sugih,sex,laki_laki,,3470,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+36.72.04.1004,4,Gunung Sugih,sex,perempuan,,3238,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+36.72.04.1004,4,Gunung Sugih,total,total,,6708,jiwa,2025,registration,total_population,3.1,29,,
+36.72.04.1005,4,Kepuh,sex,laki_laki,,4821,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+36.72.04.1005,4,Kepuh,sex,perempuan,,4595,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+36.72.04.1005,4,Kepuh,total,total,,9416,jiwa,2025,registration,total_population,3.1,29,,
+36.72.04.1006,4,Randakari,sex,laki_laki,,5123,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+36.72.04.1006,4,Randakari,sex,perempuan,,4898,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+36.72.04.1006,4,Randakari,total,total,,10021,jiwa,2025,registration,total_population,3.1,29,,
+36.72.04.1002,4,Tegal Ratu,sex,laki_laki,,6232,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+36.72.04.1002,4,Tegal Ratu,sex,perempuan,,5980,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+36.72.04.1002,4,Tegal Ratu,total,total,,12212,jiwa,2025,registration,total_population,3.1,29,,
+36.72.04.1001,4,Banjarnegara,sex,laki_laki,,4308,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+36.72.04.1001,4,Banjarnegara,sex,perempuan,,4239,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+36.72.04.1001,4,Banjarnegara,total,total,,8547,jiwa,2025,registration,total_population,3.1,29,,
+36.72.04.1003,4,Kubangsari,sex,laki_laki,,4258,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+36.72.04.1003,4,Kubangsari,sex,perempuan,,4021,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+36.72.04.1003,4,Kubangsari,total,total,,8279,jiwa,2025,registration,total_population,3.1,29,,
+36.72.04,3,Ciwandan,age_group,0-4,laki_laki,2560,jiwa,2025,registration,total_population,3.2,31,,0–4
+36.72.04,3,Ciwandan,age_group,0-4,perempuan,2285,jiwa,2025,registration,total_population,3.2,31,,0–4
+36.72.04,3,Ciwandan,age_group,0-4,,4845,jiwa,2025,registration,total_population,3.2,31,,0–4
+36.72.04,3,Ciwandan,age_group,5-9,laki_laki,2842,jiwa,2025,registration,total_population,3.2,31,,5–9
+36.72.04,3,Ciwandan,age_group,5-9,perempuan,2563,jiwa,2025,registration,total_population,3.2,31,,5–9
+36.72.04,3,Ciwandan,age_group,5-9,,5405,jiwa,2025,registration,total_population,3.2,31,,5–9
+36.72.04,3,Ciwandan,age_group,10-14,laki_laki,2618,jiwa,2025,registration,total_population,3.2,31,,10–14
+36.72.04,3,Ciwandan,age_group,10-14,perempuan,2514,jiwa,2025,registration,total_population,3.2,31,,10–14
+36.72.04,3,Ciwandan,age_group,10-14,,5132,jiwa,2025,registration,total_population,3.2,31,,10–14
+36.72.04,3,Ciwandan,age_group,15-19,laki_laki,2290,jiwa,2025,registration,total_population,3.2,31,,15–19
+36.72.04,3,Ciwandan,age_group,15-19,perempuan,2066,jiwa,2025,registration,total_population,3.2,31,,15–19
+36.72.04,3,Ciwandan,age_group,15-19,,4356,jiwa,2025,registration,total_population,3.2,31,,15–19
+36.72.04,3,Ciwandan,age_group,20-24,laki_laki,2158,jiwa,2025,registration,total_population,3.2,31,,20–24
+36.72.04,3,Ciwandan,age_group,20-24,perempuan,2050,jiwa,2025,registration,total_population,3.2,31,,20–24
+36.72.04,3,Ciwandan,age_group,20-24,,4208,jiwa,2025,registration,total_population,3.2,31,,20–24
+36.72.04,3,Ciwandan,age_group,25-29,laki_laki,2438,jiwa,2025,registration,total_population,3.2,31,,25–29
+36.72.04,3,Ciwandan,age_group,25-29,perempuan,2394,jiwa,2025,registration,total_population,3.2,31,,25–29
+36.72.04,3,Ciwandan,age_group,25-29,,4832,jiwa,2025,registration,total_population,3.2,31,,25–29
+36.72.04,3,Ciwandan,age_group,30-34,laki_laki,2310,jiwa,2025,registration,total_population,3.2,31,,30–34
+36.72.04,3,Ciwandan,age_group,30-34,perempuan,2418,jiwa,2025,registration,total_population,3.2,31,,30–34
+36.72.04,3,Ciwandan,age_group,30-34,,4728,jiwa,2025,registration,total_population,3.2,31,,30–34
+36.72.04,3,Ciwandan,age_group,35-39,laki_laki,2253,jiwa,2025,registration,total_population,3.2,31,,35–39
+36.72.04,3,Ciwandan,age_group,35-39,perempuan,2120,jiwa,2025,registration,total_population,3.2,31,,35–39
+36.72.04,3,Ciwandan,age_group,35-39,,4373,jiwa,2025,registration,total_population,3.2,31,,35–39
+36.72.04,3,Ciwandan,age_group,40-44,laki_laki,2065,jiwa,2025,registration,total_population,3.2,31,,40–44
+36.72.04,3,Ciwandan,age_group,40-44,perempuan,2009,jiwa,2025,registration,total_population,3.2,31,,40–44
+36.72.04,3,Ciwandan,age_group,40-44,,4074,jiwa,2025,registration,total_population,3.2,31,,40–44
+36.72.04,3,Ciwandan,age_group,45-49,laki_laki,1832,jiwa,2025,registration,total_population,3.2,31,,45–49
+36.72.04,3,Ciwandan,age_group,45-49,perempuan,1786,jiwa,2025,registration,total_population,3.2,31,,45–49
+36.72.04,3,Ciwandan,age_group,45-49,,3618,jiwa,2025,registration,total_population,3.2,31,,45–49
+36.72.04,3,Ciwandan,age_group,50-54,laki_laki,1602,jiwa,2025,registration,total_population,3.2,31,,50–54
+36.72.04,3,Ciwandan,age_group,50-54,perempuan,1418,jiwa,2025,registration,total_population,3.2,31,,50–54
+36.72.04,3,Ciwandan,age_group,50-54,,3020,jiwa,2025,registration,total_population,3.2,31,,50–54
+36.72.04,3,Ciwandan,age_group,55-59,laki_laki,1267,jiwa,2025,registration,total_population,3.2,31,,55–59
+36.72.04,3,Ciwandan,age_group,55-59,perempuan,1123,jiwa,2025,registration,total_population,3.2,31,,55–59
+36.72.04,3,Ciwandan,age_group,55-59,,2390,jiwa,2025,registration,total_population,3.2,31,,55–59
+36.72.04,3,Ciwandan,age_group,60-64,laki_laki,745,jiwa,2025,registration,total_population,3.2,31,,60–64
+36.72.04,3,Ciwandan,age_group,60-64,perempuan,825,jiwa,2025,registration,total_population,3.2,31,,60–64
+36.72.04,3,Ciwandan,age_group,60-64,,1570,jiwa,2025,registration,total_population,3.2,31,,60–64
+36.72.04,3,Ciwandan,age_group,65-69,laki_laki,620,jiwa,2025,registration,total_population,3.2,31,,65–69
+36.72.04,3,Ciwandan,age_group,65-69,perempuan,609,jiwa,2025,registration,total_population,3.2,31,,65–69
+36.72.04,3,Ciwandan,age_group,65-69,,1229,jiwa,2025,registration,total_population,3.2,31,,65–69
+36.72.04,3,Ciwandan,age_group,70-74,laki_laki,318,jiwa,2025,registration,total_population,3.2,31,,70–74
+36.72.04,3,Ciwandan,age_group,70-74,perempuan,310,jiwa,2025,registration,total_population,3.2,31,,70–74
+36.72.04,3,Ciwandan,age_group,70-74,,628,jiwa,2025,registration,total_population,3.2,31,,70–74
+36.72.04,3,Ciwandan,age_group,75+,laki_laki,294,jiwa,2025,registration,total_population,3.2,31,,75+
+36.72.04,3,Ciwandan,age_group,75+,perempuan,481,jiwa,2025,registration,total_population,3.2,31,,75+
+36.72.04,3,Ciwandan,age_group,75+,,775,jiwa,2025,registration,total_population,3.2,31,,75+
+36.72.04,3,Ciwandan,sex,laki_laki,,28212,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+36.72.04,3,Ciwandan,sex,perempuan,,26971,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+36.72.04,3,Ciwandan,total,total,,55183,jiwa,2025,registration,total_population,3.2,31,,

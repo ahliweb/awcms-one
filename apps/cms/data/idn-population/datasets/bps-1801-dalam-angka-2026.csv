@@ -1,0 +1,114 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.04.04,3,Balik Bukit,total,total,,44094,jiwa,2025,registration,total_population,3.1.1,59,,
+18.04.11,3,Sukau,total,total,,26380,jiwa,2025,registration,total_population,3.1.1,59,,
+18.04.22,3,Lumbok Seminung,total,total,,9074,jiwa,2025,registration,total_population,3.1.1,59,,
+18.04.06,3,Belalau,total,total,,12712,jiwa,2025,registration,total_population,3.1.1,59,,
+18.04.08,3,Sekincau,total,total,,19488,jiwa,2025,registration,total_population,3.1.1,59,,
+18.04.09,3,Suoh,total,total,,18966,jiwa,2025,registration,total_population,3.1.1,59,,
+18.04.10,3,Batu Brak,total,total,,15608,jiwa,2025,registration,total_population,3.1.1,59,,
+18.04.20,3,Pagar Dewa,total,total,,17245,jiwa,2025,registration,total_population,3.1.1,59,,
+18.04.21,3,Batu Ketulis,total,total,,13917,jiwa,2025,registration,total_population,3.1.1,59,,
+18.04.23,3,Bandar Negeri Suoh,total,total,,26222,jiwa,2025,registration,total_population,3.1.1,59,,
+18.04.05,3,Sumber Jaya,total,total,,24445,jiwa,2025,registration,total_population,3.1.1,59,,
+18.04.07,3,Way Tenong,total,total,,35456,jiwa,2025,registration,total_population,3.1.1,59,,
+18.04.15,3,Gedung Surian,total,total,,17383,jiwa,2025,registration,total_population,3.1.1,59,,
+18.04.18,3,Kebun Tebu,total,total,,21627,jiwa,2025,registration,total_population,3.1.1,59,,
+18.04.19,3,Air Hitam,total,total,,12576,jiwa,2025,registration,total_population,3.1.1,59,,
+18.04,2,Lampung Barat,total,total,,315193,jiwa,2025,registration,total_population,3.1.1,59,,
+18.04,2,Kabupaten Lampung Barat,age_group,0-4,laki_laki,8838,jiwa,2025,registration,total_population,3.1.2,62,,0–4
+18.04,2,Kabupaten Lampung Barat,age_group,0-4,perempuan,8468,jiwa,2025,registration,total_population,3.1.2,62,,0–4
+18.04,2,Kabupaten Lampung Barat,age_group,0-4,,17306,jiwa,2025,registration,total_population,3.1.2,62,,0–4
+18.04,2,Kabupaten Lampung Barat,age_group,5-9,laki_laki,13751,jiwa,2025,registration,total_population,3.1.2,62,,5–9
+18.04,2,Kabupaten Lampung Barat,age_group,5-9,perempuan,13061,jiwa,2025,registration,total_population,3.1.2,62,,5–9
+18.04,2,Kabupaten Lampung Barat,age_group,5-9,,26812,jiwa,2025,registration,total_population,3.1.2,62,,5–9
+18.04,2,Kabupaten Lampung Barat,age_group,10-14,laki_laki,14406,jiwa,2025,registration,total_population,3.1.2,62,,10–14
+18.04,2,Kabupaten Lampung Barat,age_group,10-14,perempuan,13749,jiwa,2025,registration,total_population,3.1.2,62,,10–14
+18.04,2,Kabupaten Lampung Barat,age_group,10-14,,28155,jiwa,2025,registration,total_population,3.1.2,62,,10–14
+18.04,2,Kabupaten Lampung Barat,age_group,15-19,laki_laki,14265,jiwa,2025,registration,total_population,3.1.2,62,,15–19
+18.04,2,Kabupaten Lampung Barat,age_group,15-19,perempuan,13347,jiwa,2025,registration,total_population,3.1.2,62,,15–19
+18.04,2,Kabupaten Lampung Barat,age_group,15-19,,27612,jiwa,2025,registration,total_population,3.1.2,62,,15–19
+18.04,2,Kabupaten Lampung Barat,age_group,20-24,laki_laki,12400,jiwa,2025,registration,total_population,3.1.2,62,,20–24
+18.04,2,Kabupaten Lampung Barat,age_group,20-24,perempuan,12082,jiwa,2025,registration,total_population,3.1.2,62,,20–24
+18.04,2,Kabupaten Lampung Barat,age_group,20-24,,24482,jiwa,2025,registration,total_population,3.1.2,62,,20–24
+18.04,2,Kabupaten Lampung Barat,age_group,25-29,laki_laki,12387,jiwa,2025,registration,total_population,3.1.2,62,,25–29
+18.04,2,Kabupaten Lampung Barat,age_group,25-29,perempuan,11517,jiwa,2025,registration,total_population,3.1.2,62,,25–29
+18.04,2,Kabupaten Lampung Barat,age_group,25-29,,23904,jiwa,2025,registration,total_population,3.1.2,62,,25–29
+18.04,2,Kabupaten Lampung Barat,age_group,30-34,laki_laki,11675,jiwa,2025,registration,total_population,3.1.2,62,,30–34
+18.04,2,Kabupaten Lampung Barat,age_group,30-34,perempuan,11230,jiwa,2025,registration,total_population,3.1.2,62,,30–34
+18.04,2,Kabupaten Lampung Barat,age_group,30-34,,22905,jiwa,2025,registration,total_population,3.1.2,62,,30–34
+18.04,2,Kabupaten Lampung Barat,age_group,35-39,laki_laki,12890,jiwa,2025,registration,total_population,3.1.2,62,,35–39
+18.04,2,Kabupaten Lampung Barat,age_group,35-39,perempuan,12524,jiwa,2025,registration,total_population,3.1.2,62,,35–39
+18.04,2,Kabupaten Lampung Barat,age_group,35-39,,25414,jiwa,2025,registration,total_population,3.1.2,62,,35–39
+18.04,2,Kabupaten Lampung Barat,age_group,40-44,laki_laki,13132,jiwa,2025,registration,total_population,3.1.2,62,,40–44
+18.04,2,Kabupaten Lampung Barat,age_group,40-44,perempuan,11909,jiwa,2025,registration,total_population,3.1.2,62,,40–44
+18.04,2,Kabupaten Lampung Barat,age_group,40-44,,25041,jiwa,2025,registration,total_population,3.1.2,62,,40–44
+18.04,2,Kabupaten Lampung Barat,age_group,45-49,laki_laki,11929,jiwa,2025,registration,total_population,3.1.2,62,,45–49
+18.04,2,Kabupaten Lampung Barat,age_group,45-49,perempuan,10993,jiwa,2025,registration,total_population,3.1.2,62,,45–49
+18.04,2,Kabupaten Lampung Barat,age_group,45-49,,22922,jiwa,2025,registration,total_population,3.1.2,62,,45–49
+18.04,2,Kabupaten Lampung Barat,age_group,50-54,laki_laki,10104,jiwa,2025,registration,total_population,3.1.2,62,,50–54
+18.04,2,Kabupaten Lampung Barat,age_group,50-54,perempuan,9189,jiwa,2025,registration,total_population,3.1.2,62,,50–54
+18.04,2,Kabupaten Lampung Barat,age_group,50-54,,19293,jiwa,2025,registration,total_population,3.1.2,62,,50–54
+18.04,2,Kabupaten Lampung Barat,age_group,55-59,laki_laki,8260,jiwa,2025,registration,total_population,3.1.2,62,,55–59
+18.04,2,Kabupaten Lampung Barat,age_group,55-59,perempuan,7427,jiwa,2025,registration,total_population,3.1.2,62,,55–59
+18.04,2,Kabupaten Lampung Barat,age_group,55-59,,15687,jiwa,2025,registration,total_population,3.1.2,62,,55–59
+18.04,2,Kabupaten Lampung Barat,age_group,60-64,laki_laki,6749,jiwa,2025,registration,total_population,3.1.2,62,,60–64
+18.04,2,Kabupaten Lampung Barat,age_group,60-64,perempuan,5920,jiwa,2025,registration,total_population,3.1.2,62,,60–64
+18.04,2,Kabupaten Lampung Barat,age_group,60-64,,12669,jiwa,2025,registration,total_population,3.1.2,62,,60–64
+18.04,2,Kabupaten Lampung Barat,age_group,65-69,laki_laki,5443,jiwa,2025,registration,total_population,3.1.2,62,,65–69
+18.04,2,Kabupaten Lampung Barat,age_group,65-69,perempuan,4278,jiwa,2025,registration,total_population,3.1.2,62,,65–69
+18.04,2,Kabupaten Lampung Barat,age_group,65-69,,9721,jiwa,2025,registration,total_population,3.1.2,62,,65–69
+18.04,2,Kabupaten Lampung Barat,age_group,70-74,laki_laki,3290,jiwa,2025,registration,total_population,3.1.2,62,,70–74
+18.04,2,Kabupaten Lampung Barat,age_group,70-74,perempuan,2456,jiwa,2025,registration,total_population,3.1.2,62,,70–74
+18.04,2,Kabupaten Lampung Barat,age_group,70-74,,5746,jiwa,2025,registration,total_population,3.1.2,62,,70–74
+18.04,2,Kabupaten Lampung Barat,age_group,75+,laki_laki,3933,jiwa,2025,registration,total_population,3.1.2,62,,75+
+18.04,2,Kabupaten Lampung Barat,age_group,75+,perempuan,3591,jiwa,2025,registration,total_population,3.1.2,62,,75+
+18.04,2,Kabupaten Lampung Barat,age_group,75+,,7524,jiwa,2025,registration,total_population,3.1.2,62,,75+
+18.04,2,Kabupaten Lampung Barat,sex,laki_laki,,163452,jiwa,2025,registration,total_population,3.1.2,62,,Laki-Laki
+18.04,2,Kabupaten Lampung Barat,sex,perempuan,,151741,jiwa,2025,registration,total_population,3.1.2,62,,Perempuan
+18.04,2,Kabupaten Lampung Barat,total,total,,315193,jiwa,2025,registration,total_population,3.1.2,62,,
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/padi_padian,,101202,rupiah,2025,survey_estimate,per_capita,10.1,253,,Padi-padian
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/padi_padian,,109276,rupiah,2024,survey_estimate,per_capita,10.1,253,,Padi-padian
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/umbi_umbian,,5607,rupiah,2025,survey_estimate,per_capita,10.1,253,,Umbi-umbian
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/umbi_umbian,,5583,rupiah,2024,survey_estimate,per_capita,10.1,253,,Umbi-umbian
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,48673,rupiah,2025,survey_estimate,per_capita,10.1,253,,Ikan/udang/cumi/kerang
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,43771,rupiah,2024,survey_estimate,per_capita,10.1,253,,Ikan/udang/cumi/kerang
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/daging,,25036,rupiah,2025,survey_estimate,per_capita,10.1,253,,Daging
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/daging,,19759,rupiah,2024,survey_estimate,per_capita,10.1,253,,Daging
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/telur_dan_susu,,34071,rupiah,2025,survey_estimate,per_capita,10.1,253,,Telur dan susu
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/telur_dan_susu,,25652,rupiah,2024,survey_estimate,per_capita,10.1,253,,Telur dan susu
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/sayur_sayuran,,80750,rupiah,2025,survey_estimate,per_capita,10.1,253,,Sayur-sayuran
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/sayur_sayuran,,67549,rupiah,2024,survey_estimate,per_capita,10.1,253,,Sayur-sayuran
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/kacang_kacangan,,14615,rupiah,2025,survey_estimate,per_capita,10.1,253,,Kacang-kacangan
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/kacang_kacangan,,14415,rupiah,2024,survey_estimate,per_capita,10.1,253,,Kacang-kacangan
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/buah_buahan,,37114,rupiah,2025,survey_estimate,per_capita,10.1,253,,Buah-buahan
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/buah_buahan,,45810,rupiah,2024,survey_estimate,per_capita,10.1,253,,Buah-buahan
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23936,rupiah,2025,survey_estimate,per_capita,10.1,253,,Minyak dan kelapa
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19848,rupiah,2024,survey_estimate,per_capita,10.1,253,,Minyak dan kelapa
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/bahan_minuman,,43090,rupiah,2025,survey_estimate,per_capita,10.1,253,,Bahan minuman
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/bahan_minuman,,33646,rupiah,2024,survey_estimate,per_capita,10.1,253,,Bahan minuman
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/bumbu_bumbuan,,15940,rupiah,2025,survey_estimate,per_capita,10.1,253,,Bumbu-bumbuan
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/bumbu_bumbuan,,14912,rupiah,2024,survey_estimate,per_capita,10.1,253,,Bumbu-bumbuan
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/konsumsi_lainnya,,11475,rupiah,2025,survey_estimate,per_capita,10.1,253,,Konsumsi lainnya
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/konsumsi_lainnya,,11758,rupiah,2024,survey_estimate,per_capita,10.1,253,,Konsumsi lainnya
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,151607,rupiah,2025,survey_estimate,per_capita,10.1,253,,Makanan dan minuman jadi
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,153565,rupiah,2024,survey_estimate,per_capita,10.1,253,,Makanan dan minuman jadi
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/rokok,,123491,rupiah,2025,survey_estimate,per_capita,10.1,253,,Rokok
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/rokok,,123386,rupiah,2024,survey_estimate,per_capita,10.1,253,,Rokok
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/jumlah_makanan,,716609,rupiah,2025,survey_estimate,per_capita,10.1,253,,Jumlah makanan
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/jumlah_makanan,,688930,rupiah,2024,survey_estimate,per_capita,10.1,253,,Jumlah makanan
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,297704,rupiah,2025,survey_estimate,per_capita,10.1,253,,Perumahan dan fasilitas rumah tangga
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,257656,rupiah,2024,survey_estimate,per_capita,10.1,253,,Perumahan dan fasilitas rumah tangga
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,113096,rupiah,2025,survey_estimate,per_capita,10.1,253,,Aneka barang dan jasa
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,93073,rupiah,2024,survey_estimate,per_capita,10.1,253,,Aneka barang dan jasa
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,33052,rupiah,2025,survey_estimate,per_capita,10.1,253,,"Pakaian, alas kaki, dan tutup kepala"
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,31115,rupiah,2024,survey_estimate,per_capita,10.1,253,,"Pakaian, alas kaki, dan tutup kepala"
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/barang_tahan_lama,,145294,rupiah,2025,survey_estimate,per_capita,10.1,253,,Barang tahan lama
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/barang_tahan_lama,,35710,rupiah,2024,survey_estimate,per_capita,10.1,253,,Barang tahan lama
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,40375,rupiah,2025,survey_estimate,per_capita,10.1,253,,"Pajak, pungutan, dan asuransi"
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,33350,rupiah,2024,survey_estimate,per_capita,10.1,253,,"Pajak, pungutan, dan asuransi"
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,25797,rupiah,2025,survey_estimate,per_capita,10.1,253,,Keperluan pesta dan upacara/kenduri
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,23158,rupiah,2024,survey_estimate,per_capita,10.1,253,,Keperluan pesta dan upacara/kenduri
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,655318,rupiah,2025,survey_estimate,per_capita,10.1,253,,Jumlah bukan makanan
+18.04,2,Kabupaten Lampung Barat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,474063,rupiah,2024,survey_estimate,per_capita,10.1,253,,Jumlah bukan makanan
+18.04,2,Kabupaten Lampung Barat,expenditure,total,,1371927,rupiah,2025,survey_estimate,per_capita,10.1,253,,
+18.04,2,Kabupaten Lampung Barat,expenditure,total,,1162992,rupiah,2024,survey_estimate,per_capita,10.1,253,,

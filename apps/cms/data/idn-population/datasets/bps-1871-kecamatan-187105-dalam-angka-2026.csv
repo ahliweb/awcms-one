@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.71.05.1002,4,Kota Baru,sex,laki_laki,,7491,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.05.1002,4,Kota Baru,sex,perempuan,,7493,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.05.1002,4,Kota Baru,total,total,,14984,jiwa,2025,registration,total_population,3.1,26,,
+18.71.05.1003,4,Tanjung Agung,sex,laki_laki,,2085,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.05.1003,4,Tanjung Agung,sex,perempuan,,1933,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.05.1003,4,Tanjung Agung,total,total,,4018,jiwa,2025,registration,total_population,3.1,26,,
+18.71.05.1004,4,Kebon Jeruk,sex,laki_laki,,3165,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.05.1004,4,Kebon Jeruk,sex,perempuan,,3110,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.05.1004,4,Kebon Jeruk,total,total,,6275,jiwa,2025,registration,total_population,3.1,26,,
+18.71.05.1005,4,Sawah Lama,sex,laki_laki,,2022,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.05.1005,4,Sawah Lama,sex,perempuan,,2051,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.05.1005,4,Sawah Lama,total,total,,4073,jiwa,2025,registration,total_population,3.1,26,,
+18.71.05.1006,4,Sawah Brebes,sex,laki_laki,,3952,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.05.1006,4,Sawah Brebes,sex,perempuan,,3891,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.05.1006,4,Sawah Brebes,total,total,,7843,jiwa,2025,registration,total_population,3.1,26,,
+18.71.05,3,Tanjung Karang Timur,sex,laki_laki,,18715,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.05,3,Tanjung Karang Timur,sex,perempuan,,18478,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.05,3,Tanjung Karang Timur,total,total,,37193,jiwa,2025,registration,total_population,3.1,26,,

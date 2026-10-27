@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1171-kecamatan-117108-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.71.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jaya Baru Dalam Angka 2026",
+  "publisherName": "BPS Kota Banda Aceh",
+  "publisherDomain": "1171",
+  "publisherWebsite": "https://bandaacehkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Banda Aceh (https://bandaacehkota.bps.go.id), publikasi \"Kecamatan Jaya Baru Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1171011",
+  "publicationNumber": "11710.26010",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandaacehkota.bps.go.id/id/publication/2026/09/28/15838fc352f5b87bb9c8dc9b/kecamatan-jaya-baru-dalam-angka-2026.html",
+  "sourceFileSha256": "e24502de61f67c73ba12bce56962dbe7849085cda5057ea330cbee8d744e3e87",
+  "sourceFileBytes": 6370382,
+  "sourcePages": [25, 27],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kota Banda Aceh.",
+  "csvPath": "datasets/bps-1171-kecamatan-117108-dalam-angka-2026.csv",
+  "csvSha256": "719915bc68ff46b8d7f0767376cb3c068d6a6ea77d21594cb84088b80dbd794f",
+  "tablesUsed": [
+    {
+      "table": "3.3",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Gampong di Kecamatan Jaya Baru, 2025",
+      "printedPages": [25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jaya Baru, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 11.71.08 are not stored: age_group vs total: parts sum 28661.0000 != 28680.0000 (diff 19.0000); the source itself is inconsistent"
+  ]
+}

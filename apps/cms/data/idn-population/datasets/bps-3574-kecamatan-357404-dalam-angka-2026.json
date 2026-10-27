@@ -1,0 +1,55 @@
+{
+  "datasetCode": "bps-3574-kecamatan-357404-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.74.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kanigaran Dalam Angka 2026",
+  "publisherName": "BPS Kota Probolinggo",
+  "publisherDomain": "3574",
+  "publisherWebsite": "https://probolinggokota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Probolinggo (https://probolinggokota.bps.go.id), publikasi \"Kecamatan Kanigaran Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3574031",
+  "publicationNumber": "35740.26008",
+  "issn": "2407-3032",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://probolinggokota.bps.go.id/id/publication/2026/09/28/4566c9dc05b9f81e67e5c37a/kecamatan-kanigaran-dalam-angka-2026.html",
+  "sourceFileSha256": "f155a2b4c07f39f5ec619060cae5d4304556dbde3ccad09e6603b3f8e385008f",
+  "sourceFileBytes": 29982330,
+  "sourcePages": [25, 26, 27, 54],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Probolinggo.",
+  "csvPath": "datasets/bps-3574-kecamatan-357404-dalam-angka-2026.csv",
+  "csvSha256": "842064b4c0bab7e0cd4d2001091f95cb78f237280dbbd4016c43c67bdca114e9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Kanigaran, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kanigaran, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.4.5",
+      "title": "Jumlah Penduduk Menurut Kelurahan dan Agama yang Dianut di Kecamatan Kanigaran, 2025",
+      "printedPages": [54],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1: row not stored: row \"Kecamatan Kanigaran Kanigaran District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Kanigaran/ Kanigaran District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Kanigaran Kanigaran District\": unmatched ",
+    "table 4.4.5: row not stored: row \"Kecamatan Kanigaran Kanigaran District\": unmatched "
+  ]
+}

@@ -1,0 +1,201 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.01.01,3,Donorojo,total,total,,37395,jiwa,2025,registration,total_population,3.1.1,55,,
+35.01.03,3,Punung,total,total,,36748,jiwa,2025,registration,total_population,3.1.1,55,,
+35.01.02,3,Pringkuku,total,total,,32407,jiwa,2025,registration,total_population,3.1.1,55,,
+35.01.04,3,Pacitan,total,total,,77825,jiwa,2025,registration,total_population,3.1.1,55,,
+35.01.05,3,Kebonagung,total,total,,46461,jiwa,2025,registration,total_population,3.1.1,55,,
+35.01.06,3,Arjosari,total,total,,41391,jiwa,2025,registration,total_population,3.1.1,55,,
+35.01.07,3,Nawangan,total,total,,52092,jiwa,2025,registration,total_population,3.1.1,55,,
+35.01.08,3,Bandar,total,total,,44911,jiwa,2025,registration,total_population,3.1.1,55,,
+35.01.09,3,Tegalombo,total,total,,52161,jiwa,2025,registration,total_population,3.1.1,55,,
+35.01.10,3,Tulakan,total,total,,86633,jiwa,2025,registration,total_population,3.1.1,55,,
+35.01.11,3,Ngadirojo,total,total,,47650,jiwa,2025,registration,total_population,3.1.1,55,,
+35.01.12,3,Sudimoro,total,total,,34402,jiwa,2025,registration,total_population,3.1.1,55,,
+35.01,2,Kabupaten Pacitan,total,total,,590076,jiwa,2025,registration,total_population,3.1.1,55,,
+35.01,2,Kabupaten Pacitan,age_group,0-4,laki_laki,14222,jiwa,2025,registration,total_population,3.1.2,58,,0–4
+35.01,2,Kabupaten Pacitan,age_group,0-4,perempuan,13409,jiwa,2025,registration,total_population,3.1.2,58,,0–4
+35.01,2,Kabupaten Pacitan,age_group,0-4,,27631,jiwa,2025,registration,total_population,3.1.2,58,,0–4
+35.01,2,Kabupaten Pacitan,age_group,5-9,laki_laki,17138,jiwa,2025,registration,total_population,3.1.2,58,,5–9
+35.01,2,Kabupaten Pacitan,age_group,5-9,perempuan,16165,jiwa,2025,registration,total_population,3.1.2,58,,5–9
+35.01,2,Kabupaten Pacitan,age_group,5-9,,33303,jiwa,2025,registration,total_population,3.1.2,58,,5–9
+35.01,2,Kabupaten Pacitan,age_group,10-14,laki_laki,19109,jiwa,2025,registration,total_population,3.1.2,58,,10–14
+35.01,2,Kabupaten Pacitan,age_group,10-14,perempuan,17969,jiwa,2025,registration,total_population,3.1.2,58,,10–14
+35.01,2,Kabupaten Pacitan,age_group,10-14,,37078,jiwa,2025,registration,total_population,3.1.2,58,,10–14
+35.01,2,Kabupaten Pacitan,age_group,15-19,laki_laki,20148,jiwa,2025,registration,total_population,3.1.2,58,,15–19
+35.01,2,Kabupaten Pacitan,age_group,15-19,perempuan,18947,jiwa,2025,registration,total_population,3.1.2,58,,15–19
+35.01,2,Kabupaten Pacitan,age_group,15-19,,39095,jiwa,2025,registration,total_population,3.1.2,58,,15–19
+35.01,2,Kabupaten Pacitan,age_group,20-24,laki_laki,19727,jiwa,2025,registration,total_population,3.1.2,58,,20–24
+35.01,2,Kabupaten Pacitan,age_group,20-24,perempuan,18800,jiwa,2025,registration,total_population,3.1.2,58,,20–24
+35.01,2,Kabupaten Pacitan,age_group,20-24,,38527,jiwa,2025,registration,total_population,3.1.2,58,,20–24
+35.01,2,Kabupaten Pacitan,age_group,25-29,laki_laki,21191,jiwa,2025,registration,total_population,3.1.2,58,,25–29
+35.01,2,Kabupaten Pacitan,age_group,25-29,perempuan,20033,jiwa,2025,registration,total_population,3.1.2,58,,25–29
+35.01,2,Kabupaten Pacitan,age_group,25-29,,41224,jiwa,2025,registration,total_population,3.1.2,58,,25–29
+35.01,2,Kabupaten Pacitan,age_group,30-34,laki_laki,20327,jiwa,2025,registration,total_population,3.1.2,58,,30–34
+35.01,2,Kabupaten Pacitan,age_group,30-34,perempuan,19254,jiwa,2025,registration,total_population,3.1.2,58,,30–34
+35.01,2,Kabupaten Pacitan,age_group,30-34,,39581,jiwa,2025,registration,total_population,3.1.2,58,,30–34
+35.01,2,Kabupaten Pacitan,age_group,35-39,laki_laki,19818,jiwa,2025,registration,total_population,3.1.2,58,,35–39
+35.01,2,Kabupaten Pacitan,age_group,35-39,perempuan,18995,jiwa,2025,registration,total_population,3.1.2,58,,35–39
+35.01,2,Kabupaten Pacitan,age_group,35-39,,38813,jiwa,2025,registration,total_population,3.1.2,58,,35–39
+35.01,2,Kabupaten Pacitan,age_group,40-44,laki_laki,21717,jiwa,2025,registration,total_population,3.1.2,58,,40–44
+35.01,2,Kabupaten Pacitan,age_group,40-44,perempuan,20862,jiwa,2025,registration,total_population,3.1.2,58,,40–44
+35.01,2,Kabupaten Pacitan,age_group,40-44,,42579,jiwa,2025,registration,total_population,3.1.2,58,,40–44
+35.01,2,Kabupaten Pacitan,age_group,45-49,laki_laki,18559,jiwa,2025,registration,total_population,3.1.2,58,,45–49
+35.01,2,Kabupaten Pacitan,age_group,45-49,perempuan,18248,jiwa,2025,registration,total_population,3.1.2,58,,45–49
+35.01,2,Kabupaten Pacitan,age_group,45-49,,36807,jiwa,2025,registration,total_population,3.1.2,58,,45–49
+35.01,2,Kabupaten Pacitan,age_group,50-54,laki_laki,20559,jiwa,2025,registration,total_population,3.1.2,58,,50–54
+35.01,2,Kabupaten Pacitan,age_group,50-54,perempuan,21341,jiwa,2025,registration,total_population,3.1.2,58,,50–54
+35.01,2,Kabupaten Pacitan,age_group,50-54,,41900,jiwa,2025,registration,total_population,3.1.2,58,,50–54
+35.01,2,Kabupaten Pacitan,age_group,55-59,laki_laki,21393,jiwa,2025,registration,total_population,3.1.2,58,,55–59
+35.01,2,Kabupaten Pacitan,age_group,55-59,perempuan,22006,jiwa,2025,registration,total_population,3.1.2,58,,55–59
+35.01,2,Kabupaten Pacitan,age_group,55-59,,43399,jiwa,2025,registration,total_population,3.1.2,58,,55–59
+35.01,2,Kabupaten Pacitan,age_group,60-64,laki_laki,19006,jiwa,2025,registration,total_population,3.1.2,58,,60–64
+35.01,2,Kabupaten Pacitan,age_group,60-64,perempuan,19988,jiwa,2025,registration,total_population,3.1.2,58,,60–64
+35.01,2,Kabupaten Pacitan,age_group,60-64,,38994,jiwa,2025,registration,total_population,3.1.2,58,,60–64
+35.01,2,Kabupaten Pacitan,age_group,65-69,laki_laki,16085,jiwa,2025,registration,total_population,3.1.2,58,,65–69
+35.01,2,Kabupaten Pacitan,age_group,65-69,perempuan,17398,jiwa,2025,registration,total_population,3.1.2,58,,65–69
+35.01,2,Kabupaten Pacitan,age_group,65-69,,33483,jiwa,2025,registration,total_population,3.1.2,58,,65–69
+35.01,2,Kabupaten Pacitan,age_group,70-74,laki_laki,11820,jiwa,2025,registration,total_population,3.1.2,58,,70–74
+35.01,2,Kabupaten Pacitan,age_group,70-74,perempuan,11410,jiwa,2025,registration,total_population,3.1.2,58,,70–74
+35.01,2,Kabupaten Pacitan,age_group,70-74,,23230,jiwa,2025,registration,total_population,3.1.2,58,,70–74
+35.01,2,Kabupaten Pacitan,age_group,75+,laki_laki,14453,jiwa,2025,registration,total_population,3.1.2,58,,75+
+35.01,2,Kabupaten Pacitan,age_group,75+,perempuan,19979,jiwa,2025,registration,total_population,3.1.2,58,,75+
+35.01,2,Kabupaten Pacitan,age_group,75+,,34432,jiwa,2025,registration,total_population,3.1.2,58,,75+
+35.01,2,Kabupaten Pacitan,sex,laki_laki,,295272,jiwa,2025,registration,total_population,3.1.2,58,,Laki-Laki
+35.01,2,Kabupaten Pacitan,sex,perempuan,,294804,jiwa,2025,registration,total_population,3.1.2,58,,Perempuan
+35.01,2,Kabupaten Pacitan,total,total,,590076,jiwa,2025,registration,total_population,3.1.2,58,,
+35.01.01,3,Donorojo,religion,islam,,37225,jiwa,2025,registration,total_population,4.3.1,132,,Islam
+35.01.01,3,Donorojo,religion,kristen,,57,jiwa,2025,registration,total_population,4.3.1,132,,Protestan
+35.01.01,3,Donorojo,religion,katolik,,43,jiwa,2025,registration,total_population,4.3.1,132,,Katolik
+35.01.01,3,Donorojo,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Hindu
+35.01.01,3,Donorojo,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,132,,Budha
+35.01.01,3,Donorojo,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.3.1,132,,Konghucu
+35.01.01,3,Donorojo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Lainnya
+35.01.03,3,Punung,religion,islam,,36474,jiwa,2025,registration,total_population,4.3.1,132,,Islam
+35.01.03,3,Punung,religion,kristen,,58,jiwa,2025,registration,total_population,4.3.1,132,,Protestan
+35.01.03,3,Punung,religion,katolik,,39,jiwa,2025,registration,total_population,4.3.1,132,,Katolik
+35.01.03,3,Punung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Hindu
+35.01.03,3,Punung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Budha
+35.01.03,3,Punung,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Konghucu
+35.01.03,3,Punung,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,132,,Lainnya
+35.01.02,3,Pringkuku,religion,islam,,32352,jiwa,2025,registration,total_population,4.3.1,132,,Islam
+35.01.02,3,Pringkuku,religion,kristen,,10,jiwa,2025,registration,total_population,4.3.1,132,,Protestan
+35.01.02,3,Pringkuku,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,132,,Katolik
+35.01.02,3,Pringkuku,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Hindu
+35.01.02,3,Pringkuku,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Budha
+35.01.02,3,Pringkuku,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Konghucu
+35.01.02,3,Pringkuku,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Lainnya
+35.01.04,3,Pacitan,religion,islam,,77207,jiwa,2025,registration,total_population,4.3.1,132,,Islam
+35.01.04,3,Pacitan,religion,kristen,,354,jiwa,2025,registration,total_population,4.3.1,132,,Protestan
+35.01.04,3,Pacitan,religion,katolik,,136,jiwa,2025,registration,total_population,4.3.1,132,,Katolik
+35.01.04,3,Pacitan,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,132,,Hindu
+35.01.04,3,Pacitan,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,132,,Budha
+35.01.04,3,Pacitan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Konghucu
+35.01.04,3,Pacitan,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,132,,Lainnya
+35.01.05,3,Kebonagung,religion,islam,,46347,jiwa,2025,registration,total_population,4.3.1,132,,Islam
+35.01.05,3,Kebonagung,religion,kristen,,35,jiwa,2025,registration,total_population,4.3.1,132,,Protestan
+35.01.05,3,Kebonagung,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Katolik
+35.01.05,3,Kebonagung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Hindu
+35.01.05,3,Kebonagung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Budha
+35.01.05,3,Kebonagung,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Konghucu
+35.01.05,3,Kebonagung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Lainnya
+35.01.06,3,Arjosari,religion,islam,,41484,jiwa,2025,registration,total_population,4.3.1,132,,Islam
+35.01.06,3,Arjosari,religion,kristen,,11,jiwa,2025,registration,total_population,4.3.1,132,,Protestan
+35.01.06,3,Arjosari,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Katolik
+35.01.06,3,Arjosari,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Hindu
+35.01.06,3,Arjosari,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Budha
+35.01.06,3,Arjosari,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Konghucu
+35.01.06,3,Arjosari,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Lainnya
+35.01.07,3,Nawangan,religion,islam,,51883,jiwa,2025,registration,total_population,4.3.1,132,,Islam
+35.01.07,3,Nawangan,religion,kristen,,15,jiwa,2025,registration,total_population,4.3.1,132,,Protestan
+35.01.07,3,Nawangan,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,132,,Katolik
+35.01.07,3,Nawangan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Hindu
+35.01.07,3,Nawangan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Budha
+35.01.07,3,Nawangan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Konghucu
+35.01.07,3,Nawangan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Lainnya
+35.01.08,3,Bandar,religion,islam,,44798,jiwa,2025,registration,total_population,4.3.1,132,,Islam
+35.01.08,3,Bandar,religion,kristen,,6,jiwa,2025,registration,total_population,4.3.1,132,,Protestan
+35.01.08,3,Bandar,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Katolik
+35.01.08,3,Bandar,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Hindu
+35.01.08,3,Bandar,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Budha
+35.01.08,3,Bandar,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Konghucu
+35.01.08,3,Bandar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Lainnya
+35.01.09,3,Tegalombo,religion,islam,,51912,jiwa,2025,registration,total_population,4.3.1,132,,Islam
+35.01.09,3,Tegalombo,religion,kristen,,18,jiwa,2025,registration,total_population,4.3.1,132,,Protestan
+35.01.09,3,Tegalombo,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,132,,Katolik
+35.01.09,3,Tegalombo,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Hindu
+35.01.09,3,Tegalombo,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,132,,Budha
+35.01.09,3,Tegalombo,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Konghucu
+35.01.09,3,Tegalombo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Lainnya
+35.01.10,3,Tulakan,religion,islam,,86536,jiwa,2025,registration,total_population,4.3.1,132,,Islam
+35.01.10,3,Tulakan,religion,kristen,,15,jiwa,2025,registration,total_population,4.3.1,132,,Protestan
+35.01.10,3,Tulakan,religion,katolik,,7,jiwa,2025,registration,total_population,4.3.1,132,,Katolik
+35.01.10,3,Tulakan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Hindu
+35.01.10,3,Tulakan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Budha
+35.01.10,3,Tulakan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Konghucu
+35.01.10,3,Tulakan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Lainnya
+35.01.11,3,Ngadirojo,religion,islam,,47727,jiwa,2025,registration,total_population,4.3.1,132,,Islam
+35.01.11,3,Ngadirojo,religion,kristen,,49,jiwa,2025,registration,total_population,4.3.1,132,,Protestan
+35.01.11,3,Ngadirojo,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Hindu
+35.01.11,3,Ngadirojo,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Budha
+35.01.11,3,Ngadirojo,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Konghucu
+35.01.11,3,Ngadirojo,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,132,,Lainnya
+35.01.12,3,Sudimoro,religion,islam,,34455,jiwa,2025,registration,total_population,4.3.1,132,,Islam
+35.01.12,3,Sudimoro,religion,kristen,,9,jiwa,2025,registration,total_population,4.3.1,132,,Protestan
+35.01.12,3,Sudimoro,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Katolik
+35.01.12,3,Sudimoro,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Hindu
+35.01.12,3,Sudimoro,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Budha
+35.01.12,3,Sudimoro,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,132,nil,Konghucu
+35.01.12,3,Sudimoro,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,132,,Lainnya
+35.01,2,Kabupaten Pacitan,religion,islam,,588400,jiwa,2025,registration,total_population,4.3.1,132,,Islam
+35.01,2,Kabupaten Pacitan,religion,kristen,,637,jiwa,2025,registration,total_population,4.3.1,132,,Protestan
+35.01,2,Kabupaten Pacitan,religion,katolik,,241,jiwa,2025,registration,total_population,4.3.1,132,,Katolik
+35.01,2,Kabupaten Pacitan,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,132,,Hindu
+35.01,2,Kabupaten Pacitan,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,132,,Budha
+35.01,2,Kabupaten Pacitan,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.3.1,132,,Konghucu
+35.01,2,Kabupaten Pacitan,religion,lainnya,,7,jiwa,2025,registration,total_population,4.3.1,132,,Lainnya
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/padi_padian,,78459,rupiah,2024,survey_estimate,per_capita,10.1,296,,Padi-padian
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/padi_padian,,80851,rupiah,2025,survey_estimate,per_capita,10.1,296,,Padi-padian
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/umbi_umbian,,5241,rupiah,2024,survey_estimate,per_capita,10.1,296,,Umbi-umbian
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/umbi_umbian,,5343,rupiah,2025,survey_estimate,per_capita,10.1,296,,Umbi-umbian
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,18506,rupiah,2024,survey_estimate,per_capita,10.1,296,,Ikan/udang/cumi/kerang
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,23338,rupiah,2025,survey_estimate,per_capita,10.1,296,,Ikan/udang/cumi/kerang
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/daging,,16836,rupiah,2024,survey_estimate,per_capita,10.1,296,,Daging
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/daging,,20877,rupiah,2025,survey_estimate,per_capita,10.1,296,,Daging
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/telur_dan_susu,,26034,rupiah,2024,survey_estimate,per_capita,10.1,296,,Telur dan susu
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/telur_dan_susu,,30593,rupiah,2025,survey_estimate,per_capita,10.1,296,,Telur dan susu
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/sayur_sayuran,,51447,rupiah,2024,survey_estimate,per_capita,10.1,296,,Sayur-sayuran
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/sayur_sayuran,,55169,rupiah,2025,survey_estimate,per_capita,10.1,296,,Sayur-sayuran
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/kacang_kacangan,,19471,rupiah,2024,survey_estimate,per_capita,10.1,296,,Kacang-kacangan
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/kacang_kacangan,,19178,rupiah,2025,survey_estimate,per_capita,10.1,296,,Kacang-kacangan
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/buah_buahan,,29240,rupiah,2024,survey_estimate,per_capita,10.1,296,,Buah-buahan
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/buah_buahan,,27871,rupiah,2025,survey_estimate,per_capita,10.1,296,,Buah-buahan
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20587,rupiah,2024,survey_estimate,per_capita,10.1,296,,Minyak dan kelapa
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,21298,rupiah,2025,survey_estimate,per_capita,10.1,296,,Minyak dan kelapa
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/bahan_minuman,,25611,rupiah,2024,survey_estimate,per_capita,10.1,296,,Bahan minuman
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/bahan_minuman,,26932,rupiah,2025,survey_estimate,per_capita,10.1,296,,Bahan minuman
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/bumbu_bumbuan,,12561,rupiah,2024,survey_estimate,per_capita,10.1,296,,Bumbu-bumbuan
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/bumbu_bumbuan,,11409,rupiah,2025,survey_estimate,per_capita,10.1,296,,Bumbu-bumbuan
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/konsumsi_lainnya,,9958,rupiah,2024,survey_estimate,per_capita,10.1,296,,Konsumsi lainnya
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/konsumsi_lainnya,,9210,rupiah,2025,survey_estimate,per_capita,10.1,296,,Konsumsi lainnya
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,167438,rupiah,2024,survey_estimate,per_capita,10.1,296,,Makanan dan minuman jadi
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,160811,rupiah,2025,survey_estimate,per_capita,10.1,296,,Makanan dan minuman jadi
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/rokok,,39110,rupiah,2024,survey_estimate,per_capita,10.1,296,,Rokok
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/rokok,,41623,rupiah,2025,survey_estimate,per_capita,10.1,296,,Rokok
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/jumlah_makanan,,520500,rupiah,2024,survey_estimate,per_capita,10.1,296,,Jumlah makanan
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/jumlah_makanan,,534501,rupiah,2025,survey_estimate,per_capita,10.1,296,,Jumlah makanan
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,218319,rupiah,2024,survey_estimate,per_capita,10.1,296,,Perumahan dan fasilitas rumah tangga
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,231030,rupiah,2025,survey_estimate,per_capita,10.1,296,,Perumahan dan fasilitas rumah tangga
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,93528,rupiah,2024,survey_estimate,per_capita,10.1,296,,Aneka barang dan jasa
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,110063,rupiah,2025,survey_estimate,per_capita,10.1,296,,Aneka barang dan jasa
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,18004,rupiah,2024,survey_estimate,per_capita,10.1,296,,"Pakaian, alas kaki, dan tutup kepala"
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,21915,rupiah,2025,survey_estimate,per_capita,10.1,296,,"Pakaian, alas kaki, dan tutup kepala"
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/barang_tahan_lama,,28444,rupiah,2024,survey_estimate,per_capita,10.1,296,,Barang tahan lama
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/barang_tahan_lama,,56442,rupiah,2025,survey_estimate,per_capita,10.1,296,,Barang tahan lama
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,31013,rupiah,2024,survey_estimate,per_capita,10.1,296,,"Pajak, pungutan, dan asuransi"
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,40556,rupiah,2025,survey_estimate,per_capita,10.1,296,,"Pajak, pungutan, dan asuransi"
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,12192,rupiah,2024,survey_estimate,per_capita,10.1,296,,Keperluan pesta dan upacara/kenduri
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,17174,rupiah,2025,survey_estimate,per_capita,10.1,296,,Keperluan pesta dan upacara/kenduri
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,401499,rupiah,2024,survey_estimate,per_capita,10.1,296,,Jumlah bukan makanan
+35.01,2,Kabupaten Pacitan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,477180,rupiah,2025,survey_estimate,per_capita,10.1,296,,Jumlah bukan makanan
+35.01,2,Kabupaten Pacitan,expenditure,total,,921999,rupiah,2024,survey_estimate,per_capita,10.1,296,,
+35.01,2,Kabupaten Pacitan,expenditure,total,,1011681,rupiah,2025,survey_estimate,per_capita,10.1,296,,

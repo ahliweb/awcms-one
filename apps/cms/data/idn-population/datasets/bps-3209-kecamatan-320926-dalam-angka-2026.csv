@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.26.2006,4,Ciwaringin,sex,laki_laki,,3500,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.26.2006,4,Ciwaringin,sex,perempuan,,3505,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.26.2006,4,Ciwaringin,total,total,,7005,jiwa,2025,registration,total_population,3.1,52,,
+32.09.26.2005,4,Babakan,sex,laki_laki,,2554,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.26.2005,4,Babakan,sex,perempuan,,2513,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.26.2005,4,Babakan,total,total,,5067,jiwa,2025,registration,total_population,3.1,52,,
+32.09.26.2004,4,Budur,sex,laki_laki,,2777,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.26.2004,4,Budur,sex,perempuan,,2860,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.26.2004,4,Budur,total,total,,5637,jiwa,2025,registration,total_population,3.1,52,,
+32.09.26.2007,4,Gintungranjeng,sex,laki_laki,,2632,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.26.2007,4,Gintungranjeng,sex,perempuan,,2590,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.26.2007,4,Gintungranjeng,total,total,,5222,jiwa,2025,registration,total_population,3.1,52,,
+32.09.26.2008,4,Gintung Kidul,sex,laki_laki,,3603,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.26.2008,4,Gintung Kidul,sex,perempuan,,3583,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.26.2008,4,Gintung Kidul,total,total,,7186,jiwa,2025,registration,total_population,3.1,52,,
+32.09.26.2009,4,Gintung Tengah,sex,laki_laki,,1470,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.26.2009,4,Gintung Tengah,sex,perempuan,,1466,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.26.2009,4,Gintung Tengah,total,total,,2936,jiwa,2025,registration,total_population,3.1,52,,
+32.09.26.2010,4,Bringin,sex,laki_laki,,2629,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.26.2010,4,Bringin,sex,perempuan,,2670,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.26.2010,4,Bringin,total,total,,5299,jiwa,2025,registration,total_population,3.1,52,,
+32.09.26.2011,4,Galagamba,sex,laki_laki,,2841,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.26.2011,4,Galagamba,sex,perempuan,,2832,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.26.2011,4,Galagamba,total,total,,5673,jiwa,2025,registration,total_population,3.1,52,,
+32.09.26,3,Kecamatan Ciwaringin,sex,laki_laki,,22006,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.26,3,Kecamatan Ciwaringin,sex,perempuan,,22019,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.26,3,Kecamatan Ciwaringin,total,total,,44025,jiwa,2025,registration,total_population,3.1,52,,
+32.09.26,3,Ciwaringin,age_group,0-4,laki_laki,1527,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.26,3,Ciwaringin,age_group,0-4,perempuan,1405,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.26,3,Ciwaringin,age_group,0-4,,2932,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.26,3,Ciwaringin,age_group,5-9,laki_laki,1916,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.26,3,Ciwaringin,age_group,5-9,perempuan,1846,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.26,3,Ciwaringin,age_group,5-9,,3762,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.26,3,Ciwaringin,age_group,10-14,laki_laki,1953,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.26,3,Ciwaringin,age_group,10-14,perempuan,1865,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.26,3,Ciwaringin,age_group,10-14,,3818,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.26,3,Ciwaringin,age_group,15-19,laki_laki,1471,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.26,3,Ciwaringin,age_group,15-19,perempuan,1454,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.26,3,Ciwaringin,age_group,15-19,,2925,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.26,3,Ciwaringin,age_group,20-24,laki_laki,1506,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.26,3,Ciwaringin,age_group,20-24,perempuan,1472,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.26,3,Ciwaringin,age_group,20-24,,2978,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.26,3,Ciwaringin,age_group,25-29,laki_laki,1783,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.26,3,Ciwaringin,age_group,25-29,perempuan,1744,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.26,3,Ciwaringin,age_group,25-29,,3527,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.26,3,Ciwaringin,age_group,30-34,laki_laki,1889,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.26,3,Ciwaringin,age_group,30-34,perempuan,1727,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.26,3,Ciwaringin,age_group,30-34,,3616,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.26,3,Ciwaringin,age_group,35-39,laki_laki,1801,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.26,3,Ciwaringin,age_group,35-39,perempuan,1620,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.26,3,Ciwaringin,age_group,35-39,,3421,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.26,3,Ciwaringin,age_group,40-44,laki_laki,1852,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.26,3,Ciwaringin,age_group,40-44,perempuan,2028,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.26,3,Ciwaringin,age_group,40-44,,3880,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.26,3,Ciwaringin,age_group,45-49,laki_laki,1669,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.26,3,Ciwaringin,age_group,45-49,perempuan,1851,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.26,3,Ciwaringin,age_group,45-49,,3520,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.26,3,Ciwaringin,age_group,50-54,laki_laki,1315,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.26,3,Ciwaringin,age_group,50-54,perempuan,1412,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.26,3,Ciwaringin,age_group,50-54,,2727,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.26,3,Ciwaringin,age_group,55-59,laki_laki,1054,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.26,3,Ciwaringin,age_group,55-59,perempuan,1096,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.26,3,Ciwaringin,age_group,55-59,,2150,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.26,3,Ciwaringin,age_group,60-64,laki_laki,749,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.26,3,Ciwaringin,age_group,60-64,perempuan,813,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.26,3,Ciwaringin,age_group,60-64,,1562,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.26,3,Ciwaringin,age_group,65-69,laki_laki,630,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.26,3,Ciwaringin,age_group,65-69,perempuan,677,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.26,3,Ciwaringin,age_group,65-69,,1307,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.26,3,Ciwaringin,age_group,70-74,laki_laki,419,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.26,3,Ciwaringin,age_group,70-74,perempuan,441,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.26,3,Ciwaringin,age_group,70-74,,860,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.26,3,Ciwaringin,age_group,75+,laki_laki,472,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.26,3,Ciwaringin,age_group,75+,perempuan,568,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.26,3,Ciwaringin,age_group,75+,,1040,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.26,3,Kecamatan Ciwaringin,sex,laki_laki,,22006,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.26,3,Kecamatan Ciwaringin,sex,perempuan,,22019,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.26,3,Kecamatan Ciwaringin,total,total,,44025,jiwa,2025,registration,total_population,3.2,54,,

@@ -1,0 +1,216 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.17.15,3,Gununghalu,total,total,,83.5,ribu_jiwa,2025,projection,total_population,3.1.1,48,,
+32.17.14,3,Sindangkerta,total,total,,78.8,ribu_jiwa,2025,projection,total_population,3.1.1,48,,
+32.17.11,3,Cililin,total,total,,102.0,ribu_jiwa,2025,projection,total_population,3.1.1,48,,
+32.17.10,3,Cihampelas,total,total,,147.7,ribu_jiwa,2025,projection,total_population,3.1.1,48,,
+32.17.12,3,Cipongkor,total,total,,108.3,ribu_jiwa,2025,projection,total_population,3.1.1,48,,
+32.17.09,3,Batujajar,total,total,,117.6,ribu_jiwa,2025,projection,total_population,3.1.1,48,,
+32.17.16,3,Saguling,total,total,,36.9,ribu_jiwa,2025,projection,total_population,3.1.1,48,,
+32.17.07,3,Cipatat,total,total,,149.1,ribu_jiwa,2025,projection,total_population,3.1.1,48,,
+32.17.08,3,Padalarang,total,total,,192,ribu_jiwa,2025,projection,total_population,3.1.1,48,,
+32.17.06,3,Ngamprah,total,total,,187,ribu_jiwa,2025,projection,total_population,3.1.1,48,,
+32.17.02,3,Parongpong,total,total,,119.1,ribu_jiwa,2025,projection,total_population,3.1.1,48,,
+32.17.01,3,Lembang,total,total,,206.9,ribu_jiwa,2025,projection,total_population,3.1.1,48,,
+32.17.03,3,Cisarua,total,total,,84.4,ribu_jiwa,2025,projection,total_population,3.1.1,48,,
+32.17.04,3,Cikalongwetan,total,total,,136.4,ribu_jiwa,2025,projection,total_population,3.1.1,48,,
+32.17.05,3,Cipeundeuy,total,total,,93.6,ribu_jiwa,2025,projection,total_population,3.1.1,48,,
+32.17,2,Bandung Barat,total,total,,1907.8,ribu_jiwa,2025,projection,total_population,3.1.1,48,,
+32.17,2,Kabupaten Bandung Barat,age_group,0-4,laki_laki,79363,jiwa,2025,projection,total_population,3.1.2,51,,0–4
+32.17,2,Kabupaten Bandung Barat,age_group,0-4,perempuan,76167,jiwa,2025,projection,total_population,3.1.2,51,,0–4
+32.17,2,Kabupaten Bandung Barat,age_group,0-4,,155530,jiwa,2025,projection,total_population,3.1.2,51,,0–4
+32.17,2,Kabupaten Bandung Barat,age_group,5-9,laki_laki,75733,jiwa,2025,projection,total_population,3.1.2,51,,5–9
+32.17,2,Kabupaten Bandung Barat,age_group,5-9,perempuan,72180,jiwa,2025,projection,total_population,3.1.2,51,,5–9
+32.17,2,Kabupaten Bandung Barat,age_group,5-9,,147913,jiwa,2025,projection,total_population,3.1.2,51,,5–9
+32.17,2,Kabupaten Bandung Barat,age_group,10-14,laki_laki,76187,jiwa,2025,projection,total_population,3.1.2,51,,10–14
+32.17,2,Kabupaten Bandung Barat,age_group,10-14,perempuan,72006,jiwa,2025,projection,total_population,3.1.2,51,,10–14
+32.17,2,Kabupaten Bandung Barat,age_group,10-14,,148193,jiwa,2025,projection,total_population,3.1.2,51,,10–14
+32.17,2,Kabupaten Bandung Barat,age_group,15-19,laki_laki,79099,jiwa,2025,projection,total_population,3.1.2,51,,15–19
+32.17,2,Kabupaten Bandung Barat,age_group,15-19,perempuan,74554,jiwa,2025,projection,total_population,3.1.2,51,,15–19
+32.17,2,Kabupaten Bandung Barat,age_group,15-19,,153653,jiwa,2025,projection,total_population,3.1.2,51,,15–19
+32.17,2,Kabupaten Bandung Barat,age_group,20-24,laki_laki,82310,jiwa,2025,projection,total_population,3.1.2,51,,20–24
+32.17,2,Kabupaten Bandung Barat,age_group,20-24,perempuan,76664,jiwa,2025,projection,total_population,3.1.2,51,,20–24
+32.17,2,Kabupaten Bandung Barat,age_group,20-24,,158974,jiwa,2025,projection,total_population,3.1.2,51,,20–24
+32.17,2,Kabupaten Bandung Barat,age_group,25-29,laki_laki,79632,jiwa,2025,projection,total_population,3.1.2,51,,25–29
+32.17,2,Kabupaten Bandung Barat,age_group,25-29,perempuan,73796,jiwa,2025,projection,total_population,3.1.2,51,,25–29
+32.17,2,Kabupaten Bandung Barat,age_group,25-29,,153428,jiwa,2025,projection,total_population,3.1.2,51,,25–29
+32.17,2,Kabupaten Bandung Barat,age_group,30-34,laki_laki,76802,jiwa,2025,projection,total_population,3.1.2,51,,30–34
+32.17,2,Kabupaten Bandung Barat,age_group,30-34,perempuan,73907,jiwa,2025,projection,total_population,3.1.2,51,,30–34
+32.17,2,Kabupaten Bandung Barat,age_group,30-34,,150709,jiwa,2025,projection,total_population,3.1.2,51,,30–34
+32.17,2,Kabupaten Bandung Barat,age_group,35-39,laki_laki,70747,jiwa,2025,projection,total_population,3.1.2,51,,35–39
+32.17,2,Kabupaten Bandung Barat,age_group,35-39,perempuan,68575,jiwa,2025,projection,total_population,3.1.2,51,,35–39
+32.17,2,Kabupaten Bandung Barat,age_group,35-39,,139322,jiwa,2025,projection,total_population,3.1.2,51,,35–39
+32.17,2,Kabupaten Bandung Barat,age_group,40-44,laki_laki,70479,jiwa,2025,projection,total_population,3.1.2,51,,40–44
+32.17,2,Kabupaten Bandung Barat,age_group,40-44,perempuan,68525,jiwa,2025,projection,total_population,3.1.2,51,,40–44
+32.17,2,Kabupaten Bandung Barat,age_group,40-44,,139004,jiwa,2025,projection,total_population,3.1.2,51,,40–44
+32.17,2,Kabupaten Bandung Barat,age_group,45-49,laki_laki,66230,jiwa,2025,projection,total_population,3.1.2,51,,45–49
+32.17,2,Kabupaten Bandung Barat,age_group,45-49,perempuan,64564,jiwa,2025,projection,total_population,3.1.2,51,,45–49
+32.17,2,Kabupaten Bandung Barat,age_group,45-49,,130794,jiwa,2025,projection,total_population,3.1.2,51,,45–49
+32.17,2,Kabupaten Bandung Barat,age_group,50-54,laki_laki,59175,jiwa,2025,projection,total_population,3.1.2,51,,50–54
+32.17,2,Kabupaten Bandung Barat,age_group,50-54,perempuan,58987,jiwa,2025,projection,total_population,3.1.2,51,,50–54
+32.17,2,Kabupaten Bandung Barat,age_group,50-54,,118162,jiwa,2025,projection,total_population,3.1.2,51,,50–54
+32.17,2,Kabupaten Bandung Barat,age_group,55-59,laki_laki,49298,jiwa,2025,projection,total_population,3.1.2,51,,55–59
+32.17,2,Kabupaten Bandung Barat,age_group,55-59,perempuan,48435,jiwa,2025,projection,total_population,3.1.2,51,,55–59
+32.17,2,Kabupaten Bandung Barat,age_group,55-59,,97733,jiwa,2025,projection,total_population,3.1.2,51,,55–59
+32.17,2,Kabupaten Bandung Barat,age_group,60-64,laki_laki,40322,jiwa,2025,projection,total_population,3.1.2,51,,60–64
+32.17,2,Kabupaten Bandung Barat,age_group,60-64,perempuan,39459,jiwa,2025,projection,total_population,3.1.2,51,,60–64
+32.17,2,Kabupaten Bandung Barat,age_group,60-64,,79781,jiwa,2025,projection,total_population,3.1.2,51,,60–64
+32.17,2,Kabupaten Bandung Barat,age_group,65-69,laki_laki,29052,jiwa,2025,projection,total_population,3.1.2,51,,65–69
+32.17,2,Kabupaten Bandung Barat,age_group,65-69,perempuan,28425,jiwa,2025,projection,total_population,3.1.2,51,,65–69
+32.17,2,Kabupaten Bandung Barat,age_group,65-69,,57477,jiwa,2025,projection,total_population,3.1.2,51,,65–69
+32.17,2,Kabupaten Bandung Barat,age_group,70-74,laki_laki,19780,jiwa,2025,projection,total_population,3.1.2,51,,70–74
+32.17,2,Kabupaten Bandung Barat,age_group,70-74,perempuan,20135,jiwa,2025,projection,total_population,3.1.2,51,,70–74
+32.17,2,Kabupaten Bandung Barat,age_group,70-74,,39915,jiwa,2025,projection,total_population,3.1.2,51,,70–74
+32.17,2,Kabupaten Bandung Barat,age_group,75+,laki_laki,17345,jiwa,2025,projection,total_population,3.1.2,51,,75+
+32.17,2,Kabupaten Bandung Barat,age_group,75+,perempuan,19891,jiwa,2025,projection,total_population,3.1.2,51,,75+
+32.17,2,Kabupaten Bandung Barat,age_group,75+,,37236,jiwa,2025,projection,total_population,3.1.2,51,,75+
+32.17,2,Bandung Barat,sex,laki_laki,,971554,jiwa,2025,projection,total_population,3.1.2,51,,Laki-Laki
+32.17,2,Bandung Barat,sex,perempuan,,936270,jiwa,2025,projection,total_population,3.1.2,51,,Perempuan
+32.17,2,Bandung Barat,total,total,,1907824,jiwa,2025,projection,total_population,3.1.2,51,,
+32.17.13,3,Rongga,religion,islam,,66051,jiwa,2025,registration,total_population,4.3.1,145,,Islam
+32.17.13,3,Rongga,religion,kristen,,3,jiwa,2025,registration,total_population,4.3.1,145,,Protestan
+32.17.13,3,Rongga,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,145,nil,Katolik
+32.17.13,3,Rongga,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,145,nil,Hindu
+32.17.13,3,Rongga,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,145,nil,Budha
+32.17.13,3,Rongga,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,145,nil,Lainnya
+32.17.15,3,Gununghalu,religion,islam,,85425,jiwa,2025,registration,total_population,4.3.1,145,,Islam
+32.17.15,3,Gununghalu,religion,kristen,,6,jiwa,2025,registration,total_population,4.3.1,145,,Protestan
+32.17.15,3,Gununghalu,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,145,,Katolik
+32.17.15,3,Gununghalu,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,145,,Hindu
+32.17.15,3,Gununghalu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,145,nil,Budha
+32.17.15,3,Gununghalu,religion,lainnya,,15,jiwa,2025,registration,total_population,4.3.1,145,,Lainnya
+32.17.14,3,Sindangkerta,religion,islam,,81847,jiwa,2025,registration,total_population,4.3.1,145,,Islam
+32.17.14,3,Sindangkerta,religion,kristen,,19,jiwa,2025,registration,total_population,4.3.1,145,,Protestan
+32.17.14,3,Sindangkerta,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,145,,Katolik
+32.17.14,3,Sindangkerta,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,145,,Hindu
+32.17.14,3,Sindangkerta,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,145,,Budha
+32.17.14,3,Sindangkerta,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,145,,Lainnya
+32.17.11,3,Cililin,religion,islam,,105807,jiwa,2025,registration,total_population,4.3.1,145,,Islam
+32.17.11,3,Cililin,religion,kristen,,14,jiwa,2025,registration,total_population,4.3.1,145,,Protestan
+32.17.11,3,Cililin,religion,katolik,,7,jiwa,2025,registration,total_population,4.3.1,145,,Katolik
+32.17.11,3,Cililin,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,145,nil,Hindu
+32.17.11,3,Cililin,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,145,,Budha
+32.17.11,3,Cililin,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,145,nil,Lainnya
+32.17.10,3,Cihampelas,religion,islam,,150606,jiwa,2025,registration,total_population,4.3.1,145,,Islam
+32.17.10,3,Cihampelas,religion,kristen,,487,jiwa,2025,registration,total_population,4.3.1,145,,Protestan
+32.17.10,3,Cihampelas,religion,katolik,,149,jiwa,2025,registration,total_population,4.3.1,145,,Katolik
+32.17.10,3,Cihampelas,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,145,nil,Hindu
+32.17.10,3,Cihampelas,religion,buddha,,23,jiwa,2025,registration,total_population,4.3.1,145,,Budha
+32.17.10,3,Cihampelas,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,145,nil,Lainnya
+32.17.12,3,Cipongkor,religion,islam,,111132,jiwa,2025,registration,total_population,4.3.1,145,,Islam
+32.17.12,3,Cipongkor,religion,kristen,,10,jiwa,2025,registration,total_population,4.3.1,145,,Protestan
+32.17.12,3,Cipongkor,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,145,,Katolik
+32.17.12,3,Cipongkor,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,145,,Hindu
+32.17.12,3,Cipongkor,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,145,,Budha
+32.17.12,3,Cipongkor,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,145,nil,Lainnya
+32.17.09,3,Batujajar,religion,islam,,117294,jiwa,2025,registration,total_population,4.3.1,145,,Islam
+32.17.09,3,Batujajar,religion,kristen,,1631,jiwa,2025,registration,total_population,4.3.1,145,,Protestan
+32.17.09,3,Batujajar,religion,katolik,,542,jiwa,2025,registration,total_population,4.3.1,145,,Katolik
+32.17.09,3,Batujajar,religion,hindu,,60,jiwa,2025,registration,total_population,4.3.1,145,,Hindu
+32.17.09,3,Batujajar,religion,buddha,,9,jiwa,2025,registration,total_population,4.3.1,145,,Budha
+32.17.09,3,Batujajar,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,145,,Lainnya
+32.17.16,3,Saguling,religion,islam,,38157,jiwa,2025,registration,total_population,4.3.1,145,,Islam
+32.17.16,3,Saguling,religion,kristen,,250,jiwa,2025,registration,total_population,4.3.1,145,,Protestan
+32.17.16,3,Saguling,religion,katolik,,94,jiwa,2025,registration,total_population,4.3.1,145,,Katolik
+32.17.16,3,Saguling,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,145,,Hindu
+32.17.16,3,Saguling,religion,buddha,,25,jiwa,2025,registration,total_population,4.3.1,145,,Budha
+32.17.16,3,Saguling,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,145,,Lainnya
+32.17.07,3,Cipatat,religion,islam,,154245,jiwa,2025,registration,total_population,4.3.1,145,,Islam
+32.17.07,3,Cipatat,religion,kristen,,650,jiwa,2025,registration,total_population,4.3.1,145,,Protestan
+32.17.07,3,Cipatat,religion,katolik,,126,jiwa,2025,registration,total_population,4.3.1,145,,Katolik
+32.17.07,3,Cipatat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,145,nil,Hindu
+32.17.07,3,Cipatat,religion,buddha,,10,jiwa,2025,registration,total_population,4.3.1,145,,Budha
+32.17.07,3,Cipatat,religion,lainnya,,8,jiwa,2025,registration,total_population,4.3.1,145,,Lainnya
+32.17.08,3,Padalarang,religion,islam,,189860,jiwa,2025,registration,total_population,4.3.1,145,,Islam
+32.17.08,3,Padalarang,religion,kristen,,4668,jiwa,2025,registration,total_population,4.3.1,145,,Protestan
+32.17.08,3,Padalarang,religion,katolik,,1549,jiwa,2025,registration,total_population,4.3.1,145,,Katolik
+32.17.08,3,Padalarang,religion,hindu,,54,jiwa,2025,registration,total_population,4.3.1,145,,Hindu
+32.17.08,3,Padalarang,religion,buddha,,235,jiwa,2025,registration,total_population,4.3.1,145,,Budha
+32.17.08,3,Padalarang,religion,lainnya,,18,jiwa,2025,registration,total_population,4.3.1,145,,Lainnya
+32.17.06,3,Ngamprah,religion,islam,,177216,jiwa,2025,registration,total_population,4.3.1,145,,Islam
+32.17.06,3,Ngamprah,religion,kristen,,6625,jiwa,2025,registration,total_population,4.3.1,145,,Protestan
+32.17.06,3,Ngamprah,religion,katolik,,1925,jiwa,2025,registration,total_population,4.3.1,145,,Katolik
+32.17.06,3,Ngamprah,religion,hindu,,148,jiwa,2025,registration,total_population,4.3.1,145,,Hindu
+32.17.06,3,Ngamprah,religion,buddha,,126,jiwa,2025,registration,total_population,4.3.1,145,,Budha
+32.17.06,3,Ngamprah,religion,lainnya,,38,jiwa,2025,registration,total_population,4.3.1,145,,Lainnya
+32.17.02,3,Parongpong,religion,islam,,112678,jiwa,2025,registration,total_population,4.3.1,145,,Islam
+32.17.02,3,Parongpong,religion,kristen,,5123,jiwa,2025,registration,total_population,4.3.1,145,,Protestan
+32.17.02,3,Parongpong,religion,katolik,,1496,jiwa,2025,registration,total_population,4.3.1,145,,Katolik
+32.17.02,3,Parongpong,religion,hindu,,85,jiwa,2025,registration,total_population,4.3.1,145,,Hindu
+32.17.02,3,Parongpong,religion,buddha,,139,jiwa,2025,registration,total_population,4.3.1,145,,Budha
+32.17.02,3,Parongpong,religion,lainnya,,98,jiwa,2025,registration,total_population,4.3.1,145,,Lainnya
+32.17.01,3,Lembang,religion,islam,,209027,jiwa,2025,registration,total_population,4.3.1,145,,Islam
+32.17.01,3,Lembang,religion,kristen,,2550,jiwa,2025,registration,total_population,4.3.1,145,,Protestan
+32.17.01,3,Lembang,religion,katolik,,898,jiwa,2025,registration,total_population,4.3.1,145,,Katolik
+32.17.01,3,Lembang,religion,hindu,,42,jiwa,2025,registration,total_population,4.3.1,145,,Hindu
+32.17.01,3,Lembang,religion,buddha,,108,jiwa,2025,registration,total_population,4.3.1,145,,Budha
+32.17.01,3,Lembang,religion,lainnya,,282,jiwa,2025,registration,total_population,4.3.1,145,,Lainnya
+32.17.03,3,Cisarua,religion,islam,,85640,jiwa,2025,registration,total_population,4.3.1,145,,Islam
+32.17.03,3,Cisarua,religion,kristen,,445,jiwa,2025,registration,total_population,4.3.1,145,,Protestan
+32.17.03,3,Cisarua,religion,katolik,,199,jiwa,2025,registration,total_population,4.3.1,145,,Katolik
+32.17.03,3,Cisarua,religion,hindu,,7,jiwa,2025,registration,total_population,4.3.1,145,,Hindu
+32.17.03,3,Cisarua,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,145,,Budha
+32.17.03,3,Cisarua,religion,lainnya,,25,jiwa,2025,registration,total_population,4.3.1,145,,Lainnya
+32.17.04,3,Cikalong Wetan,religion,islam,,138127,jiwa,2025,registration,total_population,4.3.1,145,,Islam
+32.17.04,3,Cikalong Wetan,religion,kristen,,397,jiwa,2025,registration,total_population,4.3.1,145,,Protestan
+32.17.04,3,Cikalong Wetan,religion,katolik,,33,jiwa,2025,registration,total_population,4.3.1,145,,Katolik
+32.17.04,3,Cikalong Wetan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,145,nil,Hindu
+32.17.04,3,Cikalong Wetan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,145,nil,Budha
+32.17.04,3,Cikalong Wetan,religion,lainnya,,12,jiwa,2025,registration,total_population,4.3.1,145,,Lainnya
+32.17.05,3,Cipeundeuy,religion,islam,,94900,jiwa,2025,registration,total_population,4.3.1,145,,Islam
+32.17.05,3,Cipeundeuy,religion,kristen,,7,jiwa,2025,registration,total_population,4.3.1,145,,Protestan
+32.17.05,3,Cipeundeuy,religion,katolik,,14,jiwa,2025,registration,total_population,4.3.1,145,,Katolik
+32.17.05,3,Cipeundeuy,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,145,nil,Hindu
+32.17.05,3,Cipeundeuy,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,145,nil,Budha
+32.17.05,3,Cipeundeuy,religion,lainnya,,6,jiwa,2025,registration,total_population,4.3.1,145,,Lainnya
+32.17,2,Bandung Barat,religion,islam,,1918012,jiwa,2025,registration,total_population,4.3.1,145,,Islam
+32.17,2,Bandung Barat,religion,kristen,,22885,jiwa,2025,registration,total_population,4.3.1,145,,Protestan
+32.17,2,Bandung Barat,religion,katolik,,7038,jiwa,2025,registration,total_population,4.3.1,145,,Katolik
+32.17,2,Bandung Barat,religion,hindu,,406,jiwa,2025,registration,total_population,4.3.1,145,,Hindu
+32.17,2,Bandung Barat,religion,buddha,,685,jiwa,2025,registration,total_population,4.3.1,145,,Budha
+32.17,2,Bandung Barat,religion,lainnya,,507,jiwa,2025,registration,total_population,4.3.1,145,,Lainnya
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/padi_padian,,77051,rupiah,2025,survey_estimate,per_capita,10.1,278,,Padi-padian
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/padi_padian,,86904,rupiah,2024,survey_estimate,per_capita,10.1,278,,Padi-padian
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/umbi_umbian,,8556,rupiah,2025,survey_estimate,per_capita,10.1,278,,Umbi-umbian
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/umbi_umbian,,8309,rupiah,2024,survey_estimate,per_capita,10.1,278,,Umbi-umbian
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,32712,rupiah,2025,survey_estimate,per_capita,10.1,278,,Ikan/udang/cumi/kerang
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,34837,rupiah,2024,survey_estimate,per_capita,10.1,278,,Ikan/udang/cumi/kerang
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/daging,,34557,rupiah,2025,survey_estimate,per_capita,10.1,278,,Daging
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/daging,,34056,rupiah,2024,survey_estimate,per_capita,10.1,278,,Daging
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/telur_dan_susu,,28198,rupiah,2025,survey_estimate,per_capita,10.1,278,,Telur dan susu
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/telur_dan_susu,,26746,rupiah,2024,survey_estimate,per_capita,10.1,278,,Telur dan susu
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/sayur_sayuran,,43147,rupiah,2025,survey_estimate,per_capita,10.1,278,,Sayur-sayuran
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/sayur_sayuran,,42581,rupiah,2024,survey_estimate,per_capita,10.1,278,,Sayur-sayuran
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/kacang_kacangan,,15537,rupiah,2025,survey_estimate,per_capita,10.1,278,,Kacang-kacangan
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/kacang_kacangan,,14774,rupiah,2024,survey_estimate,per_capita,10.1,278,,Kacang-kacangan
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/buah_buahan,,32951,rupiah,2025,survey_estimate,per_capita,10.1,278,,Buah-buahan
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/buah_buahan,,33223,rupiah,2024,survey_estimate,per_capita,10.1,278,,Buah-buahan
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,15366,rupiah,2025,survey_estimate,per_capita,10.1,278,,Minyak dan kelapa
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,13621,rupiah,2024,survey_estimate,per_capita,10.1,278,,Minyak dan kelapa
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/bahan_minuman,,28817,rupiah,2025,survey_estimate,per_capita,10.1,278,,Bahan minuman
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/bahan_minuman,,21685,rupiah,2024,survey_estimate,per_capita,10.1,278,,Bahan minuman
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/bumbu_bumbuan,,12510,rupiah,2025,survey_estimate,per_capita,10.1,278,,Bumbu-bumbuan
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/bumbu_bumbuan,,11987,rupiah,2024,survey_estimate,per_capita,10.1,278,,Bumbu-bumbuan
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/konsumsi_lainnya,,14054,rupiah,2025,survey_estimate,per_capita,10.1,278,,Konsumsi lainnya
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/konsumsi_lainnya,,13628,rupiah,2024,survey_estimate,per_capita,10.1,278,,Konsumsi lainnya
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,191761,rupiah,2025,survey_estimate,per_capita,10.1,278,,Makanan dan minuman jadi
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,179308,rupiah,2024,survey_estimate,per_capita,10.1,278,,Makanan dan minuman jadi
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/rokok,,100457,rupiah,2025,survey_estimate,per_capita,10.1,278,,Rokok
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/rokok,,96707,rupiah,2024,survey_estimate,per_capita,10.1,278,,Rokok
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/jumlah_makanan,,635675,rupiah,2025,survey_estimate,per_capita,10.1,278,,Jumlah makanan
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/jumlah_makanan,,618366,rupiah,2024,survey_estimate,per_capita,10.1,278,,Jumlah makanan
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,299701,rupiah,2025,survey_estimate,per_capita,10.1,278,,Perumahan dan fasilitas rumah tangga
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,299100,rupiah,2024,survey_estimate,per_capita,10.1,278,,Perumahan dan fasilitas rumah tangga
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,149842,rupiah,2025,survey_estimate,per_capita,10.1,278,,Aneka barang dan jasa
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,138346,rupiah,2024,survey_estimate,per_capita,10.1,278,,Aneka barang dan jasa
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,32666,rupiah,2025,survey_estimate,per_capita,10.1,278,,"Pakaian, alas kaki, dan tutup kepala"
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,28767,rupiah,2024,survey_estimate,per_capita,10.1,278,,"Pakaian, alas kaki, dan tutup kepala"
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/barang_tahan_lama,,36907,rupiah,2025,survey_estimate,per_capita,10.1,278,,Barang tahan lama
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/barang_tahan_lama,,43564,rupiah,2024,survey_estimate,per_capita,10.1,278,,Barang tahan lama
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,38156,rupiah,2025,survey_estimate,per_capita,10.1,278,,"Pajak, pungutan, dan asuransi"
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,39550,rupiah,2024,survey_estimate,per_capita,10.1,278,,"Pajak, pungutan, dan asuransi"
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,12262,rupiah,2025,survey_estimate,per_capita,10.1,278,,Keperluan pesta dan upacara/kenduri
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,12228,rupiah,2024,survey_estimate,per_capita,10.1,278,,Keperluan pesta dan upacara/kenduri
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,569533,rupiah,2025,survey_estimate,per_capita,10.1,278,,Jumlah bukan makanan
+32.17,2,Kabupaten Bandung Barat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,561555,rupiah,2024,survey_estimate,per_capita,10.1,278,,Jumlah bukan makanan
+32.17,2,Kabupaten Bandung Barat,expenditure,total,,1205208,rupiah,2025,survey_estimate,per_capita,10.1,278,,
+32.17,2,Kabupaten Bandung Barat,expenditure,total,,1179921,rupiah,2024,survey_estimate,per_capita,10.1,278,,

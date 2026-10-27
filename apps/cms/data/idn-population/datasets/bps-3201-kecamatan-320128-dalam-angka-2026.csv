@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.01.28.2003,4,Warung Menteng,sex,laki_laki,,6002,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.28.2003,4,Warung Menteng,sex,perempuan,,5493,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.28.2003,4,Warung Menteng,total,total,,11495,jiwa,2025,registration,total_population,3.1,34,,
+32.01.28.2001,4,Cijeruk,sex,laki_laki,,7559,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.28.2001,4,Cijeruk,sex,perempuan,,6948,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.28.2001,4,Cijeruk,total,total,,14507,jiwa,2025,registration,total_population,3.1,34,,
+32.01.28.2002,4,Cipelang,sex,laki_laki,,4701,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.28.2002,4,Cipelang,sex,perempuan,,4560,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.28.2002,4,Cipelang,total,total,,9261,jiwa,2025,registration,total_population,3.1,34,,
+32.01.28.2006,4,Cibalung,sex,laki_laki,,4243,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.28.2006,4,Cibalung,sex,perempuan,,3942,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.28.2006,4,Cibalung,total,total,,8185,jiwa,2025,registration,total_population,3.1,34,,
+32.01.28.2005,4,Cipicung,sex,laki_laki,,6889,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.28.2005,4,Cipicung,sex,perempuan,,6175,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.28.2005,4,Cipicung,total,total,,13064,jiwa,2025,registration,total_population,3.1,34,,
+32.01.28.2009,4,Tanjung Sari,sex,laki_laki,,5635,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.28.2009,4,Tanjung Sari,sex,perempuan,,5098,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.28.2009,4,Tanjung Sari,total,total,,10733,jiwa,2025,registration,total_population,3.1,34,,
+32.01.28.2004,4,Tajur Halang,sex,laki_laki,,8184,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.28.2004,4,Tajur Halang,sex,perempuan,,7635,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.28.2004,4,Tajur Halang,total,total,,15819,jiwa,2025,registration,total_population,3.1,34,,
+32.01.28.2008,4,Palasari,sex,laki_laki,,6125,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.28.2008,4,Palasari,sex,perempuan,,5667,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.28.2008,4,Palasari,total,total,,11792,jiwa,2025,registration,total_population,3.1,34,,
+32.01.28.2007,4,Sukaharja,sex,laki_laki,,3860,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.28.2007,4,Sukaharja,sex,perempuan,,3482,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.28.2007,4,Sukaharja,total,total,,7342,jiwa,2025,registration,total_population,3.1,34,,
+32.01.28,3,Kecamatan Cijeruk,sex,laki_laki,,53198,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.28,3,Kecamatan Cijeruk,sex,perempuan,,49000,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.28,3,Kecamatan Cijeruk,total,total,,102198,jiwa,2025,registration,total_population,3.1,34,,
+32.01.28,3,Cijeruk,age_group,0-4,laki_laki,4274,jiwa,2025,registration,total_population,3.2,36,,0-4
+32.01.28,3,Cijeruk,age_group,0-4,perempuan,4062,jiwa,2025,registration,total_population,3.2,36,,0-4
+32.01.28,3,Cijeruk,age_group,0-4,,8336,jiwa,2025,registration,total_population,3.2,36,,0-4
+32.01.28,3,Cijeruk,age_group,5-9,laki_laki,5434,jiwa,2025,registration,total_population,3.2,36,,5-9
+32.01.28,3,Cijeruk,age_group,5-9,perempuan,5069,jiwa,2025,registration,total_population,3.2,36,,5-9
+32.01.28,3,Cijeruk,age_group,5-9,,10503,jiwa,2025,registration,total_population,3.2,36,,5-9
+32.01.28,3,Cijeruk,age_group,10-14,laki_laki,5149,jiwa,2025,registration,total_population,3.2,36,,10-14
+32.01.28,3,Cijeruk,age_group,10-14,perempuan,4856,jiwa,2025,registration,total_population,3.2,36,,10-14
+32.01.28,3,Cijeruk,age_group,10-14,,10005,jiwa,2025,registration,total_population,3.2,36,,10-14
+32.01.28,3,Cijeruk,age_group,15-19,laki_laki,4235,jiwa,2025,registration,total_population,3.2,36,,15-19
+32.01.28,3,Cijeruk,age_group,15-19,perempuan,4060,jiwa,2025,registration,total_population,3.2,36,,15-19
+32.01.28,3,Cijeruk,age_group,15-19,,8295,jiwa,2025,registration,total_population,3.2,36,,15-19
+32.01.28,3,Cijeruk,age_group,20-24,laki_laki,4610,jiwa,2025,registration,total_population,3.2,36,,20-24
+32.01.28,3,Cijeruk,age_group,20-24,perempuan,4278,jiwa,2025,registration,total_population,3.2,36,,20-24
+32.01.28,3,Cijeruk,age_group,20-24,,8888,jiwa,2025,registration,total_population,3.2,36,,20-24
+32.01.28,3,Cijeruk,age_group,25-29,laki_laki,4733,jiwa,2025,registration,total_population,3.2,36,,25-29
+32.01.28,3,Cijeruk,age_group,25-29,perempuan,4113,jiwa,2025,registration,total_population,3.2,36,,25-29
+32.01.28,3,Cijeruk,age_group,25-29,,8846,jiwa,2025,registration,total_population,3.2,36,,25-29
+32.01.28,3,Cijeruk,age_group,30-34,laki_laki,4449,jiwa,2025,registration,total_population,3.2,36,,30-34
+32.01.28,3,Cijeruk,age_group,30-34,perempuan,3902,jiwa,2025,registration,total_population,3.2,36,,30-34
+32.01.28,3,Cijeruk,age_group,30-34,,8351,jiwa,2025,registration,total_population,3.2,36,,30-34
+32.01.28,3,Cijeruk,age_group,35-39,laki_laki,4107,jiwa,2025,registration,total_population,3.2,36,,35-39
+32.01.28,3,Cijeruk,age_group,35-39,perempuan,3590,jiwa,2025,registration,total_population,3.2,36,,35-39
+32.01.28,3,Cijeruk,age_group,35-39,,7697,jiwa,2025,registration,total_population,3.2,36,,35-39
+32.01.28,3,Cijeruk,age_group,40-44,laki_laki,3727,jiwa,2025,registration,total_population,3.2,36,,40-44
+32.01.28,3,Cijeruk,age_group,40-44,perempuan,3346,jiwa,2025,registration,total_population,3.2,36,,40-44
+32.01.28,3,Cijeruk,age_group,40-44,,7073,jiwa,2025,registration,total_population,3.2,36,,40-44
+32.01.28,3,Cijeruk,age_group,45-49,laki_laki,3198,jiwa,2025,registration,total_population,3.2,36,,45-49
+32.01.28,3,Cijeruk,age_group,45-49,perempuan,2775,jiwa,2025,registration,total_population,3.2,36,,45-49
+32.01.28,3,Cijeruk,age_group,45-49,,5973,jiwa,2025,registration,total_population,3.2,36,,45-49
+32.01.28,3,Cijeruk,age_group,50-54,laki_laki,2621,jiwa,2025,registration,total_population,3.2,36,,50-54
+32.01.28,3,Cijeruk,age_group,50-54,perempuan,2625,jiwa,2025,registration,total_population,3.2,36,,50-54
+32.01.28,3,Cijeruk,age_group,50-54,,5246,jiwa,2025,registration,total_population,3.2,36,,50-54
+32.01.28,3,Cijeruk,age_group,55-59,laki_laki,2165,jiwa,2025,registration,total_population,3.2,36,,55-59
+32.01.28,3,Cijeruk,age_group,55-59,perempuan,2028,jiwa,2025,registration,total_population,3.2,36,,55-59
+32.01.28,3,Cijeruk,age_group,55-59,,4193,jiwa,2025,registration,total_population,3.2,36,,55-59
+32.01.28,3,Cijeruk,age_group,60-64,laki_laki,1576,jiwa,2025,registration,total_population,3.2,36,,60-64
+32.01.28,3,Cijeruk,age_group,60-64,perempuan,1532,jiwa,2025,registration,total_population,3.2,36,,60-64
+32.01.28,3,Cijeruk,age_group,60-64,,3108,jiwa,2025,registration,total_population,3.2,36,,60-64
+32.01.28,3,Cijeruk,age_group,65-69,laki_laki,1209,jiwa,2025,registration,total_population,3.2,36,,65-69
+32.01.28,3,Cijeruk,age_group,65-69,perempuan,1111,jiwa,2025,registration,total_population,3.2,36,,65-69
+32.01.28,3,Cijeruk,age_group,65-69,,2320,jiwa,2025,registration,total_population,3.2,36,,65-69
+32.01.28,3,Cijeruk,age_group,70-74,laki_laki,807,jiwa,2025,registration,total_population,3.2,36,,70-74
+32.01.28,3,Cijeruk,age_group,70-74,perempuan,674,jiwa,2025,registration,total_population,3.2,36,,70-74
+32.01.28,3,Cijeruk,age_group,70-74,,1481,jiwa,2025,registration,total_population,3.2,36,,70-74
+32.01.28,3,Cijeruk,age_group,75+,laki_laki,904,jiwa,2025,registration,total_population,3.2,36,,75+
+32.01.28,3,Cijeruk,age_group,75+,perempuan,979,jiwa,2025,registration,total_population,3.2,36,,75+
+32.01.28,3,Cijeruk,age_group,75+,,1883,jiwa,2025,registration,total_population,3.2,36,,75+
+32.01.28,3,Kecamatan Cijeruk,sex,laki_laki,,53198,jiwa,2025,registration,total_population,3.2,36,,Laki-Laki
+32.01.28,3,Kecamatan Cijeruk,sex,perempuan,,49000,jiwa,2025,registration,total_population,3.2,36,,Perempuan
+32.01.28,3,Kecamatan Cijeruk,total,total,,102198,jiwa,2025,registration,total_population,3.2,36,,

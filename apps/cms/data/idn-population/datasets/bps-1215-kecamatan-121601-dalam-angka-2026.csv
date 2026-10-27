@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.16.01.2002,4,Pusuk II Simaninggir,sex,laki_laki,,340,jiwa,2024,registration,total_population,3.1,34,,Laki-Laki/Male
+12.16.01.2002,4,Pusuk II Simaninggir,sex,perempuan,,377,jiwa,2024,registration,total_population,3.1,34,,Perempuan/Female
+12.16.01.2002,4,Pusuk II Simaninggir,total,total,,717,jiwa,2024,registration,total_population,3.1,34,,
+12.16.01.2011,4,Pusuk I,sex,laki_laki,,496,jiwa,2024,registration,total_population,3.1,34,,Laki-Laki/Male
+12.16.01.2011,4,Pusuk I,sex,perempuan,,549,jiwa,2024,registration,total_population,3.1,34,,Perempuan/Female
+12.16.01.2011,4,Pusuk I,total,total,,1045,jiwa,2024,registration,total_population,3.1,34,,
+12.16.01.2004,4,Baringin,sex,laki_laki,,548,jiwa,2024,registration,total_population,3.1,34,,Laki-Laki/Male
+12.16.01.2004,4,Baringin,sex,perempuan,,549,jiwa,2024,registration,total_population,3.1,34,,Perempuan/Female
+12.16.01.2004,4,Baringin,total,total,,1097,jiwa,2024,registration,total_population,3.1,34,,
+12.16.01.2010,4,Sihotang Hasugian Tonga,sex,laki_laki,,1273,jiwa,2024,registration,total_population,3.1,34,,Laki-Laki/Male
+12.16.01.2010,4,Sihotang Hasugian Tonga,sex,perempuan,,1294,jiwa,2024,registration,total_population,3.1,34,,Perempuan/Female
+12.16.01.2010,4,Sihotang Hasugian Tonga,total,total,,2567,jiwa,2024,registration,total_population,3.1,34,,
+12.16.01.2008,4,Sionom Hudon Selatan,sex,laki_laki,,841,jiwa,2024,registration,total_population,3.1,34,,Laki-Laki/Male
+12.16.01.2008,4,Sionom Hudon Selatan,sex,perempuan,,840,jiwa,2024,registration,total_population,3.1,34,,Perempuan/Female
+12.16.01.2008,4,Sionom Hudon Selatan,total,total,,1681,jiwa,2024,registration,total_population,3.1,34,,
+12.16.01.2021,4,Sihotang Hasugian Dolok I,sex,laki_laki,,589,jiwa,2024,registration,total_population,3.1,34,,Laki-Laki/Male
+12.16.01.2021,4,Sihotang Hasugian Dolok I,sex,perempuan,,601,jiwa,2024,registration,total_population,3.1,34,,Perempuan/Female
+12.16.01.2021,4,Sihotang Hasugian Dolok I,total,total,,1190,jiwa,2024,registration,total_population,3.1,34,,
+12.16.01.2007,4,Sionom Hudon Utara,sex,laki_laki,,411,jiwa,2024,registration,total_population,3.1,34,,Laki-Laki/Male
+12.16.01.2007,4,Sionom Hudon Utara,sex,perempuan,,417,jiwa,2024,registration,total_population,3.1,34,,Perempuan/Female
+12.16.01.2007,4,Sionom Hudon Utara,total,total,,828,jiwa,2024,registration,total_population,3.1,34,,
+12.16.01.2005,4,Sionom Hudon Julu,sex,laki_laki,,724,jiwa,2024,registration,total_population,3.1,34,,Laki-Laki/Male
+12.16.01.2005,4,Sionom Hudon Julu,sex,perempuan,,691,jiwa,2024,registration,total_population,3.1,34,,Perempuan/Female
+12.16.01.2005,4,Sionom Hudon Julu,total,total,,1415,jiwa,2024,registration,total_population,3.1,34,,
+12.16.01.2006,4,Sionom Hudon Tonga,sex,laki_laki,,593,jiwa,2024,registration,total_population,3.1,34,,Laki-Laki/Male
+12.16.01.2006,4,Sionom Hudon Tonga,sex,perempuan,,567,jiwa,2024,registration,total_population,3.1,34,,Perempuan/Female
+12.16.01.2006,4,Sionom Hudon Tonga,total,total,,1160,jiwa,2024,registration,total_population,3.1,34,,
+12.16.01.2012,4,Sionom Hudon Toruan,sex,laki_laki,,541,jiwa,2024,registration,total_population,3.1,34,,Laki-Laki/Male
+12.16.01.2012,4,Sionom Hudon Toruan,sex,perempuan,,522,jiwa,2024,registration,total_population,3.1,34,,Perempuan/Female
+12.16.01.2012,4,Sionom Hudon Toruan,total,total,,1063,jiwa,2024,registration,total_population,3.1,34,,
+12.16.01.2003,4,Sionom Hudon VII,sex,laki_laki,,353,jiwa,2024,registration,total_population,3.1,34,,Laki-Laki/Male
+12.16.01.2003,4,Sionom Hudon VII,sex,perempuan,,297,jiwa,2024,registration,total_population,3.1,34,,Perempuan/Female
+12.16.01.2003,4,Sionom Hudon VII,total,total,,650,jiwa,2024,registration,total_population,3.1,34,,
+12.16.01.2013,4,Simataniari,sex,laki_laki,,225,jiwa,2024,registration,total_population,3.1,34,,Laki-Laki/Male
+12.16.01.2013,4,Simataniari,sex,perempuan,,223,jiwa,2024,registration,total_population,3.1,34,,Perempuan/Female
+12.16.01.2013,4,Simataniari,total,total,,448,jiwa,2024,registration,total_population,3.1,34,,
+12.16.01.2016,4,Sihotang Hasugian Habinsaran,sex,laki_laki,,385,jiwa,2024,registration,total_population,3.1,34,,Laki-Laki/Male
+12.16.01.2016,4,Sihotang Hasugian Habinsaran,sex,perempuan,,404,jiwa,2024,registration,total_population,3.1,34,,Perempuan/Female
+12.16.01.2016,4,Sihotang Hasugian Habinsaran,total,total,,789,jiwa,2024,registration,total_population,3.1,34,,
+12.16.01.2015,4,Sihotang Hasugian Dolok II,sex,laki_laki,,540,jiwa,2024,registration,total_population,3.1,34,,Laki-Laki/Male
+12.16.01.2015,4,Sihotang Hasugian Dolok II,sex,perempuan,,544,jiwa,2024,registration,total_population,3.1,34,,Perempuan/Female
+12.16.01.2015,4,Sihotang Hasugian Dolok II,total,total,,1084,jiwa,2024,registration,total_population,3.1,34,,
+12.16.01.2014,4,Sionom Hudon Timur II,sex,laki_laki,,308,jiwa,2024,registration,total_population,3.1,34,,Laki-Laki/Male
+12.16.01.2014,4,Sionom Hudon Timur II,sex,perempuan,,327,jiwa,2024,registration,total_population,3.1,34,,Perempuan/Female
+12.16.01.2014,4,Sionom Hudon Timur II,total,total,,635,jiwa,2024,registration,total_population,3.1,34,,
+12.16.01.2017,4,Sionom Hudon Sibulbulon,sex,laki_laki,,621,jiwa,2024,registration,total_population,3.1,34,,Laki-Laki/Male
+12.16.01.2017,4,Sionom Hudon Sibulbulon,sex,perempuan,,656,jiwa,2024,registration,total_population,3.1,34,,Perempuan/Female
+12.16.01.2017,4,Sionom Hudon Sibulbulon,total,total,,1277,jiwa,2024,registration,total_population,3.1,34,,
+12.16.01.2019,4,Janji Hutanapa,sex,laki_laki,,290,jiwa,2024,registration,total_population,3.1,34,,Laki-Laki/Male
+12.16.01.2019,4,Janji Hutanapa,sex,perempuan,,293,jiwa,2024,registration,total_population,3.1,34,,Perempuan/Female
+12.16.01.2019,4,Janji Hutanapa,total,total,,583,jiwa,2024,registration,total_population,3.1,34,,
+12.16.01.2020,4,Baringin Natam,sex,laki_laki,,454,jiwa,2024,registration,total_population,3.1,34,,Laki-Laki/Male
+12.16.01.2020,4,Baringin Natam,sex,perempuan,,405,jiwa,2024,registration,total_population,3.1,34,,Perempuan/Female
+12.16.01.2020,4,Baringin Natam,total,total,,859,jiwa,2024,registration,total_population,3.1,34,,
+12.16.01.2018,4,Sionom Hudon Runggu,sex,laki_laki,,403,jiwa,2024,registration,total_population,3.1,34,,Laki-Laki/Male
+12.16.01.2018,4,Sionom Hudon Runggu,sex,perempuan,,398,jiwa,2024,registration,total_population,3.1,34,,Perempuan/Female
+12.16.01.2018,4,Sionom Hudon Runggu,total,total,,801,jiwa,2024,registration,total_population,3.1,34,,
+12.16.01,3,Parlilitan,sex,laki_laki,,10484,jiwa,2024,registration,total_population,3.1,34,,Laki-Laki/Male
+12.16.01,3,Parlilitan,sex,perempuan,,10522,jiwa,2024,registration,total_population,3.1,34,,Perempuan/Female
+12.16.01,3,Parlilitan,total,total,,21006,jiwa,2024,registration,total_population,3.1,34,,

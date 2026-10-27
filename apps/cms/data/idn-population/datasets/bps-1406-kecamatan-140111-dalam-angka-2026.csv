@@ -1,0 +1,35 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.01.11.2002,4,Sekijang,sex,perempuan,,3965,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.11.2002,4,Sekijang,total,total,,8232,jiwa,2025,registration,total_population,3.1,11,,
+14.01.11.2008,4,Tebing Lestari,sex,perempuan,,1054,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.11.2008,4,Tebing Lestari,total,total,,2168,jiwa,2025,registration,total_population,3.1,11,,
+14.01.11.2015,4,Kijang Jaya,sex,perempuan,,2531,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.11.2015,4,Kijang Jaya,total,total,,5246,jiwa,2025,registration,total_population,3.1,11,,
+14.01.11.2009,4,Tanah Tinggi,sex,perempuan,,1401,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.11.2009,4,Tanah Tinggi,total,total,,2909,jiwa,2025,registration,total_population,3.1,11,,
+14.01.11.2012,4,Tapung Makmur,sex,perempuan,,1139,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.11.2012,4,Tapung Makmur,total,total,,2289,jiwa,2025,registration,total_population,3.1,11,,
+14.01.11.2011,4,Tapung Lestari,sex,perempuan,,1029,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.11.2011,4,Tapung Lestari,total,total,,2025,jiwa,2025,registration,total_population,3.1,11,,
+14.01.11.2001,4,Koto Garo,sex,perempuan,,5463,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.11.2001,4,Koto Garo,total,total,,11219,jiwa,2025,registration,total_population,3.1,11,,
+14.01.11.2006,4,Suka Maju,sex,perempuan,,1159,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.11.2006,4,Suka Maju,total,total,,2362,jiwa,2025,registration,total_population,3.1,11,,
+14.01.11.2007,4,Kota Baru,sex,perempuan,,1993,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.11.2007,4,Kota Baru,total,total,,4021,jiwa,2025,registration,total_population,3.1,11,,
+14.01.11.2004,4,Kota Bangun,sex,perempuan,,2848,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.11.2004,4,Kota Bangun,total,total,,5873,jiwa,2025,registration,total_population,3.1,11,,
+14.01.11.2005,4,Cinta Damai,sex,perempuan,,1388,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.11.2005,4,Cinta Damai,total,total,,2781,jiwa,2025,registration,total_population,3.1,11,,
+14.01.11.2003,4,Beringin Lestari,sex,perempuan,,1516,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.11.2003,4,Beringin Lestari,total,total,,3066,jiwa,2025,registration,total_population,3.1,11,,
+14.01.11.2013,4,Tandan Sari,sex,perempuan,,737,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.11.2013,4,Tandan Sari,total,total,,1470,jiwa,2025,registration,total_population,3.1,11,,
+14.01.11.2016,4,Kijang Makmur,sex,perempuan,,2308,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.11.2016,4,Kijang Makmur,total,total,,4644,jiwa,2025,registration,total_population,3.1,11,,
+14.01.11.2010,4,Koto Aman,sex,perempuan,,781,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.11.2010,4,Koto Aman,total,total,,1594,jiwa,2025,registration,total_population,3.1,11,,
+14.01.11.2014,4,Gerbang Sari,sex,perempuan,,1386,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.11.2014,4,Gerbang Sari,total,total,,2849,jiwa,2025,registration,total_population,3.1,11,,
+14.01.11,3,Kecamatan Tapung Hilir,sex,perempuan,,30698,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.11,3,Kecamatan Tapung Hilir,total,total,,62748,jiwa,2025,registration,total_population,3.1,11,,

@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.02.10.2003,4,Desa Baru Manis,sex,laki_laki,,1255,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.10.2003,4,Desa Baru Manis,sex,perempuan,,1239,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.10.2003,4,Desa Baru Manis,total,total,,2494,jiwa,2025,registration,total_population,3.1,22,,
+17.02.10.2020,4,Desa Air Pikat,sex,laki_laki,,918,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.10.2020,4,Desa Air Pikat,sex,perempuan,,858,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.10.2020,4,Desa Air Pikat,total,total,,1776,jiwa,2025,registration,total_population,3.1,22,,
+17.02.10.2002,4,Desa Tebat Tenong Dalam,sex,laki_laki,,648,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.10.2002,4,Desa Tebat Tenong Dalam,sex,perempuan,,520,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.10.2002,4,Desa Tebat Tenong Dalam,total,total,,1168,jiwa,2025,registration,total_population,3.1,22,,
+17.02.10.2016,4,Desa Suka Rami,sex,laki_laki,,768,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.10.2016,4,Desa Suka Rami,sex,perempuan,,737,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.10.2016,4,Desa Suka Rami,total,total,,1505,jiwa,2025,registration,total_population,3.1,22,,
+17.02.10.2017,4,Desa Pagar Gunung,sex,laki_laki,,440,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.10.2017,4,Desa Pagar Gunung,sex,perempuan,,402,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.10.2017,4,Desa Pagar Gunung,total,total,,842,jiwa,2025,registration,total_population,3.1,22,,
+17.02.10.2001,4,Desa Air Mundu,sex,laki_laki,,234,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.10.2001,4,Desa Air Mundu,sex,perempuan,,229,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.10.2001,4,Desa Air Mundu,total,total,,463,jiwa,2025,registration,total_population,3.1,22,,
+17.02.10.2015,4,Desa Kampung Sajad,sex,laki_laki,,312,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.10.2015,4,Desa Kampung Sajad,sex,perempuan,,281,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.10.2015,4,Desa Kampung Sajad,total,total,,593,jiwa,2025,registration,total_population,3.1,22,,
+17.02.10.2013,4,Desa Sentral Baru,sex,laki_laki,,637,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.10.2013,4,Desa Sentral Baru,sex,perempuan,,628,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.10.2013,4,Desa Sentral Baru,total,total,,1265,jiwa,2025,registration,total_population,3.1,22,,
+17.02.10.2012,4,Desa Kampung Melayu,sex,laki_laki,,1058,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.10.2012,4,Desa Kampung Melayu,sex,perempuan,,1009,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.10.2012,4,Desa Kampung Melayu,total,total,,2067,jiwa,2025,registration,total_population,3.1,22,,
+17.02.10.2018,4,Desa Selamat Sudiarjo,sex,laki_laki,,319,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.10.2018,4,Desa Selamat Sudiarjo,sex,perempuan,,305,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.10.2018,4,Desa Selamat Sudiarjo,total,total,,624,jiwa,2025,registration,total_population,3.1,22,,
+17.02.10.2019,4,Desa Purwodadi,sex,laki_laki,,352,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.10.2019,4,Desa Purwodadi,sex,perempuan,,309,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.10.2019,4,Desa Purwodadi,total,total,,661,jiwa,2025,registration,total_population,3.1,22,,
+17.02.10.2021,4,Desa Tebat Pulau,sex,laki_laki,,665,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.10.2021,4,Desa Tebat Pulau,sex,perempuan,,660,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.10.2021,4,Desa Tebat Pulau,total,total,,1325,jiwa,2025,registration,total_population,3.1,22,,
+17.02.10,3,Bermani Ulu,sex,laki_laki,,7606,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.10,3,Bermani Ulu,sex,perempuan,,7177,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.10,3,Bermani Ulu,total,total,,14783,jiwa,2025,registration,total_population,3.1,22,,

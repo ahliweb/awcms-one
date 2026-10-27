@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-2101-kecamatan-210204-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.02.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Meral Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Karimun",
+  "publisherDomain": "2101",
+  "publisherWebsite": "https://karimunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Karimun (https://karimunkab.bps.go.id), publikasi \"Kecamatan Meral Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "21010.26016",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://karimunkab.bps.go.id/id/publication/2026/09/28/892673021191e3d1adf51262/kecamatan-meral-dalam-angka-2026.html",
+  "sourceFileSha256": "77fcc94835595b85acffde2148bc0707788e81bb048caab97c1309ea136abd1a",
+  "sourceFileBytes": 4420111,
+  "sourcePages": [32, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Karimun",
+  "csvPath": "datasets/bps-2101-kecamatan-210204-dalam-angka-2026.csv",
+  "csvSha256": "bbe09d044b0ce57e157878109f2c9310bb754259c095ae4b7861573dc5523a32",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Meral, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Meral, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

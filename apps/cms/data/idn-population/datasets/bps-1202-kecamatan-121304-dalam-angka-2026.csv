@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.13.04.2003,4,Hayu Raja,sex,laki_laki,,442,jiwa,2026,registration,total_population,1.2,23,,Laki-Laki
+12.13.04.2003,4,Hayu Raja,sex,perempuan,,512,jiwa,2026,registration,total_population,1.2,23,,Perempuan
+12.13.04.2003,4,Hayu Raja,total,total,,954,jiwa,2026,registration,total_population,1.2,23,,
+12.13.04.2005,4,Kayu Laut,sex,laki_laki,,749,jiwa,2026,registration,total_population,1.2,23,,Laki-Laki
+12.13.04.2005,4,Kayu Laut,sex,perempuan,,778,jiwa,2026,registration,total_population,1.2,23,,Perempuan
+12.13.04.2005,4,Kayu Laut,total,total,,1527,jiwa,2026,registration,total_population,1.2,23,,
+12.13.04.2008,4,Roburan Lombang,sex,laki_laki,,973,jiwa,2026,registration,total_population,1.2,23,,Laki-Laki
+12.13.04.2008,4,Roburan Lombang,sex,perempuan,,1012,jiwa,2026,registration,total_population,1.2,23,,Perempuan
+12.13.04.2008,4,Roburan Lombang,total,total,,1985,jiwa,2026,registration,total_population,1.2,23,,
+12.13.04.2007,4,Roburan Dolok,sex,laki_laki,,682,jiwa,2026,registration,total_population,1.2,23,,Laki-Laki
+12.13.04.2007,4,Roburan Dolok,sex,perempuan,,717,jiwa,2026,registration,total_population,1.2,23,,Perempuan
+12.13.04.2007,4,Roburan Dolok,total,total,,1399,jiwa,2026,registration,total_population,1.2,23,,
+12.13.04.2006,4,Lumban Dolok,sex,laki_laki,,775,jiwa,2026,registration,total_population,1.2,23,,Laki-Laki
+12.13.04.2006,4,Lumban Dolok,sex,perempuan,,765,jiwa,2026,registration,total_population,1.2,23,,Perempuan
+12.13.04.2006,4,Lumban Dolok,total,total,,1540,jiwa,2026,registration,total_population,1.2,23,,
+12.13.04.2010,4,Huta Raja,sex,laki_laki,,321,jiwa,2026,registration,total_population,1.2,23,,Laki-Laki
+12.13.04.2010,4,Huta Raja,sex,perempuan,,308,jiwa,2026,registration,total_population,1.2,23,,Perempuan
+12.13.04.2010,4,Huta Raja,total,total,,629,jiwa,2026,registration,total_population,1.2,23,,
+12.13.04.2002,4,Hutarimbaru,sex,laki_laki,,300,jiwa,2026,registration,total_population,1.2,23,,Laki-Laki
+12.13.04.2002,4,Hutarimbaru,sex,perempuan,,284,jiwa,2026,registration,total_population,1.2,23,,Perempuan
+12.13.04.2002,4,Hutarimbaru,total,total,,584,jiwa,2026,registration,total_population,1.2,23,,
+12.13.04.2001,4,Aek Ngali,sex,laki_laki,,335,jiwa,2026,registration,total_population,1.2,23,,Laki-Laki
+12.13.04.2001,4,Aek Ngali,sex,perempuan,,324,jiwa,2026,registration,total_population,1.2,23,,Perempuan
+12.13.04.2001,4,Aek Ngali,total,total,,659,jiwa,2026,registration,total_population,1.2,23,,
+12.13.04.2004,4,Huta Julu,sex,laki_laki,,139,jiwa,2026,registration,total_population,1.2,23,,Laki-Laki
+12.13.04.2004,4,Huta Julu,sex,perempuan,,118,jiwa,2026,registration,total_population,1.2,23,,Perempuan
+12.13.04.2004,4,Huta Julu,total,total,,257,jiwa,2026,registration,total_population,1.2,23,,
+12.13.04.2011,4,Pagaran Gala-Gala,sex,laki_laki,,163,jiwa,2026,registration,total_population,1.2,23,,Laki-Laki
+12.13.04.2011,4,Pagaran Gala-Gala,sex,perempuan,,162,jiwa,2026,registration,total_population,1.2,23,,Perempuan
+12.13.04.2011,4,Pagaran Gala-Gala,total,total,,325,jiwa,2026,registration,total_population,1.2,23,,
+12.13.04.1009,4,Tano Bato,sex,laki_laki,,524,jiwa,2026,registration,total_population,1.2,23,,Laki-Laki
+12.13.04.1009,4,Tano Bato,sex,perempuan,,582,jiwa,2026,registration,total_population,1.2,23,,Perempuan
+12.13.04.1009,4,Tano Bato,total,total,,1106,jiwa,2026,registration,total_population,1.2,23,,

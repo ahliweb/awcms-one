@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.11.07.2003,4,Penantian,sex,laki_laki,,940,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+16.11.07.2003,4,Penantian,sex,perempuan,,879,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+16.11.07.2003,4,Penantian,total,total,,1819,jiwa,2025,registration,total_population,3.1,29,,
+16.11.07.2001,4,Talang Padang,sex,laki_laki,,2024,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+16.11.07.2001,4,Talang Padang,sex,perempuan,,1812,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+16.11.07.2001,4,Talang Padang,total,total,,3836,jiwa,2025,registration,total_population,3.1,29,,
+16.11.07.2002,4,Tanjung Beringin,sex,laki_laki,,679,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+16.11.07.2002,4,Tanjung Beringin,sex,perempuan,,612,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+16.11.07.2002,4,Tanjung Beringin,total,total,,1291,jiwa,2025,registration,total_population,3.1,29,,
+16.11.07.2007,4,Lawang Agung,sex,laki_laki,,1054,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+16.11.07.2007,4,Lawang Agung,sex,perempuan,,967,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+16.11.07.2007,4,Lawang Agung,total,total,,2021,jiwa,2025,registration,total_population,3.1,29,,
+16.11.07.2004,4,Pagar Jati,sex,laki_laki,,625,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+16.11.07.2004,4,Pagar Jati,sex,perempuan,,539,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+16.11.07.2004,4,Pagar Jati,total,total,,1164,jiwa,2025,registration,total_population,3.1,29,,
+16.11.07.2006,4,Bandar Agung,sex,laki_laki,,1002,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+16.11.07.2006,4,Bandar Agung,sex,perempuan,,905,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+16.11.07.2006,4,Bandar Agung,total,total,,1907,jiwa,2025,registration,total_population,3.1,29,,
+16.11.07.2008,4,Nanjungan,sex,laki_laki,,1371,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+16.11.07.2008,4,Nanjungan,sex,perempuan,,1242,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+16.11.07.2008,4,Nanjungan,total,total,,2613,jiwa,2025,registration,total_population,3.1,29,,
+16.11.07.2009,4,Talang Randai,sex,laki_laki,,466,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+16.11.07.2009,4,Talang Randai,sex,perempuan,,396,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+16.11.07.2009,4,Talang Randai,total,total,,862,jiwa,2025,registration,total_population,3.1,29,,
+16.11.07.2012,4,Padang Gelai,sex,laki_laki,,1100,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+16.11.07.2012,4,Padang Gelai,sex,perempuan,,923,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+16.11.07.2012,4,Padang Gelai,total,total,,2023,jiwa,2025,registration,total_population,3.1,29,,
+16.11.07.2011,4,Muara Rungga,sex,laki_laki,,442,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+16.11.07.2011,4,Muara Rungga,sex,perempuan,,412,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+16.11.07.2011,4,Muara Rungga,total,total,,854,jiwa,2025,registration,total_population,3.1,29,,
+16.11.07.2013,4,Padang Bindu,sex,laki_laki,,671,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+16.11.07.2013,4,Padang Bindu,sex,perempuan,,522,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+16.11.07.2013,4,Padang Bindu,total,total,,1193,jiwa,2025,registration,total_population,3.1,29,,
+16.11.07.2014,4,Muara Sindang,sex,laki_laki,,905,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+16.11.07.2014,4,Muara Sindang,sex,perempuan,,816,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+16.11.07.2014,4,Muara Sindang,total,total,,1721,jiwa,2025,registration,total_population,3.1,29,,
+16.11.07.2015,4,Muara Aman,sex,laki_laki,,697,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+16.11.07.2015,4,Muara Aman,sex,perempuan,,639,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+16.11.07.2015,4,Muara Aman,total,total,,1336,jiwa,2025,registration,total_population,3.1,29,,
+16.11.07,3,Pasemah Air Keruh,sex,laki_laki,,15702,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+16.11.07,3,Pasemah Air Keruh,sex,perempuan,,13992,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+16.11.07,3,Pasemah Air Keruh,total,total,,29694,jiwa,2025,registration,total_population,3.1,29,,
+16.11.07,3,Pasemah Air Keruh,age_group,0-4,laki_laki,544,jiwa,2025,registration,total_population,3.2,31,,0-4
+16.11.07,3,Pasemah Air Keruh,age_group,0-4,perempuan,563,jiwa,2025,registration,total_population,3.2,31,,0-4
+16.11.07,3,Pasemah Air Keruh,age_group,0-4,,1107,jiwa,2025,registration,total_population,3.2,31,,0-4
+16.11.07,3,Pasemah Air Keruh,age_group,5-9,laki_laki,862,jiwa,2025,registration,total_population,3.2,31,,5-9
+16.11.07,3,Pasemah Air Keruh,age_group,5-9,perempuan,764,jiwa,2025,registration,total_population,3.2,31,,5-9
+16.11.07,3,Pasemah Air Keruh,age_group,5-9,,1626,jiwa,2025,registration,total_population,3.2,31,,5-9
+16.11.07,3,Pasemah Air Keruh,age_group,10-14,laki_laki,978,jiwa,2025,registration,total_population,3.2,31,,10-14
+16.11.07,3,Pasemah Air Keruh,age_group,10-14,perempuan,962,jiwa,2025,registration,total_population,3.2,31,,10-14
+16.11.07,3,Pasemah Air Keruh,age_group,10-14,,1940,jiwa,2025,registration,total_population,3.2,31,,10-14
+16.11.07,3,Pasemah Air Keruh,age_group,15-19,laki_laki,1218,jiwa,2025,registration,total_population,3.2,31,,15-19
+16.11.07,3,Pasemah Air Keruh,age_group,15-19,perempuan,1070,jiwa,2025,registration,total_population,3.2,31,,15-19
+16.11.07,3,Pasemah Air Keruh,age_group,15-19,,2288,jiwa,2025,registration,total_population,3.2,31,,15-19
+16.11.07,3,Pasemah Air Keruh,age_group,20-24,laki_laki,1532,jiwa,2025,registration,total_population,3.2,31,,20-24
+16.11.07,3,Pasemah Air Keruh,age_group,20-24,perempuan,1343,jiwa,2025,registration,total_population,3.2,31,,20-24
+16.11.07,3,Pasemah Air Keruh,age_group,20-24,,2875,jiwa,2025,registration,total_population,3.2,31,,20-24
+16.11.07,3,Pasemah Air Keruh,age_group,25-29,laki_laki,1293,jiwa,2025,registration,total_population,3.2,31,,25-29
+16.11.07,3,Pasemah Air Keruh,age_group,25-29,perempuan,1094,jiwa,2025,registration,total_population,3.2,31,,25-29
+16.11.07,3,Pasemah Air Keruh,age_group,25-29,,2387,jiwa,2025,registration,total_population,3.2,31,,25-29
+16.11.07,3,Pasemah Air Keruh,age_group,30-34,laki_laki,1072,jiwa,2025,registration,total_population,3.2,31,,30-34
+16.11.07,3,Pasemah Air Keruh,age_group,30-34,perempuan,1013,jiwa,2025,registration,total_population,3.2,31,,30-34
+16.11.07,3,Pasemah Air Keruh,age_group,30-34,,2085,jiwa,2025,registration,total_population,3.2,31,,30-34
+16.11.07,3,Pasemah Air Keruh,age_group,35-39,laki_laki,1397,jiwa,2025,registration,total_population,3.2,31,,35-39
+16.11.07,3,Pasemah Air Keruh,age_group,35-39,perempuan,1127,jiwa,2025,registration,total_population,3.2,31,,35-39
+16.11.07,3,Pasemah Air Keruh,age_group,35-39,,2524,jiwa,2025,registration,total_population,3.2,31,,35-39
+16.11.07,3,Pasemah Air Keruh,age_group,40-44,laki_laki,1322,jiwa,2025,registration,total_population,3.2,31,,40-44
+16.11.07,3,Pasemah Air Keruh,age_group,40-44,perempuan,1190,jiwa,2025,registration,total_population,3.2,31,,40-44
+16.11.07,3,Pasemah Air Keruh,age_group,40-44,,2512,jiwa,2025,registration,total_population,3.2,31,,40-44
+16.11.07,3,Pasemah Air Keruh,age_group,45-49,laki_laki,1437,jiwa,2025,registration,total_population,3.2,31,,45-49
+16.11.07,3,Pasemah Air Keruh,age_group,45-49,perempuan,1322,jiwa,2025,registration,total_population,3.2,31,,45-49
+16.11.07,3,Pasemah Air Keruh,age_group,45-49,,2759,jiwa,2025,registration,total_population,3.2,31,,45-49
+16.11.07,3,Pasemah Air Keruh,age_group,50-54,laki_laki,1149,jiwa,2025,registration,total_population,3.2,31,,50-54
+16.11.07,3,Pasemah Air Keruh,age_group,50-54,perempuan,963,jiwa,2025,registration,total_population,3.2,31,,50-54
+16.11.07,3,Pasemah Air Keruh,age_group,50-54,,2112,jiwa,2025,registration,total_population,3.2,31,,50-54
+16.11.07,3,Pasemah Air Keruh,age_group,55-59,laki_laki,961,jiwa,2025,registration,total_population,3.2,31,,55-59
+16.11.07,3,Pasemah Air Keruh,age_group,55-59,perempuan,780,jiwa,2025,registration,total_population,3.2,31,,55-59
+16.11.07,3,Pasemah Air Keruh,age_group,55-59,,1741,jiwa,2025,registration,total_population,3.2,31,,55-59
+16.11.07,3,Pasemah Air Keruh,age_group,60-64,laki_laki,704,jiwa,2025,registration,total_population,3.2,31,,60-64
+16.11.07,3,Pasemah Air Keruh,age_group,60-64,perempuan,586,jiwa,2025,registration,total_population,3.2,31,,60-64
+16.11.07,3,Pasemah Air Keruh,age_group,60-64,,1290,jiwa,2025,registration,total_population,3.2,31,,60-64
+16.11.07,3,Pasemah Air Keruh,age_group,65-69,laki_laki,527,jiwa,2025,registration,total_population,3.2,31,,65-69
+16.11.07,3,Pasemah Air Keruh,age_group,65-69,perempuan,522,jiwa,2025,registration,total_population,3.2,31,,65-69
+16.11.07,3,Pasemah Air Keruh,age_group,65-69,,1049,jiwa,2025,registration,total_population,3.2,31,,65-69
+16.11.07,3,Pasemah Air Keruh,age_group,70-74,laki_laki,308,jiwa,2025,registration,total_population,3.2,31,,70-74
+16.11.07,3,Pasemah Air Keruh,age_group,70-74,perempuan,247,jiwa,2025,registration,total_population,3.2,31,,70-74
+16.11.07,3,Pasemah Air Keruh,age_group,70-74,,555,jiwa,2025,registration,total_population,3.2,31,,70-74
+16.11.07,3,Pasemah Air Keruh,age_group,75+,laki_laki,398,jiwa,2025,registration,total_population,3.2,31,,≥75
+16.11.07,3,Pasemah Air Keruh,age_group,75+,perempuan,446,jiwa,2025,registration,total_population,3.2,31,,≥75
+16.11.07,3,Pasemah Air Keruh,age_group,75+,,844,jiwa,2025,registration,total_population,3.2,31,,≥75
+16.11.07,3,Pasemah Air Keruh,sex,laki_laki,,15702,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+16.11.07,3,Pasemah Air Keruh,sex,perempuan,,13992,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+16.11.07,3,Pasemah Air Keruh,total,total,,29694,jiwa,2025,registration,total_population,3.2,31,,

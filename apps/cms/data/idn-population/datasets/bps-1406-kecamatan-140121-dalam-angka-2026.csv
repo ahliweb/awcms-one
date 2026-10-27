@@ -1,0 +1,15 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.01.21.2006,4,Tanjung,sex,perempuan,,2277,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.21.2006,4,Tanjung,total,total,,4612,jiwa,2025,registration,total_population,3.1,11,,
+14.01.21.2004,4,Tabing,sex,perempuan,,950,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.21.2004,4,Tabing,total,total,,1948,jiwa,2025,registration,total_population,3.1,11,,
+14.01.21.2005,4,Pongkai,sex,perempuan,,915,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.21.2005,4,Pongkai,total,total,,1945,jiwa,2025,registration,total_population,3.1,11,,
+14.01.21.2003,4,Gunung Malelo,sex,perempuan,,2422,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.21.2003,4,Gunung Malelo,total,total,,5087,jiwa,2025,registration,total_population,3.1,11,,
+14.01.21.2001,4,Siberuang,sex,perempuan,,1901,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.21.2001,4,Siberuang,total,total,,3873,jiwa,2025,registration,total_population,3.1,11,,
+14.01.21.2002,4,Bandur Picak,sex,perempuan,,2000,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.21.2002,4,Bandur Picak,total,total,,4038,jiwa,2025,registration,total_population,3.1,11,,
+14.01.21,3,Koto Kampar Hulu,sex,perempuan,,10465,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.21,3,Koto Kampar Hulu,total,total,,21503,jiwa,2025,registration,total_population,3.1,11,,

@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-1507-kecamatan-150602-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.06.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tungkal Ilir Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tanjung Jabung Barat",
+  "publisherDomain": "1507",
+  "publisherWebsite": "https://tanjabbarkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tanjung Jabung Barat (https://tanjabbarkab.bps.go.id), publikasi \"Kecamatan Tungkal Ilir Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1507030",
+  "publicationNumber": "15070.25018",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tanjabbarkab.bps.go.id/id/publication/2026/09/28/a33f628e4121c9acceef139b/kecamatan-tungkal-ilir-dalam-angka-2026.html",
+  "sourceFileSha256": "ffa2da21b6a70da3f2b345c5cdb349e00ed5c7f43f94eb6d2d726c91529fd8de",
+  "sourceFileBytes": 3933973,
+  "sourcePages": [20, 22],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tanjung Jabung Barat.",
+  "csvPath": "datasets/bps-1507-kecamatan-150602-dalam-angka-2026.csv",
+  "csvSha256": "fd50e02e695118197f0dc071241644efd8deca59358db9b2a94b45072acf4eb9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Tungkal Ilir, 2025",
+      "printedPages": [20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tungkal Ilir, 2025",
+      "printedPages": [22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Tungkal IV Kota\": unmatched ",
+    "table 3.1: 27 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: 47 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "cross-table disagreement, both stored as published: 15.06.02 sex/laki_laki/ 2025: 38479 (table 3.1) vs 38910 (table 3.2)",
+    "cross-table disagreement, both stored as published: 15.06.02 sex/perempuan/ 2025: 37089 (table 3.1) vs 37620 (table 3.2)",
+    "cross-table disagreement, both stored as published: 15.06.02 total/total/ 2025: 75568 (table 3.1) vs 76530 (table 3.2)"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "datasetCode": "bps-1109-kecamatan-110715-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.07.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Peukan Baro Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pidie",
+  "publisherDomain": "1109",
+  "publisherWebsite": "https://pidiekab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pidie (https://pidiekab.bps.go.id), publikasi \"Kecamatan Peukan Baro Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "11090.25021",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pidiekab.bps.go.id/id/publication/2026/09/28/c3735dd89d6b4b5944cb5087/kecamatan-peukan-baro-dalam-angka-2026.html",
+  "sourceFileSha256": "46bf334139e3dbe5a7d989604c2f1872d5ece0227cc30d469549ac61fd49c5b2",
+  "sourceFileBytes": 4167547,
+  "sourcePages": [36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pidie",
+  "csvPath": "datasets/bps-1109-kecamatan-110715-dalam-angka-2026.csv",
+  "csvSha256": "e65713c1a644b5f4a9e2699dd6b829c898c786d3b3994786664aa77bab5256fe",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Peukan Baro, 2025",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Balee\": unmatched ",
+    "table 3.1: row not stored: row \"Meunjee Mesjid\": unmatched ",
+    "table 3.1: row not stored: row \"Dayah Seumiden\": unmatched "
+  ]
+}

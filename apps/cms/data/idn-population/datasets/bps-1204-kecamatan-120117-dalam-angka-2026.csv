@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.01.17.2005,4,Pananggahan,sex,laki_laki,,406,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+12.01.17.2005,4,Pananggahan,sex,perempuan,,411,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+12.01.17.2005,4,Pananggahan,total,total,,817,jiwa,2025,registration,total_population,3.1,35,,
+12.01.17.2004,4,Purba Tua,sex,laki_laki,,593,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+12.01.17.2004,4,Purba Tua,sex,perempuan,,589,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+12.01.17.2004,4,Purba Tua,total,total,,1182,jiwa,2025,registration,total_population,3.1,35,,
+12.01.17.2001,4,Hutaginjang,sex,laki_laki,,478,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+12.01.17.2001,4,Hutaginjang,sex,perempuan,,533,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+12.01.17.2001,4,Hutaginjang,total,total,,1011,jiwa,2025,registration,total_population,3.1,35,,
+12.01.17.2002,4,Sihorbo,sex,laki_laki,,414,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+12.01.17.2002,4,Sihorbo,sex,perempuan,,432,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+12.01.17.2002,4,Sihorbo,total,total,,846,jiwa,2025,registration,total_population,3.1,35,,
+12.01.17.2003,4,Parik Sinomba,sex,laki_laki,,244,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+12.01.17.2003,4,Parik Sinomba,sex,perempuan,,255,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+12.01.17.2003,4,Parik Sinomba,total,total,,499,jiwa,2025,registration,total_population,3.1,35,,
+12.01.17.2006,4,Siharbangan,sex,laki_laki,,290,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+12.01.17.2006,4,Siharbangan,sex,perempuan,,324,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+12.01.17.2006,4,Siharbangan,total,total,,614,jiwa,2025,registration,total_population,3.1,35,,
+12.01.17,3,Barus Utara,sex,laki_laki,,2425,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+12.01.17,3,Barus Utara,sex,perempuan,,2544,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+12.01.17,3,Barus Utara,total,total,,4969,jiwa,2025,registration,total_population,3.1,35,,

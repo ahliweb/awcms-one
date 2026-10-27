@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-1205-kecamatan-120212-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.02.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sipahutar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tapanuli Utara",
+  "publisherDomain": "1205",
+  "publisherWebsite": "https://tapanuliutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tapanuli Utara (https://tapanuliutarakab.bps.go.id), publikasi \"Kecamatan Sipahutar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1205110",
+  "publicationNumber": "12050.26023",
+  "issn": "2503-006X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tapanuliutarakab.bps.go.id/id/publication/2026/09/28/a4a6dbd8c99e0e8876652ff9/kecamatan-sipahutar-dalam-angka-2026.html",
+  "sourceFileSha256": "0a6ac89128c09b5b703cd5f44cb40b5d3f8bc8c2c0fdb7135e3b3207368f3442",
+  "sourceFileBytes": 3336535,
+  "sourcePages": [30, 31, 32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tapanuli Utara.",
+  "csvPath": "datasets/bps-1205-kecamatan-120212-dalam-angka-2026.csv",
+  "csvSha256": "3784f1c56710892f9ed26d821a94799a1d606da8faa11f177991eaf95ce3dd67",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Sipahutar, 2025",
+      "printedPages": [30, 31, 32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sipahutar, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Aek Naulli I\": unmatched ",
+    "table 3.1: row not stored: row \"Onan Runggu\": unmatched ",
+    "table 3.1: row not stored: row \"Aek Naulli I\": unmatched "
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "datasetCode": "bps-3305-kecamatan-330519-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.05.19",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gombong Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kebumen",
+  "publisherDomain": "3305",
+  "publisherWebsite": "https://kebumenkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kebumen (https://kebumenkab.bps.go.id), publikasi \"Kecamatan Gombong Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3305190",
+  "publicationNumber": "33050.26032",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kebumenkab.bps.go.id/id/publication/2026/09/28/115b1f6d3ad2abb217415b3e/kecamatan-gombong-dalam-angka-2026.html",
+  "sourceFileSha256": "323f008597ea2658e2c761e9f4bcf325ddda4ba3dcd9df8c3a74873f3b36da82",
+  "sourceFileBytes": 18626016,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kebumen. TIM PENYUSUN KECAMATAN GOMBONG DALAM ANGKA 2026 VOLUME 33, 2026 Pengarah Danisworo id Penanggung Jawab Danisworo en ka b. bp s. g o. Penyunting Tim Penyusun Kecamatan Dalam Angka 2026 Pengolah Data dan Penulis Naskah Tim Penyusun Kecamatan Dalam Angka 2026 ht tp s: //k eb um Penata Letak Tim Penyusun Kecamatan Dalam Angka 2026 o. en ka b. bp s. g um eb s: //k tp ht id KONTRIBUTOR DATA tp s: //k eb um en ka b. bp s. g o. id Kementerian Agama Kementerian Pendidikan Dasar dan Menengah Badan Pusat Statistik Dinas Kependudukan dan Pencatatan Sipil Kabupaten Kebumen Dinas Pemberdayaan Masyarakat dan Desa Kabupaten Kebumen Dinas Kesehatan Kabupaten Kebumen Dinas Pertanian dan Pangan Kabupaten Kebumen Badan Kepegawaian dan Pembangunan Sumber Daya Manusia Kabupaten Kebumen ht 1. 2. 3. 4. 5. 6. 7. 8. o. en ka b. bp s. g um eb s: //k tp ht id KATA PENGANTAR ht tp s: //k eb um en ka b. bp s. g o. id Publikasi Kecamatan Gombong Dalam Angka 2026 merupakan publikasi rutin tahunan BPS Kabupaten Kebumen. Publikasi ini menyajikan beragam jenis data, yang dihimpun dari berbagai sumber baik dari internal BPS maupun dari Dinas/Instansi/Lembaga. Data yang disajikan dalam buku ini antara lain memuat gambaran umum tentang keadaan geografi, pemerintahan, penduduk, sosial dan kesejahteraan rakyat, pertanian, pariwisata, transportasi dan komunikasi, perbankan, koperasi, dan perdagangan Kecamatan Gombong. Data tersebut pada umumnya disajikan secara series serta dilengkapi dengan infografis. Publikasi ini dapat terwujud berkat kerja sama dan partisipasi dari berbagai pihak, kepada semua pihak yang telah memberikan kontribusi, kami sampaikan penghargaan dan terima kasih. Semoga publikasi ini mampu memenuhi sebagian dari besarnya tuntutan kebutuhan data statistik, baik oleh dinas/instansi pemerintah, swasta, kalangan akademis, maupun masyarakat luas. Kebumen, September 2026 Kepala BPS Kabupaten Kebumen Danisworo vii o. en ka b. bp s. g um eb s: //k tp ht id",
+  "csvPath": "datasets/bps-3305-kecamatan-330519-dalam-angka-2026.csv",
+  "csvSha256": "7ea0fddd30e6effee6fc7e79597b5085085e198db37254f3897ff296858db1d7",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Gombong, 2025 Jenis Kelamin Kelompok Umur Laki-Laki Perempuan Jumlah",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.4 (religion-by-region) could not be read reliably and is not included (religion column 3 header \"Konghuchu\" not recognised)",
+    "table 3.1: row not stored: row \"Kalitengah 2.595\": unmatched ",
+    "table 3.1: row not stored: row \"Kemukus 1.821\": unmatched ",
+    "table 3.1: row not stored: row \"Banjarsari 990\": unmatched ",
+    "table 3.1: row not stored: row \"Panjangsari 1.037\": unmatched ",
+    "table 3.1: row not stored: row \"Patemon 1.514\": unmatched ",
+    "table 3.1: row not stored: row \"Kedungpuji 1.680\": unmatched ",
+    "table 3.1: row not stored: row \"Wero 1.714\": unmatched ",
+    "table 3.1: row not stored: row \"Gombong 2.374\": unmatched ",
+    "table 3.1: row not stored: row \"Wonokriyo 2.854\": unmatched ",
+    "table 3.1: row not stored: row \"Semondo 1.880\": unmatched ",
+    "table 3.1: row not stored: row \"Semanding 2.685\": unmatched ",
+    "table 3.1: row not stored: row \"Sidayu 1.254\": unmatched ",
+    "table 3.1: row not stored: row \"Wonosigro 1.143\": unmatched ",
+    "table 3.1: row not stored: row \"Klopogodo 1.763\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Gombong 25.304\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}
