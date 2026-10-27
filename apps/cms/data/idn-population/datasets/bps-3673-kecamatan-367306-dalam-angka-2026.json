@@ -1,0 +1,56 @@
+{
+  "datasetCode": "bps-3673-kecamatan-367306-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.73.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Taktakan Dalam Angka 2026",
+  "publisherName": "BPS Kota Serang",
+  "publisherDomain": "3673",
+  "publisherWebsite": "https://serangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Serang (https://serangkota.bps.go.id), publikasi \"Kecamatan Taktakan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3673050",
+  "publicationNumber": "36730.26009",
+  "issn": "2714-9323",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://serangkota.bps.go.id/id/publication/2026/09/28/b9b733b196631a2aa1c2591e/kecamatan-taktakan-dalam-angka-2026.html",
+  "sourceFileSha256": "ca4c3a9e4080b7e8615ecb41747f59066c962ca1e90049d2d6c69ae08cbb4b0b",
+  "sourceFileBytes": 5930224,
+  "sourcePages": [35, 39],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Serang.",
+  "csvPath": "datasets/bps-3673-kecamatan-367306-dalam-angka-2026.csv",
+  "csvSha256": "9e557920fc16a67996d52740e5038d334f2c54dc0193285fc04a7d8a4e314659",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Taktakan, 2026",
+      "printedPages": [35],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Taktakan, 2026",
+      "printedPages": [],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.5",
+      "title": "Jumlah Penduduk Menurut Agama dan Kelurahan di Kecamatan Taktakan, 2026",
+      "printedPages": [39],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1: row not stored: row \"Kecamatan Taktakan Taktakan District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Taktakan Taktakan District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Taktakan Taktakan District\": unmatched ",
+    "table 3.5: row not stored: row \"Kecamatan Taktakan Taktakan District\": unmatched ",
+    "table 3.5: row not stored: row \"Kecamatan Taktakan Taktakan District\": unmatched "
+  ]
+}

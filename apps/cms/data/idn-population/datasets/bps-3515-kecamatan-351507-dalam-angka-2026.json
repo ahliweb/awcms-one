@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3515-kecamatan-351507-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.15.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Candi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten CANDI",
+  "publisherDomain": "3515",
+  "publisherWebsite": "https://sidoarjokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten CANDI (https://sidoarjokab.bps.go.id), publikasi \"Kecamatan Candi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3515070",
+  "publicationNumber": "35150.26011",
+  "issn": "2620-7036",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sidoarjokab.bps.go.id/id/publication/2026/09/28/d47e8e541a0705522893e720/kecamatan-candi-dalam-angka-2026.html",
+  "sourceFileSha256": "3ff3cd4fc28aab31a5ab5c55a0f94544619f745c19c072920ac2b56f5511059a",
+  "sourceFileBytes": 23274329,
+  "sourcePages": [38, 39, 40],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten CANDI.",
+  "csvPath": "datasets/bps-3515-kecamatan-351507-dalam-angka-2026.csv",
+  "csvSha256": "f34469ba66d83c8092fe51fdf1c9b7e832c559f6124c29ba6be034dcc440c220",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Candi, 2025",
+      "printedPages": [38, 39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Candi, 2025",
+      "printedPages": [40],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

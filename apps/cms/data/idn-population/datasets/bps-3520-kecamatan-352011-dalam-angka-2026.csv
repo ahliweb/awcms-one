@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.20.11.2001,4,Sugihwaras,sex,perempuan,,2298,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.11.2001,4,Sugihwaras,total,total,,4487,jiwa,2025,registration,total_population,3.1,29,,
+35.20.11.2002,4,Tanjungsepreh,sex,perempuan,,1556,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.11.2002,4,Tanjungsepreh,total,total,,3051,jiwa,2025,registration,total_population,3.1,29,,
+35.20.11.2003,4,Gulun,sex,perempuan,,1969,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.11.2003,4,Gulun,total,total,,3894,jiwa,2025,registration,total_population,3.1,29,,
+35.20.11.2004,4,Malang,sex,perempuan,,1196,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.11.2004,4,Malang,total,total,,2290,jiwa,2025,registration,total_population,3.1,29,,
+35.20.11.1005,4,Maospati,sex,perempuan,,3265,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.11.1005,4,Maospati,total,total,,6422,jiwa,2025,registration,total_population,3.1,29,,
+35.20.11.2006,4,Klagen Gambiran,sex,perempuan,,1332,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.11.2006,4,Klagen Gambiran,total,total,,2627,jiwa,2025,registration,total_population,3.1,29,,
+35.20.11.2007,4,Pandeyan,sex,perempuan,,1098,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.11.2007,4,Pandeyan,total,total,,2063,jiwa,2025,registration,total_population,3.1,29,,
+35.20.11.2008,4,Suratmajan,sex,perempuan,,1754,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.11.2008,4,Suratmajan,total,total,,3447,jiwa,2025,registration,total_population,3.1,29,,
+35.20.11.2009,4,Ronowijayan,sex,perempuan,,430,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.11.2009,4,Ronowijayan,total,total,,855,jiwa,2025,registration,total_population,3.1,29,,
+35.20.11.2010,4,Ngujung,sex,perempuan,,1506,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.11.2010,4,Ngujung,total,total,,2941,jiwa,2025,registration,total_population,3.1,29,,
+35.20.11.2011,4,Sumberejo,sex,perempuan,,1597,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.11.2011,4,Sumberejo,total,total,,3038,jiwa,2025,registration,total_population,3.1,29,,
+35.20.11.2012,4,Pesu,sex,perempuan,,1468,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.11.2012,4,Pesu,total,total,,2880,jiwa,2025,registration,total_population,3.1,29,,
+35.20.11.1013,4,Kraton,sex,perempuan,,2414,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.11.1013,4,Kraton,total,total,,4654,jiwa,2025,registration,total_population,3.1,29,,
+35.20.11.1014,4,Mranggen,sex,perempuan,,1020,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.11.1014,4,Mranggen,total,total,,1978,jiwa,2025,registration,total_population,3.1,29,,
+35.20.11.2015,4,Sempol,sex,perempuan,,947,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.11.2015,4,Sempol,total,total,,1865,jiwa,2025,registration,total_population,3.1,29,,
+35.20.11,3,Kecamatan Maospati,sex,perempuan,,23850,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.11,3,Kecamatan Maospati,total,total,,46492,jiwa,2025,registration,total_population,3.1,29,,
+35.20.11,3,Maospati,age_group,0-4,perempuan,986,jiwa,2025,registration,total_population,3.3,32,,0 – 4
+35.20.11,3,Maospati,age_group,0-4,,2106,jiwa,2025,registration,total_population,3.3,32,,0 – 4
+35.20.11,3,Maospati,age_group,5-9,perempuan,1383,jiwa,2025,registration,total_population,3.3,32,,5–9
+35.20.11,3,Maospati,age_group,5-9,,2784,jiwa,2025,registration,total_population,3.3,32,,5–9
+35.20.11,3,Maospati,age_group,10-14,perempuan,1552,jiwa,2025,registration,total_population,3.3,32,,10–14
+35.20.11,3,Maospati,age_group,10-14,,3184,jiwa,2025,registration,total_population,3.3,32,,10–14
+35.20.11,3,Maospati,age_group,15-19,perempuan,1676,jiwa,2025,registration,total_population,3.3,32,,15–19
+35.20.11,3,Maospati,age_group,15-19,,3373,jiwa,2025,registration,total_population,3.3,32,,15–19
+35.20.11,3,Maospati,age_group,20-24,perempuan,1608,jiwa,2025,registration,total_population,3.3,32,,20–24
+35.20.11,3,Maospati,age_group,20-24,,3325,jiwa,2025,registration,total_population,3.3,32,,20–24
+35.20.11,3,Maospati,age_group,25-29,perempuan,1590,jiwa,2025,registration,total_population,3.3,32,,25–29
+35.20.11,3,Maospati,age_group,25-29,,3234,jiwa,2025,registration,total_population,3.3,32,,25–29
+35.20.11,3,Maospati,age_group,30-34,perempuan,1335,jiwa,2025,registration,total_population,3.3,32,,30–34
+35.20.11,3,Maospati,age_group,30-34,,2726,jiwa,2025,registration,total_population,3.3,32,,30–34
+35.20.11,3,Maospati,age_group,35-39,perempuan,1371,jiwa,2025,registration,total_population,3.3,32,,35–39
+35.20.11,3,Maospati,age_group,35-39,,2758,jiwa,2025,registration,total_population,3.3,32,,35–39
+35.20.11,3,Maospati,age_group,40-44,perempuan,1777,jiwa,2025,registration,total_population,3.3,32,,40–44
+35.20.11,3,Maospati,age_group,40-44,,3432,jiwa,2025,registration,total_population,3.3,32,,40–44
+35.20.11,3,Maospati,age_group,45-49,perempuan,1803,jiwa,2025,registration,total_population,3.3,32,,45–49
+35.20.11,3,Maospati,age_group,45-49,,3580,jiwa,2025,registration,total_population,3.3,32,,45–49
+35.20.11,3,Maospati,age_group,50-54,perempuan,1704,jiwa,2025,registration,total_population,3.3,32,,50–54
+35.20.11,3,Maospati,age_group,50-54,,3426,jiwa,2025,registration,total_population,3.3,32,,50–54
+35.20.11,3,Maospati,age_group,55-59,perempuan,1708,jiwa,2025,registration,total_population,3.3,32,,55–59
+35.20.11,3,Maospati,age_group,55-59,,3210,jiwa,2025,registration,total_population,3.3,32,,55–59
+35.20.11,3,Maospati,age_group,60-64,perempuan,1624,jiwa,2025,registration,total_population,3.3,32,,60–64
+35.20.11,3,Maospati,age_group,60-64,,2871,jiwa,2025,registration,total_population,3.3,32,,60–64
+35.20.11,3,Maospati,age_group,65-69,perempuan,1410,jiwa,2025,registration,total_population,3.3,32,,65–69
+35.20.11,3,Maospati,age_group,65-69,,2570,jiwa,2025,registration,total_population,3.3,32,,65–69
+35.20.11,3,Maospati,age_group,70-74,perempuan,915,jiwa,2025,registration,total_population,3.3,32,,70–74
+35.20.11,3,Maospati,age_group,70-74,,1713,jiwa,2025,registration,total_population,3.3,32,,70–74
+35.20.11,3,Maospati,age_group,75+,perempuan,1408,jiwa,2025,registration,total_population,3.3,32,,75 +
+35.20.11,3,Maospati,age_group,75+,,2200,jiwa,2025,registration,total_population,3.3,32,,75 +
+35.20.11,3,Kecamatan Maospati,sex,perempuan,,23850,jiwa,2025,registration,total_population,3.3,32,,Perempuan
+35.20.11,3,Kecamatan Maospati,total,total,,46492,jiwa,2025,registration,total_population,3.3,32,,

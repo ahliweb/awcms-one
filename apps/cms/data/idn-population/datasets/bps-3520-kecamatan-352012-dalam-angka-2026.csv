@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.20.12.2002,4,Banjarejo,total,total,,1269,jiwa,2025,registration,total_population,3.1,29,,
+35.20.12.2004,4,Purwodadi,sex,perempuan,,1182,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.12.2004,4,Purwodadi,total,total,,2399,jiwa,2025,registration,total_population,3.1,29,,
+35.20.12.2001,4,Bogorejo,sex,perempuan,,1208,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.12.2001,4,Bogorejo,total,total,,2402,jiwa,2025,registration,total_population,3.1,29,,
+35.20.12.1006,4,Tebon,sex,perempuan,,945,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.12.1006,4,Tebon,total,total,,1832,jiwa,2025,registration,total_population,3.1,29,,
+35.20.12.2007,4,Manjung,sex,perempuan,,1307,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.12.2007,4,Manjung,total,total,,2507,jiwa,2025,registration,total_population,3.1,29,,
+35.20.12.2009,4,Panggung,sex,perempuan,,1398,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.12.2009,4,Panggung,total,total,,2750,jiwa,2025,registration,total_population,3.1,29,,
+35.20.12.2014,4,Klagen,sex,perempuan,,1461,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.12.2014,4,Klagen,total,total,,2911,jiwa,2025,registration,total_population,3.1,29,,
+35.20.12.2008,4,Ngumpul,sex,perempuan,,630,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.12.2008,4,Ngumpul,total,total,,1244,jiwa,2025,registration,total_population,3.1,29,,
+35.20.12.2013,4,Bangunasri,sex,perempuan,,872,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.12.2013,4,Bangunasri,total,total,,1765,jiwa,2025,registration,total_population,3.1,29,,
+35.20.12.2010,4,Blaran,sex,perempuan,,1260,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.12.2010,4,Blaran,total,total,,2460,jiwa,2025,registration,total_population,3.1,29,,
+35.20.12.1005,4,Mangge,sex,perempuan,,1464,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.12.1005,4,Mangge,total,total,,2887,jiwa,2025,registration,total_population,3.1,29,,
+35.20.12.2011,4,Jonggrang,sex,perempuan,,1020,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.12.2011,4,Jonggrang,total,total,,2080,jiwa,2025,registration,total_population,3.1,29,,
+35.20.12.2012,4,Rejomulyo,sex,perempuan,,954,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.12.2012,4,Rejomulyo,total,total,,1833,jiwa,2025,registration,total_population,3.1,29,,
+35.20.12,3,Kecamatan Barat,sex,perempuan,,15517,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.12,3,Kecamatan Barat,total,total,,30647,jiwa,2025,registration,total_population,3.1,29,,

@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.78.25.1003,4,Rungkut Menanggal,sex,laki_laki,,6360,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.25.1003,4,Rungkut Menanggal,sex,perempuan,,6600,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.25.1003,4,Rungkut Menanggal,total,total,,12960,jiwa,2025,registration,total_population,3.1,29,,
+35.78.25.1002,4,Rungkut Tengah,sex,laki_laki,,6590,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.25.1002,4,Rungkut Tengah,sex,perempuan,,6628,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.25.1002,4,Rungkut Tengah,total,total,,13218,jiwa,2025,registration,total_population,3.1,29,,
+35.78.25.1001,4,Gunung Anyar,sex,laki_laki,,11835,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.25.1001,4,Gunung Anyar,sex,perempuan,,12172,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.25.1001,4,Gunung Anyar,total,total,,24007,jiwa,2025,registration,total_population,3.1,29,,
+35.78.25.1004,4,Gunung Anyar Tambak,sex,laki_laki,,6165,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.25.1004,4,Gunung Anyar Tambak,sex,perempuan,,6319,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.25.1004,4,Gunung Anyar Tambak,total,total,,12484,jiwa,2025,registration,total_population,3.1,29,,
+35.78.25,3,Kecamatan Gunung Anyar,sex,laki_laki,,30950,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.25,3,Kecamatan Gunung Anyar,sex,perempuan,,31719,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.25,3,Kecamatan Gunung Anyar,total,total,,62669,jiwa,2025,registration,total_population,3.1,29,,
+35.78.25,3,Gunung Anyar,age_group,0-4,laki_laki,1948,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.25,3,Gunung Anyar,age_group,0-4,perempuan,1732,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.25,3,Gunung Anyar,age_group,0-4,,3680,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.25,3,Gunung Anyar,age_group,5-9,laki_laki,2406,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.25,3,Gunung Anyar,age_group,5-9,perempuan,2347,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.25,3,Gunung Anyar,age_group,5-9,,4753,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.25,3,Gunung Anyar,age_group,10-14,laki_laki,2630,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.25,3,Gunung Anyar,age_group,10-14,perempuan,2389,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.25,3,Gunung Anyar,age_group,10-14,,5019,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.25,3,Gunung Anyar,age_group,15-19,laki_laki,2505,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.25,3,Gunung Anyar,age_group,15-19,perempuan,2286,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.25,3,Gunung Anyar,age_group,15-19,,4791,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.25,3,Gunung Anyar,age_group,20-24,laki_laki,2336,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.25,3,Gunung Anyar,age_group,20-24,perempuan,2237,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.25,3,Gunung Anyar,age_group,20-24,,4573,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.25,3,Gunung Anyar,age_group,25-29,laki_laki,2314,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.25,3,Gunung Anyar,age_group,25-29,perempuan,2408,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.25,3,Gunung Anyar,age_group,25-29,,4722,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.25,3,Gunung Anyar,age_group,30-34,laki_laki,2311,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.25,3,Gunung Anyar,age_group,30-34,perempuan,2462,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.25,3,Gunung Anyar,age_group,30-34,,4773,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.25,3,Gunung Anyar,age_group,35-39,laki_laki,2219,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.25,3,Gunung Anyar,age_group,35-39,perempuan,2240,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.25,3,Gunung Anyar,age_group,35-39,,4459,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.25,3,Gunung Anyar,age_group,40-44,laki_laki,2636,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.25,3,Gunung Anyar,age_group,40-44,perempuan,2723,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.25,3,Gunung Anyar,age_group,40-44,,5359,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.25,3,Gunung Anyar,age_group,45-49,laki_laki,2421,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.25,3,Gunung Anyar,age_group,45-49,perempuan,2648,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.25,3,Gunung Anyar,age_group,45-49,,5069,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.25,3,Gunung Anyar,age_group,50-54,laki_laki,2139,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.25,3,Gunung Anyar,age_group,50-54,perempuan,2220,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.25,3,Gunung Anyar,age_group,50-54,,4359,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.25,3,Gunung Anyar,age_group,55-59,laki_laki,1713,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.25,3,Gunung Anyar,age_group,55-59,perempuan,1937,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.25,3,Gunung Anyar,age_group,55-59,,3650,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.25,3,Gunung Anyar,age_group,60-64,laki_laki,1327,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.25,3,Gunung Anyar,age_group,60-64,perempuan,1530,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.25,3,Gunung Anyar,age_group,60-64,,2857,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.25,3,Gunung Anyar,age_group,65-69,laki_laki,942,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.25,3,Gunung Anyar,age_group,65-69,perempuan,1111,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.25,3,Gunung Anyar,age_group,65-69,,2053,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.25,3,Gunung Anyar,age_group,70-74,laki_laki,636,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.25,3,Gunung Anyar,age_group,70-74,perempuan,736,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.25,3,Gunung Anyar,age_group,70-74,,1372,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.25,3,Gunung Anyar,age_group,75+,laki_laki,467,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.25,3,Gunung Anyar,age_group,75+,perempuan,713,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.25,3,Gunung Anyar,age_group,75+,,1180,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.25,3,Kecamatan Gunung Anyar,sex,laki_laki,,30950,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+35.78.25,3,Kecamatan Gunung Anyar,sex,perempuan,,31719,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+35.78.25,3,Kecamatan Gunung Anyar,total,total,,62669,jiwa,2025,registration,total_population,3.2,31,,

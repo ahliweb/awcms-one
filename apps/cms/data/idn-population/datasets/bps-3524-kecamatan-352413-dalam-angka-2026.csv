@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.24.13.2002,4,Gempolpading,sex,laki_laki,,1457,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.24.13.2002,4,Gempolpading,sex,perempuan,,1504,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.24.13.2002,4,Gempolpading,total,total,,2961,jiwa,2025,registration,total_population,3.1,30,,
+35.24.13.2005,4,Wanar,sex,laki_laki,,3183,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.24.13.2005,4,Wanar,sex,perempuan,,3061,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.24.13.2005,4,Wanar,total,total,,6244,jiwa,2025,registration,total_population,3.1,30,,
+35.24.13.2001,4,Pucuk,sex,laki_laki,,1821,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.24.13.2001,4,Pucuk,sex,perempuan,,1751,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.24.13.2001,4,Pucuk,total,total,,3572,jiwa,2025,registration,total_population,3.1,30,,
+35.24.13.2003,4,Kesambi,sex,laki_laki,,1028,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.24.13.2003,4,Kesambi,sex,perempuan,,932,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.24.13.2003,4,Kesambi,total,total,,1960,jiwa,2025,registration,total_population,3.1,30,,
+35.24.13.2007,4,Warukulon,sex,laki_laki,,1948,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.24.13.2007,4,Warukulon,sex,perempuan,,1943,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.24.13.2007,4,Warukulon,total,total,,3891,jiwa,2025,registration,total_population,3.1,30,,
+35.24.13.2009,4,Kedali,sex,laki_laki,,852,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.24.13.2009,4,Kedali,sex,perempuan,,910,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.24.13.2009,4,Kedali,total,total,,1762,jiwa,2025,registration,total_population,3.1,30,,
+35.24.13.2011,4,Sumberjo,sex,laki_laki,,1435,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.24.13.2011,4,Sumberjo,sex,perempuan,,1475,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.24.13.2011,4,Sumberjo,total,total,,2910,jiwa,2025,registration,total_population,3.1,30,,
+35.24.13.2016,4,Tanggungan,sex,laki_laki,,1645,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.24.13.2016,4,Tanggungan,sex,perempuan,,1570,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.24.13.2016,4,Tanggungan,total,total,,3215,jiwa,2025,registration,total_population,3.1,30,,
+35.24.13.2006,4,Karangtinggil,sex,laki_laki,,813,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.24.13.2006,4,Karangtinggil,sex,perempuan,,783,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.24.13.2006,4,Karangtinggil,total,total,,1596,jiwa,2025,registration,total_population,3.1,30,,
+35.24.13.2008,4,Waruwetan,sex,laki_laki,,741,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.24.13.2008,4,Waruwetan,sex,perempuan,,783,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.24.13.2008,4,Waruwetan,total,total,,1524,jiwa,2025,registration,total_population,3.1,30,,
+35.24.13.2004,4,Plososetro,sex,laki_laki,,582,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.24.13.2004,4,Plososetro,sex,perempuan,,518,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.24.13.2004,4,Plososetro,total,total,,1100,jiwa,2025,registration,total_population,3.1,30,,
+35.24.13.2010,4,Paji,sex,laki_laki,,1273,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.24.13.2010,4,Paji,sex,perempuan,,1295,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.24.13.2010,4,Paji,total,total,,2568,jiwa,2025,registration,total_population,3.1,30,,
+35.24.13.2015,4,Babatkumpul,sex,laki_laki,,905,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.24.13.2015,4,Babatkumpul,sex,perempuan,,896,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.24.13.2015,4,Babatkumpul,total,total,,1801,jiwa,2025,registration,total_population,3.1,30,,
+35.24.13.2012,4,Cungkup,sex,laki_laki,,1092,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.24.13.2012,4,Cungkup,sex,perempuan,,1111,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.24.13.2012,4,Cungkup,total,total,,2203,jiwa,2025,registration,total_population,3.1,30,,
+35.24.13.2014,4,Ngambeg,sex,laki_laki,,1822,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.24.13.2014,4,Ngambeg,sex,perempuan,,1867,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.24.13.2014,4,Ngambeg,total,total,,3689,jiwa,2025,registration,total_population,3.1,30,,
+35.24.13.2017,4,Padenganploso,sex,laki_laki,,2742,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.24.13.2017,4,Padenganploso,sex,perempuan,,2736,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.24.13.2017,4,Padenganploso,total,total,,5478,jiwa,2025,registration,total_population,3.1,30,,
+35.24.13.2013,4,Bugoharjo,sex,laki_laki,,960,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.24.13.2013,4,Bugoharjo,sex,perempuan,,944,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.24.13.2013,4,Bugoharjo,total,total,,1904,jiwa,2025,registration,total_population,3.1,30,,
+35.24.13,3,Kecamatan Pucuk,sex,laki_laki,,24299,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+35.24.13,3,Kecamatan Pucuk,sex,perempuan,,24079,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+35.24.13,3,Kecamatan Pucuk,total,total,,48378,jiwa,2025,registration,total_population,3.1,30,,
+35.24.13,3,Kecamatan Pucuk,sex,laki_laki,,24299,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+35.24.13,3,Kecamatan Pucuk,sex,perempuan,,24079,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+35.24.13,3,Kecamatan Pucuk,total,total,,48378,jiwa,2025,registration,total_population,3.2,32,,

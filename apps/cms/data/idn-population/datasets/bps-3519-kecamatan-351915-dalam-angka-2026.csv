@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.19.15.2001,4,Ngadirejo,sex,laki_laki,,2957,jiwa,2025,registration,total_population,3.1,2,,Laki-Laki/Male
+35.19.15.2001,4,Ngadirejo,sex,perempuan,,2934,jiwa,2025,registration,total_population,3.1,2,,Perempuan/Female
+35.19.15.2001,4,Ngadirejo,total,total,,5891,jiwa,2025,registration,total_population,3.1,2,,
+35.19.15.2002,4,Jatirejo,sex,laki_laki,,1218,jiwa,2025,registration,total_population,3.1,2,,Laki-Laki/Male
+35.19.15.2002,4,Jatirejo,sex,perempuan,,1222,jiwa,2025,registration,total_population,3.1,2,,Perempuan/Female
+35.19.15.2002,4,Jatirejo,total,total,,2440,jiwa,2025,registration,total_population,3.1,2,,
+35.19.15.2003,4,Banyukambang,sex,laki_laki,,820,jiwa,2025,registration,total_population,3.1,2,,Laki-Laki/Male
+35.19.15.2003,4,Banyukambang,sex,perempuan,,880,jiwa,2025,registration,total_population,3.1,2,,Perempuan/Female
+35.19.15.2003,4,Banyukambang,total,total,,1700,jiwa,2025,registration,total_population,3.1,2,,
+35.19.15.2004,4,Sidomulyo,sex,laki_laki,,2537,jiwa,2025,registration,total_population,3.1,2,,Laki-Laki/Male
+35.19.15.2004,4,Sidomulyo,sex,perempuan,,2453,jiwa,2025,registration,total_population,3.1,2,,Perempuan/Female
+35.19.15.2004,4,Sidomulyo,total,total,,4990,jiwa,2025,registration,total_population,3.1,2,,
+35.19.15.2006,4,Plumpungrejo,sex,laki_laki,,2263,jiwa,2025,registration,total_population,3.1,2,,Laki-Laki/Male
+35.19.15.2006,4,Plumpungrejo,sex,perempuan,,2218,jiwa,2025,registration,total_population,3.1,2,,Perempuan/Female
+35.19.15.2006,4,Plumpungrejo,total,total,,4481,jiwa,2025,registration,total_population,3.1,2,,
+35.19.15.2005,4,Wonoasri,sex,laki_laki,,1311,jiwa,2025,registration,total_population,3.1,2,,Laki-Laki/Male
+35.19.15.2005,4,Wonoasri,sex,perempuan,,1320,jiwa,2025,registration,total_population,3.1,2,,Perempuan/Female
+35.19.15.2005,4,Wonoasri,total,total,,2631,jiwa,2025,registration,total_population,3.1,2,,
+35.19.15.2007,4,Bancong,sex,laki_laki,,1056,jiwa,2025,registration,total_population,3.1,2,,Laki-Laki/Male
+35.19.15.2007,4,Bancong,sex,perempuan,,1064,jiwa,2025,registration,total_population,3.1,2,,Perempuan/Female
+35.19.15.2007,4,Bancong,total,total,,2120,jiwa,2025,registration,total_population,3.1,2,,
+35.19.15.2009,4,Klitik,sex,laki_laki,,1704,jiwa,2025,registration,total_population,3.1,2,,Laki-Laki/Male
+35.19.15.2009,4,Klitik,sex,perempuan,,1734,jiwa,2025,registration,total_population,3.1,2,,Perempuan/Female
+35.19.15.2009,4,Klitik,total,total,,3438,jiwa,2025,registration,total_population,3.1,2,,
+35.19.15.2008,4,Purwosari,sex,laki_laki,,2401,jiwa,2025,registration,total_population,3.1,2,,Laki-Laki/Male
+35.19.15.2008,4,Purwosari,sex,perempuan,,2424,jiwa,2025,registration,total_population,3.1,2,,Perempuan/Female
+35.19.15.2008,4,Purwosari,total,total,,4825,jiwa,2025,registration,total_population,3.1,2,,
+35.19.15.2010,4,Buduran,sex,laki_laki,,1569,jiwa,2025,registration,total_population,3.1,2,,Laki-Laki/Male
+35.19.15.2010,4,Buduran,sex,perempuan,,1548,jiwa,2025,registration,total_population,3.1,2,,Perempuan/Female
+35.19.15.2010,4,Buduran,total,total,,3117,jiwa,2025,registration,total_population,3.1,2,,
+35.19.15,3,Kecamatan Wonoasri,sex,laki_laki,,17836,jiwa,2025,registration,total_population,3.1,2,,Laki-Laki/Male
+35.19.15,3,Kecamatan Wonoasri,sex,perempuan,,17797,jiwa,2025,registration,total_population,3.1,2,,Perempuan/Female
+35.19.15,3,Kecamatan Wonoasri,total,total,,35633,jiwa,2025,registration,total_population,3.1,2,,

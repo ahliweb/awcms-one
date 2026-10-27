@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.72.07.1001,4,Ramanuju,sex,laki_laki,,1032,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+36.72.07.1001,4,Ramanuju,sex,perempuan,,1040,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+36.72.07.1001,4,Ramanuju,total,total,,2072,jiwa,2025,registration,total_population,3.1,29,,
+36.72.07.1003,4,Kebondalem,sex,laki_laki,,8082,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+36.72.07.1003,4,Kebondalem,sex,perempuan,,7968,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+36.72.07.1003,4,Kebondalem,total,total,,16050,jiwa,2025,registration,total_population,3.1,29,,
+36.72.07.1004,4,Purwakarta,sex,laki_laki,,3809,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+36.72.07.1004,4,Purwakarta,sex,perempuan,,3828,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+36.72.07.1004,4,Purwakarta,total,total,,7637,jiwa,2025,registration,total_population,3.1,29,,
+36.72.07.1005,4,Tegal Bunder,sex,laki_laki,,3074,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+36.72.07.1005,4,Tegal Bunder,sex,perempuan,,2940,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+36.72.07.1005,4,Tegal Bunder,total,total,,6014,jiwa,2025,registration,total_population,3.1,29,,
+36.72.07.1006,4,Pabean,sex,laki_laki,,2014,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+36.72.07.1006,4,Pabean,sex,perempuan,,1934,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+36.72.07.1006,4,Pabean,total,total,,3948,jiwa,2025,registration,total_population,3.1,29,,
+36.72.07.1002,4,Kotabumi,sex,laki_laki,,4669,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+36.72.07.1002,4,Kotabumi,sex,perempuan,,4562,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+36.72.07.1002,4,Kotabumi,total,total,,9231,jiwa,2025,registration,total_population,3.1,29,,

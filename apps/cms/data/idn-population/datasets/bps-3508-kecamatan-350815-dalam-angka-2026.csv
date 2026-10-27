@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.08.15.2001,4,Klanting,sex,laki_laki,,2281,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.08.15.2001,4,Klanting,sex,perempuan,,2313,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.08.15.2001,4,Klanting,total,total,,4594,jiwa,2025,registration,total_population,3.1,33,,
+35.08.15.2002,4,Kebonagung,sex,laki_laki,,1596,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.08.15.2002,4,Kebonagung,sex,perempuan,,1595,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.08.15.2002,4,Kebonagung,total,total,,3191,jiwa,2025,registration,total_population,3.1,33,,
+35.08.15.2003,4,Karangsari,sex,laki_laki,,3821,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.08.15.2003,4,Karangsari,sex,perempuan,,3655,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.08.15.2003,4,Karangsari,total,total,,7476,jiwa,2025,registration,total_population,3.1,33,,
+35.08.15.2004,4,Dawuhan Lor,sex,laki_laki,,4256,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.08.15.2004,4,Dawuhan Lor,sex,perempuan,,4252,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.08.15.2004,4,Dawuhan Lor,total,total,,8508,jiwa,2025,registration,total_population,3.1,33,,
+35.08.15.2005,4,Kutorenon,sex,laki_laki,,3816,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.08.15.2005,4,Kutorenon,sex,perempuan,,3843,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.08.15.2005,4,Kutorenon,total,total,,7659,jiwa,2025,registration,total_population,3.1,33,,
+35.08.15.2006,4,Selokbesuki,sex,laki_laki,,2430,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.08.15.2006,4,Selokbesuki,sex,perempuan,,2556,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.08.15.2006,4,Selokbesuki,total,total,,4986,jiwa,2025,registration,total_population,3.1,33,,
+35.08.15.2007,4,Sumberejo,sex,laki_laki,,3921,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.08.15.2007,4,Sumberejo,sex,perempuan,,3994,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.08.15.2007,4,Sumberejo,total,total,,7915,jiwa,2025,registration,total_population,3.1,33,,
+35.08.15.2008,4,Uranggantung,sex,laki_laki,,1725,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.08.15.2008,4,Uranggantung,sex,perempuan,,1630,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.08.15.2008,4,Uranggantung,total,total,,3355,jiwa,2025,registration,total_population,3.1,33,,
+35.08.15.2009,4,Selokgondang,sex,laki_laki,,3075,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.08.15.2009,4,Selokgondang,sex,perempuan,,3137,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.08.15.2009,4,Selokgondang,total,total,,6212,jiwa,2025,registration,total_population,3.1,33,,
+35.08.15.2010,4,Bondoyudo,sex,laki_laki,,1768,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.08.15.2010,4,Bondoyudo,sex,perempuan,,1813,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.08.15.2010,4,Bondoyudo,total,total,,3581,jiwa,2025,registration,total_population,3.1,33,,
+35.08.15,3,Kecamatan Sukodono,sex,laki_laki,,28689,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.08.15,3,Kecamatan Sukodono,sex,perempuan,,28788,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.08.15,3,Kecamatan Sukodono,total,total,,57477,jiwa,2025,registration,total_population,3.1,33,,

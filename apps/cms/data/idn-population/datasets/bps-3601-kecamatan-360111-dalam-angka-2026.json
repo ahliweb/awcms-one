@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-3601-kecamatan-360111-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.01.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Picung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pandeglang",
+  "publisherDomain": "3601",
+  "publisherWebsite": "https://pandeglangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pandeglang (https://pandeglangkab.bps.go.id), publikasi \"Kecamatan Picung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3601080",
+  "publicationNumber": "36010.26016",
+  "issn": "3064-2086",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pandeglangkab.bps.go.id/id/publication/2026/09/28/2e9be569d6a70100ae5ebe04/kecamatan-picung-dalam-angka-2026.html",
+  "sourceFileSha256": "a2ccd9fdff45c41f94987ffc8eed22f6dfd97d3a71e2aed989e951036c58895e",
+  "sourceFileBytes": 8580759,
+  "sourcePages": [32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pandeglang.",
+  "csvPath": "datasets/bps-3601-kecamatan-360111-dalam-angka-2026.csv",
+  "csvSha256": "efc927307851181b0294fd0615c9867ca1f5d4c97112071d90dc1457cd9991d1",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Picung, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"KECAMATAN PICUNG PICUNG DISTRICT\": unmatched ",
+    "table 3.1: row not stored: row \"KECAMATAN PICUNG PICUNG DISTRICT\": unmatched "
+  ]
+}

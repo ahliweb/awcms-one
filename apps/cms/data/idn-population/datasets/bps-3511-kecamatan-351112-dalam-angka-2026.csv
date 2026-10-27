@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.11.12.2001,4,Ambulu,sex,laki_laki,,1134,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.12.2001,4,Ambulu,sex,perempuan,,1208,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.12.2001,4,Ambulu,total,total,,2342,jiwa,2025,registration,total_population,3.1,25,,
+35.11.12.2002,4,Bukor,sex,laki_laki,,1104,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.12.2002,4,Bukor,sex,perempuan,,1135,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.12.2002,4,Bukor,total,total,,2239,jiwa,2025,registration,total_population,3.1,25,,
+35.11.12.2003,4,Sumbermalang,sex,laki_laki,,1520,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.12.2003,4,Sumbermalang,sex,perempuan,,1532,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.12.2003,4,Sumbermalang,total,total,,3052,jiwa,2025,registration,total_population,3.1,25,,
+35.11.12.2004,4,Jambewungu,sex,laki_laki,,918,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.12.2004,4,Jambewungu,sex,perempuan,,969,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.12.2004,4,Jambewungu,total,total,,1887,jiwa,2025,registration,total_population,3.1,25,,
+35.11.12.2005,4,Gubrih,sex,laki_laki,,1229,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.12.2005,4,Gubrih,sex,perempuan,,1328,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.12.2005,4,Gubrih,total,total,,2557,jiwa,2025,registration,total_population,3.1,25,,
+35.11.12.2006,4,Ampelan,sex,laki_laki,,1045,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.12.2006,4,Ampelan,sex,perempuan,,1192,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.12.2006,4,Ampelan,total,total,,2237,jiwa,2025,registration,total_population,3.1,25,,
+35.11.12.2008,4,Banyuwulu,sex,laki_laki,,2195,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.12.2008,4,Banyuwulu,sex,perempuan,,2295,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.12.2008,4,Banyuwulu,total,total,,4490,jiwa,2025,registration,total_population,3.1,25,,
+35.11.12.2007,4,Jatitamban,sex,laki_laki,,993,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.12.2007,4,Jatitamban,sex,perempuan,,1076,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.12.2007,4,Jatitamban,total,total,,2069,jiwa,2025,registration,total_population,3.1,25,,
+35.11.12.2009,4,Jatisari,sex,laki_laki,,1395,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.12.2009,4,Jatisari,sex,perempuan,,1498,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.12.2009,4,Jatisari,total,total,,2893,jiwa,2025,registration,total_population,3.1,25,,
+35.11.12.2010,4,Glingseran,sex,laki_laki,,1074,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.12.2010,4,Glingseran,sex,perempuan,,1161,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.12.2010,4,Glingseran,total,total,,2235,jiwa,2025,registration,total_population,3.1,25,,
+35.11.12.2011,4,Banyuputih,sex,laki_laki,,1672,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.12.2011,4,Banyuputih,sex,perempuan,,1698,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.12.2011,4,Banyuputih,total,total,,3370,jiwa,2025,registration,total_population,3.1,25,,
+35.11.12.2012,4,Wringin,sex,laki_laki,,3659,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.12.2012,4,Wringin,sex,perempuan,,3871,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.12.2012,4,Wringin,total,total,,7530,jiwa,2025,registration,total_population,3.1,25,,
+35.11.12.2013,4,Sumbercanting,sex,laki_laki,,2212,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.12.2013,4,Sumbercanting,sex,perempuan,,2218,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.12.2013,4,Sumbercanting,total,total,,4430,jiwa,2025,registration,total_population,3.1,25,,
+35.11.12,3,Kecamatan Wringin,sex,laki_laki,,20150,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.12,3,Kecamatan Wringin,sex,perempuan,,21181,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.12,3,Kecamatan Wringin,total,total,,41331,jiwa,2025,registration,total_population,3.1,25,,
+35.11.12,3,Wringin,age_group,0-14,laki_laki,4018,jiwa,2025,registration,total_population,3.2,27,,0–14
+35.11.12,3,Wringin,age_group,0-14,perempuan,3841,jiwa,2025,registration,total_population,3.2,27,,0–14
+35.11.12,3,Wringin,age_group,0-14,,7859,jiwa,2025,registration,total_population,3.2,27,,0–14
+35.11.12,3,Wringin,age_group,15-64,laki_laki,13760,jiwa,2025,registration,total_population,3.2,27,,15–64
+35.11.12,3,Wringin,age_group,15-64,perempuan,14218,jiwa,2025,registration,total_population,3.2,27,,15–64
+35.11.12,3,Wringin,age_group,15-64,,27978,jiwa,2025,registration,total_population,3.2,27,,15–64
+35.11.12,3,Wringin,age_group,65+,laki_laki,2372,jiwa,2025,registration,total_population,3.2,27,,65+
+35.11.12,3,Wringin,age_group,65+,perempuan,3122,jiwa,2025,registration,total_population,3.2,27,,65+
+35.11.12,3,Wringin,age_group,65+,,5494,jiwa,2025,registration,total_population,3.2,27,,65+
+35.11.12,3,Kecamatan Wringin,sex,laki_laki,,20150,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+35.11.12,3,Kecamatan Wringin,sex,perempuan,,21181,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+35.11.12,3,Kecamatan Wringin,total,total,,41331,jiwa,2025,registration,total_population,3.2,27,,

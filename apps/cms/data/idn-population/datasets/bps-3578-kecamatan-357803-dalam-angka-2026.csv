@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.78.03.1002,4,Rungkut Kidul,sex,laki_laki,,6629,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.03.1002,4,Rungkut Kidul,sex,perempuan,,6819,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.03.1002,4,Rungkut Kidul,total,total,,13448,jiwa,2025,registration,total_population,3.1,29,,
+35.78.03.1006,4,Medokan Ayu,sex,laki_laki,,15784,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.03.1006,4,Medokan Ayu,sex,perempuan,,16238,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.03.1006,4,Medokan Ayu,total,total,,32022,jiwa,2025,registration,total_population,3.1,29,,
+35.78.03.1005,4,Wonorejo,sex,laki_laki,,10161,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.03.1005,4,Wonorejo,sex,perempuan,,10367,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.03.1005,4,Wonorejo,total,total,,20528,jiwa,2025,registration,total_population,3.1,29,,
+35.78.03.1004,4,Penjaringan Sari,sex,laki_laki,,9467,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.03.1004,4,Penjaringan Sari,sex,perempuan,,10002,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.03.1004,4,Penjaringan Sari,total,total,,19469,jiwa,2025,registration,total_population,3.1,29,,
+35.78.03.1003,4,Kedung Baruk,sex,laki_laki,,7880,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.03.1003,4,Kedung Baruk,sex,perempuan,,8013,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.03.1003,4,Kedung Baruk,total,total,,15893,jiwa,2025,registration,total_population,3.1,29,,
+35.78.03.1001,4,Kali Rungkut,sex,laki_laki,,11170,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.03.1001,4,Kali Rungkut,sex,perempuan,,11426,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.03.1001,4,Kali Rungkut,total,total,,22596,jiwa,2025,registration,total_population,3.1,29,,
+35.78.03,3,Kecamatan Rungkut,sex,laki_laki,,61091,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.03,3,Kecamatan Rungkut,sex,perempuan,,62865,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.03,3,Kecamatan Rungkut,total,total,,123956,jiwa,2025,registration,total_population,3.1,29,,
+35.78.03,3,Rungkut,age_group,0-4,laki_laki,3603,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.03,3,Rungkut,age_group,0-4,perempuan,3375,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.03,3,Rungkut,age_group,0-4,,6978,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.03,3,Rungkut,age_group,5-9,laki_laki,4791,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.03,3,Rungkut,age_group,5-9,perempuan,4531,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.03,3,Rungkut,age_group,5-9,,9322,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.03,3,Rungkut,age_group,10-14,laki_laki,5097,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.03,3,Rungkut,age_group,10-14,perempuan,4773,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.03,3,Rungkut,age_group,10-14,,9870,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.03,3,Rungkut,age_group,15-19,laki_laki,4915,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.03,3,Rungkut,age_group,15-19,perempuan,4570,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.03,3,Rungkut,age_group,15-19,,9485,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.03,3,Rungkut,age_group,20-24,laki_laki,4663,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.03,3,Rungkut,age_group,20-24,perempuan,4475,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.03,3,Rungkut,age_group,20-24,,9138,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.03,3,Rungkut,age_group,25-29,laki_laki,4592,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.03,3,Rungkut,age_group,25-29,perempuan,4632,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.03,3,Rungkut,age_group,25-29,,9224,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.03,3,Rungkut,age_group,30-34,laki_laki,4640,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.03,3,Rungkut,age_group,30-34,perempuan,4858,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.03,3,Rungkut,age_group,30-34,,9498,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.03,3,Rungkut,age_group,35-39,laki_laki,4550,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.03,3,Rungkut,age_group,35-39,perempuan,4569,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.03,3,Rungkut,age_group,35-39,,9119,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.03,3,Rungkut,age_group,40-44,laki_laki,5037,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.03,3,Rungkut,age_group,40-44,perempuan,5303,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.03,3,Rungkut,age_group,40-44,,10340,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.03,3,Rungkut,age_group,45-49,laki_laki,4600,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.03,3,Rungkut,age_group,45-49,perempuan,5114,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.03,3,Rungkut,age_group,45-49,,9714,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.03,3,Rungkut,age_group,50-54,laki_laki,4240,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.03,3,Rungkut,age_group,50-54,perempuan,4409,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.03,3,Rungkut,age_group,50-54,,8649,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.03,3,Rungkut,age_group,55-59,laki_laki,3417,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.03,3,Rungkut,age_group,55-59,perempuan,3747,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.03,3,Rungkut,age_group,55-59,,7164,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.03,3,Rungkut,age_group,60-64,laki_laki,2568,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.03,3,Rungkut,age_group,60-64,perempuan,3230,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.03,3,Rungkut,age_group,60-64,,5798,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.03,3,Rungkut,age_group,65-69,laki_laki,2053,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.03,3,Rungkut,age_group,65-69,perempuan,2354,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.03,3,Rungkut,age_group,65-69,,4407,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.03,3,Rungkut,age_group,70-74,laki_laki,1325,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.03,3,Rungkut,age_group,70-74,perempuan,1402,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.03,3,Rungkut,age_group,70-74,,2727,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.03,3,Rungkut,age_group,75+,laki_laki,1000,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.03,3,Rungkut,age_group,75+,perempuan,1523,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.03,3,Rungkut,age_group,75+,,2523,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.03,3,Kecamatan Rungkut,sex,laki_laki,,61091,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+35.78.03,3,Kecamatan Rungkut,sex,perempuan,,62865,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+35.78.03,3,Kecamatan Rungkut,total,total,,123956,jiwa,2025,registration,total_population,3.2,31,,

@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.02.25.2003,4,Lebakgedong,sex,laki_laki,,1880,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+36.02.25.2003,4,Lebakgedong,sex,perempuan,,1793,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+36.02.25.2003,4,Lebakgedong,total,total,,3673,jiwa,2025,registration,total_population,3.1,28,,
+36.02.25.2005,4,Lebaksitu,sex,laki_laki,,2008,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+36.02.25.2005,4,Lebaksitu,sex,perempuan,,2029,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+36.02.25.2005,4,Lebaksitu,total,total,,4037,jiwa,2025,registration,total_population,3.1,28,,
+36.02.25.2002,4,Ciladaeun,sex,laki_laki,,1954,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+36.02.25.2002,4,Ciladaeun,sex,perempuan,,1915,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+36.02.25.2002,4,Ciladaeun,total,total,,3869,jiwa,2025,registration,total_population,3.1,28,,
+36.02.25.2004,4,Banjarsari,sex,laki_laki,,1475,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+36.02.25.2004,4,Banjarsari,sex,perempuan,,1449,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+36.02.25.2004,4,Banjarsari,total,total,,2924,jiwa,2025,registration,total_population,3.1,28,,
+36.02.25.2006,4,Lebaksangka,sex,laki_laki,,1738,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+36.02.25.2006,4,Lebaksangka,sex,perempuan,,1662,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+36.02.25.2006,4,Lebaksangka,total,total,,3400,jiwa,2025,registration,total_population,3.1,28,,
+36.02.25.2001,4,Banjar Irigasi,sex,laki_laki,,3339,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+36.02.25.2001,4,Banjar Irigasi,sex,perempuan,,3084,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+36.02.25.2001,4,Banjar Irigasi,total,total,,6423,jiwa,2025,registration,total_population,3.1,28,,
+36.02.25,3,Lebakgedong,age_group,0-4,laki_laki,961,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+36.02.25,3,Lebakgedong,age_group,0-4,perempuan,830,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+36.02.25,3,Lebakgedong,age_group,0-4,,1791,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+36.02.25,3,Lebakgedong,age_group,5-9,laki_laki,1230,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+36.02.25,3,Lebakgedong,age_group,5-9,perempuan,1191,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+36.02.25,3,Lebakgedong,age_group,5-9,,2421,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+36.02.25,3,Lebakgedong,age_group,10-14,laki_laki,1125,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+36.02.25,3,Lebakgedong,age_group,10-14,perempuan,1079,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+36.02.25,3,Lebakgedong,age_group,10-14,,2204,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+36.02.25,3,Lebakgedong,age_group,15-19,laki_laki,822,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+36.02.25,3,Lebakgedong,age_group,15-19,perempuan,844,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+36.02.25,3,Lebakgedong,age_group,15-19,,1666,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+36.02.25,3,Lebakgedong,age_group,20-24,laki_laki,990,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+36.02.25,3,Lebakgedong,age_group,20-24,perempuan,1060,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+36.02.25,3,Lebakgedong,age_group,20-24,,2050,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+36.02.25,3,Lebakgedong,age_group,25-29,laki_laki,1146,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+36.02.25,3,Lebakgedong,age_group,25-29,perempuan,1082,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+36.02.25,3,Lebakgedong,age_group,25-29,,2228,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+36.02.25,3,Lebakgedong,age_group,30-34,laki_laki,1067,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+36.02.25,3,Lebakgedong,age_group,30-34,perempuan,975,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+36.02.25,3,Lebakgedong,age_group,30-34,,2042,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+36.02.25,3,Lebakgedong,age_group,35-39,laki_laki,1110,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+36.02.25,3,Lebakgedong,age_group,35-39,perempuan,1094,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+36.02.25,3,Lebakgedong,age_group,35-39,,2204,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+36.02.25,3,Lebakgedong,age_group,40-44,laki_laki,873,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+36.02.25,3,Lebakgedong,age_group,40-44,perempuan,856,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+36.02.25,3,Lebakgedong,age_group,40-44,,1729,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+36.02.25,3,Lebakgedong,age_group,45-49,laki_laki,728,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+36.02.25,3,Lebakgedong,age_group,45-49,perempuan,689,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+36.02.25,3,Lebakgedong,age_group,45-49,,1417,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+36.02.25,3,Lebakgedong,age_group,50-54,laki_laki,595,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+36.02.25,3,Lebakgedong,age_group,50-54,perempuan,573,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+36.02.25,3,Lebakgedong,age_group,50-54,,1168,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+36.02.25,3,Lebakgedong,age_group,55-59,laki_laki,581,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+36.02.25,3,Lebakgedong,age_group,55-59,perempuan,579,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+36.02.25,3,Lebakgedong,age_group,55-59,,1160,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+36.02.25,3,Lebakgedong,age_group,60-64,laki_laki,423,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+36.02.25,3,Lebakgedong,age_group,60-64,perempuan,387,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+36.02.25,3,Lebakgedong,age_group,60-64,,810,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+36.02.25,3,Lebakgedong,age_group,65-69,laki_laki,349,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+36.02.25,3,Lebakgedong,age_group,65-69,perempuan,301,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+36.02.25,3,Lebakgedong,age_group,65-69,,650,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+36.02.25,3,Lebakgedong,age_group,70-74,laki_laki,139,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+36.02.25,3,Lebakgedong,age_group,70-74,perempuan,135,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+36.02.25,3,Lebakgedong,age_group,70-74,,274,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+36.02.25,3,Lebakgedong,age_group,75+,laki_laki,255,jiwa,2025,registration,total_population,3.2,30,,75 +
+36.02.25,3,Lebakgedong,age_group,75+,perempuan,257,jiwa,2025,registration,total_population,3.2,30,,75 +
+36.02.25,3,Lebakgedong,age_group,75+,,512,jiwa,2025,registration,total_population,3.2,30,,75 +

@@ -1,0 +1,56 @@
+{
+  "datasetCode": "bps-3602-kecamatan-360227-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.02.27",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cirinten Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lebak",
+  "publisherDomain": "3602",
+  "publisherWebsite": "https://lebakkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lebak (https://lebakkab.bps.go.id), publikasi \"Kecamatan Cirinten Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3602091",
+  "publicationNumber": "36020.26026",
+  "issn": "3031-6235",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lebakkab.bps.go.id/id/publication/2026/09/28/b933fd080bffbcef2a1c6419/kecamatan-cirinten-dalam-angka-2026.html",
+  "sourceFileSha256": "9705764f7467ecf5e6aa0535c45a98a6b6a3bb635fab783e05df4f3708be763f",
+  "sourceFileBytes": 8319801,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lebak.",
+  "csvPath": "datasets/bps-3602-kecamatan-360227-dalam-angka-2026.csv",
+  "csvSha256": "eba7d920e002328a09ed58fcdc75c526d1fe60d068a560f3ec2617fd22b7ee52",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Cirinten, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cirinten, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Nangerang\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Cirinten Cirinten District\": unmatched ",
+    "table 3.1: row not stored: row \"Nangerang\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Cirinten Cirinten District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Cirinten Cirinten District\": unmatched ",
+    "table 3.1: the rows of region 36.02.27.2006 are not stored: sex split vs total: parts sum 4456.0000 != 2525.0000 (diff 1931.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.27.2004 are not stored: sex split vs total: parts sum 3649.0000 != 5776.0000 (diff 2127.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.27.2001 are not stored: sex split vs total: parts sum 2525.0000 != 2641.0000 (diff 116.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.27.2009 are not stored: sex split vs total: parts sum 2064.0000 != 3649.0000 (diff 1585.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.27.2002 are not stored: sex split vs total: parts sum 5776.0000 != 4456.0000 (diff 1320.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.27.2003 are not stored: sex split vs total: parts sum 2641.0000 != 3542.0000 (diff 901.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.27.2005 are not stored: sex split vs total: parts sum 3445.0000 != 2064.0000 (diff 1381.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "datasetCode": "bps-3521-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "35.21",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Ngawi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ngawi",
+  "publisherDomain": "3521",
+  "publisherWebsite": "https://ngawikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ngawi (https://ngawikab.bps.go.id), publikasi \"Kabupaten Ngawi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3521",
+  "publicationNumber": "35210.26002",
+  "issn": "0215-5702",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://ngawikab.bps.go.id/id/publication/2026/02/27/6d7e7301439335bbd1b3f298/kabupaten-ngawi-dalam-angka-2026.html",
+  "sourceFileSha256": "eb36e97f48fdf370bb7b7e9476618ef2d2b09ade60f6b642baa1505cd0be5cf6",
+  "sourceFileBytes": 18198915,
+  "sourcePages": [81, 84, 184, 451],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ngawi.",
+  "csvPath": "datasets/bps-3521-dalam-angka-2026.csv",
+  "csvSha256": "b60738b18ba9b50bfcb029d9acf50c2fd68c40ec33f009016166fa8e4cbd40f3",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Ngawi, 2025",
+      "printedPages": [81],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Ngawi (jiwa), 2025",
+      "printedPages": [84],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Ngawi, 2025",
+      "printedPages": [184],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Ngawi (rupiah), 2024 dan 2025",
+      "printedPages": [451],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication"
+  ]
+}

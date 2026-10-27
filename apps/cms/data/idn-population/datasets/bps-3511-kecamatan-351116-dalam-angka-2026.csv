@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.11.16.2003,4,Tarum,sex,perempuan,,960,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.16.2003,4,Tarum,total,total,,5489,jiwa,2025,registration,total_population,3.1,25,,
+35.11.16.2001,4,Bandilan,sex,perempuan,,2820,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.16.2001,4,Bandilan,total,total,,4875,jiwa,2025,registration,total_population,3.1,25,,
+35.11.16.2002,4,Sempol,sex,perempuan,,2506,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.16.2002,4,Sempol,total,total,,1888,jiwa,2025,registration,total_population,3.1,25,,
+35.11.16.2005,4,Prajekan Lor,sex,perempuan,,1330,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.16.2005,4,Prajekan Lor,total,total,,2594,jiwa,2025,registration,total_population,3.1,25,,
+35.11.16.2006,4,Prajekan Kidul,sex,perempuan,,2524,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.16.2006,4,Prajekan Kidul,total,total,,4917,jiwa,2025,registration,total_population,3.1,25,,
+35.11.16.2007,4,Cangkring,sex,perempuan,,1460,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.16.2007,4,Cangkring,total,total,,2817,jiwa,2025,registration,total_population,3.1,25,,
+35.11.16.2008,4,Walidono,sex,perempuan,,1731,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.16.2008,4,Walidono,total,total,,3383,jiwa,2025,registration,total_population,3.1,25,,
+35.11.16,3,Kecamatan Prajekan,sex,perempuan,,13331,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.16,3,Kecamatan Prajekan,total,total,,25963,jiwa,2025,registration,total_population,3.1,25,,
+35.11.16,3,Prajekan,age_group,0-14,perempuan,2331,jiwa,2025,registration,total_population,3.2,27,,0–14
+35.11.16,3,Prajekan,age_group,0-14,,4814,jiwa,2025,registration,total_population,3.2,27,,0–14
+35.11.16,3,Prajekan,age_group,15-64,perempuan,8800,jiwa,2025,registration,total_population,3.2,27,,15–64
+35.11.16,3,Prajekan,age_group,15-64,,17256,jiwa,2025,registration,total_population,3.2,27,,15–64
+35.11.16,3,Prajekan,age_group,65+,perempuan,2200,jiwa,2025,registration,total_population,3.2,27,,65+
+35.11.16,3,Prajekan,age_group,65+,,3893,jiwa,2025,registration,total_population,3.2,27,,65+
+35.11.16,3,Kecamatan Prajekan,sex,perempuan,,13331,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+35.11.16,3,Kecamatan Prajekan,total,total,,25963,jiwa,2025,registration,total_population,3.2,27,,

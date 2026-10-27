@@ -1,0 +1,35 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.17.08,3,Diwek,age_group,0-4,perempuan,2842,jiwa,2025,registration,total_population,3.2,35,,0–4
+35.17.08,3,Diwek,age_group,0-4,,5858,jiwa,2025,registration,total_population,3.2,35,,0–4
+35.17.08,3,Diwek,age_group,5-9,perempuan,4245,jiwa,2025,registration,total_population,3.2,35,,5–9
+35.17.08,3,Diwek,age_group,5-9,,8684,jiwa,2025,registration,total_population,3.2,35,,5–9
+35.17.08,3,Diwek,age_group,10-14,perempuan,4493,jiwa,2025,registration,total_population,3.2,35,,10–14
+35.17.08,3,Diwek,age_group,10-14,,9344,jiwa,2025,registration,total_population,3.2,35,,10–14
+35.17.08,3,Diwek,age_group,15-19,perempuan,4454,jiwa,2025,registration,total_population,3.2,35,,15–19
+35.17.08,3,Diwek,age_group,15-19,,9167,jiwa,2025,registration,total_population,3.2,35,,15–19
+35.17.08,3,Diwek,age_group,20-24,perempuan,4341,jiwa,2025,registration,total_population,3.2,35,,20–24
+35.17.08,3,Diwek,age_group,20-24,,9044,jiwa,2025,registration,total_population,3.2,35,,20–24
+35.17.08,3,Diwek,age_group,25-29,perempuan,4060,jiwa,2025,registration,total_population,3.2,35,,25–29
+35.17.08,3,Diwek,age_group,25-29,,8422,jiwa,2025,registration,total_population,3.2,35,,25–29
+35.17.08,3,Diwek,age_group,30-34,perempuan,3933,jiwa,2025,registration,total_population,3.2,35,,30–34
+35.17.08,3,Diwek,age_group,30-34,,8177,jiwa,2025,registration,total_population,3.2,35,,30–34
+35.17.08,3,Diwek,age_group,35-39,perempuan,3940,jiwa,2025,registration,total_population,3.2,35,,35–39
+35.17.08,3,Diwek,age_group,35-39,,8052,jiwa,2025,registration,total_population,3.2,35,,35–39
+35.17.08,3,Diwek,age_group,40-44,perempuan,4631,jiwa,2025,registration,total_population,3.2,35,,40–44
+35.17.08,3,Diwek,age_group,40-44,,9522,jiwa,2025,registration,total_population,3.2,35,,40–44
+35.17.08,3,Diwek,age_group,45-49,perempuan,4111,jiwa,2025,registration,total_population,3.2,35,,45–49
+35.17.08,3,Diwek,age_group,45-49,,8531,jiwa,2025,registration,total_population,3.2,35,,45–49
+35.17.08,3,Diwek,age_group,50-54,perempuan,3836,jiwa,2025,registration,total_population,3.2,35,,50–54
+35.17.08,3,Diwek,age_group,50-54,,7756,jiwa,2025,registration,total_population,3.2,35,,50–54
+35.17.08,3,Diwek,age_group,55-59,perempuan,3434,jiwa,2025,registration,total_population,3.2,35,,55–59
+35.17.08,3,Diwek,age_group,55-59,,6757,jiwa,2025,registration,total_population,3.2,35,,55–59
+35.17.08,3,Diwek,age_group,60-64,perempuan,3037,jiwa,2025,registration,total_population,3.2,35,,60–64
+35.17.08,3,Diwek,age_group,60-64,,5671,jiwa,2025,registration,total_population,3.2,35,,60–64
+35.17.08,3,Diwek,age_group,65-69,perempuan,2179,jiwa,2025,registration,total_population,3.2,35,,65–69
+35.17.08,3,Diwek,age_group,65-69,,4143,jiwa,2025,registration,total_population,3.2,35,,65–69
+35.17.08,3,Diwek,age_group,70-74,perempuan,1350,jiwa,2025,registration,total_population,3.2,35,,70–74
+35.17.08,3,Diwek,age_group,70-74,,2648,jiwa,2025,registration,total_population,3.2,35,,70–74
+35.17.08,3,Diwek,age_group,75+,perempuan,2128,jiwa,2025,registration,total_population,3.2,35,,75+
+35.17.08,3,Diwek,age_group,75+,,3463,jiwa,2025,registration,total_population,3.2,35,,75+
+35.17.08,3,Kecamatan Diwek,sex,perempuan,,57014,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+35.17.08,3,Kecamatan Diwek,total,total,,115239,jiwa,2025,registration,total_population,3.2,35,,

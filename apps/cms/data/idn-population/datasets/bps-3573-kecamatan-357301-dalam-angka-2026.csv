@@ -1,0 +1,50 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.73.01.1011,4,Jodipan,sex,laki_laki,,6122,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.01.1011,4,Jodipan,sex,perempuan,,6051,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.01.1011,4,Jodipan,total,total,,12173,jiwa,2025,registration,total_population,3.1,32,,
+35.73.01.1010,4,Polehan,sex,laki_laki,,9518,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.01.1010,4,Polehan,sex,perempuan,,9441,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.01.1010,4,Polehan,total,total,,18959,jiwa,2025,registration,total_population,3.1,32,,
+35.73.01.1009,4,Kesatrian,sex,laki_laki,,5919,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.01.1009,4,Kesatrian,sex,perempuan,,5669,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.01.1009,4,Kesatrian,total,total,,11588,jiwa,2025,registration,total_population,3.1,32,,
+35.73.01.1008,4,Bunulrejo,sex,laki_laki,,12861,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.01.1008,4,Bunulrejo,sex,perempuan,,13288,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.01.1008,4,Bunulrejo,total,total,,26149,jiwa,2025,registration,total_population,3.1,32,,
+35.73.01.1007,4,Purwantoro,sex,laki_laki,,13770,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.01.1007,4,Purwantoro,sex,perempuan,,14332,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.01.1007,4,Purwantoro,total,total,,28102,jiwa,2025,registration,total_population,3.1,32,,
+35.73.01.1006,4,Pandanwangi,sex,laki_laki,,17233,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.01.1006,4,Pandanwangi,sex,perempuan,,17441,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.01.1006,4,Pandanwangi,total,total,,34674,jiwa,2025,registration,total_population,3.1,32,,
+35.73.01.1005,4,Blimbing,sex,laki_laki,,4189,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.01.1005,4,Blimbing,sex,perempuan,,4284,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.01.1005,4,Blimbing,total,total,,8473,jiwa,2025,registration,total_population,3.1,32,,
+35.73.01.1004,4,Purwodadi,sex,laki_laki,,9657,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.01.1004,4,Purwodadi,sex,perempuan,,9969,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.01.1004,4,Purwodadi,total,total,,19626,jiwa,2025,registration,total_population,3.1,32,,
+35.73.01.1003,4,Polowijen,sex,laki_laki,,6273,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.01.1003,4,Polowijen,sex,perempuan,,6278,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.01.1003,4,Polowijen,total,total,,12551,jiwa,2025,registration,total_population,3.1,32,,
+35.73.01.1002,4,Arjosari,sex,laki_laki,,5226,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.01.1002,4,Arjosari,sex,perempuan,,5379,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.01.1002,4,Arjosari,total,total,,10605,jiwa,2025,registration,total_population,3.1,32,,
+35.73.01.1001,4,Balearjosari,sex,laki_laki,,4737,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.01.1001,4,Balearjosari,sex,perempuan,,4708,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.01.1001,4,Balearjosari,total,total,,9445,jiwa,2025,registration,total_population,3.1,32,,
+35.73.01,3,Blimbing,age_group,0-4,,9040,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+35.73.01,3,Blimbing,age_group,5-9,,13938,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+35.73.01,3,Blimbing,age_group,10-14,,15030,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+35.73.01,3,Blimbing,age_group,15-19,,14656,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+35.73.01,3,Blimbing,age_group,20-24,,14809,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+35.73.01,3,Blimbing,age_group,25-29,,14762,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+35.73.01,3,Blimbing,age_group,30-34,,14043,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+35.73.01,3,Blimbing,age_group,35-39,,13416,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+35.73.01,3,Blimbing,age_group,40-44,,15150,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+35.73.01,3,Blimbing,age_group,45-49,,14413,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+35.73.01,3,Blimbing,age_group,50-54,,13271,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+35.73.01,3,Blimbing,age_group,55-59,,11823,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+35.73.01,3,Blimbing,age_group,60-64,,9903,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+35.73.01,3,Blimbing,age_group,65-69,,7648,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+35.73.01,3,Blimbing,age_group,70-74,,4933,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+35.73.01,3,Blimbing,age_group,75+,,5510,jiwa,2025,registration,total_population,3.2,34,,75 +

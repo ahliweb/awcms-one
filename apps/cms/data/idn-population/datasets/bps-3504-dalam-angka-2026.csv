@@ -1,0 +1,118 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.04.15,3,Besuki,total,total,,40232,jiwa,2025,registration,total_population,3.1.1,91,,
+35.04.17,3,Bandung,total,total,,50335,jiwa,2025,registration,total_population,3.1.1,91,,
+35.04.18,3,Pakel,total,total,,56629,jiwa,2025,registration,total_population,3.1.1,91,,
+35.04.16,3,Campurdarat,total,total,,60345,jiwa,2025,registration,total_population,3.1.1,91,,
+35.04.19,3,Tanggunggunung,total,total,,27243,jiwa,2025,registration,total_population,3.1.1,91,,
+35.04.14,3,Kalidawir,total,total,,78757,jiwa,2025,registration,total_population,3.1.1,91,,
+35.04.12,3,Pucanglaban,total,total,,27344,jiwa,2025,registration,total_population,3.1.1,91,,
+35.04.13,3,Rejotangan,total,total,,84343,jiwa,2025,registration,total_population,3.1.1,91,,
+35.04.11,3,Ngunut,total,total,,85377,jiwa,2025,registration,total_population,3.1.1,91,,
+35.04.10,3,Sumbergempol,total,total,,75866,jiwa,2025,registration,total_population,3.1.1,91,,
+35.04.02,3,Boyolangu,total,total,,87310,jiwa,2025,registration,total_population,3.1.1,91,,
+35.04.01,3,Tulungagung,total,total,,66718,jiwa,2025,registration,total_population,3.1.1,91,,
+35.04.03,3,Kedungwaru,total,total,,96520,jiwa,2025,registration,total_population,3.1.1,91,,
+35.04.04,3,Ngantru,total,total,,60192,jiwa,2025,registration,total_population,3.1.1,91,,
+35.04.08,3,Karangrejo,total,total,,45565,jiwa,2025,registration,total_population,3.1.1,91,,
+35.04.05,3,Kauman,total,total,,53348,jiwa,2025,registration,total_population,3.1.1,91,,
+35.04.09,3,Gondang,total,total,,61072,jiwa,2025,registration,total_population,3.1.1,91,,
+35.04.06,3,Pagerwojo,total,total,,33694,jiwa,2025,registration,total_population,3.1.1,91,,
+35.04.07,3,Sendang,total,total,,50189,jiwa,2025,registration,total_population,3.1.1,91,,
+35.04,2,Kabupaten Tulungagung,total,total,,1141079,jiwa,2025,registration,total_population,3.1.1,91,,
+35.04,2,Kabupaten Tulungagung,age_group,0-4,laki_laki,37.56,ribu_jiwa,2025,projection,total_population,3.1.2,94,,0–4
+35.04,2,Kabupaten Tulungagung,age_group,0-4,perempuan,36.08,ribu_jiwa,2025,projection,total_population,3.1.2,94,,0–4
+35.04,2,Kabupaten Tulungagung,age_group,0-4,,73.64,ribu_jiwa,2025,projection,total_population,3.1.2,94,,0–4
+35.04,2,Kabupaten Tulungagung,age_group,5-9,laki_laki,36.14,ribu_jiwa,2025,projection,total_population,3.1.2,94,,5–9
+35.04,2,Kabupaten Tulungagung,age_group,5-9,perempuan,34.51,ribu_jiwa,2025,projection,total_population,3.1.2,94,,5–9
+35.04,2,Kabupaten Tulungagung,age_group,5-9,,70.65,ribu_jiwa,2025,projection,total_population,3.1.2,94,,5–9
+35.04,2,Kabupaten Tulungagung,age_group,10-14,laki_laki,36.93,ribu_jiwa,2025,projection,total_population,3.1.2,94,,10–14
+35.04,2,Kabupaten Tulungagung,age_group,10-14,perempuan,35.31,ribu_jiwa,2025,projection,total_population,3.1.2,94,,10–14
+35.04,2,Kabupaten Tulungagung,age_group,10-14,,72.25,ribu_jiwa,2025,projection,total_population,3.1.2,94,,10–14
+35.04,2,Kabupaten Tulungagung,age_group,15-19,laki_laki,38.88,ribu_jiwa,2025,projection,total_population,3.1.2,94,,15–19
+35.04,2,Kabupaten Tulungagung,age_group,15-19,perempuan,36.53,ribu_jiwa,2025,projection,total_population,3.1.2,94,,15–19
+35.04,2,Kabupaten Tulungagung,age_group,15-19,,75.41,ribu_jiwa,2025,projection,total_population,3.1.2,94,,15–19
+35.04,2,Kabupaten Tulungagung,age_group,20-24,laki_laki,39.33,ribu_jiwa,2025,projection,total_population,3.1.2,94,,20–24
+35.04,2,Kabupaten Tulungagung,age_group,20-24,perempuan,37.38,ribu_jiwa,2025,projection,total_population,3.1.2,94,,20–24
+35.04,2,Kabupaten Tulungagung,age_group,20-24,,76.71,ribu_jiwa,2025,projection,total_population,3.1.2,94,,20–24
+35.04,2,Kabupaten Tulungagung,age_group,25-29,laki_laki,39.86,ribu_jiwa,2025,projection,total_population,3.1.2,94,,25–29
+35.04,2,Kabupaten Tulungagung,age_group,25-29,perempuan,38.26,ribu_jiwa,2025,projection,total_population,3.1.2,94,,25–29
+35.04,2,Kabupaten Tulungagung,age_group,25-29,,78.12,ribu_jiwa,2025,projection,total_population,3.1.2,94,,25–29
+35.04,2,Kabupaten Tulungagung,age_group,30-34,laki_laki,39.07,ribu_jiwa,2025,projection,total_population,3.1.2,94,,30–34
+35.04,2,Kabupaten Tulungagung,age_group,30-34,perempuan,36.87,ribu_jiwa,2025,projection,total_population,3.1.2,94,,30–34
+35.04,2,Kabupaten Tulungagung,age_group,30-34,,75.94,ribu_jiwa,2025,projection,total_population,3.1.2,94,,30–34
+35.04,2,Kabupaten Tulungagung,age_group,35-39,laki_laki,39.07,ribu_jiwa,2025,projection,total_population,3.1.2,94,,35–39
+35.04,2,Kabupaten Tulungagung,age_group,35-39,perempuan,38.59,ribu_jiwa,2025,projection,total_population,3.1.2,94,,35–39
+35.04,2,Kabupaten Tulungagung,age_group,35-39,,77.66,ribu_jiwa,2025,projection,total_population,3.1.2,94,,35–39
+35.04,2,Kabupaten Tulungagung,age_group,40-44,laki_laki,41.74,ribu_jiwa,2025,projection,total_population,3.1.2,94,,40–44
+35.04,2,Kabupaten Tulungagung,age_group,40-44,perempuan,42.35,ribu_jiwa,2025,projection,total_population,3.1.2,94,,40–44
+35.04,2,Kabupaten Tulungagung,age_group,40-44,,84.09,ribu_jiwa,2025,projection,total_population,3.1.2,94,,40–44
+35.04,2,Kabupaten Tulungagung,age_group,45-49,laki_laki,42.25,ribu_jiwa,2025,projection,total_population,3.1.2,94,,45–49
+35.04,2,Kabupaten Tulungagung,age_group,45-49,perempuan,42.92,ribu_jiwa,2025,projection,total_population,3.1.2,94,,45–49
+35.04,2,Kabupaten Tulungagung,age_group,45-49,,85.17,ribu_jiwa,2025,projection,total_population,3.1.2,94,,45–49
+35.04,2,Kabupaten Tulungagung,age_group,50-54,laki_laki,41.56,ribu_jiwa,2025,projection,total_population,3.1.2,94,,50–54
+35.04,2,Kabupaten Tulungagung,age_group,50-54,perempuan,42.24,ribu_jiwa,2025,projection,total_population,3.1.2,94,,50–54
+35.04,2,Kabupaten Tulungagung,age_group,50-54,,83.81,ribu_jiwa,2025,projection,total_population,3.1.2,94,,50–54
+35.04,2,Kabupaten Tulungagung,age_group,55-59,laki_laki,38.07,ribu_jiwa,2025,projection,total_population,3.1.2,94,,55–59
+35.04,2,Kabupaten Tulungagung,age_group,55-59,perempuan,38.32,ribu_jiwa,2025,projection,total_population,3.1.2,94,,55–59
+35.04,2,Kabupaten Tulungagung,age_group,55-59,,76.39,ribu_jiwa,2025,projection,total_population,3.1.2,94,,55–59
+35.04,2,Kabupaten Tulungagung,age_group,60-64,laki_laki,32.16,ribu_jiwa,2025,projection,total_population,3.1.2,94,,60–64
+35.04,2,Kabupaten Tulungagung,age_group,60-64,perempuan,33.15,ribu_jiwa,2025,projection,total_population,3.1.2,94,,60–64
+35.04,2,Kabupaten Tulungagung,age_group,60-64,,65.32,ribu_jiwa,2025,projection,total_population,3.1.2,94,,60–64
+35.04,2,Kabupaten Tulungagung,age_group,65-69,laki_laki,24.20,ribu_jiwa,2025,projection,total_population,3.1.2,94,,65–69
+35.04,2,Kabupaten Tulungagung,age_group,65-69,perempuan,25.83,ribu_jiwa,2025,projection,total_population,3.1.2,94,,65–69
+35.04,2,Kabupaten Tulungagung,age_group,65-69,,50.03,ribu_jiwa,2025,projection,total_population,3.1.2,94,,65–69
+35.04,2,Kabupaten Tulungagung,age_group,70-74,laki_laki,18.20,ribu_jiwa,2025,projection,total_population,3.1.2,94,,70–74
+35.04,2,Kabupaten Tulungagung,age_group,70-74,perempuan,20.82,ribu_jiwa,2025,projection,total_population,3.1.2,94,,70–74
+35.04,2,Kabupaten Tulungagung,age_group,70-74,,39.02,ribu_jiwa,2025,projection,total_population,3.1.2,94,,70–74
+35.04,2,Kabupaten Tulungagung,age_group,75+,laki_laki,17.53,ribu_jiwa,2025,projection,total_population,3.1.2,94,,75+
+35.04,2,Kabupaten Tulungagung,age_group,75+,perempuan,23.28,ribu_jiwa,2025,projection,total_population,3.1.2,94,,75+
+35.04,2,Kabupaten Tulungagung,age_group,75+,,40.81,ribu_jiwa,2025,projection,total_population,3.1.2,94,,75+
+35.04,2,Kabupaten Tulungagung,sex,laki_laki,,562.57,ribu_jiwa,2025,projection,total_population,3.1.2,94,,Laki-Laki
+35.04,2,Kabupaten Tulungagung,sex,perempuan,,562.44,ribu_jiwa,2025,projection,total_population,3.1.2,94,,Perempuan
+35.04,2,Kabupaten Tulungagung,total,total,,1125.01,ribu_jiwa,2025,projection,total_population,3.1.2,94,,
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/padi_padian,,75782,rupiah,2024,survey_estimate,per_capita,10.1,490,,Padi-padian
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/padi_padian,,82230,rupiah,2025,survey_estimate,per_capita,10.1,490,,Padi-padian
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/umbi_umbian,,6160,rupiah,2024,survey_estimate,per_capita,10.1,490,,Umbi-umbian
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/umbi_umbian,,7084,rupiah,2025,survey_estimate,per_capita,10.1,490,,Umbi-umbian
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,32747,rupiah,2024,survey_estimate,per_capita,10.1,490,,Ikan/udang/cumi/kerang
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,33621,rupiah,2025,survey_estimate,per_capita,10.1,490,,Ikan/udang/cumi/kerang
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/daging,,22227,rupiah,2024,survey_estimate,per_capita,10.1,490,,Daging
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/daging,,24264,rupiah,2025,survey_estimate,per_capita,10.1,490,,Daging
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/telur_dan_susu,,34920,rupiah,2024,survey_estimate,per_capita,10.1,490,,Telur dan susu
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/telur_dan_susu,,37974,rupiah,2025,survey_estimate,per_capita,10.1,490,,Telur dan susu
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/sayur_sayuran,,52790,rupiah,2024,survey_estimate,per_capita,10.1,490,,Sayur-sayuran
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/sayur_sayuran,,64664,rupiah,2025,survey_estimate,per_capita,10.1,490,,Sayur-sayuran
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/kacang_kacangan,,14146,rupiah,2024,survey_estimate,per_capita,10.1,490,,Kacang-kacangan
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/kacang_kacangan,,18955,rupiah,2025,survey_estimate,per_capita,10.1,490,,Kacang-kacangan
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/buah_buahan,,32787,rupiah,2024,survey_estimate,per_capita,10.1,490,,Buah-buahan
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/buah_buahan,,36089,rupiah,2025,survey_estimate,per_capita,10.1,490,,Buah-buahan
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18350,rupiah,2024,survey_estimate,per_capita,10.1,490,,Minyak dan kelapa
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23826,rupiah,2025,survey_estimate,per_capita,10.1,490,,Minyak dan kelapa
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/bahan_minuman,,20715,rupiah,2024,survey_estimate,per_capita,10.1,490,,Bahan minuman
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/bahan_minuman,,20906,rupiah,2025,survey_estimate,per_capita,10.1,490,,Bahan minuman
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/bumbu_bumbuan,,11209,rupiah,2024,survey_estimate,per_capita,10.1,490,,Bumbu-bumbuan
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/bumbu_bumbuan,,10936,rupiah,2025,survey_estimate,per_capita,10.1,490,,Bumbu-bumbuan
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/konsumsi_lainnya,,13227,rupiah,2024,survey_estimate,per_capita,10.1,490,,Konsumsi lainnya
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/konsumsi_lainnya,,13017,rupiah,2025,survey_estimate,per_capita,10.1,490,,Konsumsi lainnya
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,168167,rupiah,2024,survey_estimate,per_capita,10.1,490,,Makanan dan minuman jadi
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,197669,rupiah,2025,survey_estimate,per_capita,10.1,490,,Makanan dan minuman jadi
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/rokok,,57926,rupiah,2024,survey_estimate,per_capita,10.1,490,,Rokok
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/rokok,,45485,rupiah,2025,survey_estimate,per_capita,10.1,490,,Rokok
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/jumlah_makanan,,561154,rupiah,2024,survey_estimate,per_capita,10.1,490,,Jumlah makanan
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/jumlah_makanan,,616718,rupiah,2025,survey_estimate,per_capita,10.1,490,,Jumlah makanan
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,266865,rupiah,2024,survey_estimate,per_capita,10.1,490,,Perumahan dan fasilitas rumah tangga
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,247799,rupiah,2025,survey_estimate,per_capita,10.1,490,,Perumahan dan fasilitas rumah tangga
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,137626,rupiah,2024,survey_estimate,per_capita,10.1,490,,Aneka barang dan jasa
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,128796,rupiah,2025,survey_estimate,per_capita,10.1,490,,Aneka barang dan jasa
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,23533,rupiah,2024,survey_estimate,per_capita,10.1,490,,"Pakaian, alas kaki, dan tutup kepala"
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,25898,rupiah,2025,survey_estimate,per_capita,10.1,490,,"Pakaian, alas kaki, dan tutup kepala"
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/barang_tahan_lama,,31485,rupiah,2024,survey_estimate,per_capita,10.1,490,,Barang tahan lama
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/barang_tahan_lama,,61168,rupiah,2025,survey_estimate,per_capita,10.1,490,,Barang tahan lama
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,38817,rupiah,2024,survey_estimate,per_capita,10.1,490,,"Pajak, pungutan, dan asuransi"
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,38523,rupiah,2025,survey_estimate,per_capita,10.1,490,,"Pajak, pungutan, dan asuransi"
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,18417,rupiah,2024,survey_estimate,per_capita,10.1,490,,Keperluan pesta dan upacara/kenduri
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,9361,rupiah,2025,survey_estimate,per_capita,10.1,490,,Keperluan pesta dan upacara/kenduri
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,516744,rupiah,2024,survey_estimate,per_capita,10.1,490,,Jumlah bukan makanan
+35.04,2,Kabupaten Tulungagung,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,511544,rupiah,2025,survey_estimate,per_capita,10.1,490,,Jumlah bukan makanan
+35.04,2,Kabupaten Tulungagung,expenditure,total,,898,rupiah,2024,survey_estimate,per_capita,10.1,490,,
+35.04,2,Kabupaten Tulungagung,expenditure,total,,1128262,rupiah,2025,survey_estimate,per_capita,10.1,490,,

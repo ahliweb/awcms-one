@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.02.27.2008,4,Cempaka,sex,laki_laki,,1161,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.27.2008,4,Cempaka,sex,perempuan,,1111,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.27.2008,4,Cempaka,total,total,,2272,jiwa,2025,registration,total_population,3.1,26,,
+36.02.27.2010,4,Cibarani,sex,laki_laki,,1114,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+36.02.27.2010,4,Cibarani,sex,perempuan,,1055,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+36.02.27.2010,4,Cibarani,total,total,,2169,jiwa,2025,registration,total_population,3.1,26,,
+36.02.27,3,Cirinten,age_group,0-4,laki_laki,1076,jiwa,2025,registration,total_population,3.2,28,,0 - 4
+36.02.27,3,Cirinten,age_group,0-4,perempuan,1046,jiwa,2025,registration,total_population,3.2,28,,0 - 4
+36.02.27,3,Cirinten,age_group,0-4,,2122,jiwa,2025,registration,total_population,3.2,28,,0 - 4
+36.02.27,3,Cirinten,age_group,5-9,laki_laki,1550,jiwa,2025,registration,total_population,3.2,28,,5 - 9
+36.02.27,3,Cirinten,age_group,5-9,perempuan,1461,jiwa,2025,registration,total_population,3.2,28,,5 - 9
+36.02.27,3,Cirinten,age_group,5-9,,3011,jiwa,2025,registration,total_population,3.2,28,,5 - 9
+36.02.27,3,Cirinten,age_group,10-14,laki_laki,1398,jiwa,2025,registration,total_population,3.2,28,,10 - 14
+36.02.27,3,Cirinten,age_group,10-14,perempuan,1354,jiwa,2025,registration,total_population,3.2,28,,10 - 14
+36.02.27,3,Cirinten,age_group,10-14,,2752,jiwa,2025,registration,total_population,3.2,28,,10 - 14
+36.02.27,3,Cirinten,age_group,15-19,laki_laki,1087,jiwa,2025,registration,total_population,3.2,28,,15 - 19
+36.02.27,3,Cirinten,age_group,15-19,perempuan,1047,jiwa,2025,registration,total_population,3.2,28,,15 - 19
+36.02.27,3,Cirinten,age_group,15-19,,2134,jiwa,2025,registration,total_population,3.2,28,,15 - 19
+36.02.27,3,Cirinten,age_group,20-24,laki_laki,1142,jiwa,2025,registration,total_population,3.2,28,,20 - 24
+36.02.27,3,Cirinten,age_group,20-24,perempuan,1065,jiwa,2025,registration,total_population,3.2,28,,20 - 24
+36.02.27,3,Cirinten,age_group,20-24,,2207,jiwa,2025,registration,total_population,3.2,28,,20 - 24
+36.02.27,3,Cirinten,age_group,25-29,laki_laki,1464,jiwa,2025,registration,total_population,3.2,28,,25 - 29
+36.02.27,3,Cirinten,age_group,25-29,perempuan,1318,jiwa,2025,registration,total_population,3.2,28,,25 - 29
+36.02.27,3,Cirinten,age_group,25-29,,2782,jiwa,2025,registration,total_population,3.2,28,,25 - 29
+36.02.27,3,Cirinten,age_group,30-34,laki_laki,1344,jiwa,2025,registration,total_population,3.2,28,,30 - 34
+36.02.27,3,Cirinten,age_group,30-34,perempuan,1210,jiwa,2025,registration,total_population,3.2,28,,30 - 34
+36.02.27,3,Cirinten,age_group,30-34,,2554,jiwa,2025,registration,total_population,3.2,28,,30 - 34
+36.02.27,3,Cirinten,age_group,35-39,laki_laki,1426,jiwa,2025,registration,total_population,3.2,28,,35 - 39
+36.02.27,3,Cirinten,age_group,35-39,perempuan,1461,jiwa,2025,registration,total_population,3.2,28,,35 - 39
+36.02.27,3,Cirinten,age_group,35-39,,2887,jiwa,2025,registration,total_population,3.2,28,,35 - 39
+36.02.27,3,Cirinten,age_group,40-44,laki_laki,1356,jiwa,2025,registration,total_population,3.2,28,,40 - 44
+36.02.27,3,Cirinten,age_group,40-44,perempuan,1288,jiwa,2025,registration,total_population,3.2,28,,40 - 44
+36.02.27,3,Cirinten,age_group,40-44,,2644,jiwa,2025,registration,total_population,3.2,28,,40 - 44
+36.02.27,3,Cirinten,age_group,45-49,laki_laki,1234,jiwa,2025,registration,total_population,3.2,28,,45 - 49
+36.02.27,3,Cirinten,age_group,45-49,perempuan,1180,jiwa,2025,registration,total_population,3.2,28,,45 - 49
+36.02.27,3,Cirinten,age_group,45-49,,2414,jiwa,2025,registration,total_population,3.2,28,,45 - 49
+36.02.27,3,Cirinten,age_group,50-54,laki_laki,984,jiwa,2025,registration,total_population,3.2,28,,50 - 54
+36.02.27,3,Cirinten,age_group,50-54,perempuan,904,jiwa,2025,registration,total_population,3.2,28,,50 - 54
+36.02.27,3,Cirinten,age_group,50-54,,1888,jiwa,2025,registration,total_population,3.2,28,,50 - 54
+36.02.27,3,Cirinten,age_group,55-59,laki_laki,992,jiwa,2025,registration,total_population,3.2,28,,55 - 59
+36.02.27,3,Cirinten,age_group,55-59,perempuan,957,jiwa,2025,registration,total_population,3.2,28,,55 - 59
+36.02.27,3,Cirinten,age_group,55-59,,1949,jiwa,2025,registration,total_population,3.2,28,,55 - 59
+36.02.27,3,Cirinten,age_group,60-64,laki_laki,614,jiwa,2025,registration,total_population,3.2,28,,60 - 64
+36.02.27,3,Cirinten,age_group,60-64,perempuan,544,jiwa,2025,registration,total_population,3.2,28,,60 - 64
+36.02.27,3,Cirinten,age_group,60-64,,1158,jiwa,2025,registration,total_population,3.2,28,,60 - 64
+36.02.27,3,Cirinten,age_group,65-69,laki_laki,554,jiwa,2025,registration,total_population,3.2,28,,65 - 69
+36.02.27,3,Cirinten,age_group,65-69,perempuan,429,jiwa,2025,registration,total_population,3.2,28,,65 - 69
+36.02.27,3,Cirinten,age_group,65-69,,983,jiwa,2025,registration,total_population,3.2,28,,65 - 69
+36.02.27,3,Cirinten,age_group,70-74,laki_laki,219,jiwa,2025,registration,total_population,3.2,28,,70 - 74
+36.02.27,3,Cirinten,age_group,70-74,perempuan,199,jiwa,2025,registration,total_population,3.2,28,,70 - 74
+36.02.27,3,Cirinten,age_group,70-74,,418,jiwa,2025,registration,total_population,3.2,28,,70 - 74
+36.02.27,3,Cirinten,age_group,75+,laki_laki,345,jiwa,2025,registration,total_population,3.2,28,,75 +
+36.02.27,3,Cirinten,age_group,75+,perempuan,291,jiwa,2025,registration,total_population,3.2,28,,75 +
+36.02.27,3,Cirinten,age_group,75+,,636,jiwa,2025,registration,total_population,3.2,28,,75 +

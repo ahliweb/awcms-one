@@ -1,0 +1,55 @@
+{
+  "datasetCode": "bps-3574-kecamatan-357405-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.74.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kedopok Dalam Angka 2026",
+  "publisherName": "BPS Kota Probolinggo",
+  "publisherDomain": "3574",
+  "publisherWebsite": "https://probolinggokota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Probolinggo (https://probolinggokota.bps.go.id), publikasi \"Kecamatan Kedopok Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3574031",
+  "publicationNumber": "35740.26008",
+  "issn": "2407-3067",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://probolinggokota.bps.go.id/id/publication/2026/09/28/169e8a59cadfc454988ee2de/kecamatan-kedopok-dalam-angka-2026.html",
+  "sourceFileSha256": "22fe6d12bd9b8eb1eaff9ff42d9b13614aa16fdb1946f0e3c3ebb4281073326e",
+  "sourceFileBytes": 8677755,
+  "sourcePages": [25, 26, 27, 55],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Probolinggo.",
+  "csvPath": "datasets/bps-3574-kecamatan-357405-dalam-angka-2026.csv",
+  "csvSha256": "668372879a8e9b870a799e77929af31f9aae1b146730e0805d71c5d35f1e6b56",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Kedopok, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kedopok, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.4.5",
+      "title": "Jumlah Penduduk Menurut Kelurahan dan Agama yang Dianut di Kecamatan Kedopok, 2025",
+      "printedPages": [55],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1: row not stored: row \"Kecamatan Kedopok Kedopok District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Kedopok/ Kedopok District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Kedopok Kedopok District\": unmatched ",
+    "table 4.4.5: row not stored: row \"Kecamatan Kedopok Kedopok District\": unmatched "
+  ]
+}

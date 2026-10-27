@@ -1,0 +1,57 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.20.18.2006,4,Getasanyar,sex,perempuan,,1497,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.18.2006,4,Getasanyar,total,total,,3034,jiwa,2025,registration,total_population,3.1,29,,
+35.20.18.2005,4,Sidorejo,sex,perempuan,,2183,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.18.2005,4,Sidorejo,total,total,,4323,jiwa,2025,registration,total_population,3.1,29,,
+35.20.18.2004,4,Durenan,sex,perempuan,,1241,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.18.2004,4,Durenan,total,total,,2411,jiwa,2025,registration,total_population,3.1,29,,
+35.20.18.2001,4,Sambirobyong,sex,perempuan,,849,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.18.2001,4,Sambirobyong,total,total,,1700,jiwa,2025,registration,total_population,3.1,29,,
+35.20.18.2002,4,Campursari,sex,perempuan,,1125,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.18.2002,4,Campursari,total,total,,2266,jiwa,2025,registration,total_population,3.1,29,,
+35.20.18.2003,4,Kalang,sex,perempuan,,1392,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.18.2003,4,Kalang,total,total,,2800,jiwa,2025,registration,total_population,3.1,29,,
+35.20.18.2010,4,Widorokandang,sex,perempuan,,1005,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.18.2010,4,Widorokandang,total,total,,1973,jiwa,2025,registration,total_population,3.1,29,,
+35.20.18.2009,4,Sidokerto,sex,perempuan,,1174,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.18.2009,4,Sidokerto,total,total,,2358,jiwa,2025,registration,total_population,3.1,29,,
+35.20.18.2008,4,Sumbersawit,sex,perempuan,,1759,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.18.2008,4,Sumbersawit,total,total,,3477,jiwa,2025,registration,total_population,3.1,29,,
+35.20.18.2007,4,Sidomulyo,sex,perempuan,,2355,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.18.2007,4,Sidomulyo,total,total,,4657,jiwa,2025,registration,total_population,3.1,29,,
+35.20.18,3,Kecamatan Sidorejo,sex,perempuan,,14580,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.18,3,Kecamatan Sidorejo,total,total,,28999,jiwa,2025,registration,total_population,3.1,29,,
+35.20.18,3,Sidorejo,age_group,0-4,perempuan,768,jiwa,2025,registration,total_population,3.3,32,,0 – 4
+35.20.18,3,Sidorejo,age_group,0-4,,1574,jiwa,2025,registration,total_population,3.3,32,,0 – 4
+35.20.18,3,Sidorejo,age_group,5-9,perempuan,938,jiwa,2025,registration,total_population,3.3,32,,5–9
+35.20.18,3,Sidorejo,age_group,5-9,,1920,jiwa,2025,registration,total_population,3.3,32,,5–9
+35.20.18,3,Sidorejo,age_group,10-14,perempuan,905,jiwa,2025,registration,total_population,3.3,32,,10–14
+35.20.18,3,Sidorejo,age_group,10-14,,1963,jiwa,2025,registration,total_population,3.3,32,,10–14
+35.20.18,3,Sidorejo,age_group,15-19,perempuan,962,jiwa,2025,registration,total_population,3.3,32,,15–19
+35.20.18,3,Sidorejo,age_group,15-19,,1924,jiwa,2025,registration,total_population,3.3,32,,15–19
+35.20.18,3,Sidorejo,age_group,20-24,perempuan,937,jiwa,2025,registration,total_population,3.3,32,,20–24
+35.20.18,3,Sidorejo,age_group,20-24,,1854,jiwa,2025,registration,total_population,3.3,32,,20–24
+35.20.18,3,Sidorejo,age_group,25-29,perempuan,1004,jiwa,2025,registration,total_population,3.3,32,,25–29
+35.20.18,3,Sidorejo,age_group,25-29,,1987,jiwa,2025,registration,total_population,3.3,32,,25–29
+35.20.18,3,Sidorejo,age_group,30-34,perempuan,907,jiwa,2025,registration,total_population,3.3,32,,30–34
+35.20.18,3,Sidorejo,age_group,30-34,,1922,jiwa,2025,registration,total_population,3.3,32,,30–34
+35.20.18,3,Sidorejo,age_group,35-39,perempuan,975,jiwa,2025,registration,total_population,3.3,32,,35–39
+35.20.18,3,Sidorejo,age_group,35-39,,1946,jiwa,2025,registration,total_population,3.3,32,,35–39
+35.20.18,3,Sidorejo,age_group,40-44,perempuan,1007,jiwa,2025,registration,total_population,3.3,32,,40–44
+35.20.18,3,Sidorejo,age_group,40-44,,2095,jiwa,2025,registration,total_population,3.3,32,,40–44
+35.20.18,3,Sidorejo,age_group,45-49,perempuan,989,jiwa,2025,registration,total_population,3.3,32,,45–49
+35.20.18,3,Sidorejo,age_group,45-49,,2015,jiwa,2025,registration,total_population,3.3,32,,45–49
+35.20.18,3,Sidorejo,age_group,50-54,perempuan,989,jiwa,2025,registration,total_population,3.3,32,,50–54
+35.20.18,3,Sidorejo,age_group,50-54,,1954,jiwa,2025,registration,total_population,3.3,32,,50–54
+35.20.18,3,Sidorejo,age_group,55-59,perempuan,1007,jiwa,2025,registration,total_population,3.3,32,,55–59
+35.20.18,3,Sidorejo,age_group,55-59,,1869,jiwa,2025,registration,total_population,3.3,32,,55–59
+35.20.18,3,Sidorejo,age_group,60-64,perempuan,900,jiwa,2025,registration,total_population,3.3,32,,60–64
+35.20.18,3,Sidorejo,age_group,60-64,,1761,jiwa,2025,registration,total_population,3.3,32,,60–64
+35.20.18,3,Sidorejo,age_group,65-69,perempuan,862,jiwa,2025,registration,total_population,3.3,32,,65–69
+35.20.18,3,Sidorejo,age_group,65-69,,1682,jiwa,2025,registration,total_population,3.3,32,,65–69
+35.20.18,3,Sidorejo,age_group,70-74,perempuan,493,jiwa,2025,registration,total_population,3.3,32,,70–74
+35.20.18,3,Sidorejo,age_group,70-74,,995,jiwa,2025,registration,total_population,3.3,32,,70–74
+35.20.18,3,Sidorejo,age_group,75+,perempuan,937,jiwa,2025,registration,total_population,3.3,32,,75 +
+35.20.18,3,Sidorejo,age_group,75+,,1538,jiwa,2025,registration,total_population,3.3,32,,75 +
+35.20.18,3,Kecamatan Sidorejo,sex,perempuan,,14580,jiwa,2025,registration,total_population,3.3,32,,Perempuan
+35.20.18,3,Kecamatan Sidorejo,total,total,,28999,jiwa,2025,registration,total_population,3.3,32,,

@@ -1,0 +1,126 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.72.02,3,Sukorejo,total,total,,55270,jiwa,2025,registration,total_population,3.1.1,69,,
+35.72.01,3,Kepanjenkidul,total,total,,46147,jiwa,2025,registration,total_population,3.1.1,69,,
+35.72.03,3,Sananwetan,total,total,,60489,jiwa,2025,registration,total_population,3.1.1,69,,
+35.72,2,Kota Blitar,total,total,,161906,jiwa,2025,registration,total_population,3.1.1,69,,
+35.72,2,Kota Blitar,age_group,0-4,laki_laki,4643,jiwa,2025,registration,total_population,3.1.2,72,,0–4
+35.72,2,Kota Blitar,age_group,0-4,perempuan,4362,jiwa,2025,registration,total_population,3.1.2,72,,0–4
+35.72,2,Kota Blitar,age_group,0-4,,9005,jiwa,2025,registration,total_population,3.1.2,72,,0–4
+35.72,2,Kota Blitar,age_group,5-9,laki_laki,6051,jiwa,2025,registration,total_population,3.1.2,72,,5–9
+35.72,2,Kota Blitar,age_group,5-9,perempuan,5760,jiwa,2025,registration,total_population,3.1.2,72,,5–9
+35.72,2,Kota Blitar,age_group,5-9,,11811,jiwa,2025,registration,total_population,3.1.2,72,,5–9
+35.72,2,Kota Blitar,age_group,10-14,laki_laki,6638,jiwa,2025,registration,total_population,3.1.2,72,,10–14
+35.72,2,Kota Blitar,age_group,10-14,perempuan,6158,jiwa,2025,registration,total_population,3.1.2,72,,10–14
+35.72,2,Kota Blitar,age_group,10-14,,12796,jiwa,2025,registration,total_population,3.1.2,72,,10–14
+35.72,2,Kota Blitar,age_group,15-19,laki_laki,6646,jiwa,2025,registration,total_population,3.1.2,72,,15–19
+35.72,2,Kota Blitar,age_group,15-19,perempuan,6315,jiwa,2025,registration,total_population,3.1.2,72,,15–19
+35.72,2,Kota Blitar,age_group,15-19,,12961,jiwa,2025,registration,total_population,3.1.2,72,,15–19
+35.72,2,Kota Blitar,age_group,20-24,laki_laki,6493,jiwa,2025,registration,total_population,3.1.2,72,,20–24
+35.72,2,Kota Blitar,age_group,20-24,perempuan,6198,jiwa,2025,registration,total_population,3.1.2,72,,20–24
+35.72,2,Kota Blitar,age_group,20-24,,12691,jiwa,2025,registration,total_population,3.1.2,72,,20–24
+35.72,2,Kota Blitar,age_group,25-29,laki_laki,6575,jiwa,2025,registration,total_population,3.1.2,72,,25–29
+35.72,2,Kota Blitar,age_group,25-29,perempuan,6269,jiwa,2025,registration,total_population,3.1.2,72,,25–29
+35.72,2,Kota Blitar,age_group,25-29,,12844,jiwa,2025,registration,total_population,3.1.2,72,,25–29
+35.72,2,Kota Blitar,age_group,30-34,laki_laki,5718,jiwa,2025,registration,total_population,3.1.2,72,,30–34
+35.72,2,Kota Blitar,age_group,30-34,perempuan,5949,jiwa,2025,registration,total_population,3.1.2,72,,30–34
+35.72,2,Kota Blitar,age_group,30-34,,11667,jiwa,2025,registration,total_population,3.1.2,72,,30–34
+35.72,2,Kota Blitar,age_group,35-39,laki_laki,5623,jiwa,2025,registration,total_population,3.1.2,72,,35–39
+35.72,2,Kota Blitar,age_group,35-39,perempuan,5785,jiwa,2025,registration,total_population,3.1.2,72,,35–39
+35.72,2,Kota Blitar,age_group,35-39,,11408,jiwa,2025,registration,total_population,3.1.2,72,,35–39
+35.72,2,Kota Blitar,age_group,40-44,laki_laki,6890,jiwa,2025,registration,total_population,3.1.2,72,,40–44
+35.72,2,Kota Blitar,age_group,40-44,perempuan,6887,jiwa,2025,registration,total_population,3.1.2,72,,40–44
+35.72,2,Kota Blitar,age_group,40-44,,13777,jiwa,2025,registration,total_population,3.1.2,72,,40–44
+35.72,2,Kota Blitar,age_group,45-49,laki_laki,6018,jiwa,2025,registration,total_population,3.1.2,72,,45–49
+35.72,2,Kota Blitar,age_group,45-49,perempuan,5813,jiwa,2025,registration,total_population,3.1.2,72,,45–49
+35.72,2,Kota Blitar,age_group,45-49,,11831,jiwa,2025,registration,total_population,3.1.2,72,,45–49
+35.72,2,Kota Blitar,age_group,50-54,laki_laki,5182,jiwa,2025,registration,total_population,3.1.2,72,,50–54
+35.72,2,Kota Blitar,age_group,50-54,perempuan,5279,jiwa,2025,registration,total_population,3.1.2,72,,50–54
+35.72,2,Kota Blitar,age_group,50-54,,10461,jiwa,2025,registration,total_population,3.1.2,72,,50–54
+35.72,2,Kota Blitar,age_group,55-59,laki_laki,4550,jiwa,2025,registration,total_population,3.1.2,72,,55–59
+35.72,2,Kota Blitar,age_group,55-59,perempuan,4842,jiwa,2025,registration,total_population,3.1.2,72,,55–59
+35.72,2,Kota Blitar,age_group,55-59,,9392,jiwa,2025,registration,total_population,3.1.2,72,,55–59
+35.72,2,Kota Blitar,age_group,60-64,laki_laki,3477,jiwa,2025,registration,total_population,3.1.2,72,,60–64
+35.72,2,Kota Blitar,age_group,60-64,perempuan,4243,jiwa,2025,registration,total_population,3.1.2,72,,60–64
+35.72,2,Kota Blitar,age_group,60-64,,7720,jiwa,2025,registration,total_population,3.1.2,72,,60–64
+35.72,2,Kota Blitar,age_group,65-69,laki_laki,2750,jiwa,2025,registration,total_population,3.1.2,72,,65–69
+35.72,2,Kota Blitar,age_group,65-69,perempuan,3069,jiwa,2025,registration,total_population,3.1.2,72,,65–69
+35.72,2,Kota Blitar,age_group,65-69,,5819,jiwa,2025,registration,total_population,3.1.2,72,,65–69
+35.72,2,Kota Blitar,age_group,70-74,laki_laki,1777,jiwa,2025,registration,total_population,3.1.2,72,,70–74
+35.72,2,Kota Blitar,age_group,70-74,perempuan,2022,jiwa,2025,registration,total_population,3.1.2,72,,70–74
+35.72,2,Kota Blitar,age_group,70-74,,3799,jiwa,2025,registration,total_population,3.1.2,72,,70–74
+35.72,2,Kota Blitar,age_group,75+,laki_laki,1629,jiwa,2025,registration,total_population,3.1.2,72,,75+
+35.72,2,Kota Blitar,age_group,75+,perempuan,2295,jiwa,2025,registration,total_population,3.1.2,72,,75+
+35.72,2,Kota Blitar,age_group,75+,,3924,jiwa,2025,registration,total_population,3.1.2,72,,75+
+35.72,2,Kota Blitar,sex,laki_laki,,80660,jiwa,2025,registration,total_population,3.1.2,72,,Laki-Laki
+35.72,2,Kota Blitar,sex,perempuan,,81246,jiwa,2025,registration,total_population,3.1.2,72,,Perempuan
+35.72,2,Kota Blitar,total,total,,161906,jiwa,2025,registration,total_population,3.1.2,72,,
+35.72.02,3,Sukorejo,religion,islam,,50781,jiwa,2024,registration,total_population,4.3.1,175,,Islam
+35.72.02,3,Sukorejo,religion,kristen,,2460,jiwa,2024,registration,total_population,4.3.1,175,,Protestan
+35.72.02,3,Sukorejo,religion,katolik,,1499,jiwa,2024,registration,total_population,4.3.1,175,,Katolik
+35.72.02,3,Sukorejo,religion,hindu,,13,jiwa,2024,registration,total_population,4.3.1,175,,Hindu
+35.72.02,3,Sukorejo,religion,buddha,,187,jiwa,2024,registration,total_population,4.3.1,175,,Budha
+35.72.02,3,Sukorejo,religion,lainnya,,56,jiwa,2024,registration,total_population,4.3.1,175,,Lainnya
+35.72.01,3,Kepanjenkidul,religion,islam,,42458,jiwa,2024,registration,total_population,4.3.1,175,,Islam
+35.72.01,3,Kepanjenkidul,religion,kristen,,1483,jiwa,2024,registration,total_population,4.3.1,175,,Protestan
+35.72.01,3,Kepanjenkidul,religion,katolik,,1743,jiwa,2024,registration,total_population,4.3.1,175,,Katolik
+35.72.01,3,Kepanjenkidul,religion,hindu,,24,jiwa,2024,registration,total_population,4.3.1,175,,Hindu
+35.72.01,3,Kepanjenkidul,religion,buddha,,240,jiwa,2024,registration,total_population,4.3.1,175,,Budha
+35.72.01,3,Kepanjenkidul,religion,lainnya,,52,jiwa,2024,registration,total_population,4.3.1,175,,Lainnya
+35.72.03,3,Sananwetan,religion,islam,,55871,jiwa,2024,registration,total_population,4.3.1,175,,Islam
+35.72.03,3,Sananwetan,religion,kristen,,2255,jiwa,2024,registration,total_population,4.3.1,175,,Protestan
+35.72.03,3,Sananwetan,religion,katolik,,1937,jiwa,2024,registration,total_population,4.3.1,175,,Katolik
+35.72.03,3,Sananwetan,religion,hindu,,54,jiwa,2024,registration,total_population,4.3.1,175,,Hindu
+35.72.03,3,Sananwetan,religion,buddha,,51,jiwa,2024,registration,total_population,4.3.1,175,,Budha
+35.72.03,3,Sananwetan,religion,lainnya,,40,jiwa,2024,registration,total_population,4.3.1,175,,Lainnya
+35.72,2,Kota Blitar,religion,islam,,149110,jiwa,2024,registration,total_population,4.3.1,175,,Islam
+35.72,2,Kota Blitar,religion,kristen,,6198,jiwa,2024,registration,total_population,4.3.1,175,,Protestan
+35.72,2,Kota Blitar,religion,katolik,,5179,jiwa,2024,registration,total_population,4.3.1,175,,Katolik
+35.72,2,Kota Blitar,religion,hindu,,91,jiwa,2024,registration,total_population,4.3.1,175,,Hindu
+35.72,2,Kota Blitar,religion,buddha,,478,jiwa,2024,registration,total_population,4.3.1,175,,Budha
+35.72,2,Kota Blitar,religion,lainnya,,148,jiwa,2024,registration,total_population,4.3.1,175,,Lainnya
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/padi_padian,,65459,rupiah,2024,survey_estimate,per_capita,10.1,438,,Padi-padian
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/padi_padian,,68091,rupiah,2025,survey_estimate,per_capita,10.1,438,,Padi-padian
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/umbi_umbian,,4421,rupiah,2024,survey_estimate,per_capita,10.1,438,,Umbi-umbian
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/umbi_umbian,,6368,rupiah,2025,survey_estimate,per_capita,10.1,438,,Umbi-umbian
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,25617,rupiah,2024,survey_estimate,per_capita,10.1,438,,Ikan/udang/cumi/kerang
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,28980,rupiah,2025,survey_estimate,per_capita,10.1,438,,Ikan/udang/cumi/kerang
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/daging,,26372,rupiah,2024,survey_estimate,per_capita,10.1,438,,Daging
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/daging,,30615,rupiah,2025,survey_estimate,per_capita,10.1,438,,Daging
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/telur_dan_susu,,40640,rupiah,2024,survey_estimate,per_capita,10.1,438,,Telur dan susu
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/telur_dan_susu,,43126,rupiah,2025,survey_estimate,per_capita,10.1,438,,Telur dan susu
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/sayur_sayuran,,45973,rupiah,2024,survey_estimate,per_capita,10.1,438,,Sayur-sayuran
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/sayur_sayuran,,58031,rupiah,2025,survey_estimate,per_capita,10.1,438,,Sayur-sayuran
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/kacang_kacangan,,14692,rupiah,2024,survey_estimate,per_capita,10.1,438,,Kacang-kacangan
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/kacang_kacangan,,15183,rupiah,2025,survey_estimate,per_capita,10.1,438,,Kacang-kacangan
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/buah_buahan,,44853,rupiah,2024,survey_estimate,per_capita,10.1,438,,Buah-buahan
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/buah_buahan,,56695,rupiah,2025,survey_estimate,per_capita,10.1,438,,Buah-buahan
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16232,rupiah,2024,survey_estimate,per_capita,10.1,438,,Minyak dan kelapa
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18594,rupiah,2025,survey_estimate,per_capita,10.1,438,,Minyak dan kelapa
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/bahan_minuman,,17699,rupiah,2024,survey_estimate,per_capita,10.1,438,,Bahan minuman
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/bahan_minuman,,20431,rupiah,2025,survey_estimate,per_capita,10.1,438,,Bahan minuman
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/bumbu_bumbuan,,10130,rupiah,2024,survey_estimate,per_capita,10.1,438,,Bumbu-bumbuan
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/bumbu_bumbuan,,12249,rupiah,2025,survey_estimate,per_capita,10.1,438,,Bumbu-bumbuan
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/konsumsi_lainnya,,11413,rupiah,2024,survey_estimate,per_capita,10.1,438,,Konsumsi lainnya
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/konsumsi_lainnya,,11482,rupiah,2025,survey_estimate,per_capita,10.1,438,,Konsumsi lainnya
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,294094,rupiah,2024,survey_estimate,per_capita,10.1,438,,Makanan dan minuman jadi
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,320137,rupiah,2025,survey_estimate,per_capita,10.1,438,,Makanan dan minuman jadi
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/rokok,,78365,rupiah,2024,survey_estimate,per_capita,10.1,438,,Rokok
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/rokok,,76903,rupiah,2025,survey_estimate,per_capita,10.1,438,,Rokok
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/jumlah_makanan,,695961,rupiah,2024,survey_estimate,per_capita,10.1,438,,Jumlah makanan
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/jumlah_makanan,,766886,rupiah,2025,survey_estimate,per_capita,10.1,438,,Jumlah makanan
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,357555,rupiah,2024,survey_estimate,per_capita,10.1,438,,Perumahan dan fasilitas rumah tangga
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,383270,rupiah,2025,survey_estimate,per_capita,10.1,438,,Perumahan dan fasilitas rumah tangga
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,194220,rupiah,2024,survey_estimate,per_capita,10.1,438,,Aneka barang dan jasa
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,225651,rupiah,2025,survey_estimate,per_capita,10.1,438,,Aneka barang dan jasa
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,34998,rupiah,2024,survey_estimate,per_capita,10.1,438,,"Pakaian, alas kaki, dan tutup kepala"
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,42172,rupiah,2025,survey_estimate,per_capita,10.1,438,,"Pakaian, alas kaki, dan tutup kepala"
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/barang_tahan_lama,,80765,rupiah,2024,survey_estimate,per_capita,10.1,438,,Barang tahan lama
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/barang_tahan_lama,,98071,rupiah,2025,survey_estimate,per_capita,10.1,438,,Barang tahan lama
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,79691,rupiah,2024,survey_estimate,per_capita,10.1,438,,"Pajak, pungutan, dan asuransi"
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,88813,rupiah,2025,survey_estimate,per_capita,10.1,438,,"Pajak, pungutan, dan asuransi"
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,25190,rupiah,2024,survey_estimate,per_capita,10.1,438,,Keperluan pesta dan upacara/kenduri
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,29339,rupiah,2025,survey_estimate,per_capita,10.1,438,,Keperluan pesta dan upacara/kenduri
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,772419,rupiah,2024,survey_estimate,per_capita,10.1,438,,Jumlah bukan makanan
+35.72,2,Kota Blitar,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,867315,rupiah,2025,survey_estimate,per_capita,10.1,438,,Jumlah bukan makanan
+35.72,2,Kota Blitar,expenditure,total,,1468379,rupiah,2024,survey_estimate,per_capita,10.1,438,,
+35.72,2,Kota Blitar,expenditure,total,,1634201,rupiah,2025,survey_estimate,per_capita,10.1,438,,

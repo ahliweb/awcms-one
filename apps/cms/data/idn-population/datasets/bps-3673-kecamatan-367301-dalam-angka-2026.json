@@ -1,0 +1,56 @@
+{
+  "datasetCode": "bps-3673-kecamatan-367301-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.73.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Serang Dalam Angka 2026",
+  "publisherName": "BPS Kota Serang",
+  "publisherDomain": "3673",
+  "publisherWebsite": "https://serangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Serang (https://serangkota.bps.go.id), publikasi \"Kecamatan Serang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3673040",
+  "publicationNumber": "36730.26008",
+  "issn": "2714-9331",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://serangkota.bps.go.id/id/publication/2026/09/28/f01ebd70e29b308048a5d63b/kecamatan-serang-dalam-angka-2026.html",
+  "sourceFileSha256": "84311b8e774879b518f83bf5dfb7b820e39704a12c75f9bce5c529891debdaf4",
+  "sourceFileBytes": 6661294,
+  "sourcePages": [28, 29, 30, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Serang.",
+  "csvPath": "datasets/bps-3673-kecamatan-367301-dalam-angka-2026.csv",
+  "csvSha256": "5f2138b3f0f06692b24c984812ef75bbf0354a2f58b8e1511353d317a40bfa22",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk dan Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Serang, 2026",
+      "printedPages": [28, 29],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Serang, 2026",
+      "printedPages": [30],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.5",
+      "title": "Jumlah Penduduk Menurut Agama dan Kelurahan di Kecamatan Serang, 2026",
+      "printedPages": [33, 34],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1: row not stored: row \"Kecamatan Serang Serang District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Serang Serang District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Serang Serang District\": unmatched ",
+    "table 3.5: row not stored: row \"Kecamatan Serang Serang District\": unmatched ",
+    "table 3.5: row not stored: row \"Kecamatan Serang Serang District\": unmatched "
+  ]
+}

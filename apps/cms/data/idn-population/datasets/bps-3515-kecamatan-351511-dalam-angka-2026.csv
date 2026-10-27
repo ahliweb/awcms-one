@@ -1,0 +1,118 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.15.11.2001,4,Tropodo,sex,laki_laki,,3246,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.2001,4,Tropodo,sex,perempuan,,3126,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.2001,4,Tropodo,total,total,,6372,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11.2002,4,Sedengan Mijen,sex,laki_laki,,3065,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.2002,4,Sedengan Mijen,sex,perempuan,,3052,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.2002,4,Sedengan Mijen,total,total,,6117,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11.2004,4,Jeruk Gamping,sex,laki_laki,,2587,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.2004,4,Jeruk Gamping,sex,perempuan,,2509,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.2004,4,Jeruk Gamping,total,total,,5096,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11.2005,4,Gamping,sex,laki_laki,,2993,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.2005,4,Gamping,sex,perempuan,,2865,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.2005,4,Gamping,total,total,,5858,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11.2006,4,Terik,sex,laki_laki,,1810,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.2006,4,Terik,sex,perempuan,,1785,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.2006,4,Terik,total,total,,3595,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11.2007,4,Junwangi,sex,laki_laki,,2606,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.2007,4,Junwangi,sex,perempuan,,2483,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.2007,4,Junwangi,total,total,,5089,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11.2008,4,Terung Kulon,sex,laki_laki,,2998,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.2008,4,Terung Kulon,sex,perempuan,,2872,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.2008,4,Terung Kulon,total,total,,5870,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11.2009,4,Terung Wetan,sex,laki_laki,,1347,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.2009,4,Terung Wetan,sex,perempuan,,1284,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.2009,4,Terung Wetan,total,total,,2631,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11.2010,4,Jatikalang,sex,laki_laki,,2669,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.2010,4,Jatikalang,sex,perempuan,,2718,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.2010,4,Jatikalang,total,total,,5387,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11.2011,4,Keboharan,sex,laki_laki,,2606,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.2011,4,Keboharan,sex,perempuan,,2532,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.2011,4,Keboharan,total,total,,5138,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11.2012,4,Ponokawan,sex,laki_laki,,1979,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.2012,4,Ponokawan,sex,perempuan,,1943,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.2012,4,Ponokawan,total,total,,3922,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11.1013,4,Kemasan,sex,laki_laki,,3263,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.1013,4,Kemasan,sex,perempuan,,3263,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.1013,4,Kemasan,total,total,,6526,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11.2014,4,Sidomojo,sex,laki_laki,,2176,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.2014,4,Sidomojo,sex,perempuan,,2053,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.2014,4,Sidomojo,total,total,,4229,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11.1015,4,Tambak Kemerakan,sex,laki_laki,,3053,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.1015,4,Tambak Kemerakan,sex,perempuan,,3023,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.1015,4,Tambak Kemerakan,total,total,,6076,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11.1016,4,Krian,sex,laki_laki,,4418,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.1016,4,Krian,sex,perempuan,,4343,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.1016,4,Krian,total,total,,8761,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11.2017,4,Kraton,sex,laki_laki,,4038,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.2017,4,Kraton,sex,perempuan,,4058,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.2017,4,Kraton,total,total,,8096,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11.2018,4,Sidomulyo,sex,laki_laki,,3116,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.2018,4,Sidomulyo,sex,perempuan,,2940,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.2018,4,Sidomulyo,total,total,,6056,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11.2019,4,Tempel,sex,laki_laki,,4226,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.2019,4,Tempel,sex,perempuan,,4235,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.2019,4,Tempel,total,total,,8461,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11.2020,4,Watugolong,sex,laki_laki,,3135,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.2020,4,Watugolong,sex,perempuan,,3069,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.2020,4,Watugolong,total,total,,6204,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11.2021,4,Barengkrajan,sex,laki_laki,,4624,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.2021,4,Barengkrajan,sex,perempuan,,4545,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.2021,4,Barengkrajan,total,total,,9169,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11.2022,4,Sidorejo,sex,laki_laki,,5279,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11.2022,4,Sidorejo,sex,perempuan,,5296,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11.2022,4,Sidorejo,total,total,,10575,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11,3,Kecamatan Krian,sex,laki_laki,,68113,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.11,3,Kecamatan Krian,sex,perempuan,,66770,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.11,3,Kecamatan Krian,total,total,,134883,jiwa,2025,registration,total_population,3.1,38,,
+35.15.11,3,Krian,age_group,0-4,laki_laki,3915,jiwa,2025,registration,total_population,3.2,40,,0 - 4
+35.15.11,3,Krian,age_group,0-4,perempuan,3711,jiwa,2025,registration,total_population,3.2,40,,0 - 4
+35.15.11,3,Krian,age_group,0-4,,7626,jiwa,2025,registration,total_population,3.2,40,,0 - 4
+35.15.11,3,Krian,age_group,5-9,laki_laki,5082,jiwa,2025,registration,total_population,3.2,40,,5 - 9
+35.15.11,3,Krian,age_group,5-9,perempuan,4765,jiwa,2025,registration,total_population,3.2,40,,5 - 9
+35.15.11,3,Krian,age_group,5-9,,9847,jiwa,2025,registration,total_population,3.2,40,,5 - 9
+35.15.11,3,Krian,age_group,10-14,laki_laki,5566,jiwa,2025,registration,total_population,3.2,40,,10 - 14
+35.15.11,3,Krian,age_group,10-14,perempuan,5337,jiwa,2025,registration,total_population,3.2,40,,10 - 14
+35.15.11,3,Krian,age_group,10-14,,10903,jiwa,2025,registration,total_population,3.2,40,,10 - 14
+35.15.11,3,Krian,age_group,15-19,laki_laki,5368,jiwa,2025,registration,total_population,3.2,40,,15 - 19
+35.15.11,3,Krian,age_group,15-19,perempuan,5183,jiwa,2025,registration,total_population,3.2,40,,15 - 19
+35.15.11,3,Krian,age_group,15-19,,10551,jiwa,2025,registration,total_population,3.2,40,,15 - 19
+35.15.11,3,Krian,age_group,20-24,laki_laki,5722,jiwa,2025,registration,total_population,3.2,40,,20 - 24
+35.15.11,3,Krian,age_group,20-24,perempuan,5295,jiwa,2025,registration,total_population,3.2,40,,20 - 24
+35.15.11,3,Krian,age_group,20-24,,11017,jiwa,2025,registration,total_population,3.2,40,,20 - 24
+35.15.11,3,Krian,age_group,25-29,laki_laki,5258,jiwa,2025,registration,total_population,3.2,40,,25 - 29
+35.15.11,3,Krian,age_group,25-29,perempuan,4963,jiwa,2025,registration,total_population,3.2,40,,25 - 29
+35.15.11,3,Krian,age_group,25-29,,10221,jiwa,2025,registration,total_population,3.2,40,,25 - 29
+35.15.11,3,Krian,age_group,30-34,laki_laki,5226,jiwa,2025,registration,total_population,3.2,40,,30 - 34
+35.15.11,3,Krian,age_group,30-34,perempuan,4791,jiwa,2025,registration,total_population,3.2,40,,30 - 34
+35.15.11,3,Krian,age_group,30-34,,10017,jiwa,2025,registration,total_population,3.2,40,,30 - 34
+35.15.11,3,Krian,age_group,35-39,laki_laki,4598,jiwa,2025,registration,total_population,3.2,40,,35-39
+35.15.11,3,Krian,age_group,35-39,perempuan,4530,jiwa,2025,registration,total_population,3.2,40,,35-39
+35.15.11,3,Krian,age_group,35-39,,9128,jiwa,2025,registration,total_population,3.2,40,,35-39
+35.15.11,3,Krian,age_group,40-44,laki_laki,5404,jiwa,2025,registration,total_population,3.2,40,,40 - 44
+35.15.11,3,Krian,age_group,40-44,perempuan,5534,jiwa,2025,registration,total_population,3.2,40,,40 - 44
+35.15.11,3,Krian,age_group,40-44,,10938,jiwa,2025,registration,total_population,3.2,40,,40 - 44
+35.15.11,3,Krian,age_group,45-49,laki_laki,5269,jiwa,2025,registration,total_population,3.2,40,,45 - 49
+35.15.11,3,Krian,age_group,45-49,perempuan,5226,jiwa,2025,registration,total_population,3.2,40,,45 - 49
+35.15.11,3,Krian,age_group,45-49,,10495,jiwa,2025,registration,total_population,3.2,40,,45 - 49
+35.15.11,3,Krian,age_group,50-54,laki_laki,4754,jiwa,2025,registration,total_population,3.2,40,,50 - 54
+35.15.11,3,Krian,age_group,50-54,perempuan,4996,jiwa,2025,registration,total_population,3.2,40,,50 - 54
+35.15.11,3,Krian,age_group,50-54,,9750,jiwa,2025,registration,total_population,3.2,40,,50 - 54
+35.15.11,3,Krian,age_group,55-59,laki_laki,4124,jiwa,2025,registration,total_population,3.2,40,,55 - 59
+35.15.11,3,Krian,age_group,55-59,perempuan,4236,jiwa,2025,registration,total_population,3.2,40,,55 - 59
+35.15.11,3,Krian,age_group,55-59,,8360,jiwa,2025,registration,total_population,3.2,40,,55 - 59
+35.15.11,3,Krian,age_group,60-64,laki_laki,2950,jiwa,2025,registration,total_population,3.2,40,,60 - 64
+35.15.11,3,Krian,age_group,60-64,perempuan,3213,jiwa,2025,registration,total_population,3.2,40,,60 - 64
+35.15.11,3,Krian,age_group,60-64,,6163,jiwa,2025,registration,total_population,3.2,40,,60 - 64
+35.15.11,3,Krian,age_group,65-69,laki_laki,2317,jiwa,2025,registration,total_population,3.2,40,,65 -69
+35.15.11,3,Krian,age_group,65-69,perempuan,2248,jiwa,2025,registration,total_population,3.2,40,,65 -69
+35.15.11,3,Krian,age_group,65-69,,4565,jiwa,2025,registration,total_population,3.2,40,,65 -69
+35.15.11,3,Krian,age_group,70-74,laki_laki,1390,jiwa,2025,registration,total_population,3.2,40,,70 - 74
+35.15.11,3,Krian,age_group,70-74,perempuan,1239,jiwa,2025,registration,total_population,3.2,40,,70 - 74
+35.15.11,3,Krian,age_group,70-74,,2629,jiwa,2025,registration,total_population,3.2,40,,70 - 74
+35.15.11,3,Krian,age_group,75+,laki_laki,1170,jiwa,2025,registration,total_population,3.2,40,,75+
+35.15.11,3,Krian,age_group,75+,perempuan,1503,jiwa,2025,registration,total_population,3.2,40,,75+
+35.15.11,3,Krian,age_group,75+,,2673,jiwa,2025,registration,total_population,3.2,40,,75+
+35.15.11,3,Kecamatan Krian,sex,laki_laki,,68113,jiwa,2025,registration,total_population,3.2,40,,Laki-Laki
+35.15.11,3,Kecamatan Krian,sex,perempuan,,66770,jiwa,2025,registration,total_population,3.2,40,,Perempuan
+35.15.11,3,Kecamatan Krian,total,total,,134883,jiwa,2025,registration,total_population,3.2,40,,

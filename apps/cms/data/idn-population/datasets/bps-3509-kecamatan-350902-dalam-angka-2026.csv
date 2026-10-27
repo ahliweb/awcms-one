@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.09.02.2002,4,Paseban,sex,laki_laki,,4048,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.02.2002,4,Paseban,sex,perempuan,,4015,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.02.2002,4,Paseban,total,total,,8063,jiwa,2025,registration,total_population,3.1,33,,
+35.09.02.2001,4,Cakru,sex,laki_laki,,5673,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.02.2001,4,Cakru,sex,perempuan,,5765,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.02.2001,4,Cakru,total,total,,11438,jiwa,2025,registration,total_population,3.1,33,,
+35.09.02.2003,4,Kraton,sex,laki_laki,,5214,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.02.2003,4,Kraton,sex,perempuan,,5229,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.02.2003,4,Kraton,total,total,,10443,jiwa,2025,registration,total_population,3.1,33,,
+35.09.02.2005,4,Wonorejo,sex,laki_laki,,7328,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.02.2005,4,Wonorejo,sex,perempuan,,7367,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.02.2005,4,Wonorejo,total,total,,14695,jiwa,2025,registration,total_population,3.1,33,,
+35.09.02.2004,4,Kencong,sex,laki_laki,,13214,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.02.2004,4,Kencong,sex,perempuan,,13231,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.02.2004,4,Kencong,total,total,,26445,jiwa,2025,registration,total_population,3.1,33,,
+35.09.02,3,Kecamatan Kencong,sex,laki_laki,,35477,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.02,3,Kecamatan Kencong,sex,perempuan,,35607,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.02,3,Kecamatan Kencong,total,total,,71084,jiwa,2025,registration,total_population,3.1,33,,
+35.09.02,3,Kencong,age_group,0-4,laki_laki,1549,jiwa,2025,registration,total_population,3.2,35,,0-4
+35.09.02,3,Kencong,age_group,0-4,perempuan,1492,jiwa,2025,registration,total_population,3.2,35,,0-4
+35.09.02,3,Kencong,age_group,0-4,,3041,jiwa,2025,registration,total_population,3.2,35,,0-4
+35.09.02,3,Kencong,age_group,5-9,laki_laki,2342,jiwa,2025,registration,total_population,3.2,35,,5-9
+35.09.02,3,Kencong,age_group,5-9,perempuan,2273,jiwa,2025,registration,total_population,3.2,35,,5-9
+35.09.02,3,Kencong,age_group,5-9,,4615,jiwa,2025,registration,total_population,3.2,35,,5-9
+35.09.02,3,Kencong,age_group,10-14,laki_laki,2563,jiwa,2025,registration,total_population,3.2,35,,10-14
+35.09.02,3,Kencong,age_group,10-14,perempuan,2478,jiwa,2025,registration,total_population,3.2,35,,10-14
+35.09.02,3,Kencong,age_group,10-14,,5041,jiwa,2025,registration,total_population,3.2,35,,10-14
+35.09.02,3,Kencong,age_group,15-19,laki_laki,2342,jiwa,2025,registration,total_population,3.2,35,,15-19
+35.09.02,3,Kencong,age_group,15-19,perempuan,2290,jiwa,2025,registration,total_population,3.2,35,,15-19
+35.09.02,3,Kencong,age_group,15-19,,4632,jiwa,2025,registration,total_population,3.2,35,,15-19
+35.09.02,3,Kencong,age_group,20-24,laki_laki,2699,jiwa,2025,registration,total_population,3.2,35,,20-24
+35.09.02,3,Kencong,age_group,20-24,perempuan,2552,jiwa,2025,registration,total_population,3.2,35,,20-24
+35.09.02,3,Kencong,age_group,20-24,,5251,jiwa,2025,registration,total_population,3.2,35,,20-24
+35.09.02,3,Kencong,age_group,25-29,laki_laki,2631,jiwa,2025,registration,total_population,3.2,35,,25-29
+35.09.02,3,Kencong,age_group,25-29,perempuan,2509,jiwa,2025,registration,total_population,3.2,35,,25-29
+35.09.02,3,Kencong,age_group,25-29,,5140,jiwa,2025,registration,total_population,3.2,35,,25-29
+35.09.02,3,Kencong,age_group,30-34,laki_laki,2619,jiwa,2025,registration,total_population,3.2,35,,30-34
+35.09.02,3,Kencong,age_group,30-34,perempuan,2378,jiwa,2025,registration,total_population,3.2,35,,30-34
+35.09.02,3,Kencong,age_group,30-34,,4997,jiwa,2025,registration,total_population,3.2,35,,30-34
+35.09.02,3,Kencong,age_group,35-39,laki_laki,2318,jiwa,2025,registration,total_population,3.2,35,,35-39
+35.09.02,3,Kencong,age_group,35-39,perempuan,2180,jiwa,2025,registration,total_population,3.2,35,,35-39
+35.09.02,3,Kencong,age_group,35-39,,4498,jiwa,2025,registration,total_population,3.2,35,,35-39
+35.09.02,3,Kencong,age_group,40-44,laki_laki,2533,jiwa,2025,registration,total_population,3.2,35,,40-44
+35.09.02,3,Kencong,age_group,40-44,perempuan,2735,jiwa,2025,registration,total_population,3.2,35,,40-44
+35.09.02,3,Kencong,age_group,40-44,,5268,jiwa,2025,registration,total_population,3.2,35,,40-44
+35.09.02,3,Kencong,age_group,45-49,laki_laki,2523,jiwa,2025,registration,total_population,3.2,35,,45-49
+35.09.02,3,Kencong,age_group,45-49,perempuan,2563,jiwa,2025,registration,total_population,3.2,35,,45-49
+35.09.02,3,Kencong,age_group,45-49,,5086,jiwa,2025,registration,total_population,3.2,35,,45-49
+35.09.02,3,Kencong,age_group,50-54,laki_laki,2677,jiwa,2025,registration,total_population,3.2,35,,50-54
+35.09.02,3,Kencong,age_group,50-54,perempuan,2952,jiwa,2025,registration,total_population,3.2,35,,50-54
+35.09.02,3,Kencong,age_group,50-54,,5629,jiwa,2025,registration,total_population,3.2,35,,50-54
+35.09.02,3,Kencong,age_group,55-59,laki_laki,2533,jiwa,2025,registration,total_population,3.2,35,,55-59
+35.09.02,3,Kencong,age_group,55-59,perempuan,2541,jiwa,2025,registration,total_population,3.2,35,,55-59
+35.09.02,3,Kencong,age_group,55-59,,5074,jiwa,2025,registration,total_population,3.2,35,,55-59
+35.09.02,3,Kencong,age_group,60-64,laki_laki,2004,jiwa,2025,registration,total_population,3.2,35,,60-64
+35.09.02,3,Kencong,age_group,60-64,perempuan,2358,jiwa,2025,registration,total_population,3.2,35,,60-64
+35.09.02,3,Kencong,age_group,60-64,,4362,jiwa,2025,registration,total_population,3.2,35,,60-64
+35.09.02,3,Kencong,age_group,65-69,laki_laki,1720,jiwa,2025,registration,total_population,3.2,35,,65-69
+35.09.02,3,Kencong,age_group,65-69,perempuan,1742,jiwa,2025,registration,total_population,3.2,35,,65-69
+35.09.02,3,Kencong,age_group,65-69,,3462,jiwa,2025,registration,total_population,3.2,35,,65-69
+35.09.02,3,Kencong,age_group,70-74,laki_laki,1144,jiwa,2025,registration,total_population,3.2,35,,70-74
+35.09.02,3,Kencong,age_group,70-74,perempuan,1145,jiwa,2025,registration,total_population,3.2,35,,70-74
+35.09.02,3,Kencong,age_group,70-74,,2289,jiwa,2025,registration,total_population,3.2,35,,70-74
+35.09.02,3,Kencong,age_group,75+,laki_laki,1280,jiwa,2025,registration,total_population,3.2,35,,75+
+35.09.02,3,Kencong,age_group,75+,perempuan,1419,jiwa,2025,registration,total_population,3.2,35,,75+
+35.09.02,3,Kencong,age_group,75+,,2699,jiwa,2025,registration,total_population,3.2,35,,75+
+35.09.02,3,Kecamatan Kencong,sex,laki_laki,,35477,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+35.09.02,3,Kecamatan Kencong,sex,perempuan,,35607,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+35.09.02,3,Kecamatan Kencong,total,total,,71084,jiwa,2025,registration,total_population,3.2,35,,

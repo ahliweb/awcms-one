@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.02.17.2001,4,Anggalan,sex,laki_laki,,2167,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+36.02.17.2001,4,Anggalan,sex,perempuan,,2026,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+36.02.17.2001,4,Anggalan,total,total,,4193,jiwa,2025,registration,total_population,3.1,22,,
+36.02.17.2006,4,Muaradua,sex,laki_laki,,4011,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+36.02.17.2006,4,Muaradua,sex,perempuan,,3741,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+36.02.17.2006,4,Muaradua,total,total,,7752,jiwa,2025,registration,total_population,3.1,22,,
+36.02.17.2002,4,Muncang Kopong,sex,laki_laki,,2921,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+36.02.17.2002,4,Muncang Kopong,sex,perempuan,,2705,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+36.02.17.2002,4,Muncang Kopong,total,total,,5626,jiwa,2025,registration,total_population,3.1,22,,
+36.02.17.2004,4,Taman Jaya,sex,laki_laki,,1774,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+36.02.17.2004,4,Taman Jaya,sex,perempuan,,1602,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+36.02.17.2004,4,Taman Jaya,total,total,,3376,jiwa,2025,registration,total_population,3.1,22,,
+36.02.17.2008,4,Curugpanjang,sex,laki_laki,,3135,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+36.02.17.2008,4,Curugpanjang,sex,perempuan,,3003,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+36.02.17.2008,4,Curugpanjang,total,total,,6138,jiwa,2025,registration,total_population,3.1,22,,
+36.02.17.2007,4,Cikulur,sex,laki_laki,,3178,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+36.02.17.2007,4,Cikulur,sex,perempuan,,2994,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+36.02.17.2007,4,Cikulur,total,total,,6172,jiwa,2025,registration,total_population,3.1,22,,
+36.02.17.2009,4,Cigoong Selatan,sex,laki_laki,,2669,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+36.02.17.2009,4,Cigoong Selatan,sex,perempuan,,2379,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+36.02.17.2009,4,Cigoong Selatan,total,total,,5048,jiwa,2025,registration,total_population,3.1,22,,
+36.02.17.2005,4,Cigoong Utara,sex,laki_laki,,2919,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+36.02.17.2005,4,Cigoong Utara,sex,perempuan,,2722,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+36.02.17.2005,4,Cigoong Utara,total,total,,5641,jiwa,2025,registration,total_population,3.1,22,,
+36.02.17.2010,4,Sumurbandung,sex,laki_laki,,4255,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+36.02.17.2010,4,Sumurbandung,sex,perempuan,,3914,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+36.02.17.2010,4,Sumurbandung,total,total,,8169,jiwa,2025,registration,total_population,3.1,22,,
+36.02.17.2003,4,Sukaharja,sex,laki_laki,,1909,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+36.02.17.2003,4,Sukaharja,sex,perempuan,,1723,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+36.02.17.2003,4,Sukaharja,total,total,,3632,jiwa,2025,registration,total_population,3.1,22,,
+36.02.17.2012,4,Sukadaya,sex,laki_laki,,2613,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+36.02.17.2012,4,Sukadaya,sex,perempuan,,2394,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+36.02.17.2012,4,Sukadaya,total,total,,5007,jiwa,2025,registration,total_population,3.1,22,,
+36.02.17.2011,4,Parage,sex,laki_laki,,1886,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+36.02.17.2011,4,Parage,sex,perempuan,,1839,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+36.02.17.2011,4,Parage,total,total,,3725,jiwa,2025,registration,total_population,3.1,22,,
+36.02.17.2013,4,Pasirgintung,sex,laki_laki,,1325,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+36.02.17.2013,4,Pasirgintung,sex,perempuan,,1291,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+36.02.17.2013,4,Pasirgintung,total,total,,2616,jiwa,2025,registration,total_population,3.1,22,,
+36.02.17,3,Cikulur,age_group,0-4,laki_laki,2881,jiwa,2025,registration,total_population,3.2,24,,0-4
+36.02.17,3,Cikulur,age_group,0-4,perempuan,2785,jiwa,2025,registration,total_population,3.2,24,,0-4
+36.02.17,3,Cikulur,age_group,0-4,,5666,jiwa,2025,registration,total_population,3.2,24,,0-4
+36.02.17,3,Cikulur,age_group,5-9,laki_laki,3540,jiwa,2025,registration,total_population,3.2,24,,5-9
+36.02.17,3,Cikulur,age_group,5-9,perempuan,3153,jiwa,2025,registration,total_population,3.2,24,,5-9
+36.02.17,3,Cikulur,age_group,5-9,,6693,jiwa,2025,registration,total_population,3.2,24,,5-9
+36.02.17,3,Cikulur,age_group,10-14,laki_laki,3211,jiwa,2025,registration,total_population,3.2,24,,10-14
+36.02.17,3,Cikulur,age_group,10-14,perempuan,2838,jiwa,2025,registration,total_population,3.2,24,,10-14
+36.02.17,3,Cikulur,age_group,10-14,,6049,jiwa,2025,registration,total_population,3.2,24,,10-14
+36.02.17,3,Cikulur,age_group,15-19,laki_laki,2611,jiwa,2025,registration,total_population,3.2,24,,15-19
+36.02.17,3,Cikulur,age_group,15-19,perempuan,2626,jiwa,2025,registration,total_population,3.2,24,,15-19
+36.02.17,3,Cikulur,age_group,15-19,,5237,jiwa,2025,registration,total_population,3.2,24,,15-19
+36.02.17,3,Cikulur,age_group,20-24,laki_laki,2938,jiwa,2025,registration,total_population,3.2,24,,20-24
+36.02.17,3,Cikulur,age_group,20-24,perempuan,2747,jiwa,2025,registration,total_population,3.2,24,,20-24
+36.02.17,3,Cikulur,age_group,20-24,,5685,jiwa,2025,registration,total_population,3.2,24,,20-24
+36.02.17,3,Cikulur,age_group,25-29,laki_laki,3161,jiwa,2025,registration,total_population,3.2,24,,25-29
+36.02.17,3,Cikulur,age_group,25-29,perempuan,2853,jiwa,2025,registration,total_population,3.2,24,,25-29
+36.02.17,3,Cikulur,age_group,25-29,,6014,jiwa,2025,registration,total_population,3.2,24,,25-29
+36.02.17,3,Cikulur,age_group,30-34,laki_laki,2962,jiwa,2025,registration,total_population,3.2,24,,30-34
+36.02.17,3,Cikulur,age_group,30-34,perempuan,2652,jiwa,2025,registration,total_population,3.2,24,,30-34
+36.02.17,3,Cikulur,age_group,30-34,,5614,jiwa,2025,registration,total_population,3.2,24,,30-34
+36.02.17,3,Cikulur,age_group,35-39,laki_laki,2908,jiwa,2025,registration,total_population,3.2,24,,35-39
+36.02.17,3,Cikulur,age_group,35-39,perempuan,2439,jiwa,2025,registration,total_population,3.2,24,,35-39
+36.02.17,3,Cikulur,age_group,35-39,,5347,jiwa,2025,registration,total_population,3.2,24,,35-39
+36.02.17,3,Cikulur,age_group,40-44,laki_laki,2444,jiwa,2025,registration,total_population,3.2,24,,40-44
+36.02.17,3,Cikulur,age_group,40-44,perempuan,2112,jiwa,2025,registration,total_population,3.2,24,,40-44
+36.02.17,3,Cikulur,age_group,40-44,,4556,jiwa,2025,registration,total_population,3.2,24,,40-44
+36.02.17,3,Cikulur,age_group,45-49,laki_laki,2003,jiwa,2025,registration,total_population,3.2,24,,45-49
+36.02.17,3,Cikulur,age_group,45-49,perempuan,1878,jiwa,2025,registration,total_population,3.2,24,,45-49
+36.02.17,3,Cikulur,age_group,45-49,,3881,jiwa,2025,registration,total_population,3.2,24,,45-49
+36.02.17,3,Cikulur,age_group,50-54,laki_laki,1739,jiwa,2025,registration,total_population,3.2,24,,50-54
+36.02.17,3,Cikulur,age_group,50-54,perempuan,1653,jiwa,2025,registration,total_population,3.2,24,,50-54
+36.02.17,3,Cikulur,age_group,50-54,,3392,jiwa,2025,registration,total_population,3.2,24,,50-54
+36.02.17,3,Cikulur,age_group,55-59,laki_laki,1435,jiwa,2025,registration,total_population,3.2,24,,55-59
+36.02.17,3,Cikulur,age_group,55-59,perempuan,1435,jiwa,2025,registration,total_population,3.2,24,,55-59
+36.02.17,3,Cikulur,age_group,55-59,,2870,jiwa,2025,registration,total_population,3.2,24,,55-59
+36.02.17,3,Cikulur,age_group,60-64,laki_laki,1079,jiwa,2025,registration,total_population,3.2,24,,60-64
+36.02.17,3,Cikulur,age_group,60-64,perempuan,1005,jiwa,2025,registration,total_population,3.2,24,,60-64
+36.02.17,3,Cikulur,age_group,60-64,,2084,jiwa,2025,registration,total_population,3.2,24,,60-64
+36.02.17,3,Cikulur,age_group,65-69,laki_laki,822,jiwa,2025,registration,total_population,3.2,24,,65-69
+36.02.17,3,Cikulur,age_group,65-69,perempuan,893,jiwa,2025,registration,total_population,3.2,24,,65-69
+36.02.17,3,Cikulur,age_group,65-69,,1715,jiwa,2025,registration,total_population,3.2,24,,65-69
+36.02.17,3,Cikulur,age_group,70-74,laki_laki,433,jiwa,2025,registration,total_population,3.2,24,,70-74
+36.02.17,3,Cikulur,age_group,70-74,perempuan,433,jiwa,2025,registration,total_population,3.2,24,,70-74
+36.02.17,3,Cikulur,age_group,70-74,,866,jiwa,2025,registration,total_population,3.2,24,,70-74
+36.02.17,3,Cikulur,age_group,75+,laki_laki,595,jiwa,2025,registration,total_population,3.2,24,,75+
+36.02.17,3,Cikulur,age_group,75+,perempuan,831,jiwa,2025,registration,total_population,3.2,24,,75+
+36.02.17,3,Cikulur,age_group,75+,,1426,jiwa,2025,registration,total_population,3.2,24,,75+

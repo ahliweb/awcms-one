@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.17.21.2002,4,Keboan,sex,laki_laki,,1839,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.21.2002,4,Keboan,sex,perempuan,,1694,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.21.2002,4,Keboan,total,total,,3533,jiwa,2025,registration,total_population,3.1,33,,
+35.17.21.2001,4,Ketapang Kuning,sex,laki_laki,,1559,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.21.2001,4,Ketapang Kuning,sex,perempuan,,1545,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.21.2001,4,Ketapang Kuning,total,total,,3104,jiwa,2025,registration,total_population,3.1,33,,
+35.17.21.2003,4,Kedung Bogo,sex,laki_laki,,1212,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.21.2003,4,Kedung Bogo,sex,perempuan,,1246,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.21.2003,4,Kedung Bogo,total,total,,2458,jiwa,2025,registration,total_population,3.1,33,,
+35.17.21.2004,4,Ngusikan,sex,laki_laki,,1623,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.21.2004,4,Ngusikan,sex,perempuan,,1602,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.21.2004,4,Ngusikan,total,total,,3225,jiwa,2025,registration,total_population,3.1,33,,
+35.17.21.2005,4,Sumber Nongko,sex,laki_laki,,1433,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.21.2005,4,Sumber Nongko,sex,perempuan,,1496,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.21.2005,4,Sumber Nongko,total,total,,2929,jiwa,2025,registration,total_population,3.1,33,,
+35.17.21.2007,4,Manunggal,sex,laki_laki,,1115,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.21.2007,4,Manunggal,sex,perempuan,,1129,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.21.2007,4,Manunggal,total,total,,2244,jiwa,2025,registration,total_population,3.1,33,,
+35.17.21.2008,4,Ngampel,sex,laki_laki,,767,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.21.2008,4,Ngampel,sex,perempuan,,715,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.21.2008,4,Ngampel,total,total,,1482,jiwa,2025,registration,total_population,3.1,33,,
+35.17.21.2009,4,Mojodanu,sex,laki_laki,,1030,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.21.2009,4,Mojodanu,sex,perempuan,,1002,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.21.2009,4,Mojodanu,total,total,,2032,jiwa,2025,registration,total_population,3.1,33,,
+35.17.21.2006,4,Cupak,sex,laki_laki,,488,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.21.2006,4,Cupak,sex,perempuan,,492,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.21.2006,4,Cupak,total,total,,980,jiwa,2025,registration,total_population,3.1,33,,
+35.17.21.2011,4,Asem Gede,sex,laki_laki,,435,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.21.2011,4,Asem Gede,sex,perempuan,,435,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.21.2011,4,Asem Gede,total,total,,870,jiwa,2025,registration,total_population,3.1,33,,
+35.17.21.2010,4,Kromong,sex,laki_laki,,548,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.21.2010,4,Kromong,sex,perempuan,,553,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.21.2010,4,Kromong,total,total,,1101,jiwa,2025,registration,total_population,3.1,33,,
+35.17.21,3,Kecamatan Ngusikan,sex,laki_laki,,12049,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.21,3,Kecamatan Ngusikan,sex,perempuan,,11909,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.21,3,Kecamatan Ngusikan,total,total,,23958,jiwa,2025,registration,total_population,3.1,33,,

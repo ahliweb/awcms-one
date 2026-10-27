@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3671-kecamatan-367111-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.71.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pinang Dalam Angka 2026",
+  "publisherName": "BPS Kota Tangerang",
+  "publisherDomain": "3671",
+  "publisherWebsite": "https://tangerangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Tangerang (https://tangerangkota.bps.go.id), publikasi \"Kecamatan Pinang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3671",
+  "publicationNumber": "36710.26010",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tangerangkota.bps.go.id/id/publication/2026/09/28/bf0f0ea8f2f72d56c94fba65/kecamatan-pinang-dalam-angka-2026.html",
+  "sourceFileSha256": "e3cc923715954977f37a01d055506b6e4bef29acaa8af0849adc6f006a3fcc32",
+  "sourceFileBytes": 4792257,
+  "sourcePages": [22, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Tangerang",
+  "csvPath": "datasets/bps-3671-kecamatan-367111-dalam-angka-2026.csv",
+  "csvSha256": "80f13756ff0c595028a579e2aa58a95036126535822d987106ac2571da952865",
+  "tablesUsed": [
+    {
+      "table": "1.3",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan PINANG, 2025",
+      "printedPages": [22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "1.4",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan PINANG, 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 1.4: the rows of region 36.71.11 are not stored: age_group vs total: parts sum 181234.0000 != 195851.0000 (diff 14617.0000); the source itself is inconsistent"
+  ]
+}

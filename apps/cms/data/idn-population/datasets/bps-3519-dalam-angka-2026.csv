@@ -1,0 +1,209 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.19.01,3,Kebonsari,total,total,,59468,jiwa,2025,registration,total_population,3.1.1,46,,
+35.19.02,3,Dolopo,total,total,,59887,jiwa,2025,registration,total_population,3.1.1,46,,
+35.19.03,3,Geger,total,total,,65242,jiwa,2025,registration,total_population,3.1.1,46,,
+35.19.04,3,Dagangan,total,total,,52468,jiwa,2025,registration,total_population,3.1.1,46,,
+35.19.05,3,Kare,total,total,,34212,jiwa,2025,registration,total_population,3.1.1,46,,
+35.19.06,3,Gemarang,total,total,,34390,jiwa,2025,registration,total_population,3.1.1,46,,
+35.19.07,3,Wungu,total,total,,57714,jiwa,2025,registration,total_population,3.1.1,46,,
+35.19.08,3,Madiun,total,total,,38453,jiwa,2025,registration,total_population,3.1.1,46,,
+35.19.09,3,Jiwan,total,total,,57354,jiwa,2025,registration,total_population,3.1.1,46,,
+35.19.10,3,Balerejo,total,total,,44351,jiwa,2025,registration,total_population,3.1.1,46,,
+35.19.11,3,Mejayan,total,total,,47662,jiwa,2025,registration,total_population,3.1.1,46,,
+35.19.12,3,Saradan,total,total,,71045,jiwa,2025,registration,total_population,3.1.1,46,,
+35.19.13,3,Pilangkenceng,total,total,,54954,jiwa,2025,registration,total_population,3.1.1,46,,
+35.19.14,3,Sawahan,total,total,,25408,jiwa,2025,registration,total_population,3.1.1,46,,
+35.19.15,3,Wonoasri,total,total,,35632,jiwa,2025,registration,total_population,3.1.1,46,,
+35.19,2,Kabupaten Madiun,total,total,,738240,jiwa,2025,registration,total_population,3.1.1,46,,
+35.19,2,Kabupaten Madiun,age_group,0-4,laki_laki,16049,jiwa,2025,registration,total_population,3.1.2,49,,0–4
+35.19,2,Kabupaten Madiun,age_group,0-4,perempuan,15249,jiwa,2025,registration,total_population,3.1.2,49,,0–4
+35.19,2,Kabupaten Madiun,age_group,0-4,,31298,jiwa,2025,registration,total_population,3.1.2,49,,0–4
+35.19,2,Kabupaten Madiun,age_group,5-9,laki_laki,22958,jiwa,2025,registration,total_population,3.1.2,49,,5–9
+35.19,2,Kabupaten Madiun,age_group,5-9,perempuan,21572,jiwa,2025,registration,total_population,3.1.2,49,,5–9
+35.19,2,Kabupaten Madiun,age_group,5-9,,44530,jiwa,2025,registration,total_population,3.1.2,49,,5–9
+35.19,2,Kabupaten Madiun,age_group,10-14,laki_laki,25392,jiwa,2025,registration,total_population,3.1.2,49,,10–14
+35.19,2,Kabupaten Madiun,age_group,10-14,perempuan,24007,jiwa,2025,registration,total_population,3.1.2,49,,10–14
+35.19,2,Kabupaten Madiun,age_group,10-14,,49399,jiwa,2025,registration,total_population,3.1.2,49,,10–14
+35.19,2,Kabupaten Madiun,age_group,15-19,laki_laki,26665,jiwa,2025,registration,total_population,3.1.2,49,,15–19
+35.19,2,Kabupaten Madiun,age_group,15-19,perempuan,24600,jiwa,2025,registration,total_population,3.1.2,49,,15–19
+35.19,2,Kabupaten Madiun,age_group,15-19,,51265,jiwa,2025,registration,total_population,3.1.2,49,,15–19
+35.19,2,Kabupaten Madiun,age_group,20-24,laki_laki,25829,jiwa,2025,registration,total_population,3.1.2,49,,20–24
+35.19,2,Kabupaten Madiun,age_group,20-24,perempuan,24360,jiwa,2025,registration,total_population,3.1.2,49,,20–24
+35.19,2,Kabupaten Madiun,age_group,20-24,,50189,jiwa,2025,registration,total_population,3.1.2,49,,20–24
+35.19,2,Kabupaten Madiun,age_group,25-29,laki_laki,25594,jiwa,2025,registration,total_population,3.1.2,49,,25–29
+35.19,2,Kabupaten Madiun,age_group,25-29,perempuan,23786,jiwa,2025,registration,total_population,3.1.2,49,,25–29
+35.19,2,Kabupaten Madiun,age_group,25-29,,49380,jiwa,2025,registration,total_population,3.1.2,49,,25–29
+35.19,2,Kabupaten Madiun,age_group,30-34,laki_laki,24277,jiwa,2025,registration,total_population,3.1.2,49,,30–34
+35.19,2,Kabupaten Madiun,age_group,30-34,perempuan,23143,jiwa,2025,registration,total_population,3.1.2,49,,30–34
+35.19,2,Kabupaten Madiun,age_group,30-34,,47420,jiwa,2025,registration,total_population,3.1.2,49,,30–34
+35.19,2,Kabupaten Madiun,age_group,35-39,laki_laki,23233,jiwa,2025,registration,total_population,3.1.2,49,,35–39
+35.19,2,Kabupaten Madiun,age_group,35-39,perempuan,22637,jiwa,2025,registration,total_population,3.1.2,49,,35–39
+35.19,2,Kabupaten Madiun,age_group,35-39,,45870,jiwa,2025,registration,total_population,3.1.2,49,,35–39
+35.19,2,Kabupaten Madiun,age_group,40-44,laki_laki,27304,jiwa,2025,registration,total_population,3.1.2,49,,40–44
+35.19,2,Kabupaten Madiun,age_group,40-44,perempuan,28794,jiwa,2025,registration,total_population,3.1.2,49,,40–44
+35.19,2,Kabupaten Madiun,age_group,40-44,,56098,jiwa,2025,registration,total_population,3.1.2,49,,40–44
+35.19,2,Kabupaten Madiun,age_group,45-49,laki_laki,26951,jiwa,2025,registration,total_population,3.1.2,49,,45–49
+35.19,2,Kabupaten Madiun,age_group,45-49,perempuan,28414,jiwa,2025,registration,total_population,3.1.2,49,,45–49
+35.19,2,Kabupaten Madiun,age_group,45-49,,55365,jiwa,2025,registration,total_population,3.1.2,49,,45–49
+35.19,2,Kabupaten Madiun,age_group,50-54,laki_laki,26144,jiwa,2025,registration,total_population,3.1.2,49,,50–54
+35.19,2,Kabupaten Madiun,age_group,50-54,perempuan,27895,jiwa,2025,registration,total_population,3.1.2,49,,50–54
+35.19,2,Kabupaten Madiun,age_group,50-54,,54039,jiwa,2025,registration,total_population,3.1.2,49,,50–54
+35.19,2,Kabupaten Madiun,age_group,55-59,laki_laki,24636,jiwa,2025,registration,total_population,3.1.2,49,,55–59
+35.19,2,Kabupaten Madiun,age_group,55-59,perempuan,27438,jiwa,2025,registration,total_population,3.1.2,49,,55–59
+35.19,2,Kabupaten Madiun,age_group,55-59,,52074,jiwa,2025,registration,total_population,3.1.2,49,,55–59
+35.19,2,Kabupaten Madiun,age_group,60-64,laki_laki,22182,jiwa,2025,registration,total_population,3.1.2,49,,60–64
+35.19,2,Kabupaten Madiun,age_group,60-64,perempuan,25005,jiwa,2025,registration,total_population,3.1.2,49,,60–64
+35.19,2,Kabupaten Madiun,age_group,60-64,,47187,jiwa,2025,registration,total_population,3.1.2,49,,60–64
+35.19,2,Kabupaten Madiun,age_group,65-69,laki_laki,19330,jiwa,2025,registration,total_population,3.1.2,49,,65–69
+35.19,2,Kabupaten Madiun,age_group,65-69,perempuan,20978,jiwa,2025,registration,total_population,3.1.2,49,,65–69
+35.19,2,Kabupaten Madiun,age_group,65-69,,40308,jiwa,2025,registration,total_population,3.1.2,49,,65–69
+35.19,2,Kabupaten Madiun,age_group,70-74,laki_laki,13636,jiwa,2025,registration,total_population,3.1.2,49,,70–74
+35.19,2,Kabupaten Madiun,age_group,70-74,perempuan,13361,jiwa,2025,registration,total_population,3.1.2,49,,70–74
+35.19,2,Kabupaten Madiun,age_group,70-74,,26997,jiwa,2025,registration,total_population,3.1.2,49,,70–74
+35.19,2,Kabupaten Madiun,age_group,75+,laki_laki,15151,jiwa,2025,registration,total_population,3.1.2,49,,75+
+35.19,2,Kabupaten Madiun,age_group,75+,perempuan,21670,jiwa,2025,registration,total_population,3.1.2,49,,75+
+35.19,2,Kabupaten Madiun,age_group,75+,,36821,jiwa,2025,registration,total_population,3.1.2,49,,75+
+35.19,2,Kabupaten Madiun,sex,laki_laki,,365331,jiwa,2025,registration,total_population,3.1.2,49,,Laki-Laki
+35.19,2,Kabupaten Madiun,sex,perempuan,,372909,jiwa,2025,registration,total_population,3.1.2,49,,Perempuan
+35.19,2,Kabupaten Madiun,total,total,,738240,jiwa,2025,registration,total_population,3.1.2,49,,
+35.19.01,3,Kebonsari,religion,islam,,59425,jiwa,2025,registration,total_population,4.3.1,107,,Islam
+35.19.01,3,Kebonsari,religion,kristen,,37,jiwa,2025,registration,total_population,4.3.1,107,,Protestan
+35.19.01,3,Kebonsari,religion,katolik,,5,jiwa,2025,registration,total_population,4.3.1,107,,Katolik
+35.19.01,3,Kebonsari,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,107,,Hindu
+35.19.01,3,Kebonsari,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,107,nil,Budha
+35.19.01,3,Kebonsari,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,107,nil,Lainnya
+35.19.03,3,Geger,religion,islam,,59726,jiwa,2025,registration,total_population,4.3.1,107,,Islam
+35.19.03,3,Geger,religion,kristen,,119,jiwa,2025,registration,total_population,4.3.1,107,,Protestan
+35.19.03,3,Geger,religion,katolik,,37,jiwa,2025,registration,total_population,4.3.1,107,,Katolik
+35.19.03,3,Geger,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,107,nil,Hindu
+35.19.03,3,Geger,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,107,,Budha
+35.19.03,3,Geger,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,107,,Lainnya
+35.19.02,3,Dolopo,religion,islam,,65093,jiwa,2025,registration,total_population,4.3.1,107,,Islam
+35.19.02,3,Dolopo,religion,kristen,,96,jiwa,2025,registration,total_population,4.3.1,107,,Protestan
+35.19.02,3,Dolopo,religion,katolik,,44,jiwa,2025,registration,total_population,4.3.1,107,,Katolik
+35.19.02,3,Dolopo,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,107,,Hindu
+35.19.02,3,Dolopo,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,107,,Budha
+35.19.02,3,Dolopo,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,107,,Lainnya
+35.19.04,3,Dagangan,religion,islam,,52443,jiwa,2025,registration,total_population,4.3.1,107,,Islam
+35.19.04,3,Dagangan,religion,kristen,,19,jiwa,2025,registration,total_population,4.3.1,107,,Protestan
+35.19.04,3,Dagangan,religion,katolik,,6,jiwa,2025,registration,total_population,4.3.1,107,,Katolik
+35.19.04,3,Dagangan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,107,nil,Hindu
+35.19.04,3,Dagangan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,107,nil,Budha
+35.19.04,3,Dagangan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,107,nil,Lainnya
+35.19.07,3,Wungu,religion,islam,,33775,jiwa,2025,registration,total_population,4.3.1,107,,Islam
+35.19.07,3,Wungu,religion,kristen,,427,jiwa,2025,registration,total_population,4.3.1,107,,Protestan
+35.19.07,3,Wungu,religion,katolik,,6,jiwa,2025,registration,total_population,4.3.1,107,,Katolik
+35.19.07,3,Wungu,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,107,,Hindu
+35.19.07,3,Wungu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,107,nil,Budha
+35.19.07,3,Wungu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,107,nil,Lainnya
+35.19.05,3,Kare,religion,islam,,34175,jiwa,2025,registration,total_population,4.3.1,107,,Islam
+35.19.05,3,Kare,religion,kristen,,198,jiwa,2025,registration,total_population,4.3.1,107,,Protestan
+35.19.05,3,Kare,religion,katolik,,15,jiwa,2025,registration,total_population,4.3.1,107,,Katolik
+35.19.05,3,Kare,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,107,,Hindu
+35.19.05,3,Kare,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,107,nil,Budha
+35.19.05,3,Kare,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,107,nil,Lainnya
+35.19.06,3,Gemarang,religion,islam,,56707,jiwa,2025,registration,total_population,4.3.1,107,,Islam
+35.19.06,3,Gemarang,religion,kristen,,683,jiwa,2025,registration,total_population,4.3.1,107,,Protestan
+35.19.06,3,Gemarang,religion,katolik,,310,jiwa,2025,registration,total_population,4.3.1,107,,Katolik
+35.19.06,3,Gemarang,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,107,,Hindu
+35.19.06,3,Gemarang,religion,buddha,,12,jiwa,2025,registration,total_population,4.3.1,107,,Budha
+35.19.06,3,Gemarang,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,107,,Lainnya
+35.19.12,3,Saradan,religion,islam,,37847,jiwa,2025,registration,total_population,4.3.1,107,,Islam
+35.19.12,3,Saradan,religion,kristen,,513,jiwa,2025,registration,total_population,4.3.1,107,,Protestan
+35.19.12,3,Saradan,religion,katolik,,86,jiwa,2025,registration,total_population,4.3.1,107,,Katolik
+35.19.12,3,Saradan,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,107,,Hindu
+35.19.12,3,Saradan,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,107,,Budha
+35.19.12,3,Saradan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,107,nil,Lainnya
+35.19.13,3,Pilangkenceng,religion,islam,,56786,jiwa,2025,registration,total_population,4.3.1,107,,Islam
+35.19.13,3,Pilangkenceng,religion,kristen,,413,jiwa,2025,registration,total_population,4.3.1,107,,Protestan
+35.19.13,3,Pilangkenceng,religion,katolik,,136,jiwa,2025,registration,total_population,4.3.1,107,,Katolik
+35.19.13,3,Pilangkenceng,religion,hindu,,11,jiwa,2025,registration,total_population,4.3.1,107,,Hindu
+35.19.13,3,Pilangkenceng,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,107,,Budha
+35.19.13,3,Pilangkenceng,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,107,,Lainnya
+35.19.11,3,Mejayan,religion,islam,,44105,jiwa,2025,registration,total_population,4.3.1,107,,Islam
+35.19.11,3,Mejayan,religion,kristen,,195,jiwa,2025,registration,total_population,4.3.1,107,,Protestan
+35.19.11,3,Mejayan,religion,katolik,,36,jiwa,2025,registration,total_population,4.3.1,107,,Katolik
+35.19.11,3,Mejayan,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,107,,Hindu
+35.19.11,3,Mejayan,religion,buddha,,13,jiwa,2025,registration,total_population,4.3.1,107,,Budha
+35.19.11,3,Mejayan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,107,nil,Lainnya
+35.19.15,3,Wonoasri,religion,islam,,46049,jiwa,2025,registration,total_population,4.3.1,107,,Islam
+35.19.15,3,Wonoasri,religion,kristen,,1360,jiwa,2025,registration,total_population,4.3.1,107,,Protestan
+35.19.15,3,Wonoasri,religion,katolik,,234,jiwa,2025,registration,total_population,4.3.1,107,,Katolik
+35.19.15,3,Wonoasri,religion,hindu,,7,jiwa,2025,registration,total_population,4.3.1,107,,Hindu
+35.19.15,3,Wonoasri,religion,buddha,,6,jiwa,2025,registration,total_population,4.3.1,107,,Budha
+35.19.15,3,Wonoasri,religion,lainnya,,6,jiwa,2025,registration,total_population,4.3.1,107,,Lainnya
+35.19.10,3,Balerejo,religion,islam,,70357,jiwa,2025,registration,total_population,4.3.1,107,,Islam
+35.19.10,3,Balerejo,religion,kristen,,402,jiwa,2025,registration,total_population,4.3.1,107,,Protestan
+35.19.10,3,Balerejo,religion,katolik,,280,jiwa,2025,registration,total_population,4.3.1,107,,Katolik
+35.19.10,3,Balerejo,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,107,,Hindu
+35.19.10,3,Balerejo,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,107,,Budha
+35.19.10,3,Balerejo,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,107,,Lainnya
+35.19.08,3,Madiun,religion,islam,,54116,jiwa,2025,registration,total_population,4.3.1,107,,Islam
+35.19.08,3,Madiun,religion,kristen,,793,jiwa,2025,registration,total_population,4.3.1,107,,Protestan
+35.19.08,3,Madiun,religion,katolik,,44,jiwa,2025,registration,total_population,4.3.1,107,,Katolik
+35.19.08,3,Madiun,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,107,,Hindu
+35.19.08,3,Madiun,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,107,nil,Budha
+35.19.08,3,Madiun,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,107,nil,Lainnya
+35.19.14,3,Sawahan,religion,islam,,25230,jiwa,2025,registration,total_population,4.3.1,107,,Islam
+35.19.14,3,Sawahan,religion,kristen,,146,jiwa,2025,registration,total_population,4.3.1,107,,Protestan
+35.19.14,3,Sawahan,religion,katolik,,32,jiwa,2025,registration,total_population,4.3.1,107,,Katolik
+35.19.14,3,Sawahan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,107,nil,Hindu
+35.19.14,3,Sawahan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,107,nil,Budha
+35.19.14,3,Sawahan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,107,nil,Lainnya
+35.19.09,3,Jiwan,religion,islam,,35455,jiwa,2025,registration,total_population,4.3.1,107,,Islam
+35.19.09,3,Jiwan,religion,kristen,,162,jiwa,2025,registration,total_population,4.3.1,107,,Protestan
+35.19.09,3,Jiwan,religion,katolik,,12,jiwa,2025,registration,total_population,4.3.1,107,,Katolik
+35.19.09,3,Jiwan,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,107,,Hindu
+35.19.09,3,Jiwan,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,107,,Budha
+35.19.09,3,Jiwan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,107,nil,Lainnya
+35.19,2,Kabupaten Madiun,religion,islam,,731289,jiwa,2025,registration,total_population,4.3.1,107,,Islam
+35.19,2,Kabupaten Madiun,religion,kristen,,5563,jiwa,2025,registration,total_population,4.3.1,107,,Protestan
+35.19,2,Kabupaten Madiun,religion,katolik,,1283,jiwa,2025,registration,total_population,4.3.1,107,,Katolik
+35.19,2,Kabupaten Madiun,religion,hindu,,36,jiwa,2025,registration,total_population,4.3.1,107,,Hindu
+35.19,2,Kabupaten Madiun,religion,buddha,,57,jiwa,2025,registration,total_population,4.3.1,107,,Budha
+35.19,2,Kabupaten Madiun,religion,lainnya,,11,jiwa,2025,registration,total_population,4.3.1,107,,Lainnya
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/padi_padian,,82491,rupiah,2024,survey_estimate,per_capita,10.1,237,,Padi-padian
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/padi_padian,,83773,rupiah,2025,survey_estimate,per_capita,10.1,237,,Padi-padian
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/umbi_umbian,,5838,rupiah,2024,survey_estimate,per_capita,10.1,237,,Umbi-umbian
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/umbi_umbian,,7656,rupiah,2025,survey_estimate,per_capita,10.1,237,,Umbi-umbian
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,23266,rupiah,2024,survey_estimate,per_capita,10.1,237,,Ikan/udang/cumi/kerang
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,24451,rupiah,2025,survey_estimate,per_capita,10.1,237,,Ikan/udang/cumi/kerang
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/daging,,24722,rupiah,2024,survey_estimate,per_capita,10.1,237,,Daging
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/daging,,27035,rupiah,2025,survey_estimate,per_capita,10.1,237,,Daging
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/telur_dan_susu,,31188,rupiah,2024,survey_estimate,per_capita,10.1,237,,Telur dan susu
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/telur_dan_susu,,36327,rupiah,2025,survey_estimate,per_capita,10.1,237,,Telur dan susu
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/sayur_sayuran,,52419,rupiah,2024,survey_estimate,per_capita,10.1,237,,Sayur-sayuran
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/sayur_sayuran,,56274,rupiah,2025,survey_estimate,per_capita,10.1,237,,Sayur-sayuran
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/kacang_kacangan,,19912,rupiah,2024,survey_estimate,per_capita,10.1,237,,Kacang-kacangan
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/kacang_kacangan,,24447,rupiah,2025,survey_estimate,per_capita,10.1,237,,Kacang-kacangan
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/buah_buahan,,31751,rupiah,2024,survey_estimate,per_capita,10.1,237,,Buah-buahan
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/buah_buahan,,40624,rupiah,2025,survey_estimate,per_capita,10.1,237,,Buah-buahan
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16816,rupiah,2024,survey_estimate,per_capita,10.1,237,,Minyak dan kelapa
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22571,rupiah,2025,survey_estimate,per_capita,10.1,237,,Minyak dan kelapa
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/bahan_minuman,,20847,rupiah,2024,survey_estimate,per_capita,10.1,237,,Bahan minuman
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/bahan_minuman,,25829,rupiah,2025,survey_estimate,per_capita,10.1,237,,Bahan minuman
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/bumbu_bumbuan,,12647,rupiah,2024,survey_estimate,per_capita,10.1,237,,Bumbu-bumbuan
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/bumbu_bumbuan,,14842,rupiah,2025,survey_estimate,per_capita,10.1,237,,Bumbu-bumbuan
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/konsumsi_lainnya,,11756,rupiah,2024,survey_estimate,per_capita,10.1,237,,Konsumsi lainnya
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/konsumsi_lainnya,,9115,rupiah,2025,survey_estimate,per_capita,10.1,237,,Konsumsi lainnya
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,182161,rupiah,2024,survey_estimate,per_capita,10.1,237,,Makanan dan minuman jadi
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,209424,rupiah,2025,survey_estimate,per_capita,10.1,237,,Makanan dan minuman jadi
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/rokok,,80448,rupiah,2024,survey_estimate,per_capita,10.1,237,,Rokok
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/rokok,,69920,rupiah,2025,survey_estimate,per_capita,10.1,237,,Rokok
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/jumlah_makanan,,596262,rupiah,2024,survey_estimate,per_capita,10.1,237,,Jumlah makanan
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/jumlah_makanan,,652289,rupiah,2025,survey_estimate,per_capita,10.1,237,,Jumlah makanan
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,237539,rupiah,2024,survey_estimate,per_capita,10.1,237,,Perumahan dan fasilitas rumah tangga
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,239635,rupiah,2025,survey_estimate,per_capita,10.1,237,,Perumahan dan fasilitas rumah tangga
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,114252,rupiah,2024,survey_estimate,per_capita,10.1,237,,Aneka barang dan jasa
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,133825,rupiah,2025,survey_estimate,per_capita,10.1,237,,Aneka barang dan jasa
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,18070,rupiah,2024,survey_estimate,per_capita,10.1,237,,"Pakaian, alas kaki, dan tutup kepala"
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,24840,rupiah,2025,survey_estimate,per_capita,10.1,237,,"Pakaian, alas kaki, dan tutup kepala"
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/barang_tahan_lama,,52588,rupiah,2024,survey_estimate,per_capita,10.1,237,,Barang tahan lama
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/barang_tahan_lama,,60197,rupiah,2025,survey_estimate,per_capita,10.1,237,,Barang tahan lama
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,54148,rupiah,2024,survey_estimate,per_capita,10.1,237,,"Pajak, pungutan, dan asuransi"
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,61059,rupiah,2025,survey_estimate,per_capita,10.1,237,,"Pajak, pungutan, dan asuransi"
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,26280,rupiah,2024,survey_estimate,per_capita,10.1,237,,Keperluan pesta dan upacara/kenduri
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,24484,rupiah,2025,survey_estimate,per_capita,10.1,237,,Keperluan pesta dan upacara/kenduri
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,502877,rupiah,2024,survey_estimate,per_capita,10.1,237,,Jumlah bukan makanan
+35.19,2,Kabupaten Madiun,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,544040,rupiah,2025,survey_estimate,per_capita,10.1,237,,Jumlah bukan makanan
+35.19,2,Kabupaten Madiun,expenditure,total,,1196328,rupiah,2025,survey_estimate,per_capita,10.1,237,,

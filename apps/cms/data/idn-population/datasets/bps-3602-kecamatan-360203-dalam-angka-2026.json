@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3602-kecamatan-360203-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.02.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bayah Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lebak",
+  "publisherDomain": "3602",
+  "publisherWebsite": "https://lebakkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lebak (https://lebakkab.bps.go.id), publikasi \"Kecamatan Bayah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "36020.26007",
+  "issn": "3031-6863",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lebakkab.bps.go.id/id/publication/2026/09/28/5c4c476988efb257d1d30224/kecamatan-bayah-dalam-angka-2026.html",
+  "sourceFileSha256": "e8f2ce28d2694cbfd5592ba580ad15c1681d19f57ad566dbb15f97b931767d00",
+  "sourceFileBytes": 7785016,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lebak.",
+  "csvPath": "datasets/bps-3602-kecamatan-360203-dalam-angka-2026.csv",
+  "csvSha256": "190b178bd2c7df2cecc8cc2c033fe8fefd75b719ec295fa9667e5d65bb63b7f9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Bayah, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bayah, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Bayah Bayah District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Bayah Bayah District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Bayah Bayah District\": unmatched "
+  ]
+}

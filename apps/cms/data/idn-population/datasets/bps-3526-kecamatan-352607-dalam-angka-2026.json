@@ -1,0 +1,53 @@
+{
+  "datasetCode": "bps-3526-kecamatan-352607-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.26.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Klampis Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bangkalan",
+  "publisherDomain": "3526",
+  "publisherWebsite": "https://bangkalankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bangkalan (https://bangkalankab.bps.go.id), publikasi \"Kecamatan Klampis Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3526180",
+  "publicationNumber": "35260.26022",
+  "issn": "2808-0521",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bangkalankab.bps.go.id/id/publication/2026/09/28/5b368476abd7c5a41f45abf4/kecamatan-klampis-dalam-angka-2026.html",
+  "sourceFileSha256": "86cbcb829fa485ae4e7305a16fce24e90e850f68a459f2228a128e37a7fd3b16",
+  "sourceFileBytes": 23332921,
+  "sourcePages": [31, 32, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bangkalan.",
+  "csvPath": "datasets/bps-3526-kecamatan-352607-dalam-angka-2026.csv",
+  "csvSha256": "acc7439f1e3f4f3cc0086821083661472adad38ac1768127bb23115406235733",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Klampis, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Klampis, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Muarah\": unmatched ",
+    "table 3.1: row not stored: row \"Bantean\": unmatched ",
+    "table 3.1: row not stored: row \"Tenggun Daya\": unmatched ",
+    "table 3.1: row not stored: row \"Muarah\": unmatched ",
+    "table 3.1: row not stored: row \"Bantean\": unmatched ",
+    "table 3.1: row not stored: row \"Tenggun Daya\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Klampis\": unmatched ",
+    "table 3.1: row not stored: row \"Catatan : Data Konsolidasi Bersih Desember Sumber : Dinas Kependudukan dan Pencatatan\": unmatched ",
+    "table 3.3: row not stored: row \"Catatan : Data Konsolidasi Bersih Desember Sumber : Dinas Kependudukan dan Pencatatan\": unmatched "
+  ]
+}

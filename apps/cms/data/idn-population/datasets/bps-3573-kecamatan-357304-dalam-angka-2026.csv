@@ -1,0 +1,50 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.73.04.1003,4,Kebonsari,sex,laki_laki,,5421,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.04.1003,4,Kebonsari,sex,perempuan,,5515,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.04.1003,4,Kebonsari,total,total,,10936,jiwa,2025,registration,total_population,3.1,32,,
+35.73.04.1002,4,Gadang,sex,laki_laki,,10454,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.04.1002,4,Gadang,sex,perempuan,,10322,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.04.1002,4,Gadang,total,total,,20776,jiwa,2025,registration,total_population,3.1,32,,
+35.73.04.1001,4,Ciptomulyo,sex,laki_laki,,6698,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.04.1001,4,Ciptomulyo,sex,perempuan,,6644,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.04.1001,4,Ciptomulyo,total,total,,13342,jiwa,2025,registration,total_population,3.1,32,,
+35.73.04.1005,4,Sukun,sex,laki_laki,,9474,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.04.1005,4,Sukun,sex,perempuan,,9776,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.04.1005,4,Sukun,total,total,,19250,jiwa,2025,registration,total_population,3.1,32,,
+35.73.04.1004,4,Bandungrejosari,sex,laki_laki,,16107,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.04.1004,4,Bandungrejosari,sex,perempuan,,16203,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.04.1004,4,Bandungrejosari,total,total,,32310,jiwa,2025,registration,total_population,3.1,32,,
+35.73.04.1011,4,Bakalankrajan,sex,laki_laki,,5660,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.04.1011,4,Bakalankrajan,sex,perempuan,,5480,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.04.1011,4,Bakalankrajan,total,total,,11140,jiwa,2025,registration,total_population,3.1,32,,
+35.73.04.1010,4,Mulyorejo,sex,laki_laki,,9077,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.04.1010,4,Mulyorejo,sex,perempuan,,8722,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.04.1010,4,Mulyorejo,total,total,,17799,jiwa,2025,registration,total_population,3.1,32,,
+35.73.04.1008,4,Bandulan,sex,laki_laki,,8982,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.04.1008,4,Bandulan,sex,perempuan,,8991,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.04.1008,4,Bandulan,total,total,,17973,jiwa,2025,registration,total_population,3.1,32,,
+35.73.04.1006,4,Tanjungrejo,sex,laki_laki,,14529,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.04.1006,4,Tanjungrejo,sex,perempuan,,14432,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.04.1006,4,Tanjungrejo,total,total,,28961,jiwa,2025,registration,total_population,3.1,32,,
+35.73.04.1007,4,Pisangcandi,sex,laki_laki,,7309,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.04.1007,4,Pisangcandi,sex,perempuan,,7349,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.04.1007,4,Pisangcandi,total,total,,14658,jiwa,2025,registration,total_population,3.1,32,,
+35.73.04.1009,4,Karangbesuki,sex,laki_laki,,10058,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+35.73.04.1009,4,Karangbesuki,sex,perempuan,,10246,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+35.73.04.1009,4,Karangbesuki,total,total,,20304,jiwa,2025,registration,total_population,3.1,32,,
+35.73.04,3,Sukun,age_group,0-4,,10131,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+35.73.04,3,Sukun,age_group,5-9,,15820,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+35.73.04,3,Sukun,age_group,10-14,,16290,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+35.73.04,3,Sukun,age_group,15-19,,15916,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+35.73.04,3,Sukun,age_group,20-24,,15652,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+35.73.04,3,Sukun,age_group,25-29,,15382,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+35.73.04,3,Sukun,age_group,30-34,,15403,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+35.73.04,3,Sukun,age_group,35-39,,15162,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+35.73.04,3,Sukun,age_group,40-44,,17167,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+35.73.04,3,Sukun,age_group,45-49,,15591,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+35.73.04,3,Sukun,age_group,50-54,,13720,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+35.73.04,3,Sukun,age_group,55-59,,12524,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+35.73.04,3,Sukun,age_group,60-64,,10217,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+35.73.04,3,Sukun,age_group,65-69,,8129,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+35.73.04,3,Sukun,age_group,70-74,,5079,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+35.73.04,3,Sukun,age_group,75+,,5266,jiwa,2025,registration,total_population,3.2,34,,75 +

@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.02.09.2004,4,Lebakkeusik,sex,laki_laki,,1505,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+36.02.09.2004,4,Lebakkeusik,sex,perempuan,,1383,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+36.02.09.2004,4,Lebakkeusik,total,total,,2888,jiwa,2025,registration,total_population,3.1,30,,
+36.02.09.2010,4,Jalupanggirang,sex,laki_laki,,1551,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+36.02.09.2010,4,Jalupanggirang,sex,perempuan,,1465,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+36.02.09.2010,4,Jalupanggirang,total,total,,3016,jiwa,2025,registration,total_population,3.1,30,,
+36.02.09.2018,4,Kaduhauk,sex,laki_laki,,1948,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+36.02.09.2018,4,Kaduhauk,sex,perempuan,,1835,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+36.02.09.2018,4,Kaduhauk,total,total,,3783,jiwa,2025,registration,total_population,3.1,31,,
+36.02.09.2019,4,Labanjaya,sex,laki_laki,,1396,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+36.02.09.2019,4,Labanjaya,sex,perempuan,,1303,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+36.02.09.2019,4,Labanjaya,total,total,,2699,jiwa,2025,registration,total_population,3.1,31,,
+36.02.09.2020,4,Umbuljaya,sex,laki_laki,,1210,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+36.02.09.2020,4,Umbuljaya,sex,perempuan,,1110,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+36.02.09.2020,4,Umbuljaya,total,total,,2320,jiwa,2025,registration,total_population,3.1,31,,
+36.02.09.2021,4,Kertarahayu,sex,laki_laki,,891,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+36.02.09.2021,4,Kertarahayu,sex,perempuan,,831,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+36.02.09.2021,4,Kertarahayu,total,total,,1722,jiwa,2025,registration,total_population,3.1,31,,
+36.02.09,3,Banjarsari,age_group,0-4,laki_laki,2657,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+36.02.09,3,Banjarsari,age_group,0-4,perempuan,2402,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+36.02.09,3,Banjarsari,age_group,0-4,,5059,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+36.02.09,3,Banjarsari,age_group,5-9,laki_laki,3587,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+36.02.09,3,Banjarsari,age_group,5-9,perempuan,3137,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+36.02.09,3,Banjarsari,age_group,5-9,,6724,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+36.02.09,3,Banjarsari,age_group,10-14,laki_laki,3417,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+36.02.09,3,Banjarsari,age_group,10-14,perempuan,3039,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+36.02.09,3,Banjarsari,age_group,10-14,,6456,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+36.02.09,3,Banjarsari,age_group,15-19,laki_laki,2843,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+36.02.09,3,Banjarsari,age_group,15-19,perempuan,2681,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+36.02.09,3,Banjarsari,age_group,15-19,,5524,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+36.02.09,3,Banjarsari,age_group,20-24,laki_laki,2934,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+36.02.09,3,Banjarsari,age_group,20-24,perempuan,2936,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+36.02.09,3,Banjarsari,age_group,20-24,,5870,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+36.02.09,3,Banjarsari,age_group,25-29,laki_laki,3420,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+36.02.09,3,Banjarsari,age_group,25-29,perempuan,2911,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+36.02.09,3,Banjarsari,age_group,25-29,,6331,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+36.02.09,3,Banjarsari,age_group,30-34,laki_laki,2931,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+36.02.09,3,Banjarsari,age_group,30-34,perempuan,2563,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+36.02.09,3,Banjarsari,age_group,30-34,,5494,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+36.02.09,3,Banjarsari,age_group,35-39,laki_laki,2922,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+36.02.09,3,Banjarsari,age_group,35-39,perempuan,2681,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+36.02.09,3,Banjarsari,age_group,35-39,,5603,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+36.02.09,3,Banjarsari,age_group,40-44,laki_laki,2788,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+36.02.09,3,Banjarsari,age_group,40-44,perempuan,2683,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+36.02.09,3,Banjarsari,age_group,40-44,,5471,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+36.02.09,3,Banjarsari,age_group,45-49,laki_laki,2515,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+36.02.09,3,Banjarsari,age_group,45-49,perempuan,2561,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+36.02.09,3,Banjarsari,age_group,45-49,,5076,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+36.02.09,3,Banjarsari,age_group,50-54,laki_laki,2061,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+36.02.09,3,Banjarsari,age_group,50-54,perempuan,2128,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+36.02.09,3,Banjarsari,age_group,50-54,,4189,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+36.02.09,3,Banjarsari,age_group,55-59,laki_laki,1860,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+36.02.09,3,Banjarsari,age_group,55-59,perempuan,1938,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+36.02.09,3,Banjarsari,age_group,55-59,,3798,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+36.02.09,3,Banjarsari,age_group,60-64,laki_laki,1494,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+36.02.09,3,Banjarsari,age_group,60-64,perempuan,1410,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+36.02.09,3,Banjarsari,age_group,60-64,,2904,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+36.02.09,3,Banjarsari,age_group,65-69,laki_laki,1132,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+36.02.09,3,Banjarsari,age_group,65-69,perempuan,1032,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+36.02.09,3,Banjarsari,age_group,65-69,,2164,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+36.02.09,3,Banjarsari,age_group,70-74,laki_laki,528,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+36.02.09,3,Banjarsari,age_group,70-74,perempuan,509,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+36.02.09,3,Banjarsari,age_group,70-74,,1037,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+36.02.09,3,Banjarsari,age_group,75+,laki_laki,741,jiwa,2025,registration,total_population,3.2,34,,75 +
+36.02.09,3,Banjarsari,age_group,75+,perempuan,890,jiwa,2025,registration,total_population,3.2,34,,75 +
+36.02.09,3,Banjarsari,age_group,75+,,1631,jiwa,2025,registration,total_population,3.2,34,,75 +

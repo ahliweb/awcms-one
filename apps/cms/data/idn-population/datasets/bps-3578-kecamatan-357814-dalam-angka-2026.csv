@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.78.14.1006,4,Karangpoh,sex,laki_laki,,7957,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.14.1006,4,Karangpoh,sex,perempuan,,8114,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.14.1006,4,Karangpoh,total,total,,16071,jiwa,2025,registration,total_population,3.1,29,,
+35.78.14.1007,4,Balongsari,sex,laki_laki,,4726,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.14.1007,4,Balongsari,sex,perempuan,,4842,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.14.1007,4,Balongsari,total,total,,9568,jiwa,2025,registration,total_population,3.1,29,,
+35.78.14.1011,4,Manukan Wetan,sex,laki_laki,,4884,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.14.1011,4,Manukan Wetan,sex,perempuan,,4829,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.14.1011,4,Manukan Wetan,total,total,,9713,jiwa,2025,registration,total_population,3.1,29,,
+35.78.14.1009,4,Manukan Kulon,sex,laki_laki,,17152,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.14.1009,4,Manukan Kulon,sex,perempuan,,18197,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.14.1009,4,Manukan Kulon,total,total,,35349,jiwa,2025,registration,total_population,3.1,29,,
+35.78.14.1012,4,Banjar Sugihan,sex,laki_laki,,5471,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.14.1012,4,Banjar Sugihan,sex,perempuan,,5610,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.14.1012,4,Banjar Sugihan,total,total,,11081,jiwa,2025,registration,total_population,3.1,29,,
+35.78.14.1002,4,Tandes,sex,laki_laki,,4494,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.14.1002,4,Tandes,sex,perempuan,,4723,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.14.1002,4,Tandes,total,total,,9217,jiwa,2025,registration,total_population,3.1,29,,
+35.78.14,3,Kecamatan Tandes,sex,laki_laki,,44684,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.14,3,Kecamatan Tandes,sex,perempuan,,46315,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.14,3,Kecamatan Tandes,total,total,,90999,jiwa,2025,registration,total_population,3.1,29,,
+35.78.14,3,Tandes,age_group,0-4,laki_laki,2639,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.14,3,Tandes,age_group,0-4,perempuan,2521,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.14,3,Tandes,age_group,0-4,,5160,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.14,3,Tandes,age_group,5-9,laki_laki,3414,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.14,3,Tandes,age_group,5-9,perempuan,3265,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.14,3,Tandes,age_group,5-9,,6679,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.14,3,Tandes,age_group,10-14,laki_laki,3800,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.14,3,Tandes,age_group,10-14,perempuan,3662,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.14,3,Tandes,age_group,10-14,,7462,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.14,3,Tandes,age_group,15-19,laki_laki,3901,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.14,3,Tandes,age_group,15-19,perempuan,3664,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.14,3,Tandes,age_group,15-19,,7565,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.14,3,Tandes,age_group,20-24,laki_laki,3522,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.14,3,Tandes,age_group,20-24,perempuan,3483,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.14,3,Tandes,age_group,20-24,,7005,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.14,3,Tandes,age_group,25-29,laki_laki,3219,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.14,3,Tandes,age_group,25-29,perempuan,3138,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.14,3,Tandes,age_group,25-29,,6357,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.14,3,Tandes,age_group,30-34,laki_laki,3130,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.14,3,Tandes,age_group,30-34,perempuan,3275,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.14,3,Tandes,age_group,30-34,,6405,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.14,3,Tandes,age_group,35-39,laki_laki,3077,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.14,3,Tandes,age_group,35-39,perempuan,3078,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.14,3,Tandes,age_group,35-39,,6155,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.14,3,Tandes,age_group,40-44,laki_laki,3825,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.14,3,Tandes,age_group,40-44,perempuan,3997,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.14,3,Tandes,age_group,40-44,,7822,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.14,3,Tandes,age_group,45-49,laki_laki,3797,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.14,3,Tandes,age_group,45-49,perempuan,3754,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.14,3,Tandes,age_group,45-49,,7551,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.14,3,Tandes,age_group,50-54,laki_laki,3097,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.14,3,Tandes,age_group,50-54,perempuan,3421,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.14,3,Tandes,age_group,50-54,,6518,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.14,3,Tandes,age_group,55-59,laki_laki,2340,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.14,3,Tandes,age_group,55-59,perempuan,2455,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.14,3,Tandes,age_group,55-59,,4795,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.14,3,Tandes,age_group,60-64,laki_laki,1664,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.14,3,Tandes,age_group,60-64,perempuan,2032,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.14,3,Tandes,age_group,60-64,,3696,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.14,3,Tandes,age_group,65-69,laki_laki,1288,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.14,3,Tandes,age_group,65-69,perempuan,1968,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.14,3,Tandes,age_group,65-69,,3256,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.14,3,Tandes,age_group,70-74,laki_laki,1031,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.14,3,Tandes,age_group,70-74,perempuan,1410,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.14,3,Tandes,age_group,70-74,,2441,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.14,3,Tandes,age_group,75+,laki_laki,940,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.14,3,Tandes,age_group,75+,perempuan,1192,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.14,3,Tandes,age_group,75+,,2132,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.14,3,Kecamatan Tandes,sex,laki_laki,,44684,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+35.78.14,3,Kecamatan Tandes,sex,perempuan,,46315,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+35.78.14,3,Kecamatan Tandes,total,total,,90999,jiwa,2025,registration,total_population,3.2,31,,
