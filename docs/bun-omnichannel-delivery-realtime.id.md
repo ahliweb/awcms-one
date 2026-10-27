@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](bun-omnichannel-delivery-realtime.md)
 
-<!-- i18n-source-hash: sha256:676440048ce1aa2f8c81e57b02ea0e8d5f2e9883eb0b2b68479b86d01d8cfaad -->
+<!-- i18n-source-hash: sha256:381ae852de45bc4e351b9a037d8588188c93b759a631dfcead5a069cfa7ebe02 -->
 
 # Standar CRM AWCMS-One untuk dispatcher dan real-time Bun-only (usulan)
 
@@ -18,7 +18,7 @@ AWCMS-One adalah Bun monorepo dengan pin **`bun@1.4.4`** di `package.json`. `app
 | --- | --- | --- |
 | Email/Mailketing generik | Upstream `email` mempunyai `bun run email:dispatch` dan adapter Mailketing v1 | Multi-akun/v2 CRM #461 dan upstream #1158–#1162 menggunakan antrean email dan API provider yang ada, tanpa mailer kedua |
 | WhatsApp | Bun `whatsapp:dispatch` Meta/Fonnte/log; commerce masih memiliki migrasi mode legacy/upstream | StarSender multi-device / Meta multi-WABA #458/#1141–#1143 memakai **satu antrean WhatsApp Bun** sesudah cutover aman, default per tenant/brand; bukan lewat WebSocket |
-| Web Push | Worker Bun `push:dispatch`; langganan customer #430–#432 belum selesai | Worker push Bun dan service worker browser; bukan Node FCM/push |
+| Web Push | Worker Bun `push:dispatch`; langganan perangkat pelanggan (#430) dan worker fan-out transaksional `commerce:customer-push:dispatch` (#432) sudah ada, push pemasaran dicadangkan dan belum dibangun | Worker push Bun dan service worker browser; bukan Node FCM/push |
 | Telegram | `telegram_delivery` khusus staf | Multi-bot pelanggan #460/#1155–#1157 menggunakan kemampuan Bun yang diadmit terpisah; tidak memakai queue staf |
 | Kampanye sosial | Registry/publikasi sosial masih direncanakan; segmen/kampanye commerce sudah tersedia | Worker Bun yang menghormati izin API, consent dan akun target |
 | OMES/Hermes | Pemantauan host/agen ada; AI CRM #459 direncanakan | AWCMS Bun memproyeksikan status teredaksi; OMES worker host Python dan runtime Hermes tetap terpisah |

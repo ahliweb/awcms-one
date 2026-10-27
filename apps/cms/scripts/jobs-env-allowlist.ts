@@ -266,7 +266,12 @@ export const JOB_SCOPED: readonly JobScopedSecret[] = [
     jobs: [
       {
         target: "push:dispatch",
-        reason: "the only job that sends Web Push (signs each VAPID JWT)"
+        reason: "signs each staff Web Push VAPID JWT"
+      },
+      {
+        target: "commerce:customer-push:dispatch",
+        reason:
+          "signs each customer Web Push VAPID JWT (the same application server key, a second dispatcher; #432)"
       }
     ]
   },
@@ -280,12 +285,22 @@ export const JOB_SCOPED: readonly JobScopedSecret[] = [
         reason: "decrypts the auth secret to encrypt each payload"
       },
       {
+        target: "commerce:customer-push:dispatch",
+        reason:
+          "decrypts the customer device endpoint and auth secret to address and encrypt each payload (#432)"
+      },
+      {
         target: "push:auth-secret:backfill",
         reason: "operator run: encrypts legacy plaintext auth secrets (#1089)"
       },
       {
         target: "push:auth-secret:rekey",
         reason: "operator run: re-encrypts under the new first key (#1098)"
+      },
+      {
+        target: "commerce:customer-push:rekey",
+        reason:
+          "operator run: re-encrypts the customer push endpoint and auth secret under the new first key (#430)"
       }
     ]
   },

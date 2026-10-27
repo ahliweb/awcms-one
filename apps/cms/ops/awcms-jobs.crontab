@@ -83,6 +83,26 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 # the next run's scan.
 */15 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-customer-auth-purge.lock $AWCMS_RUN_JOB commerce:customer-auth:purge >> $AWCMS_JOB_LOG/commerce-customer-auth-purge.log 2>&1
 
+# commerce — Drain the due customer Web Push outbox (Issue #432, ADR-0048) for
+# every active tenant that turned the customerPush feature on: claim with a
+# lease, re-check eligibility at send time (revoked device, withdrawn
+# preference, blocked account, ended session, stale origin all cancel with no
+# provider call), apply the per-account cap (12 per hour, 40 per day), send
+# through the upstream Web Push provider with a TTL and an Urgency header, and
+# record every attempt. A 404/410 from the push service revokes the device;
+# other failures back off exponentially. `sent` means the push service
+# accepted the request, never that a device displayed it. Idempotent: a sent
+# row is terminal and a claimed row is invisible until its lease lapses.
+* * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-customer-push-dispatch.lock $AWCMS_RUN_JOB commerce:customer-push:dispatch >> $AWCMS_JOB_LOG/commerce-customer-push-dispatch.log 2>&1
+
+# commerce — Customer Web Push housekeeping across all tenants (Issue #430,
+# ADR-0048): revokes the devices of ended customer sessions and of blocked
+# accounts (destroying their stored credentials), then purges tombstoned
+# devices, terminal messages and attempts older than the 30-day retention
+# window. Runs even when the customerPush feature is off, because rows from an
+# earlier period still need removing. Idempotent and bounded.
+*/15 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-customer-push-maintenance.lock $AWCMS_RUN_JOB commerce:customer-push:maintenance >> $AWCMS_JOB_LOG/commerce-customer-push-maintenance.log 2>&1
+
 # commerce — Recompute every active tenant's non-draft, non-ended flash sales
 # against now() and persist the derived status, firing
 # commerce.flash_sale.started/.ended on the transition. Idempotent — a sale
@@ -309,6 +329,12 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 #   find nothing and burn a connection every night forever. An operator runs it
 #   with --commit after sql/134 is applied, repeating until the report stops
 #   saying partial.
+
+# commerce:customer-push:rekey
+#   A key-rotation action (Issue #430, ADR-0048 Q2): run by an operator after
+#   adding a new first key to PUSH_AUTH_SECRET_ENCRYPTION_KEYS, until no active
+#   device carries a ciphertext under the old key id, and only then is the old
+#   key removed. A timer would re-scan an unchanged table forever.
 
 # config:validate
 #   A deploy gate, not a background task: it runs as the first stage of a

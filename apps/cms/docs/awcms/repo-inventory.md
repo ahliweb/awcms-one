@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 34    |
-| Migrations                          | 359   |
-| `awcms_*` tables                    | 321   |
-| Tables with `FORCE` RLS             | 301   |
+| Migrations                          | 364   |
+| `awcms_*` tables                    | 325   |
+| Tables with `FORCE` RLS             | 305   |
 | RLS-free tables (global, by design) | 20    |
-| Test files                          | 931   |
-| Route files                         | 846   |
+| Test files                          | 936   |
+| Route files                         | 850   |
 | ADR                                 | 294   |
 
 ### Modules
@@ -417,7 +417,12 @@
 | 356 | `sql/1054_awcms_commerce_booking_pos_guard_marker.sql`                      |
 | 357 | `sql/1054_awcms_commerce_booking_revenue_export_permission.sql`             |
 | 358 | `sql/1055_awcms_commerce_booking_revenue_refund_payable.sql`                |
-| 359 | `sql/1060_awcms_commerce_segment_rule_schema_version.sql`                   |
+| 359 | `sql/1056_awcms_commerce_customer_push_devices_schema.sql`                  |
+| 360 | `sql/1057_awcms_commerce_customer_push_outbox_schema.sql`                   |
+| 361 | `sql/1058_awcms_commerce_customer_push_worker_grants.sql`                   |
+| 362 | `sql/1059_awcms_commerce_customer_push_permissions.sql`                     |
+| 363 | `sql/1060_awcms_commerce_segment_rule_schema_version.sql`                   |
+| 364 | `sql/1061_awcms_commerce_customer_push_fanout_worker_grants.sql`            |
 
 ### Tables & Row-Level Security
 
@@ -526,6 +531,10 @@
 | `awcms_commerce_product_variants`                | `sql/905_awcms_commerce_product_images_variants.sql`          | yes | yes   |
 | `awcms_commerce_products`                        | `sql/901_awcms_commerce_schema.sql`                           | yes | yes   |
 | `awcms_commerce_protected_media_links`           | `sql/939_awcms_commerce_protected_media_links_schema.sql`     | yes | yes   |
+| `awcms_commerce_push_delivery_attempts`          | `sql/1057_awcms_commerce_customer_push_outbox_schema.sql`     | yes | yes   |
+| `awcms_commerce_push_devices`                    | `sql/1056_awcms_commerce_customer_push_devices_schema.sql`    | yes | yes   |
+| `awcms_commerce_push_messages`                   | `sql/1057_awcms_commerce_customer_push_outbox_schema.sql`     | yes | yes   |
+| `awcms_commerce_push_preferences`                | `sql/1056_awcms_commerce_customer_push_devices_schema.sql`    | yes | yes   |
 | `awcms_commerce_quotation_versions`              | `sql/980_awcms_commerce_documents_schema.sql`                 | yes | yes   |
 | `awcms_commerce_quotations`                      | `sql/980_awcms_commerce_documents_schema.sql`                 | yes | yes   |
 | `awcms_commerce_refund_compensations`            | `sql/994_awcms_commerce_returns_schema.sql`                   | yes | yes   |
@@ -749,16 +758,16 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 670        |
+| `(root)`      | 672        |
 | `e2e`         | 28         |
-| `integration` | 232        |
+| `integration` | 235        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 702   |
+| `/api/v1/**`    | 706   |
 | `/admin/**`     | 113   |
 | publik / anonim | 31    |
 

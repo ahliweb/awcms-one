@@ -477,6 +477,31 @@ Migration `961` seeds `commerce.attributes.{read,manage}` and `commerce.products
 
 `sql/955` grants `awcms_worker` `SELECT, DELETE` on both tables (the expiry restock reads the snapshot; the retention engine ages both); `security-readiness.ts` records the application role's `SELECT, INSERT` on the snapshot and the worker's `SELECT, DELETE` on both.
 
+## Customer Web Push: four tables and two composite keys (`sql/1056`–`1059`, issue #430, [ADR-0048](adr/0048-customer-web-push-identity-subscription-and-cross-origin-contract.md))
+
+Option C of the ADR: `commerce` owns the customer devices, the consent and a thin outbox, and writes no upstream table. Column meanings are in [`docs/kamus-data.md`](kamus-data.md); this section is the shape.
+
+```
+awcms_tenants 1───* awcms_commerce_customer_accounts 1───* awcms_commerce_customer_sessions
+                           │ 1                                        │ 1 (SET NULL)
+                           ├────* awcms_commerce_push_preferences     │
+                           │ 1                                        │ *
+                           └────* awcms_commerce_push_devices *───────┘
+                                        │ 1
+                                        └────* awcms_commerce_push_messages 1───* awcms_commerce_push_delivery_attempts
+```
+
+| Migration  | What it does                                                                                                                                                                             |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sql/1056` | Adds `UNIQUE (tenant_id, id)` to customer accounts and sessions (the composite keys the new tables reference), then `awcms_commerce_push_devices` and `awcms_commerce_push_preferences`. |
+| `sql/1057` | `awcms_commerce_push_messages` (the outbox) and `awcms_commerce_push_delivery_attempts`.                                                                                                 |
+| `sql/1058` | The `awcms_worker` grants (column-only `UPDATE` on devices) and `awcms_commerce_push_devices_guard()`, a `BEFORE UPDATE` trigger with a pinned `search_path`.                            |
+| `sql/1059` | The permission `commerce.customer_push.read`.                                                                                                                                            |
+
+Issue #432 adds one migration to the family, `sql/1061` (`1062` is unused): the fan-out consumer and the dispatcher run as `awcms_worker`, so it receives a **column-only `INSERT`** on `awcms_commerce_push_messages` (the thirteen columns an enqueue supplies; every other column keeps its default, so a row cannot be inserted already `sent`) and its table-level `UPDATE` (sql/1058) is replaced by a **column-only `UPDATE`** on the status machine and the provider result (`status`, `retry_count`, `next_attempt_at`, `last_error`, `provider_name`, `provider_message_id`, `sent_at`, `updated_at`). The worker can therefore no longer redirect or rewrite an existing message (`account_id`, `device_id`, `purpose`, the text, the path, the expiry). The per-account cap lock became an advisory lock, because the worker has no `UPDATE` on accounts and `FOR UPDATE` needs one. No table or index is added: the existing dispatch, device, account-window and retention indexes cover the claim, the send-side cap and the expiry sweep.
+
+Invariants that live in the database: credentials (`endpoint_ciphertext`, `p256dh_key`, `auth_secret_ciphertext`) and `revoked_at` exist if and only if `status = 'active'` (CHECK); `UNIQUE (tenant_id, endpoint_hash)` makes a registration an upsert, never a duplicate; composite `(tenant_id, …)` foreign keys make a cross-tenant device, message or preference structurally impossible; `endpoint_hash` never changes; the `target_path`, `title`, `body`, `last_error` and `provider_response_snippet` shapes are constrained so a message cannot carry an absolute URL, order data or provider text. The account foreign keys cascade (an account removed takes its push data); the session foreign key sets `session_id` to NULL, so the customer-auth purge is never blocked by a device. Indexes: a partial `(tenant_id, account_id) WHERE status = 'active'` for fan-out, one per foreign-key column, `(tenant_id, status, revoked_at)` and `(tenant_id, status, updated_at)` for retention, `(tenant_id, status, next_attempt_at)` for the dispatcher and `(tenant_id, account_id, created_at DESC)` for the per-account rate window.
+
 ## Row-level security: `ENABLE` and `FORCE`, proven under the unprivileged role
 
 Every table above carries `ALTER TABLE ... ENABLE ROW LEVEL SECURITY` **and** `ALTER TABLE ... FORCE ROW LEVEL SECURITY`, with one tenant-isolation policy each:

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:47b5bd3154a0bee98f56c376f23151249d7f7bd7e0dad644d862557759955096 -->
+<!-- i18n-source-hash: sha256:9e7c494c4a2c0faa344fc983676000639a3f358e1b754d2a5b27ea4bc6a2c57f -->
 
 # `commerce`
 
@@ -1762,6 +1762,18 @@ Di balik fitur `booking`. Migrasi `sql/1043` (skema) dan `sql/1044` (tujuh kunci
 - **Layar**: `pages/admin/commerce-booking-policies.astro`, `components/CommerceBookingPanel.astro` pada detail order (dimuat oleh `application/booking-order-panel.ts`), `components/CommerceStepUpDialog.astro`, helper klien `lib/ui/commerce-booking-refund-client.ts` dan `lib/ui/commerce-stepup-client.ts`.
 - **Izin**: `commerce.booking_reservation_links.cancel`, `commerce.booking_refund_decisions.{read,create}`, `commerce.booking_refund_overrides.approve`, `commerce.booking_cancellation_policies.{read,create,approve}`; hanya `commerce.booking_reservation_links.update` (reschedule, #382) yang masih tertunda.
 - **Tidak ada di sini**: varian check-in dengan saldo belum dibayar (#383), penyelesaian otomatis leg (tamu tidak hadir dan jadwal ulang: Issue #382, di bawah).
+
+## Web Push pelanggan - perangkat, persetujuan, sambungan outbox - TERIMPLEMENTASI (Issue #430, [ADR-0048](../../../../../docs/adr/0048-customer-web-push-identity-subscription-and-cross-origin-contract.id.md))
+
+Di balik fitur `customerPush` per tenant (bawaan MATI = `404` netral; aktivasi produksi dihalangi tambahan oleh ADR-0048 D8). Migrasi `sql/1056` sampai `sql/1059`. Opsi C ADR: modul ini memiliki perangkat pelanggan, persetujuan, dan outbox tipis, dan mengimpor fungsi murni/domain `push_delivery` upstream (hash dan topeng endpoint, validator langganan, cincin kunci rahasia-auth) tanpa menulis tabel `awcms_push_*` mana pun. Sengaja tidak ada entri `push_delivery` di `dependencies` (tepi siklus hidup akan menghalangi pengaktifan commerce atau penonaktifan push); lihat catatan implementasi ADR.
+
+- **Tabel**: `awcms_commerce_push_devices`, `awcms_commerce_push_preferences`, `awcms_commerce_push_messages`, `awcms_commerce_push_delivery_attempts`; deskriptor siklus hidup data dan data subjek ada di `domain/customer-push-lifecycle.ts`, izinnya di `domain/customer-push-permissions.ts`.
+- **Aturan murni**: `domain/customer-push.ts` (tujuan, batas, aritmetika batas dan jendela laju, parser body yang ketat, versi teks persetujuan), `domain/customer-push-endpoint.ts` (allowlist host layanan push dan penggantian operator), `domain/customer-push-secrets.ts` (enkripsi dengan AAD terikat baris dan tujuan), `domain/customer-push-user-agent.ts` (deskripsi kasar dari kosakata tertutup).
+- **Aplikasi**: `application/customer-push-http.ts` (seluruh perilaku rute; berkas rute di `src/pages/api/v1/commerce/storefront/account/push/` hanya adaptor tipis), `customer-push-devices.ts` (satu-satunya berkas selain re-key yang menyebut kolom kredensial), `customer-push-preferences.ts`, `customer-push-outbox.ts` (sambungan untuk #432: `enqueueCustomerPushMessage`, `cancelPendingMessagesForDevices`), `customer-push-capability.ts`, `customer-push-audit.ts`, `customer-push-erasure.ts` (`eraseCustomerPushData`, `exportCustomerPushData`), `customer-push-maintenance.ts`, `customer-push-rekey.ts`, `customer-push-diagnostics.ts`.
+- **Rute**: `GET|POST|DELETE .../storefront/account/push/subscriptions`, `DELETE .../subscriptions/{id}`, `GET|PUT .../push/preferences` (hanya bearer), dan `GET /api/v1/commerce/customer-push/diagnostics` (`commerce.customer_push.read`, hitungan agregat). Logout (`.../account/logout`) dan pemblokiran pelanggan oleh admin (`PATCH /api/v1/commerce/customers/{id}`) mencabut perangkat dalam transaksinya sendiri.
+- **Job**: `commerce:customer-push:maintenance` (tiap 15 menit), `commerce:customer-push:dispatch` (tiap menit), dan `commerce:customer-push:rekey` (manual); pengaturan `COMMERCE_CUSTOMER_PUSH_EXTRA_ENDPOINT_HOSTS`.
+- **Fan-out (Issue #432)**: `domain/customer-push-policy.ts` (murni: peta peristiwa-ke-tujuan tertutup, enam string katalog, pembangun payload, `evaluateSendEligibility`, batas sisi-kirim, klasifikasi hasil provider dan penyuntingan cuplikan), `application/customer-push-enqueue.ts` (konsumen `commerce.customer_push_enqueuer`, hanya basis data), `application/customer-push-dispatch.ts` (claim, transaksi pra-kirim, kirim di luar transaksi apa pun, finalisasi), `application/customer-push-facts.ts`, `infrastructure/customer-push-provider.ts` (provider Web Push upstream dengan TTL, `Urgency`, dan origin storefront per pesan; satu-satunya berkas di sini yang mengimpornya) dan job `commerce:customer-push:dispatch` (tiap menit). Peristiwa baru `awcms.commerce.conversation.store_replied`, ditambahkan oleh `postStoreReply`. `sql/1061`: `INSERT` dan `UPDATE` worker hanya-kolom pada outbox.
+- **Belum ada**: UI storefront dan service worker (#431); push pemasaran; tes penerimaan terhadap layanan push sungguhan. Halaman: [`cms.id.md`](../../../../../docs/cms.id.md), [`api.id.md`](../../../../../docs/api.id.md), [`kamus-data.id.md`](../../../../../docs/kamus-data.id.md), [`deployment.id.md`](../../../../../docs/deployment.id.md).
 
 ## Resource tautan offering booking - TERIMPLEMENTASI (Issue #437, epik #280 - [ADR-0045](../../../../../docs/adr/0045-booking-commerce-adapter.id.md))
 

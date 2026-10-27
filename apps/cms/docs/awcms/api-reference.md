@@ -16351,6 +16351,144 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
 
+## Commerce Customer Push
+
+Issue #430 (ADR-0048). Customer Web Push device enrolment for storefront shoppers: the shopper's own browser push subscription (register, list, revoke one or all), the consent per purpose, and an aggregate-only staff diagnostics read. Bearer only (`customerBearer`, a `cs_` session token; never a cookie or a staff credential), behind the per-tenant `customerPush` feature (default OFF = a neutral 404). The endpoint is personal data and a bearer-grade capability: stored only as an AES-256-GCM envelope under the auth-secret key ring with a customer-specific AAD purpose, returned only masked, destroyed on revoke/logout/block. A host outside the browser push-service allowlist is refused; a shared storefront/CMS origin is unsupported in v1. Notifications carry generic text and a fixed storefront path only; `sent` means the push service accepted the request, never delivered or read. Staff diagnostics are gated on `commerce.customer_push.read`.
+
+### `GET /api/v1/commerce/customer-push/diagnostics` — Issue #430 (ADR-0048 Q10). AGGREGATE customer Web Push counts for staff: devices by status, messages by status and purpose, preferences by purpose. Gated on `commerce.customer_push.read`.
+
+- **operationId**: `getCommerceCustomerPushDiagnostics`
+- **Security**: bearerAuth
+
+Counts only. The answer never carries an endpoint (masked or not), a device id, an account or customer id, a token or a message text. `sent` means the push service accepted the request, never that anything was displayed or read: no figure is called "delivered". Feature off is `409 FEATURE_DISABLED` (the owner-route convention).
+
+**Responses**
+
+| Status | Description                                                           | Schema                                 |
+| ------ | --------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The aggregate diagnostics.                                            | object                                 |
+| 401    | Missing or invalid session.                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | FEATURE_DISABLED - the `customerPush` feature is off for this tenant. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/account/push/preferences` — Issue #430 (ADR-0048 sections 2.3, 6.1). The account's consent per push purpose.
+
+- **operationId**: `getCommerceStorefrontAccountPushPreferences`
+- **Security**: customerBearer
+
+**Responses**
+
+| Status | Description                                                                                                      | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | One entry per transactional purpose, in a fixed order; a purpose never set is `enabled: false` with no evidence. | object                                 |
+| 401    | UNAUTHENTICATED.                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 403    | ACCOUNT_BLOCKED.                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED, with `Retry-After`.                                                                                | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/commerce/storefront/account/push/preferences` — Issue #430 (ADR-0048 sections 2.3, 6.1). Set consent per purpose. Only the named purposes change; every change is audited.
+
+- **operationId**: `updateCommerceStorefrontAccountPushPreferences`
+- **Security**: customerBearer
+
+Turning a purpose ON needs the current consent wording version (`capability.consentTextVersion`) and is recorded with it; turning one OFF never needs it (a withdrawal is always possible) and keeps its row as evidence. `marketing` is reserved and refused. Transactional consent never implies marketing consent. Body cap 8 KiB.
+
+**Request body** (required): [`CommerceCustomerPushPreferencesRequest`](#schema-commercecustomerpushpreferencesrequest)
+
+**Responses**
+
+| Status | Description                                                                           | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The updated preferences.                                                              | object                                 |
+| 400    | Validation error.                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                                                      | [`ApiError`](#standard-error-envelope) |
+| 403    | ACCOUNT_BLOCKED or ACCOUNT_NOT_VERIFIED.                                              | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                   | [`ApiError`](#standard-error-envelope) |
+| 413    | PAYLOAD_TOO_LARGE (over 8 KiB).                                                       | [`ApiError`](#standard-error-envelope) |
+| 415    | UNSUPPORTED_MEDIA_TYPE.                                                               | [`ApiError`](#standard-error-envelope) |
+| 422    | VALIDATION_ERROR (a missing or stale `textVersion`, an unknown purpose, `marketing`). | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED, with `Retry-After`.                                                     | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/account/push/subscriptions` — Issue #430 (ADR-0048 section 6.1). Customer Web Push state: what the server knows (capability), the account's consent preferences and its active devices.
+
+- **operationId**: `getCommerceStorefrontAccountPushState`
+- **Security**: customerBearer
+
+Bearer only (`customerBearer`): no cookie, no staff credential. Behind the per-tenant `customerPush` feature (default OFF = the neutral `404`, the same body as an unresolvable tenant). `capability.enabled: false` is a first-class `200` (no VAPID key pair or key ring, or a storefront served from the CMS origin) and carries a `reason`; everything the BROWSER knows (Push API, installed iOS app, permission state) is detected by the storefront. Devices are listed masked (`endpointMasked`); the raw endpoint, the keys and the ciphertexts are never returned. Every answer carries `Cache-Control: private, no-store` and `Vary: Origin`; the CORS grant echoes only a tenant-resolved origin and never allows credentials.
+
+**Responses**
+
+| Status | Description                                  | Schema                                 |
+| ------ | -------------------------------------------- | -------------------------------------- |
+| 200    | The push state of the authenticated account. | object                                 |
+| 401    | UNAUTHENTICATED.                             | [`ApiError`](#standard-error-envelope) |
+| 403    | ACCOUNT_BLOCKED.                             | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                          | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED, with `Retry-After`.            | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/account/push/subscriptions` — Issue #430 (ADR-0048 sections 5.2, 6.1). Register or re-register this browser's push subscription. Idempotent by endpoint; one transaction; consent recorded with the wording version.
+
+- **operationId**: `registerCommerceStorefrontAccountPushDevice`
+- **Security**: customerBearer
+
+The body is the browser's `PushSubscription.toJSON()` plus `consent`; any other key (`transport`, `accountId`, `tenantId`, `title`, `body`, `navigate`, ...) is a `400`. The principal is the bearer's account and session, never the body. The endpoint's host must be a known browser push service (Google FCM, Mozilla, Apple, Microsoft; an operator environment setting can extend the list, a tenant or a request cannot) or the answer is `422 ENDPOINT_NOT_ALLOWED` and nothing is written. The `Origin` must be the tenant's own storefront origin (not the CMS origin): a deployment that serves the storefront and the CMS from one origin is unsupported in v1 (`422 ORIGIN_NOT_ALLOWED`, capability reason `origin_not_supported`). At most 5 active devices per account (`409 DEVICE_LIMIT`). `201` when the caller newly owns the device (new, revived, or transferred from another account on a shared browser - atomic, audited, the previous owner's queued notifications are cancelled; the caller learns nothing about the previous owner), `200` for a no-op re-registration. Body cap 8 KiB. Rate limits: 30 per hour per IP, 10 per hour per account.
+
+**Request body** (required): [`CommerceCustomerPushSubscribeRequest`](#schema-commercecustomerpushsubscriberequest)
+
+**Responses**
+
+| Status | Description                                                                                              | Schema                                                                               |
+| ------ | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| 200    | A no-op re-registration by the account that already owns the device.                                     | [`CommerceCustomerPushSubscribeResult`](#schema-commercecustomerpushsubscriberesult) |
+| 201    | Registered, revived or transferred to the caller.                                                        | [`CommerceCustomerPushSubscribeResult`](#schema-commercecustomerpushsubscriberesult) |
+| 400    | Validation error.                                                                                        | [`ApiError`](#standard-error-envelope)                                               |
+| 401    | UNAUTHENTICATED.                                                                                         | [`ApiError`](#standard-error-envelope)                                               |
+| 403    | ACCOUNT_BLOCKED or ACCOUNT_NOT_VERIFIED.                                                                 | [`ApiError`](#standard-error-envelope)                                               |
+| 404    | Resource not found.                                                                                      | [`ApiError`](#standard-error-envelope)                                               |
+| 409    | PUSH_UNAVAILABLE (push is not configured on this deployment) or DEVICE_LIMIT (5 active devices already). | [`ApiError`](#standard-error-envelope)                                               |
+| 413    | PAYLOAD_TOO_LARGE (over 8 KiB).                                                                          | [`ApiError`](#standard-error-envelope)                                               |
+| 415    | UNSUPPORTED_MEDIA_TYPE (`Content-Type` must be application/json).                                        | [`ApiError`](#standard-error-envelope)                                               |
+| 422    | VALIDATION_ERROR, ENDPOINT_NOT_ALLOWED (host outside the push-service allowlist) or ORIGIN_NOT_ALLOWED.  | [`ApiError`](#standard-error-envelope)                                               |
+| 429    | RATE_LIMITED, with `Retry-After`.                                                                        | [`ApiError`](#standard-error-envelope)                                               |
+
+### `DELETE /api/v1/commerce/storefront/account/push/subscriptions` — Issue #430 (ADR-0048 section 5.3). Revoke every push device of the authenticated account. Idempotent: nothing to revoke is still `204`.
+
+- **operationId**: `revokeAllCommerceStorefrontAccountPushDevices`
+- **Security**: customerBearer
+
+Destroys each device's stored credentials at once and cancels its queued notifications. A blocked account may still call it.
+
+**Responses**
+
+| Status | Description                               | Schema                                 |
+| ------ | ----------------------------------------- | -------------------------------------- |
+| 204    | Revoked (or there was nothing to revoke). |                                        |
+| 401    | UNAUTHENTICATED.                          | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                       | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED, with `Retry-After`.         | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/commerce/storefront/account/push/subscriptions/{id}` — Issue #430 (ADR-0048 section 5.3). Revoke ONE of the authenticated account's push devices.
+
+- **operationId**: `revokeCommerceStorefrontAccountPushDevice`
+- **Security**: customerBearer
+
+Ownership is enforced inside the query, so an absent id, someone else's id, a malformed id and an already-revoked id are the same `404`. A blocked account may still revoke.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                      | Schema                                 |
+| ------ | ------------------------------------------------ | -------------------------------------- |
+| 204    | Revoked; the device's credentials are destroyed. |                                        |
+| 401    | UNAUTHENTICATED.                                 | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                              | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED, with `Retry-After`.                | [`ApiError`](#standard-error-envelope) |
+
 ## Commerce WhatsApp
 
 Issue #108 (contract #106/ADR-0017 D5). Read-only owner diagnostics over the WhatsApp outbox (`awcms_commerce_whatsapp_messages`) — a message's masked phone, template key, delivery status and attempt count, never the raw phone/rendered body/OTP code. Gated on `commerce.whatsapp.read`. WhatsApp itself is the third `CustomerOtpChannel` (Fonnte/Meta Cloud API adapters, `log` for dev/CI) and a second login identifier: `POST .../account/otp/request` accepts `via: "whatsapp"` (login only, phone required) and `.../otp/verify` accepts `phone` as an alternative to `email`.
@@ -22887,6 +23025,155 @@ Issue 29 — a resolved cart line, request or response shape depending on contex
 }
 ```
 
+### Schema: CommerceCustomerPushDevice
+
+Issue #430 (ADR-0048 section 6.1). One active push device of the authenticated account. The raw endpoint, the keys and the ciphertexts are never returned.
+
+| Field              | Type               | Required | Nullable | Description                                                                                                      |
+| ------------------ | ------------------ | -------- | -------- | ---------------------------------------------------------------------------------------------------------------- |
+| `id`               | string (uuid)      | yes      | no       |                                                                                                                  |
+| `endpointMasked`   | string             | yes      | no       | The push service's origin plus the last characters of the endpoint, e.g. `https://fcm.googleapis.com/...a1b2c3`. |
+| `userAgentSummary` | string             | yes      | yes      | A coarse browser description such as `Chrome on Android (mobile)`; never the raw User-Agent.                     |
+| `status`           | enum(`active`)     | yes      | no       |                                                                                                                  |
+| `lastSuccessAt`    | string (date-time) | yes      | yes      | When the push service last ACCEPTED a message for this device. Not a display or read time.                       |
+| `registeredAt`     | string (date-time) | yes      | no       |                                                                                                                  |
+| `current`          | boolean            | yes      | no       | True when the device was enrolled by the caller's current session.                                               |
+
+**Example**
+
+```json
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "endpointMasked": "string",
+  "userAgentSummary": "string",
+  "status": "active",
+  "lastSuccessAt": "2026-01-01T00:00:00.000Z",
+  "registeredAt": "2026-01-01T00:00:00.000Z",
+  "current": false
+}
+```
+
+### Schema: CommerceCustomerPushPreference
+
+Issue #430 (ADR-0048 section 2.3). Consent for one purpose, with its evidence. A withdrawal keeps its row.
+
+| Field                | Type                                                                 | Required | Nullable | Description |
+| -------------------- | -------------------------------------------------------------------- | -------- | -------- | ----------- |
+| `purpose`            | [`CommerceCustomerPushPurpose`](#schema-commercecustomerpushpurpose) | yes      | no       |             |
+| `enabled`            | boolean                                                              | yes      | no       |             |
+| `consentTextVersion` | string                                                               | yes      | yes      |             |
+| `grantedAt`          | string (date-time)                                                   | yes      | yes      |             |
+| `revokedAt`          | string (date-time)                                                   | yes      | yes      |             |
+
+**Example**
+
+```json
+{
+  "purpose": "order_updates",
+  "enabled": false,
+  "consentTextVersion": "string",
+  "grantedAt": "2026-01-01T00:00:00.000Z",
+  "revokedAt": "2026-01-01T00:00:00.000Z"
+}
+```
+
+### Schema: CommerceCustomerPushPreferencesRequest
+
+Issue #430. Only the purposes named change. `textVersion` is required when any purpose is set to true.
+
+| Field         | Type   | Required | Nullable | Description |
+| ------------- | ------ | -------- | -------- | ----------- |
+| `purposes`    | object | yes      | no       |             |
+| `textVersion` | string | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "purposes": {
+    "order_updates": false,
+    "payment_updates": false,
+    "support_replies": false
+  },
+  "textVersion": "string"
+}
+```
+
+### Schema: CommerceCustomerPushPurpose
+
+Issue #430. A transactional notification purpose. `marketing` is reserved and never accepted or sent in v1.
+
+Enum values: `order_updates`, `payment_updates`, `support_replies`.
+
+**Example**
+
+```json
+"order_updates"
+```
+
+### Schema: CommerceCustomerPushSubscribeRequest
+
+Issue #430 (ADR-0048 sections 6.1, 6.7). The browser's `PushSubscription.toJSON()` plus `consent`. Any other key is a 400.
+
+| Field            | Type   | Required | Nullable | Description                                                                                                 |
+| ---------------- | ------ | -------- | -------- | ----------------------------------------------------------------------------------------------------------- |
+| `endpoint`       | string | yes      | no       | An `https` URL on a known browser push service. A host outside the allowlist is `422 ENDPOINT_NOT_ALLOWED`. |
+| `keys`           | object | yes      | no       |                                                                                                             |
+| `expirationTime` | number | no       | yes      | Accepted for shape compatibility and ignored.                                                               |
+| `consent`        | object | yes      | no       |                                                                                                             |
+
+**Example**
+
+```json
+{
+  "endpoint": "string",
+  "keys": {
+    "p256dh": "string",
+    "auth": "string"
+  },
+  "expirationTime": 0,
+  "consent": {
+    "purposes": ["order_updates"],
+    "textVersion": "string"
+  }
+}
+```
+
+### Schema: CommerceCustomerPushSubscribeResult
+
+| Field     | Type         | Required | Nullable | Description |
+| --------- | ------------ | -------- | -------- | ----------- |
+| `success` | enum(`true`) | no       | no       |             |
+| `data`    | object       | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "device": {
+      "id": "00000000-0000-0000-0000-000000000000",
+      "endpointMasked": "string",
+      "userAgentSummary": "string",
+      "status": "active",
+      "lastSuccessAt": "2026-01-01T00:00:00.000Z",
+      "registeredAt": "2026-01-01T00:00:00.000Z",
+      "current": false
+    },
+    "preferences": [
+      {
+        "purpose": "order_updates",
+        "enabled": false,
+        "consentTextVersion": "string",
+        "grantedAt": "2026-01-01T00:00:00.000Z",
+        "revokedAt": "2026-01-01T00:00:00.000Z"
+      }
+    ]
+  }
+}
+```
+
 ### Schema: CommerceFlashSaleCreateInput
 
 | Field      | Type                       | Required | Nullable | Description             |
@@ -26774,7 +27061,7 @@ consumer/subscriber contract in this file).
 }
 ```
 
-### Channels (101)
+### Channels (102)
 
 - `awcms.blog-content.ad.created` — An advertisement was created. Documented contract only; producer is `pages/api/v1/blog/ads/index.ts`'s `blog-content.ad.created` log line.
 - `awcms.blog-content.ad.deleted` — An advertisement was soft-deleted. Documented contract only; producer is `pages/api/v1/blog/ads/[id].ts`'s `blog-content.ad.deleted` log line.
@@ -26818,6 +27105,7 @@ consumer/subscriber contract in this file).
 - `awcms.commerce.booking_refund.decided` — A booking cancellation's or no-show's refund decision was recorded (Issue #381 and #382, ADR-0045 D8/D15, threat controls C-10/C-40/C-41): the policy source, the amount paid, the policy-computed refund, the final refund and whether a manager or finance override made them differ. For a no-show (`triggerKind` `no_show`) both refunds are zero and `retainedAmount` is what the policy version retained - a no-show never creates a refund leg. Producers: `commerce/application/booking-cancellation.ts`'s `cancelBookingReservation` and `booking-no-show.ts`'s `recordBookingNoShow`, in the same transaction as the decision row, the released reservation link and - for a positive cancellation refund - the pending refund legs. Aggregate: the order. Payload: `decisionId`, `orderId`, `reservationId`, `triggerKind`, `policySource`, `amountPaid`, `computedRefund`, `finalRefund`, `overridden`, and `retainedAmount` (no-show only) - never a customer name/phone, a payment reference, the override reason or the actor.
 - `awcms.commerce.booking_reservation_link.attention_raised` — The booking adapter could not reconcile an order with its Booking reservation on its own (Issue #380, ADR-0045 G7, threat controls C-08/C-09): a deposit settled after the hold lapsed (`deposit_after_expiry`), the confirmation was refused (`confirm_failed`), or the reservation was cancelled or moved outside the adapter while the order holds money (`cancelled_externally_paid`, `rescheduled_externally`). Producer: `commerce/application/booking-attention.ts`'s `raiseBookingAttention`, in the same transaction as the flag on the reservation link; fired once per open flag. Aggregate: the order. Payload: `orderId`, `reservationId`, `reason` - never a customer name/phone, an amount or a payment reference.
 - `awcms.commerce.booking_reservation.rescheduled` — A staff member rescheduled a booking reservation through the adapter (Issue #382, ADR-0045 D7, threat controls C-37 to C-39): the order now points at the replacement reservation and the price difference was carried as a supplementary order (more nights), a policy-limited refund return (fewer nights) or not at all (same length). Producer: `commerce/application/booking-reschedule.ts`'s `rescheduleBookingReservation`, in the same transaction as the reschedule record and the moved reservation link. Aggregate: the order. Payload: `rescheduleId`, `orderId`, `fromReservationId`, `toReservationId`, `fromNights`, `toNights`, `direction`, `pricedAmount`, `refundAmount`, `supplementOrderId`, `returnId` - never a customer name/phone, a payment reference or the actor.
+- `awcms.commerce.conversation.store_replied` — A staff reply was stored in a customer conversation (Issue #432, ADR-0048 Q4). Producer: `commerce/application/conversation-directory.ts`'s `postStoreReply`, in the same transaction as the stored message. Aggregate: the conversation (`commerce.conversation`). Payload: `conversationId` only - never the subject, the body or the customer. Consumed by the customer Web Push enqueuer (`commerce.customer_push_enqueuer`, purpose `support_replies`).
 - `awcms.commerce.document.delivery_requested` — A delivery of a commercial document (receipt, invoice, quotation version or work-order notice) was requested (Issue #295, ADR-0034): handed to the e-mail or commerce WhatsApp outbox, or refused at the hand-off (a suppressed address). Producer: `commerce/application/document-delivery-directory.ts`'s `requestDocumentDelivery`, in the same transaction as the outbox row. Aggregate: the delivery request. Payload: `deliveryId`, `targetType`, `targetId`, `docNumber`, `channel`, `status` (`queued` or `not_enqueued`), `failureReason` - never a recipient or message content; the provider outcome lives in the outbox, not in this event.
 - `awcms.commerce.document.issued` — A numbered receipt or invoice document was issued for a finalized order (Issue #286, ADR-0029 D1-D3): an immutable snapshot. Producer: `commerce/application/document-directory.ts`'s `issueDocument`, in the same transaction as the numbered row. Aggregate: the document. Payload: `documentId`, `docType`, `number`, `sourceType`, `sourceId`, `sourceVersion`, `total` - never the customer.
 - `awcms.commerce.expense.posted` — An expense reached `posted` (Issue #294, ADR-0031): within the tenant's approval threshold, or approved by someone other than its creator. Producer: `commerce/application/expense-posting.ts`'s `postExpense` / `decideExpense`, in the same transaction as the status change and - for a drawer-paid expense - the register `expense` movement. Aggregate: the expense (`commerce.expense`). Fired once; a pending submission or a rejection does not fire it. Payload: `expenseId`, `categoryId`, `amount`, `tenderType`, `registerSessionId`, `movementId`, `decision` - never the free-text description or payee.

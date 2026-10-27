@@ -1,3 +1,8 @@
+import {
+  CUSTOMER_PUSH_DATA_LIFECYCLE,
+  CUSTOMER_PUSH_SUBJECT_DATA
+} from "./domain/customer-push-lifecycle";
+import { CUSTOMER_PUSH_PERMISSIONS } from "./domain/customer-push-permissions";
 import { defineModule } from "../_shared/module-contract";
 import type { ModuleDomainEventConsumer } from "../_shared/domain-event-consumer-contract";
 import { DEFAULT_COMMERCE_FEATURES } from "./domain/commerce-features";
@@ -223,6 +228,8 @@ import {
   COMMERCE_DOCUMENT_DELIVERY_REQUESTED_EVENT_TYPE,
   COMMERCE_RETURN_RECORDED_EVENT_TYPE,
   COMMERCE_REFUND_SETTLED_EVENT_TYPE,
+  COMMERCE_CONVERSATION_STORE_REPLIED_EVENT_TYPE,
+  COMMERCE_CUSTOMER_PUSH_ENQUEUER_CONSUMER_NAME,
   COMMERCE_EVENT_VERSION,
   COMMERCE_ORDER_PAID_ENTITLEMENT_GRANTOR_CONSUMER_NAME,
   COMMERCE_ORDER_PAID_LOYALTY_EARNER_CONSUMER_NAME,
@@ -1048,6 +1055,28 @@ export const commerceModule = defineModule({
         await projectStockCacheFromMovement(tx, ctx.tenantId, event.payload);
       }
     },
+    {
+      name: COMMERCE_CUSTOMER_PUSH_ENQUEUER_CONSUMER_NAME,
+      description:
+        "commerce module consumer - turns the transactional commerce events (order paid, status changed, cancelled and expired, refund settled, return recorded, store replied in the inbox) into customer Web Push outbox rows, one per active device, only for a customer who explicitly opted in to that purpose under the current consent wording; OFF unless the tenant enables the customerPush feature and the deployment enables PUSH_ENABLED; makes no network call (Issue #432, ADR-0048). Marketing is unreachable: the event-to-purpose map is closed and names only the three transactional purposes.",
+      eventTypes: [
+        COMMERCE_ORDER_PAID_EVENT_TYPE,
+        COMMERCE_ORDER_STATUS_CHANGED_EVENT_TYPE,
+        COMMERCE_ORDER_CANCELLED_EVENT_TYPE,
+        COMMERCE_ORDER_EXPIRED_EVENT_TYPE,
+        COMMERCE_REFUND_SETTLED_EVENT_TYPE,
+        COMMERCE_RETURN_RECORDED_EVENT_TYPE,
+        COMMERCE_CONVERSATION_STORE_REPLIED_EVENT_TYPE
+      ],
+      eventVersions: [COMMERCE_EVENT_VERSION],
+      handle: async (tx, event, ctx) => {
+        const { enqueueCustomerPushForEvent } =
+          await import("./application/customer-push-enqueue");
+        await enqueueCustomerPushForEvent(tx, ctx.tenantId, event, {
+          correlationId: ctx.correlationId
+        });
+      }
+    },
     // Issue #378 (ADR-0045 D15) - the booking adapter's consumers; empty until
     // their handlers land. See `application/booking-adapter-consumers.ts`.
     ...BOOKING_ADAPTER_CONSUMERS
@@ -1087,7 +1116,8 @@ export const commerceModule = defineModule({
       COMMERCE_EXPENSE_REVERSED_EVENT_TYPE,
       COMMERCE_DOCUMENT_DELIVERY_REQUESTED_EVENT_TYPE,
       COMMERCE_RETURN_RECORDED_EVENT_TYPE,
-      COMMERCE_REFUND_SETTLED_EVENT_TYPE
+      COMMERCE_REFUND_SETTLED_EVENT_TYPE,
+      COMMERCE_CONVERSATION_STORE_REPLIED_EVENT_TYPE
     ]
   },
   /**
@@ -1171,6 +1201,45 @@ export const commerceModule = defineModule({
       recommendedSchedule: "Every 5-15 minutes via cron/systemd timer.",
       environmentNotes:
         "No external provider call — pure database DELETE, safe to run in any deployment profile.",
+      safeInOfflineLan: true
+    },
+    {
+      command: "bun run commerce:customer-push:maintenance",
+      schedule: {
+        mode: "cron",
+        expression: "*/15 * * * *",
+        backlog: "bounded"
+      },
+      purpose:
+        "Customer Web Push housekeeping across all tenants (Issue #430, ADR-0048): revokes the devices of ended customer sessions and of blocked accounts (destroying their stored credentials), then purges tombstoned devices, terminal messages and attempts older than the 30-day retention window. Runs even when the customerPush feature is off, because rows from an earlier period still need removing. Idempotent and bounded.",
+      recommendedSchedule: "Every 15 minutes via cron/systemd timer.",
+      environmentNotes:
+        "No external provider call and no encryption key - pure database work, safe to run in any deployment profile.",
+      safeInOfflineLan: true
+    },
+    {
+      command: "bun run commerce:customer-push:dispatch",
+      schedule: { mode: "cron", expression: "* * * * *", backlog: "bounded" },
+      purpose:
+        "Drain the due customer Web Push outbox (Issue #432, ADR-0048) for every active tenant that turned the customerPush feature on: claim with a lease, re-check eligibility at send time (revoked device, withdrawn preference, blocked account, ended session, stale origin all cancel with no provider call), apply the per-account cap (12 per hour, 40 per day), send through the upstream Web Push provider with a TTL and an Urgency header, and record every attempt. A 404/410 from the push service revokes the device; other failures back off exponentially. `sent` means the push service accepted the request, never that a device displayed it. Idempotent: a sent row is terminal and a claimed row is invisible until its lease lapses.",
+      recommendedSchedule: "Every minute via cron/systemd timer.",
+      environmentNotes:
+        "Claims nothing (exit 0) unless PUSH_ENABLED=true, PUSH_PROVIDER=web_push, a VAPID key pair and PUSH_AUTH_SECRET_ENCRYPTION_KEYS are configured and the tenant enabled the customerPush feature. Calls the browser vendors' push services over HTTPS (SSRF-guarded); needs outbound network, so not for the offline LAN profile.",
+      safeInOfflineLan: false
+    },
+    {
+      command: "bun run commerce:customer-push:rekey",
+      schedule: {
+        mode: "manual",
+        because:
+          "A key-rotation action (Issue #430, ADR-0048 Q2): run by an operator after adding a new first key to PUSH_AUTH_SECRET_ENCRYPTION_KEYS, until no active device carries a ciphertext under the old key id, and only then is the old key removed. A timer would re-scan an unchanged table forever."
+      },
+      purpose:
+        "Re-encrypt every active customer push device's endpoint and auth-secret ciphertext whose key id is not the ring's active (first) key onto it, in bounded keyset batches. Idempotent and resumable; refuses to run (exit 1) without the key ring; exits 3 when rows cannot be decrypted under the ring. Upstream's push:auth-secret:backfill --rekey covers only upstream's own table.",
+      recommendedSchedule:
+        "on demand, during a key rotation, together with push:auth-secret:backfill --rekey",
+      environmentNotes:
+        "Pure PostgreSQL operation as `awcms_worker` (UPDATE of the two ciphertext columns, allowed only while a device stays active, sql/1058) - no network egress. Needs PUSH_AUTH_SECRET_ENCRYPTION_KEYS. Safe in offline/LAN deployments.",
       safeInOfflineLan: true
     },
     {
@@ -3340,6 +3409,9 @@ export const commerceModule = defineModule({
     // Issue #378 (ADR-0045) - the six booking-adapter tables; see
     // `domain/booking-adapter-lifecycle.ts`.
     ...BOOKING_ADAPTER_DATA_LIFECYCLE,
+    // Issue #430 (ADR-0048) - the four customer-push tables; see
+    // `domain/customer-push-lifecycle.ts`.
+    ...CUSTOMER_PUSH_DATA_LIFECYCLE,
     // Issue #389 (sql/1047) - the booking revenue projection's two tables; see
     // `domain/booking-report-lifecycle.ts`.
     ...BOOKING_REPORT_DATA_LIFECYCLE,
@@ -4310,6 +4382,10 @@ export const commerceModule = defineModule({
     ...SEGMENT_SUBJECT_DATA,
     // Issue #378 (ADR-0045) - see `domain/booking-adapter-lifecycle.ts`.
     ...BOOKING_ADAPTER_SUBJECT_DATA,
+    // Issue #430 (ADR-0048) - see `domain/customer-push-lifecycle.ts`: honestly
+    // unreachable by the engine's subject vocabulary; erasure/export are
+    // `application/customer-push-erasure.ts`.
+    ...CUSTOMER_PUSH_SUBJECT_DATA,
     // Issue #389 (sql/1047) - see `domain/booking-report-lifecycle.ts`.
     ...BOOKING_REPORT_SUBJECT_DATA,
     // Issue #287 (ADR-0033) - see `domain/returns-lifecycle.ts`.
@@ -5235,7 +5311,10 @@ export const commerceModule = defineModule({
     },
     // Issue #378 (ADR-0045) - the booking adapter's keys; see
     // `domain/booking-adapter-permissions.ts`.
-    ...BOOKING_ADAPTER_PERMISSIONS
+    ...BOOKING_ADAPTER_PERMISSIONS,
+    // Issue #430 (ADR-0048 Q10) - `commerce.customer_push.read`; see
+    // `domain/customer-push-permissions.ts`.
+    ...CUSTOMER_PUSH_PERMISSIONS
   ]
 });
 

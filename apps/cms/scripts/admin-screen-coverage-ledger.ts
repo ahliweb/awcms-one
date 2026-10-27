@@ -242,6 +242,12 @@ export const NOT_YET_SCREENED: readonly string[] = [
   "commerce.commission_settings.read",
   "commerce.commission_staff_links.manage",
   "commerce.commission_staff_links.read",
+  // commerce customer Web Push (1) — ADR-0048 / Issue #430. API-first: the
+  // aggregate diagnostics read (`GET /api/v1/commerce/customer-push/diagnostics`)
+  // ships without a screen; ADR-0048 lists "a staff UI for customer devices"
+  // under what is not here yet, and a counts-only diagnostics tile is the
+  // recorded follow-up. The key leaves this list when a screen claims it.
+  "commerce.customer_push.read",
   // hr_workforce attendance (7) — ADR-0132 / Issue #947. Same posture: API-first
   // and `experimental`; the attendance and correction-inbox screens are the
   // recorded follow-up that flips the module to `active`.

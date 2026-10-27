@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:8ba835e5cc83c04d7a271e63214359f4e90832ab2f39d1e403d02ed2ad39445a -->
+<!-- i18n-source-hash: sha256:10c9e29614cbb6fefdd4f090d4b1db355c34c0ca2b5185af74baa7d91b0c4127 -->
 
 # Skema basis data
 
@@ -478,6 +478,31 @@ Migrasi `961` menyemai `commerce.attributes.{read,manage}` dan `commerce.product
 | trigger `awcms_commerce_bundle_no_variants_guard` / `awcms_commerce_bundle_no_flash_sale_guard` | `BEFORE INSERT` pada varian / produk flash sale                                                                                                                                                                            | Bundel tidak bisa punya varian dan tidak bisa disebut flash sale                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
 `sql/955` memberi `awcms_worker` `SELECT, DELETE` pada kedua tabel (restock kedaluwarsa membaca snapshot; mesin retensi memurge keduanya); `security-readiness.ts` mencatat `SELECT, INSERT` role aplikasi pada snapshot dan `SELECT, DELETE` worker pada keduanya.
+
+## Web Push pelanggan: empat tabel dan dua kunci komposit (`sql/1056`–`1059`, issue #430, [ADR-0048](adr/0048-customer-web-push-identity-subscription-and-cross-origin-contract.md))
+
+Opsi C ADR: `commerce` memiliki perangkat pelanggan, persetujuan, dan outbox tipis, dan tidak menulis tabel upstream mana pun. Arti kolom ada di [`docs/kamus-data.id.md`](kamus-data.id.md); bagian ini adalah bentuknya.
+
+```
+awcms_tenants 1───* awcms_commerce_customer_accounts 1───* awcms_commerce_customer_sessions
+                           │ 1                                        │ 1 (SET NULL)
+                           ├────* awcms_commerce_push_preferences     │
+                           │ 1                                        │ *
+                           └────* awcms_commerce_push_devices *───────┘
+                                        │ 1
+                                        └────* awcms_commerce_push_messages 1───* awcms_commerce_push_delivery_attempts
+```
+
+| Migrasi    | Fungsinya                                                                                                                                                                          |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sql/1056` | Menambah `UNIQUE (tenant_id, id)` pada akun dan sesi pelanggan (kunci komposit yang dirujuk tabel baru), lalu `awcms_commerce_push_devices` dan `awcms_commerce_push_preferences`. |
+| `sql/1057` | `awcms_commerce_push_messages` (outbox) dan `awcms_commerce_push_delivery_attempts`.                                                                                               |
+| `sql/1058` | Hak akses `awcms_worker` (`UPDATE` hanya-kolom pada perangkat) dan `awcms_commerce_push_devices_guard()`, trigger `BEFORE UPDATE` dengan `search_path` terpasang.                  |
+| `sql/1059` | Izin `commerce.customer_push.read`.                                                                                                                                                |
+
+Issue #432 menambah satu migrasi pada keluarga ini, `sql/1061` (`1062` tidak dipakai): konsumen fan-out dan dispatcher berjalan sebagai `awcms_worker`, sehingga ia menerima `INSERT` **hanya-kolom** pada `awcms_commerce_push_messages` (tiga belas kolom yang diberikan sebuah enqueue; kolom lain tetap pada nilai bawaannya, sehingga baris tidak dapat dimasukkan sudah `sent`) dan `UPDATE` tingkat-tabelnya (sql/1058) diganti `UPDATE` **hanya-kolom** pada mesin status dan hasil provider (`status`, `retry_count`, `next_attempt_at`, `last_error`, `provider_name`, `provider_message_id`, `sent_at`, `updated_at`). Worker karenanya tidak lagi dapat mengalihkan atau menulis ulang pesan yang ada (`account_id`, `device_id`, `purpose`, teks, path, kedaluwarsa). Kunci batas per akun menjadi advisory lock, karena worker tidak punya `UPDATE` pada akun dan `FOR UPDATE` memerlukannya. Tidak ada tabel atau indeks ditambahkan: indeks dispatch, perangkat, jendela-akun, dan retensi yang ada mencakup claim, batas sisi-kirim, dan sapuan kedaluwarsa.
+
+Invarian yang hidup di basis data: kredensial (`endpoint_ciphertext`, `p256dh_key`, `auth_secret_ciphertext`) dan `revoked_at` ada jika dan hanya jika `status = 'active'` (CHECK); `UNIQUE (tenant_id, endpoint_hash)` menjadikan pendaftaran sebuah upsert, tidak pernah duplikat; foreign key komposit `(tenant_id, …)` membuat perangkat, pesan, atau preferensi lintas tenant mustahil secara struktural; `endpoint_hash` tidak pernah berubah; bentuk `target_path`, `title`, `body`, `last_error`, dan `provider_response_snippet` dibatasi sehingga pesan tak dapat membawa URL absolut, data pesanan, atau teks provider. Foreign key akun berantai (akun yang dihapus membawa data push-nya); foreign key sesi mengisi `session_id` dengan NULL, sehingga purge autentikasi pelanggan tidak pernah terhalang perangkat. Indeks: parsial `(tenant_id, account_id) WHERE status = 'active'` untuk fan-out, satu per kolom foreign key, `(tenant_id, status, revoked_at)` dan `(tenant_id, status, updated_at)` untuk retensi, `(tenant_id, status, next_attempt_at)` untuk dispatcher, dan `(tenant_id, account_id, created_at DESC)` untuk jendela laju per akun.
 
 ## Row-level security: `ENABLE` dan `FORCE`, terbukti di bawah role tak-berhak-istimewa
 

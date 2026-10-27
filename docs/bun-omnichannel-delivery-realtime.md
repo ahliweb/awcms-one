@@ -16,7 +16,7 @@
 | --- | --- | --- |
 | Generic email/Mailketing | Upstream `email` with Bun `email:dispatch`; upstream Mailketing v1 | Multi-account/v2 CRM marketing (#461, upstream #1158–#1162) uses existing Bun email outbox and provider HTTP; no second campaign mailer |
 | Generic WhatsApp | Upstream Bun `whatsapp:dispatch` Meta/Fonnte/log; commerce retains guarded legacy/upstream queue migration | Multi-device StarSender / multi-WABA Meta (#458, upstream #1141–#1143) via **one upstream Bun WhatsApp queue** after safe cutover, default provider chosen per tenant/brand; never dispatch over WebSocket |
-| Push notifications | Upstream Bun `push:dispatch`; customer device subscription/marketing events (#430–#432) planned | Existing Bun push worker + web service worker, not Node-based FCM/Web Push service |
+| Push notifications | Upstream Bun `push:dispatch`; customer device subscriptions (#430) and the transactional fan-out worker `commerce:customer-push:dispatch` (#432) exist, marketing push is reserved and not built | Existing Bun push worker + web service worker, not Node-based FCM/Web Push service |
 | Telegram | Upstream `telegram_delivery` staff-only | Customer multi-bot planned #460 / upstream #1155–#1157; separate admitted Bun provider worker/HTTPS, no repurposing staff queue |
 | Social campaigns | Registry and social publishing planned upstream; commerce segments/campaign UI exists | Account-scoped, consent/permission-gated Bun job worker via officially supported provider APIs |
 | OMES/Hermes CRM events | OMES observation and host assurance exists; CRM AI #459 is proposed | AWCMS Bun projects sanitized progress to admin, requests typed agent work; OMES host Python HTTPS worker and native Hermes runtime remain unchanged |

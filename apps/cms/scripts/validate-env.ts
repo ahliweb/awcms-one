@@ -15,6 +15,10 @@
 import { readFile } from "node:fs/promises";
 
 import { describeIdempotencySecretProblem } from "../src/lib/security/idempotency-hmac";
+import {
+  CUSTOMER_PUSH_EXTRA_HOSTS_ENV,
+  parseExtraPushHosts
+} from "../src/modules/commerce/domain/customer-push-endpoint";
 import { parseFcmCredentialsBase64 } from "../src/modules/push-delivery/domain/fcm-credentials";
 import { resolvePushAuthSecretRing } from "../src/modules/push-delivery/domain/push-auth-secret";
 import {
@@ -331,6 +335,13 @@ const RULES: readonly Rule[] = [
   { name: "PUSH_VAPID_PUBLIC_KEY", required: false, type: "string" },
   { name: "PUSH_VAPID_PRIVATE_KEY", required: false, type: "string" },
   { name: "PUSH_VAPID_SUBJECT", required: false, type: "string" },
+  // commerce customer Web Push (Issue #430, ADR-0048 Q6): the OPERATOR-only
+  // extension of the built-in push-service host allowlist. Checked below.
+  {
+    name: "COMMERCE_CUSTOMER_PUSH_EXTRA_ENDPOINT_HOSTS",
+    required: false,
+    type: "string"
+  },
 
   // whatsapp_delivery (ADR-0133, Issue #963). Off by default; off means enqueue
   // answers `refused: DISABLED` and the dispatcher claims nothing. Credentials
@@ -873,6 +884,23 @@ export function validateEnv(env: EnvBag): string[] {
           `${authSecretRing.reason} Wajib valid saat PUSH_PROVIDER=web_push (tanpa kunci, perangkat tidak dapat didaftarkan dan rahasia auth tidak dapat didekripsi).`
         );
       }
+    }
+  }
+
+  // commerce customer Web Push (Issue #430, ADR-0048 Q6): an entry the parser
+  // would IGNORE (an IP literal, a single label, localhost, a malformed name)
+  // is reported rather than silently dropped, so an operator who meant to allow
+  // a push service learns that the entry has no effect. The same parser the
+  // routes use, so the validator cannot disagree with the thing it validates.
+  const extraPushHosts = env[CUSTOMER_PUSH_EXTRA_HOSTS_ENV]?.trim() ?? "";
+
+  if (extraPushHosts !== "") {
+    const { invalid } = parseExtraPushHosts(extraPushHosts);
+
+    if (invalid.length > 0) {
+      problems.push(
+        `${CUSTOMER_PUSH_EXTRA_HOSTS_ENV} berisi entri yang diabaikan (hanya nama host persis atau pola *.sufiks.contoh; bukan IP, bukan satu label, bukan localhost; maksimal 32 entri): ${invalid.join(", ")}.`
+      );
     }
   }
 
