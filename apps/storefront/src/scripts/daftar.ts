@@ -8,6 +8,7 @@
  */
 import { mintaKode, verifikasiKode } from "../lib/akun-klien";
 import { simpanSesi } from "../lib/akun-sesi";
+import { bersihkanSebelumSesiBaru } from "../lib/push-sesi";
 import { TokoApiError } from "../lib/toko-permintaan";
 import { ROUTES } from "../config/routes";
 import { buildWhatsappAccountMessage, buildWhatsappUrl } from "../lib/wa-fallback";
@@ -199,6 +200,9 @@ if (root) {
 
     try {
       const result = await verifikasiKode({ email, code, purpose: "register" });
+      // ADR-0048 section 7: the OLD session is logged out on the server, and an
+      // enrolled browser stops receiving for it, BEFORE the new session is stored.
+      await bersihkanSebelumSesiBaru();
       simpanSesi({ token: result.token, expiresAt: result.expiresAt, account: result.account });
       window.location.href = ROUTES.account;
     } catch (error) {
