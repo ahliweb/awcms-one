@@ -14,6 +14,17 @@
  * "nothing to show" is a state the screen hides. The projection keeps running,
  * so switching the feature on shows history immediately.
  *
+ * ## Refunds on a decision basis (Issue #478, metrics 3.9)
+ *
+ * A refund counts when it is DECIDED, so the Refunds step reads the same on the
+ * day a refund is recorded as on the day its money leaves; it has three parts that
+ * always add up (paid back, refund payable, uncollected balance) and each is the
+ * GOODS share of the money (tax collected is not revenue: the tax, shipping and
+ * insurance shares lower their own companion columns). `refundPayableBalance` is
+ * the money, all components, still to be paid out. The cash reading lives in the
+ * by-refund-day view (`booking-cash-view.ts`), labelled as cash, and is never in
+ * this waterfall.
+ *
  * ## What a day is
  *
  * A day is the Asia/Jakarta calendar day of the booking order's FIRST paid
@@ -47,6 +58,8 @@ export type BookingRevenueDay = BookingRevenueFigures & {
 
 export type BookingRevenueReport = {
   enabled: boolean;
+  /** What a day means here: the day of the order's first paid transition (attribution), never the day money moved. */
+  basis: "paid_day";
   timeZone: string;
   restatementWindowDays: number;
   /** ISO instant the report was computed at. */
@@ -70,9 +83,14 @@ type DayRow = {
   shipping: string;
   insurance: string;
   tax: string;
-  paid_back: string;
-  uncollected: string;
+  goods_paid_back: string;
+  goods_payable: string;
+  goods_uncollected: string;
+  shipping_refunded: string;
+  insurance_refunded: string;
+  tax_refunded: string;
   outstanding: string;
+  refund_payable: string;
 };
 
 function sumsOf(row: DayRow): BookingRevenueDaySums {
@@ -86,9 +104,14 @@ function sumsOf(row: DayRow): BookingRevenueDaySums {
     shippingCents: toCents(String(row.shipping)),
     insuranceCents: toCents(String(row.insurance)),
     taxCents: toCents(String(row.tax)),
-    paidBackCents: toCents(String(row.paid_back)),
-    uncollectedCents: toCents(String(row.uncollected)),
-    outstandingCents: toCents(String(row.outstanding))
+    paidBackCents: toCents(String(row.goods_paid_back)),
+    payableCents: toCents(String(row.goods_payable)),
+    uncollectedCents: toCents(String(row.goods_uncollected)),
+    shippingRefundedCents: toCents(String(row.shipping_refunded)),
+    insuranceRefundedCents: toCents(String(row.insurance_refunded)),
+    taxRefundedCents: toCents(String(row.tax_refunded)),
+    outstandingCents: toCents(String(row.outstanding)),
+    refundPayableCents: toCents(String(row.refund_payable))
   };
 }
 
@@ -99,6 +122,7 @@ export async function fetchBookingRevenueReport(
   now: Date = new Date()
 ): Promise<BookingRevenueReport> {
   const envelope = {
+    basis: "paid_day" as const,
     timeZone: BOOKING_REVENUE_TIME_ZONE,
     restatementWindowDays: BOOKING_REVENUE_RESTATEMENT_WINDOW_DAYS,
     asOf: now.toISOString(),
@@ -126,9 +150,14 @@ export async function fetchBookingRevenueReport(
       COALESCE(sum(shipping), 0)::text AS shipping,
       COALESCE(sum(insurance), 0)::text AS insurance,
       COALESCE(sum(tax), 0)::text AS tax,
-      COALESCE(sum(paid_back), 0)::text AS paid_back,
-      COALESCE(sum(uncollected), 0)::text AS uncollected,
-      COALESCE(sum(outstanding), 0)::text AS outstanding
+      COALESCE(sum(goods_paid_back), 0)::text AS goods_paid_back,
+      COALESCE(sum(goods_payable), 0)::text AS goods_payable,
+      COALESCE(sum(goods_uncollected), 0)::text AS goods_uncollected,
+      COALESCE(sum(shipping_refunded), 0)::text AS shipping_refunded,
+      COALESCE(sum(insurance_refunded), 0)::text AS insurance_refunded,
+      COALESCE(sum(tax_refunded), 0)::text AS tax_refunded,
+      COALESCE(sum(outstanding), 0)::text AS outstanding,
+      COALESCE(sum(refund_payable), 0)::text AS refund_payable
     FROM awcms_commerce_report_booking_orders
     WHERE tenant_id = ${tenantId}
       AND paid_day >= ${range.from}::date AND paid_day <= ${range.to}::date

@@ -13969,8 +13969,8 @@ msgstr "Tamu tidak hadir"
 msgid "Oldest hold"
 msgstr "Penahanan tertua"
 
-msgid "Revenue of orders that carry a Booking reservation, by the day the order was first paid. A refund, a cancellation or a no-show lands on that same day. The balance still owed on open orders is shown beside the waterfall, not subtracted. Held space is not revenue."
-msgstr "Pendapatan pesanan yang membawa reservasi Booking, menurut hari pesanan pertama kali dibayar. Pengembalian dana, pembatalan, atau tamu tidak hadir jatuh pada hari yang sama. Saldo yang masih terutang pada pesanan terbuka ditampilkan di samping air terjun pendapatan, tidak dikurangkan. Ruang yang ditahan bukan pendapatan."
+msgid "Revenue of orders that carry a Booking reservation, by the day the order was first paid. A refund counts when it is decided, not when the money moves, and lands on that same day with any cancellation or no-show. Tax, shipping and insurance are lowered by their share of a refund and are not revenue. The balance still owed on open orders and the refund still to be paid out are shown beside the waterfall, not subtracted. This is an operational sales measure, not a financial-statement figure: the books of record are your accounting system. Held space is not revenue."
+msgstr "Pendapatan pesanan yang membawa reservasi Booking, menurut hari pesanan pertama kali dibayar. Pengembalian dana dihitung saat diputuskan, bukan saat uang berpindah, dan jatuh pada hari yang sama bersama pembatalan atau tamu tidak hadir. Pajak, ongkos kirim, dan asuransi dikurangi sesuai bagiannya dari pengembalian dana dan bukan pendapatan. Saldo yang masih terutang pada pesanan terbuka dan pengembalian dana yang masih harus dibayarkan ditampilkan di samping air terjun pendapatan, tidak dikurangkan. Ini ukuran penjualan operasional, bukan angka laporan keuangan: pembukuan resmi ada di sistem akuntansi Anda. Ruang yang ditahan bukan pendapatan."
 
 msgid "Value on hold"
 msgstr "Nilai yang ditahan"
@@ -13978,5 +13978,40 @@ msgstr "Nilai yang ditahan"
 msgid "{count} of {stays} ({percent}%)"
 msgstr "{count} dari {stays} ({percent}%)"
 
-msgid "{paidBack} paid back, {uncollected} uncollected (no money moved)"
-msgstr "{paidBack} dikembalikan, {uncollected} tidak tertagih (tidak ada uang berpindah)"
+msgid "{paidBack} paid back, {payable} payable, {uncollected} uncollected (no money moved)"
+msgstr "{paidBack} dikembalikan, {payable} harus dibayar, {uncollected} tidak tertagih (tidak ada uang berpindah)"
+
+# booking revenue #478 (refunds on a decision basis, cash view)
+
+msgid "Companions"
+msgstr "Pendamping"
+
+msgid "Refund payable"
+msgstr "Pengembalian dana terutang"
+
+msgid "Tax {amount}"
+msgstr "Pajak {amount}"
+
+msgid "Shipping {amount}"
+msgstr "Ongkos kirim {amount}"
+
+msgid "Insurance {amount}"
+msgstr "Asuransi {amount}"
+
+msgid "Refunds paid out (cash view)"
+msgstr "Pengembalian dana dibayarkan (tampilan kas)"
+
+msgid "Refunds paid out (cash view): money that went back to customers, by the day it was paid out. This is a cash view and is separate from the table above, which counts a refund on the day the order was paid."
+msgstr "Pengembalian dana dibayarkan (tampilan kas): uang yang kembali ke pelanggan, menurut hari pembayarannya. Ini tampilan kas dan terpisah dari tabel di atas, yang menghitung pengembalian dana pada hari pesanan dibayar."
+
+msgid "Day paid out"
+msgstr "Hari dibayarkan"
+
+msgid "Refund payments"
+msgstr "Pembayaran pengembalian dana"
+
+msgid "Paid out"
+msgstr "Dibayarkan"
+
+msgid "No booking refunds were paid out in this period"
+msgstr "Tidak ada pengembalian dana booking yang dibayarkan pada periode ini"

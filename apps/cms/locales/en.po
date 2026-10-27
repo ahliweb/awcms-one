@@ -14031,7 +14031,7 @@ msgstr ""
 msgid "Oldest hold"
 msgstr ""
 
-msgid "Revenue of orders that carry a Booking reservation, by the day the order was first paid. A refund, a cancellation or a no-show lands on that same day. The balance still owed on open orders is shown beside the waterfall, not subtracted. Held space is not revenue."
+msgid "Revenue of orders that carry a Booking reservation, by the day the order was first paid. A refund counts when it is decided, not when the money moves, and lands on that same day with any cancellation or no-show. Tax, shipping and insurance are lowered by their share of a refund and are not revenue. The balance still owed on open orders and the refund still to be paid out are shown beside the waterfall, not subtracted. This is an operational sales measure, not a financial-statement figure: the books of record are your accounting system. Held space is not revenue."
 msgstr ""
 
 msgid "Value on hold"
@@ -14040,5 +14040,40 @@ msgstr ""
 msgid "{count} of {stays} ({percent}%)"
 msgstr ""
 
-msgid "{paidBack} paid back, {uncollected} uncollected (no money moved)"
+msgid "{paidBack} paid back, {payable} payable, {uncollected} uncollected (no money moved)"
+msgstr ""
+
+# booking revenue #478 (refunds on a decision basis, cash view)
+
+msgid "Companions"
+msgstr ""
+
+msgid "Refund payable"
+msgstr ""
+
+msgid "Tax {amount}"
+msgstr ""
+
+msgid "Shipping {amount}"
+msgstr ""
+
+msgid "Insurance {amount}"
+msgstr ""
+
+msgid "Refunds paid out (cash view)"
+msgstr ""
+
+msgid "Refunds paid out (cash view): money that went back to customers, by the day it was paid out. This is a cash view and is separate from the table above, which counts a refund on the day the order was paid."
+msgstr ""
+
+msgid "Day paid out"
+msgstr ""
+
+msgid "Refund payments"
+msgstr ""
+
+msgid "Paid out"
+msgstr ""
+
+msgid "No booking refunds were paid out in this period"
 msgstr ""

@@ -2402,6 +2402,16 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/reports/commerce/booking-revenue-cash.ts",
+      "workClass": "reporting",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/reports/commerce/booking-revenue.csv.ts",
+      "workClass": "reporting",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/reports/commerce/booking-revenue.ts",
       "workClass": "reporting",
       "source": "factory"

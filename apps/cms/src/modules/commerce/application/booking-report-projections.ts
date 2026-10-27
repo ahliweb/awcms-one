@@ -145,11 +145,15 @@ const BOOKING_REPORT_FRESHNESS = {
 export const BOOKING_REPORT_PROJECTIONS: ProjectionDescriptor[] = [
   {
     key: BOOKING_REVENUE_PROJECTION_KEY,
-    version: 1,
+    // 2: Issue #478 (metrics 3.9 D1, D3) - a refund counts when it is decided,
+    // the refund payable is a companion column, and refunds and the uncollected
+    // balance are allocated across goods, shipping, insurance and tax (sql/1055).
+    // A tenant that already sold bookings runs ONE rebuild of this projection.
+    version: 2,
     ownerModuleKey: "commerce",
     scope: "tenant",
     description:
-      "Per booking-sourced paid order (an order carrying a Booking reservation link, or the supplementary order of a stay that grew): gross, discounts, shipping, insurance and tax recognised once on the Asia/Jakarta day of the first paid transition, the money paid back and the unpaid balance of a closed order (no money moved) that leave on that same original day, the balance still outstanding on an open order, and the stay and no-show counts. Recomputed from the order, the payment ledger and the adapter's refund decisions whenever one of them changes, so a late refund or a no-show restates the original day. The waterfall per day is a sum of these rows; the row holds no name or contact.",
+      "Per booking-sourced paid order (an order carrying a Booking reservation link, or the supplementary order of a stay that grew): gross, discounts, shipping, insurance and tax recognised once on the Asia/Jakarta day of the first paid transition, the refunds DECIDED on the order (its return records) and the unpaid balance of a closed order (no money moved), each allocated across goods, shipping, insurance and tax so that only the goods share is in the Refunds step and the rest lowers its own companion column, the money paid back and the refund still payable, the balance still outstanding on an open order, and the stay and no-show counts. Recomputed from the order, the payment ledger, the return records and the adapter's refund decisions whenever one of them changes, so a late refund or a no-show restates the original day and settling a refund leg never moves net. The waterfall per day is a sum of these rows; the row holds no name or contact.",
     source: { strategy: "cursor_table", streams: BOOKING_REVENUE_STREAMS },
     rebuildSource: { streams: BOOKING_REVENUE_STREAMS },
     metricLabels: {
