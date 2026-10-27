@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-2103-kecamatan-210321-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.03.21",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pulau Tiga Barat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Natuna",
+  "publisherDomain": "2103",
+  "publisherWebsite": "https://natunakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Natuna (https://natunakab.bps.go.id), publikasi \"Kecamatan Pulau Tiga Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2103045",
+  "publicationNumber": "2103.26015",
+  "issn": "2963-699X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://natunakab.bps.go.id/id/publication/2026/09/28/3d0a7fb48c062744fd543441/kecamatan-pulau-tiga-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "85dbaee2f4505d568aa19f488590d3075197877d55f0287bee00ee73cd01fae2",
+  "sourceFileBytes": 9313481,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Natuna.",
+  "csvPath": "datasets/bps-2103-kecamatan-210321-dalam-angka-2026.csv",
+  "csvSha256": "4e5af2f850d7cecb1e7b522752440a0881f53449e0b5e5cec15ebf18a27a6c68",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pulau Tiga Barat, 2026",
+      "printedPages": [26, 27],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pulau Tiga Barat, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Pulau Tiga Barat Pulau Tiga Barat District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Pulau Tiga Barat Pulau Tiga Barat District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Pulau Tiga Barat Pulau Tiga Barat District\": unmatched "
+  ]
+}

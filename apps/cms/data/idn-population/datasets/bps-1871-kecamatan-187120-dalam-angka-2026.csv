@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.71.20.1005,4,Kangkung,sex,laki_laki,,7180,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.20.1005,4,Kangkung,sex,perempuan,,6821,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.20.1005,4,Kangkung,total,total,,14001,jiwa,2025,registration,total_population,3.1,26,,
+18.71.20.1002,4,Bumi Waras,sex,laki_laki,,7992,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.20.1002,4,Bumi Waras,sex,perempuan,,7610,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.20.1002,4,Bumi Waras,total,total,,15602,jiwa,2025,registration,total_population,3.1,26,,
+18.71.20.1004,4,Bumi Raya,sex,laki_laki,,3211,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.20.1004,4,Bumi Raya,sex,perempuan,,3120,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.20.1004,4,Bumi Raya,total,total,,6331,jiwa,2025,registration,total_population,3.1,26,,
+18.71.20.1001,4,Sukaraja,sex,laki_laki,,5853,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.20.1001,4,Sukaraja,sex,perempuan,,5517,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.20.1001,4,Sukaraja,total,total,,11370,jiwa,2025,registration,total_population,3.1,26,,
+18.71.20.1003,4,Garuntang,sex,laki_laki,,4648,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.20.1003,4,Garuntang,sex,perempuan,,4466,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.20.1003,4,Garuntang,total,total,,9114,jiwa,2025,registration,total_population,3.1,26,,
+18.71.20,3,Bumi Waras,sex,laki_laki,,28884,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.20,3,Bumi Waras,sex,perempuan,,27534,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.20,3,Bumi Waras,total,total,,56418,jiwa,2025,registration,total_population,3.1,26,,

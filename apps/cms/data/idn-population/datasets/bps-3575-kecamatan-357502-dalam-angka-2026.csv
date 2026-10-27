@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.75.02.1001,4,Pohjentrek,sex,laki_laki,,4846,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+35.75.02.1001,4,Pohjentrek,sex,perempuan,,4759,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+35.75.02.1001,4,Pohjentrek,total,total,,9605,jiwa,2025,registration,total_population,3.1,34,,
+35.75.02.1002,4,Wirogunan,sex,laki_laki,,2377,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+35.75.02.1002,4,Wirogunan,sex,perempuan,,2346,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+35.75.02.1002,4,Wirogunan,total,total,,4723,jiwa,2025,registration,total_population,3.1,34,,
+35.75.02.1003,4,Tembokrejo,sex,laki_laki,,3700,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+35.75.02.1003,4,Tembokrejo,sex,perempuan,,3756,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+35.75.02.1003,4,Tembokrejo,total,total,,7456,jiwa,2025,registration,total_population,3.1,34,,
+35.75.02.1004,4,Purutrejo,sex,laki_laki,,3685,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+35.75.02.1004,4,Purutrejo,sex,perempuan,,3610,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+35.75.02.1004,4,Purutrejo,total,total,,7295,jiwa,2025,registration,total_population,3.1,34,,
+35.75.02.1005,4,Kebonagung,sex,laki_laki,,5376,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+35.75.02.1005,4,Kebonagung,sex,perempuan,,5531,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+35.75.02.1005,4,Kebonagung,total,total,,10907,jiwa,2025,registration,total_population,3.1,34,,
+35.75.02.1006,4,Purworejo,sex,laki_laki,,5776,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+35.75.02.1006,4,Purworejo,sex,perempuan,,5882,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+35.75.02.1006,4,Purworejo,total,total,,11658,jiwa,2025,registration,total_population,3.1,34,,
+35.75.02.1011,4,Sekargadung,sex,laki_laki,,5663,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+35.75.02.1011,4,Sekargadung,sex,perempuan,,5672,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+35.75.02.1011,4,Sekargadung,total,total,,11335,jiwa,2025,registration,total_population,3.1,34,,
+35.75.02,3,Kecamatan Purworejo,sex,laki_laki,,31423,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+35.75.02,3,Kecamatan Purworejo,sex,perempuan,,31556,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+35.75.02,3,Kecamatan Purworejo,total,total,,62979,jiwa,2025,registration,total_population,3.1,34,,

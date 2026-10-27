@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.71.10.1002,4,Taman Baloi,sex,laki_laki,,11476,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.10.1002,4,Taman Baloi,sex,perempuan,,12419,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.10.1002,4,Taman Baloi,total,total,,23895,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.10.1001,4,Baloi Permai,sex,laki_laki,,19778,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.10.1001,4,Baloi Permai,sex,perempuan,,20311,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.10.1001,4,Baloi Permai,total,total,,40089,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.10.1004,4,Belian,sex,laki_laki,,48233,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.10.1004,4,Belian,sex,perempuan,,48266,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.10.1004,4,Belian,total,total,,96499,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.10.1003,4,Teluk Tering,sex,laki_laki,,9941,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.10.1003,4,Teluk Tering,sex,perempuan,,10435,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.10.1003,4,Teluk Tering,total,total,,20376,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.10.1006,4,Sungai Panas,sex,laki_laki,,15760,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.10.1006,4,Sungai Panas,sex,perempuan,,15440,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.10.1006,4,Sungai Panas,total,total,,31200,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.10.1005,4,Sukajadi,sex,laki_laki,,3161,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.10.1005,4,Sukajadi,sex,perempuan,,3360,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.10.1005,4,Sukajadi,total,total,,6521,jiwa,2025,registration,total_population,unnumbered-p21,21,,

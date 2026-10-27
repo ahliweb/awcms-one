@@ -1,0 +1,23 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.01.10.2001,4,Tumbuk Tebing,sex,perempuan,,287,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.10.2001,4,Tumbuk Tebing,total,total,,576,jiwa,2025,registration,total_population,3.1,26,,
+17.01.10.2010,4,Padang Burnai,sex,perempuan,,312,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.10.2010,4,Padang Burnai,total,total,,614,jiwa,2025,registration,total_population,3.1,26,,
+17.01.10.2002,4,Gunung Kayo,sex,perempuan,,296,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.10.2002,4,Gunung Kayo,total,total,,618,jiwa,2025,registration,total_population,3.1,26,,
+17.01.10.2003,4,Gindo Suli,sex,perempuan,,531,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.10.2003,4,Gindo Suli,total,total,,1111,jiwa,2025,registration,total_population,3.1,26,,
+17.01.10.2004,4,Talang Indah,sex,perempuan,,536,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.10.2004,4,Talang Indah,total,total,,1069,jiwa,2025,registration,total_population,3.1,26,,
+17.01.10.2007,4,Tanjung Tebat,sex,perempuan,,417,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.10.2007,4,Tanjung Tebat,total,total,,863,jiwa,2025,registration,total_population,3.1,26,,
+17.01.10.2008,4,Padang Jawi,sex,perempuan,,526,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.10.2008,4,Padang Jawi,total,total,,1073,jiwa,2025,registration,total_population,3.1,26,,
+17.01.10.2009,4,Tanjung Aur,sex,perempuan,,348,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.10.2009,4,Tanjung Aur,total,total,,736,jiwa,2025,registration,total_population,3.1,26,,
+17.01.10.2006,4,Padang Nibung,sex,perempuan,,241,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.10.2006,4,Padang Nibung,total,total,,485,jiwa,2025,registration,total_population,3.1,26,,
+17.01.10.2005,4,Kuripan,sex,perempuan,,186,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.10.2005,4,Kuripan,total,total,,376,jiwa,2025,registration,total_population,3.1,26,,
+17.01.10,3,Kecamatan Bunga Mas,sex,perempuan,,3680,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.10,3,Kecamatan Bunga Mas,total,total,,7521,jiwa,2025,registration,total_population,3.1,26,,

@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3205-kecamatan-320536-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.05.36",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Caringin Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Garut",
+  "publisherDomain": "3205",
+  "publisherWebsite": "https://garutkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Garut (https://garutkab.bps.go.id), publikasi \"Kecamatan Caringin Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3205011",
+  "publicationNumber": "32050.26007",
+  "issn": "2830-1129",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://garutkab.bps.go.id/id/publication/2026/09/28/0495dcffe062e29b858952b8/kecamatan-caringin-dalam-angka-2026.html",
+  "sourceFileSha256": "7209c3bdd38698b2e670750cad83f24baf44897a38bfc5ccee5676a41959ab28",
+  "sourceFileBytes": 10601366,
+  "sourcePages": [22, 23, 24],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Garut",
+  "csvPath": "datasets/bps-3205-kecamatan-320536-dalam-angka-2026.csv",
+  "csvSha256": "69922532b866f064bf6a70e6e9f65b50fe6facc89963d57a14e2516bb04403a6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Caringin, 2025",
+      "printedPages": [22, 23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Caringin, 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"6.Samudrajaya\": unmatched ",
+    "table 3.1: row not stored: row \"6.Samudrajaya\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Cisewu\": unmatched "
+  ]
+}

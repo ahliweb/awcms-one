@@ -1,0 +1,57 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.01.03.2005,4,Kimak,sex,perempuan,,1862,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.03.2005,4,Kimak,total,total,,3887,jiwa,2025,registration,total_population,3.1,26,,
+19.01.03.2010,4,Jada Bahrin,sex,perempuan,,1066,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.03.2010,4,Jada Bahrin,total,total,,2229,jiwa,2025,registration,total_population,3.1,26,,
+19.01.03.2002,4,Balun Ijuk,sex,perempuan,,2829,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.03.2002,4,Balun Ijuk,total,total,,5759,jiwa,2025,registration,total_population,3.1,26,,
+19.01.03.2006,4,Pagarawan,sex,perempuan,,2239,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.03.2006,4,Pagarawan,total,total,,4570,jiwa,2025,registration,total_population,3.1,26,,
+19.01.03.2001,4,Baturusa,sex,perempuan,,2336,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.03.2001,4,Baturusa,total,total,,4752,jiwa,2025,registration,total_population,3.1,26,,
+19.01.03.2008,4,Air Anyir,sex,perempuan,,1203,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.03.2008,4,Air Anyir,total,total,,2512,jiwa,2025,registration,total_population,3.1,26,,
+19.01.03.2003,4,Riding Panjang,sex,perempuan,,1623,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.03.2003,4,Riding Panjang,total,total,,3267,jiwa,2025,registration,total_population,3.1,26,,
+19.01.03.2009,4,Dwi Makmur,sex,perempuan,,355,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.03.2009,4,Dwi Makmur,total,total,,731,jiwa,2025,registration,total_population,3.1,26,,
+19.01.03.2004,4,Jurung,sex,perempuan,,914,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.03.2004,4,Jurung,total,total,,1923,jiwa,2025,registration,total_population,3.1,26,,
+19.01.03.2007,4,Merawang,sex,perempuan,,1119,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.03.2007,4,Merawang,total,total,,2239,jiwa,2025,registration,total_population,3.1,26,,
+19.01.03,3,Kecamatan Merawang,sex,perempuan,,15546,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.03,3,Kecamatan Merawang,total,total,,31869,jiwa,2025,registration,total_population,3.1,26,,
+19.01.03,3,Merawang,age_group,0-4,perempuan,1045,jiwa,2025,registration,total_population,3.2,28,,0-4
+19.01.03,3,Merawang,age_group,0-4,,2104,jiwa,2025,registration,total_population,3.2,28,,0-4
+19.01.03,3,Merawang,age_group,5-9,perempuan,1270,jiwa,2025,registration,total_population,3.2,28,,5-9
+19.01.03,3,Merawang,age_group,5-9,,2707,jiwa,2025,registration,total_population,3.2,28,,5-9
+19.01.03,3,Merawang,age_group,10-14,perempuan,1505,jiwa,2025,registration,total_population,3.2,28,,10-14
+19.01.03,3,Merawang,age_group,10-14,,3130,jiwa,2025,registration,total_population,3.2,28,,10-14
+19.01.03,3,Merawang,age_group,15-19,perempuan,1366,jiwa,2025,registration,total_population,3.2,28,,15-19
+19.01.03,3,Merawang,age_group,15-19,,2869,jiwa,2025,registration,total_population,3.2,28,,15-19
+19.01.03,3,Merawang,age_group,20-24,perempuan,1253,jiwa,2025,registration,total_population,3.2,28,,20-24
+19.01.03,3,Merawang,age_group,20-24,,2553,jiwa,2025,registration,total_population,3.2,28,,20-24
+19.01.03,3,Merawang,age_group,25-29,perempuan,1202,jiwa,2025,registration,total_population,3.2,28,,25-29
+19.01.03,3,Merawang,age_group,25-29,,2371,jiwa,2025,registration,total_population,3.2,28,,25-29
+19.01.03,3,Merawang,age_group,30-34,perempuan,1075,jiwa,2025,registration,total_population,3.2,28,,30-34
+19.01.03,3,Merawang,age_group,30-34,,2143,jiwa,2025,registration,total_population,3.2,28,,30-34
+19.01.03,3,Merawang,age_group,35-39,perempuan,1350,jiwa,2025,registration,total_population,3.2,28,,35-39
+19.01.03,3,Merawang,age_group,35-39,,2699,jiwa,2025,registration,total_population,3.2,28,,35-39
+19.01.03,3,Merawang,age_group,40-44,perempuan,1213,jiwa,2025,registration,total_population,3.2,28,,40-44
+19.01.03,3,Merawang,age_group,40-44,,2626,jiwa,2025,registration,total_population,3.2,28,,40-44
+19.01.03,3,Merawang,age_group,45-49,perempuan,1030,jiwa,2025,registration,total_population,3.2,28,,45-49
+19.01.03,3,Merawang,age_group,45-49,,2260,jiwa,2025,registration,total_population,3.2,28,,45-49
+19.01.03,3,Merawang,age_group,50-54,perempuan,832,jiwa,2025,registration,total_population,3.2,28,,50-54
+19.01.03,3,Merawang,age_group,50-54,,1745,jiwa,2025,registration,total_population,3.2,28,,50-54
+19.01.03,3,Merawang,age_group,55-59,perempuan,680,jiwa,2025,registration,total_population,3.2,28,,55-59
+19.01.03,3,Merawang,age_group,55-59,,1384,jiwa,2025,registration,total_population,3.2,28,,55-59
+19.01.03,3,Merawang,age_group,60-64,perempuan,559,jiwa,2025,registration,total_population,3.2,28,,60-64
+19.01.03,3,Merawang,age_group,60-64,,1123,jiwa,2025,registration,total_population,3.2,28,,60-64
+19.01.03,3,Merawang,age_group,65-69,perempuan,518,jiwa,2025,registration,total_population,3.2,28,,65-69
+19.01.03,3,Merawang,age_group,65-69,,973,jiwa,2025,registration,total_population,3.2,28,,65-69
+19.01.03,3,Merawang,age_group,70-74,perempuan,324,jiwa,2025,registration,total_population,3.2,28,,70-74
+19.01.03,3,Merawang,age_group,70-74,,605,jiwa,2025,registration,total_population,3.2,28,,70-74
+19.01.03,3,Merawang,age_group,75+,perempuan,324,jiwa,2025,registration,total_population,3.2,28,,75+
+19.01.03,3,Merawang,age_group,75+,,577,jiwa,2025,registration,total_population,3.2,28,,75+
+19.01.03,3,Kecamatan Merawang,sex,perempuan,,15546,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+19.01.03,3,Kecamatan Merawang,total,total,,31869,jiwa,2025,registration,total_population,3.2,28,,

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3316-kecamatan-331608-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.16.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jepon Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Blora",
+  "publisherDomain": "3316",
+  "publisherWebsite": "https://blorakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Blora (https://blorakab.bps.go.id), publikasi \"Kecamatan Jepon Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3316090",
+  "publicationNumber": "33160.25022",
+  "issn": "2774-7506",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://blorakab.bps.go.id/id/publication/2026/09/28/f6ce27fedad894ab3d38e772/kecamatan-jepon-dalam-angka-2026.html",
+  "sourceFileSha256": "2a9b59399adbfd4f89572acda33522ade2b6d52d4b45d2cba331e7328bc990a6",
+  "sourceFileBytes": 10877138,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Blora.",
+  "csvPath": "datasets/bps-3316-kecamatan-331608-dalam-angka-2026.csv",
+  "csvSha256": "63a49e2b7ca6d90b0140833c12748ef1844af9b4c67af344ab90c413b0bf07e3",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk menurut Desa/ Kelurahan di Kecamatan Jepon, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jepon, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

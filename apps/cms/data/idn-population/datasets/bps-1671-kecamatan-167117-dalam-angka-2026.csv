@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.71.17.1003,4,Lima–Belas Ulu,sex,perempuan,,18925,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.17.1003,4,Lima–Belas Ulu,total,total,,38099,jiwa,2025,registration,total_population,3.1,32,,
+16.71.17.1005,4,TuanKentang,sex,perempuan,,6062,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.17.1005,4,TuanKentang,total,total,,12237,jiwa,2025,registration,total_population,3.1,32,,
+16.71.17.1001,4,Delapan Ulu,sex,perempuan,,6146,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.17.1001,4,Delapan Ulu,total,total,,12399,jiwa,2025,registration,total_population,3.1,32,,
+16.71.17.1004,4,Silaberanti,sex,perempuan,,10017,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.17.1004,4,Silaberanti,total,total,,19976,jiwa,2025,registration,total_population,3.1,32,,
+16.71.17.1002,4,Sembilan Sepuluh Ulu,sex,perempuan,,6317,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.17.1002,4,Sembilan Sepuluh Ulu,total,total,,12743,jiwa,2025,registration,total_population,3.1,32,,
+16.71.17,3,Jakabaring,sex,perempuan,,47467,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.17,3,Jakabaring,total,total,,95454,jiwa,2025,registration,total_population,3.1,32,,

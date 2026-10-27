@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.18.06.2001,4,Bandar Tengah,sex,laki_laki,,4485,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.06.2001,4,Bandar Tengah,sex,perempuan,,4528,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.06.2001,4,Bandar Tengah,total,total,,9013,jiwa,2025,registration,total_population,3.1,26,,
+12.18.06.2002,4,Juhar,sex,laki_laki,,3202,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.06.2002,4,Juhar,sex,perempuan,,3287,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.06.2002,4,Juhar,total,total,,6489,jiwa,2025,registration,total_population,3.1,26,,
+12.18.06.2005,4,Kayu Besar,sex,laki_laki,,1871,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.06.2005,4,Kayu Besar,sex,perempuan,,1856,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.06.2005,4,Kayu Besar,total,total,,3727,jiwa,2025,registration,total_population,3.1,26,,
+12.18.06.2004,4,Pekan Bandar Khalipah,sex,laki_laki,,1424,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.06.2004,4,Pekan Bandar Khalipah,sex,perempuan,,1366,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.06.2004,4,Pekan Bandar Khalipah,total,total,,2790,jiwa,2025,registration,total_population,3.1,26,,
+12.18.06,3,Kecamatan Bandar Khalipah,sex,laki_laki,,13803,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.18.06,3,Kecamatan Bandar Khalipah,sex,perempuan,,13839,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.18.06,3,Kecamatan Bandar Khalipah,total,total,,27642,jiwa,2025,registration,total_population,3.1,26,,
+12.18.06,3,Bandar Khalipah,age_group,0-4,laki_laki,755,jiwa,2025,registration,total_population,3.2,28,,00-04
+12.18.06,3,Bandar Khalipah,age_group,0-4,perempuan,671,jiwa,2025,registration,total_population,3.2,28,,00-04
+12.18.06,3,Bandar Khalipah,age_group,0-4,,1426,jiwa,2025,registration,total_population,3.2,28,,00-04
+12.18.06,3,Bandar Khalipah,age_group,5-9,laki_laki,1203,jiwa,2025,registration,total_population,3.2,28,,05-09
+12.18.06,3,Bandar Khalipah,age_group,5-9,perempuan,1110,jiwa,2025,registration,total_population,3.2,28,,05-09
+12.18.06,3,Bandar Khalipah,age_group,5-9,,2313,jiwa,2025,registration,total_population,3.2,28,,05-09
+12.18.06,3,Bandar Khalipah,age_group,10-14,laki_laki,1482,jiwa,2025,registration,total_population,3.2,28,,10-14
+12.18.06,3,Bandar Khalipah,age_group,10-14,perempuan,1330,jiwa,2025,registration,total_population,3.2,28,,10-14
+12.18.06,3,Bandar Khalipah,age_group,10-14,,2812,jiwa,2025,registration,total_population,3.2,28,,10-14
+12.18.06,3,Bandar Khalipah,age_group,15-19,laki_laki,1440,jiwa,2025,registration,total_population,3.2,28,,15-19
+12.18.06,3,Bandar Khalipah,age_group,15-19,perempuan,1297,jiwa,2025,registration,total_population,3.2,28,,15-19
+12.18.06,3,Bandar Khalipah,age_group,15-19,,2737,jiwa,2025,registration,total_population,3.2,28,,15-19
+12.18.06,3,Bandar Khalipah,age_group,20-24,laki_laki,1262,jiwa,2025,registration,total_population,3.2,28,,20-24
+12.18.06,3,Bandar Khalipah,age_group,20-24,perempuan,1267,jiwa,2025,registration,total_population,3.2,28,,20-24
+12.18.06,3,Bandar Khalipah,age_group,20-24,,2529,jiwa,2025,registration,total_population,3.2,28,,20-24
+12.18.06,3,Bandar Khalipah,age_group,25-29,laki_laki,1080,jiwa,2025,registration,total_population,3.2,28,,25-29
+12.18.06,3,Bandar Khalipah,age_group,25-29,perempuan,1072,jiwa,2025,registration,total_population,3.2,28,,25-29
+12.18.06,3,Bandar Khalipah,age_group,25-29,,2152,jiwa,2025,registration,total_population,3.2,28,,25-29
+12.18.06,3,Bandar Khalipah,age_group,30-34,laki_laki,1019,jiwa,2025,registration,total_population,3.2,28,,30-34
+12.18.06,3,Bandar Khalipah,age_group,30-34,perempuan,870,jiwa,2025,registration,total_population,3.2,28,,30-34
+12.18.06,3,Bandar Khalipah,age_group,30-34,,1889,jiwa,2025,registration,total_population,3.2,28,,30-34
+12.18.06,3,Bandar Khalipah,age_group,35-39,laki_laki,938,jiwa,2025,registration,total_population,3.2,28,,35-39
+12.18.06,3,Bandar Khalipah,age_group,35-39,perempuan,856,jiwa,2025,registration,total_population,3.2,28,,35-39
+12.18.06,3,Bandar Khalipah,age_group,35-39,,1794,jiwa,2025,registration,total_population,3.2,28,,35-39
+12.18.06,3,Bandar Khalipah,age_group,40-44,laki_laki,992,jiwa,2025,registration,total_population,3.2,28,,40-44
+12.18.06,3,Bandar Khalipah,age_group,40-44,perempuan,951,jiwa,2025,registration,total_population,3.2,28,,40-44
+12.18.06,3,Bandar Khalipah,age_group,40-44,,1943,jiwa,2025,registration,total_population,3.2,28,,40-44
+12.18.06,3,Bandar Khalipah,age_group,45-49,laki_laki,916,jiwa,2025,registration,total_population,3.2,28,,45-49
+12.18.06,3,Bandar Khalipah,age_group,45-49,perempuan,942,jiwa,2025,registration,total_population,3.2,28,,45-49
+12.18.06,3,Bandar Khalipah,age_group,45-49,,1858,jiwa,2025,registration,total_population,3.2,28,,45-49
+12.18.06,3,Bandar Khalipah,age_group,50-54,laki_laki,763,jiwa,2025,registration,total_population,3.2,28,,50-54
+12.18.06,3,Bandar Khalipah,age_group,50-54,perempuan,803,jiwa,2025,registration,total_population,3.2,28,,50-54
+12.18.06,3,Bandar Khalipah,age_group,50-54,,1566,jiwa,2025,registration,total_population,3.2,28,,50-54
+12.18.06,3,Bandar Khalipah,age_group,55-59,laki_laki,623,jiwa,2025,registration,total_population,3.2,28,,55-59
+12.18.06,3,Bandar Khalipah,age_group,55-59,perempuan,683,jiwa,2025,registration,total_population,3.2,28,,55-59
+12.18.06,3,Bandar Khalipah,age_group,55-59,,1306,jiwa,2025,registration,total_population,3.2,28,,55-59
+12.18.06,3,Bandar Khalipah,age_group,60-64,laki_laki,485,jiwa,2025,registration,total_population,3.2,28,,60-64
+12.18.06,3,Bandar Khalipah,age_group,60-64,perempuan,584,jiwa,2025,registration,total_population,3.2,28,,60-64
+12.18.06,3,Bandar Khalipah,age_group,60-64,,1069,jiwa,2025,registration,total_population,3.2,28,,60-64
+12.18.06,3,Bandar Khalipah,age_group,65-69,laki_laki,386,jiwa,2025,registration,total_population,3.2,28,,65-69
+12.18.06,3,Bandar Khalipah,age_group,65-69,perempuan,557,jiwa,2025,registration,total_population,3.2,28,,65-69
+12.18.06,3,Bandar Khalipah,age_group,65-69,,943,jiwa,2025,registration,total_population,3.2,28,,65-69
+12.18.06,3,Bandar Khalipah,age_group,70-74,laki_laki,242,jiwa,2025,registration,total_population,3.2,28,,70-74
+12.18.06,3,Bandar Khalipah,age_group,70-74,perempuan,360,jiwa,2025,registration,total_population,3.2,28,,70-74
+12.18.06,3,Bandar Khalipah,age_group,70-74,,602,jiwa,2025,registration,total_population,3.2,28,,70-74
+12.18.06,3,Bandar Khalipah,age_group,75+,laki_laki,217,jiwa,2025,registration,total_population,3.2,28,,>75
+12.18.06,3,Bandar Khalipah,age_group,75+,perempuan,486,jiwa,2025,registration,total_population,3.2,28,,>75
+12.18.06,3,Bandar Khalipah,age_group,75+,,703,jiwa,2025,registration,total_population,3.2,28,,>75
+12.18.06,3,Kecamatan Bandar Khalipah,sex,laki_laki,,13803,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+12.18.06,3,Kecamatan Bandar Khalipah,sex,perempuan,,13839,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+12.18.06,3,Kecamatan Bandar Khalipah,total,total,,27642,jiwa,2025,registration,total_population,3.2,28,,

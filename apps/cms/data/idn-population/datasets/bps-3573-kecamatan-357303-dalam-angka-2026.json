@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3573-kecamatan-357303-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.73.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kedungkandang Dalam Angka 2026",
+  "publisherName": "BPS Kota Malang",
+  "publisherDomain": "3573",
+  "publisherWebsite": "https://malangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Malang (https://malangkota.bps.go.id), publikasi \"Kecamatan Kedungkandang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3573010",
+  "publicationNumber": "35730.26007",
+  "issn": "2598-4454",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://malangkota.bps.go.id/id/publication/2026/09/28/af6cad45ddab8e330e29a8b8/kecamatan-kedungkandang-dalam-angka-2026.html",
+  "sourceFileSha256": "719f9bd9f4f77da47257155ce9d97209c3e731f82a98c5c1752cae8958faf294",
+  "sourceFileBytes": 22180018,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kota Malang.",
+  "csvPath": "datasets/bps-3573-kecamatan-357303-dalam-angka-2026.csv",
+  "csvSha256": "ade65d18f6959ae2f52058cc20c571ee6abcde2fb6940d6fb1b4ff70b3ec85f4",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kedungkandang, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kedungkandang (jiwa), 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Kedungkandang Kedungkandang District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Kedungkandang Kedungkandang District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Kedungkandang Kedungkandang District\": unmatched "
+  ]
+}

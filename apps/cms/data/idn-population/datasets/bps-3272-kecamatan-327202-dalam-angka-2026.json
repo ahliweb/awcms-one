@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3272-kecamatan-327202-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.72.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cikole Dalam Angka 2026",
+  "publisherName": "BPS Kota Sukabumi",
+  "publisherDomain": "3272",
+  "publisherWebsite": "https://sukabumikota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Sukabumi (https://sukabumikota.bps.go.id), publikasi \"Kecamatan Cikole Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3272050",
+  "publicationNumber": "32720.26011",
+  "issn": "2798-8406",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sukabumikota.bps.go.id/id/publication/2026/09/28/c0e099dc26f1bdd33877e559/kecamatan-cikole-dalam-angka-2026.html",
+  "sourceFileSha256": "f63c9f17c61f967ebbd8a224ade577b878bd564111510cc493700d02b105c578",
+  "sourceFileBytes": 7725369,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Sukabumi.",
+  "csvPath": "datasets/bps-3272-kecamatan-327202-dalam-angka-2026.csv",
+  "csvSha256": "dcf8e61e04da4db1194b91359c058ac98c4fe1008d2a1bf4ffb4d353ff82d5f8",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cikole, 2026",
+      "printedPages": [32],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Gunung Parang 1.869\": unmatched ",
+    "table 3.1: row not stored: row \"Kebonjati 3.670\": unmatched ",
+    "table 3.1: row not stored: row \"Cikole 3.045\": unmatched ",
+    "table 3.1: row not stored: row \"Selabatu 5.097\": unmatched ",
+    "table 3.1: row not stored: row \"Cisarua 11.933\": unmatched ",
+    "table 3.1: row not stored: row \"Subangjaya 9.580\": unmatched ",
+    "table 3.1: row not stored: row \"Cikole 35.194\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

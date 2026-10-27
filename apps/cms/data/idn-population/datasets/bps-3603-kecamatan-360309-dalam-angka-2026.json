@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-3603-kecamatan-360309-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.03.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kemiri Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tangerang",
+  "publisherDomain": "3603",
+  "publisherWebsite": "https://tangerangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tangerang (https://tangerangkab.bps.go.id), publikasi \"Kecamatan Kemiri Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3603161",
+  "publicationNumber": "36030.26027",
+  "issn": "2407-4829",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tangerangkab.bps.go.id/id/publication/2026/09/28/733d3d14e225a809c144bfd8/kecamatan-kemiri-dalam-angka-2026.html",
+  "sourceFileSha256": "b52d310ce79f1db347febe2f94e6b7fcf60ab37fa3ee4d421bc8a891862e07cc",
+  "sourceFileBytes": 15869337,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tangerang.",
+  "csvPath": "datasets/bps-3603-kecamatan-360309-dalam-angka-2026.csv",
+  "csvSha256": "1a722655b257b99db8d7dcbbc30d4298f6e83aba235fdf5e126cb6d37ef1b7ec",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kemiri, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kemiri, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kelebet\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Kemiri Kemiri District\": unmatched ",
+    "table 3.1: row not stored: row \"Kelebet\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Kemiri Kemiri District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Kemiri Kemiri District\": unmatched "
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "datasetCode": "bps-1104-kecamatan-110202-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.02.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lawe Sigala-gala Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Tenggara",
+  "publisherDomain": "1104",
+  "publisherWebsite": "https://acehtenggarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Tenggara (https://acehtenggarakab.bps.go.id), publikasi \"Kecamatan Lawe Sigala-gala Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1104020",
+  "publicationNumber": "11040.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehtenggarakab.bps.go.id/id/publication/2026/09/28/fbabc3c5b485271bfd64cb8e/kecamatan-lawe-sigala-gala-dalam-angka-2026.html",
+  "sourceFileSha256": "065bb3d46f29588603c7605b5c7a9722df4e4f6975793a74c445bf2724d53239",
+  "sourceFileBytes": 1207698,
+  "sourcePages": [28, 29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Tenggara.",
+  "csvPath": "datasets/bps-1104-kecamatan-110202-dalam-angka-2026.csv",
+  "csvSha256": "9e21bbcd2598a6836a21eec13d32b5c9fbe1c26eca594639355b620fe59f918d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Lawe Sigala-gala, 2025 Penduduk Desa/Kelurahan Laki-Laki Perempuan Jumlah",
+      "printedPages": [28, 29, 30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"LAWE LONING GAB\": unmatched ",
+    "table 3.1: row not stored: row \"GABUNGAN PARSAORAN\": unmatched ",
+    "table 3.1: row not stored: row \"KEDATARAN GAB\": unmatched ",
+    "table 3.1: row not stored: row \"KUTA TENGAH\": unmatched ",
+    "table 3.1: row not stored: row \"LAWE TUA GAB\": unmatched ",
+    "table 3.1: row not stored: row \"ENMYA BATU DUA RATUS\": unmatched ",
+    "table 3.1: row not stored: row \"NDAUH NI TENGGAU\": unmatched ",
+    "table 3.1: row not stored: row \"LAWE PEKHIDINAN\": unmatched ",
+    "table 3.1: row not stored: row \"LAWE LONING GAB\": unmatched ",
+    "table 3.1: row not stored: row \"GABUNGAN PARSAORAN\": unmatched ",
+    "table 3.1: row not stored: row \"KEDATARAN GAB\": unmatched ",
+    "table 3.1: row not stored: row \"KUTA TENGAH\": unmatched ",
+    "table 3.1: row not stored: row \"LAWE TUA GAB\": unmatched ",
+    "table 3.1: row not stored: row \"ENMYA BATU DUA RATUS\": unmatched ",
+    "table 3.1: row not stored: row \"NDAUH NI TENGGAU\": unmatched ",
+    "table 3.1: row not stored: row \"LAWE PEKHIDINAN\": unmatched "
+  ]
+}

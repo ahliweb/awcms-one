@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1275-kecamatan-127109-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.71.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Medan Amplas Dalam Angka 2026",
+  "publisherName": "BPS Kota Medan",
+  "publisherDomain": "1275",
+  "publisherWebsite": "https://medankota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Medan (https://medankota.bps.go.id), publikasi \"Kecamatan Medan Amplas Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1275030",
+  "publicationNumber": "12750.26010",
+  "issn": "2830-4020",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://medankota.bps.go.id/id/publication/2026/09/28/45dbf1215fbfba13d5183c01/kecamatan-medan-amplas-dalam-angka-2026.html",
+  "sourceFileSha256": "eec72d70cc9216bb78b935279a6fc21045a4dac0800d8e63a09480e003df5d02",
+  "sourceFileBytes": 11115487,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Medan.",
+  "csvPath": "datasets/bps-1275-kecamatan-127109-dalam-angka-2026.csv",
+  "csvSha256": "79e1fadf764aaad6696653c508e177129c56a3f909ea0aa5012cda33d26cba4e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Medan Amplas, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Medan Amplas, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.6 (religion-by-region) could not be read reliably and is not included (religion column 7 header \"Kong- hucu Kong- hucu\" not recognised)"
+  ]
+}

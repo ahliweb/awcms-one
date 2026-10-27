@@ -1,0 +1,107 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.03.05,3,Payung,total,total,,22646,jiwa,2025,registration,total_population,3.1.1,78,,
+19.03.07,3,Pulau Besar,total,total,,10286,jiwa,2025,registration,total_population,3.1.1,78,,
+19.03.04,3,Simpang Rimba,total,total,,27392,jiwa,2025,registration,total_population,3.1.1,78,,
+19.03.01,3,Toboali,total,total,,87358,jiwa,2025,registration,total_population,3.1.1,78,,
+19.03.06,3,Tukak Sadai,total,total,,14461,jiwa,2025,registration,total_population,3.1.1,78,,
+19.03.03,3,Air Gegas,total,total,,45208,jiwa,2025,registration,total_population,3.1.1,78,,
+19.03.02,3,Lepar,total,total,,8319,jiwa,2025,registration,total_population,3.1.1,78,,
+19.03.08,3,Kepulauan Pongok,total,total,,4234,jiwa,2025,registration,total_population,3.1.1,78,,
+19.03,2,Bangka Selatan,total,total,,219904,jiwa,2025,registration,total_population,3.1.1,78,,
+19.03,2,Kabupaten Bangka Selatan,age_group,0-4,laki_laki,9212,jiwa,2025,projection,total_population,3.1.2,81,,0–4
+19.03,2,Kabupaten Bangka Selatan,age_group,0-4,perempuan,8828,jiwa,2025,projection,total_population,3.1.2,81,,0–4
+19.03,2,Kabupaten Bangka Selatan,age_group,0-4,,18040,jiwa,2025,projection,total_population,3.1.2,81,,0–4
+19.03,2,Kabupaten Bangka Selatan,age_group,5-9,laki_laki,7554,jiwa,2025,projection,total_population,3.1.2,81,,5–9
+19.03,2,Kabupaten Bangka Selatan,age_group,5-9,perempuan,7194,jiwa,2025,projection,total_population,3.1.2,81,,5–9
+19.03,2,Kabupaten Bangka Selatan,age_group,5-9,,14748,jiwa,2025,projection,total_population,3.1.2,81,,5–9
+19.03,2,Kabupaten Bangka Selatan,age_group,10-14,laki_laki,8270,jiwa,2025,projection,total_population,3.1.2,81,,10–14
+19.03,2,Kabupaten Bangka Selatan,age_group,10-14,perempuan,7912,jiwa,2025,projection,total_population,3.1.2,81,,10–14
+19.03,2,Kabupaten Bangka Selatan,age_group,10-14,,16182,jiwa,2025,projection,total_population,3.1.2,81,,10–14
+19.03,2,Kabupaten Bangka Selatan,age_group,15-19,laki_laki,9057,jiwa,2025,projection,total_population,3.1.2,81,,15–19
+19.03,2,Kabupaten Bangka Selatan,age_group,15-19,perempuan,8396,jiwa,2025,projection,total_population,3.1.2,81,,15–19
+19.03,2,Kabupaten Bangka Selatan,age_group,15-19,,17453,jiwa,2025,projection,total_population,3.1.2,81,,15–19
+19.03,2,Kabupaten Bangka Selatan,age_group,20-24,laki_laki,9284,jiwa,2025,projection,total_population,3.1.2,81,,20–24
+19.03,2,Kabupaten Bangka Selatan,age_group,20-24,perempuan,8633,jiwa,2025,projection,total_population,3.1.2,81,,20–24
+19.03,2,Kabupaten Bangka Selatan,age_group,20-24,,17917,jiwa,2025,projection,total_population,3.1.2,81,,20–24
+19.03,2,Kabupaten Bangka Selatan,age_group,25-29,laki_laki,9201,jiwa,2025,projection,total_population,3.1.2,81,,25–29
+19.03,2,Kabupaten Bangka Selatan,age_group,25-29,perempuan,8701,jiwa,2025,projection,total_population,3.1.2,81,,25–29
+19.03,2,Kabupaten Bangka Selatan,age_group,25-29,,17902,jiwa,2025,projection,total_population,3.1.2,81,,25–29
+19.03,2,Kabupaten Bangka Selatan,age_group,30-34,laki_laki,9120,jiwa,2025,projection,total_population,3.1.2,81,,30–34
+19.03,2,Kabupaten Bangka Selatan,age_group,30-34,perempuan,8713,jiwa,2025,projection,total_population,3.1.2,81,,30–34
+19.03,2,Kabupaten Bangka Selatan,age_group,30-34,,17833,jiwa,2025,projection,total_population,3.1.2,81,,30–34
+19.03,2,Kabupaten Bangka Selatan,age_group,35-39,laki_laki,9234,jiwa,2025,projection,total_population,3.1.2,81,,35–39
+19.03,2,Kabupaten Bangka Selatan,age_group,35-39,perempuan,8867,jiwa,2025,projection,total_population,3.1.2,81,,35–39
+19.03,2,Kabupaten Bangka Selatan,age_group,35-39,,18101,jiwa,2025,projection,total_population,3.1.2,81,,35–39
+19.03,2,Kabupaten Bangka Selatan,age_group,40-44,laki_laki,8485,jiwa,2025,projection,total_population,3.1.2,81,,40–44
+19.03,2,Kabupaten Bangka Selatan,age_group,40-44,perempuan,7945,jiwa,2025,projection,total_population,3.1.2,81,,40–44
+19.03,2,Kabupaten Bangka Selatan,age_group,40-44,,16430,jiwa,2025,projection,total_population,3.1.2,81,,40–44
+19.03,2,Kabupaten Bangka Selatan,age_group,45-49,laki_laki,7574,jiwa,2025,projection,total_population,3.1.2,81,,45–49
+19.03,2,Kabupaten Bangka Selatan,age_group,45-49,perempuan,7211,jiwa,2025,projection,total_population,3.1.2,81,,45–49
+19.03,2,Kabupaten Bangka Selatan,age_group,45-49,,14785,jiwa,2025,projection,total_population,3.1.2,81,,45–49
+19.03,2,Kabupaten Bangka Selatan,age_group,50-54,laki_laki,6626,jiwa,2025,projection,total_population,3.1.2,81,,50–54
+19.03,2,Kabupaten Bangka Selatan,age_group,50-54,perempuan,6145,jiwa,2025,projection,total_population,3.1.2,81,,50–54
+19.03,2,Kabupaten Bangka Selatan,age_group,50-54,,12771,jiwa,2025,projection,total_population,3.1.2,81,,50–54
+19.03,2,Kabupaten Bangka Selatan,age_group,55-59,laki_laki,5434,jiwa,2025,projection,total_population,3.1.2,81,,55–59
+19.03,2,Kabupaten Bangka Selatan,age_group,55-59,perempuan,5030,jiwa,2025,projection,total_population,3.1.2,81,,55–59
+19.03,2,Kabupaten Bangka Selatan,age_group,55-59,,10464,jiwa,2025,projection,total_population,3.1.2,81,,55–59
+19.03,2,Kabupaten Bangka Selatan,age_group,60-64,laki_laki,4193,jiwa,2025,projection,total_population,3.1.2,81,,60–64
+19.03,2,Kabupaten Bangka Selatan,age_group,60-64,perempuan,3714,jiwa,2025,projection,total_population,3.1.2,81,,60–64
+19.03,2,Kabupaten Bangka Selatan,age_group,60-64,,7907,jiwa,2025,projection,total_population,3.1.2,81,,60–64
+19.03,2,Kabupaten Bangka Selatan,age_group,65-69,laki_laki,2742,jiwa,2025,projection,total_population,3.1.2,81,,65–69
+19.03,2,Kabupaten Bangka Selatan,age_group,65-69,perempuan,2432,jiwa,2025,projection,total_population,3.1.2,81,,65–69
+19.03,2,Kabupaten Bangka Selatan,age_group,65-69,,5174,jiwa,2025,projection,total_population,3.1.2,81,,65–69
+19.03,2,Kabupaten Bangka Selatan,age_group,70-74,laki_laki,1449,jiwa,2025,projection,total_population,3.1.2,81,,70–74
+19.03,2,Kabupaten Bangka Selatan,age_group,70-74,perempuan,1397,jiwa,2025,projection,total_population,3.1.2,81,,70–74
+19.03,2,Kabupaten Bangka Selatan,age_group,70-74,,2846,jiwa,2025,projection,total_population,3.1.2,81,,70–74
+19.03,2,Kabupaten Bangka Selatan,age_group,75+,laki_laki,1241,jiwa,2025,projection,total_population,3.1.2,81,,75+
+19.03,2,Kabupaten Bangka Selatan,age_group,75+,perempuan,1320,jiwa,2025,projection,total_population,3.1.2,81,,75+
+19.03,2,Kabupaten Bangka Selatan,age_group,75+,,2561,jiwa,2025,projection,total_population,3.1.2,81,,75+
+19.03,2,Bangka Selatan,sex,laki_laki,,108676,jiwa,2025,projection,total_population,3.1.2,81,,Laki-Laki
+19.03,2,Bangka Selatan,sex,perempuan,,102438,jiwa,2025,projection,total_population,3.1.2,81,,Perempuan
+19.03,2,Bangka Selatan,total,total,,211114,jiwa,2025,projection,total_population,3.1.2,81,,
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/padi_padian,,120252,rupiah,2025,survey_estimate,per_capita,10.1,304,,Padi-padian
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/padi_padian,,120111,rupiah,2024,survey_estimate,per_capita,10.1,304,,Padi-padian
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/umbi_umbian,,6243,rupiah,2025,survey_estimate,per_capita,10.1,304,,Umbi-umbian
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/umbi_umbian,,5421,rupiah,2024,survey_estimate,per_capita,10.1,304,,Umbi-umbian
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,99807,rupiah,2025,survey_estimate,per_capita,10.1,304,,Ikan/udang/cumi/kerang
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,93589,rupiah,2024,survey_estimate,per_capita,10.1,304,,Ikan/udang/cumi/kerang
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/daging,,58484,rupiah,2025,survey_estimate,per_capita,10.1,304,,Daging
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/daging,,48292,rupiah,2024,survey_estimate,per_capita,10.1,304,,Daging
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/telur_dan_susu,,54282,rupiah,2025,survey_estimate,per_capita,10.1,304,,Telur dan susu
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/telur_dan_susu,,40568,rupiah,2024,survey_estimate,per_capita,10.1,304,,Telur dan susu
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/sayur_sayuran,,85610,rupiah,2025,survey_estimate,per_capita,10.1,304,,Sayur-sayuran
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/sayur_sayuran,,80004,rupiah,2024,survey_estimate,per_capita,10.1,304,,Sayur-sayuran
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/kacang_kacangan,,10609,rupiah,2025,survey_estimate,per_capita,10.1,304,,Kacang-kacangan
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/kacang_kacangan,,8065,rupiah,2024,survey_estimate,per_capita,10.1,304,,Kacang-kacangan
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/buah_buahan,,48521,rupiah,2025,survey_estimate,per_capita,10.1,304,,Buah-buahan
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/buah_buahan,,42319,rupiah,2024,survey_estimate,per_capita,10.1,304,,Buah-buahan
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18843,rupiah,2025,survey_estimate,per_capita,10.1,304,,Minyak dan kelapa
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16665,rupiah,2024,survey_estimate,per_capita,10.1,304,,Minyak dan kelapa
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/bahan_minuman,,24028,rupiah,2025,survey_estimate,per_capita,10.1,304,,Bahan minuman
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/bahan_minuman,,22646,rupiah,2024,survey_estimate,per_capita,10.1,304,,Bahan minuman
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/bumbu_bumbuan,,30834,rupiah,2025,survey_estimate,per_capita,10.1,304,,Bumbu-bumbuan
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/bumbu_bumbuan,,29212,rupiah,2024,survey_estimate,per_capita,10.1,304,,Bumbu-bumbuan
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/konsumsi_lainnya,,22643,rupiah,2025,survey_estimate,per_capita,10.1,304,,Konsumsi lainnya
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/konsumsi_lainnya,,18380,rupiah,2024,survey_estimate,per_capita,10.1,304,,Konsumsi lainnya
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,241570,rupiah,2025,survey_estimate,per_capita,10.1,304,,Makanan dan minuman jadi
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,217075,rupiah,2024,survey_estimate,per_capita,10.1,304,,Makanan dan minuman jadi
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/rokok,,136956,rupiah,2025,survey_estimate,per_capita,10.1,304,,Rokok
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/rokok,,128500,rupiah,2024,survey_estimate,per_capita,10.1,304,,Rokok
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/jumlah_makanan,,958682,rupiah,2025,survey_estimate,per_capita,10.1,304,,Jumlah makanan
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/jumlah_makanan,,870846,rupiah,2024,survey_estimate,per_capita,10.1,304,,Jumlah makanan
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,358504,rupiah,2025,survey_estimate,per_capita,10.1,304,,Perumahan dan fasilitas rumah tangga
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,350643,rupiah,2024,survey_estimate,per_capita,10.1,304,,Perumahan dan fasilitas rumah tangga
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,129621,rupiah,2025,survey_estimate,per_capita,10.1,304,,Aneka barang dan jasa
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,107945,rupiah,2024,survey_estimate,per_capita,10.1,304,,Aneka barang dan jasa
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,46645,rupiah,2025,survey_estimate,per_capita,10.1,304,,"Pakaian, alas kaki, dan tutup kepala"
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,38736,rupiah,2024,survey_estimate,per_capita,10.1,304,,"Pakaian, alas kaki, dan tutup kepala"
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/barang_tahan_lama,,64918,rupiah,2025,survey_estimate,per_capita,10.1,304,,Barang tahan lama
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/barang_tahan_lama,,40942,rupiah,2024,survey_estimate,per_capita,10.1,304,,Barang tahan lama
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,57199,rupiah,2025,survey_estimate,per_capita,10.1,304,,"Pajak, pungutan, dan asuransi"
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,47044,rupiah,2024,survey_estimate,per_capita,10.1,304,,"Pajak, pungutan, dan asuransi"
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,18126,rupiah,2025,survey_estimate,per_capita,10.1,304,,Keperluan pesta dan upacara/kenduri
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,10875,rupiah,2024,survey_estimate,per_capita,10.1,304,,Keperluan pesta dan upacara/kenduri
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,675014,rupiah,2025,survey_estimate,per_capita,10.1,304,,Jumlah bukan makanan
+19.03,2,Kabupaten Bangka Selatan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,596184,rupiah,2024,survey_estimate,per_capita,10.1,304,,Jumlah bukan makanan
+19.03,2,Kabupaten Bangka Selatan,expenditure,total,,1633695,rupiah,2025,survey_estimate,per_capita,10.1,304,,
+19.03,2,Kabupaten Bangka Selatan,expenditure,total,,1467030,rupiah,2024,survey_estimate,per_capita,10.1,304,,

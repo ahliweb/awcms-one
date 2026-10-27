@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.14.12.2006,4,Maracang,sex,laki_laki,,4859,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.12.2006,4,Maracang,sex,perempuan,,4804,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.12.2006,4,Maracang,total,total,,9663,jiwa,2025,registration,total_population,3.1,22,,
+32.14.12.2007,4,Ciwareng,sex,laki_laki,,5295,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.12.2007,4,Ciwareng,sex,perempuan,,5379,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.12.2007,4,Ciwareng,total,total,,10674,jiwa,2025,registration,total_population,3.1,22,,
+32.14.12.2008,4,Mulyamekar,sex,laki_laki,,5214,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.12.2008,4,Mulyamekar,sex,perempuan,,5321,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.12.2008,4,Mulyamekar,total,total,,10535,jiwa,2025,registration,total_population,3.1,22,,
+32.14.12.2009,4,Cigelam,sex,laki_laki,,3856,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.12.2009,4,Cigelam,sex,perempuan,,3881,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.12.2009,4,Cigelam,total,total,,7737,jiwa,2025,registration,total_population,3.1,22,,
+32.14.12.2004,4,Babakancikao,sex,laki_laki,,2722,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.12.2004,4,Babakancikao,sex,perempuan,,2765,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.12.2004,4,Babakancikao,total,total,,5487,jiwa,2025,registration,total_population,3.1,22,,
+32.14.12.2005,4,Kadumekar,sex,laki_laki,,1668,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.12.2005,4,Kadumekar,sex,perempuan,,1608,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.12.2005,4,Kadumekar,total,total,,3276,jiwa,2025,registration,total_population,3.1,22,,
+32.14.12.2003,4,Hegarmanah,sex,laki_laki,,1985,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.12.2003,4,Hegarmanah,sex,perempuan,,2014,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.12.2003,4,Hegarmanah,total,total,,3999,jiwa,2025,registration,total_population,3.1,22,,
+32.14.12.2002,4,Cicadas,sex,laki_laki,,3125,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.12.2002,4,Cicadas,sex,perempuan,,3114,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.12.2002,4,Cicadas,total,total,,6239,jiwa,2025,registration,total_population,3.1,22,,
+32.14.12.2001,4,Cilangkap,sex,laki_laki,,3561,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.12.2001,4,Cilangkap,sex,perempuan,,3537,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.12.2001,4,Cilangkap,total,total,,7098,jiwa,2025,registration,total_population,3.1,22,,
+32.14.12,3,Kecamatan Babakancikao,sex,laki_laki,,32285,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.12,3,Kecamatan Babakancikao,sex,perempuan,,32423,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.12,3,Kecamatan Babakancikao,total,total,,64708,jiwa,2025,registration,total_population,3.1,22,,

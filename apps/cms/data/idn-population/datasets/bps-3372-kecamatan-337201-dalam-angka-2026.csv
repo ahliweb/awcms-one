@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.72.01.1001,4,Pajang,religion,islam,,22436,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.01.1001,4,Pajang,religion,kristen,,2455,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.01.1001,4,Pajang,religion,katolik,,1146,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.01.1001,4,Pajang,religion,hindu,,20,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.01.1002,4,Laweyan,religion,islam,,1997,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.01.1002,4,Laweyan,religion,kristen,,67,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.01.1002,4,Laweyan,religion,katolik,,65,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.01.1002,4,Laweyan,religion,hindu,,2,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.01.1003,4,Bumi,religion,islam,,5888,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.01.1003,4,Bumi,religion,kristen,,313,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.01.1003,4,Bumi,religion,katolik,,170,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.01.1003,4,Bumi,religion,hindu,,0,jiwa,2025,registration,total_population,3.1.6,59,nil,Hindu
+33.72.01.1004,4,Panularan,religion,islam,,8035,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.01.1004,4,Panularan,religion,kristen,,1063,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.01.1004,4,Panularan,religion,katolik,,611,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.01.1004,4,Panularan,religion,hindu,,15,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.01.1006,4,Sriwedari,religion,islam,,2785,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.01.1006,4,Sriwedari,religion,kristen,,553,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.01.1006,4,Sriwedari,religion,katolik,,515,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.01.1006,4,Sriwedari,religion,hindu,,8,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.01.1005,4,Penumping,religion,islam,,3199,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.01.1005,4,Penumping,religion,kristen,,427,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.01.1005,4,Penumping,religion,katolik,,321,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.01.1005,4,Penumping,religion,hindu,,2,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.01.1007,4,Purwosari,religion,islam,,9049,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.01.1007,4,Purwosari,religion,kristen,,729,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.01.1007,4,Purwosari,religion,katolik,,508,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.01.1007,4,Purwosari,religion,hindu,,0,jiwa,2025,registration,total_population,3.1.6,59,nil,Hindu
+33.72.01.1008,4,Sondakan,religion,islam,,11297,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.01.1008,4,Sondakan,religion,kristen,,728,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.01.1008,4,Sondakan,religion,katolik,,412,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.01.1008,4,Sondakan,religion,hindu,,22,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.01.1009,4,Kerten,religion,islam,,7980,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.01.1009,4,Kerten,religion,kristen,,1047,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.01.1009,4,Kerten,religion,katolik,,589,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.01.1009,4,Kerten,religion,hindu,,0,jiwa,2025,registration,total_population,3.1.6,59,nil,Hindu
+33.72.01.1010,4,Jajar,religion,islam,,8160,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.01.1010,4,Jajar,religion,kristen,,862,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.01.1010,4,Jajar,religion,katolik,,553,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.01.1010,4,Jajar,religion,hindu,,5,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.01.1011,4,Karangasem,religion,islam,,9384,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.01.1011,4,Karangasem,religion,kristen,,797,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.01.1011,4,Karangasem,religion,katolik,,508,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.01.1011,4,Karangasem,religion,hindu,,5,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.01,3,Kecamatan Laweyan,religion,islam,,90210,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.01,3,Kecamatan Laweyan,religion,kristen,,9041,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.01,3,Kecamatan Laweyan,religion,katolik,,5398,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.01,3,Kecamatan Laweyan,religion,hindu,,79,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.01.1001,4,Pajang,religion,buddha,,22,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.01.1001,4,Pajang,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.01.1001,4,Pajang,religion,kepercayaan,,2,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.01.1002,4,Laweyan,religion,buddha,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Budha
+33.72.01.1002,4,Laweyan,religion,khonghucu,,1,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.01.1002,4,Laweyan,religion,kepercayaan,,1,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.01.1003,4,Bumi,religion,buddha,,6,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.01.1003,4,Bumi,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.01.1003,4,Bumi,religion,kepercayaan,,3,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.01.1004,4,Panularan,religion,buddha,,15,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.01.1004,4,Panularan,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.01.1004,4,Panularan,religion,kepercayaan,,2,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.01.1006,4,Sriwedari,religion,buddha,,22,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.01.1006,4,Sriwedari,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.01.1006,4,Sriwedari,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Kepercayaan
+33.72.01.1005,4,Penumping,religion,buddha,,14,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.01.1005,4,Penumping,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.01.1005,4,Penumping,religion,kepercayaan,,1,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.01.1007,4,Purwosari,religion,buddha,,3,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.01.1007,4,Purwosari,religion,khonghucu,,4,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.01.1007,4,Purwosari,religion,kepercayaan,,2,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.01.1008,4,Sondakan,religion,buddha,,13,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.01.1008,4,Sondakan,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.01.1008,4,Sondakan,religion,kepercayaan,,1,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.01.1009,4,Kerten,religion,buddha,,6,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.01.1009,4,Kerten,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.01.1009,4,Kerten,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Kepercayaan
+33.72.01.1010,4,Jajar,religion,buddha,,23,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.01.1010,4,Jajar,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.01.1010,4,Jajar,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Kepercayaan
+33.72.01.1011,4,Karangasem,religion,buddha,,2,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.01.1011,4,Karangasem,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.01.1011,4,Karangasem,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Kepercayaan
+33.72.01,3,Kecamatan Laweyan,religion,buddha,,126,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.01,3,Kecamatan Laweyan,religion,khonghucu,,5,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.01,3,Kecamatan Laweyan,religion,kepercayaan,,12,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan

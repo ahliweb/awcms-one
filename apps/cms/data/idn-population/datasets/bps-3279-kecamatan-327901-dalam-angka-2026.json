@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3279-kecamatan-327901-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.79.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Banjar Dalam Angka 2026",
+  "publisherName": "BPS Kota Banjar",
+  "publisherDomain": "3279",
+  "publisherWebsite": "https://banjarkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Banjar (https://banjarkota.bps.go.id), publikasi \"Kecamatan Banjar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3279020",
+  "publicationNumber": "32790.26005",
+  "issn": "2407-6937",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banjarkota.bps.go.id/id/publication/2026/09/28/6a6d44213f6349c18f5f835c/kecamatan-banjar-dalam-angka-2026.html",
+  "sourceFileSha256": "9538ab011ad6e8309a058c5719cfa148449228bc4f9b068d53b6ec702aa8fffb",
+  "sourceFileBytes": 9713238,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Banjar.",
+  "csvPath": "datasets/bps-3279-kecamatan-327901-dalam-angka-2026.csv",
+  "csvSha256": "610d22603fb0c219ad4605307816f9b743d2f1f31d4d251cfb4d8af740c15d79",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa / Kelurahan di Kecamatan Banjar, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Banjar, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

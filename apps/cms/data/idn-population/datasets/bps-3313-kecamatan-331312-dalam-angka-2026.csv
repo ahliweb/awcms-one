@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.13.12.2001,4,Ngasem,sex,laki_laki,,2618,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.12.2001,4,Ngasem,sex,perempuan,,2642,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.12.2001,4,Ngasem,total,total,,5260,jiwa,2025,registration,total_population,3.1,27,,
+33.13.12.2002,4,Bolon,sex,laki_laki,,3715,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.12.2002,4,Bolon,sex,perempuan,,3756,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.12.2002,4,Bolon,total,total,,7471,jiwa,2025,registration,total_population,3.1,27,,
+33.13.12.2003,4,Malangjiwan,sex,laki_laki,,5234,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.12.2003,4,Malangjiwan,sex,perempuan,,5544,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.12.2003,4,Malangjiwan,total,total,,10778,jiwa,2025,registration,total_population,3.1,27,,
+33.13.12.2004,4,Paulan,sex,laki_laki,,1626,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.12.2004,4,Paulan,sex,perempuan,,1708,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.12.2004,4,Paulan,total,total,,3334,jiwa,2025,registration,total_population,3.1,27,,
+33.13.12.2005,4,Gajahan,sex,laki_laki,,1040,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.12.2005,4,Gajahan,sex,perempuan,,1057,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.12.2005,4,Gajahan,total,total,,2097,jiwa,2025,registration,total_population,3.1,27,,
+33.13.12.2006,4,Blulukan,sex,laki_laki,,3000,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.12.2006,4,Blulukan,sex,perempuan,,3125,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.12.2006,4,Blulukan,total,total,,6125,jiwa,2025,registration,total_population,3.1,27,,
+33.13.12.2007,4,Gawanan,sex,laki_laki,,3232,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.12.2007,4,Gawanan,sex,perempuan,,3394,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.12.2007,4,Gawanan,total,total,,6626,jiwa,2025,registration,total_population,3.1,27,,
+33.13.12.2008,4,Gedongan,sex,laki_laki,,4091,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.12.2008,4,Gedongan,sex,perempuan,,4123,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.12.2008,4,Gedongan,total,total,,8214,jiwa,2025,registration,total_population,3.1,27,,
+33.13.12.2009,4,Tohudan,sex,laki_laki,,2949,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.12.2009,4,Tohudan,sex,perempuan,,2996,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.12.2009,4,Tohudan,total,total,,5945,jiwa,2025,registration,total_population,3.1,27,,
+33.13.12.2010,4,Baturan,sex,laki_laki,,3941,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.12.2010,4,Baturan,sex,perempuan,,4265,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.12.2010,4,Baturan,total,total,,8206,jiwa,2025,registration,total_population,3.1,27,,
+33.13.12.2011,4,Klodran,sex,laki_laki,,2645,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.12.2011,4,Klodran,sex,perempuan,,2666,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.12.2011,4,Klodran,total,total,,5311,jiwa,2025,registration,total_population,3.1,27,,
+33.13.12,3,Kecamatan Colomadu,sex,laki_laki,,34091,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.12,3,Kecamatan Colomadu,sex,perempuan,,35276,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.12,3,Kecamatan Colomadu,total,total,,69367,jiwa,2025,registration,total_population,3.1,27,,
+33.13.12,3,Colomadu,age_group,0-4,laki_laki,1840,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.12,3,Colomadu,age_group,0-4,perempuan,1775,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.12,3,Colomadu,age_group,0-4,,3615,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.12,3,Colomadu,age_group,5-9,laki_laki,2555,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.12,3,Colomadu,age_group,5-9,perempuan,2352,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.12,3,Colomadu,age_group,5-9,,4907,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.12,3,Colomadu,age_group,10-14,laki_laki,2640,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.12,3,Colomadu,age_group,10-14,perempuan,2526,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.12,3,Colomadu,age_group,10-14,,5166,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.12,3,Colomadu,age_group,15-19,laki_laki,2916,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.12,3,Colomadu,age_group,15-19,perempuan,2681,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.12,3,Colomadu,age_group,15-19,,5597,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.12,3,Colomadu,age_group,20-24,laki_laki,2705,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.12,3,Colomadu,age_group,20-24,perempuan,2607,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.12,3,Colomadu,age_group,20-24,,5312,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.12,3,Colomadu,age_group,25-29,laki_laki,2614,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.12,3,Colomadu,age_group,25-29,perempuan,2549,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.12,3,Colomadu,age_group,25-29,,5163,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.12,3,Colomadu,age_group,30-34,laki_laki,2430,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.12,3,Colomadu,age_group,30-34,perempuan,2447,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.12,3,Colomadu,age_group,30-34,,4877,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.12,3,Colomadu,age_group,35-39,laki_laki,2229,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.12,3,Colomadu,age_group,35-39,perempuan,2204,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.12,3,Colomadu,age_group,35-39,,4433,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.12,3,Colomadu,age_group,40-44,laki_laki,2559,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.12,3,Colomadu,age_group,40-44,perempuan,2736,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.12,3,Colomadu,age_group,40-44,,5295,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.12,3,Colomadu,age_group,45-49,laki_laki,2559,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.12,3,Colomadu,age_group,45-49,perempuan,2793,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.12,3,Colomadu,age_group,45-49,,5352,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.12,3,Colomadu,age_group,50-54,laki_laki,2426,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.12,3,Colomadu,age_group,50-54,perempuan,2606,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.12,3,Colomadu,age_group,50-54,,5032,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.12,3,Colomadu,age_group,55-59,laki_laki,2132,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.12,3,Colomadu,age_group,55-59,perempuan,2441,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.12,3,Colomadu,age_group,55-59,,4573,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.12,3,Colomadu,age_group,60-64,laki_laki,1681,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.12,3,Colomadu,age_group,60-64,perempuan,2103,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.12,3,Colomadu,age_group,60-64,,3784,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.12,3,Colomadu,age_group,65-69,laki_laki,1297,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.12,3,Colomadu,age_group,65-69,perempuan,1454,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.12,3,Colomadu,age_group,65-69,,2751,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.12,3,Colomadu,age_group,70-74,laki_laki,795,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.12,3,Colomadu,age_group,70-74,perempuan,923,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.12,3,Colomadu,age_group,70-74,,1718,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.12,3,Colomadu,age_group,75+,laki_laki,713,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.12,3,Colomadu,age_group,75+,perempuan,1079,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.12,3,Colomadu,age_group,75+,,1792,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.12,3,Kecamatan Colomadu,sex,laki_laki,,34091,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+33.13.12,3,Kecamatan Colomadu,sex,perempuan,,35276,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+33.13.12,3,Kecamatan Colomadu,total,total,,69367,jiwa,2025,registration,total_population,3.2,29,,

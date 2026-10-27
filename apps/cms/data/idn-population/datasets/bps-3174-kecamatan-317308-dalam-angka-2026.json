@@ -1,0 +1,53 @@
+{
+  "datasetCode": "bps-3174-kecamatan-317308-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "31.73.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kembangan Dalam Angka 2026",
+  "publisherName": "BPS Kota Jakarta Barat",
+  "publisherDomain": "3174",
+  "publisherWebsite": "https://jakbarkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jakarta Barat (https://jakbarkota.bps.go.id), publikasi \"Kecamatan Kembangan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "31740.26005",
+  "issn": "0852-2278",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jakbarkota.bps.go.id/id/publication/2026/09/28/c939e81a4a0e19bc6e478cc7/kecamatan-kembangan-dalam-angka-2026.html",
+  "sourceFileSha256": "6c2c49ce1acb9c31aa9b3dd7030e4e922a599848431574f7a2b95769d109a26d",
+  "sourceFileBytes": 13150473,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Jakarta Barat.",
+  "csvPath": "datasets/bps-3174-kecamatan-317308-dalam-angka-2026.csv",
+  "csvSha256": "054da0f0b4f3ec433650f46bb3bb2d321978a3d500c13be95a8129ab3b330e97",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kembangan, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kembangan, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Joglo 16.75\": unmatched ",
+    "table 3.1: row not stored: row \"Srengseng 18.71\": unmatched ",
+    "table 3.1: row not stored: row \"Meruya Selatan 13.45\": unmatched ",
+    "table 3.1: row not stored: row \"Meruya Utara 17.88\": unmatched ",
+    "table 3.1: row not stored: row \"Kembangan Selatan 10.96\": unmatched ",
+    "table 3.1: row not stored: row \"Kembangan Utara 22.26\": unmatched ",
+    "cross-table disagreement, both stored as published: 31.73.08 sex/laki_laki/ 2025: 155823 (table 3.1) vs 154330 (table 3.2)",
+    "cross-table disagreement, both stored as published: 31.73.08 sex/perempuan/ 2025: 155641 (table 3.1) vs 154163 (table 3.2)",
+    "cross-table disagreement, both stored as published: 31.73.08 total/total/ 2025: 311464 (table 3.1) vs 308493 (table 3.2)"
+  ]
+}

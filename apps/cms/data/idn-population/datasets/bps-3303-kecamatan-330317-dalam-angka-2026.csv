@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.03.17.2002,4,Sirandu,sex,laki_laki,,1687,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.17.2002,4,Sirandu,sex,perempuan,,1615,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.17.2002,4,Sirandu,total,total,,3302,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.17.2001,4,Purbasari,sex,laki_laki,,3715,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.17.2001,4,Purbasari,sex,perempuan,,3372,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.17.2001,4,Purbasari,total,total,,7087,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.17.2003,4,Karangjambu,sex,laki_laki,,3151,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.17.2003,4,Karangjambu,sex,perempuan,,2963,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.17.2003,4,Karangjambu,total,total,,6114,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.17.2004,4,Sanguwatang,sex,laki_laki,,2978,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.17.2004,4,Sanguwatang,sex,perempuan,,2800,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.17.2004,4,Sanguwatang,total,total,,5778,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.17.2005,4,Jingkang,sex,laki_laki,,2446,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.17.2005,4,Jingkang,sex,perempuan,,2241,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.17.2005,4,Jingkang,total,total,,4687,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.17.2006,4,Danasari,sex,laki_laki,,1681,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.17.2006,4,Danasari,sex,perempuan,,1569,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.17.2006,4,Danasari,total,total,,3250,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.17,3,Kecamatan Karangjambu,sex,laki_laki,,15658,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.17,3,Kecamatan Karangjambu,sex,perempuan,,14560,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.17,3,Kecamatan Karangjambu,total,total,,30218,jiwa,2025,registration,total_population,3.1.1,19,,

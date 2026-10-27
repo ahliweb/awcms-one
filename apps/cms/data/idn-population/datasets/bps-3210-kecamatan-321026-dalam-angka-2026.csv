@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.10.26.2008,4,Buninagara,sex,laki_laki,,1888,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.26.2008,4,Buninagara,sex,perempuan,,1771,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.26.2008,4,Buninagara,total,total,,3659,jiwa,2025,registration,total_population,3.1,28,,
+32.10.26.2002,4,Werasari,sex,laki_laki,,2904,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.26.2002,4,Werasari,sex,perempuan,,2772,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.26.2002,4,Werasari,total,total,,5676,jiwa,2025,registration,total_population,3.1,28,,
+32.10.26.2003,4,Malausma,sex,laki_laki,,3772,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.26.2003,4,Malausma,sex,perempuan,,3533,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.26.2003,4,Malausma,total,total,,7305,jiwa,2025,registration,total_population,3.1,28,,
+32.10.26.2007,4,Banyusari,sex,laki_laki,,2860,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.26.2007,4,Banyusari,sex,perempuan,,2782,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.26.2007,4,Banyusari,total,total,,5642,jiwa,2025,registration,total_population,3.1,28,,
+32.10.26.2009,4,Jagamulya,sex,laki_laki,,1505,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.26.2009,4,Jagamulya,sex,perempuan,,1510,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.26.2009,4,Jagamulya,total,total,,3015,jiwa,2025,registration,total_population,3.1,28,,
+32.10.26.2005,4,Cimuncang,sex,laki_laki,,2974,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.26.2005,4,Cimuncang,sex,perempuan,,2854,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.26.2005,4,Cimuncang,total,total,,5828,jiwa,2025,registration,total_population,3.1,28,,
+32.10.26.2006,4,Ciranca,sex,laki_laki,,2538,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.26.2006,4,Ciranca,sex,perempuan,,2531,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.26.2006,4,Ciranca,total,total,,5069,jiwa,2025,registration,total_population,3.1,28,,
+32.10.26.2004,4,Lebakwangi,sex,laki_laki,,3111,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.26.2004,4,Lebakwangi,sex,perempuan,,2921,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.26.2004,4,Lebakwangi,total,total,,6032,jiwa,2025,registration,total_population,3.1,28,,
+32.10.26.2001,4,Sukadana,sex,laki_laki,,2912,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.26.2001,4,Sukadana,sex,perempuan,,2760,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.26.2001,4,Sukadana,total,total,,5672,jiwa,2025,registration,total_population,3.1,28,,
+32.10.26.2010,4,Girimukti,sex,laki_laki,,1733,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.26.2010,4,Girimukti,sex,perempuan,,1665,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.26.2010,4,Girimukti,total,total,,3398,jiwa,2025,registration,total_population,3.1,28,,
+32.10.26.2011,4,Kramatjaya,sex,laki_laki,,811,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.26.2011,4,Kramatjaya,sex,perempuan,,817,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.26.2011,4,Kramatjaya,total,total,,1628,jiwa,2025,registration,total_population,3.1,28,,
+32.10.26,3,Kecamatan Malausma,sex,laki_laki,,27008,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.26,3,Kecamatan Malausma,sex,perempuan,,25916,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.26,3,Kecamatan Malausma,total,total,,52924,jiwa,2025,registration,total_population,3.1,28,,
+32.10.26,3,Malausma,age_group,0-4,laki_laki,2141,jiwa,2025,registration,total_population,3.2,30,,00 - 04
+32.10.26,3,Malausma,age_group,0-4,perempuan,2041,jiwa,2025,registration,total_population,3.2,30,,00 - 04
+32.10.26,3,Malausma,age_group,0-4,,4182,jiwa,2025,registration,total_population,3.2,30,,00 - 04
+32.10.26,3,Malausma,age_group,5-9,laki_laki,2443,jiwa,2025,registration,total_population,3.2,30,,05 - 09
+32.10.26,3,Malausma,age_group,5-9,perempuan,2277,jiwa,2025,registration,total_population,3.2,30,,05 - 09
+32.10.26,3,Malausma,age_group,5-9,,4720,jiwa,2025,registration,total_population,3.2,30,,05 - 09
+32.10.26,3,Malausma,age_group,10-14,laki_laki,2447,jiwa,2025,registration,total_population,3.2,30,,10 - 14
+32.10.26,3,Malausma,age_group,10-14,perempuan,2299,jiwa,2025,registration,total_population,3.2,30,,10 - 14
+32.10.26,3,Malausma,age_group,10-14,,4746,jiwa,2025,registration,total_population,3.2,30,,10 - 14
+32.10.26,3,Malausma,age_group,15-19,laki_laki,2159,jiwa,2025,registration,total_population,3.2,30,,15 - 19
+32.10.26,3,Malausma,age_group,15-19,perempuan,2086,jiwa,2025,registration,total_population,3.2,30,,15 - 19
+32.10.26,3,Malausma,age_group,15-19,,4245,jiwa,2025,registration,total_population,3.2,30,,15 - 19
+32.10.26,3,Malausma,age_group,20-24,laki_laki,2294,jiwa,2025,registration,total_population,3.2,30,,20 - 24
+32.10.26,3,Malausma,age_group,20-24,perempuan,2129,jiwa,2025,registration,total_population,3.2,30,,20 - 24
+32.10.26,3,Malausma,age_group,20-24,,4423,jiwa,2025,registration,total_population,3.2,30,,20 - 24
+32.10.26,3,Malausma,age_group,25-29,laki_laki,2241,jiwa,2025,registration,total_population,3.2,30,,25 - 29
+32.10.26,3,Malausma,age_group,25-29,perempuan,1916,jiwa,2025,registration,total_population,3.2,30,,25 - 29
+32.10.26,3,Malausma,age_group,25-29,,4157,jiwa,2025,registration,total_population,3.2,30,,25 - 29
+32.10.26,3,Malausma,age_group,30-34,laki_laki,1911,jiwa,2025,registration,total_population,3.2,30,,30 - 34
+32.10.26,3,Malausma,age_group,30-34,perempuan,1742,jiwa,2025,registration,total_population,3.2,30,,30 - 34
+32.10.26,3,Malausma,age_group,30-34,,3653,jiwa,2025,registration,total_population,3.2,30,,30 - 34
+32.10.26,3,Malausma,age_group,35-39,laki_laki,1921,jiwa,2025,registration,total_population,3.2,30,,35 -39
+32.10.26,3,Malausma,age_group,35-39,perempuan,1875,jiwa,2025,registration,total_population,3.2,30,,35 -39
+32.10.26,3,Malausma,age_group,35-39,,3796,jiwa,2025,registration,total_population,3.2,30,,35 -39
+32.10.26,3,Malausma,age_group,40-44,laki_laki,1868,jiwa,2025,registration,total_population,3.2,30,,40 - 44
+32.10.26,3,Malausma,age_group,40-44,perempuan,1860,jiwa,2025,registration,total_population,3.2,30,,40 - 44
+32.10.26,3,Malausma,age_group,40-44,,3728,jiwa,2025,registration,total_population,3.2,30,,40 - 44
+32.10.26,3,Malausma,age_group,45-49,laki_laki,1726,jiwa,2025,registration,total_population,3.2,30,,45 - 49
+32.10.26,3,Malausma,age_group,45-49,perempuan,1697,jiwa,2025,registration,total_population,3.2,30,,45 - 49
+32.10.26,3,Malausma,age_group,45-49,,3423,jiwa,2025,registration,total_population,3.2,30,,45 - 49
+32.10.26,3,Malausma,age_group,50-54,laki_laki,1505,jiwa,2025,registration,total_population,3.2,30,,50 - 54
+32.10.26,3,Malausma,age_group,50-54,perempuan,1410,jiwa,2025,registration,total_population,3.2,30,,50 - 54
+32.10.26,3,Malausma,age_group,50-54,,2915,jiwa,2025,registration,total_population,3.2,30,,50 - 54
+32.10.26,3,Malausma,age_group,55-59,laki_laki,1213,jiwa,2025,registration,total_population,3.2,30,,55 - 59
+32.10.26,3,Malausma,age_group,55-59,perempuan,1256,jiwa,2025,registration,total_population,3.2,30,,55 - 59
+32.10.26,3,Malausma,age_group,55-59,,2469,jiwa,2025,registration,total_population,3.2,30,,55 - 59
+32.10.26,3,Malausma,age_group,60-64,laki_laki,988,jiwa,2025,registration,total_population,3.2,30,,60 - 64
+32.10.26,3,Malausma,age_group,60-64,perempuan,977,jiwa,2025,registration,total_population,3.2,30,,60 - 64
+32.10.26,3,Malausma,age_group,60-64,,1965,jiwa,2025,registration,total_population,3.2,30,,60 - 64
+32.10.26,3,Malausma,age_group,65-69,laki_laki,824,jiwa,2025,registration,total_population,3.2,30,,65 - 69
+32.10.26,3,Malausma,age_group,65-69,perempuan,913,jiwa,2025,registration,total_population,3.2,30,,65 - 69
+32.10.26,3,Malausma,age_group,65-69,,1737,jiwa,2025,registration,total_population,3.2,30,,65 - 69
+32.10.26,3,Malausma,age_group,70-74,laki_laki,580,jiwa,2025,registration,total_population,3.2,30,,70 - 74
+32.10.26,3,Malausma,age_group,70-74,perempuan,578,jiwa,2025,registration,total_population,3.2,30,,70 - 74
+32.10.26,3,Malausma,age_group,70-74,,1158,jiwa,2025,registration,total_population,3.2,30,,70 - 74
+32.10.26,3,Malausma,age_group,75+,laki_laki,747,jiwa,2025,registration,total_population,3.2,30,,75 +
+32.10.26,3,Malausma,age_group,75+,perempuan,860,jiwa,2025,registration,total_population,3.2,30,,75 +
+32.10.26,3,Malausma,age_group,75+,,1607,jiwa,2025,registration,total_population,3.2,30,,75 +
+32.10.26,3,Kecamatan Malausma,sex,laki_laki,,27008,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+32.10.26,3,Kecamatan Malausma,sex,perempuan,,25916,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+32.10.26,3,Kecamatan Malausma,total,total,,52924,jiwa,2025,registration,total_population,3.2,30,,

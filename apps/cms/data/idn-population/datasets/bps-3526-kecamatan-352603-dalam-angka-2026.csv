@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.26.03.2002,4,Langkap,sex,laki_laki,,4123,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.03.2002,4,Langkap,sex,perempuan,,4138,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.03.2002,4,Langkap,total,total,,8261,jiwa,2025,registration,total_population,3.1,31,,
+35.26.03.2001,4,Burneh,sex,laki_laki,,5019,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.03.2001,4,Burneh,sex,perempuan,,5046,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.03.2001,4,Burneh,total,total,,10065,jiwa,2025,registration,total_population,3.1,31,,
+35.26.03.2004,4,Alas Kembang,sex,laki_laki,,1893,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.03.2004,4,Alas Kembang,sex,perempuan,,1838,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.03.2004,4,Alas Kembang,total,total,,3731,jiwa,2025,registration,total_population,3.1,31,,
+35.26.03.2010,4,Binoh,sex,laki_laki,,2020,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.03.2010,4,Binoh,sex,perempuan,,1929,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.03.2010,4,Binoh,total,total,,3949,jiwa,2025,registration,total_population,3.1,31,,
+35.26.03.2011,4,Perreng,sex,laki_laki,,1348,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.03.2011,4,Perreng,sex,perempuan,,1286,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.03.2011,4,Perreng,total,total,,2634,jiwa,2025,registration,total_population,3.1,31,,
+35.26.03.2009,4,Pangolangan,sex,laki_laki,,1557,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.03.2009,4,Pangolangan,sex,perempuan,,1586,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.03.2009,4,Pangolangan,total,total,,3143,jiwa,2025,registration,total_population,3.1,31,,
+35.26.03.2008,4,Sobih,sex,laki_laki,,1313,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.03.2008,4,Sobih,sex,perempuan,,1254,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.03.2008,4,Sobih,total,total,,2567,jiwa,2025,registration,total_population,3.1,31,,
+35.26.03.2007,4,Kapor,sex,laki_laki,,1093,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.03.2007,4,Kapor,sex,perempuan,,1025,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.03.2007,4,Kapor,total,total,,2118,jiwa,2025,registration,total_population,3.1,31,,
+35.26.03.2006,4,Arok,sex,laki_laki,,399,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.03.2006,4,Arok,sex,perempuan,,388,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.03.2006,4,Arok,total,total,,787,jiwa,2025,registration,total_population,3.1,31,,
+35.26.03,3,Kecamatan Burneh,sex,laki_laki,,31858,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.03,3,Kecamatan Burneh,sex,perempuan,,31224,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.03,3,Kecamatan Burneh,total,total,,63082,jiwa,2025,registration,total_population,3.1,31,,
+35.26.03,3,Burneh,age_group,0-4,laki_laki,2318,jiwa,2025,registration,total_population,3.3,35,,00 - 04
+35.26.03,3,Burneh,age_group,0-4,perempuan,2190,jiwa,2025,registration,total_population,3.3,35,,00 - 04
+35.26.03,3,Burneh,age_group,0-4,,4508,jiwa,2025,registration,total_population,3.3,35,,00 - 04
+35.26.03,3,Burneh,age_group,5-9,laki_laki,3078,jiwa,2025,registration,total_population,3.3,35,,05 - 09
+35.26.03,3,Burneh,age_group,5-9,perempuan,2866,jiwa,2025,registration,total_population,3.3,35,,05 - 09
+35.26.03,3,Burneh,age_group,5-9,,5944,jiwa,2025,registration,total_population,3.3,35,,05 - 09
+35.26.03,3,Burneh,age_group,10-14,laki_laki,2998,jiwa,2025,registration,total_population,3.3,35,,10 - 14
+35.26.03,3,Burneh,age_group,10-14,perempuan,2653,jiwa,2025,registration,total_population,3.3,35,,10 - 14
+35.26.03,3,Burneh,age_group,10-14,,5651,jiwa,2025,registration,total_population,3.3,35,,10 - 14
+35.26.03,3,Burneh,age_group,15-19,laki_laki,2167,jiwa,2025,registration,total_population,3.3,35,,15 - 19
+35.26.03,3,Burneh,age_group,15-19,perempuan,1951,jiwa,2025,registration,total_population,3.3,35,,15 - 19
+35.26.03,3,Burneh,age_group,15-19,,4118,jiwa,2025,registration,total_population,3.3,35,,15 - 19
+35.26.03,3,Burneh,age_group,20-24,laki_laki,2697,jiwa,2025,registration,total_population,3.3,35,,20 - 24
+35.26.03,3,Burneh,age_group,20-24,perempuan,2624,jiwa,2025,registration,total_population,3.3,35,,20 - 24
+35.26.03,3,Burneh,age_group,20-24,,5321,jiwa,2025,registration,total_population,3.3,35,,20 - 24
+35.26.03,3,Burneh,age_group,25-29,laki_laki,2854,jiwa,2025,registration,total_population,3.3,35,,25 - 29
+35.26.03,3,Burneh,age_group,25-29,perempuan,2602,jiwa,2025,registration,total_population,3.3,35,,25 - 29
+35.26.03,3,Burneh,age_group,25-29,,5456,jiwa,2025,registration,total_population,3.3,35,,25 - 29
+35.26.03,3,Burneh,age_group,30-34,laki_laki,2593,jiwa,2025,registration,total_population,3.3,35,,30 - 34
+35.26.03,3,Burneh,age_group,30-34,perempuan,2531,jiwa,2025,registration,total_population,3.3,35,,30 - 34
+35.26.03,3,Burneh,age_group,30-34,,5124,jiwa,2025,registration,total_population,3.3,35,,30 - 34
+35.26.03,3,Burneh,age_group,35-39,laki_laki,2526,jiwa,2025,registration,total_population,3.3,35,,35 - 39
+35.26.03,3,Burneh,age_group,35-39,perempuan,2445,jiwa,2025,registration,total_population,3.3,35,,35 - 39
+35.26.03,3,Burneh,age_group,35-39,,4971,jiwa,2025,registration,total_population,3.3,35,,35 - 39
+35.26.03,3,Burneh,age_group,40-44,laki_laki,2412,jiwa,2025,registration,total_population,3.3,35,,40 - 44
+35.26.03,3,Burneh,age_group,40-44,perempuan,2436,jiwa,2025,registration,total_population,3.3,35,,40 - 44
+35.26.03,3,Burneh,age_group,40-44,,4848,jiwa,2025,registration,total_population,3.3,35,,40 - 44
+35.26.03,3,Burneh,age_group,45-49,laki_laki,1921,jiwa,2025,registration,total_population,3.3,35,,45 - 49
+35.26.03,3,Burneh,age_group,45-49,perempuan,2147,jiwa,2025,registration,total_population,3.3,35,,45 - 49
+35.26.03,3,Burneh,age_group,45-49,,4068,jiwa,2025,registration,total_population,3.3,35,,45 - 49
+35.26.03,3,Burneh,age_group,50-54,laki_laki,1716,jiwa,2025,registration,total_population,3.3,35,,50 - 54
+35.26.03,3,Burneh,age_group,50-54,perempuan,1960,jiwa,2025,registration,total_population,3.3,35,,50 - 54
+35.26.03,3,Burneh,age_group,50-54,,3676,jiwa,2025,registration,total_population,3.3,35,,50 - 54
+35.26.03,3,Burneh,age_group,55-59,laki_laki,1463,jiwa,2025,registration,total_population,3.3,35,,55 - 59
+35.26.03,3,Burneh,age_group,55-59,perempuan,1815,jiwa,2025,registration,total_population,3.3,35,,55 - 59
+35.26.03,3,Burneh,age_group,55-59,,3278,jiwa,2025,registration,total_population,3.3,35,,55 - 59
+35.26.03,3,Burneh,age_group,60-64,laki_laki,1210,jiwa,2025,registration,total_population,3.3,35,,60 - 64
+35.26.03,3,Burneh,age_group,60-64,perempuan,1520,jiwa,2025,registration,total_population,3.3,35,,60 - 64
+35.26.03,3,Burneh,age_group,60-64,,2730,jiwa,2025,registration,total_population,3.3,35,,60 - 64
+35.26.03,3,Burneh,age_group,65-69,laki_laki,957,jiwa,2025,registration,total_population,3.3,35,,65 - 69
+35.26.03,3,Burneh,age_group,65-69,perempuan,1139,jiwa,2025,registration,total_population,3.3,35,,65 - 69
+35.26.03,3,Burneh,age_group,65-69,,2096,jiwa,2025,registration,total_population,3.3,35,,65 - 69
+35.26.03,3,Burneh,age_group,70-74,laki_laki,514,jiwa,2025,registration,total_population,3.3,35,,70 - 74
+35.26.03,3,Burneh,age_group,70-74,perempuan,157,jiwa,2025,registration,total_population,3.3,35,,70 - 74
+35.26.03,3,Burneh,age_group,70-74,,671,jiwa,2025,registration,total_population,3.3,35,,70 - 74
+35.26.03,3,Burneh,age_group,75+,laki_laki,434,jiwa,2025,registration,total_population,3.3,35,,75 +
+35.26.03,3,Burneh,age_group,75+,perempuan,188,jiwa,2025,registration,total_population,3.3,35,,75 +
+35.26.03,3,Burneh,age_group,75+,,622,jiwa,2025,registration,total_population,3.3,35,,75 +
+35.26.03,3,Burneh,sex,laki_laki,,31858,jiwa,2025,registration,total_population,3.3,35,,Laki-Laki
+35.26.03,3,Burneh,sex,perempuan,,31224,jiwa,2025,registration,total_population,3.3,35,,Perempuan
+35.26.03,3,Burneh,total,total,,63082,jiwa,2025,registration,total_population,3.3,35,,

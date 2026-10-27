@@ -1,0 +1,80 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.75.02.2008,4,Lae Motong,sex,perempuan,,788,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+11.75.02.2008,4,Lae Motong,total,total,,1613,jiwa,2025,registration,total_population,3.1,31,,
+11.75.02.2004,4,Kampung Baru,sex,perempuan,,542,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+11.75.02.2004,4,Kampung Baru,total,total,,1063,jiwa,2025,registration,total_population,3.1,31,,
+11.75.02.2001,4,Penanggalan,sex,perempuan,,1390,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+11.75.02.2001,4,Penanggalan,total,total,,2770,jiwa,2025,registration,total_population,3.1,31,,
+11.75.02.2010,4,Lae Bersih,sex,perempuan,,1388,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+11.75.02.2010,4,Lae Bersih,total,total,,2830,jiwa,2025,registration,total_population,3.1,31,,
+11.75.02.2002,4,Cepu,sex,perempuan,,505,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+11.75.02.2002,4,Cepu,total,total,,999,jiwa,2025,registration,total_population,3.1,31,,
+11.75.02.2003,4,Kuta Tengah,sex,perempuan,,267,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+11.75.02.2003,4,Kuta Tengah,total,total,,565,jiwa,2025,registration,total_population,3.1,31,,
+11.75.02.2005,4,Sikelang,sex,perempuan,,539,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+11.75.02.2005,4,Sikelang,total,total,,1110,jiwa,2025,registration,total_population,3.1,31,,
+11.75.02.2007,4,Jontor,sex,perempuan,,583,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+11.75.02.2007,4,Jontor,total,total,,1211,jiwa,2025,registration,total_population,3.1,31,,
+11.75.02.2009,4,Lae Ikan,sex,perempuan,,285,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+11.75.02.2009,4,Lae Ikan,total,total,,581,jiwa,2025,registration,total_population,3.1,31,,
+11.75.02.2006,4,Penuntungan,sex,perempuan,,876,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+11.75.02.2006,4,Penuntungan,total,total,,1771,jiwa,2025,registration,total_population,3.1,31,,
+11.75.02.2011,4,Dasan Raja,sex,perempuan,,706,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+11.75.02.2011,4,Dasan Raja,total,total,,1412,jiwa,2025,registration,total_population,3.1,31,,
+11.75.02.2013,4,Penanggalan Barat,sex,perempuan,,1188,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+11.75.02.2013,4,Penanggalan Barat,total,total,,2418,jiwa,2025,registration,total_population,3.1,31,,
+11.75.02.2012,4,Penanggalan Timur,sex,perempuan,,1130,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+11.75.02.2012,4,Penanggalan Timur,total,total,,2311,jiwa,2025,registration,total_population,3.1,31,,
+11.75.02,3,Kecamatan Penanggalan,sex,perempuan,,10187,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+11.75.02,3,Kecamatan Penanggalan,total,total,,20654,jiwa,2025,registration,total_population,3.1,31,,
+11.75.02,3,Penanggalan,age_group,0-4,laki_laki,1059,jiwa,2025,registration,total_population,3.2,33,,0-4
+11.75.02,3,Penanggalan,age_group,0-4,perempuan,966,jiwa,2025,registration,total_population,3.2,33,,0-4
+11.75.02,3,Penanggalan,age_group,0-4,,2025,jiwa,2025,registration,total_population,3.2,33,,0-4
+11.75.02,3,Penanggalan,age_group,5-9,laki_laki,1197,jiwa,2025,registration,total_population,3.2,33,,5-9
+11.75.02,3,Penanggalan,age_group,5-9,perempuan,1143,jiwa,2025,registration,total_population,3.2,33,,5-9
+11.75.02,3,Penanggalan,age_group,5-9,,2340,jiwa,2025,registration,total_population,3.2,33,,5-9
+11.75.02,3,Penanggalan,age_group,10-14,laki_laki,1174,jiwa,2025,registration,total_population,3.2,33,,10-14
+11.75.02,3,Penanggalan,age_group,10-14,perempuan,1179,jiwa,2025,registration,total_population,3.2,33,,10-14
+11.75.02,3,Penanggalan,age_group,10-14,,2353,jiwa,2025,registration,total_population,3.2,33,,10-14
+11.75.02,3,Penanggalan,age_group,15-19,laki_laki,1040,jiwa,2025,registration,total_population,3.2,33,,15-19
+11.75.02,3,Penanggalan,age_group,15-19,perempuan,951,jiwa,2025,registration,total_population,3.2,33,,15-19
+11.75.02,3,Penanggalan,age_group,15-19,,1991,jiwa,2025,registration,total_population,3.2,33,,15-19
+11.75.02,3,Penanggalan,age_group,20-24,laki_laki,987,jiwa,2025,registration,total_population,3.2,33,,20-24
+11.75.02,3,Penanggalan,age_group,20-24,perempuan,920,jiwa,2025,registration,total_population,3.2,33,,20-24
+11.75.02,3,Penanggalan,age_group,20-24,,1907,jiwa,2025,registration,total_population,3.2,33,,20-24
+11.75.02,3,Penanggalan,age_group,25-29,laki_laki,983,jiwa,2025,registration,total_population,3.2,33,,25-29
+11.75.02,3,Penanggalan,age_group,25-29,perempuan,932,jiwa,2025,registration,total_population,3.2,33,,25-29
+11.75.02,3,Penanggalan,age_group,25-29,,1915,jiwa,2025,registration,total_population,3.2,33,,25-29
+11.75.02,3,Penanggalan,age_group,30-34,laki_laki,884,jiwa,2025,registration,total_population,3.2,33,,30-34
+11.75.02,3,Penanggalan,age_group,30-34,perempuan,835,jiwa,2025,registration,total_population,3.2,33,,30-34
+11.75.02,3,Penanggalan,age_group,30-34,,1719,jiwa,2025,registration,total_population,3.2,33,,30-34
+11.75.02,3,Penanggalan,age_group,35-39,laki_laki,732,jiwa,2025,registration,total_population,3.2,33,,35-39
+11.75.02,3,Penanggalan,age_group,35-39,perempuan,753,jiwa,2025,registration,total_population,3.2,33,,35-39
+11.75.02,3,Penanggalan,age_group,35-39,,1485,jiwa,2025,registration,total_population,3.2,33,,35-39
+11.75.02,3,Penanggalan,age_group,40-44,laki_laki,729,jiwa,2025,registration,total_population,3.2,33,,40-44
+11.75.02,3,Penanggalan,age_group,40-44,perempuan,734,jiwa,2025,registration,total_population,3.2,33,,40-44
+11.75.02,3,Penanggalan,age_group,40-44,,1463,jiwa,2025,registration,total_population,3.2,33,,40-44
+11.75.02,3,Penanggalan,age_group,45-49,laki_laki,550,jiwa,2025,registration,total_population,3.2,33,,45-49
+11.75.02,3,Penanggalan,age_group,45-49,perempuan,529,jiwa,2025,registration,total_population,3.2,33,,45-49
+11.75.02,3,Penanggalan,age_group,45-49,,1079,jiwa,2025,registration,total_population,3.2,33,,45-49
+11.75.02,3,Penanggalan,age_group,50-54,laki_laki,395,jiwa,2025,registration,total_population,3.2,33,,50-54
+11.75.02,3,Penanggalan,age_group,50-54,perempuan,396,jiwa,2025,registration,total_population,3.2,33,,50-54
+11.75.02,3,Penanggalan,age_group,50-54,,791,jiwa,2025,registration,total_population,3.2,33,,50-54
+11.75.02,3,Penanggalan,age_group,55-59,laki_laki,303,jiwa,2025,registration,total_population,3.2,33,,55-59
+11.75.02,3,Penanggalan,age_group,55-59,perempuan,312,jiwa,2025,registration,total_population,3.2,33,,55-59
+11.75.02,3,Penanggalan,age_group,55-59,,615,jiwa,2025,registration,total_population,3.2,33,,55-59
+11.75.02,3,Penanggalan,age_group,60-64,laki_laki,165,jiwa,2025,registration,total_population,3.2,33,,60-64
+11.75.02,3,Penanggalan,age_group,60-64,perempuan,211,jiwa,2025,registration,total_population,3.2,33,,60-64
+11.75.02,3,Penanggalan,age_group,60-64,,376,jiwa,2025,registration,total_population,3.2,33,,60-64
+11.75.02,3,Penanggalan,age_group,65-69,laki_laki,127,jiwa,2025,registration,total_population,3.2,33,,65-69
+11.75.02,3,Penanggalan,age_group,65-69,perempuan,147,jiwa,2025,registration,total_population,3.2,33,,65-69
+11.75.02,3,Penanggalan,age_group,65-69,,274,jiwa,2025,registration,total_population,3.2,33,,65-69
+11.75.02,3,Penanggalan,age_group,70-74,laki_laki,66,jiwa,2025,registration,total_population,3.2,33,,70-74
+11.75.02,3,Penanggalan,age_group,70-74,perempuan,78,jiwa,2025,registration,total_population,3.2,33,,70-74
+11.75.02,3,Penanggalan,age_group,70-74,,144,jiwa,2025,registration,total_population,3.2,33,,70-74
+11.75.02,3,Penanggalan,age_group,75+,laki_laki,76,jiwa,2025,registration,total_population,3.2,33,,75+
+11.75.02,3,Penanggalan,age_group,75+,perempuan,101,jiwa,2025,registration,total_population,3.2,33,,75+
+11.75.02,3,Penanggalan,age_group,75+,,177,jiwa,2025,registration,total_population,3.2,33,,75+
+11.75.02,3,Kecamatan Penanggalan,sex,laki_laki,,10467,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+11.75.02,3,Kecamatan Penanggalan,sex,perempuan,,10187,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+11.75.02,3,Kecamatan Penanggalan,total,total,,20654,jiwa,2025,registration,total_population,3.2,33,,

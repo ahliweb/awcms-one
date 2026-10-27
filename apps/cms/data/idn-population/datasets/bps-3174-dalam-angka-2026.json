@@ -1,0 +1,58 @@
+{
+  "datasetCode": "bps-3174-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "31.73",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kota Jakarta Barat Dalam Angka 2026",
+  "publisherName": "BPS Kota Jakarta Barat",
+  "publisherDomain": "3174",
+  "publisherWebsite": "https://jakbarkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jakarta Barat (https://jakbarkota.bps.go.id), publikasi \"Kota Jakarta Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3174",
+  "publicationNumber": "31740.26002",
+  "issn": "0215-4145",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://jakbarkota.bps.go.id/id/publication/2026/02/27/63838c833cc89e066a933024/kota-jakarta-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "6c43c8ec3e7c67d59b0f82a285fbfaeaede558250e658f664470c0b983db0946",
+  "sourceFileBytes": 4164525,
+  "sourcePages": [59, 62, 157],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Jakarta Barat.",
+  "csvPath": "datasets/bps-3174-dalam-angka-2026.csv",
+  "csvSha256": "109010eb860cbe02cbaf168c449b3a62acd8c95bb0bdda3e92e6a2caa224f033",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kota Jakarta Barat, 2025",
+      "printedPages": [59],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kota Jakarta Barat (jiwa) , 2025",
+      "printedPages": [62],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kota Jakarta Barat, 2025",
+      "printedPages": [157],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication"
+  ]
+}

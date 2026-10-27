@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.18.03.2001,4,Sei Buluh,sex,laki_laki,,5770,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+12.18.03.2001,4,Sei Buluh,sex,perempuan,,5566,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+12.18.03.2001,4,Sei Buluh,total,total,,11336,jiwa,2025,registration,total_population,3.1,23,,
+12.18.03.2002,4,Liberia,sex,laki_laki,,1220,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+12.18.03.2002,4,Liberia,sex,perempuan,,1222,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+12.18.03.2002,4,Liberia,total,total,,2442,jiwa,2025,registration,total_population,3.1,23,,
+12.18.03.2003,4,Matapao,sex,laki_laki,,1006,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+12.18.03.2003,4,Matapao,sex,perempuan,,965,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+12.18.03.2003,4,Matapao,total,total,,1971,jiwa,2025,registration,total_population,3.1,23,,
+12.18.03.2004,4,Pematang Setrak,sex,laki_laki,,2535,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+12.18.03.2004,4,Pematang Setrak,sex,perempuan,,2535,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+12.18.03.2004,4,Pematang Setrak,total,total,,5070,jiwa,2025,registration,total_population,3.1,23,,
+12.18.03.2005,4,Makmur,sex,laki_laki,,1339,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+12.18.03.2005,4,Makmur,sex,perempuan,,1308,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+12.18.03.2005,4,Makmur,total,total,,2647,jiwa,2025,registration,total_population,3.1,23,,
+12.18.03.2006,4,Pasar Baru,sex,laki_laki,,1495,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+12.18.03.2006,4,Pasar Baru,sex,perempuan,,1450,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+12.18.03.2006,4,Pasar Baru,total,total,,2945,jiwa,2025,registration,total_population,3.1,23,,
+12.18.03.2007,4,Pekan Sialang Buah,sex,laki_laki,,2258,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+12.18.03.2007,4,Pekan Sialang Buah,sex,perempuan,,2249,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+12.18.03.2007,4,Pekan Sialang Buah,total,total,,4507,jiwa,2025,registration,total_population,3.1,23,,
+12.18.03.2008,4,Pematang Guntung,sex,laki_laki,,2330,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+12.18.03.2008,4,Pematang Guntung,sex,perempuan,,2244,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+12.18.03.2008,4,Pematang Guntung,total,total,,4574,jiwa,2025,registration,total_population,3.1,23,,
+12.18.03.2009,4,Sialang Buah,sex,laki_laki,,1920,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+12.18.03.2009,4,Sialang Buah,sex,perempuan,,1858,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+12.18.03.2009,4,Sialang Buah,total,total,,3778,jiwa,2025,registration,total_population,3.1,23,,
+12.18.03.2010,4,Sentang,sex,laki_laki,,1657,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+12.18.03.2010,4,Sentang,sex,perempuan,,1610,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+12.18.03.2010,4,Sentang,total,total,,3267,jiwa,2025,registration,total_population,3.1,23,,
+12.18.03.2011,4,Bogak Besar,sex,laki_laki,,3038,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+12.18.03.2011,4,Bogak Besar,sex,perempuan,,2964,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+12.18.03.2011,4,Bogak Besar,total,total,,6002,jiwa,2025,registration,total_population,3.1,23,,
+12.18.03.2012,4,Pematang Kuala,sex,laki_laki,,1583,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+12.18.03.2012,4,Pematang Kuala,sex,perempuan,,1561,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+12.18.03.2012,4,Pematang Kuala,total,total,,3144,jiwa,2025,registration,total_population,3.1,23,,
+12.18.03,3,Teluk mengkudu,sex,laki_laki,,26151,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+12.18.03,3,Teluk mengkudu,sex,perempuan,,25532,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+12.18.03,3,Teluk mengkudu,total,total,,51683,jiwa,2025,registration,total_population,3.1,23,,

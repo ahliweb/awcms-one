@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3201-kecamatan-320101-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.01.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cibinong Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bogor",
+  "publisherDomain": "3201",
+  "publisherWebsite": "https://bogorkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bogor (https://bogorkab.bps.go.id), publikasi \"Kecamatan Cibinong Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3201210",
+  "publicationNumber": "32010.26034",
+  "issn": "2597-8136",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bogorkab.bps.go.id/id/publication/2026/09/28/ddf7fa7d86044f4f9c5c01ea/kecamatan-cibinong-dalam-angka-2026.html",
+  "sourceFileSha256": "db7614b0d2d81f895ed8ccbae1d96df95f79461725648e162c0685925156ba80",
+  "sourceFileBytes": 8396745,
+  "sourcePages": [38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bogor.",
+  "csvPath": "datasets/bps-3201-kecamatan-320101-dalam-angka-2026.csv",
+  "csvSha256": "468b7f1a6f4144cc216caf61f7771857f36cbd6233ccce4fc4f0bd8e8928ef07",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cibinong, 2025",
+      "printedPages": [38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1 (sex-by-village) could not be read reliably and is not included (figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?))"
+  ]
+}

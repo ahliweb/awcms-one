@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.01.09,3,Linggo Sari Baganti,age_group,0-4,laki_laki,1687,jiwa,2025,registration,total_population,3.2,27,,0–4
+13.01.09,3,Linggo Sari Baganti,age_group,0-4,perempuan,1649,jiwa,2025,registration,total_population,3.2,27,,0–4
+13.01.09,3,Linggo Sari Baganti,age_group,0-4,,3336,jiwa,2025,registration,total_population,3.2,27,,0–4
+13.01.09,3,Linggo Sari Baganti,age_group,5-9,laki_laki,2466,jiwa,2025,registration,total_population,3.2,27,,5–9
+13.01.09,3,Linggo Sari Baganti,age_group,5-9,perempuan,2365,jiwa,2025,registration,total_population,3.2,27,,5–9
+13.01.09,3,Linggo Sari Baganti,age_group,5-9,,4831,jiwa,2025,registration,total_population,3.2,27,,5–9
+13.01.09,3,Linggo Sari Baganti,age_group,10-14,laki_laki,2669,jiwa,2025,registration,total_population,3.2,27,,10–14
+13.01.09,3,Linggo Sari Baganti,age_group,10-14,perempuan,2374,jiwa,2025,registration,total_population,3.2,27,,10–14
+13.01.09,3,Linggo Sari Baganti,age_group,10-14,,5043,jiwa,2025,registration,total_population,3.2,27,,10–14
+13.01.09,3,Linggo Sari Baganti,age_group,15-19,laki_laki,2214,jiwa,2025,registration,total_population,3.2,27,,15–19
+13.01.09,3,Linggo Sari Baganti,age_group,15-19,perempuan,2197,jiwa,2025,registration,total_population,3.2,27,,15–19
+13.01.09,3,Linggo Sari Baganti,age_group,15-19,,4411,jiwa,2025,registration,total_population,3.2,27,,15–19
+13.01.09,3,Linggo Sari Baganti,age_group,20-24,laki_laki,2419,jiwa,2025,registration,total_population,3.2,27,,20–24
+13.01.09,3,Linggo Sari Baganti,age_group,20-24,perempuan,2264,jiwa,2025,registration,total_population,3.2,27,,20–24
+13.01.09,3,Linggo Sari Baganti,age_group,20-24,,4683,jiwa,2025,registration,total_population,3.2,27,,20–24
+13.01.09,3,Linggo Sari Baganti,age_group,25-29,laki_laki,2153,jiwa,2025,registration,total_population,3.2,27,,25–29
+13.01.09,3,Linggo Sari Baganti,age_group,25-29,perempuan,2025,jiwa,2025,registration,total_population,3.2,27,,25–29
+13.01.09,3,Linggo Sari Baganti,age_group,25-29,,4178,jiwa,2025,registration,total_population,3.2,27,,25–29
+13.01.09,3,Linggo Sari Baganti,age_group,30-34,laki_laki,1833,jiwa,2025,registration,total_population,3.2,27,,30–34
+13.01.09,3,Linggo Sari Baganti,age_group,30-34,perempuan,1715,jiwa,2025,registration,total_population,3.2,27,,30–34
+13.01.09,3,Linggo Sari Baganti,age_group,30-34,,3548,jiwa,2025,registration,total_population,3.2,27,,30–34
+13.01.09,3,Linggo Sari Baganti,age_group,35-39,laki_laki,1819,jiwa,2025,registration,total_population,3.2,27,,35–39
+13.01.09,3,Linggo Sari Baganti,age_group,35-39,perempuan,1707,jiwa,2025,registration,total_population,3.2,27,,35–39
+13.01.09,3,Linggo Sari Baganti,age_group,35-39,,3526,jiwa,2025,registration,total_population,3.2,27,,35–39
+13.01.09,3,Linggo Sari Baganti,age_group,40-44,laki_laki,1947,jiwa,2025,registration,total_population,3.2,27,,40–44
+13.01.09,3,Linggo Sari Baganti,age_group,40-44,perempuan,2004,jiwa,2025,registration,total_population,3.2,27,,40–44
+13.01.09,3,Linggo Sari Baganti,age_group,40-44,,3951,jiwa,2025,registration,total_population,3.2,27,,40–44
+13.01.09,3,Linggo Sari Baganti,age_group,45-49,laki_laki,1824,jiwa,2025,registration,total_population,3.2,27,,45–49
+13.01.09,3,Linggo Sari Baganti,age_group,45-49,perempuan,1800,jiwa,2025,registration,total_population,3.2,27,,45–49
+13.01.09,3,Linggo Sari Baganti,age_group,45-49,,3624,jiwa,2025,registration,total_population,3.2,27,,45–49
+13.01.09,3,Linggo Sari Baganti,age_group,50-54,laki_laki,1518,jiwa,2025,registration,total_population,3.2,27,,50–54
+13.01.09,3,Linggo Sari Baganti,age_group,50-54,perempuan,1572,jiwa,2025,registration,total_population,3.2,27,,50–54
+13.01.09,3,Linggo Sari Baganti,age_group,50-54,,3090,jiwa,2025,registration,total_population,3.2,27,,50–54
+13.01.09,3,Linggo Sari Baganti,age_group,55-59,laki_laki,1311,jiwa,2025,registration,total_population,3.2,27,,55–59
+13.01.09,3,Linggo Sari Baganti,age_group,55-59,perempuan,1341,jiwa,2025,registration,total_population,3.2,27,,55–59
+13.01.09,3,Linggo Sari Baganti,age_group,55-59,,2652,jiwa,2025,registration,total_population,3.2,27,,55–59
+13.01.09,3,Linggo Sari Baganti,age_group,60-64,laki_laki,960,jiwa,2025,registration,total_population,3.2,27,,60–64
+13.01.09,3,Linggo Sari Baganti,age_group,60-64,perempuan,1154,jiwa,2025,registration,total_population,3.2,27,,60–64
+13.01.09,3,Linggo Sari Baganti,age_group,60-64,,2114,jiwa,2025,registration,total_population,3.2,27,,60–64
+13.01.09,3,Linggo Sari Baganti,age_group,65-69,laki_laki,885,jiwa,2025,registration,total_population,3.2,27,,65–69
+13.01.09,3,Linggo Sari Baganti,age_group,65-69,perempuan,1086,jiwa,2025,registration,total_population,3.2,27,,65–69
+13.01.09,3,Linggo Sari Baganti,age_group,65-69,,1971,jiwa,2025,registration,total_population,3.2,27,,65–69
+13.01.09,3,Linggo Sari Baganti,age_group,70-74,laki_laki,629,jiwa,2025,registration,total_population,3.2,27,,70–74
+13.01.09,3,Linggo Sari Baganti,age_group,70-74,perempuan,655,jiwa,2025,registration,total_population,3.2,27,,70–74
+13.01.09,3,Linggo Sari Baganti,age_group,70-74,,1284,jiwa,2025,registration,total_population,3.2,27,,70–74
+13.01.09,3,Linggo Sari Baganti,age_group,75+,laki_laki,538,jiwa,2025,registration,total_population,3.2,27,,75+
+13.01.09,3,Linggo Sari Baganti,age_group,75+,perempuan,747,jiwa,2025,registration,total_population,3.2,27,,75+
+13.01.09,3,Linggo Sari Baganti,age_group,75+,,1285,jiwa,2025,registration,total_population,3.2,27,,75+
+13.01.09,3,Kecamatan Linggo Sari Baganti,sex,laki_laki,,26872,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+13.01.09,3,Kecamatan Linggo Sari Baganti,sex,perempuan,,26655,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+13.01.09,3,Kecamatan Linggo Sari Baganti,total,total,,53527,jiwa,2025,registration,total_population,3.2,27,,

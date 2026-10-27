@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.12.22.2005,4,Tangga Batu Barat,sex,laki_laki,,582,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+12.12.22.2005,4,Tangga Batu Barat,sex,perempuan,,565,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+12.12.22.2005,4,Tangga Batu Barat,total,total,,1147,jiwa,2025,registration,total_population,3.1,26,,
+12.12.22.2006,4,Tangga Batu Timur,sex,laki_laki,,295,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+12.12.22.2006,4,Tangga Batu Timur,sex,perempuan,,294,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+12.12.22.2006,4,Tangga Batu Timur,total,total,,589,jiwa,2025,registration,total_population,3.1,26,,
+12.12.22.2004,4,Gurgur Aekraja,sex,laki_laki,,418,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+12.12.22.2004,4,Gurgur Aekraja,sex,perempuan,,402,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+12.12.22.2004,4,Gurgur Aekraja,total,total,,820,jiwa,2025,registration,total_population,3.1,26,,
+12.12.22.2001,4,Lintong Nihuta,sex,laki_laki,,868,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+12.12.22.2001,4,Lintong Nihuta,sex,perempuan,,807,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+12.12.22.2001,4,Lintong Nihuta,total,total,,1675,jiwa,2025,registration,total_population,3.1,26,,
+12.12.22.2002,4,Tarabunga,sex,laki_laki,,204,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+12.12.22.2002,4,Tarabunga,sex,perempuan,,216,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+12.12.22.2002,4,Tarabunga,total,total,,420,jiwa,2025,registration,total_population,3.1,26,,
+12.12.22.2003,4,Meat,sex,laki_laki,,368,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+12.12.22.2003,4,Meat,sex,perempuan,,363,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+12.12.22.2003,4,Meat,total,total,,731,jiwa,2025,registration,total_population,3.1,26,,
+12.12.22,3,Tampahan,sex,laki_laki,,2735,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+12.12.22,3,Tampahan,sex,perempuan,,2647,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+12.12.22,3,Tampahan,total,total,,5382,jiwa,2025,registration,total_population,3.1,26,,

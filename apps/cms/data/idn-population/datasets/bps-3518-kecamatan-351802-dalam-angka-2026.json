@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-3518-kecamatan-351802-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.18.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ngetos Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Nganjuk",
+  "publisherDomain": "3518",
+  "publisherWebsite": "https://nganjukkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Nganjuk (https://nganjukkab.bps.go.id), publikasi \"Kecamatan Ngetos Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "35180.2607",
+  "issn": "2615-0468",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://nganjukkab.bps.go.id/id/publication/2026/09/28/37f1289e8671fb5a2565fda5/kecamatan-ngetos-dalam-angka-2026.html",
+  "sourceFileSha256": "bd0f91043d090a9a69dfcb35dc7db6bc236840bd14c5785d1f6ca86317ed5e7a",
+  "sourceFileBytes": 6781914,
+  "sourcePages": [18, 19, 20, 21],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Nganjuk.",
+  "csvPath": "datasets/bps-3518-kecamatan-351802-dalam-angka-2026.csv",
+  "csvSha256": "f75567c48940d424df4810f3644710139b58ea0c575ea6f9d548854504dd3f97",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Ngetos, 2025",
+      "printedPages": [18, 19],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ngetos, 2025",
+      "printedPages": [20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Desa dan Agama di Kecamatan Ngetos, 2025",
+      "printedPages": [21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": ["table 3.3: row not stored: row \"Desa/Villages\": unmatched "]
+}

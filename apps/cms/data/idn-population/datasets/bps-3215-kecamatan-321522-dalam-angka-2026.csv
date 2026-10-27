@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.15.22,3,Kecamatan Jayakerta,sex,laki_laki,,37540,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.15.22,3,Kecamatan Jayakerta,sex,perempuan,,35947,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.15.22,3,Kecamatan Jayakerta,total,total,,73487,jiwa,2025,registration,total_population,3.1,22,,
+32.15.22,3,Jayakerta,age_group,0-4,laki_laki,2322,jiwa,2025,registration,total_population,3.2,24,,00-04
+32.15.22,3,Jayakerta,age_group,0-4,perempuan,2085,jiwa,2025,registration,total_population,3.2,24,,00-04
+32.15.22,3,Jayakerta,age_group,0-4,,4407,jiwa,2025,registration,total_population,3.2,24,,00-04
+32.15.22,3,Jayakerta,age_group,5-9,laki_laki,3314,jiwa,2025,registration,total_population,3.2,24,,05-09
+32.15.22,3,Jayakerta,age_group,5-9,perempuan,3130,jiwa,2025,registration,total_population,3.2,24,,05-09
+32.15.22,3,Jayakerta,age_group,5-9,,6444,jiwa,2025,registration,total_population,3.2,24,,05-09
+32.15.22,3,Jayakerta,age_group,10-14,laki_laki,3500,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.15.22,3,Jayakerta,age_group,10-14,perempuan,3339,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.15.22,3,Jayakerta,age_group,10-14,,6839,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.15.22,3,Jayakerta,age_group,15-19,laki_laki,2705,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.15.22,3,Jayakerta,age_group,15-19,perempuan,2625,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.15.22,3,Jayakerta,age_group,15-19,,5330,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.15.22,3,Jayakerta,age_group,20-24,laki_laki,2875,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.15.22,3,Jayakerta,age_group,20-24,perempuan,2670,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.15.22,3,Jayakerta,age_group,20-24,,5545,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.15.22,3,Jayakerta,age_group,25-29,laki_laki,3250,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.15.22,3,Jayakerta,age_group,25-29,perempuan,2679,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.15.22,3,Jayakerta,age_group,25-29,,5929,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.15.22,3,Jayakerta,age_group,30-34,laki_laki,3193,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.15.22,3,Jayakerta,age_group,30-34,perempuan,2798,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.15.22,3,Jayakerta,age_group,30-34,,5991,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.15.22,3,Jayakerta,age_group,35-39,laki_laki,3017,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.15.22,3,Jayakerta,age_group,35-39,perempuan,2750,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.15.22,3,Jayakerta,age_group,35-39,,5767,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.15.22,3,Jayakerta,age_group,40-44,laki_laki,2837,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.15.22,3,Jayakerta,age_group,40-44,perempuan,2842,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.15.22,3,Jayakerta,age_group,40-44,,5679,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.15.22,3,Jayakerta,age_group,45-49,laki_laki,2445,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.15.22,3,Jayakerta,age_group,45-49,perempuan,2761,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.15.22,3,Jayakerta,age_group,45-49,,5206,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.15.22,3,Jayakerta,age_group,50-54,laki_laki,2010,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.15.22,3,Jayakerta,age_group,50-54,perempuan,2218,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.15.22,3,Jayakerta,age_group,50-54,,4228,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.15.22,3,Jayakerta,age_group,55-59,laki_laki,1834,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.15.22,3,Jayakerta,age_group,55-59,perempuan,1811,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.15.22,3,Jayakerta,age_group,55-59,,3645,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.15.22,3,Jayakerta,age_group,60-64,laki_laki,1396,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.15.22,3,Jayakerta,age_group,60-64,perempuan,1384,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.15.22,3,Jayakerta,age_group,60-64,,2780,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.15.22,3,Jayakerta,age_group,65-69,laki_laki,1055,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.15.22,3,Jayakerta,age_group,65-69,perempuan,1081,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.15.22,3,Jayakerta,age_group,65-69,,2136,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.15.22,3,Jayakerta,age_group,70-74,laki_laki,572,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.15.22,3,Jayakerta,age_group,70-74,perempuan,535,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.15.22,3,Jayakerta,age_group,70-74,,1107,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.15.22,3,Jayakerta,age_group,75+,laki_laki,646,jiwa,2025,registration,total_population,3.2,24,,75+
+32.15.22,3,Jayakerta,age_group,75+,perempuan,687,jiwa,2025,registration,total_population,3.2,24,,75+
+32.15.22,3,Jayakerta,age_group,75+,,1333,jiwa,2025,registration,total_population,3.2,24,,75+
+32.15.22,3,Kecamatan Jayakerta,sex,laki_laki,,36971,jiwa,2025,registration,total_population,3.2,24,,Laki-Laki
+32.15.22,3,Kecamatan Jayakerta,sex,perempuan,,35395,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+32.15.22,3,Kecamatan Jayakerta,total,total,,72366,jiwa,2025,registration,total_population,3.2,24,,

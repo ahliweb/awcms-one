@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.08.15.2011,4,Tampir Kulon,sex,laki_laki,,1582,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.15.2011,4,Tampir Kulon,sex,perempuan,,1572,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.15.2011,4,Tampir Kulon,total,total,,3154,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.15.2014,4,Tampir Wetan,sex,laki_laki,,1079,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.15.2014,4,Tampir Wetan,sex,perempuan,,1102,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.15.2014,4,Tampir Wetan,total,total,,2181,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.15.2018,4,Bateh,sex,laki_laki,,1945,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.15.2018,4,Bateh,sex,perempuan,,2004,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.15.2018,4,Bateh,total,total,,3949,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.15.2017,4,Trenten,sex,laki_laki,,2094,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.15.2017,4,Trenten,sex,perempuan,,2000,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.15.2017,4,Trenten,total,total,,4094,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.15.2013,4,Kebonrejo,sex,laki_laki,,1152,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.15.2013,4,Kebonrejo,sex,perempuan,,1120,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.15.2013,4,Kebonrejo,total,total,,2272,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.15.2008,4,Kembaran,sex,laki_laki,,715,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.15.2008,4,Kembaran,sex,perempuan,,741,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.15.2008,4,Kembaran,total,total,,1456,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.15.2009,4,Tegalsari,sex,laki_laki,,1250,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.15.2009,4,Tegalsari,sex,perempuan,,1293,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.15.2009,4,Tegalsari,total,total,,2543,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.15.2010,4,Podosoko,sex,laki_laki,,931,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.15.2010,4,Podosoko,sex,perempuan,,926,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.15.2010,4,Podosoko,total,total,,1857,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.15.2002,4,Tempak,sex,laki_laki,,1481,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.15.2002,4,Tempak,sex,perempuan,,1473,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.15.2002,4,Tempak,total,total,,2954,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.15.2003,4,Sidomulyo,sex,laki_laki,,1774,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.15.2003,4,Sidomulyo,sex,perempuan,,1663,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.15.2003,4,Sidomulyo,total,total,,3437,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.15.2004,4,Mejing,sex,laki_laki,,2149,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.15.2004,4,Mejing,sex,perempuan,,2025,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.15.2004,4,Mejing,total,total,,4174,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.15.2001,4,Surojoyo,sex,laki_laki,,1457,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.15.2001,4,Surojoyo,sex,perempuan,,1460,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.15.2001,4,Surojoyo,total,total,,2917,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.15.2006,4,Candimulyo,sex,laki_laki,,1135,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.15.2006,4,Candimulyo,sex,perempuan,,1108,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.15.2006,4,Candimulyo,total,total,,2243,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.15.2007,4,Giyanti,sex,laki_laki,,1118,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.15.2007,4,Giyanti,sex,perempuan,,1127,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.15.2007,4,Giyanti,total,total,,2245,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.15.2016,4,Sonorejo,sex,laki_laki,,1028,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.15.2016,4,Sonorejo,sex,perempuan,,1015,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.15.2016,4,Sonorejo,total,total,,2043,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.15.2015,4,Tembelang,sex,laki_laki,,853,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.15.2015,4,Tembelang,sex,perempuan,,820,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.15.2015,4,Tembelang,total,total,,1673,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.15.2012,4,Tempursari,sex,laki_laki,,371,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.15.2012,4,Tempursari,sex,perempuan,,401,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.15.2012,4,Tempursari,total,total,,772,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.15.2005,4,Purworejo,sex,laki_laki,,1234,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.15.2005,4,Purworejo,sex,perempuan,,1156,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.15.2005,4,Purworejo,total,total,,2390,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.15.2019,4,Surodadi,sex,laki_laki,,3135,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.15.2019,4,Surodadi,sex,perempuan,,2938,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.15.2019,4,Surodadi,total,total,,6073,jiwa,2025,registration,total_population,unnumbered-p30,30,,

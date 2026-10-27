@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.24.12.2002,4,Kalitengah,sex,laki_laki,,998,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.24.12.2002,4,Kalitengah,sex,perempuan,,965,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.24.12.2002,4,Kalitengah,total,total,,1963,jiwa,2025,registration,total_population,3.1,,,
+35.24.12.2004,4,Sidorejo,sex,laki_laki,,1623,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.24.12.2004,4,Sidorejo,sex,perempuan,,1672,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.24.12.2004,4,Sidorejo,total,total,,3295,jiwa,2025,registration,total_population,3.1,,,
+35.24.12.2013,4,Deketagung,sex,laki_laki,,1843,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.24.12.2013,4,Deketagung,sex,perempuan,,1807,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.24.12.2013,4,Deketagung,total,total,,3650,jiwa,2025,registration,total_population,3.1,,,
+35.24.12.2016,4,Daliwangun,sex,laki_laki,,770,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.24.12.2016,4,Daliwangun,sex,perempuan,,837,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.24.12.2016,4,Daliwangun,total,total,,1607,jiwa,2025,registration,total_population,3.1,,,
+35.24.12.2018,4,Lawanganagung,sex,laki_laki,,1608,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.24.12.2018,4,Lawanganagung,sex,perempuan,,1548,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.24.12.2018,4,Lawanganagung,total,total,,3156,jiwa,2025,registration,total_population,3.1,,,
+35.24.12.2020,4,German,sex,laki_laki,,1432,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.24.12.2020,4,German,sex,perempuan,,1421,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.24.12.2020,4,German,total,total,,2853,jiwa,2025,registration,total_population,3.1,,,
+35.24.12.2019,4,Kalipang,sex,laki_laki,,1180,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.24.12.2019,4,Kalipang,sex,perempuan,,1111,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.24.12.2019,4,Kalipang,total,total,,2291,jiwa,2025,registration,total_population,3.1,,,
+35.24.12.2010,4,Karangsambigalih,sex,laki_laki,,1640,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.24.12.2010,4,Karangsambigalih,sex,perempuan,,1670,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.24.12.2010,4,Karangsambigalih,total,total,,3310,jiwa,2025,registration,total_population,3.1,,,
+35.24.12.2005,4,Kedungbanjar,sex,laki_laki,,972,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.24.12.2005,4,Kedungbanjar,sex,perempuan,,978,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.24.12.2005,4,Kedungbanjar,total,total,,1950,jiwa,2025,registration,total_population,3.1,,,
+35.24.12.2007,4,Bakalrejo,sex,laki_laki,,1592,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.24.12.2007,4,Bakalrejo,sex,perempuan,,1652,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.24.12.2007,4,Bakalrejo,total,total,,3244,jiwa,2025,registration,total_population,3.1,,,
+35.24.12.2011,4,Supenuh,sex,laki_laki,,984,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.24.12.2011,4,Supenuh,sex,perempuan,,1010,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.24.12.2011,4,Supenuh,total,total,,1994,jiwa,2025,registration,total_population,3.1,,,
+35.24.12.2015,4,Sugio,sex,laki_laki,,2797,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.24.12.2015,4,Sugio,sex,perempuan,,2760,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.24.12.2015,4,Sugio,total,total,,5557,jiwa,2025,registration,total_population,3.1,,,
+35.24.12.2021,4,Sekarbagus,sex,laki_laki,,2601,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.24.12.2021,4,Sekarbagus,sex,perempuan,,2591,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.24.12.2021,4,Sekarbagus,total,total,,5192,jiwa,2025,registration,total_population,3.1,,,
+35.24.12.2017,4,Jubel Kidul,sex,laki_laki,,1998,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.24.12.2017,4,Jubel Kidul,sex,perempuan,,2039,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.24.12.2017,4,Jubel Kidul,total,total,,4037,jiwa,2025,registration,total_population,3.1,,,
+35.24.12.2012,4,Lebakadi,sex,laki_laki,,1650,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.24.12.2012,4,Lebakadi,sex,perempuan,,1626,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.24.12.2012,4,Lebakadi,total,total,,3276,jiwa,2025,registration,total_population,3.1,,,

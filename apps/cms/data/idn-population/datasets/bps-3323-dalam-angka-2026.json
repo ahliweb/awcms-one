@@ -1,0 +1,51 @@
+{
+  "datasetCode": "bps-3323-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "33.23",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Temanggung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Temanggung",
+  "publisherDomain": "3323",
+  "publisherWebsite": "https://temanggungkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Temanggung (https://temanggungkab.bps.go.id), publikasi \"Kabupaten Temanggung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3323",
+  "publicationNumber": "33230.26003",
+  "issn": "0215-5869",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://temanggungkab.bps.go.id/id/publication/2026/02/27/5ba9a045b8218a9376eb52e6/kabupaten-temanggung-dalam-angka-2026.html",
+  "sourceFileSha256": "383ade8a5ecb91412d568b10540b5b8dc4eed6768b274865a4103784022d9e64",
+  "sourceFileBytes": 43999016,
+  "sourcePages": [50, 257],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Temanggung.",
+  "csvPath": "datasets/bps-3323-dalam-angka-2026.csv",
+  "csvSha256": "1dddfac7a049ecfba24b6c9b1dd294e6354101696579b8261905dcdf29b1c36c",
+  "tablesUsed": [
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Temanggung, 2025",
+      "printedPages": [50],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Temanggung (rupiah), 2024 dan 2025",
+      "printedPages": [257],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 3.1.1 (total-by-region) could not be read reliably and is not included (population unit not stated in the heading)",
+    "table 4.3.1 (religion-by-region) could not be read reliably and is not included (basis not determinable)"
+  ]
+}

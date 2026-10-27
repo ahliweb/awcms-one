@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.02.11.2005,4,Neglasari,sex,laki_laki,,3484,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.11.2005,4,Neglasari,sex,perempuan,,3327,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.11.2005,4,Neglasari,total,total,,6811,jiwa,2025,registration,total_population,3.1,24,,
+32.02.11.2007,4,Tenjojaya,sex,laki_laki,,3627,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.11.2007,4,Tenjojaya,sex,perempuan,,3479,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.11.2007,4,Tenjojaya,total,total,,7106,jiwa,2025,registration,total_population,3.1,24,,
+32.02.11.2002,4,Sekarwangi,sex,laki_laki,,8008,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.11.2002,4,Sekarwangi,sex,perempuan,,7692,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.11.2002,4,Sekarwangi,total,total,,15700,jiwa,2025,registration,total_population,3.1,24,,
+32.02.11.2010,4,Batununggal,sex,laki_laki,,4324,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.11.2010,4,Batununggal,sex,perempuan,,4181,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.11.2010,4,Batununggal,total,total,,8505,jiwa,2025,registration,total_population,3.1,24,,
+32.02.11.2004,4,Karangtengah,sex,laki_laki,,9256,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.11.2004,4,Karangtengah,sex,perempuan,,9181,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.11.2004,4,Karangtengah,total,total,,18437,jiwa,2025,registration,total_population,3.1,24,,
+32.02.11.1001,4,Cibadak,sex,laki_laki,,16905,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.11.1001,4,Cibadak,sex,perempuan,,16241,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.11.1001,4,Cibadak,total,total,,33146,jiwa,2025,registration,total_population,3.1,24,,
+32.02.11.2006,4,Warnajati,sex,laki_laki,,4063,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.11.2006,4,Warnajati,sex,perempuan,,3896,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.11.2006,4,Warnajati,total,total,,7959,jiwa,2025,registration,total_population,3.1,24,,
+32.02.11.2009,4,Sukasirna,sex,laki_laki,,6157,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.11.2009,4,Sukasirna,sex,perempuan,,5816,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.11.2009,4,Sukasirna,total,total,,11973,jiwa,2025,registration,total_population,3.1,24,,
+32.02.11.2003,4,Pamuruyan,sex,laki_laki,,4496,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.11.2003,4,Pamuruyan,sex,perempuan,,4323,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.11.2003,4,Pamuruyan,total,total,,8819,jiwa,2025,registration,total_population,3.1,24,,
+32.02.11.2008,4,Ciheulang Tonggoh,sex,laki_laki,,5615,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.11.2008,4,Ciheulang Tonggoh,sex,perempuan,,5371,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.11.2008,4,Ciheulang Tonggoh,total,total,,10986,jiwa,2025,registration,total_population,3.1,24,,
+32.02.11,3,Cibadak,sex,laki_laki,,65935,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.11,3,Cibadak,sex,perempuan,,63507,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.11,3,Cibadak,total,total,,129442,jiwa,2025,registration,total_population,3.1,24,,

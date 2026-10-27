@@ -1,0 +1,104 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.08.02,3,Jelai,total,total,,5.64,ribu_jiwa,2025,projection,total_population,3.1.1,84,,
+62.08.04,3,Pantai Lunci,total,total,,6.09,ribu_jiwa,2025,projection,total_population,3.1.1,84,,
+62.08.01,3,Sukamara,total,total,,34.49,ribu_jiwa,2025,projection,total_population,3.1.1,84,,
+62.08.03,3,Balai Riam,total,total,,11.98,ribu_jiwa,2025,projection,total_population,3.1.1,84,,
+62.08.05,3,Permata Kecubung,total,total,,10.78,ribu_jiwa,2025,projection,total_population,3.1.1,84,,
+62.08,2,Sukamara,total,total,,68.98,ribu_jiwa,2025,projection,total_population,3.1.1,84,,
+62.08,2,Kabupaten Sukamara,age_group,0-4,laki_laki,3.04,ribu_jiwa,2025,projection,total_population,3.1.2,87,,0–4
+62.08,2,Kabupaten Sukamara,age_group,0-4,perempuan,2.92,ribu_jiwa,2025,projection,total_population,3.1.2,87,,0–4
+62.08,2,Kabupaten Sukamara,age_group,0-4,,5.96,ribu_jiwa,2025,projection,total_population,3.1.2,87,,0–4
+62.08,2,Kabupaten Sukamara,age_group,5-9,laki_laki,2.87,ribu_jiwa,2025,projection,total_population,3.1.2,87,,5–9
+62.08,2,Kabupaten Sukamara,age_group,5-9,perempuan,2.84,ribu_jiwa,2025,projection,total_population,3.1.2,87,,5–9
+62.08,2,Kabupaten Sukamara,age_group,5-9,,5.71,ribu_jiwa,2025,projection,total_population,3.1.2,87,,5–9
+62.08,2,Kabupaten Sukamara,age_group,10-14,laki_laki,2.65,ribu_jiwa,2025,projection,total_population,3.1.2,87,,10–14
+62.08,2,Kabupaten Sukamara,age_group,10-14,perempuan,2.57,ribu_jiwa,2025,projection,total_population,3.1.2,87,,10–14
+62.08,2,Kabupaten Sukamara,age_group,10-14,,5.22,ribu_jiwa,2025,projection,total_population,3.1.2,87,,10–14
+62.08,2,Kabupaten Sukamara,age_group,15-19,laki_laki,2.79,ribu_jiwa,2025,projection,total_population,3.1.2,87,,15–19
+62.08,2,Kabupaten Sukamara,age_group,15-19,perempuan,2.61,ribu_jiwa,2025,projection,total_population,3.1.2,87,,15–19
+62.08,2,Kabupaten Sukamara,age_group,15-19,,5.40,ribu_jiwa,2025,projection,total_population,3.1.2,87,,15–19
+62.08,2,Kabupaten Sukamara,age_group,20-24,laki_laki,3.02,ribu_jiwa,2025,projection,total_population,3.1.2,87,,20–24
+62.08,2,Kabupaten Sukamara,age_group,20-24,perempuan,2.75,ribu_jiwa,2025,projection,total_population,3.1.2,87,,20–24
+62.08,2,Kabupaten Sukamara,age_group,20-24,,5.77,ribu_jiwa,2025,projection,total_population,3.1.2,87,,20–24
+62.08,2,Kabupaten Sukamara,age_group,25-29,laki_laki,3.06,ribu_jiwa,2025,projection,total_population,3.1.2,87,,25–29
+62.08,2,Kabupaten Sukamara,age_group,25-29,perempuan,2.95,ribu_jiwa,2025,projection,total_population,3.1.2,87,,25–29
+62.08,2,Kabupaten Sukamara,age_group,25-29,,6.01,ribu_jiwa,2025,projection,total_population,3.1.2,87,,25–29
+62.08,2,Kabupaten Sukamara,age_group,30-34,laki_laki,3.12,ribu_jiwa,2025,projection,total_population,3.1.2,87,,30–34
+62.08,2,Kabupaten Sukamara,age_group,30-34,perempuan,2.77,ribu_jiwa,2025,projection,total_population,3.1.2,87,,30–34
+62.08,2,Kabupaten Sukamara,age_group,30-34,,5.89,ribu_jiwa,2025,projection,total_population,3.1.2,87,,30–34
+62.08,2,Kabupaten Sukamara,age_group,35-39,laki_laki,3.02,ribu_jiwa,2025,projection,total_population,3.1.2,87,,35–39
+62.08,2,Kabupaten Sukamara,age_group,35-39,perempuan,3.01,ribu_jiwa,2025,projection,total_population,3.1.2,87,,35–39
+62.08,2,Kabupaten Sukamara,age_group,35-39,,6.04,ribu_jiwa,2025,projection,total_population,3.1.2,87,,35–39
+62.08,2,Kabupaten Sukamara,age_group,40-44,laki_laki,3.07,ribu_jiwa,2025,projection,total_population,3.1.2,87,,40–44
+62.08,2,Kabupaten Sukamara,age_group,40-44,perempuan,2.66,ribu_jiwa,2025,projection,total_population,3.1.2,87,,40–44
+62.08,2,Kabupaten Sukamara,age_group,40-44,,5.73,ribu_jiwa,2025,projection,total_population,3.1.2,87,,40–44
+62.08,2,Kabupaten Sukamara,age_group,45-49,laki_laki,2.61,ribu_jiwa,2025,projection,total_population,3.1.2,87,,45–49
+62.08,2,Kabupaten Sukamara,age_group,45-49,perempuan,2.33,ribu_jiwa,2025,projection,total_population,3.1.2,87,,45–49
+62.08,2,Kabupaten Sukamara,age_group,45-49,,4.94,ribu_jiwa,2025,projection,total_population,3.1.2,87,,45–49
+62.08,2,Kabupaten Sukamara,age_group,50-54,laki_laki,2.22,ribu_jiwa,2025,projection,total_population,3.1.2,87,,50–54
+62.08,2,Kabupaten Sukamara,age_group,50-54,perempuan,1.85,ribu_jiwa,2025,projection,total_population,3.1.2,87,,50–54
+62.08,2,Kabupaten Sukamara,age_group,50-54,,4.07,ribu_jiwa,2025,projection,total_population,3.1.2,87,,50–54
+62.08,2,Kabupaten Sukamara,age_group,55-59,laki_laki,1.71,ribu_jiwa,2025,projection,total_population,3.1.2,87,,55–59
+62.08,2,Kabupaten Sukamara,age_group,55-59,perempuan,1.36,ribu_jiwa,2025,projection,total_population,3.1.2,87,,55–59
+62.08,2,Kabupaten Sukamara,age_group,55-59,,3.07,ribu_jiwa,2025,projection,total_population,3.1.2,87,,55–59
+62.08,2,Kabupaten Sukamara,age_group,60-64,laki_laki,1.22,ribu_jiwa,2025,projection,total_population,3.1.2,87,,60–64
+62.08,2,Kabupaten Sukamara,age_group,60-64,perempuan,0.99,ribu_jiwa,2025,projection,total_population,3.1.2,87,,60–64
+62.08,2,Kabupaten Sukamara,age_group,60-64,,2.20,ribu_jiwa,2025,projection,total_population,3.1.2,87,,60–64
+62.08,2,Kabupaten Sukamara,age_group,65-69,laki_laki,0.77,ribu_jiwa,2025,projection,total_population,3.1.2,87,,65–69
+62.08,2,Kabupaten Sukamara,age_group,65-69,perempuan,0.63,ribu_jiwa,2025,projection,total_population,3.1.2,87,,65–69
+62.08,2,Kabupaten Sukamara,age_group,65-69,,1.40,ribu_jiwa,2025,projection,total_population,3.1.2,87,,65–69
+62.08,2,Kabupaten Sukamara,age_group,70-75,laki_laki,0.43,ribu_jiwa,2025,projection,total_population,3.1.2,87,,70–75
+62.08,2,Kabupaten Sukamara,age_group,70-75,perempuan,0.40,ribu_jiwa,2025,projection,total_population,3.1.2,87,,70–75
+62.08,2,Kabupaten Sukamara,age_group,70-75,,0.83,ribu_jiwa,2025,projection,total_population,3.1.2,87,,70–75
+62.08,2,Kabupaten Sukamara,age_group,75+,laki_laki,0.37,ribu_jiwa,2025,projection,total_population,3.1.2,87,,75+
+62.08,2,Kabupaten Sukamara,age_group,75+,perempuan,0.38,ribu_jiwa,2025,projection,total_population,3.1.2,87,,75+
+62.08,2,Kabupaten Sukamara,age_group,75+,,0.75,ribu_jiwa,2025,projection,total_population,3.1.2,87,,75+
+62.08,2,Kabupaten Sukamara,sex,laki_laki,,35.97,ribu_jiwa,2025,projection,total_population,3.1.2,87,,Laki-laki
+62.08,2,Kabupaten Sukamara,sex,perempuan,,33.01,ribu_jiwa,2025,projection,total_population,3.1.2,87,,Perempuan
+62.08,2,Kabupaten Sukamara,total,total,,68.98,ribu_jiwa,2025,projection,total_population,3.1.2,87,,
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/padi_padian,,104262,rupiah,2024,survey_estimate,per_capita,10.1,363,,Padi-padian
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/padi_padian,,101982,rupiah,2025,survey_estimate,per_capita,10.1,363,,Padi-padian
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/umbi_umbian,,7278,rupiah,2024,survey_estimate,per_capita,10.1,363,,Umbi-umbian
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/umbi_umbian,,8204,rupiah,2025,survey_estimate,per_capita,10.1,363,,Umbi-umbian
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang_fish_shrimp_squid_clams,,107494,rupiah,2024,survey_estimate,per_capita,10.1,363,,Ikan/udang/cumi/kerang/fish/shrimp/squid/clams
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang_fish_shrimp_squid_clams,,135914,rupiah,2025,survey_estimate,per_capita,10.1,363,,Ikan/udang/cumi/kerang/fish/shrimp/squid/clams
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/daging,,61956,rupiah,2024,survey_estimate,per_capita,10.1,363,,Daging
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/daging,,65042,rupiah,2025,survey_estimate,per_capita,10.1,363,,Daging
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/telur_dan_susu,,50670,rupiah,2024,survey_estimate,per_capita,10.1,363,,Telur dan susu
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/telur_dan_susu,,64094,rupiah,2025,survey_estimate,per_capita,10.1,363,,Telur dan susu
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/sayur_sayuran,,73961,rupiah,2024,survey_estimate,per_capita,10.1,363,,Sayur-sayuran
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/sayur_sayuran,,82667,rupiah,2025,survey_estimate,per_capita,10.1,363,,Sayur-sayuran
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/kacang_kacangan,,14676,rupiah,2024,survey_estimate,per_capita,10.1,363,,Kacang-kacangan
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/kacang_kacangan,,16428,rupiah,2025,survey_estimate,per_capita,10.1,363,,Kacang-kacangan
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/buah_buahan,,64528,rupiah,2024,survey_estimate,per_capita,10.1,363,,Buah-buahan
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/buah_buahan,,39930,rupiah,2025,survey_estimate,per_capita,10.1,363,,Buah-buahan
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/minyak_dan_kelapa,,21563,rupiah,2024,survey_estimate,per_capita,10.1,363,,Minyak dan kelapa
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/minyak_dan_kelapa,,25297,rupiah,2025,survey_estimate,per_capita,10.1,363,,Minyak dan kelapa
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/bahan_minuman,,26160,rupiah,2024,survey_estimate,per_capita,10.1,363,,Bahan minuman
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/bahan_minuman,,28750,rupiah,2025,survey_estimate,per_capita,10.1,363,,Bahan minuman
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/bumbu_bumbuan,,25079,rupiah,2024,survey_estimate,per_capita,10.1,363,,Bumbu-bumbuan
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/bumbu_bumbuan,,23817,rupiah,2025,survey_estimate,per_capita,10.1,363,,Bumbu-bumbuan
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/konsumsi_lainnya,,21384,rupiah,2024,survey_estimate,per_capita,10.1,363,,Konsumsi lainnya
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/konsumsi_lainnya,,18717,rupiah,2025,survey_estimate,per_capita,10.1,363,,Konsumsi lainnya
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,223738,rupiah,2024,survey_estimate,per_capita,10.1,363,,Makanan dan minuman jadi
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,227093,rupiah,2025,survey_estimate,per_capita,10.1,363,,Makanan dan minuman jadi
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/rokok,,163988,rupiah,2024,survey_estimate,per_capita,10.1,363,,Rokok
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/rokok,,158014,rupiah,2025,survey_estimate,per_capita,10.1,363,,Rokok
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/jumlah_makanan,,966735,rupiah,2024,survey_estimate,per_capita,10.1,363,,Jumlah Makanan
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/jumlah_makanan,,995949,rupiah,2025,survey_estimate,per_capita,10.1,363,,Jumlah Makanan
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/perumahan_bahan_bakar_penerangan_air,,482379,rupiah,2024,survey_estimate,per_capita,10.1,363,,"Perumahan, bahan bakar, penerangan, air"
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/perumahan_bahan_bakar_penerangan_air,,486490,rupiah,2025,survey_estimate,per_capita,10.1,363,,"Perumahan, bahan bakar, penerangan, air"
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,145368,rupiah,2024,survey_estimate,per_capita,10.1,363,,Aneka barang dan jasa
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,173576,rupiah,2025,survey_estimate,per_capita,10.1,363,,Aneka barang dan jasa
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/pakaian_alas_kaki_tutup_kepala,,36449,rupiah,2024,survey_estimate,per_capita,10.1,363,,"Pakaian, alas kaki, tutup kepala"
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/pakaian_alas_kaki_tutup_kepala,,39296,rupiah,2025,survey_estimate,per_capita,10.1,363,,"Pakaian, alas kaki, tutup kepala"
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/barang_yang_tahan_lama,,73829,rupiah,2024,survey_estimate,per_capita,10.1,363,,Barang yang tahan lama
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/barang_yang_tahan_lama,,46701,rupiah,2025,survey_estimate,per_capita,10.1,363,,Barang yang tahan lama
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,64991,rupiah,2024,survey_estimate,per_capita,10.1,363,,"Pajak, pungutan dan asuransi"
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,72463,rupiah,2025,survey_estimate,per_capita,10.1,363,,"Pajak, pungutan dan asuransi"
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,21905,rupiah,2024,survey_estimate,per_capita,10.1,363,,Keperluan pesta dan upacara/kenduri
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,13452,rupiah,2025,survey_estimate,per_capita,10.1,363,,Keperluan pesta dan upacara/kenduri
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,824921,rupiah,2024,survey_estimate,per_capita,10.1,363,,Jumlah Bukan Makanan
+62.08,2,Kabupaten Sukamara,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,831977,rupiah,2025,survey_estimate,per_capita,10.1,363,,Jumlah Bukan Makanan
+62.08,2,Kabupaten Sukamara,expenditure,total,,1791656,rupiah,2024,survey_estimate,per_capita,10.1,363,,
+62.08,2,Kabupaten Sukamara,expenditure,total,,1827926,rupiah,2025,survey_estimate,per_capita,10.1,363,,

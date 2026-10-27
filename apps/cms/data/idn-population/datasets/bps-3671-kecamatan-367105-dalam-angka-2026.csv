@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.71.05.1010,4,Poris Plawad Indah,sex,laki_laki,,13700,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki
+36.71.05.1010,4,Poris Plawad Indah,sex,perempuan,,13926,jiwa,2025,registration,total_population,3.1,23,,Perempuan
+36.71.05.1010,4,Poris Plawad Indah,total,total,,27626,jiwa,2025,registration,total_population,3.1,23,,
+36.71.05.1001,4,Cipondoh,sex,laki_laki,,14852,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki
+36.71.05.1001,4,Cipondoh,sex,perempuan,,14992,jiwa,2025,registration,total_population,3.1,23,,Perempuan
+36.71.05.1001,4,Cipondoh,total,total,,29844,jiwa,2025,registration,total_population,3.1,23,,
+36.71.05.1005,4,Kenanga,sex,laki_laki,,9408,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki
+36.71.05.1005,4,Kenanga,sex,perempuan,,9171,jiwa,2025,registration,total_population,3.1,23,,Perempuan
+36.71.05.1005,4,Kenanga,total,total,,18579,jiwa,2025,registration,total_population,3.1,23,,
+36.71.05.1004,4,Gondrong,sex,laki_laki,,12428,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki
+36.71.05.1004,4,Gondrong,sex,perempuan,,12172,jiwa,2025,registration,total_population,3.1,23,,Perempuan
+36.71.05.1004,4,Gondrong,total,total,,24600,jiwa,2025,registration,total_population,3.1,23,,
+36.71.05.1006,4,Petir,sex,laki_laki,,12029,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki
+36.71.05.1006,4,Petir,sex,perempuan,,11940,jiwa,2025,registration,total_population,3.1,23,,Perempuan
+36.71.05.1006,4,Petir,total,total,,23969,jiwa,2025,registration,total_population,3.1,23,,
+36.71.05.1007,4,Ketapang,sex,laki_laki,,8881,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki
+36.71.05.1007,4,Ketapang,sex,perempuan,,8765,jiwa,2025,registration,total_population,3.1,23,,Perempuan
+36.71.05.1007,4,Ketapang,total,total,,17646,jiwa,2025,registration,total_population,3.1,23,,
+36.71.05.1003,4,Cipondoh Indah,sex,laki_laki,,13145,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki
+36.71.05.1003,4,Cipondoh Indah,sex,perempuan,,13442,jiwa,2025,registration,total_population,3.1,23,,Perempuan
+36.71.05.1003,4,Cipondoh Indah,total,total,,26587,jiwa,2025,registration,total_population,3.1,23,,
+36.71.05.1002,4,Cipondoh Makmur,sex,laki_laki,,16791,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki
+36.71.05.1002,4,Cipondoh Makmur,sex,perempuan,,16744,jiwa,2025,registration,total_population,3.1,23,,Perempuan
+36.71.05.1002,4,Cipondoh Makmur,total,total,,33535,jiwa,2025,registration,total_population,3.1,23,,
+36.71.05.1009,4,Poris Plawad Utara,sex,laki_laki,,13156,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki
+36.71.05.1009,4,Poris Plawad Utara,sex,perempuan,,13134,jiwa,2025,registration,total_population,3.1,23,,Perempuan
+36.71.05.1009,4,Poris Plawad Utara,total,total,,26290,jiwa,2025,registration,total_population,3.1,23,,
+36.71.05.1008,4,Poris Plawad,sex,laki_laki,,9103,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki
+36.71.05.1008,4,Poris Plawad,sex,perempuan,,9242,jiwa,2025,registration,total_population,3.1,23,,Perempuan
+36.71.05.1008,4,Poris Plawad,total,total,,18345,jiwa,2025,registration,total_population,3.1,23,,
+36.71.05,3,Cipondoh,sex,laki_laki,,123493,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki
+36.71.05,3,Cipondoh,sex,perempuan,,123528,jiwa,2025,registration,total_population,3.1,23,,Perempuan
+36.71.05,3,Cipondoh,total,total,,247021,jiwa,2025,registration,total_population,3.1,23,,
+36.71.05,3,Cipondoh,age_group,0-4,laki_laki,8031,jiwa,2025,registration,total_population,3.2,25,,0 - 4
+36.71.05,3,Cipondoh,age_group,0-4,perempuan,7541,jiwa,2025,registration,total_population,3.2,25,,0 - 4
+36.71.05,3,Cipondoh,age_group,0-4,,15572,jiwa,2025,registration,total_population,3.2,25,,0 - 4
+36.71.05,3,Cipondoh,age_group,5-9,laki_laki,10858,jiwa,2025,registration,total_population,3.2,25,,5 – 9
+36.71.05,3,Cipondoh,age_group,5-9,perempuan,10583,jiwa,2025,registration,total_population,3.2,25,,5 – 9
+36.71.05,3,Cipondoh,age_group,5-9,,21441,jiwa,2025,registration,total_population,3.2,25,,5 – 9
+36.71.05,3,Cipondoh,age_group,10-14,laki_laki,10902,jiwa,2025,registration,total_population,3.2,25,,10 - 14
+36.71.05,3,Cipondoh,age_group,10-14,perempuan,10126,jiwa,2025,registration,total_population,3.2,25,,10 - 14
+36.71.05,3,Cipondoh,age_group,10-14,,21028,jiwa,2025,registration,total_population,3.2,25,,10 - 14
+36.71.05,3,Cipondoh,age_group,15-19,laki_laki,10179,jiwa,2025,registration,total_population,3.2,25,,15 - 19
+36.71.05,3,Cipondoh,age_group,15-19,perempuan,9680,jiwa,2025,registration,total_population,3.2,25,,15 - 19
+36.71.05,3,Cipondoh,age_group,15-19,,19859,jiwa,2025,registration,total_population,3.2,25,,15 - 19
+36.71.05,3,Cipondoh,age_group,20-24,laki_laki,9877,jiwa,2025,registration,total_population,3.2,25,,20 - 24
+36.71.05,3,Cipondoh,age_group,20-24,perempuan,9635,jiwa,2025,registration,total_population,3.2,25,,20 - 24
+36.71.05,3,Cipondoh,age_group,20-24,,19512,jiwa,2025,registration,total_population,3.2,25,,20 - 24
+36.71.05,3,Cipondoh,age_group,25-29,laki_laki,9790,jiwa,2025,registration,total_population,3.2,25,,25 - 29
+36.71.05,3,Cipondoh,age_group,25-29,perempuan,9889,jiwa,2025,registration,total_population,3.2,25,,25 - 29
+36.71.05,3,Cipondoh,age_group,25-29,,19679,jiwa,2025,registration,total_population,3.2,25,,25 - 29
+36.71.05,3,Cipondoh,age_group,30-34,laki_laki,10179,jiwa,2025,registration,total_population,3.2,25,,30 - 34
+36.71.05,3,Cipondoh,age_group,30-34,perempuan,10426,jiwa,2025,registration,total_population,3.2,25,,30 - 34
+36.71.05,3,Cipondoh,age_group,30-34,,20605,jiwa,2025,registration,total_population,3.2,25,,30 - 34
+36.71.05,3,Cipondoh,age_group,35-39,laki_laki,9662,jiwa,2025,registration,total_population,3.2,25,,35 - 39
+36.71.05,3,Cipondoh,age_group,35-39,perempuan,9801,jiwa,2025,registration,total_population,3.2,25,,35 - 39
+36.71.05,3,Cipondoh,age_group,35-39,,19463,jiwa,2025,registration,total_population,3.2,25,,35 - 39
+36.71.05,3,Cipondoh,age_group,40-44,laki_laki,9982,jiwa,2025,registration,total_population,3.2,25,,40 - 44
+36.71.05,3,Cipondoh,age_group,40-44,perempuan,10260,jiwa,2025,registration,total_population,3.2,25,,40 - 44
+36.71.05,3,Cipondoh,age_group,40-44,,20242,jiwa,2025,registration,total_population,3.2,25,,40 - 44
+36.71.05,3,Cipondoh,age_group,45-49,laki_laki,9235,jiwa,2025,registration,total_population,3.2,25,,45 - 49
+36.71.05,3,Cipondoh,age_group,45-49,perempuan,9651,jiwa,2025,registration,total_population,3.2,25,,45 - 49
+36.71.05,3,Cipondoh,age_group,45-49,,18886,jiwa,2025,registration,total_population,3.2,25,,45 - 49
+36.71.05,3,Cipondoh,age_group,50-54,laki_laki,7837,jiwa,2025,registration,total_population,3.2,25,,50 - 54
+36.71.05,3,Cipondoh,age_group,50-54,perempuan,8155,jiwa,2025,registration,total_population,3.2,25,,50 - 54
+36.71.05,3,Cipondoh,age_group,50-54,,15992,jiwa,2025,registration,total_population,3.2,25,,50 - 54
+36.71.05,3,Cipondoh,age_group,55-59,laki_laki,6403,jiwa,2025,registration,total_population,3.2,25,,55 - 59
+36.71.05,3,Cipondoh,age_group,55-59,perempuan,6406,jiwa,2025,registration,total_population,3.2,25,,55 - 59
+36.71.05,3,Cipondoh,age_group,55-59,,12809,jiwa,2025,registration,total_population,3.2,25,,55 - 59
+36.71.05,3,Cipondoh,age_group,60-64,laki_laki,4460,jiwa,2025,registration,total_population,3.2,25,,60 - 64
+36.71.05,3,Cipondoh,age_group,60-64,perempuan,4725,jiwa,2025,registration,total_population,3.2,25,,60 - 64
+36.71.05,3,Cipondoh,age_group,60-64,,9185,jiwa,2025,registration,total_population,3.2,25,,60 - 64
+36.71.05,3,Cipondoh,age_group,65-69,laki_laki,3084,jiwa,2025,registration,total_population,3.2,25,,65 - 69
+36.71.05,3,Cipondoh,age_group,65-69,perempuan,3185,jiwa,2025,registration,total_population,3.2,25,,65 - 69
+36.71.05,3,Cipondoh,age_group,65-69,,6269,jiwa,2025,registration,total_population,3.2,25,,65 - 69
+36.71.05,3,Cipondoh,age_group,70-74,laki_laki,1692,jiwa,2025,registration,total_population,3.2,25,,70 - 74
+36.71.05,3,Cipondoh,age_group,70-74,perempuan,1694,jiwa,2025,registration,total_population,3.2,25,,70 - 74
+36.71.05,3,Cipondoh,age_group,70-74,,3386,jiwa,2025,registration,total_population,3.2,25,,70 - 74
+36.71.05,3,Cipondoh,age_group,75+,laki_laki,1322,jiwa,2025,registration,total_population,3.2,25,,75+
+36.71.05,3,Cipondoh,age_group,75+,perempuan,1771,jiwa,2025,registration,total_population,3.2,25,,75+
+36.71.05,3,Cipondoh,age_group,75+,,3093,jiwa,2025,registration,total_population,3.2,25,,75+
+36.71.05,3,Cipondoh,sex,laki_laki,,123493,jiwa,2025,registration,total_population,3.2,25,,Laki-Laki
+36.71.05,3,Cipondoh,sex,perempuan,,123528,jiwa,2025,registration,total_population,3.2,25,,Perempuan
+36.71.05,3,Cipondoh,total,total,,247021,jiwa,2025,registration,total_population,3.2,25,,

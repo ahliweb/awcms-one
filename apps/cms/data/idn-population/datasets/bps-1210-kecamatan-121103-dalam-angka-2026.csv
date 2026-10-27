@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.11.03.2001,4,Sumbul Tengah,sex,laki_laki,,686,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.03.2001,4,Sumbul Tengah,sex,perempuan,,694,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.03.2001,4,Sumbul Tengah,total,total,,1380,jiwa,2026,registration,total_population,3.1,22,,
+12.11.03.2002,4,Ujung Teran,sex,laki_laki,,782,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.03.2002,4,Ujung Teran,sex,perempuan,,761,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.03.2002,4,Ujung Teran,total,total,,1543,jiwa,2026,registration,total_population,3.1,22,,
+12.11.03.2003,4,Juma Gerat,sex,laki_laki,,1033,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.03.2003,4,Juma Gerat,sex,perempuan,,997,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.03.2003,4,Juma Gerat,total,total,,2030,jiwa,2026,registration,total_population,3.1,22,,
+12.11.03.2004,4,Sarintonu,sex,laki_laki,,1052,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.03.2004,4,Sarintonu,sex,perempuan,,1068,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.03.2004,4,Sarintonu,total,total,,2120,jiwa,2026,registration,total_population,3.1,22,,
+12.11.03.2006,4,Palding,sex,laki_laki,,783,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.03.2006,4,Palding,sex,perempuan,,833,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.03.2006,4,Palding,total,total,,1616,jiwa,2026,registration,total_population,3.1,22,,
+12.11.03.2008,4,Bertungen Julu,sex,laki_laki,,750,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.03.2008,4,Bertungen Julu,sex,perempuan,,819,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.03.2008,4,Bertungen Julu,total,total,,1569,jiwa,2026,registration,total_population,3.1,22,,
+12.11.03.2012,4,Sukandebi,sex,laki_laki,,1002,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.03.2012,4,Sukandebi,sex,perempuan,,1026,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.03.2012,4,Sukandebi,total,total,,2028,jiwa,2026,registration,total_population,3.1,22,,
+12.11.03.2009,4,Lau Molgap,sex,laki_laki,,528,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.03.2009,4,Lau Molgap,sex,perempuan,,557,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.03.2009,4,Lau Molgap,total,total,,1085,jiwa,2026,registration,total_population,3.1,22,,
+12.11.03.2010,4,Lau Pakpak,sex,laki_laki,,669,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.03.2010,4,Lau Pakpak,sex,perempuan,,745,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.03.2010,4,Lau Pakpak,total,total,,1414,jiwa,2026,registration,total_population,3.1,22,,
+12.11.03.2013,4,Lau Mil,sex,laki_laki,,1118,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.03.2013,4,Lau Mil,sex,perempuan,,1141,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.03.2013,4,Lau Mil,total,total,,2259,jiwa,2026,registration,total_population,3.1,22,,
+12.11.03.2007,4,Lau Bagot,sex,laki_laki,,1255,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.03.2007,4,Lau Bagot,sex,perempuan,,1321,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.03.2007,4,Lau Bagot,total,total,,2576,jiwa,2026,registration,total_population,3.1,22,,
+12.11.03.2005,4,Tigalingga,sex,laki_laki,,778,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.03.2005,4,Tigalingga,sex,perempuan,,797,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.03.2005,4,Tigalingga,total,total,,1575,jiwa,2026,registration,total_population,3.1,22,,
+12.11.03.2014,4,Lau Sireme,sex,laki_laki,,1409,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.03.2014,4,Lau Sireme,sex,perempuan,,1448,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.03.2014,4,Lau Sireme,total,total,,2857,jiwa,2026,registration,total_population,3.1,22,,
+12.11.03.2019,4,Palding Jaya Sumbul,sex,laki_laki,,873,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.03.2019,4,Palding Jaya Sumbul,sex,perempuan,,992,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.03.2019,4,Palding Jaya Sumbul,total,total,,1865,jiwa,2026,registration,total_population,3.1,22,,
+12.11.03,3,Tigalingga,sex,laki_laki,,12718,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.03,3,Tigalingga,sex,perempuan,,13199,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.03,3,Tigalingga,total,total,,25917,jiwa,2026,registration,total_population,3.1,22,,

@@ -1,0 +1,51 @@
+{
+  "datasetCode": "bps-3520-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "35.20",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Magetan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Magetan",
+  "publisherDomain": "3520",
+  "publisherWebsite": "https://magetankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Magetan (https://magetankab.bps.go.id), publikasi \"Kabupaten Magetan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3520",
+  "publicationNumber": "35200.26002",
+  "issn": "0215-8281",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://magetankab.bps.go.id/id/publication/2026/02/27/ca2c2202e1f2bf9dbe783d50/kabupaten-magetan-dalam-angka-2026.html",
+  "sourceFileSha256": "16092781774095c051934655046ad126fe006c1b1340d05b8203510931088387",
+  "sourceFileBytes": 14132998,
+  "sourcePages": [76, 172],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Magetan.",
+  "csvPath": "datasets/bps-3520-dalam-angka-2026.csv",
+  "csvSha256": "f47c4995af9fb276334ec785760a349bf21f8241bc7df1ef02159301302e42aa",
+  "tablesUsed": [
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Magetan (jiwa), 2025",
+      "printedPages": [76],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Magetan, 2025",
+      "printedPages": [172],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication",
+    "table 3.1.1 (total-by-region) could not be read reliably and is not included (heading says jiwa but only some figures carry decimals)"
+  ]
+}

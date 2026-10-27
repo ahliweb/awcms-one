@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.12.07.2001,4,Oreng,sex,laki_laki,,351,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+62.12.07.2001,4,Oreng,sex,perempuan,,324,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+62.12.07.2001,4,Oreng,total,total,,675,jiwa,2025,registration,total_population,3.1,29,,
+62.12.07.2002,4,Olung Muro,sex,laki_laki,,368,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+62.12.07.2002,4,Olung Muro,sex,perempuan,,330,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+62.12.07.2002,4,Olung Muro,total,total,,698,jiwa,2025,registration,total_population,3.1,29,,
+62.12.07.2003,4,Olung Hanangan,sex,laki_laki,,412,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+62.12.07.2003,4,Olung Hanangan,sex,perempuan,,389,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+62.12.07.2003,4,Olung Hanangan,total,total,,801,jiwa,2025,registration,total_population,3.1,29,,
+62.12.07.2004,4,Dirung Lingkin,sex,laki_laki,,1119,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+62.12.07.2004,4,Dirung Lingkin,sex,perempuan,,1061,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+62.12.07.2004,4,Dirung Lingkin,total,total,,2180,jiwa,2025,registration,total_population,3.1,29,,
+62.12.07.2005,4,Datah Kotou,sex,laki_laki,,407,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+62.12.07.2005,4,Datah Kotou,sex,perempuan,,369,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+62.12.07.2005,4,Datah Kotou,total,total,,776,jiwa,2025,registration,total_population,3.1,29,,
+62.12.07.2006,4,Tahujan Ontu,sex,laki_laki,,462,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+62.12.07.2006,4,Tahujan Ontu,sex,perempuan,,430,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+62.12.07.2006,4,Tahujan Ontu,total,total,,892,jiwa,2025,registration,total_population,3.1,29,,
+62.12.07.2007,4,Puruk Kambang,sex,laki_laki,,506,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+62.12.07.2007,4,Puruk Kambang,sex,perempuan,,511,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+62.12.07.2007,4,Puruk Kambang,total,total,,1017,jiwa,2025,registration,total_population,3.1,29,,
+62.12.07,3,Tanah Siang Selatan,sex,laki_laki,,3625,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+62.12.07,3,Tanah Siang Selatan,sex,perempuan,,3414,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+62.12.07,3,Tanah Siang Selatan,total,total,,7039,jiwa,2025,registration,total_population,3.1,29,,
+62.12.07,3,Tanah Siang Selatan,age_group,0-4,laki_laki,286,jiwa,2025,registration,total_population,3.2,31,,0–4
+62.12.07,3,Tanah Siang Selatan,age_group,0-4,perempuan,273,jiwa,2025,registration,total_population,3.2,31,,0–4
+62.12.07,3,Tanah Siang Selatan,age_group,0-4,,559,jiwa,2025,registration,total_population,3.2,31,,0–4
+62.12.07,3,Tanah Siang Selatan,age_group,5-9,laki_laki,343,jiwa,2025,registration,total_population,3.2,31,,5–9
+62.12.07,3,Tanah Siang Selatan,age_group,5-9,perempuan,353,jiwa,2025,registration,total_population,3.2,31,,5–9
+62.12.07,3,Tanah Siang Selatan,age_group,5-9,,696,jiwa,2025,registration,total_population,3.2,31,,5–9
+62.12.07,3,Tanah Siang Selatan,age_group,10-14,laki_laki,391,jiwa,2025,registration,total_population,3.2,31,,10–14
+62.12.07,3,Tanah Siang Selatan,age_group,10-14,perempuan,346,jiwa,2025,registration,total_population,3.2,31,,10–14
+62.12.07,3,Tanah Siang Selatan,age_group,10-14,,737,jiwa,2025,registration,total_population,3.2,31,,10–14
+62.12.07,3,Tanah Siang Selatan,age_group,15-19,laki_laki,339,jiwa,2025,registration,total_population,3.2,31,,15–19
+62.12.07,3,Tanah Siang Selatan,age_group,15-19,perempuan,321,jiwa,2025,registration,total_population,3.2,31,,15–19
+62.12.07,3,Tanah Siang Selatan,age_group,15-19,,660,jiwa,2025,registration,total_population,3.2,31,,15–19
+62.12.07,3,Tanah Siang Selatan,age_group,20-24,laki_laki,326,jiwa,2025,registration,total_population,3.2,31,,20–24
+62.12.07,3,Tanah Siang Selatan,age_group,20-24,perempuan,369,jiwa,2025,registration,total_population,3.2,31,,20–24
+62.12.07,3,Tanah Siang Selatan,age_group,20-24,,695,jiwa,2025,registration,total_population,3.2,31,,20–24
+62.12.07,3,Tanah Siang Selatan,age_group,25-29,laki_laki,305,jiwa,2025,registration,total_population,3.2,31,,25–29
+62.12.07,3,Tanah Siang Selatan,age_group,25-29,perempuan,307,jiwa,2025,registration,total_population,3.2,31,,25–29
+62.12.07,3,Tanah Siang Selatan,age_group,25-29,,612,jiwa,2025,registration,total_population,3.2,31,,25–29
+62.12.07,3,Tanah Siang Selatan,age_group,30-34,laki_laki,288,jiwa,2025,registration,total_population,3.2,31,,30–34
+62.12.07,3,Tanah Siang Selatan,age_group,30-34,perempuan,284,jiwa,2025,registration,total_population,3.2,31,,30–34
+62.12.07,3,Tanah Siang Selatan,age_group,30-34,,572,jiwa,2025,registration,total_population,3.2,31,,30–34
+62.12.07,3,Tanah Siang Selatan,age_group,35-39,laki_laki,270,jiwa,2025,registration,total_population,3.2,31,,35–39
+62.12.07,3,Tanah Siang Selatan,age_group,35-39,perempuan,266,jiwa,2025,registration,total_population,3.2,31,,35–39
+62.12.07,3,Tanah Siang Selatan,age_group,35-39,,536,jiwa,2025,registration,total_population,3.2,31,,35–39
+62.12.07,3,Tanah Siang Selatan,age_group,40-44,laki_laki,280,jiwa,2025,registration,total_population,3.2,31,,40–44
+62.12.07,3,Tanah Siang Selatan,age_group,40-44,perempuan,257,jiwa,2025,registration,total_population,3.2,31,,40–44
+62.12.07,3,Tanah Siang Selatan,age_group,40-44,,537,jiwa,2025,registration,total_population,3.2,31,,40–44
+62.12.07,3,Tanah Siang Selatan,age_group,45-49,laki_laki,243,jiwa,2025,registration,total_population,3.2,31,,45–49
+62.12.07,3,Tanah Siang Selatan,age_group,45-49,perempuan,198,jiwa,2025,registration,total_population,3.2,31,,45–49
+62.12.07,3,Tanah Siang Selatan,age_group,45-49,,441,jiwa,2025,registration,total_population,3.2,31,,45–49
+62.12.07,3,Tanah Siang Selatan,age_group,50-54,laki_laki,184,jiwa,2025,registration,total_population,3.2,31,,50–54
+62.12.07,3,Tanah Siang Selatan,age_group,50-54,perempuan,155,jiwa,2025,registration,total_population,3.2,31,,50–54
+62.12.07,3,Tanah Siang Selatan,age_group,50-54,,339,jiwa,2025,registration,total_population,3.2,31,,50–54
+62.12.07,3,Tanah Siang Selatan,age_group,55-59,laki_laki,138,jiwa,2025,registration,total_population,3.2,31,,55–59
+62.12.07,3,Tanah Siang Selatan,age_group,55-59,perempuan,100,jiwa,2025,registration,total_population,3.2,31,,55–59
+62.12.07,3,Tanah Siang Selatan,age_group,55-59,,238,jiwa,2025,registration,total_population,3.2,31,,55–59
+62.12.07,3,Tanah Siang Selatan,age_group,60-64,laki_laki,86,jiwa,2025,registration,total_population,3.2,31,,60–64
+62.12.07,3,Tanah Siang Selatan,age_group,60-64,perempuan,75,jiwa,2025,registration,total_population,3.2,31,,60–64
+62.12.07,3,Tanah Siang Selatan,age_group,60-64,,161,jiwa,2025,registration,total_population,3.2,31,,60–64
+62.12.07,3,Tanah Siang Selatan,age_group,65+,laki_laki,146,jiwa,2025,registration,total_population,3.2,31,,65+
+62.12.07,3,Tanah Siang Selatan,age_group,65+,perempuan,110,jiwa,2025,registration,total_population,3.2,31,,65+
+62.12.07,3,Tanah Siang Selatan,age_group,65+,,256,jiwa,2025,registration,total_population,3.2,31,,65+
+62.12.07,3,Tanah Siang Selatan,sex,laki_laki,,3625,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+62.12.07,3,Tanah Siang Selatan,sex,perempuan,,3414,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+62.12.07,3,Tanah Siang Selatan,total,total,,7039,jiwa,2025,registration,total_population,3.2,31,,

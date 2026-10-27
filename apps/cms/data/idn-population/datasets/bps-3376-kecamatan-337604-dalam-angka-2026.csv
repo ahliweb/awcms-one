@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.76.04.1001,4,Kaligangsa,sex,laki_laki,,6457,jiwa,2026,registration,total_population,3.1,35,,Laki-Laki/Male
+33.76.04.1001,4,Kaligangsa,sex,perempuan,,6068,jiwa,2026,registration,total_population,3.1,35,,Perempuan/Female
+33.76.04.1001,4,Kaligangsa,total,total,,12525,jiwa,2026,registration,total_population,3.1,35,,
+33.76.04.1002,4,Krandon,sex,laki_laki,,3588,jiwa,2026,registration,total_population,3.1,35,,Laki-Laki/Male
+33.76.04.1002,4,Krandon,sex,perempuan,,3457,jiwa,2026,registration,total_population,3.1,35,,Perempuan/Female
+33.76.04.1002,4,Krandon,total,total,,7045,jiwa,2026,registration,total_population,3.1,35,,
+33.76.04.1003,4,Cabawan,sex,laki_laki,,3477,jiwa,2026,registration,total_population,3.1,35,,Laki-Laki/Male
+33.76.04.1003,4,Cabawan,sex,perempuan,,3436,jiwa,2026,registration,total_population,3.1,35,,Perempuan/Female
+33.76.04.1003,4,Cabawan,total,total,,6913,jiwa,2026,registration,total_population,3.1,35,,
+33.76.04.1005,4,Margadana,sex,laki_laki,,9268,jiwa,2026,registration,total_population,3.1,35,,Laki-Laki/Male
+33.76.04.1005,4,Margadana,sex,perempuan,,8837,jiwa,2026,registration,total_population,3.1,35,,Perempuan/Female
+33.76.04.1005,4,Margadana,total,total,,18105,jiwa,2026,registration,total_population,3.1,35,,
+33.76.04.1004,4,Kalinyamat Kulon,sex,laki_laki,,3399,jiwa,2026,registration,total_population,3.1,35,,Laki-Laki/Male
+33.76.04.1004,4,Kalinyamat Kulon,sex,perempuan,,3313,jiwa,2026,registration,total_population,3.1,35,,Perempuan/Female
+33.76.04.1004,4,Kalinyamat Kulon,total,total,,6712,jiwa,2026,registration,total_population,3.1,35,,
+33.76.04.1006,4,Sumurpanggang,sex,laki_laki,,4205,jiwa,2026,registration,total_population,3.1,35,,Laki-Laki/Male
+33.76.04.1006,4,Sumurpanggang,sex,perempuan,,4123,jiwa,2026,registration,total_population,3.1,35,,Perempuan/Female
+33.76.04.1006,4,Sumurpanggang,total,total,,8328,jiwa,2026,registration,total_population,3.1,35,,
+33.76.04.1007,4,Pesurungan Lor,sex,laki_laki,,3216,jiwa,2026,registration,total_population,3.1,35,,Laki-Laki/Male
+33.76.04.1007,4,Pesurungan Lor,sex,perempuan,,3058,jiwa,2026,registration,total_population,3.1,35,,Perempuan/Female
+33.76.04.1007,4,Pesurungan Lor,total,total,,6274,jiwa,2026,registration,total_population,3.1,35,,
+33.76.04,3,Kec. Margadana,sex,laki_laki,,33610,jiwa,2026,registration,total_population,3.1,35,,Laki-Laki/Male
+33.76.04,3,Kec. Margadana,sex,perempuan,,32292,jiwa,2026,registration,total_population,3.1,35,,Perempuan/Female
+33.76.04,3,Kec. Margadana,total,total,,65902,jiwa,2026,registration,total_population,3.1,35,,
+33.76.04,3,Margadana,age_group,0-4,laki_laki,2116,jiwa,2026,registration,total_population,3.2,37,,0–4
+33.76.04,3,Margadana,age_group,0-4,perempuan,1946,jiwa,2026,registration,total_population,3.2,37,,0–4
+33.76.04,3,Margadana,age_group,0-4,,4062,jiwa,2026,registration,total_population,3.2,37,,0–4
+33.76.04,3,Margadana,age_group,5-9,laki_laki,2818,jiwa,2026,registration,total_population,3.2,37,,5–9
+33.76.04,3,Margadana,age_group,5-9,perempuan,2546,jiwa,2026,registration,total_population,3.2,37,,5–9
+33.76.04,3,Margadana,age_group,5-9,,5364,jiwa,2026,registration,total_population,3.2,37,,5–9
+33.76.04,3,Margadana,age_group,10-14,laki_laki,2689,jiwa,2026,registration,total_population,3.2,37,,10–14
+33.76.04,3,Margadana,age_group,10-14,perempuan,2474,jiwa,2026,registration,total_population,3.2,37,,10–14
+33.76.04,3,Margadana,age_group,10-14,,5163,jiwa,2026,registration,total_population,3.2,37,,10–14
+33.76.04,3,Margadana,age_group,15-19,laki_laki,2605,jiwa,2026,registration,total_population,3.2,37,,15–19
+33.76.04,3,Margadana,age_group,15-19,perempuan,2408,jiwa,2026,registration,total_population,3.2,37,,15–19
+33.76.04,3,Margadana,age_group,15-19,,5013,jiwa,2026,registration,total_population,3.2,37,,15–19
+33.76.04,3,Margadana,age_group,20-24,laki_laki,2586,jiwa,2026,registration,total_population,3.2,37,,20–24
+33.76.04,3,Margadana,age_group,20-24,perempuan,2574,jiwa,2026,registration,total_population,3.2,37,,20–24
+33.76.04,3,Margadana,age_group,20-24,,5160,jiwa,2026,registration,total_population,3.2,37,,20–24
+33.76.04,3,Margadana,age_group,25-29,laki_laki,2749,jiwa,2026,registration,total_population,3.2,37,,25 – 29
+33.76.04,3,Margadana,age_group,25-29,perempuan,2580,jiwa,2026,registration,total_population,3.2,37,,25 – 29
+33.76.04,3,Margadana,age_group,25-29,,5329,jiwa,2026,registration,total_population,3.2,37,,25 – 29
+33.76.04,3,Margadana,age_group,30-34,laki_laki,2724,jiwa,2026,registration,total_population,3.2,37,,30–34
+33.76.04,3,Margadana,age_group,30-34,perempuan,2506,jiwa,2026,registration,total_population,3.2,37,,30–34
+33.76.04,3,Margadana,age_group,30-34,,5230,jiwa,2026,registration,total_population,3.2,37,,30–34
+33.76.04,3,Margadana,age_group,35-39,laki_laki,2585,jiwa,2026,registration,total_population,3.2,37,,35–39
+33.76.04,3,Margadana,age_group,35-39,perempuan,2401,jiwa,2026,registration,total_population,3.2,37,,35–39
+33.76.04,3,Margadana,age_group,35-39,,4986,jiwa,2026,registration,total_population,3.2,37,,35–39
+33.76.04,3,Margadana,age_group,40-44,laki_laki,2949,jiwa,2026,registration,total_population,3.2,37,,40–44
+33.76.04,3,Margadana,age_group,40-44,perempuan,2745,jiwa,2026,registration,total_population,3.2,37,,40–44
+33.76.04,3,Margadana,age_group,40-44,,5694,jiwa,2026,registration,total_population,3.2,37,,40–44
+33.76.04,3,Margadana,age_group,45-49,laki_laki,2812,jiwa,2026,registration,total_population,3.2,37,,45–49
+33.76.04,3,Margadana,age_group,45-49,perempuan,2637,jiwa,2026,registration,total_population,3.2,37,,45–49
+33.76.04,3,Margadana,age_group,45-49,,5449,jiwa,2026,registration,total_population,3.2,37,,45–49
+33.76.04,3,Margadana,age_group,50-54,laki_laki,2178,jiwa,2026,registration,total_population,3.2,37,,50–54
+33.76.04,3,Margadana,age_group,50-54,perempuan,2000,jiwa,2026,registration,total_population,3.2,37,,50–54
+33.76.04,3,Margadana,age_group,50-54,,4178,jiwa,2026,registration,total_population,3.2,37,,50–54
+33.76.04,3,Margadana,age_group,55-59,laki_laki,1568,jiwa,2026,registration,total_population,3.2,37,,55–59
+33.76.04,3,Margadana,age_group,55-59,perempuan,1531,jiwa,2026,registration,total_population,3.2,37,,55–59
+33.76.04,3,Margadana,age_group,55-59,,3099,jiwa,2026,registration,total_population,3.2,37,,55–59
+33.76.04,3,Margadana,age_group,60-64,laki_laki,1190,jiwa,2026,registration,total_population,3.2,37,,60–64
+33.76.04,3,Margadana,age_group,60-64,perempuan,1335,jiwa,2026,registration,total_population,3.2,37,,60–64
+33.76.04,3,Margadana,age_group,60-64,,2525,jiwa,2026,registration,total_population,3.2,37,,60–64
+33.76.04,3,Margadana,age_group,65-69,laki_laki,908,jiwa,2026,registration,total_population,3.2,37,,65–69
+33.76.04,3,Margadana,age_group,65-69,perempuan,1027,jiwa,2026,registration,total_population,3.2,37,,65–69
+33.76.04,3,Margadana,age_group,65-69,,1935,jiwa,2026,registration,total_population,3.2,37,,65–69
+33.76.04,3,Margadana,age_group,70-74,laki_laki,563,jiwa,2026,registration,total_population,3.2,37,,70–74
+33.76.04,3,Margadana,age_group,70-74,perempuan,703,jiwa,2026,registration,total_population,3.2,37,,70–74
+33.76.04,3,Margadana,age_group,70-74,,1266,jiwa,2026,registration,total_population,3.2,37,,70–74
+33.76.04,3,Margadana,age_group,75+,laki_laki,570,jiwa,2026,registration,total_population,3.2,37,,75+
+33.76.04,3,Margadana,age_group,75+,perempuan,879,jiwa,2026,registration,total_population,3.2,37,,75+
+33.76.04,3,Margadana,age_group,75+,,1449,jiwa,2026,registration,total_population,3.2,37,,75+

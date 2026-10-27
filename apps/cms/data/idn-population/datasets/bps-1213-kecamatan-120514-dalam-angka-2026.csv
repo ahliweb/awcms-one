@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.05.14.1001,4,Pelawi Utara,sex,laki_laki,,4694,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.14.1001,4,Pelawi Utara,sex,perempuan,,4793,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.14.1001,4,Pelawi Utara,total,total,,9487,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.14.2002,4,Securai Utara,sex,laki_laki,,4635,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.14.2002,4,Securai Utara,sex,perempuan,,4586,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.14.2002,4,Securai Utara,total,total,,9221,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.14.2005,4,Securai Selatan,sex,laki_laki,,4218,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.14.2005,4,Securai Selatan,sex,perempuan,,4229,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.14.2005,4,Securai Selatan,total,total,,8447,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.14.2004,4,Pelawi Selatan,sex,laki_laki,,4179,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.14.2004,4,Pelawi Selatan,sex,perempuan,,4073,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.14.2004,4,Pelawi Selatan,total,total,,8252,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.14.1007,4,Berandan Timur Baru,sex,laki_laki,,2446,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.14.1007,4,Berandan Timur Baru,sex,perempuan,,2523,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.14.1007,4,Berandan Timur Baru,total,total,,4969,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.14.1006,4,Berandan Barat,sex,laki_laki,,2460,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.14.1006,4,Berandan Barat,sex,perempuan,,2431,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.14.1006,4,Berandan Barat,total,total,,4891,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.14.1008,4,Berandan Timur,sex,laki_laki,,2371,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.14.1008,4,Berandan Timur,sex,perempuan,,2375,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.14.1008,4,Berandan Timur,total,total,,4746,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.14.2003,4,Teluk Meku,sex,laki_laki,,5564,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.14.2003,4,Teluk Meku,sex,perempuan,,5348,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.14.2003,4,Teluk Meku,total,total,,10912,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.14,3,Kecamatan Babalan,sex,laki_laki,,30567,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.14,3,Kecamatan Babalan,sex,perempuan,,30358,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.14,3,Kecamatan Babalan,total,total,,60925,jiwa,2025,registration,total_population,unnumbered-p39,39,,

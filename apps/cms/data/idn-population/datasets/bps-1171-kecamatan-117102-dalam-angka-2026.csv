@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.71.02.2002,4,Peunayong,sex,laki_laki,,1120,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.02.2002,4,Peunayong,sex,perempuan,,1129,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.02.2002,4,Peunayong,total,total,,2249,jiwa,2025,registration,total_population,3.1,25,,
+11.71.02.2003,4,Laksana,sex,laki_laki,,1683,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.02.2003,4,Laksana,sex,perempuan,,1752,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.02.2003,4,Laksana,total,total,,3435,jiwa,2025,registration,total_population,3.1,25,,
+11.71.02.2004,4,Keuramat,sex,laki_laki,,1674,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.02.2004,4,Keuramat,sex,perempuan,,1683,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.02.2004,4,Keuramat,total,total,,3357,jiwa,2025,registration,total_population,3.1,25,,
+11.71.02.2007,4,Kuta Alam,sex,laki_laki,,1685,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.02.2007,4,Kuta Alam,sex,perempuan,,1654,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.02.2007,4,Kuta Alam,total,total,,3339,jiwa,2025,registration,total_population,3.1,25,,
+11.71.02.2006,4,Beurawe,sex,laki_laki,,2565,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.02.2006,4,Beurawe,sex,perempuan,,2585,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.02.2006,4,Beurawe,total,total,,5150,jiwa,2025,registration,total_population,3.1,25,,
+11.71.02.2005,4,Kota Baru,sex,laki_laki,,604,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.02.2005,4,Kota Baru,sex,perempuan,,685,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.02.2005,4,Kota Baru,total,total,,1289,jiwa,2025,registration,total_population,3.1,25,,
+11.71.02.2008,4,Bandar Baru,sex,laki_laki,,2503,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.02.2008,4,Bandar Baru,sex,perempuan,,2566,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.02.2008,4,Bandar Baru,total,total,,5069,jiwa,2025,registration,total_population,3.1,25,,
+11.71.02.2001,4,Mulia,sex,laki_laki,,2351,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.02.2001,4,Mulia,sex,perempuan,,2277,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.02.2001,4,Mulia,total,total,,4628,jiwa,2025,registration,total_population,3.1,25,,
+11.71.02.2010,4,Lampulo,sex,laki_laki,,2774,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.02.2010,4,Lampulo,sex,perempuan,,2776,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.02.2010,4,Lampulo,total,total,,5550,jiwa,2025,registration,total_population,3.1,25,,
+11.71.02.2009,4,Lamdingin,sex,laki_laki,,1771,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.02.2009,4,Lamdingin,sex,perempuan,,1761,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.02.2009,4,Lamdingin,total,total,,3532,jiwa,2025,registration,total_population,3.1,25,,
+11.71.02.2011,4,Lambaro Skep,sex,laki_laki,,3114,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.02.2011,4,Lambaro Skep,sex,perempuan,,3142,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.02.2011,4,Lambaro Skep,total,total,,6256,jiwa,2025,registration,total_population,3.1,25,,
+11.71.02,3,Kecamatan Kuta Alam,sex,laki_laki,,21844,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.02,3,Kecamatan Kuta Alam,sex,perempuan,,22010,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.02,3,Kecamatan Kuta Alam,total,total,,43854,jiwa,2025,registration,total_population,3.1,25,,
+11.71.02,3,Kuta Alam,age_group,0-4,laki_laki,1187,jiwa,2025,registration,total_population,3.2,27,,0-4
+11.71.02,3,Kuta Alam,age_group,0-4,perempuan,1115,jiwa,2025,registration,total_population,3.2,27,,0-4
+11.71.02,3,Kuta Alam,age_group,0-4,,2302,jiwa,2025,registration,total_population,3.2,27,,0-4
+11.71.02,3,Kuta Alam,age_group,5-9,laki_laki,1477,jiwa,2025,registration,total_population,3.2,27,,5-9
+11.71.02,3,Kuta Alam,age_group,5-9,perempuan,1367,jiwa,2025,registration,total_population,3.2,27,,5-9
+11.71.02,3,Kuta Alam,age_group,5-9,,2844,jiwa,2025,registration,total_population,3.2,27,,5-9
+11.71.02,3,Kuta Alam,age_group,10-14,laki_laki,1403,jiwa,2025,registration,total_population,3.2,27,,10-14
+11.71.02,3,Kuta Alam,age_group,10-14,perempuan,1348,jiwa,2025,registration,total_population,3.2,27,,10-14
+11.71.02,3,Kuta Alam,age_group,10-14,,2751,jiwa,2025,registration,total_population,3.2,27,,10-14
+11.71.02,3,Kuta Alam,age_group,15-19,laki_laki,1295,jiwa,2025,registration,total_population,3.2,27,,15-19
+11.71.02,3,Kuta Alam,age_group,15-19,perempuan,1283,jiwa,2025,registration,total_population,3.2,27,,15-19
+11.71.02,3,Kuta Alam,age_group,15-19,,2578,jiwa,2025,registration,total_population,3.2,27,,15-19
+11.71.02,3,Kuta Alam,age_group,20-24,laki_laki,1057,jiwa,2025,registration,total_population,3.2,27,,20-24
+11.71.02,3,Kuta Alam,age_group,20-24,perempuan,1128,jiwa,2025,registration,total_population,3.2,27,,20-24
+11.71.02,3,Kuta Alam,age_group,20-24,,2185,jiwa,2025,registration,total_population,3.2,27,,20-24
+11.71.02,3,Kuta Alam,age_group,25-29,laki_laki,1114,jiwa,2025,registration,total_population,3.2,27,,25-29
+11.71.02,3,Kuta Alam,age_group,25-29,perempuan,1221,jiwa,2025,registration,total_population,3.2,27,,25-29
+11.71.02,3,Kuta Alam,age_group,25-29,,2335,jiwa,2025,registration,total_population,3.2,27,,25-29
+11.71.02,3,Kuta Alam,age_group,30-34,laki_laki,1175,jiwa,2025,registration,total_population,3.2,27,,30-34
+11.71.02,3,Kuta Alam,age_group,30-34,perempuan,1331,jiwa,2025,registration,total_population,3.2,27,,30-34
+11.71.02,3,Kuta Alam,age_group,30-34,,2506,jiwa,2025,registration,total_population,3.2,27,,30-34
+11.71.02,3,Kuta Alam,age_group,35-39,laki_laki,1249,jiwa,2025,registration,total_population,3.2,27,,35-39
+11.71.02,3,Kuta Alam,age_group,35-39,perempuan,1293,jiwa,2025,registration,total_population,3.2,27,,35-39
+11.71.02,3,Kuta Alam,age_group,35-39,,2542,jiwa,2025,registration,total_population,3.2,27,,35-39
+11.71.02,3,Kuta Alam,age_group,40-44,laki_laki,1126,jiwa,2025,registration,total_population,3.2,27,,40-44
+11.71.02,3,Kuta Alam,age_group,40-44,perempuan,1139,jiwa,2025,registration,total_population,3.2,27,,40-44
+11.71.02,3,Kuta Alam,age_group,40-44,,2265,jiwa,2025,registration,total_population,3.2,27,,40-44
+11.71.02,3,Kuta Alam,age_group,45-49,laki_laki,952,jiwa,2025,registration,total_population,3.2,27,,45-49
+11.71.02,3,Kuta Alam,age_group,45-49,perempuan,873,jiwa,2025,registration,total_population,3.2,27,,45-49
+11.71.02,3,Kuta Alam,age_group,45-49,,1825,jiwa,2025,registration,total_population,3.2,27,,45-49
+11.71.02,3,Kuta Alam,age_group,50-54,laki_laki,800,jiwa,2025,registration,total_population,3.2,27,,50-54
+11.71.02,3,Kuta Alam,age_group,50-54,perempuan,893,jiwa,2025,registration,total_population,3.2,27,,50-54
+11.71.02,3,Kuta Alam,age_group,50-54,,1693,jiwa,2025,registration,total_population,3.2,27,,50-54
+11.71.02,3,Kuta Alam,age_group,55-59,laki_laki,684,jiwa,2025,registration,total_population,3.2,27,,55-59
+11.71.02,3,Kuta Alam,age_group,55-59,perempuan,760,jiwa,2025,registration,total_population,3.2,27,,55-59
+11.71.02,3,Kuta Alam,age_group,55-59,,1444,jiwa,2025,registration,total_population,3.2,27,,55-59
+11.71.02,3,Kuta Alam,age_group,60-64,laki_laki,550,jiwa,2025,registration,total_population,3.2,27,,60-64
+11.71.02,3,Kuta Alam,age_group,60-64,perempuan,606,jiwa,2025,registration,total_population,3.2,27,,60-64
+11.71.02,3,Kuta Alam,age_group,60-64,,1156,jiwa,2025,registration,total_population,3.2,27,,60-64
+11.71.02,3,Kuta Alam,age_group,65-69,laki_laki,380,jiwa,2025,registration,total_population,3.2,27,,65-69
+11.71.02,3,Kuta Alam,age_group,65-69,perempuan,355,jiwa,2025,registration,total_population,3.2,27,,65-69
+11.71.02,3,Kuta Alam,age_group,65-69,,735,jiwa,2025,registration,total_population,3.2,27,,65-69
+11.71.02,3,Kuta Alam,age_group,70-74,laki_laki,198,jiwa,2025,registration,total_population,3.2,27,,70-74
+11.71.02,3,Kuta Alam,age_group,70-74,perempuan,210,jiwa,2025,registration,total_population,3.2,27,,70-74
+11.71.02,3,Kuta Alam,age_group,70-74,,408,jiwa,2025,registration,total_population,3.2,27,,70-74
+11.71.02,3,Kuta Alam,age_group,75+,laki_laki,147,jiwa,2025,registration,total_population,3.2,27,,75+
+11.71.02,3,Kuta Alam,age_group,75+,perempuan,244,jiwa,2025,registration,total_population,3.2,27,,75+
+11.71.02,3,Kuta Alam,age_group,75+,,391,jiwa,2025,registration,total_population,3.2,27,,75+
+11.71.02,3,Kecamatan Kuta Alam,sex,laki_laki,,14794,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+11.71.02,3,Kecamatan Kuta Alam,sex,perempuan,,15166,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+11.71.02,3,Kecamatan Kuta Alam,total,total,,29960,jiwa,2025,registration,total_population,3.2,27,,

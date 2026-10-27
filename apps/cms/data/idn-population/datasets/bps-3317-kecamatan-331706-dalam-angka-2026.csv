@@ -1,0 +1,10 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.17.06,3,Sedan,age_group,0-14,laki_laki,6323,jiwa,2025,projection,total_population,1.6,32,,0-14
+33.17.06,3,Sedan,age_group,0-14,perempuan,6023,jiwa,2025,projection,total_population,1.6,32,,0-14
+33.17.06,3,Sedan,age_group,0-14,,12346,jiwa,2025,projection,total_population,1.6,32,,0-14
+33.17.06,3,Sedan,age_group,15-64,laki_laki,20581,jiwa,2025,projection,total_population,1.6,32,,15-64
+33.17.06,3,Sedan,age_group,15-64,perempuan,19083,jiwa,2025,projection,total_population,1.6,32,,15-64
+33.17.06,3,Sedan,age_group,15-64,,39664,jiwa,2025,projection,total_population,1.6,32,,15-64
+33.17.06,3,Sedan,age_group,65+,laki_laki,2422,jiwa,2025,projection,total_population,1.6,32,,65+
+33.17.06,3,Sedan,age_group,65+,perempuan,2655,jiwa,2025,projection,total_population,1.6,32,,65+
+33.17.06,3,Sedan,age_group,65+,,5077,jiwa,2025,projection,total_population,1.6,32,,65+

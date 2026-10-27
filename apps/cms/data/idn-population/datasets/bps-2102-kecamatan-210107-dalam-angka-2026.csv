@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.01.07.2005,4,Lancang Kuning,sex,laki_laki,,919,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+21.01.07.2005,4,Lancang Kuning,sex,perempuan,,909,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+21.01.07.2005,4,Lancang Kuning,total,total,,1828,jiwa,2025,registration,total_population,3.1,22,,
+21.01.07.1003,4,Tanjung Uban Selatan,sex,laki_laki,,3797,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+21.01.07.1003,4,Tanjung Uban Selatan,sex,perempuan,,3734,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+21.01.07.1003,4,Tanjung Uban Selatan,total,total,,7531,jiwa,2025,registration,total_population,3.1,22,,
+21.01.07.1001,4,Tanjung Uban Kota,sex,laki_laki,,4049,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+21.01.07.1001,4,Tanjung Uban Kota,sex,perempuan,,3938,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+21.01.07.1001,4,Tanjung Uban Kota,total,total,,7987,jiwa,2025,registration,total_population,3.1,22,,
+21.01.07.1002,4,Tanjung Uban Utara,sex,laki_laki,,3277,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+21.01.07.1002,4,Tanjung Uban Utara,sex,perempuan,,3294,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+21.01.07.1002,4,Tanjung Uban Utara,total,total,,6571,jiwa,2025,registration,total_population,3.1,22,,
+21.01.07.1011,4,Tanjung Uban Timur,sex,laki_laki,,1123,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+21.01.07.1011,4,Tanjung Uban Timur,sex,perempuan,,1037,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+21.01.07.1011,4,Tanjung Uban Timur,total,total,,2160,jiwa,2025,registration,total_population,3.1,22,,
+21.01.07,3,Bintan Utara,sex,laki_laki,,13165,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+21.01.07,3,Bintan Utara,sex,perempuan,,12912,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+21.01.07,3,Bintan Utara,total,total,,26077,jiwa,2025,registration,total_population,3.1,22,,
+21.01.07,3,Bintan Utara,age_group,0-4,laki_laki,808,jiwa,2025,registration,total_population,3.2,24,,0-4
+21.01.07,3,Bintan Utara,age_group,0-4,perempuan,728,jiwa,2025,registration,total_population,3.2,24,,0-4
+21.01.07,3,Bintan Utara,age_group,0-4,,1536,jiwa,2025,registration,total_population,3.2,24,,0-4
+21.01.07,3,Bintan Utara,age_group,5-9,laki_laki,1089,jiwa,2025,registration,total_population,3.2,24,,5-9
+21.01.07,3,Bintan Utara,age_group,5-9,perempuan,1015,jiwa,2025,registration,total_population,3.2,24,,5-9
+21.01.07,3,Bintan Utara,age_group,5-9,,2104,jiwa,2025,registration,total_population,3.2,24,,5-9
+21.01.07,3,Bintan Utara,age_group,10-14,laki_laki,1260,jiwa,2025,registration,total_population,3.2,24,,10-14
+21.01.07,3,Bintan Utara,age_group,10-14,perempuan,1102,jiwa,2025,registration,total_population,3.2,24,,10-14
+21.01.07,3,Bintan Utara,age_group,10-14,,2362,jiwa,2025,registration,total_population,3.2,24,,10-14
+21.01.07,3,Bintan Utara,age_group,15-19,laki_laki,1278,jiwa,2025,registration,total_population,3.2,24,,15-19
+21.01.07,3,Bintan Utara,age_group,15-19,perempuan,1185,jiwa,2025,registration,total_population,3.2,24,,15-19
+21.01.07,3,Bintan Utara,age_group,15-19,,2463,jiwa,2025,registration,total_population,3.2,24,,15-19
+21.01.07,3,Bintan Utara,age_group,20-24,laki_laki,1272,jiwa,2025,registration,total_population,3.2,24,,20-24
+21.01.07,3,Bintan Utara,age_group,20-24,perempuan,1209,jiwa,2025,registration,total_population,3.2,24,,20-24
+21.01.07,3,Bintan Utara,age_group,20-24,,2481,jiwa,2025,registration,total_population,3.2,24,,20-24
+21.01.07,3,Bintan Utara,age_group,25-29,laki_laki,1063,jiwa,2025,registration,total_population,3.2,24,,25-29
+21.01.07,3,Bintan Utara,age_group,25-29,perempuan,1008,jiwa,2025,registration,total_population,3.2,24,,25-29
+21.01.07,3,Bintan Utara,age_group,25-29,,2071,jiwa,2025,registration,total_population,3.2,24,,25-29
+21.01.07,3,Bintan Utara,age_group,30-34,laki_laki,919,jiwa,2025,registration,total_population,3.2,24,,30-34
+21.01.07,3,Bintan Utara,age_group,30-34,perempuan,929,jiwa,2025,registration,total_population,3.2,24,,30-34
+21.01.07,3,Bintan Utara,age_group,30-34,,1848,jiwa,2025,registration,total_population,3.2,24,,30-34
+21.01.07,3,Bintan Utara,age_group,35-39,laki_laki,815,jiwa,2025,registration,total_population,3.2,24,,35-39
+21.01.07,3,Bintan Utara,age_group,35-39,perempuan,842,jiwa,2025,registration,total_population,3.2,24,,35-39
+21.01.07,3,Bintan Utara,age_group,35-39,,1657,jiwa,2025,registration,total_population,3.2,24,,35-39
+21.01.07,3,Bintan Utara,age_group,40-44,laki_laki,1009,jiwa,2025,registration,total_population,3.2,24,,40-44
+21.01.07,3,Bintan Utara,age_group,40-44,perempuan,1174,jiwa,2025,registration,total_population,3.2,24,,40-44
+21.01.07,3,Bintan Utara,age_group,40-44,,2183,jiwa,2025,registration,total_population,3.2,24,,40-44
+21.01.07,3,Bintan Utara,age_group,45-49,laki_laki,984,jiwa,2025,registration,total_population,3.2,24,,45-49
+21.01.07,3,Bintan Utara,age_group,45-49,perempuan,1199,jiwa,2025,registration,total_population,3.2,24,,45-49
+21.01.07,3,Bintan Utara,age_group,45-49,,2183,jiwa,2025,registration,total_population,3.2,24,,45-49
+21.01.07,3,Bintan Utara,age_group,50-54,laki_laki,882,jiwa,2025,registration,total_population,3.2,24,,50-54
+21.01.07,3,Bintan Utara,age_group,50-54,perempuan,802,jiwa,2025,registration,total_population,3.2,24,,50-54
+21.01.07,3,Bintan Utara,age_group,50-54,,1684,jiwa,2025,registration,total_population,3.2,24,,50-54
+21.01.07,3,Bintan Utara,age_group,55-59,laki_laki,676,jiwa,2025,registration,total_population,3.2,24,,55-59
+21.01.07,3,Bintan Utara,age_group,55-59,perempuan,592,jiwa,2025,registration,total_population,3.2,24,,55-59
+21.01.07,3,Bintan Utara,age_group,55-59,,1268,jiwa,2025,registration,total_population,3.2,24,,55-59
+21.01.07,3,Bintan Utara,age_group,60-64,laki_laki,483,jiwa,2025,registration,total_population,3.2,24,,60-64
+21.01.07,3,Bintan Utara,age_group,60-64,perempuan,401,jiwa,2025,registration,total_population,3.2,24,,60-64
+21.01.07,3,Bintan Utara,age_group,60-64,,884,jiwa,2025,registration,total_population,3.2,24,,60-64
+21.01.07,3,Bintan Utara,age_group,65-69,laki_laki,272,jiwa,2025,registration,total_population,3.2,24,,65-69
+21.01.07,3,Bintan Utara,age_group,65-69,perempuan,341,jiwa,2025,registration,total_population,3.2,24,,65-69
+21.01.07,3,Bintan Utara,age_group,65-69,,613,jiwa,2025,registration,total_population,3.2,24,,65-69
+21.01.07,3,Bintan Utara,age_group,70-74,laki_laki,194,jiwa,2025,registration,total_population,3.2,24,,70-74
+21.01.07,3,Bintan Utara,age_group,70-74,perempuan,212,jiwa,2025,registration,total_population,3.2,24,,70-74
+21.01.07,3,Bintan Utara,age_group,70-74,,406,jiwa,2025,registration,total_population,3.2,24,,70-74
+21.01.07,3,Bintan Utara,age_group,75+,laki_laki,171,jiwa,2025,registration,total_population,3.2,24,,>75
+21.01.07,3,Bintan Utara,age_group,75+,perempuan,173,jiwa,2025,registration,total_population,3.2,24,,>75
+21.01.07,3,Bintan Utara,age_group,75+,,344,jiwa,2025,registration,total_population,3.2,24,,>75
+21.01.07,3,Bintan Utara,sex,laki_laki,,13175,jiwa,2025,registration,total_population,3.2,24,,Laki-Laki
+21.01.07,3,Bintan Utara,sex,perempuan,,12912,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+21.01.07,3,Bintan Utara,total,total,,26087,jiwa,2025,registration,total_population,3.2,24,,

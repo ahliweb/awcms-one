@@ -1,0 +1,106 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.02.15.2005,4,Sungai Tepuk,sex,laki_laki,,468,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.15.2005,4,Sungai Tepuk,sex,perempuan,,400,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.15.2005,4,Sungai Tepuk,total,total,,868,jiwa,2025,registration,total_population,3.1,31,,
+16.02.15.2010,4,Sido Mulyo,sex,laki_laki,,2136,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.15.2010,4,Sido Mulyo,sex,perempuan,,1955,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.15.2010,4,Sido Mulyo,total,total,,4091,jiwa,2025,registration,total_population,3.1,31,,
+16.02.15.2009,4,Talang Jaya,sex,laki_laki,,2108,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.15.2009,4,Talang Jaya,sex,perempuan,,1979,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.15.2009,4,Talang Jaya,total,total,,4087,jiwa,2025,registration,total_population,3.1,31,,
+16.02.15.2001,4,Sungai Menang,sex,laki_laki,,2855,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.15.2001,4,Sungai Menang,sex,perempuan,,2582,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.15.2001,4,Sungai Menang,total,total,,5437,jiwa,2025,registration,total_population,3.1,31,,
+16.02.15.2002,4,Karangsia,sex,laki_laki,,249,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.15.2002,4,Karangsia,sex,perempuan,,218,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.15.2002,4,Karangsia,total,total,,467,jiwa,2025,registration,total_population,3.1,31,,
+16.02.15.2007,4,Talang Makmur,sex,laki_laki,,607,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.15.2007,4,Talang Makmur,sex,perempuan,,557,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.15.2007,4,Talang Makmur,total,total,,1164,jiwa,2025,registration,total_population,3.1,31,,
+16.02.15.2008,4,Harapan Jaya,sex,laki_laki,,554,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.15.2008,4,Harapan Jaya,sex,perempuan,,576,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.15.2008,4,Harapan Jaya,total,total,,1130,jiwa,2025,registration,total_population,3.1,31,,
+16.02.15.2003,4,Sungai Ceper,sex,laki_laki,,1566,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.15.2003,4,Sungai Ceper,sex,perempuan,,1488,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.15.2003,4,Sungai Ceper,total,total,,3054,jiwa,2025,registration,total_population,3.1,31,,
+16.02.15.2004,4,Gajah Mati,sex,laki_laki,,1728,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.15.2004,4,Gajah Mati,sex,perempuan,,1542,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.15.2004,4,Gajah Mati,total,total,,3270,jiwa,2025,registration,total_population,3.1,31,,
+16.02.15.2011,4,Bumi Pratama Mandira,sex,laki_laki,,2782,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.15.2011,4,Bumi Pratama Mandira,sex,perempuan,,2448,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.15.2011,4,Bumi Pratama Mandira,total,total,,5230,jiwa,2025,registration,total_population,3.1,31,,
+16.02.15.2012,4,Pinang Indah,sex,laki_laki,,193,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.15.2012,4,Pinang Indah,sex,perempuan,,150,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.15.2012,4,Pinang Indah,total,total,,343,jiwa,2025,registration,total_population,3.1,31,,
+16.02.15.2006,4,Sungai Sibur,sex,laki_laki,,1342,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.15.2006,4,Sungai Sibur,sex,perempuan,,1010,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.15.2006,4,Sungai Sibur,total,total,,2352,jiwa,2025,registration,total_population,3.1,31,,
+16.02.15.2015,4,Gajah Mukti,sex,laki_laki,,191,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.15.2015,4,Gajah Mukti,sex,perempuan,,163,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.15.2015,4,Gajah Mukti,total,total,,354,jiwa,2025,registration,total_population,3.1,31,,
+16.02.15.2016,4,Gajah Mulya,sex,laki_laki,,138,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.15.2016,4,Gajah Mulya,sex,perempuan,,111,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.15.2016,4,Gajah Mulya,total,total,,249,jiwa,2025,registration,total_population,3.1,31,,
+16.02.15.2013,4,Gajah Makmur,sex,laki_laki,,334,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.15.2013,4,Gajah Makmur,sex,perempuan,,287,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.15.2013,4,Gajah Makmur,total,total,,621,jiwa,2025,registration,total_population,3.1,31,,
+16.02.15.2018,4,Gading Mas,sex,laki_laki,,263,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.15.2018,4,Gading Mas,sex,perempuan,,217,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.15.2018,4,Gading Mas,total,total,,480,jiwa,2025,registration,total_population,3.1,31,,
+16.02.15.2014,4,Gading Jaya,sex,laki_laki,,209,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.15.2014,4,Gading Jaya,sex,perempuan,,170,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.15.2014,4,Gading Jaya,total,total,,379,jiwa,2025,registration,total_population,3.1,31,,
+16.02.15,3,Kecamatan Sungai Menang,sex,laki_laki,,18065,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+16.02.15,3,Kecamatan Sungai Menang,sex,perempuan,,16132,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+16.02.15,3,Kecamatan Sungai Menang,total,total,,34197,jiwa,2025,registration,total_population,3.1,31,,
+16.02.15,3,Sungai Menang,age_group,0-4,laki_laki,948,jiwa,2025,registration,total_population,3.2,33,,0-4
+16.02.15,3,Sungai Menang,age_group,0-4,perempuan,885,jiwa,2025,registration,total_population,3.2,33,,0-4
+16.02.15,3,Sungai Menang,age_group,0-4,,1833,jiwa,2025,registration,total_population,3.2,33,,0-4
+16.02.15,3,Sungai Menang,age_group,5-9,laki_laki,1685,jiwa,2025,registration,total_population,3.2,33,,5-9
+16.02.15,3,Sungai Menang,age_group,5-9,perempuan,1492,jiwa,2025,registration,total_population,3.2,33,,5-9
+16.02.15,3,Sungai Menang,age_group,5-9,,3177,jiwa,2025,registration,total_population,3.2,33,,5-9
+16.02.15,3,Sungai Menang,age_group,10-14,laki_laki,1927,jiwa,2025,registration,total_population,3.2,33,,10-14
+16.02.15,3,Sungai Menang,age_group,10-14,perempuan,1769,jiwa,2025,registration,total_population,3.2,33,,10-14
+16.02.15,3,Sungai Menang,age_group,10-14,,3696,jiwa,2025,registration,total_population,3.2,33,,10-14
+16.02.15,3,Sungai Menang,age_group,15-19,laki_laki,1636,jiwa,2025,registration,total_population,3.2,33,,15-19
+16.02.15,3,Sungai Menang,age_group,15-19,perempuan,1431,jiwa,2025,registration,total_population,3.2,33,,15-19
+16.02.15,3,Sungai Menang,age_group,15-19,,3067,jiwa,2025,registration,total_population,3.2,33,,15-19
+16.02.15,3,Sungai Menang,age_group,20-24,laki_laki,1348,jiwa,2025,registration,total_population,3.2,33,,20-24
+16.02.15,3,Sungai Menang,age_group,20-24,perempuan,1148,jiwa,2025,registration,total_population,3.2,33,,20-24
+16.02.15,3,Sungai Menang,age_group,20-24,,2496,jiwa,2025,registration,total_population,3.2,33,,20-24
+16.02.15,3,Sungai Menang,age_group,25-29,laki_laki,1401,jiwa,2025,registration,total_population,3.2,33,,25-29
+16.02.15,3,Sungai Menang,age_group,25-29,perempuan,1210,jiwa,2025,registration,total_population,3.2,33,,25-29
+16.02.15,3,Sungai Menang,age_group,25-29,,2611,jiwa,2025,registration,total_population,3.2,33,,25-29
+16.02.15,3,Sungai Menang,age_group,30-34,laki_laki,1283,jiwa,2025,registration,total_population,3.2,33,,30-34
+16.02.15,3,Sungai Menang,age_group,30-34,perempuan,1228,jiwa,2025,registration,total_population,3.2,33,,30-34
+16.02.15,3,Sungai Menang,age_group,30-34,,2511,jiwa,2025,registration,total_population,3.2,33,,30-34
+16.02.15,3,Sungai Menang,age_group,35-39,laki_laki,1383,jiwa,2025,registration,total_population,3.2,33,,35-39
+16.02.15,3,Sungai Menang,age_group,35-39,perempuan,1405,jiwa,2025,registration,total_population,3.2,33,,35-39
+16.02.15,3,Sungai Menang,age_group,35-39,,2788,jiwa,2025,registration,total_population,3.2,33,,35-39
+16.02.15,3,Sungai Menang,age_group,40-44,laki_laki,1341,jiwa,2025,registration,total_population,3.2,33,,40-44
+16.02.15,3,Sungai Menang,age_group,40-44,perempuan,1411,jiwa,2025,registration,total_population,3.2,33,,40-44
+16.02.15,3,Sungai Menang,age_group,40-44,,2752,jiwa,2025,registration,total_population,3.2,33,,40-44
+16.02.15,3,Sungai Menang,age_group,45-49,laki_laki,1421,jiwa,2025,registration,total_population,3.2,33,,45-49
+16.02.15,3,Sungai Menang,age_group,45-49,perempuan,1266,jiwa,2025,registration,total_population,3.2,33,,45-49
+16.02.15,3,Sungai Menang,age_group,45-49,,2687,jiwa,2025,registration,total_population,3.2,33,,45-49
+16.02.15,3,Sungai Menang,age_group,50-54,laki_laki,1253,jiwa,2025,registration,total_population,3.2,33,,50-54
+16.02.15,3,Sungai Menang,age_group,50-54,perempuan,1058,jiwa,2025,registration,total_population,3.2,33,,50-54
+16.02.15,3,Sungai Menang,age_group,50-54,,2311,jiwa,2025,registration,total_population,3.2,33,,50-54
+16.02.15,3,Sungai Menang,age_group,55-59,laki_laki,935,jiwa,2025,registration,total_population,3.2,33,,55-59
+16.02.15,3,Sungai Menang,age_group,55-59,perempuan,728,jiwa,2025,registration,total_population,3.2,33,,55-59
+16.02.15,3,Sungai Menang,age_group,55-59,,1663,jiwa,2025,registration,total_population,3.2,33,,55-59
+16.02.15,3,Sungai Menang,age_group,60-64,laki_laki,636,jiwa,2025,registration,total_population,3.2,33,,60-64
+16.02.15,3,Sungai Menang,age_group,60-64,perempuan,526,jiwa,2025,registration,total_population,3.2,33,,60-64
+16.02.15,3,Sungai Menang,age_group,60-64,,1162,jiwa,2025,registration,total_population,3.2,33,,60-64
+16.02.15,3,Sungai Menang,age_group,65-69,laki_laki,425,jiwa,2025,registration,total_population,3.2,33,,65-69
+16.02.15,3,Sungai Menang,age_group,65-69,perempuan,284,jiwa,2025,registration,total_population,3.2,33,,65-69
+16.02.15,3,Sungai Menang,age_group,65-69,,709,jiwa,2025,registration,total_population,3.2,33,,65-69
+16.02.15,3,Sungai Menang,age_group,70-74,laki_laki,207,jiwa,2025,registration,total_population,3.2,33,,70-74
+16.02.15,3,Sungai Menang,age_group,70-74,perempuan,142,jiwa,2025,registration,total_population,3.2,33,,70-74
+16.02.15,3,Sungai Menang,age_group,70-74,,349,jiwa,2025,registration,total_population,3.2,33,,70-74
+16.02.15,3,Sungai Menang,age_group,74+,laki_laki,236,jiwa,2025,registration,total_population,3.2,33,,>74
+16.02.15,3,Sungai Menang,age_group,74+,perempuan,149,jiwa,2025,registration,total_population,3.2,33,,>74
+16.02.15,3,Sungai Menang,age_group,74+,,385,jiwa,2025,registration,total_population,3.2,33,,>74
+16.02.15,3,Kecamatan Sungai Menang,sex,laki_laki,,18065,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+16.02.15,3,Kecamatan Sungai Menang,sex,perempuan,,16132,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+16.02.15,3,Kecamatan Sungai Menang,total,total,,34197,jiwa,2025,registration,total_population,3.2,33,,

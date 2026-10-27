@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1806-kecamatan-180309-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.03.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kotabumi Utara Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lampung Utara",
+  "publisherDomain": "1806",
+  "publisherWebsite": "https://lampungutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lampung Utara (https://lampungutarakab.bps.go.id), publikasi \"Kecamatan Kotabumi Utara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1806041",
+  "publicationNumber": "18060.26013",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lampungutarakab.bps.go.id/id/publication/2026/09/28/f1d01a7c5364da302580c2d2/kecamatan-kotabumi-utara-dalam-angka-2026.html",
+  "sourceFileSha256": "ae6d46f3a5f552987ba856716578bd0da3b3f5babbaccaa074b8061a4695d0de",
+  "sourceFileBytes": 9214393,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lampung Utara.",
+  "csvPath": "datasets/bps-1806-kecamatan-180309-dalam-angka-2026.csv",
+  "csvSha256": "eb075586425a6a1585bd8c60def1c450eed36cbc383c0cb92f68194c38712f63",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kotabumi Utara, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kotabumi Utara, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Madukoro Baru\": unmatched ",
+    "table 3.1: row not stored: row \"Madukoro Baru\": unmatched "
+  ]
+}

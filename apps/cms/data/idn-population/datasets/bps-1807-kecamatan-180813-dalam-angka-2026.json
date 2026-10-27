@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-1807-kecamatan-180813-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.08.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Buay Bahuga Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Way Kanan",
+  "publisherDomain": "1807",
+  "publisherWebsite": "https://waykanankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Way Kanan (https://waykanankab.bps.go.id), publikasi \"Kecamatan Buay Bahuga Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1807051",
+  "publicationNumber": "18070.26011",
+  "issn": "3110-1968",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://waykanankab.bps.go.id/id/publication/2026/09/28/a83d9d907e487227f56c6351/kecamatan-buay-bahuga-dalam-angka-2026.html",
+  "sourceFileSha256": "bb9b4dbb06e796e6bba9264fbc42dc90766d600017ba885f75be14e0fa4daf7d",
+  "sourceFileBytes": 26082745,
+  "sourcePages": [35, 36, 37],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Way Kanan.",
+  "csvPath": "datasets/bps-1807-kecamatan-180813-dalam-angka-2026.csv",
+  "csvSha256": "9fcb89bee618c9c513b10652c60bb704f9efab32a7d57fec811cf054589c96bc",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Buay Bahuga, 2025",
+      "printedPages": [37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"001 Punjul Agung 1.505\": unmatched ",
+    "table 3.1: row not stored: row \"002 Suka Agung 712\": unmatched ",
+    "table 3.1: row not stored: row \"003 Suka Dana 1.060\": unmatched ",
+    "table 3.1: row not stored: row \"004 Sukabumi 2.049\": unmatched ",
+    "table 3.1: row not stored: row \"005 Bumi Harjo 2.388\": unmatched ",
+    "table 3.1: row not stored: row \"006 Sri Tunggal 1.071\": unmatched ",
+    "table 3.1: row not stored: row \"007 Nuar Maju 997\": unmatched ",
+    "table 3.1: row not stored: row \"008 Lebung Lawe 757\": unmatched ",
+    "table 3.1: row not stored: row \"009 Way Agung 776\": unmatched ",
+    "table 3.1: row not stored: row \"Buay Bahuga 11.315\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)",
+    "table 3.2: row not stored: row \"Baradatu\": unmatched "
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3172-kecamatan-317505-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "31.75.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pasar Rebo Dalam Angka 2026",
+  "publisherName": "BPS Kota Jakarta Timur",
+  "publisherDomain": "3172",
+  "publisherWebsite": "https://jaktimkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jakarta Timur (https://jaktimkota.bps.go.id), publikasi \"Kecamatan Pasar Rebo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3172010",
+  "publicationNumber": "31720.25007",
+  "issn": "0852-2065",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jaktimkota.bps.go.id/id/publication/2026/09/28/d38c8f6372cf30cbb9b3e0e6/kecamatan-pasar-rebo-dalam-angka-2026.html",
+  "sourceFileSha256": "54f628f506ddb19372974edb55717ef4a9d81b00f1e541675fbed21cf8ee6a57",
+  "sourceFileBytes": 5504498,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kota Jakarta Timur.",
+  "csvPath": "datasets/bps-3172-kecamatan-317505-dalam-angka-2026.csv",
+  "csvSha256": "77b26fe9323637bf19549b3270ea44ed250b3b81b4304c73db7b47a0d1a98776",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pasar Rebo, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pasar Rebo, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "cross-table disagreement, both stored as published: 31.75.05 sex/laki_laki/ 2025: 117434 (table 3.1) vs 118326 (table 3.2)",
+    "cross-table disagreement, both stored as published: 31.75.05 sex/perempuan/ 2025: 116452 (table 3.1) vs 117499 (table 3.2)",
+    "cross-table disagreement, both stored as published: 31.75.05 total/total/ 2025: 233886 (table 3.1) vs 235825 (table 3.2)"
+  ]
+}

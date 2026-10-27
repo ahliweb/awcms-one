@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.12.28.2005,4,Kedokanbunderwetan,sex,laki_laki,,4568,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.28.2005,4,Kedokanbunderwetan,sex,perempuan,,4299,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.28.2005,4,Kedokanbunderwetan,total,total,,8867,jiwa,2025,registration,total_population,3.1,30,,
+32.12.28.2006,4,Kaplongan,sex,laki_laki,,2968,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.28.2006,4,Kaplongan,sex,perempuan,,2828,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.28.2006,4,Kaplongan,total,total,,5796,jiwa,2025,registration,total_population,3.1,30,,
+32.12.28.2003,4,Kedokanagung,sex,laki_laki,,5301,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.28.2003,4,Kedokanagung,sex,perempuan,,5050,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.28.2003,4,Kedokanagung,total,total,,10351,jiwa,2025,registration,total_population,3.1,30,,
+32.12.28.2004,4,Kedokanbunder,sex,laki_laki,,6020,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.28.2004,4,Kedokanbunder,sex,perempuan,,5860,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.28.2004,4,Kedokanbunder,total,total,,11880,jiwa,2025,registration,total_population,3.1,30,,
+32.12.28.2002,4,Jayawinangun,sex,laki_laki,,1208,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.28.2002,4,Jayawinangun,sex,perempuan,,1202,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.28.2002,4,Jayawinangun,total,total,,2410,jiwa,2025,registration,total_population,3.1,30,,
+32.12.28.2001,4,Cangkingan,sex,laki_laki,,3721,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.28.2001,4,Cangkingan,sex,perempuan,,3796,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.28.2001,4,Cangkingan,total,total,,7517,jiwa,2025,registration,total_population,3.1,30,,
+32.12.28.2007,4,Jayalaksana,sex,laki_laki,,3664,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.28.2007,4,Jayalaksana,sex,perempuan,,3632,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.28.2007,4,Jayalaksana,total,total,,7296,jiwa,2025,registration,total_population,3.1,30,,
+32.12.28,3,Kec. Kedokanbunder,sex,laki_laki,,27450,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.28,3,Kec. Kedokanbunder,sex,perempuan,,26667,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.28,3,Kec. Kedokanbunder,total,total,,54117,jiwa,2025,registration,total_population,3.1,30,,
+32.12.28,3,Kedokan Bunder,age_group,0-4,laki_laki,2069,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.28,3,Kedokan Bunder,age_group,0-4,perempuan,1995,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.28,3,Kedokan Bunder,age_group,0-4,,4064,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.28,3,Kedokan Bunder,age_group,5-9,laki_laki,1949,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.28,3,Kedokan Bunder,age_group,5-9,perempuan,1894,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.28,3,Kedokan Bunder,age_group,5-9,,3843,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.28,3,Kedokan Bunder,age_group,10-14,laki_laki,2007,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.28,3,Kedokan Bunder,age_group,10-14,perempuan,1924,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.28,3,Kedokan Bunder,age_group,10-14,,3931,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.28,3,Kedokan Bunder,age_group,15-19,laki_laki,1960,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.28,3,Kedokan Bunder,age_group,15-19,perempuan,1873,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.28,3,Kedokan Bunder,age_group,15-19,,3833,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.28,3,Kedokan Bunder,age_group,20-24,laki_laki,2270,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.28,3,Kedokan Bunder,age_group,20-24,perempuan,2169,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.28,3,Kedokan Bunder,age_group,20-24,,4439,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.28,3,Kedokan Bunder,age_group,25-29,laki_laki,2190,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.28,3,Kedokan Bunder,age_group,25-29,perempuan,2059,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.28,3,Kedokan Bunder,age_group,25-29,,4249,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.28,3,Kedokan Bunder,age_group,30-34,laki_laki,2226,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.28,3,Kedokan Bunder,age_group,30-34,perempuan,2023,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.28,3,Kedokan Bunder,age_group,30-34,,4249,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.28,3,Kedokan Bunder,age_group,35-39,laki_laki,2064,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.28,3,Kedokan Bunder,age_group,35-39,perempuan,2002,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.28,3,Kedokan Bunder,age_group,35-39,,4066,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.28,3,Kedokan Bunder,age_group,40-44,laki_laki,2037,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.28,3,Kedokan Bunder,age_group,40-44,perempuan,2273,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.28,3,Kedokan Bunder,age_group,40-44,,4310,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.28,3,Kedokan Bunder,age_group,45-49,laki_laki,1866,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.28,3,Kedokan Bunder,age_group,45-49,perempuan,2076,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.28,3,Kedokan Bunder,age_group,45-49,,3942,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.28,3,Kedokan Bunder,age_group,50-54,laki_laki,1596,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.28,3,Kedokan Bunder,age_group,50-54,perempuan,1657,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.28,3,Kedokan Bunder,age_group,50-54,,3253,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.28,3,Kedokan Bunder,age_group,55-59,laki_laki,1247,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.28,3,Kedokan Bunder,age_group,55-59,perempuan,1294,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.28,3,Kedokan Bunder,age_group,55-59,,2541,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.28,3,Kedokan Bunder,age_group,60-64,laki_laki,922,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.28,3,Kedokan Bunder,age_group,60-64,perempuan,967,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.28,3,Kedokan Bunder,age_group,60-64,,1889,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.28,3,Kedokan Bunder,age_group,65-69,laki_laki,775,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.28,3,Kedokan Bunder,age_group,65-69,perempuan,819,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.28,3,Kedokan Bunder,age_group,65-69,,1594,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.28,3,Kedokan Bunder,age_group,70-74,laki_laki,509,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.28,3,Kedokan Bunder,age_group,70-74,perempuan,528,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.28,3,Kedokan Bunder,age_group,70-74,,1037,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.28,3,Kedokan Bunder,age_group,75+,laki_laki,432,jiwa,2025,projection,total_population,3.2,32,,75+
+32.12.28,3,Kedokan Bunder,age_group,75+,perempuan,534,jiwa,2025,projection,total_population,3.2,32,,75+
+32.12.28,3,Kedokan Bunder,age_group,75+,,966,jiwa,2025,projection,total_population,3.2,32,,75+
+32.12.28,3,KEC. KEDOKANBUNDER,sex,laki_laki,,26119,jiwa,2025,projection,total_population,3.2,32,,Laki-Laki
+32.12.28,3,KEC. KEDOKANBUNDER,sex,perempuan,,26087,jiwa,2025,projection,total_population,3.2,32,,Perempuan
+32.12.28,3,KEC. KEDOKANBUNDER,total,total,,52206,jiwa,2025,projection,total_population,3.2,32,,

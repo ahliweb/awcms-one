@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.05.11,3,Gedung Meneng,age_group,0-4,laki_laki,949,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.11,3,Gedung Meneng,age_group,0-4,perempuan,879,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.11,3,Gedung Meneng,age_group,0-4,,1828,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.11,3,Gedung Meneng,age_group,5-9,laki_laki,1426,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.11,3,Gedung Meneng,age_group,5-9,perempuan,1333,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.11,3,Gedung Meneng,age_group,5-9,,2759,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.11,3,Gedung Meneng,age_group,10-14,laki_laki,1604,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.11,3,Gedung Meneng,age_group,10-14,perempuan,1451,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.11,3,Gedung Meneng,age_group,10-14,,3055,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.11,3,Gedung Meneng,age_group,15-19,laki_laki,1515,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.11,3,Gedung Meneng,age_group,15-19,perempuan,1383,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.11,3,Gedung Meneng,age_group,15-19,,2898,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.11,3,Gedung Meneng,age_group,20-24,laki_laki,1335,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.11,3,Gedung Meneng,age_group,20-24,perempuan,1238,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.11,3,Gedung Meneng,age_group,20-24,,2573,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.11,3,Gedung Meneng,age_group,25-29,laki_laki,1396,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.11,3,Gedung Meneng,age_group,25-29,perempuan,1273,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.11,3,Gedung Meneng,age_group,25-29,,2669,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.11,3,Gedung Meneng,age_group,30-34,laki_laki,1212,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.11,3,Gedung Meneng,age_group,30-34,perempuan,1023,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.11,3,Gedung Meneng,age_group,30-34,,2235,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.11,3,Gedung Meneng,age_group,35-39,laki_laki,1208,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.11,3,Gedung Meneng,age_group,35-39,perempuan,1147,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.11,3,Gedung Meneng,age_group,35-39,,2355,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.11,3,Gedung Meneng,age_group,40-44,laki_laki,1102,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.11,3,Gedung Meneng,age_group,40-44,perempuan,1181,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.11,3,Gedung Meneng,age_group,40-44,,2283,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.11,3,Gedung Meneng,age_group,45-49,laki_laki,1066,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.11,3,Gedung Meneng,age_group,45-49,perempuan,1154,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.11,3,Gedung Meneng,age_group,45-49,,2220,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.11,3,Gedung Meneng,age_group,50-54,laki_laki,1212,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.11,3,Gedung Meneng,age_group,50-54,perempuan,1043,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.11,3,Gedung Meneng,age_group,50-54,,2255,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.11,3,Gedung Meneng,age_group,55-59,laki_laki,830,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.11,3,Gedung Meneng,age_group,55-59,perempuan,660,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.11,3,Gedung Meneng,age_group,55-59,,1490,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.11,3,Gedung Meneng,age_group,60-64,laki_laki,568,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.11,3,Gedung Meneng,age_group,60-64,perempuan,509,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.11,3,Gedung Meneng,age_group,60-64,,1077,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.11,3,Gedung Meneng,age_group,65-69,laki_laki,425,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.11,3,Gedung Meneng,age_group,65-69,perempuan,280,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.11,3,Gedung Meneng,age_group,65-69,,705,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.11,3,Gedung Meneng,age_group,70-74,laki_laki,237,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.11,3,Gedung Meneng,age_group,70-74,perempuan,173,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.11,3,Gedung Meneng,age_group,70-74,,410,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.11,3,Gedung Meneng,age_group,75+,laki_laki,357,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.11,3,Gedung Meneng,age_group,75+,perempuan,249,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.11,3,Gedung Meneng,age_group,75+,,606,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.11,3,Gedung Meneng,sex,laki_laki,,16442,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+18.05.11,3,Gedung Meneng,sex,perempuan,,14976,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+18.05.11,3,Gedung Meneng,total,total,,31418,jiwa,2025,registration,total_population,3.2,34,,

@@ -1,0 +1,43 @@
+{
+  "datasetCode": "bps-1106-kecamatan-110421-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.04.21",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Rusip Antara Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Tengah",
+  "publisherDomain": "1106",
+  "publisherWebsite": "https://acehtengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Tengah (https://acehtengahkab.bps.go.id), publikasi \"Kecamatan Rusip Antara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "11060.26006",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehtengahkab.bps.go.id/id/publication/2026/09/28/215577d04c22efea894d6d31/kecamatan-rusip-antara-dalam-angka-2026.html",
+  "sourceFileSha256": "5ad7fa288bdc66e514e9c03e2b9316918797d62336966b30a4a25ae4fee83231",
+  "sourceFileBytes": 3986675,
+  "sourcePages": [19, 20],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Tengah",
+  "csvPath": "datasets/bps-1106-kecamatan-110421-dalam-angka-2026.csv",
+  "csvSha256": "49c18c7cbb7bc34422270e2519dee93c9a93908930fb3a962d160ad419dd82f0",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Rusip Antara, 2025",
+      "printedPages": [19, 20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Laut Jaya\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamtan Rusip Antara\": unmatched ",
+    "table 3.1: row not stored: row \"Rusip 9.35\": unmatched ",
+    "table 3.1: row not stored: row \"Pantan Bener 2.59\": unmatched ",
+    "table 3.1: row not stored: row \"Tirmi Ara 5.44\": unmatched ",
+    "table 3.1: 1 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

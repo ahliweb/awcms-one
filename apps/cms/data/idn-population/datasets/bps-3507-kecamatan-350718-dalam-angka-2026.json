@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3507-kecamatan-350718-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.07.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pakis Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Malang",
+  "publisherDomain": "3507",
+  "publisherWebsite": "https://malangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Malang (https://malangkab.bps.go.id), publikasi \"Kecamatan Pakis Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3507250",
+  "publicationNumber": "35070.26031",
+  "issn": "2828-9706",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://malangkab.bps.go.id/id/publication/2026/09/28/55df7ca3c3b32ea06f2a5ac9/kecamatan-pakis-dalam-angka-2026.html",
+  "sourceFileSha256": "b29bac99be0ce79b8e1150a77eceb285654f8746705a41ae143e70bf99c78f87",
+  "sourceFileBytes": 11610539,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Malang.",
+  "csvPath": "datasets/bps-3507-kecamatan-350718-dalam-angka-2026.csv",
+  "csvSha256": "38ce8b15e69bea1d737fdb55a02d145437939d1c4f76c2eda89618010d9e9c4e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pakis, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pakis, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 35.07.18 are not stored: sex split vs total: parts sum 152709.0000 != 154736.0000 (diff 2027.0000); the source itself is inconsistent"
+  ]
+}

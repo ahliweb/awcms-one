@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1609-kecamatan-160817-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.08.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Belitang Jaya Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ogan Komering Ulu Timur",
+  "publisherDomain": "1609",
+  "publisherWebsite": "https://okutimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ogan Komering Ulu Timur (https://okutimurkab.bps.go.id), publikasi \"Kecamatan Belitang Jaya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1609061",
+  "publicationNumber": "16090.26018",
+  "issn": "2962-5149",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://okutimurkab.bps.go.id/id/publication/2026/09/28/4388d54c78eeaa2cd3d98973/kecamatan-belitang-jaya-dalam-angka-2026.html",
+  "sourceFileSha256": "95989cde863d1d6cbc83d90c74ce9920b6d11f81c783c6e38b21343f9945d815",
+  "sourceFileBytes": 6929263,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ogan Komering Ulu Timur.",
+  "csvPath": "datasets/bps-1609-kecamatan-160817-dalam-angka-2026.csv",
+  "csvSha256": "58e5694e9cb02caa1300eecac5710c4b829c7e4566a182397de55d3416a989db",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Belitang Jaya, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Belitang Jaya, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

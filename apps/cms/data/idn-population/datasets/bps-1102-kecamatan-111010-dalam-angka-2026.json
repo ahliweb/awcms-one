@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-1102-kecamatan-111010-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.10.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Singkil Utara Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Singkil",
+  "publisherDomain": "1102",
+  "publisherWebsite": "https://acehsingkilkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Singkil (https://acehsingkilkab.bps.go.id), publikasi \"Kecamatan Singkil Utara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1102021",
+  "publicationNumber": "11020.26010",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehsingkilkab.bps.go.id/id/publication/2026/09/28/eba934207ceb6c0b455ef4a0/kecamatan-singkil-utara-dalam-angka-2026.html",
+  "sourceFileSha256": "19bfe97728f4344617d737fff2033e8eeb30f670fff47471b1df7c46928c40c5",
+  "sourceFileBytes": 5242414,
+  "sourcePages": [33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Singkil.",
+  "csvPath": "datasets/bps-1102-kecamatan-111010-dalam-angka-2026.csv",
+  "csvSha256": "3100d641483b69ef8ba705ec4798f68d30aec0f6cf125fa6b65270827691a0f6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Singkil Utara, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"5. Kampung Baru 19.37%\": unmatched "
+  ]
+}

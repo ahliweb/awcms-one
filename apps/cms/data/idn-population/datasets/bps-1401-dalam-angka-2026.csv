@@ -1,0 +1,114 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.09.01,3,Kuantan Mudik,total,total,,26473,jiwa,2025,registration,total_population,3.1.1,75,,
+14.09.12,3,Hulu Kuantan,total,total,,10378,jiwa,2025,registration,total_population,3.1.1,75,,
+14.09.07,3,Gunung Toar,total,total,,14757,jiwa,2025,registration,total_population,3.1.1,75,,
+14.09.15,3,Pucuk Rantau,total,total,,13012,jiwa,2025,registration,total_population,3.1.1,75,,
+14.09.03,3,Singingi,total,total,,38085,jiwa,2025,registration,total_population,3.1.1,75,,
+14.09.08,3,Singingi Hilir,total,total,,46980,jiwa,2025,registration,total_population,3.1.1,75,,
+14.09.02,3,Kuantan Tengah,total,total,,57002,jiwa,2025,registration,total_population,3.1.1,75,,
+14.09.14,3,Sentajo Raya,total,total,,33444,jiwa,2025,registration,total_population,3.1.1,75,,
+14.09.06,3,Benai,total,total,,18201,jiwa,2025,registration,total_population,3.1.1,75,,
+14.09.04,3,Kuantan Hilir,total,total,,15220,jiwa,2025,registration,total_population,3.1.1,75,,
+14.09.09,3,Pangean,total,total,,21630,jiwa,2025,registration,total_population,3.1.1,75,,
+14.09.10,3,Logas Tanah Darat,total,total,,28043,jiwa,2025,registration,total_population,3.1.1,75,,
+14.09.13,3,Kuantan Hilir Seberang,total,total,,11656,jiwa,2025,registration,total_population,3.1.1,75,,
+14.09.05,3,Cerenti,total,total,,17336,jiwa,2025,registration,total_population,3.1.1,75,,
+14.09.11,3,Inuman,total,total,,17501,jiwa,2025,registration,total_population,3.1.1,75,,
+14.09,2,Kuantan Singingi,total,total,,369718,jiwa,2025,registration,total_population,3.1.1,75,,
+14.09,2,Kabupaten Kuantan Singingi,age_group,0-4,laki_laki,11929,jiwa,2025,registration,total_population,3.1.2,78,,0–4
+14.09,2,Kabupaten Kuantan Singingi,age_group,0-4,perempuan,11080,jiwa,2025,registration,total_population,3.1.2,78,,0–4
+14.09,2,Kabupaten Kuantan Singingi,age_group,0-4,,23009,jiwa,2025,registration,total_population,3.1.2,78,,0–4
+14.09,2,Kabupaten Kuantan Singingi,age_group,5-9,laki_laki,16613,jiwa,2025,registration,total_population,3.1.2,78,,5–9
+14.09,2,Kabupaten Kuantan Singingi,age_group,5-9,perempuan,15549,jiwa,2025,registration,total_population,3.1.2,78,,5–9
+14.09,2,Kabupaten Kuantan Singingi,age_group,5-9,,32162,jiwa,2025,registration,total_population,3.1.2,78,,5–9
+14.09,2,Kabupaten Kuantan Singingi,age_group,10-14,laki_laki,18069,jiwa,2025,registration,total_population,3.1.2,78,,10–14
+14.09,2,Kabupaten Kuantan Singingi,age_group,10-14,perempuan,16488,jiwa,2025,registration,total_population,3.1.2,78,,10–14
+14.09,2,Kabupaten Kuantan Singingi,age_group,10-14,,34557,jiwa,2025,registration,total_population,3.1.2,78,,10–14
+14.09,2,Kabupaten Kuantan Singingi,age_group,15-19,laki_laki,15478,jiwa,2025,registration,total_population,3.1.2,78,,15–19
+14.09,2,Kabupaten Kuantan Singingi,age_group,15-19,perempuan,14801,jiwa,2025,registration,total_population,3.1.2,78,,15–19
+14.09,2,Kabupaten Kuantan Singingi,age_group,15-19,,30279,jiwa,2025,registration,total_population,3.1.2,78,,15–19
+14.09,2,Kabupaten Kuantan Singingi,age_group,20-24,laki_laki,16128,jiwa,2025,registration,total_population,3.1.2,78,,20–24
+14.09,2,Kabupaten Kuantan Singingi,age_group,20-24,perempuan,15463,jiwa,2025,registration,total_population,3.1.2,78,,20–24
+14.09,2,Kabupaten Kuantan Singingi,age_group,20-24,,31591,jiwa,2025,registration,total_population,3.1.2,78,,20–24
+14.09,2,Kabupaten Kuantan Singingi,age_group,25-29,laki_laki,15377,jiwa,2025,registration,total_population,3.1.2,78,,25–29
+14.09,2,Kabupaten Kuantan Singingi,age_group,25-29,perempuan,14639,jiwa,2025,registration,total_population,3.1.2,78,,25–29
+14.09,2,Kabupaten Kuantan Singingi,age_group,25-29,,30016,jiwa,2025,registration,total_population,3.1.2,78,,25–29
+14.09,2,Kabupaten Kuantan Singingi,age_group,30-34,laki_laki,14241,jiwa,2025,registration,total_population,3.1.2,78,,30–34
+14.09,2,Kabupaten Kuantan Singingi,age_group,30-34,perempuan,13837,jiwa,2025,registration,total_population,3.1.2,78,,30–34
+14.09,2,Kabupaten Kuantan Singingi,age_group,30-34,,28078,jiwa,2025,registration,total_population,3.1.2,78,,30–34
+14.09,2,Kabupaten Kuantan Singingi,age_group,35-39,laki_laki,14105,jiwa,2025,registration,total_population,3.1.2,78,,35–39
+14.09,2,Kabupaten Kuantan Singingi,age_group,35-39,perempuan,14314,jiwa,2025,registration,total_population,3.1.2,78,,35–39
+14.09,2,Kabupaten Kuantan Singingi,age_group,35-39,,28419,jiwa,2025,registration,total_population,3.1.2,78,,35–39
+14.09,2,Kabupaten Kuantan Singingi,age_group,40-44,laki_laki,14270,jiwa,2025,registration,total_population,3.1.2,78,,40–44
+14.09,2,Kabupaten Kuantan Singingi,age_group,40-44,perempuan,13973,jiwa,2025,registration,total_population,3.1.2,78,,40–44
+14.09,2,Kabupaten Kuantan Singingi,age_group,40-44,,28243,jiwa,2025,registration,total_population,3.1.2,78,,40–44
+14.09,2,Kabupaten Kuantan Singingi,age_group,45-49,laki_laki,13328,jiwa,2025,registration,total_population,3.1.2,78,,45–49
+14.09,2,Kabupaten Kuantan Singingi,age_group,45-49,perempuan,12523,jiwa,2025,registration,total_population,3.1.2,78,,45–49
+14.09,2,Kabupaten Kuantan Singingi,age_group,45-49,,25851,jiwa,2025,registration,total_population,3.1.2,78,,45–49
+14.09,2,Kabupaten Kuantan Singingi,age_group,50-54,laki_laki,10715,jiwa,2025,registration,total_population,3.1.2,78,,50–54
+14.09,2,Kabupaten Kuantan Singingi,age_group,50-54,perempuan,10684,jiwa,2025,registration,total_population,3.1.2,78,,50–54
+14.09,2,Kabupaten Kuantan Singingi,age_group,50-54,,21399,jiwa,2025,registration,total_population,3.1.2,78,,50–54
+14.09,2,Kabupaten Kuantan Singingi,age_group,55-59,laki_laki,9169,jiwa,2025,registration,total_population,3.1.2,78,,55–59
+14.09,2,Kabupaten Kuantan Singingi,age_group,55-59,perempuan,8289,jiwa,2025,registration,total_population,3.1.2,78,,55–59
+14.09,2,Kabupaten Kuantan Singingi,age_group,55-59,,17458,jiwa,2025,registration,total_population,3.1.2,78,,55–59
+14.09,2,Kabupaten Kuantan Singingi,age_group,60-64,laki_laki,6497,jiwa,2025,registration,total_population,3.1.2,78,,60–64
+14.09,2,Kabupaten Kuantan Singingi,age_group,60-64,perempuan,6864,jiwa,2025,registration,total_population,3.1.2,78,,60–64
+14.09,2,Kabupaten Kuantan Singingi,age_group,60-64,,13361,jiwa,2025,registration,total_population,3.1.2,78,,60–64
+14.09,2,Kabupaten Kuantan Singingi,age_group,65-69,laki_laki,5495,jiwa,2025,registration,total_population,3.1.2,78,,65–69
+14.09,2,Kabupaten Kuantan Singingi,age_group,65-69,perempuan,5811,jiwa,2025,registration,total_population,3.1.2,78,,65–69
+14.09,2,Kabupaten Kuantan Singingi,age_group,65-69,,11306,jiwa,2025,registration,total_population,3.1.2,78,,65–69
+14.09,2,Kabupaten Kuantan Singingi,age_group,70-74,laki_laki,3319,jiwa,2025,registration,total_population,3.1.2,78,,70–74
+14.09,2,Kabupaten Kuantan Singingi,age_group,70-74,perempuan,3323,jiwa,2025,registration,total_population,3.1.2,78,,70–74
+14.09,2,Kabupaten Kuantan Singingi,age_group,70-74,,6642,jiwa,2025,registration,total_population,3.1.2,78,,70–74
+14.09,2,Kabupaten Kuantan Singingi,age_group,75+,laki_laki,3145,jiwa,2025,registration,total_population,3.1.2,78,,75+
+14.09,2,Kabupaten Kuantan Singingi,age_group,75+,perempuan,4202,jiwa,2025,registration,total_population,3.1.2,78,,75+
+14.09,2,Kabupaten Kuantan Singingi,age_group,75+,,7347,jiwa,2025,registration,total_population,3.1.2,78,,75+
+14.09,2,Kuantan Singingi,sex,laki_laki,,187878,jiwa,2025,registration,total_population,3.1.2,78,,Laki-Laki
+14.09,2,Kuantan Singingi,sex,perempuan,,181840,jiwa,2025,registration,total_population,3.1.2,78,,Perempuan
+14.09,2,Kuantan Singingi,total,total,,369718,jiwa,2025,registration,total_population,3.1.2,78,,
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/padi_padian,,98515,rupiah,2025,survey_estimate,per_capita,10.1,389,,Padi-padian
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/padi_padian,,95693,rupiah,2024,survey_estimate,per_capita,10.1,389,,Padi-padian
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/umbi_umbian,,11560,rupiah,2025,survey_estimate,per_capita,10.1,389,,Umbi-umbian
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/umbi_umbian,,10784,rupiah,2024,survey_estimate,per_capita,10.1,389,,Umbi-umbian
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,91941,rupiah,2025,survey_estimate,per_capita,10.1,389,,Ikan/udang/cumi/kerang
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,89145,rupiah,2024,survey_estimate,per_capita,10.1,389,,Ikan/udang/cumi/kerang
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/daging,,40918,rupiah,2025,survey_estimate,per_capita,10.1,389,,Daging
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/daging,,38038,rupiah,2024,survey_estimate,per_capita,10.1,389,,Daging
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/telur_dan_susu,,39397,rupiah,2025,survey_estimate,per_capita,10.1,389,,Telur dan susu
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/telur_dan_susu,,31129,rupiah,2024,survey_estimate,per_capita,10.1,389,,Telur dan susu
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/sayur_sayuran,,93087,rupiah,2025,survey_estimate,per_capita,10.1,389,,Sayur-sayuran
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/sayur_sayuran,,97597,rupiah,2024,survey_estimate,per_capita,10.1,389,,Sayur-sayuran
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/kacang_kacangan,,10180,rupiah,2025,survey_estimate,per_capita,10.1,389,,Kacang-kacangan
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/kacang_kacangan,,10185,rupiah,2024,survey_estimate,per_capita,10.1,389,,Kacang-kacangan
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/buah_buahan,,48447,rupiah,2025,survey_estimate,per_capita,10.1,389,,Buah-buahan
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/buah_buahan,,34792,rupiah,2024,survey_estimate,per_capita,10.1,389,,Buah-buahan
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/minyak_dan_kelapa,,37668,rupiah,2025,survey_estimate,per_capita,10.1,389,,Minyak dan kelapa
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/minyak_dan_kelapa,,30887,rupiah,2024,survey_estimate,per_capita,10.1,389,,Minyak dan kelapa
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/bahan_minuman,,20238,rupiah,2025,survey_estimate,per_capita,10.1,389,,Bahan minuman
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/bahan_minuman,,18835,rupiah,2024,survey_estimate,per_capita,10.1,389,,Bahan minuman
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/bumbu_bumbuan,,15113,rupiah,2025,survey_estimate,per_capita,10.1,389,,Bumbu-bumbuan
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/bumbu_bumbuan,,13621,rupiah,2024,survey_estimate,per_capita,10.1,389,,Bumbu-bumbuan
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/konsumsi_lainnya,,11843,rupiah,2025,survey_estimate,per_capita,10.1,389,,Konsumsi lainnya
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/konsumsi_lainnya,,11371,rupiah,2024,survey_estimate,per_capita,10.1,389,,Konsumsi lainnya
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,199557,rupiah,2025,survey_estimate,per_capita,10.1,389,,Makanan dan minuman jadi
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,162820,rupiah,2024,survey_estimate,per_capita,10.1,389,,Makanan dan minuman jadi
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/rokok,,127914,rupiah,2025,survey_estimate,per_capita,10.1,389,,Rokok
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/rokok,,123239,rupiah,2024,survey_estimate,per_capita,10.1,389,,Rokok
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/jumlah_makanan,,846378,rupiah,2025,survey_estimate,per_capita,10.1,389,,Jumlah makanan
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/jumlah_makanan,,768134,rupiah,2024,survey_estimate,per_capita,10.1,389,,Jumlah makanan
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,375856,rupiah,2025,survey_estimate,per_capita,10.1,389,,Perumahan dan fasilitas rumah tangga
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,391003,rupiah,2024,survey_estimate,per_capita,10.1,389,,Perumahan dan fasilitas rumah tangga
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,155484,rupiah,2025,survey_estimate,per_capita,10.1,389,,Aneka barang dan jasa
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,122865,rupiah,2024,survey_estimate,per_capita,10.1,389,,Aneka barang dan jasa
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,40691,rupiah,2025,survey_estimate,per_capita,10.1,389,,"Pakaian, alas kaki, dan tutup kepala"
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,36847,rupiah,2024,survey_estimate,per_capita,10.1,389,,"Pakaian, alas kaki, dan tutup kepala"
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/barang_tahan_lama,,51594,rupiah,2025,survey_estimate,per_capita,10.1,389,,Barang tahan lama
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/barang_tahan_lama,,57653,rupiah,2024,survey_estimate,per_capita,10.1,389,,Barang tahan lama
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,67952,rupiah,2025,survey_estimate,per_capita,10.1,389,,"Pajak, pungutan, dan asuransi"
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,57261,rupiah,2024,survey_estimate,per_capita,10.1,389,,"Pajak, pungutan, dan asuransi"
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,23349,rupiah,2025,survey_estimate,per_capita,10.1,389,,Keperluan pesta dan upacara/kenduri
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,20758,rupiah,2024,survey_estimate,per_capita,10.1,389,,Keperluan pesta dan upacara/kenduri
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,714926,rupiah,2025,survey_estimate,per_capita,10.1,389,,Jumlah bukan makanan
+14.09,2,Kabupaten Kuantan Singingi,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,686387,rupiah,2024,survey_estimate,per_capita,10.1,389,,Jumlah bukan makanan
+14.09,2,Kabupaten Kuantan Singingi,expenditure,total,,1561303,rupiah,2025,survey_estimate,per_capita,10.1,389,,
+14.09,2,Kabupaten Kuantan Singingi,expenditure,total,,1454520,rupiah,2024,survey_estimate,per_capita,10.1,389,,

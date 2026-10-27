@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3519-kecamatan-351915-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.19.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Wonoasri Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Madiun",
+  "publisherDomain": "3519",
+  "publisherWebsite": "https://madiunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Madiun (https://madiunkab.bps.go.id), publikasi \"Kecamatan Wonoasri Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.35190110",
+  "publicationNumber": "35190.26015",
+  "issn": "2598-6619",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://madiunkab.bps.go.id/id/publication/2026/09/28/3597ea7e4552f04148367164/kecamatan-wonoasri-dalam-angka-2026.html",
+  "sourceFileSha256": "276b4b3f19ca5eee331a14073b6a7f6d8dec8cef00d8b98323003aa65a2e81e2",
+  "sourceFileBytes": 4465675,
+  "sourcePages": [2, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Madiun.",
+  "csvPath": "datasets/bps-3519-kecamatan-351915-dalam-angka-2026.csv",
+  "csvSha256": "c6a81e0b13e0db7efebec09014961da6c7bc2d717e354e6560434253453f314d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Wonoasri, 2025",
+      "printedPages": [2, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+34.71.14.1001,4,Rejowinangun,sex,laki_laki,,6605,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+34.71.14.1001,4,Rejowinangun,sex,perempuan,,6747,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+34.71.14.1001,4,Rejowinangun,total,total,,13352,jiwa,2025,registration,total_population,3.1,32,,
+34.71.14.1002,4,Prenggan,sex,laki_laki,,5790,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+34.71.14.1002,4,Prenggan,sex,perempuan,,6081,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+34.71.14.1002,4,Prenggan,total,total,,11871,jiwa,2025,registration,total_population,3.1,32,,
+34.71.14.1003,4,Purbayan,sex,laki_laki,,5204,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+34.71.14.1003,4,Purbayan,sex,perempuan,,5428,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+34.71.14.1003,4,Purbayan,total,total,,10632,jiwa,2025,registration,total_population,3.1,32,,
+34.71.14,3,Kotagede,sex,laki_laki,,17599,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+34.71.14,3,Kotagede,sex,perempuan,,18256,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+34.71.14,3,Kotagede,total,total,,35855,jiwa,2025,registration,total_population,3.1,32,,

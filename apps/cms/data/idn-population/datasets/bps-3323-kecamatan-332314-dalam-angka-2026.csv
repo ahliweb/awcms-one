@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.23.14.2012,4,Pagersari,sex,laki_laki,,2676,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.14.2012,4,Pagersari,sex,perempuan,,2566,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.14.2012,4,Pagersari,total,total,,5242,jiwa,2026,registration,total_population,3.1,25,,
+33.23.14.2006,4,Losari,sex,laki_laki,,1543,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.14.2006,4,Losari,sex,perempuan,,1500,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.14.2006,4,Losari,total,total,,3043,jiwa,2026,registration,total_population,3.1,25,,
+33.23.14.2009,4,Legoksari,sex,laki_laki,,896,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.14.2009,4,Legoksari,sex,perempuan,,847,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.14.2009,4,Legoksari,total,total,,1743,jiwa,2026,registration,total_population,3.1,25,,
+33.23.14.2011,4,Gedegan,sex,laki_laki,,523,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.14.2011,4,Gedegan,sex,perempuan,,500,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.14.2011,4,Gedegan,total,total,,1023,jiwa,2026,registration,total_population,3.1,25,,
+33.23.14.2010,4,Tlilir,sex,laki_laki,,846,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.14.2010,4,Tlilir,sex,perempuan,,815,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.14.2010,4,Tlilir,total,total,,1661,jiwa,2026,registration,total_population,3.1,25,,
+33.23.14.2001,4,Tlogomulyo,sex,laki_laki,,773,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.14.2001,4,Tlogomulyo,sex,perempuan,,746,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.14.2001,4,Tlogomulyo,total,total,,1519,jiwa,2026,registration,total_population,3.1,25,,
+33.23.14.2005,4,Tanjungsari,sex,laki_laki,,954,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.14.2005,4,Tanjungsari,sex,perempuan,,924,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.14.2005,4,Tanjungsari,total,total,,1878,jiwa,2026,registration,total_population,3.1,25,,
+33.23.14.2008,4,Kerokan,sex,laki_laki,,859,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.14.2008,4,Kerokan,sex,perempuan,,850,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.14.2008,4,Kerokan,total,total,,1709,jiwa,2026,registration,total_population,3.1,25,,
+33.23.14.2007,4,Balerejo,sex,laki_laki,,766,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.14.2007,4,Balerejo,sex,perempuan,,703,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.14.2007,4,Balerejo,total,total,,1469,jiwa,2026,registration,total_population,3.1,25,,
+33.23.14.2003,4,Sriwungu,sex,laki_laki,,1182,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.14.2003,4,Sriwungu,sex,perempuan,,1160,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.14.2003,4,Sriwungu,total,total,,2342,jiwa,2026,registration,total_population,3.1,25,,
+33.23.14.2004,4,Langgeng,sex,laki_laki,,636,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.14.2004,4,Langgeng,sex,perempuan,,592,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.14.2004,4,Langgeng,total,total,,1228,jiwa,2026,registration,total_population,3.1,25,,
+33.23.14.2002,4,Candisari,sex,laki_laki,,477,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.14.2002,4,Candisari,sex,perempuan,,473,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.14.2002,4,Candisari,total,total,,950,jiwa,2026,registration,total_population,3.1,25,,
+33.23.14,3,Kecamatan Tlogomulyo,sex,laki_laki,,12131,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.14,3,Kecamatan Tlogomulyo,sex,perempuan,,11676,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.14,3,Kecamatan Tlogomulyo,total,total,,23807,jiwa,2026,registration,total_population,3.1,25,,
+33.23.14,3,Tlogomulyo,age_group,0-4,laki_laki,635,jiwa,2026,registration,total_population,3.2,27,,0 - 4
+33.23.14,3,Tlogomulyo,age_group,0-4,perempuan,635,jiwa,2026,registration,total_population,3.2,27,,0 - 4
+33.23.14,3,Tlogomulyo,age_group,0-4,,1270,jiwa,2026,registration,total_population,3.2,27,,0 - 4
+33.23.14,3,Tlogomulyo,age_group,5-9,laki_laki,881,jiwa,2026,registration,total_population,3.2,27,,5 - 9
+33.23.14,3,Tlogomulyo,age_group,5-9,perempuan,748,jiwa,2026,registration,total_population,3.2,27,,5 - 9
+33.23.14,3,Tlogomulyo,age_group,5-9,,1629,jiwa,2026,registration,total_population,3.2,27,,5 - 9
+33.23.14,3,Tlogomulyo,age_group,10-14,laki_laki,978,jiwa,2026,registration,total_population,3.2,27,,10 - 14
+33.23.14,3,Tlogomulyo,age_group,10-14,perempuan,856,jiwa,2026,registration,total_population,3.2,27,,10 - 14
+33.23.14,3,Tlogomulyo,age_group,10-14,,1834,jiwa,2026,registration,total_population,3.2,27,,10 - 14
+33.23.14,3,Tlogomulyo,age_group,15-19,laki_laki,1021,jiwa,2026,registration,total_population,3.2,27,,15 - 19
+33.23.14,3,Tlogomulyo,age_group,15-19,perempuan,917,jiwa,2026,registration,total_population,3.2,27,,15 - 19
+33.23.14,3,Tlogomulyo,age_group,15-19,,1938,jiwa,2026,registration,total_population,3.2,27,,15 - 19
+33.23.14,3,Tlogomulyo,age_group,20-24,laki_laki,886,jiwa,2026,registration,total_population,3.2,27,,20 - 24
+33.23.14,3,Tlogomulyo,age_group,20-24,perempuan,880,jiwa,2026,registration,total_population,3.2,27,,20 - 24
+33.23.14,3,Tlogomulyo,age_group,20-24,,1766,jiwa,2026,registration,total_population,3.2,27,,20 - 24
+33.23.14,3,Tlogomulyo,age_group,25-29,laki_laki,869,jiwa,2026,registration,total_population,3.2,27,,25 - 29
+33.23.14,3,Tlogomulyo,age_group,25-29,perempuan,847,jiwa,2026,registration,total_population,3.2,27,,25 - 29
+33.23.14,3,Tlogomulyo,age_group,25-29,,1716,jiwa,2026,registration,total_population,3.2,27,,25 - 29
+33.23.14,3,Tlogomulyo,age_group,30-34,laki_laki,822,jiwa,2026,registration,total_population,3.2,27,,30 - 34
+33.23.14,3,Tlogomulyo,age_group,30-34,perempuan,863,jiwa,2026,registration,total_population,3.2,27,,30 - 34
+33.23.14,3,Tlogomulyo,age_group,30-34,,1685,jiwa,2026,registration,total_population,3.2,27,,30 - 34
+33.23.14,3,Tlogomulyo,age_group,35-39,laki_laki,862,jiwa,2026,registration,total_population,3.2,27,,35 - 39
+33.23.14,3,Tlogomulyo,age_group,35-39,perempuan,879,jiwa,2026,registration,total_population,3.2,27,,35 - 39
+33.23.14,3,Tlogomulyo,age_group,35-39,,1741,jiwa,2026,registration,total_population,3.2,27,,35 - 39
+33.23.14,3,Tlogomulyo,age_group,40-44,laki_laki,859,jiwa,2026,registration,total_population,3.2,27,,40 - 44
+33.23.14,3,Tlogomulyo,age_group,40-44,perempuan,793,jiwa,2026,registration,total_population,3.2,27,,40 - 44
+33.23.14,3,Tlogomulyo,age_group,40-44,,1652,jiwa,2026,registration,total_population,3.2,27,,40 - 44
+33.23.14,3,Tlogomulyo,age_group,45-49,laki_laki,868,jiwa,2026,registration,total_population,3.2,27,,45 - 49
+33.23.14,3,Tlogomulyo,age_group,45-49,perempuan,843,jiwa,2026,registration,total_population,3.2,27,,45 - 49
+33.23.14,3,Tlogomulyo,age_group,45-49,,1711,jiwa,2026,registration,total_population,3.2,27,,45 - 49
+33.23.14,3,Tlogomulyo,age_group,50-54,laki_laki,816,jiwa,2026,registration,total_population,3.2,27,,50 - 54
+33.23.14,3,Tlogomulyo,age_group,50-54,perempuan,777,jiwa,2026,registration,total_population,3.2,27,,50 - 54
+33.23.14,3,Tlogomulyo,age_group,50-54,,1593,jiwa,2026,registration,total_population,3.2,27,,50 - 54
+33.23.14,3,Tlogomulyo,age_group,55-59,laki_laki,754,jiwa,2026,registration,total_population,3.2,27,,55 - 59
+33.23.14,3,Tlogomulyo,age_group,55-59,perempuan,781,jiwa,2026,registration,total_population,3.2,27,,55 - 59
+33.23.14,3,Tlogomulyo,age_group,55-59,,1535,jiwa,2026,registration,total_population,3.2,27,,55 - 59
+33.23.14,3,Tlogomulyo,age_group,60-64,laki_laki,649,jiwa,2026,registration,total_population,3.2,27,,60 - 64
+33.23.14,3,Tlogomulyo,age_group,60-64,perempuan,681,jiwa,2026,registration,total_population,3.2,27,,60 - 64
+33.23.14,3,Tlogomulyo,age_group,60-64,,1330,jiwa,2026,registration,total_population,3.2,27,,60 - 64
+33.23.14,3,Tlogomulyo,age_group,65-69,laki_laki,556,jiwa,2026,registration,total_population,3.2,27,,65 - 69
+33.23.14,3,Tlogomulyo,age_group,65-69,perempuan,541,jiwa,2026,registration,total_population,3.2,27,,65 - 69
+33.23.14,3,Tlogomulyo,age_group,65-69,,1097,jiwa,2026,registration,total_population,3.2,27,,65 - 69
+33.23.14,3,Tlogomulyo,age_group,70-74,laki_laki,367,jiwa,2026,registration,total_population,3.2,27,,70 - 74
+33.23.14,3,Tlogomulyo,age_group,70-74,perempuan,323,jiwa,2026,registration,total_population,3.2,27,,70 - 74
+33.23.14,3,Tlogomulyo,age_group,70-74,,690,jiwa,2026,registration,total_population,3.2,27,,70 - 74
+33.23.14,3,Tlogomulyo,age_group,75+,laki_laki,308,jiwa,2026,registration,total_population,3.2,27,,75+
+33.23.14,3,Tlogomulyo,age_group,75+,perempuan,312,jiwa,2026,registration,total_population,3.2,27,,75+
+33.23.14,3,Tlogomulyo,age_group,75+,,620,jiwa,2026,registration,total_population,3.2,27,,75+
+33.23.14,3,Kecamatan Tlogomulyo,sex,laki_laki,,12131,jiwa,2026,registration,total_population,3.2,27,,Laki-Laki
+33.23.14,3,Kecamatan Tlogomulyo,sex,perempuan,,11676,jiwa,2026,registration,total_population,3.2,27,,Perempuan
+33.23.14,3,Kecamatan Tlogomulyo,total,total,,23807,jiwa,2026,registration,total_population,3.2,27,,

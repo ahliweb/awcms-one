@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3312-kecamatan-331209-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.12.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Wuryantoro Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Wonogiri-Statistics Wonogiri Regency Sumber Ilustrasi",
+  "publisherDomain": "3312",
+  "publisherWebsite": "https://wonogirikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Wonogiri-Statistics Wonogiri Regency Sumber Ilustrasi (https://wonogirikab.bps.go.id), publikasi \"Kecamatan Wuryantoro Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3312110",
+  "publicationNumber": "33120.26021",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://wonogirikab.bps.go.id/id/publication/2026/09/28/61c5020211b8e6fc692aa457/kecamatan-wuryantoro-dalam-angka-2026.html",
+  "sourceFileSha256": "e8d7af18e5236e57d68f775551d207cea511120bae97f332f1c39bc8641fc4e3",
+  "sourceFileBytes": 12698700,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Wonogiri",
+  "csvPath": "datasets/bps-3312-kecamatan-331209-dalam-angka-2026.csv",
+  "csvSha256": "e0c241220a00e1ceb097b8f5b2f4077bc9a87b2e76ce9de0563466055804f819",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Wuryantoro, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Wuryantoro, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

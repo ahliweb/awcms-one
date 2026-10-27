@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.02.14.2005,4,Sibaganding,sex,laki_laki,,1803,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.14.2005,4,Sibaganding,sex,perempuan,,1774,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.14.2005,4,Sibaganding,total,total,,3577,jiwa,2025,registration,total_population,3.1,26,,
+12.02.14.2004,4,Padang Siandomang,sex,laki_laki,,1272,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.14.2004,4,Padang Siandomang,sex,perempuan,,1237,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.14.2004,4,Padang Siandomang,total,total,,2509,jiwa,2025,registration,total_population,3.1,26,,
+12.02.14.2011,4,Aek Tangga,sex,laki_laki,,722,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.14.2011,4,Aek Tangga,sex,perempuan,,698,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.14.2011,4,Aek Tangga,total,total,,1420,jiwa,2025,registration,total_population,3.1,26,,
+12.02.14.2001,4,Garoga Sibargot,sex,laki_laki,,605,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.14.2001,4,Garoga Sibargot,sex,perempuan,,579,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.14.2001,4,Garoga Sibargot,total,total,,1184,jiwa,2025,registration,total_population,3.1,26,,
+12.02.14.2007,4,Gonting Garoga,sex,laki_laki,,818,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.14.2007,4,Gonting Garoga,sex,perempuan,,812,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.14.2007,4,Gonting Garoga,total,total,,1630,jiwa,2025,registration,total_population,3.1,26,,
+12.02.14.2010,4,Sibalanga,sex,laki_laki,,432,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.14.2010,4,Sibalanga,sex,perempuan,,398,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.14.2010,4,Sibalanga,total,total,,830,jiwa,2025,registration,total_population,3.1,26,,
+12.02.14.2003,4,Parsosoran,sex,laki_laki,,290,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.14.2003,4,Parsosoran,sex,perempuan,,248,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.14.2003,4,Parsosoran,total,total,,538,jiwa,2025,registration,total_population,3.1,26,,
+12.02.14.2002,4,Lontung Jae I,sex,laki_laki,,690,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.14.2002,4,Lontung Jae I,sex,perempuan,,660,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.14.2002,4,Lontung Jae I,total,total,,1350,jiwa,2025,registration,total_population,3.1,26,,
+12.02.14.2008,4,Lontung Jae II,sex,laki_laki,,979,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.14.2008,4,Lontung Jae II,sex,perempuan,,923,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.14.2008,4,Lontung Jae II,total,total,,1902,jiwa,2025,registration,total_population,3.1,26,,
+12.02.14.2009,4,Gonting Salak,sex,laki_laki,,1034,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.14.2009,4,Gonting Salak,sex,perempuan,,1025,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.14.2009,4,Gonting Salak,total,total,,2059,jiwa,2025,registration,total_population,3.1,26,,
+12.02.14.2013,4,Parmanuhan,sex,laki_laki,,285,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.14.2013,4,Parmanuhan,sex,perempuan,,283,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.14.2013,4,Parmanuhan,total,total,,568,jiwa,2025,registration,total_population,3.1,26,,
+12.02.14,3,Garoga,sex,laki_laki,,1803,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.02.14,3,Garoga,sex,perempuan,,1774,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.02.14,3,Garoga,total,total,,3577,jiwa,2025,registration,total_population,3.1,26,,
+12.02.14,3,Garoga,age_group,0-4,laki_laki,607,jiwa,2025,registration,total_population,3.2,28,,0-4
+12.02.14,3,Garoga,age_group,0-4,perempuan,495,jiwa,2025,registration,total_population,3.2,28,,0-4
+12.02.14,3,Garoga,age_group,0-4,,1102,jiwa,2025,registration,total_population,3.2,28,,0-4
+12.02.14,3,Garoga,age_group,5-9,laki_laki,990,jiwa,2025,registration,total_population,3.2,28,,5-9
+12.02.14,3,Garoga,age_group,5-9,perempuan,867,jiwa,2025,registration,total_population,3.2,28,,5-9
+12.02.14,3,Garoga,age_group,5-9,,1857,jiwa,2025,registration,total_population,3.2,28,,5-9
+12.02.14,3,Garoga,age_group,10-14,laki_laki,1128,jiwa,2025,registration,total_population,3.2,28,,10-14
+12.02.14,3,Garoga,age_group,10-14,perempuan,1015,jiwa,2025,registration,total_population,3.2,28,,10-14
+12.02.14,3,Garoga,age_group,10-14,,2143,jiwa,2025,registration,total_population,3.2,28,,10-14
+12.02.14,3,Garoga,age_group,15-19,laki_laki,976,jiwa,2025,registration,total_population,3.2,28,,15-19
+12.02.14,3,Garoga,age_group,15-19,perempuan,998,jiwa,2025,registration,total_population,3.2,28,,15-19
+12.02.14,3,Garoga,age_group,15-19,,1974,jiwa,2025,registration,total_population,3.2,28,,15-19
+12.02.14,3,Garoga,age_group,20-24,laki_laki,932,jiwa,2025,registration,total_population,3.2,28,,20-24
+12.02.14,3,Garoga,age_group,20-24,perempuan,836,jiwa,2025,registration,total_population,3.2,28,,20-24
+12.02.14,3,Garoga,age_group,20-24,,1768,jiwa,2025,registration,total_population,3.2,28,,20-24
+12.02.14,3,Garoga,age_group,25-29,laki_laki,805,jiwa,2025,registration,total_population,3.2,28,,25-29
+12.02.14,3,Garoga,age_group,25-29,perempuan,664,jiwa,2025,registration,total_population,3.2,28,,25-29
+12.02.14,3,Garoga,age_group,25-29,,1469,jiwa,2025,registration,total_population,3.2,28,,25-29
+12.02.14,3,Garoga,age_group,30-34,laki_laki,686,jiwa,2025,registration,total_population,3.2,28,,30-34
+12.02.14,3,Garoga,age_group,30-34,perempuan,573,jiwa,2025,registration,total_population,3.2,28,,30-34
+12.02.14,3,Garoga,age_group,30-34,,1259,jiwa,2025,registration,total_population,3.2,28,,30-34
+12.02.14,3,Garoga,age_group,35-39,laki_laki,641,jiwa,2025,registration,total_population,3.2,28,,35-39
+12.02.14,3,Garoga,age_group,35-39,perempuan,602,jiwa,2025,registration,total_population,3.2,28,,35-39
+12.02.14,3,Garoga,age_group,35-39,,1243,jiwa,2025,registration,total_population,3.2,28,,35-39
+12.02.14,3,Garoga,age_group,40-44,laki_laki,632,jiwa,2025,registration,total_population,3.2,28,,40-44
+12.02.14,3,Garoga,age_group,40-44,perempuan,577,jiwa,2025,registration,total_population,3.2,28,,40-44
+12.02.14,3,Garoga,age_group,40-44,,1209,jiwa,2025,registration,total_population,3.2,28,,40-44
+12.02.14,3,Garoga,age_group,45-49,laki_laki,570,jiwa,2025,registration,total_population,3.2,28,,45-49
+12.02.14,3,Garoga,age_group,45-49,perempuan,488,jiwa,2025,registration,total_population,3.2,28,,45-49
+12.02.14,3,Garoga,age_group,45-49,,1058,jiwa,2025,registration,total_population,3.2,28,,45-49
+12.02.14,3,Garoga,age_group,50-54,laki_laki,502,jiwa,2025,registration,total_population,3.2,28,,50-54
+12.02.14,3,Garoga,age_group,50-54,perempuan,524,jiwa,2025,registration,total_population,3.2,28,,50-54
+12.02.14,3,Garoga,age_group,50-54,,1026,jiwa,2025,registration,total_population,3.2,28,,50-54
+12.02.14,3,Garoga,age_group,55-59,laki_laki,436,jiwa,2025,registration,total_population,3.2,28,,55-59
+12.02.14,3,Garoga,age_group,55-59,perempuan,465,jiwa,2025,registration,total_population,3.2,28,,55-59
+12.02.14,3,Garoga,age_group,55-59,,901,jiwa,2025,registration,total_population,3.2,28,,55-59
+12.02.14,3,Garoga,age_group,60-64,laki_laki,353,jiwa,2025,registration,total_population,3.2,28,,60-64
+12.02.14,3,Garoga,age_group,60-64,perempuan,438,jiwa,2025,registration,total_population,3.2,28,,60-64
+12.02.14,3,Garoga,age_group,60-64,,791,jiwa,2025,registration,total_population,3.2,28,,60-64
+12.02.14,3,Garoga,age_group,65-69,laki_laki,276,jiwa,2025,registration,total_population,3.2,28,,65-69
+12.02.14,3,Garoga,age_group,65-69,perempuan,434,jiwa,2025,registration,total_population,3.2,28,,65-69
+12.02.14,3,Garoga,age_group,65-69,,710,jiwa,2025,registration,total_population,3.2,28,,65-69
+12.02.14,3,Garoga,age_group,70-74,laki_laki,186,jiwa,2025,registration,total_population,3.2,28,,70-74
+12.02.14,3,Garoga,age_group,70-74,perempuan,252,jiwa,2025,registration,total_population,3.2,28,,70-74
+12.02.14,3,Garoga,age_group,70-74,,438,jiwa,2025,registration,total_population,3.2,28,,70-74
+12.02.14,3,Garoga,age_group,74+,laki_laki,250,jiwa,2025,registration,total_population,3.2,28,,74+
+12.02.14,3,Garoga,age_group,74+,perempuan,444,jiwa,2025,registration,total_population,3.2,28,,74+
+12.02.14,3,Garoga,age_group,74+,,694,jiwa,2025,registration,total_population,3.2,28,,74+
+12.02.14,3,Garoga,sex,laki_laki,,9970,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+12.02.14,3,Garoga,sex,perempuan,,9672,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+12.02.14,3,Garoga,total,total,,19642,jiwa,2025,registration,total_population,3.2,28,,

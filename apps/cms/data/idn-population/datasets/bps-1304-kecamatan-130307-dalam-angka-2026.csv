@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.03.07.2003,4,Buluah Kasok,sex,laki_laki,,1365,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki
+13.03.07.2003,4,Buluah Kasok,sex,perempuan,,1412,jiwa,2025,registration,total_population,3.1,31,,Perempuan
+13.03.07.2003,4,Buluah Kasok,total,total,,2777,jiwa,2025,registration,total_population,3.1,31,,
+13.03.07.2001,4,Lubuak Tarok,sex,laki_laki,,4027,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki
+13.03.07.2001,4,Lubuak Tarok,sex,perempuan,,3951,jiwa,2025,registration,total_population,3.1,31,,Perempuan
+13.03.07.2001,4,Lubuak Tarok,total,total,,7978,jiwa,2025,registration,total_population,3.1,31,,
+13.03.07.2002,4,Lalan,sex,laki_laki,,1909,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki
+13.03.07.2002,4,Lalan,sex,perempuan,,1877,jiwa,2025,registration,total_population,3.1,31,,Perempuan
+13.03.07.2002,4,Lalan,total,total,,3786,jiwa,2025,registration,total_population,3.1,31,,
+13.03.07.2005,4,Silongo,sex,laki_laki,,583,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki
+13.03.07.2005,4,Silongo,sex,perempuan,,581,jiwa,2025,registration,total_population,3.1,31,,Perempuan
+13.03.07.2005,4,Silongo,total,total,,1164,jiwa,2025,registration,total_population,3.1,31,,
+13.03.07.2004,4,Kampung Dalam,sex,laki_laki,,1057,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki
+13.03.07.2004,4,Kampung Dalam,sex,perempuan,,1032,jiwa,2025,registration,total_population,3.1,31,,Perempuan
+13.03.07.2004,4,Kampung Dalam,total,total,,2089,jiwa,2025,registration,total_population,3.1,31,,
+13.03.07.2006,4,Latang,sex,laki_laki,,552,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki
+13.03.07.2006,4,Latang,sex,perempuan,,501,jiwa,2025,registration,total_population,3.1,31,,Perempuan
+13.03.07.2006,4,Latang,total,total,,1053,jiwa,2025,registration,total_population,3.1,31,,
+13.03.07,3,Lubuk Tarok,sex,laki_laki,,9493,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki
+13.03.07,3,Lubuk Tarok,sex,perempuan,,9354,jiwa,2025,registration,total_population,3.1,31,,Perempuan
+13.03.07,3,Lubuk Tarok,total,total,,18847,jiwa,2025,registration,total_population,3.1,31,,

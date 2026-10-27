@@ -1,0 +1,53 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.08.04.2004,4,MEREDAN,sex,perempuan,,1864,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.04.2004,4,MEREDAN,total,total,,3885,jiwa,2025,registration,total_population,3.1,26,,
+14.08.04.2007,4,MEREDAN BARAT,sex,perempuan,,2048,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.04.2007,4,MEREDAN BARAT,total,total,,4179,jiwa,2025,registration,total_population,3.1,26,,
+14.08.04.1001,4,PERAWANG,sex,perempuan,,17920,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.04.1001,4,PERAWANG,total,total,,37042,jiwa,2025,registration,total_population,3.1,26,,
+14.08.04.2008,4,PERAWANG BARAT,sex,perempuan,,17326,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.04.2008,4,PERAWANG BARAT,total,total,,35794,jiwa,2025,registration,total_population,3.1,26,,
+14.08.04.2003,4,PINANG SEBATANG,sex,perempuan,,1935,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.04.2003,4,PINANG SEBATANG,total,total,,4024,jiwa,2025,registration,total_population,3.1,26,,
+14.08.04.2006,4,PINANG SEBATANG BARAT,sex,perempuan,,2858,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.04.2006,4,PINANG SEBATANG BARAT,total,total,,5906,jiwa,2025,registration,total_population,3.1,26,,
+14.08.04.2005,4,PINANG SEBATANG TIMUR,sex,perempuan,,5870,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.04.2005,4,PINANG SEBATANG TIMUR,total,total,,12026,jiwa,2025,registration,total_population,3.1,26,,
+14.08.04.2009,4,TUALANG TIMUR,sex,perempuan,,2544,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.04.2009,4,TUALANG TIMUR,total,total,,5267,jiwa,2025,registration,total_population,3.1,26,,
+14.08.04.2002,4,TUALANG,sex,perempuan,,9032,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.04.2002,4,TUALANG,total,total,,18482,jiwa,2025,registration,total_population,3.1,26,,
+14.08.04,3,KECAMATAN TUALANG,sex,perempuan,,61397,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.08.04,3,KECAMATAN TUALANG,total,total,,126605,jiwa,2025,registration,total_population,3.1,26,,
+14.08.04,3,Tualang,age_group,0-4,perempuan,4029,jiwa,2025,registration,total_population,3.2,28,,0–4
+14.08.04,3,Tualang,age_group,0-4,,8448,jiwa,2025,registration,total_population,3.2,28,,0–4
+14.08.04,3,Tualang,age_group,5-9,perempuan,5399,jiwa,2025,registration,total_population,3.2,28,,5–9
+14.08.04,3,Tualang,age_group,5-9,,11223,jiwa,2025,registration,total_population,3.2,28,,5–9
+14.08.04,3,Tualang,age_group,10-14,perempuan,5981,jiwa,2025,registration,total_population,3.2,28,,10–14
+14.08.04,3,Tualang,age_group,10-14,,12561,jiwa,2025,registration,total_population,3.2,28,,10–14
+14.08.04,3,Tualang,age_group,15-19,perempuan,6065,jiwa,2025,registration,total_population,3.2,28,,15–19
+14.08.04,3,Tualang,age_group,15-19,,12669,jiwa,2025,registration,total_population,3.2,28,,15–19
+14.08.04,3,Tualang,age_group,20-24,perempuan,6573,jiwa,2025,registration,total_population,3.2,28,,20–24
+14.08.04,3,Tualang,age_group,20-24,,13673,jiwa,2025,registration,total_population,3.2,28,,20–24
+14.08.04,3,Tualang,age_group,25-29,perempuan,5521,jiwa,2025,registration,total_population,3.2,28,,25–29
+14.08.04,3,Tualang,age_group,25-29,,11439,jiwa,2025,registration,total_population,3.2,28,,25–29
+14.08.04,3,Tualang,age_group,30-34,perempuan,4452,jiwa,2025,registration,total_population,3.2,28,,30–34
+14.08.04,3,Tualang,age_group,30-34,,9236,jiwa,2025,registration,total_population,3.2,28,,30–34
+14.08.04,3,Tualang,age_group,35-39,perempuan,4224,jiwa,2025,registration,total_population,3.2,28,,35–39
+14.08.04,3,Tualang,age_group,35-39,,8473,jiwa,2025,registration,total_population,3.2,28,,35–39
+14.08.04,3,Tualang,age_group,40-44,perempuan,4467,jiwa,2025,registration,total_population,3.2,28,,40–44
+14.08.04,3,Tualang,age_group,40-44,,8600,jiwa,2025,registration,total_population,3.2,28,,40–44
+14.08.04,3,Tualang,age_group,45-49,perempuan,4901,jiwa,2025,registration,total_population,3.2,28,,45–49
+14.08.04,3,Tualang,age_group,45-49,,9254,jiwa,2025,registration,total_population,3.2,28,,45–49
+14.08.04,3,Tualang,age_group,50-54,perempuan,4458,jiwa,2025,registration,total_population,3.2,28,,50–54
+14.08.04,3,Tualang,age_group,50-54,,9025,jiwa,2025,registration,total_population,3.2,28,,50–54
+14.08.04,3,Tualang,age_group,55-59,perempuan,2831,jiwa,2025,registration,total_population,3.2,28,,55–59
+14.08.04,3,Tualang,age_group,55-59,,6502,jiwa,2025,registration,total_population,3.2,28,,55–59
+14.08.04,3,Tualang,age_group,60-64,perempuan,1259,jiwa,2025,registration,total_population,3.2,28,,60–64
+14.08.04,3,Tualang,age_group,60-64,,2894,jiwa,2025,registration,total_population,3.2,28,,60–64
+14.08.04,3,Tualang,age_group,65-69,perempuan,628,jiwa,2025,registration,total_population,3.2,28,,65–69
+14.08.04,3,Tualang,age_group,65-69,,1389,jiwa,2025,registration,total_population,3.2,28,,65–69
+14.08.04,3,Tualang,age_group,70-74,perempuan,310,jiwa,2025,registration,total_population,3.2,28,,70–74
+14.08.04,3,Tualang,age_group,70-74,,654,jiwa,2025,registration,total_population,3.2,28,,70–74
+14.08.04,3,Tualang,age_group,75+,perempuan,299,jiwa,2025,registration,total_population,3.2,28,,75+
+14.08.04,3,Tualang,age_group,75+,,565,jiwa,2025,registration,total_population,3.2,28,,75+

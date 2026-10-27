@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.21.13.2005,4,TAMBAK BOYO,sex,laki_laki,,3918,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.13.2005,4,TAMBAK BOYO,sex,perempuan,,3852,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.13.2005,4,TAMBAK BOYO,total,total,,7770,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.13.2004,4,PAKAH,sex,laki_laki,,2366,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.13.2004,4,PAKAH,sex,perempuan,,2375,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.13.2004,4,PAKAH,total,total,,4741,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.13.2003,4,KEDUNGHARJO,sex,laki_laki,,2942,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.13.2003,4,KEDUNGHARJO,sex,perempuan,,2850,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.13.2003,4,KEDUNGHARJO,total,total,,5792,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.13.2002,4,MANTINGAN,sex,laki_laki,,3726,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.13.2002,4,MANTINGAN,sex,perempuan,,3854,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.13.2002,4,MANTINGAN,total,total,,7580,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.13.2001,4,SAMBIREJO,sex,laki_laki,,3254,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.13.2001,4,SAMBIREJO,sex,perempuan,,3325,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.13.2001,4,SAMBIREJO,total,total,,6579,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.13.2006,4,PENGKOL,sex,laki_laki,,1613,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.13.2006,4,PENGKOL,sex,perempuan,,1629,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.13.2006,4,PENGKOL,total,total,,3242,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.13.2007,4,JATIMULYO,sex,laki_laki,,1342,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.13.2007,4,JATIMULYO,sex,perempuan,,1316,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.13.2007,4,JATIMULYO,total,total,,2658,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.13,3,Kecamatan Mantingan,sex,laki_laki,,19161,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.13,3,Kecamatan Mantingan,sex,perempuan,,19201,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.13,3,Kecamatan Mantingan,total,total,,38362,jiwa,2025,registration,total_population,unnumbered-p38,38,,

@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.05.37.2006,4,Selaawi,sex,laki_laki,,2037,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.37.2006,4,Selaawi,sex,perempuan,,1990,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.37.2006,4,Selaawi,total,total,,4027,jiwa,2025,registration,total_population,3.1,22,,
+32.05.37.2003,4,Mekarmukti,sex,laki_laki,,1902,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.37.2003,4,Mekarmukti,sex,perempuan,,1858,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.37.2003,4,Mekarmukti,total,total,,3760,jiwa,2025,registration,total_population,3.1,22,,
+32.05.37.2004,4,Mekarmulya,sex,laki_laki,,1827,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.37.2004,4,Mekarmulya,sex,perempuan,,1726,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.37.2004,4,Mekarmulya,total,total,,3553,jiwa,2025,registration,total_population,3.1,22,,
+32.05.37.2002,4,Sukamulya,sex,laki_laki,,3604,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.37.2002,4,Sukamulya,sex,perempuan,,3372,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.37.2002,4,Sukamulya,total,total,,6976,jiwa,2025,registration,total_population,3.1,22,,
+32.05.37.2001,4,Sukamaju,sex,laki_laki,,2854,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.37.2001,4,Sukamaju,sex,perempuan,,2777,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.37.2001,4,Sukamaju,total,total,,5631,jiwa,2025,registration,total_population,3.1,22,,
+32.05.37.2005,4,Sukalaksana,sex,laki_laki,,3037,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.37.2005,4,Sukalaksana,sex,perempuan,,2884,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.37.2005,4,Sukalaksana,total,total,,5921,jiwa,2025,registration,total_population,3.1,22,,
+32.05.37.2007,4,Mekarwangi,sex,laki_laki,,1202,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.37.2007,4,Mekarwangi,sex,perempuan,,1145,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.37.2007,4,Mekarwangi,total,total,,2347,jiwa,2025,registration,total_population,3.1,22,,
+32.05.37,3,Kecamatan Talegong,sex,laki_laki,,16463,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.37,3,Kecamatan Talegong,sex,perempuan,,15752,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.37,3,Kecamatan Talegong,total,total,,32215,jiwa,2025,registration,total_population,3.1,22,,
+32.05.37,3,Talegong,age_group,0-4,laki_laki,968,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.37,3,Talegong,age_group,0-4,perempuan,931,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.37,3,Talegong,age_group,0-4,,1899,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.37,3,Talegong,age_group,5-9,laki_laki,1295,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.37,3,Talegong,age_group,5-9,perempuan,1179,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.37,3,Talegong,age_group,5-9,,2474,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.37,3,Talegong,age_group,10-14,laki_laki,1380,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.37,3,Talegong,age_group,10-14,perempuan,1243,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.37,3,Talegong,age_group,10-14,,2623,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.37,3,Talegong,age_group,15-19,laki_laki,1178,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.37,3,Talegong,age_group,15-19,perempuan,1203,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.37,3,Talegong,age_group,15-19,,2381,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.37,3,Talegong,age_group,20-24,laki_laki,1345,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.37,3,Talegong,age_group,20-24,perempuan,1202,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.37,3,Talegong,age_group,20-24,,2547,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.37,3,Talegong,age_group,25-29,laki_laki,1356,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.37,3,Talegong,age_group,25-29,perempuan,1227,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.37,3,Talegong,age_group,25-29,,2583,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.37,3,Talegong,age_group,30-34,laki_laki,1191,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.37,3,Talegong,age_group,30-34,perempuan,1150,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.37,3,Talegong,age_group,30-34,,2341,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.37,3,Talegong,age_group,35-39,laki_laki,1045,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.37,3,Talegong,age_group,35-39,perempuan,988,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.37,3,Talegong,age_group,35-39,,2033,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.37,3,Talegong,age_group,40-44,laki_laki,1089,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.37,3,Talegong,age_group,40-44,perempuan,1141,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.37,3,Talegong,age_group,40-44,,2230,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.37,3,Talegong,age_group,45-49,laki_laki,1110,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.37,3,Talegong,age_group,45-49,perempuan,1117,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.37,3,Talegong,age_group,45-49,,2227,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.37,3,Talegong,age_group,50-54,laki_laki,1147,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.37,3,Talegong,age_group,50-54,perempuan,1170,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.37,3,Talegong,age_group,50-54,,2317,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.37,3,Talegong,age_group,55-59,laki_laki,975,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.37,3,Talegong,age_group,55-59,perempuan,958,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.37,3,Talegong,age_group,55-59,,1933,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.37,3,Talegong,age_group,60-64,laki_laki,768,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.37,3,Talegong,age_group,60-64,perempuan,754,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.37,3,Talegong,age_group,60-64,,1522,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.37,3,Talegong,age_group,65-69,laki_laki,619,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.37,3,Talegong,age_group,65-69,perempuan,584,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.37,3,Talegong,age_group,65-69,,1203,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.37,3,Talegong,age_group,70-74,laki_laki,441,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.37,3,Talegong,age_group,70-74,perempuan,380,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.37,3,Talegong,age_group,70-74,,821,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.37,3,Talegong,age_group,75+,laki_laki,556,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.37,3,Talegong,age_group,75+,perempuan,525,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.37,3,Talegong,age_group,75+,,1081,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.37,3,Kecamatan Talegong,sex,laki_laki,,16463,jiwa,2025,registration,total_population,3.2,24,,Laki-Laki
+32.05.37,3,Kecamatan Talegong,sex,perempuan,,15752,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+32.05.37,3,Kecamatan Talegong,total,total,,32215,jiwa,2025,registration,total_population,3.2,24,,

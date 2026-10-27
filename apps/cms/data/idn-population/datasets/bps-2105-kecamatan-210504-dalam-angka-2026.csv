@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.05.04.2001,4,Kiabu,sex,laki_laki,,338,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+21.05.04.2001,4,Kiabu,sex,perempuan,,344,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+21.05.04.2001,4,Kiabu,total,total,,682,jiwa,2025,registration,total_population,3.1,25,,
+21.05.04.2002,4,Telaga,sex,laki_laki,,202,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+21.05.04.2002,4,Telaga,sex,perempuan,,200,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+21.05.04.2002,4,Telaga,total,total,,402,jiwa,2025,registration,total_population,3.1,25,,
+21.05.04.2003,4,Mengkait,sex,laki_laki,,476,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+21.05.04.2003,4,Mengkait,sex,perempuan,,463,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+21.05.04.2003,4,Mengkait,total,total,,939,jiwa,2025,registration,total_population,3.1,25,,
+21.05.04.2004,4,Tiangau,sex,laki_laki,,348,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+21.05.04.2004,4,Tiangau,sex,perempuan,,350,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+21.05.04.2004,4,Tiangau,total,total,,698,jiwa,2025,registration,total_population,3.1,25,,
+21.05.04.2005,4,Telaga Kecil,sex,laki_laki,,128,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+21.05.04.2005,4,Telaga Kecil,sex,perempuan,,117,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+21.05.04.2005,4,Telaga Kecil,total,total,,245,jiwa,2025,registration,total_population,3.1,25,,
+21.05.04.2006,4,Lingai,sex,laki_laki,,184,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+21.05.04.2006,4,Lingai,sex,perempuan,,161,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+21.05.04.2006,4,Lingai,total,total,,345,jiwa,2025,registration,total_population,3.1,25,,
+21.05.04.2007,4,Air Bini,sex,laki_laki,,406,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+21.05.04.2007,4,Air Bini,sex,perempuan,,345,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+21.05.04.2007,4,Air Bini,total,total,,751,jiwa,2025,registration,total_population,3.1,25,,
+21.05.04,3,Siantan Selatan,sex,laki_laki,,2082,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+21.05.04,3,Siantan Selatan,sex,perempuan,,1980,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+21.05.04,3,Siantan Selatan,total,total,,4062,jiwa,2025,registration,total_population,3.1,25,,
+21.05.04,3,Siantan Selatan,age_group,0-4,laki_laki,121,jiwa,2025,registration,total_population,3.2,27,,0–4
+21.05.04,3,Siantan Selatan,age_group,0-4,perempuan,128,jiwa,2025,registration,total_population,3.2,27,,0–4
+21.05.04,3,Siantan Selatan,age_group,0-4,,249,jiwa,2025,registration,total_population,3.2,27,,0–4
+21.05.04,3,Siantan Selatan,age_group,5-9,laki_laki,158,jiwa,2025,registration,total_population,3.2,27,,5–9
+21.05.04,3,Siantan Selatan,age_group,5-9,perempuan,181,jiwa,2025,registration,total_population,3.2,27,,5–9
+21.05.04,3,Siantan Selatan,age_group,5-9,,339,jiwa,2025,registration,total_population,3.2,27,,5–9
+21.05.04,3,Siantan Selatan,age_group,10-14,laki_laki,193,jiwa,2025,registration,total_population,3.2,27,,10–14
+21.05.04,3,Siantan Selatan,age_group,10-14,perempuan,176,jiwa,2025,registration,total_population,3.2,27,,10–14
+21.05.04,3,Siantan Selatan,age_group,10-14,,369,jiwa,2025,registration,total_population,3.2,27,,10–14
+21.05.04,3,Siantan Selatan,age_group,15-19,laki_laki,232,jiwa,2025,registration,total_population,3.2,27,,15–19
+21.05.04,3,Siantan Selatan,age_group,15-19,perempuan,183,jiwa,2025,registration,total_population,3.2,27,,15–19
+21.05.04,3,Siantan Selatan,age_group,15-19,,415,jiwa,2025,registration,total_population,3.2,27,,15–19
+21.05.04,3,Siantan Selatan,age_group,20-24,laki_laki,196,jiwa,2025,registration,total_population,3.2,27,,20–24
+21.05.04,3,Siantan Selatan,age_group,20-24,perempuan,199,jiwa,2025,registration,total_population,3.2,27,,20–24
+21.05.04,3,Siantan Selatan,age_group,20-24,,395,jiwa,2025,registration,total_population,3.2,27,,20–24
+21.05.04,3,Siantan Selatan,age_group,25-29,laki_laki,171,jiwa,2025,registration,total_population,3.2,27,,25–29
+21.05.04,3,Siantan Selatan,age_group,25-29,perempuan,166,jiwa,2025,registration,total_population,3.2,27,,25–29
+21.05.04,3,Siantan Selatan,age_group,25-29,,337,jiwa,2025,registration,total_population,3.2,27,,25–29
+21.05.04,3,Siantan Selatan,age_group,30-34,laki_laki,149,jiwa,2025,registration,total_population,3.2,27,,30–34
+21.05.04,3,Siantan Selatan,age_group,30-34,perempuan,121,jiwa,2025,registration,total_population,3.2,27,,30–34
+21.05.04,3,Siantan Selatan,age_group,30-34,,270,jiwa,2025,registration,total_population,3.2,27,,30–34
+21.05.04,3,Siantan Selatan,age_group,35-39,laki_laki,148,jiwa,2025,registration,total_population,3.2,27,,35–39
+21.05.04,3,Siantan Selatan,age_group,35-39,perempuan,141,jiwa,2025,registration,total_population,3.2,27,,35–39
+21.05.04,3,Siantan Selatan,age_group,35-39,,289,jiwa,2025,registration,total_population,3.2,27,,35–39
+21.05.04,3,Siantan Selatan,age_group,40-44,laki_laki,154,jiwa,2025,registration,total_population,3.2,27,,40–44
+21.05.04,3,Siantan Selatan,age_group,40-44,perempuan,165,jiwa,2025,registration,total_population,3.2,27,,40–44
+21.05.04,3,Siantan Selatan,age_group,40-44,,319,jiwa,2025,registration,total_population,3.2,27,,40–44
+21.05.04,3,Siantan Selatan,age_group,45-49,laki_laki,161,jiwa,2025,registration,total_population,3.2,27,,45–49
+21.05.04,3,Siantan Selatan,age_group,45-49,perempuan,129,jiwa,2025,registration,total_population,3.2,27,,45–49
+21.05.04,3,Siantan Selatan,age_group,45-49,,290,jiwa,2025,registration,total_population,3.2,27,,45–49
+21.05.04,3,Siantan Selatan,age_group,50-54,laki_laki,138,jiwa,2025,registration,total_population,3.2,27,,50–54
+21.05.04,3,Siantan Selatan,age_group,50-54,perempuan,118,jiwa,2025,registration,total_population,3.2,27,,50–54
+21.05.04,3,Siantan Selatan,age_group,50-54,,256,jiwa,2025,registration,total_population,3.2,27,,50–54
+21.05.04,3,Siantan Selatan,age_group,55-59,laki_laki,105,jiwa,2025,registration,total_population,3.2,27,,55–59
+21.05.04,3,Siantan Selatan,age_group,55-59,perempuan,84,jiwa,2025,registration,total_population,3.2,27,,55–59
+21.05.04,3,Siantan Selatan,age_group,55-59,,189,jiwa,2025,registration,total_population,3.2,27,,55–59
+21.05.04,3,Siantan Selatan,age_group,60-64,laki_laki,69,jiwa,2025,registration,total_population,3.2,27,,60–64
+21.05.04,3,Siantan Selatan,age_group,60-64,perempuan,67,jiwa,2025,registration,total_population,3.2,27,,60–64
+21.05.04,3,Siantan Selatan,age_group,60-64,,136,jiwa,2025,registration,total_population,3.2,27,,60–64
+21.05.04,3,Siantan Selatan,age_group,65-69,laki_laki,45,jiwa,2025,registration,total_population,3.2,27,,65–69
+21.05.04,3,Siantan Selatan,age_group,65-69,perempuan,52,jiwa,2025,registration,total_population,3.2,27,,65–69
+21.05.04,3,Siantan Selatan,age_group,65-69,,97,jiwa,2025,registration,total_population,3.2,27,,65–69
+21.05.04,3,Siantan Selatan,age_group,70-74,laki_laki,22,jiwa,2025,registration,total_population,3.2,27,,70–74
+21.05.04,3,Siantan Selatan,age_group,70-74,perempuan,35,jiwa,2025,registration,total_population,3.2,27,,70–74
+21.05.04,3,Siantan Selatan,age_group,70-74,,57,jiwa,2025,registration,total_population,3.2,27,,70–74
+21.05.04,3,Siantan Selatan,age_group,75+,laki_laki,20,jiwa,2025,registration,total_population,3.2,27,,75+
+21.05.04,3,Siantan Selatan,age_group,75+,perempuan,35,jiwa,2025,registration,total_population,3.2,27,,75+
+21.05.04,3,Siantan Selatan,age_group,75+,,55,jiwa,2025,registration,total_population,3.2,27,,75+

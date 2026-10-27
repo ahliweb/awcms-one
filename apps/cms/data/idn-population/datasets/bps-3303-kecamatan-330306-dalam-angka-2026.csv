@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.03.06.2001,4,Jompo,sex,laki_laki,,1167,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.06.2001,4,Jompo,sex,perempuan,,1097,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.06.2001,4,Jompo,total,total,,2264,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.06.2002,4,Rabak,sex,laki_laki,,1609,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.06.2002,4,Rabak,sex,perempuan,,1618,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.06.2002,4,Rabak,total,total,,3227,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.06.2003,4,Blater,sex,laki_laki,,2005,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.06.2003,4,Blater,sex,perempuan,,1870,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.06.2003,4,Blater,total,total,,3875,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.06.2007,4,Sidakangen,sex,laki_laki,,1341,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.06.2007,4,Sidakangen,sex,perempuan,,1340,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.06.2007,4,Sidakangen,total,total,,2681,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.06.2008,4,Karangpetir,sex,laki_laki,,755,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.06.2008,4,Karangpetir,sex,perempuan,,791,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.06.2008,4,Karangpetir,total,total,,1546,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.06.2010,4,Grecol,sex,laki_laki,,2224,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.06.2010,4,Grecol,sex,perempuan,,2157,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.06.2010,4,Grecol,total,total,,4381,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.06.1011,4,Mewek,sex,laki_laki,,1227,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.06.1011,4,Mewek,sex,perempuan,,1219,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.06.1011,4,Mewek,total,total,,2446,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.06.1012,4,Karangmanyar,sex,laki_laki,,1274,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.06.1012,4,Karangmanyar,sex,perempuan,,1354,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.06.1012,4,Karangmanyar,total,total,,2628,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.06.1013,4,Kalikabong,sex,laki_laki,,3153,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.06.1013,4,Kalikabong,sex,perempuan,,3067,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.06.1013,4,Kalikabong,total,total,,6220,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.06.2014,4,Selabaya,sex,laki_laki,,2121,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.06.2014,4,Selabaya,sex,perempuan,,2169,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.06.2014,4,Selabaya,total,total,,4290,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.06.2009,4,Kalimanah Wetan,sex,laki_laki,,1803,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.06.2009,4,Kalimanah Wetan,sex,perempuan,,1817,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.06.2009,4,Kalimanah Wetan,total,total,,3620,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.06.2006,4,Kalimanah Kulon,sex,laki_laki,,1133,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.06.2006,4,Kalimanah Kulon,sex,perempuan,,1156,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.06.2006,4,Kalimanah Kulon,total,total,,2289,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.06.2004,4,Manduraga,sex,laki_laki,,987,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.06.2004,4,Manduraga,sex,perempuan,,969,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.06.2004,4,Manduraga,total,total,,1956,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.06.2005,4,Karangsari,sex,laki_laki,,969,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.06.2005,4,Karangsari,sex,perempuan,,957,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.06.2005,4,Karangsari,total,total,,1926,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.06.2016,4,Kedungwuluh,sex,laki_laki,,1836,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.06.2016,4,Kedungwuluh,sex,perempuan,,1733,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.06.2016,4,Kedungwuluh,total,total,,3569,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.06.2015,4,Klapasawit,sex,laki_laki,,2661,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.06.2015,4,Klapasawit,sex,perempuan,,2563,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.06.2015,4,Klapasawit,total,total,,5224,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.06.2017,4,Babakan,sex,laki_laki,,3817,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.06.2017,4,Babakan,sex,perempuan,,3772,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.06.2017,4,Babakan,total,total,,7589,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.06,3,Kecamatan Kalimanah,sex,laki_laki,,30082,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.06,3,Kecamatan Kalimanah,sex,perempuan,,29649,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.06,3,Kecamatan Kalimanah,total,total,,59731,jiwa,2025,registration,total_population,3.1.1,19,,

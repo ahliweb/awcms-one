@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.24.11.2002,4,Lukhulase,sex,laki_laki,,1050,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.11.2002,4,Lukhulase,sex,perempuan,,1048,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.11.2002,4,Lukhulase,total,total,,2098,jiwa,2025,registration,total_population,3.1,41,,
+12.24.11.2001,4,Laowowaga,sex,laki_laki,,1282,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.11.2001,4,Laowowaga,sex,perempuan,,1226,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.11.2001,4,Laowowaga,total,total,,2508,jiwa,2025,registration,total_population,3.1,41,,
+12.24.11.2007,4,Meafu,sex,laki_laki,,412,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.11.2007,4,Meafu,sex,perempuan,,391,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.11.2007,4,Meafu,total,total,,803,jiwa,2025,registration,total_population,3.1,41,,
+12.24.11.2003,4,Tetehosisorowi,sex,laki_laki,,499,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.11.2003,4,Tetehosisorowi,sex,perempuan,,578,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.11.2003,4,Tetehosisorowi,total,total,,1077,jiwa,2025,registration,total_population,3.1,41,,
+12.24.11.2005,4,Tugala Lauru,sex,laki_laki,,719,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.11.2005,4,Tugala Lauru,sex,perempuan,,741,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.11.2005,4,Tugala Lauru,total,total,,1460,jiwa,2025,registration,total_population,3.1,41,,
+12.24.11.2006,4,Muzoi,sex,laki_laki,,806,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.11.2006,4,Muzoi,sex,perempuan,,756,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.11.2006,4,Muzoi,total,total,,1562,jiwa,2025,registration,total_population,3.1,41,,
+12.24.11.2004,4,Tefao,sex,laki_laki,,470,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.11.2004,4,Tefao,sex,perempuan,,472,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.11.2004,4,Tefao,total,total,,942,jiwa,2025,registration,total_population,3.1,41,,
+12.24.11,3,Lahewa Timur,sex,laki_laki,,5238,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.11,3,Lahewa Timur,sex,perempuan,,5212,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.11,3,Lahewa Timur,total,total,,10450,jiwa,2025,registration,total_population,3.1,41,,
+12.24.11,3,Lahewa Timur,age_group,0-4,laki_laki,269,jiwa,2025,registration,total_population,3.2,43,,0-4
+12.24.11,3,Lahewa Timur,age_group,0-4,perempuan,282,jiwa,2025,registration,total_population,3.2,43,,0-4
+12.24.11,3,Lahewa Timur,age_group,0-4,,551,jiwa,2025,registration,total_population,3.2,43,,0-4
+12.24.11,3,Lahewa Timur,age_group,5-9,laki_laki,506,jiwa,2025,registration,total_population,3.2,43,,5-9
+12.24.11,3,Lahewa Timur,age_group,5-9,perempuan,441,jiwa,2025,registration,total_population,3.2,43,,5-9
+12.24.11,3,Lahewa Timur,age_group,5-9,,947,jiwa,2025,registration,total_population,3.2,43,,5-9
+12.24.11,3,Lahewa Timur,age_group,10-14,laki_laki,602,jiwa,2025,registration,total_population,3.2,43,,10-14
+12.24.11,3,Lahewa Timur,age_group,10-14,perempuan,528,jiwa,2025,registration,total_population,3.2,43,,10-14
+12.24.11,3,Lahewa Timur,age_group,10-14,,1130,jiwa,2025,registration,total_population,3.2,43,,10-14
+12.24.11,3,Lahewa Timur,age_group,15-19,laki_laki,661,jiwa,2025,registration,total_population,3.2,43,,15-19
+12.24.11,3,Lahewa Timur,age_group,15-19,perempuan,575,jiwa,2025,registration,total_population,3.2,43,,15-19
+12.24.11,3,Lahewa Timur,age_group,15-19,,1236,jiwa,2025,registration,total_population,3.2,43,,15-19
+12.24.11,3,Lahewa Timur,age_group,20-24,laki_laki,660,jiwa,2025,registration,total_population,3.2,43,,20-24
+12.24.11,3,Lahewa Timur,age_group,20-24,perempuan,615,jiwa,2025,registration,total_population,3.2,43,,20-24
+12.24.11,3,Lahewa Timur,age_group,20-24,,1275,jiwa,2025,registration,total_population,3.2,43,,20-24
+12.24.11,3,Lahewa Timur,age_group,25-29,laki_laki,497,jiwa,2025,registration,total_population,3.2,43,,25-29
+12.24.11,3,Lahewa Timur,age_group,25-29,perempuan,482,jiwa,2025,registration,total_population,3.2,43,,25-29
+12.24.11,3,Lahewa Timur,age_group,25-29,,979,jiwa,2025,registration,total_population,3.2,43,,25-29
+12.24.11,3,Lahewa Timur,age_group,30-34,laki_laki,371,jiwa,2025,registration,total_population,3.2,43,,30-34
+12.24.11,3,Lahewa Timur,age_group,30-34,perempuan,353,jiwa,2025,registration,total_population,3.2,43,,30-34
+12.24.11,3,Lahewa Timur,age_group,30-34,,724,jiwa,2025,registration,total_population,3.2,43,,30-34
+12.24.11,3,Lahewa Timur,age_group,35-39,laki_laki,339,jiwa,2025,registration,total_population,3.2,43,,35-39
+12.24.11,3,Lahewa Timur,age_group,35-39,perempuan,350,jiwa,2025,registration,total_population,3.2,43,,35-39
+12.24.11,3,Lahewa Timur,age_group,35-39,,689,jiwa,2025,registration,total_population,3.2,43,,35-39
+12.24.11,3,Lahewa Timur,age_group,40-44,laki_laki,321,jiwa,2025,registration,total_population,3.2,43,,40-44
+12.24.11,3,Lahewa Timur,age_group,40-44,perempuan,339,jiwa,2025,registration,total_population,3.2,43,,40-44
+12.24.11,3,Lahewa Timur,age_group,40-44,,660,jiwa,2025,registration,total_population,3.2,43,,40-44
+12.24.11,3,Lahewa Timur,age_group,45-49,laki_laki,272,jiwa,2025,registration,total_population,3.2,43,,45-49
+12.24.11,3,Lahewa Timur,age_group,45-49,perempuan,300,jiwa,2025,registration,total_population,3.2,43,,45-49
+12.24.11,3,Lahewa Timur,age_group,45-49,,572,jiwa,2025,registration,total_population,3.2,43,,45-49
+12.24.11,3,Lahewa Timur,age_group,50-54,laki_laki,205,jiwa,2025,registration,total_population,3.2,43,,50-54
+12.24.11,3,Lahewa Timur,age_group,50-54,perempuan,244,jiwa,2025,registration,total_population,3.2,43,,50-54
+12.24.11,3,Lahewa Timur,age_group,50-54,,449,jiwa,2025,registration,total_population,3.2,43,,50-54
+12.24.11,3,Lahewa Timur,age_group,55-59,laki_laki,175,jiwa,2025,registration,total_population,3.2,43,,55-59
+12.24.11,3,Lahewa Timur,age_group,55-59,perempuan,222,jiwa,2025,registration,total_population,3.2,43,,55-59
+12.24.11,3,Lahewa Timur,age_group,55-59,,397,jiwa,2025,registration,total_population,3.2,43,,55-59
+12.24.11,3,Lahewa Timur,age_group,60-64,laki_laki,120,jiwa,2025,registration,total_population,3.2,43,,60-64
+12.24.11,3,Lahewa Timur,age_group,60-64,perempuan,164,jiwa,2025,registration,total_population,3.2,43,,60-64
+12.24.11,3,Lahewa Timur,age_group,60-64,,284,jiwa,2025,registration,total_population,3.2,43,,60-64
+12.24.11,3,Lahewa Timur,age_group,65-69,laki_laki,102,jiwa,2025,registration,total_population,3.2,43,,65-69
+12.24.11,3,Lahewa Timur,age_group,65-69,perempuan,125,jiwa,2025,registration,total_population,3.2,43,,65-69
+12.24.11,3,Lahewa Timur,age_group,65-69,,227,jiwa,2025,registration,total_population,3.2,43,,65-69
+12.24.11,3,Lahewa Timur,age_group,70-74,laki_laki,61,jiwa,2025,registration,total_population,3.2,43,,70-74
+12.24.11,3,Lahewa Timur,age_group,70-74,perempuan,72,jiwa,2025,registration,total_population,3.2,43,,70-74
+12.24.11,3,Lahewa Timur,age_group,70-74,,133,jiwa,2025,registration,total_population,3.2,43,,70-74
+12.24.11,3,Lahewa Timur,age_group,75+,laki_laki,77,jiwa,2025,registration,total_population,3.2,43,,75+
+12.24.11,3,Lahewa Timur,age_group,75+,perempuan,120,jiwa,2025,registration,total_population,3.2,43,,75+
+12.24.11,3,Lahewa Timur,age_group,75+,,197,jiwa,2025,registration,total_population,3.2,43,,75+
+12.24.11,3,Lahewa Timur,sex,laki_laki,,5238,jiwa,2025,registration,total_population,3.2,43,,Laki-Laki
+12.24.11,3,Lahewa Timur,sex,perempuan,,5212,jiwa,2025,registration,total_population,3.2,43,,Perempuan
+12.24.11,3,Lahewa Timur,total,total,,10450,jiwa,2025,registration,total_population,3.2,43,,

@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.27.04.2002,4,Tundagan,sex,perempuan,,3775,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.04.2002,4,Tundagan,total,total,,7877,jiwa,2025,registration,total_population,3.1,45,,
+33.27.04.2001,4,Tlagasana,sex,perempuan,,5740,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.04.2001,4,Tlagasana,total,total,,11849,jiwa,2025,registration,total_population,3.1,45,,
+33.27.04.2003,4,Bongas,sex,perempuan,,3654,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.04.2003,4,Bongas,total,total,,7522,jiwa,2025,registration,total_population,3.1,45,,
+33.27.04.2004,4,Cikadu,sex,perempuan,,4255,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.04.2004,4,Cikadu,total,total,,8739,jiwa,2025,registration,total_population,3.1,45,,
+33.27.04.2005,4,Cawet,sex,perempuan,,1851,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.04.2005,4,Cawet,total,total,,3784,jiwa,2025,registration,total_population,3.1,45,,
+33.27.04.2006,4,Medayu,sex,perempuan,,1125,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.04.2006,4,Medayu,total,total,,2270,jiwa,2025,registration,total_population,3.1,45,,
+33.27.04.2007,4,Pagelaran,sex,perempuan,,1024,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.04.2007,4,Pagelaran,total,total,,2118,jiwa,2025,registration,total_population,3.1,45,,
+33.27.04.2008,4,Bodas,sex,perempuan,,1683,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.04.2008,4,Bodas,total,total,,3556,jiwa,2025,registration,total_population,3.1,45,,
+33.27.04.2009,4,Jojogan,sex,perempuan,,2359,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.04.2009,4,Jojogan,total,total,,4743,jiwa,2025,registration,total_population,3.1,45,,
+33.27.04.2010,4,Majalangu,sex,perempuan,,4666,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.04.2010,4,Majalangu,total,total,,9679,jiwa,2025,registration,total_population,3.1,45,,
+33.27.04.2011,4,Tambi,sex,perempuan,,1179,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.04.2011,4,Tambi,total,total,,2442,jiwa,2025,registration,total_population,3.1,45,,
+33.27.04.2012,4,Watukumpul,sex,perempuan,,2706,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.04.2012,4,Watukumpul,total,total,,5597,jiwa,2025,registration,total_population,3.1,45,,
+33.27.04.2013,4,Gapura,sex,perempuan,,1845,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.04.2013,4,Gapura,total,total,,3790,jiwa,2025,registration,total_population,3.1,45,,
+33.27.04.2014,4,Majakerta,sex,perempuan,,2935,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.04.2014,4,Majakerta,total,total,,6029,jiwa,2025,registration,total_population,3.1,45,,
+33.27.04.2015,4,Wisnu,sex,perempuan,,1567,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.04.2015,4,Wisnu,total,total,,3283,jiwa,2025,registration,total_population,3.1,45,,
+33.27.04,3,Kecamatan Watukumpul,sex,perempuan,,40364,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.04,3,Kecamatan Watukumpul,total,total,,83278,jiwa,2025,registration,total_population,3.1,45,,
+33.27.04,3,Watukumpul,age_group,0-4,perempuan,2846,jiwa,2025,registration,total_population,3.2,47,,0 – 4
+33.27.04,3,Watukumpul,age_group,0-4,,5909,jiwa,2025,registration,total_population,3.2,47,,0 – 4
+33.27.04,3,Watukumpul,age_group,5-9,perempuan,3361,jiwa,2025,registration,total_population,3.2,47,,5 – 9
+33.27.04,3,Watukumpul,age_group,5-9,,7032,jiwa,2025,registration,total_population,3.2,47,,5 – 9
+33.27.04,3,Watukumpul,age_group,10-14,perempuan,3303,jiwa,2025,registration,total_population,3.2,47,,10 – 14
+33.27.04,3,Watukumpul,age_group,10-14,,6731,jiwa,2025,registration,total_population,3.2,47,,10 – 14
+33.27.04,3,Watukumpul,age_group,15-19,perempuan,3168,jiwa,2025,registration,total_population,3.2,47,,15 – 19
+33.27.04,3,Watukumpul,age_group,15-19,,6435,jiwa,2025,registration,total_population,3.2,47,,15 – 19
+33.27.04,3,Watukumpul,age_group,20-24,perempuan,3241,jiwa,2025,registration,total_population,3.2,47,,20 – 24
+33.27.04,3,Watukumpul,age_group,20-24,,6763,jiwa,2025,registration,total_population,3.2,47,,20 – 24
+33.27.04,3,Watukumpul,age_group,25-29,perempuan,3116,jiwa,2025,registration,total_population,3.2,47,,25 – 29
+33.27.04,3,Watukumpul,age_group,25-29,,6541,jiwa,2025,registration,total_population,3.2,47,,25 – 29
+33.27.04,3,Watukumpul,age_group,30-34,perempuan,3160,jiwa,2025,registration,total_population,3.2,47,,30 – 34
+33.27.04,3,Watukumpul,age_group,30-34,,6555,jiwa,2025,registration,total_population,3.2,47,,30 – 34
+33.27.04,3,Watukumpul,age_group,35-39,perempuan,3207,jiwa,2025,registration,total_population,3.2,47,,35 – 39
+33.27.04,3,Watukumpul,age_group,35-39,,6568,jiwa,2025,registration,total_population,3.2,47,,35 – 39
+33.27.04,3,Watukumpul,age_group,40-44,perempuan,2942,jiwa,2025,registration,total_population,3.2,47,,40 – 44
+33.27.04,3,Watukumpul,age_group,40-44,,6189,jiwa,2025,registration,total_population,3.2,47,,40 – 44
+33.27.04,3,Watukumpul,age_group,45-49,perempuan,2402,jiwa,2025,registration,total_population,3.2,47,,45 – 49
+33.27.04,3,Watukumpul,age_group,45-49,,5024,jiwa,2025,registration,total_population,3.2,47,,45 – 49
+33.27.04,3,Watukumpul,age_group,50-54,perempuan,2235,jiwa,2025,registration,total_population,3.2,47,,50 – 54
+33.27.04,3,Watukumpul,age_group,50-54,,4437,jiwa,2025,registration,total_population,3.2,47,,50 – 54
+33.27.04,3,Watukumpul,age_group,55-59,perempuan,2219,jiwa,2025,registration,total_population,3.2,47,,55 – 59
+33.27.04,3,Watukumpul,age_group,55-59,,4442,jiwa,2025,registration,total_population,3.2,47,,55 – 59
+33.27.04,3,Watukumpul,age_group,60-64,perempuan,1805,jiwa,2025,registration,total_population,3.2,47,,60 – 64
+33.27.04,3,Watukumpul,age_group,60-64,,3612,jiwa,2025,registration,total_population,3.2,47,,60 – 64
+33.27.04,3,Watukumpul,age_group,65-69,perempuan,1446,jiwa,2025,registration,total_population,3.2,47,,65 – 69
+33.27.04,3,Watukumpul,age_group,65-69,,2903,jiwa,2025,registration,total_population,3.2,47,,65 – 69
+33.27.04,3,Watukumpul,age_group,70-74,perempuan,866,jiwa,2025,registration,total_population,3.2,47,,70 – 74
+33.27.04,3,Watukumpul,age_group,70-74,,1884,jiwa,2025,registration,total_population,3.2,47,,70 – 74
+33.27.04,3,Watukumpul,age_group,75+,perempuan,1047,jiwa,2025,registration,total_population,3.2,47,,>= 75
+33.27.04,3,Watukumpul,age_group,75+,,2253,jiwa,2025,registration,total_population,3.2,47,,>= 75
+33.27.04,3,Kecamatan Watukumpul,sex,perempuan,,40364,jiwa,2025,registration,total_population,3.2,47,,Perempuan
+33.27.04,3,Kecamatan Watukumpul,total,total,,83278,jiwa,2025,registration,total_population,3.2,47,,

@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.71.16.1003,4,Lebung-Gajah,sex,laki_laki,,12066,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.16.1003,4,Lebung-Gajah,sex,perempuan,,12242,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.16.1003,4,Lebung-Gajah,total,total,,24308,jiwa,2025,registration,total_population,3.1,32,,
+16.71.16.1002,4,Sukamulya,sex,laki_laki,,9204,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.16.1002,4,Sukamulya,sex,perempuan,,8887,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.16.1002,4,Sukamulya,total,total,,18091,jiwa,2025,registration,total_population,3.1,32,,
+16.71.16.1005,4,Karyamulya,sex,laki_laki,,4518,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.16.1005,4,Karyamulya,sex,perempuan,,4307,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.16.1005,4,Karyamulya,total,total,,8825,jiwa,2025,registration,total_population,3.1,32,,
+16.71.16,3,Sematangborang,sex,laki_laki,,35744,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.16,3,Sematangborang,sex,perempuan,,35126,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.16,3,Sematangborang,total,total,,70870,jiwa,2025,registration,total_population,3.1,32,,

@@ -1,0 +1,41 @@
+{
+  "datasetCode": "bps-3173-kecamatan-317108-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "31.71.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Johar Baru Dalam Angka 2026",
+  "publisherName": "BPS Kota Jakarta Pusat",
+  "publisherDomain": "3173",
+  "publisherWebsite": "https://jakpuskota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jakarta Pusat (https://jakpuskota.bps.go.id), publikasi \"Kecamatan Johar Baru Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "11.020.013.173.040",
+  "publicationNumber": "31730.26007",
+  "issn": "0852-2200",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jakpuskota.bps.go.id/id/publication/2026/09/28/82dc43762ece8af806c4a35f/kecamatan-johar-baru-dalam-angka-2026.html",
+  "sourceFileSha256": "17d289e45f7b9daca702a21f65b5ebee19964b9470141404d2eca134a79e8ece",
+  "sourceFileBytes": 11720496,
+  "sourcePages": [27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Jakarta Pusat .",
+  "csvPath": "datasets/bps-3173-kecamatan-317108-dalam-angka-2026.csv",
+  "csvSha256": "9272f78bff51fff68a1966e789b9ef55498fb5710f154795c088be936d5c8f77",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Johar Baru , 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Galur 15.87\": unmatched ",
+    "table 3.1: row not stored: row \"Johar Baru 31.61\": unmatched ",
+    "table 3.1: row not stored: row \"Kampung Rawa 18.91\": unmatched ",
+    "table 3.1: row not stored: row \"Tanah Tinggi 33.62\": unmatched "
+  ]
+}

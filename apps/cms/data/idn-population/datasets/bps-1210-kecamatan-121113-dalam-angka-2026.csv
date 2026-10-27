@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.11.13.2004,4,Berampu,sex,laki_laki,,1030,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.13.2004,4,Berampu,sex,perempuan,,1024,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.13.2004,4,Berampu,total,total,,2054,jiwa,2026,registration,total_population,3.1,22,,
+12.11.13.2005,4,Karing,sex,laki_laki,,2096,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.13.2005,4,Karing,sex,perempuan,,2031,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.13.2005,4,Karing,total,total,,4127,jiwa,2026,registration,total_population,3.1,22,,
+12.11.13.2003,4,Banjar Toba,sex,laki_laki,,321,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.13.2003,4,Banjar Toba,sex,perempuan,,332,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.13.2003,4,Banjar Toba,total,total,,653,jiwa,2026,registration,total_population,3.1,22,,
+12.11.13.2002,4,Pasi,sex,laki_laki,,946,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.13.2002,4,Pasi,sex,perempuan,,873,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.13.2002,4,Pasi,total,total,,1819,jiwa,2026,registration,total_population,3.1,22,,
+12.11.13.2001,4,Sambaliang,sex,laki_laki,,632,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.13.2001,4,Sambaliang,sex,perempuan,,595,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.13.2001,4,Sambaliang,total,total,,1227,jiwa,2026,registration,total_population,3.1,22,,
+12.11.13,3,Berampu,sex,laki_laki,,5025,jiwa,2026,registration,total_population,3.1,22,,Laki-Laki/Male
+12.11.13,3,Berampu,sex,perempuan,,4855,jiwa,2026,registration,total_population,3.1,22,,Perempuan/
+12.11.13,3,Berampu,total,total,,9880,jiwa,2026,registration,total_population,3.1,22,,

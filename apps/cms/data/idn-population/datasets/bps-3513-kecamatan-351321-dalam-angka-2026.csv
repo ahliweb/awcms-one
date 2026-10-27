@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.13.21.2001,4,SUMBERBENDO,sex,laki_laki,,2182,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.21.2001,4,SUMBERBENDO,sex,perempuan,,2195,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.21.2001,4,SUMBERBENDO,total,total,,4377,jiwa,2025,registration,total_population,3.1,24,,
+35.13.21.2002,4,JANGUR,sex,laki_laki,,2500,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.21.2002,4,JANGUR,sex,perempuan,,2591,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.21.2002,4,JANGUR,total,total,,5091,jiwa,2025,registration,total_population,3.1,24,,
+35.13.21.2003,4,MUNENG,sex,laki_laki,,2450,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.21.2003,4,MUNENG,sex,perempuan,,2509,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.21.2003,4,MUNENG,total,total,,4959,jiwa,2025,registration,total_population,3.1,24,,
+35.13.21.2004,4,MUNENG KIDUL,sex,laki_laki,,2774,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.21.2004,4,MUNENG KIDUL,sex,perempuan,,2771,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.21.2004,4,MUNENG KIDUL,total,total,,5545,jiwa,2025,registration,total_population,3.1,24,,
+35.13.21.2005,4,POHSANGIT LERES,sex,laki_laki,,1822,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.21.2005,4,POHSANGIT LERES,sex,perempuan,,1848,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.21.2005,4,POHSANGIT LERES,total,total,,3670,jiwa,2025,registration,total_population,3.1,24,,
+35.13.21.2006,4,LAWEYAN,sex,laki_laki,,2630,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.21.2006,4,LAWEYAN,sex,perempuan,,2654,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.21.2006,4,LAWEYAN,total,total,,5284,jiwa,2025,registration,total_population,3.1,24,,
+35.13.21.2007,4,SUMURMATI,sex,laki_laki,,2606,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.21.2007,4,SUMURMATI,sex,perempuan,,2620,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.21.2007,4,SUMURMATI,total,total,,5226,jiwa,2025,registration,total_population,3.1,24,,
+35.13.21.2008,4,MENTOR,sex,laki_laki,,1299,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.21.2008,4,MENTOR,sex,perempuan,,1363,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.21.2008,4,MENTOR,total,total,,2662,jiwa,2025,registration,total_population,3.1,24,,
+35.13.21.2009,4,AMBULU,sex,laki_laki,,2829,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.21.2009,4,AMBULU,sex,perempuan,,2765,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.21.2009,4,AMBULU,total,total,,5594,jiwa,2025,registration,total_population,3.1,24,,
+35.13.21.2010,4,BANJARSARI,sex,laki_laki,,1730,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.21.2010,4,BANJARSARI,sex,perempuan,,1750,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.21.2010,4,BANJARSARI,total,total,,3480,jiwa,2025,registration,total_population,3.1,24,,
+35.13.21.2011,4,LEMAH KEMBAR,sex,laki_laki,,2006,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.21.2011,4,LEMAH KEMBAR,sex,perempuan,,2107,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.21.2011,4,LEMAH KEMBAR,total,total,,4113,jiwa,2025,registration,total_population,3.1,24,,
+35.13.21.2012,4,PESISIR,sex,laki_laki,,4158,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.21.2012,4,PESISIR,sex,perempuan,,4165,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.21.2012,4,PESISIR,total,total,,8323,jiwa,2025,registration,total_population,3.1,24,,
+35.13.21.2013,4,GILI KETAPANG,sex,laki_laki,,4451,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.21.2013,4,GILI KETAPANG,sex,perempuan,,4569,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.21.2013,4,GILI KETAPANG,total,total,,9020,jiwa,2025,registration,total_population,3.1,24,,

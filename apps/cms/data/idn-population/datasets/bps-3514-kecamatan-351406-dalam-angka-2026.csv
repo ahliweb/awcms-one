@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.14.06.2017,4,Tanggulangin,sex,laki_laki,,2211,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+35.14.06.2017,4,Tanggulangin,sex,perempuan,,2277,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+35.14.06.2017,4,Tanggulangin,total,total,,4488,jiwa,2025,registration,total_population,3.1,36,,
+35.14.06.2018,4,Randu Gong,sex,laki_laki,,1287,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+35.14.06.2018,4,Randu Gong,sex,perempuan,,1343,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+35.14.06.2018,4,Randu Gong,total,total,,2630,jiwa,2025,registration,total_population,3.1,36,,
+35.14.06.2019,4,Wangkal Wetan,sex,laki_laki,,691,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+35.14.06.2019,4,Wangkal Wetan,sex,perempuan,,728,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+35.14.06.2019,4,Wangkal Wetan,total,total,,1419,jiwa,2025,registration,total_population,3.1,36,,
+35.14.06.2020,4,Klinter,sex,laki_laki,,1292,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+35.14.06.2020,4,Klinter,sex,perempuan,,1322,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+35.14.06.2020,4,Klinter,total,total,,2614,jiwa,2025,registration,total_population,3.1,36,,
+35.14.06.2021,4,Tundo Soro,sex,laki_laki,,1442,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+35.14.06.2021,4,Tundo Soro,sex,perempuan,,1449,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+35.14.06.2021,4,Tundo Soro,total,total,,2891,jiwa,2025,registration,total_population,3.1,36,,
+35.14.06.2022,4,Ketangi Rejo,sex,laki_laki,,1204,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+35.14.06.2022,4,Ketangi Rejo,sex,perempuan,,1247,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+35.14.06.2022,4,Ketangi Rejo,total,total,,2451,jiwa,2025,registration,total_population,3.1,36,,
+35.14.06.2023,4,Patebon,sex,laki_laki,,1277,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+35.14.06.2023,4,Patebon,sex,perempuan,,1234,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+35.14.06.2023,4,Patebon,total,total,,2511,jiwa,2025,registration,total_population,3.1,36,,
+35.14.06.1024,4,Kejayan,sex,laki_laki,,2401,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+35.14.06.1024,4,Kejayan,sex,perempuan,,2501,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+35.14.06.1024,4,Kejayan,total,total,,4902,jiwa,2025,registration,total_population,3.1,36,,
+35.14.06.2025,4,Sladi,sex,laki_laki,,1708,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+35.14.06.2025,4,Sladi,sex,perempuan,,1729,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+35.14.06.2025,4,Sladi,total,total,,3437,jiwa,2025,registration,total_population,3.1,36,,
+35.14.06,3,Kecamatan Kejayan,sex,laki_laki,,34538,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+35.14.06,3,Kecamatan Kejayan,sex,perempuan,,35761,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+35.14.06,3,Kecamatan Kejayan,total,total,,70299,jiwa,2025,registration,total_population,3.1,36,,

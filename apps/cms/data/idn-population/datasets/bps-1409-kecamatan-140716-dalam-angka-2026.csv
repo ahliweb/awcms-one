@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.07.16.2005,4,Sei Meranti Darussalam,sex,laki_laki,,1909,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.16.2005,4,Sei Meranti Darussalam,sex,perempuan,,1813,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.16.2005,4,Sei Meranti Darussalam,total,total,,3722,jiwa,2025,registration,total_population,3.1,18,,
+14.07.16.2006,4,Akar Belingkar,sex,laki_laki,,944,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.16.2006,4,Akar Belingkar,sex,perempuan,,916,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.16.2006,4,Akar Belingkar,total,total,,1860,jiwa,2025,registration,total_population,3.1,18,,
+14.07.16.2004,4,Sei Meranti,sex,laki_laki,,1939,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.16.2004,4,Sei Meranti,sex,perempuan,,1827,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.16.2004,4,Sei Meranti,total,total,,3766,jiwa,2025,registration,total_population,3.1,18,,
+14.07.16.2001,4,Tanjung Medan,sex,laki_laki,,3690,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.16.2001,4,Tanjung Medan,sex,perempuan,,3464,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.16.2001,4,Tanjung Medan,total,total,,7154,jiwa,2025,registration,total_population,3.1,18,,
+14.07.16.2007,4,Tangga Batu,sex,laki_laki,,1273,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.16.2007,4,Tangga Batu,sex,perempuan,,1239,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.16.2007,4,Tangga Batu,total,total,,2512,jiwa,2025,registration,total_population,3.1,18,,
+14.07.16.2003,4,Tanjung Medan Barat,sex,laki_laki,,1586,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.16.2003,4,Tanjung Medan Barat,sex,perempuan,,1505,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.16.2003,4,Tanjung Medan Barat,total,total,,3091,jiwa,2025,registration,total_population,3.1,18,,
+14.07.16.2012,4,Tanjung Sari,sex,laki_laki,,1317,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.16.2012,4,Tanjung Sari,sex,perempuan,,1181,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.16.2012,4,Tanjung Sari,total,total,,2498,jiwa,2025,registration,total_population,3.1,18,,
+14.07.16.2010,4,Pondok Kresek,sex,laki_laki,,1894,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.16.2010,4,Pondok Kresek,sex,perempuan,,1811,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.16.2010,4,Pondok Kresek,total,total,,3705,jiwa,2025,registration,total_population,3.1,18,,
+14.07.16.2008,4,Perkebunan Tanjung Medan,sex,laki_laki,,989,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.16.2008,4,Perkebunan Tanjung Medan,sex,perempuan,,899,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.16.2008,4,Perkebunan Tanjung Medan,total,total,,1888,jiwa,2025,registration,total_population,3.1,18,,
+14.07.16.2009,4,Sri Kayangan,sex,laki_laki,,1079,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.16.2009,4,Sri Kayangan,sex,perempuan,,1023,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.16.2009,4,Sri Kayangan,total,total,,2102,jiwa,2025,registration,total_population,3.1,18,,
+14.07.16.2002,4,Tanjung Medan Utara,sex,laki_laki,,1196,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.16.2002,4,Tanjung Medan Utara,sex,perempuan,,1075,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.16.2002,4,Tanjung Medan Utara,total,total,,2271,jiwa,2025,registration,total_population,3.1,18,,
+14.07.16,3,Tanjung Medan,sex,laki_laki,,20726,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.16,3,Tanjung Medan,sex,perempuan,,20484,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.16,3,Tanjung Medan,total,total,,41210,jiwa,2025,registration,total_population,3.1,18,,

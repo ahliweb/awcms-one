@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.10.07.2001,4,Sibargot,sex,laki_laki,,1703,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.07.2001,4,Sibargot,sex,perempuan,,1683,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.07.2001,4,Sibargot,total,total,,3386,jiwa,2025,registration,total_population,3.1,29,,
+12.10.07.2002,4,Bandar Kumbul,sex,laki_laki,,2222,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.07.2002,4,Bandar Kumbul,sex,perempuan,,2123,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.07.2002,4,Bandar Kumbul,total,total,,4345,jiwa,2025,registration,total_population,3.1,29,,
+12.10.07.2003,4,Tanjung Medan,sex,laki_laki,,2585,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.07.2003,4,Tanjung Medan,sex,perempuan,,2535,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.07.2003,4,Tanjung Medan,total,total,,5120,jiwa,2025,registration,total_population,3.1,29,,
+12.10.07.2004,4,Janji,sex,laki_laki,,3961,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.07.2004,4,Janji,sex,perempuan,,3825,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.07.2004,4,Janji,total,total,,7786,jiwa,2025,registration,total_population,3.1,29,,
+12.10.07.2008,4,Aek buru Selatan,sex,laki_laki,,181,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.07.2008,4,Aek buru Selatan,sex,perempuan,,168,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.07.2008,4,Aek buru Selatan,total,total,,349,jiwa,2025,registration,total_population,3.1,29,,
+12.10.07.2009,4,Kampung Baru,sex,laki_laki,,3547,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.07.2009,4,Kampung Baru,sex,perempuan,,3453,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.07.2009,4,Kampung Baru,total,total,,7000,jiwa,2025,registration,total_population,3.1,29,,
+12.10.07.2005,4,Tebing Linggahara,sex,laki_laki,,2745,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.07.2005,4,Tebing Linggahara,sex,perempuan,,2725,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.07.2005,4,Tebing Linggahara,total,total,,5470,jiwa,2025,registration,total_population,3.1,29,,
+12.10.07.2010,4,Tebing Linggahara Baru,sex,laki_laki,,2377,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.07.2010,4,Tebing Linggahara Baru,sex,perempuan,,2348,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.07.2010,4,Tebing Linggahara Baru,total,total,,4725,jiwa,2025,registration,total_population,3.1,29,,
+12.10.07,3,Bilah Barat,sex,laki_laki,,20820,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.07,3,Bilah Barat,sex,perempuan,,20257,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.07,3,Bilah Barat,total,total,,41077,jiwa,2025,registration,total_population,3.1,29,,
+12.10.07,3,Bilah Barat,age_group,0-4,laki_laki,1408,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.10.07,3,Bilah Barat,age_group,0-4,perempuan,1287,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.10.07,3,Bilah Barat,age_group,0-4,,2695,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.10.07,3,Bilah Barat,age_group,5-9,laki_laki,1870,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.10.07,3,Bilah Barat,age_group,5-9,perempuan,1707,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.10.07,3,Bilah Barat,age_group,5-9,,3577,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.10.07,3,Bilah Barat,age_group,10-14,laki_laki,2114,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+12.10.07,3,Bilah Barat,age_group,10-14,perempuan,1973,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+12.10.07,3,Bilah Barat,age_group,10-14,,4087,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+12.10.07,3,Bilah Barat,age_group,15-19,laki_laki,2153,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.10.07,3,Bilah Barat,age_group,15-19,perempuan,2061,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.10.07,3,Bilah Barat,age_group,15-19,,4214,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.10.07,3,Bilah Barat,age_group,20-24,laki_laki,2141,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.10.07,3,Bilah Barat,age_group,20-24,perempuan,1972,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.10.07,3,Bilah Barat,age_group,20-24,,4113,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.10.07,3,Bilah Barat,age_group,25-29,laki_laki,1807,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.10.07,3,Bilah Barat,age_group,25-29,perempuan,1701,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.10.07,3,Bilah Barat,age_group,25-29,,3508,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.10.07,3,Bilah Barat,age_group,30-34,laki_laki,1635,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+12.10.07,3,Bilah Barat,age_group,30-34,perempuan,1512,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+12.10.07,3,Bilah Barat,age_group,30-34,,3147,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+12.10.07,3,Bilah Barat,age_group,35-39,laki_laki,1500,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.10.07,3,Bilah Barat,age_group,35-39,perempuan,1510,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.10.07,3,Bilah Barat,age_group,35-39,,3010,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.10.07,3,Bilah Barat,age_group,40-44,laki_laki,1602,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.10.07,3,Bilah Barat,age_group,40-44,perempuan,1525,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.10.07,3,Bilah Barat,age_group,40-44,,3127,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.10.07,3,Bilah Barat,age_group,45-49,laki_laki,1240,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.10.07,3,Bilah Barat,age_group,45-49,perempuan,1191,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.10.07,3,Bilah Barat,age_group,45-49,,2431,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.10.07,3,Bilah Barat,age_group,50-54,laki_laki,990,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.10.07,3,Bilah Barat,age_group,50-54,perempuan,1042,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.10.07,3,Bilah Barat,age_group,50-54,,2032,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.10.07,3,Bilah Barat,age_group,55-59,laki_laki,790,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.10.07,3,Bilah Barat,age_group,55-59,perempuan,853,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.10.07,3,Bilah Barat,age_group,55-59,,1643,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.10.07,3,Bilah Barat,age_group,60-64,laki_laki,620,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.10.07,3,Bilah Barat,age_group,60-64,perempuan,692,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.10.07,3,Bilah Barat,age_group,60-64,,1312,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.10.07,3,Bilah Barat,age_group,65-69,laki_laki,464,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.10.07,3,Bilah Barat,age_group,65-69,perempuan,563,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.10.07,3,Bilah Barat,age_group,65-69,,1027,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.10.07,3,Bilah Barat,age_group,70-74,laki_laki,237,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.10.07,3,Bilah Barat,age_group,70-74,perempuan,300,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.10.07,3,Bilah Barat,age_group,70-74,,537,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.10.07,3,Bilah Barat,age_group,75+,laki_laki,232,jiwa,2025,registration,total_population,3.2,31,,75+
+12.10.07,3,Bilah Barat,age_group,75+,perempuan,349,jiwa,2025,registration,total_population,3.2,31,,75+
+12.10.07,3,Bilah Barat,age_group,75+,,581,jiwa,2025,registration,total_population,3.2,31,,75+
+12.10.07,3,Bilah Barat,sex,laki_laki,,20803,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+12.10.07,3,Bilah Barat,sex,perempuan,,20238,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+12.10.07,3,Bilah Barat,total,total,,41041,jiwa,2025,registration,total_population,3.2,31,,

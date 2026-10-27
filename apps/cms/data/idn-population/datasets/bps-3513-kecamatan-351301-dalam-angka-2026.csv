@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.13.01.2001,4,NGADISARI,sex,laki_laki,,686,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.01.2001,4,NGADISARI,sex,perempuan,,749,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.01.2001,4,NGADISARI,total,total,,1435,jiwa,2025,registration,total_population,3.1,24,,
+35.13.01.2002,4,WONOTORO,sex,laki_laki,,315,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.01.2002,4,WONOTORO,sex,perempuan,,331,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.01.2002,4,WONOTORO,total,total,,646,jiwa,2025,registration,total_population,3.1,24,,
+35.13.01.2003,4,JETAK,sex,laki_laki,,279,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.01.2003,4,JETAK,sex,perempuan,,280,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.01.2003,4,JETAK,total,total,,559,jiwa,2025,registration,total_population,3.1,24,,
+35.13.01.2004,4,NGADAS,sex,laki_laki,,318,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.01.2004,4,NGADAS,sex,perempuan,,328,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.01.2004,4,NGADAS,total,total,,646,jiwa,2025,registration,total_population,3.1,24,,
+35.13.01.2005,4,NGADIREJO,sex,laki_laki,,668,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.01.2005,4,NGADIREJO,sex,perempuan,,668,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.01.2005,4,NGADIREJO,total,total,,1336,jiwa,2025,registration,total_population,3.1,24,,
+35.13.01.2006,4,SARIWANI,sex,laki_laki,,731,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.01.2006,4,SARIWANI,sex,perempuan,,739,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.01.2006,4,SARIWANI,total,total,,1470,jiwa,2025,registration,total_population,3.1,24,,
+35.13.01.2007,4,WONOKERTO,sex,laki_laki,,640,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.01.2007,4,WONOKERTO,sex,perempuan,,663,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.01.2007,4,WONOKERTO,total,total,,1303,jiwa,2025,registration,total_population,3.1,24,,
+35.13.01.2008,4,SAPIKEREP,sex,laki_laki,,1401,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.01.2008,4,SAPIKEREP,sex,perempuan,,1435,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.01.2008,4,SAPIKEREP,total,total,,2836,jiwa,2025,registration,total_population,3.1,24,,
+35.13.01.2009,4,SUKAPURA,sex,laki_laki,,1958,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.01.2009,4,SUKAPURA,sex,perempuan,,2010,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.01.2009,4,SUKAPURA,total,total,,3968,jiwa,2025,registration,total_population,3.1,24,,
+35.13.01.2010,4,PAKEL,sex,laki_laki,,934,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.01.2010,4,PAKEL,sex,perempuan,,899,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.01.2010,4,PAKEL,total,total,,1833,jiwa,2025,registration,total_population,3.1,24,,
+35.13.01.2011,4,KEDASIH,sex,laki_laki,,942,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.01.2011,4,KEDASIH,sex,perempuan,,913,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.01.2011,4,KEDASIH,total,total,,1855,jiwa,2025,registration,total_population,3.1,24,,
+35.13.01.2012,4,NGEPUNG,sex,laki_laki,,1134,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.01.2012,4,NGEPUNG,sex,perempuan,,1141,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.01.2012,4,NGEPUNG,total,total,,2275,jiwa,2025,registration,total_population,3.1,24,,
+35.13.01,3,Kecamatan Sukapura,sex,laki_laki,,10006,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.01,3,Kecamatan Sukapura,sex,perempuan,,10156,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.01,3,Kecamatan Sukapura,total,total,,20162,jiwa,2025,registration,total_population,3.1,24,,

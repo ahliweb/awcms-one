@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.01.01.2015,4,Lawang Agung,sex,laki_laki,,660,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.01.2015,4,Lawang Agung,sex,perempuan,,622,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.01.2015,4,Lawang Agung,total,total,,1282,jiwa,2025,registration,total_population,3.1,26,,
+17.01.01.2014,4,Durian Sebatang,sex,laki_laki,,692,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.01.2014,4,Durian Sebatang,sex,perempuan,,607,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.01.2014,4,Durian Sebatang,total,total,,1299,jiwa,2025,registration,total_population,3.1,26,,
+17.01.01.2013,4,Pajar Bulan,sex,laki_laki,,368,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.01.2013,4,Pajar Bulan,sex,perempuan,,310,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.01.2013,4,Pajar Bulan,total,total,,678,jiwa,2025,registration,total_population,3.1,26,,
+17.01.01.2012,4,Tanjung Besar,sex,laki_laki,,210,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.01.2012,4,Tanjung Besar,sex,perempuan,,196,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.01.2012,4,Tanjung Besar,total,total,,406,jiwa,2025,registration,total_population,3.1,26,,
+17.01.01.2011,4,Muara Tiga,sex,laki_laki,,239,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.01.2011,4,Muara Tiga,sex,perempuan,,249,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.01.2011,4,Muara Tiga,total,total,,488,jiwa,2025,registration,total_population,3.1,26,,
+17.01.01.2010,4,Suka Nanti,sex,laki_laki,,242,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.01.2010,4,Suka Nanti,sex,perempuan,,234,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.01.2010,4,Suka Nanti,total,total,,476,jiwa,2025,registration,total_population,3.1,26,,
+17.01.01.2008,4,Tanjung Negara,sex,laki_laki,,225,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.01.2008,4,Tanjung Negara,sex,perempuan,,226,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.01.2008,4,Tanjung Negara,total,total,,451,jiwa,2025,registration,total_population,3.1,26,,
+17.01.01.2007,4,Tanjung Alam,sex,laki_laki,,466,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.01.2007,4,Tanjung Alam,sex,perempuan,,458,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.01.2007,4,Tanjung Alam,total,total,,924,jiwa,2025,registration,total_population,3.1,26,,
+17.01.01.2009,4,Keban Agung III,sex,laki_laki,,231,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.01.2009,4,Keban Agung III,sex,perempuan,,249,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.01.2009,4,Keban Agung III,total,total,,480,jiwa,2025,registration,total_population,3.1,26,,
+17.01.01.2006,4,Keban Agung II,sex,laki_laki,,356,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.01.2006,4,Keban Agung II,sex,perempuan,,335,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.01.2006,4,Keban Agung II,total,total,,691,jiwa,2025,registration,total_population,3.1,26,,
+17.01.01.2005,4,Keban Agung I,sex,laki_laki,,323,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.01.2005,4,Keban Agung I,sex,perempuan,,337,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.01.2005,4,Keban Agung I,total,total,,660,jiwa,2025,registration,total_population,3.1,26,,
+17.01.01.2004,4,Palak Siring,sex,laki_laki,,521,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.01.2004,4,Palak Siring,sex,perempuan,,468,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.01.2004,4,Palak Siring,total,total,,989,jiwa,2025,registration,total_population,3.1,26,,
+17.01.01.2003,4,Bumi Agung,sex,laki_laki,,246,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.01.2003,4,Bumi Agung,sex,perempuan,,236,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.01.2003,4,Bumi Agung,total,total,,482,jiwa,2025,registration,total_population,3.1,26,,
+17.01.01.2002,4,Rantau Sialang,sex,laki_laki,,327,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.01.2002,4,Rantau Sialang,sex,perempuan,,295,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.01.2002,4,Rantau Sialang,total,total,,622,jiwa,2025,registration,total_population,3.1,26,,
+17.01.01.2001,4,Batu Ampar,sex,laki_laki,,494,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.01.2001,4,Batu Ampar,sex,perempuan,,458,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.01.2001,4,Batu Ampar,total,total,,952,jiwa,2025,registration,total_population,3.1,26,,
+17.01.01.2030,4,Muara Tiga Ilir,sex,laki_laki,,214,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.01.2030,4,Muara Tiga Ilir,sex,perempuan,,189,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.01.2030,4,Muara Tiga Ilir,total,total,,403,jiwa,2025,registration,total_population,3.1,26,,
+17.01.01.2027,4,Nanti Agung,sex,laki_laki,,249,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.01.2027,4,Nanti Agung,sex,perempuan,,258,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.01.2027,4,Nanti Agung,total,total,,507,jiwa,2025,registration,total_population,3.1,26,,
+17.01.01.2028,4,Karang Agung,sex,laki_laki,,451,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.01.2028,4,Karang Agung,sex,perempuan,,413,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.01.2028,4,Karang Agung,total,total,,864,jiwa,2025,registration,total_population,3.1,26,,
+17.01.01.2029,4,Lubuk Resam,sex,laki_laki,,288,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.01.2029,4,Lubuk Resam,sex,perempuan,,269,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.01.2029,4,Lubuk Resam,total,total,,557,jiwa,2025,registration,total_population,3.1,26,,
+17.01.01,3,Kecamatan Kedurang,sex,laki_laki,,6802,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.01,3,Kecamatan Kedurang,sex,perempuan,,6409,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.01,3,Kecamatan Kedurang,total,total,,13211,jiwa,2025,registration,total_population,3.1,26,,

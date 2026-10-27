@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.22.19.1008,4,Beji,sex,laki_laki,,4349,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.19.1008,4,Beji,sex,perempuan,,4378,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.19.1008,4,Beji,total,total,,8727,jiwa,2025,registration,total_population,3.1,22,,
+33.22.19.2009,4,Leyangan,sex,laki_laki,,4531,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.19.2009,4,Leyangan,sex,perempuan,,4621,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.19.2009,4,Leyangan,total,total,,9152,jiwa,2025,registration,total_population,3.1,22,,
+33.22.19.2010,4,Kalongan,sex,laki_laki,,7429,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.19.2010,4,Kalongan,sex,perempuan,,7487,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.19.2010,4,Kalongan,total,total,,14916,jiwa,2025,registration,total_population,3.1,22,,
+33.22.19.2005,4,Kawengen,sex,laki_laki,,3938,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.19.2005,4,Kawengen,sex,perempuan,,3885,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.19.2005,4,Kawengen,total,total,,7823,jiwa,2025,registration,total_population,3.1,22,,
+33.22.19.2006,4,Kalikayen,sex,laki_laki,,2075,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.19.2006,4,Kalikayen,sex,perempuan,,2076,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.19.2006,4,Kalikayen,total,total,,4151,jiwa,2025,registration,total_population,3.1,22,,
+33.22.19.2004,4,Mluweh,sex,laki_laki,,2338,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.19.2004,4,Mluweh,sex,perempuan,,2319,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.19.2004,4,Mluweh,total,total,,4657,jiwa,2025,registration,total_population,3.1,22,,
+33.22.19.1003,4,Susukan,sex,laki_laki,,4920,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.19.1003,4,Susukan,sex,perempuan,,5057,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.19.1003,4,Susukan,total,total,,9977,jiwa,2025,registration,total_population,3.1,22,,
+33.22.19.1002,4,Kalirejo,sex,laki_laki,,2346,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.19.1002,4,Kalirejo,sex,perempuan,,2339,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.19.1002,4,Kalirejo,total,total,,4685,jiwa,2025,registration,total_population,3.1,22,,
+33.22.19.1001,4,Sidomulyo,sex,laki_laki,,2195,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.19.1001,4,Sidomulyo,sex,perempuan,,2390,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.19.1001,4,Sidomulyo,total,total,,4585,jiwa,2025,registration,total_population,3.1,22,,
+33.22.19.1007,4,Gedanganak,sex,laki_laki,,6758,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.19.1007,4,Gedanganak,sex,perempuan,,6967,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.19.1007,4,Gedanganak,total,total,,13725,jiwa,2025,registration,total_population,3.1,22,,
+33.22.19,3,Ungaran Timur,age_group,0-4,laki_laki,2537,jiwa,2025,registration,total_population,3.2,24,,0-4
+33.22.19,3,Ungaran Timur,age_group,0-4,perempuan,2445,jiwa,2025,registration,total_population,3.2,24,,0-4
+33.22.19,3,Ungaran Timur,age_group,0-4,,4982,jiwa,2025,registration,total_population,3.2,24,,0-4
+33.22.19,3,Ungaran Timur,age_group,5-9,laki_laki,3259,jiwa,2025,registration,total_population,3.2,24,,5-9
+33.22.19,3,Ungaran Timur,age_group,5-9,perempuan,3118,jiwa,2025,registration,total_population,3.2,24,,5-9
+33.22.19,3,Ungaran Timur,age_group,5-9,,6377,jiwa,2025,registration,total_population,3.2,24,,5-9
+33.22.19,3,Ungaran Timur,age_group,10-14,laki_laki,3278,jiwa,2025,registration,total_population,3.2,24,,10-14
+33.22.19,3,Ungaran Timur,age_group,10-14,perempuan,3114,jiwa,2025,registration,total_population,3.2,24,,10-14
+33.22.19,3,Ungaran Timur,age_group,10-14,,6392,jiwa,2025,registration,total_population,3.2,24,,10-14
+33.22.19,3,Ungaran Timur,age_group,15-19,laki_laki,3231,jiwa,2025,registration,total_population,3.2,24,,15-19
+33.22.19,3,Ungaran Timur,age_group,15-19,perempuan,2977,jiwa,2025,registration,total_population,3.2,24,,15-19
+33.22.19,3,Ungaran Timur,age_group,15-19,,6208,jiwa,2025,registration,total_population,3.2,24,,15-19
+33.22.19,3,Ungaran Timur,age_group,20-24,laki_laki,3152,jiwa,2025,registration,total_population,3.2,24,,20-24
+33.22.19,3,Ungaran Timur,age_group,20-24,perempuan,3050,jiwa,2025,registration,total_population,3.2,24,,20-24
+33.22.19,3,Ungaran Timur,age_group,20-24,,6202,jiwa,2025,registration,total_population,3.2,24,,20-24
+33.22.19,3,Ungaran Timur,age_group,25-29,laki_laki,3279,jiwa,2025,registration,total_population,3.2,24,,25-29
+33.22.19,3,Ungaran Timur,age_group,25-29,perempuan,3223,jiwa,2025,registration,total_population,3.2,24,,25-29
+33.22.19,3,Ungaran Timur,age_group,25-29,,6502,jiwa,2025,registration,total_population,3.2,24,,25-29
+33.22.19,3,Ungaran Timur,age_group,30-34,laki_laki,3178,jiwa,2025,registration,total_population,3.2,24,,30-34
+33.22.19,3,Ungaran Timur,age_group,30-34,perempuan,3305,jiwa,2025,registration,total_population,3.2,24,,30-34
+33.22.19,3,Ungaran Timur,age_group,30-34,,6483,jiwa,2025,registration,total_population,3.2,24,,30-34
+33.22.19,3,Ungaran Timur,age_group,35-39,laki_laki,2955,jiwa,2025,registration,total_population,3.2,24,,35-39
+33.22.19,3,Ungaran Timur,age_group,35-39,perempuan,3004,jiwa,2025,registration,total_population,3.2,24,,35-39
+33.22.19,3,Ungaran Timur,age_group,35-39,,5959,jiwa,2025,registration,total_population,3.2,24,,35-39
+33.22.19,3,Ungaran Timur,age_group,40-44,laki_laki,3073,jiwa,2025,registration,total_population,3.2,24,,40-44
+33.22.19,3,Ungaran Timur,age_group,40-44,perempuan,3201,jiwa,2025,registration,total_population,3.2,24,,40-44
+33.22.19,3,Ungaran Timur,age_group,40-44,,6274,jiwa,2025,registration,total_population,3.2,24,,40-44
+33.22.19,3,Ungaran Timur,age_group,45-49,laki_laki,2963,jiwa,2025,registration,total_population,3.2,24,,45-49
+33.22.19,3,Ungaran Timur,age_group,45-49,perempuan,3204,jiwa,2025,registration,total_population,3.2,24,,45-49
+33.22.19,3,Ungaran Timur,age_group,45-49,,6167,jiwa,2025,registration,total_population,3.2,24,,45-49
+33.22.19,3,Ungaran Timur,age_group,50-54,laki_laki,2578,jiwa,2025,registration,total_population,3.2,24,,50-54
+33.22.19,3,Ungaran Timur,age_group,50-54,perempuan,2885,jiwa,2025,registration,total_population,3.2,24,,50-54
+33.22.19,3,Ungaran Timur,age_group,50-54,,5463,jiwa,2025,registration,total_population,3.2,24,,50-54
+33.22.19,3,Ungaran Timur,age_group,55-59,laki_laki,2362,jiwa,2025,registration,total_population,3.2,24,,55-59
+33.22.19,3,Ungaran Timur,age_group,55-59,perempuan,2657,jiwa,2025,registration,total_population,3.2,24,,55-59
+33.22.19,3,Ungaran Timur,age_group,55-59,,5019,jiwa,2025,registration,total_population,3.2,24,,55-59
+33.22.19,3,Ungaran Timur,age_group,60-64,laki_laki,1946,jiwa,2025,registration,total_population,3.2,24,,60-64
+33.22.19,3,Ungaran Timur,age_group,60-64,perempuan,2069,jiwa,2025,registration,total_population,3.2,24,,60-64
+33.22.19,3,Ungaran Timur,age_group,60-64,,4015,jiwa,2025,registration,total_population,3.2,24,,60-64
+33.22.19,3,Ungaran Timur,age_group,65-69,laki_laki,1487,jiwa,2025,registration,total_population,3.2,24,,65-69
+33.22.19,3,Ungaran Timur,age_group,65-69,perempuan,1444,jiwa,2025,registration,total_population,3.2,24,,65-69
+33.22.19,3,Ungaran Timur,age_group,65-69,,2931,jiwa,2025,registration,total_population,3.2,24,,65-69
+33.22.19,3,Ungaran Timur,age_group,70-74,laki_laki,864,jiwa,2025,registration,total_population,3.2,24,,70-74
+33.22.19,3,Ungaran Timur,age_group,70-74,perempuan,827,jiwa,2025,registration,total_population,3.2,24,,70-74
+33.22.19,3,Ungaran Timur,age_group,70-74,,1691,jiwa,2025,registration,total_population,3.2,24,,70-74
+33.22.19,3,Ungaran Timur,age_group,75+,laki_laki,737,jiwa,2025,registration,total_population,3.2,24,,75+
+33.22.19,3,Ungaran Timur,age_group,75+,perempuan,996,jiwa,2025,registration,total_population,3.2,24,,75+
+33.22.19,3,Ungaran Timur,age_group,75+,,1733,jiwa,2025,registration,total_population,3.2,24,,75+
+33.22.19,3,Ungaran Timur,sex,laki_laki,,40879,jiwa,2025,registration,total_population,3.2,24,,Laki-Laki
+33.22.19,3,Ungaran Timur,sex,perempuan,,41519,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+33.22.19,3,Ungaran Timur,total,total,,82398,jiwa,2025,registration,total_population,3.2,24,,

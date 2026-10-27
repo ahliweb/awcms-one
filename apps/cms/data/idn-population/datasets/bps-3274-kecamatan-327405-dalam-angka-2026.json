@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3274-kecamatan-327405-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.74.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kesambi Dalam Angka 2026",
+  "publisherName": "BPS Kota Cirebon",
+  "publisherDomain": "3274",
+  "publisherWebsite": "https://cirebonkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Cirebon (https://cirebonkota.bps.go.id), publikasi \"Kecamatan Kesambi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3274040",
+  "publicationNumber": "32740.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cirebonkota.bps.go.id/id/publication/2026/09/28/163bff2d8377d59b16c4ba76/kecamatan-kesambi-dalam-angka-2026.html",
+  "sourceFileSha256": "d46ddd0caf9b1df7f8bc092ba9479d6560dbccd59876d25ae3ea14d28d3dd7c6",
+  "sourceFileBytes": 8581148,
+  "sourcePages": [27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Cirebon",
+  "csvPath": "datasets/bps-3274-kecamatan-327405-dalam-angka-2026.csv",
+  "csvSha256": "18856a026fa73817fd38642949c4d100717f8e9a35efc7ab69cb2e705dd6bb7a",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kesambi , 202 5",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1 (sex-by-village) could not be read reliably and is not included (figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?))"
+  ]
+}

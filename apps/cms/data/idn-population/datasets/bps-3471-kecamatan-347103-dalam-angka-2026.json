@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3471-kecamatan-347103-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "34.71.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gondokusuman Dalam Angka 2026",
+  "publisherName": "BPS Kota Yogyakarta",
+  "publisherDomain": "3471",
+  "publisherWebsite": "https://jogjakota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Yogyakarta (https://jogjakota.bps.go.id), publikasi \"Kecamatan Gondokusuman Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "34710",
+  "issn": "2615-0069",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jogjakota.bps.go.id/id/publication/2026/09/28/e08bc37cdc0cc8f18256b357/kecamatan-gondokusuman-dalam-angka-2026.html",
+  "sourceFileSha256": "6a9f334dabdd526114a5e4a26fc4313fcffbe0b9d2cf7105fc65b9cb363beb76",
+  "sourceFileBytes": 9924016,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Yogyakarta.",
+  "csvPath": "datasets/bps-3471-kecamatan-347103-dalam-angka-2026.csv",
+  "csvSha256": "ca0136c6c05aacf845eb033f9f6a73874784c68d86f1a375986cffaab731aefa",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Gondokusuman, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Gondokusuman, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

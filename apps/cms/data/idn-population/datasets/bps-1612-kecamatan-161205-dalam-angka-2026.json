@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-1612-kecamatan-161205-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.12.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tanah Abang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Penukal Abab Lematang Ilir",
+  "publisherDomain": "1612",
+  "publisherWebsite": "https://palikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Penukal Abab Lematang Ilir (https://palikab.bps.go.id), publikasi \"Kecamatan Tanah Abang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1612020",
+  "publicationNumber": "16120.26005",
+  "issn": "2745-3464",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://palikab.bps.go.id/id/publication/2026/09/28/7707304d83fc138e7027e954/kecamatan-tanah-abang-dalam-angka-2026.html",
+  "sourceFileSha256": "4efc70cd06c00efd41677f4e3993cefdb0b58446cc6f78543790eda6f387e1cc",
+  "sourceFileBytes": 4405598,
+  "sourcePages": [23, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Penukal Abab Lematang Ilir.",
+  "csvPath": "datasets/bps-1612-kecamatan-161205-dalam-angka-2026.csv",
+  "csvSha256": "3d2e64da851f657788aadb9143c6fa8c88ddca65485a4322eae138393b73fa08",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Tanah Abang, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Nama Kecamatan\": unmatched "
+  ]
+}

@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.03.11.2001,4,Serangai,sex,laki_laki,,586,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.03.11.2001,4,Serangai,sex,perempuan,,560,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.03.11.2001,4,Serangai,total,total,,1146,jiwa,2025,registration,total_population,3.1,27,,
+17.03.11.2002,4,Selolong,sex,laki_laki,,434,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.03.11.2002,4,Selolong,sex,perempuan,,416,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.03.11.2002,4,Selolong,total,total,,850,jiwa,2025,registration,total_population,3.1,27,,
+17.03.11.2003,4,Air Lakok,sex,laki_laki,,368,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.03.11.2003,4,Air Lakok,sex,perempuan,,345,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.03.11.2003,4,Air Lakok,total,total,,713,jiwa,2025,registration,total_population,3.1,27,,
+17.03.11.2004,4,Bintunan,sex,laki_laki,,400,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.03.11.2004,4,Bintunan,sex,perempuan,,390,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.03.11.2004,4,Bintunan,total,total,,790,jiwa,2025,registration,total_population,3.1,27,,
+17.03.11.2005,4,Suka Marga,sex,laki_laki,,147,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.03.11.2005,4,Suka Marga,sex,perempuan,,141,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.03.11.2005,4,Suka Marga,total,total,,288,jiwa,2025,registration,total_population,3.1,27,,
+17.03.11.2006,4,Batik Nau,sex,laki_laki,,400,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.03.11.2006,4,Batik Nau,sex,perempuan,,365,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.03.11.2006,4,Batik Nau,total,total,,765,jiwa,2025,registration,total_population,3.1,27,,
+17.03.11.2007,4,Pagar Ruyung,sex,laki_laki,,354,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.03.11.2007,4,Pagar Ruyung,sex,perempuan,,314,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.03.11.2007,4,Pagar Ruyung,total,total,,668,jiwa,2025,registration,total_population,3.1,27,,
+17.03.11.2008,4,Durian Amparan,sex,laki_laki,,624,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.03.11.2008,4,Durian Amparan,sex,perempuan,,565,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.03.11.2008,4,Durian Amparan,total,total,,1189,jiwa,2025,registration,total_population,3.1,27,,
+17.03.11.2013,4,Samban Jaya,sex,laki_laki,,1170,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.03.11.2013,4,Samban Jaya,sex,perempuan,,1114,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.03.11.2013,4,Samban Jaya,total,total,,2284,jiwa,2025,registration,total_population,3.1,27,,
+17.03.11.2015,4,Air Manganyau,sex,laki_laki,,691,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.03.11.2015,4,Air Manganyau,sex,perempuan,,593,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.03.11.2015,4,Air Manganyau,total,total,,1284,jiwa,2025,registration,total_population,3.1,27,,
+17.03.11.2010,4,Ulak Tanding,sex,laki_laki,,272,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.03.11.2010,4,Ulak Tanding,sex,perempuan,,236,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.03.11.2010,4,Ulak Tanding,total,total,,508,jiwa,2025,registration,total_population,3.1,27,,
+17.03.11.2012,4,Sekiau,sex,laki_laki,,139,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.03.11.2012,4,Sekiau,sex,perempuan,,140,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.03.11.2012,4,Sekiau,total,total,,279,jiwa,2025,registration,total_population,3.1,27,,
+17.03.11.2011,4,Seberang Tunggal,sex,laki_laki,,146,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.03.11.2011,4,Seberang Tunggal,sex,perempuan,,137,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.03.11.2011,4,Seberang Tunggal,total,total,,283,jiwa,2025,registration,total_population,3.1,27,,
+17.03.11,3,Batik Nau,sex,laki_laki,,7139,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+17.03.11,3,Batik Nau,sex,perempuan,,6704,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+17.03.11,3,Batik Nau,total,total,,13843,jiwa,2025,registration,total_population,3.1,27,,

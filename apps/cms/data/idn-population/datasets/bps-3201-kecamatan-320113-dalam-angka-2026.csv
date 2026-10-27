@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.01.13.2002,4,Cimanggis,sex,laki_laki,,12898,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.13.2002,4,Cimanggis,sex,perempuan,,12466,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.13.2002,4,Cimanggis,total,total,,25364,jiwa,2025,registration,total_population,3.1,36,,
+32.01.13.2006,4,Waringin Jaya,sex,laki_laki,,9986,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.13.2006,4,Waringin Jaya,sex,perempuan,,9736,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.13.2006,4,Waringin Jaya,total,total,,19722,jiwa,2025,registration,total_population,3.1,36,,
+32.01.13.2005,4,Kedung Waringin,sex,laki_laki,,14614,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.13.2005,4,Kedung Waringin,sex,perempuan,,14449,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.13.2005,4,Kedung Waringin,total,total,,29063,jiwa,2025,registration,total_population,3.1,36,,
+32.01.13.2009,4,Bojonggede,sex,laki_laki,,24685,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.13.2009,4,Bojonggede,sex,perempuan,,24419,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.13.2009,4,Bojonggede,total,total,,49104,jiwa,2025,registration,total_population,3.1,36,,
+32.01.13.2003,4,Susukan,sex,laki_laki,,14579,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.13.2003,4,Susukan,sex,perempuan,,14209,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.13.2003,4,Susukan,total,total,,28788,jiwa,2025,registration,total_population,3.1,36,,
+32.01.13.2001,4,Bojong Baru,sex,laki_laki,,13664,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.13.2001,4,Bojong Baru,sex,perempuan,,13350,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.13.2001,4,Bojong Baru,total,total,,27014,jiwa,2025,registration,total_population,3.1,36,,
+32.01.13.2008,4,Rawa Panjang,sex,laki_laki,,22186,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.13.2008,4,Rawa Panjang,sex,perempuan,,21701,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.13.2008,4,Rawa Panjang,total,total,,43887,jiwa,2025,registration,total_population,3.1,36,,
+32.01.13.1007,4,Pabuaran,sex,laki_laki,,20661,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.13.1007,4,Pabuaran,sex,perempuan,,20204,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.13.1007,4,Pabuaran,total,total,,40865,jiwa,2025,registration,total_population,3.1,36,,
+32.01.13.2004,4,Ragajaya,sex,laki_laki,,15372,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.13.2004,4,Ragajaya,sex,perempuan,,15144,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.13.2004,4,Ragajaya,total,total,,30516,jiwa,2025,registration,total_population,3.1,36,,
+32.01.13,3,Bojonggede,sex,laki_laki,,148645,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.13,3,Bojonggede,sex,perempuan,,145678,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.13,3,Bojonggede,total,total,,294323,jiwa,2025,registration,total_population,3.1,36,,
+32.01.13,3,Bojonggede,age_group,0-4,laki_laki,9191,jiwa,2025,registration,total_population,3.2,38,,0-4
+32.01.13,3,Bojonggede,age_group,0-4,perempuan,8739,jiwa,2025,registration,total_population,3.2,38,,0-4
+32.01.13,3,Bojonggede,age_group,0-4,,17930,jiwa,2025,registration,total_population,3.2,38,,0-4
+32.01.13,3,Bojonggede,age_group,5-9,laki_laki,12773,jiwa,2025,registration,total_population,3.2,38,,5-9
+32.01.13,3,Bojonggede,age_group,5-9,perempuan,12053,jiwa,2025,registration,total_population,3.2,38,,5-9
+32.01.13,3,Bojonggede,age_group,5-9,,24826,jiwa,2025,registration,total_population,3.2,38,,5-9
+32.01.13,3,Bojonggede,age_group,10-14,laki_laki,13222,jiwa,2025,registration,total_population,3.2,38,,10-14
+32.01.13,3,Bojonggede,age_group,10-14,perempuan,12309,jiwa,2025,registration,total_population,3.2,38,,10-14
+32.01.13,3,Bojonggede,age_group,10-14,,25531,jiwa,2025,registration,total_population,3.2,38,,10-14
+32.01.13,3,Bojonggede,age_group,15-19,laki_laki,12618,jiwa,2025,registration,total_population,3.2,38,,15-19
+32.01.13,3,Bojonggede,age_group,15-19,perempuan,11805,jiwa,2025,registration,total_population,3.2,38,,15-19
+32.01.13,3,Bojonggede,age_group,15-19,,24423,jiwa,2025,registration,total_population,3.2,38,,15-19
+32.01.13,3,Bojonggede,age_group,20-24,laki_laki,13317,jiwa,2025,registration,total_population,3.2,38,,20-24
+32.01.13,3,Bojonggede,age_group,20-24,perempuan,12552,jiwa,2025,registration,total_population,3.2,38,,20-24
+32.01.13,3,Bojonggede,age_group,20-24,,25869,jiwa,2025,registration,total_population,3.2,38,,20-24
+32.01.13,3,Bojonggede,age_group,25-29,laki_laki,12945,jiwa,2025,registration,total_population,3.2,38,,25-29
+32.01.13,3,Bojonggede,age_group,25-29,perempuan,12285,jiwa,2025,registration,total_population,3.2,38,,25-29
+32.01.13,3,Bojonggede,age_group,25-29,,25230,jiwa,2025,registration,total_population,3.2,38,,25-29
+32.01.13,3,Bojonggede,age_group,30-34,laki_laki,11766,jiwa,2025,registration,total_population,3.2,38,,30-34
+32.01.13,3,Bojonggede,age_group,30-34,perempuan,11230,jiwa,2025,registration,total_population,3.2,38,,30-34
+32.01.13,3,Bojonggede,age_group,30-34,,22996,jiwa,2025,registration,total_population,3.2,38,,30-34
+32.01.13,3,Bojonggede,age_group,35-39,laki_laki,10575,jiwa,2025,registration,total_population,3.2,38,,35-39
+32.01.13,3,Bojonggede,age_group,35-39,perempuan,10168,jiwa,2025,registration,total_population,3.2,38,,35-39
+32.01.13,3,Bojonggede,age_group,35-39,,20743,jiwa,2025,registration,total_population,3.2,38,,35-39
+32.01.13,3,Bojonggede,age_group,40-44,laki_laki,10882,jiwa,2025,registration,total_population,3.2,38,,40-44
+32.01.13,3,Bojonggede,age_group,40-44,perempuan,10931,jiwa,2025,registration,total_population,3.2,38,,40-44
+32.01.13,3,Bojonggede,age_group,40-44,,21813,jiwa,2025,registration,total_population,3.2,38,,40-44
+32.01.13,3,Bojonggede,age_group,45-49,laki_laki,9901,jiwa,2025,registration,total_population,3.2,38,,45-49
+32.01.13,3,Bojonggede,age_group,45-49,perempuan,10672,jiwa,2025,registration,total_population,3.2,38,,45-49
+32.01.13,3,Bojonggede,age_group,45-49,,20573,jiwa,2025,registration,total_population,3.2,38,,45-49
+32.01.13,3,Bojonggede,age_group,50-54,laki_laki,9238,jiwa,2025,registration,total_population,3.2,38,,50-54
+32.01.13,3,Bojonggede,age_group,50-54,perempuan,9992,jiwa,2025,registration,total_population,3.2,38,,50-54
+32.01.13,3,Bojonggede,age_group,50-54,,19230,jiwa,2025,registration,total_population,3.2,38,,50-54
+32.01.13,3,Bojonggede,age_group,55-59,laki_laki,8287,jiwa,2025,registration,total_population,3.2,38,,55-59
+32.01.13,3,Bojonggede,age_group,55-59,perempuan,8630,jiwa,2025,registration,total_population,3.2,38,,55-59
+32.01.13,3,Bojonggede,age_group,55-59,,16917,jiwa,2025,registration,total_population,3.2,38,,55-59
+32.01.13,3,Bojonggede,age_group,60-64,laki_laki,6265,jiwa,2025,registration,total_population,3.2,38,,60-64
+32.01.13,3,Bojonggede,age_group,60-64,perempuan,6255,jiwa,2025,registration,total_population,3.2,38,,60-64
+32.01.13,3,Bojonggede,age_group,60-64,,12520,jiwa,2025,registration,total_population,3.2,38,,60-64
+32.01.13,3,Bojonggede,age_group,65-69,laki_laki,3973,jiwa,2025,registration,total_population,3.2,38,,65-69
+32.01.13,3,Bojonggede,age_group,65-69,perempuan,3975,jiwa,2025,registration,total_population,3.2,38,,65-69
+32.01.13,3,Bojonggede,age_group,65-69,,7948,jiwa,2025,registration,total_population,3.2,38,,65-69
+32.01.13,3,Bojonggede,age_group,70-74,laki_laki,2089,jiwa,2025,registration,total_population,3.2,38,,70-74
+32.01.13,3,Bojonggede,age_group,70-74,perempuan,2088,jiwa,2025,registration,total_population,3.2,38,,70-74
+32.01.13,3,Bojonggede,age_group,70-74,,4177,jiwa,2025,registration,total_population,3.2,38,,70-74
+32.01.13,3,Bojonggede,age_group,75+,laki_laki,1603,jiwa,2025,registration,total_population,3.2,38,,75+
+32.01.13,3,Bojonggede,age_group,75+,perempuan,1994,jiwa,2025,registration,total_population,3.2,38,,75+
+32.01.13,3,Bojonggede,age_group,75+,,3597,jiwa,2025,registration,total_population,3.2,38,,75+
+32.01.13,3,Bojonggede,sex,laki_laki,,148645,jiwa,2025,registration,total_population,3.2,38,,Laki-Laki
+32.01.13,3,Bojonggede,sex,perempuan,,145678,jiwa,2025,registration,total_population,3.2,38,,Perempuan
+32.01.13,3,Bojonggede,total,total,,294323,jiwa,2025,registration,total_population,3.2,38,,

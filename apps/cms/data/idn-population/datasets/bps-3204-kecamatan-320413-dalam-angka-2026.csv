@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.13.2012,4,MEKARJAYA,sex,laki_laki,,5577,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.13.2012,4,MEKARJAYA,sex,perempuan,,5292,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.13.2012,4,MEKARJAYA,total,total,,10869,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.13.2002,4,BANJARAN WETAN,sex,laki_laki,,9752,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.13.2002,4,BANJARAN WETAN,sex,perempuan,,9492,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.13.2002,4,BANJARAN WETAN,total,total,,19244,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.13.2005,4,CIAPUS,sex,laki_laki,,9083,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.13.2005,4,CIAPUS,sex,perempuan,,8712,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.13.2005,4,CIAPUS,total,total,,17795,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.13.2006,4,SINDANGPANON,sex,laki_laki,,9051,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.13.2006,4,SINDANGPANON,sex,perempuan,,8682,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.13.2006,4,SINDANGPANON,total,total,,17733,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.13.2016,4,NEGLASARI,sex,laki_laki,,5886,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.13.2016,4,NEGLASARI,sex,perempuan,,5534,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.13.2016,4,NEGLASARI,total,total,,11420,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.13.2013,4,MARGAHURIP,sex,laki_laki,,6706,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.13.2013,4,MARGAHURIP,sex,perempuan,,6450,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.13.2013,4,MARGAHURIP,total,total,,13156,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.13.2007,4,KIANGROKE,sex,laki_laki,,5875,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.13.2007,4,KIANGROKE,sex,perempuan,,5614,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.13.2007,4,KIANGROKE,total,total,,11489,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.13.2001,4,KAMASAN,sex,laki_laki,,4758,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.13.2001,4,KAMASAN,sex,perempuan,,4639,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.13.2001,4,KAMASAN,total,total,,9397,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.13.2003,4,BANJARAN,sex,laki_laki,,6502,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.13.2003,4,BANJARAN,sex,perempuan,,6500,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.13.2003,4,BANJARAN,total,total,,13002,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.13.2008,4,TARAJUSARI,sex,laki_laki,,6636,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.13.2008,4,TARAJUSARI,sex,perempuan,,6471,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.13.2008,4,TARAJUSARI,total,total,,13107,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.13.2018,4,PASIRMULYA,sex,laki_laki,,3520,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.13.2018,4,PASIRMULYA,sex,perempuan,,3440,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.13.2018,4,PASIRMULYA,total,total,,6960,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.13,3,Kecamatan Banjaran,sex,laki_laki,,73346,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.13,3,Kecamatan Banjaran,sex,perempuan,,70826,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.13,3,Kecamatan Banjaran,total,total,,144172,jiwa,2025,registration,total_population,unnumbered-p28,28,,

@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3602-kecamatan-360218-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.02.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cibadak Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lebak",
+  "publisherDomain": "3602",
+  "publisherWebsite": "https://lebakkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lebak (https://lebakkab.bps.go.id), publikasi \"Kecamatan Cibadak Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "36020.26013",
+  "issn": "3031-6073",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lebakkab.bps.go.id/id/publication/2026/09/28/16437729b2ee95669e3956f1/kecamatan-cibadak-dalam-angka-2026.html",
+  "sourceFileSha256": "1e314ad750c3a3bd2ea6ea174bd23bb3a4a091a3292e7e9e92094207ee540d45",
+  "sourceFileBytes": 27101504,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lebak.",
+  "csvPath": "datasets/bps-3602-kecamatan-360218-dalam-angka-2026.csv",
+  "csvSha256": "046538606e66a5b2c6f1b9079d893f85a8f85ac975a78fa63082d5b0aba4d39e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Cibadak, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cibadak, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Cibadak Cibadak District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Cibadak Cibadak District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Cibadak Cibadak District\": unmatched "
+  ]
+}

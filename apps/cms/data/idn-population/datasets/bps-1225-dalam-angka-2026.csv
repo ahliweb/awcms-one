@@ -1,0 +1,33 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.25.02,3,Sirombu,total,total,,13433,jiwa,2025,registration,total_population,unnumbered-p68,68,,
+12.25.01,3,Lahomi,total,total,,10357,jiwa,2025,registration,total_population,unnumbered-p68,68,,
+12.25.08,3,Ulu Moroo,total,total,,7956,jiwa,2025,registration,total_population,unnumbered-p68,68,,
+12.25.07,3,Lolofitu Moi,total,total,,11214,jiwa,2025,registration,total_population,unnumbered-p68,68,,
+12.25.06,3,Mandrehe Utara,total,total,,10089,jiwa,2025,registration,total_population,unnumbered-p68,68,,
+12.25.05,3,Mandrehe,total,total,,24029,jiwa,2025,registration,total_population,unnumbered-p68,68,,
+12.25.03,3,Mandrehe Barat,total,total,,9358,jiwa,2025,registration,total_population,unnumbered-p68,68,,
+12.25.04,3,Moroo,total,total,,11304,jiwa,2025,registration,total_population,unnumbered-p68,68,,
+12.25,2,Nias Barat,total,total,,97740,jiwa,2025,registration,total_population,unnumbered-p68,68,,
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/padi_padian,,154272,rupiah,2025,survey_estimate,per_capita,10.1,299,,Padi-padian
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/umbi_umbian,,6834,rupiah,2025,survey_estimate,per_capita,10.1,299,,Umbi-umbian
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,45452,rupiah,2025,survey_estimate,per_capita,10.1,299,,Ikan/udang/cumi/kerang
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/daging,,31598,rupiah,2025,survey_estimate,per_capita,10.1,299,,Daging
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/telur_dan_susu,,25576,rupiah,2025,survey_estimate,per_capita,10.1,299,,Telur dan susu
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/sayur_sayuran,,33958,rupiah,2025,survey_estimate,per_capita,10.1,299,,Sayur-sayuran
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/kacang_kacangan,,5792,rupiah,2025,survey_estimate,per_capita,10.1,299,,Kacang-kacangan
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/buah_buahan,,9831,rupiah,2025,survey_estimate,per_capita,10.1,299,,Buah-buahan
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16603,rupiah,2025,survey_estimate,per_capita,10.1,299,,Minyak dan kelapa
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/bahan_minuman,,16366,rupiah,2025,survey_estimate,per_capita,10.1,299,,Bahan minuman
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/bumbu_bumbuan,,5519,rupiah,2025,survey_estimate,per_capita,10.1,299,,Bumbu-bumbuan
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/konsumsi_lainnya,,7365,rupiah,2025,survey_estimate,per_capita,10.1,299,,Konsumsi lainnya
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,50876,rupiah,2025,survey_estimate,per_capita,10.1,299,,Makanan dan minuman jadi
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/rokok,,34682,rupiah,2025,survey_estimate,per_capita,10.1,299,,Rokok
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/jumlah_makanan,,444723,rupiah,2025,survey_estimate,per_capita,10.1,299,,Jumlah makanan
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,134593,rupiah,2025,survey_estimate,per_capita,10.1,299,,Perumahan dan fasilitas rumah tangga
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,70202,rupiah,2025,survey_estimate,per_capita,10.1,299,,Aneka barang dan jasa
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,17927,rupiah,2025,survey_estimate,per_capita,10.1,299,,"Pakaian, alas kaki, dan tutup kepala"
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/barang_tahan_lama,,14289,rupiah,2025,survey_estimate,per_capita,10.1,299,,Barang tahan lama
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,48845,rupiah,2025,survey_estimate,per_capita,10.1,299,,"Pajak, pungutan, dan asuransi"
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,21283,rupiah,2025,survey_estimate,per_capita,10.1,299,,Keperluan pesta dan upacara/kenduri
+12.25,2,Kabupaten Nias Barat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,307140,rupiah,2025,survey_estimate,per_capita,10.1,299,,Jumlah bukan makanan
+12.25,2,Kabupaten Nias Barat,expenditure,total,,751863,rupiah,2025,survey_estimate,per_capita,10.1,299,,

@@ -1,0 +1,63 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.20.09.2001,4,Kalangketi,sex,perempuan,,602,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.09.2001,4,Kalangketi,total,total,,1167,jiwa,2025,registration,total_population,3.1,29,,
+35.20.09.2002,4,Tamanan,sex,perempuan,,1071,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.09.2002,4,Tamanan,total,total,,2150,jiwa,2025,registration,total_population,3.1,29,,
+35.20.09.2003,4,Tambakmas,sex,perempuan,,1085,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.09.2003,4,Tambakmas,total,total,,2053,jiwa,2025,registration,total_population,3.1,29,,
+35.20.09.2004,4,Bandar,sex,perempuan,,909,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.09.2004,4,Bandar,total,total,,1746,jiwa,2025,registration,total_population,3.1,29,,
+35.20.09.2005,4,Bibis,sex,perempuan,,1042,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.09.2005,4,Bibis,total,total,,2018,jiwa,2025,registration,total_population,3.1,29,,
+35.20.09.2006,4,Sukomoro,sex,perempuan,,1137,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.09.2006,4,Sukomoro,total,total,,2154,jiwa,2025,registration,total_population,3.1,29,,
+35.20.09.2007,4,Bulu,sex,perempuan,,962,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.09.2007,4,Bulu,total,total,,1848,jiwa,2025,registration,total_population,3.1,29,,
+35.20.09.2008,4,Pojoksari,sex,perempuan,,2108,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.09.2008,4,Pojoksari,total,total,,4075,jiwa,2025,registration,total_population,3.1,29,,
+35.20.09.1009,4,Tinap,sex,perempuan,,1708,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.09.1009,4,Tinap,total,total,,3286,jiwa,2025,registration,total_population,3.1,29,,
+35.20.09.2011,4,Kembangan,sex,perempuan,,1868,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.09.2011,4,Kembangan,total,total,,3630,jiwa,2025,registration,total_population,3.1,29,,
+35.20.09.2010,4,Kedungguwo,sex,perempuan,,1500,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.09.2010,4,Kedungguwo,total,total,,2967,jiwa,2025,registration,total_population,3.1,29,,
+35.20.09.2012,4,Kentangan,sex,perempuan,,1673,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.09.2012,4,Kentangan,total,total,,3242,jiwa,2025,registration,total_population,3.1,29,,
+35.20.09.2013,4,Bogem,sex,perempuan,,729,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.09.2013,4,Bogem,total,total,,1427,jiwa,2025,registration,total_population,3.1,29,,
+35.20.09.2014,4,Truneng,sex,perempuan,,819,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.09.2014,4,Truneng,total,total,,1556,jiwa,2025,registration,total_population,3.1,29,,
+35.20.09,3,Kecamatan Sukomoro,sex,perempuan,,17213,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.09,3,Kecamatan Sukomoro,total,total,,33319,jiwa,2025,registration,total_population,3.1,29,,
+35.20.09,3,Sukomoro,age_group,0-4,perempuan,724,jiwa,2025,registration,total_population,3.3,32,,0 – 4
+35.20.09,3,Sukomoro,age_group,0-4,,1516,jiwa,2025,registration,total_population,3.3,32,,0 – 4
+35.20.09,3,Sukomoro,age_group,5-9,perempuan,1016,jiwa,2025,registration,total_population,3.3,32,,5–9
+35.20.09,3,Sukomoro,age_group,5-9,,2061,jiwa,2025,registration,total_population,3.3,32,,5–9
+35.20.09,3,Sukomoro,age_group,10-14,perempuan,1072,jiwa,2025,registration,total_population,3.3,32,,10–14
+35.20.09,3,Sukomoro,age_group,10-14,,2196,jiwa,2025,registration,total_population,3.3,32,,10–14
+35.20.09,3,Sukomoro,age_group,15-19,perempuan,1135,jiwa,2025,registration,total_population,3.3,32,,15–19
+35.20.09,3,Sukomoro,age_group,15-19,,2296,jiwa,2025,registration,total_population,3.3,32,,15–19
+35.20.09,3,Sukomoro,age_group,20-24,perempuan,1093,jiwa,2025,registration,total_population,3.3,32,,20–24
+35.20.09,3,Sukomoro,age_group,20-24,,2191,jiwa,2025,registration,total_population,3.3,32,,20–24
+35.20.09,3,Sukomoro,age_group,25-29,perempuan,1026,jiwa,2025,registration,total_population,3.3,32,,25–29
+35.20.09,3,Sukomoro,age_group,25-29,,2051,jiwa,2025,registration,total_population,3.3,32,,25–29
+35.20.09,3,Sukomoro,age_group,30-34,perempuan,964,jiwa,2025,registration,total_population,3.3,32,,30–34
+35.20.09,3,Sukomoro,age_group,30-34,,1979,jiwa,2025,registration,total_population,3.3,32,,30–34
+35.20.09,3,Sukomoro,age_group,35-39,perempuan,980,jiwa,2025,registration,total_population,3.3,32,,35–39
+35.20.09,3,Sukomoro,age_group,35-39,,1922,jiwa,2025,registration,total_population,3.3,32,,35–39
+35.20.09,3,Sukomoro,age_group,40-44,perempuan,1291,jiwa,2025,registration,total_population,3.3,32,,40–44
+35.20.09,3,Sukomoro,age_group,40-44,,2492,jiwa,2025,registration,total_population,3.3,32,,40–44
+35.20.09,3,Sukomoro,age_group,45-49,perempuan,1297,jiwa,2025,registration,total_population,3.3,32,,45–49
+35.20.09,3,Sukomoro,age_group,45-49,,2500,jiwa,2025,registration,total_population,3.3,32,,45–49
+35.20.09,3,Sukomoro,age_group,50-54,perempuan,1230,jiwa,2025,registration,total_population,3.3,32,,50–54
+35.20.09,3,Sukomoro,age_group,50-54,,2374,jiwa,2025,registration,total_population,3.3,32,,50–54
+35.20.09,3,Sukomoro,age_group,55-59,perempuan,1121,jiwa,2025,registration,total_population,3.3,32,,55–59
+35.20.09,3,Sukomoro,age_group,55-59,,2160,jiwa,2025,registration,total_population,3.3,32,,55–59
+35.20.09,3,Sukomoro,age_group,60-64,perempuan,1130,jiwa,2025,registration,total_population,3.3,32,,60–64
+35.20.09,3,Sukomoro,age_group,60-64,,2093,jiwa,2025,registration,total_population,3.3,32,,60–64
+35.20.09,3,Sukomoro,age_group,65-69,perempuan,1026,jiwa,2025,registration,total_population,3.3,32,,65–69
+35.20.09,3,Sukomoro,age_group,65-69,,1853,jiwa,2025,registration,total_population,3.3,32,,65–69
+35.20.09,3,Sukomoro,age_group,70-74,perempuan,759,jiwa,2025,registration,total_population,3.3,32,,70–74
+35.20.09,3,Sukomoro,age_group,70-74,,1441,jiwa,2025,registration,total_population,3.3,32,,70–74
+35.20.09,3,Sukomoro,age_group,75+,perempuan,1349,jiwa,2025,registration,total_population,3.3,32,,75 +
+35.20.09,3,Sukomoro,age_group,75+,,2194,jiwa,2025,registration,total_population,3.3,32,,75 +

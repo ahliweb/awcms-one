@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.11.11.2020,4,Ie Rhob Babah Lueng,sex,laki_laki,,400,jiwa,2025,registration,total_population,5.2,,,Laki-Laki/Male
+11.11.11.2020,4,Ie Rhob Babah Lueng,sex,perempuan,,373,jiwa,2025,registration,total_population,5.2,,,Perempuan/Fe
+11.11.11.2020,4,Ie Rhob Babah Lueng,total,total,,773,jiwa,2025,registration,total_population,5.2,,,
+11.11.11.2026,4,Lhok Tanoh,sex,laki_laki,,166,jiwa,2025,registration,total_population,5.2,,,Laki-Laki/Male
+11.11.11.2026,4,Lhok Tanoh,sex,perempuan,,135,jiwa,2025,registration,total_population,5.2,,,Perempuan/Fe
+11.11.11.2026,4,Lhok Tanoh,total,total,,301,jiwa,2025,registration,total_population,5.2,,,
+11.11.11.2025,4,Krueng Meuseugob,sex,laki_laki,,272,jiwa,2025,registration,total_population,5.2,,,Laki-Laki/Male
+11.11.11.2025,4,Krueng Meuseugob,sex,perempuan,,286,jiwa,2025,registration,total_population,5.2,,,Perempuan/Fe
+11.11.11.2025,4,Krueng Meuseugob,total,total,,558,jiwa,2025,registration,total_population,5.2,,,
+11.11.11.2038,4,Paku,sex,laki_laki,,143,jiwa,2025,registration,total_population,5.2,,,Laki-Laki/Male
+11.11.11.2038,4,Paku,sex,perempuan,,144,jiwa,2025,registration,total_population,5.2,,,Perempuan/Fe
+11.11.11.2038,4,Paku,total,total,,287,jiwa,2025,registration,total_population,5.2,,,
+11.11.11.2027,4,Blang Tambue,sex,laki_laki,,800,jiwa,2025,registration,total_population,5.2,,,Laki-Laki/Male
+11.11.11.2027,4,Blang Tambue,sex,perempuan,,789,jiwa,2025,registration,total_population,5.2,,,Perempuan/Fe
+11.11.11.2027,4,Blang Tambue,total,total,,1589,jiwa,2025,registration,total_population,5.2,,,
+11.11.11.2014,4,Meunasah Mamplam,sex,laki_laki,,601,jiwa,2025,registration,total_population,5.2,,,Laki-Laki/Male
+11.11.11.2014,4,Meunasah Mamplam,sex,perempuan,,628,jiwa,2025,registration,total_population,5.2,,,Perempuan/Fe
+11.11.11.2014,4,Meunasah Mamplam,total,total,,1229,jiwa,2025,registration,total_population,5.2,,,
+11.11.11.2015,4,Pulo Dapong,sex,laki_laki,,204,jiwa,2025,registration,total_population,5.2,,,Laki-Laki/Male
+11.11.11.2015,4,Pulo Dapong,sex,perempuan,,193,jiwa,2025,registration,total_population,5.2,,,Perempuan/Fe
+11.11.11.2015,4,Pulo Dapong,total,total,,397,jiwa,2025,registration,total_population,5.2,,,
+11.11.11.2024,4,Cot Trieng,sex,laki_laki,,276,jiwa,2025,registration,total_population,5.2,,,Laki-Laki/Male
+11.11.11.2024,4,Cot Trieng,sex,perempuan,,307,jiwa,2025,registration,total_population,5.2,,,Perempuan/Fe
+11.11.11.2024,4,Cot Trieng,total,total,,583,jiwa,2025,registration,total_population,5.2,,,
+11.11.11.2019,4,Ie Rhob Timu,sex,laki_laki,,299,jiwa,2025,registration,total_population,5.2,,,Laki-Laki/Male
+11.11.11.2019,4,Ie Rhob Timu,sex,perempuan,,254,jiwa,2025,registration,total_population,5.2,,,Perempuan/Fe
+11.11.11.2019,4,Ie Rhob Timu,total,total,,553,jiwa,2025,registration,total_population,5.2,,,
+11.11.11.2018,4,Ie Rhob Barat,sex,laki_laki,,329,jiwa,2025,registration,total_population,5.2,,,Laki-Laki/Male
+11.11.11.2018,4,Ie Rhob Barat,sex,perempuan,,326,jiwa,2025,registration,total_population,5.2,,,Perempuan/Fe
+11.11.11.2018,4,Ie Rhob Barat,total,total,,655,jiwa,2025,registration,total_population,5.2,,,
+11.11.11.2023,4,Meunasah Dayah,sex,laki_laki,,280,jiwa,2025,registration,total_population,5.2,,,Laki-Laki/Male
+11.11.11.2023,4,Meunasah Dayah,sex,perempuan,,264,jiwa,2025,registration,total_population,5.2,,,Perempuan/Fe
+11.11.11.2023,4,Meunasah Dayah,total,total,,544,jiwa,2025,registration,total_population,5.2,,,
+11.11.11.2022,4,Pulo Drien,sex,laki_laki,,195,jiwa,2025,registration,total_population,5.2,,,Laki-Laki/Male
+11.11.11.2022,4,Pulo Drien,sex,perempuan,,197,jiwa,2025,registration,total_population,5.2,,,Perempuan/Fe
+11.11.11.2022,4,Pulo Drien,total,total,,392,jiwa,2025,registration,total_population,5.2,,,

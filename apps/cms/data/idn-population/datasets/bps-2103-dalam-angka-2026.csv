@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.03.04,3,Midai,total,total,,3.44,ribu_jiwa,2025,registration,total_population,3.1.1,72,,
+21.03.22,3,Suak Midai,total,total,,1.79,ribu_jiwa,2025,registration,total_population,3.1.1,72,,
+21.03.05,3,Bunguran Barat,total,total,,7.85,ribu_jiwa,2025,registration,total_population,3.1.1,72,,
+21.03.08,3,Bunguran Utara,total,total,,4.09,ribu_jiwa,2025,registration,total_population,3.1.1,72,,
+21.03.10,3,Pulau Laut,total,total,,2.36,ribu_jiwa,2025,registration,total_population,3.1.1,72,,
+21.03.11,3,Pulau Tiga,total,total,,3.93,ribu_jiwa,2025,registration,total_population,3.1.1,72,,
+21.03.20,3,Bunguran Batubi,total,total,,3.92,ribu_jiwa,2025,registration,total_population,3.1.1,72,,
+21.03.21,3,Pulau Tiga Barat,total,total,,2.36,ribu_jiwa,2025,registration,total_population,3.1.1,72,,
+21.03.24,3,Pulau Seluan,total,total,,0.85,ribu_jiwa,2025,registration,total_population,3.1.1,72,,
+21.03.07,3,Bunguran Timur,total,total,,29.38,ribu_jiwa,2025,registration,total_population,3.1.1,72,,
+21.03.15,3,Bunguran Timur Laut,total,total,,5.81,ribu_jiwa,2025,registration,total_population,3.1.1,72,,
+21.03.16,3,Bunguran Tengah,total,total,,3.81,ribu_jiwa,2025,registration,total_population,3.1.1,72,,
+21.03.18,3,Bunguran Selatan,total,total,,3.58,ribu_jiwa,2025,registration,total_population,3.1.1,72,,
+21.03.06,3,Serasan,total,total,,5.25,ribu_jiwa,2025,registration,total_population,3.1.1,72,,
+21.03.09,3,Subi,total,total,,2.31,ribu_jiwa,2025,registration,total_population,3.1.1,72,,
+21.03.19,3,Serasan Timur,total,total,,3.34,ribu_jiwa,2025,registration,total_population,3.1.1,72,,
+21.03.23,3,Pulau Panjang,total,total,,0.86,ribu_jiwa,2025,registration,total_population,3.1.1,72,,
+21.03,2,Natuna,total,total,,84.91,ribu_jiwa,2025,registration,total_population,3.1.1,72,,
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/padi_padian,,77763,rupiah,2024,survey_estimate,per_capita,10.1,343,,Padi-padian
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/padi_padian,,81908,rupiah,2025,survey_estimate,per_capita,10.1,343,,Padi-padian
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/umbi_umbian,,9294,rupiah,2024,survey_estimate,per_capita,10.1,343,,Umbi-umbian
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/umbi_umbian,,8555,rupiah,2025,survey_estimate,per_capita,10.1,343,,Umbi-umbian
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,87175,rupiah,2024,survey_estimate,per_capita,10.1,343,,Ikan/udang/cumi/kerang
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,87071,rupiah,2025,survey_estimate,per_capita,10.1,343,,Ikan/udang/cumi/kerang
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/daging,,39152,rupiah,2024,survey_estimate,per_capita,10.1,343,,Daging
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/daging,,28692,rupiah,2025,survey_estimate,per_capita,10.1,343,,Daging
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/telur_dan_susu,,45020,rupiah,2024,survey_estimate,per_capita,10.1,343,,Telur dan susu
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/telur_dan_susu,,42390,rupiah,2025,survey_estimate,per_capita,10.1,343,,Telur dan susu
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/sayur_sayuran,,69788,rupiah,2024,survey_estimate,per_capita,10.1,343,,Sayur-sayuran
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/sayur_sayuran,,68122,rupiah,2025,survey_estimate,per_capita,10.1,343,,Sayur-sayuran
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/kacang_kacangan,,10994,rupiah,2024,survey_estimate,per_capita,10.1,343,,Kacang-kacangan
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/kacang_kacangan,,10289,rupiah,2025,survey_estimate,per_capita,10.1,343,,Kacang-kacangan
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/buah_buahan,,45146,rupiah,2024,survey_estimate,per_capita,10.1,343,,Buah-buahan
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/buah_buahan,,27347,rupiah,2025,survey_estimate,per_capita,10.1,343,,Buah-buahan
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23687,rupiah,2024,survey_estimate,per_capita,10.1,343,,Minyak dan kelapa
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20376,rupiah,2025,survey_estimate,per_capita,10.1,343,,Minyak dan kelapa
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/bahan_minuman,,29804,rupiah,2024,survey_estimate,per_capita,10.1,343,,Bahan minuman
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/bahan_minuman,,24259,rupiah,2025,survey_estimate,per_capita,10.1,343,,Bahan minuman
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/bumbu_bumbuan,,19483,rupiah,2024,survey_estimate,per_capita,10.1,343,,Bumbu-bumbuan
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/bumbu_bumbuan,,18838,rupiah,2025,survey_estimate,per_capita,10.1,343,,Bumbu-bumbuan
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/konsumsi_lainnya,,20967,rupiah,2024,survey_estimate,per_capita,10.1,343,,Konsumsi lainnya
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/konsumsi_lainnya,,16121,rupiah,2025,survey_estimate,per_capita,10.1,343,,Konsumsi lainnya
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,211796,rupiah,2024,survey_estimate,per_capita,10.1,343,,Makanan dan minuman jadi
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,165557,rupiah,2025,survey_estimate,per_capita,10.1,343,,Makanan dan minuman jadi
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/rokok,,101030,rupiah,2024,survey_estimate,per_capita,10.1,343,,Rokok
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/rokok,,79892,rupiah,2025,survey_estimate,per_capita,10.1,343,,Rokok
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/jumlah_makanan,,791099,rupiah,2024,survey_estimate,per_capita,10.1,343,,Jumlah makanan
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/jumlah_makanan,,679419,rupiah,2025,survey_estimate,per_capita,10.1,343,,Jumlah makanan
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,409247,rupiah,2024,survey_estimate,per_capita,10.1,343,,Perumahan dan fasilitas rumah tangga
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,390684,rupiah,2025,survey_estimate,per_capita,10.1,343,,Perumahan dan fasilitas rumah tangga
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,177829,rupiah,2024,survey_estimate,per_capita,10.1,343,,Aneka komoditas dan jasa
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,148234,rupiah,2025,survey_estimate,per_capita,10.1,343,,Aneka komoditas dan jasa
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,38806,rupiah,2024,survey_estimate,per_capita,10.1,343,,"Pakaian, alas kaki, dan tutup kepala"
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,36238,rupiah,2025,survey_estimate,per_capita,10.1,343,,"Pakaian, alas kaki, dan tutup kepala"
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/komoditas_tahan_lama,,46335,rupiah,2024,survey_estimate,per_capita,10.1,343,,Komoditas tahan lama
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/komoditas_tahan_lama,,51604,rupiah,2025,survey_estimate,per_capita,10.1,343,,Komoditas tahan lama
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,70074,rupiah,2024,survey_estimate,per_capita,10.1,343,,"Pajak, pungutan, dan asuransi"
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,76665,rupiah,2025,survey_estimate,per_capita,10.1,343,,"Pajak, pungutan, dan asuransi"
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,12677,rupiah,2024,survey_estimate,per_capita,10.1,343,,Keperluan pesta dan upacara/kenduri
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,754968,rupiah,2024,survey_estimate,per_capita,10.1,343,,Jumlah bukan makanan
+21.03,2,Kabupaten Natuna,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,711192,rupiah,2025,survey_estimate,per_capita,10.1,343,,Jumlah bukan makanan
+21.03,2,Kabupaten Natuna,expenditure,total,,1546067,rupiah,2024,survey_estimate,per_capita,10.1,343,,
+21.03,2,Kabupaten Natuna,expenditure,total,,1390611,rupiah,2025,survey_estimate,per_capita,10.1,343,,

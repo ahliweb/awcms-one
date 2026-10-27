@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3201-kecamatan-320107-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.01.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cileungsi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bogor",
+  "publisherDomain": "3201",
+  "publisherWebsite": "https://bogorkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bogor (https://bogorkab.bps.go.id), publikasi \"Kecamatan Cileungsi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3201180",
+  "publicationNumber": "32010.26028",
+  "issn": "2597-8101",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bogorkab.bps.go.id/id/publication/2026/09/28/db28e8d2483323c90f578ec7/kecamatan-cileungsi-dalam-angka-2026.html",
+  "sourceFileSha256": "5106e4c97a767756c81c5555cf669b0bb31a7506d6fb8c49d44cd09e4a534d7e",
+  "sourceFileBytes": 8616627,
+  "sourcePages": [37, 38, 39],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bogor.",
+  "csvPath": "datasets/bps-3201-kecamatan-320107-dalam-angka-2026.csv",
+  "csvSha256": "3e15015ded8624b018f4029de75fab166a0908f29e77fb57c5ef3aa8128b58ca",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk menurut Desa di Kecamatan Cileungsi, 2025",
+      "printedPages": [37, 38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cileungsi, 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 32.01.07 are not stored: age_group (perempuan) vs sex value: parts sum 135431.0000 != 147801.0000 (diff 12370.0000); the source itself is inconsistent"
+  ]
+}

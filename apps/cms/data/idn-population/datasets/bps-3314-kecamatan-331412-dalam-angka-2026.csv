@@ -1,0 +1,103 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.14.12.2001,4,Karangasem,sex,laki_laki,,2279,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.12.2001,4,Karangasem,sex,perempuan,,2304,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.12.2001,4,Karangasem,total,total,,4583,jiwa,2025,registration,total_population,3.1,32,,
+33.14.12.2002,4,Slogo,sex,laki_laki,,1629,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.12.2002,4,Slogo,sex,perempuan,,1645,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.12.2002,4,Slogo,total,total,,3274,jiwa,2025,registration,total_population,3.1,32,,
+33.14.12.2003,4,Jono,sex,laki_laki,,1957,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.12.2003,4,Jono,sex,perempuan,,1956,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.12.2003,4,Jono,total,total,,3913,jiwa,2025,registration,total_population,3.1,32,,
+33.14.12.2004,4,Gawan,sex,laki_laki,,1402,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.12.2004,4,Gawan,sex,perempuan,,1404,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.12.2004,4,Gawan,total,total,,2806,jiwa,2025,registration,total_population,3.1,32,,
+33.14.12.2005,4,Kecik,sex,laki_laki,,1858,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.12.2005,4,Kecik,sex,perempuan,,1965,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.12.2005,4,Kecik,total,total,,3823,jiwa,2025,registration,total_population,3.1,32,,
+33.14.12.2009,4,Padas,sex,laki_laki,,1879,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.12.2009,4,Padas,sex,perempuan,,1875,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.12.2009,4,Padas,total,total,,3754,jiwa,2025,registration,total_population,3.1,32,,
+33.14.12.2011,4,Gabugan,sex,laki_laki,,1092,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.12.2011,4,Gabugan,sex,perempuan,,1137,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.12.2011,4,Gabugan,total,total,,2229,jiwa,2025,registration,total_population,3.1,32,,
+33.14.12.2008,4,Ketro,sex,laki_laki,,2559,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.12.2008,4,Ketro,sex,perempuan,,2557,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.12.2008,4,Ketro,total,total,,5116,jiwa,2025,registration,total_population,3.1,32,,
+33.14.12.2012,4,Sambi Duwur,sex,laki_laki,,1753,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.12.2012,4,Sambi Duwur,sex,perempuan,,1785,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.12.2012,4,Sambi Duwur,total,total,,3538,jiwa,2025,registration,total_population,3.1,32,,
+33.14.12.2013,4,Karang Talun,sex,laki_laki,,2399,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.12.2013,4,Karang Talun,sex,perempuan,,2378,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.12.2013,4,Karang Talun,total,total,,4777,jiwa,2025,registration,total_population,3.1,32,,
+33.14.12.2016,4,Gading,sex,laki_laki,,2074,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.12.2016,4,Gading,sex,perempuan,,2140,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.12.2016,4,Gading,total,total,,4214,jiwa,2025,registration,total_population,3.1,32,,
+33.14.12.2014,4,Bonagung,sex,laki_laki,,1787,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.12.2014,4,Bonagung,sex,perempuan,,1783,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.12.2014,4,Bonagung,total,total,,3570,jiwa,2025,registration,total_population,3.1,32,,
+33.14.12.2015,4,Kalikobok,sex,laki_laki,,1705,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.12.2015,4,Kalikobok,sex,perempuan,,1668,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.12.2015,4,Kalikobok,total,total,,3373,jiwa,2025,registration,total_population,3.1,32,,
+33.14.12.2010,4,Tanon,sex,laki_laki,,2401,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.12.2010,4,Tanon,sex,perempuan,,2372,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.12.2010,4,Tanon,total,total,,4773,jiwa,2025,registration,total_population,3.1,32,,
+33.14.12.2007,4,Suwatu,sex,laki_laki,,2115,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.12.2007,4,Suwatu,sex,perempuan,,2058,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.12.2007,4,Suwatu,total,total,,4173,jiwa,2025,registration,total_population,3.1,32,,
+33.14.12.2006,4,Pengkol,sex,laki_laki,,1640,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.12.2006,4,Pengkol,sex,perempuan,,1617,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.12.2006,4,Pengkol,total,total,,3257,jiwa,2025,registration,total_population,3.1,32,,
+33.14.12,3,Kecamatan Tanon,sex,laki_laki,,30529,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.12,3,Kecamatan Tanon,sex,perempuan,,30644,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.12,3,Kecamatan Tanon,total,total,,61173,jiwa,2025,registration,total_population,3.1,32,,
+33.14.12,3,Tanon,age_group,0-4,laki_laki,1680,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.12,3,Tanon,age_group,0-4,perempuan,1635,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.12,3,Tanon,age_group,0-4,,3315,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.12,3,Tanon,age_group,5-9,laki_laki,2267,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.12,3,Tanon,age_group,5-9,perempuan,2088,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.12,3,Tanon,age_group,5-9,,4355,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.12,3,Tanon,age_group,10-14,laki_laki,2349,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.12,3,Tanon,age_group,10-14,perempuan,2224,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.12,3,Tanon,age_group,10-14,,4573,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.12,3,Tanon,age_group,15-19,laki_laki,2425,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.12,3,Tanon,age_group,15-19,perempuan,2172,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.12,3,Tanon,age_group,15-19,,4597,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.12,3,Tanon,age_group,20-24,laki_laki,2169,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.12,3,Tanon,age_group,20-24,perempuan,2091,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.12,3,Tanon,age_group,20-24,,4260,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.12,3,Tanon,age_group,25-29,laki_laki,2196,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.12,3,Tanon,age_group,25-29,perempuan,2005,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.12,3,Tanon,age_group,25-29,,4201,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.12,3,Tanon,age_group,30-34,laki_laki,2106,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.12,3,Tanon,age_group,30-34,perempuan,1900,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.12,3,Tanon,age_group,30-34,,4006,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.12,3,Tanon,age_group,35-39,laki_laki,2093,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.12,3,Tanon,age_group,35-39,perempuan,2010,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.12,3,Tanon,age_group,35-39,,4103,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.12,3,Tanon,age_group,40-44,laki_laki,2445,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.12,3,Tanon,age_group,40-44,perempuan,2351,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.12,3,Tanon,age_group,40-44,,4796,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.12,3,Tanon,age_group,45-49,laki_laki,2158,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.12,3,Tanon,age_group,45-49,perempuan,2087,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.12,3,Tanon,age_group,45-49,,4245,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.12,3,Tanon,age_group,50-54,laki_laki,1846,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.12,3,Tanon,age_group,50-54,perempuan,1917,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.12,3,Tanon,age_group,50-54,,3763,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.12,3,Tanon,age_group,55-59,laki_laki,1784,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.12,3,Tanon,age_group,55-59,perempuan,1999,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.12,3,Tanon,age_group,55-59,,3783,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.12,3,Tanon,age_group,60-64,laki_laki,1540,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.12,3,Tanon,age_group,60-64,perempuan,1847,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.12,3,Tanon,age_group,60-64,,3387,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.12,3,Tanon,age_group,65-69,laki_laki,1405,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.12,3,Tanon,age_group,65-69,perempuan,1564,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.12,3,Tanon,age_group,65-69,,2969,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.12,3,Tanon,age_group,70-74,laki_laki,904,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.12,3,Tanon,age_group,70-74,perempuan,946,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.12,3,Tanon,age_group,70-74,,1850,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.12,3,Tanon,age_group,75+,laki_laki,1162,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.12,3,Tanon,age_group,75+,perempuan,1808,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.12,3,Tanon,age_group,75+,,2970,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.12,3,Kecamatan Tanon,sex,laki_laki,,30529,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+33.14.12,3,Kecamatan Tanon,sex,perempuan,,30644,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+33.14.12,3,Kecamatan Tanon,total,total,,61173,jiwa,2025,registration,total_population,3.2,34,,

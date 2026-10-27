@@ -1,0 +1,53 @@
+{
+  "datasetCode": "bps-1571-kecamatan-157110-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.71.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Danau Sipin Dalam Angka 2026",
+  "publisherName": "BPS Kota Jambi",
+  "publisherDomain": "1571",
+  "publisherWebsite": "https://jambikota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jambi (https://jambikota.bps.go.id), publikasi \"Kecamatan Danau Sipin Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1571051",
+  "publicationNumber": "15710.26012",
+  "issn": "3063-5179",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jambikota.bps.go.id/id/publication/2026/09/28/7b6dcf2e766ac8e024c58404/kecamatan-danau-sipin-dalam-angka-2026.html",
+  "sourceFileSha256": "c9a9b7957964a700a7eb9758221a70bb04461e83936b4b95733f94d3a13750fd",
+  "sourceFileBytes": 4328664,
+  "sourcePages": [24, 25, 26],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Jambi.",
+  "csvPath": "datasets/bps-1571-kecamatan-157110-dalam-angka-2026.csv",
+  "csvSha256": "929510fe69295b25fb4444045698d284b354c8c9935d2d1ea0b1a50d1f438716",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Danau Sipin, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Danau Sipin, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Selamat 18%\": unmatched ",
+    "table 3.1: row not stored: row \"Sungai Putri 19%\": unmatched ",
+    "table 3.1: row not stored: row \"Solok Sipin 22%\": unmatched ",
+    "table 3.1: row not stored: row \"Murni 10%\": unmatched ",
+    "table 3.1: row not stored: row \"Legok 29%\": unmatched ",
+    "table 3.1: row not stored: row \"Danau Sipin 98%\": unmatched ",
+    "table 3.1: 10 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: 40 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.1: the rows of region 15.71.10 are not stored: sex split vs total: parts sum 43066.0000 != 43102.0000 (diff 36.0000); the source itself is inconsistent"
+  ]
+}

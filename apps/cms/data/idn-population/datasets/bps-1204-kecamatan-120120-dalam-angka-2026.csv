@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.01.20.1001,4,Sibuluan Nalambok,sex,laki_laki,,2571,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.20.1001,4,Sibuluan Nalambok,sex,perempuan,,2565,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.20.1001,4,Sibuluan Nalambok,total,total,,5136,jiwa,2025,registration,total_population,3.1,35,,
+12.01.20.2003,4,Sipan,sex,laki_laki,,413,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.20.2003,4,Sipan,sex,perempuan,,405,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.20.2003,4,Sipan,total,total,,818,jiwa,2025,registration,total_population,3.1,35,,
+12.01.20.1002,4,Sarudik,sex,laki_laki,,3370,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.20.1002,4,Sarudik,sex,perempuan,,3153,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.20.1002,4,Sarudik,total,total,,6523,jiwa,2025,registration,total_population,3.1,35,,
+12.01.20.1005,4,Pondok Batu,sex,laki_laki,,1922,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.20.1005,4,Pondok Batu,sex,perempuan,,1864,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.20.1005,4,Pondok Batu,total,total,,3786,jiwa,2025,registration,total_population,3.1,35,,
+12.01.20.1004,4,Pasir Bidang,sex,laki_laki,,1533,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.20.1004,4,Pasir Bidang,sex,perempuan,,1547,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.20.1004,4,Pasir Bidang,total,total,,3080,jiwa,2025,registration,total_population,3.1,35,,
+12.01.20,3,Sarudik,sex,laki_laki,,9809,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.20,3,Sarudik,sex,perempuan,,9534,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.20,3,Sarudik,total,total,,19343,jiwa,2025,registration,total_population,3.1,35,,

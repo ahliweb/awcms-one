@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.71.04.1002,4,Srengsem,sex,laki_laki,,3955,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.04.1002,4,Srengsem,sex,perempuan,,3871,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.04.1002,4,Srengsem,total,total,,7826,jiwa,2025,registration,total_population,3.1,26,,
+18.71.04.1001,4,Panjang Selatan,sex,laki_laki,,6486,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.04.1001,4,Panjang Selatan,sex,perempuan,,6477,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.04.1001,4,Panjang Selatan,total,total,,12963,jiwa,2025,registration,total_population,3.1,26,,
+18.71.04.1003,4,Panjang Utara,sex,laki_laki,,6580,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.04.1003,4,Panjang Utara,sex,perempuan,,6346,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.04.1003,4,Panjang Utara,total,total,,12926,jiwa,2025,registration,total_population,3.1,26,,
+18.71.04.1004,4,Pidada,sex,laki_laki,,6094,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.04.1004,4,Pidada,sex,perempuan,,5909,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.04.1004,4,Pidada,total,total,,12003,jiwa,2025,registration,total_population,3.1,26,,
+18.71.04.1007,4,Karang Maritim,sex,laki_laki,,5214,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.04.1007,4,Karang Maritim,sex,perempuan,,4932,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.04.1007,4,Karang Maritim,total,total,,10146,jiwa,2025,registration,total_population,3.1,26,,
+18.71.04.1008,4,Way Lunik,sex,laki_laki,,4617,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.04.1008,4,Way Lunik,sex,perempuan,,4394,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.04.1008,4,Way Lunik,total,total,,9011,jiwa,2025,registration,total_population,3.1,26,,
+18.71.04.1009,4,Ketapang,sex,laki_laki,,2091,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.04.1009,4,Ketapang,sex,perempuan,,1983,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.04.1009,4,Ketapang,total,total,,4074,jiwa,2025,registration,total_population,3.1,26,,
+18.71.04.1010,4,Ketapang Kuala,sex,laki_laki,,1617,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.04.1010,4,Ketapang Kuala,sex,perempuan,,1436,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.04.1010,4,Ketapang Kuala,total,total,,3053,jiwa,2025,registration,total_population,3.1,26,,
+18.71.04,3,Panjang,sex,laki_laki,,36654,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.04,3,Panjang,sex,perempuan,,35348,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.04,3,Panjang,total,total,,72002,jiwa,2025,registration,total_population,3.1,26,,

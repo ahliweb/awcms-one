@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.12.01.2003,4,Bandar Dewa,sex,laki_laki,,767,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.2003,4,Bandar Dewa,sex,perempuan,,744,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.2003,4,Bandar Dewa,total,total,,1511,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01.2019,4,Candra Jaya,sex,laki_laki,,1757,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.2019,4,Candra Jaya,sex,perempuan,,1698,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.2019,4,Candra Jaya,total,total,,3455,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01.2011,4,Candra Kencana,sex,laki_laki,,2534,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.2011,4,Candra Kencana,sex,perempuan,,2288,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.2011,4,Candra Kencana,total,total,,4822,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01.2018,4,Candra Mukti,sex,laki_laki,,1518,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.2018,4,Candra Mukti,sex,perempuan,,1483,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.2018,4,Candra Mukti,total,total,,3001,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01.2020,4,Marga Asri,sex,laki_laki,,1705,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.2020,4,Marga Asri,sex,perempuan,,1586,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.2020,4,Marga Asri,total,total,,3291,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01.2021,4,Mekar Asri,sex,laki_laki,,2305,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.2021,4,Mekar Asri,sex,perempuan,,2165,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.2021,4,Mekar Asri,total,total,,4470,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01.2004,4,Menggala Mas,sex,laki_laki,,739,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.2004,4,Menggala Mas,sex,perempuan,,731,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.2004,4,Menggala Mas,total,total,,1470,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01.2016,4,Mulya Jaya,sex,laki_laki,,2365,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.2016,4,Mulya Jaya,sex,perempuan,,2259,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.2016,4,Mulya Jaya,total,total,,4624,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01.2010,4,Mulya Kencana,sex,laki_laki,,3020,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.2010,4,Mulya Kencana,sex,perempuan,,2913,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.2010,4,Mulya Kencana,total,total,,5933,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01.1001,4,Mulyo Asri,sex,laki_laki,,3396,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.1001,4,Mulyo Asri,sex,perempuan,,3336,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.1001,4,Mulyo Asri,total,total,,6732,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01.2002,4,Panaragan,sex,laki_laki,,3438,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.2002,4,Panaragan,sex,perempuan,,3264,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.2002,4,Panaragan,total,total,,6702,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01.1007,4,Panaragan Jaya,sex,laki_laki,,3865,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.1007,4,Panaragan Jaya,sex,perempuan,,3729,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.1007,4,Panaragan Jaya,total,total,,7594,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01.2015,4,Panaragan Jaya Indah,sex,laki_laki,,836,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.2015,4,Panaragan Jaya Indah,sex,perempuan,,839,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.2015,4,Panaragan Jaya Indah,total,total,,1675,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01.2014,4,Panaragan Jaya Utama,sex,laki_laki,,1230,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.2014,4,Panaragan Jaya Utama,sex,perempuan,,1117,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.2014,4,Panaragan Jaya Utama,total,total,,2347,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01.2005,4,Penumangan,sex,laki_laki,,2382,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.2005,4,Penumangan,sex,perempuan,,2256,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.2005,4,Penumangan,total,total,,4638,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01.2006,4,Penumangan Baru,sex,laki_laki,,2196,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.2006,4,Penumangan Baru,sex,perempuan,,2139,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.2006,4,Penumangan Baru,total,total,,4335,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01.2009,4,Pulung Kencana,sex,laki_laki,,4837,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.2009,4,Pulung Kencana,sex,perempuan,,4720,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.2009,4,Pulung Kencana,total,total,,9557,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01.2008,4,Tirta Kencana,sex,laki_laki,,2861,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.2008,4,Tirta Kencana,sex,perempuan,,2751,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.2008,4,Tirta Kencana,total,total,,5612,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01.2017,4,Tirta Makmur,sex,laki_laki,,2297,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.2017,4,Tirta Makmur,sex,perempuan,,2225,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.2017,4,Tirta Makmur,total,total,,4522,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01.2012,4,Tunas Asri,sex,laki_laki,,2833,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.2012,4,Tunas Asri,sex,perempuan,,2724,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.2012,4,Tunas Asri,total,total,,5557,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01.2013,4,Wono Kerto,sex,laki_laki,,1169,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01.2013,4,Wono Kerto,sex,perempuan,,1102,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01.2013,4,Wono Kerto,total,total,,2271,jiwa,2025,registration,total_population,3.1,28,,
+18.12.01,3,Tulang Bawang Tengah,sex,laki_laki,,48050,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.01,3,Tulang Bawang Tengah,sex,perempuan,,46069,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.01,3,Tulang Bawang Tengah,total,total,,94119,jiwa,2025,registration,total_population,3.1,28,,

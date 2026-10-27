@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.03.06.2005,4,Gurun Mudo,sex,laki_laki,,622,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.06.2005,4,Gurun Mudo,sex,perempuan,,576,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.06.2005,4,Gurun Mudo,total,total,,1198,jiwa,2025,registration,total_population,3.1,28,,
+15.03.06.2006,4,Gurun Tuo,sex,laki_laki,,496,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.06.2006,4,Gurun Tuo,sex,perempuan,,456,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.06.2006,4,Gurun Tuo,total,total,,952,jiwa,2025,registration,total_population,3.1,28,,
+15.03.06.2004,4,Gurun Tuo Simpang,sex,laki_laki,,778,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.06.2004,4,Gurun Tuo Simpang,sex,perempuan,,806,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.06.2004,4,Gurun Tuo Simpang,total,total,,1584,jiwa,2025,registration,total_population,3.1,28,,
+15.03.06.2003,4,Pemusiran,sex,laki_laki,,2456,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.06.2003,4,Pemusiran,sex,perempuan,,2249,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.06.2003,4,Pemusiran,total,total,,4705,jiwa,2025,registration,total_population,3.1,28,,
+15.03.06.2002,4,Rangkiling Simpang,sex,laki_laki,,1240,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.06.2002,4,Rangkiling Simpang,sex,perempuan,,1184,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.06.2002,4,Rangkiling Simpang,total,total,,2424,jiwa,2025,registration,total_population,3.1,28,,
+15.03.06.2007,4,Rangkiling,sex,laki_laki,,411,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.06.2007,4,Rangkiling,sex,perempuan,,396,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.06.2007,4,Rangkiling,total,total,,807,jiwa,2025,registration,total_population,3.1,28,,
+15.03.06.2008,4,Mandiangin Tuo,sex,laki_laki,,450,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.06.2008,4,Mandiangin Tuo,sex,perempuan,,426,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.06.2008,4,Mandiangin Tuo,total,total,,876,jiwa,2025,registration,total_population,3.1,28,,
+15.03.06.2001,4,Mandiangin,sex,laki_laki,,1533,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.06.2001,4,Mandiangin,sex,perempuan,,1491,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.06.2001,4,Mandiangin,total,total,,3024,jiwa,2025,registration,total_population,3.1,28,,
+15.03.06.2011,4,Taman Dewa,sex,laki_laki,,932,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.06.2011,4,Taman Dewa,sex,perempuan,,871,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.06.2011,4,Taman Dewa,total,total,,1803,jiwa,2025,registration,total_population,3.1,28,,
+15.03.06.2012,4,Simpang Kertopati,sex,laki_laki,,443,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.06.2012,4,Simpang Kertopati,sex,perempuan,,376,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.06.2012,4,Simpang Kertopati,total,total,,819,jiwa,2025,registration,total_population,3.1,28,,
+15.03.06.2009,4,Kerto Pati,sex,laki_laki,,963,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.06.2009,4,Kerto Pati,sex,perempuan,,887,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.06.2009,4,Kerto Pati,total,total,,1850,jiwa,2025,registration,total_population,3.1,28,,
+15.03.06.2013,4,Bukit Peranginan,sex,laki_laki,,993,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.06.2013,4,Bukit Peranginan,sex,perempuan,,961,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.06.2013,4,Bukit Peranginan,total,total,,1954,jiwa,2025,registration,total_population,3.1,28,,
+15.03.06.2028,4,Talang Serdang,sex,laki_laki,,436,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.06.2028,4,Talang Serdang,sex,perempuan,,420,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.06.2028,4,Talang Serdang,total,total,,856,jiwa,2025,registration,total_population,3.1,28,,
+15.03.06.2020,4,Gurun Baru,sex,laki_laki,,456,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.06.2020,4,Gurun Baru,sex,perempuan,,464,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.06.2020,4,Gurun Baru,total,total,,920,jiwa,2025,registration,total_population,3.1,28,,
+15.03.06.2022,4,Mandiangin Pasar,sex,laki_laki,,788,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.06.2022,4,Mandiangin Pasar,sex,perempuan,,805,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.06.2022,4,Mandiangin Pasar,total,total,,1593,jiwa,2025,registration,total_population,3.1,28,,
+15.03.06.2023,4,Sungai Rotan,sex,laki_laki,,224,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.06.2023,4,Sungai Rotan,sex,perempuan,,213,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.06.2023,4,Sungai Rotan,total,total,,437,jiwa,2025,registration,total_population,3.1,28,,
+15.03.06,3,Mandiangin,sex,laki_laki,,14021,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.06,3,Mandiangin,sex,perempuan,,13359,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.06,3,Mandiangin,total,total,,27380,jiwa,2025,registration,total_population,3.1,28,,

@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-1213-kecamatan-120516-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.05.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Besitang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Langkat",
+  "publisherDomain": "1213",
+  "publisherWebsite": "https://langkatkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Langkat (https://langkatkab.bps.go.id), publikasi \"Kecamatan Besitang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1213190",
+  "publicationNumber": "12130.26030",
+  "issn": "2579-7468",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://langkatkab.bps.go.id/id/publication/2026/09/28/b7137a6699655d6ba7965593/kecamatan-besitang-dalam-angka-2026.html",
+  "sourceFileSha256": "5002392c8721d050bd967f74f838ce5768178271054c61ae21975a2359951913",
+  "sourceFileBytes": 25012881,
+  "sourcePages": [39],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Langkat.",
+  "csvPath": "datasets/bps-1213-kecamatan-120516-dalam-angka-2026.csv",
+  "csvSha256": "216674761b3d337ee887f0544ad92c53fdfd5849910c4a754a52a90c2b2e9c64",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p39",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Besitang 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p39: row not stored: row \"Pir ADB\": unmatched "
+  ]
+}

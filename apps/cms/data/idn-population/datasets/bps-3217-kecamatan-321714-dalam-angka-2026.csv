@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.17.14.2006,4,Mekarwangi,sex,laki_laki,,4924,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+32.17.14.2006,4,Mekarwangi,sex,perempuan,,4726,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+32.17.14.2006,4,Mekarwangi,total,total,,9650,jiwa,2025,registration,total_population,3.1,26,,
+32.17.14.2010,4,Weninggalih,sex,laki_laki,,3511,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+32.17.14.2010,4,Weninggalih,sex,perempuan,,3367,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+32.17.14.2010,4,Weninggalih,total,total,,6878,jiwa,2025,registration,total_population,3.1,26,,
+32.17.14.2011,4,Wangunsari,sex,laki_laki,,3152,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+32.17.14.2011,4,Wangunsari,sex,perempuan,,3199,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+32.17.14.2011,4,Wangunsari,total,total,,6351,jiwa,2025,registration,total_population,3.1,26,,
+32.17.14.2003,4,Buninagara,sex,laki_laki,,2182,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+32.17.14.2003,4,Buninagara,sex,perempuan,,2069,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+32.17.14.2003,4,Buninagara,total,total,,4251,jiwa,2025,registration,total_population,3.1,26,,
+32.17.14.2004,4,Cikadu,sex,laki_laki,,3808,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+32.17.14.2004,4,Cikadu,sex,perempuan,,3774,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+32.17.14.2004,4,Cikadu,total,total,,7582,jiwa,2025,registration,total_population,3.1,26,,
+32.17.14.2009,4,Ranca Senggang,sex,laki_laki,,3258,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+32.17.14.2009,4,Ranca Senggang,sex,perempuan,,3085,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+32.17.14.2009,4,Ranca Senggang,total,total,,6343,jiwa,2025,registration,total_population,3.1,26,,
+32.17.14.2001,4,Cintakarya,sex,laki_laki,,3025,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+32.17.14.2001,4,Cintakarya,sex,perempuan,,2920,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+32.17.14.2001,4,Cintakarya,total,total,,5945,jiwa,2025,registration,total_population,3.1,26,,
+32.17.14.2005,4,Cicangkang girang,sex,laki_laki,,6417,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+32.17.14.2005,4,Cicangkang girang,sex,perempuan,,6228,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+32.17.14.2005,4,Cicangkang girang,total,total,,12645,jiwa,2025,registration,total_population,3.1,26,,
+32.17.14.2008,4,Puncaksari,sex,laki_laki,,3603,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+32.17.14.2008,4,Puncaksari,sex,perempuan,,3441,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+32.17.14.2008,4,Puncaksari,total,total,,7044,jiwa,2025,registration,total_population,3.1,26,,
+32.17.14.2007,4,Pasirpogor,sex,laki_laki,,3889,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+32.17.14.2007,4,Pasirpogor,sex,perempuan,,3612,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+32.17.14.2007,4,Pasirpogor,total,total,,7501,jiwa,2025,registration,total_population,3.1,26,,
+32.17.14.2002,4,Sindangkerta,sex,laki_laki,,3897,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+32.17.14.2002,4,Sindangkerta,sex,perempuan,,3788,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+32.17.14.2002,4,Sindangkerta,total,total,,7685,jiwa,2025,registration,total_population,3.1,26,,
+32.17.14,3,Sindangkerta,sex,laki_laki,,41666,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+32.17.14,3,Sindangkerta,sex,perempuan,,40209,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+32.17.14,3,Sindangkerta,total,total,,81875,jiwa,2025,registration,total_population,3.1,26,,

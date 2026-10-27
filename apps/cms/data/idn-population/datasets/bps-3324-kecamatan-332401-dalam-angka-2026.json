@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3324-kecamatan-332401-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.24.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Plantungan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kendal",
+  "publisherDomain": "3324",
+  "publisherWebsite": "https://kendalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kendal (https://kendalkab.bps.go.id), publikasi \"Kecamatan Plantungan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3324010",
+  "publicationNumber": "33240.26006",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kendalkab.bps.go.id/id/publication/2026/09/28/11c9bbd6b319c4846cf98046/kecamatan-plantungan-dalam-angka-2026.html",
+  "sourceFileSha256": "ac990e236ce66e53285fc932b33740dcb4461cfe1c228ce8c0dcfbaceab8344c",
+  "sourceFileBytes": 8162692,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kendal.",
+  "csvPath": "datasets/bps-3324-kecamatan-332401-dalam-angka-2026.csv",
+  "csvSha256": "85c6f0e0af9e6a96b4cad91066bdaf976db984b600e32835685c4acec07f9051",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Plantungan, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Plantungan, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Plantungan Plantungan District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Plantungan Plantungan District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Plantungan Plantungan District\": unmatched "
+  ]
+}

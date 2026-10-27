@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.05.12.2016,4,Wonosari,sex,laki_laki,,2233,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.12.2016,4,Wonosari,sex,perempuan,,2133,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.12.2016,4,Wonosari,total,total,,4366,jiwa,2025,registration,total_population,3.1,23,,
+16.05.12.2003,4,Megang Sakti Ii,sex,laki_laki,,1328,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.12.2003,4,Megang Sakti Ii,sex,perempuan,,1323,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.12.2003,4,Megang Sakti Ii,total,total,,2651,jiwa,2025,registration,total_population,3.1,23,,
+16.05.12.2005,4,Megang Sakti Iv,sex,laki_laki,,1679,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.12.2005,4,Megang Sakti Iv,sex,perempuan,,1559,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.12.2005,4,Megang Sakti Iv,total,total,,3238,jiwa,2025,registration,total_population,3.1,23,,
+16.05.12.2004,4,Megang Sakti Iii,sex,laki_laki,,2242,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.12.2004,4,Megang Sakti Iii,sex,perempuan,,2185,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.12.2004,4,Megang Sakti Iii,total,total,,4427,jiwa,2025,registration,total_population,3.1,23,,
+16.05.12.2014,4,Pagar Ayu,sex,laki_laki,,1393,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.12.2014,4,Pagar Ayu,sex,perempuan,,1296,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.12.2014,4,Pagar Ayu,total,total,,2689,jiwa,2025,registration,total_population,3.1,23,,
+16.05.12.1001,4,Megang Sakti I,sex,laki_laki,,2478,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.12.1001,4,Megang Sakti I,sex,perempuan,,2373,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.12.1001,4,Megang Sakti I,total,total,,4851,jiwa,2025,registration,total_population,3.1,23,,
+16.05.12.2007,4,Sumber Rejo,sex,laki_laki,,2220,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.12.2007,4,Sumber Rejo,sex,perempuan,,2088,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.12.2007,4,Sumber Rejo,total,total,,4308,jiwa,2025,registration,total_population,3.1,23,,
+16.05.12.2013,4,Megang Sakti V,sex,laki_laki,,2412,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.12.2013,4,Megang Sakti V,sex,perempuan,,2264,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.12.2013,4,Megang Sakti V,total,total,,4676,jiwa,2025,registration,total_population,3.1,23,,
+16.05.12.2018,4,Jajaran Baru Ii,sex,laki_laki,,1781,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.12.2018,4,Jajaran Baru Ii,sex,perempuan,,1650,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.12.2018,4,Jajaran Baru Ii,total,total,,3431,jiwa,2025,registration,total_population,3.1,23,,
+16.05.12.2002,4,Muara Megang,sex,laki_laki,,1088,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.12.2002,4,Muara Megang,sex,perempuan,,987,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.12.2002,4,Muara Megang,total,total,,2075,jiwa,2025,registration,total_population,3.1,23,,
+16.05.12.2012,4,Marga Puspita,sex,laki_laki,,696,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.12.2012,4,Marga Puspita,sex,perempuan,,656,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.12.2012,4,Marga Puspita,total,total,,1352,jiwa,2025,registration,total_population,3.1,23,,
+16.05.12.2011,4,Tegal Sari,sex,laki_laki,,976,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.12.2011,4,Tegal Sari,sex,perempuan,,895,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.12.2011,4,Tegal Sari,total,total,,1871,jiwa,2025,registration,total_population,3.1,23,,
+16.05.12.2010,4,Campur Sari,sex,laki_laki,,1230,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.12.2010,4,Campur Sari,sex,perempuan,,1170,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.12.2010,4,Campur Sari,total,total,,2400,jiwa,2025,registration,total_population,3.1,23,,
+16.05.12.2009,4,Mekarsari,sex,laki_laki,,1107,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.12.2009,4,Mekarsari,sex,perempuan,,1055,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.12.2009,4,Mekarsari,total,total,,2162,jiwa,2025,registration,total_population,3.1,23,,
+16.05.12.2008,4,Rejosari,sex,laki_laki,,1141,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.12.2008,4,Rejosari,sex,perempuan,,1129,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.12.2008,4,Rejosari,total,total,,2270,jiwa,2025,registration,total_population,3.1,23,,
+16.05.12.2017,4,Trisakti,sex,laki_laki,,683,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.12.2017,4,Trisakti,sex,perempuan,,657,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.12.2017,4,Trisakti,total,total,,1340,jiwa,2025,registration,total_population,3.1,23,,
+16.05.12.2020,4,Mulyo Sari,sex,laki_laki,,1038,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.12.2020,4,Mulyo Sari,sex,perempuan,,981,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.12.2020,4,Mulyo Sari,total,total,,2019,jiwa,2025,registration,total_population,3.1,23,,
+16.05.12.2019,4,Muara Megang I,sex,laki_laki,,483,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.12.2019,4,Muara Megang I,sex,perempuan,,457,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.12.2019,4,Muara Megang I,total,total,,940,jiwa,2025,registration,total_population,3.1,23,,
+16.05.12.1021,4,Talang Ubi,sex,laki_laki,,1123,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.12.1021,4,Talang Ubi,sex,perempuan,,1085,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.12.1021,4,Talang Ubi,total,total,,2208,jiwa,2025,registration,total_population,3.1,23,,

@@ -1,0 +1,127 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.02.12.2006,4,Onan Runggu I,sex,laki_laki,,802,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.02.12.2006,4,Onan Runggu I,sex,perempuan,,798,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.02.12.2006,4,Onan Runggu I,total,total,,1600,jiwa,2025,registration,total_population,3.1,30,,
+12.02.12.2005,4,Sipahutar III,sex,laki_laki,,557,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.02.12.2005,4,Sipahutar III,sex,perempuan,,510,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.02.12.2005,4,Sipahutar III,total,total,,1067,jiwa,2025,registration,total_population,3.1,30,,
+12.02.12.2010,4,Siabal-abal I,sex,laki_laki,,848,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.02.12.2010,4,Siabal-abal I,sex,perempuan,,826,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.02.12.2010,4,Siabal-abal I,total,total,,1674,jiwa,2025,registration,total_population,3.1,30,,
+12.02.12.2015,4,Siabal-abal II,sex,laki_laki,,858,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.02.12.2015,4,Siabal-abal II,sex,perempuan,,859,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.02.12.2015,4,Siabal-abal II,total,total,,1717,jiwa,2025,registration,total_population,3.1,30,,
+12.02.12.2011,4,Aek Nauli II,sex,laki_laki,,356,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.02.12.2011,4,Aek Nauli II,sex,perempuan,,380,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.02.12.2011,4,Aek Nauli II,total,total,,736,jiwa,2025,registration,total_population,3.1,30,,
+12.02.12.2017,4,Aek Nauli III,sex,laki_laki,,547,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.02.12.2017,4,Aek Nauli III,sex,perempuan,,575,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.02.12.2017,4,Aek Nauli III,total,total,,1122,jiwa,2025,registration,total_population,3.1,30,,
+12.02.12.2021,4,Sabungan Nihuta V,sex,laki_laki,,412,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.02.12.2021,4,Sabungan Nihuta V,sex,perempuan,,398,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.02.12.2021,4,Sabungan Nihuta V,total,total,,810,jiwa,2025,registration,total_population,3.1,30,,
+12.02.12.2009,4,Siabal-abal III,sex,laki_laki,,829,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.02.12.2009,4,Siabal-abal III,sex,perempuan,,883,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.02.12.2009,4,Siabal-abal III,total,total,,1712,jiwa,2025,registration,total_population,3.1,30,,
+12.02.12.2004,4,Sipahutar II,sex,laki_laki,,406,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.02.12.2004,4,Sipahutar II,sex,perempuan,,460,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.02.12.2004,4,Sipahutar II,total,total,,866,jiwa,2025,registration,total_population,3.1,30,,
+12.02.12.2003,4,Sipahutar I,sex,laki_laki,,526,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.02.12.2003,4,Sipahutar I,sex,perempuan,,559,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.02.12.2003,4,Sipahutar I,total,total,,1085,jiwa,2025,registration,total_population,3.1,30,,
+12.02.12.2008,4,Onan Runggu III,sex,laki_laki,,1085,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.02.12.2008,4,Onan Runggu III,sex,perempuan,,1090,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.02.12.2008,4,Onan Runggu III,total,total,,2175,jiwa,2025,registration,total_population,3.1,30,,
+12.02.12.2018,4,Onan Runggu II,sex,laki_laki,,915,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.02.12.2018,4,Onan Runggu II,sex,perempuan,,941,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.02.12.2018,4,Onan Runggu II,total,total,,1856,jiwa,2025,registration,total_population,3.1,30,,
+12.02.12.2014,4,Onan Runggu IV,sex,laki_laki,,314,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.02.12.2014,4,Onan Runggu IV,sex,perempuan,,341,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.02.12.2014,4,Onan Runggu IV,total,total,,655,jiwa,2025,registration,total_population,3.1,30,,
+12.02.12.2002,4,Sabungan Nihuta I,sex,laki_laki,,578,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.02.12.2002,4,Sabungan Nihuta I,sex,perempuan,,562,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.02.12.2002,4,Sabungan Nihuta I,total,total,,1140,jiwa,2025,registration,total_population,3.1,30,,
+12.02.12.2020,4,Sabungan Nihuta II,sex,laki_laki,,827,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.02.12.2020,4,Sabungan Nihuta II,sex,perempuan,,845,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.02.12.2020,4,Sabungan Nihuta II,total,total,,1672,jiwa,2025,registration,total_population,3.1,30,,
+12.02.12.2013,4,Sabungan Nihuta III,sex,laki_laki,,277,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.02.12.2013,4,Sabungan Nihuta III,sex,perempuan,,268,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.02.12.2013,4,Sabungan Nihuta III,total,total,,545,jiwa,2025,registration,total_population,3.1,30,,
+12.02.12.2001,4,Sabungan Nihuta IV,sex,laki_laki,,613,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.02.12.2001,4,Sabungan Nihuta IV,sex,perempuan,,571,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.02.12.2001,4,Sabungan Nihuta IV,total,total,,1184,jiwa,2025,registration,total_population,3.1,30,,
+12.02.12.2012,4,Tapian Nauli II,sex,laki_laki,,631,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.02.12.2012,4,Tapian Nauli II,sex,perempuan,,665,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.02.12.2012,4,Tapian Nauli II,total,total,,1296,jiwa,2025,registration,total_population,3.1,30,,
+12.02.12.2007,4,Tapian Nauli III,sex,laki_laki,,337,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.02.12.2007,4,Tapian Nauli III,sex,perempuan,,313,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.02.12.2007,4,Tapian Nauli III,total,total,,650,jiwa,2025,registration,total_population,3.1,30,,
+12.02.12.2019,4,Tapian Nauli I,sex,laki_laki,,566,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+12.02.12.2019,4,Tapian Nauli I,sex,perempuan,,515,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+12.02.12.2019,4,Tapian Nauli I,total,total,,1081,jiwa,2025,registration,total_population,3.1,30,,
+12.02.12.2022,4,Siabal-abal IV,sex,laki_laki,,417,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+12.02.12.2022,4,Siabal-abal IV,sex,perempuan,,358,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.02.12.2022,4,Siabal-abal IV,total,total,,775,jiwa,2025,registration,total_population,3.1,31,,
+12.02.12.2023,4,Aek Nauli IV,sex,laki_laki,,723,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+12.02.12.2023,4,Aek Nauli IV,sex,perempuan,,732,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.02.12.2023,4,Aek Nauli IV,total,total,,1455,jiwa,2025,registration,total_population,3.1,31,,
+12.02.12.2025,4,Siabal-abal VI,sex,laki_laki,,511,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+12.02.12.2025,4,Siabal-abal VI,sex,perempuan,,490,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.02.12.2025,4,Siabal-abal VI,total,total,,1001,jiwa,2025,registration,total_population,3.1,31,,
+12.02.12.2024,4,Siabal-abal V,sex,laki_laki,,427,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+12.02.12.2024,4,Siabal-abal V,sex,perempuan,,451,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.02.12.2024,4,Siabal-abal V,total,total,,878,jiwa,2025,registration,total_population,3.1,31,,
+12.02.12,3,Sipahutar,sex,laki_laki,,14975,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+12.02.12,3,Sipahutar,sex,perempuan,,15016,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.02.12,3,Sipahutar,total,total,,29991,jiwa,2025,registration,total_population,3.1,31,,
+12.02.12,3,Sipahutar,age_group,0-4,laki_laki,848,jiwa,2025,registration,total_population,3.2,34,,0-4
+12.02.12,3,Sipahutar,age_group,0-4,perempuan,826,jiwa,2025,registration,total_population,3.2,34,,0-4
+12.02.12,3,Sipahutar,age_group,0-4,,1674,jiwa,2025,registration,total_population,3.2,34,,0-4
+12.02.12,3,Sipahutar,age_group,5-9,laki_laki,1422,jiwa,2025,registration,total_population,3.2,34,,5-9
+12.02.12,3,Sipahutar,age_group,5-9,perempuan,1365,jiwa,2025,registration,total_population,3.2,34,,5-9
+12.02.12,3,Sipahutar,age_group,5-9,,2787,jiwa,2025,registration,total_population,3.2,34,,5-9
+12.02.12,3,Sipahutar,age_group,10-14,laki_laki,1745,jiwa,2025,registration,total_population,3.2,34,,10-14
+12.02.12,3,Sipahutar,age_group,10-14,perempuan,1615,jiwa,2025,registration,total_population,3.2,34,,10-14
+12.02.12,3,Sipahutar,age_group,10-14,,3360,jiwa,2025,registration,total_population,3.2,34,,10-14
+12.02.12,3,Sipahutar,age_group,15-19,laki_laki,1653,jiwa,2025,registration,total_population,3.2,34,,15-19
+12.02.12,3,Sipahutar,age_group,15-19,perempuan,1561,jiwa,2025,registration,total_population,3.2,34,,15-19
+12.02.12,3,Sipahutar,age_group,15-19,,3214,jiwa,2025,registration,total_population,3.2,34,,15-19
+12.02.12,3,Sipahutar,age_group,20-24,laki_laki,1497,jiwa,2025,registration,total_population,3.2,34,,20-24
+12.02.12,3,Sipahutar,age_group,20-24,perempuan,1431,jiwa,2025,registration,total_population,3.2,34,,20-24
+12.02.12,3,Sipahutar,age_group,20-24,,2928,jiwa,2025,registration,total_population,3.2,34,,20-24
+12.02.12,3,Sipahutar,age_group,25-29,laki_laki,1177,jiwa,2025,registration,total_population,3.2,34,,25-29
+12.02.12,3,Sipahutar,age_group,25-29,perempuan,895,jiwa,2025,registration,total_population,3.2,34,,25-29
+12.02.12,3,Sipahutar,age_group,25-29,,2072,jiwa,2025,registration,total_population,3.2,34,,25-29
+12.02.12,3,Sipahutar,age_group,30-34,laki_laki,940,jiwa,2025,registration,total_population,3.2,34,,30-34
+12.02.12,3,Sipahutar,age_group,30-34,perempuan,839,jiwa,2025,registration,total_population,3.2,34,,30-34
+12.02.12,3,Sipahutar,age_group,30-34,,1779,jiwa,2025,registration,total_population,3.2,34,,30-34
+12.02.12,3,Sipahutar,age_group,35-39,laki_laki,968,jiwa,2025,registration,total_population,3.2,34,,35-39
+12.02.12,3,Sipahutar,age_group,35-39,perempuan,853,jiwa,2025,registration,total_population,3.2,34,,35-39
+12.02.12,3,Sipahutar,age_group,35-39,,1821,jiwa,2025,registration,total_population,3.2,34,,35-39
+12.02.12,3,Sipahutar,age_group,40-44,laki_laki,962,jiwa,2025,registration,total_population,3.2,34,,40-44
+12.02.12,3,Sipahutar,age_group,40-44,perempuan,926,jiwa,2025,registration,total_population,3.2,34,,40-44
+12.02.12,3,Sipahutar,age_group,40-44,,1888,jiwa,2025,registration,total_population,3.2,34,,40-44
+12.02.12,3,Sipahutar,age_group,45-49,laki_laki,914,jiwa,2025,registration,total_population,3.2,34,,45-49
+12.02.12,3,Sipahutar,age_group,45-49,perempuan,909,jiwa,2025,registration,total_population,3.2,34,,45-49
+12.02.12,3,Sipahutar,age_group,45-49,,1823,jiwa,2025,registration,total_population,3.2,34,,45-49
+12.02.12,3,Sipahutar,age_group,50-54,laki_laki,790,jiwa,2025,registration,total_population,3.2,34,,50-54
+12.02.12,3,Sipahutar,age_group,50-54,perempuan,769,jiwa,2025,registration,total_population,3.2,34,,50-54
+12.02.12,3,Sipahutar,age_group,50-54,,1559,jiwa,2025,registration,total_population,3.2,34,,50-54
+12.02.12,3,Sipahutar,age_group,55-59,laki_laki,579,jiwa,2025,registration,total_population,3.2,34,,55-59
+12.02.12,3,Sipahutar,age_group,55-59,perempuan,693,jiwa,2025,registration,total_population,3.2,34,,55-59
+12.02.12,3,Sipahutar,age_group,55-59,,1272,jiwa,2025,registration,total_population,3.2,34,,55-59
+12.02.12,3,Sipahutar,age_group,60-64,laki_laki,521,jiwa,2025,registration,total_population,3.2,34,,60-64
+12.02.12,3,Sipahutar,age_group,60-64,perempuan,608,jiwa,2025,registration,total_population,3.2,34,,60-64
+12.02.12,3,Sipahutar,age_group,60-64,,1129,jiwa,2025,registration,total_population,3.2,34,,60-64
+12.02.12,3,Sipahutar,age_group,65-69,laki_laki,401,jiwa,2025,registration,total_population,3.2,34,,65-69
+12.02.12,3,Sipahutar,age_group,65-69,perempuan,552,jiwa,2025,registration,total_population,3.2,34,,65-69
+12.02.12,3,Sipahutar,age_group,65-69,,953,jiwa,2025,registration,total_population,3.2,34,,65-69
+12.02.12,3,Sipahutar,age_group,70-74,laki_laki,288,jiwa,2025,registration,total_population,3.2,34,,70-74
+12.02.12,3,Sipahutar,age_group,70-74,perempuan,437,jiwa,2025,registration,total_population,3.2,34,,70-74
+12.02.12,3,Sipahutar,age_group,70-74,,725,jiwa,2025,registration,total_population,3.2,34,,70-74
+12.02.12,3,Sipahutar,age_group,74+,laki_laki,270,jiwa,2025,registration,total_population,3.2,34,,74+
+12.02.12,3,Sipahutar,age_group,74+,perempuan,737,jiwa,2025,registration,total_population,3.2,34,,74+
+12.02.12,3,Sipahutar,age_group,74+,,1007,jiwa,2025,registration,total_population,3.2,34,,74+
+12.02.12,3,Sipahutar,sex,laki_laki,,14975,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+12.02.12,3,Sipahutar,sex,perempuan,,15016,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+12.02.12,3,Sipahutar,total,total,,29991,jiwa,2025,registration,total_population,3.2,34,,

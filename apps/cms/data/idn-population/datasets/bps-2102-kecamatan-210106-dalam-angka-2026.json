@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-2102-kecamatan-210106-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.01.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bintan Timur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bintan",
+  "publisherDomain": "2102",
+  "publisherWebsite": "https://bintankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bintan (https://bintankab.bps.go.id), publikasi \"Kecamatan Bintan Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "21020.26007",
+  "issn": "2597-5900",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bintankab.bps.go.id/id/publication/2026/09/28/9ac79760f62c73191786052e/kecamatan-bintan-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "7ddf8201aee09d26bfe82b6d49cd4ae56c94e811983487493193add0ffecc092",
+  "sourceFileBytes": 4507092,
+  "sourcePages": [23, 24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bintan.",
+  "csvPath": "datasets/bps-2102-kecamatan-210106-dalam-angka-2026.csv",
+  "csvSha256": "22bdef1d599b834ccad8b4b9b0c49581579415becb6c67dc14e7942d49ae51d8",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bintan Timur, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bintan Timur, 2025",
+      "printedPages": [25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

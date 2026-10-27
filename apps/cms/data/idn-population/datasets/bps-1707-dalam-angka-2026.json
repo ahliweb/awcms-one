@@ -1,0 +1,66 @@
+{
+  "datasetCode": "bps-1707-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "17.07",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Lebong Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lebong",
+  "publisherDomain": "1707",
+  "publisherWebsite": "https://lebongkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lebong (https://lebongkab.bps.go.id), publikasi \"Kabupaten Lebong Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1707",
+  "publicationNumber": "17070.26002",
+  "issn": "3064-2132",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://lebongkab.bps.go.id/id/publication/2026/02/27/3a8253744eba0b7b4446a0ac/kabupaten-lebong-dalam-angka-2026.html",
+  "sourceFileSha256": "d7d611e317243127706db7e4a27f1a902a8f4ebc48a7aa4b98595ce8b05548e5",
+  "sourceFileBytes": 5815587,
+  "sourcePages": [53, 56, 112, 228],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lebong.",
+  "csvPath": "datasets/bps-1707-dalam-angka-2026.csv",
+  "csvSha256": "6ace379c20ecfd050705b5dc91006b54948bfa769c44fe7afda93b401c6e4dbb",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Lebong, 2025",
+      "printedPages": [53],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Lebong (jiwa), 2025",
+      "printedPages": [56],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Lebong, 2025",
+      "printedPages": [112],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Lebong (rupiah), 2024 dan 2025",
+      "printedPages": [228],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 3.1.2: the rows of region 17.07 are not stored: age_group (laki_laki) vs sex value: parts sum 53249.0000 != 57789.0000 (diff 4540.0000); the source itself is inconsistent"
+  ]
+}

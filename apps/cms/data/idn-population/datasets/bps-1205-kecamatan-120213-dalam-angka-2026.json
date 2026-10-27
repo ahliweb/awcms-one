@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-1205-kecamatan-120213-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.02.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pangaribuan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tapanuli Utara",
+  "publisherDomain": "1205",
+  "publisherWebsite": "https://tapanuliutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tapanuli Utara (https://tapanuliutarakab.bps.go.id), publikasi \"Kecamatan Pangaribuan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1205090",
+  "publicationNumber": "12050.26021",
+  "issn": "2503-0086",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tapanuliutarakab.bps.go.id/id/publication/2026/09/28/4332242533e6fd06c7756c90/kecamatan-pangaribuan-dalam-angka-2026.html",
+  "sourceFileSha256": "50dbc47bfb60b552791b3c47cc9e94988635b301395ec1b2a080552b71d09bb7",
+  "sourceFileBytes": 4523915,
+  "sourcePages": [30, 31, 32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tapanuli Utara.",
+  "csvPath": "datasets/bps-1205-kecamatan-120213-dalam-angka-2026.csv",
+  "csvSha256": "b189b6e68ad4efb55b222471f0cf26642d85a15a05970661001bc5a4761b6905",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pangaribuan, 2025",
+      "printedPages": [30, 31, 32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pangaribuan, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Lumban sinaga\": unmatched ",
+    "table 3.1: row not stored: row \"Lumban Sormin\": unmatched ",
+    "table 3.1: row not stored: row \"Pansorminan I\": unmatched ",
+    "table 3.1: row not stored: row \"Lumban sinaga\": unmatched ",
+    "table 3.1: row not stored: row \"Lumban Sormin\": unmatched ",
+    "table 3.1: row not stored: row \"Pansorminan I\": unmatched "
+  ]
+}

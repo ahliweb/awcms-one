@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.40.2004,4,Cipelah,sex,laki_laki,,4771,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.04.40.2004,4,Cipelah,sex,perempuan,,4562,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.04.40.2004,4,Cipelah,total,total,,9333,jiwa,2025,registration,total_population,3.1,28,,
+32.04.40.2002,4,Sukaresmi,sex,laki_laki,,5380,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.04.40.2002,4,Sukaresmi,sex,perempuan,,5047,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.04.40.2002,4,Sukaresmi,total,total,,10427,jiwa,2025,registration,total_population,3.1,28,,
+32.04.40.2003,4,Indragiri,sex,laki_laki,,1986,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.04.40.2003,4,Indragiri,sex,perempuan,,1826,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.04.40.2003,4,Indragiri,total,total,,3812,jiwa,2025,registration,total_population,3.1,28,,
+32.04.40.2001,4,Patengan,sex,laki_laki,,2861,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.04.40.2001,4,Patengan,sex,perempuan,,2728,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.04.40.2001,4,Patengan,total,total,,5589,jiwa,2025,registration,total_population,3.1,28,,
+32.04.40.2005,4,Alamendah,sex,laki_laki,,13127,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.04.40.2005,4,Alamendah,sex,perempuan,,12641,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.04.40.2005,4,Alamendah,total,total,,25768,jiwa,2025,registration,total_population,3.1,28,,
+32.04.40,3,Kecamatan Rancabali,sex,laki_laki,,28125,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.04.40,3,Kecamatan Rancabali,sex,perempuan,,26804,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.04.40,3,Kecamatan Rancabali,total,total,,54929,jiwa,2025,registration,total_population,3.1,28,,
+32.04.40,3,Rancabali,age_group,0-4,laki_laki,1783,jiwa,2025,registration,total_population,3.2,30,,0-4
+32.04.40,3,Rancabali,age_group,0-4,perempuan,1652,jiwa,2025,registration,total_population,3.2,30,,0-4
+32.04.40,3,Rancabali,age_group,0-4,,3435,jiwa,2025,registration,total_population,3.2,30,,0-4
+32.04.40,3,Rancabali,age_group,5-9,laki_laki,2399,jiwa,2025,registration,total_population,3.2,30,,5-9
+32.04.40,3,Rancabali,age_group,5-9,perempuan,2125,jiwa,2025,registration,total_population,3.2,30,,5-9
+32.04.40,3,Rancabali,age_group,5-9,,4524,jiwa,2025,registration,total_population,3.2,30,,5-9
+32.04.40,3,Rancabali,age_group,10-14,laki_laki,2528,jiwa,2025,registration,total_population,3.2,30,,10-14
+32.04.40,3,Rancabali,age_group,10-14,perempuan,2290,jiwa,2025,registration,total_population,3.2,30,,10-14
+32.04.40,3,Rancabali,age_group,10-14,,4818,jiwa,2025,registration,total_population,3.2,30,,10-14
+32.04.40,3,Rancabali,age_group,15-19,laki_laki,2226,jiwa,2025,registration,total_population,3.2,30,,15-19
+32.04.40,3,Rancabali,age_group,15-19,perempuan,2258,jiwa,2025,registration,total_population,3.2,30,,15-19
+32.04.40,3,Rancabali,age_group,15-19,,4484,jiwa,2025,registration,total_population,3.2,30,,15-19
+32.04.40,3,Rancabali,age_group,20-24,laki_laki,2310,jiwa,2025,registration,total_population,3.2,30,,20-24
+32.04.40,3,Rancabali,age_group,20-24,perempuan,2250,jiwa,2025,registration,total_population,3.2,30,,20-24
+32.04.40,3,Rancabali,age_group,20-24,,4560,jiwa,2025,registration,total_population,3.2,30,,20-24
+32.04.40,3,Rancabali,age_group,25-29,laki_laki,2323,jiwa,2025,registration,total_population,3.2,30,,25-29
+32.04.40,3,Rancabali,age_group,25-29,perempuan,1955,jiwa,2025,registration,total_population,3.2,30,,25-29
+32.04.40,3,Rancabali,age_group,25-29,,4278,jiwa,2025,registration,total_population,3.2,30,,25-29
+32.04.40,3,Rancabali,age_group,30-34,laki_laki,2124,jiwa,2025,registration,total_population,3.2,30,,30-34
+32.04.40,3,Rancabali,age_group,30-34,perempuan,2046,jiwa,2025,registration,total_population,3.2,30,,30-34
+32.04.40,3,Rancabali,age_group,30-34,,4170,jiwa,2025,registration,total_population,3.2,30,,30-34
+32.04.40,3,Rancabali,age_group,35-39,laki_laki,1805,jiwa,2025,registration,total_population,3.2,30,,35-39
+32.04.40,3,Rancabali,age_group,35-39,perempuan,1668,jiwa,2025,registration,total_population,3.2,30,,35-39
+32.04.40,3,Rancabali,age_group,35-39,,3473,jiwa,2025,registration,total_population,3.2,30,,35-39
+32.04.40,3,Rancabali,age_group,40-44,laki_laki,2091,jiwa,2025,registration,total_population,3.2,30,,40-44
+32.04.40,3,Rancabali,age_group,40-44,perempuan,2084,jiwa,2025,registration,total_population,3.2,30,,40-44
+32.04.40,3,Rancabali,age_group,40-44,,4175,jiwa,2025,registration,total_population,3.2,30,,40-44
+32.04.40,3,Rancabali,age_group,45-49,laki_laki,1949,jiwa,2025,registration,total_population,3.2,30,,45-49
+32.04.40,3,Rancabali,age_group,45-49,perempuan,1948,jiwa,2025,registration,total_population,3.2,30,,45-49
+32.04.40,3,Rancabali,age_group,45-49,,3897,jiwa,2025,registration,total_population,3.2,30,,45-49
+32.04.40,3,Rancabali,age_group,50-54,laki_laki,1798,jiwa,2025,registration,total_population,3.2,30,,50-54
+32.04.40,3,Rancabali,age_group,50-54,perempuan,1790,jiwa,2025,registration,total_population,3.2,30,,50-54
+32.04.40,3,Rancabali,age_group,50-54,,3588,jiwa,2025,registration,total_population,3.2,30,,50-54
+32.04.40,3,Rancabali,age_group,55-59,laki_laki,1475,jiwa,2025,registration,total_population,3.2,30,,55-59
+32.04.40,3,Rancabali,age_group,55-59,perempuan,1358,jiwa,2025,registration,total_population,3.2,30,,55-59
+32.04.40,3,Rancabali,age_group,55-59,,2833,jiwa,2025,registration,total_population,3.2,30,,55-59
+32.04.40,3,Rancabali,age_group,60-64,laki_laki,1162,jiwa,2025,registration,total_population,3.2,30,,60-64
+32.04.40,3,Rancabali,age_group,60-64,perempuan,1096,jiwa,2025,registration,total_population,3.2,30,,60-64
+32.04.40,3,Rancabali,age_group,60-64,,2258,jiwa,2025,registration,total_population,3.2,30,,60-64
+32.04.40,3,Rancabali,age_group,65-69,laki_laki,822,jiwa,2025,registration,total_population,3.2,30,,65-69
+32.04.40,3,Rancabali,age_group,65-69,perempuan,798,jiwa,2025,registration,total_population,3.2,30,,65-69
+32.04.40,3,Rancabali,age_group,65-69,,1620,jiwa,2025,registration,total_population,3.2,30,,65-69
+32.04.40,3,Rancabali,age_group,70-74,laki_laki,671,jiwa,2025,registration,total_population,3.2,30,,70-74
+32.04.40,3,Rancabali,age_group,70-74,perempuan,704,jiwa,2025,registration,total_population,3.2,30,,70-74
+32.04.40,3,Rancabali,age_group,70-74,,1375,jiwa,2025,registration,total_population,3.2,30,,70-74
+32.04.40,3,Rancabali,age_group,75+,laki_laki,659,jiwa,2025,registration,total_population,3.2,30,,75+
+32.04.40,3,Rancabali,age_group,75+,perempuan,782,jiwa,2025,registration,total_population,3.2,30,,75+
+32.04.40,3,Rancabali,age_group,75+,,1441,jiwa,2025,registration,total_population,3.2,30,,75+
+32.04.40,3,Kecamatan Rancabali,sex,laki_laki,,28125,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+32.04.40,3,Kecamatan Rancabali,sex,perempuan,,26804,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+32.04.40,3,Kecamatan Rancabali,total,total,,54929,jiwa,2025,registration,total_population,3.2,30,,

@@ -1,0 +1,61 @@
+{
+  "datasetCode": "bps-3326-kecamatan-332616-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.26.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Wiradesa Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pekalongan",
+  "publisherDomain": "3326",
+  "publisherWebsite": "https://pekalongankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pekalongan (https://pekalongankab.bps.go.id), publikasi \"Kecamatan Wiradesa Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3326150",
+  "publicationNumber": "33260.26023",
+  "issn": "0853-6201",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pekalongankab.bps.go.id/id/publication/2026/09/28/78da818fedfd81f755540357/kecamatan-wiradesa-dalam-angka-2026.html",
+  "sourceFileSha256": "ad4271409a62aa155dacd81eaf6f808732dde5e2d5adf0c44f1f8a6e4910c3e3",
+  "sourceFileBytes": 13838340,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pekalongan.",
+  "csvPath": "datasets/bps-3326-kecamatan-332616-dalam-angka-2026.csv",
+  "csvSha256": "8551680ff7373fa0d76b533dadede8c5208cfe7c8e15ad54e6eb29329704696c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Wiradesa, 2025",
+      "printedPages": [34, 35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Wiradesa, 2025",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kadipaten 5,92%\": unmatched ",
+    "table 3.1: row not stored: row \"Delegtukang 3,36%\": unmatched ",
+    "table 3.1: row not stored: row \"Karangjati 4,36%\": unmatched ",
+    "table 3.1: row not stored: row \"Petukangan 4,23%\": unmatched ",
+    "table 3.1: row not stored: row \"Wiradesa 9,93%\": unmatched ",
+    "table 3.1: row not stored: row \"Warukidul 4,06%\": unmatched ",
+    "table 3.1: row not stored: row \"Bondansari 6,56%\": unmatched ",
+    "table 3.1: row not stored: row \"Warulor 5,83%\": unmatched ",
+    "table 3.1: row not stored: row \"Kampil 6,46%\": unmatched ",
+    "table 3.1: row not stored: row \"Gumawang 5,69%\": unmatched ",
+    "table 3.1: row not stored: row \"Kepatihan 5,50%\": unmatched ",
+    "table 3.1: row not stored: row \"Mayangan 5,87%\": unmatched ",
+    "table 3.1: row not stored: row \"Pekuncen 11,86%\": unmatched ",
+    "table 3.1: row not stored: row \"Bener 8,02%\": unmatched ",
+    "table 3.1: row not stored: row \"Kemplong 6,15%\": unmatched ",
+    "table 3.1: row not stored: row \"Kauman 6,19%\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Wiradesa 100%\": unmatched "
+  ]
+}

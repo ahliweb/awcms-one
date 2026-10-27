@@ -1,0 +1,47 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/padi_padian,,80092,rupiah,2025,survey_estimate,per_capita,10.1,413,,Padi-padian
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/padi_padian,,83405,rupiah,2024,survey_estimate,per_capita,10.1,413,,Padi-padian
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/umbi_umbian,,5985,rupiah,2025,survey_estimate,per_capita,10.1,413,,Umbi-umbian
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/umbi_umbian,,5031,rupiah,2024,survey_estimate,per_capita,10.1,413,,Umbi-umbian
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,107920,rupiah,2025,survey_estimate,per_capita,10.1,413,,Ikan/udang/cumi/kerang
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,112981,rupiah,2024,survey_estimate,per_capita,10.1,413,,Ikan/udang/cumi/kerang
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/daging,,23241,rupiah,2025,survey_estimate,per_capita,10.1,413,,Daging
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/daging,,25135,rupiah,2024,survey_estimate,per_capita,10.1,413,,Daging
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/telur_dan_susu,,34440,rupiah,2025,survey_estimate,per_capita,10.1,413,,Telur dan susu
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/telur_dan_susu,,33002,rupiah,2024,survey_estimate,per_capita,10.1,413,,Telur dan susu
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/sayur_sayuran,,59179,rupiah,2025,survey_estimate,per_capita,10.1,413,,Sayur-sayuran
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/sayur_sayuran,,64572,rupiah,2024,survey_estimate,per_capita,10.1,413,,Sayur-sayuran
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/kacang_kacangan,,7523,rupiah,2025,survey_estimate,per_capita,10.1,413,,Kacang-kacangan
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/kacang_kacangan,,7524,rupiah,2024,survey_estimate,per_capita,10.1,413,,Kacang-kacangan
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/buah_buahan,,41075,rupiah,2025,survey_estimate,per_capita,10.1,413,,Buah-buahan
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/buah_buahan,,38799,rupiah,2024,survey_estimate,per_capita,10.1,413,,Buah-buahan
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22784,rupiah,2025,survey_estimate,per_capita,10.1,413,,Minyak dan kelapa
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19295,rupiah,2024,survey_estimate,per_capita,10.1,413,,Minyak dan kelapa
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/bahan_minuman,,19078,rupiah,2025,survey_estimate,per_capita,10.1,413,,Bahan minuman
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/bahan_minuman,,15217,rupiah,2024,survey_estimate,per_capita,10.1,413,,Bahan minuman
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/bumbu_bumbuan,,18249,rupiah,2025,survey_estimate,per_capita,10.1,413,,Bumbu-bumbuan
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/bumbu_bumbuan,,15577,rupiah,2024,survey_estimate,per_capita,10.1,413,,Bumbu-bumbuan
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/konsumsi_lainnya,,10662,rupiah,2025,survey_estimate,per_capita,10.1,413,,Konsumsi lainnya
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/konsumsi_lainnya,,10392,rupiah,2024,survey_estimate,per_capita,10.1,413,,Konsumsi lainnya
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,324831,rupiah,2025,survey_estimate,per_capita,10.1,413,,Makanan dan minuman jadi
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,291918,rupiah,2024,survey_estimate,per_capita,10.1,413,,Makanan dan minuman jadi
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/rokok_dan_tembakau,,70009,rupiah,2025,survey_estimate,per_capita,10.1,413,,Rokok dan tembakau
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/rokok_dan_tembakau,,76146,rupiah,2024,survey_estimate,per_capita,10.1,413,,Rokok dan tembakau
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/jumlah_makanan,,825069,rupiah,2025,survey_estimate,per_capita,10.1,413,,Jumlah makanan
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/jumlah_makanan,,798994,rupiah,2024,survey_estimate,per_capita,10.1,413,,Jumlah makanan
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,390816,rupiah,2025,survey_estimate,per_capita,10.1,413,,Perumahan dan fasilitas rumah tangga
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,431996,rupiah,2024,survey_estimate,per_capita,10.1,413,,Perumahan dan fasilitas rumah tangga
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,253185,rupiah,2025,survey_estimate,per_capita,10.1,413,,Aneka barang dan jasa
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,217767,rupiah,2024,survey_estimate,per_capita,10.1,413,,Aneka barang dan jasa
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,65500,rupiah,2025,survey_estimate,per_capita,10.1,413,,"Pakaian, alas kaki, dan tutup kepala"
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,65012,rupiah,2024,survey_estimate,per_capita,10.1,413,,"Pakaian, alas kaki, dan tutup kepala"
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/barang_tahan_lama,,67278,rupiah,2025,survey_estimate,per_capita,10.1,413,,Barang tahan lama
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/barang_tahan_lama,,80899,rupiah,2024,survey_estimate,per_capita,10.1,413,,Barang tahan lama
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,95848,rupiah,2025,survey_estimate,per_capita,10.1,413,,"Pajak, pungutan, dan asuransi"
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,74766,rupiah,2024,survey_estimate,per_capita,10.1,413,,"Pajak, pungutan, dan asuransi"
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,6426,rupiah,2025,survey_estimate,per_capita,10.1,413,,Keperluan pesta dan upacara/kenduri
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,22701,rupiah,2024,survey_estimate,per_capita,10.1,413,,Keperluan pesta dan upacara/kenduri
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,879052,rupiah,2025,survey_estimate,per_capita,10.1,413,,Jumlah bukan makanan
+11.73,2,Kota Lhokseumawe,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,893141,rupiah,2024,survey_estimate,per_capita,10.1,413,,Jumlah bukan makanan
+11.73,2,Kota Lhokseumawe,expenditure,total,,1704121,rupiah,2025,survey_estimate,per_capita,10.1,413,,
+11.73,2,Kota Lhokseumawe,expenditure,total,,1692135,rupiah,2024,survey_estimate,per_capita,10.1,413,,

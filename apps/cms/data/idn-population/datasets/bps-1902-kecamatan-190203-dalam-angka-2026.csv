@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.02.03.2003,4,Suak Gual,sex,laki_laki,,492,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.03.2003,4,Suak Gual,sex,perempuan,,446,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.03.2003,4,Suak Gual,total,total,,938,jiwa,2025,registration,total_population,3.1,27,,
+19.02.03.2002,4,Petaling,sex,laki_laki,,328,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.03.2002,4,Petaling,sex,perempuan,,317,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.03.2002,4,Petaling,total,total,,645,jiwa,2025,registration,total_population,3.1,27,,
+19.02.03.2001,4,Selat Nasik,sex,laki_laki,,1191,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.03.2001,4,Selat Nasik,sex,perempuan,,1144,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.03.2001,4,Selat Nasik,total,total,,2335,jiwa,2025,registration,total_population,3.1,27,,
+19.02.03.2004,4,Pulau Gersik,sex,laki_laki,,905,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.03.2004,4,Pulau Gersik,sex,perempuan,,878,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.03.2004,4,Pulau Gersik,total,total,,1783,jiwa,2025,registration,total_population,3.1,27,,
+19.02.03,3,Kecamatan Selat Nasik,sex,laki_laki,,2916,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.03,3,Kecamatan Selat Nasik,sex,perempuan,,2785,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.03,3,Kecamatan Selat Nasik,total,total,,5701,jiwa,2025,registration,total_population,3.1,27,,
+19.02.03,3,Selat Nasik,age_group,0-4,laki_laki,161,jiwa,2025,registration,total_population,3.2,29,,0–4
+19.02.03,3,Selat Nasik,age_group,0-4,perempuan,136,jiwa,2025,registration,total_population,3.2,29,,0–4
+19.02.03,3,Selat Nasik,age_group,0-4,,297,jiwa,2025,registration,total_population,3.2,29,,0–4
+19.02.03,3,Selat Nasik,age_group,5-9,laki_laki,221,jiwa,2025,registration,total_population,3.2,29,,5–9
+19.02.03,3,Selat Nasik,age_group,5-9,perempuan,215,jiwa,2025,registration,total_population,3.2,29,,5–9
+19.02.03,3,Selat Nasik,age_group,5-9,,436,jiwa,2025,registration,total_population,3.2,29,,5–9
+19.02.03,3,Selat Nasik,age_group,10-14,laki_laki,237,jiwa,2025,registration,total_population,3.2,29,,10–14
+19.02.03,3,Selat Nasik,age_group,10-14,perempuan,191,jiwa,2025,registration,total_population,3.2,29,,10–14
+19.02.03,3,Selat Nasik,age_group,10-14,,428,jiwa,2025,registration,total_population,3.2,29,,10–14
+19.02.03,3,Selat Nasik,age_group,15-19,laki_laki,238,jiwa,2025,registration,total_population,3.2,29,,15–19
+19.02.03,3,Selat Nasik,age_group,15-19,perempuan,250,jiwa,2025,registration,total_population,3.2,29,,15–19
+19.02.03,3,Selat Nasik,age_group,15-19,,488,jiwa,2025,registration,total_population,3.2,29,,15–19
+19.02.03,3,Selat Nasik,age_group,20-24,laki_laki,259,jiwa,2025,registration,total_population,3.2,29,,20–24
+19.02.03,3,Selat Nasik,age_group,20-24,perempuan,251,jiwa,2025,registration,total_population,3.2,29,,20–24
+19.02.03,3,Selat Nasik,age_group,20-24,,510,jiwa,2025,registration,total_population,3.2,29,,20–24
+19.02.03,3,Selat Nasik,age_group,25-29,laki_laki,198,jiwa,2025,registration,total_population,3.2,29,,25–29
+19.02.03,3,Selat Nasik,age_group,25-29,perempuan,187,jiwa,2025,registration,total_population,3.2,29,,25–29
+19.02.03,3,Selat Nasik,age_group,25-29,,385,jiwa,2025,registration,total_population,3.2,29,,25–29
+19.02.03,3,Selat Nasik,age_group,30-34,laki_laki,194,jiwa,2025,registration,total_population,3.2,29,,30–34
+19.02.03,3,Selat Nasik,age_group,30-34,perempuan,169,jiwa,2025,registration,total_population,3.2,29,,30–34
+19.02.03,3,Selat Nasik,age_group,30-34,,363,jiwa,2025,registration,total_population,3.2,29,,30–34
+19.02.03,3,Selat Nasik,age_group,35-39,laki_laki,219,jiwa,2025,registration,total_population,3.2,29,,35–39
+19.02.03,3,Selat Nasik,age_group,35-39,perempuan,201,jiwa,2025,registration,total_population,3.2,29,,35–39
+19.02.03,3,Selat Nasik,age_group,35-39,,420,jiwa,2025,registration,total_population,3.2,29,,35–39
+19.02.03,3,Selat Nasik,age_group,40-44,laki_laki,266,jiwa,2025,registration,total_population,3.2,29,,40–44
+19.02.03,3,Selat Nasik,age_group,40-44,perempuan,235,jiwa,2025,registration,total_population,3.2,29,,40–44
+19.02.03,3,Selat Nasik,age_group,40-44,,501,jiwa,2025,registration,total_population,3.2,29,,40–44
+19.02.03,3,Selat Nasik,age_group,45-49,laki_laki,257,jiwa,2025,registration,total_population,3.2,29,,45–49
+19.02.03,3,Selat Nasik,age_group,45-49,perempuan,233,jiwa,2025,registration,total_population,3.2,29,,45–49
+19.02.03,3,Selat Nasik,age_group,45-49,,490,jiwa,2025,registration,total_population,3.2,29,,45–49
+19.02.03,3,Selat Nasik,age_group,50-54,laki_laki,182,jiwa,2025,registration,total_population,3.2,29,,50–54
+19.02.03,3,Selat Nasik,age_group,50-54,perempuan,172,jiwa,2025,registration,total_population,3.2,29,,50–54
+19.02.03,3,Selat Nasik,age_group,50-54,,354,jiwa,2025,registration,total_population,3.2,29,,50–54
+19.02.03,3,Selat Nasik,age_group,55-59,laki_laki,143,jiwa,2025,registration,total_population,3.2,29,,55–59
+19.02.03,3,Selat Nasik,age_group,55-59,perempuan,145,jiwa,2025,registration,total_population,3.2,29,,55–59
+19.02.03,3,Selat Nasik,age_group,55-59,,288,jiwa,2025,registration,total_population,3.2,29,,55–59
+19.02.03,3,Selat Nasik,age_group,60-64,laki_laki,124,jiwa,2025,registration,total_population,3.2,29,,60–64
+19.02.03,3,Selat Nasik,age_group,60-64,perempuan,119,jiwa,2025,registration,total_population,3.2,29,,60–64
+19.02.03,3,Selat Nasik,age_group,60-64,,243,jiwa,2025,registration,total_population,3.2,29,,60–64
+19.02.03,3,Selat Nasik,age_group,65-69,laki_laki,75,jiwa,2025,registration,total_population,3.2,29,,65–69
+19.02.03,3,Selat Nasik,age_group,65-69,perempuan,100,jiwa,2025,registration,total_population,3.2,29,,65–69
+19.02.03,3,Selat Nasik,age_group,65-69,,175,jiwa,2025,registration,total_population,3.2,29,,65–69
+19.02.03,3,Selat Nasik,age_group,70-74,laki_laki,59,jiwa,2025,registration,total_population,3.2,29,,70–74
+19.02.03,3,Selat Nasik,age_group,70-74,perempuan,70,jiwa,2025,registration,total_population,3.2,29,,70–74
+19.02.03,3,Selat Nasik,age_group,70-74,,129,jiwa,2025,registration,total_population,3.2,29,,70–74
+19.02.03,3,Selat Nasik,age_group,75+,laki_laki,83,jiwa,2025,registration,total_population,3.2,29,,75+
+19.02.03,3,Selat Nasik,age_group,75+,perempuan,111,jiwa,2025,registration,total_population,3.2,29,,75+
+19.02.03,3,Selat Nasik,age_group,75+,,194,jiwa,2025,registration,total_population,3.2,29,,75+
+19.02.03,3,Kecamatan Selat Nasik,sex,laki_laki,,2916,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+19.02.03,3,Kecamatan Selat Nasik,sex,perempuan,,2785,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+19.02.03,3,Kecamatan Selat Nasik,total,total,,5701,jiwa,2025,registration,total_population,3.2,29,,

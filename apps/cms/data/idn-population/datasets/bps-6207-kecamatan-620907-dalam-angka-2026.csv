@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.09.07.2001,4,Nanga Belantikan,sex,laki_laki,,258,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.07.2001,4,Nanga Belantikan,sex,perempuan,,233,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.07.2001,4,Nanga Belantikan,total,total,,491,jiwa,2025,registration,total_population,3.1,28,,
+62.09.07.2002,4,Sungai Buluh,sex,laki_laki,,586,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.07.2002,4,Sungai Buluh,sex,perempuan,,545,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.07.2002,4,Sungai Buluh,total,total,,1131,jiwa,2025,registration,total_population,3.1,28,,
+62.09.07.2003,4,Tangga Batu,sex,laki_laki,,380,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.07.2003,4,Tangga Batu,sex,perempuan,,323,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.07.2003,4,Tangga Batu,total,total,,703,jiwa,2025,registration,total_population,3.1,28,,
+62.09.07.2004,4,Belibi,sex,laki_laki,,230,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.07.2004,4,Belibi,sex,perempuan,,226,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.07.2004,4,Belibi,total,total,,456,jiwa,2025,registration,total_population,3.1,28,,
+62.09.07.2005,4,Bayat,sex,laki_laki,,1282,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.07.2005,4,Bayat,sex,perempuan,,1153,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.07.2005,4,Bayat,total,total,,2435,jiwa,2025,registration,total_population,3.1,28,,
+62.09.07.2006,4,Karang Besi,sex,laki_laki,,191,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.07.2006,4,Karang Besi,sex,perempuan,,184,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.07.2006,4,Karang Besi,total,total,,375,jiwa,2025,registration,total_population,3.1,28,,
+62.09.07.2007,4,Benuatan,sex,laki_laki,,89,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.07.2007,4,Benuatan,sex,perempuan,,83,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.07.2007,4,Benuatan,total,total,,172,jiwa,2025,registration,total_population,3.1,28,,
+62.09.07.2008,4,Kahingai,sex,laki_laki,,374,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.07.2008,4,Kahingai,sex,perempuan,,325,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.07.2008,4,Kahingai,total,total,,699,jiwa,2025,registration,total_population,3.1,28,,
+62.09.07.2009,4,Nanga Matu,sex,laki_laki,,74,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.07.2009,4,Nanga Matu,sex,perempuan,,59,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.07.2009,4,Nanga Matu,total,total,,133,jiwa,2025,registration,total_population,3.1,28,,
+62.09.07.2011,4,Petarikan,sex,laki_laki,,156,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.07.2011,4,Petarikan,sex,perempuan,,136,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.07.2011,4,Petarikan,total,total,,292,jiwa,2025,registration,total_population,3.1,28,,
+62.09.07.2010,4,Bintang Mangalih,sex,laki_laki,,188,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.07.2010,4,Bintang Mangalih,sex,perempuan,,161,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.07.2010,4,Bintang Mangalih,total,total,,349,jiwa,2025,registration,total_population,3.1,28,,
+62.09.07.2012,4,Sumber Cahaya,sex,laki_laki,,829,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.07.2012,4,Sumber Cahaya,sex,perempuan,,723,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.07.2012,4,Sumber Cahaya,total,total,,1552,jiwa,2025,registration,total_population,3.1,28,,
+62.09.07,3,Kecamatan Belantikan Raya,sex,laki_laki,,4637,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.07,3,Kecamatan Belantikan Raya,sex,perempuan,,4151,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.07,3,Kecamatan Belantikan Raya,total,total,,8788,jiwa,2025,registration,total_population,3.1,28,,
+62.09.07,3,Belantikan Raya,age_group,0-4,laki_laki,284,jiwa,2025,registration,total_population,3.2,30,,0–4
+62.09.07,3,Belantikan Raya,age_group,0-4,perempuan,284,jiwa,2025,registration,total_population,3.2,30,,0–4
+62.09.07,3,Belantikan Raya,age_group,0-4,,568,jiwa,2025,registration,total_population,3.2,30,,0–4
+62.09.07,3,Belantikan Raya,age_group,5-9,laki_laki,396,jiwa,2025,registration,total_population,3.2,30,,5–9
+62.09.07,3,Belantikan Raya,age_group,5-9,perempuan,376,jiwa,2025,registration,total_population,3.2,30,,5–9
+62.09.07,3,Belantikan Raya,age_group,5-9,,772,jiwa,2025,registration,total_population,3.2,30,,5–9
+62.09.07,3,Belantikan Raya,age_group,10-14,laki_laki,417,jiwa,2025,registration,total_population,3.2,30,,10–14
+62.09.07,3,Belantikan Raya,age_group,10-14,perempuan,373,jiwa,2025,registration,total_population,3.2,30,,10–14
+62.09.07,3,Belantikan Raya,age_group,10-14,,790,jiwa,2025,registration,total_population,3.2,30,,10–14
+62.09.07,3,Belantikan Raya,age_group,15-19,laki_laki,354,jiwa,2025,registration,total_population,3.2,30,,15–19
+62.09.07,3,Belantikan Raya,age_group,15-19,perempuan,330,jiwa,2025,registration,total_population,3.2,30,,15–19
+62.09.07,3,Belantikan Raya,age_group,15-19,,684,jiwa,2025,registration,total_population,3.2,30,,15–19
+62.09.07,3,Belantikan Raya,age_group,20-24,laki_laki,400,jiwa,2025,registration,total_population,3.2,30,,20–24
+62.09.07,3,Belantikan Raya,age_group,20-24,perempuan,371,jiwa,2025,registration,total_population,3.2,30,,20–24
+62.09.07,3,Belantikan Raya,age_group,20-24,,771,jiwa,2025,registration,total_population,3.2,30,,20–24
+62.09.07,3,Belantikan Raya,age_group,25-29,laki_laki,408,jiwa,2025,registration,total_population,3.2,30,,25–29
+62.09.07,3,Belantikan Raya,age_group,25-29,perempuan,333,jiwa,2025,registration,total_population,3.2,30,,25–29
+62.09.07,3,Belantikan Raya,age_group,25-29,,741,jiwa,2025,registration,total_population,3.2,30,,25–29
+62.09.07,3,Belantikan Raya,age_group,30-34,laki_laki,397,jiwa,2025,registration,total_population,3.2,30,,30–34
+62.09.07,3,Belantikan Raya,age_group,30-34,perempuan,346,jiwa,2025,registration,total_population,3.2,30,,30–34
+62.09.07,3,Belantikan Raya,age_group,30-34,,743,jiwa,2025,registration,total_population,3.2,30,,30–34
+62.09.07,3,Belantikan Raya,age_group,35-39,laki_laki,392,jiwa,2025,registration,total_population,3.2,30,,35–39
+62.09.07,3,Belantikan Raya,age_group,35-39,perempuan,340,jiwa,2025,registration,total_population,3.2,30,,35–39
+62.09.07,3,Belantikan Raya,age_group,35-39,,732,jiwa,2025,registration,total_population,3.2,30,,35–39
+62.09.07,3,Belantikan Raya,age_group,40-44,laki_laki,392,jiwa,2025,registration,total_population,3.2,30,,40–44
+62.09.07,3,Belantikan Raya,age_group,40-44,perempuan,357,jiwa,2025,registration,total_population,3.2,30,,40–44
+62.09.07,3,Belantikan Raya,age_group,40-44,,749,jiwa,2025,registration,total_population,3.2,30,,40–44
+62.09.07,3,Belantikan Raya,age_group,45-49,laki_laki,354,jiwa,2025,registration,total_population,3.2,30,,45–49
+62.09.07,3,Belantikan Raya,age_group,45-49,perempuan,330,jiwa,2025,registration,total_population,3.2,30,,45–49
+62.09.07,3,Belantikan Raya,age_group,45-49,,684,jiwa,2025,registration,total_population,3.2,30,,45–49
+62.09.07,3,Belantikan Raya,age_group,50-54,laki_laki,269,jiwa,2025,registration,total_population,3.2,30,,50–54
+62.09.07,3,Belantikan Raya,age_group,50-54,perempuan,227,jiwa,2025,registration,total_population,3.2,30,,50–54
+62.09.07,3,Belantikan Raya,age_group,50-54,,496,jiwa,2025,registration,total_population,3.2,30,,50–54
+62.09.07,3,Belantikan Raya,age_group,55-59,laki_laki,200,jiwa,2025,registration,total_population,3.2,30,,55–59
+62.09.07,3,Belantikan Raya,age_group,55-59,perempuan,139,jiwa,2025,registration,total_population,3.2,30,,55–59
+62.09.07,3,Belantikan Raya,age_group,55-59,,339,jiwa,2025,registration,total_population,3.2,30,,55–59
+62.09.07,3,Belantikan Raya,age_group,60-64,laki_laki,149,jiwa,2025,registration,total_population,3.2,30,,60–64
+62.09.07,3,Belantikan Raya,age_group,60-64,perempuan,116,jiwa,2025,registration,total_population,3.2,30,,60–64
+62.09.07,3,Belantikan Raya,age_group,60-64,,265,jiwa,2025,registration,total_population,3.2,30,,60–64
+62.09.07,3,Belantikan Raya,age_group,65-69,laki_laki,82,jiwa,2025,registration,total_population,3.2,30,,65–69
+62.09.07,3,Belantikan Raya,age_group,65-69,perempuan,94,jiwa,2025,registration,total_population,3.2,30,,65–69
+62.09.07,3,Belantikan Raya,age_group,65-69,,176,jiwa,2025,registration,total_population,3.2,30,,65–69
+62.09.07,3,Belantikan Raya,age_group,70-74,laki_laki,61,jiwa,2025,registration,total_population,3.2,30,,70–74
+62.09.07,3,Belantikan Raya,age_group,70-74,perempuan,51,jiwa,2025,registration,total_population,3.2,30,,70–74
+62.09.07,3,Belantikan Raya,age_group,70-74,,112,jiwa,2025,registration,total_population,3.2,30,,70–74
+62.09.07,3,Belantikan Raya,age_group,75+,laki_laki,82,jiwa,2025,registration,total_population,3.2,30,,75+
+62.09.07,3,Belantikan Raya,age_group,75+,perempuan,84,jiwa,2025,registration,total_population,3.2,30,,75+
+62.09.07,3,Belantikan Raya,age_group,75+,,166,jiwa,2025,registration,total_population,3.2,30,,75+
+62.09.07,3,Kecamatan Belantikan Raya,sex,laki_laki,,4637,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki/Male
+62.09.07,3,Kecamatan Belantikan Raya,sex,perempuan,,4151,jiwa,2025,registration,total_population,3.2,30,,Perempuan/Female
+62.09.07,3,Kecamatan Belantikan Raya,total,total,,8788,jiwa,2025,registration,total_population,3.2,30,,

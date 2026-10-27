@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.23.04.2004,4,Kupen,sex,laki_laki,,2859,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.04.2004,4,Kupen,sex,perempuan,,2839,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.04.2004,4,Kupen,total,total,,5698,jiwa,2026,registration,total_population,3.1,25,,
+33.23.04.2003,4,Soropadan,sex,laki_laki,,2227,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.04.2003,4,Soropadan,sex,perempuan,,2244,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.04.2003,4,Soropadan,total,total,,4471,jiwa,2026,registration,total_population,3.1,25,,
+33.23.04.2002,4,Kebumen,sex,laki_laki,,2131,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.04.2002,4,Kebumen,sex,perempuan,,2095,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.04.2002,4,Kebumen,total,total,,4226,jiwa,2026,registration,total_population,3.1,25,,
+33.23.04.2001,4,Pringsurat,sex,laki_laki,,1340,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.04.2001,4,Pringsurat,sex,perempuan,,1341,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.04.2001,4,Pringsurat,total,total,,2681,jiwa,2026,registration,total_population,3.1,25,,
+33.23.04.2005,4,Karangwuni,sex,laki_laki,,1707,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.04.2005,4,Karangwuni,sex,perempuan,,1702,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.04.2005,4,Karangwuni,total,total,,3409,jiwa,2026,registration,total_population,3.1,25,,
+33.23.04.2006,4,Gowak,sex,laki_laki,,1977,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.04.2006,4,Gowak,sex,perempuan,,2027,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.04.2006,4,Gowak,total,total,,4004,jiwa,2026,registration,total_population,3.1,25,,
+33.23.04.2007,4,Rejosari,sex,laki_laki,,1514,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.04.2007,4,Rejosari,sex,perempuan,,1552,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.04.2007,4,Rejosari,total,total,,3066,jiwa,2026,registration,total_population,3.1,25,,
+33.23.04.2008,4,Ngipik,sex,laki_laki,,1945,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.04.2008,4,Ngipik,sex,perempuan,,1934,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.04.2008,4,Ngipik,total,total,,3879,jiwa,2026,registration,total_population,3.1,25,,
+33.23.04.2009,4,Pingit,sex,laki_laki,,3035,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.04.2009,4,Pingit,sex,perempuan,,3051,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.04.2009,4,Pingit,total,total,,6086,jiwa,2026,registration,total_population,3.1,25,,
+33.23.04.2010,4,Klepu,sex,laki_laki,,1683,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.04.2010,4,Klepu,sex,perempuan,,1749,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.04.2010,4,Klepu,total,total,,3432,jiwa,2026,registration,total_population,3.1,25,,
+33.23.04.2013,4,Pagergunung,sex,laki_laki,,1384,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.04.2013,4,Pagergunung,sex,perempuan,,1382,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.04.2013,4,Pagergunung,total,total,,2766,jiwa,2026,registration,total_population,3.1,25,,
+33.23.04.2012,4,Nglorog,sex,laki_laki,,2083,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.04.2012,4,Nglorog,sex,perempuan,,2048,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.04.2012,4,Nglorog,total,total,,4131,jiwa,2026,registration,total_population,3.1,25,,
+33.23.04.2011,4,Soborejo,sex,laki_laki,,1871,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.04.2011,4,Soborejo,sex,perempuan,,1838,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.04.2011,4,Soborejo,total,total,,3709,jiwa,2026,registration,total_population,3.1,25,,
+33.23.04.2014,4,Wonokerso,sex,laki_laki,,1434,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.04.2014,4,Wonokerso,sex,perempuan,,1358,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.04.2014,4,Wonokerso,total,total,,2792,jiwa,2026,registration,total_population,3.1,25,,
+33.23.04,3,Kecamatan Pringsurat,sex,laki_laki,,27190,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.04,3,Kecamatan Pringsurat,sex,perempuan,,27160,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.04,3,Kecamatan Pringsurat,total,total,,54350,jiwa,2026,registration,total_population,3.1,25,,

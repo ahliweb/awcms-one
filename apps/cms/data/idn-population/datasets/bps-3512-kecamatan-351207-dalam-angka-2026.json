@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3512-kecamatan-351207-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.12.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Situbondo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Situbondo",
+  "publisherDomain": "3512",
+  "publisherWebsite": "https://situbondokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Situbondo (https://situbondokab.bps.go.id), publikasi \"Kecamatan Situbondo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3512100",
+  "publicationNumber": "35120.26010",
+  "issn": "0215-6121",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://situbondokab.bps.go.id/id/publication/2026/09/28/114af660e2da311ef98c6319/kecamatan-situbondo-dalam-angka-2026.html",
+  "sourceFileSha256": "31a8a217e740bd6f423095304d6b24a0819d97396a56462a460784d4dc409690",
+  "sourceFileBytes": 4743291,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Situbondo.",
+  "csvPath": "datasets/bps-3512-kecamatan-351207-dalam-angka-2026.csv",
+  "csvSha256": "d2ec34deccb512282149974089680211b0de2c009a835d72c730ffa9846c0e63",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Situbondo, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Situbondo, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.3 (religion-by-region) could not be read reliably and is not included (religion column 7 header \"Konghuchu Confucian\" not recognised)",
+    "cross-table disagreement, both stored as published: 35.12.07 sex/laki_laki/ 2025: 24175 (table 3.1) vs 33199 (table 3.2)",
+    "cross-table disagreement, both stored as published: 35.12.07 sex/perempuan/ 2025: 25466 (table 3.1) vs 34784 (table 3.2)",
+    "cross-table disagreement, both stored as published: 35.12.07 total/total/ 2025: 49641 (table 3.1) vs 67983 (table 3.2)"
+  ]
+}

@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.01.14.2002,4,Mapur,sex,laki_laki,,518,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.14.2002,4,Mapur,sex,perempuan,,455,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.14.2002,4,Mapur,total,total,,973,jiwa,2025,registration,total_population,3.1,23,,
+21.01.14.2003,4,Numbing,sex,laki_laki,,1350,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.14.2003,4,Numbing,sex,perempuan,,1183,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.14.2003,4,Numbing,total,total,,2533,jiwa,2025,registration,total_population,3.1,23,,
+21.01.14.2001,4,Kelong,sex,laki_laki,,1270,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.14.2001,4,Kelong,sex,perempuan,,1169,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.14.2001,4,Kelong,total,total,,2439,jiwa,2025,registration,total_population,3.1,23,,
+21.01.14,3,Bintan Pesisir,sex,laki_laki,,3706,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+21.01.14,3,Bintan Pesisir,sex,perempuan,,3353,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+21.01.14,3,Bintan Pesisir,total,total,,7059,jiwa,2025,registration,total_population,3.1,23,,
+21.01.14,3,Bintan Pesisir,age_group,0-4,laki_laki,215,jiwa,2025,registration,total_population,3.2,25,,0–4
+21.01.14,3,Bintan Pesisir,age_group,0-4,perempuan,220,jiwa,2025,registration,total_population,3.2,25,,0–4
+21.01.14,3,Bintan Pesisir,age_group,0-4,,435,jiwa,2025,registration,total_population,3.2,25,,0–4
+21.01.14,3,Bintan Pesisir,age_group,5-9,laki_laki,308,jiwa,2025,registration,total_population,3.2,25,,5–9
+21.01.14,3,Bintan Pesisir,age_group,5-9,perempuan,285,jiwa,2025,registration,total_population,3.2,25,,5–9
+21.01.14,3,Bintan Pesisir,age_group,5-9,,593,jiwa,2025,registration,total_population,3.2,25,,5–9
+21.01.14,3,Bintan Pesisir,age_group,10-14,laki_laki,358,jiwa,2025,registration,total_population,3.2,25,,10–14
+21.01.14,3,Bintan Pesisir,age_group,10-14,perempuan,333,jiwa,2025,registration,total_population,3.2,25,,10–14
+21.01.14,3,Bintan Pesisir,age_group,10-14,,691,jiwa,2025,registration,total_population,3.2,25,,10–14
+21.01.14,3,Bintan Pesisir,age_group,15-19,laki_laki,340,jiwa,2025,registration,total_population,3.2,25,,15–19
+21.01.14,3,Bintan Pesisir,age_group,15-19,perempuan,324,jiwa,2025,registration,total_population,3.2,25,,15–19
+21.01.14,3,Bintan Pesisir,age_group,15-19,,664,jiwa,2025,registration,total_population,3.2,25,,15–19
+21.01.14,3,Bintan Pesisir,age_group,20-24,laki_laki,359,jiwa,2025,registration,total_population,3.2,25,,20–24
+21.01.14,3,Bintan Pesisir,age_group,20-24,perempuan,301,jiwa,2025,registration,total_population,3.2,25,,20–24
+21.01.14,3,Bintan Pesisir,age_group,20-24,,660,jiwa,2025,registration,total_population,3.2,25,,20–24
+21.01.14,3,Bintan Pesisir,age_group,25-29,laki_laki,309,jiwa,2025,registration,total_population,3.2,25,,25–29
+21.01.14,3,Bintan Pesisir,age_group,25-29,perempuan,221,jiwa,2025,registration,total_population,3.2,25,,25–29
+21.01.14,3,Bintan Pesisir,age_group,25-29,,530,jiwa,2025,registration,total_population,3.2,25,,25–29
+21.01.14,3,Bintan Pesisir,age_group,30-34,laki_laki,256,jiwa,2025,registration,total_population,3.2,25,,30–34
+21.01.14,3,Bintan Pesisir,age_group,30-34,perempuan,236,jiwa,2025,registration,total_population,3.2,25,,30–34
+21.01.14,3,Bintan Pesisir,age_group,30-34,,492,jiwa,2025,registration,total_population,3.2,25,,30–34
+21.01.14,3,Bintan Pesisir,age_group,35-39,laki_laki,248,jiwa,2025,registration,total_population,3.2,25,,35–39
+21.01.14,3,Bintan Pesisir,age_group,35-39,perempuan,241,jiwa,2025,registration,total_population,3.2,25,,35–39
+21.01.14,3,Bintan Pesisir,age_group,35-39,,489,jiwa,2025,registration,total_population,3.2,25,,35–39
+21.01.14,3,Bintan Pesisir,age_group,40-44,laki_laki,303,jiwa,2025,registration,total_population,3.2,25,,40–44
+21.01.14,3,Bintan Pesisir,age_group,40-44,perempuan,282,jiwa,2025,registration,total_population,3.2,25,,40–44
+21.01.14,3,Bintan Pesisir,age_group,40-44,,585,jiwa,2025,registration,total_population,3.2,25,,40–44
+21.01.14,3,Bintan Pesisir,age_group,45-49,laki_laki,296,jiwa,2025,registration,total_population,3.2,25,,45–49
+21.01.14,3,Bintan Pesisir,age_group,45-49,perempuan,265,jiwa,2025,registration,total_population,3.2,25,,45–49
+21.01.14,3,Bintan Pesisir,age_group,45-49,,561,jiwa,2025,registration,total_population,3.2,25,,45–49
+21.01.14,3,Bintan Pesisir,age_group,50-54,laki_laki,236,jiwa,2025,registration,total_population,3.2,25,,50–54
+21.01.14,3,Bintan Pesisir,age_group,50-54,perempuan,201,jiwa,2025,registration,total_population,3.2,25,,50–54
+21.01.14,3,Bintan Pesisir,age_group,50-54,,437,jiwa,2025,registration,total_population,3.2,25,,50–54
+21.01.14,3,Bintan Pesisir,age_group,55-59,laki_laki,183,jiwa,2025,registration,total_population,3.2,25,,55–59
+21.01.14,3,Bintan Pesisir,age_group,55-59,perempuan,131,jiwa,2025,registration,total_population,3.2,25,,55–59
+21.01.14,3,Bintan Pesisir,age_group,55-59,,314,jiwa,2025,registration,total_population,3.2,25,,55–59
+21.01.14,3,Bintan Pesisir,age_group,60-64,laki_laki,137,jiwa,2025,registration,total_population,3.2,25,,60–64
+21.01.14,3,Bintan Pesisir,age_group,60-64,perempuan,112,jiwa,2025,registration,total_population,3.2,25,,60–64
+21.01.14,3,Bintan Pesisir,age_group,60-64,,249,jiwa,2025,registration,total_population,3.2,25,,60–64
+21.01.14,3,Bintan Pesisir,age_group,65-69,laki_laki,85,jiwa,2025,registration,total_population,3.2,25,,65–69
+21.01.14,3,Bintan Pesisir,age_group,65-69,perempuan,92,jiwa,2025,registration,total_population,3.2,25,,65–69
+21.01.14,3,Bintan Pesisir,age_group,65-69,,177,jiwa,2025,registration,total_population,3.2,25,,65–69
+21.01.14,3,Bintan Pesisir,age_group,70-74,laki_laki,43,jiwa,2025,registration,total_population,3.2,25,,70–74
+21.01.14,3,Bintan Pesisir,age_group,70-74,perempuan,56,jiwa,2025,registration,total_population,3.2,25,,70–74
+21.01.14,3,Bintan Pesisir,age_group,70-74,,99,jiwa,2025,registration,total_population,3.2,25,,70–74
+21.01.14,3,Bintan Pesisir,age_group,75+,laki_laki,30,jiwa,2025,registration,total_population,3.2,25,,>75
+21.01.14,3,Bintan Pesisir,age_group,75+,perempuan,53,jiwa,2025,registration,total_population,3.2,25,,>75
+21.01.14,3,Bintan Pesisir,age_group,75+,,83,jiwa,2025,registration,total_population,3.2,25,,>75
+21.01.14,3,Bintan Pesisir,sex,laki_laki,,3706,jiwa,2025,registration,total_population,3.2,25,,Laki-Laki
+21.01.14,3,Bintan Pesisir,sex,perempuan,,3353,jiwa,2025,registration,total_population,3.2,25,,Perempuan
+21.01.14,3,Bintan Pesisir,total,total,,7059,jiwa,2025,registration,total_population,3.2,25,,

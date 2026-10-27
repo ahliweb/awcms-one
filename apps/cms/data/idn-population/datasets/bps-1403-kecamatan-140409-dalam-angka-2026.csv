@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.04.09.1003,4,Kotabaru Reteh,sex,laki_laki,,2019,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.09.1003,4,Kotabaru Reteh,sex,perempuan,,2005,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.09.1003,4,Kotabaru Reteh,total,total,,4024,jiwa,2026,registration,total_population,3.1,29,,
+14.04.09.2002,4,Seberang Pebenaan,sex,laki_laki,,1862,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.09.2002,4,Seberang Pebenaan,sex,perempuan,,1840,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.09.2002,4,Seberang Pebenaan,total,total,,3702,jiwa,2026,registration,total_population,3.1,29,,
+14.04.09.2001,4,Pebenaan,sex,laki_laki,,2186,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.09.2001,4,Pebenaan,sex,perempuan,,2106,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.09.2001,4,Pebenaan,total,total,,4292,jiwa,2026,registration,total_population,3.1,29,,
+14.04.09.2004,4,Nusantara Jaya,sex,laki_laki,,2493,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.09.2004,4,Nusantara Jaya,sex,perempuan,,2420,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.09.2004,4,Nusantara Jaya,total,total,,4913,jiwa,2026,registration,total_population,3.1,29,,
+14.04.09.2006,4,Kembang Mekar Sari,sex,laki_laki,,1495,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.09.2006,4,Kembang Mekar Sari,sex,perempuan,,1355,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.09.2006,4,Kembang Mekar Sari,total,total,,2850,jiwa,2026,registration,total_population,3.1,29,,
+14.04.09.2005,4,Kotabaru Seberida,sex,laki_laki,,4988,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.09.2005,4,Kotabaru Seberida,sex,perempuan,,4896,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.09.2005,4,Kotabaru Seberida,total,total,,9884,jiwa,2026,registration,total_population,3.1,29,,
+14.04.09.2007,4,Pasar Kembang,sex,laki_laki,,2030,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.09.2007,4,Pasar Kembang,sex,perempuan,,1977,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.09.2007,4,Pasar Kembang,total,total,,4007,jiwa,2026,registration,total_population,3.1,29,,
+14.04.09.2008,4,Kuala Keritang,sex,laki_laki,,2118,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.09.2008,4,Kuala Keritang,sex,perempuan,,2083,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.09.2008,4,Kuala Keritang,total,total,,4201,jiwa,2026,registration,total_population,3.1,29,,
+14.04.09.2009,4,Kuala Lemang,sex,laki_laki,,1416,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.09.2009,4,Kuala Lemang,sex,perempuan,,1338,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.09.2009,4,Kuala Lemang,total,total,,2754,jiwa,2026,registration,total_population,3.1,29,,
+14.04.09.2010,4,Teluk Kelasa,sex,laki_laki,,1420,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.09.2010,4,Teluk Kelasa,sex,perempuan,,1416,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.09.2010,4,Teluk Kelasa,total,total,,2836,jiwa,2026,registration,total_population,3.1,29,,
+14.04.09.2011,4,Pengalihan,sex,laki_laki,,4565,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.09.2011,4,Pengalihan,sex,perempuan,,4525,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.09.2011,4,Pengalihan,total,total,,9090,jiwa,2026,registration,total_population,3.1,29,,
+14.04.09.2012,4,Pancur,sex,laki_laki,,1894,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.09.2012,4,Pancur,sex,perempuan,,1839,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.09.2012,4,Pancur,total,total,,3733,jiwa,2026,registration,total_population,3.1,29,,
+14.04.09.2013,4,Sencalang,sex,laki_laki,,2293,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.09.2013,4,Sencalang,sex,perempuan,,2128,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.09.2013,4,Sencalang,total,total,,4421,jiwa,2026,registration,total_population,3.1,29,,
+14.04.09.2017,4,Kayu Raja,sex,laki_laki,,994,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.09.2017,4,Kayu Raja,sex,perempuan,,945,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.09.2017,4,Kayu Raja,total,total,,1939,jiwa,2026,registration,total_population,3.1,29,,
+14.04.09.2016,4,Lintas Utara,sex,laki_laki,,1027,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.09.2016,4,Lintas Utara,sex,perempuan,,964,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.09.2016,4,Lintas Utara,total,total,,1991,jiwa,2026,registration,total_population,3.1,29,,
+14.04.09.2015,4,Nyiur Permai,sex,laki_laki,,816,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.09.2015,4,Nyiur Permai,sex,perempuan,,813,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.09.2015,4,Nyiur Permai,total,total,,1629,jiwa,2026,registration,total_population,3.1,29,,
+14.04.09.2014,4,Petalongan,sex,laki_laki,,2884,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.09.2014,4,Petalongan,sex,perempuan,,2726,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.09.2014,4,Petalongan,total,total,,5610,jiwa,2026,registration,total_population,3.1,29,,
+14.04.09,3,Keritang,sex,laki_laki,,36500,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.09,3,Keritang,sex,perempuan,,35376,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.09,3,Keritang,total,total,,71876,jiwa,2026,registration,total_population,3.1,29,,

@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.17.02.2012,4,Harian,sex,laki_laki,,610,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.02.2012,4,Harian,sex,perempuan,,627,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.02.2012,4,Harian,total,total,,1237,jiwa,2025,registration,total_population,3.1,28,,
+12.17.02.2003,4,Sitinjak,sex,laki_laki,,543,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.02.2003,4,Sitinjak,sex,perempuan,,623,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.02.2003,4,Sitinjak,total,total,,1166,jiwa,2025,registration,total_population,3.1,28,,
+12.17.02.2001,4,Pakpahan,sex,laki_laki,,546,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.02.2001,4,Pakpahan,sex,perempuan,,557,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.02.2001,4,Pakpahan,total,total,,1103,jiwa,2025,registration,total_population,3.1,28,,
+12.17.02.2007,4,Onan Runggu,sex,laki_laki,,712,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.02.2007,4,Onan Runggu,sex,perempuan,,785,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.02.2007,4,Onan Runggu,total,total,,1497,jiwa,2025,registration,total_population,3.1,28,,
+12.17.02.2005,4,Tambun Sungkean,sex,laki_laki,,419,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.02.2005,4,Tambun Sungkean,sex,perempuan,,434,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.02.2005,4,Tambun Sungkean,total,total,,853,jiwa,2025,registration,total_population,3.1,28,,
+12.17.02.2008,4,Sitamiang,sex,laki_laki,,334,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.02.2008,4,Sitamiang,sex,perempuan,,332,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.02.2008,4,Sitamiang,total,total,,666,jiwa,2025,registration,total_population,3.1,28,,
+12.17.02.2004,4,Pardomuan,sex,laki_laki,,537,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.02.2004,4,Pardomuan,sex,perempuan,,534,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.02.2004,4,Pardomuan,total,total,,1071,jiwa,2025,registration,total_population,3.1,28,,
+12.17.02.2002,4,Huta Hotang,sex,laki_laki,,448,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.02.2002,4,Huta Hotang,sex,perempuan,,468,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.02.2002,4,Huta Hotang,total,total,,916,jiwa,2025,registration,total_population,3.1,28,,
+12.17.02.2006,4,Rina Bolak,sex,laki_laki,,293,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.02.2006,4,Rina Bolak,sex,perempuan,,286,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.02.2006,4,Rina Bolak,total,total,,579,jiwa,2025,registration,total_population,3.1,28,,
+12.17.02.2011,4,Sipira,sex,laki_laki,,827,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.02.2011,4,Sipira,sex,perempuan,,854,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.02.2011,4,Sipira,total,total,,1681,jiwa,2025,registration,total_population,3.1,28,,
+12.17.02.2009,4,Janji Matogu,sex,laki_laki,,214,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.02.2009,4,Janji Matogu,sex,perempuan,,207,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.02.2009,4,Janji Matogu,total,total,,421,jiwa,2025,registration,total_population,3.1,28,,
+12.17.02.2010,4,Silima Lombu,sex,laki_laki,,156,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.02.2010,4,Silima Lombu,sex,perempuan,,155,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.02.2010,4,Silima Lombu,total,total,,311,jiwa,2025,registration,total_population,3.1,28,,
+12.17.02,3,Kecamatan Onan Runggu,sex,laki_laki,,5639,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.02,3,Kecamatan Onan Runggu,sex,perempuan,,5862,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.02,3,Kecamatan Onan Runggu,total,total,,11501,jiwa,2025,registration,total_population,3.1,28,,
+12.17.02,3,Onan Runggu,age_group,0-4,laki_laki,256,jiwa,2025,registration,total_population,3.2,30,,0-4
+12.17.02,3,Onan Runggu,age_group,0-4,perempuan,258,jiwa,2025,registration,total_population,3.2,30,,0-4
+12.17.02,3,Onan Runggu,age_group,0-4,,514,jiwa,2025,registration,total_population,3.2,30,,0-4
+12.17.02,3,Onan Runggu,age_group,5-9,laki_laki,427,jiwa,2025,registration,total_population,3.2,30,,5-9
+12.17.02,3,Onan Runggu,age_group,5-9,perempuan,409,jiwa,2025,registration,total_population,3.2,30,,5-9
+12.17.02,3,Onan Runggu,age_group,5-9,,836,jiwa,2025,registration,total_population,3.2,30,,5-9
+12.17.02,3,Onan Runggu,age_group,10-14,laki_laki,594,jiwa,2025,registration,total_population,3.2,30,,10-14
+12.17.02,3,Onan Runggu,age_group,10-14,perempuan,583,jiwa,2025,registration,total_population,3.2,30,,10-14
+12.17.02,3,Onan Runggu,age_group,10-14,,1177,jiwa,2025,registration,total_population,3.2,30,,10-14
+12.17.02,3,Onan Runggu,age_group,15-19,laki_laki,648,jiwa,2025,registration,total_population,3.2,30,,15-19
+12.17.02,3,Onan Runggu,age_group,15-19,perempuan,579,jiwa,2025,registration,total_population,3.2,30,,15-19
+12.17.02,3,Onan Runggu,age_group,15-19,,1227,jiwa,2025,registration,total_population,3.2,30,,15-19
+12.17.02,3,Onan Runggu,age_group,20-24,laki_laki,571,jiwa,2025,registration,total_population,3.2,30,,20-24
+12.17.02,3,Onan Runggu,age_group,20-24,perempuan,524,jiwa,2025,registration,total_population,3.2,30,,20-24
+12.17.02,3,Onan Runggu,age_group,20-24,,1095,jiwa,2025,registration,total_population,3.2,30,,20-24
+12.17.02,3,Onan Runggu,age_group,25-29,laki_laki,406,jiwa,2025,registration,total_population,3.2,30,,25-29
+12.17.02,3,Onan Runggu,age_group,25-29,perempuan,410,jiwa,2025,registration,total_population,3.2,30,,25-29
+12.17.02,3,Onan Runggu,age_group,25-29,,816,jiwa,2025,registration,total_population,3.2,30,,25-29
+12.17.02,3,Onan Runggu,age_group,30-34,laki_laki,355,jiwa,2025,registration,total_population,3.2,30,,30-34
+12.17.02,3,Onan Runggu,age_group,30-34,perempuan,317,jiwa,2025,registration,total_population,3.2,30,,30-34
+12.17.02,3,Onan Runggu,age_group,30-34,,672,jiwa,2025,registration,total_population,3.2,30,,30-34
+12.17.02,3,Onan Runggu,age_group,35-39,laki_laki,372,jiwa,2025,registration,total_population,3.2,30,,35-39
+12.17.02,3,Onan Runggu,age_group,35-39,perempuan,311,jiwa,2025,registration,total_population,3.2,30,,35-39
+12.17.02,3,Onan Runggu,age_group,35-39,,683,jiwa,2025,registration,total_population,3.2,30,,35-39
+12.17.02,3,Onan Runggu,age_group,40-44,laki_laki,396,jiwa,2025,registration,total_population,3.2,30,,40-44
+12.17.02,3,Onan Runggu,age_group,40-44,perempuan,357,jiwa,2025,registration,total_population,3.2,30,,40-44
+12.17.02,3,Onan Runggu,age_group,40-44,,753,jiwa,2025,registration,total_population,3.2,30,,40-44
+12.17.02,3,Onan Runggu,age_group,45-49,laki_laki,382,jiwa,2025,registration,total_population,3.2,30,,45-49
+12.17.02,3,Onan Runggu,age_group,45-49,perempuan,308,jiwa,2025,registration,total_population,3.2,30,,45-49
+12.17.02,3,Onan Runggu,age_group,45-49,,690,jiwa,2025,registration,total_population,3.2,30,,45-49
+12.17.02,3,Onan Runggu,age_group,50-54,laki_laki,306,jiwa,2025,registration,total_population,3.2,30,,50-54
+12.17.02,3,Onan Runggu,age_group,50-54,perempuan,293,jiwa,2025,registration,total_population,3.2,30,,50-54
+12.17.02,3,Onan Runggu,age_group,50-54,,599,jiwa,2025,registration,total_population,3.2,30,,50-54
+12.17.02,3,Onan Runggu,age_group,55-59,laki_laki,241,jiwa,2025,registration,total_population,3.2,30,,55-59
+12.17.02,3,Onan Runggu,age_group,55-59,perempuan,278,jiwa,2025,registration,total_population,3.2,30,,55-59
+12.17.02,3,Onan Runggu,age_group,55-59,,519,jiwa,2025,registration,total_population,3.2,30,,55-59
+12.17.02,3,Onan Runggu,age_group,60-64,laki_laki,204,jiwa,2025,registration,total_population,3.2,30,,60-64
+12.17.02,3,Onan Runggu,age_group,60-64,perempuan,286,jiwa,2025,registration,total_population,3.2,30,,60-64
+12.17.02,3,Onan Runggu,age_group,60-64,,490,jiwa,2025,registration,total_population,3.2,30,,60-64
+12.17.02,3,Onan Runggu,age_group,65-69,laki_laki,180,jiwa,2025,registration,total_population,3.2,30,,65-69
+12.17.02,3,Onan Runggu,age_group,65-69,perempuan,301,jiwa,2025,registration,total_population,3.2,30,,65-69
+12.17.02,3,Onan Runggu,age_group,65-69,,481,jiwa,2025,registration,total_population,3.2,30,,65-69
+12.17.02,3,Onan Runggu,age_group,70-74,laki_laki,143,jiwa,2025,registration,total_population,3.2,30,,70-74
+12.17.02,3,Onan Runggu,age_group,70-74,perempuan,240,jiwa,2025,registration,total_population,3.2,30,,70-74
+12.17.02,3,Onan Runggu,age_group,70-74,,383,jiwa,2025,registration,total_population,3.2,30,,70-74
+12.17.02,3,Onan Runggu,age_group,75+,laki_laki,158,jiwa,2025,registration,total_population,3.2,30,,75+
+12.17.02,3,Onan Runggu,age_group,75+,perempuan,408,jiwa,2025,registration,total_population,3.2,30,,75+
+12.17.02,3,Onan Runggu,age_group,75+,,566,jiwa,2025,registration,total_population,3.2,30,,75+
+12.17.02,3,Kecamatan Onan Runggu,sex,laki_laki,,5639,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+12.17.02,3,Kecamatan Onan Runggu,sex,perempuan,,5862,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+12.17.02,3,Kecamatan Onan Runggu,total,total,,11501,jiwa,2025,registration,total_population,3.2,30,,

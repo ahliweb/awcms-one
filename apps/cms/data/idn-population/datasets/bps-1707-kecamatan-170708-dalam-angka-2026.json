@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-1707-kecamatan-170708-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "17.07.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lebong Sakti Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lebong",
+  "publisherDomain": "1707",
+  "publisherWebsite": "https://lebongkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lebong (https://lebongkab.bps.go.id), publikasi \"Kecamatan Lebong Sakti Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1707031",
+  "publicationNumber": "17070.26010",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lebongkab.bps.go.id/id/publication/2026/09/28/d88599fd7f9d31b7aee9c9c3/kecamatan-lebong-sakti-dalam-angka-2026.html",
+  "sourceFileSha256": "de2145446aba33327dd18b93f867e2f70e65f1541c8620db43a34a863604f814",
+  "sourceFileBytes": 4052378,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lebong.",
+  "csvPath": "datasets/bps-1707-kecamatan-170708-dalam-angka-2026.csv",
+  "csvSha256": "e930d03cd90a9c44830889327534c87b954490965f3239c9d54579c1e0012fda",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Lebong Sakti, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lebong Sakti, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"Usia Muda (0 – 14 Tahun) Young Age (0 – 14 Years) Usia Produktif (15 – 64\": unmatched ",
+    "table 3.2: row not stored: row \"Tahun) Working Age (15 – 64 Years)\": unmatched ",
+    "table 3.2: row not stored: row \"Tahun) Senior Age (Over 65 Years)\": unmatched "
+  ]
+}

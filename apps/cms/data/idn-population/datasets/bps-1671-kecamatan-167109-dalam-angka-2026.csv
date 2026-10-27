@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.71.09.1003,4,Sekip Jaya,sex,laki_laki,,6840,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/
+16.71.09.1003,4,Sekip Jaya,sex,perempuan,,6886,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+16.71.09.1003,4,Sekip Jaya,total,total,,13726,jiwa,2025,registration,total_population,3.1,32,,
+16.71.09.1004,4,Pahlawan,sex,laki_laki,,5769,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/
+16.71.09.1004,4,Pahlawan,sex,perempuan,,5864,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+16.71.09.1004,4,Pahlawan,total,total,,11633,jiwa,2025,registration,total_population,3.1,32,,
+16.71.09.1001,4,Dua-Puluh Ilir Dua,sex,laki_laki,,7509,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/
+16.71.09.1001,4,Dua-Puluh Ilir Dua,sex,perempuan,,7581,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+16.71.09.1001,4,Dua-Puluh Ilir Dua,total,total,,15090,jiwa,2025,registration,total_population,3.1,32,,
+16.71.09.1005,4,Pipa Reja,sex,laki_laki,,9821,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/
+16.71.09.1005,4,Pipa Reja,sex,perempuan,,9650,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+16.71.09.1005,4,Pipa Reja,total,total,,19471,jiwa,2025,registration,total_population,3.1,32,,
+16.71.09.1006,4,Talang Aman,sex,laki_laki,,6106,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/
+16.71.09.1006,4,Talang Aman,sex,perempuan,,6265,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+16.71.09.1006,4,Talang Aman,total,total,,12371,jiwa,2025,registration,total_population,3.1,32,,
+16.71.09.1002,4,Ario Kemuning,sex,laki_laki,,4861,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/
+16.71.09.1002,4,Ario Kemuning,sex,perempuan,,5073,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+16.71.09.1002,4,Ario Kemuning,total,total,,9934,jiwa,2025,registration,total_population,3.1,32,,
+16.71.09,3,Kemuning,sex,laki_laki,,40906,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/
+16.71.09,3,Kemuning,sex,perempuan,,41319,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+16.71.09,3,Kemuning,total,total,,82225,jiwa,2025,registration,total_population,3.1,32,,

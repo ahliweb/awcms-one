@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.02.16.1001,4,Dusun Curup,sex,laki_laki,,1036,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.16.1001,4,Dusun Curup,sex,perempuan,,1041,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.16.1001,4,Dusun Curup,total,total,,2077,jiwa,2025,registration,total_population,3.1,22,,
+17.02.16.2003,4,Batu Dewa,sex,laki_laki,,571,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.16.2003,4,Batu Dewa,sex,perempuan,,544,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.16.2003,4,Batu Dewa,total,total,,1115,jiwa,2025,registration,total_population,3.1,22,,
+17.02.16.1002,4,Tunas Harapan,sex,laki_laki,,1037,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.16.1002,4,Tunas Harapan,sex,perempuan,,1034,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.16.1002,4,Tunas Harapan,total,total,,2071,jiwa,2025,registration,total_population,3.1,22,,
+17.02.16.2004,4,Perbo,sex,laki_laki,,507,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.16.2004,4,Perbo,sex,perempuan,,517,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.16.2004,4,Perbo,total,total,,1024,jiwa,2025,registration,total_population,3.1,22,,
+17.02.16.2005,4,Batu Panco,sex,laki_laki,,1025,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.16.2005,4,Batu Panco,sex,perempuan,,964,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.16.2005,4,Batu Panco,total,total,,1989,jiwa,2025,registration,total_population,3.1,22,,
+17.02.16.2008,4,Suka Datang,sex,laki_laki,,497,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.16.2008,4,Suka Datang,sex,perempuan,,471,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.16.2008,4,Suka Datang,total,total,,968,jiwa,2025,registration,total_population,3.1,22,,
+17.02.16.2007,4,Lubuk Kembang,sex,laki_laki,,741,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.16.2007,4,Lubuk Kembang,sex,perempuan,,717,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.16.2007,4,Lubuk Kembang,total,total,,1458,jiwa,2025,registration,total_population,3.1,22,,
+17.02.16.2006,4,Dusun Sawah,sex,laki_laki,,974,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.16.2006,4,Dusun Sawah,sex,perempuan,,911,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.16.2006,4,Dusun Sawah,total,total,,1885,jiwa,2025,registration,total_population,3.1,22,,
+17.02.16.2009,4,Tabarenah,sex,laki_laki,,633,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.16.2009,4,Tabarenah,sex,perempuan,,596,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.16.2009,4,Tabarenah,total,total,,1229,jiwa,2025,registration,total_population,3.1,22,,
+17.02.16.2010,4,Pahlawan,sex,laki_laki,,615,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.16.2010,4,Pahlawan,sex,perempuan,,568,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.16.2010,4,Pahlawan,total,total,,1183,jiwa,2025,registration,total_population,3.1,22,,
+17.02.16.2011,4,Tasik Malaya,sex,laki_laki,,1092,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.16.2011,4,Tasik Malaya,sex,perempuan,,1039,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.16.2011,4,Tasik Malaya,total,total,,2131,jiwa,2025,registration,total_population,3.1,22,,
+17.02.16.2012,4,Tanjung Beringin,sex,laki_laki,,676,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.16.2012,4,Tanjung Beringin,sex,perempuan,,651,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.16.2012,4,Tanjung Beringin,total,total,,1327,jiwa,2025,registration,total_population,3.1,22,,
+17.02.16.2013,4,Kota Pagu,sex,laki_laki,,498,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.16.2013,4,Kota Pagu,sex,perempuan,,471,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.16.2013,4,Kota Pagu,total,total,,969,jiwa,2025,registration,total_population,3.1,22,,
+17.02.16.2014,4,Seguring,sex,laki_laki,,566,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.16.2014,4,Seguring,sex,perempuan,,511,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.16.2014,4,Seguring,total,total,,1077,jiwa,2025,registration,total_population,3.1,22,,
+17.02.16,3,Curup Utara,sex,laki_laki,,10468,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.16,3,Curup Utara,sex,perempuan,,10035,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.16,3,Curup Utara,total,total,,20503,jiwa,2025,registration,total_population,3.1,22,,

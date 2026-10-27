@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.05.04.2001,4,Telagah,sex,laki_laki,,1846,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.04.2001,4,Telagah,sex,perempuan,,1886,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.04.2001,4,Telagah,total,total,,3732,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.04.2015,4,Tanjung Gunung,sex,laki_laki,,1194,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.04.2015,4,Tanjung Gunung,sex,perempuan,,1205,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.04.2015,4,Tanjung Gunung,total,total,,2399,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.04.2014,4,Pekan Sawah,sex,laki_laki,,1813,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.04.2014,4,Pekan Sawah,sex,perempuan,,1918,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.04.2014,4,Pekan Sawah,total,total,,3731,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.04.2006,4,Belinteng,sex,laki_laki,,2652,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.04.2006,4,Belinteng,sex,perempuan,,2846,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.04.2006,4,Belinteng,total,total,,5498,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.04.2002,4,Rumah Galuh,sex,laki_laki,,1302,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.04.2002,4,Rumah Galuh,sex,perempuan,,1317,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.04.2002,4,Rumah Galuh,total,total,,2619,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.04.2003,4,Simpang Kuta Buluh,sex,laki_laki,,676,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.04.2003,4,Simpang Kuta Buluh,sex,perempuan,,677,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.04.2003,4,Simpang Kuta Buluh,total,total,,1353,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.04.2004,4,Gunung Ambat,sex,laki_laki,,1366,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.04.2004,4,Gunung Ambat,sex,perempuan,,1390,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.04.2004,4,Gunung Ambat,total,total,,2756,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.04.1005,4,Namu Ukur Selatan,sex,laki_laki,,1820,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.04.1005,4,Namu Ukur Selatan,sex,perempuan,,1934,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.04.1005,4,Namu Ukur Selatan,total,total,,3754,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.04.2007,4,Namu Ukur Utara,sex,laki_laki,,3215,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.04.2007,4,Namu Ukur Utara,sex,perempuan,,3320,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.04.2007,4,Namu Ukur Utara,total,total,,6535,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.04.2013,4,Durian Lingga,sex,laki_laki,,1116,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.04.2013,4,Durian Lingga,sex,perempuan,,1182,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.04.2013,4,Durian Lingga,total,total,,2298,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.04.2012,4,Pasar VIII.Namo Terasi,sex,laki_laki,,1629,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.04.2012,4,Pasar VIII.Namo Terasi,sex,perempuan,,1803,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.04.2012,4,Pasar VIII.Namo Terasi,total,total,,3432,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.04.2011,4,Pasar IV.Namo Terasi,sex,laki_laki,,1604,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.04.2011,4,Pasar IV.Namo Terasi,sex,perempuan,,1698,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.04.2011,4,Pasar IV.Namo Terasi,total,total,,3302,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.04.2008,4,Pasar VI Kwala Mencirim,sex,laki_laki,,2553,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.04.2008,4,Pasar VI Kwala Mencirim,sex,perempuan,,2652,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.04.2008,4,Pasar VI Kwala Mencirim,total,total,,5205,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.04.2010,4,Purwobinangun,sex,laki_laki,,2078,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.04.2010,4,Purwobinangun,sex,perempuan,,2239,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.04.2010,4,Purwobinangun,total,total,,4317,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.04.2009,4,Emplasmen Kwala Mencirim,sex,laki_laki,,2094,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.04.2009,4,Emplasmen Kwala Mencirim,sex,perempuan,,2033,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.04.2009,4,Emplasmen Kwala Mencirim,total,total,,4127,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.04.2016,4,Mekar Jaya,sex,laki_laki,,972,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.04.2016,4,Mekar Jaya,sex,perempuan,,1003,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.04.2016,4,Mekar Jaya,total,total,,1975,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.04,3,Kecamatan Sei Bingai,sex,laki_laki,,27930,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.04,3,Kecamatan Sei Bingai,sex,perempuan,,29103,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.04,3,Kecamatan Sei Bingai,total,total,,57033,jiwa,2025,registration,total_population,unnumbered-p39,39,,

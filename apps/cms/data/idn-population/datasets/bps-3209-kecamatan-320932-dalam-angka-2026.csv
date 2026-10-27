@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.32.2001,4,Tonjong,sex,laki_laki,,2626,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.32.2001,4,Tonjong,sex,perempuan,,2607,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.32.2001,4,Tonjong,total,total,,5233,jiwa,2025,registration,total_population,3.1,52,,
+32.09.32.2002,4,Tanjung Anom,sex,laki_laki,,2526,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.32.2002,4,Tanjung Anom,sex,perempuan,,2525,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.32.2002,4,Tanjung Anom,total,total,,5051,jiwa,2025,registration,total_population,3.1,52,,
+32.09.32.2003,4,Cilengkrang Girang,sex,laki_laki,,1698,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.32.2003,4,Cilengkrang Girang,sex,perempuan,,1710,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.32.2003,4,Cilengkrang Girang,total,total,,3408,jiwa,2025,registration,total_population,3.1,52,,
+32.09.32.2004,4,Cilengkrang,sex,laki_laki,,1876,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.32.2004,4,Cilengkrang,sex,perempuan,,1763,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.32.2004,4,Cilengkrang,total,total,,3639,jiwa,2025,registration,total_population,3.1,52,,
+32.09.32.2005,4,Pasaleman,sex,laki_laki,,2186,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.32.2005,4,Pasaleman,sex,perempuan,,2088,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.32.2005,4,Pasaleman,total,total,,4274,jiwa,2025,registration,total_population,3.1,52,,
+32.09.32.2006,4,Cigobangwangi,sex,laki_laki,,1984,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.32.2006,4,Cigobangwangi,sex,perempuan,,1901,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.32.2006,4,Cigobangwangi,total,total,,3885,jiwa,2025,registration,total_population,3.1,52,,
+32.09.32.2007,4,Cigobang,sex,laki_laki,,2338,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.32.2007,4,Cigobang,sex,perempuan,,2419,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.32.2007,4,Cigobang,total,total,,4757,jiwa,2025,registration,total_population,3.1,52,,
+32.09.32,3,Kecamatan Pasaleman,sex,laki_laki,,15234,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.32,3,Kecamatan Pasaleman,sex,perempuan,,15013,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.32,3,Kecamatan Pasaleman,total,total,,30247,jiwa,2025,registration,total_population,3.1,52,,
+32.09.32,3,Pasaleman,age_group,0-4,laki_laki,1001,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.32,3,Pasaleman,age_group,0-4,perempuan,944,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.32,3,Pasaleman,age_group,0-4,,1945,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.32,3,Pasaleman,age_group,5-9,laki_laki,1217,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.32,3,Pasaleman,age_group,5-9,perempuan,1156,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.32,3,Pasaleman,age_group,5-9,,2373,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.32,3,Pasaleman,age_group,10-14,laki_laki,1222,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.32,3,Pasaleman,age_group,10-14,perempuan,1186,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.32,3,Pasaleman,age_group,10-14,,2408,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.32,3,Pasaleman,age_group,15-19,laki_laki,1168,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.32,3,Pasaleman,age_group,15-19,perempuan,1099,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.32,3,Pasaleman,age_group,15-19,,2267,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.32,3,Pasaleman,age_group,20-24,laki_laki,1205,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.32,3,Pasaleman,age_group,20-24,perempuan,1170,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.32,3,Pasaleman,age_group,20-24,,2375,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.32,3,Pasaleman,age_group,25-29,laki_laki,1280,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.32,3,Pasaleman,age_group,25-29,perempuan,1170,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.32,3,Pasaleman,age_group,25-29,,2450,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.32,3,Pasaleman,age_group,30-34,laki_laki,1146,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.32,3,Pasaleman,age_group,30-34,perempuan,984,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.32,3,Pasaleman,age_group,30-34,,2130,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.32,3,Pasaleman,age_group,35-39,laki_laki,1018,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.32,3,Pasaleman,age_group,35-39,perempuan,978,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.32,3,Pasaleman,age_group,35-39,,1996,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.32,3,Pasaleman,age_group,40-44,laki_laki,1181,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.32,3,Pasaleman,age_group,40-44,perempuan,1228,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.32,3,Pasaleman,age_group,40-44,,2409,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.32,3,Pasaleman,age_group,45-49,laki_laki,1116,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.32,3,Pasaleman,age_group,45-49,perempuan,993,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.32,3,Pasaleman,age_group,45-49,,2109,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.32,3,Pasaleman,age_group,50-54,laki_laki,930,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.32,3,Pasaleman,age_group,50-54,perempuan,952,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.32,3,Pasaleman,age_group,50-54,,1882,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.32,3,Pasaleman,age_group,55-59,laki_laki,763,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.32,3,Pasaleman,age_group,55-59,perempuan,840,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.32,3,Pasaleman,age_group,55-59,,1603,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.32,3,Pasaleman,age_group,60-64,laki_laki,628,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.32,3,Pasaleman,age_group,60-64,perempuan,668,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.32,3,Pasaleman,age_group,60-64,,1296,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.32,3,Pasaleman,age_group,65-69,laki_laki,548,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.32,3,Pasaleman,age_group,65-69,perempuan,607,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.32,3,Pasaleman,age_group,65-69,,1155,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.32,3,Pasaleman,age_group,70-74,laki_laki,377,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.32,3,Pasaleman,age_group,70-74,perempuan,388,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.32,3,Pasaleman,age_group,70-74,,765,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.32,3,Pasaleman,age_group,75+,laki_laki,434,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.32,3,Pasaleman,age_group,75+,perempuan,650,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.32,3,Pasaleman,age_group,75+,,1084,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.32,3,Kecamatan Pasaleman,sex,laki_laki,,15234,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.32,3,Kecamatan Pasaleman,sex,perempuan,,15013,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.32,3,Kecamatan Pasaleman,total,total,,30247,jiwa,2025,registration,total_population,3.2,54,,

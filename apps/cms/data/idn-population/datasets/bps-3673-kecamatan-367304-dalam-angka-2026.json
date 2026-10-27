@@ -1,0 +1,60 @@
+{
+  "datasetCode": "bps-3673-kecamatan-367304-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.73.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Curug Dalam Angka 2026",
+  "publisherName": "BPS Kota Serang",
+  "publisherDomain": "3673",
+  "publisherWebsite": "https://serangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Serang (https://serangkota.bps.go.id), publikasi \"Kecamatan Curug Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3673010",
+  "publicationNumber": "36730.26005",
+  "issn": "2714-9366",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://serangkota.bps.go.id/id/publication/2026/09/28/9fe4b3f30c5061caa4c093ac/kecamatan-curug-dalam-angka-2026.html",
+  "sourceFileSha256": "4f4853de46faaa02a74589fa1824fc196c033f7e5a00beea13cbcbf061d74912",
+  "sourceFileBytes": 5962953,
+  "sourcePages": [34, 35, 36, 39, 40],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Serang.",
+  "csvPath": "datasets/bps-3673-kecamatan-367304-dalam-angka-2026.csv",
+  "csvSha256": "0dfd75fb328b2c75b2638a6a9bcec55b8e4dae2b1bc977c1b04c61c0ccf2cc8e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Curug, 2026",
+      "printedPages": [34, 35],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Curug, 2026",
+      "printedPages": [36],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.5",
+      "title": "Jumlah Penduduk Menurut Agama dan Kelurahan di Kecamatan Curug, 2026",
+      "printedPages": [39, 40],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1: row not stored: row \"1. Kamanisan\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Curug Curug District\": unmatched ",
+    "table 3.1: row not stored: row \"1. Kamanisan\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Curug Curug District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Curug Curug District\": unmatched ",
+    "table 3.5: row not stored: row \"1. Kamanisan\": unmatched ",
+    "table 3.5: row not stored: row \"Kecamatan Curug Curug District\": unmatched ",
+    "table 3.5: row not stored: row \"1. Kamanisan\": unmatched ",
+    "table 3.5: row not stored: row \"Kecamatan Curug Curug District\": unmatched "
+  ]
+}

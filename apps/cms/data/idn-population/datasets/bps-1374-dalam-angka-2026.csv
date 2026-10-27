@@ -1,0 +1,53 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.74.02,3,Padang Panjang Barat,total,total,,33565,jiwa,2024,projection,total_population,3.1.1,131,,
+13.74.02,3,Padang Panjang Barat,total,total,,33924,jiwa,2025,projection,total_population,3.1.1,131,,
+13.74.01,3,Padang Panjang Timur,total,total,,25888,jiwa,2024,projection,total_population,3.1.1,131,,
+13.74.01,3,Padang Panjang Timur,total,total,,26340,jiwa,2025,projection,total_population,3.1.1,131,,
+13.74,2,Padang Panjang,total,total,,59453,jiwa,2024,projection,total_population,3.1.1,131,,
+13.74,2,Padang Panjang,total,total,,60264,jiwa,2025,projection,total_population,3.1.1,131,,
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/padi_padian,,88590,rupiah,2025,survey_estimate,per_capita,10.1,493,,Padi-padian
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/padi_padian,,88995.04,rupiah,2024,survey_estimate,per_capita,10.1,493,,Padi-padian
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/umbi_umbian,,9089,rupiah,2025,survey_estimate,per_capita,10.1,493,,Umbi-umbian
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/umbi_umbian,,8356.45,rupiah,2024,survey_estimate,per_capita,10.1,493,,Umbi-umbian
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,67158,rupiah,2025,survey_estimate,per_capita,10.1,493,,Ikan/udang/cumi/kerang
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,69493.08,rupiah,2024,survey_estimate,per_capita,10.1,493,,Ikan/udang/cumi/kerang
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/daging,,42859,rupiah,2025,survey_estimate,per_capita,10.1,493,,Daging
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/daging,,61678.78,rupiah,2024,survey_estimate,per_capita,10.1,493,,Daging
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/telur_dan_susu,,36823,rupiah,2025,survey_estimate,per_capita,10.1,493,,Telur dan susu
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/telur_dan_susu,,51027.14,rupiah,2024,survey_estimate,per_capita,10.1,493,,Telur dan susu
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/sayur_sayuran,,66192,rupiah,2025,survey_estimate,per_capita,10.1,493,,Sayur-sayuran
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/sayur_sayuran,,73104.12,rupiah,2024,survey_estimate,per_capita,10.1,493,,Sayur-sayuran
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/kacang_kacangan,,10976,rupiah,2025,survey_estimate,per_capita,10.1,493,,Kacang-kacangan
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/kacang_kacangan,,10991.95,rupiah,2024,survey_estimate,per_capita,10.1,493,,Kacang-kacangan
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/buah_buahan,,46590,rupiah,2025,survey_estimate,per_capita,10.1,493,,Buah-buahan
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/buah_buahan,,47089.44,rupiah,2024,survey_estimate,per_capita,10.1,493,,Buah-buahan
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23829,rupiah,2025,survey_estimate,per_capita,10.1,493,,Minyak dan kelapa
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23153.80,rupiah,2024,survey_estimate,per_capita,10.1,493,,Minyak dan kelapa
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/bahan_minuman,,12989,rupiah,2025,survey_estimate,per_capita,10.1,493,,Bahan minuman
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/bahan_minuman,,15547.19,rupiah,2024,survey_estimate,per_capita,10.1,493,,Bahan minuman
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/bumbu_bumbuan,,6954,rupiah,2025,survey_estimate,per_capita,10.1,493,,Bumbu-bumbuan
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/bumbu_bumbuan,,301337.95,rupiah,2024,survey_estimate,per_capita,10.1,493,,Bumbu-bumbuan
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/konsumsi_lainnya,,9631,rupiah,2025,survey_estimate,per_capita,10.1,493,,Konsumsi lainnya
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/konsumsi_lainnya,,13307.00,rupiah,2024,survey_estimate,per_capita,10.1,493,,Konsumsi lainnya
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,270615,rupiah,2025,survey_estimate,per_capita,10.1,493,,Makanan dan minuman jadi
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,331461.56,rupiah,2024,survey_estimate,per_capita,10.1,493,,Makanan dan minuman jadi
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/rokok,,72902,rupiah,2025,survey_estimate,per_capita,10.1,493,,Rokok
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/rokok,,144246.77,rupiah,2024,survey_estimate,per_capita,10.1,493,,Rokok
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/jumlah_makanan,,765197,rupiah,2025,survey_estimate,per_capita,10.1,493,,Jumlah makanan
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/jumlah_makanan,,1239790.30,rupiah,2024,survey_estimate,per_capita,10.1,493,,Jumlah makanan
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,393013,rupiah,2025,survey_estimate,per_capita,10.1,493,,Perumahan dan fasilitas rumah tangga
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,445017.10,rupiah,2024,survey_estimate,per_capita,10.1,493,,Perumahan dan fasilitas rumah tangga
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,213654,rupiah,2025,survey_estimate,per_capita,10.1,493,,Aneka barang dan jasa
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,234630.14,rupiah,2024,survey_estimate,per_capita,10.1,493,,Aneka barang dan jasa
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,71419,rupiah,2025,survey_estimate,per_capita,10.1,493,,"Pakaian, alas kaki, dan tutup kepala"
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,81541.80,rupiah,2024,survey_estimate,per_capita,10.1,493,,"Pakaian, alas kaki, dan tutup kepala"
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/barang_tahan_lama,,90653,rupiah,2025,survey_estimate,per_capita,10.1,493,,Barang tahan lama
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/barang_tahan_lama,,73349.18,rupiah,2024,survey_estimate,per_capita,10.1,493,,Barang tahan lama
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,73227,rupiah,2025,survey_estimate,per_capita,10.1,493,,"Pajak, pungutan, dan asuransi"
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,78505.60,rupiah,2024,survey_estimate,per_capita,10.1,493,,"Pajak, pungutan, dan asuransi"
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,32952,rupiah,2025,survey_estimate,per_capita,10.1,493,,Keperluan pesta dan upacara/kenduri
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,29330.36,rupiah,2024,survey_estimate,per_capita,10.1,493,,Keperluan pesta dan upacara/kenduri
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,874918,rupiah,2025,survey_estimate,per_capita,10.1,493,,Jumlah bukan makanan
+13.74,2,Kota Padang Panjang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,942374.21,rupiah,2024,survey_estimate,per_capita,10.1,493,,Jumlah bukan makanan
+13.74,2,Kota Padang Panjang,expenditure,total,,1640115,rupiah,2025,survey_estimate,per_capita,10.1,493,,
+13.74,2,Kota Padang Panjang,expenditure,total,,2182164.40,rupiah,2024,survey_estimate,per_capita,10.1,493,,

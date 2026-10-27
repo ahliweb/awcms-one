@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.02.32.2001,4,Parungseah,sex,laki_laki,,5681,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.32.2001,4,Parungseah,sex,perempuan,,5551,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.32.2001,4,Parungseah,total,total,,11232,jiwa,2025,registration,total_population,3.1,24,,
+32.02.32.2004,4,Warnasari,sex,laki_laki,,4115,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.32.2004,4,Warnasari,sex,perempuan,,4101,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.32.2004,4,Warnasari,total,total,,8216,jiwa,2025,registration,total_population,3.1,24,,
+32.02.32.2005,4,Sukajaya,sex,laki_laki,,4226,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.32.2005,4,Sukajaya,sex,perempuan,,4074,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.32.2005,4,Sukajaya,total,total,,8300,jiwa,2025,registration,total_population,3.1,24,,
+32.02.32.2002,4,Sudajaya Girang,sex,laki_laki,,4833,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.32.2002,4,Sudajaya Girang,sex,perempuan,,4763,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.32.2002,4,Sudajaya Girang,total,total,,9596,jiwa,2025,registration,total_population,3.1,24,,
+32.02.32.2003,4,Karawang,sex,laki_laki,,3920,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.32.2003,4,Karawang,sex,perempuan,,3911,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.32.2003,4,Karawang,total,total,,7831,jiwa,2025,registration,total_population,3.1,24,,
+32.02.32.2006,4,Perbawati,sex,laki_laki,,4059,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.32.2006,4,Perbawati,sex,perempuan,,3889,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.32.2006,4,Perbawati,total,total,,7948,jiwa,2025,registration,total_population,3.1,24,,
+32.02.32,3,Sukabumi,sex,laki_laki,,26834,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.32,3,Sukabumi,sex,perempuan,,26289,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.32,3,Sukabumi,total,total,,53123,jiwa,2025,registration,total_population,3.1,24,,

@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.12.07.2009,4,Gilang Tunggal Makarta,sex,laki_laki,,808,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.07.2009,4,Gilang Tunggal Makarta,sex,perempuan,,757,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.07.2009,4,Gilang Tunggal Makarta,total,total,,1565,jiwa,2025,registration,total_population,3.1,28,,
+18.12.07.2005,4,Gunung Sari,sex,laki_laki,,971,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.07.2005,4,Gunung Sari,sex,perempuan,,912,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.07.2005,4,Gunung Sari,total,total,,1883,jiwa,2025,registration,total_population,3.1,28,,
+18.12.07.2001,4,Kibang Budi Jaya,sex,laki_laki,,3330,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.07.2001,4,Kibang Budi Jaya,sex,perempuan,,3356,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.07.2001,4,Kibang Budi Jaya,total,total,,6686,jiwa,2025,registration,total_population,3.1,28,,
+18.12.07.2010,4,Kibang Mulya Jaya,sex,laki_laki,,928,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.07.2010,4,Kibang Mulya Jaya,sex,perempuan,,920,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.07.2010,4,Kibang Mulya Jaya,total,total,,1848,jiwa,2025,registration,total_population,3.1,28,,
+18.12.07.2008,4,Kibang Tri Jaya,sex,laki_laki,,1466,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.07.2008,4,Kibang Tri Jaya,sex,perempuan,,1345,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.07.2008,4,Kibang Tri Jaya,total,total,,2811,jiwa,2025,registration,total_population,3.1,28,,
+18.12.07.2007,4,Kibang Yekti Jaya,sex,laki_laki,,1519,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.07.2007,4,Kibang Yekti Jaya,sex,perempuan,,1430,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.07.2007,4,Kibang Yekti Jaya,total,total,,2949,jiwa,2025,registration,total_population,3.1,28,,
+18.12.07.2002,4,Lesung Bhakti Jaya,sex,laki_laki,,999,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.07.2002,4,Lesung Bhakti Jaya,sex,perempuan,,989,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.07.2002,4,Lesung Bhakti Jaya,total,total,,1988,jiwa,2025,registration,total_population,3.1,28,,
+18.12.07.2003,4,Mekar Sari Jaya,sex,laki_laki,,862,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.07.2003,4,Mekar Sari Jaya,sex,perempuan,,843,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.07.2003,4,Mekar Sari Jaya,total,total,,1705,jiwa,2025,registration,total_population,3.1,28,,
+18.12.07.2004,4,Pagar Jaya,sex,laki_laki,,932,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.07.2004,4,Pagar Jaya,sex,perempuan,,913,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.07.2004,4,Pagar Jaya,total,total,,1845,jiwa,2025,registration,total_population,3.1,28,,
+18.12.07.2006,4,Sumber Rejo,sex,laki_laki,,956,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.07.2006,4,Sumber Rejo,sex,perempuan,,871,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.07.2006,4,Sumber Rejo,total,total,,1827,jiwa,2025,registration,total_population,3.1,28,,
+18.12.07,3,Lambu Kibang,sex,laki_laki,,12771,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.12.07,3,Lambu Kibang,sex,perempuan,,12336,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.12.07,3,Lambu Kibang,total,total,,25107,jiwa,2025,registration,total_population,3.1,28,,

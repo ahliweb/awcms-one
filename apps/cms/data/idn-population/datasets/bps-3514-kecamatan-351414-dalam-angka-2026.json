@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3514-kecamatan-351414-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.14.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bangil Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pasuruan",
+  "publisherDomain": "3514",
+  "publisherWebsite": "https://pasuruankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pasuruan (https://pasuruankab.bps.go.id), publikasi \"Kecamatan Bangil Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3514.010",
+  "publicationNumber": "35140.26019",
+  "issn": "2808-6570",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pasuruankab.bps.go.id/id/publication/2026/09/28/5241b326d53266f2104276e8/kecamatan-bangil-dalam-angka-2026.html",
+  "sourceFileSha256": "28f6c03453ccef4fb41a19631c50b6265f79814da41eb981e0c71bd64c37df98",
+  "sourceFileBytes": 7687587,
+  "sourcePages": [29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pasuruan.",
+  "csvPath": "datasets/bps-3514-kecamatan-351414-dalam-angka-2026.csv",
+  "csvSha256": "d3ee9d7c55db2113aa11cbed061bb55d5a9bc7be4fbd46c5eeed9c1d45f59158",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bangil, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

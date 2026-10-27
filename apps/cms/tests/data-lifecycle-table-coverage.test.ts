@@ -542,7 +542,14 @@ describe("the real repository", () => {
       // window overwrites in place, not by authorship. A generic age purge would
       // delete the counter of an actor reading right now and re-open the audit
       // flood the table exists to prevent.
-      expect(BOUNDED_BY_DESIGN.length).toBeLessThanOrEqual(19);
+      // 21 since awcms-one ADR-0051 (Issue #497) — a local raise for
+      // `awcms_idn_population_datasets` and `awcms_idn_population_stats`. The
+      // argument is entry 11's shape, not a new class: global reference rows
+      // written only by an operator job from reviewed repo files (a few hundred
+      // publications at most), never by traffic, whose generic age-only purge
+      // would delete the dataset currently being served. A candidate to propose
+      // upstream together with the tables themselves; keep ours on conflict.
+      expect(BOUNDED_BY_DESIGN.length).toBeLessThanOrEqual(21);
     });
 
     test("every entry names a table that really exists in sql/", () => {

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1808-kecamatan-180513-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.05.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Penawar Tama Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tulang Bawang",
+  "publisherDomain": "1808",
+  "publisherWebsite": "https://tulangbawangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tulang Bawang (https://tulangbawangkab.bps.go.id), publikasi \"Kecamatan Penawar Tama Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "2829",
+  "publicationNumber": "18080.26013",
+  "issn": "2829-9981",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tulangbawangkab.bps.go.id/id/publication/2026/09/28/1ef317cb12e2e4c5e0a6a772/kecamatan-penawar-tama-dalam-angka-2026.html",
+  "sourceFileSha256": "55da040481fddde6d74679769e88223f42449f5db9166ca24f6a4d185ec893d7",
+  "sourceFileBytes": 13115367,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tulang Bawang.",
+  "csvPath": "datasets/bps-1808-kecamatan-180513-dalam-angka-2026.csv",
+  "csvSha256": "ffc9609e6e4ee1d25b64beaace64d56c7bc597eb2eef8d6064a48674928773bb",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Penawar Tama, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Penawar Tama, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

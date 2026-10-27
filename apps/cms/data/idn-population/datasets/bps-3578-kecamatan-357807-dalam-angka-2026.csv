@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.78.07.1001,4,Embong Kaliasin,sex,laki_laki,,5776,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.07.1001,4,Embong Kaliasin,sex,perempuan,,5967,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.07.1001,4,Embong Kaliasin,total,total,,11743,jiwa,2025,registration,total_population,3.1,29,,
+35.78.07.1004,4,Ketabang,sex,laki_laki,,3382,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.07.1004,4,Ketabang,sex,perempuan,,3679,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.07.1004,4,Ketabang,total,total,,7061,jiwa,2025,registration,total_population,3.1,29,,
+35.78.07.1002,4,Genteng,sex,laki_laki,,3963,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.07.1002,4,Genteng,sex,perempuan,,4105,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.07.1002,4,Genteng,total,total,,8068,jiwa,2025,registration,total_population,3.1,29,,
+35.78.07.1005,4,Peneleh,sex,laki_laki,,6700,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.07.1005,4,Peneleh,sex,perempuan,,7123,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.07.1005,4,Peneleh,total,total,,13823,jiwa,2025,registration,total_population,3.1,29,,
+35.78.07.1003,4,Kapasari,sex,laki_laki,,8195,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.07.1003,4,Kapasari,sex,perempuan,,8365,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.07.1003,4,Kapasari,total,total,,16560,jiwa,2025,registration,total_population,3.1,29,,
+35.78.07,3,Kecamatan Genteng,sex,laki_laki,,28016,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.07,3,Kecamatan Genteng,sex,perempuan,,29239,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.07,3,Kecamatan Genteng,total,total,,57255,jiwa,2025,registration,total_population,3.1,29,,
+35.78.07,3,Genteng,age_group,0-4,laki_laki,1517,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.07,3,Genteng,age_group,0-4,perempuan,1454,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.07,3,Genteng,age_group,0-4,,2971,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.07,3,Genteng,age_group,5-9,laki_laki,2010,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.07,3,Genteng,age_group,5-9,perempuan,1992,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.07,3,Genteng,age_group,5-9,,4002,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.07,3,Genteng,age_group,10-14,laki_laki,2221,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.07,3,Genteng,age_group,10-14,perempuan,2131,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.07,3,Genteng,age_group,10-14,,4352,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.07,3,Genteng,age_group,15-19,laki_laki,2240,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.07,3,Genteng,age_group,15-19,perempuan,2212,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.07,3,Genteng,age_group,15-19,,4452,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.07,3,Genteng,age_group,20-24,laki_laki,2229,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.07,3,Genteng,age_group,20-24,perempuan,2166,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.07,3,Genteng,age_group,20-24,,4395,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.07,3,Genteng,age_group,25-29,laki_laki,2096,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.07,3,Genteng,age_group,25-29,perempuan,1987,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.07,3,Genteng,age_group,25-29,,4083,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.07,3,Genteng,age_group,30-34,laki_laki,2114,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.07,3,Genteng,age_group,30-34,perempuan,1951,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.07,3,Genteng,age_group,30-34,,4065,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.07,3,Genteng,age_group,35-39,laki_laki,1913,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.07,3,Genteng,age_group,35-39,perempuan,1870,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.07,3,Genteng,age_group,35-39,,3783,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.07,3,Genteng,age_group,40-44,laki_laki,2211,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.07,3,Genteng,age_group,40-44,perempuan,2320,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.07,3,Genteng,age_group,40-44,,4531,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.07,3,Genteng,age_group,45-49,laki_laki,1998,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.07,3,Genteng,age_group,45-49,perempuan,2063,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.07,3,Genteng,age_group,45-49,,4061,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.07,3,Genteng,age_group,50-54,laki_laki,1883,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.07,3,Genteng,age_group,50-54,perempuan,1988,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.07,3,Genteng,age_group,50-54,,3871,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.07,3,Genteng,age_group,55-59,laki_laki,1617,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.07,3,Genteng,age_group,55-59,perempuan,1772,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.07,3,Genteng,age_group,55-59,,3389,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.07,3,Genteng,age_group,60-64,laki_laki,1378,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.07,3,Genteng,age_group,60-64,perempuan,1538,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.07,3,Genteng,age_group,60-64,,2916,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.07,3,Genteng,age_group,65-69,laki_laki,1062,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.07,3,Genteng,age_group,65-69,perempuan,1306,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.07,3,Genteng,age_group,65-69,,2368,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.07,3,Genteng,age_group,70-74,laki_laki,729,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.07,3,Genteng,age_group,70-74,perempuan,1112,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.07,3,Genteng,age_group,70-74,,1841,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.07,3,Genteng,age_group,75+,laki_laki,798,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.07,3,Genteng,age_group,75+,perempuan,1377,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.07,3,Genteng,age_group,75+,,2175,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.07,3,Kecamatan Genteng,sex,laki_laki,,28016,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+35.78.07,3,Kecamatan Genteng,sex,perempuan,,29239,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+35.78.07,3,Kecamatan Genteng,total,total,,57255,jiwa,2025,registration,total_population,3.2,31,,

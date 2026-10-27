@@ -1,0 +1,100 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.09.08.2001,4,Kota Dalam,sex,laki_laki,,1126,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.08.2001,4,Kota Dalam,sex,perempuan,,1023,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.08.2001,4,Kota Dalam,total,total,,2149,jiwa,2025,registration,total_population,3.1,27,,
+16.09.08.2002,4,Teluk Agung,sex,laki_laki,,1115,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.08.2002,4,Teluk Agung,sex,perempuan,,1041,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.08.2002,4,Teluk Agung,total,total,,2156,jiwa,2025,registration,total_population,3.1,27,,
+16.09.08.2004,4,Tanjung Besar,sex,laki_laki,,1541,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.08.2004,4,Tanjung Besar,sex,perempuan,,1368,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.08.2004,4,Tanjung Besar,total,total,,2909,jiwa,2025,registration,total_population,3.1,27,,
+16.09.08.2003,4,Pulau Duku,sex,laki_laki,,612,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.08.2003,4,Pulau Duku,sex,perempuan,,594,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.08.2003,4,Pulau Duku,total,total,,1206,jiwa,2025,registration,total_population,3.1,27,,
+16.09.08.2005,4,Sinar Marga,sex,laki_laki,,1164,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.08.2005,4,Sinar Marga,sex,perempuan,,1113,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.08.2005,4,Sinar Marga,total,total,,2277,jiwa,2025,registration,total_population,3.1,27,,
+16.09.08.2006,4,Kota Baru,sex,laki_laki,,554,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.08.2006,4,Kota Baru,sex,perempuan,,504,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.08.2006,4,Kota Baru,total,total,,1058,jiwa,2025,registration,total_population,3.1,27,,
+16.09.08.2007,4,Galang Tinggi,sex,laki_laki,,1309,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.08.2007,4,Galang Tinggi,sex,perempuan,,1256,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.08.2007,4,Galang Tinggi,total,total,,2565,jiwa,2025,registration,total_population,3.1,27,,
+16.09.08.2008,4,Sukaraja,sex,laki_laki,,917,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.08.2008,4,Sukaraja,sex,perempuan,,856,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.08.2008,4,Sukaraja,total,total,,1773,jiwa,2025,registration,total_population,3.1,27,,
+16.09.08.2009,4,Sri Menanti,sex,laki_laki,,841,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.08.2009,4,Sri Menanti,sex,perempuan,,747,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.08.2009,4,Sri Menanti,total,total,,1588,jiwa,2025,registration,total_population,3.1,27,,
+16.09.08.2010,4,Kepayang,sex,laki_laki,,559,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.08.2010,4,Kepayang,sex,perempuan,,524,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.08.2010,4,Kepayang,total,total,,1083,jiwa,2025,registration,total_population,3.1,27,,
+16.09.08.2011,4,Kemang Bandung,sex,laki_laki,,342,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.08.2011,4,Kemang Bandung,sex,perempuan,,337,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.08.2011,4,Kemang Bandung,total,total,,679,jiwa,2025,registration,total_population,3.1,27,,
+16.09.08.2012,4,Selabung Belimbing Jaya,sex,laki_laki,,663,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.08.2012,4,Selabung Belimbing Jaya,sex,perempuan,,549,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.08.2012,4,Selabung Belimbing Jaya,total,total,,1212,jiwa,2025,registration,total_population,3.1,27,,
+16.09.08.2014,4,Air Baru,sex,laki_laki,,458,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.08.2014,4,Air Baru,sex,perempuan,,399,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.08.2014,4,Air Baru,total,total,,857,jiwa,2025,registration,total_population,3.1,27,,
+16.09.08.2013,4,Bunut,sex,laki_laki,,497,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.08.2013,4,Bunut,sex,perempuan,,419,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.08.2013,4,Bunut,total,total,,916,jiwa,2025,registration,total_population,3.1,27,,
+16.09.08.2015,4,Perean,sex,laki_laki,,869,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.08.2015,4,Perean,sex,perempuan,,785,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.08.2015,4,Perean,total,total,,1654,jiwa,2025,registration,total_population,3.1,27,,
+16.09.08,3,Mekakau ilir,sex,laki_laki,,12567,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.08,3,Mekakau ilir,sex,perempuan,,11515,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.08,3,Mekakau ilir,total,total,,24082,jiwa,2025,registration,total_population,3.1,27,,
+16.09.08,3,Mekakau Ilir,age_group,0-4,laki_laki,769,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.08,3,Mekakau Ilir,age_group,0-4,perempuan,682,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.08,3,Mekakau Ilir,age_group,0-4,,1451,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.08,3,Mekakau Ilir,age_group,5-9,laki_laki,1102,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.08,3,Mekakau Ilir,age_group,5-9,perempuan,965,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.08,3,Mekakau Ilir,age_group,5-9,,2067,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.08,3,Mekakau Ilir,age_group,10-14,laki_laki,1131,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.08,3,Mekakau Ilir,age_group,10-14,perempuan,1026,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.08,3,Mekakau Ilir,age_group,10-14,,2157,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.08,3,Mekakau Ilir,age_group,15-19,laki_laki,1220,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.08,3,Mekakau Ilir,age_group,15-19,perempuan,1156,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.08,3,Mekakau Ilir,age_group,15-19,,2376,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.08,3,Mekakau Ilir,age_group,20-24,laki_laki,1092,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.08,3,Mekakau Ilir,age_group,20-24,perempuan,1073,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.08,3,Mekakau Ilir,age_group,20-24,,2165,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.08,3,Mekakau Ilir,age_group,25-29,laki_laki,1115,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.08,3,Mekakau Ilir,age_group,25-29,perempuan,1003,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.08,3,Mekakau Ilir,age_group,25-29,,2118,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.08,3,Mekakau Ilir,age_group,30-34,laki_laki,899,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.08,3,Mekakau Ilir,age_group,30-34,perempuan,945,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.08,3,Mekakau Ilir,age_group,30-34,,1844,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.08,3,Mekakau Ilir,age_group,35-39,laki_laki,1057,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.08,3,Mekakau Ilir,age_group,35-39,perempuan,936,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.08,3,Mekakau Ilir,age_group,35-39,,1993,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.08,3,Mekakau Ilir,age_group,40-44,laki_laki,898,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.08,3,Mekakau Ilir,age_group,40-44,perempuan,878,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.08,3,Mekakau Ilir,age_group,40-44,,1776,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.08,3,Mekakau Ilir,age_group,45-49,laki_laki,869,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.08,3,Mekakau Ilir,age_group,45-49,perempuan,751,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.08,3,Mekakau Ilir,age_group,45-49,,1620,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.08,3,Mekakau Ilir,age_group,50-54,laki_laki,702,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.08,3,Mekakau Ilir,age_group,50-54,perempuan,590,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.08,3,Mekakau Ilir,age_group,50-54,,1292,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.08,3,Mekakau Ilir,age_group,55-59,laki_laki,507,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.08,3,Mekakau Ilir,age_group,55-59,perempuan,507,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.08,3,Mekakau Ilir,age_group,55-59,,1014,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.08,3,Mekakau Ilir,age_group,60-64,laki_laki,422,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.08,3,Mekakau Ilir,age_group,60-64,perempuan,342,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.08,3,Mekakau Ilir,age_group,60-64,,764,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.08,3,Mekakau Ilir,age_group,65-69,laki_laki,373,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.08,3,Mekakau Ilir,age_group,65-69,perempuan,329,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.08,3,Mekakau Ilir,age_group,65-69,,702,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.08,3,Mekakau Ilir,age_group,70-74,laki_laki,203,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.08,3,Mekakau Ilir,age_group,70-74,perempuan,132,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.08,3,Mekakau Ilir,age_group,70-74,,335,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.08,3,Mekakau Ilir,age_group,75+,laki_laki,208,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.08,3,Mekakau Ilir,age_group,75+,perempuan,200,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.08,3,Mekakau Ilir,age_group,75+,,408,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.08,3,Mekakau ilir,sex,laki_laki,,12567,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+16.09.08,3,Mekakau ilir,sex,perempuan,,11515,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+16.09.08,3,Mekakau ilir,total,total,,24082,jiwa,2025,registration,total_population,3.2,29,,

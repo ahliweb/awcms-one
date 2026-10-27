@@ -1,0 +1,45 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.01.24.2001,4,Ujunggagak,sex,perempuan,,2277,jiwa,2025,registration,total_population,3.3,7,,Perempuan/Female
+33.01.24.2001,4,Ujunggagak,total,total,,4724,jiwa,2025,registration,total_population,3.3,7,,
+33.01.24.2004,4,Klaces,sex,perempuan,,654,jiwa,2025,registration,total_population,3.3,7,,Perempuan/Female
+33.01.24.2004,4,Klaces,total,total,,1352,jiwa,2025,registration,total_population,3.3,7,,
+33.01.24.2002,4,Ujungalang,sex,perempuan,,1993,jiwa,2025,registration,total_population,3.3,7,,Perempuan/Female
+33.01.24.2002,4,Ujungalang,total,total,,4255,jiwa,2025,registration,total_population,3.3,7,,
+33.01.24.2003,4,Panikel,sex,perempuan,,3070,jiwa,2025,registration,total_population,3.3,7,,Perempuan/Female
+33.01.24.2003,4,Panikel,total,total,,6372,jiwa,2025,registration,total_population,3.3,7,,
+33.01.24,3,Kampung Laut,sex,perempuan,,7994,jiwa,2025,registration,total_population,3.3,7,,Perempuan/Female
+33.01.24,3,Kampung Laut,total,total,,16703,jiwa,2025,registration,total_population,3.3,7,,
+33.01.24,3,Kampung Laut,age_group,0-4,perempuan,507,jiwa,2025,registration,total_population,3.4,9,,0–4
+33.01.24,3,Kampung Laut,age_group,0-4,,1044,jiwa,2025,registration,total_population,3.4,9,,0–4
+33.01.24,3,Kampung Laut,age_group,5-9,perempuan,660,jiwa,2025,registration,total_population,3.4,9,,5–9
+33.01.24,3,Kampung Laut,age_group,5-9,,1410,jiwa,2025,registration,total_population,3.4,9,,5–9
+33.01.24,3,Kampung Laut,age_group,10-14,perempuan,701,jiwa,2025,registration,total_population,3.4,9,,10–14
+33.01.24,3,Kampung Laut,age_group,10-14,,1443,jiwa,2025,registration,total_population,3.4,9,,10–14
+33.01.24,3,Kampung Laut,age_group,15-19,perempuan,605,jiwa,2025,registration,total_population,3.4,9,,15–19
+33.01.24,3,Kampung Laut,age_group,15-19,,1319,jiwa,2025,registration,total_population,3.4,9,,15–19
+33.01.24,3,Kampung Laut,age_group,20-24,perempuan,581,jiwa,2025,registration,total_population,3.4,9,,20–24
+33.01.24,3,Kampung Laut,age_group,20-24,,1235,jiwa,2025,registration,total_population,3.4,9,,20–24
+33.01.24,3,Kampung Laut,age_group,25-29,perempuan,620,jiwa,2025,registration,total_population,3.4,9,,25–29
+33.01.24,3,Kampung Laut,age_group,25-29,,1304,jiwa,2025,registration,total_population,3.4,9,,25–29
+33.01.24,3,Kampung Laut,age_group,30-34,perempuan,607,jiwa,2025,registration,total_population,3.4,9,,30–34
+33.01.24,3,Kampung Laut,age_group,30-34,,1291,jiwa,2025,registration,total_population,3.4,9,,30–34
+33.01.24,3,Kampung Laut,age_group,35-39,perempuan,544,jiwa,2025,registration,total_population,3.4,9,,35–39
+33.01.24,3,Kampung Laut,age_group,35-39,,1219,jiwa,2025,registration,total_population,3.4,9,,35–39
+33.01.24,3,Kampung Laut,age_group,40-44,perempuan,589,jiwa,2025,registration,total_population,3.4,9,,40–44
+33.01.24,3,Kampung Laut,age_group,40-44,,1214,jiwa,2025,registration,total_population,3.4,9,,40–44
+33.01.24,3,Kampung Laut,age_group,45-49,perempuan,457,jiwa,2025,registration,total_population,3.4,9,,45–49
+33.01.24,3,Kampung Laut,age_group,45-49,,958,jiwa,2025,registration,total_population,3.4,9,,45–49
+33.01.24,3,Kampung Laut,age_group,50-54,perempuan,460,jiwa,2025,registration,total_population,3.4,9,,50–54
+33.01.24,3,Kampung Laut,age_group,50-54,,872,jiwa,2025,registration,total_population,3.4,9,,50–54
+33.01.24,3,Kampung Laut,age_group,55-59,perempuan,431,jiwa,2025,registration,total_population,3.4,9,,55–59
+33.01.24,3,Kampung Laut,age_group,55-59,,827,jiwa,2025,registration,total_population,3.4,9,,55–59
+33.01.24,3,Kampung Laut,age_group,60-64,perempuan,432,jiwa,2025,registration,total_population,3.4,9,,60–64
+33.01.24,3,Kampung Laut,age_group,60-64,,822,jiwa,2025,registration,total_population,3.4,9,,60–64
+33.01.24,3,Kampung Laut,age_group,65-69,perempuan,336,jiwa,2025,registration,total_population,3.4,9,,65–69
+33.01.24,3,Kampung Laut,age_group,65-69,,665,jiwa,2025,registration,total_population,3.4,9,,65–69
+33.01.24,3,Kampung Laut,age_group,70-74,perempuan,207,jiwa,2025,registration,total_population,3.4,9,,70–74
+33.01.24,3,Kampung Laut,age_group,70-74,,449,jiwa,2025,registration,total_population,3.4,9,,70–74
+33.01.24,3,Kampung Laut,age_group,75+,perempuan,257,jiwa,2025,registration,total_population,3.4,9,,75+
+33.01.24,3,Kampung Laut,age_group,75+,,631,jiwa,2025,registration,total_population,3.4,9,,75+
+33.01.24,3,Kampung Laut,sex,perempuan,,7994,jiwa,2025,registration,total_population,3.4,9,,Perempuan
+33.01.24,3,Kampung Laut,total,total,,16703,jiwa,2025,registration,total_population,3.4,9,,

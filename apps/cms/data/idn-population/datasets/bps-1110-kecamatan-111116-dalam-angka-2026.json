@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-1110-kecamatan-111116-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.11.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Peusangan Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bireuen",
+  "publisherDomain": "1110",
+  "publisherWebsite": "https://bireuenkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bireuen (https://bireuenkab.bps.go.id), publikasi \"Kecamatan Peusangan Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1110081",
+  "publicationNumber": "11100.26017",
+  "issn": "2597-6486",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bireuenkab.bps.go.id/id/publication/2026/09/28/be68eb05a0576497d471c494/kecamatan-peusangan-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "624fcfa3a2b2c378b5bbed39b280f76378bfe85fb6376e6950ebafd02321d46f",
+  "sourceFileBytes": 5461104,
+  "sourcePages": [11],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bireuen .",
+  "csvPath": "datasets/bps-1110-kecamatan-111116-dalam-angka-2026.csv",
+  "csvSha256": "d608161d7bf4c6a173bcba35a2dff987983e5490855be23dbcb7beb07320cabf",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Peusangan Selatan , 202 5",
+      "printedPages": [11],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Uteun Ghatom\": unmatched "
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "datasetCode": "bps-1117-kecamatan-111709-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.17.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mesidah Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "1117",
+  "publisherWebsite": "https://benermeriahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://benermeriahkab.bps.go.id), publikasi \"Kecamatan Mesidah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1117061",
+  "publicationNumber": "11170.26015",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://benermeriahkab.bps.go.id/id/publication/2026/09/28/384c434028f0d30afdfd91f1/kecamatan-mesidah-dalam-angka-2026.html",
+  "sourceFileSha256": "41e0d4bd4b150923dcfda6bc030b1eb725a808344ebd1fc460c0cde0ea5abf6d",
+  "sourceFileBytes": 1679548,
+  "sourcePages": [26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Bener Meriah.",
+  "csvPath": "datasets/bps-1117-kecamatan-111709-dalam-angka-2026.csv",
+  "csvSha256": "a42c6ae8eb171f6dfef9ec8e5f642d4e5cc70d63c36bce4fb53b49bafacab2ca",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Mesidah, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Cemparam Jaya 1,47%\": unmatched ",
+    "table 3.1: row not stored: row \"Jamur Atu Jaya 2,95%\": unmatched ",
+    "table 3.1: row not stored: row \"Gunung Sayang 0,85%\": unmatched ",
+    "table 3.1: row not stored: row \"Wih Resap 1,67%\": unmatched ",
+    "table 3.1: row not stored: row \"Simpur 1,57%\": unmatched ",
+    "table 3.1: row not stored: row \"Amor 2,25%\": unmatched ",
+    "table 3.1: row not stored: row \"Buntul Gayo 2,01%\": unmatched ",
+    "table 3.1: row not stored: row \"Wer Tingkem 1,82%\": unmatched ",
+    "table 3.1: row not stored: row \"Hakim Peteri Pintu 0,93%\": unmatched ",
+    "table 3.1: row not stored: row \"Perumpaken Benjadi 0,57%\": unmatched ",
+    "table 3.1: row not stored: row \"Cemparam Lama 1,72%\": unmatched ",
+    "table 3.1: row not stored: row \"Cemparam Pakat Jeroh 1,18%\": unmatched ",
+    "table 3.1: row not stored: row \"Simpang Renggali 0,90%\": unmatched ",
+    "table 3.1: row not stored: row \"Sosial 1,86%\": unmatched ",
+    "table 3.1: row not stored: row \"Pantan Kuli 0,75%\": unmatched ",
+    "table 3.1: row not stored: row \"Mesidah 3,43%\": unmatched "
+  ]
+}

@@ -1,0 +1,287 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.10,2,Kabupaten Majalengka,age_group,0-4,laki_laki,52866,jiwa,2026,projection,total_population,3.1.2,61,,0–4
+32.10,2,Kabupaten Majalengka,age_group,0-4,perempuan,50742,jiwa,2026,projection,total_population,3.1.2,61,,0–4
+32.10,2,Kabupaten Majalengka,age_group,0-4,,103608,jiwa,2026,projection,total_population,3.1.2,61,,0–4
+32.10,2,Kabupaten Majalengka,age_group,5-9,laki_laki,48910,jiwa,2026,projection,total_population,3.1.2,61,,5–9
+32.10,2,Kabupaten Majalengka,age_group,5-9,perempuan,47290,jiwa,2026,projection,total_population,3.1.2,61,,5–9
+32.10,2,Kabupaten Majalengka,age_group,5-9,,96200,jiwa,2026,projection,total_population,3.1.2,61,,5–9
+32.10,2,Kabupaten Majalengka,age_group,10-14,laki_laki,48541,jiwa,2026,projection,total_population,3.1.2,61,,10–14
+32.10,2,Kabupaten Majalengka,age_group,10-14,perempuan,46208,jiwa,2026,projection,total_population,3.1.2,61,,10–14
+32.10,2,Kabupaten Majalengka,age_group,10-14,,94749,jiwa,2026,projection,total_population,3.1.2,61,,10–14
+32.10,2,Kabupaten Majalengka,age_group,15-19,laki_laki,51423,jiwa,2026,projection,total_population,3.1.2,61,,15–19
+32.10,2,Kabupaten Majalengka,age_group,15-19,perempuan,48466,jiwa,2026,projection,total_population,3.1.2,61,,15–19
+32.10,2,Kabupaten Majalengka,age_group,15-19,,99889,jiwa,2026,projection,total_population,3.1.2,61,,15–19
+32.10,2,Kabupaten Majalengka,age_group,20-24,laki_laki,53599,jiwa,2026,projection,total_population,3.1.2,61,,20–24
+32.10,2,Kabupaten Majalengka,age_group,20-24,perempuan,51323,jiwa,2026,projection,total_population,3.1.2,61,,20–24
+32.10,2,Kabupaten Majalengka,age_group,20-24,,104922,jiwa,2026,projection,total_population,3.1.2,61,,20–24
+32.10,2,Kabupaten Majalengka,age_group,25-29,laki_laki,52730,jiwa,2026,projection,total_population,3.1.2,61,,25–29
+32.10,2,Kabupaten Majalengka,age_group,25-29,perempuan,51506,jiwa,2026,projection,total_population,3.1.2,61,,25–29
+32.10,2,Kabupaten Majalengka,age_group,25-29,,104236,jiwa,2026,projection,total_population,3.1.2,61,,25–29
+32.10,2,Kabupaten Majalengka,age_group,30-34,laki_laki,51744,jiwa,2026,projection,total_population,3.1.2,61,,30–34
+32.10,2,Kabupaten Majalengka,age_group,30-34,perempuan,49148,jiwa,2026,projection,total_population,3.1.2,61,,30–34
+32.10,2,Kabupaten Majalengka,age_group,30-34,,100892,jiwa,2026,projection,total_population,3.1.2,61,,30–34
+32.10,2,Kabupaten Majalengka,age_group,35-39,laki_laki,49438,jiwa,2026,projection,total_population,3.1.2,61,,35–39
+32.10,2,Kabupaten Majalengka,age_group,35-39,perempuan,48667,jiwa,2026,projection,total_population,3.1.2,61,,35–39
+32.10,2,Kabupaten Majalengka,age_group,35-39,,98105,jiwa,2026,projection,total_population,3.1.2,61,,35–39
+32.10,2,Kabupaten Majalengka,age_group,40-44,laki_laki,50637,jiwa,2026,projection,total_population,3.1.2,61,,40–44
+32.10,2,Kabupaten Majalengka,age_group,40-44,perempuan,51389,jiwa,2026,projection,total_population,3.1.2,61,,40–44
+32.10,2,Kabupaten Majalengka,age_group,40-44,,102026,jiwa,2026,projection,total_population,3.1.2,61,,40–44
+32.10,2,Kabupaten Majalengka,age_group,45-49,laki_laki,49542,jiwa,2026,projection,total_population,3.1.2,61,,45–49
+32.10,2,Kabupaten Majalengka,age_group,45-49,perempuan,50319,jiwa,2026,projection,total_population,3.1.2,61,,45–49
+32.10,2,Kabupaten Majalengka,age_group,45-49,,99861,jiwa,2026,projection,total_population,3.1.2,61,,45–49
+32.10,2,Kabupaten Majalengka,age_group,50-54,laki_laki,44863,jiwa,2026,projection,total_population,3.1.2,61,,50–54
+32.10,2,Kabupaten Majalengka,age_group,50-54,perempuan,47136,jiwa,2026,projection,total_population,3.1.2,61,,50–54
+32.10,2,Kabupaten Majalengka,age_group,50-54,,91999,jiwa,2026,projection,total_population,3.1.2,61,,50–54
+32.10,2,Kabupaten Majalengka,age_group,55-59,laki_laki,38102,jiwa,2026,projection,total_population,3.1.2,61,,55–59
+32.10,2,Kabupaten Majalengka,age_group,55-59,perempuan,40743,jiwa,2026,projection,total_population,3.1.2,61,,55–59
+32.10,2,Kabupaten Majalengka,age_group,55-59,,78845,jiwa,2026,projection,total_population,3.1.2,61,,55–59
+32.10,2,Kabupaten Majalengka,age_group,60-64,laki_laki,33118,jiwa,2026,projection,total_population,3.1.2,61,,60–64
+32.10,2,Kabupaten Majalengka,age_group,60-64,perempuan,34289,jiwa,2026,projection,total_population,3.1.2,61,,60–64
+32.10,2,Kabupaten Majalengka,age_group,60-64,,67407,jiwa,2026,projection,total_population,3.1.2,61,,60–64
+32.10,2,Kabupaten Majalengka,age_group,65-69,laki_laki,26486,jiwa,2026,projection,total_population,3.1.2,61,,65–69
+32.10,2,Kabupaten Majalengka,age_group,65-69,perempuan,27721,jiwa,2026,projection,total_population,3.1.2,61,,65–69
+32.10,2,Kabupaten Majalengka,age_group,65-69,,54207,jiwa,2026,projection,total_population,3.1.2,61,,65–69
+32.10,2,Kabupaten Majalengka,age_group,70-74,laki_laki,19000,jiwa,2026,projection,total_population,3.1.2,61,,70–74
+32.10,2,Kabupaten Majalengka,age_group,70-74,perempuan,20387,jiwa,2026,projection,total_population,3.1.2,61,,70–74
+32.10,2,Kabupaten Majalengka,age_group,70-74,,39387,jiwa,2026,projection,total_population,3.1.2,61,,70–74
+32.10,2,Kabupaten Majalengka,age_group,75+,laki_laki,17245,jiwa,2026,projection,total_population,3.1.2,61,,75+
+32.10,2,Kabupaten Majalengka,age_group,75+,perempuan,21023,jiwa,2026,projection,total_population,3.1.2,61,,75+
+32.10,2,Kabupaten Majalengka,age_group,75+,,38268,jiwa,2026,projection,total_population,3.1.2,61,,75+
+32.10,2,Kabupaten Majalengka,sex,laki_laki,,688244,jiwa,2026,projection,total_population,3.1.2,61,,Laki-Laki
+32.10,2,Kabupaten Majalengka,sex,perempuan,,686357,jiwa,2026,projection,total_population,3.1.2,61,,Perempuan
+32.10,2,Kabupaten Majalengka,total,total,,1374601,jiwa,2026,projection,total_population,3.1.2,61,,
+32.10.01,3,Lemahsugih,religion,islam,,68178,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.01,3,Lemahsugih,religion,kristen,,2,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.01,3,Lemahsugih,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10.01,3,Lemahsugih,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+32.10.01,3,Lemahsugih,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Budha
+32.10.01,3,Lemahsugih,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.01,3,Lemahsugih,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.02,3,Bantarujeg,religion,islam,,49697,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.02,3,Bantarujeg,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.02,3,Bantarujeg,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10.02,3,Bantarujeg,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+32.10.02,3,Bantarujeg,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Budha
+32.10.02,3,Bantarujeg,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.02,3,Bantarujeg,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.26,3,Malausma,religion,islam,,52432,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.26,3,Malausma,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.26,3,Malausma,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Katolik
+32.10.26,3,Malausma,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+32.10.26,3,Malausma,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+32.10.26,3,Malausma,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.26,3,Malausma,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.03,3,Cikijing,religion,islam,,71931,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.03,3,Cikijing,religion,kristen,,2,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.03,3,Cikijing,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10.03,3,Cikijing,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+32.10.03,3,Cikijing,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Budha
+32.10.03,3,Cikijing,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.03,3,Cikijing,religion,kepercayaan,,5,jiwa,2025,registration,total_population,4.3.1,130,,Kepercayaan
+32.10.23,3,Cingambul,religion,islam,,46062,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.23,3,Cingambul,religion,kristen,,2,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.23,3,Cingambul,religion,katolik,,9,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10.23,3,Cingambul,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+32.10.23,3,Cingambul,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Budha
+32.10.23,3,Cingambul,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.23,3,Cingambul,religion,kepercayaan,,29,jiwa,2025,registration,total_population,4.3.1,130,,Kepercayaan
+32.10.04,3,Talaga,religion,islam,,51021,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.04,3,Talaga,religion,kristen,,41,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.04,3,Talaga,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Katolik
+32.10.04,3,Talaga,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+32.10.04,3,Talaga,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Budha
+32.10.04,3,Talaga,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.04,3,Talaga,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.22,3,Banjaran,religion,islam,,26440,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.22,3,Banjaran,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.22,3,Banjaran,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Katolik
+32.10.22,3,Banjaran,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+32.10.22,3,Banjaran,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Budha
+32.10.22,3,Banjaran,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.22,3,Banjaran,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.05,3,Argapura,religion,islam,,38157,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.05,3,Argapura,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.05,3,Argapura,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10.05,3,Argapura,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+32.10.05,3,Argapura,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Budha
+32.10.05,3,Argapura,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.05,3,Argapura,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.06,3,Maja,religion,islam,,54568,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.06,3,Maja,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Protestan
+32.10.06,3,Maja,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Katolik
+32.10.06,3,Maja,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+32.10.06,3,Maja,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Budha
+32.10.06,3,Maja,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.06,3,Maja,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.07,3,Majalengka,religion,islam,,75953,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.07,3,Majalengka,religion,kristen,,421,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.07,3,Majalengka,religion,katolik,,61,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10.07,3,Majalengka,religion,hindu,,14,jiwa,2025,registration,total_population,4.3.1,130,,Hindu
+32.10.07,3,Majalengka,religion,buddha,,23,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+32.10.07,3,Majalengka,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.07,3,Majalengka,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.20,3,Cigasong,religion,islam,,38918,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.20,3,Cigasong,religion,kristen,,207,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.20,3,Cigasong,religion,katolik,,58,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10.20,3,Cigasong,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,130,,Hindu
+32.10.20,3,Cigasong,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Budha
+32.10.20,3,Cigasong,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.20,3,Cigasong,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.08,3,Sukahaji,religion,islam,,49835,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.08,3,Sukahaji,religion,kristen,,753,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.08,3,Sukahaji,religion,katolik,,58,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10.08,3,Sukahaji,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,130,,Hindu
+32.10.08,3,Sukahaji,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Budha
+32.10.08,3,Sukahaji,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.08,3,Sukahaji,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.25,3,Sindang,religion,islam,,17548,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.25,3,Sindang,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Protestan
+32.10.25,3,Sindang,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Katolik
+32.10.25,3,Sindang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+32.10.25,3,Sindang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Budha
+32.10.25,3,Sindang,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.25,3,Sindang,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.09,3,Rajagaluh,religion,islam,,49056,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.09,3,Rajagaluh,religion,kristen,,7,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.09,3,Rajagaluh,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Katolik
+32.10.09,3,Rajagaluh,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+32.10.09,3,Rajagaluh,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Budha
+32.10.09,3,Rajagaluh,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.09,3,Rajagaluh,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.21,3,Sindangwangi,religion,islam,,36132,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.21,3,Sindangwangi,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.21,3,Sindangwangi,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10.21,3,Sindangwangi,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+32.10.21,3,Sindangwangi,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Budha
+32.10.21,3,Sindangwangi,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.21,3,Sindangwangi,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.10,3,Leuwimunding,religion,islam,,66975,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.10,3,Leuwimunding,religion,kristen,,13,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.10,3,Leuwimunding,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10.10,3,Leuwimunding,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+32.10.10,3,Leuwimunding,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Budha
+32.10.10,3,Leuwimunding,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.10,3,Leuwimunding,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.19,3,Palasah,religion,islam,,55637,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.19,3,Palasah,religion,kristen,,76,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.19,3,Palasah,religion,katolik,,20,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10.19,3,Palasah,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,130,,Hindu
+32.10.19,3,Palasah,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+32.10.19,3,Palasah,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.19,3,Palasah,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.11,3,Jatiwangi,religion,islam,,93614,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.11,3,Jatiwangi,religion,kristen,,629,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.11,3,Jatiwangi,religion,katolik,,135,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10.11,3,Jatiwangi,religion,hindu,,55,jiwa,2025,registration,total_population,4.3.1,130,,Hindu
+32.10.11,3,Jatiwangi,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+32.10.11,3,Jatiwangi,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.11,3,Jatiwangi,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.12,3,Dawuan,religion,islam,,48710,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.12,3,Dawuan,religion,kristen,,316,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.12,3,Dawuan,religion,katolik,,30,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10.12,3,Dawuan,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,130,,Hindu
+32.10.12,3,Dawuan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Budha
+32.10.12,3,Dawuan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.12,3,Dawuan,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.24,3,Kasokandel,religion,islam,,54634,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.24,3,Kasokandel,religion,kristen,,808,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.24,3,Kasokandel,religion,katolik,,36,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10.24,3,Kasokandel,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+32.10.24,3,Kasokandel,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+32.10.24,3,Kasokandel,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.24,3,Kasokandel,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.18,3,Panyingkiran,religion,islam,,33678,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.18,3,Panyingkiran,religion,kristen,,32,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.18,3,Panyingkiran,religion,katolik,,9,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10.18,3,Panyingkiran,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+32.10.18,3,Panyingkiran,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+32.10.18,3,Panyingkiran,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.18,3,Panyingkiran,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.13,3,Kadipaten,religion,islam,,46600,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.13,3,Kadipaten,religion,kristen,,630,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.13,3,Kadipaten,religion,katolik,,207,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10.13,3,Kadipaten,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+32.10.13,3,Kadipaten,religion,buddha,,28,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+32.10.13,3,Kadipaten,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.13,3,Kadipaten,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.14,3,Kertajati,religion,islam,,49943,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.14,3,Kertajati,religion,kristen,,12,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.14,3,Kertajati,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10.14,3,Kertajati,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+32.10.14,3,Kertajati,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+32.10.14,3,Kertajati,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.14,3,Kertajati,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.15,3,Jatitujuh,religion,islam,,57767,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.15,3,Jatitujuh,religion,kristen,,21,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.15,3,Jatitujuh,religion,katolik,,5,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10.15,3,Jatitujuh,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+32.10.15,3,Jatitujuh,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Budha
+32.10.15,3,Jatitujuh,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.15,3,Jatitujuh,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.16,3,Ligung,religion,islam,,68470,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.16,3,Ligung,religion,kristen,,21,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.16,3,Ligung,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10.16,3,Ligung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Hindu
+32.10.16,3,Ligung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Budha
+32.10.16,3,Ligung,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.16,3,Ligung,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10.17,3,Sumberjaya,religion,islam,,67303,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10.17,3,Sumberjaya,religion,kristen,,201,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10.17,3,Sumberjaya,religion,katolik,,33,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10.17,3,Sumberjaya,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,130,,Hindu
+32.10.17,3,Sumberjaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Budha
+32.10.17,3,Sumberjaya,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10.17,3,Sumberjaya,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Kepercayaan
+32.10,2,Kabupaten Majalengka,religion,islam,,1369259,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+32.10,2,Kabupaten Majalengka,religion,kristen,,4199,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+32.10,2,Kabupaten Majalengka,religion,katolik,,674,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+32.10,2,Kabupaten Majalengka,religion,hindu,,83,jiwa,2025,registration,total_population,4.3.1,130,,Hindu
+32.10,2,Kabupaten Majalengka,religion,buddha,,68,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+32.10,2,Kabupaten Majalengka,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,130,nil,Konghucu
+32.10,2,Kabupaten Majalengka,religion,kepercayaan,,34,jiwa,2025,registration,total_population,4.3.1,130,,Kepercayaan
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/padi_padian,,99862,rupiah,2024,survey_estimate,per_capita,10.1,343,,Padi-padian
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/padi_padian,,76569,rupiah,2025,survey_estimate,per_capita,10.1,343,,Padi-padian
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/umbi_umbian,,5957,rupiah,2024,survey_estimate,per_capita,10.1,343,,Umbi-umbian
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/umbi_umbian,,5798,rupiah,2025,survey_estimate,per_capita,10.1,343,,Umbi-umbian
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,22311,rupiah,2024,survey_estimate,per_capita,10.1,343,,Ikan/udang/cumi/kerang
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,21417,rupiah,2025,survey_estimate,per_capita,10.1,343,,Ikan/udang/cumi/kerang
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/daging,,30546,rupiah,2024,survey_estimate,per_capita,10.1,343,,Daging
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/daging,,26814,rupiah,2025,survey_estimate,per_capita,10.1,343,,Daging
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/telur_dan_susu,,34872,rupiah,2024,survey_estimate,per_capita,10.1,343,,Telur dan susu
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/telur_dan_susu,,30432,rupiah,2025,survey_estimate,per_capita,10.1,343,,Telur dan susu
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/sayur_sayuran,,43003,rupiah,2024,survey_estimate,per_capita,10.1,343,,Sayur-sayuran
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/sayur_sayuran,,45375,rupiah,2025,survey_estimate,per_capita,10.1,343,,Sayur-sayuran
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/kacang_kacangan,,16077,rupiah,2024,survey_estimate,per_capita,10.1,343,,Kacang-kacangan
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/kacang_kacangan,,15412,rupiah,2025,survey_estimate,per_capita,10.1,343,,Kacang-kacangan
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/buah_buahan,,31704,rupiah,2024,survey_estimate,per_capita,10.1,343,,Buah-buahan
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/buah_buahan,,37999,rupiah,2025,survey_estimate,per_capita,10.1,343,,Buah-buahan
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14352,rupiah,2024,survey_estimate,per_capita,10.1,343,,Minyak dan kelapa
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14669,rupiah,2025,survey_estimate,per_capita,10.1,343,,Minyak dan kelapa
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/bahan_minuman,,22186,rupiah,2024,survey_estimate,per_capita,10.1,343,,Bahan minuman
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/bahan_minuman,,22330,rupiah,2025,survey_estimate,per_capita,10.1,343,,Bahan minuman
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/bumbu_bumbuan,,15052,rupiah,2024,survey_estimate,per_capita,10.1,343,,Bumbu-bumbuan
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/bumbu_bumbuan,,13924,rupiah,2025,survey_estimate,per_capita,10.1,343,,Bumbu-bumbuan
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/konsumsi_lainnya,,15361,rupiah,2024,survey_estimate,per_capita,10.1,343,,Konsumsi lainnya
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/konsumsi_lainnya,,13576,rupiah,2025,survey_estimate,per_capita,10.1,343,,Konsumsi lainnya
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,228196,rupiah,2024,survey_estimate,per_capita,10.1,343,,Makanan dan minuman jadi
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,245575,rupiah,2025,survey_estimate,per_capita,10.1,343,,Makanan dan minuman jadi
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/rokok,,91975,rupiah,2024,survey_estimate,per_capita,10.1,343,,Rokok
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/rokok,,76325,rupiah,2025,survey_estimate,per_capita,10.1,343,,Rokok
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/jumlah_makanan,,671455,rupiah,2024,survey_estimate,per_capita,10.1,343,,Jumlah makanan
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/jumlah_makanan,,646216,rupiah,2025,survey_estimate,per_capita,10.1,343,,Jumlah makanan
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,270256,rupiah,2024,survey_estimate,per_capita,10.1,343,,Perumahan dan fasilitas rumah tangga
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,287361,rupiah,2025,survey_estimate,per_capita,10.1,343,,Perumahan dan fasilitas rumah tangga
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,12795,rupiah,2024,survey_estimate,per_capita,10.1,343,,Aneka barang dan jasa
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,185542,rupiah,2025,survey_estimate,per_capita,10.1,343,,Aneka barang dan jasa
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,29565,rupiah,2024,survey_estimate,per_capita,10.1,343,,"Pakaian, alas kaki, dan tutup kepala"
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,33173,rupiah,2025,survey_estimate,per_capita,10.1,343,,"Pakaian, alas kaki, dan tutup kepala"
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/barang_tahan_lama,,41174,rupiah,2024,survey_estimate,per_capita,10.1,343,,Barang tahan lama
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/barang_tahan_lama,,68297,rupiah,2025,survey_estimate,per_capita,10.1,343,,Barang tahan lama
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,42148,rupiah,2024,survey_estimate,per_capita,10.1,343,,"Pajak, pungutan, dan asuransi"
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,50868,rupiah,2025,survey_estimate,per_capita,10.1,343,,"Pajak, pungutan, dan asuransi"
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,40103,rupiah,2024,survey_estimate,per_capita,10.1,343,,Keperluan pesta dan upacara/kenduri
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,14754,rupiah,2025,survey_estimate,per_capita,10.1,343,,Keperluan pesta dan upacara/kenduri
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,551196,rupiah,2024,survey_estimate,per_capita,10.1,343,,Jumlah bukan makanan
+32.10,2,Kabupaten Majalengka,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,639996,rupiah,2025,survey_estimate,per_capita,10.1,343,,Jumlah bukan makanan
+32.10,2,Kabupaten Majalengka,expenditure,total,,1222651,rupiah,2024,survey_estimate,per_capita,10.1,343,,
+32.10,2,Kabupaten Majalengka,expenditure,total,,1286212,rupiah,2025,survey_estimate,per_capita,10.1,343,,

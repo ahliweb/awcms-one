@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.09.01.2003,4,Cuhai,sex,laki_laki,,398,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.01.2003,4,Cuhai,sex,perempuan,,327,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.01.2003,4,Cuhai,total,total,,725,jiwa,2025,registration,total_population,3.1,28,,
+62.09.01.2004,4,Kawa,sex,laki_laki,,363,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.01.2004,4,Kawa,sex,perempuan,,338,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.01.2004,4,Kawa,total,total,,701,jiwa,2025,registration,total_population,3.1,28,,
+62.09.01.2007,4,Suja,sex,laki_laki,,638,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.01.2007,4,Suja,sex,perempuan,,506,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.01.2007,4,Suja,total,total,,1144,jiwa,2025,registration,total_population,3.1,28,,
+62.09.01.2008,4,Sekoban,sex,laki_laki,,287,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.01.2008,4,Sekoban,sex,perempuan,,260,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.01.2008,4,Sekoban,total,total,,547,jiwa,2025,registration,total_population,3.1,28,,
+62.09.01.2009,4,Bakonsu,sex,laki_laki,,817,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.01.2009,4,Bakonsu,sex,perempuan,,754,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.01.2009,4,Bakonsu,total,total,,1571,jiwa,2025,registration,total_population,3.1,28,,
+62.09.01.1012,4,Tapin Bini,sex,laki_laki,,660,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.01.1012,4,Tapin Bini,sex,perempuan,,641,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.01.1012,4,Tapin Bini,total,total,,1301,jiwa,2025,registration,total_population,3.1,28,,
+62.09.01.2005,4,Karang Taba,sex,laki_laki,,440,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.01.2005,4,Karang Taba,sex,perempuan,,388,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.01.2005,4,Karang Taba,total,total,,828,jiwa,2025,registration,total_population,3.1,28,,
+62.09.01.2002,4,Tanjung Beringin,sex,laki_laki,,633,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.01.2002,4,Tanjung Beringin,sex,perempuan,,501,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.01.2002,4,Tanjung Beringin,total,total,,1134,jiwa,2025,registration,total_population,3.1,28,,
+62.09.01.2001,4,Sungai Tuat,sex,laki_laki,,426,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.01.2001,4,Sungai Tuat,sex,perempuan,,368,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.01.2001,4,Sungai Tuat,total,total,,794,jiwa,2025,registration,total_population,3.1,28,,
+62.09.01.2022,4,Samu Jaya,sex,laki_laki,,1090,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.01.2022,4,Samu Jaya,sex,perempuan,,878,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.01.2022,4,Samu Jaya,total,total,,1968,jiwa,2025,registration,total_population,3.1,28,,
+62.09.01,3,Kecamatan Lamandau,sex,laki_laki,,7029,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.01,3,Kecamatan Lamandau,sex,perempuan,,6042,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.01,3,Kecamatan Lamandau,total,total,,13071,jiwa,2025,registration,total_population,3.1,28,,
+62.09.01,3,Lamandau,age_group,0-4,laki_laki,477,jiwa,2025,registration,total_population,3.2,30,,0–4
+62.09.01,3,Lamandau,age_group,0-4,perempuan,432,jiwa,2025,registration,total_population,3.2,30,,0–4
+62.09.01,3,Lamandau,age_group,0-4,,909,jiwa,2025,registration,total_population,3.2,30,,0–4
+62.09.01,3,Lamandau,age_group,5-9,laki_laki,626,jiwa,2025,registration,total_population,3.2,30,,5–9
+62.09.01,3,Lamandau,age_group,5-9,perempuan,619,jiwa,2025,registration,total_population,3.2,30,,5–9
+62.09.01,3,Lamandau,age_group,5-9,,1245,jiwa,2025,registration,total_population,3.2,30,,5–9
+62.09.01,3,Lamandau,age_group,10-14,laki_laki,568,jiwa,2025,registration,total_population,3.2,30,,10–14
+62.09.01,3,Lamandau,age_group,10-14,perempuan,569,jiwa,2025,registration,total_population,3.2,30,,10–14
+62.09.01,3,Lamandau,age_group,10-14,,1137,jiwa,2025,registration,total_population,3.2,30,,10–14
+62.09.01,3,Lamandau,age_group,15-19,laki_laki,488,jiwa,2025,registration,total_population,3.2,30,,15–19
+62.09.01,3,Lamandau,age_group,15-19,perempuan,418,jiwa,2025,registration,total_population,3.2,30,,15–19
+62.09.01,3,Lamandau,age_group,15-19,,906,jiwa,2025,registration,total_population,3.2,30,,15–19
+62.09.01,3,Lamandau,age_group,20-24,laki_laki,691,jiwa,2025,registration,total_population,3.2,30,,20–24
+62.09.01,3,Lamandau,age_group,20-24,perempuan,581,jiwa,2025,registration,total_population,3.2,30,,20–24
+62.09.01,3,Lamandau,age_group,20-24,,1272,jiwa,2025,registration,total_population,3.2,30,,20–24
+62.09.01,3,Lamandau,age_group,25-29,laki_laki,743,jiwa,2025,registration,total_population,3.2,30,,25–29
+62.09.01,3,Lamandau,age_group,25-29,perempuan,578,jiwa,2025,registration,total_population,3.2,30,,25–29
+62.09.01,3,Lamandau,age_group,25-29,,1321,jiwa,2025,registration,total_population,3.2,30,,25–29
+62.09.01,3,Lamandau,age_group,30-34,laki_laki,723,jiwa,2025,registration,total_population,3.2,30,,30–34
+62.09.01,3,Lamandau,age_group,30-34,perempuan,570,jiwa,2025,registration,total_population,3.2,30,,30–34
+62.09.01,3,Lamandau,age_group,30-34,,1293,jiwa,2025,registration,total_population,3.2,30,,30–34
+62.09.01,3,Lamandau,age_group,35-39,laki_laki,616,jiwa,2025,registration,total_population,3.2,30,,35–39
+62.09.01,3,Lamandau,age_group,35-39,perempuan,507,jiwa,2025,registration,total_population,3.2,30,,35–39
+62.09.01,3,Lamandau,age_group,35-39,,1123,jiwa,2025,registration,total_population,3.2,30,,35–39
+62.09.01,3,Lamandau,age_group,40-44,laki_laki,596,jiwa,2025,registration,total_population,3.2,30,,40–44
+62.09.01,3,Lamandau,age_group,40-44,perempuan,500,jiwa,2025,registration,total_population,3.2,30,,40–44
+62.09.01,3,Lamandau,age_group,40-44,,1096,jiwa,2025,registration,total_population,3.2,30,,40–44
+62.09.01,3,Lamandau,age_group,45-49,laki_laki,513,jiwa,2025,registration,total_population,3.2,30,,45–49
+62.09.01,3,Lamandau,age_group,45-49,perempuan,394,jiwa,2025,registration,total_population,3.2,30,,45–49
+62.09.01,3,Lamandau,age_group,45-49,,907,jiwa,2025,registration,total_population,3.2,30,,45–49
+62.09.01,3,Lamandau,age_group,50-54,laki_laki,318,jiwa,2025,registration,total_population,3.2,30,,50–54
+62.09.01,3,Lamandau,age_group,50-54,perempuan,297,jiwa,2025,registration,total_population,3.2,30,,50–54
+62.09.01,3,Lamandau,age_group,50-54,,615,jiwa,2025,registration,total_population,3.2,30,,50–54
+62.09.01,3,Lamandau,age_group,55-59,laki_laki,258,jiwa,2025,registration,total_population,3.2,30,,55–59
+62.09.01,3,Lamandau,age_group,55-59,perempuan,176,jiwa,2025,registration,total_population,3.2,30,,55–59
+62.09.01,3,Lamandau,age_group,55-59,,434,jiwa,2025,registration,total_population,3.2,30,,55–59
+62.09.01,3,Lamandau,age_group,60-64,laki_laki,142,jiwa,2025,registration,total_population,3.2,30,,60–64
+62.09.01,3,Lamandau,age_group,60-64,perempuan,133,jiwa,2025,registration,total_population,3.2,30,,60–64
+62.09.01,3,Lamandau,age_group,60-64,,275,jiwa,2025,registration,total_population,3.2,30,,60–64
+62.09.01,3,Lamandau,age_group,65-69,laki_laki,113,jiwa,2025,registration,total_population,3.2,30,,65–69
+62.09.01,3,Lamandau,age_group,65-69,perempuan,110,jiwa,2025,registration,total_population,3.2,30,,65–69
+62.09.01,3,Lamandau,age_group,65-69,,223,jiwa,2025,registration,total_population,3.2,30,,65–69
+62.09.01,3,Lamandau,age_group,70-74,laki_laki,68,jiwa,2025,registration,total_population,3.2,30,,70–74
+62.09.01,3,Lamandau,age_group,70-74,perempuan,65,jiwa,2025,registration,total_population,3.2,30,,70–74
+62.09.01,3,Lamandau,age_group,70-74,,133,jiwa,2025,registration,total_population,3.2,30,,70–74
+62.09.01,3,Lamandau,age_group,75+,laki_laki,89,jiwa,2025,registration,total_population,3.2,30,,75+
+62.09.01,3,Lamandau,age_group,75+,perempuan,93,jiwa,2025,registration,total_population,3.2,30,,75+
+62.09.01,3,Lamandau,age_group,75+,,182,jiwa,2025,registration,total_population,3.2,30,,75+
+62.09.01,3,Kecamatan Lamandau,sex,laki_laki,,7029,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki/Male
+62.09.01,3,Kecamatan Lamandau,sex,perempuan,,6042,jiwa,2025,registration,total_population,3.2,30,,Perempuan/Female
+62.09.01,3,Kecamatan Lamandau,total,total,,13071,jiwa,2025,registration,total_population,3.2,30,,

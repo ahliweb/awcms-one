@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.04.05,3,Hiliduho,total,total,,9886,jiwa,2025,registration,total_population,3.1.1,71,,
+12.04.06,3,Gido,total,total,,24254,jiwa,2025,registration,total_population,3.1.1,71,,
+12.04.10,3,Idanogawo,total,total,,27755,jiwa,2025,registration,total_population,3.1.1,71,,
+12.04.11,3,Bawolato,total,total,,26124,jiwa,2025,registration,total_population,3.1.1,71,,
+12.04.20,3,Hiliserangkai,total,total,,12554,jiwa,2025,registration,total_population,3.1.1,71,,
+12.04.21,3,Botomuzoi,total,total,,9583,jiwa,2025,registration,total_population,3.1.1,71,,
+12.04.27,3,Ulugawo,total,total,,10233,jiwa,2025,registration,total_population,3.1.1,71,,
+12.04.28,3,Ma’u,total,total,,10250,jiwa,2025,registration,total_population,3.1.1,71,,
+12.04.29,3,Somolo-molo,total,total,,6485,jiwa,2025,registration,total_population,3.1.1,71,,
+12.04.35,3,Sogaeadu,total,total,,11570,jiwa,2025,registration,total_population,3.1.1,71,,
+12.04,2,Nias,total,total,,148694,jiwa,2025,registration,total_population,3.1.1,71,,
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/padi_padian,,152830,rupiah,2024,survey_estimate,per_capita,10.1,351,,Padi-padian
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/padi_padian,,144692,rupiah,2025,survey_estimate,per_capita,10.1,351,,Padi-padian
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/umbi_umbian,,3072,rupiah,2024,survey_estimate,per_capita,10.1,351,,Umbi-umbian
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/umbi_umbian,,4350,rupiah,2025,survey_estimate,per_capita,10.1,351,,Umbi-umbian
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,50042,rupiah,2024,survey_estimate,per_capita,10.1,351,,Ikan/udang/cumi/kerang
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,52102,rupiah,2025,survey_estimate,per_capita,10.1,351,,Ikan/udang/cumi/kerang
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/daging,,40309,rupiah,2024,survey_estimate,per_capita,10.1,351,,Daging
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/daging,,60269,rupiah,2025,survey_estimate,per_capita,10.1,351,,Daging
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/telur_dan_susu,,24558,rupiah,2024,survey_estimate,per_capita,10.1,351,,Telur dan susu
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/telur_dan_susu,,23176,rupiah,2025,survey_estimate,per_capita,10.1,351,,Telur dan susu
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/sayur_sayuran,,48327,rupiah,2024,survey_estimate,per_capita,10.1,351,,Sayur-sayuran
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/sayur_sayuran,,45987,rupiah,2025,survey_estimate,per_capita,10.1,351,,Sayur-sayuran
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/kacang_kacangan,,3743,rupiah,2024,survey_estimate,per_capita,10.1,351,,Kacang-kacangan
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/kacang_kacangan,,3069,rupiah,2025,survey_estimate,per_capita,10.1,351,,Kacang-kacangan
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/buah_buahan,,15884,rupiah,2024,survey_estimate,per_capita,10.1,351,,Buah-buahan
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/buah_buahan,,15992,rupiah,2025,survey_estimate,per_capita,10.1,351,,Buah-buahan
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/minyak_dan_kelapa,,21129,rupiah,2024,survey_estimate,per_capita,10.1,351,,Minyak dan kelapa
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22529,rupiah,2025,survey_estimate,per_capita,10.1,351,,Minyak dan kelapa
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/bahan_minuman,,16743,rupiah,2024,survey_estimate,per_capita,10.1,351,,Bahan minuman
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/bahan_minuman,,18492,rupiah,2025,survey_estimate,per_capita,10.1,351,,Bahan minuman
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/bumbu_bumbuan,,8922,rupiah,2024,survey_estimate,per_capita,10.1,351,,Bumbu-bumbuan
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/bumbu_bumbuan,,6427,rupiah,2025,survey_estimate,per_capita,10.1,351,,Bumbu-bumbuan
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/konsumsi_lainnya,,7677,rupiah,2024,survey_estimate,per_capita,10.1,351,,Konsumsi lainnya
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/konsumsi_lainnya,,6950,rupiah,2025,survey_estimate,per_capita,10.1,351,,Konsumsi lainnya
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,48561,rupiah,2024,survey_estimate,per_capita,10.1,351,,Makanan dan minuman jadi
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,51388,rupiah,2025,survey_estimate,per_capita,10.1,351,,Makanan dan minuman jadi
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/rokok,,54613,rupiah,2024,survey_estimate,per_capita,10.1,351,,Rokok
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/rokok,,31114,rupiah,2025,survey_estimate,per_capita,10.1,351,,Rokok
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/jumlah_makanan,,494409,rupiah,2024,survey_estimate,per_capita,10.1,351,,Jumlah makanan
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/jumlah_makanan,,486537,rupiah,2025,survey_estimate,per_capita,10.1,351,,Jumlah makanan
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,171675,rupiah,2024,survey_estimate,per_capita,10.1,351,,Perumahan dan fasilitas rumah tangga
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,161160,rupiah,2025,survey_estimate,per_capita,10.1,351,,Perumahan dan fasilitas rumah tangga
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,81608,rupiah,2024,survey_estimate,per_capita,10.1,351,,Aneka barang dan jasa
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,79977,rupiah,2025,survey_estimate,per_capita,10.1,351,,Aneka barang dan jasa
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,22281,rupiah,2024,survey_estimate,per_capita,10.1,351,,"Pakaian, alas kaki, dan tutup kepala"
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,21371,rupiah,2025,survey_estimate,per_capita,10.1,351,,"Pakaian, alas kaki, dan tutup kepala"
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/barang_tahan_lama,,11567,rupiah,2024,survey_estimate,per_capita,10.1,351,,Barang tahan lama
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/barang_tahan_lama,,4780,rupiah,2025,survey_estimate,per_capita,10.1,351,,Barang tahan lama
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,42357,rupiah,2024,survey_estimate,per_capita,10.1,351,,"Pajak, pungutan, dan asuransi"
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,41598,rupiah,2025,survey_estimate,per_capita,10.1,351,,"Pajak, pungutan, dan asuransi"
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,20554,rupiah,2024,survey_estimate,per_capita,10.1,351,,Keperluan pesta dan upacara/kenduri
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,9274,rupiah,2025,survey_estimate,per_capita,10.1,351,,Keperluan pesta dan upacara/kenduri
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,350042,rupiah,2024,survey_estimate,per_capita,10.1,351,,Jumlah bukan makanan
+12.04,2,Kabupaten Nias,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,318161,rupiah,2025,survey_estimate,per_capita,10.1,351,,Jumlah bukan makanan
+12.04,2,Kabupaten Nias,expenditure,total,,846451,rupiah,2024,survey_estimate,per_capita,10.1,351,,
+12.04,2,Kabupaten Nias,expenditure,total,,804697,rupiah,2025,survey_estimate,per_capita,10.1,351,,

@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.07.08.2013,4,Mandalare,sex,laki_laki,,1452,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.08.2013,4,Mandalare,sex,perempuan,,1509,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.08.2013,4,Mandalare,total,total,,2961,jiwa,2025,registration,total_population,3.1,34,,
+32.07.08.2002,4,Kertamandala,sex,laki_laki,,2189,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.08.2002,4,Kertamandala,sex,perempuan,,2172,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.08.2002,4,Kertamandala,total,total,,4361,jiwa,2025,registration,total_population,3.1,34,,
+32.07.08.2003,4,Ciomas,sex,laki_laki,,3940,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.08.2003,4,Ciomas,sex,perempuan,,3906,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.08.2003,4,Ciomas,total,total,,7846,jiwa,2025,registration,total_population,3.1,34,,
+32.07.08.2004,4,Sandingtaman,sex,laki_laki,,2865,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.08.2004,4,Sandingtaman,sex,perempuan,,2839,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.08.2004,4,Sandingtaman,total,total,,5704,jiwa,2025,registration,total_population,3.1,34,,
+32.07.08.2005,4,Maparah,sex,laki_laki,,4861,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.08.2005,4,Maparah,sex,perempuan,,4775,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.08.2005,4,Maparah,total,total,,9636,jiwa,2025,registration,total_population,3.1,34,,
+32.07.08.2001,4,Panjalu,sex,laki_laki,,6314,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.08.2001,4,Panjalu,sex,perempuan,,6089,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.08.2001,4,Panjalu,total,total,,12403,jiwa,2025,registration,total_population,3.1,34,,
+32.07.08.2009,4,Bahara,sex,laki_laki,,1439,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.08.2009,4,Bahara,sex,perempuan,,1421,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.08.2009,4,Bahara,total,total,,2860,jiwa,2025,registration,total_population,3.1,34,,
+32.07.08.2012,4,Hujungtiwu,sex,laki_laki,,2254,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.08.2012,4,Hujungtiwu,sex,perempuan,,2215,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.08.2012,4,Hujungtiwu,total,total,,4469,jiwa,2025,registration,total_population,3.1,34,,
+32.07.08,3,Kecamatan Panjalu,sex,laki_laki,,25314,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.08,3,Kecamatan Panjalu,sex,perempuan,,24926,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.08,3,Kecamatan Panjalu,total,total,,50240,jiwa,2025,registration,total_population,3.1,34,,

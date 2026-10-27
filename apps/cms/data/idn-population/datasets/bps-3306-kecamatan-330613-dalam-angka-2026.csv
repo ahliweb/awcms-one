@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.06.13.2003,4,Pakisarum,sex,perempuan,,1820,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.13.2003,4,Pakisarum,total,total,,3722,jiwa,2025,registration,total_population,3.1,19,,
+33.06.13.2002,4,Plipiran,sex,perempuan,,1062,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.13.2002,4,Plipiran,total,total,,2178,jiwa,2025,registration,total_population,3.1,19,,
+33.06.13.2001,4,Puspo,sex,perempuan,,2177,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.13.2001,4,Puspo,total,total,,4494,jiwa,2025,registration,total_population,3.1,19,,
+33.06.13.2006,4,Somoleter,sex,perempuan,,715,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.13.2006,4,Somoleter,total,total,,1497,jiwa,2025,registration,total_population,3.1,19,,
+33.06.13.2005,4,Brunosari,sex,perempuan,,2261,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.13.2005,4,Brunosari,total,total,,4679,jiwa,2025,registration,total_population,3.1,19,,
+33.06.13.2004,4,Brunorejo,sex,perempuan,,3081,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.13.2004,4,Brunorejo,total,total,,6409,jiwa,2025,registration,total_population,3.1,19,,
+33.06.13.2010,4,Cepedak,sex,perempuan,,2168,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.13.2010,4,Cepedak,total,total,,4472,jiwa,2025,registration,total_population,3.1,19,,
+33.06.13.2011,4,Gunung Condong,sex,perempuan,,934,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.13.2011,4,Gunung Condong,total,total,,1886,jiwa,2025,registration,total_population,3.1,19,,
+33.06.13.2012,4,Kemranggen,sex,perempuan,,556,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.13.2012,4,Kemranggen,total,total,,1115,jiwa,2025,registration,total_population,3.1,19,,
+33.06.13.2013,4,Karanggedang,sex,perempuan,,382,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.13.2013,4,Karanggedang,total,total,,779,jiwa,2025,registration,total_population,3.1,19,,
+33.06.13.2014,4,Giyombong,sex,perempuan,,529,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.13.2014,4,Giyombong,total,total,,1103,jiwa,2025,registration,total_population,3.1,19,,
+33.06.13.2009,4,Brondong,sex,perempuan,,2012,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.13.2009,4,Brondong,total,total,,4171,jiwa,2025,registration,total_population,3.1,19,,
+33.06.13.2008,4,Gowong,sex,perempuan,,1405,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.13.2008,4,Gowong,total,total,,2882,jiwa,2025,registration,total_population,3.1,19,,
+33.06.13.2007,4,Blimbing,sex,perempuan,,1923,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.13.2007,4,Blimbing,total,total,,4014,jiwa,2025,registration,total_population,3.1,19,,
+33.06.13.2018,4,Tegalsari,sex,perempuan,,3049,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.13.2018,4,Tegalsari,total,total,,6125,jiwa,2025,registration,total_population,3.1,19,,
+33.06.13.2017,4,Kaliwungu,sex,perempuan,,2568,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.13.2017,4,Kaliwungu,total,total,,5104,jiwa,2025,registration,total_population,3.1,19,,
+33.06.13.2016,4,Watuduwur,sex,perempuan,,1039,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.13.2016,4,Watuduwur,total,total,,2197,jiwa,2025,registration,total_population,3.1,19,,
+33.06.13.2015,4,Kambangan,sex,perempuan,,358,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.13.2015,4,Kambangan,total,total,,731,jiwa,2025,registration,total_population,3.1,19,,
+33.06.13,3,Kecamatan Bruno,sex,perempuan,,28039,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.13,3,Kecamatan Bruno,total,total,,57558,jiwa,2025,registration,total_population,3.1,19,,
+33.06.13,3,Bruno,age_group,0-4,perempuan,2038,jiwa,2025,registration,total_population,3.2,21,,0–4
+33.06.13,3,Bruno,age_group,0-4,,4141,jiwa,2025,registration,total_population,3.2,21,,0–4
+33.06.13,3,Bruno,age_group,5-9,perempuan,2226,jiwa,2025,registration,total_population,3.2,21,,5–9
+33.06.13,3,Bruno,age_group,5-9,,4667,jiwa,2025,registration,total_population,3.2,21,,5–9
+33.06.13,3,Bruno,age_group,10-14,perempuan,2164,jiwa,2025,registration,total_population,3.2,21,,10–14
+33.06.13,3,Bruno,age_group,10-14,,4555,jiwa,2025,registration,total_population,3.2,21,,10–14
+33.06.13,3,Bruno,age_group,15-19,perempuan,2279,jiwa,2025,registration,total_population,3.2,21,,15–19
+33.06.13,3,Bruno,age_group,15-19,,4630,jiwa,2025,registration,total_population,3.2,21,,15–19
+33.06.13,3,Bruno,age_group,20-24,perempuan,2352,jiwa,2025,registration,total_population,3.2,21,,20–24
+33.06.13,3,Bruno,age_group,20-24,,4885,jiwa,2025,registration,total_population,3.2,21,,20–24
+33.06.13,3,Bruno,age_group,25-29,perempuan,2259,jiwa,2025,registration,total_population,3.2,21,,25–29
+33.06.13,3,Bruno,age_group,25-29,,4711,jiwa,2025,registration,total_population,3.2,21,,25–29
+33.06.13,3,Bruno,age_group,30-34,perempuan,2083,jiwa,2025,registration,total_population,3.2,21,,30–34
+33.06.13,3,Bruno,age_group,30-34,,4334,jiwa,2025,registration,total_population,3.2,21,,30–34
+33.06.13,3,Bruno,age_group,35-39,perempuan,1943,jiwa,2025,registration,total_population,3.2,21,,35–39
+33.06.13,3,Bruno,age_group,35-39,,4193,jiwa,2025,registration,total_population,3.2,21,,35–39
+33.06.13,3,Bruno,age_group,40-44,perempuan,1759,jiwa,2025,registration,total_population,3.2,21,,40–44
+33.06.13,3,Bruno,age_group,40-44,,3786,jiwa,2025,registration,total_population,3.2,21,,40–44
+33.06.13,3,Bruno,age_group,45-49,perempuan,1595,jiwa,2025,registration,total_population,3.2,21,,45–49
+33.06.13,3,Bruno,age_group,45-49,,3282,jiwa,2025,registration,total_population,3.2,21,,45–49
+33.06.13,3,Bruno,age_group,50-54,perempuan,1621,jiwa,2025,registration,total_population,3.2,21,,50–54
+33.06.13,3,Bruno,age_group,50-54,,3143,jiwa,2025,registration,total_population,3.2,21,,50–54
+33.06.13,3,Bruno,age_group,55-59,perempuan,1614,jiwa,2025,registration,total_population,3.2,21,,55–59
+33.06.13,3,Bruno,age_group,55-59,,3135,jiwa,2025,registration,total_population,3.2,21,,55–59
+33.06.13,3,Bruno,age_group,60-64,perempuan,1389,jiwa,2025,registration,total_population,3.2,21,,60–64
+33.06.13,3,Bruno,age_group,60-64,,2784,jiwa,2025,registration,total_population,3.2,21,,60–64
+33.06.13,3,Bruno,age_group,65-69,perempuan,1129,jiwa,2025,registration,total_population,3.2,21,,65–69
+33.06.13,3,Bruno,age_group,65-69,,2231,jiwa,2025,registration,total_population,3.2,21,,65–69
+33.06.13,3,Bruno,age_group,70-74,perempuan,646,jiwa,2025,registration,total_population,3.2,21,,70–74
+33.06.13,3,Bruno,age_group,70-74,,1327,jiwa,2025,registration,total_population,3.2,21,,70–74
+33.06.13,3,Bruno,age_group,75+,perempuan,942,jiwa,2025,registration,total_population,3.2,21,,75+
+33.06.13,3,Bruno,age_group,75+,,1754,jiwa,2025,registration,total_population,3.2,21,,75+
+33.06.13,3,Kecamatan Bruno,sex,perempuan,,28039,jiwa,2025,registration,total_population,3.2,21,,Perempuan
+33.06.13,3,Kecamatan Bruno,total,total,,57558,jiwa,2025,registration,total_population,3.2,21,,

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3510-kecamatan-351025-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.10.25",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Blimbingsari Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Banyuwangi",
+  "publisherDomain": "3510",
+  "publisherWebsite": "https://banyuwangikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Banyuwangi (https://banyuwangikab.bps.go.id), publikasi \"Kecamatan Blimbingsari Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3510121",
+  "publicationNumber": "35100.26020",
+  "issn": "2407-0467",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banyuwangikab.bps.go.id/id/publication/2026/09/28/4f6eedb66a826b56e7343b56/kecamatan-blimbingsari-dalam-angka-2026.html",
+  "sourceFileSha256": "562030ccee17309d25fcf1ccffc7bb051a1a85860ee7e2135bd34684e5befea3",
+  "sourceFileBytes": 1578428,
+  "sourcePages": [3, 5],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengkomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik",
+  "csvPath": "datasets/bps-3510-kecamatan-351025-dalam-angka-2026.csv",
+  "csvSha256": "838f2f1d520448b031a48f86615b5a55cf4c93556e3401f70e2561d86c1aa107",
+  "tablesUsed": [
+    {
+      "table": "1.4",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan PESANGGARAN, 2025",
+      "printedPages": [5],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 1.3: row not stored: row \"Sarongan 3 365\": unmatched ",
+    "table 1.3: row not stored: row \"Kandangan 4 736\": unmatched ",
+    "table 1.3: row not stored: row \"Sumberagung 8 515\": unmatched ",
+    "table 1.3: row not stored: row \"Pesanggaran 8 550\": unmatched ",
+    "table 1.3: row not stored: row \"Sumbermulyo 4 258\": unmatched ",
+    "table 1.3: row not stored: row \"Pesanggaran 29 424\": unmatched ",
+    "table 1.3: no figures were read (every cell is unavailable (\"...\") or not recognised)",
+    "table 1.4: row not stored: row \"PESANGGARAN\": unmatched "
+  ]
+}

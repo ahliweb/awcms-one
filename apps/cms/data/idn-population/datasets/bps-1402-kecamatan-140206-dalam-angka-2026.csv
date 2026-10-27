@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.02.06.2006,4,Bukit Meranti,religion,islam,,3081,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.06.2006,4,Bukit Meranti,religion,katolik,,3,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.06.2006,4,Bukit Meranti,religion,kristen,,14,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.06.2006,4,Bukit Meranti,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.06.2006,4,Bukit Meranti,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.06.2006,4,Bukit Meranti,total,total,,3098,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.06.2005,4,Paya Rumbai,religion,islam,,1900,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.06.2005,4,Paya Rumbai,religion,katolik,,12,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.06.2005,4,Paya Rumbai,religion,kristen,,88,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.06.2005,4,Paya Rumbai,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.06.2005,4,Paya Rumbai,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.06.2005,4,Paya Rumbai,total,total,,2000,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.06.2002,4,Kelesa,religion,islam,,3799,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.06.2002,4,Kelesa,religion,katolik,,144,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.06.2002,4,Kelesa,religion,kristen,,1533,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.06.2002,4,Kelesa,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.06.2002,4,Kelesa,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.06.2002,4,Kelesa,total,total,,5476,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.06.2003,4,Beligan,religion,islam,,1846,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.06.2003,4,Beligan,religion,katolik,,1,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.06.2003,4,Beligan,religion,kristen,,17,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.06.2003,4,Beligan,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.06.2003,4,Beligan,religion,buddha,,3,jiwa,2025,registration,total_population,4.4.1,59,,Budha
+14.02.06.2003,4,Beligan,total,total,,1867,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.06.2004,4,Seresam,religion,islam,,3808,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.06.2004,4,Seresam,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Katolik
+14.02.06.2004,4,Seresam,religion,kristen,,2,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.06.2004,4,Seresam,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.06.2004,4,Seresam,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.06.2004,4,Seresam,total,total,,3810,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.06.2009,4,Petala Bumi,religion,islam,,4020,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.06.2009,4,Petala Bumi,religion,katolik,,9,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.06.2009,4,Petala Bumi,religion,kristen,,208,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.06.2009,4,Petala Bumi,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.06.2009,4,Petala Bumi,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.06.2009,4,Petala Bumi,total,total,,4237,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.06.2008,4,Titian Resak,religion,islam,,7353,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.06.2008,4,Titian Resak,religion,katolik,,28,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.06.2008,4,Titian Resak,religion,kristen,,235,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.06.2008,4,Titian Resak,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.06.2008,4,Titian Resak,religion,buddha,,9,jiwa,2025,registration,total_population,4.4.1,59,,Budha
+14.02.06.2008,4,Titian Resak,total,total,,7625,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.06.2010,4,Sibabat,religion,islam,,3122,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.06.2010,4,Sibabat,religion,katolik,,6,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.06.2010,4,Sibabat,religion,kristen,,43,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.06.2010,4,Sibabat,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.06.2010,4,Sibabat,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.06.2010,4,Sibabat,total,total,,3171,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.06.1001,4,Pangkalan Kasai,religion,islam,,18602,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.06.1001,4,Pangkalan Kasai,religion,katolik,,272,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.06.1001,4,Pangkalan Kasai,religion,kristen,,1794,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.06.1001,4,Pangkalan Kasai,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.06.1001,4,Pangkalan Kasai,religion,buddha,,141,jiwa,2025,registration,total_population,4.4.1,59,,Budha
+14.02.06.1001,4,Pangkalan Kasai,total,total,,20809,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.06.2007,4,Buluh Rampai,religion,islam,,6912,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.06.2007,4,Buluh Rampai,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Katolik
+14.02.06.2007,4,Buluh Rampai,religion,kristen,,43,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.06.2007,4,Buluh Rampai,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.06.2007,4,Buluh Rampai,religion,buddha,,5,jiwa,2025,registration,total_population,4.4.1,59,,Budha
+14.02.06.2007,4,Buluh Rampai,total,total,,6960,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.06.2011,4,Bandar Padang,religion,islam,,2240,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.06.2011,4,Bandar Padang,religion,katolik,,7,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.06.2011,4,Bandar Padang,religion,kristen,,146,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.06.2011,4,Bandar Padang,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.06.2011,4,Bandar Padang,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Budha
+14.02.06.2011,4,Bandar Padang,total,total,,2393,jiwa,2025,registration,total_population,4.4.1,59,,
+14.02.06,3,Seberida,religion,islam,,56683,jiwa,2025,registration,total_population,4.4.1,59,,Islam
+14.02.06,3,Seberida,religion,katolik,,482,jiwa,2025,registration,total_population,4.4.1,59,,Katolik
+14.02.06,3,Seberida,religion,kristen,,4123,jiwa,2025,registration,total_population,4.4.1,59,,Protestan
+14.02.06,3,Seberida,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,59,nil,Hindu
+14.02.06,3,Seberida,religion,buddha,,158,jiwa,2025,registration,total_population,4.4.1,59,,Budha
+14.02.06,3,Seberida,total,total,,61446,jiwa,2025,registration,total_population,4.4.1,59,,

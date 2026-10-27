@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3401-kecamatan-340108-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "34.01.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kokap Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kulon Progo",
+  "publisherDomain": "3401",
+  "publisherWebsite": "https://kulonprogokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kulon Progo (https://kulonprogokab.bps.go.id), publikasi \"Kecamatan Kokap Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3401100",
+  "publicationNumber": "34010.26013",
+  "issn": "2598-4543",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kulonprogokab.bps.go.id/id/publication/2026/09/28/5a6128587e21d9a939a3f8d8/kecamatan-kokap-dalam-angka-2026.html",
+  "sourceFileSha256": "76ff93c35dd3578c01dd4447387e4289b786badb9dcef33dcba3e9dcf9c3e3a3",
+  "sourceFileBytes": 9464100,
+  "sourcePages": [21, 22, 23],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kulon Progo.",
+  "csvPath": "datasets/bps-3401-kecamatan-340108-dalam-angka-2026.csv",
+  "csvSha256": "f689ec890b35ffcd022253eb070a0f3c143f961a58042412306f420a60c68cf4",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kokap, 2025",
+      "printedPages": [21, 22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kokap, 2025",
+      "printedPages": [23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

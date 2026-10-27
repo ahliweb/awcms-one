@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.25.03.2001,4,Onolimbu Raya,sex,laki_laki,,551,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.25.03.2001,4,Onolimbu Raya,sex,perempuan,,557,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.25.03.2001,4,Onolimbu Raya,total,total,,1108,jiwa,2025,registration,total_population,3.1,34,,
+12.25.03.2002,4,Ononamolo III,sex,laki_laki,,497,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.25.03.2002,4,Ononamolo III,sex,perempuan,,479,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.25.03.2002,4,Ononamolo III,total,total,,976,jiwa,2025,registration,total_population,3.1,34,,
+12.25.03.2003,4,Sisobaoho,sex,laki_laki,,261,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.25.03.2003,4,Sisobaoho,sex,perempuan,,268,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.25.03.2003,4,Sisobaoho,total,total,,529,jiwa,2025,registration,total_population,3.1,34,,
+12.25.03.2004,4,Iraonogeba,sex,laki_laki,,352,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.25.03.2004,4,Iraonogeba,sex,perempuan,,349,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.25.03.2004,4,Iraonogeba,total,total,,701,jiwa,2025,registration,total_population,3.1,34,,
+12.25.03.2005,4,Lolohia,sex,laki_laki,,292,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.25.03.2005,4,Lolohia,sex,perempuan,,345,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.25.03.2005,4,Lolohia,total,total,,637,jiwa,2025,registration,total_population,3.1,34,,
+12.25.03.2012,4,Onolimbu You,sex,laki_laki,,318,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.25.03.2012,4,Onolimbu You,sex,perempuan,,316,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.25.03.2012,4,Onolimbu You,total,total,,634,jiwa,2025,registration,total_population,3.1,34,,
+12.25.03.2006,4,Fadorosifulubanua,sex,laki_laki,,196,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.25.03.2006,4,Fadorosifulubanua,sex,perempuan,,244,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.25.03.2006,4,Fadorosifulubanua,total,total,,440,jiwa,2025,registration,total_population,3.1,34,,
+12.25.03.2007,4,Hillidaura,sex,laki_laki,,188,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.25.03.2007,4,Hillidaura,sex,perempuan,,210,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.25.03.2007,4,Hillidaura,total,total,,398,jiwa,2025,registration,total_population,3.1,34,,
+12.25.03.2008,4,Sisarahili II,sex,laki_laki,,125,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.25.03.2008,4,Sisarahili II,sex,perempuan,,133,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.25.03.2008,4,Sisarahili II,total,total,,258,jiwa,2025,registration,total_population,3.1,34,,
+12.25.03.2009,4,Lasara Bagawu,sex,laki_laki,,372,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.25.03.2009,4,Lasara Bagawu,sex,perempuan,,360,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.25.03.2009,4,Lasara Bagawu,total,total,,732,jiwa,2025,registration,total_population,3.1,34,,
+12.25.03.2010,4,Sisobandrao,sex,laki_laki,,341,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.25.03.2010,4,Sisobandrao,sex,perempuan,,351,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.25.03.2010,4,Sisobandrao,total,total,,692,jiwa,2025,registration,total_population,3.1,34,,
+12.25.03.2011,4,Mazingo,sex,laki_laki,,394,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.25.03.2011,4,Mazingo,sex,perempuan,,395,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.25.03.2011,4,Mazingo,total,total,,789,jiwa,2025,registration,total_population,3.1,34,,
+12.25.03.2013,4,Lasarafaga,sex,laki_laki,,515,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.25.03.2013,4,Lasarafaga,sex,perempuan,,525,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.25.03.2013,4,Lasarafaga,total,total,,1040,jiwa,2025,registration,total_population,3.1,34,,
+12.25.03.2014,4,Orahili Badalu,sex,laki_laki,,210,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.25.03.2014,4,Orahili Badalu,sex,perempuan,,214,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.25.03.2014,4,Orahili Badalu,total,total,,424,jiwa,2025,registration,total_population,3.1,34,,
+12.25.03,3,Mandrehe Barat,sex,laki_laki,,4612,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.25.03,3,Mandrehe Barat,sex,perempuan,,4746,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.25.03,3,Mandrehe Barat,total,total,,9358,jiwa,2025,registration,total_population,3.1,34,,
+12.25.03,3,Mandrehe Barat,age_group,0-4,laki_laki,228,jiwa,2025,registration,total_population,3.2,36,,0-4
+12.25.03,3,Mandrehe Barat,age_group,0-4,perempuan,209,jiwa,2025,registration,total_population,3.2,36,,0-4
+12.25.03,3,Mandrehe Barat,age_group,0-4,,437,jiwa,2025,registration,total_population,3.2,36,,0-4
+12.25.03,3,Mandrehe Barat,age_group,5-9,laki_laki,413,jiwa,2025,registration,total_population,3.2,36,,5-9
+12.25.03,3,Mandrehe Barat,age_group,5-9,perempuan,389,jiwa,2025,registration,total_population,3.2,36,,5-9
+12.25.03,3,Mandrehe Barat,age_group,5-9,,802,jiwa,2025,registration,total_population,3.2,36,,5-9
+12.25.03,3,Mandrehe Barat,age_group,10-14,laki_laki,573,jiwa,2025,registration,total_population,3.2,36,,10-14
+12.25.03,3,Mandrehe Barat,age_group,10-14,perempuan,540,jiwa,2025,registration,total_population,3.2,36,,10-14
+12.25.03,3,Mandrehe Barat,age_group,10-14,,1113,jiwa,2025,registration,total_population,3.2,36,,10-14
+12.25.03,3,Mandrehe Barat,age_group,15-19,laki_laki,633,jiwa,2025,registration,total_population,3.2,36,,15-19
+12.25.03,3,Mandrehe Barat,age_group,15-19,perempuan,573,jiwa,2025,registration,total_population,3.2,36,,15-19
+12.25.03,3,Mandrehe Barat,age_group,15-19,,1206,jiwa,2025,registration,total_population,3.2,36,,15-19
+12.25.03,3,Mandrehe Barat,age_group,20-24,laki_laki,574,jiwa,2025,registration,total_population,3.2,36,,20-24
+12.25.03,3,Mandrehe Barat,age_group,20-24,perempuan,588,jiwa,2025,registration,total_population,3.2,36,,20-24
+12.25.03,3,Mandrehe Barat,age_group,20-24,,1162,jiwa,2025,registration,total_population,3.2,36,,20-24
+12.25.03,3,Mandrehe Barat,age_group,25-29,laki_laki,424,jiwa,2025,registration,total_population,3.2,36,,25-29
+12.25.03,3,Mandrehe Barat,age_group,25-29,perempuan,392,jiwa,2025,registration,total_population,3.2,36,,25-29
+12.25.03,3,Mandrehe Barat,age_group,25-29,,816,jiwa,2025,registration,total_population,3.2,36,,25-29
+12.25.03,3,Mandrehe Barat,age_group,30-34,laki_laki,301,jiwa,2025,registration,total_population,3.2,36,,30-34
+12.25.03,3,Mandrehe Barat,age_group,30-34,perempuan,286,jiwa,2025,registration,total_population,3.2,36,,30-34
+12.25.03,3,Mandrehe Barat,age_group,30-34,,587,jiwa,2025,registration,total_population,3.2,36,,30-34
+12.25.03,3,Mandrehe Barat,age_group,35-39,laki_laki,296,jiwa,2025,registration,total_population,3.2,36,,35-39
+12.25.03,3,Mandrehe Barat,age_group,35-39,perempuan,324,jiwa,2025,registration,total_population,3.2,36,,35-39
+12.25.03,3,Mandrehe Barat,age_group,35-39,,620,jiwa,2025,registration,total_population,3.2,36,,35-39
+12.25.03,3,Mandrehe Barat,age_group,40-44,laki_laki,300,jiwa,2025,registration,total_population,3.2,36,,40-44
+12.25.03,3,Mandrehe Barat,age_group,40-44,perempuan,301,jiwa,2025,registration,total_population,3.2,36,,40-44
+12.25.03,3,Mandrehe Barat,age_group,40-44,,601,jiwa,2025,registration,total_population,3.2,36,,40-44
+12.25.03,3,Mandrehe Barat,age_group,45-49,laki_laki,230,jiwa,2025,registration,total_population,3.2,36,,45-49
+12.25.03,3,Mandrehe Barat,age_group,45-49,perempuan,287,jiwa,2025,registration,total_population,3.2,36,,45-49
+12.25.03,3,Mandrehe Barat,age_group,45-49,,517,jiwa,2025,registration,total_population,3.2,36,,45-49
+12.25.03,3,Mandrehe Barat,age_group,50-54,laki_laki,187,jiwa,2025,registration,total_population,3.2,36,,50-54
+12.25.03,3,Mandrehe Barat,age_group,50-54,perempuan,206,jiwa,2025,registration,total_population,3.2,36,,50-54
+12.25.03,3,Mandrehe Barat,age_group,50-54,,393,jiwa,2025,registration,total_population,3.2,36,,50-54
+12.25.03,3,Mandrehe Barat,age_group,55-59,laki_laki,128,jiwa,2025,registration,total_population,3.2,36,,55-59
+12.25.03,3,Mandrehe Barat,age_group,55-59,perempuan,172,jiwa,2025,registration,total_population,3.2,36,,55-59
+12.25.03,3,Mandrehe Barat,age_group,55-59,,300,jiwa,2025,registration,total_population,3.2,36,,55-59
+12.25.03,3,Mandrehe Barat,age_group,60-64,laki_laki,97,jiwa,2025,registration,total_population,3.2,36,,60-64
+12.25.03,3,Mandrehe Barat,age_group,60-64,perempuan,130,jiwa,2025,registration,total_population,3.2,36,,60-64
+12.25.03,3,Mandrehe Barat,age_group,60-64,,227,jiwa,2025,registration,total_population,3.2,36,,60-64
+12.25.03,3,Mandrehe Barat,age_group,65-69,laki_laki,102,jiwa,2025,registration,total_population,3.2,36,,65-69
+12.25.03,3,Mandrehe Barat,age_group,65-69,perempuan,146,jiwa,2025,registration,total_population,3.2,36,,65-69
+12.25.03,3,Mandrehe Barat,age_group,65-69,,248,jiwa,2025,registration,total_population,3.2,36,,65-69
+12.25.03,3,Mandrehe Barat,age_group,70-74,laki_laki,60,jiwa,2025,registration,total_population,3.2,36,,70-74
+12.25.03,3,Mandrehe Barat,age_group,70-74,perempuan,98,jiwa,2025,registration,total_population,3.2,36,,70-74
+12.25.03,3,Mandrehe Barat,age_group,70-74,,158,jiwa,2025,registration,total_population,3.2,36,,70-74
+12.25.03,3,Mandrehe Barat,age_group,75+,laki_laki,66,jiwa,2025,registration,total_population,3.2,36,,75+
+12.25.03,3,Mandrehe Barat,age_group,75+,perempuan,105,jiwa,2025,registration,total_population,3.2,36,,75+
+12.25.03,3,Mandrehe Barat,age_group,75+,,171,jiwa,2025,registration,total_population,3.2,36,,75+
+12.25.03,3,Mandrehe Barat,sex,laki_laki,,4612,jiwa,2025,registration,total_population,3.2,36,,Laki-Laki
+12.25.03,3,Mandrehe Barat,sex,perempuan,,4746,jiwa,2025,registration,total_population,3.2,36,,Perempuan
+12.25.03,3,Mandrehe Barat,total,total,,9358,jiwa,2025,registration,total_population,3.2,36,,

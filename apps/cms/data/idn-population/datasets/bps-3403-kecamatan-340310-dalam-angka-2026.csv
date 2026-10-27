@@ -1,0 +1,23 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+34.03.10.2011,4,Gombang,sex,perempuan,,1711,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.10.2011,4,Gombang,total,total,,3429,jiwa,2025,registration,total_population,3.1,23,,
+34.03.10.2010,4,Sidorejo,sex,perempuan,,4862,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.10.2010,4,Sidorejo,total,total,,9694,jiwa,2025,registration,total_population,3.1,23,,
+34.03.10.2009,4,Bedoyo,sex,perempuan,,2046,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.10.2009,4,Bedoyo,total,total,,4138,jiwa,2025,registration,total_population,3.1,23,,
+34.03.10.2008,4,Karang Asem,sex,perempuan,,1318,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.10.2008,4,Karang Asem,total,total,,2619,jiwa,2025,registration,total_population,3.1,23,,
+34.03.10.2007,4,Ponjong,sex,perempuan,,2617,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.10.2007,4,Ponjong,total,total,,5178,jiwa,2025,registration,total_population,3.1,23,,
+34.03.10.2006,4,Genjahan,sex,perempuan,,2975,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.10.2006,4,Genjahan,total,total,,5864,jiwa,2025,registration,total_population,3.1,23,,
+34.03.10.2005,4,Sumber Giri,sex,perempuan,,2458,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.10.2005,4,Sumber Giri,total,total,,4856,jiwa,2025,registration,total_population,3.1,23,,
+34.03.10.2004,4,Kenteng,sex,perempuan,,1726,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.10.2004,4,Kenteng,total,total,,3344,jiwa,2025,registration,total_population,3.1,23,,
+34.03.10.2003,4,Tambakromo,sex,perempuan,,2174,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.10.2003,4,Tambakromo,total,total,,4198,jiwa,2025,registration,total_population,3.1,23,,
+34.03.10.2002,4,Sawahan,sex,perempuan,,2884,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.10.2002,4,Sawahan,total,total,,5725,jiwa,2025,registration,total_population,3.1,23,,
+34.03.10.2001,4,Umbulrejo,sex,perempuan,,3749,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+34.03.10.2001,4,Umbulrejo,total,total,,7501,jiwa,2025,registration,total_population,3.1,23,,

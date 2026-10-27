@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3308-kecamatan-330814-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.08.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bandongan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Magelang",
+  "publisherDomain": "3308",
+  "publisherWebsite": "https://magelangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Magelang (https://magelangkab.bps.go.id), publikasi \"Kecamatan Bandongan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "33080.26032",
+  "issn": "2442-563X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://magelangkab.bps.go.id/id/publication/2026/09/28/3d3383b6986b91541ee053c3/kecamatan-bandongan-dalam-angka-2026.html",
+  "sourceFileSha256": "4191237e0bb4e3cd1c6e1fec11558ac88ad8ea0327ec13a238efc56d71e3d617",
+  "sourceFileBytes": 10602360,
+  "sourcePages": [30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Magelang",
+  "csvPath": "datasets/bps-3308-kecamatan-330814-dalam-angka-2026.csv",
+  "csvSha256": "3381a41f80ddd75021e6001d7dc4f6e93ad235526104f6e9bb9e94e28abe7551",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p30",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Bandongan, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

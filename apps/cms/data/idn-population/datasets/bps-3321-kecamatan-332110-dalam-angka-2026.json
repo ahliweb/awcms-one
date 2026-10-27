@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3321-kecamatan-332110-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.21.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mijen Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Demak",
+  "publisherDomain": "3321",
+  "publisherWebsite": "https://demakkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Demak (https://demakkab.bps.go.id), publikasi \"Kecamatan Mijen Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3321120",
+  "publicationNumber": "33210.26019",
+  "issn": "3089-0691",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://demakkab.bps.go.id/id/publication/2026/09/28/d45704f0598c62d34da3a9af/kecamatan-mijen-dalam-angka-2026.html",
+  "sourceFileSha256": "1b88b6e1dadb00a45654e407f971ca74ba9923e6b66a09f84b303518b82ec61b",
+  "sourceFileBytes": 7990814,
+  "sourcePages": [24, 25, 26],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengkomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik",
+  "csvPath": "datasets/bps-3321-kecamatan-332110-dalam-angka-2026.csv",
+  "csvSha256": "1f0e8a9293ac506472c3a776d505541ee96738a5b684d27a18db73ab1dc2a103",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Mijen, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mijen, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,35 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.01.14.2008,4,Tanjung Baru,sex,laki_laki,,7267,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.14.2008,4,Tanjung Baru,sex,perempuan,,7099,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.14.2008,4,Tanjung Baru,total,total,,14366,jiwa,2025,registration,total_population,3.1,30,,
+16.01.14.1003,4,Pasar Baru,sex,perempuan,,2202,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.14.1003,4,Pasar Baru,total,total,,4332,jiwa,2025,registration,total_population,3.1,30,,
+16.01.14.1004,4,Kemala Raja,sex,laki_laki,,7688,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.14.1004,4,Kemala Raja,sex,perempuan,,7657,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.14.1004,4,Kemala Raja,total,total,,15345,jiwa,2025,registration,total_population,3.1,30,,
+16.01.14.1005,4,Sukaraya,sex,laki_laki,,4373,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.14.1005,4,Sukaraya,sex,perempuan,,4414,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.14.1005,4,Sukaraya,total,total,,8787,jiwa,2025,registration,total_population,3.1,30,,
+16.01.14.2007,4,Tanjung Kemala,sex,laki_laki,,2506,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.14.2007,4,Tanjung Kemala,sex,perempuan,,2422,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.14.2007,4,Tanjung Kemala,total,total,,4928,jiwa,2025,registration,total_population,3.1,30,,
+16.01.14.1006,4,Sukajadi,sex,laki_laki,,4831,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.14.1006,4,Sukajadi,sex,perempuan,,4829,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.14.1013,4,Baturaja Permai,sex,laki_laki,,3262,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.14.1013,4,Baturaja Permai,sex,perempuan,,3318,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.14.2016,4,Terusan,sex,perempuan,,1395,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.14.2016,4,Terusan,total,total,,2875,jiwa,2025,registration,total_population,3.1,30,,
+16.01.14.1014,4,Sekar Jaya,sex,laki_laki,,7874,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.14.1014,4,Sekar Jaya,sex,perempuan,,7631,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.14.1014,4,Sekar Jaya,total,total,,15505,jiwa,2025,registration,total_population,3.1,30,,
+16.01.14.1012,4,Sepancar Lawang Kulon,sex,laki_laki,,2791,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.14.1012,4,Sepancar Lawang Kulon,sex,perempuan,,2622,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.14.1012,4,Sepancar Lawang Kulon,total,total,,5413,jiwa,2025,registration,total_population,3.1,30,,
+16.01.14.1011,4,Kemelak Bindung Langit,sex,laki_laki,,4886,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.14.1011,4,Kemelak Bindung Langit,sex,perempuan,,4688,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.14.1011,4,Kemelak Bindung Langit,total,total,,9574,jiwa,2025,registration,total_population,3.1,30,,
+16.01.14.1001,4,Baturaja Lama,sex,perempuan,,3308,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.14.1001,4,Baturaja Lama,total,total,,6658,jiwa,2025,registration,total_population,3.1,30,,
+16.01.14,3,Baturaja Timur,sex,laki_laki,,58791,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.14,3,Baturaja Timur,sex,perempuan,,57877,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.14,3,Baturaja Timur,total,total,,116668,jiwa,2025,registration,total_population,3.1,30,,

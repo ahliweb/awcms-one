@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.06.03.2006,4,Menaming,sex,laki_laki,,1638,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.03.2006,4,Menaming,sex,perempuan,,1572,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.03.2006,4,Menaming,total,total,,3210,jiwa,2025,registration,total_population,3.1,30,,
+14.06.03.2004,4,Rambah Tengah Hulu,sex,laki_laki,,1734,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.03.2004,4,Rambah Tengah Hulu,sex,perempuan,,1715,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.03.2004,4,Rambah Tengah Hulu,total,total,,3449,jiwa,2025,registration,total_population,3.1,30,,
+14.06.03.2005,4,Rambah Tengah Barat,sex,laki_laki,,2257,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.03.2005,4,Rambah Tengah Barat,sex,perempuan,,2168,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.03.2005,4,Rambah Tengah Barat,total,total,,4425,jiwa,2025,registration,total_population,3.1,30,,
+14.06.03.2002,4,Rambah Tengah Utara,sex,laki_laki,,2257,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.03.2002,4,Rambah Tengah Utara,sex,perempuan,,2231,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.03.2002,4,Rambah Tengah Utara,total,total,,4488,jiwa,2025,registration,total_population,3.1,30,,
+14.06.03.2003,4,Rambah Tengah Hilir,sex,laki_laki,,2023,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.03.2003,4,Rambah Tengah Hilir,sex,perempuan,,2038,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.03.2003,4,Rambah Tengah Hilir,total,total,,4061,jiwa,2025,registration,total_population,3.1,30,,
+14.06.03.2007,4,Pasir Baru,sex,laki_laki,,641,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.03.2007,4,Pasir Baru,sex,perempuan,,645,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.03.2007,4,Pasir Baru,total,total,,1286,jiwa,2025,registration,total_population,3.1,30,,
+14.06.03.2009,4,Tanjung Belit,sex,laki_laki,,984,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.03.2009,4,Tanjung Belit,sex,perempuan,,1002,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.03.2009,4,Tanjung Belit,total,total,,1986,jiwa,2025,registration,total_population,3.1,30,,
+14.06.03.2008,4,Sialang Jaya,sex,laki_laki,,708,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.03.2008,4,Sialang Jaya,sex,perempuan,,698,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.03.2008,4,Sialang Jaya,total,total,,1406,jiwa,2025,registration,total_population,3.1,30,,
+14.06.03.2010,4,Koto Tinggi,sex,laki_laki,,3974,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.03.2010,4,Koto Tinggi,sex,perempuan,,3992,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.03.2010,4,Koto Tinggi,total,total,,7966,jiwa,2025,registration,total_population,3.1,30,,
+14.06.03.2011,4,Suka Maju,sex,laki_laki,,2668,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.03.2011,4,Suka Maju,sex,perempuan,,2600,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.03.2011,4,Suka Maju,total,total,,5268,jiwa,2025,registration,total_population,3.1,30,,
+14.06.03.2012,4,Pematang Berangan,sex,laki_laki,,4492,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.03.2012,4,Pematang Berangan,sex,perempuan,,4443,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.03.2012,4,Pematang Berangan,total,total,,8935,jiwa,2025,registration,total_population,3.1,30,,
+14.06.03.2013,4,Babussalam,sex,laki_laki,,1467,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.03.2013,4,Babussalam,sex,perempuan,,1458,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.03.2013,4,Babussalam,total,total,,2925,jiwa,2025,registration,total_population,3.1,30,,
+14.06.03.2014,4,Pasir Maju,sex,laki_laki,,622,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.03.2014,4,Pasir Maju,sex,perempuan,,620,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.03.2014,4,Pasir Maju,total,total,,1242,jiwa,2025,registration,total_population,3.1,30,,
+14.06.03,3,Rambah,sex,laki_laki,,27835,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.03,3,Rambah,sex,perempuan,,27588,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.03,3,Rambah,total,total,,55423,jiwa,2025,registration,total_population,3.1,30,,

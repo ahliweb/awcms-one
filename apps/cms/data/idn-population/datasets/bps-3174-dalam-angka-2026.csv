@@ -1,0 +1,115 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.73.08,3,Kembangan,total,total,,308493,jiwa,2025,registration,total_population,3.1.1,59,,
+31.73.05,3,Kebon Jeruk,total,total,,358854,jiwa,2025,registration,total_population,3.1.1,59,,
+31.73.07,3,Palmerah,total,total,,222178,jiwa,2025,registration,total_population,3.1.1,59,,
+31.73.02,3,Grogol Petamburan,total,total,,226069,jiwa,2025,registration,total_population,3.1.1,59,,
+31.73.04,3,Tambora,total,total,,252941,jiwa,2025,registration,total_population,3.1.1,59,,
+31.73.03,3,Taman Sari,total,total,,120531,jiwa,2025,registration,total_population,3.1.1,59,,
+31.73.01,3,Cengkareng,total,total,,575401,jiwa,2025,registration,total_population,3.1.1,59,,
+31.73.06,3,Kalideres,total,total,,461389,jiwa,2025,registration,total_population,3.1.1,59,,
+31.73,2,Jakarta Barat,total,total,,2525856,jiwa,2025,registration,total_population,3.1.1,59,,
+31.73,2,Kota Administrasi Jakarta Barat,age_group,0-4,laki_laki,79005,jiwa,2025,registration,total_population,3.1.2,62,,0–4
+31.73,2,Kota Administrasi Jakarta Barat,age_group,0-4,perempuan,73600,jiwa,2025,registration,total_population,3.1.2,62,,0–4
+31.73,2,Kota Administrasi Jakarta Barat,age_group,0-4,,152605,jiwa,2025,registration,total_population,3.1.2,62,,0–4
+31.73,2,Kota Administrasi Jakarta Barat,age_group,5-9,laki_laki,105223,jiwa,2025,registration,total_population,3.1.2,62,,5–9
+31.73,2,Kota Administrasi Jakarta Barat,age_group,5-9,perempuan,98000,jiwa,2025,registration,total_population,3.1.2,62,,5–9
+31.73,2,Kota Administrasi Jakarta Barat,age_group,5-9,,203223,jiwa,2025,registration,total_population,3.1.2,62,,5–9
+31.73,2,Kota Administrasi Jakarta Barat,age_group,10-14,laki_laki,108532,jiwa,2025,registration,total_population,3.1.2,62,,10–14
+31.73,2,Kota Administrasi Jakarta Barat,age_group,10-14,perempuan,102347,jiwa,2025,registration,total_population,3.1.2,62,,10–14
+31.73,2,Kota Administrasi Jakarta Barat,age_group,10-14,,210879,jiwa,2025,registration,total_population,3.1.2,62,,10–14
+31.73,2,Kota Administrasi Jakarta Barat,age_group,15-19,laki_laki,100202,jiwa,2025,registration,total_population,3.1.2,62,,15–19
+31.73,2,Kota Administrasi Jakarta Barat,age_group,15-19,perempuan,94588,jiwa,2025,registration,total_population,3.1.2,62,,15–19
+31.73,2,Kota Administrasi Jakarta Barat,age_group,15-19,,194790,jiwa,2025,registration,total_population,3.1.2,62,,15–19
+31.73,2,Kota Administrasi Jakarta Barat,age_group,20-24,laki_laki,99072,jiwa,2025,registration,total_population,3.1.2,62,,20–24
+31.73,2,Kota Administrasi Jakarta Barat,age_group,20-24,perempuan,92959,jiwa,2025,registration,total_population,3.1.2,62,,20–24
+31.73,2,Kota Administrasi Jakarta Barat,age_group,20-24,,192031,jiwa,2025,registration,total_population,3.1.2,62,,20–24
+31.73,2,Kota Administrasi Jakarta Barat,age_group,25-29,laki_laki,94841,jiwa,2025,registration,total_population,3.1.2,62,,25–29
+31.73,2,Kota Administrasi Jakarta Barat,age_group,25-29,perempuan,94029,jiwa,2025,registration,total_population,3.1.2,62,,25–29
+31.73,2,Kota Administrasi Jakarta Barat,age_group,25-29,,188870,jiwa,2025,registration,total_population,3.1.2,62,,25–29
+31.73,2,Kota Administrasi Jakarta Barat,age_group,30-34,laki_laki,96739,jiwa,2025,registration,total_population,3.1.2,62,,30–34
+31.73,2,Kota Administrasi Jakarta Barat,age_group,30-34,perempuan,98546,jiwa,2025,registration,total_population,3.1.2,62,,30–34
+31.73,2,Kota Administrasi Jakarta Barat,age_group,30-34,,195285,jiwa,2025,registration,total_population,3.1.2,62,,30–34
+31.73,2,Kota Administrasi Jakarta Barat,age_group,35-39,laki_laki,98540,jiwa,2025,registration,total_population,3.1.2,62,,35–39
+31.73,2,Kota Administrasi Jakarta Barat,age_group,35-39,perempuan,99463,jiwa,2025,registration,total_population,3.1.2,62,,35–39
+31.73,2,Kota Administrasi Jakarta Barat,age_group,35-39,,198003,jiwa,2025,registration,total_population,3.1.2,62,,35–39
+31.73,2,Kota Administrasi Jakarta Barat,age_group,40-44,laki_laki,110963,jiwa,2025,registration,total_population,3.1.2,62,,40–44
+31.73,2,Kota Administrasi Jakarta Barat,age_group,40-44,perempuan,110625,jiwa,2025,registration,total_population,3.1.2,62,,40–44
+31.73,2,Kota Administrasi Jakarta Barat,age_group,40-44,,221588,jiwa,2025,registration,total_population,3.1.2,62,,40–44
+31.73,2,Kota Administrasi Jakarta Barat,age_group,45-49,laki_laki,101453,jiwa,2025,registration,total_population,3.1.2,62,,45–49
+31.73,2,Kota Administrasi Jakarta Barat,age_group,45-49,perempuan,101647,jiwa,2025,registration,total_population,3.1.2,62,,45–49
+31.73,2,Kota Administrasi Jakarta Barat,age_group,45-49,,203100,jiwa,2025,registration,total_population,3.1.2,62,,45–49
+31.73,2,Kota Administrasi Jakarta Barat,age_group,50-54,laki_laki,84994,jiwa,2025,registration,total_population,3.1.2,62,,50–54
+31.73,2,Kota Administrasi Jakarta Barat,age_group,50-54,perempuan,83127,jiwa,2025,registration,total_population,3.1.2,62,,50–54
+31.73,2,Kota Administrasi Jakarta Barat,age_group,50-54,,168121,jiwa,2025,registration,total_population,3.1.2,62,,50–54
+31.73,2,Kota Administrasi Jakarta Barat,age_group,55-59,laki_laki,68814,jiwa,2025,registration,total_population,3.1.2,62,,55–59
+31.73,2,Kota Administrasi Jakarta Barat,age_group,55-59,perempuan,66459,jiwa,2025,registration,total_population,3.1.2,62,,55–59
+31.73,2,Kota Administrasi Jakarta Barat,age_group,55-59,,135273,jiwa,2025,registration,total_population,3.1.2,62,,55–59
+31.73,2,Kota Administrasi Jakarta Barat,age_group,60-64,laki_laki,49775,jiwa,2025,registration,total_population,3.1.2,62,,60–64
+31.73,2,Kota Administrasi Jakarta Barat,age_group,60-64,perempuan,52179,jiwa,2025,registration,total_population,3.1.2,62,,60–64
+31.73,2,Kota Administrasi Jakarta Barat,age_group,60-64,,101954,jiwa,2025,registration,total_population,3.1.2,62,,60–64
+31.73,2,Kota Administrasi Jakarta Barat,age_group,65-69,laki_laki,33326,jiwa,2025,registration,total_population,3.1.2,62,,65–69
+31.73,2,Kota Administrasi Jakarta Barat,age_group,65-69,perempuan,37603,jiwa,2025,registration,total_population,3.1.2,62,,65–69
+31.73,2,Kota Administrasi Jakarta Barat,age_group,65-69,,70929,jiwa,2025,registration,total_population,3.1.2,62,,65–69
+31.73,2,Kota Administrasi Jakarta Barat,age_group,70-74,laki_laki,20605,jiwa,2025,registration,total_population,3.1.2,62,,70–74
+31.73,2,Kota Administrasi Jakarta Barat,age_group,70-74,perempuan,24121,jiwa,2025,registration,total_population,3.1.2,62,,70–74
+31.73,2,Kota Administrasi Jakarta Barat,age_group,70-74,,44726,jiwa,2025,registration,total_population,3.1.2,62,,70–74
+31.73,2,Kota Administrasi Jakarta Barat,age_group,75+,laki_laki,18492,jiwa,2025,registration,total_population,3.1.2,62,,75+
+31.73,2,Kota Administrasi Jakarta Barat,age_group,75+,perempuan,25987,jiwa,2025,registration,total_population,3.1.2,62,,75+
+31.73,2,Kota Administrasi Jakarta Barat,age_group,75+,,44479,jiwa,2025,registration,total_population,3.1.2,62,,75+
+31.73,2,Jakarta Barat,sex,laki_laki,,1270576,jiwa,2025,registration,total_population,3.1.2,62,,Laki-Laki
+31.73,2,Jakarta Barat,sex,perempuan,,1255280,jiwa,2025,registration,total_population,3.1.2,62,,Perempuan
+31.73,2,Jakarta Barat,total,total,,2525856,jiwa,2025,registration,total_population,3.1.2,62,,
+31.73.08,3,Kembangan,religion,islam,,244823,jiwa,2025,registration,total_population,4.3.1,157,,Islam
+31.73.08,3,Kembangan,religion,kristen,,31539,jiwa,2025,registration,total_population,4.3.1,157,,Protestan
+31.73.08,3,Kembangan,religion,katolik,,24156,jiwa,2025,registration,total_population,4.3.1,157,,Katolik
+31.73.08,3,Kembangan,religion,hindu,,600,jiwa,2025,registration,total_population,4.3.1,157,,Hindu
+31.73.08,3,Kembangan,religion,buddha,,7311,jiwa,2025,registration,total_population,4.3.1,157,,Budha
+31.73.08,3,Kembangan,religion,lainnya,,64,jiwa,2025,registration,total_population,4.3.1,157,,Lainnya
+31.73.05,3,Kebon Jeruk,religion,islam,,286306,jiwa,2025,registration,total_population,4.3.1,157,,Islam
+31.73.05,3,Kebon Jeruk,religion,kristen,,33513,jiwa,2025,registration,total_population,4.3.1,157,,Protestan
+31.73.05,3,Kebon Jeruk,religion,katolik,,24561,jiwa,2025,registration,total_population,4.3.1,157,,Katolik
+31.73.05,3,Kebon Jeruk,religion,hindu,,461,jiwa,2025,registration,total_population,4.3.1,157,,Hindu
+31.73.05,3,Kebon Jeruk,religion,buddha,,13839,jiwa,2025,registration,total_population,4.3.1,157,,Budha
+31.73.05,3,Kebon Jeruk,religion,lainnya,,174,jiwa,2025,registration,total_population,4.3.1,157,,Lainnya
+31.73.07,3,Palmerah,religion,islam,,198744,jiwa,2025,registration,total_population,4.3.1,157,,Islam
+31.73.07,3,Palmerah,religion,kristen,,12969,jiwa,2025,registration,total_population,4.3.1,157,,Protestan
+31.73.07,3,Palmerah,religion,katolik,,7470,jiwa,2025,registration,total_population,4.3.1,157,,Katolik
+31.73.07,3,Palmerah,religion,hindu,,509,jiwa,2025,registration,total_population,4.3.1,157,,Hindu
+31.73.07,3,Palmerah,religion,buddha,,2454,jiwa,2025,registration,total_population,4.3.1,157,,Budha
+31.73.07,3,Palmerah,religion,lainnya,,32,jiwa,2025,registration,total_population,4.3.1,157,,Lainnya
+31.73.02,3,Grogol Petamburan,religion,islam,,127738,jiwa,2025,registration,total_population,4.3.1,157,,Islam
+31.73.02,3,Grogol Petamburan,religion,kristen,,37224,jiwa,2025,registration,total_population,4.3.1,157,,Protestan
+31.73.02,3,Grogol Petamburan,religion,katolik,,25627,jiwa,2025,registration,total_population,4.3.1,157,,Katolik
+31.73.02,3,Grogol Petamburan,religion,hindu,,251,jiwa,2025,registration,total_population,4.3.1,157,,Hindu
+31.73.02,3,Grogol Petamburan,religion,buddha,,35029,jiwa,2025,registration,total_population,4.3.1,157,,Budha
+31.73.02,3,Grogol Petamburan,religion,lainnya,,200,jiwa,2025,registration,total_population,4.3.1,157,,Lainnya
+31.73.04,3,Tambora,religion,islam,,155072,jiwa,2025,registration,total_population,4.3.1,157,,Islam
+31.73.04,3,Tambora,religion,kristen,,30727,jiwa,2025,registration,total_population,4.3.1,157,,Protestan
+31.73.04,3,Tambora,religion,katolik,,11866,jiwa,2025,registration,total_population,4.3.1,157,,Katolik
+31.73.04,3,Tambora,religion,hindu,,43,jiwa,2025,registration,total_population,4.3.1,157,,Hindu
+31.73.04,3,Tambora,religion,buddha,,55020,jiwa,2025,registration,total_population,4.3.1,157,,Budha
+31.73.04,3,Tambora,religion,lainnya,,213,jiwa,2025,registration,total_population,4.3.1,157,,Lainnya
+31.73.03,3,Taman Sari,religion,islam,,71965,jiwa,2025,registration,total_population,4.3.1,157,,Islam
+31.73.03,3,Taman Sari,religion,kristen,,19657,jiwa,2025,registration,total_population,4.3.1,157,,Protestan
+31.73.03,3,Taman Sari,religion,katolik,,9877,jiwa,2025,registration,total_population,4.3.1,157,,Katolik
+31.73.03,3,Taman Sari,religion,hindu,,64,jiwa,2025,registration,total_population,4.3.1,157,,Hindu
+31.73.03,3,Taman Sari,religion,buddha,,18916,jiwa,2025,registration,total_population,4.3.1,157,,Budha
+31.73.03,3,Taman Sari,religion,lainnya,,52,jiwa,2025,registration,total_population,4.3.1,157,,Lainnya
+31.73.01,3,Cengkareng,religion,islam,,460173,jiwa,2025,registration,total_population,4.3.1,157,,Islam
+31.73.01,3,Cengkareng,religion,kristen,,58206,jiwa,2025,registration,total_population,4.3.1,157,,Protestan
+31.73.01,3,Cengkareng,religion,katolik,,23658,jiwa,2025,registration,total_population,4.3.1,157,,Katolik
+31.73.01,3,Cengkareng,religion,hindu,,447,jiwa,2025,registration,total_population,4.3.1,157,,Hindu
+31.73.01,3,Cengkareng,religion,buddha,,32756,jiwa,2025,registration,total_population,4.3.1,157,,Budha
+31.73.01,3,Cengkareng,religion,lainnya,,161,jiwa,2025,registration,total_population,4.3.1,157,,Lainnya
+31.73.06,3,Kalideres,religion,islam,,369001,jiwa,2025,registration,total_population,4.3.1,157,,Islam
+31.73.06,3,Kalideres,religion,kristen,,44661,jiwa,2025,registration,total_population,4.3.1,157,,Protestan
+31.73.06,3,Kalideres,religion,katolik,,19938,jiwa,2025,registration,total_population,4.3.1,157,,Katolik
+31.73.06,3,Kalideres,religion,hindu,,259,jiwa,2025,registration,total_population,4.3.1,157,,Hindu
+31.73.06,3,Kalideres,religion,buddha,,27387,jiwa,2025,registration,total_population,4.3.1,157,,Budha
+31.73.06,3,Kalideres,religion,lainnya,,143,jiwa,2025,registration,total_population,4.3.1,157,,Lainnya
+31.73,2,Jakarta Barat,religion,islam,,1913822,jiwa,2025,registration,total_population,4.3.1,157,,Islam
+31.73,2,Jakarta Barat,religion,kristen,,268496,jiwa,2025,registration,total_population,4.3.1,157,,Protestan
+31.73,2,Jakarta Barat,religion,katolik,,147153,jiwa,2025,registration,total_population,4.3.1,157,,Katolik
+31.73,2,Jakarta Barat,religion,hindu,,2634,jiwa,2025,registration,total_population,4.3.1,157,,Hindu
+31.73,2,Jakarta Barat,religion,buddha,,192712,jiwa,2025,registration,total_population,4.3.1,157,,Budha
+31.73,2,Jakarta Barat,religion,lainnya,,1039,jiwa,2025,registration,total_population,4.3.1,157,,Lainnya

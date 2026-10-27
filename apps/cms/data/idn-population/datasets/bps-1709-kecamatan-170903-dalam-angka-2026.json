@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1709-kecamatan-170903-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "17.09.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pondok Kelapa Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bengkulu Tengah",
+  "publisherDomain": "1709",
+  "publisherWebsite": "https://bengkulutengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bengkulu Tengah (https://bengkulutengahkab.bps.go.id), publikasi \"Kecamatan Pondok Kelapa Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1709050",
+  "publicationNumber": "17090.26015",
+  "issn": "2615-2452",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bengkulutengahkab.bps.go.id/id/publication/2026/09/28/410b3901b201516f9bda264c/kecamatan-pondok-kelapa-dalam-angka-2026.html",
+  "sourceFileSha256": "a12e10ccb4fe02da20423e21742e9dad0105290e1fc45a0752c100f9ec32b871",
+  "sourceFileBytes": 5535662,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bengkulu Tengah.",
+  "csvPath": "datasets/bps-1709-kecamatan-170903-dalam-angka-2026.csv",
+  "csvSha256": "f1e426c19dd7a45573f90fb88173a7c005b1f620147abe52661a084c31021451",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pondok Kelapa, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pondok Kelapa, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 17.09.03 are not stored: age_group vs total: parts sum 33136.0000 != 33126.0000 (diff 10.0000); the source itself is inconsistent"
+  ]
+}

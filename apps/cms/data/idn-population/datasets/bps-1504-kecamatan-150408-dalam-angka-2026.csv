@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.04.08.2007,4,Danau Embat,sex,laki_laki,,986,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.08.2007,4,Danau Embat,sex,perempuan,,960,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.08.2007,4,Danau Embat,total,total,,1946,jiwa,2025,projection,total_population,3.1,25,,
+15.04.08.2001,4,Bulian Jaya,sex,laki_laki,,1338,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.08.2001,4,Bulian Jaya,sex,perempuan,,1201,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.08.2001,4,Bulian Jaya,total,total,,2539,jiwa,2025,projection,total_population,3.1,25,,
+15.04.08.2002,4,Tidar Kuranji,sex,laki_laki,,1180,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.08.2002,4,Tidar Kuranji,sex,perempuan,,1112,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.08.2002,4,Tidar Kuranji,total,total,,2292,jiwa,2025,projection,total_population,3.1,25,,
+15.04.08.2003,4,Kehidupan Baru,sex,laki_laki,,556,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.08.2003,4,Kehidupan Baru,sex,perempuan,,565,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.08.2003,4,Kehidupan Baru,total,total,,1121,jiwa,2025,projection,total_population,3.1,25,,
+15.04.08.2005,4,Karya Mukti,sex,laki_laki,,855,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.08.2005,4,Karya Mukti,sex,perempuan,,777,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.08.2005,4,Karya Mukti,total,total,,1632,jiwa,2025,projection,total_population,3.1,25,,
+15.04.08.2004,4,Bukit Sari,sex,laki_laki,,850,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.08.2004,4,Bukit Sari,sex,perempuan,,803,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.08.2004,4,Bukit Sari,total,total,,1653,jiwa,2025,projection,total_population,3.1,25,,
+15.04.08,3,Maro Sebo Ilir,sex,laki_laki,,8142,jiwa,2025,projection,total_population,3.1,25,,Laki-Laki/
+15.04.08,3,Maro Sebo Ilir,sex,perempuan,,7690,jiwa,2025,projection,total_population,3.1,25,,Perempuan/
+15.04.08,3,Maro Sebo Ilir,total,total,,15832,jiwa,2025,projection,total_population,3.1,25,,
+15.04.08,3,Maro Sebo Ilir,age_group,0-4,laki_laki,694,jiwa,2025,projection,total_population,3.2,27,,0-4
+15.04.08,3,Maro Sebo Ilir,age_group,0-4,perempuan,658,jiwa,2025,projection,total_population,3.2,27,,0-4
+15.04.08,3,Maro Sebo Ilir,age_group,0-4,,1352,jiwa,2025,projection,total_population,3.2,27,,0-4
+15.04.08,3,Maro Sebo Ilir,age_group,5-9,laki_laki,657,jiwa,2025,projection,total_population,3.2,27,,5-9
+15.04.08,3,Maro Sebo Ilir,age_group,5-9,perempuan,618,jiwa,2025,projection,total_population,3.2,27,,5-9
+15.04.08,3,Maro Sebo Ilir,age_group,5-9,,1275,jiwa,2025,projection,total_population,3.2,27,,5-9
+15.04.08,3,Maro Sebo Ilir,age_group,10-14,laki_laki,698,jiwa,2025,projection,total_population,3.2,27,,10-14
+15.04.08,3,Maro Sebo Ilir,age_group,10-14,perempuan,660,jiwa,2025,projection,total_population,3.2,27,,10-14
+15.04.08,3,Maro Sebo Ilir,age_group,10-14,,1358,jiwa,2025,projection,total_population,3.2,27,,10-14
+15.04.08,3,Maro Sebo Ilir,age_group,15-19,laki_laki,654,jiwa,2025,projection,total_population,3.2,27,,15-19
+15.04.08,3,Maro Sebo Ilir,age_group,15-19,perempuan,602,jiwa,2025,projection,total_population,3.2,27,,15-19
+15.04.08,3,Maro Sebo Ilir,age_group,15-19,,1256,jiwa,2025,projection,total_population,3.2,27,,15-19
+15.04.08,3,Maro Sebo Ilir,age_group,20-24,laki_laki,688,jiwa,2025,projection,total_population,3.2,27,,20-24
+15.04.08,3,Maro Sebo Ilir,age_group,20-24,perempuan,634,jiwa,2025,projection,total_population,3.2,27,,20-24
+15.04.08,3,Maro Sebo Ilir,age_group,20-24,,1322,jiwa,2025,projection,total_population,3.2,27,,20-24
+15.04.08,3,Maro Sebo Ilir,age_group,25-29,laki_laki,676,jiwa,2025,projection,total_population,3.2,27,,25-29
+15.04.08,3,Maro Sebo Ilir,age_group,25-29,perempuan,654,jiwa,2025,projection,total_population,3.2,27,,25-29
+15.04.08,3,Maro Sebo Ilir,age_group,25-29,,1330,jiwa,2025,projection,total_population,3.2,27,,25-29
+15.04.08,3,Maro Sebo Ilir,age_group,30-34,laki_laki,592,jiwa,2025,projection,total_population,3.2,27,,30-34
+15.04.08,3,Maro Sebo Ilir,age_group,30-34,perempuan,574,jiwa,2025,projection,total_population,3.2,27,,30-34
+15.04.08,3,Maro Sebo Ilir,age_group,30-34,,1166,jiwa,2025,projection,total_population,3.2,27,,30-34
+15.04.08,3,Maro Sebo Ilir,age_group,35-39,laki_laki,566,jiwa,2025,projection,total_population,3.2,27,,35-39
+15.04.08,3,Maro Sebo Ilir,age_group,35-39,perempuan,542,jiwa,2025,projection,total_population,3.2,27,,35-39
+15.04.08,3,Maro Sebo Ilir,age_group,35-39,,1108,jiwa,2025,projection,total_population,3.2,27,,35-39
+15.04.08,3,Maro Sebo Ilir,age_group,40-44,laki_laki,589,jiwa,2025,projection,total_population,3.2,27,,40-44
+15.04.08,3,Maro Sebo Ilir,age_group,40-44,perempuan,563,jiwa,2025,projection,total_population,3.2,27,,40-44
+15.04.08,3,Maro Sebo Ilir,age_group,40-44,,1152,jiwa,2025,projection,total_population,3.2,27,,40-44
+15.04.08,3,Maro Sebo Ilir,age_group,45-49,laki_laki,649,jiwa,2025,projection,total_population,3.2,27,,45-49
+15.04.08,3,Maro Sebo Ilir,age_group,45-49,perempuan,617,jiwa,2025,projection,total_population,3.2,27,,45-49
+15.04.08,3,Maro Sebo Ilir,age_group,45-49,,1266,jiwa,2025,projection,total_population,3.2,27,,45-49
+15.04.08,3,Maro Sebo Ilir,age_group,50-54,laki_laki,520,jiwa,2025,projection,total_population,3.2,27,,50-54
+15.04.08,3,Maro Sebo Ilir,age_group,50-54,perempuan,487,jiwa,2025,projection,total_population,3.2,27,,50-54
+15.04.08,3,Maro Sebo Ilir,age_group,50-54,,1007,jiwa,2025,projection,total_population,3.2,27,,50-54
+15.04.08,3,Maro Sebo Ilir,age_group,55-59,laki_laki,405,jiwa,2025,projection,total_population,3.2,27,,55-59
+15.04.08,3,Maro Sebo Ilir,age_group,55-59,perempuan,370,jiwa,2025,projection,total_population,3.2,27,,55-59
+15.04.08,3,Maro Sebo Ilir,age_group,55-59,,775,jiwa,2025,projection,total_population,3.2,27,,55-59
+15.04.08,3,Maro Sebo Ilir,age_group,60-64,laki_laki,317,jiwa,2025,projection,total_population,3.2,27,,60-64
+15.04.08,3,Maro Sebo Ilir,age_group,60-64,perempuan,291,jiwa,2025,projection,total_population,3.2,27,,60-64
+15.04.08,3,Maro Sebo Ilir,age_group,60-64,,608,jiwa,2025,projection,total_population,3.2,27,,60-64
+15.04.08,3,Maro Sebo Ilir,age_group,65-69,laki_laki,216,jiwa,2025,projection,total_population,3.2,27,,65-69
+15.04.08,3,Maro Sebo Ilir,age_group,65-69,perempuan,196,jiwa,2025,projection,total_population,3.2,27,,65-69
+15.04.08,3,Maro Sebo Ilir,age_group,65-69,,412,jiwa,2025,projection,total_population,3.2,27,,65-69
+15.04.08,3,Maro Sebo Ilir,age_group,70-74,laki_laki,141,jiwa,2025,projection,total_population,3.2,27,,70-74
+15.04.08,3,Maro Sebo Ilir,age_group,70-74,perempuan,133,jiwa,2025,projection,total_population,3.2,27,,70-74
+15.04.08,3,Maro Sebo Ilir,age_group,70-74,,274,jiwa,2025,projection,total_population,3.2,27,,70-74
+15.04.08,3,Maro Sebo Ilir,age_group,75+,laki_laki,80,jiwa,2025,projection,total_population,3.2,27,,75+
+15.04.08,3,Maro Sebo Ilir,age_group,75+,perempuan,91,jiwa,2025,projection,total_population,3.2,27,,75+
+15.04.08,3,Maro Sebo Ilir,age_group,75+,,171,jiwa,2025,projection,total_population,3.2,27,,75+
+15.04.08,3,Maro Sebo Ilir,sex,laki_laki,,8142,jiwa,2025,projection,total_population,3.2,27,,Laki-Laki
+15.04.08,3,Maro Sebo Ilir,sex,perempuan,,7690,jiwa,2025,projection,total_population,3.2,27,,Perempuan
+15.04.08,3,Maro Sebo Ilir,total,total,,15832,jiwa,2025,projection,total_population,3.2,27,,

@@ -1,0 +1,53 @@
+{
+  "datasetCode": "bps-3514-kecamatan-351406-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.14.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kejayan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pasuruan",
+  "publisherDomain": "3514",
+  "publisherWebsite": "https://pasuruankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pasuruan (https://pasuruankab.bps.go.id), publikasi \"Kecamatan Kejayan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3514.010",
+  "publicationNumber": "35140.26011",
+  "issn": "2808-6570",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pasuruankab.bps.go.id/id/publication/2026/09/28/5f69cf9b5931d4f924f14fa3/kecamatan-kejayan-dalam-angka-2026.html",
+  "sourceFileSha256": "2541c67b20fa9250a9639bc6288f6bb1e1cc8591465747175e8cabce454ec6fb",
+  "sourceFileBytes": 8668680,
+  "sourcePages": [35, 36, 37, 38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pasuruan.",
+  "csvPath": "datasets/bps-3514-kecamatan-351406-dalam-angka-2026.csv",
+  "csvSha256": "e3b7b07876424cfe9585868900011862b8895b54356f5a2131af6c7f8e906b2e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kejayan, 2025",
+      "printedPages": [35, 36, 37, 38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"1.554\": unmatched ",
+    "table 3.1: row not stored: row \"2.277\": unmatched ",
+    "table 3.1: row not stored: row \"1.051\": unmatched ",
+    "table 3.1: row not stored: row \"898\": unmatched ",
+    "table 3.1: row not stored: row \"1.147\": unmatched ",
+    "table 3.1: row not stored: row \"862\": unmatched ",
+    "table 3.1: row not stored: row \"1.254\": unmatched ",
+    "table 3.1: row not stored: row \"1.458\": unmatched ",
+    "table 3.1: row not stored: row \"927\": unmatched ",
+    "table 3.1: row not stored: row \"997\": unmatched ",
+    "table 3.1: row not stored: row \"2.232\": unmatched ",
+    "table 3.1: row not stored: row \"917\": unmatched ",
+    "table 3.1: row not stored: row \"1.044\": unmatched ",
+    "table 3.1: row not stored: row \"2.001\": unmatched ",
+    "table 3.1: row not stored: row \"1002\": unmatched ",
+    "table 3.1: row not stored: row \"1.404\": unmatched "
+  ]
+}

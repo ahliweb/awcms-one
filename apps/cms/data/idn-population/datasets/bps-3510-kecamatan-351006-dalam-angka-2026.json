@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-3510-kecamatan-351006-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.10.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cluring Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Banyuwangi",
+  "publisherDomain": "3510",
+  "publisherWebsite": "https://banyuwangikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Banyuwangi (https://banyuwangikab.bps.go.id), publikasi \"Kecamatan Cluring Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3510060",
+  "publicationNumber": "35100.26018",
+  "issn": "2407-0289",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banyuwangikab.bps.go.id/id/publication/2026/09/28/18d0b34afaa36c53b61b7552/kecamatan-cluring-dalam-angka-2026.html",
+  "sourceFileSha256": "d21ed1777fcd47051a86e13f043d22cc5fdde85fff977af36646f4d7a8657808",
+  "sourceFileBytes": 9260122,
+  "sourcePages": [7, 9],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengkomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik",
+  "csvPath": "datasets/bps-3510-kecamatan-351006-dalam-angka-2026.csv",
+  "csvSha256": "f4bbacd0c34f2a0d240c7f39e2255ac259b08f05430451dd62d6937c051b9abc",
+  "tablesUsed": [
+    {
+      "table": "1.4",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Genteng, 2025",
+      "printedPages": [9],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 1.3: row not stored: row \"Sembulung 4321\": unmatched ",
+    "table 1.3: row not stored: row \"Tampo 4015\": unmatched ",
+    "table 1.3: row not stored: row \"Plampangrejo 4524\": unmatched ",
+    "table 1.3: row not stored: row \"Kaliploso 2109\": unmatched ",
+    "table 1.3: row not stored: row \"Benculuk 6862\": unmatched ",
+    "table 1.3: row not stored: row \"Cluring 5997\": unmatched ",
+    "table 1.3: row not stored: row \"Tamanagung 5024\": unmatched ",
+    "table 1.3: row not stored: row \"Sraten 4279\": unmatched ",
+    "table 1.3: row not stored: row \"Sarimulyo 3828\": unmatched ",
+    "table 1.3: row not stored: row \"Cluring 40,959\": unmatched ",
+    "table 1.3: no figures were read (every cell is unavailable (\"...\") or not recognised)",
+    "table 1.4: row not stored: row \"Genteng\": unmatched "
+  ]
+}

@@ -1,0 +1,106 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.01.05.2021,4,Alue Meutuah,sex,laki_laki,,260,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.05.2021,4,Alue Meutuah,sex,perempuan,,244,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.05.2021,4,Alue Meutuah,total,total,,504,jiwa,2025,registration,total_population,3.1,22,,
+11.01.05.2020,4,Lhok Aman,sex,laki_laki,,583,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.05.2020,4,Lhok Aman,sex,perempuan,,585,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.05.2020,4,Lhok Aman,total,total,,1168,jiwa,2025,registration,total_population,3.1,22,,
+11.01.05.2022,4,Ladang Baro,sex,laki_laki,,267,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.05.2022,4,Ladang Baro,sex,perempuan,,265,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.05.2022,4,Ladang Baro,total,total,,532,jiwa,2025,registration,total_population,3.1,22,,
+11.01.05.2019,4,Labuhan Tarok,sex,laki_laki,,1249,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.05.2019,4,Labuhan Tarok,sex,perempuan,,1424,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.05.2019,4,Labuhan Tarok,total,total,,2673,jiwa,2025,registration,total_population,3.1,22,,
+11.01.05.2018,4,Tanjung Harapan,sex,laki_laki,,515,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.05.2018,4,Tanjung Harapan,sex,perempuan,,492,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.05.2018,4,Tanjung Harapan,total,total,,1007,jiwa,2025,registration,total_population,3.1,22,,
+11.01.05.2017,4,Kuta Baro,sex,laki_laki,,338,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.05.2017,4,Kuta Baro,sex,perempuan,,350,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.05.2017,4,Kuta Baro,total,total,,688,jiwa,2025,registration,total_population,3.1,22,,
+11.01.05.2016,4,Keude Meukek,sex,laki_laki,,552,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.05.2016,4,Keude Meukek,sex,perempuan,,509,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.05.2016,4,Keude Meukek,total,total,,1061,jiwa,2025,registration,total_population,3.1,22,,
+11.01.05.2012,4,Arun Tunggai,sex,laki_laki,,551,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.05.2012,4,Arun Tunggai,sex,perempuan,,551,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.05.2012,4,Arun Tunggai,total,total,,1102,jiwa,2025,registration,total_population,3.1,22,,
+11.01.05.2014,4,Blang Bladeh,sex,laki_laki,,816,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.05.2014,4,Blang Bladeh,sex,perempuan,,829,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.05.2014,4,Blang Bladeh,total,total,,1645,jiwa,2025,registration,total_population,3.1,22,,
+11.01.05.2013,4,Blang Teungoh,sex,laki_laki,,282,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.05.2013,4,Blang Teungoh,sex,perempuan,,271,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.05.2013,4,Blang Teungoh,total,total,,553,jiwa,2025,registration,total_population,3.1,22,,
+11.01.05.2015,4,Ie Buboh,sex,laki_laki,,329,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.05.2015,4,Ie Buboh,sex,perempuan,,308,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.05.2015,4,Ie Buboh,total,total,,637,jiwa,2025,registration,total_population,3.1,22,,
+11.01.05.2001,4,Kuta Buloh II,sex,laki_laki,,412,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.05.2001,4,Kuta Buloh II,sex,perempuan,,449,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.05.2001,4,Kuta Buloh II,total,total,,861,jiwa,2025,registration,total_population,3.1,22,,
+11.01.05.2002,4,Kuta Buloh I,sex,laki_laki,,553,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.05.2002,4,Kuta Buloh I,sex,perempuan,,624,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.05.2002,4,Kuta Buloh I,total,total,,1177,jiwa,2025,registration,total_population,3.1,22,,
+11.01.05.2004,4,Drien Jalo,sex,laki_laki,,146,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.05.2004,4,Drien Jalo,sex,perempuan,,141,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.05.2004,4,Drien Jalo,total,total,,287,jiwa,2025,registration,total_population,3.1,22,,
+11.01.05.2005,4,Jambo Papeun,sex,laki_laki,,828,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.05.2005,4,Jambo Papeun,sex,perempuan,,803,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.05.2005,4,Jambo Papeun,total,total,,1631,jiwa,2025,registration,total_population,3.1,22,,
+11.01.05.2009,4,Alue Baro,sex,laki_laki,,334,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.05.2009,4,Alue Baro,sex,perempuan,,337,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.05.2009,4,Alue Baro,total,total,,671,jiwa,2025,registration,total_population,3.1,22,,
+11.01.05.2008,4,Rot Teungoh,sex,laki_laki,,533,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.05.2008,4,Rot Teungoh,sex,perempuan,,537,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.05.2008,4,Rot Teungoh,total,total,,1070,jiwa,2025,registration,total_population,3.1,22,,
+11.01.05.2007,4,Blang Kuala,sex,laki_laki,,513,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.05.2007,4,Blang Kuala,sex,perempuan,,536,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.05.2007,4,Blang Kuala,total,total,,1049,jiwa,2025,registration,total_population,3.1,22,,
+11.01.05.2010,4,Ladang Tuha,sex,laki_laki,,277,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+11.01.05.2010,4,Ladang Tuha,sex,perempuan,,268,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+11.01.05.2010,4,Ladang Tuha,total,total,,545,jiwa,2025,registration,total_population,3.1,22,,
+11.01.05,3,Meukek,age_group,0-4,laki_laki,852,jiwa,2025,registration,total_population,3.2,26,,0-4
+11.01.05,3,Meukek,age_group,0-4,perempuan,769,jiwa,2025,registration,total_population,3.2,26,,0-4
+11.01.05,3,Meukek,age_group,0-4,,1621,jiwa,2025,registration,total_population,3.2,26,,0-4
+11.01.05,3,Meukek,age_group,5-9,laki_laki,908,jiwa,2025,registration,total_population,3.2,26,,5-9
+11.01.05,3,Meukek,age_group,5-9,perempuan,881,jiwa,2025,registration,total_population,3.2,26,,5-9
+11.01.05,3,Meukek,age_group,5-9,,1789,jiwa,2025,registration,total_population,3.2,26,,5-9
+11.01.05,3,Meukek,age_group,10-14,laki_laki,852,jiwa,2025,registration,total_population,3.2,26,,10-14
+11.01.05,3,Meukek,age_group,10-14,perempuan,872,jiwa,2025,registration,total_population,3.2,26,,10-14
+11.01.05,3,Meukek,age_group,10-14,,1724,jiwa,2025,registration,total_population,3.2,26,,10-14
+11.01.05,3,Meukek,age_group,15-19,laki_laki,812,jiwa,2025,registration,total_population,3.2,26,,15-19
+11.01.05,3,Meukek,age_group,15-19,perempuan,827,jiwa,2025,registration,total_population,3.2,26,,15-19
+11.01.05,3,Meukek,age_group,15-19,,1639,jiwa,2025,registration,total_population,3.2,26,,15-19
+11.01.05,3,Meukek,age_group,20-24,laki_laki,940,jiwa,2025,registration,total_population,3.2,26,,20-24
+11.01.05,3,Meukek,age_group,20-24,perempuan,908,jiwa,2025,registration,total_population,3.2,26,,20-24
+11.01.05,3,Meukek,age_group,20-24,,1848,jiwa,2025,registration,total_population,3.2,26,,20-24
+11.01.05,3,Meukek,age_group,25-29,laki_laki,946,jiwa,2025,registration,total_population,3.2,26,,25-29
+11.01.05,3,Meukek,age_group,25-29,perempuan,813,jiwa,2025,registration,total_population,3.2,26,,25-29
+11.01.05,3,Meukek,age_group,25-29,,1759,jiwa,2025,registration,total_population,3.2,26,,25-29
+11.01.05,3,Meukek,age_group,30-34,laki_laki,879,jiwa,2025,registration,total_population,3.2,26,,30-34
+11.01.05,3,Meukek,age_group,30-34,perempuan,805,jiwa,2025,registration,total_population,3.2,26,,30-34
+11.01.05,3,Meukek,age_group,30-34,,1684,jiwa,2025,registration,total_population,3.2,26,,30-34
+11.01.05,3,Meukek,age_group,35-39,laki_laki,800,jiwa,2025,registration,total_population,3.2,26,,35-39
+11.01.05,3,Meukek,age_group,35-39,perempuan,744,jiwa,2025,registration,total_population,3.2,26,,35-39
+11.01.05,3,Meukek,age_group,35-39,,1544,jiwa,2025,registration,total_population,3.2,26,,35-39
+11.01.05,3,Meukek,age_group,40-44,laki_laki,764,jiwa,2025,registration,total_population,3.2,26,,40-44
+11.01.05,3,Meukek,age_group,40-44,perempuan,739,jiwa,2025,registration,total_population,3.2,26,,40-44
+11.01.05,3,Meukek,age_group,40-44,,1503,jiwa,2025,registration,total_population,3.2,26,,40-44
+11.01.05,3,Meukek,age_group,45-49,laki_laki,671,jiwa,2025,registration,total_population,3.2,26,,45-49
+11.01.05,3,Meukek,age_group,45-49,perempuan,783,jiwa,2025,registration,total_population,3.2,26,,45-49
+11.01.05,3,Meukek,age_group,45-49,,1454,jiwa,2025,registration,total_population,3.2,26,,45-49
+11.01.05,3,Meukek,age_group,50-54,laki_laki,669,jiwa,2025,registration,total_population,3.2,26,,50-54
+11.01.05,3,Meukek,age_group,50-54,perempuan,738,jiwa,2025,registration,total_population,3.2,26,,50-54
+11.01.05,3,Meukek,age_group,50-54,,1407,jiwa,2025,registration,total_population,3.2,26,,50-54
+11.01.05,3,Meukek,age_group,55-59,laki_laki,527,jiwa,2025,registration,total_population,3.2,26,,55-59
+11.01.05,3,Meukek,age_group,55-59,perempuan,613,jiwa,2025,registration,total_population,3.2,26,,55-59
+11.01.05,3,Meukek,age_group,55-59,,1140,jiwa,2025,registration,total_population,3.2,26,,55-59
+11.01.05,3,Meukek,age_group,60-64,laki_laki,370,jiwa,2025,registration,total_population,3.2,26,,60-64
+11.01.05,3,Meukek,age_group,60-64,perempuan,483,jiwa,2025,registration,total_population,3.2,26,,60-64
+11.01.05,3,Meukek,age_group,60-64,,853,jiwa,2025,registration,total_population,3.2,26,,60-64
+11.01.05,3,Meukek,age_group,65-69,laki_laki,294,jiwa,2025,registration,total_population,3.2,26,,65-69
+11.01.05,3,Meukek,age_group,65-69,perempuan,319,jiwa,2025,registration,total_population,3.2,26,,65-69
+11.01.05,3,Meukek,age_group,65-69,,613,jiwa,2025,registration,total_population,3.2,26,,65-69
+11.01.05,3,Meukek,age_group,70-74,laki_laki,178,jiwa,2025,registration,total_population,3.2,26,,70-74
+11.01.05,3,Meukek,age_group,70-74,perempuan,220,jiwa,2025,registration,total_population,3.2,26,,70-74
+11.01.05,3,Meukek,age_group,70-74,,398,jiwa,2025,registration,total_population,3.2,26,,70-74
+11.01.05,3,Meukek,age_group,75+,laki_laki,176,jiwa,2025,registration,total_population,3.2,26,,75+
+11.01.05,3,Meukek,age_group,75+,perempuan,290,jiwa,2025,registration,total_population,3.2,26,,75+
+11.01.05,3,Meukek,age_group,75+,,466,jiwa,2025,registration,total_population,3.2,26,,75+

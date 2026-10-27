@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3215-kecamatan-321529-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.15.29",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Purwasari Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Karawang",
+  "publisherDomain": "3215",
+  "publisherWebsite": "https://karawangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Karawang (https://karawangkab.bps.go.id), publikasi \"Kecamatan Purwasari Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3215051",
+  "publicationNumber": "32150.26028",
+  "issn": "2828-7290",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://karawangkab.bps.go.id/id/publication/2026/09/28/f1e146515e89be5adc7f1058/kecamatan-purwasari-dalam-angka-2026.html",
+  "sourceFileSha256": "8f2e6b3b7ebbaac78e974555b2e138347c6715f5644a3c9e4f4511230de4d6f8",
+  "sourceFileBytes": 4653114,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Karawang.",
+  "csvPath": "datasets/bps-3215-kecamatan-321529-dalam-angka-2026.csv",
+  "csvSha256": "b2fd45e54e7a099e3565e4b9f070e3e47def192f74c412b4cf7bb0852749bd3d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Purwasari, 2024",
+      "printedPages": [27, 28],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Purwasari, 2024",
+      "printedPages": [29],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

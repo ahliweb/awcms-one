@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1302-kecamatan-130104-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "13.01.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Batang Kapas Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pesisir Selatan",
+  "publisherDomain": "1302",
+  "publisherWebsite": "https://pesselkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pesisir Selatan (https://pesselkab.bps.go.id), publikasi \"Kecamatan Batang Kapas Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "13020.26017",
+  "issn": "3031-982X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pesselkab.bps.go.id/id/publication/2026/09/28/eaa02765fbec8fffdb96b731/kecamatan-batang-kapas-dalam-angka-2026.html",
+  "sourceFileSha256": "c78c8b9ba0dae2f76c97b9b06d1b41eb20f375d7348934d20debcbf0ae881062",
+  "sourceFileBytes": 6054593,
+  "sourcePages": [27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pesisir Selatan.",
+  "csvPath": "datasets/bps-1302-kecamatan-130104-dalam-angka-2026.csv",
+  "csvSha256": "5ce55b4d7fb0f4d9e4b051afa65dba03e971bdbf3b628139848030f0b9d18d1c",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Batang Kapas, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

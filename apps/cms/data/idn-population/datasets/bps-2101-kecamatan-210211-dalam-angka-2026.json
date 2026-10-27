@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-2101-kecamatan-210211-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.02.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ungar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Karimun",
+  "publisherDomain": "2101",
+  "publisherWebsite": "https://karimunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Karimun (https://karimunkab.bps.go.id), publikasi \"Kecamatan Ungar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "21010.26012",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://karimunkab.bps.go.id/id/publication/2026/09/28/290ede57c9bc640c34d743dd/kecamatan-ungar-dalam-angka-2026.html",
+  "sourceFileSha256": "86d9ebcb85a37e0142346b225caa5fa13b2be636d740f654c42bd80b58496e28",
+  "sourceFileBytes": 4243631,
+  "sourcePages": [34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Karimun",
+  "csvPath": "datasets/bps-2101-kecamatan-210211-dalam-angka-2026.csv",
+  "csvSha256": "8f4dfad35c9f259e024406d79e92b7974fdb50f06ce215f270e4c02956537848",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Ungar, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ungar, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

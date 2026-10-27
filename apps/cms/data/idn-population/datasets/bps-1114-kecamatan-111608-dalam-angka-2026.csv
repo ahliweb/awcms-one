@@ -1,0 +1,100 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.16.08.2004,4,Ingin Jaya,sex,laki_laki,,1187,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.08.2004,4,Ingin Jaya,sex,perempuan,,1195,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.08.2004,4,Ingin Jaya,total,total,,2382,jiwa,2025,registration,total_population,3.1,13,,
+11.16.08.2003,4,Paya Bedi,sex,laki_laki,,1699,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.08.2003,4,Paya Bedi,sex,perempuan,,1641,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.08.2003,4,Paya Bedi,total,total,,3340,jiwa,2025,registration,total_population,3.1,13,,
+11.16.08.2002,4,Landuh,sex,laki_laki,,2042,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.08.2002,4,Landuh,sex,perempuan,,2097,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.08.2002,4,Landuh,total,total,,4139,jiwa,2025,registration,total_population,3.1,13,,
+11.16.08.2001,4,Benua Raja,sex,laki_laki,,1534,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.08.2001,4,Benua Raja,sex,perempuan,,1483,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.08.2001,4,Benua Raja,total,total,,3017,jiwa,2025,registration,total_population,3.1,13,,
+11.16.08.2006,4,Sukajadi,sex,laki_laki,,493,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.08.2006,4,Sukajadi,sex,perempuan,,508,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.08.2006,4,Sukajadi,total,total,,1001,jiwa,2025,registration,total_population,3.1,13,,
+11.16.08.2005,4,Suka Rahmat,sex,laki_laki,,873,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.08.2005,4,Suka Rahmat,sex,perempuan,,842,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.08.2005,4,Suka Rahmat,total,total,,1715,jiwa,2025,registration,total_population,3.1,13,,
+11.16.08.2016,4,Suka Mulia,sex,laki_laki,,1391,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.08.2016,4,Suka Mulia,sex,perempuan,,1438,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.08.2016,4,Suka Mulia,total,total,,2829,jiwa,2025,registration,total_population,3.1,13,,
+11.16.08.2014,4,Suka Rakyat,sex,laki_laki,,804,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.08.2014,4,Suka Rakyat,sex,perempuan,,775,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.08.2014,4,Suka Rakyat,total,total,,1579,jiwa,2025,registration,total_population,3.1,13,,
+11.16.08.2015,4,Jamur Labu,sex,laki_laki,,526,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.08.2015,4,Jamur Labu,sex,perempuan,,501,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.08.2015,4,Jamur Labu,total,total,,1027,jiwa,2025,registration,total_population,3.1,13,,
+11.16.08.2013,4,Jamur Jelatang,sex,laki_laki,,731,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.08.2013,4,Jamur Jelatang,sex,perempuan,,686,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.08.2013,4,Jamur Jelatang,total,total,,1417,jiwa,2025,registration,total_population,3.1,13,,
+11.16.08.2008,4,Rantau Pauh,sex,laki_laki,,2537,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.08.2008,4,Rantau Pauh,sex,perempuan,,2584,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.08.2008,4,Rantau Pauh,total,total,,5121,jiwa,2025,registration,total_population,3.1,13,,
+11.16.08.2009,4,Alur Cucur,sex,laki_laki,,1301,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.08.2009,4,Alur Cucur,sex,perempuan,,1263,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.08.2009,4,Alur Cucur,total,total,,2564,jiwa,2025,registration,total_population,3.1,13,,
+11.16.08.2011,4,Kebun Rantau,sex,laki_laki,,517,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.08.2011,4,Kebun Rantau,sex,perempuan,,448,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.08.2011,4,Kebun Rantau,total,total,,965,jiwa,2025,registration,total_population,3.1,13,,
+11.16.08.2012,4,Alur Manis,sex,laki_laki,,1066,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.08.2012,4,Alur Manis,sex,perempuan,,1022,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.08.2012,4,Alur Manis,total,total,,2088,jiwa,2025,registration,total_population,3.1,13,,
+11.16.08.2017,4,Mekar Jaya,sex,laki_laki,,1194,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.08.2017,4,Mekar Jaya,sex,perempuan,,1165,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.08.2017,4,Mekar Jaya,total,total,,2359,jiwa,2025,registration,total_population,3.1,13,,
+11.16.08,3,Rantau,sex,laki_laki,,20358,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.08,3,Rantau,sex,perempuan,,20027,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.08,3,Rantau,total,total,,40385,jiwa,2025,registration,total_population,3.1,13,,
+11.16.08,3,Rantau,age_group,0-4,laki_laki,1459,jiwa,2025,registration,total_population,3.2,15,,0-4
+11.16.08,3,Rantau,age_group,0-4,perempuan,1314,jiwa,2025,registration,total_population,3.2,15,,0-4
+11.16.08,3,Rantau,age_group,0-4,,2773,jiwa,2025,registration,total_population,3.2,15,,0-4
+11.16.08,3,Rantau,age_group,5-9,laki_laki,1805,jiwa,2025,registration,total_population,3.2,15,,5-9
+11.16.08,3,Rantau,age_group,5-9,perempuan,1584,jiwa,2025,registration,total_population,3.2,15,,5-9
+11.16.08,3,Rantau,age_group,5-9,,3389,jiwa,2025,registration,total_population,3.2,15,,5-9
+11.16.08,3,Rantau,age_group,10-14,laki_laki,1865,jiwa,2025,registration,total_population,3.2,15,,10-14
+11.16.08,3,Rantau,age_group,10-14,perempuan,1766,jiwa,2025,registration,total_population,3.2,15,,10-14
+11.16.08,3,Rantau,age_group,10-14,,3631,jiwa,2025,registration,total_population,3.2,15,,10-14
+11.16.08,3,Rantau,age_group,15-19,laki_laki,1913,jiwa,2025,registration,total_population,3.2,15,,15-19
+11.16.08,3,Rantau,age_group,15-19,perempuan,1859,jiwa,2025,registration,total_population,3.2,15,,15-19
+11.16.08,3,Rantau,age_group,15-19,,3772,jiwa,2025,registration,total_population,3.2,15,,15-19
+11.16.08,3,Rantau,age_group,20-24,laki_laki,1822,jiwa,2025,registration,total_population,3.2,15,,20-24
+11.16.08,3,Rantau,age_group,20-24,perempuan,1686,jiwa,2025,registration,total_population,3.2,15,,20-24
+11.16.08,3,Rantau,age_group,20-24,,3508,jiwa,2025,registration,total_population,3.2,15,,20-24
+11.16.08,3,Rantau,age_group,25-29,laki_laki,1729,jiwa,2025,registration,total_population,3.2,15,,25-29
+11.16.08,3,Rantau,age_group,25-29,perempuan,1645,jiwa,2025,registration,total_population,3.2,15,,25-29
+11.16.08,3,Rantau,age_group,25-29,,3374,jiwa,2025,registration,total_population,3.2,15,,25-29
+11.16.08,3,Rantau,age_group,30-34,laki_laki,1383,jiwa,2025,registration,total_population,3.2,15,,30-34
+11.16.08,3,Rantau,age_group,30-34,perempuan,1314,jiwa,2025,registration,total_population,3.2,15,,30-34
+11.16.08,3,Rantau,age_group,30-34,,2697,jiwa,2025,registration,total_population,3.2,15,,30-34
+11.16.08,3,Rantau,age_group,35-39,laki_laki,1373,jiwa,2025,registration,total_population,3.2,15,,35-39
+11.16.08,3,Rantau,age_group,35-39,perempuan,1384,jiwa,2025,registration,total_population,3.2,15,,35-39
+11.16.08,3,Rantau,age_group,35-39,,2757,jiwa,2025,registration,total_population,3.2,15,,35-39
+11.16.08,3,Rantau,age_group,40-44,laki_laki,1442,jiwa,2025,registration,total_population,3.2,15,,40-44
+11.16.08,3,Rantau,age_group,40-44,perempuan,1539,jiwa,2025,registration,total_population,3.2,15,,40-44
+11.16.08,3,Rantau,age_group,40-44,,2981,jiwa,2025,registration,total_population,3.2,15,,40-44
+11.16.08,3,Rantau,age_group,45-49,laki_laki,1339,jiwa,2025,registration,total_population,3.2,15,,45-49
+11.16.08,3,Rantau,age_group,45-49,perempuan,1391,jiwa,2025,registration,total_population,3.2,15,,45-49
+11.16.08,3,Rantau,age_group,45-49,,2730,jiwa,2025,registration,total_population,3.2,15,,45-49
+11.16.08,3,Rantau,age_group,50-54,laki_laki,1198,jiwa,2025,registration,total_population,3.2,15,,50-54
+11.16.08,3,Rantau,age_group,50-54,perempuan,1169,jiwa,2025,registration,total_population,3.2,15,,50-54
+11.16.08,3,Rantau,age_group,50-54,,2367,jiwa,2025,registration,total_population,3.2,15,,50-54
+11.16.08,3,Rantau,age_group,55-59,laki_laki,921,jiwa,2025,registration,total_population,3.2,15,,55-59
+11.16.08,3,Rantau,age_group,55-59,perempuan,1010,jiwa,2025,registration,total_population,3.2,15,,55-59
+11.16.08,3,Rantau,age_group,55-59,,1931,jiwa,2025,registration,total_population,3.2,15,,55-59
+11.16.08,3,Rantau,age_group,60-64,laki_laki,789,jiwa,2025,registration,total_population,3.2,15,,60-64
+11.16.08,3,Rantau,age_group,60-64,perempuan,907,jiwa,2025,registration,total_population,3.2,15,,60-64
+11.16.08,3,Rantau,age_group,60-64,,1696,jiwa,2025,registration,total_population,3.2,15,,60-64
+11.16.08,3,Rantau,age_group,65-69,laki_laki,645,jiwa,2025,registration,total_population,3.2,15,,65-69
+11.16.08,3,Rantau,age_group,65-69,perempuan,655,jiwa,2025,registration,total_population,3.2,15,,65-69
+11.16.08,3,Rantau,age_group,65-69,,1300,jiwa,2025,registration,total_population,3.2,15,,65-69
+11.16.08,3,Rantau,age_group,70-74,laki_laki,351,jiwa,2025,registration,total_population,3.2,15,,70-74
+11.16.08,3,Rantau,age_group,70-74,perempuan,377,jiwa,2025,registration,total_population,3.2,15,,70-74
+11.16.08,3,Rantau,age_group,70-74,,728,jiwa,2025,registration,total_population,3.2,15,,70-74
+11.16.08,3,Rantau,age_group,75+,laki_laki,324,jiwa,2025,registration,total_population,3.2,15,,75+
+11.16.08,3,Rantau,age_group,75+,perempuan,427,jiwa,2025,registration,total_population,3.2,15,,75+
+11.16.08,3,Rantau,age_group,75+,,751,jiwa,2025,registration,total_population,3.2,15,,75+
+11.16.08,3,Rantau,sex,laki_laki,,20358,jiwa,2025,registration,total_population,3.2,15,,Laki-Laki
+11.16.08,3,Rantau,sex,perempuan,,20027,jiwa,2025,registration,total_population,3.2,15,,Perempuan
+11.16.08,3,Rantau,total,total,,40385,jiwa,2025,registration,total_population,3.2,15,,

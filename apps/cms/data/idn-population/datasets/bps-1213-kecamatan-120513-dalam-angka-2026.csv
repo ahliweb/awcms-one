@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.05.13.2006,4,Paya Bengkuang,sex,laki_laki,,1834,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.13.2006,4,Paya Bengkuang,sex,perempuan,,1777,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.13.2006,4,Paya Bengkuang,total,total,,3611,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.13.2005,4,Air Hitam,sex,laki_laki,,5150,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.13.2005,4,Air Hitam,sex,perempuan,,5139,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.13.2005,4,Air Hitam,total,total,,10289,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.13.2004,4,Padang Langkat,sex,laki_laki,,1274,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.13.2004,4,Padang Langkat,sex,perempuan,,1223,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.13.2004,4,Padang Langkat,total,total,,2497,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.13.2002,4,Paluh Manis,sex,laki_laki,,3181,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.13.2002,4,Paluh Manis,sex,perempuan,,3226,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.13.2002,4,Paluh Manis,total,total,,6407,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.13.1001,4,Pekan Gebang,sex,laki_laki,,5065,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.13.1001,4,Pekan Gebang,sex,perempuan,,5022,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.13.1001,4,Pekan Gebang,total,total,,10087,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.13.2007,4,Dogang,sex,laki_laki,,1923,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.13.2007,4,Dogang,sex,perempuan,,1794,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.13.2007,4,Dogang,total,total,,3717,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.13.2008,4,Sangga Lima,sex,laki_laki,,1564,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.13.2008,4,Sangga Lima,sex,perempuan,,1516,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.13.2008,4,Sangga Lima,total,total,,3080,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.13.2003,4,Pasar Rawa,sex,laki_laki,,3654,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.13.2003,4,Pasar Rawa,sex,perempuan,,3560,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.13.2003,4,Pasar Rawa,total,total,,7214,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.13.2009,4,Kwala Gebang,sex,laki_laki,,879,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.13.2009,4,Kwala Gebang,sex,perempuan,,860,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.13.2009,4,Kwala Gebang,total,total,,1739,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.13.2010,4,Bukit Mengkirai,sex,laki_laki,,539,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.13.2010,4,Bukit Mengkirai,sex,perempuan,,589,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.13.2010,4,Bukit Mengkirai,total,total,,1128,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.13.2011,4,Pasiran,sex,laki_laki,,1205,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.13.2011,4,Pasiran,sex,perempuan,,1162,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.13.2011,4,Pasiran,total,total,,2367,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.13,3,Kecamatan Gebang,sex,laki_laki,,26268,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.13,3,Kecamatan Gebang,sex,perempuan,,25868,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.13,3,Kecamatan Gebang,total,total,,52136,jiwa,2025,registration,total_population,unnumbered-p39,39,,

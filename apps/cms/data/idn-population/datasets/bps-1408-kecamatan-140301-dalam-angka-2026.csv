@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.03.01.2019,4,Sekodi,sex,laki_laki,,1055,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.2019,4,Sekodi,sex,perempuan,,960,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.2019,4,Sekodi,total,total,,2015,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.2018,4,Kelemantan,sex,laki_laki,,620,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.2018,4,Kelemantan,sex,perempuan,,571,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.2018,4,Kelemantan,total,total,,1191,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.2017,4,Ketam Putih,sex,laki_laki,,976,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.2017,4,Ketam Putih,sex,perempuan,,947,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.2017,4,Ketam Putih,total,total,,1923,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.2016,4,Pematang Duku,sex,laki_laki,,1221,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.2016,4,Pematang Duku,sex,perempuan,,1184,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.2016,4,Pematang Duku,total,total,,2405,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.2015,4,Penebal,sex,laki_laki,,1146,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.2015,4,Penebal,sex,perempuan,,1061,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.2015,4,Penebal,total,total,,2207,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.2014,4,Temeran,sex,laki_laki,,919,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.2014,4,Temeran,sex,perempuan,,878,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.2014,4,Temeran,total,total,,1797,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.2013,4,Penampi,sex,laki_laki,,938,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.2013,4,Penampi,sex,perempuan,,851,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.2013,4,Penampi,total,total,,1789,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.2012,4,Sungai alam,sex,laki_laki,,1576,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.2012,4,Sungai alam,sex,perempuan,,1459,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.2012,4,Sungai alam,total,total,,3035,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.2011,4,Air Putih,sex,laki_laki,,2214,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.2011,4,Air Putih,sex,perempuan,,2201,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.2011,4,Air Putih,total,total,,4415,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.2010,4,Senggoro,sex,laki_laki,,4712,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.2010,4,Senggoro,sex,perempuan,,4554,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.2010,4,Senggoro,total,total,,9266,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.1003,4,Rimba Sekampung,sex,laki_laki,,2853,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.1003,4,Rimba Sekampung,sex,perempuan,,2792,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.1003,4,Rimba Sekampung,total,total,,5645,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.1001,4,Bengkalis Kota,sex,laki_laki,,2985,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.1001,4,Bengkalis Kota,sex,perempuan,,2966,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.1001,4,Bengkalis Kota,total,total,,5951,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.2020,4,Wonosari,sex,laki_laki,,5099,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.2020,4,Wonosari,sex,perempuan,,5019,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.2020,4,Wonosari,total,total,,10118,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.1002,4,Damon,sex,laki_laki,,2838,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.1002,4,Damon,sex,perempuan,,2727,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.1002,4,Damon,total,total,,5565,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.2004,4,Kelapa Pati,sex,laki_laki,,4449,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.2004,4,Kelapa Pati,sex,perempuan,,4292,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.2004,4,Kelapa Pati,total,total,,8741,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.2005,4,Pedekik,sex,laki_laki,,1780,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.2005,4,Pedekik,sex,perempuan,,1734,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.2005,4,Pedekik,total,total,,3514,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.2006,4,Pangkalan Batang,sex,laki_laki,,1529,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.2006,4,Pangkalan Batang,sex,perempuan,,1479,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.2006,4,Pangkalan Batang,total,total,,3008,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.2007,4,Sebauk,sex,laki_laki,,797,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.2007,4,Sebauk,sex,perempuan,,696,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.2007,4,Sebauk,total,total,,1493,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.2008,4,Teluk Latak,sex,laki_laki,,1308,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.2008,4,Teluk Latak,sex,perempuan,,1315,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.2008,4,Teluk Latak,total,total,,2623,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.2009,4,Meskom,sex,laki_laki,,1019,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.2009,4,Meskom,sex,perempuan,,989,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.2009,4,Meskom,total,total,,2008,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.2023,4,Palkun,sex,laki_laki,,584,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.03.01.2023,4,Palkun,sex,perempuan,,506,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.03.01.2023,4,Palkun,total,total,,1090,jiwa,2025,registration,total_population,3.1,28,,
+14.03.01.2028,4,Kelemantan Barat,sex,laki_laki,,634,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+14.03.01.2028,4,Kelemantan Barat,sex,perempuan,,574,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+14.03.01.2028,4,Kelemantan Barat,total,total,,1208,jiwa,2025,registration,total_population,3.1,29,,
+14.03.01.2024,4,Sungai Batang,sex,laki_laki,,892,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+14.03.01.2024,4,Sungai Batang,sex,perempuan,,795,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+14.03.01.2024,4,Sungai Batang,total,total,,1687,jiwa,2025,registration,total_population,3.1,29,,
+14.03.01.2031,4,Pematang Duku Timur,sex,laki_laki,,776,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+14.03.01.2031,4,Pematang Duku Timur,sex,perempuan,,762,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+14.03.01.2031,4,Pematang Duku Timur,total,total,,1538,jiwa,2025,registration,total_population,3.1,29,,
+14.03.01.2029,4,Damai,sex,laki_laki,,892,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+14.03.01.2029,4,Damai,sex,perempuan,,883,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+14.03.01.2029,4,Damai,total,total,,1775,jiwa,2025,registration,total_population,3.1,29,,
+14.03.01.2022,4,Kelebuk,sex,laki_laki,,589,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+14.03.01.2022,4,Kelebuk,sex,perempuan,,526,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+14.03.01.2022,4,Kelebuk,total,total,,1115,jiwa,2025,registration,total_population,3.1,29,,
+14.03.01.2021,4,Kuala Alam,sex,laki_laki,,1312,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+14.03.01.2021,4,Kuala Alam,sex,perempuan,,1203,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+14.03.01.2021,4,Kuala Alam,total,total,,2515,jiwa,2025,registration,total_population,3.1,29,,
+14.03.01.2030,4,Pangkalan Batang Barat,sex,laki_laki,,1014,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+14.03.01.2030,4,Pangkalan Batang Barat,sex,perempuan,,1015,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+14.03.01.2030,4,Pangkalan Batang Barat,total,total,,2029,jiwa,2025,registration,total_population,3.1,29,,
+14.03.01.2027,4,Senderak,sex,laki_laki,,903,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+14.03.01.2027,4,Senderak,sex,perempuan,,794,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+14.03.01.2027,4,Senderak,total,total,,1697,jiwa,2025,registration,total_population,3.1,29,,
+14.03.01.2025,4,Prapat Tunggal,sex,laki_laki,,694,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+14.03.01.2025,4,Prapat Tunggal,sex,perempuan,,681,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+14.03.01.2025,4,Prapat Tunggal,total,total,,1375,jiwa,2025,registration,total_population,3.1,29,,
+14.03.01.2026,4,Simpang Ayam,sex,laki_laki,,662,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+14.03.01.2026,4,Simpang Ayam,sex,perempuan,,581,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+14.03.01.2026,4,Simpang Ayam,total,total,,1243,jiwa,2025,registration,total_population,3.1,29,,
+14.03.01,3,Kecamatan Bengkalis,sex,laki_laki,,48986,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+14.03.01,3,Kecamatan Bengkalis,sex,perempuan,,46995,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+14.03.01,3,Kecamatan Bengkalis,total,total,,95981,jiwa,2025,registration,total_population,3.1,29,,

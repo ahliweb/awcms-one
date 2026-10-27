@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.05.10.2010,4,Perkebunan Tanjung Beringin,sex,laki_laki,,735,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.10.2010,4,Perkebunan Tanjung Beringin,sex,perempuan,,702,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.10.2010,4,Perkebunan Tanjung Beringin,total,total,,1437,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.10.2011,4,Suka Jadi,sex,laki_laki,,2420,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.10.2011,4,Suka Jadi,sex,perempuan,,2367,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.10.2011,4,Suka Jadi,total,total,,4787,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.10.2012,4,Payarengas,sex,laki_laki,,2193,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.10.2012,4,Payarengas,sex,perempuan,,2085,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.10.2012,4,Payarengas,total,total,,4278,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.10.2006,4,Hinai Kanan,sex,laki_laki,,1892,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.10.2006,4,Hinai Kanan,sex,perempuan,,1807,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.10.2006,4,Hinai Kanan,total,total,,3699,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.10.2007,4,Sukadamai,sex,laki_laki,,2224,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.10.2007,4,Sukadamai,sex,perempuan,,2164,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.10.2007,4,Sukadamai,total,total,,4388,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.10.1008,4,Kebun Lada,sex,laki_laki,,2355,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.10.1008,4,Kebun Lada,sex,perempuan,,2299,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.10.1008,4,Kebun Lada,total,total,,4654,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.10.2004,4,Tanjung Mulia,sex,laki_laki,,2646,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.10.2004,4,Tanjung Mulia,sex,perempuan,,2608,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.10.2004,4,Tanjung Mulia,total,total,,5254,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.10.2005,4,Muka Paya,sex,laki_laki,,2497,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.10.2005,4,Muka Paya,sex,perempuan,,2506,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.10.2005,4,Muka Paya,total,total,,5003,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.10.2001,4,Cempa,sex,laki_laki,,3201,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.10.2001,4,Cempa,sex,perempuan,,3109,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.10.2001,4,Cempa,total,total,,6310,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.10.2002,4,Batu Malenggang,sex,laki_laki,,4808,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.10.2002,4,Batu Malenggang,sex,perempuan,,4670,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.10.2002,4,Batu Malenggang,total,total,,9478,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.10.2003,4,Tamaran,sex,laki_laki,,667,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.10.2003,4,Tamaran,sex,perempuan,,655,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.10.2003,4,Tamaran,total,total,,1322,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.10.2013,4,Sukadamai Timur,sex,laki_laki,,2088,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.10.2013,4,Sukadamai Timur,sex,perempuan,,2006,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.10.2013,4,Sukadamai Timur,total,total,,4094,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.10,3,Kecamatan Hinai,sex,laki_laki,,30066,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.10,3,Kecamatan Hinai,sex,perempuan,,29320,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.10,3,Kecamatan Hinai,total,total,,59386,jiwa,2025,registration,total_population,unnumbered-p39,39,,

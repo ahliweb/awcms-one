@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.04.08.2009,4,Nusuk,sex,laki_laki,,353,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.04.08.2009,4,Nusuk,sex,perempuan,,374,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.04.08.2009,4,Nusuk,total,total,,727,jiwa,2025,registration,total_population,3.1,26,,
+17.04.08.2010,4,Tanjung Harapan,sex,laki_laki,,313,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.04.08.2010,4,Tanjung Harapan,sex,perempuan,,327,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.04.08.2010,4,Tanjung Harapan,total,total,,640,jiwa,2025,registration,total_population,3.1,26,,
+17.04.08.2008,4,Awat Mata,sex,laki_laki,,335,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.04.08.2008,4,Awat Mata,sex,perempuan,,321,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.04.08.2008,4,Awat Mata,total,total,,656,jiwa,2025,registration,total_population,3.1,26,,
+17.04.08.2005,4,Suka Merindu,sex,laki_laki,,215,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.04.08.2005,4,Suka Merindu,sex,perempuan,,242,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.04.08.2005,4,Suka Merindu,total,total,,457,jiwa,2025,registration,total_population,3.1,26,,
+17.04.08.2003,4,Lubuk Gung,sex,laki_laki,,161,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.04.08.2003,4,Lubuk Gung,sex,perempuan,,139,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.04.08.2003,4,Lubuk Gung,total,total,,300,jiwa,2025,registration,total_population,3.1,26,,
+17.04.08.2002,4,Karang Dapo,sex,laki_laki,,247,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.04.08.2002,4,Karang Dapo,sex,perempuan,,219,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.04.08.2002,4,Karang Dapo,total,total,,466,jiwa,2025,registration,total_population,3.1,26,,
+17.04.08.2001,4,Bunga Melur,sex,laki_laki,,381,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.04.08.2001,4,Bunga Melur,sex,perempuan,,341,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.04.08.2001,4,Bunga Melur,total,total,,722,jiwa,2025,registration,total_population,3.1,26,,
+17.04.08.2011,4,Gunung Tiga II,sex,laki_laki,,238,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.04.08.2011,4,Gunung Tiga II,sex,perempuan,,200,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.04.08.2011,4,Gunung Tiga II,total,total,,438,jiwa,2025,registration,total_population,3.1,26,,
+17.04.08.2012,4,Padang Panjang,sex,laki_laki,,190,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.04.08.2012,4,Padang Panjang,sex,perempuan,,199,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.04.08.2012,4,Padang Panjang,total,total,,389,jiwa,2025,registration,total_population,3.1,26,,
+17.04.08.2013,4,Masria Baru,sex,laki_laki,,164,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.04.08.2013,4,Masria Baru,sex,perempuan,,152,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.04.08.2013,4,Masria Baru,total,total,,316,jiwa,2025,registration,total_population,3.1,26,,
+17.04.08,3,Semidang Gumay,sex,laki_laki,,3715,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.04.08,3,Semidang Gumay,sex,perempuan,,3524,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.04.08,3,Semidang Gumay,total,total,,7239,jiwa,2025,registration,total_population,3.1,26,,
+17.04.08,3,Semidang Gumay,age_group,0-4,laki_laki,251,jiwa,2025,registration,total_population,3.2,28,,0-4
+17.04.08,3,Semidang Gumay,age_group,0-4,perempuan,195,jiwa,2025,registration,total_population,3.2,28,,0-4
+17.04.08,3,Semidang Gumay,age_group,0-4,,446,jiwa,2025,registration,total_population,3.2,28,,0-4
+17.04.08,3,Semidang Gumay,age_group,5-9,laki_laki,302,jiwa,2025,registration,total_population,3.2,28,,5-9
+17.04.08,3,Semidang Gumay,age_group,5-9,perempuan,300,jiwa,2025,registration,total_population,3.2,28,,5-9
+17.04.08,3,Semidang Gumay,age_group,5-9,,602,jiwa,2025,registration,total_population,3.2,28,,5-9
+17.04.08,3,Semidang Gumay,age_group,10-14,laki_laki,327,jiwa,2025,registration,total_population,3.2,28,,10-14
+17.04.08,3,Semidang Gumay,age_group,10-14,perempuan,303,jiwa,2025,registration,total_population,3.2,28,,10-14
+17.04.08,3,Semidang Gumay,age_group,10-14,,630,jiwa,2025,registration,total_population,3.2,28,,10-14
+17.04.08,3,Semidang Gumay,age_group,15-19,laki_laki,308,jiwa,2025,registration,total_population,3.2,28,,15-19
+17.04.08,3,Semidang Gumay,age_group,15-19,perempuan,311,jiwa,2025,registration,total_population,3.2,28,,15-19
+17.04.08,3,Semidang Gumay,age_group,15-19,,619,jiwa,2025,registration,total_population,3.2,28,,15-19
+17.04.08,3,Semidang Gumay,age_group,20-24,laki_laki,299,jiwa,2025,registration,total_population,3.2,28,,20-24
+17.04.08,3,Semidang Gumay,age_group,20-24,perempuan,272,jiwa,2025,registration,total_population,3.2,28,,20-24
+17.04.08,3,Semidang Gumay,age_group,20-24,,571,jiwa,2025,registration,total_population,3.2,28,,20-24
+17.04.08,3,Semidang Gumay,age_group,25-29,laki_laki,264,jiwa,2025,registration,total_population,3.2,28,,25-29
+17.04.08,3,Semidang Gumay,age_group,25-29,perempuan,291,jiwa,2025,registration,total_population,3.2,28,,25-29
+17.04.08,3,Semidang Gumay,age_group,25-29,,555,jiwa,2025,registration,total_population,3.2,28,,25-29
+17.04.08,3,Semidang Gumay,age_group,30-34,laki_laki,288,jiwa,2025,registration,total_population,3.2,28,,30-34
+17.04.08,3,Semidang Gumay,age_group,30-34,perempuan,259,jiwa,2025,registration,total_population,3.2,28,,30-34
+17.04.08,3,Semidang Gumay,age_group,30-34,,547,jiwa,2025,registration,total_population,3.2,28,,30-34
+17.04.08,3,Semidang Gumay,age_group,35-39,laki_laki,290,jiwa,2025,registration,total_population,3.2,28,,35-39
+17.04.08,3,Semidang Gumay,age_group,35-39,perempuan,263,jiwa,2025,registration,total_population,3.2,28,,35-39
+17.04.08,3,Semidang Gumay,age_group,35-39,,553,jiwa,2025,registration,total_population,3.2,28,,35-39
+17.04.08,3,Semidang Gumay,age_group,40-44,laki_laki,288,jiwa,2025,registration,total_population,3.2,28,,40-44
+17.04.08,3,Semidang Gumay,age_group,40-44,perempuan,248,jiwa,2025,registration,total_population,3.2,28,,40-44
+17.04.08,3,Semidang Gumay,age_group,40-44,,536,jiwa,2025,registration,total_population,3.2,28,,40-44
+17.04.08,3,Semidang Gumay,age_group,45-49,laki_laki,251,jiwa,2025,registration,total_population,3.2,28,,45-49
+17.04.08,3,Semidang Gumay,age_group,45-49,perempuan,239,jiwa,2025,registration,total_population,3.2,28,,45-49
+17.04.08,3,Semidang Gumay,age_group,45-49,,490,jiwa,2025,registration,total_population,3.2,28,,45-49
+17.04.08,3,Semidang Gumay,age_group,50-54,laki_laki,202,jiwa,2025,registration,total_population,3.2,28,,50-54
+17.04.08,3,Semidang Gumay,age_group,50-54,perempuan,202,jiwa,2025,registration,total_population,3.2,28,,50-54
+17.04.08,3,Semidang Gumay,age_group,50-54,,404,jiwa,2025,registration,total_population,3.2,28,,50-54
+17.04.08,3,Semidang Gumay,age_group,55-59,laki_laki,184,jiwa,2025,registration,total_population,3.2,28,,55-59
+17.04.08,3,Semidang Gumay,age_group,55-59,perempuan,181,jiwa,2025,registration,total_population,3.2,28,,55-59
+17.04.08,3,Semidang Gumay,age_group,55-59,,365,jiwa,2025,registration,total_population,3.2,28,,55-59
+17.04.08,3,Semidang Gumay,age_group,60-64,laki_laki,153,jiwa,2025,registration,total_population,3.2,28,,60-64
+17.04.08,3,Semidang Gumay,age_group,60-64,perempuan,177,jiwa,2025,registration,total_population,3.2,28,,60-64
+17.04.08,3,Semidang Gumay,age_group,60-64,,330,jiwa,2025,registration,total_population,3.2,28,,60-64
+17.04.08,3,Semidang Gumay,age_group,65-69,laki_laki,155,jiwa,2025,registration,total_population,3.2,28,,65-69
+17.04.08,3,Semidang Gumay,age_group,65-69,perempuan,121,jiwa,2025,registration,total_population,3.2,28,,65-69
+17.04.08,3,Semidang Gumay,age_group,65-69,,276,jiwa,2025,registration,total_population,3.2,28,,65-69
+17.04.08,3,Semidang Gumay,age_group,70-74,laki_laki,68,jiwa,2025,registration,total_population,3.2,28,,70-74
+17.04.08,3,Semidang Gumay,age_group,70-74,perempuan,73,jiwa,2025,registration,total_population,3.2,28,,70-74
+17.04.08,3,Semidang Gumay,age_group,70-74,,141,jiwa,2025,registration,total_population,3.2,28,,70-74
+17.04.08,3,Semidang Gumay,age_group,75+,laki_laki,85,jiwa,2025,registration,total_population,3.2,28,,75+
+17.04.08,3,Semidang Gumay,age_group,75+,perempuan,89,jiwa,2025,registration,total_population,3.2,28,,75+
+17.04.08,3,Semidang Gumay,age_group,75+,,174,jiwa,2025,registration,total_population,3.2,28,,75+
+17.04.08,3,Semidang Gumay,sex,laki_laki,,3715,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+17.04.08,3,Semidang Gumay,sex,perempuan,,3524,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+17.04.08,3,Semidang Gumay,total,total,,7239,jiwa,2025,registration,total_population,3.2,28,,

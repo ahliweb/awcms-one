@@ -1,0 +1,106 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.12.07.2031,4,Parparean I,sex,laki_laki,,473,jiwa,2025,registration,total_population,3.1,28,,Laki-laki/Male
+12.12.07.2031,4,Parparean I,sex,perempuan,,519,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.12.07.2031,4,Parparean I,total,total,,992,jiwa,2025,registration,total_population,3.1,28,,
+12.12.07.2033,4,Parparean II,sex,laki_laki,,641,jiwa,2025,registration,total_population,3.1,28,,Laki-laki/Male
+12.12.07.2033,4,Parparean II,sex,perempuan,,623,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.12.07.2033,4,Parparean II,total,total,,1264,jiwa,2025,registration,total_population,3.1,28,,
+12.12.07.1039,4,Parparean III,sex,laki_laki,,556,jiwa,2025,registration,total_population,3.1,28,,Laki-laki/Male
+12.12.07.1039,4,Parparean III,sex,perempuan,,571,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.12.07.1039,4,Parparean III,total,total,,1127,jiwa,2025,registration,total_population,3.1,28,,
+12.12.07.2030,4,Parparean IV,sex,laki_laki,,424,jiwa,2025,registration,total_population,3.1,28,,Laki-laki/Male
+12.12.07.2030,4,Parparean IV,sex,perempuan,,438,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.12.07.2030,4,Parparean IV,total,total,,862,jiwa,2025,registration,total_population,3.1,28,,
+12.12.07.2022,4,Gala-gala Pangkailan,sex,laki_laki,,155,jiwa,2025,registration,total_population,3.1,28,,Laki-laki/Male
+12.12.07.2022,4,Gala-gala Pangkailan,sex,perempuan,,171,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.12.07.2022,4,Gala-gala Pangkailan,total,total,,326,jiwa,2025,registration,total_population,3.1,28,,
+12.12.07.1037,4,Pasar Porsea,sex,laki_laki,,727,jiwa,2025,registration,total_population,3.1,28,,Laki-laki/Male
+12.12.07.1037,4,Pasar Porsea,sex,perempuan,,750,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.12.07.1037,4,Pasar Porsea,total,total,,1477,jiwa,2025,registration,total_population,3.1,28,,
+12.12.07.1038,4,Patane III,sex,laki_laki,,822,jiwa,2025,registration,total_population,3.1,28,,Laki-laki/Male
+12.12.07.1038,4,Patane III,sex,perempuan,,914,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.12.07.1038,4,Patane III,total,total,,1736,jiwa,2025,registration,total_population,3.1,28,,
+12.12.07.2001,4,Patane IV,sex,laki_laki,,602,jiwa,2025,registration,total_population,3.1,28,,Laki-laki/Male
+12.12.07.2001,4,Patane IV,sex,perempuan,,612,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.12.07.2001,4,Patane IV,total,total,,1214,jiwa,2025,registration,total_population,3.1,28,,
+12.12.07.2007,4,Patane II,sex,laki_laki,,489,jiwa,2025,registration,total_population,3.1,28,,Laki-laki/Male
+12.12.07.2007,4,Patane II,sex,perempuan,,464,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.12.07.2007,4,Patane II,total,total,,953,jiwa,2025,registration,total_population,3.1,28,,
+12.12.07.2036,4,Patane I,sex,laki_laki,,387,jiwa,2025,registration,total_population,3.1,28,,Laki-laki/Male
+12.12.07.2036,4,Patane I,sex,perempuan,,404,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.12.07.2036,4,Patane I,total,total,,791,jiwa,2025,registration,total_population,3.1,28,,
+12.12.07.2004,4,Amborgang,sex,laki_laki,,452,jiwa,2025,registration,total_population,3.1,28,,Laki-laki/Male
+12.12.07.2004,4,Amborgang,sex,perempuan,,401,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.12.07.2004,4,Amborgang,total,total,,853,jiwa,2025,registration,total_population,3.1,28,,
+12.12.07.2005,4,Nalela,sex,laki_laki,,314,jiwa,2025,registration,total_population,3.1,28,,Laki-laki/Male
+12.12.07.2005,4,Nalela,sex,perempuan,,321,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.12.07.2005,4,Nalela,total,total,,635,jiwa,2025,registration,total_population,3.1,28,,
+12.12.07.2023,4,Silamosik I,sex,laki_laki,,313,jiwa,2025,registration,total_population,3.1,28,,Laki-laki/Male
+12.12.07.2023,4,Silamosik I,sex,perempuan,,326,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.12.07.2023,4,Silamosik I,total,total,,639,jiwa,2025,registration,total_population,3.1,28,,
+12.12.07.2003,4,Lumban Gurning,sex,laki_laki,,321,jiwa,2025,registration,total_population,3.1,28,,Laki-laki/Male
+12.12.07.2003,4,Lumban Gurning,sex,perempuan,,310,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.12.07.2003,4,Lumban Gurning,total,total,,631,jiwa,2025,registration,total_population,3.1,28,,
+12.12.07.2040,4,Patane V,sex,laki_laki,,463,jiwa,2025,registration,total_population,3.1,28,,Laki-laki/Male
+12.12.07.2040,4,Patane V,sex,perempuan,,488,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.12.07.2040,4,Patane V,total,total,,951,jiwa,2025,registration,total_population,3.1,28,,
+12.12.07.2042,4,Raut Bosi,sex,laki_laki,,368,jiwa,2025,registration,total_population,3.1,28,,Laki-laki/Male
+12.12.07.2042,4,Raut Bosi,sex,perempuan,,362,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.12.07.2042,4,Raut Bosi,total,total,,730,jiwa,2025,registration,total_population,3.1,28,,
+12.12.07.2041,4,Simpang Siguragura,sex,laki_laki,,435,jiwa,2025,registration,total_population,3.1,28,,Laki-laki/Male
+12.12.07.2041,4,Simpang Siguragura,sex,perempuan,,488,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.12.07.2041,4,Simpang Siguragura,total,total,,923,jiwa,2025,registration,total_population,3.1,28,,
+12.12.07,3,Porsea,sex,laki_laki,,7942,jiwa,2025,registration,total_population,3.1,28,,Laki-laki/Male
+12.12.07,3,Porsea,sex,perempuan,,8162,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.12.07,3,Porsea,total,total,,16104,jiwa,2025,registration,total_population,3.1,28,,
+12.12.07,3,Porsea,age_group,0-4,laki_laki,452,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+12.12.07,3,Porsea,age_group,0-4,perempuan,433,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+12.12.07,3,Porsea,age_group,0-4,,885,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+12.12.07,3,Porsea,age_group,5-9,laki_laki,660,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+12.12.07,3,Porsea,age_group,5-9,perempuan,612,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+12.12.07,3,Porsea,age_group,5-9,,1272,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+12.12.07,3,Porsea,age_group,10-14,laki_laki,852,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+12.12.07,3,Porsea,age_group,10-14,perempuan,782,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+12.12.07,3,Porsea,age_group,10-14,,1634,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+12.12.07,3,Porsea,age_group,15-19,laki_laki,895,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+12.12.07,3,Porsea,age_group,15-19,perempuan,836,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+12.12.07,3,Porsea,age_group,15-19,,1731,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+12.12.07,3,Porsea,age_group,20-24,laki_laki,747,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+12.12.07,3,Porsea,age_group,20-24,perempuan,743,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+12.12.07,3,Porsea,age_group,20-24,,1490,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+12.12.07,3,Porsea,age_group,25-29,laki_laki,637,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+12.12.07,3,Porsea,age_group,25-29,perempuan,616,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+12.12.07,3,Porsea,age_group,25-29,,1253,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+12.12.07,3,Porsea,age_group,30-34,laki_laki,569,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+12.12.07,3,Porsea,age_group,30-34,perempuan,484,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+12.12.07,3,Porsea,age_group,30-34,,1053,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+12.12.07,3,Porsea,age_group,35-39,laki_laki,523,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+12.12.07,3,Porsea,age_group,35-39,perempuan,536,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+12.12.07,3,Porsea,age_group,35-39,,1059,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+12.12.07,3,Porsea,age_group,40-44,laki_laki,572,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+12.12.07,3,Porsea,age_group,40-44,perempuan,522,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+12.12.07,3,Porsea,age_group,40-44,,1094,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+12.12.07,3,Porsea,age_group,45-49,laki_laki,492,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+12.12.07,3,Porsea,age_group,45-49,perempuan,499,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+12.12.07,3,Porsea,age_group,45-49,,991,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+12.12.07,3,Porsea,age_group,50-54,laki_laki,443,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+12.12.07,3,Porsea,age_group,50-54,perempuan,426,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+12.12.07,3,Porsea,age_group,50-54,,869,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+12.12.07,3,Porsea,age_group,55-59,laki_laki,352,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+12.12.07,3,Porsea,age_group,55-59,perempuan,410,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+12.12.07,3,Porsea,age_group,55-59,,762,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+12.12.07,3,Porsea,age_group,60-64,laki_laki,246,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+12.12.07,3,Porsea,age_group,60-64,perempuan,340,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+12.12.07,3,Porsea,age_group,60-64,,586,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+12.12.07,3,Porsea,age_group,65-69,laki_laki,226,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+12.12.07,3,Porsea,age_group,65-69,perempuan,295,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+12.12.07,3,Porsea,age_group,65-69,,521,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+12.12.07,3,Porsea,age_group,70-74,laki_laki,130,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+12.12.07,3,Porsea,age_group,70-74,perempuan,244,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+12.12.07,3,Porsea,age_group,70-74,,374,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+12.12.07,3,Porsea,age_group,75+,laki_laki,146,jiwa,2025,registration,total_population,3.2,30,,75+
+12.12.07,3,Porsea,age_group,75+,perempuan,384,jiwa,2025,registration,total_population,3.2,30,,75+
+12.12.07,3,Porsea,age_group,75+,,530,jiwa,2025,registration,total_population,3.2,30,,75+
+12.12.07,3,Porsea,sex,laki_laki,,7942,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+12.12.07,3,Porsea,sex,perempuan,,8162,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+12.12.07,3,Porsea,total,total,,16104,jiwa,2025,registration,total_population,3.2,30,,

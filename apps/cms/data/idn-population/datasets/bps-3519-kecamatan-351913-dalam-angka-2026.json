@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3519-kecamatan-351913-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.19.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pilangkenceng Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Madiun",
+  "publisherDomain": "3519",
+  "publisherWebsite": "https://madiunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Madiun (https://madiunkab.bps.go.id), publikasi \"Kecamatan Pilangkenceng Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.35190020",
+  "publicationNumber": "35190.26013",
+  "issn": "2598-6619",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://madiunkab.bps.go.id/id/publication/2026/09/28/7ee21df2292a6dcc2d13a27d/kecamatan-pilangkenceng-dalam-angka-2026.html",
+  "sourceFileSha256": "37e66d5bd7236490b4a7b75c5cad3b118879a0dbe69263cfce485f80ecb97cdb",
+  "sourceFileBytes": 4298800,
+  "sourcePages": [39, 41],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Madiun.",
+  "csvPath": "datasets/bps-3519-kecamatan-351913-dalam-angka-2026.csv",
+  "csvSha256": "0b496a722b2fe58e1cfafbaac2a49056a554ed3fc2807eea911a24326082ed2e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan Di Kecamatan Pilangkenceng, 2025.",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur Dan Jenis Kelamin Di Kecamatan Dagangan, 2025",
+      "printedPages": [41],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

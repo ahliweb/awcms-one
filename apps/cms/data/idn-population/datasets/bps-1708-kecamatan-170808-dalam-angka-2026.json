@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1708-kecamatan-170808-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "17.08.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Muara Kemumu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kepahiang",
+  "publisherDomain": "1708",
+  "publisherWebsite": "https://kepahiangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kepahiang (https://kepahiangkab.bps.go.id), publikasi \"Kecamatan Muara Kemumu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1708010",
+  "publicationNumber": "17080.26009",
+  "issn": "2615-8256",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kepahiangkab.bps.go.id/id/publication/2026/09/28/c95cb43c48f3048b14b40428/kecamatan-muara-kemumu-dalam-angka-2026.html",
+  "sourceFileSha256": "75e1b1003072b6a6aa308fa97e4c0a9e38c7e43fe46d3c38cd169379c44cc899",
+  "sourceFileBytes": 2508243,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kepahiang",
+  "csvPath": "datasets/bps-1708-kecamatan-170808-dalam-angka-2026.csv",
+  "csvSha256": "a274c66c128c182e25aeb8b4e2ea2eece6f96337789b278a99520367e78ddf98",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Muara Kemumu, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Muara Kemumu, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

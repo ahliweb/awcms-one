@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3519-kecamatan-351906-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.19.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gemarang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Madiun",
+  "publisherDomain": "3519",
+  "publisherWebsite": "https://madiunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Madiun (https://madiunkab.bps.go.id), publikasi \"Kecamatan Gemarang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.35190070",
+  "publicationNumber": "35190.26011",
+  "issn": "2598-6619",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://madiunkab.bps.go.id/id/publication/2026/09/28/5baf6ce38289a409a9c80438/kecamatan-gemarang-dalam-angka-2026.html",
+  "sourceFileSha256": "55e248cd64c65fd960b530bb96aa4fec33897c6bfce96aad5c4f5c5b65626340",
+  "sourceFileBytes": 4747329,
+  "sourcePages": [54],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Madiun.",
+  "csvPath": "datasets/bps-3519-kecamatan-351906-dalam-angka-2026.csv",
+  "csvSha256": "447f14acb49acb5e29d356e092b0df21c28f5d1fb66996f22e3cc94d0f3e6d6a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Gemarang, 2025",
+      "printedPages": [54],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Gemarang, 2025",
+      "printedPages": [54],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1 is not included: its published figures do not add up (sex/laki_laki/- 2025: parts sum 31796.0000 != 2674.0000 (diff 29122.0000)); the source itself is inconsistent"
+  ]
+}

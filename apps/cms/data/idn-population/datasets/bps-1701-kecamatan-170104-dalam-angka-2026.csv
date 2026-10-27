@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.01.04.2019,4,Ketaping,sex,laki_laki,,1226,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.04.2019,4,Ketaping,sex,perempuan,,1173,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.04.2019,4,Ketaping,total,total,,2399,jiwa,2025,registration,total_population,3.1,26,,
+17.01.04.2018,4,Terulung,sex,laki_laki,,426,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.04.2018,4,Terulung,sex,perempuan,,420,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.04.2018,4,Terulung,total,total,,846,jiwa,2025,registration,total_population,3.1,26,,
+17.01.04.2017,4,Manggul,sex,laki_laki,,231,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.04.2017,4,Manggul,sex,perempuan,,228,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.04.2017,4,Manggul,total,total,,459,jiwa,2025,registration,total_population,3.1,26,,
+17.01.04.2016,4,Tanjung Besar,sex,laki_laki,,406,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.04.2016,4,Tanjung Besar,sex,perempuan,,368,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.04.2016,4,Tanjung Besar,total,total,,774,jiwa,2025,registration,total_population,3.1,26,,
+17.01.04.2020,4,Lubuk Sirih Ulu,sex,laki_laki,,239,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.04.2020,4,Lubuk Sirih Ulu,sex,perempuan,,249,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.04.2020,4,Lubuk Sirih Ulu,total,total,,488,jiwa,2025,registration,total_population,3.1,26,,
+17.01.04.2021,4,Lubuk Sirih Ilir,sex,laki_laki,,731,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.04.2021,4,Lubuk Sirih Ilir,sex,perempuan,,654,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.04.2021,4,Lubuk Sirih Ilir,total,total,,1385,jiwa,2025,registration,total_population,3.1,26,,
+17.01.04.2001,4,Tanjung Raman,sex,laki_laki,,370,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.04.2001,4,Tanjung Raman,sex,perempuan,,358,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.04.2001,4,Tanjung Raman,total,total,,728,jiwa,2025,registration,total_population,3.1,26,,
+17.01.04.1022,4,Kayu Kunyit,sex,laki_laki,,1159,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.04.1022,4,Kayu Kunyit,sex,perempuan,,1159,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.04.1022,4,Kayu Kunyit,total,total,,2318,jiwa,2025,registration,total_population,3.1,26,,
+17.01.04.2023,4,Kota Padang,sex,laki_laki,,385,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.04.2023,4,Kota Padang,sex,perempuan,,387,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.04.2023,4,Kota Padang,total,total,,772,jiwa,2025,registration,total_population,3.1,26,,
+17.01.04.2024,4,Mela'o,sex,laki_laki,,297,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.04.2024,4,Mela'o,sex,perempuan,,274,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.04.2024,4,Mela'o,total,total,,571,jiwa,2025,registration,total_population,3.1,26,,
+17.01.04.2025,4,Gunung Sakti,sex,laki_laki,,344,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.04.2025,4,Gunung Sakti,sex,perempuan,,328,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.04.2025,4,Gunung Sakti,total,total,,672,jiwa,2025,registration,total_population,3.1,26,,
+17.01.04.2026,4,Jeranglah Rendah,sex,laki_laki,,417,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.04.2026,4,Jeranglah Rendah,sex,perempuan,,419,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.04.2026,4,Jeranglah Rendah,total,total,,836,jiwa,2025,registration,total_population,3.1,26,,
+17.01.04.2027,4,Jeranglah Tinggi,sex,laki_laki,,771,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.04.2027,4,Jeranglah Tinggi,sex,perempuan,,732,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.04.2027,4,Jeranglah Tinggi,total,total,,1503,jiwa,2025,registration,total_population,3.1,26,,
+17.01.04.2028,4,Kembang Ayun,sex,laki_laki,,227,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.04.2028,4,Kembang Ayun,sex,perempuan,,205,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.04.2028,4,Kembang Ayun,total,total,,432,jiwa,2025,registration,total_population,3.1,26,,
+17.01.04.2029,4,Tambangan,sex,laki_laki,,451,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.04.2029,4,Tambangan,sex,perempuan,,404,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.04.2029,4,Tambangan,total,total,,855,jiwa,2025,registration,total_population,3.1,26,,
+17.01.04.2033,4,Gunung Kembang,sex,laki_laki,,497,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.04.2033,4,Gunung Kembang,sex,perempuan,,492,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.04.2033,4,Gunung Kembang,total,total,,989,jiwa,2025,registration,total_population,3.1,26,,
+17.01.04.2031,4,Padang Manis,sex,laki_laki,,337,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.04.2031,4,Padang Manis,sex,perempuan,,368,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.04.2031,4,Padang Manis,total,total,,705,jiwa,2025,registration,total_population,3.1,26,,
+17.01.04.2032,4,Padang Pandan,sex,laki_laki,,613,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.04.2032,4,Padang Pandan,sex,perempuan,,599,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.04.2032,4,Padang Pandan,total,total,,1212,jiwa,2025,registration,total_population,3.1,26,,
+17.01.04,3,Kecamatan Manna,sex,laki_laki,,9127,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.04,3,Kecamatan Manna,sex,perempuan,,8817,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.04,3,Kecamatan Manna,total,total,,17944,jiwa,2025,registration,total_population,3.1,26,,

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1206-kecamatan-121207-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.12.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Porsea Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Toba",
+  "publisherDomain": "1206",
+  "publisherWebsite": "https://tobakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Toba (https://tobakab.bps.go.id), publikasi \"Kecamatan Porsea Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1206",
+  "publicationNumber": "12060.26016",
+  "issn": "2461-0135",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tobakab.bps.go.id/id/publication/2026/09/28/fbe7e62d0fa89047d20941ed/kecamatan-porsea-dalam-angka-2026.html",
+  "sourceFileSha256": "1673069dcf50039e663fb38053142c4d0bb800ed09843b7f86302b15d3709d4e",
+  "sourceFileBytes": 5050378,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Toba.",
+  "csvPath": "datasets/bps-1206-kecamatan-121207-dalam-angka-2026.csv",
+  "csvSha256": "6dda310de8c449a2b04ffd095e48f6b35aeb7d5776fa03bafbc418cd52dda310",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Porsea, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Porsea, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

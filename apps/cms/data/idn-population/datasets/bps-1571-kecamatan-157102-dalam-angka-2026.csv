@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.71.02.1002,4,Pasir Putih,sex,laki_laki,,7241,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+15.71.02.1002,4,Pasir Putih,sex,perempuan,,7161,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Fem
+15.71.02.1002,4,Pasir Putih,total,total,,14402,jiwa,2025,registration,total_population,3.1,27,,
+15.71.02.1005,4,Wijaya Pura,sex,laki_laki,,4833,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+15.71.02.1005,4,Wijaya Pura,sex,perempuan,,4877,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Fem
+15.71.02.1005,4,Wijaya Pura,total,total,,9710,jiwa,2025,registration,total_population,3.1,27,,
+15.71.02.1006,4,Pakuan Baru,sex,laki_laki,,9722,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+15.71.02.1006,4,Pakuan Baru,sex,perempuan,,9714,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Fem
+15.71.02.1006,4,Pakuan Baru,total,total,,19436,jiwa,2025,registration,total_population,3.1,27,,
+15.71.02.1003,4,Tambak Sari,sex,laki_laki,,3794,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+15.71.02.1003,4,Tambak Sari,sex,perempuan,,3886,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Fem
+15.71.02.1003,4,Tambak Sari,total,total,,7680,jiwa,2025,registration,total_population,3.1,27,,
+15.71.02.1004,4,Thehok,sex,laki_laki,,3811,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+15.71.02.1004,4,Thehok,sex,perempuan,,3831,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Fem
+15.71.02.1004,4,Thehok,total,total,,7642,jiwa,2025,registration,total_population,3.1,27,,
+15.71.02,3,Jambi Selatan,sex,laki_laki,,29401,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+15.71.02,3,Jambi Selatan,sex,perempuan,,29469,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Fem
+15.71.02,3,Jambi Selatan,total,total,,58870,jiwa,2025,registration,total_population,3.1,27,,

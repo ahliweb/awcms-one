@@ -1,0 +1,168 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.13.02,3,Kuta Panjang,total,total,,10239,jiwa,2024,registration,total_population,3.1.1,48,,
+11.13.09,3,Blang Jerango,total,total,,7998,jiwa,2024,registration,total_population,3.1.1,48,,
+11.13.01,3,Blangkejeren,total,total,,32164,jiwa,2024,registration,total_population,3.1.1,48,,
+11.13.08,3,Dabun Gelang,total,total,,7375,jiwa,2024,registration,total_population,3.1.1,48,,
+11.13.06,3,Blang Pegayon,total,total,,7405,jiwa,2024,registration,total_population,3.1.1,48,,
+11.13.05,3,Pining,total,total,,5276,jiwa,2024,registration,total_population,3.1.1,48,,
+11.13.03,3,Rikit Gaib,total,total,,5032,jiwa,2024,registration,total_population,3.1.1,48,,
+11.13.11,3,Pantan Cuaca,total,total,,4843,jiwa,2024,registration,total_population,3.1.1,48,,
+11.13.04,3,Terangun,total,total,,9896,jiwa,2024,registration,total_population,3.1.1,48,,
+11.13,2,Gayo Lues,total,total,,106136,jiwa,2024,registration,total_population,3.1.1,48,,
+11.13,2,Kabupaten Gayo Lues,age_group,0-4,laki_laki,4600,jiwa,2024,registration,total_population,3.1.2,51,,0–4
+11.13,2,Kabupaten Gayo Lues,age_group,0-4,perempuan,4356,jiwa,2024,registration,total_population,3.1.2,51,,0–4
+11.13,2,Kabupaten Gayo Lues,age_group,0-4,,8956,jiwa,2024,registration,total_population,3.1.2,51,,0–4
+11.13,2,Kabupaten Gayo Lues,age_group,5-9,laki_laki,5921,jiwa,2024,registration,total_population,3.1.2,51,,5–9
+11.13,2,Kabupaten Gayo Lues,age_group,5-9,perempuan,5640,jiwa,2024,registration,total_population,3.1.2,51,,5–9
+11.13,2,Kabupaten Gayo Lues,age_group,5-9,,11561,jiwa,2024,registration,total_population,3.1.2,51,,5–9
+11.13,2,Kabupaten Gayo Lues,age_group,10-14,laki_laki,5501,jiwa,2024,registration,total_population,3.1.2,51,,10–14
+11.13,2,Kabupaten Gayo Lues,age_group,10-14,perempuan,5272,jiwa,2024,registration,total_population,3.1.2,51,,10–14
+11.13,2,Kabupaten Gayo Lues,age_group,10-14,,10773,jiwa,2024,registration,total_population,3.1.2,51,,10–14
+11.13,2,Kabupaten Gayo Lues,age_group,15-19,laki_laki,4719,jiwa,2024,registration,total_population,3.1.2,51,,15–19
+11.13,2,Kabupaten Gayo Lues,age_group,15-19,perempuan,4666,jiwa,2024,registration,total_population,3.1.2,51,,15–19
+11.13,2,Kabupaten Gayo Lues,age_group,15-19,,9385,jiwa,2024,registration,total_population,3.1.2,51,,15–19
+11.13,2,Kabupaten Gayo Lues,age_group,20-24,laki_laki,4321,jiwa,2024,registration,total_population,3.1.2,51,,20–24
+11.13,2,Kabupaten Gayo Lues,age_group,20-24,perempuan,4434,jiwa,2024,registration,total_population,3.1.2,51,,20–24
+11.13,2,Kabupaten Gayo Lues,age_group,20-24,,8755,jiwa,2024,registration,total_population,3.1.2,51,,20–24
+11.13,2,Kabupaten Gayo Lues,age_group,25-29,laki_laki,4795,jiwa,2024,registration,total_population,3.1.2,51,,25–29
+11.13,2,Kabupaten Gayo Lues,age_group,25-29,perempuan,4660,jiwa,2024,registration,total_population,3.1.2,51,,25–29
+11.13,2,Kabupaten Gayo Lues,age_group,25-29,,9455,jiwa,2024,registration,total_population,3.1.2,51,,25–29
+11.13,2,Kabupaten Gayo Lues,age_group,30-34,laki_laki,4250,jiwa,2024,registration,total_population,3.1.2,51,,30–34
+11.13,2,Kabupaten Gayo Lues,age_group,30-34,perempuan,4238,jiwa,2024,registration,total_population,3.1.2,51,,30–34
+11.13,2,Kabupaten Gayo Lues,age_group,30-34,,8488,jiwa,2024,registration,total_population,3.1.2,51,,30–34
+11.13,2,Kabupaten Gayo Lues,age_group,35-39,laki_laki,4405,jiwa,2024,registration,total_population,3.1.2,51,,35–39
+11.13,2,Kabupaten Gayo Lues,age_group,35-39,perempuan,4236,jiwa,2024,registration,total_population,3.1.2,51,,35–39
+11.13,2,Kabupaten Gayo Lues,age_group,35-39,,8641,jiwa,2024,registration,total_population,3.1.2,51,,35–39
+11.13,2,Kabupaten Gayo Lues,age_group,40-44,laki_laki,4047,jiwa,2024,registration,total_population,3.1.2,51,,40–44
+11.13,2,Kabupaten Gayo Lues,age_group,40-44,perempuan,3951,jiwa,2024,registration,total_population,3.1.2,51,,40–44
+11.13,2,Kabupaten Gayo Lues,age_group,40-44,,7998,jiwa,2024,registration,total_population,3.1.2,51,,40–44
+11.13,2,Kabupaten Gayo Lues,age_group,45-49,laki_laki,3145,jiwa,2024,registration,total_population,3.1.2,51,,45–49
+11.13,2,Kabupaten Gayo Lues,age_group,45-49,perempuan,3139,jiwa,2024,registration,total_population,3.1.2,51,,45–49
+11.13,2,Kabupaten Gayo Lues,age_group,45-49,,6284,jiwa,2024,registration,total_population,3.1.2,51,,45–49
+11.13,2,Kabupaten Gayo Lues,age_group,50-54,laki_laki,2799,jiwa,2024,registration,total_population,3.1.2,51,,50–54
+11.13,2,Kabupaten Gayo Lues,age_group,50-54,perempuan,2499,jiwa,2024,registration,total_population,3.1.2,51,,50–54
+11.13,2,Kabupaten Gayo Lues,age_group,50-54,,5298,jiwa,2024,registration,total_population,3.1.2,51,,50–54
+11.13,2,Kabupaten Gayo Lues,age_group,55-59,laki_laki,1772,jiwa,2024,registration,total_population,3.1.2,51,,55–59
+11.13,2,Kabupaten Gayo Lues,age_group,55-59,perempuan,1957,jiwa,2024,registration,total_population,3.1.2,51,,55–59
+11.13,2,Kabupaten Gayo Lues,age_group,55-59,,3729,jiwa,2024,registration,total_population,3.1.2,51,,55–59
+11.13,2,Kabupaten Gayo Lues,age_group,60-64,laki_laki,1326,jiwa,2024,registration,total_population,3.1.2,51,,60–64
+11.13,2,Kabupaten Gayo Lues,age_group,60-64,perempuan,1510,jiwa,2024,registration,total_population,3.1.2,51,,60–64
+11.13,2,Kabupaten Gayo Lues,age_group,60-64,,2836,jiwa,2024,registration,total_population,3.1.2,51,,60–64
+11.13,2,Kabupaten Gayo Lues,age_group,65-69,laki_laki,752,jiwa,2024,registration,total_population,3.1.2,51,,65–69
+11.13,2,Kabupaten Gayo Lues,age_group,65-69,perempuan,829,jiwa,2024,registration,total_population,3.1.2,51,,65–69
+11.13,2,Kabupaten Gayo Lues,age_group,65-69,,1581,jiwa,2024,registration,total_population,3.1.2,51,,65–69
+11.13,2,Kabupaten Gayo Lues,age_group,70-74,laki_laki,462,jiwa,2024,registration,total_population,3.1.2,51,,70–74
+11.13,2,Kabupaten Gayo Lues,age_group,70-74,perempuan,555,jiwa,2024,registration,total_population,3.1.2,51,,70–74
+11.13,2,Kabupaten Gayo Lues,age_group,70-74,,1017,jiwa,2024,registration,total_population,3.1.2,51,,70–74
+11.13,2,Kabupaten Gayo Lues,age_group,75+,laki_laki,545,jiwa,2024,registration,total_population,3.1.2,51,,75+
+11.13,2,Kabupaten Gayo Lues,age_group,75+,perempuan,834,jiwa,2024,registration,total_population,3.1.2,51,,75+
+11.13,2,Kabupaten Gayo Lues,age_group,75+,,1379,jiwa,2024,registration,total_population,3.1.2,51,,75+
+11.13,2,Gayo Lues,sex,laki_laki,,53360,jiwa,2024,registration,total_population,3.1.2,51,,Laki-Laki
+11.13,2,Gayo Lues,sex,perempuan,,52776,jiwa,2024,registration,total_population,3.1.2,51,,Perempuan
+11.13,2,Gayo Lues,total,total,,106136,jiwa,2024,registration,total_population,3.1.2,51,,
+11.13.02,3,Kutapanjang,religion,islam,,10278,jiwa,2024,registration,total_population,4.3.1,109,,Islam
+11.13.02,3,Kutapanjang,religion,kristen,,11,jiwa,2024,registration,total_population,4.3.1,109,,Protestan
+11.13.02,3,Kutapanjang,religion,katolik,,4,jiwa,2024,registration,total_population,4.3.1,109,,Katolik
+11.13.02,3,Kutapanjang,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Hindu
+11.13.02,3,Kutapanjang,religion,buddha,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Budha
+11.13.02,3,Kutapanjang,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Lainnya
+11.13.09,3,Blangjerango,religion,islam,,8022,jiwa,2024,registration,total_population,4.3.1,109,,Islam
+11.13.09,3,Blangjerango,religion,kristen,,15,jiwa,2024,registration,total_population,4.3.1,109,,Protestan
+11.13.09,3,Blangjerango,religion,katolik,,16,jiwa,2024,registration,total_population,4.3.1,109,,Katolik
+11.13.09,3,Blangjerango,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Hindu
+11.13.09,3,Blangjerango,religion,buddha,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Budha
+11.13.09,3,Blangjerango,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Lainnya
+11.13.01,3,Blangkejeren,religion,islam,,32188,jiwa,2024,registration,total_population,4.3.1,109,,Islam
+11.13.01,3,Blangkejeren,religion,kristen,,243,jiwa,2024,registration,total_population,4.3.1,109,,Protestan
+11.13.01,3,Blangkejeren,religion,katolik,,16,jiwa,2024,registration,total_population,4.3.1,109,,Katolik
+11.13.01,3,Blangkejeren,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Hindu
+11.13.01,3,Blangkejeren,religion,buddha,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Budha
+11.13.01,3,Blangkejeren,religion,lainnya,,1,jiwa,2024,registration,total_population,4.3.1,109,,Lainnya
+11.13.08,3,Dabun Gelang,religion,islam,,7376,jiwa,2024,registration,total_population,4.3.1,109,,Islam
+11.13.08,3,Dabun Gelang,religion,kristen,,60,jiwa,2024,registration,total_population,4.3.1,109,,Protestan
+11.13.08,3,Dabun Gelang,religion,katolik,,2,jiwa,2024,registration,total_population,4.3.1,109,,Katolik
+11.13.08,3,Dabun Gelang,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Hindu
+11.13.08,3,Dabun Gelang,religion,buddha,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Budha
+11.13.08,3,Dabun Gelang,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Lainnya
+11.13.06,3,Blang Pegayon,religion,islam,,7565,jiwa,2024,registration,total_population,4.3.1,109,,Islam
+11.13.06,3,Blang Pegayon,religion,kristen,,11,jiwa,2024,registration,total_population,4.3.1,109,,Protestan
+11.13.06,3,Blang Pegayon,religion,katolik,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Katolik
+11.13.06,3,Blang Pegayon,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Hindu
+11.13.06,3,Blang Pegayon,religion,buddha,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Budha
+11.13.06,3,Blang Pegayon,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Lainnya
+11.13.05,3,Pining,religion,islam,,5311,jiwa,2024,registration,total_population,4.3.1,109,,Islam
+11.13.05,3,Pining,religion,kristen,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Protestan
+11.13.05,3,Pining,religion,katolik,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Katolik
+11.13.05,3,Pining,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Hindu
+11.13.05,3,Pining,religion,buddha,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Budha
+11.13.05,3,Pining,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Lainnya
+11.13.03,3,Rikit Gaib,religion,islam,,5134,jiwa,2024,registration,total_population,4.3.1,109,,Islam
+11.13.03,3,Rikit Gaib,religion,kristen,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Protestan
+11.13.03,3,Rikit Gaib,religion,katolik,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Katolik
+11.13.03,3,Rikit Gaib,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Hindu
+11.13.03,3,Rikit Gaib,religion,buddha,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Budha
+11.13.03,3,Rikit Gaib,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Lainnya
+11.13.11,3,Pantan Cuaca,religion,islam,,4946,jiwa,2024,registration,total_population,4.3.1,109,,Islam
+11.13.11,3,Pantan Cuaca,religion,kristen,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Protestan
+11.13.11,3,Pantan Cuaca,religion,katolik,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Katolik
+11.13.11,3,Pantan Cuaca,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Hindu
+11.13.11,3,Pantan Cuaca,religion,buddha,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Budha
+11.13.11,3,Pantan Cuaca,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Lainnya
+11.13.04,3,Terangun,religion,islam,,10075,jiwa,2024,registration,total_population,4.3.1,109,,Islam
+11.13.04,3,Terangun,religion,kristen,,2,jiwa,2024,registration,total_population,4.3.1,109,,Protestan
+11.13.04,3,Terangun,religion,katolik,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Katolik
+11.13.04,3,Terangun,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Hindu
+11.13.04,3,Terangun,religion,buddha,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Budha
+11.13.04,3,Terangun,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Lainnya
+11.13,2,Gayo Lues,religion,islam,,107111,jiwa,2024,registration,total_population,4.3.1,109,,Islam
+11.13,2,Gayo Lues,religion,kristen,,356,jiwa,2024,registration,total_population,4.3.1,109,,Protestan
+11.13,2,Gayo Lues,religion,katolik,,38,jiwa,2024,registration,total_population,4.3.1,109,,Katolik
+11.13,2,Gayo Lues,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Hindu
+11.13,2,Gayo Lues,religion,buddha,,0,jiwa,2024,registration,total_population,4.3.1,109,nil,Budha
+11.13,2,Gayo Lues,religion,lainnya,,1,jiwa,2024,registration,total_population,4.3.1,109,,Lainnya
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/padi_padian,,123366,rupiah,2023,survey_estimate,per_capita,10.1,242,,Padi-padian
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/padi_padian,,142733,rupiah,2024,survey_estimate,per_capita,10.1,242,,Padi-padian
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/umbi_umbian,,8640,rupiah,2023,survey_estimate,per_capita,10.1,242,,Umbi-umbian
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/umbi_umbian,,9435,rupiah,2024,survey_estimate,per_capita,10.1,242,,Umbi-umbian
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,87993,rupiah,2023,survey_estimate,per_capita,10.1,242,,Ikan/udang/cumi/kerang
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,94686,rupiah,2024,survey_estimate,per_capita,10.1,242,,Ikan/udang/cumi/kerang
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/daging,,41400,rupiah,2023,survey_estimate,per_capita,10.1,242,,Daging
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/daging,,40929,rupiah,2024,survey_estimate,per_capita,10.1,242,,Daging
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/telur_dan_susu,,27387,rupiah,2023,survey_estimate,per_capita,10.1,242,,Telur dan susu
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/telur_dan_susu,,28657,rupiah,2024,survey_estimate,per_capita,10.1,242,,Telur dan susu
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/sayur_sayuran,,58781,rupiah,2023,survey_estimate,per_capita,10.1,242,,Sayur-sayuran
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/sayur_sayuran,,62331,rupiah,2024,survey_estimate,per_capita,10.1,242,,Sayur-sayuran
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/kacang_kacangan,,8373,rupiah,2023,survey_estimate,per_capita,10.1,242,,Kacang-kacangan
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/kacang_kacangan,,9595,rupiah,2024,survey_estimate,per_capita,10.1,242,,Kacang-kacangan
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/buah_buahan,,37868,rupiah,2023,survey_estimate,per_capita,10.1,242,,Buah-buahan
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/buah_buahan,,37419,rupiah,2024,survey_estimate,per_capita,10.1,242,,Buah-buahan
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/minyak_dan_kelapa,,17647,rupiah,2023,survey_estimate,per_capita,10.1,242,,Minyak dan kelapa
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20659,rupiah,2024,survey_estimate,per_capita,10.1,242,,Minyak dan kelapa
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/bahan_minuman,,28001,rupiah,2023,survey_estimate,per_capita,10.1,242,,Bahan minuman
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/bahan_minuman,,31440,rupiah,2024,survey_estimate,per_capita,10.1,242,,Bahan minuman
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/bumbu_bumbuan,,16958,rupiah,2023,survey_estimate,per_capita,10.1,242,,Bumbu-bumbuan
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/bumbu_bumbuan,,15642,rupiah,2024,survey_estimate,per_capita,10.1,242,,Bumbu-bumbuan
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/konsumsi_lainnya,,10180,rupiah,2023,survey_estimate,per_capita,10.1,242,,Konsumsi lainnya
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/konsumsi_lainnya,,11658,rupiah,2024,survey_estimate,per_capita,10.1,242,,Konsumsi lainnya
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,188096,rupiah,2023,survey_estimate,per_capita,10.1,242,,Makanan dan minuman jadi
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,213884,rupiah,2024,survey_estimate,per_capita,10.1,242,,Makanan dan minuman jadi
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/rokok,,92940,rupiah,2023,survey_estimate,per_capita,10.1,242,,Rokok
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/rokok,,120343,rupiah,2024,survey_estimate,per_capita,10.1,242,,Rokok
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/jumlah_makanan,,747630,rupiah,2023,survey_estimate,per_capita,10.1,242,,Jumlah makanan
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/jumlah_makanan,,839412,rupiah,2024,survey_estimate,per_capita,10.1,242,,Jumlah makanan
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,216165,rupiah,2023,survey_estimate,per_capita,10.1,242,,Perumahan dan fasilitas rumah tangga
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,277534,rupiah,2024,survey_estimate,per_capita,10.1,242,,Perumahan dan fasilitas rumah tangga
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,118745,rupiah,2023,survey_estimate,per_capita,10.1,242,,Aneka barang dan jasa
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,120835,rupiah,2024,survey_estimate,per_capita,10.1,242,,Aneka barang dan jasa
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,61117,rupiah,2023,survey_estimate,per_capita,10.1,242,,"Pakaian, alas kaki, dan tutup kepala"
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,63609,rupiah,2024,survey_estimate,per_capita,10.1,242,,"Pakaian, alas kaki, dan tutup kepala"
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/barang_tahan_lama,,26868,rupiah,2023,survey_estimate,per_capita,10.1,242,,Barang tahan lama
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/barang_tahan_lama,,31829,rupiah,2024,survey_estimate,per_capita,10.1,242,,Barang tahan lama
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,53090,rupiah,2023,survey_estimate,per_capita,10.1,242,,"Pajak, pungutan, dan asuransi"
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,54620,rupiah,2024,survey_estimate,per_capita,10.1,242,,"Pajak, pungutan, dan asuransi"
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,10360,rupiah,2023,survey_estimate,per_capita,10.1,242,,Keperluan pesta dan upacara/kenduri
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,28628,rupiah,2024,survey_estimate,per_capita,10.1,242,,Keperluan pesta dan upacara/kenduri
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,486345,rupiah,2023,survey_estimate,per_capita,10.1,242,,Jumlah bukan makanan
+11.13,2,Kabupaten Gayo Lues,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,577056,rupiah,2024,survey_estimate,per_capita,10.1,242,,Jumlah bukan makanan
+11.13,2,Kabupaten Gayo Lues,expenditure,total,,1233975,rupiah,2023,survey_estimate,per_capita,10.1,242,,
+11.13,2,Kabupaten Gayo Lues,expenditure,total,,1416468,rupiah,2024,survey_estimate,per_capita,10.1,242,,

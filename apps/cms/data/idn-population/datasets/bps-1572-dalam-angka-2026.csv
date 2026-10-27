@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.72.04,3,Tanah Kampung,total,total,,11257,jiwa,2025,registration,total_population,3.1.1,64,,
+15.72.05,3,Kumun Debai,total,total,,11275,jiwa,2025,registration,total_population,3.1.1,64,,
+15.72.01,3,Sungai Penuh,total,total,,10605,jiwa,2025,registration,total_population,3.1.1,64,,
+15.72.06,3,Pondok Tinggi,total,total,,18812,jiwa,2025,registration,total_population,3.1.1,64,,
+15.72.08,3,Sungai Bungkal,total,total,,11420,jiwa,2025,registration,total_population,3.1.1,64,,
+15.72.03,3,Hamparan Rawang,total,total,,16316,jiwa,2025,registration,total_population,3.1.1,64,,
+15.72.02,3,Pesisir Bukit,total,total,,13028,jiwa,2025,registration,total_population,3.1.1,64,,
+15.72.07,3,Koto Baru,total,total,,9995,jiwa,2025,registration,total_population,3.1.1,64,,
+15.72,2,Kota Sungai Penuh,total,total,,102708,jiwa,2025,registration,total_population,3.1.1,64,,
+15.72,2,Kota Sungai Penuh,age_group,0-4,laki_laki,3034,jiwa,2025,registration,total_population,3.1.2,67,,0 – 4
+15.72,2,Kota Sungai Penuh,age_group,0-4,perempuan,2788,jiwa,2025,registration,total_population,3.1.2,67,,0 – 4
+15.72,2,Kota Sungai Penuh,age_group,0-4,,5822,jiwa,2025,registration,total_population,3.1.2,67,,0 – 4
+15.72,2,Kota Sungai Penuh,age_group,5-9,laki_laki,3899,jiwa,2025,registration,total_population,3.1.2,67,,5 – 9
+15.72,2,Kota Sungai Penuh,age_group,5-9,perempuan,3607,jiwa,2025,registration,total_population,3.1.2,67,,5 – 9
+15.72,2,Kota Sungai Penuh,age_group,5-9,,7506,jiwa,2025,registration,total_population,3.1.2,67,,5 – 9
+15.72,2,Kota Sungai Penuh,age_group,10-14,laki_laki,4057,jiwa,2025,registration,total_population,3.1.2,67,,10 – 14
+15.72,2,Kota Sungai Penuh,age_group,10-14,perempuan,3637,jiwa,2025,registration,total_population,3.1.2,67,,10 – 14
+15.72,2,Kota Sungai Penuh,age_group,10-14,,7694,jiwa,2025,registration,total_population,3.1.2,67,,10 – 14
+15.72,2,Kota Sungai Penuh,age_group,15-19,laki_laki,4244,jiwa,2025,registration,total_population,3.1.2,67,,15 – 19
+15.72,2,Kota Sungai Penuh,age_group,15-19,perempuan,3926,jiwa,2025,registration,total_population,3.1.2,67,,15 – 19
+15.72,2,Kota Sungai Penuh,age_group,15-19,,8170,jiwa,2025,registration,total_population,3.1.2,67,,15 – 19
+15.72,2,Kota Sungai Penuh,age_group,20-24,laki_laki,4238,jiwa,2025,registration,total_population,3.1.2,67,,20 – 24
+15.72,2,Kota Sungai Penuh,age_group,20-24,perempuan,4076,jiwa,2025,registration,total_population,3.1.2,67,,20 – 24
+15.72,2,Kota Sungai Penuh,age_group,20-24,,8314,jiwa,2025,registration,total_population,3.1.2,67,,20 – 24
+15.72,2,Kota Sungai Penuh,age_group,25-29,laki_laki,4028,jiwa,2025,registration,total_population,3.1.2,67,,25 – 29
+15.72,2,Kota Sungai Penuh,age_group,25-29,perempuan,3925,jiwa,2025,registration,total_population,3.1.2,67,,25 – 29
+15.72,2,Kota Sungai Penuh,age_group,25-29,,7953,jiwa,2025,registration,total_population,3.1.2,67,,25 – 29
+15.72,2,Kota Sungai Penuh,age_group,30-34,laki_laki,3527,jiwa,2025,registration,total_population,3.1.2,67,,30 – 34
+15.72,2,Kota Sungai Penuh,age_group,30-34,perempuan,3373,jiwa,2025,registration,total_population,3.1.2,67,,30 – 34
+15.72,2,Kota Sungai Penuh,age_group,30-34,,6900,jiwa,2025,registration,total_population,3.1.2,67,,30 – 34
+15.72,2,Kota Sungai Penuh,age_group,35-39,laki_laki,3360,jiwa,2025,registration,total_population,3.1.2,67,,35 – 39
+15.72,2,Kota Sungai Penuh,age_group,35-39,perempuan,3246,jiwa,2025,registration,total_population,3.1.2,67,,35 – 39
+15.72,2,Kota Sungai Penuh,age_group,35-39,,6606,jiwa,2025,registration,total_population,3.1.2,67,,35 – 39
+15.72,2,Kota Sungai Penuh,age_group,40-44,laki_laki,3827,jiwa,2025,registration,total_population,3.1.2,67,,40 – 44
+15.72,2,Kota Sungai Penuh,age_group,40-44,perempuan,3805,jiwa,2025,registration,total_population,3.1.2,67,,40 – 44
+15.72,2,Kota Sungai Penuh,age_group,40-44,,7632,jiwa,2025,registration,total_population,3.1.2,67,,40 – 44
+15.72,2,Kota Sungai Penuh,age_group,45-49,laki_laki,4041,jiwa,2025,registration,total_population,3.1.2,67,,45 – 49
+15.72,2,Kota Sungai Penuh,age_group,45-49,perempuan,4021,jiwa,2025,registration,total_population,3.1.2,67,,45 – 49
+15.72,2,Kota Sungai Penuh,age_group,45-49,,8062,jiwa,2025,registration,total_population,3.1.2,67,,45 – 49
+15.72,2,Kota Sungai Penuh,age_group,50-54,laki_laki,3595,jiwa,2025,registration,total_population,3.1.2,67,,50 – 54
+15.72,2,Kota Sungai Penuh,age_group,50-54,perempuan,3471,jiwa,2025,registration,total_population,3.1.2,67,,50 – 54
+15.72,2,Kota Sungai Penuh,age_group,50-54,,7066,jiwa,2025,registration,total_population,3.1.2,67,,50 – 54
+15.72,2,Kota Sungai Penuh,age_group,55-59,laki_laki,2665,jiwa,2025,registration,total_population,3.1.2,67,,55 – 59
+15.72,2,Kota Sungai Penuh,age_group,55-59,perempuan,2605,jiwa,2025,registration,total_population,3.1.2,67,,55 – 59
+15.72,2,Kota Sungai Penuh,age_group,55-59,,5270,jiwa,2025,registration,total_population,3.1.2,67,,55 – 59
+15.72,2,Kota Sungai Penuh,age_group,60-64,laki_laki,2143,jiwa,2025,registration,total_population,3.1.2,67,,60 – 64
+15.72,2,Kota Sungai Penuh,age_group,60-64,perempuan,2426,jiwa,2025,registration,total_population,3.1.2,67,,60 – 64
+15.72,2,Kota Sungai Penuh,age_group,60-64,,4569,jiwa,2025,registration,total_population,3.1.2,67,,60 – 64
+15.72,2,Kota Sungai Penuh,age_group,65-69,laki_laki,1795,jiwa,2025,registration,total_population,3.1.2,67,,65 – 69
+15.72,2,Kota Sungai Penuh,age_group,65-69,perempuan,2142,jiwa,2025,registration,total_population,3.1.2,67,,65 – 69
+15.72,2,Kota Sungai Penuh,age_group,65-69,,3937,jiwa,2025,registration,total_population,3.1.2,67,,65 – 69
+15.72,2,Kota Sungai Penuh,age_group,70-74,laki_laki,1371,jiwa,2025,registration,total_population,3.1.2,67,,70 – 74
+15.72,2,Kota Sungai Penuh,age_group,70-74,perempuan,1697,jiwa,2025,registration,total_population,3.1.2,67,,70 – 74
+15.72,2,Kota Sungai Penuh,age_group,70-74,,3068,jiwa,2025,registration,total_population,3.1.2,67,,70 – 74
+15.72,2,Kota Sungai Penuh,age_group,75+,laki_laki,1731,jiwa,2025,registration,total_population,3.1.2,67,,75+
+15.72,2,Kota Sungai Penuh,age_group,75+,perempuan,2408,jiwa,2025,registration,total_population,3.1.2,67,,75+
+15.72,2,Kota Sungai Penuh,age_group,75+,,4139,jiwa,2025,registration,total_population,3.1.2,67,,75+
+15.72.01,3,Kota Sungai Penuh,sex,laki_laki,,51555,jiwa,2025,registration,total_population,3.1.2,67,,Laki-laki
+15.72.01,3,Kota Sungai Penuh,sex,perempuan,,51153,jiwa,2025,registration,total_population,3.1.2,67,,Perempuan
+15.72.01,3,Kota Sungai Penuh,total,total,,102708,jiwa,2025,registration,total_population,3.1.2,67,,

@@ -1,0 +1,4 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.71.05,3,Cempaka Putih,sex,laki_laki,,47287,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/
+31.71.05,3,Cempaka Putih,sex,perempuan,,47957,jiwa,2025,registration,total_population,3.1,31,,Perempuan/
+31.71.05,3,Cempaka Putih,total,total,,95244,jiwa,2025,registration,total_population,3.1,31,,

@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.10.08.2010,4,MENGKIRAU,sex,laki_laki,,272,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+14.10.08.2010,4,MENGKIRAU,sex,perempuan,,250,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+14.10.08.2010,4,MENGKIRAU,total,total,,522,jiwa,2025,registration,total_population,3.1,24,,
+14.10.08.2009,4,MENGKOPOT,sex,laki_laki,,652,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+14.10.08.2009,4,MENGKOPOT,sex,perempuan,,592,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+14.10.08.2009,4,MENGKOPOT,total,total,,1244,jiwa,2025,registration,total_population,3.1,24,,
+14.10.08.2008,4,TANJUNG PISANG,sex,laki_laki,,593,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+14.10.08.2008,4,TANJUNG PISANG,sex,perempuan,,575,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+14.10.08.2008,4,TANJUNG PISANG,total,total,,1168,jiwa,2025,registration,total_population,3.1,24,,
+14.10.08.2007,4,SELAT AKAR,sex,laki_laki,,1135,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+14.10.08.2007,4,SELAT AKAR,sex,perempuan,,1076,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+14.10.08.2007,4,SELAT AKAR,total,total,,2211,jiwa,2025,registration,total_population,3.1,24,,
+14.10.08.2006,4,BANDUL,sex,laki_laki,,817,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+14.10.08.2006,4,BANDUL,sex,perempuan,,761,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+14.10.08.2006,4,BANDUL,total,total,,1578,jiwa,2025,registration,total_population,3.1,24,,
+14.10.08.2005,4,KUDAP,sex,laki_laki,,511,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+14.10.08.2005,4,KUDAP,sex,perempuan,,500,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+14.10.08.2005,4,KUDAP,total,total,,1011,jiwa,2025,registration,total_population,3.1,24,,
+14.10.08.2004,4,DEDAP,sex,laki_laki,,1232,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+14.10.08.2004,4,DEDAP,sex,perempuan,,1140,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+14.10.08.2004,4,DEDAP,total,total,,2372,jiwa,2025,registration,total_population,3.1,24,,
+14.10.08.2003,4,MEKAR DELIMA,sex,laki_laki,,1267,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+14.10.08.2003,4,MEKAR DELIMA,sex,perempuan,,1172,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+14.10.08.2003,4,MEKAR DELIMA,total,total,,2439,jiwa,2025,registration,total_population,3.1,24,,
+14.10.08.2002,4,PUTRI PUYU,sex,laki_laki,,1122,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+14.10.08.2002,4,PUTRI PUYU,sex,perempuan,,1014,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+14.10.08.2002,4,PUTRI PUYU,total,total,,2136,jiwa,2025,registration,total_population,3.1,24,,
+14.10.08.2001,4,TANJUNG PADANG,sex,laki_laki,,1695,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+14.10.08.2001,4,TANJUNG PADANG,sex,perempuan,,1582,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+14.10.08.2001,4,TANJUNG PADANG,total,total,,3277,jiwa,2025,registration,total_population,3.1,24,,
+14.10.08,3,TASIK PUTRI PUYU,sex,laki_laki,,9296,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+14.10.08,3,TASIK PUTRI PUYU,sex,perempuan,,8662,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+14.10.08,3,TASIK PUTRI PUYU,total,total,,17958,jiwa,2025,registration,total_population,3.1,24,,

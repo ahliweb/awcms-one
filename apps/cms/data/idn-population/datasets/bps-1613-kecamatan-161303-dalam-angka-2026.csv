@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.13.03.2001,4,Tebing Tinggi,sex,laki_laki,,1480,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.13.03.2001,4,Tebing Tinggi,sex,perempuan,,1312,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.13.03.2001,4,Tebing Tinggi,total,total,,2792,jiwa,2025,registration,total_population,3.1,22,,
+16.13.03.2002,4,Jadi Mulya,sex,laki_laki,,510,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.13.03.2002,4,Jadi Mulya,sex,perempuan,,493,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.13.03.2002,4,Jadi Mulya,total,total,,1003,jiwa,2025,registration,total_population,3.1,22,,
+16.13.03.2004,4,Mulya Jaya,sex,laki_laki,,985,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.13.03.2004,4,Mulya Jaya,sex,perempuan,,942,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.13.03.2004,4,Mulya Jaya,total,total,,1927,jiwa,2025,registration,total_population,3.1,22,,
+16.13.03.2005,4,Sumber Makmur,sex,laki_laki,,1775,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.13.03.2005,4,Sumber Makmur,sex,perempuan,,1704,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.13.03.2005,4,Sumber Makmur,total,total,,3479,jiwa,2025,registration,total_population,3.1,22,,
+16.13.03.2006,4,Sri Jaya Makmur,sex,laki_laki,,1935,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.13.03.2006,4,Sri Jaya Makmur,sex,perempuan,,1772,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.13.03.2006,4,Sri Jaya Makmur,total,total,,3707,jiwa,2025,registration,total_population,3.1,22,,
+16.13.03.2007,4,Kelumpang Jaya,sex,laki_laki,,1043,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.13.03.2007,4,Kelumpang Jaya,sex,perempuan,,957,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.13.03.2007,4,Kelumpang Jaya,total,total,,2000,jiwa,2025,registration,total_population,3.1,22,,
+16.13.03.2008,4,Bumi Makmur,sex,laki_laki,,2812,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.13.03.2008,4,Bumi Makmur,sex,perempuan,,2669,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.13.03.2008,4,Bumi Makmur,total,total,,5481,jiwa,2025,registration,total_population,3.1,22,,
+16.13.03.2009,4,Sumber Sari,sex,laki_laki,,858,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.13.03.2009,4,Sumber Sari,sex,perempuan,,825,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.13.03.2009,4,Sumber Sari,total,total,,1683,jiwa,2025,registration,total_population,3.1,22,,
+16.13.03.2010,4,Krani Jaya,sex,laki_laki,,861,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.13.03.2010,4,Krani Jaya,sex,perempuan,,804,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.13.03.2010,4,Krani Jaya,total,total,,1665,jiwa,2025,registration,total_population,3.1,22,,
+16.13.03.2011,4,Jadi Mulya I,sex,laki_laki,,910,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.13.03.2011,4,Jadi Mulya I,sex,perempuan,,855,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.13.03.2011,4,Jadi Mulya I,total,total,,1765,jiwa,2025,registration,total_population,3.1,22,,
+16.13.03.1003,4,Karya Makmur,sex,laki_laki,,1988,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.13.03.1003,4,Karya Makmur,sex,perempuan,,1912,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.13.03.1003,4,Karya Makmur,total,total,,3900,jiwa,2025,registration,total_population,3.1,22,,
+16.13.03,3,Nibung,sex,laki_laki,,15157,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.13.03,3,Nibung,sex,perempuan,,14245,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.13.03,3,Nibung,total,total,,29402,jiwa,2025,registration,total_population,3.1,22,,
+16.13.03,3,Nibung,sex,laki_laki,,15157,jiwa,2025,registration,total_population,3.2,24,,Laki-Laki
+16.13.03,3,Nibung,sex,perempuan,,14245,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+16.13.03,3,Nibung,total,total,,29402,jiwa,2025,registration,total_population,3.2,24,,

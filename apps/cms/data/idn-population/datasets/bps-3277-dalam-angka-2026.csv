@@ -1,0 +1,185 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.77.01,3,Cimahi Selatan,total,total,,240990,jiwa,2020,census,total_population,3.1.1,75,,
+32.77.01,3,Cimahi Selatan,total,total,,255972,jiwa,2025,projection,total_population,3.1.1,75,,
+32.77.01,3,Cimahi Selatan,total,total,,259171,jiwa,2026,projection,total_population,3.1.1,75,,
+32.77.02,3,Cimahi Tengah,total,total,,161758,jiwa,2020,census,total_population,3.1.1,75,,
+32.77.02,3,Cimahi Tengah,total,total,,168197,jiwa,2025,projection,total_population,3.1.1,75,,
+32.77.02,3,Cimahi Tengah,total,total,,170300,jiwa,2026,projection,total_population,3.1.1,75,,
+32.77.03,3,Cimahi Utara,total,total,,165652,jiwa,2020,census,total_population,3.1.1,75,,
+32.77.03,3,Cimahi Utara,total,total,,182206,jiwa,2025,projection,total_population,3.1.1,75,,
+32.77.03,3,Cimahi Utara,total,total,,184483,jiwa,2026,projection,total_population,3.1.1,75,,
+32.77,2,Kota Cimahi,total,total,,568400,jiwa,2020,census,total_population,3.1.1,75,,
+32.77,2,Kota Cimahi,total,total,,606375,jiwa,2025,projection,total_population,3.1.1,75,,
+32.77,2,Kota Cimahi,total,total,,613954,jiwa,2026,projection,total_population,3.1.1,75,,
+32.77,2,Kota Cimahi,age_group,0-4,laki_laki,23873,jiwa,2025,projection,total_population,3.1.2,80,,0–4
+32.77,2,Kota Cimahi,age_group,0-4,laki_laki,23907,jiwa,2026,projection,total_population,3.1.2,80,,0–4
+32.77,2,Kota Cimahi,age_group,0-4,perempuan,22919,jiwa,2025,projection,total_population,3.1.2,80,,0–4
+32.77,2,Kota Cimahi,age_group,0-4,perempuan,22955,jiwa,2026,projection,total_population,3.1.2,80,,0–4
+32.77,2,Kota Cimahi,age_group,0-4,,46792,jiwa,2025,projection,total_population,3.1.2,80,,0–4
+32.77,2,Kota Cimahi,age_group,0-4,,46862,jiwa,2026,projection,total_population,3.1.2,80,,0–4
+32.77,2,Kota Cimahi,age_group,5-9,laki_laki,21443,jiwa,2025,projection,total_population,3.1.2,80,,5–9
+32.77,2,Kota Cimahi,age_group,5-9,laki_laki,21991,jiwa,2026,projection,total_population,3.1.2,80,,5–9
+32.77,2,Kota Cimahi,age_group,5-9,perempuan,20702,jiwa,2025,projection,total_population,3.1.2,80,,5–9
+32.77,2,Kota Cimahi,age_group,5-9,perempuan,21268,jiwa,2026,projection,total_population,3.1.2,80,,5–9
+32.77,2,Kota Cimahi,age_group,5-9,,42145,jiwa,2025,projection,total_population,3.1.2,80,,5–9
+32.77,2,Kota Cimahi,age_group,5-9,,43259,jiwa,2026,projection,total_population,3.1.2,80,,5–9
+32.77,2,Kota Cimahi,age_group,10-14,laki_laki,21613,jiwa,2025,projection,total_population,3.1.2,80,,10–14
+32.77,2,Kota Cimahi,age_group,10-14,laki_laki,21339,jiwa,2026,projection,total_population,3.1.2,80,,10–14
+32.77,2,Kota Cimahi,age_group,10-14,perempuan,20761,jiwa,2025,projection,total_population,3.1.2,80,,10–14
+32.77,2,Kota Cimahi,age_group,10-14,perempuan,20522,jiwa,2026,projection,total_population,3.1.2,80,,10–14
+32.77,2,Kota Cimahi,age_group,10-14,,42374,jiwa,2025,projection,total_population,3.1.2,80,,10–14
+32.77,2,Kota Cimahi,age_group,10-14,,41861,jiwa,2026,projection,total_population,3.1.2,80,,10–14
+32.77,2,Kota Cimahi,age_group,15-19,laki_laki,24339,jiwa,2025,projection,total_population,3.1.2,80,,15–19
+32.77,2,Kota Cimahi,age_group,15-19,laki_laki,23907,jiwa,2026,projection,total_population,3.1.2,80,,15–19
+32.77,2,Kota Cimahi,age_group,15-19,perempuan,22883,jiwa,2025,projection,total_population,3.1.2,80,,15–19
+32.77,2,Kota Cimahi,age_group,15-19,perempuan,22501,jiwa,2026,projection,total_population,3.1.2,80,,15–19
+32.77,2,Kota Cimahi,age_group,15-19,,47222,jiwa,2025,projection,total_population,3.1.2,80,,15–19
+32.77,2,Kota Cimahi,age_group,15-19,,46408,jiwa,2026,projection,total_population,3.1.2,80,,15–19
+32.77,2,Kota Cimahi,age_group,20-24,laki_laki,25289,jiwa,2025,projection,total_population,3.1.2,80,,20–24
+32.77,2,Kota Cimahi,age_group,20-24,laki_laki,25311,jiwa,2026,projection,total_population,3.1.2,80,,20–24
+32.77,2,Kota Cimahi,age_group,20-24,perempuan,24214,jiwa,2025,projection,total_population,3.1.2,80,,20–24
+32.77,2,Kota Cimahi,age_group,20-24,perempuan,24111,jiwa,2026,projection,total_population,3.1.2,80,,20–24
+32.77,2,Kota Cimahi,age_group,20-24,,49503,jiwa,2025,projection,total_population,3.1.2,80,,20–24
+32.77,2,Kota Cimahi,age_group,20-24,,49422,jiwa,2026,projection,total_population,3.1.2,80,,20–24
+32.77,2,Kota Cimahi,age_group,25-29,laki_laki,25178,jiwa,2025,projection,total_population,3.1.2,80,,25–29
+32.77,2,Kota Cimahi,age_group,25-29,laki_laki,25343,jiwa,2026,projection,total_population,3.1.2,80,,25–29
+32.77,2,Kota Cimahi,age_group,25-29,perempuan,24909,jiwa,2025,projection,total_population,3.1.2,80,,25–29
+32.77,2,Kota Cimahi,age_group,25-29,perempuan,24999,jiwa,2026,projection,total_population,3.1.2,80,,25–29
+32.77,2,Kota Cimahi,age_group,25-29,,50087,jiwa,2025,projection,total_population,3.1.2,80,,25–29
+32.77,2,Kota Cimahi,age_group,25-29,,50342,jiwa,2026,projection,total_population,3.1.2,80,,25–29
+32.77,2,Kota Cimahi,age_group,30-34,laki_laki,25210,jiwa,2025,projection,total_population,3.1.2,80,,30–34
+32.77,2,Kota Cimahi,age_group,30-34,laki_laki,25464,jiwa,2026,projection,total_population,3.1.2,80,,30–34
+32.77,2,Kota Cimahi,age_group,30-34,perempuan,24078,jiwa,2025,projection,total_population,3.1.2,80,,30–34
+32.77,2,Kota Cimahi,age_group,30-34,perempuan,24525,jiwa,2026,projection,total_population,3.1.2,80,,30–34
+32.77,2,Kota Cimahi,age_group,30-34,,49288,jiwa,2025,projection,total_population,3.1.2,80,,30–34
+32.77,2,Kota Cimahi,age_group,30-34,,49989,jiwa,2026,projection,total_population,3.1.2,80,,30–34
+32.77,2,Kota Cimahi,age_group,35-39,laki_laki,23157,jiwa,2025,projection,total_population,3.1.2,80,,35–39
+32.77,2,Kota Cimahi,age_group,35-39,laki_laki,23555,jiwa,2026,projection,total_population,3.1.2,80,,35–39
+32.77,2,Kota Cimahi,age_group,35-39,perempuan,21476,jiwa,2025,projection,total_population,3.1.2,80,,35–39
+32.77,2,Kota Cimahi,age_group,35-39,perempuan,21830,jiwa,2026,projection,total_population,3.1.2,80,,35–39
+32.77,2,Kota Cimahi,age_group,35-39,,44633,jiwa,2025,projection,total_population,3.1.2,80,,35–39
+32.77,2,Kota Cimahi,age_group,35-39,,45385,jiwa,2026,projection,total_population,3.1.2,80,,35–39
+32.77,2,Kota Cimahi,age_group,40-44,laki_laki,22441,jiwa,2025,projection,total_population,3.1.2,80,,40–44
+32.77,2,Kota Cimahi,age_group,40-44,laki_laki,22445,jiwa,2026,projection,total_population,3.1.2,80,,40–44
+32.77,2,Kota Cimahi,age_group,40-44,perempuan,21705,jiwa,2025,projection,total_population,3.1.2,80,,40–44
+32.77,2,Kota Cimahi,age_group,40-44,perempuan,21512,jiwa,2026,projection,total_population,3.1.2,80,,40–44
+32.77,2,Kota Cimahi,age_group,40-44,,44146,jiwa,2025,projection,total_population,3.1.2,80,,40–44
+32.77,2,Kota Cimahi,age_group,40-44,,43957,jiwa,2026,projection,total_population,3.1.2,80,,40–44
+32.77,2,Kota Cimahi,age_group,45-49,laki_laki,22637,jiwa,2025,projection,total_population,3.1.2,80,,45–49
+32.77,2,Kota Cimahi,age_group,45-49,laki_laki,22727,jiwa,2026,projection,total_population,3.1.2,80,,45–49
+32.77,2,Kota Cimahi,age_group,45-49,perempuan,22598,jiwa,2025,projection,total_population,3.1.2,80,,45–49
+32.77,2,Kota Cimahi,age_group,45-49,perempuan,22640,jiwa,2026,projection,total_population,3.1.2,80,,45–49
+32.77,2,Kota Cimahi,age_group,45-49,,45235,jiwa,2025,projection,total_population,3.1.2,80,,45–49
+32.77,2,Kota Cimahi,age_group,45-49,,45367,jiwa,2026,projection,total_population,3.1.2,80,,45–49
+32.77,2,Kota Cimahi,age_group,50-54,laki_laki,20182,jiwa,2025,projection,total_population,3.1.2,80,,50–54
+32.77,2,Kota Cimahi,age_group,50-54,laki_laki,20699,jiwa,2026,projection,total_population,3.1.2,80,,50–54
+32.77,2,Kota Cimahi,age_group,50-54,perempuan,20246,jiwa,2025,projection,total_population,3.1.2,80,,50–54
+32.77,2,Kota Cimahi,age_group,50-54,perempuan,20746,jiwa,2026,projection,total_population,3.1.2,80,,50–54
+32.77,2,Kota Cimahi,age_group,50-54,,40428,jiwa,2025,projection,total_population,3.1.2,80,,50–54
+32.77,2,Kota Cimahi,age_group,50-54,,41445,jiwa,2026,projection,total_population,3.1.2,80,,50–54
+32.77,2,Kota Cimahi,age_group,55-59,laki_laki,17093,jiwa,2025,projection,total_population,3.1.2,80,,55–59
+32.77,2,Kota Cimahi,age_group,55-59,laki_laki,17627,jiwa,2026,projection,total_population,3.1.2,80,,55–59
+32.77,2,Kota Cimahi,age_group,55-59,perempuan,17566,jiwa,2025,projection,total_population,3.1.2,80,,55–59
+32.77,2,Kota Cimahi,age_group,55-59,perempuan,18077,jiwa,2026,projection,total_population,3.1.2,80,,55–59
+32.77,2,Kota Cimahi,age_group,55-59,,34659,jiwa,2025,projection,total_population,3.1.2,80,,55–59
+32.77,2,Kota Cimahi,age_group,55-59,,35704,jiwa,2026,projection,total_population,3.1.2,80,,55–59
+32.77,2,Kota Cimahi,age_group,60-64,laki_laki,12985,jiwa,2025,projection,total_population,3.1.2,80,,60–64
+32.77,2,Kota Cimahi,age_group,60-64,laki_laki,13540,jiwa,2026,projection,total_population,3.1.2,80,,60–64
+32.77,2,Kota Cimahi,age_group,60-64,perempuan,14015,jiwa,2025,projection,total_population,3.1.2,80,,60–64
+32.77,2,Kota Cimahi,age_group,60-64,perempuan,14695,jiwa,2026,projection,total_population,3.1.2,80,,60–64
+32.77,2,Kota Cimahi,age_group,60-64,,27000,jiwa,2025,projection,total_population,3.1.2,80,,60–64
+32.77,2,Kota Cimahi,age_group,60-64,,28235,jiwa,2026,projection,total_population,3.1.2,80,,60–64
+32.77,2,Kota Cimahi,age_group,65-69,laki_laki,9507,jiwa,2025,projection,total_population,3.1.2,80,,65–69
+32.77,2,Kota Cimahi,age_group,65-69,laki_laki,9931,jiwa,2026,projection,total_population,3.1.2,80,,65–69
+32.77,2,Kota Cimahi,age_group,65-69,perempuan,9712,jiwa,2025,projection,total_population,3.1.2,80,,65–69
+32.77,2,Kota Cimahi,age_group,65-69,perempuan,10315,jiwa,2026,projection,total_population,3.1.2,80,,65–69
+32.77,2,Kota Cimahi,age_group,65-69,,19219,jiwa,2025,projection,total_population,3.1.2,80,,65–69
+32.77,2,Kota Cimahi,age_group,65-69,,20246,jiwa,2026,projection,total_population,3.1.2,80,,65–69
+32.77,2,Kota Cimahi,age_group,70-74,laki_laki,6053,jiwa,2025,projection,total_population,3.1.2,80,,70–74
+32.77,2,Kota Cimahi,age_group,70-74,laki_laki,6479,jiwa,2026,projection,total_population,3.1.2,80,,70–74
+32.77,2,Kota Cimahi,age_group,70-74,perempuan,7013,jiwa,2025,projection,total_population,3.1.2,80,,70–74
+32.77,2,Kota Cimahi,age_group,70-74,perempuan,7392,jiwa,2026,projection,total_population,3.1.2,80,,70–74
+32.77,2,Kota Cimahi,age_group,70-74,,13066,jiwa,2025,projection,total_population,3.1.2,80,,70–74
+32.77,2,Kota Cimahi,age_group,70-74,,13871,jiwa,2026,projection,total_population,3.1.2,80,,70–74
+32.77,2,Kota Cimahi,age_group,75+,laki_laki,4474,jiwa,2025,projection,total_population,3.1.2,80,,75+
+32.77,2,Kota Cimahi,age_group,75+,laki_laki,4896,jiwa,2026,projection,total_population,3.1.2,80,,75+
+32.77,2,Kota Cimahi,age_group,75+,perempuan,6104,jiwa,2025,projection,total_population,3.1.2,80,,75+
+32.77,2,Kota Cimahi,age_group,75+,perempuan,6705,jiwa,2026,projection,total_population,3.1.2,80,,75+
+32.77,2,Kota Cimahi,age_group,75+,,10578,jiwa,2025,projection,total_population,3.1.2,80,,75+
+32.77,2,Kota Cimahi,age_group,75+,,11601,jiwa,2026,projection,total_population,3.1.2,80,,75+
+32.77,2,Kota Cimahi,sex,laki_laki,,305474,jiwa,2025,projection,total_population,3.1.2,80,,Laki-Laki
+32.77,2,Kota Cimahi,sex,laki_laki,,309161,jiwa,2026,projection,total_population,3.1.2,80,,Laki-Laki
+32.77,2,Kota Cimahi,sex,perempuan,,300901,jiwa,2025,projection,total_population,3.1.2,80,,Perempuan
+32.77,2,Kota Cimahi,sex,perempuan,,304793,jiwa,2026,projection,total_population,3.1.2,80,,Perempuan
+32.77,2,Kota Cimahi,total,total,,606375,jiwa,2025,projection,total_population,3.1.2,80,,
+32.77,2,Kota Cimahi,total,total,,613954,jiwa,2026,projection,total_population,3.1.2,80,,
+32.77.01,3,Cimahi Selatan,religion,islam,,230432,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+32.77.01,3,Cimahi Selatan,religion,kristen,,8739,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+32.77.01,3,Cimahi Selatan,religion,katolik,,3325,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+32.77.01,3,Cimahi Selatan,religion,hindu,,141,jiwa,2025,registration,total_population,4.3.1,182,,Hindu
+32.77.01,3,Cimahi Selatan,religion,buddha,,334,jiwa,2025,registration,total_population,4.3.1,182,,Budha
+32.77.01,3,Cimahi Selatan,religion,lainnya,,111,jiwa,2025,registration,total_population,4.3.1,182,,Lainnya
+32.77.02,3,Cimahi Tengah,religion,islam,,156865,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+32.77.02,3,Cimahi Tengah,religion,kristen,,6629,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+32.77.02,3,Cimahi Tengah,religion,katolik,,2230,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+32.77.02,3,Cimahi Tengah,religion,hindu,,284,jiwa,2025,registration,total_population,4.3.1,182,,Hindu
+32.77.02,3,Cimahi Tengah,religion,buddha,,307,jiwa,2025,registration,total_population,4.3.1,182,,Budha
+32.77.02,3,Cimahi Tengah,religion,lainnya,,8,jiwa,2025,registration,total_population,4.3.1,182,,Lainnya
+32.77.03,3,Cimahi Utara,religion,islam,,164762,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+32.77.03,3,Cimahi Utara,religion,kristen,,7791,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+32.77.03,3,Cimahi Utara,religion,katolik,,2438,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+32.77.03,3,Cimahi Utara,religion,hindu,,143,jiwa,2025,registration,total_population,4.3.1,182,,Hindu
+32.77.03,3,Cimahi Utara,religion,buddha,,217,jiwa,2025,registration,total_population,4.3.1,182,,Budha
+32.77.03,3,Cimahi Utara,religion,lainnya,,64,jiwa,2025,registration,total_population,4.3.1,182,,Lainnya
+32.77,2,Kota Cimahi,religion,islam,,552059,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+32.77,2,Kota Cimahi,religion,kristen,,23159,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+32.77,2,Kota Cimahi,religion,katolik,,7993,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+32.77,2,Kota Cimahi,religion,hindu,,568,jiwa,2025,registration,total_population,4.3.1,182,,Hindu
+32.77,2,Kota Cimahi,religion,buddha,,858,jiwa,2025,registration,total_population,4.3.1,182,,Budha
+32.77,2,Kota Cimahi,religion,lainnya,,183,jiwa,2025,registration,total_population,4.3.1,182,,Lainnya
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/padi_padian,,83298,rupiah,2024,survey_estimate,per_capita,10.1,382,,Padi-padian
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/padi_padian,,74394,rupiah,2025,survey_estimate,per_capita,10.1,382,,Padi-padian
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/umbi_umbian,,8248,rupiah,2024,survey_estimate,per_capita,10.1,382,,Umbi-umbian
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/umbi_umbian,,10362,rupiah,2025,survey_estimate,per_capita,10.1,382,,Umbi-umbian
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,46122,rupiah,2024,survey_estimate,per_capita,10.1,382,,Ikan/udang/cumi/kerang
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,53422,rupiah,2025,survey_estimate,per_capita,10.1,382,,Ikan/udang/cumi/kerang
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/daging,,62395,rupiah,2024,survey_estimate,per_capita,10.1,382,,Daging
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/daging,,64246,rupiah,2025,survey_estimate,per_capita,10.1,382,,Daging
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/telur_dan_susu,,62700,rupiah,2024,survey_estimate,per_capita,10.1,382,,Telur dan susu
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/telur_dan_susu,,60692,rupiah,2025,survey_estimate,per_capita,10.1,382,,Telur dan susu
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/sayur_sayuran,,56280,rupiah,2024,survey_estimate,per_capita,10.1,382,,Sayur-sayuran
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/sayur_sayuran,,59532,rupiah,2025,survey_estimate,per_capita,10.1,382,,Sayur-sayuran
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/kacang_kacangan,,19812,rupiah,2024,survey_estimate,per_capita,10.1,382,,Kacang-kacangan
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/kacang_kacangan,,20443,rupiah,2025,survey_estimate,per_capita,10.1,382,,Kacang-kacangan
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/buah_buahan,,46709,rupiah,2024,survey_estimate,per_capita,10.1,382,,Buah-buahan
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/buah_buahan,,55047,rupiah,2025,survey_estimate,per_capita,10.1,382,,Buah-buahan
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19183,rupiah,2024,survey_estimate,per_capita,10.1,382,,Minyak dan kelapa
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/minyak_dan_kelapa,,21076,rupiah,2025,survey_estimate,per_capita,10.1,382,,Minyak dan kelapa
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/bahan_minuman,,24639,rupiah,2024,survey_estimate,per_capita,10.1,382,,Bahan minuman
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/bahan_minuman,,28285,rupiah,2025,survey_estimate,per_capita,10.1,382,,Bahan minuman
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/bumbu_bumbuan,,18341,rupiah,2024,survey_estimate,per_capita,10.1,382,,Bumbu-bumbuan
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/bumbu_bumbuan,,19895,rupiah,2025,survey_estimate,per_capita,10.1,382,,Bumbu-bumbuan
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/konsumsi_lainnya,,20068,rupiah,2024,survey_estimate,per_capita,10.1,382,,Konsumsi lainnya
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/konsumsi_lainnya,,19828,rupiah,2025,survey_estimate,per_capita,10.1,382,,Konsumsi lainnya
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,348576,rupiah,2024,survey_estimate,per_capita,10.1,382,,Makanan dan minuman jadi
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,331286,rupiah,2025,survey_estimate,per_capita,10.1,382,,Makanan dan minuman jadi
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/rokok,,109004,rupiah,2024,survey_estimate,per_capita,10.1,382,,Rokok
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/rokok,,94803,rupiah,2025,survey_estimate,per_capita,10.1,382,,Rokok
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/jumlah_makanan,,925373,rupiah,2024,survey_estimate,per_capita,10.1,382,,Jumlah makanan
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/jumlah_makanan,,913312,rupiah,2025,survey_estimate,per_capita,10.1,382,,Jumlah makanan
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,623149,rupiah,2024,survey_estimate,per_capita,10.1,382,,Perumahan dan fasilitas rumah tangga
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,588697,rupiah,2025,survey_estimate,per_capita,10.1,382,,Perumahan dan fasilitas rumah tangga
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,333656,rupiah,2024,survey_estimate,per_capita,10.1,382,,Aneka barang dan jasa
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,307000,rupiah,2025,survey_estimate,per_capita,10.1,382,,Aneka barang dan jasa
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,57118,rupiah,2024,survey_estimate,per_capita,10.1,382,,"Pakaian, alas kaki, dan tutup kepala"
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,50486,rupiah,2025,survey_estimate,per_capita,10.1,382,,"Pakaian, alas kaki, dan tutup kepala"
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/barang_tahan_lama,,93943,rupiah,2024,survey_estimate,per_capita,10.1,382,,Barang tahan lama
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/barang_tahan_lama,,79833,rupiah,2025,survey_estimate,per_capita,10.1,382,,Barang tahan lama
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,95334,rupiah,2024,survey_estimate,per_capita,10.1,382,,"Pajak, pungutan, dan asuransi"
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,84675,rupiah,2025,survey_estimate,per_capita,10.1,382,,"Pajak, pungutan, dan asuransi"
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,37793,rupiah,2024,survey_estimate,per_capita,10.1,382,,Keperluan pesta dan upacara/kenduri
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,30020,rupiah,2025,survey_estimate,per_capita,10.1,382,,Keperluan pesta dan upacara/kenduri
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1240994,rupiah,2024,survey_estimate,per_capita,10.1,382,,Jumlah bukan makanan
+32.77,2,Kota Cimahi,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1140711,rupiah,2025,survey_estimate,per_capita,10.1,382,,Jumlah bukan makanan
+32.77,2,Kota Cimahi,expenditure,total,,2166367,rupiah,2024,survey_estimate,per_capita,10.1,382,,
+32.77,2,Kota Cimahi,expenditure,total,,2054023,rupiah,2025,survey_estimate,per_capita,10.1,382,,

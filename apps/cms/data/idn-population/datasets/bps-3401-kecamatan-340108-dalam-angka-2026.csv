@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+34.01.08.2001,4,Hargomulyo,sex,laki_laki,,3922,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+34.01.08.2001,4,Hargomulyo,sex,perempuan,,3916,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+34.01.08.2001,4,Hargomulyo,total,total,,7838,jiwa,2025,registration,total_population,3.1.1,21,,
+34.01.08.2002,4,Hargorejo,sex,laki_laki,,4707,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+34.01.08.2002,4,Hargorejo,sex,perempuan,,4828,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+34.01.08.2002,4,Hargorejo,total,total,,9535,jiwa,2025,registration,total_population,3.1.1,21,,
+34.01.08.2003,4,Hargowilis,sex,laki_laki,,3274,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+34.01.08.2003,4,Hargowilis,sex,perempuan,,3255,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+34.01.08.2003,4,Hargowilis,total,total,,6529,jiwa,2025,registration,total_population,3.1.1,21,,
+34.01.08.2004,4,Kalirejo,sex,laki_laki,,2320,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+34.01.08.2004,4,Kalirejo,sex,perempuan,,2340,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+34.01.08.2004,4,Kalirejo,total,total,,4660,jiwa,2025,registration,total_population,3.1.1,21,,
+34.01.08.2005,4,Hargotirto,sex,laki_laki,,3467,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+34.01.08.2005,4,Hargotirto,sex,perempuan,,3629,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+34.01.08.2005,4,Hargotirto,total,total,,7096,jiwa,2025,registration,total_population,3.1.1,21,,
+34.01.08,3,Kokap,sex,laki_laki,,17690,jiwa,2025,registration,total_population,3.1.1,21,,Laki-Laki/Male
+34.01.08,3,Kokap,sex,perempuan,,17968,jiwa,2025,registration,total_population,3.1.1,21,,Perempuan/Female
+34.01.08,3,Kokap,total,total,,35658,jiwa,2025,registration,total_population,3.1.1,21,,
+34.01.08,3,Kokap,age_group,0-4,laki_laki,819,jiwa,2025,registration,total_population,3.1.2,23,,0 – 4
+34.01.08,3,Kokap,age_group,0-4,perempuan,793,jiwa,2025,registration,total_population,3.1.2,23,,0 – 4
+34.01.08,3,Kokap,age_group,0-4,,1612,jiwa,2025,registration,total_population,3.1.2,23,,0 – 4
+34.01.08,3,Kokap,age_group,5-9,laki_laki,1172,jiwa,2025,registration,total_population,3.1.2,23,,5 – 9
+34.01.08,3,Kokap,age_group,5-9,perempuan,1075,jiwa,2025,registration,total_population,3.1.2,23,,5 – 9
+34.01.08,3,Kokap,age_group,5-9,,2247,jiwa,2025,registration,total_population,3.1.2,23,,5 – 9
+34.01.08,3,Kokap,age_group,10-14,laki_laki,1235,jiwa,2025,registration,total_population,3.1.2,23,,10 – 14
+34.01.08,3,Kokap,age_group,10-14,perempuan,1167,jiwa,2025,registration,total_population,3.1.2,23,,10 – 14
+34.01.08,3,Kokap,age_group,10-14,,2402,jiwa,2025,registration,total_population,3.1.2,23,,10 – 14
+34.01.08,3,Kokap,age_group,15-19,laki_laki,1254,jiwa,2025,registration,total_population,3.1.2,23,,15 – 19
+34.01.08,3,Kokap,age_group,15-19,perempuan,1182,jiwa,2025,registration,total_population,3.1.2,23,,15 – 19
+34.01.08,3,Kokap,age_group,15-19,,2436,jiwa,2025,registration,total_population,3.1.2,23,,15 – 19
+34.01.08,3,Kokap,age_group,20-24,laki_laki,1142,jiwa,2025,registration,total_population,3.1.2,23,,20 – 24
+34.01.08,3,Kokap,age_group,20-24,perempuan,1097,jiwa,2025,registration,total_population,3.1.2,23,,20 – 24
+34.01.08,3,Kokap,age_group,20-24,,2239,jiwa,2025,registration,total_population,3.1.2,23,,20 – 24
+34.01.08,3,Kokap,age_group,25-29,laki_laki,1298,jiwa,2025,registration,total_population,3.1.2,23,,25 – 29
+34.01.08,3,Kokap,age_group,25-29,perempuan,1199,jiwa,2025,registration,total_population,3.1.2,23,,25 – 29
+34.01.08,3,Kokap,age_group,25-29,,2497,jiwa,2025,registration,total_population,3.1.2,23,,25 – 29
+34.01.08,3,Kokap,age_group,30-34,laki_laki,1310,jiwa,2025,registration,total_population,3.1.2,23,,30 – 34
+34.01.08,3,Kokap,age_group,30-34,perempuan,1160,jiwa,2025,registration,total_population,3.1.2,23,,30 – 34
+34.01.08,3,Kokap,age_group,30-34,,2470,jiwa,2025,registration,total_population,3.1.2,23,,30 – 34
+34.01.08,3,Kokap,age_group,35-39,laki_laki,1117,jiwa,2025,registration,total_population,3.1.2,23,,35 – 39
+34.01.08,3,Kokap,age_group,35-39,perempuan,1084,jiwa,2025,registration,total_population,3.1.2,23,,35 – 39
+34.01.08,3,Kokap,age_group,35-39,,2201,jiwa,2025,registration,total_population,3.1.2,23,,35 – 39
+34.01.08,3,Kokap,age_group,40-44,laki_laki,1289,jiwa,2025,registration,total_population,3.1.2,23,,40 – 44
+34.01.08,3,Kokap,age_group,40-44,perempuan,1223,jiwa,2025,registration,total_population,3.1.2,23,,40 – 44
+34.01.08,3,Kokap,age_group,40-44,,2512,jiwa,2025,registration,total_population,3.1.2,23,,40 – 44
+34.01.08,3,Kokap,age_group,45-49,laki_laki,1219,jiwa,2025,registration,total_population,3.1.2,23,,45 – 49
+34.01.08,3,Kokap,age_group,45-49,perempuan,1248,jiwa,2025,registration,total_population,3.1.2,23,,45 – 49
+34.01.08,3,Kokap,age_group,45-49,,2467,jiwa,2025,registration,total_population,3.1.2,23,,45 – 49
+34.01.08,3,Kokap,age_group,50-54,laki_laki,1251,jiwa,2025,registration,total_population,3.1.2,23,,50 – 54
+34.01.08,3,Kokap,age_group,50-54,perempuan,1260,jiwa,2025,registration,total_population,3.1.2,23,,50 – 54
+34.01.08,3,Kokap,age_group,50-54,,2511,jiwa,2025,registration,total_population,3.1.2,23,,50 – 54
+34.01.08,3,Kokap,age_group,55-59,laki_laki,1194,jiwa,2025,registration,total_population,3.1.2,23,,55 – 59
+34.01.08,3,Kokap,age_group,55-59,perempuan,1236,jiwa,2025,registration,total_population,3.1.2,23,,55 – 59
+34.01.08,3,Kokap,age_group,55-59,,2430,jiwa,2025,registration,total_population,3.1.2,23,,55 – 59
+34.01.08,3,Kokap,age_group,60-64,laki_laki,1042,jiwa,2025,registration,total_population,3.1.2,23,,60 – 64
+34.01.08,3,Kokap,age_group,60-64,perempuan,1223,jiwa,2025,registration,total_population,3.1.2,23,,60 – 64
+34.01.08,3,Kokap,age_group,60-64,,2265,jiwa,2025,registration,total_population,3.1.2,23,,60 – 64
+34.01.08,3,Kokap,age_group,65-69,laki_laki,935,jiwa,2025,registration,total_population,3.1.2,23,,65 – 69
+34.01.08,3,Kokap,age_group,65-69,perempuan,1079,jiwa,2025,registration,total_population,3.1.2,23,,65 – 69
+34.01.08,3,Kokap,age_group,65-69,,2014,jiwa,2025,registration,total_population,3.1.2,23,,65 – 69
+34.01.08,3,Kokap,age_group,70-74,laki_laki,626,jiwa,2025,registration,total_population,3.1.2,23,,70 – 74
+34.01.08,3,Kokap,age_group,70-74,perempuan,694,jiwa,2025,registration,total_population,3.1.2,23,,70 – 74
+34.01.08,3,Kokap,age_group,70-74,,1320,jiwa,2025,registration,total_population,3.1.2,23,,70 – 74
+34.01.08,3,Kokap,age_group,75+,laki_laki,787,jiwa,2025,registration,total_population,3.1.2,23,,> 75
+34.01.08,3,Kokap,age_group,75+,perempuan,1248,jiwa,2025,registration,total_population,3.1.2,23,,> 75
+34.01.08,3,Kokap,age_group,75+,,2035,jiwa,2025,registration,total_population,3.1.2,23,,> 75
+34.01.08,3,Kokap,sex,laki_laki,,17690,jiwa,2025,registration,total_population,3.1.2,23,,Laki-Laki
+34.01.08,3,Kokap,sex,perempuan,,17968,jiwa,2025,registration,total_population,3.1.2,23,,Perempuan
+34.01.08,3,Kokap,total,total,,35658,jiwa,2025,registration,total_population,3.1.2,23,,

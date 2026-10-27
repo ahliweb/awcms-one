@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.09.08.2010,4,Lubuk Puar,sex,laki_laki,,135,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.08.2010,4,Lubuk Puar,sex,perempuan,,123,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+17.09.08.2010,4,Lubuk Puar,total,total,,258,jiwa,2025,registration,total_population,3.1,35,,
+17.09.08.2004,4,Punjung,sex,laki_laki,,293,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.08.2004,4,Punjung,sex,perempuan,,270,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+17.09.08.2004,4,Punjung,total,total,,563,jiwa,2025,registration,total_population,3.1,35,,
+17.09.08.2001,4,Komering,sex,laki_laki,,360,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.08.2001,4,Komering,sex,perempuan,,349,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+17.09.08.2001,4,Komering,total,total,,709,jiwa,2025,registration,total_population,3.1,35,,
+17.09.08.2006,4,Arga Indah II,sex,laki_laki,,469,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.08.2006,4,Arga Indah II,sex,perempuan,,453,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+17.09.08.2006,4,Arga Indah II,total,total,,922,jiwa,2025,registration,total_population,3.1,35,,
+17.09.08.2007,4,Curup,sex,laki_laki,,199,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.08.2007,4,Curup,sex,perempuan,,214,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+17.09.08.2007,4,Curup,total,total,,413,jiwa,2025,registration,total_population,3.1,35,,
+17.09.08.2008,4,Karang Panggung,sex,laki_laki,,92,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.08.2008,4,Karang Panggung,sex,perempuan,,86,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+17.09.08.2008,4,Karang Panggung,total,total,,178,jiwa,2025,registration,total_population,3.1,35,,
+17.09.08.2009,4,Lubuk Pendam,sex,laki_laki,,201,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.08.2009,4,Lubuk Pendam,sex,perempuan,,196,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+17.09.08.2009,4,Lubuk Pendam,total,total,,397,jiwa,2025,registration,total_population,3.1,35,,
+17.09.08.2003,4,Rajak Besi,sex,laki_laki,,311,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.08.2003,4,Rajak Besi,sex,perempuan,,294,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+17.09.08.2003,4,Rajak Besi,total,total,,605,jiwa,2025,registration,total_population,3.1,35,,
+17.09.08.2005,4,Susup,sex,laki_laki,,295,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.08.2005,4,Susup,sex,perempuan,,281,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+17.09.08.2005,4,Susup,total,total,,576,jiwa,2025,registration,total_population,3.1,35,,
+17.09.08.2012,4,Pagar Agung,sex,laki_laki,,151,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.08.2012,4,Pagar Agung,sex,perempuan,,159,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+17.09.08.2012,4,Pagar Agung,total,total,,310,jiwa,2025,registration,total_population,3.1,35,,
+17.09.08.2011,4,Durian Lebar,sex,laki_laki,,233,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.08.2011,4,Durian Lebar,sex,perempuan,,238,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+17.09.08.2011,4,Durian Lebar,total,total,,471,jiwa,2025,registration,total_population,3.1,35,,
+17.09.08.2013,4,Pungguk Jaya,sex,laki_laki,,122,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.08.2013,4,Pungguk Jaya,sex,perempuan,,130,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+17.09.08.2013,4,Pungguk Jaya,total,total,,252,jiwa,2025,registration,total_population,3.1,35,,
+17.09.08.2015,4,Pagar Besi,sex,laki_laki,,214,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.08.2015,4,Pagar Besi,sex,perempuan,,209,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+17.09.08.2015,4,Pagar Besi,total,total,,423,jiwa,2025,registration,total_population,3.1,35,,
+17.09.08,3,Merigi Sakti,sex,laki_laki,,3462,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.08,3,Merigi Sakti,sex,perempuan,,3368,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+17.09.08,3,Merigi Sakti,total,total,,6830,jiwa,2025,registration,total_population,3.1,35,,
+17.09.08,3,Merigi Sakti,age_group,0-4,laki_laki,225,jiwa,2025,registration,total_population,3.2,37,,0 – 4
+17.09.08,3,Merigi Sakti,age_group,0-4,perempuan,228,jiwa,2025,registration,total_population,3.2,37,,0 – 4
+17.09.08,3,Merigi Sakti,age_group,0-4,,453,jiwa,2025,registration,total_population,3.2,37,,0 – 4
+17.09.08,3,Merigi Sakti,age_group,5-9,laki_laki,318,jiwa,2025,registration,total_population,3.2,37,,5 – 9
+17.09.08,3,Merigi Sakti,age_group,5-9,perempuan,316,jiwa,2025,registration,total_population,3.2,37,,5 – 9
+17.09.08,3,Merigi Sakti,age_group,5-9,,634,jiwa,2025,registration,total_population,3.2,37,,5 – 9
+17.09.08,3,Merigi Sakti,age_group,10-14,laki_laki,287,jiwa,2025,registration,total_population,3.2,37,,10 – 14
+17.09.08,3,Merigi Sakti,age_group,10-14,perempuan,288,jiwa,2025,registration,total_population,3.2,37,,10 – 14
+17.09.08,3,Merigi Sakti,age_group,10-14,,575,jiwa,2025,registration,total_population,3.2,37,,10 – 14
+17.09.08,3,Merigi Sakti,age_group,15-19,laki_laki,284,jiwa,2025,registration,total_population,3.2,37,,15 – 19
+17.09.08,3,Merigi Sakti,age_group,15-19,perempuan,259,jiwa,2025,registration,total_population,3.2,37,,15 – 19
+17.09.08,3,Merigi Sakti,age_group,15-19,,543,jiwa,2025,registration,total_population,3.2,37,,15 – 19
+17.09.08,3,Merigi Sakti,age_group,20-24,laki_laki,326,jiwa,2025,registration,total_population,3.2,37,,20 – 24
+17.09.08,3,Merigi Sakti,age_group,20-24,perempuan,294,jiwa,2025,registration,total_population,3.2,37,,20 – 24
+17.09.08,3,Merigi Sakti,age_group,20-24,,620,jiwa,2025,registration,total_population,3.2,37,,20 – 24
+17.09.08,3,Merigi Sakti,age_group,25-29,laki_laki,309,jiwa,2025,registration,total_population,3.2,37,,25 – 29
+17.09.08,3,Merigi Sakti,age_group,25-29,perempuan,292,jiwa,2025,registration,total_population,3.2,37,,25 – 29
+17.09.08,3,Merigi Sakti,age_group,25-29,,601,jiwa,2025,registration,total_population,3.2,37,,25 – 29
+17.09.08,3,Merigi Sakti,age_group,30-34,laki_laki,287,jiwa,2025,registration,total_population,3.2,37,,30 – 34
+17.09.08,3,Merigi Sakti,age_group,30-34,perempuan,239,jiwa,2025,registration,total_population,3.2,37,,30 – 34
+17.09.08,3,Merigi Sakti,age_group,30-34,,526,jiwa,2025,registration,total_population,3.2,37,,30 – 34
+17.09.08,3,Merigi Sakti,age_group,35-39,laki_laki,285,jiwa,2025,registration,total_population,3.2,37,,35 – 39
+17.09.08,3,Merigi Sakti,age_group,35-39,perempuan,293,jiwa,2025,registration,total_population,3.2,37,,35 – 39
+17.09.08,3,Merigi Sakti,age_group,35-39,,578,jiwa,2025,registration,total_population,3.2,37,,35 – 39
+17.09.08,3,Merigi Sakti,age_group,40-44,laki_laki,242,jiwa,2025,registration,total_population,3.2,37,,40 – 44
+17.09.08,3,Merigi Sakti,age_group,40-44,perempuan,290,jiwa,2025,registration,total_population,3.2,37,,40 – 44
+17.09.08,3,Merigi Sakti,age_group,40-44,,532,jiwa,2025,registration,total_population,3.2,37,,40 – 44
+17.09.08,3,Merigi Sakti,age_group,45-49,laki_laki,253,jiwa,2025,registration,total_population,3.2,37,,45 – 49
+17.09.08,3,Merigi Sakti,age_group,45-49,perempuan,235,jiwa,2025,registration,total_population,3.2,37,,45 – 49
+17.09.08,3,Merigi Sakti,age_group,45-49,,488,jiwa,2025,registration,total_population,3.2,37,,45 – 49
+17.09.08,3,Merigi Sakti,age_group,50-54,laki_laki,193,jiwa,2025,registration,total_population,3.2,37,,50 – 54
+17.09.08,3,Merigi Sakti,age_group,50-54,perempuan,159,jiwa,2025,registration,total_population,3.2,37,,50 – 54
+17.09.08,3,Merigi Sakti,age_group,50-54,,352,jiwa,2025,registration,total_population,3.2,37,,50 – 54
+17.09.08,3,Merigi Sakti,age_group,55-59,laki_laki,140,jiwa,2025,registration,total_population,3.2,37,,55 – 59
+17.09.08,3,Merigi Sakti,age_group,55-59,perempuan,145,jiwa,2025,registration,total_population,3.2,37,,55 – 59
+17.09.08,3,Merigi Sakti,age_group,55-59,,285,jiwa,2025,registration,total_population,3.2,37,,55 – 59
+17.09.08,3,Merigi Sakti,age_group,60-64,laki_laki,134,jiwa,2025,registration,total_population,3.2,37,,60 – 64
+17.09.08,3,Merigi Sakti,age_group,60-64,perempuan,128,jiwa,2025,registration,total_population,3.2,37,,60 – 64
+17.09.08,3,Merigi Sakti,age_group,60-64,,262,jiwa,2025,registration,total_population,3.2,37,,60 – 64
+17.09.08,3,Merigi Sakti,age_group,65-69,laki_laki,84,jiwa,2025,registration,total_population,3.2,37,,65 – 69
+17.09.08,3,Merigi Sakti,age_group,65-69,perempuan,78,jiwa,2025,registration,total_population,3.2,37,,65 – 69
+17.09.08,3,Merigi Sakti,age_group,65-69,,162,jiwa,2025,registration,total_population,3.2,37,,65 – 69
+17.09.08,3,Merigi Sakti,age_group,70-74,laki_laki,38,jiwa,2025,registration,total_population,3.2,37,,70 – 74
+17.09.08,3,Merigi Sakti,age_group,70-74,perempuan,49,jiwa,2025,registration,total_population,3.2,37,,70 – 74
+17.09.08,3,Merigi Sakti,age_group,70-74,,87,jiwa,2025,registration,total_population,3.2,37,,70 – 74
+17.09.08,3,Merigi Sakti,age_group,75+,laki_laki,57,jiwa,2025,registration,total_population,3.2,37,,75+
+17.09.08,3,Merigi Sakti,age_group,75+,perempuan,75,jiwa,2025,registration,total_population,3.2,37,,75+
+17.09.08,3,Merigi Sakti,age_group,75+,,132,jiwa,2025,registration,total_population,3.2,37,,75+
+17.09.08,3,Merigi Sakti,sex,laki_laki,,3462,jiwa,2025,registration,total_population,3.2,37,,Laki-Laki
+17.09.08,3,Merigi Sakti,sex,perempuan,,3368,jiwa,2025,registration,total_population,3.2,37,,Perempuan
+17.09.08,3,Merigi Sakti,total,total,,6830,jiwa,2025,registration,total_population,3.2,37,,

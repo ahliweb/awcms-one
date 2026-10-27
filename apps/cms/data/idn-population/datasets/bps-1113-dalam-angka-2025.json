@@ -1,0 +1,69 @@
+{
+  "datasetCode": "bps-1113-dalam-angka-2025",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "11.13",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Gayo Lues Dalam Angka 2025",
+  "publisherName": "BPS Kabupaten Gayo Lues",
+  "publisherDomain": "1113",
+  "publisherWebsite": "https://gayolueskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Gayo Lues (https://gayolueskab.bps.go.id), publikasi \"Kabupaten Gayo Lues Dalam Angka 2025\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1113",
+  "publicationNumber": "11130.25001",
+  "issn": "2089-5607",
+  "publicationYear": 2025,
+  "releaseDate": "2025-02-28",
+  "publicationUrl": "https://gayolueskab.bps.go.id/id/publication/2025/02/28/975be8049c8ec46775fe534e/kabupaten-gayo-lues-dalam-angka-2025.html",
+  "sourceFileSha256": "1e109fd5ad9f9f56f016b6947c12e7024bf34fc61a425b9d212a318137955893",
+  "sourceFileBytes": 49694951,
+  "sourcePages": [48, 51, 109, 242],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Gayo Lues.",
+  "csvPath": "datasets/bps-1113-dalam-angka-2025.csv",
+  "csvSha256": "5285eafa459901c0f4171cf0726bcba415f2885ccc175a2c2c15c31fb027f561",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Gayo Lues , 2024",
+      "printedPages": [48],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Gayo Lues (jiwa) , 2024",
+      "printedPages": [51],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Gayo Lues , 2024",
+      "printedPages": [109],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Gayo Lues (rupiah), 2023 dan 2024",
+      "printedPages": [242],
+      "referenceYears": [2023, 2024],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 3.1.1: row not stored: row \"Putri Betung\": unmatched ",
+    "table 3.1.1: row not stored: row \"Tripe Jaya\": unmatched ",
+    "table 4.3.1: row not stored: row \"Putri Betung\": unmatched ",
+    "table 4.3.1: row not stored: row \"Tripe Jaya\": unmatched "
+  ]
+}

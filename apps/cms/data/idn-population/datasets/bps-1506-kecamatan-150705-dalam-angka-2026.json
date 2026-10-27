@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1506-kecamatan-150705-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.07.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sadu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tanjung Jabung Timur",
+  "publisherDomain": "1506",
+  "publisherWebsite": "https://tanjabtimkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tanjung Jabung Timur (https://tanjabtimkab.bps.go.id), publikasi \"Kecamatan Sadu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "15060.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tanjabtimkab.bps.go.id/id/publication/2026/09/28/eed37f4363939988eea5987c/kecamatan-sadu-dalam-angka-2026.html",
+  "sourceFileSha256": "a20ef2f6878220761f04aa87b726ee84ce1d6e891679e8487cef5e943a5b8f65",
+  "sourceFileBytes": 1507205,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Tanjung Jabung Timur",
+  "csvPath": "datasets/bps-1506-kecamatan-150705-dalam-angka-2026.csv",
+  "csvSha256": "9674ff70a87e46bc0b98223bb0035000a9c50de1e4247f636c61001275140ac0",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Sadu, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sadu, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 15.07.05 are not stored: age_group (perempuan) vs sex value: parts sum 7084.0000 != 7102.0000 (diff 18.0000); the source itself is inconsistent"
+  ]
+}

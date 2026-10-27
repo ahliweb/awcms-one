@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.04.04.2009,4,Padang Baru,sex,laki_laki,,215,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.04.04.2009,4,Padang Baru,sex,perempuan,,222,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.04.04.2009,4,Padang Baru,total,total,,437,jiwa,2025,registration,total_population,3.1,28,,
+17.04.04.2008,4,Tanjung Pandan,sex,laki_laki,,304,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.04.04.2008,4,Tanjung Pandan,sex,perempuan,,295,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.04.04.2008,4,Tanjung Pandan,total,total,,599,jiwa,2025,registration,total_population,3.1,28,,
+17.04.04.1007,4,Tanjung Iman,sex,laki_laki,,693,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.04.04.1007,4,Tanjung Iman,sex,perempuan,,699,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.04.04.1007,4,Tanjung Iman,total,total,,1392,jiwa,2025,registration,total_population,3.1,28,,
+17.04.04.2005,4,Penyandingan,sex,laki_laki,,84,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.04.04.2005,4,Penyandingan,sex,perempuan,,93,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.04.04.2005,4,Penyandingan,total,total,,177,jiwa,2025,registration,total_population,3.1,28,,
+17.04.04.2004,4,Kemang Manis,sex,laki_laki,,127,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.04.04.2004,4,Kemang Manis,sex,perempuan,,118,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.04.04.2004,4,Kemang Manis,total,total,,245,jiwa,2025,registration,total_population,3.1,28,,
+17.04.04.2003,4,Padang Hangat,sex,laki_laki,,379,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.04.04.2003,4,Padang Hangat,sex,perempuan,,353,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.04.04.2003,4,Padang Hangat,total,total,,732,jiwa,2025,registration,total_population,3.1,28,,
+17.04.04.2002,4,Pajar Bulan,sex,laki_laki,,211,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.04.04.2002,4,Pajar Bulan,sex,perempuan,,216,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.04.04.2002,4,Pajar Bulan,total,total,,427,jiwa,2025,registration,total_population,3.1,28,,
+17.04.04.2001,4,Suka Rami,sex,laki_laki,,369,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.04.04.2001,4,Suka Rami,sex,perempuan,,361,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.04.04.2001,4,Suka Rami,total,total,,730,jiwa,2025,registration,total_population,3.1,28,,
+17.04.04.2006,4,Sinar Jaya,sex,laki_laki,,254,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.04.04.2006,4,Sinar Jaya,sex,perempuan,,226,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.04.04.2006,4,Sinar Jaya,total,total,,480,jiwa,2025,registration,total_population,3.1,28,,
+17.04.04,3,Kaur Tengah,sex,laki_laki,,2636,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.04.04,3,Kaur Tengah,sex,perempuan,,2583,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.04.04,3,Kaur Tengah,total,total,,5219,jiwa,2025,registration,total_population,3.1,28,,

@@ -1,0 +1,206 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.05.01,3,Johan Pahlawan,total,total,,66536,ribu_jiwa,2025,registration,total_population,3.1.1,70,,
+11.05.05,3,Samatiga,total,total,,16596,ribu_jiwa,2025,registration,total_population,3.1.1,70,,
+11.05.06,3,Bubon,total,total,,7213,ribu_jiwa,2025,registration,total_population,3.1.1,70,,
+11.05.07,3,Arongan Lambalek,total,total,,12622,ribu_jiwa,2025,registration,total_population,3.1.1,70,,
+11.05.04,3,Woyla,total,total,,14567,ribu_jiwa,2025,registration,total_population,3.1.1,70,,
+11.05.10,3,Woyla Barat,total,total,,8263,ribu_jiwa,2025,registration,total_population,3.1.1,70,,
+11.05.11,3,Woyla Timur,total,total,,5534,ribu_jiwa,2025,registration,total_population,3.1.1,70,,
+11.05.02,3,Kaway XVI,total,total,,22462,ribu_jiwa,2025,registration,total_population,3.1.1,70,,
+11.05.09,3,Meureubo,total,total,,32982,ribu_jiwa,2025,registration,total_population,3.1.1,70,,
+11.05.08,3,Pante Ceureumen,total,total,,12332,ribu_jiwa,2025,registration,total_population,3.1.1,70,,
+11.05.12,3,Panton Reu,total,total,,7070,ribu_jiwa,2025,registration,total_population,3.1.1,70,,
+11.05.03,3,Sungai Mas,total,total,,4802,ribu_jiwa,2025,registration,total_population,3.1.1,70,,
+11.05,2,Aceh Barat,total,total,,210979,ribu_jiwa,2025,registration,total_population,3.1.1,70,,
+11.05,2,Kabupaten Aceh Barat,age_group,0-4,laki_laki,7530,jiwa,2025,registration,total_population,3.1.2,73,,0–4
+11.05,2,Kabupaten Aceh Barat,age_group,0-4,perempuan,6799,jiwa,2025,registration,total_population,3.1.2,73,,0–4
+11.05,2,Kabupaten Aceh Barat,age_group,0-4,,14329,jiwa,2025,registration,total_population,3.1.2,73,,0–4
+11.05,2,Kabupaten Aceh Barat,age_group,5-9,laki_laki,9514,jiwa,2025,registration,total_population,3.1.2,73,,5–9
+11.05,2,Kabupaten Aceh Barat,age_group,5-9,perempuan,8869,jiwa,2025,registration,total_population,3.1.2,73,,5–9
+11.05,2,Kabupaten Aceh Barat,age_group,5-9,,18383,jiwa,2025,registration,total_population,3.1.2,73,,5–9
+11.05,2,Kabupaten Aceh Barat,age_group,10-14,laki_laki,9554,jiwa,2025,registration,total_population,3.1.2,73,,10–14
+11.05,2,Kabupaten Aceh Barat,age_group,10-14,perempuan,8904,jiwa,2025,registration,total_population,3.1.2,73,,10–14
+11.05,2,Kabupaten Aceh Barat,age_group,10-14,,18458,jiwa,2025,registration,total_population,3.1.2,73,,10–14
+11.05,2,Kabupaten Aceh Barat,age_group,15-19,laki_laki,9489,jiwa,2025,registration,total_population,3.1.2,73,,15–19
+11.05,2,Kabupaten Aceh Barat,age_group,15-19,perempuan,9222,jiwa,2025,registration,total_population,3.1.2,73,,15–19
+11.05,2,Kabupaten Aceh Barat,age_group,15-19,,18711,jiwa,2025,registration,total_population,3.1.2,73,,15–19
+11.05,2,Kabupaten Aceh Barat,age_group,20-24,laki_laki,7877,jiwa,2025,registration,total_population,3.1.2,73,,20–24
+11.05,2,Kabupaten Aceh Barat,age_group,20-24,perempuan,7509,jiwa,2025,registration,total_population,3.1.2,73,,20–24
+11.05,2,Kabupaten Aceh Barat,age_group,20-24,,15386,jiwa,2025,registration,total_population,3.1.2,73,,20–24
+11.05,2,Kabupaten Aceh Barat,age_group,25-29,laki_laki,8590,jiwa,2025,registration,total_population,3.1.2,73,,25–29
+11.05,2,Kabupaten Aceh Barat,age_group,25-29,perempuan,8324,jiwa,2025,registration,total_population,3.1.2,73,,25–29
+11.05,2,Kabupaten Aceh Barat,age_group,25-29,,16914,jiwa,2025,registration,total_population,3.1.2,73,,25–29
+11.05,2,Kabupaten Aceh Barat,age_group,30-34,laki_laki,8057,jiwa,2025,registration,total_population,3.1.2,73,,30–34
+11.05,2,Kabupaten Aceh Barat,age_group,30-34,perempuan,7835,jiwa,2025,registration,total_population,3.1.2,73,,30–34
+11.05,2,Kabupaten Aceh Barat,age_group,30-34,,15892,jiwa,2025,registration,total_population,3.1.2,73,,30–34
+11.05,2,Kabupaten Aceh Barat,age_group,35-39,laki_laki,7830,jiwa,2025,registration,total_population,3.1.2,73,,35–39
+11.05,2,Kabupaten Aceh Barat,age_group,35-39,perempuan,8191,jiwa,2025,registration,total_population,3.1.2,73,,35–39
+11.05,2,Kabupaten Aceh Barat,age_group,35-39,,16021,jiwa,2025,registration,total_population,3.1.2,73,,35–39
+11.05,2,Kabupaten Aceh Barat,age_group,40-44,laki_laki,7814,jiwa,2025,registration,total_population,3.1.2,73,,40–44
+11.05,2,Kabupaten Aceh Barat,age_group,40-44,perempuan,7957,jiwa,2025,registration,total_population,3.1.2,73,,40–44
+11.05,2,Kabupaten Aceh Barat,age_group,40-44,,15771,jiwa,2025,registration,total_population,3.1.2,73,,40–44
+11.05,2,Kabupaten Aceh Barat,age_group,45-49,laki_laki,7226,jiwa,2025,registration,total_population,3.1.2,73,,45–49
+11.05,2,Kabupaten Aceh Barat,age_group,45-49,perempuan,7517,jiwa,2025,registration,total_population,3.1.2,73,,45–49
+11.05,2,Kabupaten Aceh Barat,age_group,45-49,,14743,jiwa,2025,registration,total_population,3.1.2,73,,45–49
+11.05,2,Kabupaten Aceh Barat,age_group,50-54,laki_laki,6438,jiwa,2025,registration,total_population,3.1.2,73,,50–54
+11.05,2,Kabupaten Aceh Barat,age_group,50-54,perempuan,6413,jiwa,2025,registration,total_population,3.1.2,73,,50–54
+11.05,2,Kabupaten Aceh Barat,age_group,50-54,,12851,jiwa,2025,registration,total_population,3.1.2,73,,50–54
+11.05,2,Kabupaten Aceh Barat,age_group,55-59,laki_laki,5488,jiwa,2025,registration,total_population,3.1.2,73,,55–59
+11.05,2,Kabupaten Aceh Barat,age_group,55-59,perempuan,5410,jiwa,2025,registration,total_population,3.1.2,73,,55–59
+11.05,2,Kabupaten Aceh Barat,age_group,55-59,,10898,jiwa,2025,registration,total_population,3.1.2,73,,55–59
+11.05,2,Kabupaten Aceh Barat,age_group,60-64,laki_laki,4018,jiwa,2025,registration,total_population,3.1.2,73,,60–64
+11.05,2,Kabupaten Aceh Barat,age_group,60-64,perempuan,3941,jiwa,2025,registration,total_population,3.1.2,73,,60–64
+11.05,2,Kabupaten Aceh Barat,age_group,60-64,,7959,jiwa,2025,registration,total_population,3.1.2,73,,60–64
+11.05,2,Kabupaten Aceh Barat,age_group,65+,laki_laki,6861,jiwa,2025,registration,total_population,3.1.2,73,,65+
+11.05,2,Kabupaten Aceh Barat,age_group,65+,perempuan,7802,jiwa,2025,registration,total_population,3.1.2,73,,65+
+11.05,2,Kabupaten Aceh Barat,age_group,65+,,14663,jiwa,2025,registration,total_population,3.1.2,73,,65+
+11.05,2,Aceh Barat,sex,laki_laki,,106286,jiwa,2025,registration,total_population,3.1.2,73,,Laki-Laki
+11.05,2,Aceh Barat,sex,perempuan,,104693,jiwa,2025,registration,total_population,3.1.2,73,,Perempuan
+11.05,2,Aceh Barat,total,total,,210979,jiwa,2025,registration,total_population,3.1.2,73,,
+11.05.01,3,Johan Pahlawan,religion,islam,,65529,jiwa,2025,registration,total_population,4.3.1,204,,Islam
+11.05.01,3,Johan Pahlawan,religion,kristen,,313,jiwa,2025,registration,total_population,4.3.1,204,,Protestan
+11.05.01,3,Johan Pahlawan,religion,katolik,,60,jiwa,2025,registration,total_population,4.3.1,204,,Katolik
+11.05.01,3,Johan Pahlawan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Hindu
+11.05.01,3,Johan Pahlawan,religion,buddha,,634,jiwa,2025,registration,total_population,4.3.1,204,,Budha
+11.05.01,3,Johan Pahlawan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Lainnya
+11.05.05,3,Samatiga,religion,islam,,22461,jiwa,2025,registration,total_population,4.3.1,204,,Islam
+11.05.05,3,Samatiga,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,204,,Protestan
+11.05.05,3,Samatiga,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Katolik
+11.05.05,3,Samatiga,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Hindu
+11.05.05,3,Samatiga,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Budha
+11.05.05,3,Samatiga,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Lainnya
+11.05.06,3,Bubon,religion,islam,,4802,jiwa,2025,registration,total_population,4.3.1,204,,Islam
+11.05.06,3,Bubon,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Protestan
+11.05.06,3,Bubon,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Katolik
+11.05.06,3,Bubon,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Hindu
+11.05.06,3,Bubon,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Budha
+11.05.06,3,Bubon,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Lainnya
+11.05.07,3,Arongan Lambalek,religion,islam,,14563,jiwa,2025,registration,total_population,4.3.1,204,,Islam
+11.05.07,3,Arongan Lambalek,religion,kristen,,4,jiwa,2025,registration,total_population,4.3.1,204,,Protestan
+11.05.07,3,Arongan Lambalek,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Katolik
+11.05.07,3,Arongan Lambalek,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Hindu
+11.05.07,3,Arongan Lambalek,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Budha
+11.05.07,3,Arongan Lambalek,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Lainnya
+11.05.04,3,Woyla,religion,islam,,16592,jiwa,2025,registration,total_population,4.3.1,204,,Islam
+11.05.04,3,Woyla,religion,kristen,,4,jiwa,2025,registration,total_population,4.3.1,204,,Protestan
+11.05.04,3,Woyla,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Katolik
+11.05.04,3,Woyla,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Hindu
+11.05.04,3,Woyla,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Budha
+11.05.04,3,Woyla,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Lainnya
+11.05.10,3,Woyla Barat,religion,islam,,7213,jiwa,2025,registration,total_population,4.3.1,204,,Islam
+11.05.10,3,Woyla Barat,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Protestan
+11.05.10,3,Woyla Barat,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Katolik
+11.05.10,3,Woyla Barat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Hindu
+11.05.10,3,Woyla Barat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Budha
+11.05.10,3,Woyla Barat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Lainnya
+11.05.11,3,Woyla Timur,religion,islam,,12621,jiwa,2025,registration,total_population,4.3.1,204,,Islam
+11.05.11,3,Woyla Timur,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,204,,Protestan
+11.05.11,3,Woyla Timur,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Katolik
+11.05.11,3,Woyla Timur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Hindu
+11.05.11,3,Woyla Timur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Budha
+11.05.11,3,Woyla Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Lainnya
+11.05.02,3,Kaway XVI,religion,islam,,12332,jiwa,2025,registration,total_population,4.3.1,204,,Islam
+11.05.02,3,Kaway XVI,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Protestan
+11.05.02,3,Kaway XVI,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Katolik
+11.05.02,3,Kaway XVI,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Hindu
+11.05.02,3,Kaway XVI,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Budha
+11.05.02,3,Kaway XVI,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Lainnya
+11.05.09,3,Meureubo,religion,islam,,32866,jiwa,2025,registration,total_population,4.3.1,204,,Islam
+11.05.09,3,Meureubo,religion,kristen,,80,jiwa,2025,registration,total_population,4.3.1,204,,Protestan
+11.05.09,3,Meureubo,religion,katolik,,5,jiwa,2025,registration,total_population,4.3.1,204,,Katolik
+11.05.09,3,Meureubo,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Hindu
+11.05.09,3,Meureubo,religion,buddha,,31,jiwa,2025,registration,total_population,4.3.1,204,,Budha
+11.05.09,3,Meureubo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Lainnya
+11.05.08,3,Pante Ceureumen,religion,islam,,8263,jiwa,2025,registration,total_population,4.3.1,204,,Islam
+11.05.08,3,Pante Ceureumen,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Protestan
+11.05.08,3,Pante Ceureumen,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Katolik
+11.05.08,3,Pante Ceureumen,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Hindu
+11.05.08,3,Pante Ceureumen,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Budha
+11.05.08,3,Pante Ceureumen,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Lainnya
+11.05.12,3,Panton Reu,religion,islam,,5534,jiwa,2025,registration,total_population,4.3.1,204,,Islam
+11.05.12,3,Panton Reu,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Protestan
+11.05.12,3,Panton Reu,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Katolik
+11.05.12,3,Panton Reu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Hindu
+11.05.12,3,Panton Reu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Budha
+11.05.12,3,Panton Reu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Lainnya
+11.05.03,3,Sungai Mas,religion,islam,,7070,jiwa,2025,registration,total_population,4.3.1,204,,Islam
+11.05.03,3,Sungai Mas,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Protestan
+11.05.03,3,Sungai Mas,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Katolik
+11.05.03,3,Sungai Mas,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Hindu
+11.05.03,3,Sungai Mas,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Budha
+11.05.03,3,Sungai Mas,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Lainnya
+11.05,2,Aceh Barat,religion,islam,,209846,jiwa,2025,registration,total_population,4.3.1,204,,Islam
+11.05,2,Aceh Barat,religion,kristen,,403,jiwa,2025,registration,total_population,4.3.1,204,,Protestan
+11.05,2,Aceh Barat,religion,katolik,,65,jiwa,2025,registration,total_population,4.3.1,204,,Katolik
+11.05,2,Aceh Barat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Hindu
+11.05,2,Aceh Barat,religion,buddha,,665,jiwa,2025,registration,total_population,4.3.1,204,,Budha
+11.05,2,Aceh Barat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,204,nil,Lainnya
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/padi_padian,,94328,rupiah,2024,survey_estimate,per_capita,10.1,481,,Padi-padian
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/padi_padian,,80339,rupiah,2023,survey_estimate,per_capita,10.1,481,,Padi-padian
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/padi_padian,,90139,rupiah,2025,survey_estimate,per_capita,10.1,481,,Padi-padian
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/umbi_umbian,,6847,rupiah,2024,survey_estimate,per_capita,10.1,481,,Umbi-umbian
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/umbi_umbian,,7109,rupiah,2023,survey_estimate,per_capita,10.1,481,,Umbi-umbian
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/umbi_umbian,,6058,rupiah,2025,survey_estimate,per_capita,10.1,481,,Umbi-umbian
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,131018,rupiah,2024,survey_estimate,per_capita,10.1,481,,Ikan/udang/cumi/kerang
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,128508,rupiah,2023,survey_estimate,per_capita,10.1,481,,Ikan/udang/cumi/kerang
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,108081,rupiah,2025,survey_estimate,per_capita,10.1,481,,Ikan/udang/cumi/kerang
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/daging,,23260,rupiah,2024,survey_estimate,per_capita,10.1,481,,Daging
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/daging,,20141,rupiah,2023,survey_estimate,per_capita,10.1,481,,Daging
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/daging,,14851,rupiah,2025,survey_estimate,per_capita,10.1,481,,Daging
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/telur_dan_susu,,26551,rupiah,2024,survey_estimate,per_capita,10.1,481,,Telur dan susu
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/telur_dan_susu,,25222,rupiah,2023,survey_estimate,per_capita,10.1,481,,Telur dan susu
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/telur_dan_susu,,26903,rupiah,2025,survey_estimate,per_capita,10.1,481,,Telur dan susu
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/sayur_sayuran,,67805,rupiah,2024,survey_estimate,per_capita,10.1,481,,Sayur-sayuran
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/sayur_sayuran,,61713,rupiah,2023,survey_estimate,per_capita,10.1,481,,Sayur-sayuran
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/sayur_sayuran,,60634,rupiah,2025,survey_estimate,per_capita,10.1,481,,Sayur-sayuran
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/kacang_kacangan,,8706,rupiah,2024,survey_estimate,per_capita,10.1,481,,Kacang-kacangan
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/kacang_kacangan,,8531,rupiah,2023,survey_estimate,per_capita,10.1,481,,Kacang-kacangan
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/kacang_kacangan,,7629,rupiah,2025,survey_estimate,per_capita,10.1,481,,Kacang-kacangan
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/buah_buahan,,47829,rupiah,2024,survey_estimate,per_capita,10.1,481,,Buah-buahan
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/buah_buahan,,40506,rupiah,2023,survey_estimate,per_capita,10.1,481,,Buah-buahan
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/buah_buahan,,39767,rupiah,2025,survey_estimate,per_capita,10.1,481,,Buah-buahan
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,21474,rupiah,2024,survey_estimate,per_capita,10.1,481,,Minyak dan kelapa
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22820,rupiah,2023,survey_estimate,per_capita,10.1,481,,Minyak dan kelapa
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22059,rupiah,2025,survey_estimate,per_capita,10.1,481,,Minyak dan kelapa
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/bahan_minuman,,16517,rupiah,2024,survey_estimate,per_capita,10.1,481,,Bahan minuman
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/bahan_minuman,,15507,rupiah,2023,survey_estimate,per_capita,10.1,481,,Bahan minuman
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/bahan_minuman,,15583,rupiah,2025,survey_estimate,per_capita,10.1,481,,Bahan minuman
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/bumbu_bumbuan,,16727,rupiah,2024,survey_estimate,per_capita,10.1,481,,Bumbu-bumbuan
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/bumbu_bumbuan,,14129,rupiah,2023,survey_estimate,per_capita,10.1,481,,Bumbu-bumbuan
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/bumbu_bumbuan,,13505,rupiah,2025,survey_estimate,per_capita,10.1,481,,Bumbu-bumbuan
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/konsumsi_lainnya,,8006,rupiah,2024,survey_estimate,per_capita,10.1,481,,Konsumsi lainnya
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/konsumsi_lainnya,,7791,rupiah,2023,survey_estimate,per_capita,10.1,481,,Konsumsi lainnya
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/konsumsi_lainnya,,6340,rupiah,2025,survey_estimate,per_capita,10.1,481,,Konsumsi lainnya
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,274767,rupiah,2024,survey_estimate,per_capita,10.1,481,,Makanan dan minuman jadi
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,259076,rupiah,2023,survey_estimate,per_capita,10.1,481,,Makanan dan minuman jadi
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,250875,rupiah,2025,survey_estimate,per_capita,10.1,481,,Makanan dan minuman jadi
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/rokok,,129863,rupiah,2024,survey_estimate,per_capita,10.1,481,,Rokok
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/rokok,,155849,rupiah,2023,survey_estimate,per_capita,10.1,481,,Rokok
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/rokok,,109262,rupiah,2025,survey_estimate,per_capita,10.1,481,,Rokok
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/jumlah_makanan,,873696,rupiah,2024,survey_estimate,per_capita,10.1,481,,Jumlah makanan
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/jumlah_makanan,,847242,rupiah,2023,survey_estimate,per_capita,10.1,481,,Jumlah makanan
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/jumlah_makanan,,771684,rupiah,2025,survey_estimate,per_capita,10.1,481,,Jumlah makanan
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,318628,rupiah,2024,survey_estimate,per_capita,10.1,481,,Perumahan dan fasilitas rumah tangga
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,322211,rupiah,2023,survey_estimate,per_capita,10.1,481,,Perumahan dan fasilitas rumah tangga
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,294985,rupiah,2025,survey_estimate,per_capita,10.1,481,,Perumahan dan fasilitas rumah tangga
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,106973,rupiah,2024,survey_estimate,per_capita,10.1,481,,Aneka barang dan jasa
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,124305,rupiah,2023,survey_estimate,per_capita,10.1,481,,Aneka barang dan jasa
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,111399,rupiah,2025,survey_estimate,per_capita,10.1,481,,Aneka barang dan jasa
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,70245,rupiah,2024,survey_estimate,per_capita,10.1,481,,"Pakaian, alas kaki, dan tutup kepala"
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,81603,rupiah,2023,survey_estimate,per_capita,10.1,481,,"Pakaian, alas kaki, dan tutup kepala"
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,67822,rupiah,2025,survey_estimate,per_capita,10.1,481,,"Pakaian, alas kaki, dan tutup kepala"
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/barang_tahan_lama,,66450,rupiah,2024,survey_estimate,per_capita,10.1,481,,Barang tahan lama
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/barang_tahan_lama,,63067,rupiah,2023,survey_estimate,per_capita,10.1,481,,Barang tahan lama
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/barang_tahan_lama,,85497,rupiah,2025,survey_estimate,per_capita,10.1,481,,Barang tahan lama
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,64889,rupiah,2024,survey_estimate,per_capita,10.1,481,,"Pajak, pungutan, dan asuransi"
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,75297,rupiah,2023,survey_estimate,per_capita,10.1,481,,"Pajak, pungutan, dan asuransi"
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,66136,rupiah,2025,survey_estimate,per_capita,10.1,481,,"Pajak, pungutan, dan asuransi"
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,13519,rupiah,2024,survey_estimate,per_capita,10.1,481,,Keperluan pesta dan upacara/kenduri
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,10737,rupiah,2023,survey_estimate,per_capita,10.1,481,,Keperluan pesta dan upacara/kenduri
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,15221,rupiah,2025,survey_estimate,per_capita,10.1,481,,Keperluan pesta dan upacara/kenduri
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,640704,rupiah,2024,survey_estimate,per_capita,10.1,481,,Jumlah bukan makanan
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,677221,rupiah,2023,survey_estimate,per_capita,10.1,481,,Jumlah bukan makanan
+11.05,2,Kabupaten Aceh Barat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,64106,rupiah,2025,survey_estimate,per_capita,10.1,481,,Jumlah bukan makanan
+11.05,2,Kabupaten Aceh Barat,expenditure,total,,1514401,rupiah,2024,survey_estimate,per_capita,10.1,481,,
+11.05,2,Kabupaten Aceh Barat,expenditure,total,,1524463,rupiah,2023,survey_estimate,per_capita,10.1,481,,
+11.05,2,Kabupaten Aceh Barat,expenditure,total,,1412744,rupiah,2025,survey_estimate,per_capita,10.1,481,,

@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.09.10.2001,4,Sekayun,sex,laki_laki,,387,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.10.2001,4,Sekayun,sex,perempuan,,375,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.10.2001,4,Sekayun,total,total,,762,jiwa,2025,registration,total_population,3.1,33,,
+17.09.10.2002,4,Sekayun Mudik,sex,laki_laki,,480,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.10.2002,4,Sekayun Mudik,sex,perempuan,,491,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.10.2002,4,Sekayun Mudik,total,total,,971,jiwa,2025,registration,total_population,3.1,33,,
+17.09.10.2004,4,Talang Donok,sex,laki_laki,,399,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.10.2004,4,Talang Donok,sex,perempuan,,371,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.10.2004,4,Talang Donok,total,total,,770,jiwa,2025,registration,total_population,3.1,33,,
+17.09.10.2005,4,Taba Tengah,sex,laki_laki,,211,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.10.2005,4,Taba Tengah,sex,perempuan,,190,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.10.2005,4,Taba Tengah,total,total,,401,jiwa,2025,registration,total_population,3.1,33,,
+17.09.10.2007,4,Lubuk Langkap,sex,laki_laki,,320,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.10.2007,4,Lubuk Langkap,sex,perempuan,,283,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.10.2007,4,Lubuk Langkap,total,total,,603,jiwa,2025,registration,total_population,3.1,33,,
+17.09.10.2008,4,Air Napal,sex,laki_laki,,410,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.10.2008,4,Air Napal,sex,perempuan,,399,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.10.2008,4,Air Napal,total,total,,809,jiwa,2025,registration,total_population,3.1,33,,
+17.09.10.2009,4,Genting,sex,laki_laki,,193,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.10.2009,4,Genting,sex,perempuan,,174,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.10.2009,4,Genting,total,total,,367,jiwa,2025,registration,total_population,3.1,33,,
+17.09.10.2010,4,Talang Panjang,sex,laki_laki,,230,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.10.2010,4,Talang Panjang,sex,perempuan,,199,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.10.2010,4,Talang Panjang,total,total,,429,jiwa,2025,registration,total_population,3.1,33,,
+17.09.10.2011,4,Bang Haji,sex,laki_laki,,361,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.10.2011,4,Bang Haji,sex,perempuan,,352,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.10.2011,4,Bang Haji,total,total,,713,jiwa,2025,registration,total_population,3.1,33,,
+17.09.10.2012,4,Sungkai Berayun,sex,laki_laki,,163,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.10.2012,4,Sungkai Berayun,sex,perempuan,,142,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.10.2012,4,Sungkai Berayun,total,total,,305,jiwa,2025,registration,total_population,3.1,33,,
+17.09.10,3,Bang Haji,sex,laki_laki,,3751,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+17.09.10,3,Bang Haji,sex,perempuan,,3489,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+17.09.10,3,Bang Haji,total,total,,7240,jiwa,2025,registration,total_population,3.1,33,,
+17.09.10,3,Bang Haji,age_group,0-4,laki_laki,267,jiwa,2025,registration,total_population,3.2,35,,0 – 4
+17.09.10,3,Bang Haji,age_group,0-4,perempuan,214,jiwa,2025,registration,total_population,3.2,35,,0 – 4
+17.09.10,3,Bang Haji,age_group,0-4,,481,jiwa,2025,registration,total_population,3.2,35,,0 – 4
+17.09.10,3,Bang Haji,age_group,5-9,laki_laki,329,jiwa,2025,registration,total_population,3.2,35,,5 – 9
+17.09.10,3,Bang Haji,age_group,5-9,perempuan,282,jiwa,2025,registration,total_population,3.2,35,,5 – 9
+17.09.10,3,Bang Haji,age_group,5-9,,611,jiwa,2025,registration,total_population,3.2,35,,5 – 9
+17.09.10,3,Bang Haji,age_group,10-14,laki_laki,343,jiwa,2025,registration,total_population,3.2,35,,10 – 14
+17.09.10,3,Bang Haji,age_group,10-14,perempuan,336,jiwa,2025,registration,total_population,3.2,35,,10 – 14
+17.09.10,3,Bang Haji,age_group,10-14,,679,jiwa,2025,registration,total_population,3.2,35,,10 – 14
+17.09.10,3,Bang Haji,age_group,15-19,laki_laki,322,jiwa,2025,registration,total_population,3.2,35,,15 – 19
+17.09.10,3,Bang Haji,age_group,15-19,perempuan,270,jiwa,2025,registration,total_population,3.2,35,,15 – 19
+17.09.10,3,Bang Haji,age_group,15-19,,592,jiwa,2025,registration,total_population,3.2,35,,15 – 19
+17.09.10,3,Bang Haji,age_group,20-24,laki_laki,321,jiwa,2025,registration,total_population,3.2,35,,20 – 24
+17.09.10,3,Bang Haji,age_group,20-24,perempuan,304,jiwa,2025,registration,total_population,3.2,35,,20 – 24
+17.09.10,3,Bang Haji,age_group,20-24,,625,jiwa,2025,registration,total_population,3.2,35,,20 – 24
+17.09.10,3,Bang Haji,age_group,25-29,laki_laki,336,jiwa,2025,registration,total_population,3.2,35,,25 – 29
+17.09.10,3,Bang Haji,age_group,25-29,perempuan,301,jiwa,2025,registration,total_population,3.2,35,,25 – 29
+17.09.10,3,Bang Haji,age_group,25-29,,637,jiwa,2025,registration,total_population,3.2,35,,25 – 29
+17.09.10,3,Bang Haji,age_group,30-34,laki_laki,297,jiwa,2025,registration,total_population,3.2,35,,30 – 34
+17.09.10,3,Bang Haji,age_group,30-34,perempuan,303,jiwa,2025,registration,total_population,3.2,35,,30 – 34
+17.09.10,3,Bang Haji,age_group,30-34,,600,jiwa,2025,registration,total_population,3.2,35,,30 – 34
+17.09.10,3,Bang Haji,age_group,35-39,laki_laki,319,jiwa,2025,registration,total_population,3.2,35,,35 – 39
+17.09.10,3,Bang Haji,age_group,35-39,perempuan,298,jiwa,2025,registration,total_population,3.2,35,,35 – 39
+17.09.10,3,Bang Haji,age_group,35-39,,617,jiwa,2025,registration,total_population,3.2,35,,35 – 39
+17.09.10,3,Bang Haji,age_group,40-44,laki_laki,263,jiwa,2025,registration,total_population,3.2,35,,40 – 44
+17.09.10,3,Bang Haji,age_group,40-44,perempuan,279,jiwa,2025,registration,total_population,3.2,35,,40 – 44
+17.09.10,3,Bang Haji,age_group,40-44,,542,jiwa,2025,registration,total_population,3.2,35,,40 – 44
+17.09.10,3,Bang Haji,age_group,45-49,laki_laki,288,jiwa,2025,registration,total_population,3.2,35,,45 – 49
+17.09.10,3,Bang Haji,age_group,45-49,perempuan,259,jiwa,2025,registration,total_population,3.2,35,,45 – 49
+17.09.10,3,Bang Haji,age_group,45-49,,547,jiwa,2025,registration,total_population,3.2,35,,45 – 49
+17.09.10,3,Bang Haji,age_group,50-54,laki_laki,215,jiwa,2025,registration,total_population,3.2,35,,50 – 54
+17.09.10,3,Bang Haji,age_group,50-54,perempuan,163,jiwa,2025,registration,total_population,3.2,35,,50 – 54
+17.09.10,3,Bang Haji,age_group,50-54,,378,jiwa,2025,registration,total_population,3.2,35,,50 – 54
+17.09.10,3,Bang Haji,age_group,55-59,laki_laki,140,jiwa,2025,registration,total_population,3.2,35,,55 – 59
+17.09.10,3,Bang Haji,age_group,55-59,perempuan,130,jiwa,2025,registration,total_population,3.2,35,,55 – 59
+17.09.10,3,Bang Haji,age_group,55-59,,270,jiwa,2025,registration,total_population,3.2,35,,55 – 59
+17.09.10,3,Bang Haji,age_group,60-64,laki_laki,99,jiwa,2025,registration,total_population,3.2,35,,60 – 64
+17.09.10,3,Bang Haji,age_group,60-64,perempuan,126,jiwa,2025,registration,total_population,3.2,35,,60 – 64
+17.09.10,3,Bang Haji,age_group,60-64,,225,jiwa,2025,registration,total_population,3.2,35,,60 – 64
+17.09.10,3,Bang Haji,age_group,65-69,laki_laki,104,jiwa,2025,registration,total_population,3.2,35,,65 – 69
+17.09.10,3,Bang Haji,age_group,65-69,perempuan,92,jiwa,2025,registration,total_population,3.2,35,,65 – 69
+17.09.10,3,Bang Haji,age_group,65-69,,196,jiwa,2025,registration,total_population,3.2,35,,65 – 69
+17.09.10,3,Bang Haji,age_group,70-74,laki_laki,47,jiwa,2025,registration,total_population,3.2,35,,70 – 74
+17.09.10,3,Bang Haji,age_group,70-74,perempuan,57,jiwa,2025,registration,total_population,3.2,35,,70 – 74
+17.09.10,3,Bang Haji,age_group,70-74,,104,jiwa,2025,registration,total_population,3.2,35,,70 – 74
+17.09.10,3,Bang Haji,age_group,75+,laki_laki,61,jiwa,2025,registration,total_population,3.2,35,,75+
+17.09.10,3,Bang Haji,age_group,75+,perempuan,75,jiwa,2025,registration,total_population,3.2,35,,75+
+17.09.10,3,Bang Haji,age_group,75+,,136,jiwa,2025,registration,total_population,3.2,35,,75+
+17.09.10,3,Bang Haji,sex,laki_laki,,3751,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+17.09.10,3,Bang Haji,sex,perempuan,,3489,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+17.09.10,3,Bang Haji,total,total,,7240,jiwa,2025,registration,total_population,3.2,35,,

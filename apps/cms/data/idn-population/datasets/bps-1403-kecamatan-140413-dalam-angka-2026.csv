@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.04.13.2003,4,Pulau Palas,sex,laki_laki,,4176,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.13.2003,4,Pulau Palas,sex,perempuan,,3817,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.13.2003,4,Pulau Palas,total,total,,7993,jiwa,2026,registration,total_population,3.1,29,,
+14.04.13.1001,4,Tembilahan Hulu,sex,laki_laki,,15990,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.13.1001,4,Tembilahan Hulu,sex,perempuan,,15364,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.13.1001,4,Tembilahan Hulu,total,total,,31354,jiwa,2026,registration,total_population,3.1,29,,
+14.04.13.2004,4,Sialang Panjang,sex,laki_laki,,1345,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.13.2004,4,Sialang Panjang,sex,perempuan,,1313,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.13.2004,4,Sialang Panjang,total,total,,2658,jiwa,2026,registration,total_population,3.1,29,,
+14.04.13.2002,4,Pekan Kamis,sex,laki_laki,,838,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.13.2002,4,Pekan Kamis,sex,perempuan,,794,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.13.2002,4,Pekan Kamis,total,total,,1632,jiwa,2026,registration,total_population,3.1,29,,
+14.04.13.2006,4,Sungai Intan,sex,laki_laki,,1756,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.13.2006,4,Sungai Intan,sex,perempuan,,1600,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.13.2006,4,Sungai Intan,total,total,,3356,jiwa,2026,registration,total_population,3.1,29,,
+14.04.13.1005,4,Tembilahan Barat,sex,laki_laki,,3364,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.13.1005,4,Tembilahan Barat,sex,perempuan,,3273,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.13.1005,4,Tembilahan Barat,total,total,,6637,jiwa,2026,registration,total_population,3.1,29,,
+14.04.13,3,Tembilahan Hulu,sex,laki_laki,,27469,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.13,3,Tembilahan Hulu,sex,perempuan,,26161,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.13,3,Tembilahan Hulu,total,total,,53630,jiwa,2026,registration,total_population,3.1,29,,

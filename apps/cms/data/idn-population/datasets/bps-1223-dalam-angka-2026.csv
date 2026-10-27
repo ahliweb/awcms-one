@@ -1,0 +1,107 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.23.06,3,Na IX-X,total,total,,61400,ribu_jiwa,2025,registration,total_population,3.1.1,53,,
+12.23.05,3,Marbau,total,total,,44835,ribu_jiwa,2025,registration,total_population,3.1.1,53,,
+12.23.04,3,Aek Kuo,total,total,,33412,ribu_jiwa,2025,registration,total_population,3.1.1,53,,
+12.23.07,3,Aek Natas,total,total,,40580,ribu_jiwa,2025,registration,total_population,3.1.1,53,,
+12.23.08,3,Kualuh Selatan,total,total,,70432,ribu_jiwa,2025,registration,total_population,3.1.1,53,,
+12.23.03,3,Kualuh Hilir,total,total,,35675,ribu_jiwa,2025,registration,total_population,3.1.1,53,,
+12.23.01,3,Kualuh Hulu,total,total,,80048,ribu_jiwa,2025,registration,total_population,3.1.1,53,,
+12.23.02,3,Kualuh Leidong,total,total,,36478,ribu_jiwa,2025,registration,total_population,3.1.1,53,,
+12.23,2,Labuhanbatu Utara,total,total,,402860,ribu_jiwa,2025,registration,total_population,3.1.1,53,,
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,0-4,laki_laki,12238,jiwa,2025,registration,total_population,3.1.2,56,,0 - 4
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,0-4,perempuan,11527,jiwa,2025,registration,total_population,3.1.2,56,,0 - 4
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,0-4,,23765,jiwa,2025,registration,total_population,3.1.2,56,,0 - 4
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,5-9,laki_laki,18793,jiwa,2025,registration,total_population,3.1.2,56,,5 - 9
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,5-9,perempuan,17597,jiwa,2025,registration,total_population,3.1.2,56,,5 - 9
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,5-9,,36390,jiwa,2025,registration,total_population,3.1.2,56,,5 - 9
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,10-14,laki_laki,21175,jiwa,2025,registration,total_population,3.1.2,56,,10 - 14
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,10-14,perempuan,19737,jiwa,2025,registration,total_population,3.1.2,56,,10 - 14
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,10-14,,40912,jiwa,2025,registration,total_population,3.1.2,56,,10 - 14
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,15-19,laki_laki,20999,jiwa,2025,registration,total_population,3.1.2,56,,15 - 19
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,15-19,perempuan,20160,jiwa,2025,registration,total_population,3.1.2,56,,15 - 19
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,15-19,,41159,jiwa,2025,registration,total_population,3.1.2,56,,15 - 19
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,20-24,laki_laki,19548,jiwa,2025,registration,total_population,3.1.2,56,,20 - 24
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,20-24,perempuan,18742,jiwa,2025,registration,total_population,3.1.2,56,,20 - 24
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,20-24,,38290,jiwa,2025,registration,total_population,3.1.2,56,,20 - 24
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,25-29,laki_laki,17301,jiwa,2025,registration,total_population,3.1.2,56,,25 - 29
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,25-29,perempuan,16230,jiwa,2025,registration,total_population,3.1.2,56,,25 - 29
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,25-29,,33531,jiwa,2025,registration,total_population,3.1.2,56,,25 - 29
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,30-34,laki_laki,15455,jiwa,2025,registration,total_population,3.1.2,56,,30 - 34
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,30-34,perempuan,14939,jiwa,2025,registration,total_population,3.1.2,56,,30 - 34
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,30-34,,30394,jiwa,2025,registration,total_population,3.1.2,56,,30 - 34
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,35-39,laki_laki,15795,jiwa,2025,registration,total_population,3.1.2,56,,35 - 39
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,35-39,perempuan,14944,jiwa,2025,registration,total_population,3.1.2,56,,35 - 39
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,35-39,,30739,jiwa,2025,registration,total_population,3.1.2,56,,35 - 39
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,40-44,laki_laki,14820,jiwa,2025,registration,total_population,3.1.2,56,,40 - 44
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,40-44,perempuan,14147,jiwa,2025,registration,total_population,3.1.2,56,,40 - 44
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,40-44,,28967,jiwa,2025,registration,total_population,3.1.2,56,,40 - 44
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,45-49,laki_laki,12671,jiwa,2025,registration,total_population,3.1.2,56,,45 - 49
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,45-49,perempuan,12179,jiwa,2025,registration,total_population,3.1.2,56,,45 - 49
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,45-49,,24850,jiwa,2025,registration,total_population,3.1.2,56,,45 - 49
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,50-54,laki_laki,10088,jiwa,2025,registration,total_population,3.1.2,56,,50 - 54
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,50-54,perempuan,9960,jiwa,2025,registration,total_population,3.1.2,56,,50 - 54
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,50-54,,20048,jiwa,2025,registration,total_population,3.1.2,56,,50 - 54
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,55-59,laki_laki,7806,jiwa,2025,registration,total_population,3.1.2,56,,55 - 59
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,55-59,perempuan,8206,jiwa,2025,registration,total_population,3.1.2,56,,55 - 59
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,55-59,,16012,jiwa,2025,registration,total_population,3.1.2,56,,55 - 59
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,60-64,laki_laki,6303,jiwa,2025,registration,total_population,3.1.2,56,,60 - 64
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,60-64,perempuan,7292,jiwa,2025,registration,total_population,3.1.2,56,,60 - 64
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,60-64,,13595,jiwa,2025,registration,total_population,3.1.2,56,,60 - 64
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,65-69,laki_laki,5025,jiwa,2025,registration,total_population,3.1.2,56,,65 - 69
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,65-69,perempuan,6112,jiwa,2025,registration,total_population,3.1.2,56,,65 - 69
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,65-69,,11137,jiwa,2025,registration,total_population,3.1.2,56,,65 - 69
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,70-74,laki_laki,2922,jiwa,2025,registration,total_population,3.1.2,56,,70 - 74
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,70-74,perempuan,3514,jiwa,2025,registration,total_population,3.1.2,56,,70 - 74
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,70-74,,6436,jiwa,2025,registration,total_population,3.1.2,56,,70 - 74
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,75+,laki_laki,2639,jiwa,2025,registration,total_population,3.1.2,56,,75+
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,75+,perempuan,3996,jiwa,2025,registration,total_population,3.1.2,56,,75+
+12.23,2,Kabupaten Labuhanbatu Utara,age_group,75+,,6635,jiwa,2025,registration,total_population,3.1.2,56,,75+
+12.23,2,Labuhanbatu Utara,sex,laki_laki,,203578,jiwa,2025,registration,total_population,3.1.2,56,,Laki-Laki
+12.23,2,Labuhanbatu Utara,sex,perempuan,,199282,jiwa,2025,registration,total_population,3.1.2,56,,Perempuan
+12.23,2,Labuhanbatu Utara,total,total,,402860,jiwa,2025,registration,total_population,3.1.2,56,,
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/padi_padian,,103965,rupiah,2025,survey_estimate,per_capita,10.1,272,,Padi-padian
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/padi_padian,,109032,rupiah,2024,survey_estimate,per_capita,10.1,272,,Padi-padian
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/umbi_umbian,,8457,rupiah,2025,survey_estimate,per_capita,10.1,272,,Umbi-umbian
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/umbi_umbian,,6885,rupiah,2024,survey_estimate,per_capita,10.1,272,,Umbi-umbian
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,90041,rupiah,2025,survey_estimate,per_capita,10.1,272,,Ikan/udang/cumi/kerang
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,87067,rupiah,2024,survey_estimate,per_capita,10.1,272,,Ikan/udang/cumi/kerang
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/daging,,25800,rupiah,2025,survey_estimate,per_capita,10.1,272,,Daging
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/daging,,18431,rupiah,2024,survey_estimate,per_capita,10.1,272,,Daging
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/telur_dan_susu,,35569,rupiah,2025,survey_estimate,per_capita,10.1,272,,Telur dan susu
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/telur_dan_susu,,27714,rupiah,2024,survey_estimate,per_capita,10.1,272,,Telur dan susu
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/sayur_sayuran,,77208,rupiah,2025,survey_estimate,per_capita,10.1,272,,Sayur-sayuran
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/sayur_sayuran,,69264,rupiah,2024,survey_estimate,per_capita,10.1,272,,Sayur-sayuran
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/kacang_kacangan,,10990,rupiah,2025,survey_estimate,per_capita,10.1,272,,Kacang-kacangan
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/kacang_kacangan,,9661,rupiah,2024,survey_estimate,per_capita,10.1,272,,Kacang-kacangan
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/buah_buahan,,37012,rupiah,2025,survey_estimate,per_capita,10.1,272,,Buah-buahan
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/buah_buahan,,27704,rupiah,2024,survey_estimate,per_capita,10.1,272,,Buah-buahan
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/minyak_dan_kelapa,,26221,rupiah,2025,survey_estimate,per_capita,10.1,272,,Minyak dan kelapa
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/minyak_dan_kelapa,,21406,rupiah,2024,survey_estimate,per_capita,10.1,272,,Minyak dan kelapa
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/bahan_minuman,,19765,rupiah,2025,survey_estimate,per_capita,10.1,272,,Bahan minuman
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/bahan_minuman,,15762,rupiah,2024,survey_estimate,per_capita,10.1,272,,Bahan minuman
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/bumbu_bumbuan,,13473,rupiah,2025,survey_estimate,per_capita,10.1,272,,Bumbu-bumbuan
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/bumbu_bumbuan,,12228,rupiah,2024,survey_estimate,per_capita,10.1,272,,Bumbu-bumbuan
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/konsumsi_lainnya,,9335,rupiah,2025,survey_estimate,per_capita,10.1,272,,Konsumsi lainnya
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/konsumsi_lainnya,,7951,rupiah,2024,survey_estimate,per_capita,10.1,272,,Konsumsi lainnya
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,203311,rupiah,2025,survey_estimate,per_capita,10.1,272,,Makanan dan minuman jadi
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,169829,rupiah,2024,survey_estimate,per_capita,10.1,272,,Makanan dan minuman jadi
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/rokok,,121162,rupiah,2025,survey_estimate,per_capita,10.1,272,,Rokok
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/rokok,,110711,rupiah,2024,survey_estimate,per_capita,10.1,272,,Rokok
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/jumlah_makanan,,782309,rupiah,2025,survey_estimate,per_capita,10.1,272,,Jumlah makanan
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/jumlah_makanan,,693645,rupiah,2024,survey_estimate,per_capita,10.1,272,,Jumlah makanan
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,279313,rupiah,2025,survey_estimate,per_capita,10.1,272,,Perumahan dan fasilitas rumah tangga
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,258318,rupiah,2024,survey_estimate,per_capita,10.1,272,,Perumahan dan fasilitas rumah tangga
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,118601,rupiah,2025,survey_estimate,per_capita,10.1,272,,Aneka barang dan jasa
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,114754,rupiah,2024,survey_estimate,per_capita,10.1,272,,Aneka barang dan jasa
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,37556,rupiah,2025,survey_estimate,per_capita,10.1,272,,"Pakaian, alas kaki, dan tutup kepala"
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,35239,rupiah,2024,survey_estimate,per_capita,10.1,272,,"Pakaian, alas kaki, dan tutup kepala"
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/barang_tahan_lama,,36120,rupiah,2025,survey_estimate,per_capita,10.1,272,,Barang tahan lama
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/barang_tahan_lama,,28927,rupiah,2024,survey_estimate,per_capita,10.1,272,,Barang tahan lama
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,39989,rupiah,2025,survey_estimate,per_capita,10.1,272,,"Pajak, pungutan, dan asuransi"
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,45120,rupiah,2024,survey_estimate,per_capita,10.1,272,,"Pajak, pungutan, dan asuransi"
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,6919,rupiah,2025,survey_estimate,per_capita,10.1,272,,Keperluan pesta dan upacara/kenduri
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,14060,rupiah,2024,survey_estimate,per_capita,10.1,272,,Keperluan pesta dan upacara/kenduri
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,518498,rupiah,2025,survey_estimate,per_capita,10.1,272,,Jumlah bukan makanan
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,496417,rupiah,2024,survey_estimate,per_capita,10.1,272,,Jumlah bukan makanan
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,total,,1300807,rupiah,2025,survey_estimate,per_capita,10.1,272,,
+12.23,2,Kabupaten Labuhanbatu Utara,expenditure,total,,1190062,rupiah,2024,survey_estimate,per_capita,10.1,272,,

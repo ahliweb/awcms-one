@@ -1,0 +1,404 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.01.21,3,Nanggung,total,total,,105136,jiwa,2025,projection,total_population,3.1.1,75,,
+32.01.14,3,Leuwiliang,total,total,,129074,jiwa,2025,projection,total_population,3.1.1,75,,
+32.01.39,3,Leuwisadeng,total,total,,79822,jiwa,2025,projection,total_population,3.1.1,75,,
+32.01.17,3,Pamijahan,total,total,,167802,jiwa,2025,projection,total_population,3.1.1,75,,
+32.01.16,3,Cibungbulang,total,total,,155001,jiwa,2025,projection,total_population,3.1.1,75,,
+32.01.15,3,Ciampea,total,total,,177624,jiwa,2025,projection,total_population,3.1.1,75,,
+32.01.40,3,Tenjolaya,total,total,,67580,jiwa,2025,projection,total_population,3.1.1,75,,
+32.01.30,3,Dramaga,total,total,,114059,jiwa,2025,projection,total_population,3.1.1,75,,
+32.01.29,3,Ciomas,total,total,,179765,jiwa,2025,projection,total_population,3.1.1,75,,
+32.01.31,3,Tamansari,total,total,,116821,jiwa,2025,projection,total_population,3.1.1,75,,
+32.01.28,3,Cijeruk,total,total,,97577,jiwa,2025,projection,total_population,3.1.1,75,,
+32.01.38,3,Cigombong,total,total,,101333,jiwa,2025,projection,total_population,3.1.1,75,,
+32.01.27,3,Caringin,total,total,,138376,jiwa,2025,projection,total_population,3.1.1,75,,
+32.01.24,3,Ciawi,total,total,,119671,jiwa,2025,projection,total_population,3.1.1,75,,
+32.01.25,3,Cisarua,total,total,,133174,jiwa,2025,projection,total_population,3.1.1,75,,
+32.01.26,3,Megamendung,total,total,,111177,jiwa,2025,projection,total_population,3.1.1,75,,
+32.01.04,3,Sukaraja,total,total,,221927,jiwa,2025,projection,total_population,3.1.1,75,,
+32.01.05,3,Babakan Madang,total,total,,119312,jiwa,2025,projection,total_population,3.1.1,75,,
+32.01.09,3,Sukamakmur,total,total,,90390,jiwa,2025,projection,total_population,3.1.1,75,,
+32.01,2,Kabupaten Bogor,age_group,0-4,laki_laki,231720,jiwa,2025,projection,total_population,3.1.2,81,,0–4
+32.01,2,Kabupaten Bogor,age_group,0-4,perempuan,222371,jiwa,2025,projection,total_population,3.1.2,81,,0–4
+32.01,2,Kabupaten Bogor,age_group,0-4,,454091,jiwa,2025,projection,total_population,3.1.2,81,,0–4
+32.01,2,Kabupaten Bogor,age_group,5-9,laki_laki,231639,jiwa,2025,projection,total_population,3.1.2,81,,5–9
+32.01,2,Kabupaten Bogor,age_group,5-9,perempuan,221148,jiwa,2025,projection,total_population,3.1.2,81,,5–9
+32.01,2,Kabupaten Bogor,age_group,5-9,,452787,jiwa,2025,projection,total_population,3.1.2,81,,5–9
+32.01,2,Kabupaten Bogor,age_group,10-14,laki_laki,235163,jiwa,2025,projection,total_population,3.1.2,81,,10–14
+32.01,2,Kabupaten Bogor,age_group,10-14,perempuan,224047,jiwa,2025,projection,total_population,3.1.2,81,,10–14
+32.01,2,Kabupaten Bogor,age_group,10-14,,459210,jiwa,2025,projection,total_population,3.1.2,81,,10–14
+32.01,2,Kabupaten Bogor,age_group,15-19,laki_laki,235929,jiwa,2025,projection,total_population,3.1.2,81,,15–19
+32.01,2,Kabupaten Bogor,age_group,15-19,perempuan,220737,jiwa,2025,projection,total_population,3.1.2,81,,15–19
+32.01,2,Kabupaten Bogor,age_group,15-19,,456666,jiwa,2025,projection,total_population,3.1.2,81,,15–19
+32.01,2,Kabupaten Bogor,age_group,20-24,laki_laki,237658,jiwa,2025,projection,total_population,3.1.2,81,,20–24
+32.01,2,Kabupaten Bogor,age_group,20-24,perempuan,222927,jiwa,2025,projection,total_population,3.1.2,81,,20–24
+32.01,2,Kabupaten Bogor,age_group,20-24,,460585,jiwa,2025,projection,total_population,3.1.2,81,,20–24
+32.01,2,Kabupaten Bogor,age_group,25-29,laki_laki,247518,jiwa,2025,projection,total_population,3.1.2,81,,25–29
+32.01,2,Kabupaten Bogor,age_group,25-29,perempuan,231994,jiwa,2025,projection,total_population,3.1.2,81,,25–29
+32.01,2,Kabupaten Bogor,age_group,25-29,,479512,jiwa,2025,projection,total_population,3.1.2,81,,25–29
+32.01,2,Kabupaten Bogor,age_group,30-34,laki_laki,246560,jiwa,2025,projection,total_population,3.1.2,81,,30–34
+32.01,2,Kabupaten Bogor,age_group,30-34,perempuan,234606,jiwa,2025,projection,total_population,3.1.2,81,,30–34
+32.01,2,Kabupaten Bogor,age_group,30-34,,481166,jiwa,2025,projection,total_population,3.1.2,81,,30–34
+32.01,2,Kabupaten Bogor,age_group,35-39,laki_laki,250567,jiwa,2025,projection,total_population,3.1.2,81,,35–39
+32.01,2,Kabupaten Bogor,age_group,35-39,perempuan,236922,jiwa,2025,projection,total_population,3.1.2,81,,35–39
+32.01,2,Kabupaten Bogor,age_group,35-39,,487489,jiwa,2025,projection,total_population,3.1.2,81,,35–39
+32.01,2,Kabupaten Bogor,age_group,40-44,laki_laki,222421,jiwa,2025,projection,total_population,3.1.2,81,,40–44
+32.01,2,Kabupaten Bogor,age_group,40-44,perempuan,208578,jiwa,2025,projection,total_population,3.1.2,81,,40–44
+32.01,2,Kabupaten Bogor,age_group,40-44,,430999,jiwa,2025,projection,total_population,3.1.2,81,,40–44
+32.01,2,Kabupaten Bogor,age_group,45-49,laki_laki,204521,jiwa,2025,projection,total_population,3.1.2,81,,45–49
+32.01,2,Kabupaten Bogor,age_group,45-49,perempuan,197601,jiwa,2025,projection,total_population,3.1.2,81,,45–49
+32.01,2,Kabupaten Bogor,age_group,45-49,,402122,jiwa,2025,projection,total_population,3.1.2,81,,45–49
+32.01,2,Kabupaten Bogor,age_group,50-54,laki_laki,177792,jiwa,2025,projection,total_population,3.1.2,81,,50–54
+32.01,2,Kabupaten Bogor,age_group,50-54,perempuan,170149,jiwa,2025,projection,total_population,3.1.2,81,,50–54
+32.01,2,Kabupaten Bogor,age_group,50-54,,347941,jiwa,2025,projection,total_population,3.1.2,81,,50–54
+32.01,2,Kabupaten Bogor,age_group,55-59,laki_laki,145903,jiwa,2025,projection,total_population,3.1.2,81,,55–59
+32.01,2,Kabupaten Bogor,age_group,55-59,perempuan,138787,jiwa,2025,projection,total_population,3.1.2,81,,55–59
+32.01,2,Kabupaten Bogor,age_group,55-59,,284690,jiwa,2025,projection,total_population,3.1.2,81,,55–59
+32.01,2,Kabupaten Bogor,age_group,60-64,laki_laki,109144,jiwa,2025,projection,total_population,3.1.2,81,,60–64
+32.01,2,Kabupaten Bogor,age_group,60-64,perempuan,103917,jiwa,2025,projection,total_population,3.1.2,81,,60–64
+32.01,2,Kabupaten Bogor,age_group,60-64,,213061,jiwa,2025,projection,total_population,3.1.2,81,,60–64
+32.01,2,Kabupaten Bogor,age_group,65-69,laki_laki,74989,jiwa,2025,projection,total_population,3.1.2,81,,65–69
+32.01,2,Kabupaten Bogor,age_group,65-69,perempuan,72957,jiwa,2025,projection,total_population,3.1.2,81,,65–69
+32.01,2,Kabupaten Bogor,age_group,65-69,,147946,jiwa,2025,projection,total_population,3.1.2,81,,65–69
+32.01,2,Kabupaten Bogor,age_group,70-74,laki_laki,45800,jiwa,2025,projection,total_population,3.1.2,81,,70–74
+32.01,2,Kabupaten Bogor,age_group,70-74,perempuan,44853,jiwa,2025,projection,total_population,3.1.2,81,,70–74
+32.01,2,Kabupaten Bogor,age_group,70-74,,90653,jiwa,2025,projection,total_population,3.1.2,81,,70–74
+32.01,2,Kabupaten Bogor,age_group,75+,laki_laki,33239,jiwa,2025,projection,total_population,3.1.2,81,,75+
+32.01,2,Kabupaten Bogor,age_group,75+,perempuan,39461,jiwa,2025,projection,total_population,3.1.2,81,,75+
+32.01,2,Kabupaten Bogor,age_group,75+,,72700,jiwa,2025,projection,total_population,3.1.2,81,,75+
+32.01,2,Bogor,sex,laki_laki,,2930563,jiwa,2025,projection,total_population,3.1.2,81,,Laki-Laki
+32.01,2,Bogor,sex,perempuan,,2791055,jiwa,2025,projection,total_population,3.1.2,81,,Perempuan
+32.01,2,Bogor,total,total,,5721618,jiwa,2025,projection,total_population,3.1.2,81,,
+32.01.21,3,Nanggung,religion,islam,,33964,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.21,3,Nanggung,religion,kristen,,27,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.21,3,Nanggung,religion,katolik,,9,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.21,3,Nanggung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Hindu
+32.01.21,3,Nanggung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Budha
+32.01.21,3,Nanggung,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Konghucu
+32.01.21,3,Nanggung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Lainnya
+32.01.14,3,Leuwiliang,religion,islam,,43294,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.14,3,Leuwiliang,religion,kristen,,95,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.14,3,Leuwiliang,religion,katolik,,19,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.14,3,Leuwiliang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Hindu
+32.01.14,3,Leuwiliang,religion,buddha,,47,jiwa,2025,registration,total_population,4.3.1,244,,Budha
+32.01.14,3,Leuwiliang,religion,khonghucu,,2,jiwa,2025,registration,total_population,4.3.1,244,,Konghucu
+32.01.14,3,Leuwiliang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Lainnya
+32.01.39,3,Leuwisadeng,religion,islam,,27043,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.39,3,Leuwisadeng,religion,kristen,,19,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.39,3,Leuwisadeng,religion,katolik,,8,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.39,3,Leuwisadeng,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Hindu
+32.01.39,3,Leuwisadeng,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,244,,Budha
+32.01.39,3,Leuwisadeng,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Konghucu
+32.01.39,3,Leuwisadeng,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Lainnya
+32.01.17,3,Pamijahan,religion,islam,,54050,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.17,3,Pamijahan,religion,kristen,,24,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.17,3,Pamijahan,religion,katolik,,9,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.17,3,Pamijahan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Hindu
+32.01.17,3,Pamijahan,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,244,,Budha
+32.01.17,3,Pamijahan,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.3.1,244,,Konghucu
+32.01.17,3,Pamijahan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Lainnya
+32.01.16,3,Cibungbulang,religion,islam,,50429,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.16,3,Cibungbulang,religion,kristen,,122,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.16,3,Cibungbulang,religion,katolik,,35,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.16,3,Cibungbulang,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,244,,Hindu
+32.01.16,3,Cibungbulang,religion,buddha,,11,jiwa,2025,registration,total_population,4.3.1,244,,Budha
+32.01.16,3,Cibungbulang,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.3.1,244,,Konghucu
+32.01.16,3,Cibungbulang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Lainnya
+32.01.15,3,Ciampea,religion,islam,,57574,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.15,3,Ciampea,religion,kristen,,572,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.15,3,Ciampea,religion,katolik,,153,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.15,3,Ciampea,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,244,,Hindu
+32.01.15,3,Ciampea,religion,buddha,,85,jiwa,2025,registration,total_population,4.3.1,244,,Budha
+32.01.15,3,Ciampea,religion,khonghucu,,157,jiwa,2025,registration,total_population,4.3.1,244,,Konghucu
+32.01.15,3,Ciampea,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Lainnya
+32.01.40,3,Tenjolaya,religion,islam,,23035,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.40,3,Tenjolaya,religion,kristen,,8,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.40,3,Tenjolaya,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.40,3,Tenjolaya,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,244,,Hindu
+32.01.40,3,Tenjolaya,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,244,,Budha
+32.01.40,3,Tenjolaya,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Konghucu
+32.01.40,3,Tenjolaya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Lainnya
+32.01.30,3,Dramaga,religion,islam,,37768,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.30,3,Dramaga,religion,kristen,,146,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.30,3,Dramaga,religion,katolik,,51,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.30,3,Dramaga,religion,hindu,,17,jiwa,2025,registration,total_population,4.3.1,244,,Hindu
+32.01.30,3,Dramaga,religion,buddha,,13,jiwa,2025,registration,total_population,4.3.1,244,,Budha
+32.01.30,3,Dramaga,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Konghucu
+32.01.30,3,Dramaga,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Lainnya
+32.01.29,3,Ciomas,religion,islam,,51909,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.29,3,Ciomas,religion,kristen,,1057,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.29,3,Ciomas,religion,katolik,,444,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.29,3,Ciomas,religion,hindu,,18,jiwa,2025,registration,total_population,4.3.1,244,,Hindu
+32.01.29,3,Ciomas,religion,buddha,,212,jiwa,2025,registration,total_population,4.3.1,244,,Budha
+32.01.29,3,Ciomas,religion,khonghucu,,7,jiwa,2025,registration,total_population,4.3.1,244,,Konghucu
+32.01.29,3,Ciomas,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,244,,Lainnya
+32.01.31,3,Tamansari,religion,islam,,37543,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.31,3,Tamansari,religion,kristen,,250,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.31,3,Tamansari,religion,katolik,,107,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.31,3,Tamansari,religion,hindu,,12,jiwa,2025,registration,total_population,4.3.1,244,,Hindu
+32.01.31,3,Tamansari,religion,buddha,,49,jiwa,2025,registration,total_population,4.3.1,244,,Budha
+32.01.31,3,Tamansari,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.3.1,244,,Konghucu
+32.01.31,3,Tamansari,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Lainnya
+32.01.28,3,Cijeruk,religion,islam,,30402,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.28,3,Cijeruk,religion,kristen,,63,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.28,3,Cijeruk,religion,katolik,,17,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.28,3,Cijeruk,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,244,,Hindu
+32.01.28,3,Cijeruk,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,244,,Budha
+32.01.28,3,Cijeruk,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Konghucu
+32.01.28,3,Cijeruk,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Lainnya
+32.01.38,3,Cigombong,religion,islam,,32412,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.38,3,Cigombong,religion,kristen,,180,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.38,3,Cigombong,religion,katolik,,50,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.38,3,Cigombong,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,244,,Hindu
+32.01.38,3,Cigombong,religion,buddha,,13,jiwa,2025,registration,total_population,4.3.1,244,,Budha
+32.01.38,3,Cigombong,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Konghucu
+32.01.38,3,Cigombong,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Lainnya
+32.01.27,3,Caringin,religion,islam,,44033,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.27,3,Caringin,religion,kristen,,141,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.27,3,Caringin,religion,katolik,,65,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.27,3,Caringin,religion,hindu,,12,jiwa,2025,registration,total_population,4.3.1,244,,Hindu
+32.01.27,3,Caringin,religion,buddha,,26,jiwa,2025,registration,total_population,4.3.1,244,,Budha
+32.01.27,3,Caringin,religion,khonghucu,,3,jiwa,2025,registration,total_population,4.3.1,244,,Konghucu
+32.01.27,3,Caringin,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Lainnya
+32.01.24,3,Ciawi,religion,islam,,37719,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.24,3,Ciawi,religion,kristen,,186,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.24,3,Ciawi,religion,katolik,,61,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.24,3,Ciawi,religion,hindu,,21,jiwa,2025,registration,total_population,4.3.1,244,,Hindu
+32.01.24,3,Ciawi,religion,buddha,,11,jiwa,2025,registration,total_population,4.3.1,244,,Budha
+32.01.24,3,Ciawi,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Konghucu
+32.01.24,3,Ciawi,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Lainnya
+32.01.25,3,Cisarua,religion,islam,,42452,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.25,3,Cisarua,religion,kristen,,273,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.25,3,Cisarua,religion,katolik,,57,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.25,3,Cisarua,religion,hindu,,9,jiwa,2025,registration,total_population,4.3.1,244,,Hindu
+32.01.25,3,Cisarua,religion,buddha,,32,jiwa,2025,registration,total_population,4.3.1,244,,Budha
+32.01.25,3,Cisarua,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Konghucu
+32.01.25,3,Cisarua,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,244,,Lainnya
+32.01.26,3,Megamendung,religion,islam,,37010,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.26,3,Megamendung,religion,kristen,,149,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.26,3,Megamendung,religion,katolik,,68,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.26,3,Megamendung,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,244,,Hindu
+32.01.26,3,Megamendung,religion,buddha,,16,jiwa,2025,registration,total_population,4.3.1,244,,Budha
+32.01.26,3,Megamendung,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Konghucu
+32.01.26,3,Megamendung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Lainnya
+32.01.04,3,Sukaraja,religion,islam,,64751,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.04,3,Sukaraja,religion,kristen,,2179,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.04,3,Sukaraja,religion,katolik,,739,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.04,3,Sukaraja,religion,hindu,,65,jiwa,2025,registration,total_population,4.3.1,244,,Hindu
+32.01.04,3,Sukaraja,religion,buddha,,126,jiwa,2025,registration,total_population,4.3.1,244,,Budha
+32.01.04,3,Sukaraja,religion,khonghucu,,17,jiwa,2025,registration,total_population,4.3.1,244,,Konghucu
+32.01.04,3,Sukaraja,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Lainnya
+32.01.05,3,Babakan Madang,religion,islam,,39679,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.05,3,Babakan Madang,religion,kristen,,937,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.05,3,Babakan Madang,religion,katolik,,314,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.05,3,Babakan Madang,religion,hindu,,8,jiwa,2025,registration,total_population,4.3.1,244,,Hindu
+32.01.05,3,Babakan Madang,religion,buddha,,109,jiwa,2025,registration,total_population,4.3.1,244,,Budha
+32.01.05,3,Babakan Madang,religion,khonghucu,,11,jiwa,2025,registration,total_population,4.3.1,244,,Konghucu
+32.01.05,3,Babakan Madang,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,244,,Lainnya
+32.01.09,3,Sukamakmur,religion,islam,,31343,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.09,3,Sukamakmur,religion,kristen,,11,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.09,3,Sukamakmur,religion,katolik,,9,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.09,3,Sukamakmur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Hindu
+32.01.09,3,Sukamakmur,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,244,,Budha
+32.01.09,3,Sukamakmur,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Konghucu
+32.01.09,3,Sukamakmur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Lainnya
+32.01.08,3,Cariu,religion,islam,,20519,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.08,3,Cariu,religion,kristen,,39,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.08,3,Cariu,religion,katolik,,11,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.08,3,Cariu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Hindu
+32.01.08,3,Cariu,religion,buddha,,13,jiwa,2025,registration,total_population,4.3.1,244,,Budha
+32.01.08,3,Cariu,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Konghucu
+32.01.08,3,Cariu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Lainnya
+32.01.36,3,Tanjungsari,religion,islam,,22291,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.36,3,Tanjungsari,religion,kristen,,21,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.36,3,Tanjungsari,religion,katolik,,7,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.36,3,Tanjungsari,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Hindu
+32.01.36,3,Tanjungsari,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Budha
+32.01.36,3,Tanjungsari,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Konghucu
+32.01.36,3,Tanjungsari,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Lainnya
+32.01.06,3,Jonggol,religion,islam,,51552,jiwa,2025,registration,total_population,4.3.1,244,,Islam
+32.01.06,3,Jonggol,religion,kristen,,1548,jiwa,2025,registration,total_population,4.3.1,244,,Protestan
+32.01.06,3,Jonggol,religion,katolik,,482,jiwa,2025,registration,total_population,4.3.1,244,,Katolik
+32.01.06,3,Jonggol,religion,hindu,,18,jiwa,2025,registration,total_population,4.3.1,244,,Hindu
+32.01.06,3,Jonggol,religion,buddha,,553,jiwa,2025,registration,total_population,4.3.1,244,,Budha
+32.01.06,3,Jonggol,religion,khonghucu,,4,jiwa,2025,registration,total_population,4.3.1,244,,Konghucu
+32.01.06,3,Jonggol,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,244,nil,Lainnya
+32.01.07,3,Cileungsi,religion,islam,,87901,jiwa,2025,registration,total_population,4.3.1,245,,Islam
+32.01.07,3,Cileungsi,religion,kristen,,4704,jiwa,2025,registration,total_population,4.3.1,245,,Protestan
+32.01.07,3,Cileungsi,religion,katolik,,1346,jiwa,2025,registration,total_population,4.3.1,245,,Katolik
+32.01.07,3,Cileungsi,religion,hindu,,89,jiwa,2025,registration,total_population,4.3.1,245,,Hindu
+32.01.07,3,Cileungsi,religion,buddha,,818,jiwa,2025,registration,total_population,4.3.1,245,,Budha
+32.01.07,3,Cileungsi,religion,khonghucu,,8,jiwa,2025,registration,total_population,4.3.1,245,,Konghucu
+32.01.07,3,Cileungsi,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,245,,Lainnya
+32.01.32,3,Klapanunggal,religion,islam,,44129,jiwa,2025,registration,total_population,4.3.1,245,,Islam
+32.01.32,3,Klapanunggal,religion,kristen,,1127,jiwa,2025,registration,total_population,4.3.1,245,,Protestan
+32.01.32,3,Klapanunggal,religion,katolik,,196,jiwa,2025,registration,total_population,4.3.1,245,,Katolik
+32.01.32,3,Klapanunggal,religion,hindu,,18,jiwa,2025,registration,total_population,4.3.1,245,,Hindu
+32.01.32,3,Klapanunggal,religion,buddha,,35,jiwa,2025,registration,total_population,4.3.1,245,,Budha
+32.01.32,3,Klapanunggal,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,245,nil,Konghucu
+32.01.32,3,Klapanunggal,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,245,,Lainnya
+32.01.02,3,Gunung Putri,religion,islam,,92476,jiwa,2025,registration,total_population,4.3.1,245,,Islam
+32.01.02,3,Gunung Putri,religion,kristen,,5470,jiwa,2025,registration,total_population,4.3.1,245,,Protestan
+32.01.02,3,Gunung Putri,religion,katolik,,2074,jiwa,2025,registration,total_population,4.3.1,245,,Katolik
+32.01.02,3,Gunung Putri,religion,hindu,,231,jiwa,2025,registration,total_population,4.3.1,245,,Hindu
+32.01.02,3,Gunung Putri,religion,buddha,,410,jiwa,2025,registration,total_population,4.3.1,245,,Budha
+32.01.02,3,Gunung Putri,religion,khonghucu,,54,jiwa,2025,registration,total_population,4.3.1,245,,Konghucu
+32.01.02,3,Gunung Putri,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,245,,Lainnya
+32.01.03,3,Citeureup,religion,islam,,69808,jiwa,2025,registration,total_population,4.3.1,245,,Islam
+32.01.03,3,Citeureup,religion,kristen,,1820,jiwa,2025,registration,total_population,4.3.1,245,,Protestan
+32.01.03,3,Citeureup,religion,katolik,,485,jiwa,2025,registration,total_population,4.3.1,245,,Katolik
+32.01.03,3,Citeureup,religion,hindu,,37,jiwa,2025,registration,total_population,4.3.1,245,,Hindu
+32.01.03,3,Citeureup,religion,buddha,,319,jiwa,2025,registration,total_population,4.3.1,245,,Budha
+32.01.03,3,Citeureup,religion,khonghucu,,433,jiwa,2025,registration,total_population,4.3.1,245,,Konghucu
+32.01.03,3,Citeureup,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,245,,Lainnya
+32.01.01,3,Cibinong,religion,islam,,112841,jiwa,2025,registration,total_population,4.3.1,245,,Islam
+32.01.01,3,Cibinong,religion,kristen,,5926,jiwa,2025,registration,total_population,4.3.1,245,,Protestan
+32.01.01,3,Cibinong,religion,katolik,,2239,jiwa,2025,registration,total_population,4.3.1,245,,Katolik
+32.01.01,3,Cibinong,religion,hindu,,174,jiwa,2025,registration,total_population,4.3.1,245,,Hindu
+32.01.01,3,Cibinong,religion,buddha,,772,jiwa,2025,registration,total_population,4.3.1,245,,Budha
+32.01.01,3,Cibinong,religion,khonghucu,,348,jiwa,2025,registration,total_population,4.3.1,245,,Konghucu
+32.01.01,3,Cibinong,religion,lainnya,,10,jiwa,2025,registration,total_population,4.3.1,245,,Lainnya
+32.01.13,3,Bojong Gede,religion,islam,,89056,jiwa,2025,registration,total_population,4.3.1,245,,Islam
+32.01.13,3,Bojong Gede,religion,kristen,,1865,jiwa,2025,registration,total_population,4.3.1,245,,Protestan
+32.01.13,3,Bojong Gede,religion,katolik,,714,jiwa,2025,registration,total_population,4.3.1,245,,Katolik
+32.01.13,3,Bojong Gede,religion,hindu,,55,jiwa,2025,registration,total_population,4.3.1,245,,Hindu
+32.01.13,3,Bojong Gede,religion,buddha,,87,jiwa,2025,registration,total_population,4.3.1,245,,Budha
+32.01.13,3,Bojong Gede,religion,khonghucu,,3,jiwa,2025,registration,total_population,4.3.1,245,,Konghucu
+32.01.13,3,Bojong Gede,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,245,,Lainnya
+32.01.37,3,Tajur Halang,religion,islam,,42194,jiwa,2025,registration,total_population,4.3.1,245,,Islam
+32.01.37,3,Tajur Halang,religion,kristen,,1563,jiwa,2025,registration,total_population,4.3.1,245,,Protestan
+32.01.37,3,Tajur Halang,religion,katolik,,373,jiwa,2025,registration,total_population,4.3.1,245,,Katolik
+32.01.37,3,Tajur Halang,religion,hindu,,30,jiwa,2025,registration,total_population,4.3.1,245,,Hindu
+32.01.37,3,Tajur Halang,religion,buddha,,246,jiwa,2025,registration,total_population,4.3.1,245,,Budha
+32.01.37,3,Tajur Halang,religion,khonghucu,,313,jiwa,2025,registration,total_population,4.3.1,245,,Konghucu
+32.01.37,3,Tajur Halang,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,245,,Lainnya
+32.01.12,3,Kemang,religion,islam,,36132,jiwa,2025,registration,total_population,4.3.1,245,,Islam
+32.01.12,3,Kemang,religion,kristen,,1071,jiwa,2025,registration,total_population,4.3.1,245,,Protestan
+32.01.12,3,Kemang,religion,katolik,,321,jiwa,2025,registration,total_population,4.3.1,245,,Katolik
+32.01.12,3,Kemang,religion,hindu,,18,jiwa,2025,registration,total_population,4.3.1,245,,Hindu
+32.01.12,3,Kemang,religion,buddha,,242,jiwa,2025,registration,total_population,4.3.1,245,,Budha
+32.01.12,3,Kemang,religion,khonghucu,,233,jiwa,2025,registration,total_population,4.3.1,245,,Konghucu
+32.01.12,3,Kemang,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,245,,Lainnya
+32.01.34,3,Rancabungur,religion,islam,,20670,jiwa,2025,registration,total_population,4.3.1,245,,Islam
+32.01.34,3,Rancabungur,religion,kristen,,437,jiwa,2025,registration,total_population,4.3.1,245,,Protestan
+32.01.34,3,Rancabungur,religion,katolik,,87,jiwa,2025,registration,total_population,4.3.1,245,,Katolik
+32.01.34,3,Rancabungur,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,245,,Hindu
+32.01.34,3,Rancabungur,religion,buddha,,171,jiwa,2025,registration,total_population,4.3.1,245,,Budha
+32.01.34,3,Rancabungur,religion,khonghucu,,333,jiwa,2025,registration,total_population,4.3.1,245,,Konghucu
+32.01.34,3,Rancabungur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,245,nil,Lainnya
+32.01.10,3,Parung,religion,islam,,43809,jiwa,2025,registration,total_population,4.3.1,245,,Islam
+32.01.10,3,Parung,religion,kristen,,637,jiwa,2025,registration,total_population,4.3.1,245,,Protestan
+32.01.10,3,Parung,religion,katolik,,178,jiwa,2025,registration,total_population,4.3.1,245,,Katolik
+32.01.10,3,Parung,religion,hindu,,16,jiwa,2025,registration,total_population,4.3.1,245,,Hindu
+32.01.10,3,Parung,religion,buddha,,195,jiwa,2025,registration,total_population,4.3.1,245,,Budha
+32.01.10,3,Parung,religion,khonghucu,,158,jiwa,2025,registration,total_population,4.3.1,245,,Konghucu
+32.01.10,3,Parung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,245,nil,Lainnya
+32.01.33,3,Ciseeng,religion,islam,,39939,jiwa,2025,registration,total_population,4.3.1,245,,Islam
+32.01.33,3,Ciseeng,religion,kristen,,286,jiwa,2025,registration,total_population,4.3.1,245,,Protestan
+32.01.33,3,Ciseeng,religion,katolik,,50,jiwa,2025,registration,total_population,4.3.1,245,,Katolik
+32.01.33,3,Ciseeng,religion,hindu,,8,jiwa,2025,registration,total_population,4.3.1,245,,Hindu
+32.01.33,3,Ciseeng,religion,buddha,,62,jiwa,2025,registration,total_population,4.3.1,245,,Budha
+32.01.33,3,Ciseeng,religion,khonghucu,,48,jiwa,2025,registration,total_population,4.3.1,245,,Konghucu
+32.01.33,3,Ciseeng,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,245,nil,Lainnya
+32.01.11,3,Gunung Sindur,religion,islam,,38297,jiwa,2025,registration,total_population,4.3.1,245,,Islam
+32.01.11,3,Gunung Sindur,religion,kristen,,1678,jiwa,2025,registration,total_population,4.3.1,245,,Protestan
+32.01.11,3,Gunung Sindur,religion,katolik,,380,jiwa,2025,registration,total_population,4.3.1,245,,Katolik
+32.01.11,3,Gunung Sindur,religion,hindu,,14,jiwa,2025,registration,total_population,4.3.1,245,,Hindu
+32.01.11,3,Gunung Sindur,religion,buddha,,817,jiwa,2025,registration,total_population,4.3.1,245,,Budha
+32.01.11,3,Gunung Sindur,religion,khonghucu,,822,jiwa,2025,registration,total_population,4.3.1,245,,Konghucu
+32.01.11,3,Gunung Sindur,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,245,,Lainnya
+32.01.18,3,Rumpin,religion,islam,,50363,jiwa,2025,registration,total_population,4.3.1,245,,Islam
+32.01.18,3,Rumpin,religion,kristen,,122,jiwa,2025,registration,total_population,4.3.1,245,,Protestan
+32.01.18,3,Rumpin,religion,katolik,,43,jiwa,2025,registration,total_population,4.3.1,245,,Katolik
+32.01.18,3,Rumpin,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,245,,Hindu
+32.01.18,3,Rumpin,religion,buddha,,131,jiwa,2025,registration,total_population,4.3.1,245,,Budha
+32.01.18,3,Rumpin,religion,khonghucu,,133,jiwa,2025,registration,total_population,4.3.1,245,,Konghucu
+32.01.18,3,Rumpin,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,245,nil,Lainnya
+32.01.22,3,Cigudeg,religion,islam,,46693,jiwa,2025,registration,total_population,4.3.1,245,,Islam
+32.01.22,3,Cigudeg,religion,kristen,,36,jiwa,2025,registration,total_population,4.3.1,245,,Protestan
+32.01.22,3,Cigudeg,religion,katolik,,7,jiwa,2025,registration,total_population,4.3.1,245,,Katolik
+32.01.22,3,Cigudeg,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,245,nil,Hindu
+32.01.22,3,Cigudeg,religion,buddha,,8,jiwa,2025,registration,total_population,4.3.1,245,,Budha
+32.01.22,3,Cigudeg,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.3.1,245,,Konghucu
+32.01.22,3,Cigudeg,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,245,nil,Lainnya
+32.01.35,3,Sukajaya,religion,islam,,23725,jiwa,2025,registration,total_population,4.3.1,245,,Islam
+32.01.35,3,Sukajaya,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,245,,Protestan
+32.01.35,3,Sukajaya,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,245,,Katolik
+32.01.35,3,Sukajaya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,245,nil,Hindu
+32.01.35,3,Sukajaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,245,nil,Budha
+32.01.35,3,Sukajaya,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,245,nil,Konghucu
+32.01.35,3,Sukajaya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,245,nil,Lainnya
+32.01.19,3,Jasinga,religion,islam,,36362,jiwa,2025,registration,total_population,4.3.1,245,,Islam
+32.01.19,3,Jasinga,religion,kristen,,51,jiwa,2025,registration,total_population,4.3.1,245,,Protestan
+32.01.19,3,Jasinga,religion,katolik,,8,jiwa,2025,registration,total_population,4.3.1,245,,Katolik
+32.01.19,3,Jasinga,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,245,nil,Hindu
+32.01.19,3,Jasinga,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,245,,Budha
+32.01.19,3,Jasinga,religion,khonghucu,,29,jiwa,2025,registration,total_population,4.3.1,245,,Konghucu
+32.01.19,3,Jasinga,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,245,nil,Lainnya
+32.01.23,3,Tenjo,religion,islam,,25008,jiwa,2025,registration,total_population,4.3.1,245,,Islam
+32.01.23,3,Tenjo,religion,kristen,,96,jiwa,2025,registration,total_population,4.3.1,245,,Protestan
+32.01.23,3,Tenjo,religion,katolik,,21,jiwa,2025,registration,total_population,4.3.1,245,,Katolik
+32.01.23,3,Tenjo,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,245,,Hindu
+32.01.23,3,Tenjo,religion,buddha,,228,jiwa,2025,registration,total_population,4.3.1,245,,Budha
+32.01.23,3,Tenjo,religion,khonghucu,,2,jiwa,2025,registration,total_population,4.3.1,245,,Konghucu
+32.01.23,3,Tenjo,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,245,,Lainnya
+32.01.20,3,Parung Panjang,religion,islam,,40527,jiwa,2025,registration,total_population,4.3.1,245,,Islam
+32.01.20,3,Parung Panjang,religion,kristen,,695,jiwa,2025,registration,total_population,4.3.1,245,,Protestan
+32.01.20,3,Parung Panjang,religion,katolik,,209,jiwa,2025,registration,total_population,4.3.1,245,,Katolik
+32.01.20,3,Parung Panjang,religion,hindu,,10,jiwa,2025,registration,total_population,4.3.1,245,,Hindu
+32.01.20,3,Parung Panjang,religion,buddha,,543,jiwa,2025,registration,total_population,4.3.1,245,,Budha
+32.01.20,3,Parung Panjang,religion,khonghucu,,4,jiwa,2025,registration,total_population,4.3.1,245,,Konghucu
+32.01.20,3,Parung Panjang,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,245,,Lainnya
+32.01,2,Bogor,religion,islam,,1810702,jiwa,2025,registration,total_population,4.3.1,245,,Islam
+32.01,2,Bogor,religion,kristen,,35632,jiwa,2025,registration,total_population,4.3.1,245,,Protestan
+32.01,2,Bogor,religion,katolik,,11449,jiwa,2025,registration,total_population,4.3.1,245,,Katolik
+32.01,2,Bogor,religion,hindu,,904,jiwa,2025,registration,total_population,4.3.1,245,,Hindu
+32.01,2,Bogor,religion,buddha,,6422,jiwa,2025,registration,total_population,4.3.1,245,,Budha
+32.01,2,Bogor,religion,khonghucu,,3126,jiwa,2025,registration,total_population,4.3.1,245,,Konghucu
+32.01,2,Bogor,religion,lainnya,,34,jiwa,2025,registration,total_population,4.3.1,245,,Lainnya
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/padi_padian,,79771,rupiah,2024,survey_estimate,per_capita,10.1,558,,Padi-padian
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/padi_padian,,75797,rupiah,2025,survey_estimate,per_capita,10.1,558,,Padi-padian
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/umbi_umbian,,6950,rupiah,2024,survey_estimate,per_capita,10.1,558,,Umbi-umbian
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/umbi_umbian,,9050,rupiah,2025,survey_estimate,per_capita,10.1,558,,Umbi-umbian
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,43789,rupiah,2024,survey_estimate,per_capita,10.1,558,,Ikan/udang/cumi/kerang
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,48814,rupiah,2025,survey_estimate,per_capita,10.1,558,,Ikan/udang/cumi/kerang
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/daging,,33751,rupiah,2024,survey_estimate,per_capita,10.1,558,,Daging
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/daging,,40241,rupiah,2025,survey_estimate,per_capita,10.1,558,,Daging
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/telur_dan_susu,,33324,rupiah,2024,survey_estimate,per_capita,10.1,558,,Telur dan susu
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/telur_dan_susu,,44843,rupiah,2025,survey_estimate,per_capita,10.1,558,,Telur dan susu
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/sayur_sayuran,,55847,rupiah,2024,survey_estimate,per_capita,10.1,558,,Sayur-sayuran
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/sayur_sayuran,,61412,rupiah,2025,survey_estimate,per_capita,10.1,558,,Sayur-sayuran
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/kacang_kacangan,,14309,rupiah,2024,survey_estimate,per_capita,10.1,558,,Kacang-kacangan
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/kacang_kacangan,,15032,rupiah,2025,survey_estimate,per_capita,10.1,558,,Kacang-kacangan
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/buah_buahan,,36138,rupiah,2024,survey_estimate,per_capita,10.1,558,,Buah-buahan
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/buah_buahan,,45193,rupiah,2025,survey_estimate,per_capita,10.1,558,,Buah-buahan
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14517,rupiah,2024,survey_estimate,per_capita,10.1,558,,Minyak dan kelapa
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19042,rupiah,2025,survey_estimate,per_capita,10.1,558,,Minyak dan kelapa
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/bahan_minuman,,20053,rupiah,2024,survey_estimate,per_capita,10.1,558,,Bahan minuman
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/bahan_minuman,,23259,rupiah,2025,survey_estimate,per_capita,10.1,558,,Bahan minuman
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/bumbu_bumbuan,,14745,rupiah,2024,survey_estimate,per_capita,10.1,558,,Bumbu-bumbuan
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/bumbu_bumbuan,,16384,rupiah,2025,survey_estimate,per_capita,10.1,558,,Bumbu-bumbuan
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/konsumsi_lainnya,,15154,rupiah,2024,survey_estimate,per_capita,10.1,558,,Konsumsi lainnya
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/konsumsi_lainnya,,17868,rupiah,2025,survey_estimate,per_capita,10.1,558,,Konsumsi lainnya
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,220013,rupiah,2024,survey_estimate,per_capita,10.1,558,,Makanan dan minuman jadi
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,256669,rupiah,2025,survey_estimate,per_capita,10.1,558,,Makanan dan minuman jadi
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/rokok,,101359,rupiah,2024,survey_estimate,per_capita,10.1,558,,Rokok
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/rokok,,104465,rupiah,2025,survey_estimate,per_capita,10.1,558,,Rokok
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/jumlah_makanan,,689721,rupiah,2024,survey_estimate,per_capita,10.1,558,,Jumlah makanan
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/jumlah_makanan,,778069,rupiah,2025,survey_estimate,per_capita,10.1,558,,Jumlah makanan
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,337756,rupiah,2024,survey_estimate,per_capita,10.1,558,,Perumahan dan fasilitas rumah tangga
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,378627,rupiah,2025,survey_estimate,per_capita,10.1,558,,Perumahan dan fasilitas rumah tangga
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,153687,rupiah,2024,survey_estimate,per_capita,10.1,558,,Aneka barang dan jasa
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,185337,rupiah,2025,survey_estimate,per_capita,10.1,558,,Aneka barang dan jasa
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,31535,rupiah,2024,survey_estimate,per_capita,10.1,558,,Pakaian. alas kaki. dan tutup kepala
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,36865,rupiah,2025,survey_estimate,per_capita,10.1,558,,Pakaian. alas kaki. dan tutup kepala
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/barang_tahan_lama,,42629,rupiah,2024,survey_estimate,per_capita,10.1,558,,Barang tahan lama
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/barang_tahan_lama,,77245,rupiah,2025,survey_estimate,per_capita,10.1,558,,Barang tahan lama
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,52851,rupiah,2024,survey_estimate,per_capita,10.1,558,,Pajak. pungutan. dan asuransi
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,59604,rupiah,2025,survey_estimate,per_capita,10.1,558,,Pajak. pungutan. dan asuransi
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,13260,rupiah,2024,survey_estimate,per_capita,10.1,558,,Keperluan pesta dan upacara/kenduri
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,15149,rupiah,2025,survey_estimate,per_capita,10.1,558,,Keperluan pesta dan upacara/kenduri
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,631718,rupiah,2024,survey_estimate,per_capita,10.1,558,,Jumlah bukan makanan
+32.01,2,Kabupaten Bogor,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,752827,rupiah,2025,survey_estimate,per_capita,10.1,558,,Jumlah bukan makanan
+32.01,2,Kabupaten Bogor,expenditure,total,,1321439,rupiah,2024,survey_estimate,per_capita,10.1,558,,
+32.01,2,Kabupaten Bogor,expenditure,total,,1530897,rupiah,2025,survey_estimate,per_capita,10.1,558,,

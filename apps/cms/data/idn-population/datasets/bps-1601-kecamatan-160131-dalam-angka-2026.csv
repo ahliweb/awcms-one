@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.01.31.2001,4,Kemala Jaya,sex,laki_laki,,248,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.31.2001,4,Kemala Jaya,sex,perempuan,,227,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.31.2001,4,Kemala Jaya,total,total,,475,jiwa,2025,registration,total_population,3.1,30,,
+16.01.31.2002,4,Lontar,sex,laki_laki,,542,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.31.2002,4,Lontar,sex,perempuan,,534,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.31.2002,4,Lontar,total,total,,1076,jiwa,2025,registration,total_population,3.1,30,,
+16.01.31.2004,4,Lubuk Tupak,sex,laki_laki,,351,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.31.2004,4,Lubuk Tupak,sex,perempuan,,321,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.31.2004,4,Lubuk Tupak,total,total,,672,jiwa,2025,registration,total_population,3.1,30,,
+16.01.31.2005,4,Beringin,sex,laki_laki,,569,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.31.2005,4,Beringin,sex,perempuan,,481,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.31.2005,4,Beringin,total,total,,1050,jiwa,2025,registration,total_population,3.1,30,,
+16.01.31.2003,4,Muara Saeh,sex,laki_laki,,889,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.31.2003,4,Muara Saeh,sex,perempuan,,824,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.31.2003,4,Muara Saeh,total,total,,1713,jiwa,2025,registration,total_population,3.1,30,,
+16.01.31.2006,4,Surau,sex,laki_laki,,690,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.31.2006,4,Surau,sex,perempuan,,671,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.31.2006,4,Surau,total,total,,1361,jiwa,2025,registration,total_population,3.1,30,,
+16.01.31.2007,4,Karang Lantang,sex,laki_laki,,810,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.31.2007,4,Karang Lantang,sex,perempuan,,795,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.31.2007,4,Karang Lantang,total,total,,1605,jiwa,2025,registration,total_population,3.1,30,,
+16.01.31,3,Muara Jaya,sex,laki_laki,,4099,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.01.31,3,Muara Jaya,sex,perempuan,,3853,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.01.31,3,Muara Jaya,total,total,,7952,jiwa,2025,registration,total_population,3.1,30,,
+16.01.31,3,Muara Jaya,age_group,0-4,laki_laki,246,jiwa,2025,registration,total_population,3.2,32,,0-4
+16.01.31,3,Muara Jaya,age_group,0-4,perempuan,260,jiwa,2025,registration,total_population,3.2,32,,0-4
+16.01.31,3,Muara Jaya,age_group,0-4,,506,jiwa,2025,registration,total_population,3.2,32,,0-4
+16.01.31,3,Muara Jaya,age_group,5-9,laki_laki,337,jiwa,2025,registration,total_population,3.2,32,,5-9
+16.01.31,3,Muara Jaya,age_group,5-9,perempuan,336,jiwa,2025,registration,total_population,3.2,32,,5-9
+16.01.31,3,Muara Jaya,age_group,5-9,,673,jiwa,2025,registration,total_population,3.2,32,,5-9
+16.01.31,3,Muara Jaya,age_group,10-14,laki_laki,354,jiwa,2025,registration,total_population,3.2,32,,10-14
+16.01.31,3,Muara Jaya,age_group,10-14,perempuan,342,jiwa,2025,registration,total_population,3.2,32,,10-14
+16.01.31,3,Muara Jaya,age_group,10-14,,696,jiwa,2025,registration,total_population,3.2,32,,10-14
+16.01.31,3,Muara Jaya,age_group,15-19,laki_laki,346,jiwa,2025,registration,total_population,3.2,32,,15-19
+16.01.31,3,Muara Jaya,age_group,15-19,perempuan,321,jiwa,2025,registration,total_population,3.2,32,,15-19
+16.01.31,3,Muara Jaya,age_group,15-19,,667,jiwa,2025,registration,total_population,3.2,32,,15-19
+16.01.31,3,Muara Jaya,age_group,20-24,laki_laki,299,jiwa,2025,registration,total_population,3.2,32,,20-24
+16.01.31,3,Muara Jaya,age_group,20-24,perempuan,310,jiwa,2025,registration,total_population,3.2,32,,20-24
+16.01.31,3,Muara Jaya,age_group,20-24,,609,jiwa,2025,registration,total_population,3.2,32,,20-24
+16.01.31,3,Muara Jaya,age_group,25-29,laki_laki,313,jiwa,2025,registration,total_population,3.2,32,,25-29
+16.01.31,3,Muara Jaya,age_group,25-29,perempuan,286,jiwa,2025,registration,total_population,3.2,32,,25-29
+16.01.31,3,Muara Jaya,age_group,25-29,,599,jiwa,2025,registration,total_population,3.2,32,,25-29
+16.01.31,3,Muara Jaya,age_group,30-34,laki_laki,276,jiwa,2025,registration,total_population,3.2,32,,30-34
+16.01.31,3,Muara Jaya,age_group,30-34,perempuan,231,jiwa,2025,registration,total_population,3.2,32,,30-34
+16.01.31,3,Muara Jaya,age_group,30-34,,507,jiwa,2025,registration,total_population,3.2,32,,30-34
+16.01.31,3,Muara Jaya,age_group,35-39,laki_laki,348,jiwa,2025,registration,total_population,3.2,32,,35-39
+16.01.31,3,Muara Jaya,age_group,35-39,perempuan,287,jiwa,2025,registration,total_population,3.2,32,,35-39
+16.01.31,3,Muara Jaya,age_group,35-39,,635,jiwa,2025,registration,total_population,3.2,32,,35-39
+16.01.31,3,Muara Jaya,age_group,40-44,laki_laki,332,jiwa,2025,registration,total_population,3.2,32,,40-44
+16.01.31,3,Muara Jaya,age_group,40-44,perempuan,248,jiwa,2025,registration,total_population,3.2,32,,40-44
+16.01.31,3,Muara Jaya,age_group,40-44,,580,jiwa,2025,registration,total_population,3.2,32,,40-44
+16.01.31,3,Muara Jaya,age_group,45-49,laki_laki,309,jiwa,2025,registration,total_population,3.2,32,,45-49
+16.01.31,3,Muara Jaya,age_group,45-49,perempuan,259,jiwa,2025,registration,total_population,3.2,32,,45-49
+16.01.31,3,Muara Jaya,age_group,45-49,,568,jiwa,2025,registration,total_population,3.2,32,,45-49
+16.01.31,3,Muara Jaya,age_group,50-54,laki_laki,234,jiwa,2025,registration,total_population,3.2,32,,50-54
+16.01.31,3,Muara Jaya,age_group,50-54,perempuan,213,jiwa,2025,registration,total_population,3.2,32,,50-54
+16.01.31,3,Muara Jaya,age_group,50-54,,447,jiwa,2025,registration,total_population,3.2,32,,50-54
+16.01.31,3,Muara Jaya,age_group,55-59,laki_laki,205,jiwa,2025,registration,total_population,3.2,32,,55-59
+16.01.31,3,Muara Jaya,age_group,55-59,perempuan,196,jiwa,2025,registration,total_population,3.2,32,,55-59
+16.01.31,3,Muara Jaya,age_group,55-59,,401,jiwa,2025,registration,total_population,3.2,32,,55-59
+16.01.31,3,Muara Jaya,age_group,60-64,laki_laki,143,jiwa,2025,registration,total_population,3.2,32,,60-64
+16.01.31,3,Muara Jaya,age_group,60-64,perempuan,147,jiwa,2025,registration,total_population,3.2,32,,60-64
+16.01.31,3,Muara Jaya,age_group,60-64,,290,jiwa,2025,registration,total_population,3.2,32,,60-64
+16.01.31,3,Muara Jaya,age_group,65-69,laki_laki,134,jiwa,2025,registration,total_population,3.2,32,,65-69
+16.01.31,3,Muara Jaya,age_group,65-69,perempuan,151,jiwa,2025,registration,total_population,3.2,32,,65-69
+16.01.31,3,Muara Jaya,age_group,65-69,,285,jiwa,2025,registration,total_population,3.2,32,,65-69
+16.01.31,3,Muara Jaya,age_group,70-74,laki_laki,92,jiwa,2025,registration,total_population,3.2,32,,70-74
+16.01.31,3,Muara Jaya,age_group,70-74,perempuan,85,jiwa,2025,registration,total_population,3.2,32,,70-74
+16.01.31,3,Muara Jaya,age_group,70-74,,177,jiwa,2025,registration,total_population,3.2,32,,70-74
+16.01.31,3,Muara Jaya,age_group,75+,laki_laki,131,jiwa,2025,registration,total_population,3.2,32,,75+
+16.01.31,3,Muara Jaya,age_group,75+,perempuan,181,jiwa,2025,registration,total_population,3.2,32,,75+
+16.01.31,3,Muara Jaya,age_group,75+,,312,jiwa,2025,registration,total_population,3.2,32,,75+
+16.01.31,3,Muara Jaya,sex,laki_laki,,4099,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+16.01.31,3,Muara Jaya,sex,perempuan,,3853,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+16.01.31,3,Muara Jaya,total,total,,7952,jiwa,2025,registration,total_population,3.2,32,,

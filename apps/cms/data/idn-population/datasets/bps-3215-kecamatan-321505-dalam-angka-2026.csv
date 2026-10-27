@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.15.05.2019,4,Karanganyar,sex,laki_laki,,6096,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.05.2019,4,Karanganyar,sex,perempuan,,5913,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.05.2019,4,Karanganyar,total,total,,12009,jiwa,2025,registration,total_population,3.1,23,,
+32.15.05.2018,4,Curug,sex,laki_laki,,6497,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.05.2018,4,Curug,sex,perempuan,,6520,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.05.2018,4,Curug,total,total,,13017,jiwa,2025,registration,total_population,3.1,23,,
+32.15.05.2020,4,Cimahi,sex,laki_laki,,4483,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.05.2020,4,Cimahi,sex,perempuan,,4324,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.05.2020,4,Cimahi,total,total,,8807,jiwa,2025,registration,total_population,3.1,23,,
+32.15.05.2005,4,Sumurkondang,sex,laki_laki,,3551,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.05.2005,4,Sumurkondang,sex,perempuan,,3419,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.05.2005,4,Sumurkondang,total,total,,6970,jiwa,2025,registration,total_population,3.1,23,,
+32.15.05.2003,4,Walahar,sex,laki_laki,,4935,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.05.2003,4,Walahar,sex,perempuan,,4689,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.05.2003,4,Walahar,total,total,,9624,jiwa,2025,registration,total_population,3.1,23,,
+32.15.05.2004,4,Kiarapayung,sex,laki_laki,,1497,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.05.2004,4,Kiarapayung,sex,perempuan,,1520,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.05.2004,4,Kiarapayung,total,total,,3017,jiwa,2025,registration,total_population,3.1,23,,
+32.15.05.2017,4,Gintungkerta,sex,laki_laki,,9466,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.05.2017,4,Gintungkerta,sex,perempuan,,9322,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.05.2017,4,Gintungkerta,total,total,,18788,jiwa,2025,registration,total_population,3.1,23,,
+32.15.05.2016,4,Anggadita,sex,laki_laki,,6699,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.05.2016,4,Anggadita,sex,perempuan,,6555,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.05.2016,4,Anggadita,total,total,,13254,jiwa,2025,registration,total_population,3.1,23,,
+32.15.05.2007,4,Klari,sex,laki_laki,,8226,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.05.2007,4,Klari,sex,perempuan,,8073,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.05.2007,4,Klari,total,total,,16299,jiwa,2025,registration,total_population,3.1,23,,
+32.15.05.2006,4,Cibalongsari,sex,laki_laki,,22215,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.05.2006,4,Cibalongsari,sex,perempuan,,21854,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.05.2006,4,Cibalongsari,total,total,,44069,jiwa,2025,registration,total_population,3.1,23,,
+32.15.05.2001,4,Duren,sex,laki_laki,,16706,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.05.2001,4,Duren,sex,perempuan,,16318,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.05.2001,4,Duren,total,total,,33024,jiwa,2025,registration,total_population,3.1,23,,
+32.15.05.2008,4,Belendung,sex,laki_laki,,8133,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.05.2008,4,Belendung,sex,perempuan,,7951,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.05.2008,4,Belendung,total,total,,16084,jiwa,2025,registration,total_population,3.1,23,,
+32.15.05,3,Kecamatan Klari,sex,laki_laki,,107586,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+32.15.05,3,Kecamatan Klari,sex,perempuan,,105573,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+32.15.05,3,Kecamatan Klari,total,total,,213159,jiwa,2025,registration,total_population,3.1,23,,

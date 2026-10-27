@@ -1,0 +1,41 @@
+{
+  "datasetCode": "bps-1109-kecamatan-110718-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.07.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Simpang Tiga Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pidie",
+  "publisherDomain": "1109",
+  "publisherWebsite": "https://pidiekab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pidie (https://pidiekab.bps.go.id), publikasi \"Kecamatan Simpang Tiga Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.190",
+  "publicationNumber": "11090.26024",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pidiekab.bps.go.id/id/publication/2026/09/28/8eb0e4e10336e1dadf4bc4ac/kecamatan-simpang-tiga-dalam-angka-2026.html",
+  "sourceFileSha256": "46c5479ea44145ca1ef2641f63abcf51a7044e0583845f98f077953c504ac305",
+  "sourceFileBytes": 4332238,
+  "sourcePages": [40],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pidie",
+  "csvPath": "datasets/bps-1109-kecamatan-110718-dalam-angka-2026.csv",
+  "csvSha256": "f3a2d3a73680625d3fd367aaaa7e453ef611299590b7db54f89d8d1c76f15cbd",
+  "tablesUsed": [
+    {
+      "table": "3.3",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Simpang Tiga, 2025",
+      "printedPages": [40],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.3: row not stored: row \"SEUK CUKOK\": unmatched ",
+    "table 3.3: row not stored: row \"MEUNASAH JUERONG\": unmatched ",
+    "table 3.3: row not stored: row \"KAMPUNG BLANG\": unmatched ",
+    "table 3.3: row not stored: row \"MESJID TUNGUE\": unmatched "
+  ]
+}

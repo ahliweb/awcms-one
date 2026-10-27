@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.04.08.2007,4,Tiga Jaya,sex,laki_laki,,1450,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.08.2007,4,Tiga Jaya,sex,perempuan,,1356,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.08.2007,4,Tiga Jaya,total,total,,2806,jiwa,2025,registration,total_population,3.1,30,,
+18.04.08.2006,4,Waspada,sex,laki_laki,,1090,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.08.2006,4,Waspada,sex,perempuan,,987,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.08.2006,4,Waspada,total,total,,2077,jiwa,2025,registration,total_population,3.1,30,,
+18.04.08.2008,4,Giham Sukamaju,sex,laki_laki,,2528,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.08.2008,4,Giham Sukamaju,sex,perempuan,,2402,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.08.2008,4,Giham Sukamaju,total,total,,4930,jiwa,2025,registration,total_population,3.1,30,,
+18.04.08.2001,4,Pampangan,sex,laki_laki,,1849,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.08.2001,4,Pampangan,sex,perempuan,,1713,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.08.2001,4,Pampangan,total,total,,3562,jiwa,2025,registration,total_population,3.1,30,,
+18.04.08.1005,4,Sekincau,sex,laki_laki,,3220,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.08.1005,4,Sekincau,sex,perempuan,,2978,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.08.1005,4,Sekincau,total,total,,6198,jiwa,2025,registration,total_population,3.1,30,,
+18.04.08,3,Kecamatan Sekincau,sex,laki_laki,,10137,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.04.08,3,Kecamatan Sekincau,sex,perempuan,,9436,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.04.08,3,Kecamatan Sekincau,total,total,,19573,jiwa,2025,registration,total_population,3.1,30,,
+18.04.08,3,Sekincau,age_group,0-4,laki_laki,628,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+18.04.08,3,Sekincau,age_group,0-4,perempuan,608,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+18.04.08,3,Sekincau,age_group,0-4,,1236,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+18.04.08,3,Sekincau,age_group,5-9,laki_laki,834,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+18.04.08,3,Sekincau,age_group,5-9,perempuan,715,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+18.04.08,3,Sekincau,age_group,5-9,,1549,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+18.04.08,3,Sekincau,age_group,10-14,laki_laki,857,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+18.04.08,3,Sekincau,age_group,10-14,perempuan,868,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+18.04.08,3,Sekincau,age_group,10-14,,1725,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+18.04.08,3,Sekincau,age_group,15-19,laki_laki,834,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+18.04.08,3,Sekincau,age_group,15-19,perempuan,783,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+18.04.08,3,Sekincau,age_group,15-19,,1617,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+18.04.08,3,Sekincau,age_group,20-24,laki_laki,730,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+18.04.08,3,Sekincau,age_group,20-24,perempuan,737,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+18.04.08,3,Sekincau,age_group,20-24,,1467,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+18.04.08,3,Sekincau,age_group,25-29,laki_laki,770,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+18.04.08,3,Sekincau,age_group,25-29,perempuan,699,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+18.04.08,3,Sekincau,age_group,25-29,,1469,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+18.04.08,3,Sekincau,age_group,30-34,laki_laki,696,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+18.04.08,3,Sekincau,age_group,30-34,perempuan,718,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+18.04.08,3,Sekincau,age_group,30-34,,1414,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+18.04.08,3,Sekincau,age_group,35-39,laki_laki,793,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+18.04.08,3,Sekincau,age_group,35-39,perempuan,775,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+18.04.08,3,Sekincau,age_group,35-39,,1568,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+18.04.08,3,Sekincau,age_group,40-44,laki_laki,843,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+18.04.08,3,Sekincau,age_group,40-44,perempuan,739,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+18.04.08,3,Sekincau,age_group,40-44,,1582,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+18.04.08,3,Sekincau,age_group,45-49,laki_laki,688,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+18.04.08,3,Sekincau,age_group,45-49,perempuan,666,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+18.04.08,3,Sekincau,age_group,45-49,,1354,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+18.04.08,3,Sekincau,age_group,50-54,laki_laki,612,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+18.04.08,3,Sekincau,age_group,50-54,perempuan,578,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+18.04.08,3,Sekincau,age_group,50-54,,1190,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+18.04.08,3,Sekincau,age_group,55-59,laki_laki,556,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+18.04.08,3,Sekincau,age_group,55-59,perempuan,507,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+18.04.08,3,Sekincau,age_group,55-59,,1063,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+18.04.08,3,Sekincau,age_group,60-64,laki_laki,433,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+18.04.08,3,Sekincau,age_group,60-64,perempuan,416,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+18.04.08,3,Sekincau,age_group,60-64,,849,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+18.04.08,3,Sekincau,age_group,65-69,laki_laki,399,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+18.04.08,3,Sekincau,age_group,65-69,perempuan,271,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+18.04.08,3,Sekincau,age_group,65-69,,670,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+18.04.08,3,Sekincau,age_group,70-74,laki_laki,209,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+18.04.08,3,Sekincau,age_group,70-74,perempuan,170,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+18.04.08,3,Sekincau,age_group,70-74,,379,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+18.04.08,3,Sekincau,age_group,75+,laki_laki,255,jiwa,2025,registration,total_population,3.2,32,,75+
+18.04.08,3,Sekincau,age_group,75+,perempuan,186,jiwa,2025,registration,total_population,3.2,32,,75+
+18.04.08,3,Sekincau,age_group,75+,,441,jiwa,2025,registration,total_population,3.2,32,,75+
+18.04.08,3,Kecamatan Sekincau,sex,laki_laki,,10137,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+18.04.08,3,Kecamatan Sekincau,sex,perempuan,,9436,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+18.04.08,3,Kecamatan Sekincau,total,total,,19573,jiwa,2025,registration,total_population,3.2,32,,

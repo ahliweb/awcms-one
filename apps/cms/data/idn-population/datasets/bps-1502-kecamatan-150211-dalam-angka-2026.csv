@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.02.11.2006,4,Mentawak,sex,laki_laki,,1387,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+15.02.11.2006,4,Mentawak,sex,perempuan,,1309,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+15.02.11.2006,4,Mentawak,total,total,,2696,jiwa,2025,registration,total_population,3.1,25,,
+15.02.11.2001,4,Sungai Ulak,sex,laki_laki,,5884,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+15.02.11.2001,4,Sungai Ulak,sex,perempuan,,5715,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+15.02.11.2001,4,Sungai Ulak,total,total,,11599,jiwa,2025,registration,total_population,3.1,25,,
+15.02.11.2002,4,Aur Berduri,sex,laki_laki,,701,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+15.02.11.2002,4,Aur Berduri,sex,perempuan,,715,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+15.02.11.2002,4,Aur Berduri,total,total,,1416,jiwa,2025,registration,total_population,3.1,25,,
+15.02.11.2007,4,Danau,sex,laki_laki,,680,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+15.02.11.2007,4,Danau,sex,perempuan,,666,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+15.02.11.2007,4,Danau,total,total,,1346,jiwa,2025,registration,total_population,3.1,25,,
+15.02.11.2003,4,Telun,sex,laki_laki,,415,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+15.02.11.2003,4,Telun,sex,perempuan,,422,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+15.02.11.2003,4,Telun,total,total,,837,jiwa,2025,registration,total_population,3.1,25,,
+15.02.11.2004,4,Nalo Gedang,sex,laki_laki,,885,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+15.02.11.2004,4,Nalo Gedang,sex,perempuan,,815,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+15.02.11.2004,4,Nalo Gedang,total,total,,1700,jiwa,2025,registration,total_population,3.1,25,,
+15.02.11.2005,4,Baru Nalo,sex,laki_laki,,1066,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+15.02.11.2005,4,Baru Nalo,sex,perempuan,,1009,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+15.02.11.2005,4,Baru Nalo,total,total,,2075,jiwa,2025,registration,total_population,3.1,25,,
+15.02.11,3,Nalo Tantan,sex,laki_laki,,11018,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+15.02.11,3,Nalo Tantan,sex,perempuan,,10651,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+15.02.11,3,Nalo Tantan,total,total,,21669,jiwa,2025,registration,total_population,3.1,25,,
+15.02.11,3,Nalo Tantan,age_group,0-4,laki_laki,749,jiwa,2025,registration,total_population,3.2,28,,0-4
+15.02.11,3,Nalo Tantan,age_group,0-4,perempuan,745,jiwa,2025,registration,total_population,3.2,28,,0-4
+15.02.11,3,Nalo Tantan,age_group,0-4,,1494,jiwa,2025,registration,total_population,3.2,28,,0-4
+15.02.11,3,Nalo Tantan,age_group,5-9,laki_laki,1098,jiwa,2025,registration,total_population,3.2,28,,5-9
+15.02.11,3,Nalo Tantan,age_group,5-9,perempuan,1081,jiwa,2025,registration,total_population,3.2,28,,5-9
+15.02.11,3,Nalo Tantan,age_group,5-9,,2179,jiwa,2025,registration,total_population,3.2,28,,5-9
+15.02.11,3,Nalo Tantan,age_group,10-14,laki_laki,1189,jiwa,2025,registration,total_population,3.2,28,,10-14
+15.02.11,3,Nalo Tantan,age_group,10-14,perempuan,1067,jiwa,2025,registration,total_population,3.2,28,,10-14
+15.02.11,3,Nalo Tantan,age_group,10-14,,2256,jiwa,2025,registration,total_population,3.2,28,,10-14
+15.02.11,3,Nalo Tantan,age_group,15-19,laki_laki,994,jiwa,2025,registration,total_population,3.2,28,,15-19
+15.02.11,3,Nalo Tantan,age_group,15-19,perempuan,939,jiwa,2025,registration,total_population,3.2,28,,15-19
+15.02.11,3,Nalo Tantan,age_group,15-19,,1933,jiwa,2025,registration,total_population,3.2,28,,15-19
+15.02.11,3,Nalo Tantan,age_group,20-24,laki_laki,893,jiwa,2025,registration,total_population,3.2,28,,20-24
+15.02.11,3,Nalo Tantan,age_group,20-24,perempuan,882,jiwa,2025,registration,total_population,3.2,28,,20-24
+15.02.11,3,Nalo Tantan,age_group,20-24,,1775,jiwa,2025,registration,total_population,3.2,28,,20-24
+15.02.11,3,Nalo Tantan,age_group,25-29,laki_laki,863,jiwa,2025,registration,total_population,3.2,28,,25-29
+15.02.11,3,Nalo Tantan,age_group,25-29,perempuan,867,jiwa,2025,registration,total_population,3.2,28,,25-29
+15.02.11,3,Nalo Tantan,age_group,25-29,,1730,jiwa,2025,registration,total_population,3.2,28,,25-29
+15.02.11,3,Nalo Tantan,age_group,30-34,laki_laki,799,jiwa,2025,registration,total_population,3.2,28,,30-34
+15.02.11,3,Nalo Tantan,age_group,30-34,perempuan,848,jiwa,2025,registration,total_population,3.2,28,,30-34
+15.02.11,3,Nalo Tantan,age_group,30-34,,1647,jiwa,2025,registration,total_population,3.2,28,,30-34
+15.02.11,3,Nalo Tantan,age_group,35-39,laki_laki,860,jiwa,2025,registration,total_population,3.2,28,,35-39
+15.02.11,3,Nalo Tantan,age_group,35-39,perempuan,872,jiwa,2025,registration,total_population,3.2,28,,35-39
+15.02.11,3,Nalo Tantan,age_group,35-39,,1732,jiwa,2025,registration,total_population,3.2,28,,35-39
+15.02.11,3,Nalo Tantan,age_group,40-44,laki_laki,924,jiwa,2025,registration,total_population,3.2,28,,40-44
+15.02.11,3,Nalo Tantan,age_group,40-44,perempuan,914,jiwa,2025,registration,total_population,3.2,28,,40-44
+15.02.11,3,Nalo Tantan,age_group,40-44,,1838,jiwa,2025,registration,total_population,3.2,28,,40-44
+15.02.11,3,Nalo Tantan,age_group,45-49,laki_laki,835,jiwa,2025,registration,total_population,3.2,28,,45-49
+15.02.11,3,Nalo Tantan,age_group,45-49,perempuan,808,jiwa,2025,registration,total_population,3.2,28,,45-49
+15.02.11,3,Nalo Tantan,age_group,45-49,,1643,jiwa,2025,registration,total_population,3.2,28,,45-49
+15.02.11,3,Nalo Tantan,age_group,50-54,laki_laki,622,jiwa,2025,registration,total_population,3.2,28,,50-54
+15.02.11,3,Nalo Tantan,age_group,50-54,perempuan,601,jiwa,2025,registration,total_population,3.2,28,,50-54
+15.02.11,3,Nalo Tantan,age_group,50-54,,1223,jiwa,2025,registration,total_population,3.2,28,,50-54
+15.02.11,3,Nalo Tantan,age_group,55-59,laki_laki,474,jiwa,2025,registration,total_population,3.2,28,,55-59
+15.02.11,3,Nalo Tantan,age_group,55-59,perempuan,404,jiwa,2025,registration,total_population,3.2,28,,55-59
+15.02.11,3,Nalo Tantan,age_group,55-59,,878,jiwa,2025,registration,total_population,3.2,28,,55-59
+15.02.11,3,Nalo Tantan,age_group,60-64,laki_laki,307,jiwa,2025,registration,total_population,3.2,28,,60-64
+15.02.11,3,Nalo Tantan,age_group,60-64,perempuan,275,jiwa,2025,registration,total_population,3.2,28,,60-64
+15.02.11,3,Nalo Tantan,age_group,60-64,,582,jiwa,2025,registration,total_population,3.2,28,,60-64
+15.02.11,3,Nalo Tantan,age_group,65-69,laki_laki,226,jiwa,2025,registration,total_population,3.2,28,,65-69
+15.02.11,3,Nalo Tantan,age_group,65-69,perempuan,195,jiwa,2025,registration,total_population,3.2,28,,65-69
+15.02.11,3,Nalo Tantan,age_group,65-69,,421,jiwa,2025,registration,total_population,3.2,28,,65-69
+15.02.11,3,Nalo Tantan,age_group,70-74,laki_laki,105,jiwa,2025,registration,total_population,3.2,28,,70-74
+15.02.11,3,Nalo Tantan,age_group,70-74,perempuan,75,jiwa,2025,registration,total_population,3.2,28,,70-74
+15.02.11,3,Nalo Tantan,age_group,70-74,,180,jiwa,2025,registration,total_population,3.2,28,,70-74
+15.02.11,3,Nalo Tantan,age_group,75+,laki_laki,80,jiwa,2025,registration,total_population,3.2,28,,75+
+15.02.11,3,Nalo Tantan,age_group,75+,perempuan,78,jiwa,2025,registration,total_population,3.2,28,,75+
+15.02.11,3,Nalo Tantan,age_group,75+,,158,jiwa,2025,registration,total_population,3.2,28,,75+
+15.02.11,3,Nalo Tantan,sex,laki_laki,,11018,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+15.02.11,3,Nalo Tantan,sex,perempuan,,10651,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+15.02.11,3,Nalo Tantan,total,total,,21669,jiwa,2025,registration,total_population,3.2,28,,

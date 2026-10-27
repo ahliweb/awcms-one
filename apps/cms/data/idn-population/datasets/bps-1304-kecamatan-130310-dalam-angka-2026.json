@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1304-kecamatan-130310-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "13.03.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kupitan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sijunjung",
+  "publisherDomain": "1304",
+  "publisherWebsite": "https://sijunjungkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sijunjung (https://sijunjungkab.bps.go.id), publikasi \"Kecamatan Kupitan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "13040.26012",
+  "issn": "3031-1837",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sijunjungkab.bps.go.id/id/publication/2026/09/28/79424177aeafd7211f2dfd26/kecamatan-kupitan-dalam-angka-2026.html",
+  "sourceFileSha256": "d445d0f89c4f2f6ed9ee1f1e728fcaf4702f90b38a2d91c4051ad07db73c120d",
+  "sourceFileBytes": 10559538,
+  "sourcePages": [35, 36, 37],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sijunjung.",
+  "csvPath": "datasets/bps-1304-kecamatan-130310-dalam-angka-2026.csv",
+  "csvSha256": "4e6d24c783953ba05d8c1abb227607b6e17229aef979266a32741bae578590f0",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kupitan, 2025",
+      "printedPages": [35, 36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kupitan, 2025",
+      "printedPages": [37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Padang Sibusuk Kampung Baru\": unmatched "
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3271-kecamatan-327103-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.71.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bogor Tengah Dalam Angka 2026",
+  "publisherName": "BPS Kota Bogor",
+  "publisherDomain": "3271",
+  "publisherWebsite": "https://bogorkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bogor (https://bogorkota.bps.go.id), publikasi \"Kecamatan Bogor Tengah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3271040",
+  "publicationNumber": "32710.25009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bogorkota.bps.go.id/id/publication/2026/09/28/df0df7d3ac81aa694e172aca/kecamatan-bogor-tengah-dalam-angka-2026.html",
+  "sourceFileSha256": "61e8b0e17fd145f0642e4896add9c0cbea70733fa7935b2a174353b14c0cafec",
+  "sourceFileBytes": 14924241,
+  "sourcePages": [38, 39, 40],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bogor.",
+  "csvPath": "datasets/bps-3271-kecamatan-327103-dalam-angka-2026.csv",
+  "csvSha256": "7ace9df415ab9e8d2b4d28cd3fb45ed29ebecbd6ae5435b23dbb1087b39a4b9e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Bogor Tengah, 2025",
+      "printedPages": [38, 39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bogor Tengah, 2025",
+      "printedPages": [40],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.6 (religion-by-region) could not be read reliably and is not included (religion column 4 header \"Katholik\" not recognised)"
+  ]
+}

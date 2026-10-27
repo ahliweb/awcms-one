@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.10.05.2001,4,SUMBERBERAS,sex,laki_laki,,9573,jiwa,2025,registration,total_population,unnumbered-p3,3,,Laki-Laki/Male
+35.10.05.2001,4,SUMBERBERAS,sex,perempuan,,9646,jiwa,2025,registration,total_population,unnumbered-p3,3,,Perempuan/Female
+35.10.05.2001,4,SUMBERBERAS,total,total,,19219,jiwa,2025,registration,total_population,unnumbered-p3,3,,
+35.10.05.2007,4,WRINGIN PUTIH,sex,laki_laki,,7158,jiwa,2025,registration,total_population,unnumbered-p3,3,,Laki-Laki/Male
+35.10.05.2007,4,WRINGIN PUTIH,sex,perempuan,,7047,jiwa,2025,registration,total_population,unnumbered-p3,3,,Perempuan/Female
+35.10.05.2007,4,WRINGIN PUTIH,total,total,,14205,jiwa,2025,registration,total_population,unnumbered-p3,3,,
+35.10.05.2009,4,KEDUNGRINGIN,sex,laki_laki,,6144,jiwa,2025,registration,total_population,unnumbered-p3,3,,Laki-Laki/Male
+35.10.05.2009,4,KEDUNGRINGIN,sex,perempuan,,5872,jiwa,2025,registration,total_population,unnumbered-p3,3,,Perempuan/Female
+35.10.05.2009,4,KEDUNGRINGIN,total,total,,12016,jiwa,2025,registration,total_population,unnumbered-p3,3,,
+35.10.05.2008,4,TAMBAKREJO,sex,laki_laki,,3276,jiwa,2025,registration,total_population,unnumbered-p3,3,,Laki-Laki/Male
+35.10.05.2008,4,TAMBAKREJO,sex,perempuan,,3237,jiwa,2025,registration,total_population,unnumbered-p3,3,,Perempuan/Female
+35.10.05.2008,4,TAMBAKREJO,total,total,,6513,jiwa,2025,registration,total_population,unnumbered-p3,3,,
+35.10.05.2006,4,TAPANREJO,sex,laki_laki,,4320,jiwa,2025,registration,total_population,unnumbered-p3,3,,Laki-Laki/Male
+35.10.05.2006,4,TAPANREJO,sex,perempuan,,4273,jiwa,2025,registration,total_population,unnumbered-p3,3,,Perempuan/Female
+35.10.05.2006,4,TAPANREJO,total,total,,8593,jiwa,2025,registration,total_population,unnumbered-p3,3,,
+35.10.05.2005,4,BLAMBANGAN,sex,laki_laki,,4232,jiwa,2025,registration,total_population,unnumbered-p3,3,,Laki-Laki/Male
+35.10.05.2005,4,BLAMBANGAN,sex,perempuan,,4241,jiwa,2025,registration,total_population,unnumbered-p3,3,,Perempuan/Female
+35.10.05.2005,4,BLAMBANGAN,total,total,,8473,jiwa,2025,registration,total_population,unnumbered-p3,3,,
+35.10.05.2002,4,KEDUNGREJO,sex,laki_laki,,13703,jiwa,2025,registration,total_population,unnumbered-p3,3,,Laki-Laki/Male
+35.10.05.2002,4,KEDUNGREJO,sex,perempuan,,13709,jiwa,2025,registration,total_population,unnumbered-p3,3,,Perempuan/Female
+35.10.05.2002,4,KEDUNGREJO,total,total,,27412,jiwa,2025,registration,total_population,unnumbered-p3,3,,
+35.10.05.2003,4,TEMBOKREJO,sex,laki_laki,,15835,jiwa,2025,registration,total_population,unnumbered-p3,3,,Laki-Laki/Male
+35.10.05.2003,4,TEMBOKREJO,sex,perempuan,,15546,jiwa,2025,registration,total_population,unnumbered-p3,3,,Perempuan/Female
+35.10.05.2003,4,TEMBOKREJO,total,total,,31381,jiwa,2025,registration,total_population,unnumbered-p3,3,,
+35.10.05.2004,4,SUMBERSEWU,sex,laki_laki,,3738,jiwa,2025,registration,total_population,unnumbered-p3,3,,Laki-Laki/Male
+35.10.05.2004,4,SUMBERSEWU,sex,perempuan,,3814,jiwa,2025,registration,total_population,unnumbered-p3,3,,Perempuan/Female
+35.10.05.2004,4,SUMBERSEWU,total,total,,7552,jiwa,2025,registration,total_population,unnumbered-p3,3,,
+35.10.05.2010,4,KUMENDUNG,sex,laki_laki,,3582,jiwa,2025,registration,total_population,unnumbered-p3,3,,Laki-Laki/Male
+35.10.05.2010,4,KUMENDUNG,sex,perempuan,,3676,jiwa,2025,registration,total_population,unnumbered-p3,3,,Perempuan/Female
+35.10.05.2010,4,KUMENDUNG,total,total,,7258,jiwa,2025,registration,total_population,unnumbered-p3,3,,
+35.10.05,3,Muncar,sex,laki_laki,,71561,jiwa,2025,registration,total_population,unnumbered-p3,3,,Laki-Laki/Male
+35.10.05,3,Muncar,sex,perempuan,,71061,jiwa,2025,registration,total_population,unnumbered-p3,3,,Perempuan/Female
+35.10.05,3,Muncar,total,total,,142622,jiwa,2025,registration,total_population,unnumbered-p3,3,,

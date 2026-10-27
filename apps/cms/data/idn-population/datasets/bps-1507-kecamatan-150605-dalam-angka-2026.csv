@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.06.05.2012,4,Tanjung Benanak,sex,laki_laki,,518,jiwa,2025,registration,total_population,3.2,18,,Laki-Laki/Male
+15.06.05.2012,4,Tanjung Benanak,sex,perempuan,,512,jiwa,2025,registration,total_population,3.2,18,,Perempuan/Femal
+15.06.05.2012,4,Tanjung Benanak,total,total,,1030,jiwa,2025,registration,total_population,3.2,18,,
+15.06.05.2013,4,Bukit Harapan,sex,laki_laki,,849,jiwa,2025,registration,total_population,3.2,18,,Laki-Laki/Male
+15.06.05.2013,4,Bukit Harapan,sex,perempuan,,790,jiwa,2025,registration,total_population,3.2,18,,Perempuan/Femal
+15.06.05.2013,4,Bukit Harapan,total,total,,1639,jiwa,2025,registration,total_population,3.2,18,,
+15.06.05.2014,4,Adi Purwa,sex,laki_laki,,689,jiwa,2025,registration,total_population,3.2,18,,Laki-Laki/Male
+15.06.05.2014,4,Adi Purwa,sex,perempuan,,698,jiwa,2025,registration,total_population,3.2,18,,Perempuan/Femal
+15.06.05.2014,4,Adi Purwa,total,total,,1387,jiwa,2025,registration,total_population,3.2,18,,
+15.06.05.2018,4,Pinang Gading,sex,laki_laki,,663,jiwa,2025,registration,total_population,3.2,18,,Laki-Laki/Male
+15.06.05.2018,4,Pinang Gading,sex,perempuan,,609,jiwa,2025,registration,total_population,3.2,18,,Perempuan/Femal
+15.06.05.2018,4,Pinang Gading,total,total,,1272,jiwa,2025,registration,total_population,3.2,18,,
+15.06.05.2008,4,Tanjung Paku,sex,laki_laki,,537,jiwa,2025,registration,total_population,3.2,18,,Laki-Laki/Male
+15.06.05.2008,4,Tanjung Paku,sex,perempuan,,504,jiwa,2025,registration,total_population,3.2,18,,Perempuan/Femal
+15.06.05.2008,4,Tanjung Paku,total,total,,1041,jiwa,2025,registration,total_population,3.2,18,,
+15.06.05.2006,4,Lubuk Terap,sex,laki_laki,,535,jiwa,2025,registration,total_population,3.2,18,,Laki-Laki/Male
+15.06.05.2006,4,Lubuk Terap,sex,perempuan,,498,jiwa,2025,registration,total_population,3.2,18,,Perempuan/Femal
+15.06.05.2006,4,Lubuk Terap,total,total,,1033,jiwa,2025,registration,total_population,3.2,18,,
+15.06.05.2005,4,Penyabungan,sex,laki_laki,,586,jiwa,2025,registration,total_population,3.2,18,,Laki-Laki/Male
+15.06.05.2005,4,Penyabungan,sex,perempuan,,567,jiwa,2025,registration,total_population,3.2,18,,Perempuan/Femal
+15.06.05.2005,4,Penyabungan,total,total,,1153,jiwa,2025,registration,total_population,3.2,18,,
+15.06.05.2021,4,Tanjung Makmur,sex,laki_laki,,348,jiwa,2025,registration,total_population,3.2,18,,Laki-Laki/Male
+15.06.05.2021,4,Tanjung Makmur,sex,perempuan,,345,jiwa,2025,registration,total_population,3.2,18,,Perempuan/Femal
+15.06.05.2021,4,Tanjung Makmur,total,total,,693,jiwa,2025,registration,total_population,3.2,18,,
+15.06.05,3,Merlung,sex,laki_laki,,8808,jiwa,2025,registration,total_population,3.2,18,,Laki-Laki/Male
+15.06.05,3,Merlung,sex,perempuan,,8344,jiwa,2025,registration,total_population,3.2,18,,Perempuan/Femal
+15.06.05,3,Merlung,total,total,,17152,jiwa,2025,registration,total_population,3.2,18,,

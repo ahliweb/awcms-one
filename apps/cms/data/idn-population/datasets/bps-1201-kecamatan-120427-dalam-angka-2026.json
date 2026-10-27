@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1201-kecamatan-120427-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.04.27",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ulugawo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Nias",
+  "publisherDomain": "1201",
+  "publisherWebsite": "https://niaskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Nias (https://niaskab.bps.go.id), publikasi \"Kecamatan Ulugawo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1201062",
+  "publicationNumber": "12010.26015",
+  "issn": "2715-7806",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://niaskab.bps.go.id/id/publication/2026/09/28/b42b9d9a2791e789d4f89522/kecamatan-ulugawo-dalam-angka-2026.html",
+  "sourceFileSha256": "c0cd6cd6be40bb4280ac5e478e1dd0cfbefad07ef3ffde5bde851af09e7c8961",
+  "sourceFileBytes": 3215950,
+  "sourcePages": [29, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Nias ISSN 2715-7806 TIM PENYUSUN Kecamatan Ulugawo Dalam Angka 2026 Volume 16, 2026 Pengarah Puguh Setiandono .b p s. go .id Penanggung Jawab Puguh Setiandono s: //n ia sk ab Penyunting Richard Putra Rahmat Zega ht tp Pengolah Data dan Penulis Naskah Brillian Jeremia Sianturi Penata Letak Brillian Jeremia Sianturi Penerjemah Brillian Jeremia Sianturi iii s. go .id .b p ab s: //n ia sk ht tp KONTRIBUTOR DATA s: //n ia sk ab .b p s. go .id Kementerian Agama Kementerian Pendidikan dan Kebudayaan Badan Pusat Statistik Dinas Kependudukan dan Pencatatan Sipil Kabupaten Nias Kantor Camat Ulugawo ht tp 1. 2. 3. 4. 5. v s. go .id .b p ab s: //n ia sk ht tp KATA PENGANTAR ht tp s: //n ia sk ab .b p s. go .id Puji syukur kami panjatkan ke hadirat Tuhan Yang Maha Esa atas terbitnya Publikasi Kecamatan Ulugawo Dalam Angka Tahun 2026. Publikasi ini memuat data dan informasi strategis mengenai Kecamatan Ulugawo hingga akhir tahun 2025, sebagai wujud komitmen dalam menyediakan data yang akurat dan terkini untuk mendukung perencanaan dan pengambilan kebijakan berbasis data. Publikasi ini mencakup berbagai indikator statistik, antara lain kependudukan, pemerintahan, pendidikan, sosial ekonomi, pertanian, dan sektor lainnya. Kami menyampaikan terima kasih dan apresiasi yang setinggi-tingginya kepada seluruh pihak yang telah berkontribusi dan mendukung proses penyusunan publikasi ini. Kami menyadari masih terdapat kekurangan dalam publikasi ini. Oleh karena itu, kritik dan saran yang membangun sangat kami harapkan untuk perbaikan di masa mendatang. Semoga publikasi ini dapat menjadi referensi yang bermanfaat dan mendukung pembangunan Kecamatan Ulugawo ke arah yang lebih baik Gunungsitoli, September 2026 Kepala BPS Kabupaten Nias Puguh Setiandono vii viii s. go .id .b p ab s: //n ia sk ht tp",
+  "csvPath": "datasets/bps-1201-kecamatan-120427-dalam-angka-2026.csv",
+  "csvSha256": "957d4d39ff5ae749b0a04ae22b7daa76ab68b3aa130a676a3f66ace0198100e2",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Ulugawo , 2025 Penduduk Desa/Kelurahan Laki-Laki Perempuan Jumlah",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ulugawo, 2025 Jenis Kelamin Kelompok Umur Laki-Laki Perempuan Jumlah",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Hiligaofa\": unmatched "
+  ]
+}

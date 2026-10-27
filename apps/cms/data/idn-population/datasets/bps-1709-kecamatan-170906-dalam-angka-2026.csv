@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.09.06.2002,4,Tanjung Raman,sex,laki_laki,,306,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.06.2002,4,Tanjung Raman,sex,perempuan,,270,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.06.2002,4,Tanjung Raman,total,total,,576,jiwa,2025,registration,total_population,3.1,35,,
+17.09.06.2003,4,Sukarami,sex,laki_laki,,1070,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.06.2003,4,Sukarami,sex,perempuan,,1038,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.06.2003,4,Sukarami,total,total,,2108,jiwa,2025,registration,total_population,3.1,35,,
+17.09.06.2004,4,Karang Tengah,sex,laki_laki,,349,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.06.2004,4,Karang Tengah,sex,perempuan,,277,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.06.2004,4,Karang Tengah,total,total,,626,jiwa,2025,registration,total_population,3.1,35,,
+17.09.06.2005,4,Lubuk Sini,sex,laki_laki,,681,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.06.2005,4,Lubuk Sini,sex,perempuan,,659,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.06.2005,4,Lubuk Sini,total,total,,1340,jiwa,2025,registration,total_population,3.1,35,,
+17.09.06.2023,4,Bajak I,sex,laki_laki,,932,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.06.2023,4,Bajak I,sex,perempuan,,881,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.06.2023,4,Bajak I,total,total,,1813,jiwa,2025,registration,total_population,3.1,35,,
+17.09.06.2009,4,Surau,sex,laki_laki,,351,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.06.2009,4,Surau,sex,perempuan,,320,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.06.2009,4,Surau,total,total,,671,jiwa,2025,registration,total_population,3.1,35,,
+17.09.06.2010,4,Rindu Hati,sex,laki_laki,,619,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.06.2010,4,Rindu Hati,sex,perempuan,,543,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.06.2010,4,Rindu Hati,total,total,,1162,jiwa,2025,registration,total_population,3.1,35,,
+17.09.06.2011,4,Tanjung Heran,sex,laki_laki,,312,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.06.2011,4,Tanjung Heran,sex,perempuan,,288,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.06.2011,4,Tanjung Heran,total,total,,600,jiwa,2025,registration,total_population,3.1,35,,
+17.09.06.2008,4,Taba Teret,sex,laki_laki,,400,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.06.2008,4,Taba Teret,sex,perempuan,,421,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.06.2008,4,Taba Teret,total,total,,821,jiwa,2025,registration,total_population,3.1,35,,
+17.09.06.1007,4,Taba Penanjung,sex,laki_laki,,554,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.06.1007,4,Taba Penanjung,sex,perempuan,,562,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.06.1007,4,Taba Penanjung,total,total,,1116,jiwa,2025,registration,total_population,3.1,35,,
+17.09.06.2012,4,Datar Lebar,sex,laki_laki,,295,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.06.2012,4,Datar Lebar,sex,perempuan,,252,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.06.2012,4,Datar Lebar,total,total,,547,jiwa,2025,registration,total_population,3.1,35,,
+17.09.06.2013,4,Penum,sex,laki_laki,,280,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.06.2013,4,Penum,sex,perempuan,,278,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.06.2013,4,Penum,total,total,,558,jiwa,2025,registration,total_population,3.1,35,,
+17.09.06.2024,4,Taba Baru,sex,laki_laki,,318,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.06.2024,4,Taba Baru,sex,perempuan,,288,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.06.2024,4,Taba Baru,total,total,,606,jiwa,2025,registration,total_population,3.1,35,,
+17.09.06,3,Taba Penanjung,sex,laki_laki,,6467,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+17.09.06,3,Taba Penanjung,sex,perempuan,,6077,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+17.09.06,3,Taba Penanjung,total,total,,12544,jiwa,2025,registration,total_population,3.1,35,,
+17.09.06,3,Taba Penanjung,age_group,0-4,laki_laki,425,jiwa,2025,registration,total_population,3.2,37,,0 – 4
+17.09.06,3,Taba Penanjung,age_group,0-4,perempuan,379,jiwa,2025,registration,total_population,3.2,37,,0 – 4
+17.09.06,3,Taba Penanjung,age_group,0-4,,804,jiwa,2025,registration,total_population,3.2,37,,0 – 4
+17.09.06,3,Taba Penanjung,age_group,5-9,laki_laki,504,jiwa,2025,registration,total_population,3.2,37,,5 – 9
+17.09.06,3,Taba Penanjung,age_group,5-9,perempuan,513,jiwa,2025,registration,total_population,3.2,37,,5 – 9
+17.09.06,3,Taba Penanjung,age_group,5-9,,1017,jiwa,2025,registration,total_population,3.2,37,,5 – 9
+17.09.06,3,Taba Penanjung,age_group,10-14,laki_laki,578,jiwa,2025,registration,total_population,3.2,37,,10 – 14
+17.09.06,3,Taba Penanjung,age_group,10-14,perempuan,519,jiwa,2025,registration,total_population,3.2,37,,10 – 14
+17.09.06,3,Taba Penanjung,age_group,10-14,,1097,jiwa,2025,registration,total_population,3.2,37,,10 – 14
+17.09.06,3,Taba Penanjung,age_group,15-19,laki_laki,547,jiwa,2025,registration,total_population,3.2,37,,15 – 19
+17.09.06,3,Taba Penanjung,age_group,15-19,perempuan,523,jiwa,2025,registration,total_population,3.2,37,,15 – 19
+17.09.06,3,Taba Penanjung,age_group,15-19,,1070,jiwa,2025,registration,total_population,3.2,37,,15 – 19
+17.09.06,3,Taba Penanjung,age_group,20-24,laki_laki,584,jiwa,2025,registration,total_population,3.2,37,,20 – 24
+17.09.06,3,Taba Penanjung,age_group,20-24,perempuan,534,jiwa,2025,registration,total_population,3.2,37,,20 – 24
+17.09.06,3,Taba Penanjung,age_group,20-24,,1118,jiwa,2025,registration,total_population,3.2,37,,20 – 24
+17.09.06,3,Taba Penanjung,age_group,25-29,laki_laki,610,jiwa,2025,registration,total_population,3.2,37,,25 – 29
+17.09.06,3,Taba Penanjung,age_group,25-29,perempuan,529,jiwa,2025,registration,total_population,3.2,37,,25 – 29
+17.09.06,3,Taba Penanjung,age_group,25-29,,1139,jiwa,2025,registration,total_population,3.2,37,,25 – 29
+17.09.06,3,Taba Penanjung,age_group,30-34,laki_laki,491,jiwa,2025,registration,total_population,3.2,37,,30 – 34
+17.09.06,3,Taba Penanjung,age_group,30-34,perempuan,452,jiwa,2025,registration,total_population,3.2,37,,30 – 34
+17.09.06,3,Taba Penanjung,age_group,30-34,,943,jiwa,2025,registration,total_population,3.2,37,,30 – 34
+17.09.06,3,Taba Penanjung,age_group,35-39,laki_laki,504,jiwa,2025,registration,total_population,3.2,37,,35 – 39
+17.09.06,3,Taba Penanjung,age_group,35-39,perempuan,441,jiwa,2025,registration,total_population,3.2,37,,35 – 39
+17.09.06,3,Taba Penanjung,age_group,35-39,,945,jiwa,2025,registration,total_population,3.2,37,,35 – 39
+17.09.06,3,Taba Penanjung,age_group,40-44,laki_laki,471,jiwa,2025,registration,total_population,3.2,37,,40 – 44
+17.09.06,3,Taba Penanjung,age_group,40-44,perempuan,454,jiwa,2025,registration,total_population,3.2,37,,40 – 44
+17.09.06,3,Taba Penanjung,age_group,40-44,,925,jiwa,2025,registration,total_population,3.2,37,,40 – 44
+17.09.06,3,Taba Penanjung,age_group,45-49,laki_laki,450,jiwa,2025,registration,total_population,3.2,37,,45 – 49
+17.09.06,3,Taba Penanjung,age_group,45-49,perempuan,451,jiwa,2025,registration,total_population,3.2,37,,45 – 49
+17.09.06,3,Taba Penanjung,age_group,45-49,,901,jiwa,2025,registration,total_population,3.2,37,,45 – 49
+17.09.06,3,Taba Penanjung,age_group,50-54,laki_laki,386,jiwa,2025,registration,total_population,3.2,37,,50 – 54
+17.09.06,3,Taba Penanjung,age_group,50-54,perempuan,362,jiwa,2025,registration,total_population,3.2,37,,50 – 54
+17.09.06,3,Taba Penanjung,age_group,50-54,,748,jiwa,2025,registration,total_population,3.2,37,,50 – 54
+17.09.06,3,Taba Penanjung,age_group,55-59,laki_laki,292,jiwa,2025,registration,total_population,3.2,37,,55 – 59
+17.09.06,3,Taba Penanjung,age_group,55-59,perempuan,289,jiwa,2025,registration,total_population,3.2,37,,55 – 59
+17.09.06,3,Taba Penanjung,age_group,55-59,,581,jiwa,2025,registration,total_population,3.2,37,,55 – 59
+17.09.06,3,Taba Penanjung,age_group,60-64,laki_laki,248,jiwa,2025,registration,total_population,3.2,37,,60 – 64
+17.09.06,3,Taba Penanjung,age_group,60-64,perempuan,228,jiwa,2025,registration,total_population,3.2,37,,60 – 64
+17.09.06,3,Taba Penanjung,age_group,60-64,,476,jiwa,2025,registration,total_population,3.2,37,,60 – 64
+17.09.06,3,Taba Penanjung,age_group,65-69,laki_laki,191,jiwa,2025,registration,total_population,3.2,37,,65 – 69
+17.09.06,3,Taba Penanjung,age_group,65-69,perempuan,188,jiwa,2025,registration,total_population,3.2,37,,65 – 69
+17.09.06,3,Taba Penanjung,age_group,65-69,,379,jiwa,2025,registration,total_population,3.2,37,,65 – 69
+17.09.06,3,Taba Penanjung,age_group,70-74,laki_laki,95,jiwa,2025,registration,total_population,3.2,37,,70 – 74
+17.09.06,3,Taba Penanjung,age_group,70-74,perempuan,88,jiwa,2025,registration,total_population,3.2,37,,70 – 74
+17.09.06,3,Taba Penanjung,age_group,70-74,,183,jiwa,2025,registration,total_population,3.2,37,,70 – 74
+17.09.06,3,Taba Penanjung,age_group,75+,laki_laki,91,jiwa,2025,registration,total_population,3.2,37,,75+
+17.09.06,3,Taba Penanjung,age_group,75+,perempuan,127,jiwa,2025,registration,total_population,3.2,37,,75+
+17.09.06,3,Taba Penanjung,age_group,75+,,218,jiwa,2025,registration,total_population,3.2,37,,75+
+17.09.06,3,Taba Penanjung,sex,laki_laki,,6467,jiwa,2025,registration,total_population,3.2,37,,Laki-Laki
+17.09.06,3,Taba Penanjung,sex,perempuan,,6077,jiwa,2025,registration,total_population,3.2,37,,Perempuan
+17.09.06,3,Taba Penanjung,total,total,,12544,jiwa,2025,registration,total_population,3.2,37,,

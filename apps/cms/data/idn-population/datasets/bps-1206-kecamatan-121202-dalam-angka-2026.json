@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1206-kecamatan-121202-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.12.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Laguboti Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Toba",
+  "publisherDomain": "1206",
+  "publisherWebsite": "https://tobakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Toba (https://tobakab.bps.go.id), publikasi \"Kecamatan Laguboti Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1206040",
+  "publicationNumber": "12060.26010",
+  "issn": "2461-0186",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tobakab.bps.go.id/id/publication/2026/09/28/5f08362549c96a6aa7fd2cc6/kecamatan-laguboti-dalam-angka-2026.html",
+  "sourceFileSha256": "ba21e6bb65dcca3b6e81a11df2294ac32b923897008a045e1638401f2dc1eadc",
+  "sourceFileBytes": 5336164,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Toba.",
+  "csvPath": "datasets/bps-1206-kecamatan-121202-dalam-angka-2026.csv",
+  "csvSha256": "70314c6443f26f60649de2667bee61a482363eaf7e13829f45cf6026b587f59e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa /Kelurahan di Kecamatan Laguboti, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Laguboti, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sibarani Nasampulu\": unmatched ",
+    "table 3.1: row not stored: row \"OR. Hutapea Timur\": unmatched "
+  ]
+}

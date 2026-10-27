@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.06.14.2007,4,Gajah Mati,sex,perempuan,,1893,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.14.2007,4,Gajah Mati,total,total,,3780,jiwa,2026,registration,total_population,3.1,34,,
+16.06.14.2005,4,Tanjung Kerang,sex,perempuan,,2507,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.14.2005,4,Tanjung Kerang,total,total,,4920,jiwa,2026,registration,total_population,3.1,34,,
+16.06.14.2004,4,Babat Banyuasin,sex,perempuan,,2980,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.14.2004,4,Babat Banyuasin,total,total,,6029,jiwa,2026,registration,total_population,3.1,34,,
+16.06.14.2003,4,Supat,sex,perempuan,,1038,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.14.2003,4,Supat,total,total,,2082,jiwa,2026,registration,total_population,3.1,34,,
+16.06.14.2002,4,Letang,sex,perempuan,,1670,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.14.2002,4,Letang,total,total,,3452,jiwa,2026,registration,total_population,3.1,34,,
+16.06.14.2001,4,Suka Maju,sex,perempuan,,3124,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.14.2001,4,Suka Maju,total,total,,6510,jiwa,2026,registration,total_population,3.1,34,,
+16.06.14.2006,4,Langkap,sex,perempuan,,1132,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.14.2006,4,Langkap,total,total,,2314,jiwa,2026,registration,total_population,3.1,34,,
+16.06.14.2008,4,Tenggulang Jaya,sex,perempuan,,363,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.14.2008,4,Tenggulang Jaya,total,total,,755,jiwa,2026,registration,total_population,3.1,34,,
+16.06.14.2009,4,Bandar Tenggulang,sex,perempuan,,424,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.14.2009,4,Bandar Tenggulang,total,total,,891,jiwa,2026,registration,total_population,3.1,34,,
+16.06.14.2010,4,Sumber Jaya,sex,perempuan,,469,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.14.2010,4,Sumber Jaya,total,total,,943,jiwa,2026,registration,total_population,3.1,34,,
+16.06.14.2011,4,Tenggulang Baru,sex,perempuan,,573,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.14.2011,4,Tenggulang Baru,total,total,,1171,jiwa,2026,registration,total_population,3.1,34,,
+16.06.14.2014,4,Seratus Lapan,sex,perempuan,,921,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.14.2014,4,Seratus Lapan,total,total,,1856,jiwa,2026,registration,total_population,3.1,34,,
+16.06.14.2015,4,Babat Ramba Jaya,sex,perempuan,,1017,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.14.2015,4,Babat Ramba Jaya,total,total,,2097,jiwa,2026,registration,total_population,3.1,34,,
+16.06.14.2012,4,Supat Barat,sex,perempuan,,1073,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.14.2012,4,Supat Barat,total,total,,2227,jiwa,2026,registration,total_population,3.1,34,,
+16.06.14.2013,4,Supat Timur,sex,perempuan,,1612,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.14.2013,4,Supat Timur,total,total,,3310,jiwa,2026,registration,total_population,3.1,34,,
+16.06.14.2016,4,Gajah Muda,sex,perempuan,,464,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.14.2016,4,Gajah Muda,total,total,,920,jiwa,2026,registration,total_population,3.1,34,,
+16.06.14,3,Babat Supat,sex,perempuan,,21260,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.14,3,Babat Supat,total,total,,43257,jiwa,2026,registration,total_population,3.1,34,,
+16.06.14,3,Babat Supat,age_group,0-14,perempuan,5151,jiwa,2026,projection,total_population,3.2,36,,0–14
+16.06.14,3,Babat Supat,age_group,0-14,,10288,jiwa,2026,projection,total_population,3.2,36,,0–14
+16.06.14,3,Babat Supat,age_group,15-64,perempuan,12854,jiwa,2026,projection,total_population,3.2,36,,15–64
+16.06.14,3,Babat Supat,age_group,15-64,,26141,jiwa,2026,projection,total_population,3.2,36,,15–64
+16.06.14,3,Babat Supat,age_group,65+,perempuan,1145,jiwa,2026,projection,total_population,3.2,36,,65+
+16.06.14,3,Babat Supat,age_group,65+,,2233,jiwa,2026,projection,total_population,3.2,36,,65+
+16.06.14,3,Babat Supat,sex,perempuan,,19150,jiwa,2026,projection,total_population,3.2,36,,Perempuan
+16.06.14,3,Babat Supat,total,total,,38662,jiwa,2026,projection,total_population,3.2,36,,

@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3372-kecamatan-337204-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.72.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jebres Dalam Angka 2026",
+  "publisherName": "BPS Kota Surakarta",
+  "publisherDomain": "3372",
+  "publisherWebsite": "https://surakartakota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Surakarta (https://surakartakota.bps.go.id), publikasi \"Kecamatan Jebres Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3372040",
+  "publicationNumber": "33720.26028",
+  "issn": "2622-0210",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://surakartakota.bps.go.id/id/publication/2026/09/28/76957e4ee8eba882cd6a35c5/kecamatan-jebres-dalam-angka-2026.html",
+  "sourceFileSha256": "95667ebd7d15c86f3dbf137b8c2a4f1bfd68a36d9360a7b3a122f083839c1fa6",
+  "sourceFileBytes": 14128642,
+  "sourcePages": [34, 35, 59, 60],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Surakarta. ISSN 2622-0210 TIM PENYUSUN KECAMATAN JEBRES DALAM ANGKA 2026 Volume 45, 2026 o. ta .b ps .g Penanggung Jawab Ratna Setyowati id Pengarah Ratna Setyowati ar ta ko Penyunting Epi Priyanto ht tp s: //s ur ak Pengolah Data dan Penulis Naskah Rumpaka Sari Rahmani Penata Letak Rumpaka Sari Rahmani o. ta .b ps .g ta ko ar ak ur //s s: tp ht id KONTRIBUTOR DATA Badan Kepegawaian dan Pengembangan Sumber Daya Manusia Kota Surakarta 2. Badan Pusat Statistik 3. Cabang Dinas Pendidikan Wilayah VII Provinsi Jawa Tengah Kota Surakarta 4. Dinas Kebudayaan dan Pariwisata Kota Surakarta 5. Dinas Kependudukan dan Pencatatan Sipil Kota Surakarta 6. Dinas Kesehatan Kota Surakarta 7. Dinas Ketahanan Pangan dan Pertanian Kota Surakarta 8. Dinas Komunikasi dan Informatika Kota Surakarta 9. Dinas Koperasi Usaha Kecil dan Menengah dan Perindustrian Kota Surakarta id 1. ta .b ps .g o. 10. Dinas Pemberdayaan Perempuan dan Perlindungan Anak serta Pengendalian Penduduk dan Keluarga Berencana Kota Surakarta 11. Dinas Pendidikan Kota Surakarta 12. Dinas Sosial Kota Surakarta ta ko 13. Dinas Tenaga Kerja Kota Surakarta 14. Kementerian Agama Kota Surakarta ar 15. Satuan Polisi Pamong Praja Kota Surakarta ht tp s: //s ur ak 16. Sekretariat Daerah Kota Surakarta o. ta .b ps .g ta ko ar ak ur //s s: tp ht id KATA PENGANTAR id Publikasi Kecamatan Jebres Dalam Angka 2026 disusun sebagai kelanjutan dari publikasi serupa pada tahun-tahun sebelumnya. Publikasi ini memuat berbagai data hingga tingkat kelurahan yang berada di wilayah Kecamatan Jebres. Penyajian data hingga unit kelurahan dimaksudkan agar tersedia informasi yang lebih rinci dan komprehensif, sesuai dengan kebutuhan pengguna data, baik dari instansi pemerintah, pihak swasta, maupun perorangan. Penyusunan buku ini mengikuti standar yang telah ditetapkan secara nasional. Surakarta, September 2026 Kepala BPS Kota Surakarta RATNA SETYOWATI ht tp s: //s ur ak ar ta ko ta .b ps .g o. Kami menyampaikan apresiasi dan terima kasih kepada seluruh pihak yang telah berkontribusi dalam penyusunan publikasi ini. Semoga Kecamatan Jebres Dalam Angka 2026 dapat memberikan manfaat bagi penyelenggaraan pemerintahan, peningkatan pelayanan kepada masyarakat, serta mendukung pembangunan dalam rangka mewujudkan kesejahteraan masyarakat. vii o. ta .b ps .g ta ko ar ak ur //s s: tp ht id",
+  "csvPath": "datasets/bps-3372-kecamatan-337204-dalam-angka-2026.csv",
+  "csvSha256": "c6fce036c77b677f8b7c4cbddb69c21922a26db90b3fc1eefbe8e0aee36765b0",
+  "tablesUsed": [
+    {
+      "table": "3.1.6",
+      "title": "Jumlah Penduduk Menurut Kelurahan dan Agama yang Dianut di Kecamatan Jebres, 2025 Agama Kelurahan Islam Protestan Katolik Hindu",
+      "printedPages": [59, 60],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "table 3.1.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

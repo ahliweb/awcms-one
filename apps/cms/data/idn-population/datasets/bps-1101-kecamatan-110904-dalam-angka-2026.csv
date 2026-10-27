@@ -1,0 +1,103 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.09.04.2024,4,Air Pinang,sex,laki_laki,,685,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.04.2024,4,Air Pinang,sex,perempuan,,659,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.04.2024,4,Air Pinang,total,total,,1344,jiwa,2025,registration,total_population,3.1,24,,
+11.09.04.2022,4,Kuala Makmur,sex,laki_laki,,645,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.04.2022,4,Kuala Makmur,sex,perempuan,,629,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.04.2022,4,Kuala Makmur,total,total,,1274,jiwa,2025,registration,total_population,3.1,24,,
+11.09.04.2021,4,Ganting,sex,laki_laki,,728,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.04.2021,4,Ganting,sex,perempuan,,665,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.04.2021,4,Ganting,total,total,,1393,jiwa,2025,registration,total_population,3.1,24,,
+11.09.04.2028,4,Linggi,sex,laki_laki,,342,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.04.2028,4,Linggi,sex,perempuan,,355,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.04.2028,4,Linggi,total,total,,697,jiwa,2025,registration,total_population,3.1,24,,
+11.09.04.2019,4,Lugu,sex,laki_laki,,536,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.04.2019,4,Lugu,sex,perempuan,,506,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.04.2019,4,Lugu,total,total,,1042,jiwa,2025,registration,total_population,3.1,24,,
+11.09.04.2017,4,Sinabang,sex,laki_laki,,795,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.04.2017,4,Sinabang,sex,perempuan,,796,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.04.2017,4,Sinabang,total,total,,1591,jiwa,2025,registration,total_population,3.1,24,,
+11.09.04.2015,4,Suka Maju,sex,laki_laki,,1186,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.04.2015,4,Suka Maju,sex,perempuan,,1169,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.04.2015,4,Suka Maju,total,total,,2355,jiwa,2025,registration,total_population,3.1,24,,
+11.09.04.2016,4,Suka Karya,sex,laki_laki,,2703,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.04.2016,4,Suka Karya,sex,perempuan,,2548,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.04.2016,4,Suka Karya,total,total,,5251,jiwa,2025,registration,total_population,3.1,24,,
+11.09.04.2014,4,Suka Jaya,sex,laki_laki,,1332,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.04.2014,4,Suka Jaya,sex,perempuan,,1297,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.04.2014,4,Suka Jaya,total,total,,2629,jiwa,2025,registration,total_population,3.1,24,,
+11.09.04.2012,4,Air Dingin,sex,laki_laki,,2140,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.04.2012,4,Air Dingin,sex,perempuan,,2134,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.04.2012,4,Air Dingin,total,total,,4274,jiwa,2025,registration,total_population,3.1,24,,
+11.09.04.2026,4,Kota Batu,sex,laki_laki,,674,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.04.2026,4,Kota Batu,sex,perempuan,,620,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.04.2026,4,Kota Batu,total,total,,1294,jiwa,2025,registration,total_population,3.1,24,,
+11.09.04.2009,4,Suak Buluh,sex,laki_laki,,911,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.04.2009,4,Suak Buluh,sex,perempuan,,850,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.04.2009,4,Suak Buluh,total,total,,1761,jiwa,2025,registration,total_population,3.1,24,,
+11.09.04.2023,4,Ujung Tinggi,sex,laki_laki,,272,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.04.2023,4,Ujung Tinggi,sex,perempuan,,284,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.04.2023,4,Ujung Tinggi,total,total,,556,jiwa,2025,registration,total_population,3.1,24,,
+11.09.04.2025,4,Pulau Siumat,sex,laki_laki,,221,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.04.2025,4,Pulau Siumat,sex,perempuan,,190,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.04.2025,4,Pulau Siumat,total,total,,411,jiwa,2025,registration,total_population,3.1,24,,
+11.09.04.2020,4,Sefoyan,sex,laki_laki,,232,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.04.2020,4,Sefoyan,sex,perempuan,,242,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.04.2020,4,Sefoyan,total,total,,474,jiwa,2025,registration,total_population,3.1,24,,
+11.09.04.2018,4,Amaiteng Mulia,sex,laki_laki,,317,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.04.2018,4,Amaiteng Mulia,sex,perempuan,,315,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.04.2018,4,Amaiteng Mulia,total,total,,632,jiwa,2025,registration,total_population,3.1,24,,
+11.09.04,3,Simeulue Timur,sex,laki_laki,,14209,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+11.09.04,3,Simeulue Timur,sex,perempuan,,13756,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+11.09.04,3,Simeulue Timur,total,total,,27965,jiwa,2025,registration,total_population,3.1,24,,
+11.09.04,3,Simeulue Timur,age_group,0-4,laki_laki,988,jiwa,2025,registration,total_population,3.2,26,,0-4
+11.09.04,3,Simeulue Timur,age_group,0-4,perempuan,976,jiwa,2025,registration,total_population,3.2,26,,0-4
+11.09.04,3,Simeulue Timur,age_group,0-4,,1964,jiwa,2025,registration,total_population,3.2,26,,0-4
+11.09.04,3,Simeulue Timur,age_group,5-9,laki_laki,1364,jiwa,2025,registration,total_population,3.2,26,,5-9
+11.09.04,3,Simeulue Timur,age_group,5-9,perempuan,1285,jiwa,2025,registration,total_population,3.2,26,,5-9
+11.09.04,3,Simeulue Timur,age_group,5-9,,2649,jiwa,2025,registration,total_population,3.2,26,,5-9
+11.09.04,3,Simeulue Timur,age_group,10-14,laki_laki,1458,jiwa,2025,registration,total_population,3.2,26,,10-14
+11.09.04,3,Simeulue Timur,age_group,10-14,perempuan,1354,jiwa,2025,registration,total_population,3.2,26,,10-14
+11.09.04,3,Simeulue Timur,age_group,10-14,,2812,jiwa,2025,registration,total_population,3.2,26,,10-14
+11.09.04,3,Simeulue Timur,age_group,15-19,laki_laki,1483,jiwa,2025,registration,total_population,3.2,26,,15-19
+11.09.04,3,Simeulue Timur,age_group,15-19,perempuan,1379,jiwa,2025,registration,total_population,3.2,26,,15-19
+11.09.04,3,Simeulue Timur,age_group,15-19,,2862,jiwa,2025,registration,total_population,3.2,26,,15-19
+11.09.04,3,Simeulue Timur,age_group,20-24,laki_laki,1382,jiwa,2025,registration,total_population,3.2,26,,20-24
+11.09.04,3,Simeulue Timur,age_group,20-24,perempuan,1126,jiwa,2025,registration,total_population,3.2,26,,20-24
+11.09.04,3,Simeulue Timur,age_group,20-24,,2508,jiwa,2025,registration,total_population,3.2,26,,20-24
+11.09.04,3,Simeulue Timur,age_group,25-29,laki_laki,1080,jiwa,2025,registration,total_population,3.2,26,,25-29
+11.09.04,3,Simeulue Timur,age_group,25-29,perempuan,1060,jiwa,2025,registration,total_population,3.2,26,,25-29
+11.09.04,3,Simeulue Timur,age_group,25-29,,2140,jiwa,2025,registration,total_population,3.2,26,,25-29
+11.09.04,3,Simeulue Timur,age_group,30-34,laki_laki,912,jiwa,2025,registration,total_population,3.2,26,,30-34
+11.09.04,3,Simeulue Timur,age_group,30-34,perempuan,982,jiwa,2025,registration,total_population,3.2,26,,30-34
+11.09.04,3,Simeulue Timur,age_group,30-34,,1894,jiwa,2025,registration,total_population,3.2,26,,30-34
+11.09.04,3,Simeulue Timur,age_group,35-39,laki_laki,1027,jiwa,2025,registration,total_population,3.2,26,,35-39
+11.09.04,3,Simeulue Timur,age_group,35-39,perempuan,1121,jiwa,2025,registration,total_population,3.2,26,,35-39
+11.09.04,3,Simeulue Timur,age_group,35-39,,2148,jiwa,2025,registration,total_population,3.2,26,,35-39
+11.09.04,3,Simeulue Timur,age_group,40-44,laki_laki,1152,jiwa,2025,registration,total_population,3.2,26,,40-44
+11.09.04,3,Simeulue Timur,age_group,40-44,perempuan,1187,jiwa,2025,registration,total_population,3.2,26,,40-44
+11.09.04,3,Simeulue Timur,age_group,40-44,,2339,jiwa,2025,registration,total_population,3.2,26,,40-44
+11.09.04,3,Simeulue Timur,age_group,45-49,laki_laki,1048,jiwa,2025,registration,total_population,3.2,26,,45-49
+11.09.04,3,Simeulue Timur,age_group,45-49,perempuan,982,jiwa,2025,registration,total_population,3.2,26,,45-49
+11.09.04,3,Simeulue Timur,age_group,45-49,,2030,jiwa,2025,registration,total_population,3.2,26,,45-49
+11.09.04,3,Simeulue Timur,age_group,50-54,laki_laki,810,jiwa,2025,registration,total_population,3.2,26,,50-54
+11.09.04,3,Simeulue Timur,age_group,50-54,perempuan,696,jiwa,2025,registration,total_population,3.2,26,,50-54
+11.09.04,3,Simeulue Timur,age_group,50-54,,1506,jiwa,2025,registration,total_population,3.2,26,,50-54
+11.09.04,3,Simeulue Timur,age_group,55-59,laki_laki,564,jiwa,2025,registration,total_population,3.2,26,,55-59
+11.09.04,3,Simeulue Timur,age_group,55-59,perempuan,547,jiwa,2025,registration,total_population,3.2,26,,55-59
+11.09.04,3,Simeulue Timur,age_group,55-59,,1111,jiwa,2025,registration,total_population,3.2,26,,55-59
+11.09.04,3,Simeulue Timur,age_group,60-64,laki_laki,399,jiwa,2025,registration,total_population,3.2,26,,60-64
+11.09.04,3,Simeulue Timur,age_group,60-64,perempuan,402,jiwa,2025,registration,total_population,3.2,26,,60-64
+11.09.04,3,Simeulue Timur,age_group,60-64,,801,jiwa,2025,registration,total_population,3.2,26,,60-64
+11.09.04,3,Simeulue Timur,age_group,65-70,laki_laki,252,jiwa,2025,registration,total_population,3.2,26,,65-70
+11.09.04,3,Simeulue Timur,age_group,65-70,perempuan,297,jiwa,2025,registration,total_population,3.2,26,,65-70
+11.09.04,3,Simeulue Timur,age_group,65-70,,549,jiwa,2025,registration,total_population,3.2,26,,65-70
+11.09.04,3,Simeulue Timur,age_group,70-74,laki_laki,147,jiwa,2025,registration,total_population,3.2,26,,70-74
+11.09.04,3,Simeulue Timur,age_group,70-74,perempuan,177,jiwa,2025,registration,total_population,3.2,26,,70-74
+11.09.04,3,Simeulue Timur,age_group,70-74,,324,jiwa,2025,registration,total_population,3.2,26,,70-74
+11.09.04,3,Simeulue Timur,age_group,75+,laki_laki,143,jiwa,2025,registration,total_population,3.2,26,,75+
+11.09.04,3,Simeulue Timur,age_group,75+,perempuan,185,jiwa,2025,registration,total_population,3.2,26,,75+
+11.09.04,3,Simeulue Timur,age_group,75+,,328,jiwa,2025,registration,total_population,3.2,26,,75+
+11.09.04,3,Simeulue Timur,sex,laki_laki,,14209,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+11.09.04,3,Simeulue Timur,sex,perempuan,,13756,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+11.09.04,3,Simeulue Timur,total,total,,27965,jiwa,2025,registration,total_population,3.2,26,,

@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.03.06.2015,4,Aek Natas,sex,laki_laki,,904,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.06.2015,4,Aek Natas,sex,perempuan,,851,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.06.2015,4,Aek Natas,total,total,,1755,jiwa,2025,registration,total_population,3.1,25,,
+12.03.06.2016,4,Dolok Godang,sex,laki_laki,,345,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.06.2016,4,Dolok Godang,sex,perempuan,,345,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.06.2016,4,Dolok Godang,total,total,,690,jiwa,2025,registration,total_population,3.1,25,,
+12.03.06.2018,4,Gunung Baringin,sex,laki_laki,,1780,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.06.2018,4,Gunung Baringin,sex,perempuan,,1675,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.06.2018,4,Gunung Baringin,total,total,,3455,jiwa,2025,registration,total_population,3.1,25,,
+12.03.06.1007,4,Napa*,sex,laki_laki,,923,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.06.1007,4,Napa*,sex,perempuan,,917,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.06.1007,4,Napa*,total,total,,1840,jiwa,2025,registration,total_population,3.1,25,,
+12.03.06.1019,4,Pardomuan*,sex,laki_laki,,6057,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.06.1019,4,Pardomuan*,sex,perempuan,,5536,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.06.1019,4,Pardomuan*,total,total,,11593,jiwa,2025,registration,total_population,3.1,25,,
+12.03.06.2013,4,Perkebunan Marpinggan,sex,laki_laki,,623,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.06.2013,4,Perkebunan Marpinggan,sex,perempuan,,595,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.06.2013,4,Perkebunan Marpinggan,total,total,,1218,jiwa,2025,registration,total_population,3.1,25,,
+12.03.06.2006,4,Pintu Padang,sex,laki_laki,,329,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.06.2006,4,Pintu Padang,sex,perempuan,,357,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.06.2006,4,Pintu Padang,total,total,,686,jiwa,2025,registration,total_population,3.1,25,,
+12.03.06.2009,4,Siamporik Dolok,sex,laki_laki,,323,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.06.2009,4,Siamporik Dolok,sex,perempuan,,317,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.06.2009,4,Siamporik Dolok,total,total,,640,jiwa,2025,registration,total_population,3.1,25,,
+12.03.06.2010,4,Siamporik Lombang,sex,laki_laki,,348,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.06.2010,4,Siamporik Lombang,sex,perempuan,,328,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.06.2010,4,Siamporik Lombang,total,total,,676,jiwa,2025,registration,total_population,3.1,25,,
+12.03.06.2008,4,Sibong-Bong,sex,laki_laki,,463,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.06.2008,4,Sibong-Bong,sex,perempuan,,410,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.06.2008,4,Sibong-Bong,total,total,,873,jiwa,2025,registration,total_population,3.1,25,,
+12.03.06.2011,4,Sihopur,sex,laki_laki,,158,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.06.2011,4,Sihopur,sex,perempuan,,168,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.06.2011,4,Sihopur,total,total,,326,jiwa,2025,registration,total_population,3.1,25,,
+12.03.06.2017,4,Sihuik-Huik,sex,laki_laki,,1437,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.06.2017,4,Sihuik-Huik,sex,perempuan,,1458,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.06.2017,4,Sihuik-Huik,total,total,,2895,jiwa,2025,registration,total_population,3.1,25,,
+12.03.06.1001,4,Simarpinggan*,sex,laki_laki,,1104,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.06.1001,4,Simarpinggan*,sex,perempuan,,1105,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.06.1001,4,Simarpinggan*,total,total,,2209,jiwa,2025,registration,total_population,3.1,25,,
+12.03.06.2005,4,Sinyior,sex,laki_laki,,340,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.06.2005,4,Sinyior,sex,perempuan,,323,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.06.2005,4,Sinyior,total,total,,663,jiwa,2025,registration,total_population,3.1,25,,
+12.03.06.2004,4,Situmbaga,sex,laki_laki,,455,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.06.2004,4,Situmbaga,sex,perempuan,,421,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.06.2004,4,Situmbaga,total,total,,876,jiwa,2025,registration,total_population,3.1,25,,
+12.03.06.2012,4,Tandihat,sex,laki_laki,,394,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.06.2012,4,Tandihat,sex,perempuan,,414,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.06.2012,4,Tandihat,total,total,,808,jiwa,2025,registration,total_population,3.1,25,,
+12.03.06.1014,4,Tapian Nauli*,sex,laki_laki,,1610,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.06.1014,4,Tapian Nauli*,sex,perempuan,,1590,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.06.1014,4,Tapian Nauli*,total,total,,3200,jiwa,2025,registration,total_population,3.1,25,,
+12.03.06,3,Angkola Selatan,sex,laki_laki,,17593,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.03.06,3,Angkola Selatan,sex,perempuan,,16810,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.03.06,3,Angkola Selatan,total,total,,34403,jiwa,2025,registration,total_population,3.1,25,,

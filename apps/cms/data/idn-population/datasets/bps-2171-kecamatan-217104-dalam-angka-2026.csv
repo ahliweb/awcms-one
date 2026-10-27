@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.71.04.1004,4,Ngenang,sex,laki_laki,,821,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.04.1004,4,Ngenang,sex,perempuan,,794,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/
+21.71.04.1004,4,Ngenang,total,total,,1615,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.04.1003,4,Kabil,sex,laki_laki,,23396,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.04.1003,4,Kabil,sex,perempuan,,21604,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/
+21.71.04.1003,4,Kabil,total,total,,45000,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.04.1002,4,Batu Besar,sex,laki_laki,,22987,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.04.1002,4,Batu Besar,sex,perempuan,,21890,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/
+21.71.04.1002,4,Batu Besar,total,total,,44877,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.04.1001,4,Sambau,sex,laki_laki,,9936,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.04.1001,4,Sambau,sex,perempuan,,9431,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/
+21.71.04.1001,4,Sambau,total,total,,19367,jiwa,2025,registration,total_population,unnumbered-p21,21,,

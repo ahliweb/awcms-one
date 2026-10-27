@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-3308-kecamatan-330816-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.08.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pakis Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Magelang",
+  "publisherDomain": "3308",
+  "publisherWebsite": "https://magelangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Magelang (https://magelangkab.bps.go.id), publikasi \"Kecamatan Pakis Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "33080.26036",
+  "issn": "2442-5524",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://magelangkab.bps.go.id/id/publication/2026/09/28/adb5c4a130633b060d5d27ae/kecamatan-pakis-dalam-angka-2026.html",
+  "sourceFileSha256": "ac822121fb018df47ac1e75c46afbddf6601a023972b2945beea3db2dba2cf38",
+  "sourceFileBytes": 7119285,
+  "sourcePages": [30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Magelang",
+  "csvPath": "datasets/bps-3308-kecamatan-330816-dalam-angka-2026.csv",
+  "csvSha256": "de0669a3b64ad0f21a6d90b67501e926c64de53eabdab8b8763b6f3eb6b20902",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p30",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pakis, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p30: row not stored: row \"017 Kajangsoko\": unmatched ",
+    "table unnumbered-p30: row not stored: row \"Jumlah/Total\": unmatched "
+  ]
+}

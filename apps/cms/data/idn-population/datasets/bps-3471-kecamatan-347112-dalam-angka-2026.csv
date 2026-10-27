@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+34.71.12.1001,4,Keparakan,sex,laki_laki,,4625,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+34.71.12.1001,4,Keparakan,sex,perempuan,,5017,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+34.71.12.1001,4,Keparakan,total,total,,9642,jiwa,2025,registration,total_population,3.1,31,,
+34.71.12.1002,4,Wirogunan,sex,laki_laki,,5421,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+34.71.12.1002,4,Wirogunan,sex,perempuan,,5740,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+34.71.12.1002,4,Wirogunan,total,total,,11161,jiwa,2025,registration,total_population,3.1,31,,
+34.71.12.1003,4,Brontokusuman,sex,laki_laki,,5238,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+34.71.12.1003,4,Brontokusuman,sex,perempuan,,5667,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+34.71.12.1003,4,Brontokusuman,total,total,,10905,jiwa,2025,registration,total_population,3.1,31,,
+34.71.12,3,Mergangsan,sex,laki_laki,,15284,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+34.71.12,3,Mergangsan,sex,perempuan,,16424,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+34.71.12,3,Mergangsan,total,total,,31708,jiwa,2025,registration,total_population,3.1,31,,

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3313-kecamatan-331309-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.13.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Karanganyar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Karanganyar",
+  "publisherDomain": "3313",
+  "publisherWebsite": "https://karanganyarkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Karanganyar (https://karanganyarkab.bps.go.id), publikasi \"Kecamatan Karanganyar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3313090",
+  "publicationNumber": "33130.26014",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://karanganyarkab.bps.go.id/id/publication/2026/09/28/4ea28415d9842ee40d62ebae/kecamatan-karanganyar-dalam-angka-2026.html",
+  "sourceFileSha256": "9ceb4788714d24f07091b795968defa6e892e92fd1c912caf99689be13b6e108",
+  "sourceFileBytes": 8561931,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Karanganyar.",
+  "csvPath": "datasets/bps-3313-kecamatan-331309-dalam-angka-2026.csv",
+  "csvSha256": "bff4ea012fa4d3874f8d67c39b354f22d25126205c971d4ad7e3300ac515972a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Karanganyar, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Karanganyar, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

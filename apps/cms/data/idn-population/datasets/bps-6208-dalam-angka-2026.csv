@@ -1,0 +1,109 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.07.01,3,Seruyan Hilir,total,total,,41.37,ribu_jiwa,2025,projection,total_population,3.1.1,64,,
+62.07.06,3,Seruyan Hilir Timur,total,total,,10.90,ribu_jiwa,2025,projection,total_population,3.1.1,64,,
+62.07.03,3,Danau Sembuluh,total,total,,15.87,ribu_jiwa,2025,projection,total_population,3.1.1,64,,
+62.07.07,3,Seruyan Raya,total,total,,20.10,ribu_jiwa,2025,projection,total_population,3.1.1,64,,
+62.07.04,3,Hanau,total,total,,22.56,ribu_jiwa,2025,projection,total_population,3.1.1,64,,
+62.07.08,3,Danau Seluluk,total,total,,18.65,ribu_jiwa,2025,projection,total_population,3.1.1,64,,
+62.07.02,3,Seruyan Tengah,total,total,,25.74,ribu_jiwa,2025,projection,total_population,3.1.1,64,,
+62.07.09,3,Batu Ampar,total,total,,9.93,ribu_jiwa,2025,projection,total_population,3.1.1,64,,
+62.07.05,3,Seruyan Hulu,total,total,,9.41,ribu_jiwa,2025,projection,total_population,3.1.1,64,,
+62.07.10,3,Suling Tambun,total,total,,2.81,ribu_jiwa,2025,projection,total_population,3.1.1,64,,
+62.07,2,Seruyan,total,total,,177.32,ribu_jiwa,2025,projection,total_population,3.1.1,64,,
+62.07,2,Kabupaten Seruyan,age_group,0-4,laki_laki,7.68,ribu_jiwa,2025,projection,total_population,3.1.2,67,,0–4
+62.07,2,Kabupaten Seruyan,age_group,0-4,perempuan,7.36,ribu_jiwa,2025,projection,total_population,3.1.2,67,,0–4
+62.07,2,Kabupaten Seruyan,age_group,0-4,,15.04,ribu_jiwa,2025,projection,total_population,3.1.2,67,,0–4
+62.07,2,Kabupaten Seruyan,age_group,5-9,laki_laki,7.47,ribu_jiwa,2025,projection,total_population,3.1.2,67,,5–9
+62.07,2,Kabupaten Seruyan,age_group,5-9,perempuan,7.18,ribu_jiwa,2025,projection,total_population,3.1.2,67,,5–9
+62.07,2,Kabupaten Seruyan,age_group,5-9,,14.64,ribu_jiwa,2025,projection,total_population,3.1.2,67,,5–9
+62.07,2,Kabupaten Seruyan,age_group,10-14,laki_laki,7.43,ribu_jiwa,2025,projection,total_population,3.1.2,67,,10–14
+62.07,2,Kabupaten Seruyan,age_group,10-14,perempuan,6.94,ribu_jiwa,2025,projection,total_population,3.1.2,67,,10–14
+62.07,2,Kabupaten Seruyan,age_group,10-14,,14.37,ribu_jiwa,2025,projection,total_population,3.1.2,67,,10–14
+62.07,2,Kabupaten Seruyan,age_group,15-19,laki_laki,7.63,ribu_jiwa,2025,projection,total_population,3.1.2,67,,15–19
+62.07,2,Kabupaten Seruyan,age_group,15-19,perempuan,7.04,ribu_jiwa,2025,projection,total_population,3.1.2,67,,15–19
+62.07,2,Kabupaten Seruyan,age_group,15-19,,14.67,ribu_jiwa,2025,projection,total_population,3.1.2,67,,15–19
+62.07,2,Kabupaten Seruyan,age_group,20-24,laki_laki,7.49,ribu_jiwa,2025,projection,total_population,3.1.2,67,,20–24
+62.07,2,Kabupaten Seruyan,age_group,20-24,perempuan,7.05,ribu_jiwa,2025,projection,total_population,3.1.2,67,,20–24
+62.07,2,Kabupaten Seruyan,age_group,20-24,,14.54,ribu_jiwa,2025,projection,total_population,3.1.2,67,,20–24
+62.07,2,Kabupaten Seruyan,age_group,25-29,laki_laki,7.50,ribu_jiwa,2025,projection,total_population,3.1.2,67,,25–29
+62.07,2,Kabupaten Seruyan,age_group,25-29,perempuan,7.00,ribu_jiwa,2025,projection,total_population,3.1.2,67,,25–29
+62.07,2,Kabupaten Seruyan,age_group,25-29,,14.49,ribu_jiwa,2025,projection,total_population,3.1.2,67,,25–29
+62.07,2,Kabupaten Seruyan,age_group,30-34,laki_laki,7.88,ribu_jiwa,2025,projection,total_population,3.1.2,67,,30–34
+62.07,2,Kabupaten Seruyan,age_group,30-34,perempuan,7.08,ribu_jiwa,2025,projection,total_population,3.1.2,67,,30–34
+62.07,2,Kabupaten Seruyan,age_group,30-34,,14.96,ribu_jiwa,2025,projection,total_population,3.1.2,67,,30–34
+62.07,2,Kabupaten Seruyan,age_group,35-39,laki_laki,8.45,ribu_jiwa,2025,projection,total_population,3.1.2,67,,35–39
+62.07,2,Kabupaten Seruyan,age_group,35-39,perempuan,7.45,ribu_jiwa,2025,projection,total_population,3.1.2,67,,35–39
+62.07,2,Kabupaten Seruyan,age_group,35-39,,15.90,ribu_jiwa,2025,projection,total_population,3.1.2,67,,35–39
+62.07,2,Kabupaten Seruyan,age_group,40-44,laki_laki,7.88,ribu_jiwa,2025,projection,total_population,3.1.2,67,,40–44
+62.07,2,Kabupaten Seruyan,age_group,40-44,perempuan,6.93,ribu_jiwa,2025,projection,total_population,3.1.2,67,,40–44
+62.07,2,Kabupaten Seruyan,age_group,40-44,,14.81,ribu_jiwa,2025,projection,total_population,3.1.2,67,,40–44
+62.07,2,Kabupaten Seruyan,age_group,45-49,laki_laki,7.18,ribu_jiwa,2025,projection,total_population,3.1.2,67,,45–49
+62.07,2,Kabupaten Seruyan,age_group,45-49,perempuan,6.02,ribu_jiwa,2025,projection,total_population,3.1.2,67,,45–49
+62.07,2,Kabupaten Seruyan,age_group,45-49,,13.19,ribu_jiwa,2025,projection,total_population,3.1.2,67,,45–49
+62.07,2,Kabupaten Seruyan,age_group,50-54,laki_laki,5.92,ribu_jiwa,2025,projection,total_population,3.1.2,67,,50–54
+62.07,2,Kabupaten Seruyan,age_group,50-54,perempuan,4.79,ribu_jiwa,2025,projection,total_population,3.1.2,67,,50–54
+62.07,2,Kabupaten Seruyan,age_group,50-54,,10.71,ribu_jiwa,2025,projection,total_population,3.1.2,67,,50–54
+62.07,2,Kabupaten Seruyan,age_group,55-59,laki_laki,4.29,ribu_jiwa,2025,projection,total_population,3.1.2,67,,55–59
+62.07,2,Kabupaten Seruyan,age_group,55-59,perempuan,3.30,ribu_jiwa,2025,projection,total_population,3.1.2,67,,55–59
+62.07,2,Kabupaten Seruyan,age_group,55-59,,7.58,ribu_jiwa,2025,projection,total_population,3.1.2,67,,55–59
+62.07,2,Kabupaten Seruyan,age_group,60-64,laki_laki,2.99,ribu_jiwa,2025,projection,total_population,3.1.2,67,,60–64
+62.07,2,Kabupaten Seruyan,age_group,60-64,perempuan,2.30,ribu_jiwa,2025,projection,total_population,3.1.2,67,,60–64
+62.07,2,Kabupaten Seruyan,age_group,60-64,,5.28,ribu_jiwa,2025,projection,total_population,3.1.2,67,,60–64
+62.07,2,Kabupaten Seruyan,age_group,65-69,laki_laki,1.82,ribu_jiwa,2025,projection,total_population,3.1.2,67,,65–69
+62.07,2,Kabupaten Seruyan,age_group,65-69,perempuan,1.57,ribu_jiwa,2025,projection,total_population,3.1.2,67,,65–69
+62.07,2,Kabupaten Seruyan,age_group,65-69,,3.39,ribu_jiwa,2025,projection,total_population,3.1.2,67,,65–69
+62.07,2,Kabupaten Seruyan,age_group,70-74,laki_laki,1.05,ribu_jiwa,2025,projection,total_population,3.1.2,67,,70–74
+62.07,2,Kabupaten Seruyan,age_group,70-74,perempuan,0.91,ribu_jiwa,2025,projection,total_population,3.1.2,67,,70–74
+62.07,2,Kabupaten Seruyan,age_group,70-74,,1.97,ribu_jiwa,2025,projection,total_population,3.1.2,67,,70–74
+62.07,2,Kabupaten Seruyan,age_group,75+,laki_laki,0.93,ribu_jiwa,2025,projection,total_population,3.1.2,67,,75+
+62.07,2,Kabupaten Seruyan,age_group,75+,perempuan,0.85,ribu_jiwa,2025,projection,total_population,3.1.2,67,,75+
+62.07,2,Kabupaten Seruyan,age_group,75+,,1.77,ribu_jiwa,2025,projection,total_population,3.1.2,67,,75+
+62.07,2,Kabupaten Seruyan,sex,laki_laki,,93.57,ribu_jiwa,2025,projection,total_population,3.1.2,67,,Laki-Laki
+62.07,2,Kabupaten Seruyan,sex,perempuan,,83.75,ribu_jiwa,2025,projection,total_population,3.1.2,67,,Perempuan
+62.07,2,Kabupaten Seruyan,total,total,,177.32,ribu_jiwa,2025,projection,total_population,3.1.2,67,,
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/makanan,,918833,rupiah,2024,survey_estimate,per_capita,10.1,311,,Makanan
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/makanan,,921069,rupiah,2025,survey_estimate,per_capita,10.1,311,,Makanan
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/padi_padian,,105467,rupiah,2024,survey_estimate,per_capita,10.1,311,,Padi-padian
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/padi_padian,,113281,rupiah,2025,survey_estimate,per_capita,10.1,311,,Padi-padian
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/umbi_umbian,,6151,rupiah,2024,survey_estimate,per_capita,10.1,311,,Umbi-umbian
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/umbi_umbian,,7369,rupiah,2025,survey_estimate,per_capita,10.1,311,,Umbi-umbian
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,87653,rupiah,2024,survey_estimate,per_capita,10.1,311,,Ikan/udang/cumi/kerang
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,102869,rupiah,2025,survey_estimate,per_capita,10.1,311,,Ikan/udang/cumi/kerang
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/daging,,51260,rupiah,2024,survey_estimate,per_capita,10.1,311,,Daging
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/daging,,56849,rupiah,2025,survey_estimate,per_capita,10.1,311,,Daging
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/telur_dan_susu,,47531,rupiah,2024,survey_estimate,per_capita,10.1,311,,Telur dan susu
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/telur_dan_susu,,53439,rupiah,2025,survey_estimate,per_capita,10.1,311,,Telur dan susu
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/sayur_sayuran,,73114,rupiah,2024,survey_estimate,per_capita,10.1,311,,Sayur-sayuran
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/sayur_sayuran,,90137,rupiah,2025,survey_estimate,per_capita,10.1,311,,Sayur-sayuran
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/kacang_kacangan,,13652,rupiah,2024,survey_estimate,per_capita,10.1,311,,Kacang-kacangan
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/kacang_kacangan,,15295,rupiah,2025,survey_estimate,per_capita,10.1,311,,Kacang-kacangan
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/buah_buahan,,47373,rupiah,2024,survey_estimate,per_capita,10.1,311,,Buah-buahan
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/buah_buahan,,41643,rupiah,2025,survey_estimate,per_capita,10.1,311,,Buah-buahan
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23712,rupiah,2024,survey_estimate,per_capita,10.1,311,,Minyak dan kelapa
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,25783,rupiah,2025,survey_estimate,per_capita,10.1,311,,Minyak dan kelapa
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/bahan_minuman,,28775,rupiah,2024,survey_estimate,per_capita,10.1,311,,Bahan minuman
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/bahan_minuman,,31185,rupiah,2025,survey_estimate,per_capita,10.1,311,,Bahan minuman
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/bumbu_bumbuan,,25467,rupiah,2024,survey_estimate,per_capita,10.1,311,,Bumbu-bumbuan
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/bumbu_bumbuan,,28972,rupiah,2025,survey_estimate,per_capita,10.1,311,,Bumbu-bumbuan
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/konsumsi_lainnya,,17952,rupiah,2024,survey_estimate,per_capita,10.1,311,,Konsumsi lainnya
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/konsumsi_lainnya,,20611,rupiah,2025,survey_estimate,per_capita,10.1,311,,Konsumsi lainnya
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,210880,rupiah,2024,survey_estimate,per_capita,10.1,311,,Makanan dan minuman jadi
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,186252,rupiah,2025,survey_estimate,per_capita,10.1,311,,Makanan dan minuman jadi
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/rokok,,179843,rupiah,2024,survey_estimate,per_capita,10.1,311,,Rokok
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/rokok,,147385,rupiah,2025,survey_estimate,per_capita,10.1,311,,Rokok
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/bukan_makanan,,754719,rupiah,2024,survey_estimate,per_capita,10.1,311,,Bukan makanan
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/bukan_makanan,,650228,rupiah,2025,survey_estimate,per_capita,10.1,311,,Bukan makanan
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,413190,rupiah,2024,survey_estimate,per_capita,10.1,311,,Perumahan dan fasilitas rumah tangga
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,398601,rupiah,2025,survey_estimate,per_capita,10.1,311,,Perumahan dan fasilitas rumah tangga
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,172613,rupiah,2024,survey_estimate,per_capita,10.1,311,,Aneka barang dan jasa
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,137644,rupiah,2025,survey_estimate,per_capita,10.1,311,,Aneka barang dan jasa
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,41143,rupiah,2024,survey_estimate,per_capita,10.1,311,,"Pakaian, alas kaki, dan tutup kepala"
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,31029,rupiah,2025,survey_estimate,per_capita,10.1,311,,"Pakaian, alas kaki, dan tutup kepala"
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/barang_tahan_lama,,65015,rupiah,2024,survey_estimate,per_capita,10.1,311,,Barang tahan lama
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/barang_tahan_lama,,20063,rupiah,2025,survey_estimate,per_capita,10.1,311,,Barang tahan lama
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,56569,rupiah,2024,survey_estimate,per_capita,10.1,311,,"Pajak, pungutan, dan asuransi"
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,46131,rupiah,2025,survey_estimate,per_capita,10.1,311,,"Pajak, pungutan, dan asuransi"
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,6189,rupiah,2024,survey_estimate,per_capita,10.1,311,,Keperluan pesta dan upacara/kenduri
+62.07,2,Kabupaten Seruyan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,16760,rupiah,2025,survey_estimate,per_capita,10.1,311,,Keperluan pesta dan upacara/kenduri
+62.07,2,Kabupaten Seruyan,expenditure,total,,1673552,rupiah,2024,survey_estimate,per_capita,10.1,311,,
+62.07,2,Kabupaten Seruyan,expenditure,total,,1571297,rupiah,2025,survey_estimate,per_capita,10.1,311,,

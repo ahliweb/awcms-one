@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-3601-kecamatan-360125-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.01.25",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Karangtanjung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pandeglang",
+  "publisherDomain": "3601",
+  "publisherWebsite": "https://pandeglangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pandeglang (https://pandeglangkab.bps.go.id), publikasi \"Kecamatan Karangtanjung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3601191",
+  "publicationNumber": "36010.26038",
+  "issn": "3064-3848",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pandeglangkab.bps.go.id/id/publication/2026/09/28/edc39d91939f90e4cedc311a/kecamatan-karangtanjung-dalam-angka-2026.html",
+  "sourceFileSha256": "d6cb8022179f7f65be297f05e6c360836038b6a9fd21dabf7ea43d64aa294ae1",
+  "sourceFileBytes": 8337794,
+  "sourcePages": [32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pandeglang.",
+  "csvPath": "datasets/bps-3601-kecamatan-360125-dalam-angka-2026.csv",
+  "csvSha256": "0a742bab6341ac8097f3c076d14a7280a4f23b1718301ecc1946c4fa516e190c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Karangtanjung, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"KECAMATAN KARANGTANJUNG KARANGTANJUNG DISTRICT\": unmatched ",
+    "table 3.1: row not stored: row \"KECAMATAN KARANGTANJUNG KARANGTANJUNG DISTRICT\": unmatched "
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "datasetCode": "bps-6207-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "62.09",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Lamandau Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lamandau",
+  "publisherDomain": "6207",
+  "publisherWebsite": "https://lamandaukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lamandau (https://lamandaukab.bps.go.id), publikasi \"Kabupaten Lamandau Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6207",
+  "publicationNumber": "62070.00002",
+  "issn": "2354-9149",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://lamandaukab.bps.go.id/id/publication/2026/02/27/6595b40dc0aafc2400c0086c/kabupaten-lamandau-dalam-angka-2026.html",
+  "sourceFileSha256": "7f6884c7d876e57133e6f3ddb5d5946917556b4cd0c041450f68c95699932f80",
+  "sourceFileBytes": 13588550,
+  "sourcePages": [78, 81, 189, 190, 391],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lamandau.",
+  "csvPath": "datasets/bps-6207-dalam-angka-2026.csv",
+  "csvSha256": "e892a37cf4b275a83d2421d1ee01ee3b40752f957631617e9f83034441285f23",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Lamandau, 2025",
+      "printedPages": [78],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Lamandau (jiwa), 2025",
+      "printedPages": [81],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Lamandau, 2025",
+      "printedPages": [189, 190],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Lamandau (rupiah), 2024 dan 2025",
+      "printedPages": [391],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 3.1.2: the heading states 'jiwa' but almost every figure carries decimals (whole persons cannot); stored as ribu_jiwa with the digits unchanged"
+  ]
+}

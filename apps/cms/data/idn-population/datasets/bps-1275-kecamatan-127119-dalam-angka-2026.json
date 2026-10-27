@@ -1,0 +1,53 @@
+{
+  "datasetCode": "bps-1275-kecamatan-127119-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.71.19",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Medan Petisah Dalam Angka 2026",
+  "publisherName": "BPS Kota Medan",
+  "publisherDomain": "1275",
+  "publisherWebsite": "https://medankota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Medan (https://medankota.bps.go.id), publikasi \"Kecamatan Medan Petisah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1275130",
+  "publicationNumber": "12750.26020",
+  "issn": "2830-2214",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://medankota.bps.go.id/id/publication/2026/09/28/ed774795dafb69d9e912a3a1/kecamatan-medan-petisah-dalam-angka-2026.html",
+  "sourceFileSha256": "e7d4f15627ac5b433089d95c10f893fde6df933c5832dde2e130f960a084be75",
+  "sourceFileBytes": 16053579,
+  "sourcePages": [29, 30, 31, 38, 39],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kota Medan.",
+  "csvPath": "datasets/bps-1275-kecamatan-127119-dalam-angka-2026.csv",
+  "csvSha256": "2ba2c631cc3f83b34d35e93197776fa3fddc9510b49efd7690e75d844c1cc429",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Medan Petisah, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Medan Petisah, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.6",
+      "title": "Jumlah Penduduk Menurut Kelurahan dan Agama di Kecamatan Medan Petisah, 2025",
+      "printedPages": [38, 39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.6: row not stored: row \"Medan Petisah\": unmatched ",
+    "table 3.6: the rows of region 12.71.19 are not stored: religion vs total: parts sum 7.0000 != 73580.0000 (diff 73573.0000); the source itself is inconsistent"
+  ]
+}

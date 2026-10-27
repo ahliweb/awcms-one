@@ -1,0 +1,4 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.10.08,3,Kecamatan Damang Batu,sex,laki_laki,,2677,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+62.10.08,3,Kecamatan Damang Batu,sex,perempuan,,2387,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+62.10.08,3,Kecamatan Damang Batu,total,total,,5064,jiwa,2025,registration,total_population,3.1,31,,

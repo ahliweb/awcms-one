@@ -1,0 +1,103 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.05.03.2008,4,Tuwi Saya,sex,laki_laki,,59,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.03.2008,4,Tuwi Saya,sex,perempuan,,55,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.03.2008,4,Tuwi Saya,total,total,,114,jiwa,2025,registration,total_population,3.1,30,,
+11.05.03.2018,4,Lueng Baro,sex,laki_laki,,47,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.03.2018,4,Lueng Baro,sex,perempuan,,48,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.03.2018,4,Lueng Baro,total,total,,95,jiwa,2025,registration,total_population,3.1,30,,
+11.05.03.2010,4,Sipot,sex,laki_laki,,82,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.03.2010,4,Sipot,sex,perempuan,,81,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.03.2010,4,Sipot,total,total,,163,jiwa,2025,registration,total_population,3.1,30,,
+11.05.03.2017,4,Gaseu,sex,laki_laki,,119,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.03.2017,4,Gaseu,sex,perempuan,,117,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.03.2017,4,Gaseu,total,total,,236,jiwa,2025,registration,total_population,3.1,30,,
+11.05.03.2011,4,Pungkie,sex,laki_laki,,128,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.03.2011,4,Pungkie,sex,perempuan,,101,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.03.2011,4,Pungkie,total,total,,229,jiwa,2025,registration,total_population,3.1,30,,
+11.05.03.2012,4,Gunong Buloh,sex,laki_laki,,57,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.03.2012,4,Gunong Buloh,sex,perempuan,,56,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.03.2012,4,Gunong Buloh,total,total,,113,jiwa,2025,registration,total_population,3.1,30,,
+11.05.03.2013,4,Ramitie,sex,laki_laki,,65,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.03.2013,4,Ramitie,sex,perempuan,,76,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.03.2013,4,Ramitie,total,total,,141,jiwa,2025,registration,total_population,3.1,30,,
+11.05.03.2016,4,Tanoh Mirah,sex,laki_laki,,155,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.03.2016,4,Tanoh Mirah,sex,perempuan,,161,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.03.2016,4,Tanoh Mirah,total,total,,316,jiwa,2025,registration,total_population,3.1,30,,
+11.05.03.2007,4,Drien Sibak,sex,laki_laki,,132,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.03.2007,4,Drien Sibak,sex,perempuan,,122,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.03.2007,4,Drien Sibak,total,total,,254,jiwa,2025,registration,total_population,3.1,30,,
+11.05.03.2002,4,Sakuy,sex,laki_laki,,62,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.03.2002,4,Sakuy,sex,perempuan,,63,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.03.2002,4,Sakuy,total,total,,125,jiwa,2025,registration,total_population,3.1,30,,
+11.05.03.2003,4,Kajeung,sex,laki_laki,,247,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.03.2003,4,Kajeung,sex,perempuan,,243,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.03.2003,4,Kajeung,total,total,,490,jiwa,2025,registration,total_population,3.1,30,,
+11.05.03.2004,4,Geudong,sex,laki_laki,,211,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.03.2004,4,Geudong,sex,perempuan,,210,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.03.2004,4,Geudong,total,total,,421,jiwa,2025,registration,total_population,3.1,30,,
+11.05.03.2001,4,Tungkop,sex,laki_laki,,244,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.03.2001,4,Tungkop,sex,perempuan,,219,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.03.2001,4,Tungkop,total,total,,463,jiwa,2025,registration,total_population,3.1,30,,
+11.05.03.2005,4,Sarah Perlak,sex,laki_laki,,105,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.03.2005,4,Sarah Perlak,sex,perempuan,,116,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.03.2005,4,Sarah Perlak,total,total,,221,jiwa,2025,registration,total_population,3.1,30,,
+11.05.03.2009,4,Lancong,sex,laki_laki,,201,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.03.2009,4,Lancong,sex,perempuan,,183,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.03.2009,4,Lancong,total,total,,384,jiwa,2025,registration,total_population,3.1,30,,
+11.05.03.2006,4,Tutut,sex,laki_laki,,197,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.03.2006,4,Tutut,sex,perempuan,,179,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.03.2006,4,Tutut,total,total,,376,jiwa,2025,registration,total_population,3.1,30,,
+11.05.03,3,Kecamatan Sungai Mas,sex,laki_laki,,2468,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.03,3,Kecamatan Sungai Mas,sex,perempuan,,2346,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.03,3,Kecamatan Sungai Mas,total,total,,4814,jiwa,2025,registration,total_population,3.1,30,,
+11.05.03,3,Sungai Mas,age_group,0-4,laki_laki,212,jiwa,2025,registration,total_population,3.2,32,,0 - 4
+11.05.03,3,Sungai Mas,age_group,0-4,perempuan,181,jiwa,2025,registration,total_population,3.2,32,,0 - 4
+11.05.03,3,Sungai Mas,age_group,0-4,,393,jiwa,2025,registration,total_population,3.2,32,,0 - 4
+11.05.03,3,Sungai Mas,age_group,5-9,laki_laki,200,jiwa,2025,registration,total_population,3.2,32,,5 - 9
+11.05.03,3,Sungai Mas,age_group,5-9,perempuan,177,jiwa,2025,registration,total_population,3.2,32,,5 - 9
+11.05.03,3,Sungai Mas,age_group,5-9,,377,jiwa,2025,registration,total_population,3.2,32,,5 - 9
+11.05.03,3,Sungai Mas,age_group,10-14,laki_laki,203,jiwa,2025,registration,total_population,3.2,32,,10 - 14
+11.05.03,3,Sungai Mas,age_group,10-14,perempuan,169,jiwa,2025,registration,total_population,3.2,32,,10 - 14
+11.05.03,3,Sungai Mas,age_group,10-14,,372,jiwa,2025,registration,total_population,3.2,32,,10 - 14
+11.05.03,3,Sungai Mas,age_group,15-19,laki_laki,219,jiwa,2025,registration,total_population,3.2,32,,15 - 19
+11.05.03,3,Sungai Mas,age_group,15-19,perempuan,192,jiwa,2025,registration,total_population,3.2,32,,15 - 19
+11.05.03,3,Sungai Mas,age_group,15-19,,411,jiwa,2025,registration,total_population,3.2,32,,15 - 19
+11.05.03,3,Sungai Mas,age_group,20-24,laki_laki,167,jiwa,2025,registration,total_population,3.2,32,,20 - 24
+11.05.03,3,Sungai Mas,age_group,20-24,perempuan,172,jiwa,2025,registration,total_population,3.2,32,,20 - 24
+11.05.03,3,Sungai Mas,age_group,20-24,,339,jiwa,2025,registration,total_population,3.2,32,,20 - 24
+11.05.03,3,Sungai Mas,age_group,25-29,laki_laki,212,jiwa,2025,registration,total_population,3.2,32,,25 - 29
+11.05.03,3,Sungai Mas,age_group,25-29,perempuan,199,jiwa,2025,registration,total_population,3.2,32,,25 - 29
+11.05.03,3,Sungai Mas,age_group,25-29,,411,jiwa,2025,registration,total_population,3.2,32,,25 - 29
+11.05.03,3,Sungai Mas,age_group,30-34,laki_laki,175,jiwa,2025,registration,total_population,3.2,32,,30 - 34
+11.05.03,3,Sungai Mas,age_group,30-34,perempuan,188,jiwa,2025,registration,total_population,3.2,32,,30 - 34
+11.05.03,3,Sungai Mas,age_group,30-34,,363,jiwa,2025,registration,total_population,3.2,32,,30 - 34
+11.05.03,3,Sungai Mas,age_group,35-39,laki_laki,178,jiwa,2025,registration,total_population,3.2,32,,35 - 39
+11.05.03,3,Sungai Mas,age_group,35-39,perempuan,202,jiwa,2025,registration,total_population,3.2,32,,35 - 39
+11.05.03,3,Sungai Mas,age_group,35-39,,380,jiwa,2025,registration,total_population,3.2,32,,35 - 39
+11.05.03,3,Sungai Mas,age_group,40-44,laki_laki,191,jiwa,2025,registration,total_population,3.2,32,,40 - 44
+11.05.03,3,Sungai Mas,age_group,40-44,perempuan,170,jiwa,2025,registration,total_population,3.2,32,,40 - 44
+11.05.03,3,Sungai Mas,age_group,40-44,,361,jiwa,2025,registration,total_population,3.2,32,,40 - 44
+11.05.03,3,Sungai Mas,age_group,45-49,laki_laki,170,jiwa,2025,registration,total_population,3.2,32,,45 - 49
+11.05.03,3,Sungai Mas,age_group,45-49,perempuan,186,jiwa,2025,registration,total_population,3.2,32,,45 - 49
+11.05.03,3,Sungai Mas,age_group,45-49,,356,jiwa,2025,registration,total_population,3.2,32,,45 - 49
+11.05.03,3,Sungai Mas,age_group,50-54,laki_laki,155,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+11.05.03,3,Sungai Mas,age_group,50-54,perempuan,153,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+11.05.03,3,Sungai Mas,age_group,50-54,,308,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+11.05.03,3,Sungai Mas,age_group,55-59,laki_laki,150,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+11.05.03,3,Sungai Mas,age_group,55-59,perempuan,125,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+11.05.03,3,Sungai Mas,age_group,55-59,,275,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+11.05.03,3,Sungai Mas,age_group,60-64,laki_laki,93,jiwa,2025,registration,total_population,3.2,32,,60 - 64
+11.05.03,3,Sungai Mas,age_group,60-64,perempuan,88,jiwa,2025,registration,total_population,3.2,32,,60 - 64
+11.05.03,3,Sungai Mas,age_group,60-64,,181,jiwa,2025,registration,total_population,3.2,32,,60 - 64
+11.05.03,3,Sungai Mas,age_group,65-69,laki_laki,73,jiwa,2025,registration,total_population,3.2,32,,65 - 69
+11.05.03,3,Sungai Mas,age_group,65-69,perempuan,70,jiwa,2025,registration,total_population,3.2,32,,65 - 69
+11.05.03,3,Sungai Mas,age_group,65-69,,143,jiwa,2025,registration,total_population,3.2,32,,65 - 69
+11.05.03,3,Sungai Mas,age_group,70-74,laki_laki,39,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+11.05.03,3,Sungai Mas,age_group,70-74,perempuan,30,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+11.05.03,3,Sungai Mas,age_group,70-74,,69,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+11.05.03,3,Sungai Mas,age_group,75+,laki_laki,47,jiwa,2025,registration,total_population,3.2,32,,75+
+11.05.03,3,Sungai Mas,age_group,75+,perempuan,69,jiwa,2025,registration,total_population,3.2,32,,75+
+11.05.03,3,Sungai Mas,age_group,75+,,116,jiwa,2025,registration,total_population,3.2,32,,75+
+11.05.03,3,Kecamatan Sungai Mas,sex,laki_laki,,2484,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+11.05.03,3,Kecamatan Sungai Mas,sex,perempuan,,2371,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+11.05.03,3,Kecamatan Sungai Mas,total,total,,4855,jiwa,2025,registration,total_population,3.2,32,,

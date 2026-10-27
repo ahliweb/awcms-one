@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.08.08.2006,4,Tebing Tinggi,sex,laki_laki,,777,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.08.2006,4,Tebing Tinggi,sex,perempuan,,772,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.08.2006,4,Tebing Tinggi,total,total,,1549,jiwa,2025,registration,total_population,3.1,32,,
+15.08.08.2007,4,Datar,sex,laki_laki,,661,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.08.2007,4,Datar,sex,perempuan,,675,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.08.2007,4,Datar,total,total,,1336,jiwa,2025,registration,total_population,3.1,32,,
+15.08.08.2005,4,Bedaro,sex,laki_laki,,1771,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.08.2005,4,Bedaro,sex,perempuan,,1758,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.08.2005,4,Bedaro,total,total,,3529,jiwa,2025,registration,total_population,3.1,32,,
+15.08.08.2004,4,Baru Pusat Jalo,sex,laki_laki,,530,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.08.2004,4,Baru Pusat Jalo,sex,perempuan,,543,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.08.2004,4,Baru Pusat Jalo,total,total,,1073,jiwa,2025,registration,total_population,3.1,32,,
+15.08.08.2003,4,Tebat,sex,laki_laki,,994,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.08.2003,4,Tebat,sex,perempuan,,942,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.08.2003,4,Tebat,total,total,,1936,jiwa,2025,registration,total_population,3.1,32,,
+15.08.08.2002,4,Tanjung Agung,sex,laki_laki,,1567,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.08.2002,4,Tanjung Agung,sex,perempuan,,1615,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.08.2002,4,Tanjung Agung,total,total,,3182,jiwa,2025,registration,total_population,3.1,32,,
+15.08.08.2001,4,Mangun Jayo,sex,laki_laki,,841,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.08.2001,4,Mangun Jayo,sex,perempuan,,862,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.08.2001,4,Mangun Jayo,total,total,,1703,jiwa,2025,registration,total_population,3.1,32,,
+15.08.08.2008,4,Suka Jaya,sex,laki_laki,,713,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.08.2008,4,Suka Jaya,sex,perempuan,,699,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.08.2008,4,Suka Jaya,total,total,,1412,jiwa,2025,registration,total_population,3.1,32,,
+15.08.08.2009,4,Pekan Jumat,sex,laki_laki,,440,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.08.2009,4,Pekan Jumat,sex,perempuan,,422,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.08.2009,4,Pekan Jumat,total,total,,862,jiwa,2025,registration,total_population,3.1,32,,
+15.08.08,3,Muko -Muko Bathin VII,sex,laki_laki,,8294,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.08,3,Muko -Muko Bathin VII,sex,perempuan,,8288,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.08,3,Muko -Muko Bathin VII,total,total,,16582,jiwa,2025,registration,total_population,3.1,32,,
+15.08.08,3,Muko-muko Bathin VII,age_group,0-4,laki_laki,641,jiwa,2025,registration,total_population,3.2,34,,0-4
+15.08.08,3,Muko-muko Bathin VII,age_group,0-4,perempuan,582,jiwa,2025,registration,total_population,3.2,34,,0-4
+15.08.08,3,Muko-muko Bathin VII,age_group,0-4,,1223,jiwa,2025,registration,total_population,3.2,34,,0-4
+15.08.08,3,Muko-muko Bathin VII,age_group,5-9,laki_laki,768,jiwa,2025,registration,total_population,3.2,34,,5-9
+15.08.08,3,Muko-muko Bathin VII,age_group,5-9,perempuan,762,jiwa,2025,registration,total_population,3.2,34,,5-9
+15.08.08,3,Muko-muko Bathin VII,age_group,5-9,,1530,jiwa,2025,registration,total_population,3.2,34,,5-9
+15.08.08,3,Muko-muko Bathin VII,age_group,10-14,laki_laki,838,jiwa,2025,registration,total_population,3.2,34,,10-14
+15.08.08,3,Muko-muko Bathin VII,age_group,10-14,perempuan,815,jiwa,2025,registration,total_population,3.2,34,,10-14
+15.08.08,3,Muko-muko Bathin VII,age_group,10-14,,1653,jiwa,2025,registration,total_population,3.2,34,,10-14
+15.08.08,3,Muko-muko Bathin VII,age_group,15-19,laki_laki,755,jiwa,2025,registration,total_population,3.2,34,,15-19
+15.08.08,3,Muko-muko Bathin VII,age_group,15-19,perempuan,750,jiwa,2025,registration,total_population,3.2,34,,15-19
+15.08.08,3,Muko-muko Bathin VII,age_group,15-19,,1505,jiwa,2025,registration,total_population,3.2,34,,15-19
+15.08.08,3,Muko-muko Bathin VII,age_group,20-24,laki_laki,737,jiwa,2025,registration,total_population,3.2,34,,20-24
+15.08.08,3,Muko-muko Bathin VII,age_group,20-24,perempuan,694,jiwa,2025,registration,total_population,3.2,34,,20-24
+15.08.08,3,Muko-muko Bathin VII,age_group,20-24,,1431,jiwa,2025,registration,total_population,3.2,34,,20-24
+15.08.08,3,Muko-muko Bathin VII,age_group,25-29,laki_laki,749,jiwa,2025,registration,total_population,3.2,34,,25-29
+15.08.08,3,Muko-muko Bathin VII,age_group,25-29,perempuan,679,jiwa,2025,registration,total_population,3.2,34,,25-29
+15.08.08,3,Muko-muko Bathin VII,age_group,25-29,,1428,jiwa,2025,registration,total_population,3.2,34,,25-29
+15.08.08,3,Muko-muko Bathin VII,age_group,30-34,laki_laki,622,jiwa,2025,registration,total_population,3.2,34,,30-34
+15.08.08,3,Muko-muko Bathin VII,age_group,30-34,perempuan,616,jiwa,2025,registration,total_population,3.2,34,,30-34
+15.08.08,3,Muko-muko Bathin VII,age_group,30-34,,1238,jiwa,2025,registration,total_population,3.2,34,,30-34
+15.08.08,3,Muko-muko Bathin VII,age_group,35-39,laki_laki,659,jiwa,2025,registration,total_population,3.2,34,,35-39
+15.08.08,3,Muko-muko Bathin VII,age_group,35-39,perempuan,671,jiwa,2025,registration,total_population,3.2,34,,35-39
+15.08.08,3,Muko-muko Bathin VII,age_group,35-39,,1330,jiwa,2025,registration,total_population,3.2,34,,35-39
+15.08.08,3,Muko-muko Bathin VII,age_group,40-44,laki_laki,632,jiwa,2025,registration,total_population,3.2,34,,40-44
+15.08.08,3,Muko-muko Bathin VII,age_group,40-44,perempuan,602,jiwa,2025,registration,total_population,3.2,34,,40-44
+15.08.08,3,Muko-muko Bathin VII,age_group,40-44,,1234,jiwa,2025,registration,total_population,3.2,34,,40-44
+15.08.08,3,Muko-muko Bathin VII,age_group,45-49,laki_laki,525,jiwa,2025,registration,total_population,3.2,34,,45-49
+15.08.08,3,Muko-muko Bathin VII,age_group,45-49,perempuan,504,jiwa,2025,registration,total_population,3.2,34,,45-49
+15.08.08,3,Muko-muko Bathin VII,age_group,45-49,,1029,jiwa,2025,registration,total_population,3.2,34,,45-49
+15.08.08,3,Muko-muko Bathin VII,age_group,50-54,laki_laki,416,jiwa,2025,registration,total_population,3.2,34,,50-54
+15.08.08,3,Muko-muko Bathin VII,age_group,50-54,perempuan,437,jiwa,2025,registration,total_population,3.2,34,,50-54
+15.08.08,3,Muko-muko Bathin VII,age_group,50-54,,853,jiwa,2025,registration,total_population,3.2,34,,50-54
+15.08.08,3,Muko-muko Bathin VII,age_group,55-59,laki_laki,313,jiwa,2025,registration,total_population,3.2,34,,55-59
+15.08.08,3,Muko-muko Bathin VII,age_group,55-59,perempuan,323,jiwa,2025,registration,total_population,3.2,34,,55-59
+15.08.08,3,Muko-muko Bathin VII,age_group,55-59,,636,jiwa,2025,registration,total_population,3.2,34,,55-59
+15.08.08,3,Muko-muko Bathin VII,age_group,60-64,laki_laki,256,jiwa,2025,registration,total_population,3.2,34,,60-64
+15.08.08,3,Muko-muko Bathin VII,age_group,60-64,perempuan,297,jiwa,2025,registration,total_population,3.2,34,,60-64
+15.08.08,3,Muko-muko Bathin VII,age_group,60-64,,553,jiwa,2025,registration,total_population,3.2,34,,60-64
+15.08.08,3,Muko-muko Bathin VII,age_group,65-69,laki_laki,181,jiwa,2025,registration,total_population,3.2,34,,65-69
+15.08.08,3,Muko-muko Bathin VII,age_group,65-69,perempuan,230,jiwa,2025,registration,total_population,3.2,34,,65-69
+15.08.08,3,Muko-muko Bathin VII,age_group,65-69,,411,jiwa,2025,registration,total_population,3.2,34,,65-69
+15.08.08,3,Muko-muko Bathin VII,age_group,70-74,laki_laki,116,jiwa,2025,registration,total_population,3.2,34,,70-74
+15.08.08,3,Muko-muko Bathin VII,age_group,70-74,perempuan,160,jiwa,2025,registration,total_population,3.2,34,,70-74
+15.08.08,3,Muko-muko Bathin VII,age_group,70-74,,276,jiwa,2025,registration,total_population,3.2,34,,70-74
+15.08.08,3,Muko-muko Bathin VII,age_group,75+,laki_laki,86,jiwa,2025,registration,total_population,3.2,34,,75+
+15.08.08,3,Muko-muko Bathin VII,age_group,75+,perempuan,166,jiwa,2025,registration,total_population,3.2,34,,75+
+15.08.08,3,Muko-muko Bathin VII,age_group,75+,,252,jiwa,2025,registration,total_population,3.2,34,,75+
+15.08.08,3,Muko -Muko Bathin VII,sex,laki_laki,,8294,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+15.08.08,3,Muko -Muko Bathin VII,sex,perempuan,,8288,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+15.08.08,3,Muko -Muko Bathin VII,total,total,,16582,jiwa,2025,registration,total_population,3.2,34,,

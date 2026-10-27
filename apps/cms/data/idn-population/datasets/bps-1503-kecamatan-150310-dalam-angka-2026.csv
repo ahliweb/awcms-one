@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.03.10.2001,4,Kampung Tujuh,sex,laki_laki,,738,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.10.2001,4,Kampung Tujuh,sex,perempuan,,692,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.10.2001,4,Kampung Tujuh,total,total,,1430,jiwa,2025,registration,total_population,3.1,28,,
+15.03.10.2002,4,Lubuk Resam,sex,laki_laki,,1680,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.10.2002,4,Lubuk Resam,sex,perempuan,,1614,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.10.2002,4,Lubuk Resam,total,total,,3294,jiwa,2025,registration,total_population,3.1,28,,
+15.03.10.2003,4,Teluk Rendah,sex,laki_laki,,960,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.10.2003,4,Teluk Rendah,sex,perempuan,,923,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.10.2003,4,Teluk Rendah,total,total,,1883,jiwa,2025,registration,total_population,3.1,28,,
+15.03.10.2004,4,Teluk Tigo,sex,laki_laki,,707,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.10.2004,4,Teluk Tigo,sex,perempuan,,735,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.10.2004,4,Teluk Tigo,total,total,,1442,jiwa,2025,registration,total_population,3.1,28,,
+15.03.10.2006,4,Pemuncak,sex,laki_laki,,854,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.10.2006,4,Pemuncak,sex,perempuan,,869,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.10.2006,4,Pemuncak,total,total,,1723,jiwa,2025,registration,total_population,3.1,28,,
+15.03.10.2007,4,Tambang Tinggi,sex,laki_laki,,779,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.10.2007,4,Tambang Tinggi,sex,perempuan,,715,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.10.2007,4,Tambang Tinggi,total,total,,1494,jiwa,2025,registration,total_population,3.1,28,,
+15.03.10.2005,4,Lubuk Resam Hilir,sex,laki_laki,,932,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.10.2005,4,Lubuk Resam Hilir,sex,perempuan,,910,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.10.2005,4,Lubuk Resam Hilir,total,total,,1842,jiwa,2025,registration,total_population,3.1,28,,
+15.03.10.2008,4,Tendah,sex,laki_laki,,397,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.10.2008,4,Tendah,sex,perempuan,,329,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.10.2008,4,Tendah,total,total,,726,jiwa,2025,registration,total_population,3.1,28,,
+15.03.10.2010,4,Sekamis,sex,laki_laki,,310,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.10.2010,4,Sekamis,sex,perempuan,,323,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.10.2010,4,Sekamis,total,total,,633,jiwa,2025,registration,total_population,3.1,28,,
+15.03.10.2009,4,Sungai Keramat,sex,laki_laki,,352,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.10.2009,4,Sungai Keramat,sex,perempuan,,311,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.10.2009,4,Sungai Keramat,total,total,,663,jiwa,2025,registration,total_population,3.1,28,,
+15.03.10,3,Cermin Nan Gedang,sex,laki_laki,,7709,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.10,3,Cermin Nan Gedang,sex,perempuan,,7421,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.10,3,Cermin Nan Gedang,total,total,,15130,jiwa,2025,registration,total_population,3.1,28,,

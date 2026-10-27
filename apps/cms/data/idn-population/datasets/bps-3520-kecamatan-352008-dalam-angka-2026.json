@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3520-kecamatan-352008-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.20.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Panekan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Magetan",
+  "publisherDomain": "3520",
+  "publisherWebsite": "https://magetankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Magetan (https://magetankab.bps.go.id), publikasi \"Kecamatan Panekan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3520080",
+  "publicationNumber": "35200.26015",
+  "issn": "2797-8575",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://magetankab.bps.go.id/id/publication/2026/09/28/4a42b9c0d1668155bd1b434e/kecamatan-panekan-dalam-angka-2026.html",
+  "sourceFileSha256": "94c1f5f2745de590590f420d37155a07d9eef489a0c082cc153c81d1ece74e6d",
+  "sourceFileBytes": 11888760,
+  "sourcePages": [29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Magetan.",
+  "csvPath": "datasets/bps-3520-kecamatan-352008-dalam-angka-2026.csv",
+  "csvSha256": "3e8debfe563ac769af0cf11c87fe60f3c14a95b8b0e94725dae77b6a90a49bd9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Panekan, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3274-kecamatan-327402-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.74.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lemahwungkuk Dalam Angka 2026",
+  "publisherName": "BPS Kota Cirebon",
+  "publisherDomain": "3274",
+  "publisherWebsite": "https://cirebonkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Cirebon (https://cirebonkota.bps.go.id), publikasi \"Kecamatan Lemahwungkuk Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3274020",
+  "publicationNumber": "32740.26007",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cirebonkota.bps.go.id/id/publication/2026/09/28/d37a8b3b2bd58055dcd8be67/kecamatan-lemahwungkuk-dalam-angka-2026.html",
+  "sourceFileSha256": "b425e2d298ee73c354f9049804b3bc6a39227fc02e457fec0ba87f62f3d067ee",
+  "sourceFileBytes": 8466997,
+  "sourcePages": [27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Cirebon",
+  "csvPath": "datasets/bps-3274-kecamatan-327402-dalam-angka-2026.csv",
+  "csvSha256": "e25110bd4db00c4991870454220374c31405f5900226589988a669bb8aaaed60",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lemahwungkuk , 202 5",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1 (sex-by-village) could not be read reliably and is not included (figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?))"
+  ]
+}

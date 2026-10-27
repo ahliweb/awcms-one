@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.02.07.2001,4,Desa Karang Baru,sex,laki_laki,,904,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.07.2001,4,Desa Karang Baru,sex,perempuan,,830,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.07.2001,4,Desa Karang Baru,total,total,,1734,jiwa,2025,registration,total_population,3.1,22,,
+17.02.07.2007,4,Desa Guru Agung,sex,laki_laki,,690,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.07.2007,4,Desa Guru Agung,sex,perempuan,,655,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.07.2007,4,Desa Guru Agung,total,total,,1345,jiwa,2025,registration,total_population,3.1,22,,
+17.02.07.2012,4,Desa Tanjung Sanai I,sex,laki_laki,,1009,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.07.2012,4,Desa Tanjung Sanai I,sex,perempuan,,919,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.07.2012,4,Desa Tanjung Sanai I,total,total,,1928,jiwa,2025,registration,total_population,3.1,22,,
+17.02.07.2022,4,Desa Tanjung Sanai II,sex,laki_laki,,917,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.07.2022,4,Desa Tanjung Sanai II,sex,perempuan,,809,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.07.2022,4,Desa Tanjung Sanai II,total,total,,1726,jiwa,2025,registration,total_population,3.1,22,,
+17.02.07.2010,4,Desa Ulak Tanding,sex,laki_laki,,479,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.07.2010,4,Desa Ulak Tanding,sex,perempuan,,440,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.07.2010,4,Desa Ulak Tanding,total,total,,919,jiwa,2025,registration,total_population,3.1,22,,
+17.02.07.2021,4,Desa Taba Tinggi,sex,laki_laki,,641,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.07.2021,4,Desa Taba Tinggi,sex,perempuan,,570,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.07.2021,4,Desa Taba Tinggi,total,total,,1211,jiwa,2025,registration,total_population,3.1,22,,
+17.02.07.2013,4,Desa Muara Telita,sex,laki_laki,,415,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.07.2013,4,Desa Muara Telita,sex,perempuan,,421,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.07.2013,4,Desa Muara Telita,total,total,,836,jiwa,2025,registration,total_population,3.1,22,,
+17.02.07.2025,4,Desa Taktoi,sex,laki_laki,,546,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.07.2025,4,Desa Taktoi,sex,perempuan,,504,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.07.2025,4,Desa Taktoi,total,total,,1050,jiwa,2025,registration,total_population,3.1,22,,
+17.02.07.2014,4,Desa Ujan Panas,sex,laki_laki,,301,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.07.2014,4,Desa Ujan Panas,sex,perempuan,,245,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.07.2014,4,Desa Ujan Panas,total,total,,546,jiwa,2025,registration,total_population,3.1,22,,
+17.02.07.2026,4,Desa Kasie Kasubun,sex,laki_laki,,1152,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.07.2026,4,Desa Kasie Kasubun,sex,perempuan,,1022,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.07.2026,4,Desa Kasie Kasubun,total,total,,2174,jiwa,2025,registration,total_population,3.1,22,,
+17.02.07.2008,4,Desa Belumai II,sex,laki_laki,,848,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.07.2008,4,Desa Belumai II,sex,perempuan,,837,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.07.2008,4,Desa Belumai II,total,total,,1685,jiwa,2025,registration,total_population,3.1,22,,
+17.02.07.2009,4,Desa Belumai I,sex,laki_laki,,622,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.07.2009,4,Desa Belumai I,sex,perempuan,,585,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.07.2009,4,Desa Belumai I,total,total,,1207,jiwa,2025,registration,total_population,3.1,22,,
+17.02.07.2028,4,Desa Bukit Batu,sex,laki_laki,,844,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.07.2028,4,Desa Bukit Batu,sex,perempuan,,747,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.07.2028,4,Desa Bukit Batu,total,total,,1591,jiwa,2025,registration,total_population,3.1,22,,
+17.02.07.2027,4,Desa Air Kati,sex,laki_laki,,511,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.07.2027,4,Desa Air Kati,sex,perempuan,,476,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.07.2027,4,Desa Air Kati,total,total,,987,jiwa,2025,registration,total_population,3.1,22,,
+17.02.07,3,Padang Ulak Tanding,sex,laki_laki,,10796,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.07,3,Padang Ulak Tanding,sex,perempuan,,9942,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.07,3,Padang Ulak Tanding,total,total,,20738,jiwa,2025,registration,total_population,3.1,22,,

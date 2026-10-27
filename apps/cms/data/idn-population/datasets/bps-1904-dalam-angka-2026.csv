@@ -1,0 +1,154 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.04.01,3,Koba,total,total,,46.5,ribu_jiwa,2025,registration,total_population,3.1.1,91,,
+19.04.06,3,Lubuk Besar,total,total,,35.4,ribu_jiwa,2025,registration,total_population,3.1.1,91,,
+19.04.02,3,Pangkalan Baru,total,total,,45,ribu_jiwa,2025,registration,total_population,3.1.1,91,,
+19.04.05,3,Namang,total,total,,18.2,ribu_jiwa,2025,registration,total_population,3.1.1,91,,
+19.04.03,3,Sungai Selan,total,total,,39.1,ribu_jiwa,2025,registration,total_population,3.1.1,91,,
+19.04.04,3,Simpang Katis,total,total,,27.7,ribu_jiwa,2025,registration,total_population,3.1.1,91,,
+19.04,2,Kabupaten Bangka Tengah,total,total,,211.9,ribu_jiwa,2025,registration,total_population,3.1.1,91,,
+19.04,2,Kabupaten Bangka Tengah,age_group,0-4,laki_laki,6712,jiwa,2025,registration,total_population,3.1.3,95,,0 – 4
+19.04,2,Kabupaten Bangka Tengah,age_group,0-4,perempuan,6265,jiwa,2025,registration,total_population,3.1.3,95,,0 – 4
+19.04,2,Kabupaten Bangka Tengah,age_group,0-4,,12977,jiwa,2025,registration,total_population,3.1.3,95,,0 – 4
+19.04,2,Kabupaten Bangka Tengah,age_group,5-9,laki_laki,9661,jiwa,2025,registration,total_population,3.1.3,95,,5 – 9
+19.04,2,Kabupaten Bangka Tengah,age_group,5-9,perempuan,9020,jiwa,2025,registration,total_population,3.1.3,95,,5 – 9
+19.04,2,Kabupaten Bangka Tengah,age_group,5-9,,18681,jiwa,2025,registration,total_population,3.1.3,95,,5 – 9
+19.04,2,Kabupaten Bangka Tengah,age_group,10-14,laki_laki,11093,jiwa,2025,registration,total_population,3.1.3,95,,10 – 14
+19.04,2,Kabupaten Bangka Tengah,age_group,10-14,perempuan,10063,jiwa,2025,registration,total_population,3.1.3,95,,10 – 14
+19.04,2,Kabupaten Bangka Tengah,age_group,10-14,,21156,jiwa,2025,registration,total_population,3.1.3,95,,10 – 14
+19.04,2,Kabupaten Bangka Tengah,age_group,15-19,laki_laki,10164,jiwa,2025,registration,total_population,3.1.3,95,,15 – 19
+19.04,2,Kabupaten Bangka Tengah,age_group,15-19,perempuan,9421,jiwa,2025,registration,total_population,3.1.3,95,,15 – 19
+19.04,2,Kabupaten Bangka Tengah,age_group,15-19,,19585,jiwa,2025,registration,total_population,3.1.3,95,,15 – 19
+19.04,2,Kabupaten Bangka Tengah,age_group,20-24,laki_laki,9098,jiwa,2025,registration,total_population,3.1.3,95,,20 – 24
+19.04,2,Kabupaten Bangka Tengah,age_group,20-24,perempuan,8844,jiwa,2025,registration,total_population,3.1.3,95,,20 – 24
+19.04,2,Kabupaten Bangka Tengah,age_group,20-24,,17942,jiwa,2025,registration,total_population,3.1.3,95,,20 – 24
+19.04,2,Kabupaten Bangka Tengah,age_group,25-29,laki_laki,8340,jiwa,2025,registration,total_population,3.1.3,95,,25 – 29
+19.04,2,Kabupaten Bangka Tengah,age_group,25-29,perempuan,7666,jiwa,2025,registration,total_population,3.1.3,95,,25 – 29
+19.04,2,Kabupaten Bangka Tengah,age_group,25-29,,16006,jiwa,2025,registration,total_population,3.1.3,95,,25 – 29
+19.04,2,Kabupaten Bangka Tengah,age_group,30-34,laki_laki,7669,jiwa,2025,registration,total_population,3.1.3,95,,30 – 34
+19.04,2,Kabupaten Bangka Tengah,age_group,30-34,perempuan,7358,jiwa,2025,registration,total_population,3.1.3,95,,30 – 34
+19.04,2,Kabupaten Bangka Tengah,age_group,30-34,,15027,jiwa,2025,registration,total_population,3.1.3,95,,30 – 34
+19.04,2,Kabupaten Bangka Tengah,age_group,35-39,laki_laki,9619,jiwa,2025,registration,total_population,3.1.3,95,,35 – 39
+19.04,2,Kabupaten Bangka Tengah,age_group,35-39,perempuan,9215,jiwa,2025,registration,total_population,3.1.3,95,,35 – 39
+19.04,2,Kabupaten Bangka Tengah,age_group,35-39,,18834,jiwa,2025,registration,total_population,3.1.3,95,,35 – 39
+19.04,2,Kabupaten Bangka Tengah,age_group,40-44,laki_laki,9249,jiwa,2025,registration,total_population,3.1.3,95,,40 – 44
+19.04,2,Kabupaten Bangka Tengah,age_group,40-44,perempuan,8652,jiwa,2025,registration,total_population,3.1.3,95,,40 – 44
+19.04,2,Kabupaten Bangka Tengah,age_group,40-44,,17901,jiwa,2025,registration,total_population,3.1.3,95,,40 – 44
+19.04,2,Kabupaten Bangka Tengah,age_group,45-49,laki_laki,8053,jiwa,2025,registration,total_population,3.1.3,95,,45 – 49
+19.04,2,Kabupaten Bangka Tengah,age_group,45-49,perempuan,6942,jiwa,2025,registration,total_population,3.1.3,95,,45 – 49
+19.04,2,Kabupaten Bangka Tengah,age_group,45-49,,14995,jiwa,2025,registration,total_population,3.1.3,95,,45 – 49
+19.04,2,Kabupaten Bangka Tengah,age_group,50-54,laki_laki,5997,jiwa,2025,registration,total_population,3.1.3,95,,50 – 54
+19.04,2,Kabupaten Bangka Tengah,age_group,50-54,perempuan,5382,jiwa,2025,registration,total_population,3.1.3,95,,50 – 54
+19.04,2,Kabupaten Bangka Tengah,age_group,50-54,,11379,jiwa,2025,registration,total_population,3.1.3,95,,50 – 54
+19.04,2,Kabupaten Bangka Tengah,age_group,55-59,laki_laki,4507,jiwa,2025,registration,total_population,3.1.3,95,,55 – 59
+19.04,2,Kabupaten Bangka Tengah,age_group,55-59,perempuan,4312,jiwa,2025,registration,total_population,3.1.3,95,,55 – 59
+19.04,2,Kabupaten Bangka Tengah,age_group,55-59,,8819,jiwa,2025,registration,total_population,3.1.3,95,,55 – 59
+19.04,2,Kabupaten Bangka Tengah,age_group,60-64,laki_laki,3589,jiwa,2025,registration,total_population,3.1.3,95,,60 – 64
+19.04,2,Kabupaten Bangka Tengah,age_group,60-64,perempuan,3316,jiwa,2025,registration,total_population,3.1.3,95,,60 – 64
+19.04,2,Kabupaten Bangka Tengah,age_group,60-64,,6905,jiwa,2025,registration,total_population,3.1.3,95,,60 – 64
+19.04,2,Kabupaten Bangka Tengah,age_group,65-69,laki_laki,2859,jiwa,2025,registration,total_population,3.1.3,95,,65 – 69
+19.04,2,Kabupaten Bangka Tengah,age_group,65-69,perempuan,2672,jiwa,2025,registration,total_population,3.1.3,95,,65 – 69
+19.04,2,Kabupaten Bangka Tengah,age_group,65-69,,5531,jiwa,2025,registration,total_population,3.1.3,95,,65 – 69
+19.04,2,Kabupaten Bangka Tengah,age_group,70-74,laki_laki,1676,jiwa,2025,registration,total_population,3.1.3,95,,70 – 74
+19.04,2,Kabupaten Bangka Tengah,age_group,70-74,perempuan,1469,jiwa,2025,registration,total_population,3.1.3,95,,70 – 74
+19.04,2,Kabupaten Bangka Tengah,age_group,70-74,,3145,jiwa,2025,registration,total_population,3.1.3,95,,70 – 74
+19.04,2,Kabupaten Bangka Tengah,age_group,75+,laki_laki,1389,jiwa,2025,registration,total_population,3.1.3,95,,75+
+19.04,2,Kabupaten Bangka Tengah,age_group,75+,perempuan,1717,jiwa,2025,registration,total_population,3.1.3,95,,75+
+19.04,2,Kabupaten Bangka Tengah,age_group,75+,,3106,jiwa,2025,registration,total_population,3.1.3,95,,75+
+19.04,2,Kabupaten Bangka Tengah,sex,laki_laki,,109675,jiwa,2025,registration,total_population,3.1.3,95,,Laki-Laki
+19.04,2,Kabupaten Bangka Tengah,sex,perempuan,,102314,jiwa,2025,registration,total_population,3.1.3,95,,Perempuan
+19.04,2,Kabupaten Bangka Tengah,total,total,,211989,jiwa,2025,registration,total_population,3.1.3,95,,
+19.04.01,3,Koba,religion,islam,,42007,jiwa,2025,registration,total_population,4.3.1,238,,Islam
+19.04.01,3,Koba,religion,kristen,,1194,jiwa,2025,registration,total_population,4.3.1,238,,Protestan
+19.04.01,3,Koba,religion,katolik,,1145,jiwa,2025,registration,total_population,4.3.1,238,,Katolik
+19.04.01,3,Koba,religion,hindu,,9,jiwa,2025,registration,total_population,4.3.1,238,,Hindu
+19.04.01,3,Koba,religion,buddha,,927,jiwa,2025,registration,total_population,4.3.1,238,,Budha
+19.04.01,3,Koba,religion,khonghucu,,1269,jiwa,2025,registration,total_population,4.3.1,238,,Konghucu
+19.04.01,3,Koba,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,238,nil,Others
+19.04.06,3,Lubuk Besar,religion,islam,,32694,jiwa,2025,registration,total_population,4.3.1,238,,Islam
+19.04.06,3,Lubuk Besar,religion,kristen,,546,jiwa,2025,registration,total_population,4.3.1,238,,Protestan
+19.04.06,3,Lubuk Besar,religion,katolik,,768,jiwa,2025,registration,total_population,4.3.1,238,,Katolik
+19.04.06,3,Lubuk Besar,religion,hindu,,29,jiwa,2025,registration,total_population,4.3.1,238,,Hindu
+19.04.06,3,Lubuk Besar,religion,buddha,,203,jiwa,2025,registration,total_population,4.3.1,238,,Budha
+19.04.06,3,Lubuk Besar,religion,khonghucu,,1177,jiwa,2025,registration,total_population,4.3.1,238,,Konghucu
+19.04.06,3,Lubuk Besar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,238,nil,Others
+19.04.02,3,Pangkalan Baru,religion,islam,,31984,jiwa,2025,registration,total_population,4.3.1,238,,Islam
+19.04.02,3,Pangkalan Baru,religion,kristen,,2834,jiwa,2025,registration,total_population,4.3.1,238,,Protestan
+19.04.02,3,Pangkalan Baru,religion,katolik,,2503,jiwa,2025,registration,total_population,4.3.1,238,,Katolik
+19.04.02,3,Pangkalan Baru,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,238,,Hindu
+19.04.02,3,Pangkalan Baru,religion,buddha,,3471,jiwa,2025,registration,total_population,4.3.1,238,,Budha
+19.04.02,3,Pangkalan Baru,religion,khonghucu,,4177,jiwa,2025,registration,total_population,4.3.1,238,,Konghucu
+19.04.02,3,Pangkalan Baru,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,238,nil,Others
+19.04.05,3,Namang,religion,islam,,16243,jiwa,2025,registration,total_population,4.3.1,238,,Islam
+19.04.05,3,Namang,religion,kristen,,312,jiwa,2025,registration,total_population,4.3.1,238,,Protestan
+19.04.05,3,Namang,religion,katolik,,583,jiwa,2025,registration,total_population,4.3.1,238,,Katolik
+19.04.05,3,Namang,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,238,,Hindu
+19.04.05,3,Namang,religion,buddha,,545,jiwa,2025,registration,total_population,4.3.1,238,,Budha
+19.04.05,3,Namang,religion,khonghucu,,482,jiwa,2025,registration,total_population,4.3.1,238,,Konghucu
+19.04.05,3,Namang,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,238,,Others
+19.04.03,3,Sungai Selan,religion,islam,,38421,jiwa,2025,registration,total_population,4.3.1,238,,Islam
+19.04.03,3,Sungai Selan,religion,kristen,,174,jiwa,2025,registration,total_population,4.3.1,238,,Protestan
+19.04.03,3,Sungai Selan,religion,katolik,,240,jiwa,2025,registration,total_population,4.3.1,238,,Katolik
+19.04.03,3,Sungai Selan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,238,nil,Hindu
+19.04.03,3,Sungai Selan,religion,buddha,,241,jiwa,2025,registration,total_population,4.3.1,238,,Budha
+19.04.03,3,Sungai Selan,religion,khonghucu,,82,jiwa,2025,registration,total_population,4.3.1,238,,Konghucu
+19.04.03,3,Sungai Selan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,238,nil,Others
+19.04.04,3,Simpang Katis,religion,islam,,26866,jiwa,2025,registration,total_population,4.3.1,238,,Islam
+19.04.04,3,Simpang Katis,religion,kristen,,258,jiwa,2025,registration,total_population,4.3.1,238,,Protestan
+19.04.04,3,Simpang Katis,religion,katolik,,61,jiwa,2025,registration,total_population,4.3.1,238,,Katolik
+19.04.04,3,Simpang Katis,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,238,,Hindu
+19.04.04,3,Simpang Katis,religion,buddha,,348,jiwa,2025,registration,total_population,4.3.1,238,,Budha
+19.04.04,3,Simpang Katis,religion,khonghucu,,184,jiwa,2025,registration,total_population,4.3.1,238,,Konghucu
+19.04.04,3,Simpang Katis,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,238,nil,Others
+19.04,2,Bangka Tengah,religion,islam,,188215,jiwa,2025,registration,total_population,4.3.1,238,,Islam
+19.04,2,Bangka Tengah,religion,kristen,,5318,jiwa,2025,registration,total_population,4.3.1,238,,Protestan
+19.04,2,Bangka Tengah,religion,katolik,,5300,jiwa,2025,registration,total_population,4.3.1,238,,Katolik
+19.04,2,Bangka Tengah,religion,hindu,,49,jiwa,2025,registration,total_population,4.3.1,238,,Hindu
+19.04,2,Bangka Tengah,religion,buddha,,5735,jiwa,2025,registration,total_population,4.3.1,238,,Budha
+19.04,2,Bangka Tengah,religion,khonghucu,,7371,jiwa,2025,registration,total_population,4.3.1,238,,Konghucu
+19.04,2,Bangka Tengah,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,238,,Others
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/padi_padian,,110406,rupiah,2024,survey_estimate,per_capita,10.1,506,,Padi-padian
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/padi_padian,,109146,rupiah,2025,survey_estimate,per_capita,10.1,506,,Padi-padian
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/umbi_umbian,,6610,rupiah,2024,survey_estimate,per_capita,10.1,506,,Umbi-umbian
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/umbi_umbian,,7899,rupiah,2025,survey_estimate,per_capita,10.1,506,,Umbi-umbian
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,89440,rupiah,2024,survey_estimate,per_capita,10.1,506,,Ikan/udang/cumi/kerang
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,91095,rupiah,2025,survey_estimate,per_capita,10.1,506,,Ikan/udang/cumi/kerang
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/daging,,57756,rupiah,2024,survey_estimate,per_capita,10.1,506,,Daging
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/daging,,61782,rupiah,2025,survey_estimate,per_capita,10.1,506,,Daging
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/telur_dan_susu,,44844,rupiah,2024,survey_estimate,per_capita,10.1,506,,Telur dan susu
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/telur_dan_susu,,49705,rupiah,2025,survey_estimate,per_capita,10.1,506,,Telur dan susu
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/sayur_sayuran,,76020,rupiah,2024,survey_estimate,per_capita,10.1,506,,Sayur-sayuran
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/sayur_sayuran,,90316,rupiah,2025,survey_estimate,per_capita,10.1,506,,Sayur-sayuran
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/kacang_kacangan,,8574,rupiah,2024,survey_estimate,per_capita,10.1,506,,Kacang-kacangan
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/kacang_kacangan,,11163,rupiah,2025,survey_estimate,per_capita,10.1,506,,Kacang-kacangan
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/buah_buahan,,61463,rupiah,2024,survey_estimate,per_capita,10.1,506,,Buah-buahan
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/buah_buahan,,53023,rupiah,2025,survey_estimate,per_capita,10.1,506,,Buah-buahan
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/minyak_dan_kelapa,,15745,rupiah,2024,survey_estimate,per_capita,10.1,506,,Minyak dan kelapa
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22978,rupiah,2025,survey_estimate,per_capita,10.1,506,,Minyak dan kelapa
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/bahan_minuman,,23434,rupiah,2024,survey_estimate,per_capita,10.1,506,,Bahan minuman
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/bahan_minuman,,24964,rupiah,2025,survey_estimate,per_capita,10.1,506,,Bahan minuman
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/bumbu_bumbuan,,26064,rupiah,2024,survey_estimate,per_capita,10.1,506,,Bumbu-bumbuan
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/bumbu_bumbuan,,25999,rupiah,2025,survey_estimate,per_capita,10.1,506,,Bumbu-bumbuan
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/konsumsi_lainya,,22523,rupiah,2024,survey_estimate,per_capita,10.1,506,,Konsumsi lainya
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/konsumsi_lainya,,23079,rupiah,2025,survey_estimate,per_capita,10.1,506,,Konsumsi lainya
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,207584,rupiah,2024,survey_estimate,per_capita,10.1,506,,Makanan dan minuman jadi
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,198366,rupiah,2025,survey_estimate,per_capita,10.1,506,,Makanan dan minuman jadi
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/rokok,,130494,rupiah,2024,survey_estimate,per_capita,10.1,506,,Rokok
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/rokok,,121934,rupiah,2025,survey_estimate,per_capita,10.1,506,,Rokok
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/jumlah_makanan,,880957,rupiah,2024,survey_estimate,per_capita,10.1,506,,Jumlah makanan
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/jumlah_makanan,,891449,rupiah,2025,survey_estimate,per_capita,10.1,506,,Jumlah makanan
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,391805,rupiah,2024,survey_estimate,per_capita,10.1,506,,Perumahan dan fasilitas rumah tangga
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,387399,rupiah,2025,survey_estimate,per_capita,10.1,506,,Perumahan dan fasilitas rumah tangga
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,157410,rupiah,2024,survey_estimate,per_capita,10.1,506,,Aneka komoditas dan jasa
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,171111,rupiah,2025,survey_estimate,per_capita,10.1,506,,Aneka komoditas dan jasa
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,43472,rupiah,2024,survey_estimate,per_capita,10.1,506,,"Pakaian, alas kaki, dan tutup kepala"
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,42200,rupiah,2025,survey_estimate,per_capita,10.1,506,,"Pakaian, alas kaki, dan tutup kepala"
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/komoditas_tahan_lama,,63449,rupiah,2024,survey_estimate,per_capita,10.1,506,,Komoditas tahan lama
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/komoditas_tahan_lama,,49941,rupiah,2025,survey_estimate,per_capita,10.1,506,,Komoditas tahan lama
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,56319,rupiah,2024,survey_estimate,per_capita,10.1,506,,"Pajak, pungutan, dan asuransi"
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,61666,rupiah,2025,survey_estimate,per_capita,10.1,506,,"Pajak, pungutan, dan asuransi"
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,10046,rupiah,2024,survey_estimate,per_capita,10.1,506,,Keperluan pesta dan upacara/kenduri
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,5021,rupiah,2025,survey_estimate,per_capita,10.1,506,,Keperluan pesta dan upacara/kenduri
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,722503,rupiah,2024,survey_estimate,per_capita,10.1,506,,Jumlah bukan makanan
+19.04,2,Kabupaten Bangka Tengah,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,717338,rupiah,2025,survey_estimate,per_capita,10.1,506,,Jumlah bukan makanan
+19.04,2,Kabupaten Bangka Tengah,expenditure,total,,1603460,rupiah,2024,survey_estimate,per_capita,10.1,506,,
+19.04,2,Kabupaten Bangka Tengah,expenditure,total,,1608787,rupiah,2025,survey_estimate,per_capita,10.1,506,,

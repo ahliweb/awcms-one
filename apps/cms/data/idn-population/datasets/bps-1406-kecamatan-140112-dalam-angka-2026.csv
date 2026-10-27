@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.01.12.2002,4,Kasikan,sex,perempuan,,7209,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.12.2002,4,Kasikan,total,total,,14887,jiwa,2025,registration,total_population,3.1,11,,
+14.01.12.2010,4,Rimba Beringin,sex,perempuan,,3145,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.12.2010,4,Rimba Beringin,total,total,,6362,jiwa,2025,registration,total_population,3.1,11,,
+14.01.12.2001,4,Senama Nenek,sex,perempuan,,4966,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.12.2001,4,Senama Nenek,total,total,,10209,jiwa,2025,registration,total_population,3.1,11,,
+14.01.12.2003,4,Bukit Kemuning,sex,perempuan,,2540,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.12.2003,4,Bukit Kemuning,total,total,,5156,jiwa,2025,registration,total_population,3.1,11,,
+14.01.12.2004,4,Danau Lancang,sex,perempuan,,10136,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.12.2004,4,Danau Lancang,total,total,,21054,jiwa,2025,registration,total_population,3.1,11,,
+14.01.12.2011,4,Sukaramai,sex,perempuan,,4179,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.12.2011,4,Sukaramai,total,total,,8653,jiwa,2025,registration,total_population,3.1,11,,
+14.01.12.2013,4,Kusau Makmur,sex,perempuan,,2698,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.12.2013,4,Kusau Makmur,total,total,,5437,jiwa,2025,registration,total_population,3.1,11,,
+14.01.12.2012,4,Sumber Sari,sex,perempuan,,2506,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.12.2012,4,Sumber Sari,total,total,,5151,jiwa,2025,registration,total_population,3.1,11,,
+14.01.12.2014,4,Talang Danto,sex,perempuan,,1452,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.12.2014,4,Talang Danto,total,total,,2999,jiwa,2025,registration,total_population,3.1,11,,
+14.01.12.2005,4,Muara Intan,sex,perempuan,,428,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.12.2005,4,Muara Intan,total,total,,889,jiwa,2025,registration,total_population,3.1,11,,
+14.01.12.2006,4,Intan Jaya,sex,perempuan,,577,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.12.2006,4,Intan Jaya,total,total,,1181,jiwa,2025,registration,total_population,3.1,11,,
+14.01.12.2007,4,Tanah Datar,sex,perempuan,,921,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.12.2007,4,Tanah Datar,total,total,,1901,jiwa,2025,registration,total_population,3.1,11,,
+14.01.12.2009,4,Rimba Makmur,sex,perempuan,,1086,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.12.2009,4,Rimba Makmur,total,total,,2155,jiwa,2025,registration,total_population,3.1,11,,
+14.01.12.2008,4,Rimba Jaya,sex,perempuan,,1034,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.12.2008,4,Rimba Jaya,total,total,,2121,jiwa,2025,registration,total_population,3.1,11,,
+14.01.12,3,Kecamatan Tapung Hulu,sex,perempuan,,42877,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.12,3,Kecamatan Tapung Hulu,total,total,,88155,jiwa,2025,registration,total_population,3.1,11,,

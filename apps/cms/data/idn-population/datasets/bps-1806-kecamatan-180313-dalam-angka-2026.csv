@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.03.13.2001,4,Sukamaju,sex,laki_laki,,2559,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.13.2001,4,Sukamaju,sex,perempuan,,2486,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.13.2001,4,Sukamaju,total,total,,5045,jiwa,2025,registration,total_population,3.1,28,,
+18.03.13.2003,4,Semuli Jaya,sex,laki_laki,,2376,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.13.2003,4,Semuli Jaya,sex,perempuan,,2276,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.13.2003,4,Semuli Jaya,total,total,,4652,jiwa,2025,registration,total_population,3.1,28,,
+18.03.13.2002,4,Semuli Raya,sex,laki_laki,,3414,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.13.2002,4,Semuli Raya,sex,perempuan,,3339,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.13.2002,4,Semuli Raya,total,total,,6753,jiwa,2025,registration,total_population,3.1,28,,
+18.03.13.2004,4,Papan Asri,sex,laki_laki,,1522,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.13.2004,4,Papan Asri,sex,perempuan,,1399,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.13.2004,4,Papan Asri,total,total,,2921,jiwa,2025,registration,total_population,3.1,28,,
+18.03.13.2006,4,Sido Rahayu,sex,laki_laki,,2658,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.13.2006,4,Sido Rahayu,sex,perempuan,,2523,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.13.2006,4,Sido Rahayu,total,total,,5181,jiwa,2025,registration,total_population,3.1,28,,
+18.03.13.2007,4,Gunung Sari,sex,laki_laki,,1467,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.13.2007,4,Gunung Sari,sex,perempuan,,1436,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.13.2007,4,Gunung Sari,total,total,,2903,jiwa,2025,registration,total_population,3.1,28,,
+18.03.13,3,Kecamatan Abung Semuli,sex,laki_laki,,14928,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.13,3,Kecamatan Abung Semuli,sex,perempuan,,14358,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.13,3,Kecamatan Abung Semuli,total,total,,29286,jiwa,2025,registration,total_population,3.1,28,,
+18.03.13,3,Abung Semuli,age_group,0-4,laki_laki,989,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.13,3,Abung Semuli,age_group,0-4,perempuan,888,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.13,3,Abung Semuli,age_group,0-4,,1877,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.13,3,Abung Semuli,age_group,5-9,laki_laki,1336,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.13,3,Abung Semuli,age_group,5-9,perempuan,1244,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.13,3,Abung Semuli,age_group,5-9,,2580,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.13,3,Abung Semuli,age_group,10-14,laki_laki,1224,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.13,3,Abung Semuli,age_group,10-14,perempuan,1136,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.13,3,Abung Semuli,age_group,10-14,,2360,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.13,3,Abung Semuli,age_group,15-19,laki_laki,1050,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.13,3,Abung Semuli,age_group,15-19,perempuan,1051,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.13,3,Abung Semuli,age_group,15-19,,2101,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.13,3,Abung Semuli,age_group,20-24,laki_laki,1144,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.13,3,Abung Semuli,age_group,20-24,perempuan,1096,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.13,3,Abung Semuli,age_group,20-24,,2240,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.13,3,Abung Semuli,age_group,25-29,laki_laki,1081,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.13,3,Abung Semuli,age_group,25-29,perempuan,1046,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.13,3,Abung Semuli,age_group,25-29,,2127,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.13,3,Abung Semuli,age_group,30-34,laki_laki,1153,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.13,3,Abung Semuli,age_group,30-34,perempuan,1129,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.13,3,Abung Semuli,age_group,30-34,,2282,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.13,3,Abung Semuli,age_group,35-39,laki_laki,1043,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.13,3,Abung Semuli,age_group,35-39,perempuan,1055,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.13,3,Abung Semuli,age_group,35-39,,2098,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.13,3,Abung Semuli,age_group,40-44,laki_laki,1062,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.13,3,Abung Semuli,age_group,40-44,perempuan,1056,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.13,3,Abung Semuli,age_group,40-44,,2118,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.13,3,Abung Semuli,age_group,45-49,laki_laki,1241,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.13,3,Abung Semuli,age_group,45-49,perempuan,1153,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.13,3,Abung Semuli,age_group,45-49,,2394,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.13,3,Abung Semuli,age_group,50-54,laki_laki,839,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.13,3,Abung Semuli,age_group,50-54,perempuan,883,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.13,3,Abung Semuli,age_group,50-54,,1722,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.13,3,Abung Semuli,age_group,55-59,laki_laki,756,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.13,3,Abung Semuli,age_group,55-59,perempuan,755,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.13,3,Abung Semuli,age_group,55-59,,1511,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.13,3,Abung Semuli,age_group,60-64,laki_laki,669,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.13,3,Abung Semuli,age_group,60-64,perempuan,699,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.13,3,Abung Semuli,age_group,60-64,,1368,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.13,3,Abung Semuli,age_group,65-69,laki_laki,547,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.13,3,Abung Semuli,age_group,65-69,perempuan,462,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.13,3,Abung Semuli,age_group,65-69,,1009,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.13,3,Abung Semuli,age_group,70-75,laki_laki,372,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.13,3,Abung Semuli,age_group,70-75,perempuan,293,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.13,3,Abung Semuli,age_group,70-75,,665,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.13,3,Abung Semuli,age_group,75+,laki_laki,422,jiwa,2025,registration,total_population,3.2,30,,75+
+18.03.13,3,Abung Semuli,age_group,75+,perempuan,412,jiwa,2025,registration,total_population,3.2,30,,75+
+18.03.13,3,Abung Semuli,age_group,75+,,834,jiwa,2025,registration,total_population,3.2,30,,75+

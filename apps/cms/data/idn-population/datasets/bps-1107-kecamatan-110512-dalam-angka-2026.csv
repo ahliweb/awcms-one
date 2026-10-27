@@ -1,0 +1,109 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.05.12.2009,4,Paya Baro Meuko,sex,laki_laki,,105,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.12.2009,4,Paya Baro Meuko,sex,perempuan,,110,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.12.2009,4,Paya Baro Meuko,total,total,,215,jiwa,2025,registration,total_population,3.1,30,,
+11.05.12.2018,4,Gunong Mata Ie,sex,laki_laki,,182,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.12.2018,4,Gunong Mata Ie,sex,perempuan,,160,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.12.2018,4,Gunong Mata Ie,total,total,,342,jiwa,2025,registration,total_population,3.1,30,,
+11.05.12.2017,4,Babah Krueng Manggie,sex,laki_laki,,197,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.12.2017,4,Babah Krueng Manggie,sex,perempuan,,186,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.12.2017,4,Babah Krueng Manggie,total,total,,383,jiwa,2025,registration,total_population,3.1,30,,
+11.05.12.2016,4,Blang Balee,sex,laki_laki,,67,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.12.2016,4,Blang Balee,sex,perempuan,,80,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.12.2016,4,Blang Balee,total,total,,147,jiwa,2025,registration,total_population,3.1,30,,
+11.05.12.2019,4,Lek Lek,sex,laki_laki,,223,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.12.2019,4,Lek Lek,sex,perempuan,,221,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.12.2019,4,Lek Lek,total,total,,444,jiwa,2025,registration,total_population,3.1,30,,
+11.05.12.2013,4,Gampong Baro,sex,laki_laki,,244,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.12.2013,4,Gampong Baro,sex,perempuan,,254,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.12.2013,4,Gampong Baro,total,total,,498,jiwa,2025,registration,total_population,3.1,30,,
+11.05.12.2001,4,Meutulang,sex,laki_laki,,588,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.12.2001,4,Meutulang,sex,perempuan,,577,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.12.2001,4,Meutulang,total,total,,1165,jiwa,2025,registration,total_population,3.1,30,,
+11.05.12.2012,4,Manggie,sex,laki_laki,,412,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.12.2012,4,Manggie,sex,perempuan,,364,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.12.2012,4,Manggie,total,total,,776,jiwa,2025,registration,total_population,3.1,30,,
+11.05.12.2014,4,Tamping,sex,laki_laki,,128,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.12.2014,4,Tamping,sex,perempuan,,109,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.12.2014,4,Tamping,total,total,,237,jiwa,2025,registration,total_population,3.1,30,,
+11.05.12.2015,4,Cot Manggie,sex,laki_laki,,76,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.12.2015,4,Cot Manggie,sex,perempuan,,66,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.12.2015,4,Cot Manggie,total,total,,142,jiwa,2025,registration,total_population,3.1,30,,
+11.05.12.2010,4,Tuwi Buya,sex,laki_laki,,68,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.12.2010,4,Tuwi Buya,sex,perempuan,,65,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.12.2010,4,Tuwi Buya,total,total,,133,jiwa,2025,registration,total_population,3.1,30,,
+11.05.12.2008,4,Ujong Raja,sex,laki_laki,,111,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.12.2008,4,Ujong Raja,sex,perempuan,,120,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.12.2008,4,Ujong Raja,total,total,,231,jiwa,2025,registration,total_population,3.1,30,,
+11.05.12.2002,4,Mugo Cut,sex,laki_laki,,168,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.12.2002,4,Mugo Cut,sex,perempuan,,182,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.12.2002,4,Mugo Cut,total,total,,350,jiwa,2025,registration,total_population,3.1,30,,
+11.05.12.2003,4,Mugo Rayeuk,sex,laki_laki,,236,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.12.2003,4,Mugo Rayeuk,sex,perempuan,,228,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.12.2003,4,Mugo Rayeuk,total,total,,464,jiwa,2025,registration,total_population,3.1,30,,
+11.05.12.2004,4,Baro Paya,sex,laki_laki,,246,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.12.2004,4,Baro Paya,sex,perempuan,,217,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.12.2004,4,Baro Paya,total,total,,463,jiwa,2025,registration,total_population,3.1,30,,
+11.05.12.2005,4,Sibintang,sex,laki_laki,,185,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.12.2005,4,Sibintang,sex,perempuan,,152,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.12.2005,4,Sibintang,total,total,,337,jiwa,2025,registration,total_population,3.1,30,,
+11.05.12.2006,4,Blang Teungoh,sex,laki_laki,,137,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.12.2006,4,Blang Teungoh,sex,perempuan,,147,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.12.2006,4,Blang Teungoh,total,total,,284,jiwa,2025,registration,total_population,3.1,30,,
+11.05.12.2007,4,Antong,sex,laki_laki,,81,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.12.2007,4,Antong,sex,perempuan,,93,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.12.2007,4,Antong,total,total,,174,jiwa,2025,registration,total_population,3.1,30,,
+11.05.12,3,Kecamatan Panton Reu,sex,laki_laki,,3629,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.05.12,3,Kecamatan Panton Reu,sex,perempuan,,3520,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.05.12,3,Kecamatan Panton Reu,total,total,,7149,jiwa,2025,registration,total_population,3.1,30,,
+11.05.12,3,Panton Reu,age_group,0-4,laki_laki,322,jiwa,2025,registration,total_population,3.2,32,,0 - 4
+11.05.12,3,Panton Reu,age_group,0-4,perempuan,260,jiwa,2025,registration,total_population,3.2,32,,0 - 4
+11.05.12,3,Panton Reu,age_group,0-4,,582,jiwa,2025,registration,total_population,3.2,32,,0 - 4
+11.05.12,3,Panton Reu,age_group,5-9,laki_laki,330,jiwa,2025,registration,total_population,3.2,32,,5 - 9
+11.05.12,3,Panton Reu,age_group,5-9,perempuan,274,jiwa,2025,registration,total_population,3.2,32,,5 - 9
+11.05.12,3,Panton Reu,age_group,5-9,,604,jiwa,2025,registration,total_population,3.2,32,,5 - 9
+11.05.12,3,Panton Reu,age_group,10-14,laki_laki,296,jiwa,2025,registration,total_population,3.2,32,,10 - 14
+11.05.12,3,Panton Reu,age_group,10-14,perempuan,282,jiwa,2025,registration,total_population,3.2,32,,10 - 14
+11.05.12,3,Panton Reu,age_group,10-14,,578,jiwa,2025,registration,total_population,3.2,32,,10 - 14
+11.05.12,3,Panton Reu,age_group,15-19,laki_laki,301,jiwa,2025,registration,total_population,3.2,32,,15 - 19
+11.05.12,3,Panton Reu,age_group,15-19,perempuan,295,jiwa,2025,registration,total_population,3.2,32,,15 - 19
+11.05.12,3,Panton Reu,age_group,15-19,,596,jiwa,2025,registration,total_population,3.2,32,,15 - 19
+11.05.12,3,Panton Reu,age_group,20-24,laki_laki,300,jiwa,2025,registration,total_population,3.2,32,,20 - 24
+11.05.12,3,Panton Reu,age_group,20-24,perempuan,307,jiwa,2025,registration,total_population,3.2,32,,20 - 24
+11.05.12,3,Panton Reu,age_group,20-24,,607,jiwa,2025,registration,total_population,3.2,32,,20 - 24
+11.05.12,3,Panton Reu,age_group,25-29,laki_laki,306,jiwa,2025,registration,total_population,3.2,32,,25 - 29
+11.05.12,3,Panton Reu,age_group,25-29,perempuan,299,jiwa,2025,registration,total_population,3.2,32,,25 - 29
+11.05.12,3,Panton Reu,age_group,25-29,,605,jiwa,2025,registration,total_population,3.2,32,,25 - 29
+11.05.12,3,Panton Reu,age_group,30-34,laki_laki,283,jiwa,2025,registration,total_population,3.2,32,,30 - 34
+11.05.12,3,Panton Reu,age_group,30-34,perempuan,259,jiwa,2025,registration,total_population,3.2,32,,30 - 34
+11.05.12,3,Panton Reu,age_group,30-34,,542,jiwa,2025,registration,total_population,3.2,32,,30 - 34
+11.05.12,3,Panton Reu,age_group,35-39,laki_laki,273,jiwa,2025,registration,total_population,3.2,32,,35 - 39
+11.05.12,3,Panton Reu,age_group,35-39,perempuan,271,jiwa,2025,registration,total_population,3.2,32,,35 - 39
+11.05.12,3,Panton Reu,age_group,35-39,,544,jiwa,2025,registration,total_population,3.2,32,,35 - 39
+11.05.12,3,Panton Reu,age_group,40-44,laki_laki,265,jiwa,2025,registration,total_population,3.2,32,,40 - 44
+11.05.12,3,Panton Reu,age_group,40-44,perempuan,257,jiwa,2025,registration,total_population,3.2,32,,40 - 44
+11.05.12,3,Panton Reu,age_group,40-44,,522,jiwa,2025,registration,total_population,3.2,32,,40 - 44
+11.05.12,3,Panton Reu,age_group,45-49,laki_laki,267,jiwa,2025,registration,total_population,3.2,32,,45 - 49
+11.05.12,3,Panton Reu,age_group,45-49,perempuan,253,jiwa,2025,registration,total_population,3.2,32,,45 - 49
+11.05.12,3,Panton Reu,age_group,45-49,,520,jiwa,2025,registration,total_population,3.2,32,,45 - 49
+11.05.12,3,Panton Reu,age_group,50-54,laki_laki,184,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+11.05.12,3,Panton Reu,age_group,50-54,perempuan,201,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+11.05.12,3,Panton Reu,age_group,50-54,,385,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+11.05.12,3,Panton Reu,age_group,55-59,laki_laki,191,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+11.05.12,3,Panton Reu,age_group,55-59,perempuan,166,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+11.05.12,3,Panton Reu,age_group,55-59,,357,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+11.05.12,3,Panton Reu,age_group,60-64,laki_laki,110,jiwa,2025,registration,total_population,3.2,32,,60 - 64
+11.05.12,3,Panton Reu,age_group,60-64,perempuan,121,jiwa,2025,registration,total_population,3.2,32,,60 - 64
+11.05.12,3,Panton Reu,age_group,60-64,,231,jiwa,2025,registration,total_population,3.2,32,,60 - 64
+11.05.12,3,Panton Reu,age_group,65-69,laki_laki,88,jiwa,2025,registration,total_population,3.2,32,,65 - 69
+11.05.12,3,Panton Reu,age_group,65-69,perempuan,101,jiwa,2025,registration,total_population,3.2,32,,65 - 69
+11.05.12,3,Panton Reu,age_group,65-69,,189,jiwa,2025,registration,total_population,3.2,32,,65 - 69
+11.05.12,3,Panton Reu,age_group,70-74,laki_laki,44,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+11.05.12,3,Panton Reu,age_group,70-74,perempuan,66,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+11.05.12,3,Panton Reu,age_group,70-74,,110,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+11.05.12,3,Panton Reu,age_group,75+,laki_laki,69,jiwa,2025,registration,total_population,3.2,32,,75+
+11.05.12,3,Panton Reu,age_group,75+,perempuan,108,jiwa,2025,registration,total_population,3.2,32,,75+
+11.05.12,3,Panton Reu,age_group,75+,,177,jiwa,2025,registration,total_population,3.2,32,,75+
+11.05.12,3,Kecamatan Panton Reu,sex,laki_laki,,3629,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+11.05.12,3,Kecamatan Panton Reu,sex,perempuan,,3520,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+11.05.12,3,Kecamatan Panton Reu,total,total,,7149,jiwa,2025,registration,total_population,3.2,32,,

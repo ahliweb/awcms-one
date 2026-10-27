@@ -1,0 +1,205 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.01.07,3,Kampar Kiri,total,total,,39663,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01.09,3,Kampar Kiri Hulu,total,total,,12100,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01.08,3,Kampar Kiri Hilir,total,total,,15861,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01.20,3,Gunung Sahilan,total,total,,23429,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01.19,3,Kampar Kiri Tengah,total,total,,30873,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01.04,3,XIII Koto Kampar,total,total,,26003,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01.21,3,Koto Kampar Hulu,total,total,,21355,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01.05,3,Kuok,total,total,,28400,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01.13,3,Salo,total,total,,28930,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01.10,3,Tapung,total,total,,115506,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01.12,3,Tapung Hulu,total,total,,87091,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01.11,3,Tapung Hilir,total,total,,62302,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01.01,3,Bangkinang Kota,total,total,,41214,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01.15,3,Bangkinang,total,total,,37652,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01.02,3,Kampar,total,total,,56858,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01.17,3,Kampa,total,total,,26513,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01.14,3,Rumbio Jaya,total,total,,20301,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01.18,3,Kampar Utara,total,total,,20527,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01.03,3,Tambang,total,total,,102252,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01.06,3,Siak Hulu,total,total,,103970,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01.16,3,Perhentian Raja,total,total,,22046,jiwa,2025,registration,total_population,3.1.1,41,,
+14.01,2,Kabupaten Kampar,age_group,0-4,laki_laki,34374,jiwa,2025,registration,total_population,3.1.2,44,,0–4
+14.01,2,Kabupaten Kampar,age_group,0-4,perempuan,31977,jiwa,2025,registration,total_population,3.1.2,44,,0–4
+14.01,2,Kabupaten Kampar,age_group,0-4,,66351,jiwa,2025,registration,total_population,3.1.2,44,,0–4
+14.01,2,Kabupaten Kampar,age_group,5-9,laki_laki,46499,jiwa,2025,registration,total_population,3.1.2,44,,5–9
+14.01,2,Kabupaten Kampar,age_group,5-9,perempuan,42899,jiwa,2025,registration,total_population,3.1.2,44,,5–9
+14.01,2,Kabupaten Kampar,age_group,5-9,,89398,jiwa,2025,registration,total_population,3.1.2,44,,5–9
+14.01,2,Kabupaten Kampar,age_group,10-14,laki_laki,47281,jiwa,2025,registration,total_population,3.1.2,44,,10–14
+14.01,2,Kabupaten Kampar,age_group,10-14,perempuan,44363,jiwa,2025,registration,total_population,3.1.2,44,,10–14
+14.01,2,Kabupaten Kampar,age_group,10-14,,91644,jiwa,2025,registration,total_population,3.1.2,44,,10–14
+14.01,2,Kabupaten Kampar,age_group,15-19,laki_laki,41409,jiwa,2025,registration,total_population,3.1.2,44,,15–19
+14.01,2,Kabupaten Kampar,age_group,15-19,perempuan,39219,jiwa,2025,registration,total_population,3.1.2,44,,15–19
+14.01,2,Kabupaten Kampar,age_group,15-19,,80628,jiwa,2025,registration,total_population,3.1.2,44,,15–19
+14.01,2,Kabupaten Kampar,age_group,20-24,laki_laki,41012,jiwa,2025,registration,total_population,3.1.2,44,,20–24
+14.01,2,Kabupaten Kampar,age_group,20-24,perempuan,39352,jiwa,2025,registration,total_population,3.1.2,44,,20–24
+14.01,2,Kabupaten Kampar,age_group,20-24,,80364,jiwa,2025,registration,total_population,3.1.2,44,,20–24
+14.01,2,Kabupaten Kampar,age_group,25-29,laki_laki,39125,jiwa,2025,registration,total_population,3.1.2,44,,25–29
+14.01,2,Kabupaten Kampar,age_group,25-29,perempuan,37444,jiwa,2025,registration,total_population,3.1.2,44,,25–29
+14.01,2,Kabupaten Kampar,age_group,25-29,,76569,jiwa,2025,registration,total_population,3.1.2,44,,25–29
+14.01,2,Kabupaten Kampar,age_group,30-34,laki_laki,36354,jiwa,2025,registration,total_population,3.1.2,44,,30–34
+14.01,2,Kabupaten Kampar,age_group,30-34,perempuan,35474,jiwa,2025,registration,total_population,3.1.2,44,,30–34
+14.01,2,Kabupaten Kampar,age_group,30-34,,71828,jiwa,2025,registration,total_population,3.1.2,44,,30–34
+14.01,2,Kabupaten Kampar,age_group,35-39,laki_laki,34852,jiwa,2025,registration,total_population,3.1.2,44,,35–39
+14.01,2,Kabupaten Kampar,age_group,35-39,perempuan,35358,jiwa,2025,registration,total_population,3.1.2,44,,35–39
+14.01,2,Kabupaten Kampar,age_group,35-39,,70210,jiwa,2025,registration,total_population,3.1.2,44,,35–39
+14.01,2,Kabupaten Kampar,age_group,40-44,laki_laki,34664,jiwa,2025,registration,total_population,3.1.2,44,,40–44
+14.01,2,Kabupaten Kampar,age_group,40-44,perempuan,34636,jiwa,2025,registration,total_population,3.1.2,44,,40–44
+14.01,2,Kabupaten Kampar,age_group,40-44,,69300,jiwa,2025,registration,total_population,3.1.2,44,,40–44
+14.01,2,Kabupaten Kampar,age_group,45-49,laki_laki,31962,jiwa,2025,registration,total_population,3.1.2,44,,45–49
+14.01,2,Kabupaten Kampar,age_group,45-49,perempuan,30292,jiwa,2025,registration,total_population,3.1.2,44,,45–49
+14.01,2,Kabupaten Kampar,age_group,45-49,,62254,jiwa,2025,registration,total_population,3.1.2,44,,45–49
+14.01,2,Kabupaten Kampar,age_group,50-54,laki_laki,26302,jiwa,2025,registration,total_population,3.1.2,44,,50–54
+14.01,2,Kabupaten Kampar,age_group,50-54,perempuan,25162,jiwa,2025,registration,total_population,3.1.2,44,,50–54
+14.01,2,Kabupaten Kampar,age_group,50-54,,51464,jiwa,2025,registration,total_population,3.1.2,44,,50–54
+14.01,2,Kabupaten Kampar,age_group,55-59,laki_laki,20997,jiwa,2025,registration,total_population,3.1.2,44,,55–59
+14.01,2,Kabupaten Kampar,age_group,55-59,perempuan,19673,jiwa,2025,registration,total_population,3.1.2,44,,55–59
+14.01,2,Kabupaten Kampar,age_group,55-59,,40670,jiwa,2025,registration,total_population,3.1.2,44,,55–59
+14.01,2,Kabupaten Kampar,age_group,60-64,laki_laki,15079,jiwa,2025,registration,total_population,3.1.2,44,,60–64
+14.01,2,Kabupaten Kampar,age_group,60-64,perempuan,14597,jiwa,2025,registration,total_population,3.1.2,44,,60–64
+14.01,2,Kabupaten Kampar,age_group,60-64,,29676,jiwa,2025,registration,total_population,3.1.2,44,,60–64
+14.01,2,Kabupaten Kampar,age_group,65-69,laki_laki,10462,jiwa,2025,registration,total_population,3.1.2,44,,65–69
+14.01,2,Kabupaten Kampar,age_group,65-69,perempuan,10097,jiwa,2025,registration,total_population,3.1.2,44,,65–69
+14.01,2,Kabupaten Kampar,age_group,65-69,,20559,jiwa,2025,registration,total_population,3.1.2,44,,65–69
+14.01,2,Kabupaten Kampar,age_group,70-74,laki_laki,5521,jiwa,2025,registration,total_population,3.1.2,44,,70–74
+14.01,2,Kabupaten Kampar,age_group,70-74,perempuan,5352,jiwa,2025,registration,total_population,3.1.2,44,,70–74
+14.01,2,Kabupaten Kampar,age_group,70-74,,10873,jiwa,2025,registration,total_population,3.1.2,44,,70–74
+14.01,2,Kabupaten Kampar,age_group,75+,laki_laki,4986,jiwa,2025,registration,total_population,3.1.2,44,,75+
+14.01,2,Kabupaten Kampar,age_group,75+,perempuan,6072,jiwa,2025,registration,total_population,3.1.2,44,,75+
+14.01,2,Kabupaten Kampar,age_group,75+,,11058,jiwa,2025,registration,total_population,3.1.2,44,,75+
+14.01,2,Kabupaten Kampar,sex,laki_laki,,470879,jiwa,2025,registration,total_population,3.1.2,44,,Laki-Laki
+14.01,2,Kabupaten Kampar,sex,perempuan,,451967,jiwa,2025,registration,total_population,3.1.2,44,,Perempuan
+14.01,2,Kabupaten Kampar,total,total,,922846,jiwa,2025,registration,total_population,3.1.2,44,,
+14.01.07,3,Kampar Kiri,religion,islam,,37345,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.07,3,Kampar Kiri,religion,kristen,,2184,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.07,3,Kampar Kiri,religion,katolik,,131,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.07,3,Kampar Kiri,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Hindu
+14.01.07,3,Kampar Kiri,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,115,,Budha
+14.01.07,3,Kampar Kiri,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+14.01.09,3,Kampar Kiri Hulu,religion,islam,,12057,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.09,3,Kampar Kiri Hulu,religion,kristen,,36,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.09,3,Kampar Kiri Hulu,religion,katolik,,6,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.09,3,Kampar Kiri Hulu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Hindu
+14.01.09,3,Kampar Kiri Hulu,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,115,,Budha
+14.01.09,3,Kampar Kiri Hulu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+14.01.08,3,Kampar Kiri Hilir,religion,islam,,14457,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.08,3,Kampar Kiri Hilir,religion,kristen,,1268,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.08,3,Kampar Kiri Hilir,religion,katolik,,136,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.08,3,Kampar Kiri Hilir,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Hindu
+14.01.08,3,Kampar Kiri Hilir,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Budha
+14.01.08,3,Kampar Kiri Hilir,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+14.01.20,3,Gunung Sahilan,religion,islam,,20638,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.20,3,Gunung Sahilan,religion,kristen,,2581,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.20,3,Gunung Sahilan,religion,katolik,,196,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.20,3,Gunung Sahilan,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,115,,Hindu
+14.01.20,3,Gunung Sahilan,religion,buddha,,8,jiwa,2025,registration,total_population,4.3.1,115,,Budha
+14.01.20,3,Gunung Sahilan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+14.01.19,3,Kampar Kiri Tengah,religion,islam,,29276,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.19,3,Kampar Kiri Tengah,religion,kristen,,1384,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.19,3,Kampar Kiri Tengah,religion,katolik,,201,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.19,3,Kampar Kiri Tengah,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,115,,Hindu
+14.01.19,3,Kampar Kiri Tengah,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,115,,Budha
+14.01.19,3,Kampar Kiri Tengah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+14.01.04,3,XIII Koto Kampar,religion,islam,,25156,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.04,3,XIII Koto Kampar,religion,kristen,,663,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.04,3,XIII Koto Kampar,religion,katolik,,180,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.04,3,XIII Koto Kampar,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,115,,Hindu
+14.01.04,3,XIII Koto Kampar,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Budha
+14.01.04,3,XIII Koto Kampar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+14.01.21,3,Koto Kampar Hulu,religion,islam,,19242,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.21,3,Koto Kampar Hulu,religion,kristen,,1996,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.21,3,Koto Kampar Hulu,religion,katolik,,117,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.21,3,Koto Kampar Hulu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Hindu
+14.01.21,3,Koto Kampar Hulu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Budha
+14.01.21,3,Koto Kampar Hulu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+14.01.05,3,Kuok,religion,islam,,28163,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.05,3,Kuok,religion,kristen,,225,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.05,3,Kuok,religion,katolik,,11,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.05,3,Kuok,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Hindu
+14.01.05,3,Kuok,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,115,,Budha
+14.01.05,3,Kuok,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+14.01.13,3,Salo,religion,islam,,25679,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.13,3,Salo,religion,kristen,,2561,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.13,3,Salo,religion,katolik,,676,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.13,3,Salo,religion,hindu,,12,jiwa,2025,registration,total_population,4.3.1,115,,Hindu
+14.01.13,3,Salo,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,115,,Budha
+14.01.13,3,Salo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+14.01.10,3,Tapung,religion,islam,,94380,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.10,3,Tapung,religion,kristen,,18794,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.10,3,Tapung,religion,katolik,,2238,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.10,3,Tapung,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,115,,Hindu
+14.01.10,3,Tapung,religion,buddha,,76,jiwa,2025,registration,total_population,4.3.1,115,,Budha
+14.01.10,3,Tapung,religion,lainnya,,13,jiwa,2025,registration,total_population,4.3.1,115,,Lainnya
+14.01.12,3,Tapung Hulu,religion,islam,,59946,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.12,3,Tapung Hulu,religion,kristen,,25064,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.12,3,Tapung Hulu,religion,katolik,,2044,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.12,3,Tapung Hulu,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,115,,Hindu
+14.01.12,3,Tapung Hulu,religion,buddha,,10,jiwa,2025,registration,total_population,4.3.1,115,,Budha
+14.01.12,3,Tapung Hulu,religion,lainnya,,22,jiwa,2025,registration,total_population,4.3.1,115,,Lainnya
+14.01.11,3,Tapung Hilir,religion,islam,,54120,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.11,3,Tapung Hilir,religion,kristen,,7466,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.11,3,Tapung Hilir,religion,katolik,,706,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.11,3,Tapung Hilir,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,115,,Hindu
+14.01.11,3,Tapung Hilir,religion,buddha,,9,jiwa,2025,registration,total_population,4.3.1,115,,Budha
+14.01.11,3,Tapung Hilir,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+14.01.01,3,Bangkinang Kota,religion,islam,,40596,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.01,3,Bangkinang Kota,religion,kristen,,557,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.01,3,Bangkinang Kota,religion,katolik,,55,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.01,3,Bangkinang Kota,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Hindu
+14.01.01,3,Bangkinang Kota,religion,buddha,,6,jiwa,2025,registration,total_population,4.3.1,115,,Budha
+14.01.01,3,Bangkinang Kota,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+14.01.15,3,Bangkinang,religion,islam,,35981,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.15,3,Bangkinang,religion,kristen,,1370,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.15,3,Bangkinang,religion,katolik,,289,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.15,3,Bangkinang,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,115,,Hindu
+14.01.15,3,Bangkinang,religion,buddha,,9,jiwa,2025,registration,total_population,4.3.1,115,,Budha
+14.01.15,3,Bangkinang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+14.01.02,3,Kampar,religion,islam,,56486,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.02,3,Kampar,religion,kristen,,352,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.02,3,Kampar,religion,katolik,,20,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.02,3,Kampar,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Hindu
+14.01.02,3,Kampar,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Budha
+14.01.02,3,Kampar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+14.01.17,3,Kampa,religion,islam,,25989,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.17,3,Kampa,religion,kristen,,476,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.17,3,Kampa,religion,katolik,,48,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.17,3,Kampa,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Hindu
+14.01.17,3,Kampa,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Budha
+14.01.17,3,Kampa,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+14.01.14,3,Rumbio Jaya,religion,islam,,19828,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.14,3,Rumbio Jaya,religion,kristen,,371,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.14,3,Rumbio Jaya,religion,katolik,,100,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.14,3,Rumbio Jaya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Hindu
+14.01.14,3,Rumbio Jaya,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,115,,Budha
+14.01.14,3,Rumbio Jaya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+14.01.18,3,Kampar Utara,religion,islam,,20497,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.18,3,Kampar Utara,religion,kristen,,28,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.18,3,Kampar Utara,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.18,3,Kampar Utara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Hindu
+14.01.18,3,Kampar Utara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Budha
+14.01.18,3,Kampar Utara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+14.01.03,3,Tambang,religion,islam,,98798,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.03,3,Tambang,religion,kristen,,3078,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.03,3,Tambang,religion,katolik,,357,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.03,3,Tambang,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,115,,Hindu
+14.01.03,3,Tambang,religion,buddha,,15,jiwa,2025,registration,total_population,4.3.1,115,,Budha
+14.01.03,3,Tambang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+14.01.06,3,Siak Hulu,religion,islam,,83802,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.06,3,Siak Hulu,religion,kristen,,18134,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.06,3,Siak Hulu,religion,katolik,,1863,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.06,3,Siak Hulu,religion,hindu,,11,jiwa,2025,registration,total_population,4.3.1,115,,Hindu
+14.01.06,3,Siak Hulu,religion,buddha,,160,jiwa,2025,registration,total_population,4.3.1,115,,Budha
+14.01.06,3,Siak Hulu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Lainnya
+14.01.16,3,Perhentian Raja,religion,islam,,18664,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01.16,3,Perhentian Raja,religion,kristen,,3099,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01.16,3,Perhentian Raja,religion,katolik,,273,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01.16,3,Perhentian Raja,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,115,nil,Hindu
+14.01.16,3,Perhentian Raja,religion,buddha,,8,jiwa,2025,registration,total_population,4.3.1,115,,Budha
+14.01.16,3,Perhentian Raja,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,115,,Lainnya
+14.01,2,Kabupaten Kampar,religion,islam,,821100,jiwa,2025,registration,total_population,4.3.1,115,,Islam
+14.01,2,Kabupaten Kampar,religion,kristen,,91687,jiwa,2025,registration,total_population,4.3.1,115,,Protestan
+14.01,2,Kabupaten Kampar,religion,katolik,,9649,jiwa,2025,registration,total_population,4.3.1,115,,Katolik
+14.01,2,Kabupaten Kampar,religion,hindu,,56,jiwa,2025,registration,total_population,4.3.1,115,,Hindu
+14.01,2,Kabupaten Kampar,religion,buddha,,317,jiwa,2025,registration,total_population,4.3.1,115,,Budha
+14.01,2,Kabupaten Kampar,religion,lainnya,,37,jiwa,2025,registration,total_population,4.3.1,115,,Lainnya

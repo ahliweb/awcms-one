@@ -1,0 +1,59 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.01.16.2001,4,Situ Udik,sex,perempuan,,8149,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.16.2001,4,Situ Udik,total,total,,17127,jiwa,2025,registration,total_population,3.1,34,,
+32.01.16.2002,4,Situ Ilir,sex,perempuan,,5602,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.16.2002,4,Situ Ilir,total,total,,11795,jiwa,2025,registration,total_population,3.1,34,,
+32.01.16.2005,4,Ciaruteun Udik,sex,perempuan,,5147,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.16.2005,4,Ciaruteun Udik,total,total,,10558,jiwa,2025,registration,total_population,3.1,34,,
+32.01.16.2013,4,Sukamaju,sex,perempuan,,4414,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.16.2013,4,Sukamaju,total,total,,9198,jiwa,2025,registration,total_population,3.1,34,,
+32.01.16.2003,4,Cemplang,sex,perempuan,,5559,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.16.2003,4,Cemplang,total,total,,11457,jiwa,2025,registration,total_population,3.1,34,,
+32.01.16.2014,4,Galuga,sex,perempuan,,5075,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.16.2014,4,Galuga,total,total,,10353,jiwa,2025,registration,total_population,3.1,34,,
+32.01.16.2009,4,Dukuh,sex,perempuan,,3898,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.16.2009,4,Dukuh,total,total,,8092,jiwa,2025,registration,total_population,3.1,34,,
+32.01.16.2015,4,Girimulya,sex,perempuan,,4473,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.16.2015,4,Girimulya,total,total,,9269,jiwa,2025,registration,total_population,3.1,34,,
+32.01.16.2006,4,Leuweung Kolot,sex,perempuan,,4878,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.16.2006,4,Leuweung Kolot,total,total,,10131,jiwa,2025,registration,total_population,3.1,34,,
+32.01.16.2011,4,Ciaruteun Ilir,sex,perempuan,,3522,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.16.2011,4,Ciaruteun Ilir,total,total,,7297,jiwa,2025,registration,total_population,3.1,34,,
+32.01.16.2010,4,Cijujung,sex,perempuan,,5263,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.16.2010,4,Cijujung,total,total,,10879,jiwa,2025,registration,total_population,3.1,34,,
+32.01.16,3,Cibungbulang,sex,perempuan,,78300,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.16,3,Cibungbulang,total,total,,162371,jiwa,2025,registration,total_population,3.1,34,,
+32.01.16,3,Cibungbulang,age_group,0-4,perempuan,5673,jiwa,2025,registration,total_population,3.2,36,,0 – 4
+32.01.16,3,Cibungbulang,age_group,0-4,,11997,jiwa,2025,registration,total_population,3.2,36,,0 – 4
+32.01.16,3,Cibungbulang,age_group,5-9,perempuan,7199,jiwa,2025,registration,total_population,3.2,36,,5 – 9
+32.01.16,3,Cibungbulang,age_group,5-9,,15210,jiwa,2025,registration,total_population,3.2,36,,5 – 9
+32.01.16,3,Cibungbulang,age_group,10-14,perempuan,7310,jiwa,2025,registration,total_population,3.2,36,,10 – 14
+32.01.16,3,Cibungbulang,age_group,10-14,,15209,jiwa,2025,registration,total_population,3.2,36,,10 – 14
+32.01.16,3,Cibungbulang,age_group,15-19,perempuan,6529,jiwa,2025,registration,total_population,3.2,36,,15 – 19
+32.01.16,3,Cibungbulang,age_group,15-19,,13360,jiwa,2025,registration,total_population,3.2,36,,15 – 19
+32.01.16,3,Cibungbulang,age_group,20-24,perempuan,6775,jiwa,2025,registration,total_population,3.2,36,,20 – 24
+32.01.16,3,Cibungbulang,age_group,20-24,,13803,jiwa,2025,registration,total_population,3.2,36,,20 – 24
+32.01.16,3,Cibungbulang,age_group,25-29,perempuan,6535,jiwa,2025,registration,total_population,3.2,36,,25 – 29
+32.01.16,3,Cibungbulang,age_group,25-29,,13820,jiwa,2025,registration,total_population,3.2,36,,25 – 29
+32.01.16,3,Cibungbulang,age_group,30-34,perempuan,6103,jiwa,2025,registration,total_population,3.2,36,,30 – 34
+32.01.16,3,Cibungbulang,age_group,30-34,,12741,jiwa,2025,registration,total_population,3.2,36,,30 – 34
+32.01.16,3,Cibungbulang,age_group,35-39,perempuan,5979,jiwa,2025,registration,total_population,3.2,36,,35 – 39
+32.01.16,3,Cibungbulang,age_group,35-39,,12663,jiwa,2025,registration,total_population,3.2,36,,35 – 39
+32.01.16,3,Cibungbulang,age_group,40-44,perempuan,5818,jiwa,2025,registration,total_population,3.2,36,,40 – 44
+32.01.16,3,Cibungbulang,age_group,40-44,,12407,jiwa,2025,registration,total_population,3.2,36,,40 – 44
+32.01.16,3,Cibungbulang,age_group,45-49,perempuan,4994,jiwa,2025,registration,total_population,3.2,36,,45 – 49
+32.01.16,3,Cibungbulang,age_group,45-49,,10548,jiwa,2025,registration,total_population,3.2,36,,45 – 49
+32.01.16,3,Cibungbulang,age_group,50-54,perempuan,4442,jiwa,2025,registration,total_population,3.2,36,,50 – 54
+32.01.16,3,Cibungbulang,age_group,50-54,,9141,jiwa,2025,registration,total_population,3.2,36,,50 – 54
+32.01.16,3,Cibungbulang,age_group,55-59,perempuan,3565,jiwa,2025,registration,total_population,3.2,36,,55 – 59
+32.01.16,3,Cibungbulang,age_group,55-59,,7214,jiwa,2025,registration,total_population,3.2,36,,55 – 59
+32.01.16,3,Cibungbulang,age_group,60-64,perempuan,2770,jiwa,2025,registration,total_population,3.2,36,,60 – 64
+32.01.16,3,Cibungbulang,age_group,60-64,,5482,jiwa,2025,registration,total_population,3.2,36,,60 – 64
+32.01.16,3,Cibungbulang,age_group,65-69,perempuan,2058,jiwa,2025,registration,total_population,3.2,36,,65 – 69
+32.01.16,3,Cibungbulang,age_group,65-69,,3936,jiwa,2025,registration,total_population,3.2,36,,65 – 69
+32.01.16,3,Cibungbulang,age_group,70-74,perempuan,1092,jiwa,2025,registration,total_population,3.2,36,,70 – 74
+32.01.16,3,Cibungbulang,age_group,70-74,,2279,jiwa,2025,registration,total_population,3.2,36,,70 – 74
+32.01.16,3,Cibungbulang,age_group,75+,perempuan,1458,jiwa,2025,registration,total_population,3.2,36,,75+
+32.01.16,3,Cibungbulang,age_group,75+,,2561,jiwa,2025,registration,total_population,3.2,36,,75+
+32.01.16,3,Cibungbulang,sex,perempuan,,78300,jiwa,2025,registration,total_population,3.2,36,,Perempuan
+32.01.16,3,Cibungbulang,total,total,,162371,jiwa,2025,registration,total_population,3.2,36,,

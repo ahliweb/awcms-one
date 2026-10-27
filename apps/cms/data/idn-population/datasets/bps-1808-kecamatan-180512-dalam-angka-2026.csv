@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.05.12.2009,4,Bumi Ratu,sex,laki_laki,,1099,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.12.2009,4,Bumi Ratu,sex,perempuan,,1047,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.12.2009,4,Bumi Ratu,total,total,,2146,jiwa,2025,registration,total_population,3.1,32,,
+18.05.12.2005,4,Hargo Rejo,sex,laki_laki,,1457,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.12.2005,4,Hargo Rejo,sex,perempuan,,1383,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.12.2005,4,Hargo Rejo,total,total,,2840,jiwa,2025,registration,total_population,3.1,32,,
+18.05.12.2003,4,Yudha Karya Jitu,sex,laki_laki,,1221,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.12.2003,4,Yudha Karya Jitu,sex,perempuan,,1169,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.12.2003,4,Yudha Karya Jitu,total,total,,2390,jiwa,2025,registration,total_population,3.1,32,,
+18.05.12.2008,4,Karya Jitu Mukti,sex,laki_laki,,1272,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.12.2008,4,Karya Jitu Mukti,sex,perempuan,,1180,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.12.2008,4,Karya Jitu Mukti,total,total,,2452,jiwa,2025,registration,total_population,3.1,32,,
+18.05.12.2013,4,Hargo Mulyo,sex,laki_laki,,1104,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.12.2013,4,Hargo Mulyo,sex,perempuan,,1038,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.12.2013,4,Hargo Mulyo,total,total,,2142,jiwa,2025,registration,total_population,3.1,32,,
+18.05.12.2006,4,Wono Agung,sex,laki_laki,,2304,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.12.2006,4,Wono Agung,sex,perempuan,,2239,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.12.2006,4,Wono Agung,total,total,,4543,jiwa,2025,registration,total_population,3.1,32,,
+18.05.12.2010,4,Medasari,sex,laki_laki,,2724,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.12.2010,4,Medasari,sex,perempuan,,2559,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.12.2010,4,Medasari,total,total,,5283,jiwa,2025,registration,total_population,3.1,32,,
+18.05.12.2004,4,Gedung Karya Jitu,sex,laki_laki,,5409,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.12.2004,4,Gedung Karya Jitu,sex,perempuan,,5156,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.12.2004,4,Gedung Karya Jitu,total,total,,10565,jiwa,2025,registration,total_population,3.1,32,,
+18.05.12.2014,4,Karya Cipta Abadi,sex,laki_laki,,164,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.12.2014,4,Karya Cipta Abadi,sex,perempuan,,144,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.12.2014,4,Karya Cipta Abadi,total,total,,308,jiwa,2025,registration,total_population,3.1,32,,
+18.05.12,3,Rawajitu Selatan,sex,laki_laki,,16754,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.12,3,Rawajitu Selatan,sex,perempuan,,15915,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.12,3,Rawajitu Selatan,total,total,,32669,jiwa,2025,registration,total_population,3.1,32,,
+18.05.12,3,Rawa Jitu Selatan,age_group,0-4,laki_laki,919,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.12,3,Rawa Jitu Selatan,age_group,0-4,perempuan,841,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.12,3,Rawa Jitu Selatan,age_group,0-4,,1760,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.12,3,Rawa Jitu Selatan,age_group,5-9,laki_laki,1405,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.12,3,Rawa Jitu Selatan,age_group,5-9,perempuan,1325,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.12,3,Rawa Jitu Selatan,age_group,5-9,,2730,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.12,3,Rawa Jitu Selatan,age_group,10-14,laki_laki,1496,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.12,3,Rawa Jitu Selatan,age_group,10-14,perempuan,1520,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.12,3,Rawa Jitu Selatan,age_group,10-14,,3016,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.12,3,Rawa Jitu Selatan,age_group,15-19,laki_laki,1436,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.12,3,Rawa Jitu Selatan,age_group,15-19,perempuan,1369,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.12,3,Rawa Jitu Selatan,age_group,15-19,,2805,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.12,3,Rawa Jitu Selatan,age_group,20-24,laki_laki,1229,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.12,3,Rawa Jitu Selatan,age_group,20-24,perempuan,1191,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.12,3,Rawa Jitu Selatan,age_group,20-24,,2420,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.12,3,Rawa Jitu Selatan,age_group,25-29,laki_laki,1290,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.12,3,Rawa Jitu Selatan,age_group,25-29,perempuan,1244,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.12,3,Rawa Jitu Selatan,age_group,25-29,,2534,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.12,3,Rawa Jitu Selatan,age_group,30-34,laki_laki,1295,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.12,3,Rawa Jitu Selatan,age_group,30-34,perempuan,1196,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.12,3,Rawa Jitu Selatan,age_group,30-34,,2491,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.12,3,Rawa Jitu Selatan,age_group,35-39,laki_laki,1177,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.12,3,Rawa Jitu Selatan,age_group,35-39,perempuan,1228,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.12,3,Rawa Jitu Selatan,age_group,35-39,,2405,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.12,3,Rawa Jitu Selatan,age_group,40-44,laki_laki,1266,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.12,3,Rawa Jitu Selatan,age_group,40-44,perempuan,1264,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.12,3,Rawa Jitu Selatan,age_group,40-44,,2530,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.12,3,Rawa Jitu Selatan,age_group,45-49,laki_laki,1242,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.12,3,Rawa Jitu Selatan,age_group,45-49,perempuan,1141,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.12,3,Rawa Jitu Selatan,age_group,45-49,,2383,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.12,3,Rawa Jitu Selatan,age_group,50-54,laki_laki,1035,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.12,3,Rawa Jitu Selatan,age_group,50-54,perempuan,1081,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.12,3,Rawa Jitu Selatan,age_group,50-54,,2116,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.12,3,Rawa Jitu Selatan,age_group,55-59,laki_laki,862,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.12,3,Rawa Jitu Selatan,age_group,55-59,perempuan,779,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.12,3,Rawa Jitu Selatan,age_group,55-59,,1641,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.12,3,Rawa Jitu Selatan,age_group,60-64,laki_laki,712,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.12,3,Rawa Jitu Selatan,age_group,60-64,perempuan,619,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.12,3,Rawa Jitu Selatan,age_group,60-64,,1331,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.12,3,Rawa Jitu Selatan,age_group,65-69,laki_laki,471,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.12,3,Rawa Jitu Selatan,age_group,65-69,perempuan,446,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.12,3,Rawa Jitu Selatan,age_group,65-69,,917,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.12,3,Rawa Jitu Selatan,age_group,70-74,laki_laki,367,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.12,3,Rawa Jitu Selatan,age_group,70-74,perempuan,253,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.12,3,Rawa Jitu Selatan,age_group,70-74,,620,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.12,3,Rawa Jitu Selatan,age_group,75+,laki_laki,552,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.12,3,Rawa Jitu Selatan,age_group,75+,perempuan,418,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.12,3,Rawa Jitu Selatan,age_group,75+,,970,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.12,3,Rawajitu Selatan,sex,laki_laki,,16754,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+18.05.12,3,Rawajitu Selatan,sex,perempuan,,15915,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+18.05.12,3,Rawajitu Selatan,total,total,,32669,jiwa,2025,registration,total_population,3.2,34,,

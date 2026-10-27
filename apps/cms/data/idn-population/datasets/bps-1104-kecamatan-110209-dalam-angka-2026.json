@@ -1,0 +1,51 @@
+{
+  "datasetCode": "bps-1104-kecamatan-110209-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.02.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bukit Tusam Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Tenggara",
+  "publisherDomain": "1104",
+  "publisherWebsite": "https://acehtenggarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Tenggara (https://acehtenggarakab.bps.go.id), publikasi \"Kecamatan Bukit Tusam Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1104031",
+  "publicationNumber": "11040.26014",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehtenggarakab.bps.go.id/id/publication/2026/09/28/255b3ffc3950650adf097dea/kecamatan-bukit-tusam-dalam-angka-2026.html",
+  "sourceFileSha256": "fc8c807f6540f4c01e8c69970ea3310334fa1ee839ccd0e93117c7761c2e2505",
+  "sourceFileBytes": 1143659,
+  "sourcePages": [24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Tenggara.",
+  "csvPath": "datasets/bps-1104-kecamatan-110209-dalam-angka-2026.csv",
+  "csvSha256": "b3f3ddea696bf99dba3623b3aa7d8ef4c40de7eab198b298dcd3ab8d5c0f73ff",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bukit Tusam, 2025 Penduduk Desa/Kelurahan Laki-Laki Perempuan Jumlah",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kuta Lengat Pagan\": unmatched ",
+    "table 3.1: row not stored: row \"Kuta Lengat Selian\": unmatched ",
+    "table 3.1: row not stored: row \"Kuta Lingga\": unmatched ",
+    "table 3.1: row not stored: row \"Lawe Dua gab\": unmatched ",
+    "table 3.1: row not stored: row \"Kuta Gekhat\": unmatched ",
+    "table 3.1: row not stored: row \"Paya Rambung\": unmatched ",
+    "table 3.1: row not stored: row \"Empat Lima\": unmatched ",
+    "table 3.1: row not stored: row \"Kuta Lengat Pagan\": unmatched ",
+    "table 3.1: row not stored: row \"Kuta Lengat Selian\": unmatched ",
+    "table 3.1: row not stored: row \"Kuta Lingga\": unmatched ",
+    "table 3.1: row not stored: row \"Lawe Dua gab\": unmatched ",
+    "table 3.1: row not stored: row \"Kuta Gekhat\": unmatched ",
+    "table 3.1: row not stored: row \"Paya Rambung\": unmatched ",
+    "table 3.1: row not stored: row \"Empat Lima\": unmatched "
+  ]
+}

@@ -1,0 +1,130 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.79.01,3,Banjar,total,total,,60889,jiwa,2025,projection,total_population,3.1.1,55,,
+32.79.03,3,Purwaharja,total,total,,25849,jiwa,2025,projection,total_population,3.1.1,55,,
+32.79.02,3,Pataruman,total,total,,64172,jiwa,2025,projection,total_population,3.1.1,55,,
+32.79.04,3,Langensari,total,total,,61054,jiwa,2025,projection,total_population,3.1.1,55,,
+32.79,2,Kota Banjar,age_group,0-4,laki_laki,8670,jiwa,2025,projection,total_population,3.1.2,58,,0–4
+32.79,2,Kota Banjar,age_group,0-4,perempuan,8322,jiwa,2025,projection,total_population,3.1.2,58,,0–4
+32.79,2,Kota Banjar,age_group,0-4,,16992,jiwa,2025,projection,total_population,3.1.2,58,,0–4
+32.79,2,Kota Banjar,age_group,5-9,laki_laki,7959,jiwa,2025,projection,total_population,3.1.2,58,,5–9
+32.79,2,Kota Banjar,age_group,5-9,perempuan,7760,jiwa,2025,projection,total_population,3.1.2,58,,5–9
+32.79,2,Kota Banjar,age_group,5-9,,15719,jiwa,2025,projection,total_population,3.1.2,58,,5–9
+32.79,2,Kota Banjar,age_group,10-14,laki_laki,7418,jiwa,2025,projection,total_population,3.1.2,58,,10–14
+32.79,2,Kota Banjar,age_group,10-14,perempuan,6946,jiwa,2025,projection,total_population,3.1.2,58,,10–14
+32.79,2,Kota Banjar,age_group,10-14,,14364,jiwa,2025,projection,total_population,3.1.2,58,,10–14
+32.79,2,Kota Banjar,age_group,15-19,laki_laki,8061,jiwa,2025,projection,total_population,3.1.2,58,,15–19
+32.79,2,Kota Banjar,age_group,15-19,perempuan,7510,jiwa,2025,projection,total_population,3.1.2,58,,15–19
+32.79,2,Kota Banjar,age_group,15-19,,15571,jiwa,2025,projection,total_population,3.1.2,58,,15–19
+32.79,2,Kota Banjar,age_group,20-24,laki_laki,8677,jiwa,2025,projection,total_population,3.1.2,58,,20–24
+32.79,2,Kota Banjar,age_group,20-24,perempuan,8171,jiwa,2025,projection,total_population,3.1.2,58,,20–24
+32.79,2,Kota Banjar,age_group,20-24,,16848,jiwa,2025,projection,total_population,3.1.2,58,,20–24
+32.79,2,Kota Banjar,age_group,25-29,laki_laki,8858,jiwa,2025,projection,total_population,3.1.2,58,,25–29
+32.79,2,Kota Banjar,age_group,25-29,perempuan,8330,jiwa,2025,projection,total_population,3.1.2,58,,25–29
+32.79,2,Kota Banjar,age_group,25-29,,17188,jiwa,2025,projection,total_population,3.1.2,58,,25–29
+32.79,2,Kota Banjar,age_group,30-34,laki_laki,8787,jiwa,2025,projection,total_population,3.1.2,58,,30–34
+32.79,2,Kota Banjar,age_group,30-34,perempuan,8140,jiwa,2025,projection,total_population,3.1.2,58,,30–34
+32.79,2,Kota Banjar,age_group,30-34,,16927,jiwa,2025,projection,total_population,3.1.2,58,,30–34
+32.79,2,Kota Banjar,age_group,35-39,laki_laki,7834,jiwa,2025,projection,total_population,3.1.2,58,,35–39
+32.79,2,Kota Banjar,age_group,35-39,perempuan,7554,jiwa,2025,projection,total_population,3.1.2,58,,35–39
+32.79,2,Kota Banjar,age_group,35-39,,15388,jiwa,2025,projection,total_population,3.1.2,58,,35–39
+32.79,2,Kota Banjar,age_group,40-44,laki_laki,7594,jiwa,2025,projection,total_population,3.1.2,58,,40–44
+32.79,2,Kota Banjar,age_group,40-44,perempuan,7161,jiwa,2025,projection,total_population,3.1.2,58,,40–44
+32.79,2,Kota Banjar,age_group,40-44,,14755,jiwa,2025,projection,total_population,3.1.2,58,,40–44
+32.79,2,Kota Banjar,age_group,45-49,laki_laki,6575,jiwa,2025,projection,total_population,3.1.2,58,,45–49
+32.79,2,Kota Banjar,age_group,45-49,perempuan,6498,jiwa,2025,projection,total_population,3.1.2,58,,45–49
+32.79,2,Kota Banjar,age_group,45-49,,13073,jiwa,2025,projection,total_population,3.1.2,58,,45–49
+32.79,2,Kota Banjar,age_group,50-54,laki_laki,5840,jiwa,2025,projection,total_population,3.1.2,58,,50–54
+32.79,2,Kota Banjar,age_group,50-54,perempuan,6250,jiwa,2025,projection,total_population,3.1.2,58,,50–54
+32.79,2,Kota Banjar,age_group,50-54,,12090,jiwa,2025,projection,total_population,3.1.2,58,,50–54
+32.79,2,Kota Banjar,age_group,55-59,laki_laki,5479,jiwa,2025,projection,total_population,3.1.2,58,,55–59
+32.79,2,Kota Banjar,age_group,55-59,perempuan,6140,jiwa,2025,projection,total_population,3.1.2,58,,55–59
+32.79,2,Kota Banjar,age_group,55-59,,11619,jiwa,2025,projection,total_population,3.1.2,58,,55–59
+32.79,2,Kota Banjar,age_group,60-64,laki_laki,5154,jiwa,2025,projection,total_population,3.1.2,58,,60–64
+32.79,2,Kota Banjar,age_group,60-64,perempuan,5850,jiwa,2025,projection,total_population,3.1.2,58,,60–64
+32.79,2,Kota Banjar,age_group,60-64,,11004,jiwa,2025,projection,total_population,3.1.2,58,,60–64
+32.79,2,Kota Banjar,age_group,65-69,laki_laki,4087,jiwa,2025,projection,total_population,3.1.2,58,,65–69
+32.79,2,Kota Banjar,age_group,65-69,perempuan,4473,jiwa,2025,projection,total_population,3.1.2,58,,65–69
+32.79,2,Kota Banjar,age_group,65-69,,8560,jiwa,2025,projection,total_population,3.1.2,58,,65–69
+32.79,2,Kota Banjar,age_group,70-74,laki_laki,3003,jiwa,2025,projection,total_population,3.1.2,58,,70–74
+32.79,2,Kota Banjar,age_group,70-74,perempuan,3288,jiwa,2025,projection,total_population,3.1.2,58,,70–74
+32.79,2,Kota Banjar,age_group,70-74,,6291,jiwa,2025,projection,total_population,3.1.2,58,,70–74
+32.79,2,Kota Banjar,age_group,75+,laki_laki,2365,jiwa,2025,projection,total_population,3.1.2,58,,75+
+32.79,2,Kota Banjar,age_group,75+,perempuan,3210,jiwa,2025,projection,total_population,3.1.2,58,,75+
+32.79,2,Kota Banjar,age_group,75+,,5575,jiwa,2025,projection,total_population,3.1.2,58,,75+
+32.79,2,Kota Banjar,sex,laki_laki,,106361,jiwa,2025,projection,total_population,3.1.2,58,,Laki-Laki
+32.79,2,Kota Banjar,sex,perempuan,,105603,jiwa,2025,projection,total_population,3.1.2,58,,Perempuan
+32.79,2,Kota Banjar,total,total,,211964,jiwa,2025,projection,total_population,3.1.2,58,,
+32.79.01,3,Banjar,religion,islam,,60326,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+32.79.01,3,Banjar,religion,kristen,,448,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+32.79.01,3,Banjar,religion,katolik,,99,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+32.79.01,3,Banjar,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,134,,Hindu
+32.79.01,3,Banjar,religion,buddha,,10,jiwa,2025,registration,total_population,4.3.1,134,,Budha
+32.79.01,3,Banjar,religion,khonghucu,,31,jiwa,2025,registration,total_population,4.3.1,134,,Khonghucu
+32.79.01,3,Banjar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+32.79.03,3,Purwaharja,religion,islam,,24999,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+32.79.03,3,Purwaharja,religion,kristen,,153,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+32.79.03,3,Purwaharja,religion,katolik,,33,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+32.79.03,3,Purwaharja,religion,hindu,,8,jiwa,2025,registration,total_population,4.3.1,134,,Hindu
+32.79.03,3,Purwaharja,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,134,,Budha
+32.79.03,3,Purwaharja,religion,khonghucu,,14,jiwa,2025,registration,total_population,4.3.1,134,,Khonghucu
+32.79.03,3,Purwaharja,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+32.79.02,3,Pataruman,religion,islam,,62146,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+32.79.02,3,Pataruman,religion,kristen,,745,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+32.79.02,3,Pataruman,religion,katolik,,126,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+32.79.02,3,Pataruman,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,134,,Hindu
+32.79.02,3,Pataruman,religion,buddha,,9,jiwa,2025,registration,total_population,4.3.1,134,,Budha
+32.79.02,3,Pataruman,religion,khonghucu,,41,jiwa,2025,registration,total_population,4.3.1,134,,Khonghucu
+32.79.02,3,Pataruman,religion,lainnya,,6,jiwa,2025,registration,total_population,4.3.1,134,,Lainnya
+32.79.04,3,Langensari,religion,islam,,60428,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+32.79.04,3,Langensari,religion,kristen,,263,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+32.79.04,3,Langensari,religion,katolik,,20,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+32.79.04,3,Langensari,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+32.79.04,3,Langensari,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,134,,Budha
+32.79.04,3,Langensari,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Khonghucu
+32.79.04,3,Langensari,religion,lainnya,,10,jiwa,2025,registration,total_population,4.3.1,134,,Lainnya
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/padi_padian,,105276,rupiah,2024,survey_estimate,per_capita,10.1,245,,Padi-padian
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/padi_padian,,89474,rupiah,2025,survey_estimate,per_capita,10.1,245,,Padi-padian
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/umbi_umbian,,11056,rupiah,2024,survey_estimate,per_capita,10.1,245,,Umbi-umbian
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/umbi_umbian,,12333,rupiah,2025,survey_estimate,per_capita,10.1,245,,Umbi-umbian
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,36213,rupiah,2024,survey_estimate,per_capita,10.1,245,,Ikan/udang/cumi/kerang
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,39023,rupiah,2025,survey_estimate,per_capita,10.1,245,,Ikan/udang/cumi/kerang
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/daging,,35667,rupiah,2024,survey_estimate,per_capita,10.1,245,,Daging
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/daging,,33717,rupiah,2025,survey_estimate,per_capita,10.1,245,,Daging
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/telur_dan_susu,,39127,rupiah,2024,survey_estimate,per_capita,10.1,245,,Telur dan susu
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/telur_dan_susu,,37323,rupiah,2025,survey_estimate,per_capita,10.1,245,,Telur dan susu
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/sayur_sayuran,,49344,rupiah,2024,survey_estimate,per_capita,10.1,245,,Sayur-sayuran
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/sayur_sayuran,,59071,rupiah,2025,survey_estimate,per_capita,10.1,245,,Sayur-sayuran
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/kacang_kacangan,,14596,rupiah,2024,survey_estimate,per_capita,10.1,245,,Kacang-kacangan
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/kacang_kacangan,,16103,rupiah,2025,survey_estimate,per_capita,10.1,245,,Kacang-kacangan
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/buah_buahan,,55174,rupiah,2024,survey_estimate,per_capita,10.1,245,,Buah-buahan
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/buah_buahan,,53530,rupiah,2025,survey_estimate,per_capita,10.1,245,,Buah-buahan
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/minyak_dan_kelapa,,13594,rupiah,2024,survey_estimate,per_capita,10.1,245,,Minyak dan kelapa
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/minyak_dan_kelapa,,15384,rupiah,2025,survey_estimate,per_capita,10.1,245,,Minyak dan kelapa
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/bahan_minuman,,22085,rupiah,2024,survey_estimate,per_capita,10.1,245,,Bahan minuman
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/bahan_minuman,,24134,rupiah,2025,survey_estimate,per_capita,10.1,245,,Bahan minuman
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/bumbu_bumbuan,,13235,rupiah,2024,survey_estimate,per_capita,10.1,245,,Bumbu-bumbuan
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/bumbu_bumbuan,,13537,rupiah,2025,survey_estimate,per_capita,10.1,245,,Bumbu-bumbuan
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/konsumsi_lainnya,,14360,rupiah,2024,survey_estimate,per_capita,10.1,245,,Konsumsi lainnya
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/konsumsi_lainnya,,13699,rupiah,2025,survey_estimate,per_capita,10.1,245,,Konsumsi lainnya
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,262663,rupiah,2024,survey_estimate,per_capita,10.1,245,,Makanan dan minuman jadi
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,267124,rupiah,2025,survey_estimate,per_capita,10.1,245,,Makanan dan minuman jadi
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/rokok,,91394,rupiah,2024,survey_estimate,per_capita,10.1,245,,Rokok
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/rokok,,90875,rupiah,2025,survey_estimate,per_capita,10.1,245,,Rokok
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/jumlah_makanan,,763786,rupiah,2024,survey_estimate,per_capita,10.1,245,,Jumlah makanan
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/jumlah_makanan,,765327,rupiah,2025,survey_estimate,per_capita,10.1,245,,Jumlah makanan
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,315585,rupiah,2024,survey_estimate,per_capita,10.1,245,,Perumahan dan fasilitas rumah tangga
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,288948,rupiah,2025,survey_estimate,per_capita,10.1,245,,Perumahan dan fasilitas rumah tangga
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,135327,rupiah,2024,survey_estimate,per_capita,10.1,245,,Aneka barang dan jasa
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,138699,rupiah,2025,survey_estimate,per_capita,10.1,245,,Aneka barang dan jasa
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,33953,rupiah,2024,survey_estimate,per_capita,10.1,245,,"Pakaian, alas kaki, dan tutup kepala"
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,33474,rupiah,2025,survey_estimate,per_capita,10.1,245,,"Pakaian, alas kaki, dan tutup kepala"
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/barang_tahan_lama,,63771,rupiah,2024,survey_estimate,per_capita,10.1,245,,Barang tahan lama
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/barang_tahan_lama,,45031,rupiah,2025,survey_estimate,per_capita,10.1,245,,Barang tahan lama
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,58675,rupiah,2024,survey_estimate,per_capita,10.1,245,,"Pajak, pungutan, dan asuransi"
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,55382,rupiah,2025,survey_estimate,per_capita,10.1,245,,"Pajak, pungutan, dan asuransi"
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,34872,rupiah,2024,survey_estimate,per_capita,10.1,245,,Keperluan pesta dan upacara/kenduri
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,13258,rupiah,2025,survey_estimate,per_capita,10.1,245,,Keperluan pesta dan upacara/kenduri
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,642182,rupiah,2024,survey_estimate,per_capita,10.1,245,,Jumlah bukan makanan
+32.79,2,Kota Banjar,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,574791,rupiah,2025,survey_estimate,per_capita,10.1,245,,Jumlah bukan makanan
+32.79,2,Kota Banjar,expenditure,total,,1405968,rupiah,2024,survey_estimate,per_capita,10.1,245,,
+32.79,2,Kota Banjar,expenditure,total,,1340118,rupiah,2025,survey_estimate,per_capita,10.1,245,,

@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3171-kecamatan-317403-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "31.74.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mampang Prapatan Dalam Angka 2026",
+  "publisherName": "BPS Kota Jakarta Selatan",
+  "publisherDomain": "3171",
+  "publisherWebsite": "https://jakselkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jakarta Selatan (https://jakselkota.bps.go.id), publikasi \"Kecamatan Mampang Prapatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "31710.26011",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jakselkota.bps.go.id/id/publication/2026/09/28/212686dfe74d0cf287d0c6c8/kecamatan-mampang-prapatan-dalam-angka-2026.html",
+  "sourceFileSha256": "ddbc461955e7fae10d684d0ade42a6a2b2df2d46be8c239cc1d24d31fd0aab18",
+  "sourceFileBytes": 20885660,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Jakarta Selatan.",
+  "csvPath": "datasets/bps-3171-kecamatan-317403-dalam-angka-2026.csv",
+  "csvSha256": "445610fd4ba8aefe00117ba0666ef37a8f2533b38336c927478874169fee323c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Mampang Prapatan, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mampang Prapatan, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: the rows of region 31.74.03.1001 are not stored: sex split vs total: parts sum 21611.0000 != 21581.0000 (diff 30.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 31.74.03 are not stored: age_group vs total: parts sum 126537.0000 != 128758.0000 (diff 2221.0000); the source itself is inconsistent"
+  ]
+}

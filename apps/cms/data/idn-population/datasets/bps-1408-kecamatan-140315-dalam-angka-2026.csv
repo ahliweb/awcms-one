@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.03.15.2006,4,Melibur,sex,laki_laki,,1086,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+14.03.15.2006,4,Melibur,sex,perempuan,,1017,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Fem
+14.03.15.2006,4,Melibur,total,total,,2103,jiwa,2025,registration,total_population,1.3,1,,
+14.03.15.2004,4,Beringin,sex,laki_laki,,1579,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+14.03.15.2004,4,Beringin,sex,perempuan,,1501,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Fem
+14.03.15.2004,4,Beringin,total,total,,3080,jiwa,2025,registration,total_population,1.3,1,,
+14.03.15.2003,4,Kualo Penaso,sex,laki_laki,,1117,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+14.03.15.2003,4,Kualo Penaso,sex,perempuan,,1036,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Fem
+14.03.15.2003,4,Kualo Penaso,total,total,,2153,jiwa,2025,registration,total_population,1.3,1,,
+14.03.15.2005,4,Koto Pait Beringin,sex,laki_laki,,1399,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+14.03.15.2005,4,Koto Pait Beringin,sex,perempuan,,1276,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Fem
+14.03.15.2005,4,Koto Pait Beringin,total,total,,2675,jiwa,2025,registration,total_population,1.3,1,,
+14.03.15.2009,4,Serai Wangi,sex,laki_laki,,1481,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+14.03.15.2009,4,Serai Wangi,sex,perempuan,,1450,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Fem
+14.03.15.2009,4,Serai Wangi,total,total,,2931,jiwa,2025,registration,total_population,1.3,1,,
+14.03.15.2008,4,Tasik Tebing Serai,sex,laki_laki,,1320,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+14.03.15.2008,4,Tasik Tebing Serai,sex,perempuan,,1309,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Fem
+14.03.15.2008,4,Tasik Tebing Serai,total,total,,2629,jiwa,2025,registration,total_population,1.3,1,,
+14.03.15.2007,4,Tasik Serai Timur,sex,laki_laki,,2195,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+14.03.15.2007,4,Tasik Serai Timur,sex,perempuan,,1989,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Fem
+14.03.15.2007,4,Tasik Serai Timur,total,total,,4184,jiwa,2025,registration,total_population,1.3,1,,
+14.03.15.2001,4,Tasik Serai,sex,laki_laki,,4414,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+14.03.15.2001,4,Tasik Serai,sex,perempuan,,4115,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Fem
+14.03.15.2001,4,Tasik Serai,total,total,,8529,jiwa,2025,registration,total_population,1.3,1,,
+14.03.15.2002,4,Tasik Serai Barat,sex,laki_laki,,3688,jiwa,2025,registration,total_population,1.3,1,,Laki-Laki/Male
+14.03.15.2002,4,Tasik Serai Barat,sex,perempuan,,3560,jiwa,2025,registration,total_population,1.3,1,,Perempuan/Fem
+14.03.15.2002,4,Tasik Serai Barat,total,total,,7248,jiwa,2025,registration,total_population,1.3,1,,

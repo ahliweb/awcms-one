@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.08.15.2003,4,Rambang Jaya,sex,laki_laki,,331,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.15.2003,4,Rambang Jaya,sex,perempuan,,324,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.15.2003,4,Rambang Jaya,total,total,,655,jiwa,2025,registration,total_population,3.1,35,,
+18.08.15.2002,4,Gistang,sex,laki_laki,,1995,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.15.2002,4,Gistang,sex,perempuan,,1978,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.15.2002,4,Gistang,total,total,,3973,jiwa,2025,registration,total_population,3.1,35,,
+18.08.15.2001,4,Negeri Batin,sex,laki_laki,,3055,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.15.2001,4,Negeri Batin,sex,perempuan,,2865,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.15.2001,4,Negeri Batin,total,total,,5920,jiwa,2025,registration,total_population,3.1,35,,
+18.08.15.2012,4,Negeri Baru,sex,laki_laki,,3467,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.15.2012,4,Negeri Baru,sex,perempuan,,3328,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.15.2012,4,Negeri Baru,total,total,,6795,jiwa,2025,registration,total_population,3.1,35,,
+18.08.15.2009,4,Bumi Ratu,sex,laki_laki,,1357,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.15.2009,4,Bumi Ratu,sex,perempuan,,1232,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.15.2009,4,Bumi Ratu,total,total,,2589,jiwa,2025,registration,total_population,3.1,35,,
+18.08.15.2010,4,Sriwijaya,sex,laki_laki,,866,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.15.2010,4,Sriwijaya,sex,perempuan,,869,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.15.2010,4,Sriwijaya,total,total,,1735,jiwa,2025,registration,total_population,3.1,35,,
+18.08.15.2008,4,Sidoarjo,sex,laki_laki,,1397,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.15.2008,4,Sidoarjo,sex,perempuan,,1297,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.15.2008,4,Sidoarjo,total,total,,2694,jiwa,2025,registration,total_population,3.1,35,,
+18.08.15.2007,4,Gedung Batin,sex,laki_laki,,779,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.15.2007,4,Gedung Batin,sex,perempuan,,721,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.15.2007,4,Gedung Batin,total,total,,1500,jiwa,2025,registration,total_population,3.1,35,,
+18.08.15.2004,4,Panca Negeri,sex,laki_laki,,1281,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.15.2004,4,Panca Negeri,sex,perempuan,,1197,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.15.2004,4,Panca Negeri,total,total,,2478,jiwa,2025,registration,total_population,3.1,35,,
+18.08.15.2006,4,Gedung Riang,sex,laki_laki,,525,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.15.2006,4,Gedung Riang,sex,perempuan,,485,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.15.2006,4,Gedung Riang,total,total,,1010,jiwa,2025,registration,total_population,3.1,35,,
+18.08.15.2013,4,Ojolali,sex,laki_laki,,585,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.15.2013,4,Ojolali,sex,perempuan,,556,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.15.2013,4,Ojolali,total,total,,1141,jiwa,2025,registration,total_population,3.1,35,,
+18.08.15,3,Umpu Semenguk,sex,laki_laki,,17740,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.15,3,Umpu Semenguk,sex,perempuan,,16913,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.15,3,Umpu Semenguk,total,total,,34653,jiwa,2025,registration,total_population,3.1,35,,
+18.08.15,3,Umpu Semenguk,age_group,0-4,laki_laki,1270,jiwa,2025,registration,total_population,3.2,37,,0-4
+18.08.15,3,Umpu Semenguk,age_group,0-4,perempuan,1196,jiwa,2025,registration,total_population,3.2,37,,0-4
+18.08.15,3,Umpu Semenguk,age_group,0-4,,2466,jiwa,2025,registration,total_population,3.2,37,,0-4
+18.08.15,3,Umpu Semenguk,age_group,5-9,laki_laki,1688,jiwa,2025,registration,total_population,3.2,37,,5-9
+18.08.15,3,Umpu Semenguk,age_group,5-9,perempuan,1553,jiwa,2025,registration,total_population,3.2,37,,5-9
+18.08.15,3,Umpu Semenguk,age_group,5-9,,3241,jiwa,2025,registration,total_population,3.2,37,,5-9
+18.08.15,3,Umpu Semenguk,age_group,10-14,laki_laki,1705,jiwa,2025,registration,total_population,3.2,37,,10-14
+18.08.15,3,Umpu Semenguk,age_group,10-14,perempuan,1545,jiwa,2025,registration,total_population,3.2,37,,10-14
+18.08.15,3,Umpu Semenguk,age_group,10-14,,3250,jiwa,2025,registration,total_population,3.2,37,,10-14
+18.08.15,3,Umpu Semenguk,age_group,15-19,laki_laki,1544,jiwa,2025,registration,total_population,3.2,37,,15-19
+18.08.15,3,Umpu Semenguk,age_group,15-19,perempuan,1495,jiwa,2025,registration,total_population,3.2,37,,15-19
+18.08.15,3,Umpu Semenguk,age_group,15-19,,3039,jiwa,2025,registration,total_population,3.2,37,,15-19
+18.08.15,3,Umpu Semenguk,age_group,20-24,laki_laki,1298,jiwa,2025,registration,total_population,3.2,37,,20-24
+18.08.15,3,Umpu Semenguk,age_group,20-24,perempuan,1339,jiwa,2025,registration,total_population,3.2,37,,20-24
+18.08.15,3,Umpu Semenguk,age_group,20-24,,2637,jiwa,2025,registration,total_population,3.2,37,,20-24
+18.08.15,3,Umpu Semenguk,age_group,25-29,laki_laki,1386,jiwa,2025,registration,total_population,3.2,37,,25-29
+18.08.15,3,Umpu Semenguk,age_group,25-29,perempuan,1270,jiwa,2025,registration,total_population,3.2,37,,25-29
+18.08.15,3,Umpu Semenguk,age_group,25-29,,2656,jiwa,2025,registration,total_population,3.2,37,,25-29
+18.08.15,3,Umpu Semenguk,age_group,30-34,laki_laki,1343,jiwa,2025,registration,total_population,3.2,37,,30-34
+18.08.15,3,Umpu Semenguk,age_group,30-34,perempuan,1237,jiwa,2025,registration,total_population,3.2,37,,30-34
+18.08.15,3,Umpu Semenguk,age_group,30-34,,2580,jiwa,2025,registration,total_population,3.2,37,,30-34
+18.08.15,3,Umpu Semenguk,age_group,35-39,laki_laki,1402,jiwa,2025,registration,total_population,3.2,37,,35-39
+18.08.15,3,Umpu Semenguk,age_group,35-39,perempuan,1386,jiwa,2025,registration,total_population,3.2,37,,35-39
+18.08.15,3,Umpu Semenguk,age_group,35-39,,2788,jiwa,2025,registration,total_population,3.2,37,,35-39
+18.08.15,3,Umpu Semenguk,age_group,40-44,laki_laki,1363,jiwa,2025,registration,total_population,3.2,37,,40-44
+18.08.15,3,Umpu Semenguk,age_group,40-44,perempuan,1254,jiwa,2025,registration,total_population,3.2,37,,40-44
+18.08.15,3,Umpu Semenguk,age_group,40-44,,2617,jiwa,2025,registration,total_population,3.2,37,,40-44
+18.08.15,3,Umpu Semenguk,age_group,45-49,laki_laki,1156,jiwa,2025,registration,total_population,3.2,37,,45-49
+18.08.15,3,Umpu Semenguk,age_group,45-49,perempuan,1099,jiwa,2025,registration,total_population,3.2,37,,45-49
+18.08.15,3,Umpu Semenguk,age_group,45-49,,2255,jiwa,2025,registration,total_population,3.2,37,,45-49
+18.08.15,3,Umpu Semenguk,age_group,50-54,laki_laki,985,jiwa,2025,registration,total_population,3.2,37,,50-54
+18.08.15,3,Umpu Semenguk,age_group,50-54,perempuan,895,jiwa,2025,registration,total_population,3.2,37,,50-54
+18.08.15,3,Umpu Semenguk,age_group,50-54,,1880,jiwa,2025,registration,total_population,3.2,37,,50-54
+18.08.15,3,Umpu Semenguk,age_group,55-59,laki_laki,702,jiwa,2025,registration,total_population,3.2,37,,55-59
+18.08.15,3,Umpu Semenguk,age_group,55-59,perempuan,795,jiwa,2025,registration,total_population,3.2,37,,55-59
+18.08.15,3,Umpu Semenguk,age_group,55-59,,1497,jiwa,2025,registration,total_population,3.2,37,,55-59
+18.08.15,3,Umpu Semenguk,age_group,60-64,laki_laki,710,jiwa,2025,registration,total_population,3.2,37,,60-64
+18.08.15,3,Umpu Semenguk,age_group,60-64,perempuan,695,jiwa,2025,registration,total_population,3.2,37,,60-64
+18.08.15,3,Umpu Semenguk,age_group,60-64,,1405,jiwa,2025,registration,total_population,3.2,37,,60-64
+18.08.15,3,Umpu Semenguk,age_group,65-69,laki_laki,526,jiwa,2025,registration,total_population,3.2,37,,65-69
+18.08.15,3,Umpu Semenguk,age_group,65-69,perempuan,483,jiwa,2025,registration,total_population,3.2,37,,65-69
+18.08.15,3,Umpu Semenguk,age_group,65-69,,1009,jiwa,2025,registration,total_population,3.2,37,,65-69
+18.08.15,3,Umpu Semenguk,age_group,70-74,laki_laki,306,jiwa,2025,registration,total_population,3.2,37,,70-74
+18.08.15,3,Umpu Semenguk,age_group,70-74,perempuan,259,jiwa,2025,registration,total_population,3.2,37,,70-74
+18.08.15,3,Umpu Semenguk,age_group,70-74,,565,jiwa,2025,registration,total_population,3.2,37,,70-74
+18.08.15,3,Umpu Semenguk,age_group,75+,laki_laki,356,jiwa,2025,registration,total_population,3.2,37,,75+
+18.08.15,3,Umpu Semenguk,age_group,75+,perempuan,412,jiwa,2025,registration,total_population,3.2,37,,75+
+18.08.15,3,Umpu Semenguk,age_group,75+,,768,jiwa,2025,registration,total_population,3.2,37,,75+

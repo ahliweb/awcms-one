@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.05.12.2001,4,Kuala Semundam,sex,laki_laki,,1090,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.05.12.2001,4,Kuala Semundam,sex,perempuan,,1051,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.05.12.2001,4,Kuala Semundam,total,total,,2141,jiwa,2025,registration,total_population,3.1,26,,
+14.05.12.1002,4,Rawang Empat,sex,laki_laki,,953,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.05.12.1002,4,Rawang Empat,sex,perempuan,,940,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.05.12.1002,4,Rawang Empat,total,total,,1893,jiwa,2025,registration,total_population,3.1,26,,
+14.05.12.2003,4,Tambun,sex,laki_laki,,458,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.05.12.2003,4,Tambun,sex,perempuan,,443,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.05.12.2003,4,Tambun,total,total,,901,jiwa,2025,registration,total_population,3.1,26,,
+14.05.12.2004,4,Terbangiang,sex,laki_laki,,978,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.05.12.2004,4,Terbangiang,sex,perempuan,,927,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.05.12.2004,4,Terbangiang,total,total,,1905,jiwa,2025,registration,total_population,3.1,26,,
+14.05.12.2005,4,Lubuk Terap,sex,laki_laki,,1145,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.05.12.2005,4,Lubuk Terap,sex,perempuan,,1093,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.05.12.2005,4,Lubuk Terap,total,total,,2238,jiwa,2025,registration,total_population,3.1,26,,
+14.05.12.2006,4,Angkasa,sex,laki_laki,,1817,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.05.12.2006,4,Angkasa,sex,perempuan,,1788,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.05.12.2006,4,Angkasa,total,total,,3605,jiwa,2025,registration,total_population,3.1,26,,
+14.05.12.2007,4,Sialang Godang,sex,laki_laki,,987,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.05.12.2007,4,Sialang Godang,sex,perempuan,,918,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.05.12.2007,4,Sialang Godang,total,total,,1905,jiwa,2025,registration,total_population,3.1,26,,
+14.05.12.2008,4,Lubuk Raja,sex,laki_laki,,551,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.05.12.2008,4,Lubuk Raja,sex,perempuan,,487,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.05.12.2008,4,Lubuk Raja,total,total,,1038,jiwa,2025,registration,total_population,3.1,26,,
+14.05.12.2009,4,Lubuk Keranji Timur,sex,laki_laki,,539,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.05.12.2009,4,Lubuk Keranji Timur,sex,perempuan,,547,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.05.12.2009,4,Lubuk Keranji Timur,total,total,,1086,jiwa,2025,registration,total_population,3.1,26,,
+14.05.12.2011,4,Sialang Bungkuk,sex,laki_laki,,562,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.05.12.2011,4,Sialang Bungkuk,sex,perempuan,,523,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.05.12.2011,4,Sialang Bungkuk,total,total,,1085,jiwa,2025,registration,total_population,3.1,26,,
+14.05.12.2010,4,Air Terjun,sex,laki_laki,,626,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.05.12.2010,4,Air Terjun,sex,perempuan,,571,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.05.12.2010,4,Air Terjun,total,total,,1197,jiwa,2025,registration,total_population,3.1,26,,
+14.05.12,3,Bandar Petalangan,sex,laki_laki,,9706,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+14.05.12,3,Bandar Petalangan,sex,perempuan,,9288,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+14.05.12,3,Bandar Petalangan,total,total,,18994,jiwa,2025,registration,total_population,3.1,26,,
+14.05.12,3,Bandar Petalangan,age_group,0-4,laki_laki,608,jiwa,2025,registration,total_population,3.2,28,,0-4
+14.05.12,3,Bandar Petalangan,age_group,0-4,perempuan,618,jiwa,2025,registration,total_population,3.2,28,,0-4
+14.05.12,3,Bandar Petalangan,age_group,0-4,,1226,jiwa,2025,registration,total_population,3.2,28,,0-4
+14.05.12,3,Bandar Petalangan,age_group,5-9,laki_laki,870,jiwa,2025,registration,total_population,3.2,28,,5-9
+14.05.12,3,Bandar Petalangan,age_group,5-9,perempuan,815,jiwa,2025,registration,total_population,3.2,28,,5-9
+14.05.12,3,Bandar Petalangan,age_group,5-9,,1685,jiwa,2025,registration,total_population,3.2,28,,5-9
+14.05.12,3,Bandar Petalangan,age_group,10-14,laki_laki,933,jiwa,2025,registration,total_population,3.2,28,,10-14
+14.05.12,3,Bandar Petalangan,age_group,10-14,perempuan,929,jiwa,2025,registration,total_population,3.2,28,,10-14
+14.05.12,3,Bandar Petalangan,age_group,10-14,,1862,jiwa,2025,registration,total_population,3.2,28,,10-14
+14.05.12,3,Bandar Petalangan,age_group,15-19,laki_laki,908,jiwa,2025,registration,total_population,3.2,28,,15-19
+14.05.12,3,Bandar Petalangan,age_group,15-19,perempuan,819,jiwa,2025,registration,total_population,3.2,28,,15-19
+14.05.12,3,Bandar Petalangan,age_group,15-19,,1727,jiwa,2025,registration,total_population,3.2,28,,15-19
+14.05.12,3,Bandar Petalangan,age_group,20-24,laki_laki,883,jiwa,2025,registration,total_population,3.2,28,,20-24
+14.05.12,3,Bandar Petalangan,age_group,20-24,perempuan,844,jiwa,2025,registration,total_population,3.2,28,,20-24
+14.05.12,3,Bandar Petalangan,age_group,20-24,,1727,jiwa,2025,registration,total_population,3.2,28,,20-24
+14.05.12,3,Bandar Petalangan,age_group,25-29,laki_laki,794,jiwa,2025,registration,total_population,3.2,28,,25-29
+14.05.12,3,Bandar Petalangan,age_group,25-29,perempuan,785,jiwa,2025,registration,total_population,3.2,28,,25-29
+14.05.12,3,Bandar Petalangan,age_group,25-29,,1579,jiwa,2025,registration,total_population,3.2,28,,25-29
+14.05.12,3,Bandar Petalangan,age_group,30-34,laki_laki,691,jiwa,2025,registration,total_population,3.2,28,,30-34
+14.05.12,3,Bandar Petalangan,age_group,30-34,perempuan,689,jiwa,2025,registration,total_population,3.2,28,,30-34
+14.05.12,3,Bandar Petalangan,age_group,30-34,,1380,jiwa,2025,registration,total_population,3.2,28,,30-34
+14.05.12,3,Bandar Petalangan,age_group,35-39,laki_laki,754,jiwa,2025,registration,total_population,3.2,28,,35-39
+14.05.12,3,Bandar Petalangan,age_group,35-39,perempuan,779,jiwa,2025,registration,total_population,3.2,28,,35-39
+14.05.12,3,Bandar Petalangan,age_group,35-39,,1533,jiwa,2025,registration,total_population,3.2,28,,35-39
+14.05.12,3,Bandar Petalangan,age_group,40-44,laki_laki,729,jiwa,2025,registration,total_population,3.2,28,,40-44
+14.05.12,3,Bandar Petalangan,age_group,40-44,perempuan,729,jiwa,2025,registration,total_population,3.2,28,,40-44
+14.05.12,3,Bandar Petalangan,age_group,40-44,,1458,jiwa,2025,registration,total_population,3.2,28,,40-44
+14.05.12,3,Bandar Petalangan,age_group,45-49,laki_laki,766,jiwa,2025,registration,total_population,3.2,28,,45-49
+14.05.12,3,Bandar Petalangan,age_group,45-49,perempuan,705,jiwa,2025,registration,total_population,3.2,28,,45-49
+14.05.12,3,Bandar Petalangan,age_group,45-49,,1471,jiwa,2025,registration,total_population,3.2,28,,45-49
+14.05.12,3,Bandar Petalangan,age_group,50-54,laki_laki,597,jiwa,2025,registration,total_population,3.2,28,,50-54
+14.05.12,3,Bandar Petalangan,age_group,50-54,perempuan,559,jiwa,2025,registration,total_population,3.2,28,,50-54
+14.05.12,3,Bandar Petalangan,age_group,50-54,,1156,jiwa,2025,registration,total_population,3.2,28,,50-54
+14.05.12,3,Bandar Petalangan,age_group,55-59,laki_laki,492,jiwa,2025,registration,total_population,3.2,28,,55-59
+14.05.12,3,Bandar Petalangan,age_group,55-59,perempuan,428,jiwa,2025,registration,total_population,3.2,28,,55-59
+14.05.12,3,Bandar Petalangan,age_group,55-59,,920,jiwa,2025,registration,total_population,3.2,28,,55-59
+14.05.12,3,Bandar Petalangan,age_group,60-64,laki_laki,305,jiwa,2025,registration,total_population,3.2,28,,60-64
+14.05.12,3,Bandar Petalangan,age_group,60-64,perempuan,264,jiwa,2025,registration,total_population,3.2,28,,60-64
+14.05.12,3,Bandar Petalangan,age_group,60-64,,569,jiwa,2025,registration,total_population,3.2,28,,60-64
+14.05.12,3,Bandar Petalangan,age_group,65-69,laki_laki,184,jiwa,2025,registration,total_population,3.2,28,,65-69
+14.05.12,3,Bandar Petalangan,age_group,65-69,perempuan,175,jiwa,2025,registration,total_population,3.2,28,,65-69
+14.05.12,3,Bandar Petalangan,age_group,65-69,,359,jiwa,2025,registration,total_population,3.2,28,,65-69
+14.05.12,3,Bandar Petalangan,age_group,70-74,laki_laki,124,jiwa,2025,registration,total_population,3.2,28,,70-74
+14.05.12,3,Bandar Petalangan,age_group,70-74,perempuan,72,jiwa,2025,registration,total_population,3.2,28,,70-74
+14.05.12,3,Bandar Petalangan,age_group,70-74,,196,jiwa,2025,registration,total_population,3.2,28,,70-74
+14.05.12,3,Bandar Petalangan,age_group,75+,laki_laki,68,jiwa,2025,registration,total_population,3.2,28,,75+
+14.05.12,3,Bandar Petalangan,age_group,75+,perempuan,78,jiwa,2025,registration,total_population,3.2,28,,75+
+14.05.12,3,Bandar Petalangan,age_group,75+,,146,jiwa,2025,registration,total_population,3.2,28,,75+
+14.05.12,3,Bandar Petalangan,sex,laki_laki,,9706,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+14.05.12,3,Bandar Petalangan,sex,perempuan,,9288,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+14.05.12,3,Bandar Petalangan,total,total,,18994,jiwa,2025,registration,total_population,3.2,28,,

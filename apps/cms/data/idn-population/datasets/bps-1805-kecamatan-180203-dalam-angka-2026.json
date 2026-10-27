@@ -1,0 +1,62 @@
+{
+  "datasetCode": "bps-1805-kecamatan-180203-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.02.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Padang Ratu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lampung Tengah",
+  "publisherDomain": "1805",
+  "publisherWebsite": "https://lampungtengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lampung Tengah (https://lampungtengahkab.bps.go.id), publikasi \"Kecamatan Padang Ratu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1805010",
+  "publicationNumber": "1805.250005",
+  "issn": "2714-657X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lampungtengahkab.bps.go.id/id/publication/2026/09/28/566de411727424c53ce67cd3/kecamatan-padang-ratu-dalam-angka-2026.html",
+  "sourceFileSha256": "9229ae8d30812bdd8f04e264068e2d8ff090651517d61ac9df6294c2c3558dfa",
+  "sourceFileBytes": 10668800,
+  "sourcePages": [37, 38, 39],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Lampung Tengah.",
+  "csvPath": "datasets/bps-1805-kecamatan-180203-dalam-angka-2026.csv",
+  "csvSha256": "4837f04dfed46a1a2a590702ad51c5de20ca4d3fb0cb7f0a8c4b692921c72fb0",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Padang Ratu, 2025",
+      "printedPages": [37, 38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Padang Ratu, 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Purwosari 6.24\": unmatched ",
+    "table 3.1: row not stored: row \"Mojokerto 6.55\": unmatched ",
+    "table 3.1: row not stored: row \"Sendang Ayu 10.36\": unmatched ",
+    "table 3.1: row not stored: row \"Surabaya 7.08\": unmatched ",
+    "table 3.1: row not stored: row \"Bandarsari 9.49\": unmatched ",
+    "table 3.1: row not stored: row \"Sri Agung 5.44\": unmatched ",
+    "table 3.1: row not stored: row \"Kota Baru 6.52\": unmatched ",
+    "table 3.1: row not stored: row \"Margorejo 8.30\": unmatched ",
+    "table 3.1: row not stored: row \"Karang Tanjung 5.98\": unmatched ",
+    "table 3.1: row not stored: row \"Kuripan 10.09\": unmatched ",
+    "table 3.1: row not stored: row \"Haduyang Ratu 6.76\": unmatched ",
+    "table 3.1: row not stored: row \"Padang Ratu 5.54\": unmatched ",
+    "table 3.1: row not stored: row \"Karang Sari 3.61\": unmatched ",
+    "table 3.1: row not stored: row \"Sumbersari 2.32\": unmatched ",
+    "table 3.1: row not stored: row \"Purworejo 5.70\": unmatched ",
+    "table 3.1: row not stored: row \"Padang Ratu 100.00\": unmatched ",
+    "table 3.1: 46 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: 48 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

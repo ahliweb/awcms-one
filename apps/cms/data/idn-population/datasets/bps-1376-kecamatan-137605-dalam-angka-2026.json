@@ -1,0 +1,59 @@
+{
+  "datasetCode": "bps-1376-kecamatan-137605-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "13.76.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Payakumbuh Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kota Payakumbuh",
+  "publisherDomain": "1376",
+  "publisherWebsite": "https://payakumbuhkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Payakumbuh (https://payakumbuhkota.bps.go.id), publikasi \"Kecamatan Payakumbuh Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1376011",
+  "publicationNumber": "13760.26011",
+  "issn": "2579-6674",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://payakumbuhkota.bps.go.id/id/publication/2026/09/28/4a489a7cbb2be8f1a35dc5d4/kecamatan-payakumbuh-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "a48d0400321749fd7db2f956d771b383cebf58ebfb7715f6b3d5fc73d6624e33",
+  "sourceFileBytes": 6149350,
+  "sourcePages": [47, 48, 49],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Payakumbuh.",
+  "csvPath": "datasets/bps-1376-kecamatan-137605-dalam-angka-2026.csv",
+  "csvSha256": "731f0507f3595b8c14630dc2194759d46b1575063a7c2d1651bfb473b6856117",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Payakumbuh Selatan, 2025",
+      "printedPages": [47, 48],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Payakumbuh Selatan, 2025",
+      "printedPages": [49],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Payakumbuh Selatan 2025\": unmatched ",
+    "table 3.1: row not stored: row \"2024\": unmatched ",
+    "table 3.1: row not stored: row \"2023\": unmatched ",
+    "table 3.1: row not stored: row \"2022\": unmatched ",
+    "table 3.1: row not stored: row \"2021\": unmatched ",
+    "table 3.1: row not stored: row \"Payakumbuh Selatan 2025\": unmatched ",
+    "table 3.1: row not stored: row \"2024\": unmatched ",
+    "table 3.1: row not stored: row \"2023\": unmatched ",
+    "table 3.1: row not stored: row \"2022\": unmatched ",
+    "table 3.1: row not stored: row \"2021\": unmatched ",
+    "table 3.2: row not stored: row \"Jumlah/Total 2025\": unmatched ",
+    "table 3.2: row not stored: row \"2024\": unmatched ",
+    "table 3.2: row not stored: row \"2023\": unmatched ",
+    "table 3.2: row not stored: row \"2022\": unmatched ",
+    "table 3.2: row not stored: row \"2021\": unmatched "
+  ]
+}

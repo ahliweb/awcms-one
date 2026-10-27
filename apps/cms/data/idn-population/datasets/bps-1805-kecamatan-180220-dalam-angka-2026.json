@@ -1,0 +1,63 @@
+{
+  "datasetCode": "bps-1805-kecamatan-180220-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.02.20",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Selagai Lingga Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lampung Tengah",
+  "publisherDomain": "1805",
+  "publisherWebsite": "https://lampungtengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lampung Tengah (https://lampungtengahkab.bps.go.id), publikasi \"Kecamatan Selagai Lingga Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1805011",
+  "publicationNumber": "1805.250006",
+  "issn": "2714-6561",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lampungtengahkab.bps.go.id/id/publication/2026/09/28/2d51c3f4286cc163c6d99190/kecamatan-selagai-lingga-dalam-angka-2026.html",
+  "sourceFileSha256": "f5a6d1078940bb00f03bb2cabba5ee1d9aea333f65084a45dc2797408fa3bc40",
+  "sourceFileBytes": 10403743,
+  "sourcePages": [38, 39, 40],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Lampung Tengah.",
+  "csvPath": "datasets/bps-1805-kecamatan-180220-dalam-angka-2026.csv",
+  "csvSha256": "b4be27ec0864dc3ce1d784900d6ce8781a106651ddebea8658aedd6e0478d9eb",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Selagai Lingga, 2025",
+      "printedPages": [38, 39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Selagai Lingga, 2025",
+      "printedPages": [40],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Galih Karangjati\": unmatched ",
+    "table 3.1: row not stored: row \"Gedung Haji\": unmatched ",
+    "table 3.1: row not stored: row \"Marga Jaya 7.94\": unmatched ",
+    "table 3.1: row not stored: row \"Lingga Pura 13.38\": unmatched ",
+    "table 3.1: row not stored: row \"Nyukang Harjo 15.21\": unmatched ",
+    "table 3.1: row not stored: row \"Sidoharjo 6.03\": unmatched ",
+    "table 3.1: row not stored: row \"Taman Sari 3.22\": unmatched ",
+    "table 3.1: row not stored: row \"Negeri Katon 4.12\": unmatched ",
+    "table 3.1: row not stored: row \"Karang Anyar 7.72\": unmatched ",
+    "table 3.1: row not stored: row \"Galih Karangjati 4.99\": unmatched ",
+    "table 3.1: row not stored: row \"Gedung Harta 6.54\": unmatched ",
+    "table 3.1: row not stored: row \"Negeri Agung 9.41\": unmatched ",
+    "table 3.1: row not stored: row \"Tanjung Ratu 7.15\": unmatched ",
+    "table 3.1: row not stored: row \"Gedung Haji 5.76\": unmatched ",
+    "table 3.1: row not stored: row \"Negeri Jaya 3.18\": unmatched ",
+    "table 3.1: row not stored: row \"Mekar Harjo 5.34\": unmatched ",
+    "table 3.1: row not stored: row \"Selagai Lingga 100.00\": unmatched ",
+    "table 3.1: 22 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: 28 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

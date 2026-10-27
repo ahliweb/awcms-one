@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.08.16.2010,4,Petung,sex,laki_laki,,2025,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.16.2010,4,Petung,sex,perempuan,,2012,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.16.2010,4,Petung,total,total,,4037,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.16.2009,4,Daleman Kidul,sex,laki_laki,,1407,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.16.2009,4,Daleman Kidul,sex,perempuan,,1338,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.16.2009,4,Daleman Kidul,total,total,,2745,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.16.2017,4,Pogalan,sex,laki_laki,,1892,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.16.2017,4,Pogalan,sex,perempuan,,1827,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.16.2017,4,Pogalan,total,total,,3719,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.16.2008,4,Ketundan,sex,laki_laki,,3412,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.16.2008,4,Ketundan,sex,perempuan,,3193,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.16.2008,4,Ketundan,total,total,,6605,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.16.2016,4,Kenalan,sex,laki_laki,,713,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.16.2016,4,Kenalan,sex,perempuan,,736,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.16.2016,4,Kenalan,total,total,,1449,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.16.2007,4,Kragilan,sex,laki_laki,,1273,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.16.2007,4,Kragilan,sex,perempuan,,1222,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.16.2007,4,Kragilan,total,total,,2495,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.16.2002,4,Banyusidi,sex,laki_laki,,3309,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.16.2002,4,Banyusidi,sex,perempuan,,3186,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.16.2002,4,Banyusidi,total,total,,6495,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.16.2001,4,Pakis,sex,laki_laki,,2514,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.16.2001,4,Pakis,sex,perempuan,,2449,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.16.2001,4,Pakis,total,total,,4963,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.16.2003,4,Losari,sex,laki_laki,,1633,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.16.2003,4,Losari,sex,perempuan,,1513,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.16.2003,4,Losari,total,total,,3146,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.16.2011,4,Bawang,sex,laki_laki,,1285,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.16.2011,4,Bawang,sex,perempuan,,1241,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.16.2011,4,Bawang,total,total,,2526,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.16.2012,4,Rejosari,sex,laki_laki,,993,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.16.2012,4,Rejosari,sex,perempuan,,943,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.16.2012,4,Rejosari,total,total,,1936,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.16.2004,4,Daseh,sex,laki_laki,,505,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.16.2004,4,Daseh,sex,perempuan,,487,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.16.2004,4,Daseh,total,total,,992,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.16.2005,4,Gumelem,sex,laki_laki,,965,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.16.2005,4,Gumelem,sex,perempuan,,926,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.16.2005,4,Gumelem,total,total,,1891,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.16.2006,4,Kaponan,sex,laki_laki,,2016,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.16.2006,4,Kaponan,sex,perempuan,,1971,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.16.2006,4,Kaponan,total,total,,3987,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.16.2015,4,Gondangsari,sex,laki_laki,,1164,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.16.2015,4,Gondangsari,sex,perempuan,,1113,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.16.2015,4,Gondangsari,total,total,,2277,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.16.2014,4,Muneng Warangan,sex,laki_laki,,1126,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.16.2014,4,Muneng Warangan,sex,perempuan,,1116,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.16.2014,4,Muneng Warangan,total,total,,2242,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.16.2018,4,Gejagan,sex,laki_laki,,602,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.16.2018,4,Gejagan,sex,perempuan,,628,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.16.2018,4,Gejagan,total,total,,1230,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.16.2019,4,Muneng,sex,laki_laki,,1135,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.16.2019,4,Muneng,sex,perempuan,,1063,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.16.2019,4,Muneng,total,total,,2198,jiwa,2025,registration,total_population,unnumbered-p30,30,,
+33.08.16.2020,4,Jambewangi,sex,laki_laki,,1172,jiwa,2025,registration,total_population,unnumbered-p30,30,,Laki-Laki/Male
+33.08.16.2020,4,Jambewangi,sex,perempuan,,1131,jiwa,2025,registration,total_population,unnumbered-p30,30,,Perempuan/Female
+33.08.16.2020,4,Jambewangi,total,total,,2303,jiwa,2025,registration,total_population,unnumbered-p30,30,,

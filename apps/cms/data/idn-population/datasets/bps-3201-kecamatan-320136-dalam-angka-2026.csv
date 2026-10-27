@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.01.36.2006,4,Cibadak,sex,laki_laki,,3795,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.36.2006,4,Cibadak,sex,perempuan,,3845,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.36.2006,4,Cibadak,total,total,,7640,jiwa,2025,registration,total_population,3.1,34,,
+32.01.36.2001,4,Tanjung Sari,sex,laki_laki,,4636,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.36.2001,4,Tanjung Sari,sex,perempuan,,4532,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.36.2001,4,Tanjung Sari,total,total,,9168,jiwa,2025,registration,total_population,3.1,34,,
+32.01.36.2009,4,Buanajaya,sex,laki_laki,,2362,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.36.2009,4,Buanajaya,sex,perempuan,,2357,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.36.2009,4,Buanajaya,total,total,,4719,jiwa,2025,registration,total_population,3.1,34,,
+32.01.36.2004,4,Antajaya,sex,laki_laki,,3368,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.36.2004,4,Antajaya,sex,perempuan,,3091,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.36.2004,4,Antajaya,total,total,,6459,jiwa,2025,registration,total_population,3.1,34,,
+32.01.36.2005,4,Pasir Tanjung,sex,laki_laki,,2821,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.36.2005,4,Pasir Tanjung,sex,perempuan,,2746,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.36.2005,4,Pasir Tanjung,total,total,,5567,jiwa,2025,registration,total_population,3.1,34,,
+32.01.36.2003,4,Tanjung Rasa,sex,laki_laki,,2030,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.36.2003,4,Tanjung Rasa,sex,perempuan,,2019,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.36.2003,4,Tanjung Rasa,total,total,,4049,jiwa,2025,registration,total_population,3.1,34,,
+32.01.36.2007,4,Sukarasa,sex,laki_laki,,3163,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.36.2007,4,Sukarasa,sex,perempuan,,2979,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.36.2007,4,Sukarasa,total,total,,6142,jiwa,2025,registration,total_population,3.1,34,,
+32.01.36.2002,4,Selawangi,sex,laki_laki,,3511,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.36.2002,4,Selawangi,sex,perempuan,,3320,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.36.2002,4,Selawangi,total,total,,6831,jiwa,2025,registration,total_population,3.1,34,,
+32.01.36,3,Kecamatan Tanjungsari,sex,laki_laki,,32758,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.01.36,3,Kecamatan Tanjungsari,sex,perempuan,,31843,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.01.36,3,Kecamatan Tanjungsari,total,total,,64601,jiwa,2025,registration,total_population,3.1,34,,
+32.01.36,3,Tanjungsari,age_group,0-4,laki_laki,2337,jiwa,2025,registration,total_population,3.2,36,,0-4
+32.01.36,3,Tanjungsari,age_group,0-4,perempuan,2236,jiwa,2025,registration,total_population,3.2,36,,0-4
+32.01.36,3,Tanjungsari,age_group,0-4,,4573,jiwa,2025,registration,total_population,3.2,36,,0-4
+32.01.36,3,Tanjungsari,age_group,5-9,laki_laki,3024,jiwa,2025,registration,total_population,3.2,36,,5-9
+32.01.36,3,Tanjungsari,age_group,5-9,perempuan,2817,jiwa,2025,registration,total_population,3.2,36,,5-9
+32.01.36,3,Tanjungsari,age_group,5-9,,5841,jiwa,2025,registration,total_population,3.2,36,,5-9
+32.01.36,3,Tanjungsari,age_group,10-14,laki_laki,2970,jiwa,2025,registration,total_population,3.2,36,,10-14
+32.01.36,3,Tanjungsari,age_group,10-14,perempuan,2764,jiwa,2025,registration,total_population,3.2,36,,10-14
+32.01.36,3,Tanjungsari,age_group,10-14,,5734,jiwa,2025,registration,total_population,3.2,36,,10-14
+32.01.36,3,Tanjungsari,age_group,15-19,laki_laki,2627,jiwa,2025,registration,total_population,3.2,36,,15-19
+32.01.36,3,Tanjungsari,age_group,15-19,perempuan,2571,jiwa,2025,registration,total_population,3.2,36,,15-19
+32.01.36,3,Tanjungsari,age_group,15-19,,5198,jiwa,2025,registration,total_population,3.2,36,,15-19
+32.01.36,3,Tanjungsari,age_group,20-24,laki_laki,2617,jiwa,2025,registration,total_population,3.2,36,,20-24
+32.01.36,3,Tanjungsari,age_group,20-24,perempuan,2514,jiwa,2025,registration,total_population,3.2,36,,20-24
+32.01.36,3,Tanjungsari,age_group,20-24,,5131,jiwa,2025,registration,total_population,3.2,36,,20-24
+32.01.36,3,Tanjungsari,age_group,25-29,laki_laki,2687,jiwa,2025,registration,total_population,3.2,36,,25-29
+32.01.36,3,Tanjungsari,age_group,25-29,perempuan,2407,jiwa,2025,registration,total_population,3.2,36,,25-29
+32.01.36,3,Tanjungsari,age_group,25-29,,5094,jiwa,2025,registration,total_population,3.2,36,,25-29
+32.01.36,3,Tanjungsari,age_group,30-34,laki_laki,2488,jiwa,2025,registration,total_population,3.2,36,,30-34
+32.01.36,3,Tanjungsari,age_group,30-34,perempuan,2319,jiwa,2025,registration,total_population,3.2,36,,30-34
+32.01.36,3,Tanjungsari,age_group,30-34,,4807,jiwa,2025,registration,total_population,3.2,36,,30-34
+32.01.36,3,Tanjungsari,age_group,35-39,laki_laki,2431,jiwa,2025,registration,total_population,3.2,36,,35-39
+32.01.36,3,Tanjungsari,age_group,35-39,perempuan,2415,jiwa,2025,registration,total_population,3.2,36,,35-39
+32.01.36,3,Tanjungsari,age_group,35-39,,4846,jiwa,2025,registration,total_population,3.2,36,,35-39
+32.01.36,3,Tanjungsari,age_group,40-44,laki_laki,2340,jiwa,2025,registration,total_population,3.2,36,,40-44
+32.01.36,3,Tanjungsari,age_group,40-44,perempuan,2314,jiwa,2025,registration,total_population,3.2,36,,40-44
+32.01.36,3,Tanjungsari,age_group,40-44,,4654,jiwa,2025,registration,total_population,3.2,36,,40-44
+32.01.36,3,Tanjungsari,age_group,45-49,laki_laki,2038,jiwa,2025,registration,total_population,3.2,36,,45-49
+32.01.36,3,Tanjungsari,age_group,45-49,perempuan,2119,jiwa,2025,registration,total_population,3.2,36,,45-49
+32.01.36,3,Tanjungsari,age_group,45-49,,4157,jiwa,2025,registration,total_population,3.2,36,,45-49
+32.01.36,3,Tanjungsari,age_group,50-54,laki_laki,1899,jiwa,2025,registration,total_population,3.2,36,,50-54
+32.01.36,3,Tanjungsari,age_group,50-54,perempuan,1876,jiwa,2025,registration,total_population,3.2,36,,50-54
+32.01.36,3,Tanjungsari,age_group,50-54,,3775,jiwa,2025,registration,total_population,3.2,36,,50-54
+32.01.36,3,Tanjungsari,age_group,55-59,laki_laki,1615,jiwa,2025,registration,total_population,3.2,36,,55-59
+32.01.36,3,Tanjungsari,age_group,55-59,perempuan,1684,jiwa,2025,registration,total_population,3.2,36,,55-59
+32.01.36,3,Tanjungsari,age_group,55-59,,3299,jiwa,2025,registration,total_population,3.2,36,,55-59
+32.01.36,3,Tanjungsari,age_group,60-64,laki_laki,1285,jiwa,2025,registration,total_population,3.2,36,,60-64
+32.01.36,3,Tanjungsari,age_group,60-64,perempuan,1252,jiwa,2025,registration,total_population,3.2,36,,60-64
+32.01.36,3,Tanjungsari,age_group,60-64,,2537,jiwa,2025,registration,total_population,3.2,36,,60-64
+32.01.36,3,Tanjungsari,age_group,65-69,laki_laki,1091,jiwa,2025,registration,total_population,3.2,36,,65-69
+32.01.36,3,Tanjungsari,age_group,65-69,perempuan,1013,jiwa,2025,registration,total_population,3.2,36,,65-69
+32.01.36,3,Tanjungsari,age_group,65-69,,2104,jiwa,2025,registration,total_population,3.2,36,,65-69
+32.01.36,3,Tanjungsari,age_group,70-74,laki_laki,585,jiwa,2025,registration,total_population,3.2,36,,70-74
+32.01.36,3,Tanjungsari,age_group,70-74,perempuan,577,jiwa,2025,registration,total_population,3.2,36,,70-74
+32.01.36,3,Tanjungsari,age_group,70-74,,1162,jiwa,2025,registration,total_population,3.2,36,,70-74
+32.01.36,3,Tanjungsari,age_group,75+,laki_laki,724,jiwa,2025,registration,total_population,3.2,36,,75+
+32.01.36,3,Tanjungsari,age_group,75+,perempuan,965,jiwa,2025,registration,total_population,3.2,36,,75+
+32.01.36,3,Tanjungsari,age_group,75+,,1689,jiwa,2025,registration,total_population,3.2,36,,75+
+32.01.36,3,Kecamatan Tanjungsari,sex,laki_laki,,32758,jiwa,2025,registration,total_population,3.2,36,,Laki-Laki
+32.01.36,3,Kecamatan Tanjungsari,sex,perempuan,,31843,jiwa,2025,registration,total_population,3.2,36,,Perempuan
+32.01.36,3,Kecamatan Tanjungsari,total,total,,64601,jiwa,2025,registration,total_population,3.2,36,,

@@ -1,0 +1,52 @@
+{
+  "datasetCode": "bps-3524-kecamatan-352420-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.24.20",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kalitengah Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lamongan",
+  "publisherDomain": "3524",
+  "publisherWebsite": "https://lamongankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lamongan (https://lamongankab.bps.go.id), publikasi \"Kecamatan Kalitengah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3524190",
+  "publicationNumber": "35240.26025",
+  "issn": "2798-7930",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lamongankab.bps.go.id/id/publication/2026/09/28/23fc1c3cb181750a1d9255f0/kecamatan-kalitengah-dalam-angka-2026.html",
+  "sourceFileSha256": "c3aa7ae763f4c9411d56fd3a9c5df4d5edb47f4032bba61f144bcef9b7ae6b1b",
+  "sourceFileBytes": 3789468,
+  "sourcePages": [33, 37],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lamongan",
+  "csvPath": "datasets/bps-3524-kecamatan-352420-dalam-angka-2026.csv",
+  "csvSha256": "2d2bd98a2deac49cd385303a9235d733757d2bfd456c1ef3ee4de85a0a1b0139",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan KALITENGAH, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"012 Dibe\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 0-4\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 5-9\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 10-14\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 15-19\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 20-24\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 25-29\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 30-34\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 35-39\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 40-44\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 45-49\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 50-54\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 55-59\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 60-64\": unmatched ",
+    "table 3.2: row not stored: row \"Usia 65-69\": unmatched ",
+    "table 3.2: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

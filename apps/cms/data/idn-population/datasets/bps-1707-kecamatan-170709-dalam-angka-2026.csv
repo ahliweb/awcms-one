@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.07.09.2002,4,Sukau Datang,sex,laki_laki,,711,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+17.07.09.2002,4,Sukau Datang,sex,perempuan,,644,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+17.07.09.2002,4,Sukau Datang,total,total,,1355,jiwa,2025,registration,total_population,3.1,29,,
+17.07.09.2003,4,Sukau Datang I,sex,laki_laki,,496,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+17.07.09.2003,4,Sukau Datang I,sex,perempuan,,463,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+17.07.09.2003,4,Sukau Datang I,total,total,,959,jiwa,2025,registration,total_population,3.1,29,,
+17.07.09.2004,4,Gunung Alam,sex,laki_laki,,485,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+17.07.09.2004,4,Gunung Alam,sex,perempuan,,464,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+17.07.09.2004,4,Gunung Alam,total,total,,949,jiwa,2025,registration,total_population,3.1,29,,
+17.07.09.2005,4,Tabeak Blau II,sex,laki_laki,,567,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+17.07.09.2005,4,Tabeak Blau II,sex,perempuan,,554,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+17.07.09.2005,4,Tabeak Blau II,total,total,,1121,jiwa,2025,registration,total_population,3.1,29,,
+17.07.09.2006,4,Kota Baru Santan,sex,laki_laki,,362,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+17.07.09.2006,4,Kota Baru Santan,sex,perempuan,,334,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+17.07.09.2006,4,Kota Baru Santan,total,total,,696,jiwa,2025,registration,total_population,3.1,29,,
+17.07.09.2007,4,Tik Teleu,sex,laki_laki,,457,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+17.07.09.2007,4,Tik Teleu,sex,perempuan,,406,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+17.07.09.2007,4,Tik Teleu,total,total,,863,jiwa,2025,registration,total_population,3.1,29,,
+17.07.09.2008,4,Pelabai,sex,laki_laki,,698,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+17.07.09.2008,4,Pelabai,sex,perempuan,,638,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+17.07.09.2008,4,Pelabai,total,total,,1336,jiwa,2025,registration,total_population,3.1,29,,
+17.07.09.1001,4,Tanjung Agung,sex,laki_laki,,635,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+17.07.09.1001,4,Tanjung Agung,sex,perempuan,,626,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+17.07.09.1001,4,Tanjung Agung,total,total,,1261,jiwa,2025,registration,total_population,3.1,29,,
+17.07.09,3,Kecamatan Tubei,sex,laki_laki,,4411,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+17.07.09,3,Kecamatan Tubei,sex,perempuan,,4129,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+17.07.09,3,Kecamatan Tubei,total,total,,8540,jiwa,2025,registration,total_population,3.1,29,,
+17.07.09,3,Kecamatan Tubei,sex,laki_laki,,4411,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+17.07.09,3,Kecamatan Tubei,sex,perempuan,,4129,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+17.07.09,3,Kecamatan Tubei,total,total,,8540,jiwa,2025,registration,total_population,3.2,31,,

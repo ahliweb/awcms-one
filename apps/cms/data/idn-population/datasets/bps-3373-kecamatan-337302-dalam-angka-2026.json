@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3373-kecamatan-337302-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.73.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tingkir Dalam Angka 2026",
+  "publisherName": "BPS Kota Salatiga",
+  "publisherDomain": "3373",
+  "publisherWebsite": "https://salatigakota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Salatiga (https://salatigakota.bps.go.id), publikasi \"Kecamatan Tingkir Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3373020",
+  "publicationNumber": "33730.26011",
+  "issn": "2548-2793",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://salatigakota.bps.go.id/id/publication/2026/09/28/040ebacec7555da0b39f40ce/kecamatan-tingkir-dalam-angka-2026.html",
+  "sourceFileSha256": "b30132e96235053599aec7c07f76125883e114fc258a2e826951108ecf0623f9",
+  "sourceFileBytes": 5325495,
+  "sourcePages": [34, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Salatiga.",
+  "csvPath": "datasets/bps-3373-kecamatan-337302-dalam-angka-2026.csv",
+  "csvSha256": "af578c47cd07ce06045f622c6303635dc4fd1d1c5103417a7af0fd73a8642052",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Tingkir, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tingkir, 2025",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 33.73.02 are not stored: age_group (laki_laki) vs sex value: parts sum 23355.0000 != 23353.0000 (diff 2.0000); the source itself is inconsistent"
+  ]
+}

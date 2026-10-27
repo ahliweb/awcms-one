@@ -1,0 +1,53 @@
+{
+  "datasetCode": "bps-1409-kecamatan-140704-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.07.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Rimba Melintang Dalam Angka 2026",
+  "publisherName": "BPS Rokan Hilir",
+  "publisherDomain": "1409",
+  "publisherWebsite": "https://rohilkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Rokan Hilir (https://rohilkab.bps.go.id), publikasi \"Kecamatan Rimba Melintang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1409050",
+  "publicationNumber": "14090.26025",
+  "issn": "3064-4283",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://rohilkab.bps.go.id/id/publication/2026/09/28/cc7a75f29377d5a74c345f87/kecamatan-rimba-melintang-dalam-angka-2026.html",
+  "sourceFileSha256": "7c3a0da87b2373443e89874d040c16a6b078c4ba5032715418e21cc12b6f5730",
+  "sourceFileBytes": 1381038,
+  "sourcePages": [18, 19, 20],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Rokan Hilir.",
+  "csvPath": "datasets/bps-1409-kecamatan-140704-dalam-angka-2026.csv",
+  "csvSha256": "341a3cae1377c1dfb0ef25370edc40ab6466004669e7986352a5537bb3d3086c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Rimba Melintang, 2025",
+      "printedPages": [18, 19],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Rimba Melintang, 2025",
+      "printedPages": [20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Lenggadai Hulu\": unmatched ",
+    "table 3.1: row not stored: row \"Lenggadai Hulu\": unmatched ",
+    "table 3.2: row not stored: row \"45 49\": unmatched ",
+    "table 3.2: row not stored: row \"50 54\": unmatched ",
+    "table 3.2: row not stored: row \"55 59\": unmatched ",
+    "table 3.2: row not stored: row \"60 64\": unmatched ",
+    "table 3.2: row not stored: row \"65 69\": unmatched ",
+    "table 3.2: row not stored: row \"70 74\": unmatched ",
+    "table 3.2: the rows of region 14.07.04 are not stored: age_group (perempuan) vs sex value: parts sum 15673.0000 != 20405.0000 (diff 4732.0000); the source itself is inconsistent"
+  ]
+}

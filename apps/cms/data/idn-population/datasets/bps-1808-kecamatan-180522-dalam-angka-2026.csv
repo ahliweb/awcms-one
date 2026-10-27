@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.05.22.2001,4,Sumber Agung,sex,laki_laki,,1514,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.22.2001,4,Sumber Agung,sex,perempuan,,1401,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.22.2001,4,Sumber Agung,total,total,,2915,jiwa,2025,registration,total_population,3.1,30,,
+18.05.22.2002,4,Batang Hari,sex,laki_laki,,1314,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.22.2002,4,Batang Hari,sex,perempuan,,1201,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.22.2002,4,Batang Hari,total,total,,2515,jiwa,2025,registration,total_population,3.1,30,,
+18.05.22.2003,4,Panggung Mulyo,sex,laki_laki,,607,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.22.2003,4,Panggung Mulyo,sex,perempuan,,503,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.22.2003,4,Panggung Mulyo,total,total,,1110,jiwa,2025,registration,total_population,3.1,30,,
+18.05.22.2004,4,Duto Yoso Mulyo,sex,laki_laki,,952,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.22.2004,4,Duto Yoso Mulyo,sex,perempuan,,888,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.22.2004,4,Duto Yoso Mulyo,total,total,,1840,jiwa,2025,registration,total_population,3.1,30,,
+18.05.22.2005,4,Andalas Cermin,sex,laki_laki,,1708,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.22.2005,4,Andalas Cermin,sex,perempuan,,1481,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.22.2005,4,Andalas Cermin,total,total,,3189,jiwa,2025,registration,total_population,3.1,30,,
+18.05.22.2006,4,Rawa Ragil,sex,laki_laki,,1428,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.22.2006,4,Rawa Ragil,sex,perempuan,,1312,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.22.2006,4,Rawa Ragil,total,total,,2740,jiwa,2025,registration,total_population,3.1,30,,
+18.05.22.2007,4,Gedung Jaya,sex,laki_laki,,1189,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.22.2007,4,Gedung Jaya,sex,perempuan,,1127,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.22.2007,4,Gedung Jaya,total,total,,2316,jiwa,2025,registration,total_population,3.1,30,,
+18.05.22.2008,4,Bumi Sari,sex,laki_laki,,533,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.22.2008,4,Bumi Sari,sex,perempuan,,470,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.22.2008,4,Bumi Sari,total,total,,1003,jiwa,2025,registration,total_population,3.1,30,,
+18.05.22.2009,4,Mulyo Dadi,sex,laki_laki,,645,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.22.2009,4,Mulyo Dadi,sex,perempuan,,586,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.22.2009,4,Mulyo Dadi,total,total,,1231,jiwa,2025,registration,total_population,3.1,30,,
+18.05.22,3,Rawa Pitu,sex,laki_laki,,9890,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.22,3,Rawa Pitu,sex,perempuan,,8969,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.22,3,Rawa Pitu,total,total,,18859,jiwa,2025,registration,total_population,3.1,30,,
+18.05.22,3,Rawa Pitu,age_group,0-4,laki_laki,602,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+18.05.22,3,Rawa Pitu,age_group,0-4,perempuan,565,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+18.05.22,3,Rawa Pitu,age_group,0-4,,1167,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+18.05.22,3,Rawa Pitu,age_group,5-9,laki_laki,817,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+18.05.22,3,Rawa Pitu,age_group,5-9,perempuan,753,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+18.05.22,3,Rawa Pitu,age_group,5-9,,1570,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+18.05.22,3,Rawa Pitu,age_group,10-14,laki_laki,862,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+18.05.22,3,Rawa Pitu,age_group,10-14,perempuan,794,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+18.05.22,3,Rawa Pitu,age_group,10-14,,1656,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+18.05.22,3,Rawa Pitu,age_group,15-19,laki_laki,779,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+18.05.22,3,Rawa Pitu,age_group,15-19,perempuan,724,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+18.05.22,3,Rawa Pitu,age_group,15-19,,1503,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+18.05.22,3,Rawa Pitu,age_group,20-24,laki_laki,717,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+18.05.22,3,Rawa Pitu,age_group,20-24,perempuan,663,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+18.05.22,3,Rawa Pitu,age_group,20-24,,1380,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+18.05.22,3,Rawa Pitu,age_group,25-29,laki_laki,736,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+18.05.22,3,Rawa Pitu,age_group,25-29,perempuan,684,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+18.05.22,3,Rawa Pitu,age_group,25-29,,1420,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+18.05.22,3,Rawa Pitu,age_group,30-34,laki_laki,737,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+18.05.22,3,Rawa Pitu,age_group,30-34,perempuan,671,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+18.05.22,3,Rawa Pitu,age_group,30-34,,1408,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+18.05.22,3,Rawa Pitu,age_group,35-39,laki_laki,750,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+18.05.22,3,Rawa Pitu,age_group,35-39,perempuan,733,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+18.05.22,3,Rawa Pitu,age_group,35-39,,1483,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+18.05.22,3,Rawa Pitu,age_group,40-44,laki_laki,803,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+18.05.22,3,Rawa Pitu,age_group,40-44,perempuan,683,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+18.05.22,3,Rawa Pitu,age_group,40-44,,1486,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+18.05.22,3,Rawa Pitu,age_group,45-49,laki_laki,643,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+18.05.22,3,Rawa Pitu,age_group,45-49,perempuan,545,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+18.05.22,3,Rawa Pitu,age_group,45-49,,1188,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+18.05.22,3,Rawa Pitu,age_group,50-54,laki_laki,508,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+18.05.22,3,Rawa Pitu,age_group,50-54,perempuan,497,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+18.05.22,3,Rawa Pitu,age_group,50-54,,1005,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+18.05.22,3,Rawa Pitu,age_group,55-59,laki_laki,413,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+18.05.22,3,Rawa Pitu,age_group,55-59,perempuan,476,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+18.05.22,3,Rawa Pitu,age_group,55-59,,889,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+18.05.22,3,Rawa Pitu,age_group,60-64,laki_laki,441,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+18.05.22,3,Rawa Pitu,age_group,60-64,perempuan,442,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+18.05.22,3,Rawa Pitu,age_group,60-64,,883,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+18.05.22,3,Rawa Pitu,age_group,65-69,laki_laki,390,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+18.05.22,3,Rawa Pitu,age_group,65-69,perempuan,308,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+18.05.22,3,Rawa Pitu,age_group,65-69,,698,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+18.05.22,3,Rawa Pitu,age_group,70-74,laki_laki,282,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+18.05.22,3,Rawa Pitu,age_group,70-74,perempuan,192,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+18.05.22,3,Rawa Pitu,age_group,70-74,,474,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+18.05.22,3,Rawa Pitu,age_group,75+,laki_laki,410,jiwa,2025,registration,total_population,3.2,32,,>75
+18.05.22,3,Rawa Pitu,age_group,75+,perempuan,239,jiwa,2025,registration,total_population,3.2,32,,>75
+18.05.22,3,Rawa Pitu,age_group,75+,,649,jiwa,2025,registration,total_population,3.2,32,,>75
+18.05.22,3,Rawa Pitu,sex,laki_laki,,9890,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+18.05.22,3,Rawa Pitu,sex,perempuan,,8969,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+18.05.22,3,Rawa Pitu,total,total,,18859,jiwa,2025,registration,total_population,3.2,32,,

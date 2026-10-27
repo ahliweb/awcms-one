@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.01.2008,4,Waled Desa,sex,laki_laki,,2033,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.01.2008,4,Waled Desa,sex,perempuan,,2021,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.01.2008,4,Waled Desa,total,total,,4054,jiwa,2025,registration,total_population,3.1,52,,
+32.09.01.2009,4,Waled Kota,sex,laki_laki,,2585,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.01.2009,4,Waled Kota,sex,perempuan,,2572,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.01.2009,4,Waled Kota,total,total,,5157,jiwa,2025,registration,total_population,3.1,52,,
+32.09.01.2010,4,Mekarsari,sex,laki_laki,,1791,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.01.2010,4,Mekarsari,sex,perempuan,,1738,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.01.2010,4,Mekarsari,total,total,,3529,jiwa,2025,registration,total_population,3.1,52,,
+32.09.01.2011,4,Waled Asem,sex,laki_laki,,1492,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.01.2011,4,Waled Asem,sex,perempuan,,1405,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.01.2011,4,Waled Asem,total,total,,2897,jiwa,2025,registration,total_population,3.1,52,,
+32.09.01.2012,4,Ambit,sex,laki_laki,,3548,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.01.2012,4,Ambit,sex,perempuan,,3429,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.01.2012,4,Ambit,total,total,,6977,jiwa,2025,registration,total_population,3.1,52,,
+32.09.01.2013,4,Ciuyah,sex,laki_laki,,3828,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.01.2013,4,Ciuyah,sex,perempuan,,3729,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.01.2013,4,Ciuyah,total,total,,7557,jiwa,2025,registration,total_population,3.1,52,,
+32.09.01.2014,4,Gunungsari,sex,laki_laki,,1819,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.01.2014,4,Gunungsari,sex,perempuan,,1785,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.01.2014,4,Gunungsari,total,total,,3604,jiwa,2025,registration,total_population,3.1,52,,
+32.09.01.2015,4,Karangsari,sex,laki_laki,,2080,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.01.2015,4,Karangsari,sex,perempuan,,2026,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.01.2015,4,Karangsari,total,total,,4106,jiwa,2025,registration,total_population,3.1,52,,
+32.09.01.2016,4,Cikulak Kidul,sex,laki_laki,,3974,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.01.2016,4,Cikulak Kidul,sex,perempuan,,3721,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.01.2016,4,Cikulak Kidul,total,total,,7695,jiwa,2025,registration,total_population,3.1,52,,
+32.09.01.2017,4,Cikulak,sex,laki_laki,,4072,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.01.2017,4,Cikulak,sex,perempuan,,3930,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.01.2017,4,Cikulak,total,total,,8002,jiwa,2025,registration,total_population,3.1,52,,
+32.09.01.2018,4,Cibogo,sex,laki_laki,,2668,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.01.2018,4,Cibogo,sex,perempuan,,2590,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.01.2018,4,Cibogo,total,total,,5258,jiwa,2025,registration,total_population,3.1,52,,
+32.09.01.2019,4,Cisaat,sex,laki_laki,,2633,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.01.2019,4,Cisaat,sex,perempuan,,2506,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.01.2019,4,Cisaat,total,total,,5139,jiwa,2025,registration,total_population,3.1,52,,
+32.09.01,3,Kecamatan Waled,sex,laki_laki,,32523,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.01,3,Kecamatan Waled,sex,perempuan,,31452,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.01,3,Kecamatan Waled,total,total,,63975,jiwa,2025,registration,total_population,3.1,52,,
+32.09.01,3,Waled,age_group,0-4,laki_laki,2288,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.01,3,Waled,age_group,0-4,perempuan,2048,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.01,3,Waled,age_group,0-4,,4336,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.01,3,Waled,age_group,5-9,laki_laki,2794,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.01,3,Waled,age_group,5-9,perempuan,2695,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.01,3,Waled,age_group,5-9,,5489,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.01,3,Waled,age_group,10-14,laki_laki,2801,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.01,3,Waled,age_group,10-14,perempuan,2591,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.01,3,Waled,age_group,10-14,,5392,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.01,3,Waled,age_group,15-19,laki_laki,2374,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.01,3,Waled,age_group,15-19,perempuan,2358,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.01,3,Waled,age_group,15-19,,4732,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.01,3,Waled,age_group,20-24,laki_laki,2523,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.01,3,Waled,age_group,20-24,perempuan,2396,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.01,3,Waled,age_group,20-24,,4919,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.01,3,Waled,age_group,25-29,laki_laki,2622,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.01,3,Waled,age_group,25-29,perempuan,2481,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.01,3,Waled,age_group,25-29,,5103,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.01,3,Waled,age_group,30-34,laki_laki,2480,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.01,3,Waled,age_group,30-34,perempuan,2312,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.01,3,Waled,age_group,30-34,,4792,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.01,3,Waled,age_group,35-39,laki_laki,2284,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.01,3,Waled,age_group,35-39,perempuan,2206,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.01,3,Waled,age_group,35-39,,4490,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.01,3,Waled,age_group,40-44,laki_laki,2541,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.01,3,Waled,age_group,40-44,perempuan,2403,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.01,3,Waled,age_group,40-44,,4944,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.01,3,Waled,age_group,45-49,laki_laki,2286,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.01,3,Waled,age_group,45-49,perempuan,2195,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.01,3,Waled,age_group,45-49,,4481,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.01,3,Waled,age_group,50-54,laki_laki,2058,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.01,3,Waled,age_group,50-54,perempuan,1966,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.01,3,Waled,age_group,50-54,,4024,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.01,3,Waled,age_group,55-59,laki_laki,1697,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.01,3,Waled,age_group,55-59,perempuan,1616,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.01,3,Waled,age_group,55-59,,3313,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.01,3,Waled,age_group,60-64,laki_laki,1300,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.01,3,Waled,age_group,60-64,perempuan,1300,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.01,3,Waled,age_group,60-64,,2600,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.01,3,Waled,age_group,65-69,laki_laki,1016,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.01,3,Waled,age_group,65-69,perempuan,1151,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.01,3,Waled,age_group,65-69,,2167,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.01,3,Waled,age_group,70-74,laki_laki,712,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.01,3,Waled,age_group,70-74,perempuan,696,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.01,3,Waled,age_group,70-74,,1408,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.01,3,Waled,age_group,75+,laki_laki,747,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.01,3,Waled,age_group,75+,perempuan,1038,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.01,3,Waled,age_group,75+,,1785,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.01,3,Kecamatan Waled,sex,laki_laki,,32523,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.01,3,Kecamatan Waled,sex,perempuan,,31452,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.01,3,Kecamatan Waled,total,total,,63975,jiwa,2025,registration,total_population,3.2,54,,

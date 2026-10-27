@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.15.10.2009,4,Sambirejo,sex,laki_laki,,3350,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.15.10.2009,4,Sambirejo,sex,perempuan,,3265,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+33.15.10.2009,4,Sambirejo,total,total,,6615,jiwa,2025,registration,total_population,3.1,26,,
+33.15.10.2008,4,Tanjungrejo,sex,laki_laki,,3566,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.15.10.2008,4,Tanjungrejo,sex,perempuan,,3455,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+33.15.10.2008,4,Tanjungrejo,total,total,,7021,jiwa,2025,registration,total_population,3.1,26,,
+33.15.10.2001,4,Tambahrejo,sex,laki_laki,,3946,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.15.10.2001,4,Tambahrejo,sex,perempuan,,3942,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+33.15.10.2001,4,Tambahrejo,total,total,,7888,jiwa,2025,registration,total_population,3.1,26,,
+33.15.10.2002,4,Kropak,sex,laki_laki,,2344,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.15.10.2002,4,Kropak,sex,perempuan,,2458,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+33.15.10.2002,4,Kropak,total,total,,4802,jiwa,2025,registration,total_population,3.1,26,,
+33.15.10.2003,4,Kalirejo,sex,laki_laki,,2858,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.15.10.2003,4,Kalirejo,sex,perempuan,,2781,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+33.15.10.2003,4,Kalirejo,total,total,,5639,jiwa,2025,registration,total_population,3.1,26,,
+33.15.10.2004,4,Dapurno,sex,laki_laki,,2328,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.15.10.2004,4,Dapurno,sex,perempuan,,2328,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+33.15.10.2004,4,Dapurno,total,total,,4656,jiwa,2025,registration,total_population,3.1,26,,
+33.15.10.2005,4,Mojorebo,sex,laki_laki,,2865,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.15.10.2005,4,Mojorebo,sex,perempuan,,2841,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+33.15.10.2005,4,Mojorebo,total,total,,5706,jiwa,2025,registration,total_population,3.1,26,,
+33.15.10.2010,4,Gedangan,sex,laki_laki,,2364,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.15.10.2010,4,Gedangan,sex,perempuan,,2371,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+33.15.10.2010,4,Gedangan,total,total,,4735,jiwa,2025,registration,total_population,3.1,26,,
+33.15.10.2011,4,Tambakselo,sex,laki_laki,,5651,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.15.10.2011,4,Tambakselo,sex,perempuan,,5428,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+33.15.10.2011,4,Tambakselo,total,total,,11079,jiwa,2025,registration,total_population,3.1,26,,
+33.15.10.2012,4,Karangasem,sex,laki_laki,,5203,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.15.10.2012,4,Karangasem,sex,perempuan,,4913,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+33.15.10.2012,4,Karangasem,total,total,,10116,jiwa,2025,registration,total_population,3.1,26,,
+33.15.10.2013,4,Dokoro,sex,laki_laki,,3323,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.15.10.2013,4,Dokoro,sex,perempuan,,3234,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+33.15.10.2013,4,Dokoro,total,total,,6557,jiwa,2025,registration,total_population,3.1,26,,
+33.15.10.2014,4,Tegalrejo,sex,laki_laki,,4527,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.15.10.2014,4,Tegalrejo,sex,perempuan,,4412,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+33.15.10.2014,4,Tegalrejo,total,total,,8939,jiwa,2025,registration,total_population,3.1,26,,
+33.15.10.1007,4,Kunden,sex,laki_laki,,4325,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.15.10.1007,4,Kunden,sex,perempuan,,4478,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+33.15.10.1007,4,Kunden,total,total,,8803,jiwa,2025,registration,total_population,3.1,26,,
+33.15.10.1006,4,Wirosari,sex,laki_laki,,2565,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.15.10.1006,4,Wirosari,sex,perempuan,,2673,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+33.15.10.1006,4,Wirosari,total,total,,5238,jiwa,2025,registration,total_population,3.1,26,,
+33.15.10,3,Kecamatan Wirosari,sex,laki_laki,,49215,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.15.10,3,Kecamatan Wirosari,sex,perempuan,,48579,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+33.15.10,3,Kecamatan Wirosari,total,total,,97794,jiwa,2025,registration,total_population,3.1,26,,
+33.15.10,3,Wirosari,age_group,0-4,laki_laki,3205,jiwa,2025,registration,total_population,3.2,28,,0–4
+33.15.10,3,Wirosari,age_group,0-4,perempuan,2928,jiwa,2025,registration,total_population,3.2,28,,0–4
+33.15.10,3,Wirosari,age_group,0-4,,6133,jiwa,2025,registration,total_population,3.2,28,,0–4
+33.15.10,3,Wirosari,age_group,5-9,laki_laki,3837,jiwa,2025,registration,total_population,3.2,28,,5–9
+33.15.10,3,Wirosari,age_group,5-9,perempuan,3571,jiwa,2025,registration,total_population,3.2,28,,5–9
+33.15.10,3,Wirosari,age_group,5-9,,7408,jiwa,2025,registration,total_population,3.2,28,,5–9
+33.15.10,3,Wirosari,age_group,10-14,laki_laki,3852,jiwa,2025,registration,total_population,3.2,28,,10–14
+33.15.10,3,Wirosari,age_group,10-14,perempuan,3729,jiwa,2025,registration,total_population,3.2,28,,10–14
+33.15.10,3,Wirosari,age_group,10-14,,7581,jiwa,2025,registration,total_population,3.2,28,,10–14
+33.15.10,3,Wirosari,age_group,15-19,laki_laki,3874,jiwa,2025,registration,total_population,3.2,28,,15–19
+33.15.10,3,Wirosari,age_group,15-19,perempuan,3672,jiwa,2025,registration,total_population,3.2,28,,15–19
+33.15.10,3,Wirosari,age_group,15-19,,7546,jiwa,2025,registration,total_population,3.2,28,,15–19
+33.15.10,3,Wirosari,age_group,20-24,laki_laki,3659,jiwa,2025,registration,total_population,3.2,28,,20–24
+33.15.10,3,Wirosari,age_group,20-24,perempuan,3613,jiwa,2025,registration,total_population,3.2,28,,20–24
+33.15.10,3,Wirosari,age_group,20-24,,7272,jiwa,2025,registration,total_population,3.2,28,,20–24
+33.15.10,3,Wirosari,age_group,25-29,laki_laki,3726,jiwa,2025,registration,total_population,3.2,28,,25–29
+33.15.10,3,Wirosari,age_group,25-29,perempuan,3672,jiwa,2025,registration,total_population,3.2,28,,25–29
+33.15.10,3,Wirosari,age_group,25-29,,7398,jiwa,2025,registration,total_population,3.2,28,,25–29
+33.15.10,3,Wirosari,age_group,30-34,laki_laki,3573,jiwa,2025,registration,total_population,3.2,28,,30–34
+33.15.10,3,Wirosari,age_group,30-34,perempuan,3459,jiwa,2025,registration,total_population,3.2,28,,30–34
+33.15.10,3,Wirosari,age_group,30-34,,7032,jiwa,2025,registration,total_population,3.2,28,,30–34
+33.15.10,3,Wirosari,age_group,35-39,laki_laki,3623,jiwa,2025,registration,total_population,3.2,28,,35–39
+33.15.10,3,Wirosari,age_group,35-39,perempuan,3502,jiwa,2025,registration,total_population,3.2,28,,35–39
+33.15.10,3,Wirosari,age_group,35-39,,7125,jiwa,2025,registration,total_population,3.2,28,,35–39
+33.15.10,3,Wirosari,age_group,40-44,laki_laki,3721,jiwa,2025,registration,total_population,3.2,28,,40–44
+33.15.10,3,Wirosari,age_group,40-44,perempuan,3561,jiwa,2025,registration,total_population,3.2,28,,40–44
+33.15.10,3,Wirosari,age_group,40-44,,7282,jiwa,2025,registration,total_population,3.2,28,,40–44
+33.15.10,3,Wirosari,age_group,45-49,laki_laki,3442,jiwa,2025,registration,total_population,3.2,28,,45–49
+33.15.10,3,Wirosari,age_group,45-49,perempuan,3404,jiwa,2025,registration,total_population,3.2,28,,45–49
+33.15.10,3,Wirosari,age_group,45-49,,6846,jiwa,2025,registration,total_population,3.2,28,,45–49
+33.15.10,3,Wirosari,age_group,50-54,laki_laki,3137,jiwa,2025,registration,total_population,3.2,28,,50–54
+33.15.10,3,Wirosari,age_group,50-54,perempuan,3115,jiwa,2025,registration,total_population,3.2,28,,50–54
+33.15.10,3,Wirosari,age_group,50-54,,6252,jiwa,2025,registration,total_population,3.2,28,,50–54
+33.15.10,3,Wirosari,age_group,55-59,laki_laki,2737,jiwa,2025,registration,total_population,3.2,28,,55–59
+33.15.10,3,Wirosari,age_group,55-59,perempuan,3019,jiwa,2025,registration,total_population,3.2,28,,55–59
+33.15.10,3,Wirosari,age_group,55-59,,5756,jiwa,2025,registration,total_population,3.2,28,,55–59
+33.15.10,3,Wirosari,age_group,60-64,laki_laki,2513,jiwa,2025,registration,total_population,3.2,28,,60–64
+33.15.10,3,Wirosari,age_group,60-64,perempuan,2590,jiwa,2025,registration,total_population,3.2,28,,60–64
+33.15.10,3,Wirosari,age_group,60-64,,5103,jiwa,2025,registration,total_population,3.2,28,,60–64
+33.15.10,3,Wirosari,age_group,65-69,laki_laki,1980,jiwa,2025,registration,total_population,3.2,28,,65–69
+33.15.10,3,Wirosari,age_group,65-69,perempuan,1963,jiwa,2025,registration,total_population,3.2,28,,65–69
+33.15.10,3,Wirosari,age_group,65-69,,3943,jiwa,2025,registration,total_population,3.2,28,,65–69
+33.15.10,3,Wirosari,age_group,70-74,laki_laki,1162,jiwa,2025,registration,total_population,3.2,28,,70–74
+33.15.10,3,Wirosari,age_group,70-74,perempuan,1113,jiwa,2025,registration,total_population,3.2,28,,70–74
+33.15.10,3,Wirosari,age_group,70-74,,2275,jiwa,2025,registration,total_population,3.2,28,,70–74
+33.15.10,3,Wirosari,age_group,75+,laki_laki,1174,jiwa,2025,registration,total_population,3.2,28,,75 +
+33.15.10,3,Wirosari,age_group,75+,perempuan,1668,jiwa,2025,registration,total_population,3.2,28,,75 +
+33.15.10,3,Wirosari,age_group,75+,,2842,jiwa,2025,registration,total_population,3.2,28,,75 +
+33.15.10,3,Kecamatan Wirosari,sex,laki_laki,,49215,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+33.15.10,3,Kecamatan Wirosari,sex,perempuan,,48579,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+33.15.10,3,Kecamatan Wirosari,total,total,,97794,jiwa,2025,registration,total_population,3.2,28,,

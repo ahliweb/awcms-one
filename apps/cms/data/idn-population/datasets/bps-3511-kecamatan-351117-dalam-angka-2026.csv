@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.11.17.2001,4,Andungsari,sex,laki_laki,,1263,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.17.2001,4,Andungsari,sex,perempuan,,1281,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.17.2001,4,Andungsari,total,total,,2544,jiwa,2025,registration,total_population,3.1,25,,
+35.11.17.2003,4,Kupang,sex,laki_laki,,1853,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.17.2003,4,Kupang,sex,perempuan,,1974,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.17.2003,4,Kupang,total,total,,3827,jiwa,2025,registration,total_population,3.1,25,,
+35.11.17.2002,4,Ardisaeng,sex,laki_laki,,1198,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.17.2002,4,Ardisaeng,sex,perempuan,,1190,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.17.2002,4,Ardisaeng,total,total,,2388,jiwa,2025,registration,total_population,3.1,25,,
+35.11.17.2006,4,Sumberdumpyong,sex,laki_laki,,1045,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.17.2006,4,Sumberdumpyong,sex,perempuan,,1104,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.17.2006,4,Sumberdumpyong,total,total,,2149,jiwa,2025,registration,total_population,3.1,25,,
+35.11.17.2004,4,Gadingsari,sex,laki_laki,,2183,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.17.2004,4,Gadingsari,sex,perempuan,,2230,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.17.2004,4,Gadingsari,total,total,,4413,jiwa,2025,registration,total_population,3.1,25,,
+35.11.17.2005,4,Pakem,sex,laki_laki,,1708,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.17.2005,4,Pakem,sex,perempuan,,1813,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.17.2005,4,Pakem,total,total,,3521,jiwa,2025,registration,total_population,3.1,25,,
+35.11.17.2007,4,Patemon,sex,laki_laki,,1114,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.17.2007,4,Patemon,sex,perempuan,,1166,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.17.2007,4,Patemon,total,total,,2280,jiwa,2025,registration,total_population,3.1,25,,
+35.11.17.2008,4,Petung,sex,laki_laki,,1293,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.17.2008,4,Petung,sex,perempuan,,1394,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.17.2008,4,Petung,total,total,,2687,jiwa,2025,registration,total_population,3.1,25,,
+35.11.17,3,Kecamatan Pakem,sex,laki_laki,,11657,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+35.11.17,3,Kecamatan Pakem,sex,perempuan,,12152,jiwa,2025,registration,total_population,3.1,25,,Perempuan/
+35.11.17,3,Kecamatan Pakem,total,total,,23809,jiwa,2025,registration,total_population,3.1,25,,
+35.11.17,3,Pakem,age_group,0-14,laki_laki,2255,jiwa,2025,registration,total_population,3.2,27,,0–14
+35.11.17,3,Pakem,age_group,0-14,perempuan,2149,jiwa,2025,registration,total_population,3.2,27,,0–14
+35.11.17,3,Pakem,age_group,0-14,,4404,jiwa,2025,registration,total_population,3.2,27,,0–14
+35.11.17,3,Pakem,age_group,15-64,laki_laki,8097,jiwa,2025,registration,total_population,3.2,27,,15–64
+35.11.17,3,Pakem,age_group,15-64,perempuan,8334,jiwa,2025,registration,total_population,3.2,27,,15–64
+35.11.17,3,Pakem,age_group,15-64,,16431,jiwa,2025,registration,total_population,3.2,27,,15–64
+35.11.17,3,Pakem,age_group,65+,laki_laki,1305,jiwa,2025,registration,total_population,3.2,27,,65+
+35.11.17,3,Pakem,age_group,65+,perempuan,1669,jiwa,2025,registration,total_population,3.2,27,,65+
+35.11.17,3,Pakem,age_group,65+,,2974,jiwa,2025,registration,total_population,3.2,27,,65+
+35.11.17,3,Kecamatan Pakem,sex,laki_laki,,11657,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+35.11.17,3,Kecamatan Pakem,sex,perempuan,,12152,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+35.11.17,3,Kecamatan Pakem,total,total,,23809,jiwa,2025,registration,total_population,3.2,27,,

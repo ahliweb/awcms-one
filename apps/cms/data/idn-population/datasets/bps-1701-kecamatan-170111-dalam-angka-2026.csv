@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.01.11.1009,4,Pasar Bawah,sex,laki_laki,,1222,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.11.1009,4,Pasar Bawah,sex,perempuan,,979,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.11.1009,4,Pasar Bawah,total,total,,2201,jiwa,2025,registration,total_population,3.1,26,,
+17.01.11.1006,4,Gunung Mesir,sex,laki_laki,,836,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.11.1006,4,Gunung Mesir,sex,perempuan,,838,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.11.1006,4,Gunung Mesir,total,total,,1674,jiwa,2025,registration,total_population,3.1,26,,
+17.01.11.1008,4,Ketapang Besar,sex,laki_laki,,1433,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.11.1008,4,Ketapang Besar,sex,perempuan,,1399,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.11.1008,4,Ketapang Besar,total,total,,2832,jiwa,2025,registration,total_population,3.1,26,,
+17.01.11.1007,4,Padang Sialang,sex,laki_laki,,1011,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.11.1007,4,Padang Sialang,sex,perempuan,,1078,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.11.1007,4,Padang Sialang,total,total,,2089,jiwa,2025,registration,total_population,3.1,26,,
+17.01.11.1005,4,Belakang Gedung,sex,laki_laki,,489,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.11.1005,4,Belakang Gedung,sex,perempuan,,489,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.11.1005,4,Belakang Gedung,total,total,,978,jiwa,2025,registration,total_population,3.1,26,,
+17.01.11.1004,4,Pasar Mulia,sex,laki_laki,,855,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.11.1004,4,Pasar Mulia,sex,perempuan,,979,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.11.1004,4,Pasar Mulia,total,total,,1834,jiwa,2025,registration,total_population,3.1,26,,
+17.01.11.2002,4,Batu Lambang,sex,laki_laki,,711,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.11.2002,4,Batu Lambang,sex,perempuan,,695,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.11.2002,4,Batu Lambang,total,total,,1406,jiwa,2025,registration,total_population,3.1,26,,
+17.01.11.2001,4,Batu Kuning,sex,laki_laki,,407,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.11.2001,4,Batu Kuning,sex,perempuan,,389,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.11.2001,4,Batu Kuning,total,total,,796,jiwa,2025,registration,total_population,3.1,26,,
+17.01.11.1003,4,Tanjung Mulia,sex,laki_laki,,2340,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.11.1003,4,Tanjung Mulia,sex,perempuan,,2310,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.11.1003,4,Tanjung Mulia,total,total,,4650,jiwa,2025,registration,total_population,3.1,26,,
+17.01.11,3,Kecamatan Pasar Manna,sex,laki_laki,,9304,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.11,3,Kecamatan Pasar Manna,sex,perempuan,,9156,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.11,3,Kecamatan Pasar Manna,total,total,,18460,jiwa,2025,registration,total_population,3.1,26,,

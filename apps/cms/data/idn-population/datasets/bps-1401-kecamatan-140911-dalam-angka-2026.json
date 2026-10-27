@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1401-kecamatan-140911-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.09.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Inuman Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kuantan Singingi",
+  "publisherDomain": "1401",
+  "publisherWebsite": "https://kuansingkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kuantan Singingi (https://kuansingkab.bps.go.id), publikasi \"Kecamatan Inuman Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1401061",
+  "publicationNumber": "14010.26021",
+  "issn": "2722-5704",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kuansingkab.bps.go.id/id/publication/2026/09/28/3ceb146d092ecfff1a18b6c9/kecamatan-inuman-dalam-angka-2026.html",
+  "sourceFileSha256": "2e7c7a06097729e2e3b342748f100fda8c0a738fb7078dd1ebe4d4c763f33f45",
+  "sourceFileBytes": 14922906,
+  "sourcePages": [22, 23],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kuantan Singingi.",
+  "csvPath": "datasets/bps-1401-kecamatan-140911-dalam-angka-2026.csv",
+  "csvSha256": "94f44b371b3ded64354bee8f82a74d900a7d0def14394479c60e3c33e672f7af",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Inuman, 2025",
+      "printedPages": [22, 23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

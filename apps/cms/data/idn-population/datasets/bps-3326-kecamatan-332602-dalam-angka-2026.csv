@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.26.02.2001,4,Werdi,sex,laki_laki,,1768,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.02.2001,4,Werdi,sex,perempuan,,1716,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.02.2001,4,Werdi,total,total,,3484,jiwa,2025,registration,total_population,3.1,34,,
+33.26.02.2002,4,Winduaji,sex,laki_laki,,1764,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.02.2002,4,Winduaji,sex,perempuan,,1710,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.02.2002,4,Winduaji,total,total,,3474,jiwa,2025,registration,total_population,3.1,34,,
+33.26.02.2003,4,Krandegan,sex,laki_laki,,1370,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.02.2003,4,Krandegan,sex,perempuan,,1345,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.02.2003,4,Krandegan,total,total,,2715,jiwa,2025,registration,total_population,3.1,34,,
+33.26.02.2004,4,Lumeneng,sex,laki_laki,,2140,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.02.2004,4,Lumeneng,sex,perempuan,,2055,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.02.2004,4,Lumeneng,total,total,,4195,jiwa,2025,registration,total_population,3.1,34,,
+33.26.02.2006,4,Kaliboja,sex,laki_laki,,928,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.02.2006,4,Kaliboja,sex,perempuan,,922,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.02.2006,4,Kaliboja,total,total,,1850,jiwa,2025,registration,total_population,3.1,34,,
+33.26.02.2007,4,Kaliombo,sex,laki_laki,,856,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.02.2007,4,Kaliombo,sex,perempuan,,808,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.02.2007,4,Kaliombo,total,total,,1664,jiwa,2025,registration,total_population,3.1,34,,
+33.26.02.2008,4,Botosari,sex,laki_laki,,1116,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.02.2008,4,Botosari,sex,perempuan,,1098,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.02.2008,4,Botosari,total,total,,2214,jiwa,2025,registration,total_population,3.1,34,,
+33.26.02.2009,4,Sawangan,sex,laki_laki,,1520,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.02.2009,4,Sawangan,sex,perempuan,,1466,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.02.2009,4,Sawangan,total,total,,2986,jiwa,2025,registration,total_population,3.1,34,,
+33.26.02.2010,4,Paninggaran,sex,laki_laki,,2244,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.02.2010,4,Paninggaran,sex,perempuan,,2172,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.02.2010,4,Paninggaran,total,total,,4416,jiwa,2025,registration,total_population,3.1,34,,
+33.26.02.2011,4,Domiyang,sex,laki_laki,,2270,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.02.2011,4,Domiyang,sex,perempuan,,2121,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.02.2011,4,Domiyang,total,total,,4391,jiwa,2025,registration,total_population,3.1,34,,
+33.26.02.2012,4,Notogiwang,sex,laki_laki,,2094,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.02.2012,4,Notogiwang,sex,perempuan,,1934,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.02.2012,4,Notogiwang,total,total,,4028,jiwa,2025,registration,total_population,3.1,34,,
+33.26.02.2013,4,Lambanggelun,sex,laki_laki,,2332,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.02.2013,4,Lambanggelun,sex,perempuan,,2206,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.02.2013,4,Lambanggelun,total,total,,4538,jiwa,2025,registration,total_population,3.1,34,,
+33.26.02.2014,4,Tenogo,sex,laki_laki,,1168,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.02.2014,4,Tenogo,sex,perempuan,,1134,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.02.2014,4,Tenogo,total,total,,2302,jiwa,2025,registration,total_population,3.1,34,,
+33.26.02.2015,4,Bedagung,sex,laki_laki,,448,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.02.2015,4,Bedagung,sex,perempuan,,424,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.02.2015,4,Bedagung,total,total,,872,jiwa,2025,registration,total_population,3.1,34,,
+33.26.02,3,Kecamatan Paninggaran,sex,laki_laki,,23001,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.02,3,Kecamatan Paninggaran,sex,perempuan,,22073,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.02,3,Kecamatan Paninggaran,total,total,,45074,jiwa,2025,registration,total_population,3.1,34,,
+33.26.02,3,Paninggaran,age_group,0-4,laki_laki,1672,jiwa,2025,registration,total_population,3.2,36,,0 - 4
+33.26.02,3,Paninggaran,age_group,0-4,perempuan,1547,jiwa,2025,registration,total_population,3.2,36,,0 - 4
+33.26.02,3,Paninggaran,age_group,0-4,,3219,jiwa,2025,registration,total_population,3.2,36,,0 - 4
+33.26.02,3,Paninggaran,age_group,5-9,laki_laki,2013,jiwa,2025,registration,total_population,3.2,36,,5 - 9
+33.26.02,3,Paninggaran,age_group,5-9,perempuan,1798,jiwa,2025,registration,total_population,3.2,36,,5 - 9
+33.26.02,3,Paninggaran,age_group,5-9,,3811,jiwa,2025,registration,total_population,3.2,36,,5 - 9
+33.26.02,3,Paninggaran,age_group,10-14,laki_laki,1837,jiwa,2025,registration,total_population,3.2,36,,10 - 14
+33.26.02,3,Paninggaran,age_group,10-14,perempuan,1734,jiwa,2025,registration,total_population,3.2,36,,10 - 14
+33.26.02,3,Paninggaran,age_group,10-14,,3571,jiwa,2025,registration,total_population,3.2,36,,10 - 14
+33.26.02,3,Paninggaran,age_group,15-19,laki_laki,1637,jiwa,2025,registration,total_population,3.2,36,,15 - 19
+33.26.02,3,Paninggaran,age_group,15-19,perempuan,1659,jiwa,2025,registration,total_population,3.2,36,,15 - 19
+33.26.02,3,Paninggaran,age_group,15-19,,3296,jiwa,2025,registration,total_population,3.2,36,,15 - 19
+33.26.02,3,Paninggaran,age_group,20-24,laki_laki,1979,jiwa,2025,registration,total_population,3.2,36,,20 - 24
+33.26.02,3,Paninggaran,age_group,20-24,perempuan,1883,jiwa,2025,registration,total_population,3.2,36,,20 - 24
+33.26.02,3,Paninggaran,age_group,20-24,,3862,jiwa,2025,registration,total_population,3.2,36,,20 - 24
+33.26.02,3,Paninggaran,age_group,25-29,laki_laki,1962,jiwa,2025,registration,total_population,3.2,36,,25 - 29
+33.26.02,3,Paninggaran,age_group,25-29,perempuan,1882,jiwa,2025,registration,total_population,3.2,36,,25 - 29
+33.26.02,3,Paninggaran,age_group,25-29,,3844,jiwa,2025,registration,total_population,3.2,36,,25 - 29
+33.26.02,3,Paninggaran,age_group,30-34,laki_laki,1810,jiwa,2025,registration,total_population,3.2,36,,30 - 34
+33.26.02,3,Paninggaran,age_group,30-34,perempuan,1677,jiwa,2025,registration,total_population,3.2,36,,30 - 34
+33.26.02,3,Paninggaran,age_group,30-34,,3487,jiwa,2025,registration,total_population,3.2,36,,30 - 34
+33.26.02,3,Paninggaran,age_group,35-39,laki_laki,1665,jiwa,2025,registration,total_population,3.2,36,,35 - 39
+33.26.02,3,Paninggaran,age_group,35-39,perempuan,1490,jiwa,2025,registration,total_population,3.2,36,,35 - 39
+33.26.02,3,Paninggaran,age_group,35-39,,3155,jiwa,2025,registration,total_population,3.2,36,,35 - 39
+33.26.02,3,Paninggaran,age_group,40-44,laki_laki,1698,jiwa,2025,registration,total_population,3.2,36,,40 - 44
+33.26.02,3,Paninggaran,age_group,40-44,perempuan,1658,jiwa,2025,registration,total_population,3.2,36,,40 - 44
+33.26.02,3,Paninggaran,age_group,40-44,,3356,jiwa,2025,registration,total_population,3.2,36,,40 - 44
+33.26.02,3,Paninggaran,age_group,45-49,laki_laki,1510,jiwa,2025,registration,total_population,3.2,36,,45 - 49
+33.26.02,3,Paninggaran,age_group,45-49,perempuan,1452,jiwa,2025,registration,total_population,3.2,36,,45 - 49
+33.26.02,3,Paninggaran,age_group,45-49,,2962,jiwa,2025,registration,total_population,3.2,36,,45 - 49
+33.26.02,3,Paninggaran,age_group,50-54,laki_laki,1178,jiwa,2025,registration,total_population,3.2,36,,50 - 54
+33.26.02,3,Paninggaran,age_group,50-54,perempuan,1130,jiwa,2025,registration,total_population,3.2,36,,50 - 54
+33.26.02,3,Paninggaran,age_group,50-54,,2308,jiwa,2025,registration,total_population,3.2,36,,50 - 54
+33.26.02,3,Paninggaran,age_group,55-59,laki_laki,1106,jiwa,2025,registration,total_population,3.2,36,,55 - 59
+33.26.02,3,Paninggaran,age_group,55-59,perempuan,1133,jiwa,2025,registration,total_population,3.2,36,,55 - 59
+33.26.02,3,Paninggaran,age_group,55-59,,2239,jiwa,2025,registration,total_population,3.2,36,,55 - 59
+33.26.02,3,Paninggaran,age_group,60-64,laki_laki,918,jiwa,2025,registration,total_population,3.2,36,,60 - 64
+33.26.02,3,Paninggaran,age_group,60-64,perempuan,974,jiwa,2025,registration,total_population,3.2,36,,60 - 64
+33.26.02,3,Paninggaran,age_group,60-64,,1892,jiwa,2025,registration,total_population,3.2,36,,60 - 64
+33.26.02,3,Paninggaran,age_group,65-69,laki_laki,808,jiwa,2025,registration,total_population,3.2,36,,65 - 69
+33.26.02,3,Paninggaran,age_group,65-69,perempuan,850,jiwa,2025,registration,total_population,3.2,36,,65 - 69
+33.26.02,3,Paninggaran,age_group,65-69,,1658,jiwa,2025,registration,total_population,3.2,36,,65 - 69
+33.26.02,3,Paninggaran,age_group,70-74,laki_laki,524,jiwa,2025,registration,total_population,3.2,36,,70 - 74
+33.26.02,3,Paninggaran,age_group,70-74,perempuan,524,jiwa,2025,registration,total_population,3.2,36,,70 - 74
+33.26.02,3,Paninggaran,age_group,70-74,,1048,jiwa,2025,registration,total_population,3.2,36,,70 - 74
+33.26.02,3,Paninggaran,age_group,75+,laki_laki,684,jiwa,2025,registration,total_population,3.2,36,,>75
+33.26.02,3,Paninggaran,age_group,75+,perempuan,682,jiwa,2025,registration,total_population,3.2,36,,>75
+33.26.02,3,Paninggaran,age_group,75+,,1366,jiwa,2025,registration,total_population,3.2,36,,>75
+33.26.02,3,Kecamatan Paninggaran,sex,laki_laki,,23001,jiwa,2025,registration,total_population,3.2,36,,Laki-Laki
+33.26.02,3,Kecamatan Paninggaran,sex,perempuan,,22073,jiwa,2025,registration,total_population,3.2,36,,Perempuan
+33.26.02,3,Kecamatan Paninggaran,total,total,,45074,jiwa,2025,registration,total_population,3.2,36,,

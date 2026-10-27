@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.71.12.1004,4,Sukabumi Indah,sex,laki_laki,,4838,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.12.1004,4,Sukabumi Indah,sex,perempuan,,4926,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.12.1004,4,Sukabumi Indah,total,total,,9764,jiwa,2025,registration,total_population,3.1,26,,
+18.71.12.1002,4,Sukabumi,sex,laki_laki,,11565,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.12.1002,4,Sukabumi,sex,perempuan,,11349,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.12.1002,4,Sukabumi,total,total,,22914,jiwa,2025,registration,total_population,3.1,26,,
+18.71.12.1008,4,Nusantara Permai,sex,laki_laki,,2194,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.12.1008,4,Nusantara Permai,sex,perempuan,,2214,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.12.1008,4,Nusantara Permai,total,total,,4408,jiwa,2025,registration,total_population,3.1,26,,
+18.71.12.1007,4,Campang Raya,sex,laki_laki,,4118,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.12.1007,4,Campang Raya,sex,perempuan,,4052,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.12.1007,4,Campang Raya,total,total,,8170,jiwa,2025,registration,total_population,3.1,26,,
+18.71.12.1009,4,Campang Jaya,sex,laki_laki,,6900,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.12.1009,4,Campang Jaya,sex,perempuan,,6510,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.12.1009,4,Campang Jaya,total,total,,13410,jiwa,2025,registration,total_population,3.1,26,,
+18.71.12.1010,4,Way Gubak,sex,laki_laki,,2804,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.12.1010,4,Way Gubak,sex,perempuan,,2745,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.12.1010,4,Way Gubak,total,total,,5549,jiwa,2025,registration,total_population,3.1,26,,
+18.71.12.1011,4,Way Laga,sex,laki_laki,,4850,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.12.1011,4,Way Laga,sex,perempuan,,4600,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.12.1011,4,Way Laga,total,total,,9450,jiwa,2025,registration,total_population,3.1,26,,
+18.71.12,3,Sukabumi,sex,laki_laki,,37269,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.12,3,Sukabumi,sex,perempuan,,36396,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.12,3,Sukabumi,total,total,,73665,jiwa,2025,registration,total_population,3.1,26,,

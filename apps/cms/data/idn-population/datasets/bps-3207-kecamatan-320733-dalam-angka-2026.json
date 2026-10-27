@@ -1,0 +1,59 @@
+{
+  "datasetCode": "bps-3207-kecamatan-320733-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.07.33",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sukamantri Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ciamis",
+  "publisherDomain": "3207",
+  "publisherWebsite": "https://ciamiskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ciamis (https://ciamiskab.bps.go.id), publikasi \"Kecamatan Sukamantri Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3207291",
+  "publicationNumber": "32070.26030",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://ciamiskab.bps.go.id/id/publication/2026/09/28/1d3b575270211c494b6b5782/kecamatan-sukamantri-dalam-angka-2026.html",
+  "sourceFileSha256": "4b590293fc434e88d2b5d9f6a5f311b9eea8ee452dd388febc096ca669d87e25",
+  "sourceFileBytes": 9841263,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ciamis.",
+  "csvPath": "datasets/bps-3207-kecamatan-320733-dalam-angka-2026.csv",
+  "csvSha256": "e257ef93c746911602a520296d9da7d617a7da92cc8b58db5dd379189a48e5ad",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sukamantri, 2025",
+      "printedPages": [34, 35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sukamantri, 2025",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"05-09'\": unmatched ",
+    "table 3.2: row not stored: row \"10-14'\": unmatched ",
+    "table 3.2: row not stored: row \"15-19'\": unmatched ",
+    "table 3.2: row not stored: row \"20-24'\": unmatched ",
+    "table 3.2: row not stored: row \"25-29'\": unmatched ",
+    "table 3.2: row not stored: row \"30-34'\": unmatched ",
+    "table 3.2: row not stored: row \"35-39'\": unmatched ",
+    "table 3.2: row not stored: row \"40-44'\": unmatched ",
+    "table 3.2: row not stored: row \"45-49'\": unmatched ",
+    "table 3.2: row not stored: row \"50-54'\": unmatched ",
+    "table 3.2: row not stored: row \"55-59'\": unmatched ",
+    "table 3.2: row not stored: row \"60-64'\": unmatched ",
+    "table 3.2: row not stored: row \"65-69'\": unmatched ",
+    "table 3.2: row not stored: row \"70-74'\": unmatched ",
+    "table 3.2: the rows of region 32.07.33 are not stored: age_group (perempuan) vs sex value: parts sum 1355.0000 != 12528.0000 (diff 11173.0000); the source itself is inconsistent"
+  ]
+}

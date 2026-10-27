@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.03.01.2004,4,Simpang Narso,sex,laki_laki,,224,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.01.2004,4,Simpang Narso,sex,perempuan,,239,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.01.2004,4,Simpang Narso,total,total,,463,jiwa,2025,registration,total_population,3.1,28,,
+15.03.01.2006,4,Batu Empang,sex,laki_laki,,370,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.01.2006,4,Batu Empang,sex,perempuan,,336,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.01.2006,4,Batu Empang,total,total,,706,jiwa,2025,registration,total_population,3.1,28,,
+15.03.01.2002,4,Sungai Keradak,sex,laki_laki,,210,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.01.2002,4,Sungai Keradak,sex,perempuan,,207,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.01.2002,4,Sungai Keradak,total,total,,417,jiwa,2025,registration,total_population,3.1,28,,
+15.03.01.2001,4,Tambak Ratu,sex,laki_laki,,207,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.01.2001,4,Tambak Ratu,sex,perempuan,,177,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.01.2001,4,Tambak Ratu,total,total,,384,jiwa,2025,registration,total_population,3.1,28,,
+15.03.01.2007,4,Rantau Panjang,sex,laki_laki,,430,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.01.2007,4,Rantau Panjang,sex,perempuan,,425,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.01.2007,4,Rantau Panjang,total,total,,855,jiwa,2025,registration,total_population,3.1,28,,
+15.03.01.2011,4,Pekan Gedang,sex,laki_laki,,469,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.01.2011,4,Pekan Gedang,sex,perempuan,,491,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.01.2011,4,Pekan Gedang,total,total,,960,jiwa,2025,registration,total_population,3.1,28,,
+15.03.01.2014,4,Bukit Kalimau Ulu,sex,laki_laki,,556,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.01.2014,4,Bukit Kalimau Ulu,sex,perempuan,,519,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.01.2014,4,Bukit Kalimau Ulu,total,total,,1075,jiwa,2025,registration,total_population,3.1,28,,
+15.03.01.2012,4,Raden Anom,sex,laki_laki,,657,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.01.2012,4,Raden Anom,sex,perempuan,,692,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.01.2012,4,Raden Anom,total,total,,1349,jiwa,2025,registration,total_population,3.1,28,,
+15.03.01.2013,4,Datuk Nan Duo,sex,laki_laki,,755,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.01.2013,4,Datuk Nan Duo,sex,perempuan,,746,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.01.2013,4,Datuk Nan Duo,total,total,,1501,jiwa,2025,registration,total_population,3.1,28,,
+15.03.01.2018,4,Padang Jering,sex,laki_laki,,918,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.01.2018,4,Padang Jering,sex,perempuan,,930,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.01.2018,4,Padang Jering,total,total,,1848,jiwa,2025,registration,total_population,3.1,28,,
+15.03.01.2019,4,Kasiro,sex,laki_laki,,708,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.01.2019,4,Kasiro,sex,perempuan,,718,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.01.2019,4,Kasiro,total,total,,1426,jiwa,2025,registration,total_population,3.1,28,,
+15.03.01.2015,4,Sungai Bemban,sex,laki_laki,,618,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.01.2015,4,Sungai Bemban,sex,perempuan,,598,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.01.2015,4,Sungai Bemban,total,total,,1216,jiwa,2025,registration,total_population,3.1,28,,
+15.03.01.2017,4,Sungai Baung,sex,laki_laki,,527,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.01.2017,4,Sungai Baung,sex,perempuan,,513,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.01.2017,4,Sungai Baung,total,total,,1040,jiwa,2025,registration,total_population,3.1,28,,
+15.03.01.2016,4,Muara Cuban,sex,laki_laki,,636,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.01.2016,4,Muara Cuban,sex,perempuan,,577,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.01.2016,4,Muara Cuban,total,total,,1213,jiwa,2025,registration,total_population,3.1,28,,
+15.03.01.2010,4,Lubuk Bangkar,sex,laki_laki,,570,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.01.2010,4,Lubuk Bangkar,sex,perempuan,,553,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.01.2010,4,Lubuk Bangkar,total,total,,1123,jiwa,2025,registration,total_population,3.1,28,,
+15.03.01.2022,4,Bukit Sulah,sex,laki_laki,,396,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.01.2022,4,Bukit Sulah,sex,perempuan,,378,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.01.2022,4,Bukit Sulah,total,total,,774,jiwa,2025,registration,total_population,3.1,28,,
+15.03.01.2023,4,Paniban Baru,sex,laki_laki,,249,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.01.2023,4,Paniban Baru,sex,perempuan,,229,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.01.2023,4,Paniban Baru,total,total,,478,jiwa,2025,registration,total_population,3.1,28,,
+15.03.01.2021,4,Bukit Berantai,sex,laki_laki,,344,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.01.2021,4,Bukit Berantai,sex,perempuan,,333,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.01.2021,4,Bukit Berantai,total,total,,677,jiwa,2025,registration,total_population,3.1,28,,
+15.03.01,3,Batang Asai,sex,laki_laki,,10851,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.03.01,3,Batang Asai,sex,perempuan,,10630,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.03.01,3,Batang Asai,total,total,,21481,jiwa,2025,registration,total_population,3.1,28,,

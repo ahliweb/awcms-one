@@ -1,0 +1,119 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.05.05,3,Mestong,religion,islam,,45992,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+15.05.05,3,Mestong,religion,kristen,,798,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+15.05.05,3,Mestong,religion,katolik,,109,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+15.05.05,3,Mestong,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+15.05.05,3,Mestong,religion,buddha,,109,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+15.05.05,3,Mestong,religion,lainnya,,14,jiwa,2025,registration,total_population,4.3.1,119,,Lainnya
+15.05.07,3,Sungai Bahar,religion,islam,,30383,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+15.05.07,3,Sungai Bahar,religion,kristen,,2114,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+15.05.07,3,Sungai Bahar,religion,katolik,,303,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+15.05.07,3,Sungai Bahar,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+15.05.07,3,Sungai Bahar,religion,buddha,,9,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+15.05.07,3,Sungai Bahar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+15.05.10,3,Bahar Selatan,religion,islam,,17991,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+15.05.10,3,Bahar Selatan,religion,kristen,,2021,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+15.05.10,3,Bahar Selatan,religion,katolik,,157,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+15.05.10,3,Bahar Selatan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+15.05.10,3,Bahar Selatan,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+15.05.10,3,Bahar Selatan,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,119,,Lainnya
+15.05.09,3,Bahar Utara,religion,islam,,13096,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+15.05.09,3,Bahar Utara,religion,kristen,,1921,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+15.05.09,3,Bahar Utara,religion,katolik,,122,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+15.05.09,3,Bahar Utara,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+15.05.09,3,Bahar Utara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Budha
+15.05.09,3,Bahar Utara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+15.05.06,3,Kumpeh Ulu,religion,islam,,65658,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+15.05.06,3,Kumpeh Ulu,religion,kristen,,2539,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+15.05.06,3,Kumpeh Ulu,religion,katolik,,482,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+15.05.06,3,Kumpeh Ulu,religion,hindu,,13,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+15.05.06,3,Kumpeh Ulu,religion,buddha,,749,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+15.05.06,3,Kumpeh Ulu,religion,lainnya,,44,jiwa,2025,registration,total_population,4.3.1,119,,Lainnya
+15.05.08,3,Sungai Gelam,religion,islam,,78897,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+15.05.08,3,Sungai Gelam,religion,kristen,,4168,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+15.05.08,3,Sungai Gelam,religion,katolik,,349,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+15.05.08,3,Sungai Gelam,religion,hindu,,179,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+15.05.08,3,Sungai Gelam,religion,buddha,,527,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+15.05.08,3,Sungai Gelam,religion,lainnya,,67,jiwa,2025,registration,total_population,4.3.1,119,,Lainnya
+15.05.03,3,Kumpeh,religion,islam,,27276,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+15.05.03,3,Kumpeh,religion,kristen,,283,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+15.05.03,3,Kumpeh,religion,katolik,,42,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+15.05.03,3,Kumpeh,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+15.05.03,3,Kumpeh,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+15.05.03,3,Kumpeh,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+15.05.04,3,Maro Sebo,religion,islam,,24685,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+15.05.04,3,Maro Sebo,religion,kristen,,279,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+15.05.04,3,Maro Sebo,religion,katolik,,52,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+15.05.04,3,Maro Sebo,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+15.05.04,3,Maro Sebo,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+15.05.04,3,Maro Sebo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+15.05.11,3,Taman Rajo,religion,islam,,14545,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+15.05.11,3,Taman Rajo,religion,kristen,,256,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+15.05.11,3,Taman Rajo,religion,katolik,,34,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+15.05.11,3,Taman Rajo,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+15.05.11,3,Taman Rajo,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+15.05.11,3,Taman Rajo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+15.05.01,3,Jambi Luar Kota,religion,islam,,73227,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+15.05.01,3,Jambi Luar Kota,religion,kristen,,4384,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+15.05.01,3,Jambi Luar Kota,religion,katolik,,505,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+15.05.01,3,Jambi Luar Kota,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+15.05.01,3,Jambi Luar Kota,religion,buddha,,88,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+15.05.01,3,Jambi Luar Kota,religion,lainnya,,8,jiwa,2025,registration,total_population,4.3.1,119,,Lainnya
+15.05.02,3,Sekernan,religion,islam,,48754,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+15.05.02,3,Sekernan,religion,kristen,,3423,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+15.05.02,3,Sekernan,religion,katolik,,285,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+15.05.02,3,Sekernan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+15.05.02,3,Sekernan,religion,buddha,,20,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+15.05.02,3,Sekernan,religion,lainnya,,14,jiwa,2025,registration,total_population,4.3.1,119,,Lainnya
+15.05,2,Muaro Jambi,religion,islam,,440504,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+15.05,2,Muaro Jambi,religion,kristen,,22186,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+15.05,2,Muaro Jambi,religion,katolik,,2440,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+15.05,2,Muaro Jambi,religion,hindu,,195,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+15.05,2,Muaro Jambi,religion,buddha,,1516,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+15.05,2,Muaro Jambi,religion,lainnya,,151,jiwa,2025,registration,total_population,4.3.1,119,,Lainnya
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/padi_padian,,96071,rupiah,2024,survey_estimate,per_capita,10.1,248,,Padi – padian
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/padi_padian,,85929,rupiah,2025,survey_estimate,per_capita,10.1,248,,Padi – padian
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/umbi_umbian,,9919,rupiah,2024,survey_estimate,per_capita,10.1,248,,Umbi – umbian
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/umbi_umbian,,10087,rupiah,2025,survey_estimate,per_capita,10.1,248,,Umbi – umbian
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,74288,rupiah,2024,survey_estimate,per_capita,10.1,248,,Ikan/udang/cumi/kerang
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,77225,rupiah,2025,survey_estimate,per_capita,10.1,248,,Ikan/udang/cumi/kerang
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/daging,,41320,rupiah,2024,survey_estimate,per_capita,10.1,248,,Daging
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/daging,,41671,rupiah,2025,survey_estimate,per_capita,10.1,248,,Daging
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/telur_dan_susu,,36461,rupiah,2024,survey_estimate,per_capita,10.1,248,,Telur dan susu
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/telur_dan_susu,,35859,rupiah,2025,survey_estimate,per_capita,10.1,248,,Telur dan susu
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/sayur_sayuran,,89149,rupiah,2024,survey_estimate,per_capita,10.1,248,,Sayur – sayuran
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/sayur_sayuran,,88898,rupiah,2025,survey_estimate,per_capita,10.1,248,,Sayur – sayuran
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/kacang_kacangan,,13651,rupiah,2024,survey_estimate,per_capita,10.1,248,,Kacang – kacangan
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/kacang_kacangan,,15618,rupiah,2025,survey_estimate,per_capita,10.1,248,,Kacang – kacangan
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/buah_buahan,,56091,rupiah,2024,survey_estimate,per_capita,10.1,248,,Buah – buahan
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/buah_buahan,,52927,rupiah,2025,survey_estimate,per_capita,10.1,248,,Buah – buahan
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22868,rupiah,2024,survey_estimate,per_capita,10.1,248,,Minyak dan kelapa
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/minyak_dan_kelapa,,25731,rupiah,2025,survey_estimate,per_capita,10.1,248,,Minyak dan kelapa
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/bahan_minuman,,27774,rupiah,2024,survey_estimate,per_capita,10.1,248,,Bahan minuman
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/bahan_minuman,,29767,rupiah,2025,survey_estimate,per_capita,10.1,248,,Bahan minuman
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/bumbu_bumbuan,,15683,rupiah,2024,survey_estimate,per_capita,10.1,248,,Bumbu – bumbuan
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/bumbu_bumbuan,,17043,rupiah,2025,survey_estimate,per_capita,10.1,248,,Bumbu – bumbuan
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/konsumsi_lainnya,,14819,rupiah,2024,survey_estimate,per_capita,10.1,248,,Konsumsi lainnya
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/konsumsi_lainnya,,15635,rupiah,2025,survey_estimate,per_capita,10.1,248,,Konsumsi lainnya
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,187894,rupiah,2024,survey_estimate,per_capita,10.1,248,,Makanan dan minuman jadi
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,198718,rupiah,2025,survey_estimate,per_capita,10.1,248,,Makanan dan minuman jadi
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/rokok,,127697,rupiah,2024,survey_estimate,per_capita,10.1,248,,Rokok
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/rokok,,120160,rupiah,2025,survey_estimate,per_capita,10.1,248,,Rokok
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/jumlah_makanan,,813684,rupiah,2024,survey_estimate,per_capita,10.1,248,,Jumlah makanan
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/jumlah_makanan,,815269,rupiah,2025,survey_estimate,per_capita,10.1,248,,Jumlah makanan
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,350364,rupiah,2024,survey_estimate,per_capita,10.1,248,,Perumahan dan fasilitas rumah tangga
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,327181,rupiah,2025,survey_estimate,per_capita,10.1,248,,Perumahan dan fasilitas rumah tangga
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,130750,rupiah,2024,survey_estimate,per_capita,10.1,248,,Aneka barang dan jasa
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,146429,rupiah,2025,survey_estimate,per_capita,10.1,248,,Aneka barang dan jasa
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,40558,rupiah,2024,survey_estimate,per_capita,10.1,248,,"Pakaian, alas kaki, dan tutup kepala"
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,44863,rupiah,2025,survey_estimate,per_capita,10.1,248,,"Pakaian, alas kaki, dan tutup kepala"
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/barang_tahan_lama,,41754,rupiah,2024,survey_estimate,per_capita,10.1,248,,Barang tahan lama
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/barang_tahan_lama,,58925,rupiah,2025,survey_estimate,per_capita,10.1,248,,Barang tahan lama
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,35459,rupiah,2024,survey_estimate,per_capita,10.1,248,,"Pajak, pungutan, dan asuransi"
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,43285,rupiah,2025,survey_estimate,per_capita,10.1,248,,"Pajak, pungutan, dan asuransi"
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,28671,rupiah,2024,survey_estimate,per_capita,10.1,248,,Keperluan pesta dan upacara/kenduri
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,39228,rupiah,2025,survey_estimate,per_capita,10.1,248,,Keperluan pesta dan upacara/kenduri
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,627557,rupiah,2024,survey_estimate,per_capita,10.1,248,,Jumlah bukan makanan
+15.05,2,Kabupaten Muaro Jambi,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,659911,rupiah,2025,survey_estimate,per_capita,10.1,248,,Jumlah bukan makanan
+15.05,2,Kabupaten Muaro Jambi,expenditure,total,,1441241,rupiah,2024,survey_estimate,per_capita,10.1,248,,
+15.05,2,Kabupaten Muaro Jambi,expenditure,total,,1475180,rupiah,2025,survey_estimate,per_capita,10.1,248,,

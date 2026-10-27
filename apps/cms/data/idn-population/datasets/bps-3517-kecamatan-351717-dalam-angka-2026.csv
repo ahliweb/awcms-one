@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.17.17.2001,4,Sidokaton,sex,laki_laki,,1653,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.17.2001,4,Sidokaton,sex,perempuan,,1667,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.17.2001,4,Sidokaton,total,total,,3320,jiwa,2025,registration,total_population,3.1,33,,
+35.17.17.2002,4,Tapen,sex,laki_laki,,1226,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.17.2002,4,Tapen,sex,perempuan,,1275,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.17.2002,4,Tapen,total,total,,2501,jiwa,2025,registration,total_population,3.1,33,,
+35.17.17.2003,4,Bakalanrayung,sex,laki_laki,,1648,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.17.2003,4,Bakalanrayung,sex,perempuan,,1659,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.17.2003,4,Bakalanrayung,total,total,,3307,jiwa,2025,registration,total_population,3.1,33,,
+35.17.17.2004,4,Randuwatang,sex,laki_laki,,895,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.17.2004,4,Randuwatang,sex,perempuan,,898,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.17.2004,4,Randuwatang,total,total,,1793,jiwa,2025,registration,total_population,3.1,33,,
+35.17.17.2005,4,Sumber Teguh,sex,laki_laki,,1744,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.17.2005,4,Sumber Teguh,sex,perempuan,,1723,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.17.2005,4,Sumber Teguh,total,total,,3467,jiwa,2025,registration,total_population,3.1,33,,
+35.17.17.2006,4,Menturus,sex,laki_laki,,1259,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.17.2006,4,Menturus,sex,perempuan,,1287,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.17.2006,4,Menturus,total,total,,2546,jiwa,2025,registration,total_population,3.1,33,,
+35.17.17.2007,4,Kudubanjar,sex,laki_laki,,1499,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.17.2007,4,Kudubanjar,sex,perempuan,,1554,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.17.2007,4,Kudubanjar,total,total,,3053,jiwa,2025,registration,total_population,3.1,33,,
+35.17.17.2008,4,Made,sex,laki_laki,,1058,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.17.2008,4,Made,sex,perempuan,,1112,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.17.2008,4,Made,total,total,,2170,jiwa,2025,registration,total_population,3.1,33,,
+35.17.17.2009,4,Kepuhrejo,sex,laki_laki,,1723,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.17.2009,4,Kepuhrejo,sex,perempuan,,1750,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.17.2009,4,Kepuhrejo,total,total,,3473,jiwa,2025,registration,total_population,3.1,33,,
+35.17.17.2010,4,Bendungan,sex,laki_laki,,1342,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.17.2010,4,Bendungan,sex,perempuan,,1277,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.17.2010,4,Bendungan,total,total,,2619,jiwa,2025,registration,total_population,3.1,33,,
+35.17.17.2011,4,Katemas,sex,laki_laki,,2453,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.17.2011,4,Katemas,sex,perempuan,,2467,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.17.2011,4,Katemas,total,total,,4920,jiwa,2025,registration,total_population,3.1,33,,
+35.17.17,3,Kecamatan Kudu,sex,laki_laki,,16500,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki
+35.17.17,3,Kecamatan Kudu,sex,perempuan,,16669,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+35.17.17,3,Kecamatan Kudu,total,total,,33169,jiwa,2025,registration,total_population,3.1,33,,

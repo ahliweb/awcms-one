@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.71.10.1002,4,Gedong Meneng,sex,laki_laki,,2747,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.10.1002,4,Gedong Meneng,sex,perempuan,,2832,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.10.1002,4,Gedong Meneng,total,total,,5579,jiwa,2025,registration,total_population,3.1,26,,
+18.71.10.1001,4,Rajabasa,sex,laki_laki,,3887,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.10.1001,4,Rajabasa,sex,perempuan,,3755,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.10.1001,4,Rajabasa,total,total,,7642,jiwa,2025,registration,total_population,3.1,26,,
+18.71.10.1008,4,Rajabasa Raya,sex,laki_laki,,5181,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.10.1008,4,Rajabasa Raya,sex,perempuan,,5029,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.10.1008,4,Rajabasa Raya,total,total,,10210,jiwa,2025,registration,total_population,3.1,26,,
+18.71.10.1009,4,Rajabasa Jaya,sex,laki_laki,,7155,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.10.1009,4,Rajabasa Jaya,sex,perempuan,,6920,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.10.1009,4,Rajabasa Jaya,total,total,,14075,jiwa,2025,registration,total_population,3.1,26,,
+18.71.10.1007,4,Gedong Meneng Baru,sex,laki_laki,,958,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.10.1007,4,Gedong Meneng Baru,sex,perempuan,,963,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.10.1007,4,Gedong Meneng Baru,total,total,,1921,jiwa,2025,registration,total_population,3.1,26,,
+18.71.10.1006,4,Rajabasa Pemuka,sex,laki_laki,,3875,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.10.1006,4,Rajabasa Pemuka,sex,perempuan,,3841,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.10.1006,4,Rajabasa Pemuka,total,total,,7716,jiwa,2025,registration,total_population,3.1,26,,
+18.71.10,3,Rajabasa,sex,laki_laki,,28558,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.10,3,Rajabasa,sex,perempuan,,28099,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.10,3,Rajabasa,total,total,,56657,jiwa,2025,registration,total_population,3.1,26,,

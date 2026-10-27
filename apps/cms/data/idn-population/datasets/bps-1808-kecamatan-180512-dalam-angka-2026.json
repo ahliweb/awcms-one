@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1808-kecamatan-180512-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.05.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Rawajitu Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tulang Bawang",
+  "publisherDomain": "1808",
+  "publisherWebsite": "https://tulangbawangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tulang Bawang (https://tulangbawangkab.bps.go.id), publikasi \"Kecamatan Rawajitu Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "2829",
+  "publicationNumber": "18080.26014",
+  "issn": "2829-9965",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tulangbawangkab.bps.go.id/id/publication/2026/09/28/f482fec1decec7f1e8f050ae/kecamatan-rawajitu-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "273cedb5133ebe466843f7818269d743ba05234cb124edc7fe76ecf0901a7276",
+  "sourceFileBytes": 13288149,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tulang Bawang.",
+  "csvPath": "datasets/bps-1808-kecamatan-180512-dalam-angka-2026.csv",
+  "csvSha256": "b36f37f95632bf775d41bab7f20239e20c31b33df2a66e34b5185120da45a34d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Rawajitu Selatan, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Rawajitu Selatan, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,168 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.10.09,3,Bilah Hulu,total,total,,67134,jiwa,2024,projection,total_population,3.1.1,68,,
+12.10.14,3,Pangkatan,total,total,,39796,jiwa,2024,projection,total_population,3.1.1,68,,
+12.10.07,3,Bilah Barat,total,total,,42041,jiwa,2024,projection,total_population,3.1.1,68,,
+12.10.08,3,Bilah Hilir,total,total,,62550,jiwa,2024,projection,total_population,3.1.1,68,,
+12.10.20,3,Panai Hulu,total,total,,39679,jiwa,2024,projection,total_population,3.1.1,68,,
+12.10.18,3,Panai Tengah,total,total,,43703,jiwa,2024,projection,total_population,3.1.1,68,,
+12.10.19,3,Panai Hilir,total,total,,45102,jiwa,2024,projection,total_population,3.1.1,68,,
+12.10.02,3,Rantau Selatan,total,total,,79452,jiwa,2024,projection,total_population,3.1.1,68,,
+12.10.01,3,Rantau Utara,total,total,,101088,jiwa,2024,projection,total_population,3.1.1,68,,
+12.10,2,Labuhanbatu,total,total,,520545,jiwa,2024,projection,total_population,3.1.1,68,,
+12.10,2,Kabupaten Labuhanbatu,age_group,0-4,laki_laki,24.78,ribu_jiwa,2024,projection,total_population,3.1.2,71,,0–4
+12.10,2,Kabupaten Labuhanbatu,age_group,0-4,perempuan,23.88,ribu_jiwa,2024,projection,total_population,3.1.2,71,,0–4
+12.10,2,Kabupaten Labuhanbatu,age_group,0-4,,48.66,ribu_jiwa,2024,projection,total_population,3.1.2,71,,0–4
+12.10,2,Kabupaten Labuhanbatu,age_group,5-9,laki_laki,24.20,ribu_jiwa,2024,projection,total_population,3.1.2,71,,5–9
+12.10,2,Kabupaten Labuhanbatu,age_group,5-9,perempuan,23.10,ribu_jiwa,2024,projection,total_population,3.1.2,71,,5–9
+12.10,2,Kabupaten Labuhanbatu,age_group,5-9,,47.30,ribu_jiwa,2024,projection,total_population,3.1.2,71,,5–9
+12.10,2,Kabupaten Labuhanbatu,age_group,10-14,laki_laki,24.19,ribu_jiwa,2024,projection,total_population,3.1.2,71,,10–14
+12.10,2,Kabupaten Labuhanbatu,age_group,10-14,perempuan,23.16,ribu_jiwa,2024,projection,total_population,3.1.2,71,,10–14
+12.10,2,Kabupaten Labuhanbatu,age_group,10-14,,47.35,ribu_jiwa,2024,projection,total_population,3.1.2,71,,10–14
+12.10,2,Kabupaten Labuhanbatu,age_group,15-19,laki_laki,23.51,ribu_jiwa,2024,projection,total_population,3.1.2,71,,15–19
+12.10,2,Kabupaten Labuhanbatu,age_group,15-19,perempuan,22.43,ribu_jiwa,2024,projection,total_population,3.1.2,71,,15–19
+12.10,2,Kabupaten Labuhanbatu,age_group,15-19,,45.94,ribu_jiwa,2024,projection,total_population,3.1.2,71,,15–19
+12.10,2,Kabupaten Labuhanbatu,age_group,20-24,laki_laki,23.59,ribu_jiwa,2024,projection,total_population,3.1.2,71,,20–24
+12.10,2,Kabupaten Labuhanbatu,age_group,20-24,perempuan,22.28,ribu_jiwa,2024,projection,total_population,3.1.2,71,,20–24
+12.10,2,Kabupaten Labuhanbatu,age_group,20-24,,45.87,ribu_jiwa,2024,projection,total_population,3.1.2,71,,20–24
+12.10,2,Kabupaten Labuhanbatu,age_group,25-29,laki_laki,22.79,ribu_jiwa,2024,projection,total_population,3.1.2,71,,25–29
+12.10,2,Kabupaten Labuhanbatu,age_group,25-29,perempuan,21.49,ribu_jiwa,2024,projection,total_population,3.1.2,71,,25–29
+12.10,2,Kabupaten Labuhanbatu,age_group,25-29,,44.28,ribu_jiwa,2024,projection,total_population,3.1.2,71,,25–29
+12.10,2,Kabupaten Labuhanbatu,age_group,30-34,laki_laki,22.27,ribu_jiwa,2024,projection,total_population,3.1.2,71,,30–34
+12.10,2,Kabupaten Labuhanbatu,age_group,30-34,perempuan,21.24,ribu_jiwa,2024,projection,total_population,3.1.2,71,,30–34
+12.10,2,Kabupaten Labuhanbatu,age_group,30-34,,43.50,ribu_jiwa,2024,projection,total_population,3.1.2,71,,30–34
+12.10,2,Kabupaten Labuhanbatu,age_group,35-39,laki_laki,20.12,ribu_jiwa,2024,projection,total_population,3.1.2,71,,35–39
+12.10,2,Kabupaten Labuhanbatu,age_group,35-39,perempuan,19.27,ribu_jiwa,2024,projection,total_population,3.1.2,71,,35–39
+12.10,2,Kabupaten Labuhanbatu,age_group,35-39,,39.39,ribu_jiwa,2024,projection,total_population,3.1.2,71,,35–39
+12.10,2,Kabupaten Labuhanbatu,age_group,40-44,laki_laki,18.47,ribu_jiwa,2024,projection,total_population,3.1.2,71,,40–44
+12.10,2,Kabupaten Labuhanbatu,age_group,40-44,perempuan,17.62,ribu_jiwa,2024,projection,total_population,3.1.2,71,,40–44
+12.10,2,Kabupaten Labuhanbatu,age_group,40-44,,36.08,ribu_jiwa,2024,projection,total_population,3.1.2,71,,40–44
+12.10,2,Kabupaten Labuhanbatu,age_group,45-49,laki_laki,16.46,ribu_jiwa,2024,projection,total_population,3.1.2,71,,45–49
+12.10,2,Kabupaten Labuhanbatu,age_group,45-49,perempuan,15.58,ribu_jiwa,2024,projection,total_population,3.1.2,71,,45–49
+12.10,2,Kabupaten Labuhanbatu,age_group,45-49,,32.03,ribu_jiwa,2024,projection,total_population,3.1.2,71,,45–49
+12.10,2,Kabupaten Labuhanbatu,age_group,50-54,laki_laki,13.30,ribu_jiwa,2024,projection,total_population,3.1.2,71,,50–54
+12.10,2,Kabupaten Labuhanbatu,age_group,50-54,perempuan,13.44,ribu_jiwa,2024,projection,total_population,3.1.2,71,,50–54
+12.10,2,Kabupaten Labuhanbatu,age_group,50-54,,26.74,ribu_jiwa,2024,projection,total_population,3.1.2,71,,50–54
+12.10,2,Kabupaten Labuhanbatu,age_group,55-59,laki_laki,10.64,ribu_jiwa,2024,projection,total_population,3.1.2,71,,55–59
+12.10,2,Kabupaten Labuhanbatu,age_group,55-59,perempuan,10.65,ribu_jiwa,2024,projection,total_population,3.1.2,71,,55–59
+12.10,2,Kabupaten Labuhanbatu,age_group,55-59,,21.29,ribu_jiwa,2024,projection,total_population,3.1.2,71,,55–59
+12.10,2,Kabupaten Labuhanbatu,age_group,60-64,laki_laki,8.25,ribu_jiwa,2024,projection,total_population,3.1.2,71,,60–64
+12.10,2,Kabupaten Labuhanbatu,age_group,60-64,perempuan,8.70,ribu_jiwa,2024,projection,total_population,3.1.2,71,,60–64
+12.10,2,Kabupaten Labuhanbatu,age_group,60-64,,16.94,ribu_jiwa,2024,projection,total_population,3.1.2,71,,60–64
+12.10,2,Kabupaten Labuhanbatu,age_group,65-69,laki_laki,5.82,ribu_jiwa,2024,projection,total_population,3.1.2,71,,65–69
+12.10,2,Kabupaten Labuhanbatu,age_group,65-69,perempuan,6.32,ribu_jiwa,2024,projection,total_population,3.1.2,71,,65–69
+12.10,2,Kabupaten Labuhanbatu,age_group,65-69,,12.14,ribu_jiwa,2024,projection,total_population,3.1.2,71,,65–69
+12.10,2,Kabupaten Labuhanbatu,age_group,70-74,laki_laki,3.47,ribu_jiwa,2024,projection,total_population,3.1.2,71,,70–74
+12.10,2,Kabupaten Labuhanbatu,age_group,70-74,perempuan,3.97,ribu_jiwa,2024,projection,total_population,3.1.2,71,,70–74
+12.10,2,Kabupaten Labuhanbatu,age_group,70-74,,7.44,ribu_jiwa,2024,projection,total_population,3.1.2,71,,70–74
+12.10,2,Kabupaten Labuhanbatu,age_group,75+,laki_laki,2.32,ribu_jiwa,2024,projection,total_population,3.1.2,71,,75+
+12.10,2,Kabupaten Labuhanbatu,age_group,75+,perempuan,3.29,ribu_jiwa,2024,projection,total_population,3.1.2,71,,75+
+12.10,2,Kabupaten Labuhanbatu,age_group,75+,,5.60,ribu_jiwa,2024,projection,total_population,3.1.2,71,,75+
+12.10,2,Labuhanbatu,sex,laki_laki,,264.15,ribu_jiwa,2024,projection,total_population,3.1.2,71,,Laki-Laki
+12.10,2,Labuhanbatu,sex,perempuan,,256.40,ribu_jiwa,2024,projection,total_population,3.1.2,71,,Perempuan
+12.10,2,Labuhanbatu,total,total,,520.55,ribu_jiwa,2024,projection,total_population,3.1.2,71,,
+12.10.09,3,Bilah Hulu,religion,islam,,55734,jiwa,2024,registration,total_population,4.3.1,158,,Islam
+12.10.09,3,Bilah Hulu,religion,kristen,,8513,jiwa,2024,registration,total_population,4.3.1,158,,Protestan
+12.10.09,3,Bilah Hulu,religion,katolik,,1199,jiwa,2024,registration,total_population,4.3.1,158,,Katolik
+12.10.09,3,Bilah Hulu,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,158,nil,Hindu
+12.10.09,3,Bilah Hulu,religion,buddha,,408,jiwa,2024,registration,total_population,4.3.1,158,,Budha
+12.10.09,3,Bilah Hulu,religion,lainnya,,21,jiwa,2024,registration,total_population,4.3.1,158,,Lainnya
+12.10.14,3,Pangkatan,religion,islam,,27826,jiwa,2024,registration,total_population,4.3.1,158,,Islam
+12.10.14,3,Pangkatan,religion,kristen,,9544,jiwa,2024,registration,total_population,4.3.1,158,,Protestan
+12.10.14,3,Pangkatan,religion,katolik,,1737,jiwa,2024,registration,total_population,4.3.1,158,,Katolik
+12.10.14,3,Pangkatan,religion,hindu,,2,jiwa,2024,registration,total_population,4.3.1,158,,Hindu
+12.10.14,3,Pangkatan,religion,buddha,,20,jiwa,2024,registration,total_population,4.3.1,158,,Budha
+12.10.14,3,Pangkatan,religion,lainnya,,51,jiwa,2024,registration,total_population,4.3.1,158,,Lainnya
+12.10.07,3,Bilah Barat,religion,islam,,38318,jiwa,2024,registration,total_population,4.3.1,158,,Islam
+12.10.07,3,Bilah Barat,religion,kristen,,2298,jiwa,2024,registration,total_population,4.3.1,158,,Protestan
+12.10.07,3,Bilah Barat,religion,katolik,,263,jiwa,2024,registration,total_population,4.3.1,158,,Katolik
+12.10.07,3,Bilah Barat,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,158,nil,Hindu
+12.10.07,3,Bilah Barat,religion,buddha,,18,jiwa,2024,registration,total_population,4.3.1,158,,Budha
+12.10.07,3,Bilah Barat,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,158,nil,Lainnya
+12.10.08,3,Bilah Hilir,religion,islam,,48077,jiwa,2024,registration,total_population,4.3.1,158,,Islam
+12.10.08,3,Bilah Hilir,religion,kristen,,13246,jiwa,2024,registration,total_population,4.3.1,158,,Protestan
+12.10.08,3,Bilah Hilir,religion,katolik,,1648,jiwa,2024,registration,total_population,4.3.1,158,,Katolik
+12.10.08,3,Bilah Hilir,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,158,nil,Hindu
+12.10.08,3,Bilah Hilir,religion,buddha,,44,jiwa,2024,registration,total_population,4.3.1,158,,Budha
+12.10.08,3,Bilah Hilir,religion,lainnya,,15,jiwa,2024,registration,total_population,4.3.1,158,,Lainnya
+12.10.20,3,Panai Hulu,religion,islam,,37303,jiwa,2024,registration,total_population,4.3.1,158,,Islam
+12.10.20,3,Panai Hulu,religion,kristen,,2401,jiwa,2024,registration,total_population,4.3.1,158,,Protestan
+12.10.20,3,Panai Hulu,religion,katolik,,149,jiwa,2024,registration,total_population,4.3.1,158,,Katolik
+12.10.20,3,Panai Hulu,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,158,nil,Hindu
+12.10.20,3,Panai Hulu,religion,buddha,,25,jiwa,2024,registration,total_population,4.3.1,158,,Budha
+12.10.20,3,Panai Hulu,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,158,nil,Lainnya
+12.10.18,3,Panai Tengah,religion,islam,,35482,jiwa,2024,registration,total_population,4.3.1,158,,Islam
+12.10.18,3,Panai Tengah,religion,kristen,,6762,jiwa,2024,registration,total_population,4.3.1,158,,Protestan
+12.10.18,3,Panai Tengah,religion,katolik,,655,jiwa,2024,registration,total_population,4.3.1,158,,Katolik
+12.10.18,3,Panai Tengah,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,158,nil,Hindu
+12.10.18,3,Panai Tengah,religion,buddha,,15,jiwa,2024,registration,total_population,4.3.1,158,,Budha
+12.10.18,3,Panai Tengah,religion,lainnya,,7,jiwa,2024,registration,total_population,4.3.1,158,,Lainnya
+12.10.19,3,Panai Hilir,religion,islam,,37641,jiwa,2024,registration,total_population,4.3.1,158,,Islam
+12.10.19,3,Panai Hilir,religion,kristen,,5372,jiwa,2024,registration,total_population,4.3.1,158,,Protestan
+12.10.19,3,Panai Hilir,religion,katolik,,841,jiwa,2024,registration,total_population,4.3.1,158,,Katolik
+12.10.19,3,Panai Hilir,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,158,nil,Hindu
+12.10.19,3,Panai Hilir,religion,buddha,,707,jiwa,2024,registration,total_population,4.3.1,158,,Budha
+12.10.19,3,Panai Hilir,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,158,nil,Lainnya
+12.10.02,3,Rantau Selatan,religion,islam,,69957,jiwa,2024,registration,total_population,4.3.1,158,,Islam
+12.10.02,3,Rantau Selatan,religion,kristen,,7396,jiwa,2024,registration,total_population,4.3.1,158,,Protestan
+12.10.02,3,Rantau Selatan,religion,katolik,,586,jiwa,2024,registration,total_population,4.3.1,158,,Katolik
+12.10.02,3,Rantau Selatan,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,158,nil,Hindu
+12.10.02,3,Rantau Selatan,religion,buddha,,495,jiwa,2024,registration,total_population,4.3.1,158,,Budha
+12.10.02,3,Rantau Selatan,religion,lainnya,,9,jiwa,2024,registration,total_population,4.3.1,158,,Lainnya
+12.10.01,3,Rantau Utara,religion,islam,,79628,jiwa,2024,registration,total_population,4.3.1,158,,Islam
+12.10.01,3,Rantau Utara,religion,kristen,,12481,jiwa,2024,registration,total_population,4.3.1,158,,Protestan
+12.10.01,3,Rantau Utara,religion,katolik,,1171,jiwa,2024,registration,total_population,4.3.1,158,,Katolik
+12.10.01,3,Rantau Utara,religion,hindu,,11,jiwa,2024,registration,total_population,4.3.1,158,,Hindu
+12.10.01,3,Rantau Utara,religion,buddha,,4933,jiwa,2024,registration,total_population,4.3.1,158,,Budha
+12.10.01,3,Rantau Utara,religion,lainnya,,1,jiwa,2024,registration,total_population,4.3.1,158,,Lainnya
+12.10,2,Labuhanbatu,religion,islam,,429966,jiwa,2024,registration,total_population,4.3.1,158,,Islam
+12.10,2,Labuhanbatu,religion,kristen,,68013,jiwa,2024,registration,total_population,4.3.1,158,,Protestan
+12.10,2,Labuhanbatu,religion,katolik,,8249,jiwa,2024,registration,total_population,4.3.1,158,,Katolik
+12.10,2,Labuhanbatu,religion,hindu,,13,jiwa,2024,registration,total_population,4.3.1,158,,Hindu
+12.10,2,Labuhanbatu,religion,buddha,,6665,jiwa,2024,registration,total_population,4.3.1,158,,Budha
+12.10,2,Labuhanbatu,religion,lainnya,,104,jiwa,2024,registration,total_population,4.3.1,158,,Lainnya
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/padi_padian,,97065,rupiah,2023,survey_estimate,per_capita,10.1,379,,Padi-padian
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/padi_padian,,111522,rupiah,2024,survey_estimate,per_capita,10.1,379,,Padi-padian
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/umbi_umbian,,7534,rupiah,2023,survey_estimate,per_capita,10.1,379,,Umbi-umbian
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/umbi_umbian,,7272,rupiah,2024,survey_estimate,per_capita,10.1,379,,Umbi-umbian
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,86777,rupiah,2023,survey_estimate,per_capita,10.1,379,,Ikan/udang/cumi/kerang
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,102108,rupiah,2024,survey_estimate,per_capita,10.1,379,,Ikan/udang/cumi/kerang
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/daging,,24813,rupiah,2023,survey_estimate,per_capita,10.1,379,,Daging
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/daging,,24836,rupiah,2024,survey_estimate,per_capita,10.1,379,,Daging
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/telur_dan_susu,,27520,rupiah,2023,survey_estimate,per_capita,10.1,379,,Telur dan susu
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/telur_dan_susu,,37934,rupiah,2024,survey_estimate,per_capita,10.1,379,,Telur dan susu
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/sayur_sayuran,,63030,rupiah,2023,survey_estimate,per_capita,10.1,379,,Sayur-sayuran
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/sayur_sayuran,,68356,rupiah,2024,survey_estimate,per_capita,10.1,379,,Sayur-sayuran
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/kacang_kacangan,,9054,rupiah,2023,survey_estimate,per_capita,10.1,379,,Kacang-kacangan
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/kacang_kacangan,,9773,rupiah,2024,survey_estimate,per_capita,10.1,379,,Kacang-kacangan
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/buah_buahan,,24646,rupiah,2023,survey_estimate,per_capita,10.1,379,,Buah-buahan
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/buah_buahan,,25892,rupiah,2024,survey_estimate,per_capita,10.1,379,,Buah-buahan
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22808,rupiah,2023,survey_estimate,per_capita,10.1,379,,Minyak dan kelapa
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/minyak_dan_kelapa,,21821,rupiah,2024,survey_estimate,per_capita,10.1,379,,Minyak dan kelapa
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/bahan_minuman,,17630,rupiah,2023,survey_estimate,per_capita,10.1,379,,Bahan minuman
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/bahan_minuman,,19241,rupiah,2024,survey_estimate,per_capita,10.1,379,,Bahan minuman
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/bumbu_bumbuan,,13863,rupiah,2023,survey_estimate,per_capita,10.1,379,,Bumbu-bumbuan
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/bumbu_bumbuan,,12818,rupiah,2024,survey_estimate,per_capita,10.1,379,,Bumbu-bumbuan
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/konsumsi_lainnya,,9505,rupiah,2023,survey_estimate,per_capita,10.1,379,,Konsumsi lainnya
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/konsumsi_lainnya,,10971,rupiah,2024,survey_estimate,per_capita,10.1,379,,Konsumsi lainnya
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,160237,rupiah,2023,survey_estimate,per_capita,10.1,379,,Makanan dan minuman jadi
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,179110,rupiah,2024,survey_estimate,per_capita,10.1,379,,Makanan dan minuman jadi
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/rokok,,122225,rupiah,2023,survey_estimate,per_capita,10.1,379,,Rokok
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/rokok,,120648,rupiah,2024,survey_estimate,per_capita,10.1,379,,Rokok
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/jumlah_makanan,,686708,rupiah,2023,survey_estimate,per_capita,10.1,379,,Jumlah makanan
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/jumlah_makanan,,752304,rupiah,2024,survey_estimate,per_capita,10.1,379,,Jumlah makanan
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,293038,rupiah,2023,survey_estimate,per_capita,10.1,379,,Perumahan dan fasilitas rumah tangga
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,290787,rupiah,2024,survey_estimate,per_capita,10.1,379,,Perumahan dan fasilitas rumah tangga
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,120212,rupiah,2023,survey_estimate,per_capita,10.1,379,,Aneka barang dan jasa
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,114911,rupiah,2024,survey_estimate,per_capita,10.1,379,,Aneka barang dan jasa
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,39642,rupiah,2023,survey_estimate,per_capita,10.1,379,,"Pakaian, alas kaki, dan tutup kepala"
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,39490,rupiah,2024,survey_estimate,per_capita,10.1,379,,"Pakaian, alas kaki, dan tutup kepala"
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/barang_tahan_lama,,17510,rupiah,2023,survey_estimate,per_capita,10.1,379,,Barang tahan lama
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/barang_tahan_lama,,12661,rupiah,2024,survey_estimate,per_capita,10.1,379,,Barang tahan lama
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,41790,rupiah,2023,survey_estimate,per_capita,10.1,379,,"Pajak, pungutan, dan asuransi"
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,37279,rupiah,2024,survey_estimate,per_capita,10.1,379,,"Pajak, pungutan, dan asuransi"
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,14049,rupiah,2023,survey_estimate,per_capita,10.1,379,,Keperluan pesta dan upacara/kenduri
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,6097,rupiah,2024,survey_estimate,per_capita,10.1,379,,Keperluan pesta dan upacara/kenduri
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,526242,rupiah,2023,survey_estimate,per_capita,10.1,379,,Jumlah bukan makanan
+12.10,2,Kabupaten Labuhanbatu,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,501225,rupiah,2024,survey_estimate,per_capita,10.1,379,,Jumlah bukan makanan
+12.10,2,Kabupaten Labuhanbatu,expenditure,total,,1212950,rupiah,2023,survey_estimate,per_capita,10.1,379,,
+12.10,2,Kabupaten Labuhanbatu,expenditure,total,,1253529,rupiah,2024,survey_estimate,per_capita,10.1,379,,

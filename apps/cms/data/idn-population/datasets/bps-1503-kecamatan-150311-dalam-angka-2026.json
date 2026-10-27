@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1503-kecamatan-150311-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.03.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mandiangin Timur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sarolangun",
+  "publisherDomain": "1503",
+  "publisherWebsite": "https://sarolangunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sarolangun (https://sarolangunkab.bps.go.id), publikasi \"Kecamatan Mandiangin Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1503061",
+  "publicationNumber": "15030.26015",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sarolangunkab.bps.go.id/id/publication/2026/09/28/e2c7c5a1a5b8bd31d75c6f34/kecamatan-mandiangin-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "62d2ecfd879eb60fd29c58f38f447b3b5d2be6e07e18b6ba8937f6918e6d4c2d",
+  "sourceFileBytes": 10754936,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sarolangun.",
+  "csvPath": "datasets/bps-1503-kecamatan-150311-dalam-angka-2026.csv",
+  "csvSha256": "76e9bc873dce593d1f97e2a3f869c6b0baa2ae8e433d5c521ee91730cfcee1f4",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Mandiangin Timur, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

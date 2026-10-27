@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.13.05.2008,4,Sirambas,sex,laki_laki,,810,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+12.13.05.2008,4,Sirambas,sex,perempuan,,808,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+12.13.05.2008,4,Sirambas,total,total,,1618,jiwa,2025,registration,total_population,3.1,22,,
+12.13.05.2009,4,Sabajior,sex,laki_laki,,498,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+12.13.05.2009,4,Sabajior,sex,perempuan,,549,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+12.13.05.2009,4,Sabajior,total,total,,1047,jiwa,2025,registration,total_population,3.1,22,,
+12.13.05.2004,4,Huta Baringin,sex,laki_laki,,953,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+12.13.05.2004,4,Huta Baringin,sex,perempuan,,901,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+12.13.05.2004,4,Huta Baringin,total,total,,1854,jiwa,2025,registration,total_population,3.1,22,,
+12.13.05.2003,4,Batang Gadis,sex,laki_laki,,322,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+12.13.05.2003,4,Batang Gadis,sex,perempuan,,383,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+12.13.05.2003,4,Batang Gadis,total,total,,705,jiwa,2025,registration,total_population,3.1,22,,
+12.13.05.2001,4,Barbaran,sex,laki_laki,,761,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+12.13.05.2001,4,Barbaran,sex,perempuan,,816,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+12.13.05.2001,4,Barbaran,total,total,,1577,jiwa,2025,registration,total_population,3.1,22,,
+12.13.05.2005,4,Huta Tonga Bb,sex,laki_laki,,464,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+12.13.05.2005,4,Huta Tonga Bb,sex,perempuan,,471,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+12.13.05.2005,4,Huta Tonga Bb,total,total,,935,jiwa,2025,registration,total_population,3.1,22,,
+12.13.05.2007,4,Runding,sex,laki_laki,,510,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+12.13.05.2007,4,Runding,sex,perempuan,,523,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+12.13.05.2007,4,Runding,total,total,,1033,jiwa,2025,registration,total_population,3.1,22,,
+12.13.05.2002,4,Barbaran Jae,sex,laki_laki,,314,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+12.13.05.2002,4,Barbaran Jae,sex,perempuan,,294,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+12.13.05.2002,4,Barbaran Jae,total,total,,608,jiwa,2025,registration,total_population,3.1,22,,
+12.13.05.2010,4,Batang Gadis Jae,sex,laki_laki,,148,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+12.13.05.2010,4,Batang Gadis Jae,sex,perempuan,,135,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+12.13.05.2010,4,Batang Gadis Jae,total,total,,283,jiwa,2025,registration,total_population,3.1,22,,
+12.13.05.1006,4,Longat,sex,laki_laki,,1153,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+12.13.05.1006,4,Longat,sex,perempuan,,1202,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+12.13.05.1006,4,Longat,total,total,,2355,jiwa,2025,registration,total_population,3.1,22,,
+12.13.05,3,Kecamatan Panyabungan Barat,sex,laki_laki,,5933,jiwa,2025,registration,total_population,3.2,24,,Laki-Laki
+12.13.05,3,Kecamatan Panyabungan Barat,sex,perempuan,,6082,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+12.13.05,3,Kecamatan Panyabungan Barat,total,total,,12015,jiwa,2025,registration,total_population,3.2,24,,

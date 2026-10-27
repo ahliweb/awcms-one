@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.11.08.2011,4,Panton Bili,sex,laki_laki,,166,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.08.2011,4,Panton Bili,sex,perempuan,,154,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.08.2011,4,Panton Bili,total,total,,320,jiwa,2025,registration,total_population,1.2,,,
+11.11.08.2010,4,Blang Samagadeng,sex,laki_laki,,383,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.08.2010,4,Blang Samagadeng,sex,perempuan,,379,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.08.2010,4,Blang Samagadeng,total,total,,762,jiwa,2025,registration,total_population,1.2,,,
+11.11.08.2016,4,Cot Leubeng,sex,laki_laki,,383,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.08.2016,4,Cot Leubeng,sex,perempuan,,416,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.08.2016,4,Cot Leubeng,total,total,,799,jiwa,2025,registration,total_population,1.2,,,
+11.11.08.2015,4,Bantayan,sex,laki_laki,,262,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.08.2015,4,Bantayan,sex,perempuan,,270,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.08.2015,4,Bantayan,total,total,,532,jiwa,2025,registration,total_population,1.2,,,
+11.11.08.2009,4,Kuta Rusep,sex,laki_laki,,149,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.08.2009,4,Kuta Rusep,sex,perempuan,,170,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.08.2009,4,Kuta Rusep,total,total,,319,jiwa,2025,registration,total_population,1.2,,,
+11.11.08.2007,4,Garot,sex,laki_laki,,337,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.08.2007,4,Garot,sex,perempuan,,377,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.08.2007,4,Garot,total,total,,714,jiwa,2025,registration,total_population,1.2,,,
+11.11.08.2008,4,Gampong Blang,sex,laki_laki,,239,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.08.2008,4,Gampong Blang,sex,perempuan,,229,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.08.2008,4,Gampong Blang,total,total,,468,jiwa,2025,registration,total_population,1.2,,,
+11.11.08.2006,4,Pandrah Janeng,sex,laki_laki,,286,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.08.2006,4,Pandrah Janeng,sex,perempuan,,259,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.08.2006,4,Pandrah Janeng,total,total,,545,jiwa,2025,registration,total_population,1.2,,,
+11.11.08.2003,4,Pandrah Kandeh,sex,laki_laki,,291,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.08.2003,4,Pandrah Kandeh,sex,perempuan,,321,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.08.2003,4,Pandrah Kandeh,total,total,,612,jiwa,2025,registration,total_population,1.2,,,
+11.11.08.2012,4,Alue Igeuh,sex,laki_laki,,139,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.08.2012,4,Alue Igeuh,sex,perempuan,,131,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.08.2012,4,Alue Igeuh,total,total,,270,jiwa,2025,registration,total_population,1.2,,,

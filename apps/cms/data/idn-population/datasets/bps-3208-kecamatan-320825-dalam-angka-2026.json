@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-3208-kecamatan-320825-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.08.25",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cilebak Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kuningan",
+  "publisherDomain": "3208",
+  "publisherWebsite": "https://kuningankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kuningan (https://kuningankab.bps.go.id), publikasi \"Kecamatan Cilebak Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3208051",
+  "publicationNumber": "32080.25031",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kuningankab.bps.go.id/id/publication/2026/09/28/f640b76498d1709e08c50ea8/kecamatan-cilebak-dalam-angka-2026.html",
+  "sourceFileSha256": "39d55527a3f2a9c1130b5dc0ddd9101d20c863b3705b956320eab3fa450b2bba",
+  "sourceFileBytes": 2750147,
+  "sourcePages": [35, 36, 37, 38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Kuningan.",
+  "csvPath": "datasets/bps-3208-kecamatan-320825-dalam-angka-2026.csv",
+  "csvSha256": "cc205ca0cd4a2e85c1a5a8da022fb0d3a75c7832e9895e565813990f39c45660",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Cilebak 2025",
+      "printedPages": [35, 36, 37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cilebak, 2025",
+      "printedPages": [38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1.1: row not stored: row \"Kecamatan Cilebak Cilebak District\": unmatched ",
+    "table 3.1.1: row not stored: row \"Kecamatan Cilebak Cilebak District\": unmatched ",
+    "table 3.1.1: row not stored: row \"Kecamatan Cilebak Cilebak District\": unmatched ",
+    "table 3.1.2: row not stored: row \"75++\": unmatched ",
+    "table 3.1.2: row not stored: row \"Kecamatan Cilebak Subang District\": unmatched "
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-1604-kecamatan-160406-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.04.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jarai Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lahat",
+  "publisherDomain": "1604",
+  "publisherWebsite": "https://lahatkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lahat (https://lahatkab.bps.go.id), publikasi \"Kecamatan Jarai Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1604060",
+  "publicationNumber": "16040.26021",
+  "issn": "2808-0599",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lahatkab.bps.go.id/id/publication/2026/09/28/1e3f2204bb805d68369c48ea/kecamatan-jarai-dalam-angka-2026.html",
+  "sourceFileSha256": "229f7dd490ee2d73c0d157b4e7b2876070f2e6ad285bd61ed4ea557e06a3ffa3",
+  "sourceFileBytes": 6002876,
+  "sourcePages": [30, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lahat.",
+  "csvPath": "datasets/bps-1604-kecamatan-160406-dalam-angka-2026.csv",
+  "csvSha256": "2cf31d51a68fb68a7944123f764d593615a4fd9bbaa3ac468546f0a3f08b11a9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Jarai, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jarai, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Gunung Kaya\": unmatched ",
+    "table 3.1: row not stored: row \"Pamah Salak\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan District Jarai/Jarai\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Jarai/Jarai District\": unmatched "
+  ]
+}

@@ -1,0 +1,203 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.27.01,3,Sreseh,total,total,,37823,jiwa,2025,registration,total_population,3.1.1,70,,
+35.27.02,3,Torjun,total,total,,43880,jiwa,2025,registration,total_population,3.1.1,70,,
+35.27.13,3,Pangarengan,total,total,,27984,jiwa,2025,registration,total_population,3.1.1,70,,
+35.27.03,3,Sampang,total,total,,136670,jiwa,2025,registration,total_population,3.1.1,70,,
+35.27.04,3,Camplong,total,total,,92658,jiwa,2025,registration,total_population,3.1.1,70,,
+35.27.05,3,Omben,total,total,,92418,jiwa,2025,registration,total_population,3.1.1,70,,
+35.27.06,3,Kedungdung,total,total,,99009,jiwa,2025,registration,total_population,3.1.1,70,,
+35.27.07,3,Jrengik,total,total,,40370,jiwa,2025,registration,total_population,3.1.1,70,,
+35.27.08,3,Tambelangan,total,total,,57711,jiwa,2025,registration,total_population,3.1.1,70,,
+35.27.09,3,Banyuates,total,total,,89180,jiwa,2025,registration,total_population,3.1.1,70,,
+35.27.10,3,Robatal,total,total,,60511,jiwa,2025,registration,total_population,3.1.1,70,,
+35.27.14,3,Karang Penang,total,total,,81635,jiwa,2025,registration,total_population,3.1.1,70,,
+35.27.12,3,Ketapang,total,total,,99816,jiwa,2025,registration,total_population,3.1.1,70,,
+35.27.11,3,Sokobanah,total,total,,86909,jiwa,2025,registration,total_population,3.1.1,70,,
+35.27,2,Kabupaten Sampang,total,total,,1046574,jiwa,2025,registration,total_population,3.1.1,70,,
+35.27,2,Kabupaten Sampang,age_group,0-4,laki_laki,42954,jiwa,2025,registration,total_population,3.1.2,73,,0–4
+35.27,2,Kabupaten Sampang,age_group,0-4,perempuan,40295,jiwa,2025,registration,total_population,3.1.2,73,,0–4
+35.27,2,Kabupaten Sampang,age_group,0-4,,83249,jiwa,2025,registration,total_population,3.1.2,73,,0–4
+35.27,2,Kabupaten Sampang,age_group,5-9,laki_laki,51140,jiwa,2025,registration,total_population,3.1.2,73,,5–9
+35.27,2,Kabupaten Sampang,age_group,5-9,perempuan,48411,jiwa,2025,registration,total_population,3.1.2,73,,5–9
+35.27,2,Kabupaten Sampang,age_group,5-9,,99551,jiwa,2025,registration,total_population,3.1.2,73,,5–9
+35.27,2,Kabupaten Sampang,age_group,10-14,laki_laki,46063,jiwa,2025,registration,total_population,3.1.2,73,,10–14
+35.27,2,Kabupaten Sampang,age_group,10-14,perempuan,44027,jiwa,2025,registration,total_population,3.1.2,73,,10–14
+35.27,2,Kabupaten Sampang,age_group,10-14,,90090,jiwa,2025,registration,total_population,3.1.2,73,,10–14
+35.27,2,Kabupaten Sampang,age_group,15-19,laki_laki,31301,jiwa,2025,registration,total_population,3.1.2,73,,15–19
+35.27,2,Kabupaten Sampang,age_group,15-19,perempuan,28986,jiwa,2025,registration,total_population,3.1.2,73,,15–19
+35.27,2,Kabupaten Sampang,age_group,15-19,,60287,jiwa,2025,registration,total_population,3.1.2,73,,15–19
+35.27,2,Kabupaten Sampang,age_group,20-24,laki_laki,42248,jiwa,2025,registration,total_population,3.1.2,73,,20–24
+35.27,2,Kabupaten Sampang,age_group,20-24,perempuan,41549,jiwa,2025,registration,total_population,3.1.2,73,,20–24
+35.27,2,Kabupaten Sampang,age_group,20-24,,83797,jiwa,2025,registration,total_population,3.1.2,73,,20–24
+35.27,2,Kabupaten Sampang,age_group,25-29,laki_laki,45754,jiwa,2025,registration,total_population,3.1.2,73,,25–29
+35.27,2,Kabupaten Sampang,age_group,25-29,perempuan,42487,jiwa,2025,registration,total_population,3.1.2,73,,25–29
+35.27,2,Kabupaten Sampang,age_group,25-29,,88241,jiwa,2025,registration,total_population,3.1.2,73,,25–29
+35.27,2,Kabupaten Sampang,age_group,30-34,laki_laki,41781,jiwa,2025,registration,total_population,3.1.2,73,,30–34
+35.27,2,Kabupaten Sampang,age_group,30-34,perempuan,41245,jiwa,2025,registration,total_population,3.1.2,73,,30–34
+35.27,2,Kabupaten Sampang,age_group,30-34,,83026,jiwa,2025,registration,total_population,3.1.2,73,,30–34
+35.27,2,Kabupaten Sampang,age_group,35-39,laki_laki,39023,jiwa,2025,registration,total_population,3.1.2,73,,35–39
+35.27,2,Kabupaten Sampang,age_group,35-39,perempuan,41599,jiwa,2025,registration,total_population,3.1.2,73,,35–39
+35.27,2,Kabupaten Sampang,age_group,35-39,,80622,jiwa,2025,registration,total_population,3.1.2,73,,35–39
+35.27,2,Kabupaten Sampang,age_group,40-44,laki_laki,36887,jiwa,2025,registration,total_population,3.1.2,73,,40–44
+35.27,2,Kabupaten Sampang,age_group,40-44,perempuan,39589,jiwa,2025,registration,total_population,3.1.2,73,,40–44
+35.27,2,Kabupaten Sampang,age_group,40-44,,76476,jiwa,2025,registration,total_population,3.1.2,73,,40–44
+35.27,2,Kabupaten Sampang,age_group,45-49,laki_laki,31172,jiwa,2025,registration,total_population,3.1.2,73,,45–49
+35.27,2,Kabupaten Sampang,age_group,45-49,perempuan,35220,jiwa,2025,registration,total_population,3.1.2,73,,45–49
+35.27,2,Kabupaten Sampang,age_group,45-49,,66392,jiwa,2025,registration,total_population,3.1.2,73,,45–49
+35.27,2,Kabupaten Sampang,age_group,50-54,laki_laki,27727,jiwa,2025,registration,total_population,3.1.2,73,,50–54
+35.27,2,Kabupaten Sampang,age_group,50-54,perempuan,29549,jiwa,2025,registration,total_population,3.1.2,73,,50–54
+35.27,2,Kabupaten Sampang,age_group,50-54,,57276,jiwa,2025,registration,total_population,3.1.2,73,,50–54
+35.27,2,Kabupaten Sampang,age_group,55-59,laki_laki,22196,jiwa,2025,registration,total_population,3.1.2,73,,55–59
+35.27,2,Kabupaten Sampang,age_group,55-59,perempuan,27045,jiwa,2025,registration,total_population,3.1.2,73,,55–59
+35.27,2,Kabupaten Sampang,age_group,55-59,,49241,jiwa,2025,registration,total_population,3.1.2,73,,55–59
+35.27,2,Kabupaten Sampang,age_group,60-64,laki_laki,19890,jiwa,2025,registration,total_population,3.1.2,73,,60–64
+35.27,2,Kabupaten Sampang,age_group,60-64,perempuan,22232,jiwa,2025,registration,total_population,3.1.2,73,,60–64
+35.27,2,Kabupaten Sampang,age_group,60-64,,42122,jiwa,2025,registration,total_population,3.1.2,73,,60–64
+35.27,2,Kabupaten Sampang,age_group,65-69,laki_laki,13199,jiwa,2025,registration,total_population,3.1.2,73,,65–69
+35.27,2,Kabupaten Sampang,age_group,65-69,perempuan,15028,jiwa,2025,registration,total_population,3.1.2,73,,65–69
+35.27,2,Kabupaten Sampang,age_group,65-69,,28227,jiwa,2025,registration,total_population,3.1.2,73,,65–69
+35.27,2,Kabupaten Sampang,age_group,70-74,laki_laki,9981,jiwa,2025,registration,total_population,3.1.2,73,,70–74
+35.27,2,Kabupaten Sampang,age_group,70-74,perempuan,10141,jiwa,2025,registration,total_population,3.1.2,73,,70–74
+35.27,2,Kabupaten Sampang,age_group,70-74,,20122,jiwa,2025,registration,total_population,3.1.2,73,,70–74
+35.27,2,Kabupaten Sampang,age_group,75+,laki_laki,10824,jiwa,2025,registration,total_population,3.1.2,73,,75+
+35.27,2,Kabupaten Sampang,age_group,75+,perempuan,14383,jiwa,2025,registration,total_population,3.1.2,73,,75+
+35.27,2,Kabupaten Sampang,age_group,75+,,25207,jiwa,2025,registration,total_population,3.1.2,73,,75+
+35.27,2,Kabupaten Sampang,sex,laki_laki,,512140,jiwa,2025,registration,total_population,3.1.2,73,,Laki-Laki
+35.27,2,Kabupaten Sampang,sex,perempuan,,521786,jiwa,2025,registration,total_population,3.1.2,73,,Perempuan
+35.27,2,Kabupaten Sampang,total,total,,1033926,jiwa,2025,registration,total_population,3.1.2,73,,
+35.27.01,3,Sreseh,religion,islam,,37666,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+35.27.01,3,Sreseh,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Protestan
+35.27.01,3,Sreseh,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Katolik
+35.27.01,3,Sreseh,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+35.27.01,3,Sreseh,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+35.27.01,3,Sreseh,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+35.27.02,3,Torjun,religion,islam,,43628,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+35.27.02,3,Torjun,religion,kristen,,16,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+35.27.02,3,Torjun,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Katolik
+35.27.02,3,Torjun,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+35.27.02,3,Torjun,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+35.27.02,3,Torjun,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+35.27.13,3,Pangarengan,religion,islam,,135449,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+35.27.13,3,Pangarengan,religion,kristen,,94,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+35.27.13,3,Pangarengan,religion,katolik,,38,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+35.27.13,3,Pangarengan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+35.27.13,3,Pangarengan,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,134,,Budha
+35.27.13,3,Pangarengan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+35.27.03,3,Sampang,religion,islam,,91921,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+35.27.03,3,Sampang,religion,kristen,,3,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+35.27.03,3,Sampang,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+35.27.03,3,Sampang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+35.27.03,3,Sampang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+35.27.03,3,Sampang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+35.27.04,3,Camplong,religion,islam,,91195,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+35.27.04,3,Camplong,religion,kristen,,2,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+35.27.04,3,Camplong,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Katolik
+35.27.04,3,Camplong,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,134,,Hindu
+35.27.04,3,Camplong,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+35.27.04,3,Camplong,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+35.27.05,3,Omben,religion,islam,,97924,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+35.27.05,3,Omben,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+35.27.05,3,Omben,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+35.27.05,3,Omben,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+35.27.05,3,Omben,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+35.27.05,3,Omben,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+35.27.06,3,Kedungdung,religion,islam,,40010,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+35.27.06,3,Kedungdung,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Protestan
+35.27.06,3,Kedungdung,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Katolik
+35.27.06,3,Kedungdung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+35.27.06,3,Kedungdung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+35.27.06,3,Kedungdung,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,134,,Lainnya
+35.27.07,3,Jrengik,religion,islam,,56931,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+35.27.07,3,Jrengik,religion,kristen,,3,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+35.27.07,3,Jrengik,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Katolik
+35.27.07,3,Jrengik,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+35.27.07,3,Jrengik,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+35.27.07,3,Jrengik,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+35.27.08,3,Tambelangan,religion,islam,,87645,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+35.27.08,3,Tambelangan,religion,kristen,,25,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+35.27.08,3,Tambelangan,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+35.27.08,3,Tambelangan,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,134,,Hindu
+35.27.08,3,Tambelangan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+35.27.08,3,Tambelangan,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,134,,Lainnya
+35.27.09,3,Banyuates,religion,islam,,59764,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+35.27.09,3,Banyuates,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+35.27.09,3,Banyuates,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+35.27.09,3,Banyuates,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,134,,Hindu
+35.27.09,3,Banyuates,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+35.27.09,3,Banyuates,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,134,,Lainnya
+35.27.10,3,Robatal,religion,islam,,85439,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+35.27.10,3,Robatal,religion,kristen,,10,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+35.27.10,3,Robatal,religion,katolik,,3,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+35.27.10,3,Robatal,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,134,,Hindu
+35.27.10,3,Robatal,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+35.27.10,3,Robatal,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+35.27.14,3,Karang Penang,religion,islam,,97670,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+35.27.14,3,Karang Penang,religion,kristen,,37,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+35.27.14,3,Karang Penang,religion,katolik,,10,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+35.27.14,3,Karang Penang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+35.27.14,3,Karang Penang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+35.27.14,3,Karang Penang,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,134,,Lainnya
+35.27.12,3,Ketapang,religion,islam,,27818,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+35.27.12,3,Ketapang,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Protestan
+35.27.12,3,Ketapang,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Katolik
+35.27.12,3,Ketapang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+35.27.12,3,Ketapang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+35.27.12,3,Ketapang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+35.27.11,3,Sokobanah,religion,islam,,80605,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+35.27.11,3,Sokobanah,religion,kristen,,2,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+35.27.11,3,Sokobanah,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Katolik
+35.27.11,3,Sokobanah,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Hindu
+35.27.11,3,Sokobanah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Budha
+35.27.11,3,Sokobanah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,134,nil,Lainnya
+35.27,2,Kabupaten Sampang,religion,islam,,1033665,jiwa,2025,registration,total_population,4.3.1,134,,Islam
+35.27,2,Kabupaten Sampang,religion,kristen,,194,jiwa,2025,registration,total_population,4.3.1,134,,Protestan
+35.27,2,Kabupaten Sampang,religion,katolik,,56,jiwa,2025,registration,total_population,4.3.1,134,,Katolik
+35.27,2,Kabupaten Sampang,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,134,,Hindu
+35.27,2,Kabupaten Sampang,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,134,,Budha
+35.27,2,Kabupaten Sampang,religion,lainnya,,6,jiwa,2025,registration,total_population,4.3.1,134,,Lainnya
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/padi_padian,,119860,rupiah,2024,survey_estimate,per_capita,10.1,260,,Padi-padian
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/padi_padian,,106831,rupiah,2025,survey_estimate,per_capita,10.1,260,,Padi-padian
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/umbi_umbian,,2272,rupiah,2024,survey_estimate,per_capita,10.1,260,,Umbi-umbian
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/umbi_umbian,,2564,rupiah,2025,survey_estimate,per_capita,10.1,260,,Umbi-umbian
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,49136,rupiah,2024,survey_estimate,per_capita,10.1,260,,Ikan/udang/cumi/kerang
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,45150,rupiah,2025,survey_estimate,per_capita,10.1,260,,Ikan/udang/cumi/kerang
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/daging,,17516,rupiah,2024,survey_estimate,per_capita,10.1,260,,Daging
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/daging,,19706,rupiah,2025,survey_estimate,per_capita,10.1,260,,Daging
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/telur_dan_susu,,17595,rupiah,2024,survey_estimate,per_capita,10.1,260,,Telur dan susu
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/telur_dan_susu,,17716,rupiah,2025,survey_estimate,per_capita,10.1,260,,Telur dan susu
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/sayur_sayuran,,35047,rupiah,2024,survey_estimate,per_capita,10.1,260,,Sayur-sayuran
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/sayur_sayuran,,36376,rupiah,2025,survey_estimate,per_capita,10.1,260,,Sayur-sayuran
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/kacang_kacangan,,14668,rupiah,2024,survey_estimate,per_capita,10.1,260,,Kacang-kacangan
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/kacang_kacangan,,15936,rupiah,2025,survey_estimate,per_capita,10.1,260,,Kacang-kacangan
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/buah_buahan,,12045,rupiah,2024,survey_estimate,per_capita,10.1,260,,Buah-buahan
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/buah_buahan,,16062,rupiah,2025,survey_estimate,per_capita,10.1,260,,Buah-buahan
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14422,rupiah,2024,survey_estimate,per_capita,10.1,260,,Minyak dan kelapa
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,15511,rupiah,2025,survey_estimate,per_capita,10.1,260,,Minyak dan kelapa
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/bahan_minuman,,13239,rupiah,2024,survey_estimate,per_capita,10.1,260,,Bahan minuman
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/bahan_minuman,,13680,rupiah,2025,survey_estimate,per_capita,10.1,260,,Bahan minuman
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/bumbu_bumbuan,,11599,rupiah,2024,survey_estimate,per_capita,10.1,260,,Bumbu-bumbuan
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/bumbu_bumbuan,,11915,rupiah,2025,survey_estimate,per_capita,10.1,260,,Bumbu-bumbuan
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/konsumsi_lainnya,,8103,rupiah,2024,survey_estimate,per_capita,10.1,260,,Konsumsi lainnya
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/konsumsi_lainnya,,8875,rupiah,2025,survey_estimate,per_capita,10.1,260,,Konsumsi lainnya
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,103905,rupiah,2024,survey_estimate,per_capita,10.1,260,,Makanan dan minuman jadi
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,105980,rupiah,2025,survey_estimate,per_capita,10.1,260,,Makanan dan minuman jadi
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/rokok,,94823,rupiah,2024,survey_estimate,per_capita,10.1,260,,Rokok
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/rokok,,91799,rupiah,2025,survey_estimate,per_capita,10.1,260,,Rokok
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/jumlah_makanan,,514229,rupiah,2024,survey_estimate,per_capita,10.1,260,,Jumlah makanan
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/jumlah_makanan,,508101,rupiah,2025,survey_estimate,per_capita,10.1,260,,Jumlah makanan
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,182595,rupiah,2024,survey_estimate,per_capita,10.1,260,,Perumahan dan fasilitas rumah tangga
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,158783,rupiah,2025,survey_estimate,per_capita,10.1,260,,Perumahan dan fasilitas rumah tangga
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,67211,rupiah,2024,survey_estimate,per_capita,10.1,260,,Aneka barang dan jasa
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,79592,rupiah,2025,survey_estimate,per_capita,10.1,260,,Aneka barang dan jasa
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,19313,rupiah,2024,survey_estimate,per_capita,10.1,260,,"Pakaian, alas kaki, dan tutup kepala"
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,17969,rupiah,2025,survey_estimate,per_capita,10.1,260,,"Pakaian, alas kaki, dan tutup kepala"
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/barang_tahan_lama,,15924,rupiah,2024,survey_estimate,per_capita,10.1,260,,Barang tahan lama
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/barang_tahan_lama,,13483,rupiah,2025,survey_estimate,per_capita,10.1,260,,Barang tahan lama
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,22576,rupiah,2024,survey_estimate,per_capita,10.1,260,,"Pajak, pungutan, dan asuransi"
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,35021,rupiah,2025,survey_estimate,per_capita,10.1,260,,"Pajak, pungutan, dan asuransi"
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,19222,rupiah,2024,survey_estimate,per_capita,10.1,260,,Keperluan pesta dan upacara/kenduri
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,11520,rupiah,2025,survey_estimate,per_capita,10.1,260,,Keperluan pesta dan upacara/kenduri
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,326840,rupiah,2024,survey_estimate,per_capita,10.1,260,,Jumlah bukan makanan
+35.27,2,Kabupaten Sampang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,316368,rupiah,2025,survey_estimate,per_capita,10.1,260,,Jumlah bukan makanan
+35.27,2,Kabupaten Sampang,expenditure,total,,841069,rupiah,2024,survey_estimate,per_capita,10.1,260,,
+35.27,2,Kabupaten Sampang,expenditure,total,,824469,rupiah,2025,survey_estimate,per_capita,10.1,260,,

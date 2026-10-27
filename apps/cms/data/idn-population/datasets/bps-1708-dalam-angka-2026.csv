@@ -1,0 +1,106 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.08.08,3,Muara Kemumu,total,total,,12010,jiwa,2025,registration,total_population,3.1.1,52,,
+17.08.01,3,Bermani Ilir,total,total,,15036,jiwa,2025,registration,total_population,3.1.1,52,,
+17.08.07,3,Seberang Musi,total,total,,8115,jiwa,2025,registration,total_population,3.1.1,52,,
+17.08.03,3,Tebat Karai,total,total,,15375,jiwa,2025,registration,total_population,3.1.1,52,,
+17.08.04,3,Kepahiang,total,total,,52334,jiwa,2025,registration,total_population,3.1.1,52,,
+17.08.02,3,Ujan Mas,total,total,,24868,jiwa,2025,registration,total_population,3.1.1,52,,
+17.08.05,3,Merigi,total,total,,11737,jiwa,2025,registration,total_population,3.1.1,52,,
+17.08,2,Kabupaten Kepahiang,total,total,,153454,jiwa,2025,registration,total_population,3.1.1,52,,
+17.08,2,Kabupaten Kepahiang,age_group,0-4,laki_laki,4989,jiwa,2025,registration,total_population,3.1.2,55,,0–4
+17.08,2,Kabupaten Kepahiang,age_group,0-4,perempuan,4549,jiwa,2025,registration,total_population,3.1.2,55,,0–4
+17.08,2,Kabupaten Kepahiang,age_group,0-4,,9538,jiwa,2025,registration,total_population,3.1.2,55,,0–4
+17.08,2,Kabupaten Kepahiang,age_group,5-9,laki_laki,6511,jiwa,2025,registration,total_population,3.1.2,55,,5–9
+17.08,2,Kabupaten Kepahiang,age_group,5-9,perempuan,5885,jiwa,2025,registration,total_population,3.1.2,55,,5–9
+17.08,2,Kabupaten Kepahiang,age_group,5-9,,12396,jiwa,2025,registration,total_population,3.1.2,55,,5–9
+17.08,2,Kabupaten Kepahiang,age_group,10-14,laki_laki,6914,jiwa,2025,registration,total_population,3.1.2,55,,10–14
+17.08,2,Kabupaten Kepahiang,age_group,10-14,perempuan,6262,jiwa,2025,registration,total_population,3.1.2,55,,10–14
+17.08,2,Kabupaten Kepahiang,age_group,10-14,,13176,jiwa,2025,registration,total_population,3.1.2,55,,10–14
+17.08,2,Kabupaten Kepahiang,age_group,15-19,laki_laki,6868,jiwa,2025,registration,total_population,3.1.2,55,,15–19
+17.08,2,Kabupaten Kepahiang,age_group,15-19,perempuan,6377,jiwa,2025,registration,total_population,3.1.2,55,,15–19
+17.08,2,Kabupaten Kepahiang,age_group,15-19,,13245,jiwa,2025,registration,total_population,3.1.2,55,,15–19
+17.08,2,Kabupaten Kepahiang,age_group,20-24,laki_laki,6837,jiwa,2025,registration,total_population,3.1.2,55,,20–24
+17.08,2,Kabupaten Kepahiang,age_group,20-24,perempuan,6402,jiwa,2025,registration,total_population,3.1.2,55,,20–24
+17.08,2,Kabupaten Kepahiang,age_group,20-24,,13239,jiwa,2025,registration,total_population,3.1.2,55,,20–24
+17.08,2,Kabupaten Kepahiang,age_group,25-29,laki_laki,6388,jiwa,2025,registration,total_population,3.1.2,55,,25–29
+17.08,2,Kabupaten Kepahiang,age_group,25-29,perempuan,5909,jiwa,2025,registration,total_population,3.1.2,55,,25–29
+17.08,2,Kabupaten Kepahiang,age_group,25-29,,12297,jiwa,2025,registration,total_population,3.1.2,55,,25–29
+17.08,2,Kabupaten Kepahiang,age_group,30-34,laki_laki,5468,jiwa,2025,registration,total_population,3.1.2,55,,30–34
+17.08,2,Kabupaten Kepahiang,age_group,30-34,perempuan,5124,jiwa,2025,registration,total_population,3.1.2,55,,30–34
+17.08,2,Kabupaten Kepahiang,age_group,30-34,,10592,jiwa,2025,registration,total_population,3.1.2,55,,30–34
+17.08,2,Kabupaten Kepahiang,age_group,35-39,laki_laki,6053,jiwa,2025,registration,total_population,3.1.2,55,,35–39
+17.08,2,Kabupaten Kepahiang,age_group,35-39,perempuan,5686,jiwa,2025,registration,total_population,3.1.2,55,,35–39
+17.08,2,Kabupaten Kepahiang,age_group,35-39,,11739,jiwa,2025,registration,total_population,3.1.2,55,,35–39
+17.08,2,Kabupaten Kepahiang,age_group,40-44,laki_laki,5798,jiwa,2025,registration,total_population,3.1.2,55,,40–44
+17.08,2,Kabupaten Kepahiang,age_group,40-44,perempuan,5638,jiwa,2025,registration,total_population,3.1.2,55,,40–44
+17.08,2,Kabupaten Kepahiang,age_group,40-44,,11436,jiwa,2025,registration,total_population,3.1.2,55,,40–44
+17.08,2,Kabupaten Kepahiang,age_group,45-49,laki_laki,6208,jiwa,2025,registration,total_population,3.1.2,55,,45–49
+17.08,2,Kabupaten Kepahiang,age_group,45-49,perempuan,5701,jiwa,2025,registration,total_population,3.1.2,55,,45–49
+17.08,2,Kabupaten Kepahiang,age_group,45-49,,11909,jiwa,2025,registration,total_population,3.1.2,55,,45–49
+17.08,2,Kabupaten Kepahiang,age_group,50-54,laki_laki,4740,jiwa,2025,registration,total_population,3.1.2,55,,50–54
+17.08,2,Kabupaten Kepahiang,age_group,50-54,perempuan,4724,jiwa,2025,registration,total_population,3.1.2,55,,50–54
+17.08,2,Kabupaten Kepahiang,age_group,50-54,,9464,jiwa,2025,registration,total_population,3.1.2,55,,50–54
+17.08,2,Kabupaten Kepahiang,age_group,55-59,laki_laki,4018,jiwa,2025,registration,total_population,3.1.2,55,,55–59
+17.08,2,Kabupaten Kepahiang,age_group,55-59,perempuan,3836,jiwa,2025,registration,total_population,3.1.2,55,,55–59
+17.08,2,Kabupaten Kepahiang,age_group,55-59,,7854,jiwa,2025,registration,total_population,3.1.2,55,,55–59
+17.08,2,Kabupaten Kepahiang,age_group,60-64,laki_laki,3172,jiwa,2025,registration,total_population,3.1.2,55,,60–64
+17.08,2,Kabupaten Kepahiang,age_group,60-64,perempuan,2950,jiwa,2025,registration,total_population,3.1.2,55,,60–64
+17.08,2,Kabupaten Kepahiang,age_group,60-64,,6122,jiwa,2025,registration,total_population,3.1.2,55,,60–64
+17.08,2,Kabupaten Kepahiang,age_group,65-69,laki_laki,2388,jiwa,2025,registration,total_population,3.1.2,55,,65–69
+17.08,2,Kabupaten Kepahiang,age_group,65-69,perempuan,2207,jiwa,2025,registration,total_population,3.1.2,55,,65–69
+17.08,2,Kabupaten Kepahiang,age_group,65-69,,4595,jiwa,2025,registration,total_population,3.1.2,55,,65–69
+17.08,2,Kabupaten Kepahiang,age_group,70-74,laki_laki,1347,jiwa,2025,registration,total_population,3.1.2,55,,70–74
+17.08,2,Kabupaten Kepahiang,age_group,70-74,perempuan,1296,jiwa,2025,registration,total_population,3.1.2,55,,70–74
+17.08,2,Kabupaten Kepahiang,age_group,70-74,,2643,jiwa,2025,registration,total_population,3.1.2,55,,70–74
+17.08,2,Kabupaten Kepahiang,age_group,75+,laki_laki,1425,jiwa,2025,registration,total_population,3.1.2,55,,75+
+17.08,2,Kabupaten Kepahiang,age_group,75+,perempuan,1784,jiwa,2025,registration,total_population,3.1.2,55,,75+
+17.08,2,Kabupaten Kepahiang,age_group,75+,,3209,jiwa,2025,registration,total_population,3.1.2,55,,75+
+17.08,2,Kabupaten Kepahiang,sex,laki_laki,,79124,jiwa,2025,registration,total_population,3.1.2,55,,Laki-Laki
+17.08,2,Kabupaten Kepahiang,sex,perempuan,,74330,jiwa,2025,registration,total_population,3.1.2,55,,Perempuan
+17.08,2,Kabupaten Kepahiang,total,total,,153454,jiwa,2025,registration,total_population,3.1.2,55,,
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/padi_padian,,106909,rupiah,2024,survey_estimate,per_capita,10.1,217,,Padi-padian
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/padi_padian,,96938,rupiah,2025,survey_estimate,per_capita,10.1,217,,Padi-padian
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/umbi_umbian,,4936,rupiah,2024,survey_estimate,per_capita,10.1,217,,Umbi-umbian
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/umbi_umbian,,5443,rupiah,2025,survey_estimate,per_capita,10.1,217,,Umbi-umbian
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,50367,rupiah,2024,survey_estimate,per_capita,10.1,217,,Ikan/udang/cumi/kerang
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,52700,rupiah,2025,survey_estimate,per_capita,10.1,217,,Ikan/udang/cumi/kerang
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/daging,,28540,rupiah,2024,survey_estimate,per_capita,10.1,217,,Daging
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/daging,,30951,rupiah,2025,survey_estimate,per_capita,10.1,217,,Daging
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/telur_dan_susu,,26416,rupiah,2024,survey_estimate,per_capita,10.1,217,,Telur dan susu
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/telur_dan_susu,,36258,rupiah,2025,survey_estimate,per_capita,10.1,217,,Telur dan susu
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/sayur_sayuran,,80165,rupiah,2024,survey_estimate,per_capita,10.1,217,,Sayur-sayuran
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/sayur_sayuran,,85378,rupiah,2025,survey_estimate,per_capita,10.1,217,,Sayur-sayuran
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/kacang_kacangan,,11247,rupiah,2024,survey_estimate,per_capita,10.1,217,,Kacang-kacangan
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/kacang_kacangan,,10649,rupiah,2025,survey_estimate,per_capita,10.1,217,,Kacang-kacangan
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/buah_buahan,,36760,rupiah,2024,survey_estimate,per_capita,10.1,217,,Buah-buahan
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/buah_buahan,,50214,rupiah,2025,survey_estimate,per_capita,10.1,217,,Buah-buahan
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20265,rupiah,2024,survey_estimate,per_capita,10.1,217,,Minyak dan kelapa
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,26559,rupiah,2025,survey_estimate,per_capita,10.1,217,,Minyak dan kelapa
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/bahan_minuman,,22479,rupiah,2024,survey_estimate,per_capita,10.1,217,,Bahan minuman
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/bahan_minuman,,27934,rupiah,2025,survey_estimate,per_capita,10.1,217,,Bahan minuman
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/bumbu_bumbuan,,9195,rupiah,2024,survey_estimate,per_capita,10.1,217,,Bumbu-bumbuan
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/bumbu_bumbuan,,10299,rupiah,2025,survey_estimate,per_capita,10.1,217,,Bumbu-bumbuan
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/konsumsi_lainnya,,11719,rupiah,2024,survey_estimate,per_capita,10.1,217,,Konsumsi lainnya
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/konsumsi_lainnya,,11390,rupiah,2025,survey_estimate,per_capita,10.1,217,,Konsumsi lainnya
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,133748,rupiah,2024,survey_estimate,per_capita,10.1,217,,Makanan dan minuman jadi
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,187537,rupiah,2025,survey_estimate,per_capita,10.1,217,,Makanan dan minuman jadi
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/rokok,,100695,rupiah,2024,survey_estimate,per_capita,10.1,217,,Rokok
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/rokok,,105962,rupiah,2025,survey_estimate,per_capita,10.1,217,,Rokok
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/jumlah_makanan,,643441,rupiah,2024,survey_estimate,per_capita,10.1,217,,Jumlah makanan
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/jumlah_makanan,,738212,rupiah,2025,survey_estimate,per_capita,10.1,217,,Jumlah makanan
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,258406,rupiah,2024,survey_estimate,per_capita,10.1,217,,Perumahan dan fasilitas rumah tangga
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,306486,rupiah,2025,survey_estimate,per_capita,10.1,217,,Perumahan dan fasilitas rumah tangga
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,124098,rupiah,2024,survey_estimate,per_capita,10.1,217,,Aneka barang dan jasa
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,146569,rupiah,2025,survey_estimate,per_capita,10.1,217,,Aneka barang dan jasa
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,37513,rupiah,2024,survey_estimate,per_capita,10.1,217,,"Pakaian, alas kaki, dan tutup kepala"
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,50946,rupiah,2025,survey_estimate,per_capita,10.1,217,,"Pakaian, alas kaki, dan tutup kepala"
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/barang_tahan_lama,,41694,rupiah,2024,survey_estimate,per_capita,10.1,217,,Barang tahan lama
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/barang_tahan_lama,,125751,rupiah,2025,survey_estimate,per_capita,10.1,217,,Barang tahan lama
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,41421,rupiah,2024,survey_estimate,per_capita,10.1,217,,"Pajak, pungutan, dan asuransi"
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,51412,rupiah,2025,survey_estimate,per_capita,10.1,217,,"Pajak, pungutan, dan asuransi"
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,22922,rupiah,2024,survey_estimate,per_capita,10.1,217,,Keperluan pesta dan upacara/kenduri
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,32099,rupiah,2025,survey_estimate,per_capita,10.1,217,,Keperluan pesta dan upacara/kenduri
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,526053,rupiah,2024,survey_estimate,per_capita,10.1,217,,Jumlah bukan makanan
+17.08,2,Kabupaten Kepahiang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,713263,rupiah,2025,survey_estimate,per_capita,10.1,217,,Jumlah bukan makanan
+17.08,2,Kabupaten Kepahiang,expenditure,total,,1169949,rupiah,2024,survey_estimate,per_capita,10.1,217,,
+17.08,2,Kabupaten Kepahiang,expenditure,total,,1451475,rupiah,2025,survey_estimate,per_capita,10.1,217,,

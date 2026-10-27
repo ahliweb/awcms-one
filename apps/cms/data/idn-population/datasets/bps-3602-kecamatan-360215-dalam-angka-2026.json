@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3602-kecamatan-360215-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.02.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Warunggunung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lebak",
+  "publisherDomain": "3602",
+  "publisherWebsite": "https://lebakkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lebak (https://lebakkab.bps.go.id), publikasi \"Kecamatan Warunggunung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "36020.26011",
+  "issn": "3031-6898",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lebakkab.bps.go.id/id/publication/2026/09/28/92296e19f92e4664de9fe738/kecamatan-warunggunung-dalam-angka-2026.html",
+  "sourceFileSha256": "b381f4435b6bae808592c51845e3d0d7f8032271443c25b3fba99263a46f20bb",
+  "sourceFileBytes": 8744272,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lebak.",
+  "csvPath": "datasets/bps-3602-kecamatan-360215-dalam-angka-2026.csv",
+  "csvSha256": "0329b3d4e83f3a1fd63ad7b4a9207ff65182f53ed9769475dc99d58c2ace69b2",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk Distribusi Persentase Penduduk Kepadatan Penduduk Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Warunggunung, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Warunggunung, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Warunggunung Warunggunung District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Warunggunung Warunggunung District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Warunggunung Warunggunung District\": unmatched "
+  ]
+}

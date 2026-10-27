@@ -1,0 +1,43 @@
+{
+  "datasetCode": "bps-3513-kecamatan-351312-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.13.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Paiton Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Probolinggo",
+  "publisherDomain": "3513",
+  "publisherWebsite": "https://probolinggokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Probolinggo (https://probolinggokab.bps.go.id), publikasi \"Kecamatan Paiton Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": null,
+  "publicationNumber": null,
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://probolinggokab.bps.go.id/id/publication/2026/09/28/322ca90904d0caf16de15f91/kecamatan-paiton-dalam-angka-2026.html",
+  "sourceFileSha256": "efc7a2cf85026bc5ec02db2f72195a1c9af12425949fff298d899c624111522a",
+  "sourceFileBytes": 10215450,
+  "sourcePages": [24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Probolinggo.",
+  "csvPath": "datasets/bps-3513-kecamatan-351312-dalam-angka-2026.csv",
+  "csvSha256": "1563941006d6b50c8eeada5afa7c8ff235e2ba44d20985d69d1a864a08559dfc",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Paiton, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"PONDOOK KELOR\": unmatched ",
+    "table 3.1: row not stored: row \"BHINAR\": unmatched ",
+    "table 3.1: row not stored: row \"PONDOOK KELOR\": unmatched ",
+    "table 3.1: row not stored: row \"BHINAR\": unmatched ",
+    "table 3.1: the rows of region 35.13.12.2008 are not stored: sex split vs total: parts sum 4875.0000 != 5175.0000 (diff 300.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 35.13.12 are not stored: sex split vs total: parts sum 74375.0000 != 72735.0000 (diff 1640.0000); the source itself is inconsistent"
+  ]
+}

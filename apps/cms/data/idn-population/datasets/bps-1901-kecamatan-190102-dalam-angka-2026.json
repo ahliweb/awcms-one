@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1901-kecamatan-190102-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "19.01.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Belinyu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bangka",
+  "publisherDomain": "1901",
+  "publisherWebsite": "https://bangkakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bangka (https://bangkakab.bps.go.id), publikasi \"Kecamatan Belinyu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1901130",
+  "publicationNumber": "19010.25014",
+  "issn": "2655-416X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bangkakab.bps.go.id/id/publication/2026/09/28/03c6f847800bdc3bc570be17/kecamatan-belinyu-dalam-angka-2026.html",
+  "sourceFileSha256": "93410f8c5f610939b08a4d7f20a89e2fc59a37be59137746488a04cf740c8e34",
+  "sourceFileBytes": 14940019,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bangka.",
+  "csvPath": "datasets/bps-1901-kecamatan-190102-dalam-angka-2026.csv",
+  "csvSha256": "7af045824cbe1972d15afc5e629075ea112064032d7732918dfcb7e166af04de",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Belinyu, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Belinyu, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Romodong Indah\": unmatched ",
+    "table 3.1: row not stored: row \"Romodong Indah\": unmatched "
+  ]
+}

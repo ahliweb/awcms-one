@@ -1,0 +1,364 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.78.04.2022,4,Hilimbowo Idanoi,sex,laki_laki,,282,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2022,4,Hilimbowo Idanoi,sex,laki_laki,,289,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2022,4,Hilimbowo Idanoi,sex,perempuan,,331,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2022,4,Hilimbowo Idanoi,sex,perempuan,,340,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2022,4,Hilimbowo Idanoi,total,total,,613,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2022,4,Hilimbowo Idanoi,total,total,,629,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2021,4,Hiliweto Idanoi,sex,laki_laki,,506,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2021,4,Hiliweto Idanoi,sex,laki_laki,,505,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2021,4,Hiliweto Idanoi,sex,perempuan,,516,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2021,4,Hiliweto Idanoi,sex,perempuan,,510,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2021,4,Hiliweto Idanoi,total,total,,1022,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2021,4,Hiliweto Idanoi,total,total,,1015,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2026,4,Tuhegeo II,sex,laki_laki,,262,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2026,4,Tuhegeo II,sex,laki_laki,,267,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2026,4,Tuhegeo II,sex,perempuan,,286,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2026,4,Tuhegeo II,sex,perempuan,,298,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2026,4,Tuhegeo II,total,total,,548,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2026,4,Tuhegeo II,total,total,,565,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2025,4,Samasi,sex,laki_laki,,365,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2025,4,Samasi,sex,laki_laki,,364,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2025,4,Samasi,sex,perempuan,,369,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2025,4,Samasi,sex,perempuan,,363,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2025,4,Samasi,total,total,,734,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2025,4,Samasi,total,total,,727,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2015,4,Loloanaa Idanoi,sex,laki_laki,,756,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2015,4,Loloanaa Idanoi,sex,laki_laki,,757,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2015,4,Loloanaa Idanoi,sex,perempuan,,746,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2015,4,Loloanaa Idanoi,sex,perempuan,,765,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2015,4,Loloanaa Idanoi,total,total,,1502,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2015,4,Loloanaa Idanoi,total,total,,1522,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2024,4,Ombolata,sex,laki_laki,,253,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2024,4,Ombolata,sex,laki_laki,,253,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2024,4,Ombolata,sex,perempuan,,291,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2024,4,Ombolata,sex,perempuan,,294,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2024,4,Ombolata,total,total,,544,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2024,4,Ombolata,total,total,,547,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2023,4,Onowaembo,sex,laki_laki,,575,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2023,4,Onowaembo,sex,laki_laki,,574,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2023,4,Onowaembo,sex,perempuan,,675,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2023,4,Onowaembo,sex,perempuan,,686,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2023,4,Onowaembo,total,total,,1250,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2023,4,Onowaembo,total,total,,1260,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2016,4,Siwalubanua I,sex,laki_laki,,458,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2016,4,Siwalubanua I,sex,laki_laki,,461,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2016,4,Siwalubanua I,sex,perempuan,,458,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2016,4,Siwalubanua I,sex,perempuan,,466,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2016,4,Siwalubanua I,total,total,,916,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2016,4,Siwalubanua I,total,total,,927,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2018,4,Awaai,sex,laki_laki,,625,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2018,4,Awaai,sex,laki_laki,,623,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2018,4,Awaai,sex,perempuan,,681,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2018,4,Awaai,sex,perempuan,,678,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2018,4,Awaai,total,total,,1306,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2018,4,Awaai,total,total,,1301,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2019,4,Lewuoguru Idanoi,sex,laki_laki,,455,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2019,4,Lewuoguru Idanoi,sex,laki_laki,,458,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2019,4,Lewuoguru Idanoi,sex,perempuan,,519,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2019,4,Lewuoguru Idanoi,sex,perempuan,,522,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2019,4,Lewuoguru Idanoi,total,total,,974,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2019,4,Lewuoguru Idanoi,total,total,,980,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2020,4,Fadoro,sex,laki_laki,,426,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2020,4,Fadoro,sex,laki_laki,,424,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2020,4,Fadoro,sex,perempuan,,490,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2020,4,Fadoro,sex,perempuan,,481,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2020,4,Fadoro,total,total,,916,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2020,4,Fadoro,total,total,,905,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2001,4,Sifalaete,sex,laki_laki,,359,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2001,4,Sifalaete,sex,laki_laki,,363,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2001,4,Sifalaete,sex,perempuan,,416,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2001,4,Sifalaete,sex,perempuan,,414,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2001,4,Sifalaete,total,total,,775,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2001,4,Sifalaete,total,total,,777,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2017,4,Hilihambawa,sex,laki_laki,,752,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2017,4,Hilihambawa,sex,laki_laki,,745,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2017,4,Hilihambawa,sex,perempuan,,744,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2017,4,Hilihambawa,sex,perempuan,,735,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2017,4,Hilihambawa,total,total,,1496,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2017,4,Hilihambawa,total,total,,1480,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2010,4,Tetehosi I,sex,laki_laki,,1063,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2010,4,Tetehosi I,sex,laki_laki,,1051,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2010,4,Tetehosi I,sex,perempuan,,1172,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2010,4,Tetehosi I,sex,perempuan,,1170,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2010,4,Tetehosi I,total,total,,2235,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2010,4,Tetehosi I,total,total,,2221,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2014,4,Tetehosi II,sex,laki_laki,,437,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2014,4,Tetehosi II,sex,laki_laki,,435,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2014,4,Tetehosi II,sex,perempuan,,463,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2014,4,Tetehosi II,sex,perempuan,,471,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2014,4,Tetehosi II,total,total,,900,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2014,4,Tetehosi II,total,total,,906,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2012,4,Binaka,sex,laki_laki,,629,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2012,4,Binaka,sex,laki_laki,,631,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2012,4,Binaka,sex,perempuan,,672,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2012,4,Binaka,sex,perempuan,,657,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2012,4,Binaka,total,total,,1301,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2012,4,Binaka,total,total,,1288,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2013,4,Idanotae,sex,laki_laki,,350,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2013,4,Idanotae,sex,laki_laki,,361,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2013,4,Idanotae,sex,perempuan,,379,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2013,4,Idanotae,sex,perempuan,,394,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2013,4,Idanotae,total,total,,729,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2013,4,Idanotae,total,total,,755,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2011,4,Fowa,sex,laki_laki,,313,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2011,4,Fowa,sex,laki_laki,,306,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2011,4,Fowa,sex,perempuan,,332,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2011,4,Fowa,sex,perempuan,,334,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2011,4,Fowa,total,total,,645,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2011,4,Fowa,total,total,,640,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2008,4,Siwalubanua II,sex,laki_laki,,588,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2008,4,Siwalubanua II,sex,laki_laki,,598,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2008,4,Siwalubanua II,sex,perempuan,,604,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2008,4,Siwalubanua II,sex,perempuan,,603,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2008,4,Siwalubanua II,total,total,,1192,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2008,4,Siwalubanua II,total,total,,1201,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2007,4,Humene,sex,laki_laki,,427,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2007,4,Humene,sex,laki_laki,,437,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2007,4,Humene,sex,perempuan,,402,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2007,4,Humene,sex,perempuan,,417,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2007,4,Humene,total,total,,829,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2007,4,Humene,total,total,,854,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2006,4,Simanaere,sex,laki_laki,,476,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2006,4,Simanaere,sex,laki_laki,,472,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2006,4,Simanaere,sex,perempuan,,491,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2006,4,Simanaere,sex,perempuan,,499,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2006,4,Simanaere,total,total,,967,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2006,4,Simanaere,total,total,,971,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2009,4,Helefanikha,sex,laki_laki,,293,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2009,4,Helefanikha,sex,laki_laki,,289,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2009,4,Helefanikha,sex,perempuan,,315,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2009,4,Helefanikha,sex,perempuan,,317,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2009,4,Helefanikha,total,total,,608,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2009,4,Helefanikha,total,total,,606,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2005,4,Tuhegeo I,sex,laki_laki,,232,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2005,4,Tuhegeo I,sex,laki_laki,,241,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2005,4,Tuhegeo I,sex,perempuan,,231,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2005,4,Tuhegeo I,sex,perempuan,,229,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2005,4,Tuhegeo I,total,total,,463,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2005,4,Tuhegeo I,total,total,,470,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2003,4,Dahana,sex,laki_laki,,641,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2003,4,Dahana,sex,laki_laki,,642,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2003,4,Dahana,sex,perempuan,,640,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2003,4,Dahana,sex,perempuan,,636,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2003,4,Dahana,total,total,,1281,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2003,4,Dahana,total,total,,1278,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04.2004,4,Bawodesolo,sex,laki_laki,,357,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2004,4,Bawodesolo,sex,laki_laki,,365,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04.2004,4,Bawodesolo,sex,perempuan,,382,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2004,4,Bawodesolo,sex,perempuan,,391,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04.2004,4,Bawodesolo,total,total,,739,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04.2004,4,Bawodesolo,total,total,,756,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04,3,Gunungsitoli Idanoi,sex,laki_laki,,12174,jiwa,2024,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04,3,Gunungsitoli Idanoi,sex,laki_laki,,12208,jiwa,2025,registration,total_population,3.1,32,,Laki-laki/Male
+12.78.04,3,Gunungsitoli Idanoi,sex,perempuan,,12957,jiwa,2024,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04,3,Gunungsitoli Idanoi,sex,perempuan,,13029,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+12.78.04,3,Gunungsitoli Idanoi,total,total,,25131,jiwa,2024,registration,total_population,3.1,32,,
+12.78.04,3,Gunungsitoli Idanoi,total,total,,25237,jiwa,2025,registration,total_population,3.1,32,,
+12.78.04,3,Gunungsitoli Idanoi,age_group,0-4,laki_laki,803,jiwa,2025,registration,total_population,3.2,35,,0-4
+12.78.04,3,Gunungsitoli Idanoi,age_group,0-4,perempuan,766,jiwa,2025,registration,total_population,3.2,35,,0-4
+12.78.04,3,Gunungsitoli Idanoi,age_group,0-4,,1569,jiwa,2025,registration,total_population,3.2,35,,0-4
+12.78.04,3,Gunungsitoli Idanoi,age_group,5-9,laki_laki,1246,jiwa,2025,registration,total_population,3.2,35,,5-9
+12.78.04,3,Gunungsitoli Idanoi,age_group,5-9,perempuan,1214,jiwa,2025,registration,total_population,3.2,35,,5-9
+12.78.04,3,Gunungsitoli Idanoi,age_group,5-9,,2460,jiwa,2025,registration,total_population,3.2,35,,5-9
+12.78.04,3,Gunungsitoli Idanoi,age_group,10-14,laki_laki,1502,jiwa,2025,registration,total_population,3.2,35,,10-14
+12.78.04,3,Gunungsitoli Idanoi,age_group,10-14,perempuan,1442,jiwa,2025,registration,total_population,3.2,35,,10-14
+12.78.04,3,Gunungsitoli Idanoi,age_group,10-14,,2944,jiwa,2025,registration,total_population,3.2,35,,10-14
+12.78.04,3,Gunungsitoli Idanoi,age_group,15-19,laki_laki,1515,jiwa,2025,registration,total_population,3.2,35,,15-19
+12.78.04,3,Gunungsitoli Idanoi,age_group,15-19,perempuan,1365,jiwa,2025,registration,total_population,3.2,35,,15-19
+12.78.04,3,Gunungsitoli Idanoi,age_group,15-19,,2880,jiwa,2025,registration,total_population,3.2,35,,15-19
+12.78.04,3,Gunungsitoli Idanoi,age_group,20-24,laki_laki,1267,jiwa,2025,registration,total_population,3.2,35,,20-24
+12.78.04,3,Gunungsitoli Idanoi,age_group,20-24,perempuan,1269,jiwa,2025,registration,total_population,3.2,35,,20-24
+12.78.04,3,Gunungsitoli Idanoi,age_group,20-24,,2536,jiwa,2025,registration,total_population,3.2,35,,20-24
+12.78.04,3,Gunungsitoli Idanoi,age_group,25-29,laki_laki,1043,jiwa,2025,registration,total_population,3.2,35,,25-29
+12.78.04,3,Gunungsitoli Idanoi,age_group,25-29,perempuan,1035,jiwa,2025,registration,total_population,3.2,35,,25-29
+12.78.04,3,Gunungsitoli Idanoi,age_group,25-29,,2078,jiwa,2025,registration,total_population,3.2,35,,25-29
+12.78.04,3,Gunungsitoli Idanoi,age_group,30-34,laki_laki,820,jiwa,2025,registration,total_population,3.2,35,,30-34
+12.78.04,3,Gunungsitoli Idanoi,age_group,30-34,perempuan,879,jiwa,2025,registration,total_population,3.2,35,,30-34
+12.78.04,3,Gunungsitoli Idanoi,age_group,30-34,,1699,jiwa,2025,registration,total_population,3.2,35,,30-34
+12.78.04,3,Gunungsitoli Idanoi,age_group,35-39,laki_laki,896,jiwa,2025,registration,total_population,3.2,35,,35-39
+12.78.04,3,Gunungsitoli Idanoi,age_group,35-39,perempuan,985,jiwa,2025,registration,total_population,3.2,35,,35-39
+12.78.04,3,Gunungsitoli Idanoi,age_group,35-39,,1881,jiwa,2025,registration,total_population,3.2,35,,35-39
+12.78.04,3,Gunungsitoli Idanoi,age_group,40-44,laki_laki,811,jiwa,2025,registration,total_population,3.2,35,,40-44
+12.78.04,3,Gunungsitoli Idanoi,age_group,40-44,perempuan,858,jiwa,2025,registration,total_population,3.2,35,,40-44
+12.78.04,3,Gunungsitoli Idanoi,age_group,40-44,,1669,jiwa,2025,registration,total_population,3.2,35,,40-44
+12.78.04,3,Gunungsitoli Idanoi,age_group,45-49,laki_laki,684,jiwa,2025,registration,total_population,3.2,35,,45-49
+12.78.04,3,Gunungsitoli Idanoi,age_group,45-49,perempuan,764,jiwa,2025,registration,total_population,3.2,35,,45-49
+12.78.04,3,Gunungsitoli Idanoi,age_group,45-49,,1448,jiwa,2025,registration,total_population,3.2,35,,45-49
+12.78.04,3,Gunungsitoli Idanoi,age_group,50-54,laki_laki,518,jiwa,2025,registration,total_population,3.2,35,,50-54
+12.78.04,3,Gunungsitoli Idanoi,age_group,50-54,perempuan,590,jiwa,2025,registration,total_population,3.2,35,,50-54
+12.78.04,3,Gunungsitoli Idanoi,age_group,50-54,,1108,jiwa,2025,registration,total_population,3.2,35,,50-54
+12.78.04,3,Gunungsitoli Idanoi,age_group,55-59,laki_laki,349,jiwa,2025,registration,total_population,3.2,35,,55-59
+12.78.04,3,Gunungsitoli Idanoi,age_group,55-59,perempuan,489,jiwa,2025,registration,total_population,3.2,35,,55-59
+12.78.04,3,Gunungsitoli Idanoi,age_group,55-59,,838,jiwa,2025,registration,total_population,3.2,35,,55-59
+12.78.04,3,Gunungsitoli Idanoi,age_group,60-64,laki_laki,254,jiwa,2025,registration,total_population,3.2,35,,60-64
+12.78.04,3,Gunungsitoli Idanoi,age_group,60-64,perempuan,392,jiwa,2025,registration,total_population,3.2,35,,60-64
+12.78.04,3,Gunungsitoli Idanoi,age_group,60-64,,646,jiwa,2025,registration,total_population,3.2,35,,60-64
+12.78.04,3,Gunungsitoli Idanoi,age_group,65-69,laki_laki,195,jiwa,2025,registration,total_population,3.2,35,,65-69
+12.78.04,3,Gunungsitoli Idanoi,age_group,65-69,perempuan,377,jiwa,2025,registration,total_population,3.2,35,,65-69
+12.78.04,3,Gunungsitoli Idanoi,age_group,65-69,,572,jiwa,2025,registration,total_population,3.2,35,,65-69
+12.78.04,3,Gunungsitoli Idanoi,age_group,70-74,laki_laki,154,jiwa,2025,registration,total_population,3.2,35,,70-74
+12.78.04,3,Gunungsitoli Idanoi,age_group,70-74,perempuan,294,jiwa,2025,registration,total_population,3.2,35,,70-74
+12.78.04,3,Gunungsitoli Idanoi,age_group,70-74,,448,jiwa,2025,registration,total_population,3.2,35,,70-74
+12.78.04,3,Gunungsitoli Idanoi,age_group,75+,laki_laki,151,jiwa,2025,registration,total_population,3.2,35,,75+
+12.78.04,3,Gunungsitoli Idanoi,age_group,75+,perempuan,310,jiwa,2025,registration,total_population,3.2,35,,75+
+12.78.04,3,Gunungsitoli Idanoi,age_group,75+,,461,jiwa,2025,registration,total_population,3.2,35,,75+
+12.78.04,3,Gunungsitoli Idanoi,sex,laki_laki,,12208,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+12.78.04,3,Gunungsitoli Idanoi,sex,perempuan,,13029,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+12.78.04,3,Gunungsitoli Idanoi,total,total,,25237,jiwa,2025,registration,total_population,3.2,35,,
+12.78.04.2022,4,Hilimbowo Idanoi,religion,islam,,0,jiwa,2025,registration,total_population,3.4,37,nil,Islam
+12.78.04.2022,4,Hilimbowo Idanoi,religion,kristen,,615,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2022,4,Hilimbowo Idanoi,religion,katolik,,14,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2022,4,Hilimbowo Idanoi,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2022,4,Hilimbowo Idanoi,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2022,4,Hilimbowo Idanoi,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2021,4,Hiliweto Idanoi,religion,islam,,5,jiwa,2025,registration,total_population,3.4,37,,Islam
+12.78.04.2021,4,Hiliweto Idanoi,religion,kristen,,864,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2021,4,Hiliweto Idanoi,religion,katolik,,146,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2021,4,Hiliweto Idanoi,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2021,4,Hiliweto Idanoi,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2021,4,Hiliweto Idanoi,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2026,4,Tuhegeo II,religion,islam,,0,jiwa,2025,registration,total_population,3.4,37,nil,Islam
+12.78.04.2026,4,Tuhegeo II,religion,kristen,,549,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2026,4,Tuhegeo II,religion,katolik,,16,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2026,4,Tuhegeo II,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2026,4,Tuhegeo II,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2026,4,Tuhegeo II,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2025,4,Samasi,religion,islam,,0,jiwa,2025,registration,total_population,3.4,37,nil,Islam
+12.78.04.2025,4,Samasi,religion,kristen,,666,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2025,4,Samasi,religion,katolik,,61,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2025,4,Samasi,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2025,4,Samasi,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2025,4,Samasi,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2015,4,Loloanaa Idanoi,religion,islam,,0,jiwa,2025,registration,total_population,3.4,37,nil,Islam
+12.78.04.2015,4,Loloanaa Idanoi,religion,kristen,,1496,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2015,4,Loloanaa Idanoi,religion,katolik,,26,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2015,4,Loloanaa Idanoi,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2015,4,Loloanaa Idanoi,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2015,4,Loloanaa Idanoi,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2024,4,Ombolata,religion,islam,,0,jiwa,2025,registration,total_population,3.4,37,nil,Islam
+12.78.04.2024,4,Ombolata,religion,kristen,,326,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2024,4,Ombolata,religion,katolik,,221,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2024,4,Ombolata,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2024,4,Ombolata,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2024,4,Ombolata,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2023,4,Onowaembo,religion,islam,,0,jiwa,2025,registration,total_population,3.4,37,nil,Islam
+12.78.04.2023,4,Onowaembo,religion,kristen,,1006,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2023,4,Onowaembo,religion,katolik,,254,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2023,4,Onowaembo,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2023,4,Onowaembo,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2023,4,Onowaembo,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2016,4,Siwalubanua I,religion,islam,,4,jiwa,2025,registration,total_population,3.4,37,,Islam
+12.78.04.2016,4,Siwalubanua I,religion,kristen,,498,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2016,4,Siwalubanua I,religion,katolik,,425,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2016,4,Siwalubanua I,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2016,4,Siwalubanua I,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2016,4,Siwalubanua I,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2018,4,Awaai,religion,islam,,0,jiwa,2025,registration,total_population,3.4,37,nil,Islam
+12.78.04.2018,4,Awaai,religion,kristen,,1062,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2018,4,Awaai,religion,katolik,,239,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2018,4,Awaai,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2018,4,Awaai,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2018,4,Awaai,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2019,4,Lewuoguru Idanoi,religion,islam,,0,jiwa,2025,registration,total_population,3.4,37,nil,Islam
+12.78.04.2019,4,Lewuoguru Idanoi,religion,kristen,,777,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2019,4,Lewuoguru Idanoi,religion,katolik,,203,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2019,4,Lewuoguru Idanoi,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2019,4,Lewuoguru Idanoi,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2019,4,Lewuoguru Idanoi,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2020,4,Fadoro,religion,islam,,1,jiwa,2025,registration,total_population,3.4,37,,Islam
+12.78.04.2020,4,Fadoro,religion,kristen,,631,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2020,4,Fadoro,religion,katolik,,273,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2020,4,Fadoro,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2020,4,Fadoro,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2020,4,Fadoro,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2001,4,Sifalaete,religion,islam,,6,jiwa,2025,registration,total_population,3.4,37,,Islam
+12.78.04.2001,4,Sifalaete,religion,kristen,,762,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2001,4,Sifalaete,religion,katolik,,3,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2001,4,Sifalaete,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2001,4,Sifalaete,religion,buddha,,6,jiwa,2025,registration,total_population,3.4,37,,Budha
+12.78.04.2001,4,Sifalaete,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2017,4,Hilihambawa,religion,islam,,4,jiwa,2025,registration,total_population,3.4,37,,Islam
+12.78.04.2017,4,Hilihambawa,religion,kristen,,1334,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2017,4,Hilihambawa,religion,katolik,,142,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2017,4,Hilihambawa,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2017,4,Hilihambawa,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2017,4,Hilihambawa,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2010,4,Tetehosi I,religion,islam,,185,jiwa,2025,registration,total_population,3.4,37,,Islam
+12.78.04.2010,4,Tetehosi I,religion,kristen,,2003,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2010,4,Tetehosi I,religion,katolik,,33,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2010,4,Tetehosi I,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2010,4,Tetehosi I,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2010,4,Tetehosi I,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2014,4,Tetehosi II,religion,islam,,0,jiwa,2025,registration,total_population,3.4,37,nil,Islam
+12.78.04.2014,4,Tetehosi II,religion,kristen,,747,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2014,4,Tetehosi II,religion,katolik,,159,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2014,4,Tetehosi II,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2014,4,Tetehosi II,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2014,4,Tetehosi II,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2012,4,Binaka,religion,islam,,4,jiwa,2025,registration,total_population,3.4,37,,Islam
+12.78.04.2012,4,Binaka,religion,kristen,,1253,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2012,4,Binaka,religion,katolik,,31,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2012,4,Binaka,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2012,4,Binaka,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2012,4,Binaka,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2013,4,Idanotae,religion,islam,,178,jiwa,2025,registration,total_population,3.4,37,,Islam
+12.78.04.2013,4,Idanotae,religion,kristen,,577,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2013,4,Idanotae,religion,katolik,,0,jiwa,2025,registration,total_population,3.4,37,nil,Katolik
+12.78.04.2013,4,Idanotae,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2013,4,Idanotae,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2013,4,Idanotae,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2011,4,Fowa,religion,islam,,632,jiwa,2025,registration,total_population,3.4,37,,Islam
+12.78.04.2011,4,Fowa,religion,kristen,,8,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2011,4,Fowa,religion,katolik,,0,jiwa,2025,registration,total_population,3.4,37,nil,Katolik
+12.78.04.2011,4,Fowa,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2011,4,Fowa,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2011,4,Fowa,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2008,4,Siwalubanua II,religion,islam,,20,jiwa,2025,registration,total_population,3.4,37,,Islam
+12.78.04.2008,4,Siwalubanua II,religion,kristen,,1170,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2008,4,Siwalubanua II,religion,katolik,,11,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2008,4,Siwalubanua II,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2008,4,Siwalubanua II,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2008,4,Siwalubanua II,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2007,4,Humene,religion,islam,,744,jiwa,2025,registration,total_population,3.4,37,,Islam
+12.78.04.2007,4,Humene,religion,kristen,,105,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2007,4,Humene,religion,katolik,,2,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2007,4,Humene,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2007,4,Humene,religion,buddha,,3,jiwa,2025,registration,total_population,3.4,37,,Budha
+12.78.04.2007,4,Humene,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2006,4,Simanaere,religion,islam,,32,jiwa,2025,registration,total_population,3.4,37,,Islam
+12.78.04.2006,4,Simanaere,religion,kristen,,913,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2006,4,Simanaere,religion,katolik,,26,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2006,4,Simanaere,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2006,4,Simanaere,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2006,4,Simanaere,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2009,4,Helefanikha,religion,islam,,4,jiwa,2025,registration,total_population,3.4,37,,Islam
+12.78.04.2009,4,Helefanikha,religion,kristen,,484,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2009,4,Helefanikha,religion,katolik,,118,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2009,4,Helefanikha,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2009,4,Helefanikha,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2009,4,Helefanikha,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2005,4,Tuhegeo I,religion,islam,,1,jiwa,2025,registration,total_population,3.4,37,,Islam
+12.78.04.2005,4,Tuhegeo I,religion,kristen,,419,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2005,4,Tuhegeo I,religion,katolik,,50,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2005,4,Tuhegeo I,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2005,4,Tuhegeo I,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2005,4,Tuhegeo I,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2003,4,Dahana,religion,islam,,11,jiwa,2025,registration,total_population,3.4,37,,Islam
+12.78.04.2003,4,Dahana,religion,kristen,,1205,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2003,4,Dahana,religion,katolik,,62,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2003,4,Dahana,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2003,4,Dahana,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2003,4,Dahana,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04.2004,4,Bawodesolo,religion,islam,,0,jiwa,2025,registration,total_population,3.4,37,nil,Islam
+12.78.04.2004,4,Bawodesolo,religion,kristen,,687,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04.2004,4,Bawodesolo,religion,katolik,,69,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04.2004,4,Bawodesolo,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04.2004,4,Bawodesolo,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,37,nil,Budha
+12.78.04.2004,4,Bawodesolo,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu
+12.78.04,3,Gunungsitoli Idanoi,religion,islam,,1853,jiwa,2025,registration,total_population,3.4,37,,Islam
+12.78.04,3,Gunungsitoli Idanoi,religion,kristen,,20783,jiwa,2025,registration,total_population,3.4,37,,Protestan
+12.78.04,3,Gunungsitoli Idanoi,religion,katolik,,2592,jiwa,2025,registration,total_population,3.4,37,,Katolik
+12.78.04,3,Gunungsitoli Idanoi,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Hindu
+12.78.04,3,Gunungsitoli Idanoi,religion,buddha,,9,jiwa,2025,registration,total_population,3.4,37,,Budha
+12.78.04,3,Gunungsitoli Idanoi,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,37,nil,Konghucu

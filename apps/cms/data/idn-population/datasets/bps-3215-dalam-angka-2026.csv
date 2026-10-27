@@ -1,0 +1,125 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.15.02,3,Pangkalan,total,total,,43205,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.28,3,Tegalwaru,total,total,,41095,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.04,3,Ciampel,total,total,,46141,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.03,3,Telukjambe Timur,total,total,,136022,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.27,3,Telukjambe Barat,total,total,,58369,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.05,3,Klari,total,total,,216547,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.13,3,Cikampek,total,total,,124802,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.29,3,Purwasari,total,total,,88646,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.16,3,Tirtamulya,total,total,,52552,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.14,3,Jatisari,total,total,,84279,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.24,3,Banyusari,total,total,,58390,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.25,3,Kotabaru,total,total,,145394,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.15,3,Cilamaya Wetan,total,total,,82241,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.23,3,Cilamaya Kulon,total,total,,68632,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.19,3,Lemahabang,total,total,,68390,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.17,3,Telagasari,total,total,,72713,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.21,3,Majalaya,total,total,,92077,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.26,3,Karawang Timur,total,total,,170076,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.01,3,Karawang Barat,total,total,,167826,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.18,3,Rawamerta,total,total,,56454,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.20,3,Tempuran,total,total,,67762,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.07,3,Kutawaluya,total,total,,63664,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.06,3,Rengasdengklok,total,total,,120948,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.22,3,Jayakerta,total,total,,70513,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.10,3,Pedes,total,total,,82729,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.30,3,Cilebar,total,total,,47349,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.11,3,Cibuaya,total,total,,55302,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.09,3,Tirtajaya,total,total,,73538,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15.08,3,Batujaya,total,total,,83050,jiwa,2025,projection,total_population,3.1.1,51,,
+32.15,2,Kabupaten Karawang,age_group,0-4,laki_laki,103663,jiwa,2025,projection,total_population,3.1.2,54,,0-4
+32.15,2,Kabupaten Karawang,age_group,0-4,perempuan,99504,jiwa,2025,projection,total_population,3.1.2,54,,0-4
+32.15,2,Kabupaten Karawang,age_group,0-4,,203167,jiwa,2025,projection,total_population,3.1.2,54,,0-4
+32.15,2,Kabupaten Karawang,age_group,5-9,laki_laki,98277,jiwa,2025,projection,total_population,3.1.2,54,,5-9
+32.15,2,Kabupaten Karawang,age_group,5-9,perempuan,93520,jiwa,2025,projection,total_population,3.1.2,54,,5-9
+32.15,2,Kabupaten Karawang,age_group,5-9,,191797,jiwa,2025,projection,total_population,3.1.2,54,,5-9
+32.15,2,Kabupaten Karawang,age_group,10-14,laki_laki,101965,jiwa,2025,projection,total_population,3.1.2,54,,10-14
+32.15,2,Kabupaten Karawang,age_group,10-14,perempuan,97456,jiwa,2025,projection,total_population,3.1.2,54,,10-14
+32.15,2,Kabupaten Karawang,age_group,10-14,,199421,jiwa,2025,projection,total_population,3.1.2,54,,10-14
+32.15,2,Kabupaten Karawang,age_group,15-19,laki_laki,101992,jiwa,2025,projection,total_population,3.1.2,54,,15-19
+32.15,2,Kabupaten Karawang,age_group,15-19,perempuan,95748,jiwa,2025,projection,total_population,3.1.2,54,,15-19
+32.15,2,Kabupaten Karawang,age_group,15-19,,197740,jiwa,2025,projection,total_population,3.1.2,54,,15-19
+32.15,2,Kabupaten Karawang,age_group,20-24,laki_laki,99766,jiwa,2025,projection,total_population,3.1.2,54,,20-24
+32.15,2,Kabupaten Karawang,age_group,20-24,perempuan,94502,jiwa,2025,projection,total_population,3.1.2,54,,20-24
+32.15,2,Kabupaten Karawang,age_group,20-24,,194268,jiwa,2025,projection,total_population,3.1.2,54,,20-24
+32.15,2,Kabupaten Karawang,age_group,25-29,laki_laki,104312,jiwa,2025,projection,total_population,3.1.2,54,,25-29
+32.15,2,Kabupaten Karawang,age_group,25-29,perempuan,101205,jiwa,2025,projection,total_population,3.1.2,54,,25-29
+32.15,2,Kabupaten Karawang,age_group,25-29,,205517,jiwa,2025,projection,total_population,3.1.2,54,,25-29
+32.15,2,Kabupaten Karawang,age_group,30-34,laki_laki,111213,jiwa,2025,projection,total_population,3.1.2,54,,30-34
+32.15,2,Kabupaten Karawang,age_group,30-34,perempuan,108328,jiwa,2025,projection,total_population,3.1.2,54,,30-34
+32.15,2,Kabupaten Karawang,age_group,30-34,,219541,jiwa,2025,projection,total_population,3.1.2,54,,30-34
+32.15,2,Kabupaten Karawang,age_group,35-39,laki_laki,108721,jiwa,2025,projection,total_population,3.1.2,54,,35-39
+32.15,2,Kabupaten Karawang,age_group,35-39,perempuan,103628,jiwa,2025,projection,total_population,3.1.2,54,,35-39
+32.15,2,Kabupaten Karawang,age_group,35-39,,212349,jiwa,2025,projection,total_population,3.1.2,54,,35-39
+32.15,2,Kabupaten Karawang,age_group,40-44,laki_laki,97389,jiwa,2025,projection,total_population,3.1.2,54,,40-44
+32.15,2,Kabupaten Karawang,age_group,40-44,perempuan,98849,jiwa,2025,projection,total_population,3.1.2,54,,40-44
+32.15,2,Kabupaten Karawang,age_group,40-44,,196238,jiwa,2025,projection,total_population,3.1.2,54,,40-44
+32.15,2,Kabupaten Karawang,age_group,45-49,laki_laki,91336,jiwa,2025,projection,total_population,3.1.2,54,,45-49
+32.15,2,Kabupaten Karawang,age_group,45-49,perempuan,96777,jiwa,2025,projection,total_population,3.1.2,54,,45-49
+32.15,2,Kabupaten Karawang,age_group,45-49,,188113,jiwa,2025,projection,total_population,3.1.2,54,,45-49
+32.15,2,Kabupaten Karawang,age_group,50-54,laki_laki,79877,jiwa,2025,projection,total_population,3.1.2,54,,50-54
+32.15,2,Kabupaten Karawang,age_group,50-54,perempuan,83706,jiwa,2025,projection,total_population,3.1.2,54,,50-54
+32.15,2,Kabupaten Karawang,age_group,50-54,,163583,jiwa,2025,projection,total_population,3.1.2,54,,50-54
+32.15,2,Kabupaten Karawang,age_group,55-59,laki_laki,68616,jiwa,2025,projection,total_population,3.1.2,54,,55-59
+32.15,2,Kabupaten Karawang,age_group,55-59,perempuan,69061,jiwa,2025,projection,total_population,3.1.2,54,,55-59
+32.15,2,Kabupaten Karawang,age_group,55-59,,137677,jiwa,2025,projection,total_population,3.1.2,54,,55-59
+32.15,2,Kabupaten Karawang,age_group,60-64,laki_laki,52086,jiwa,2025,projection,total_population,3.1.2,54,,60-64
+32.15,2,Kabupaten Karawang,age_group,60-64,perempuan,51815,jiwa,2025,projection,total_population,3.1.2,54,,60-64
+32.15,2,Kabupaten Karawang,age_group,60-64,,103901,jiwa,2025,projection,total_population,3.1.2,54,,60-64
+32.15,2,Kabupaten Karawang,age_group,65-69,laki_laki,38571,jiwa,2025,projection,total_population,3.1.2,54,,65-69
+32.15,2,Kabupaten Karawang,age_group,65-69,perempuan,37661,jiwa,2025,projection,total_population,3.1.2,54,,65-69
+32.15,2,Kabupaten Karawang,age_group,65-69,,76232,jiwa,2025,projection,total_population,3.1.2,54,,65-69
+32.15,2,Kabupaten Karawang,age_group,70-74,laki_laki,23921,jiwa,2025,projection,total_population,3.1.2,54,,70-74
+32.15,2,Kabupaten Karawang,age_group,70-74,perempuan,23647,jiwa,2025,projection,total_population,3.1.2,54,,70-74
+32.15,2,Kabupaten Karawang,age_group,70-74,,47568,jiwa,2025,projection,total_population,3.1.2,54,,70-74
+32.15,2,Kabupaten Karawang,age_group,75+,laki_laki,21242,jiwa,2025,projection,total_population,3.1.2,54,,75+
+32.15,2,Kabupaten Karawang,age_group,75+,perempuan,22891,jiwa,2025,projection,total_population,3.1.2,54,,75+
+32.15,2,Kabupaten Karawang,age_group,75+,,44133,jiwa,2025,projection,total_population,3.1.2,54,,75+
+32.15,2,Karawang,sex,laki_laki,,1302947,jiwa,2025,projection,total_population,3.1.2,54,,Laki-Laki
+32.15,2,Karawang,sex,perempuan,,1278298,jiwa,2025,projection,total_population,3.1.2,54,,Perempuan
+32.15,2,Karawang,total,total,,2581245,jiwa,2025,projection,total_population,3.1.2,54,,
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/padi_padian,,89448,rupiah,2024,survey_estimate,per_capita,10.1,288,,Padi-padian
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/padi_padian,,75638,rupiah,2025,survey_estimate,per_capita,10.1,288,,Padi-padian
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/umbi_umbian,,4009,rupiah,2024,survey_estimate,per_capita,10.1,288,,Umbi-umbian
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/umbi_umbian,,5159,rupiah,2025,survey_estimate,per_capita,10.1,288,,Umbi-umbian
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,44186,rupiah,2024,survey_estimate,per_capita,10.1,288,,Ikan/udang/cumi/kerang
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,47628,rupiah,2025,survey_estimate,per_capita,10.1,288,,Ikan/udang/cumi/kerang
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/daging,,28347,rupiah,2024,survey_estimate,per_capita,10.1,288,,Daging
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/daging,,32881,rupiah,2025,survey_estimate,per_capita,10.1,288,,Daging
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/telur_dan_susu,,36524,rupiah,2024,survey_estimate,per_capita,10.1,288,,Telur dan susu
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/telur_dan_susu,,34226,rupiah,2025,survey_estimate,per_capita,10.1,288,,Telur dan susu
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/sayur_sayuran,,54348,rupiah,2024,survey_estimate,per_capita,10.1,288,,Sayur-sayuran
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/sayur_sayuran,,58378,rupiah,2025,survey_estimate,per_capita,10.1,288,,Sayur-sayuran
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/kacang_kacangan,,13967,rupiah,2024,survey_estimate,per_capita,10.1,288,,Kacang-kacangan
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/kacang_kacangan,,15031,rupiah,2025,survey_estimate,per_capita,10.1,288,,Kacang-kacangan
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/buah_buahan,,37699,rupiah,2024,survey_estimate,per_capita,10.1,288,,Buah-buahan
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/buah_buahan,,40520,rupiah,2025,survey_estimate,per_capita,10.1,288,,Buah-buahan
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,12536,rupiah,2024,survey_estimate,per_capita,10.1,288,,Minyak dan kelapa
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14502,rupiah,2025,survey_estimate,per_capita,10.1,288,,Minyak dan kelapa
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/bahan_minuman,,20797,rupiah,2024,survey_estimate,per_capita,10.1,288,,Bahan minuman
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/bahan_minuman,,23174,rupiah,2025,survey_estimate,per_capita,10.1,288,,Bahan minuman
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/bumbu_bumbuan,,16107,rupiah,2024,survey_estimate,per_capita,10.1,288,,Bumbu-bumbuan
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/bumbu_bumbuan,,117332,rupiah,2025,survey_estimate,per_capita,10.1,288,,Bumbu-bumbuan
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/konsumsi_lainnya,,14422,rupiah,2024,survey_estimate,per_capita,10.1,288,,Konsumsi lainnya
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,320574,rupiah,2024,survey_estimate,per_capita,10.1,288,,Makanan dan minuman jadi
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,286993,rupiah,2025,survey_estimate,per_capita,10.1,288,,Makanan dan minuman jadi
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/rokok,,127871,rupiah,2024,survey_estimate,per_capita,10.1,288,,Rokok
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/rokok,,98753,rupiah,2025,survey_estimate,per_capita,10.1,288,,Rokok
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/jumlah_makanan,,820835,rupiah,2024,survey_estimate,per_capita,10.1,288,,Jumlah makanan
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/jumlah_makanan,,766237,rupiah,2025,survey_estimate,per_capita,10.1,288,,Jumlah makanan
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,396511,rupiah,2024,survey_estimate,per_capita,10.1,288,,Perumahan dan fasilitas rumah tangga
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,348340,rupiah,2025,survey_estimate,per_capita,10.1,288,,Perumahan dan fasilitas rumah tangga
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,174531,rupiah,2024,survey_estimate,per_capita,10.1,288,,Aneka barang dan jasa
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,175718,rupiah,2025,survey_estimate,per_capita,10.1,288,,Aneka barang dan jasa
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,38707,rupiah,2025,survey_estimate,per_capita,10.1,288,,"Pakaian, alas kaki, dan tutup kepala"
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/barang_tahan_lama,,45805,rupiah,2024,survey_estimate,per_capita,10.1,288,,Barang tahan lama
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/barang_tahan_lama,,46293,rupiah,2025,survey_estimate,per_capita,10.1,288,,Barang tahan lama
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,61061,rupiah,2024,survey_estimate,per_capita,10.1,288,,"Pajak, pungutan, dan asuransi"
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,52536,rupiah,2025,survey_estimate,per_capita,10.1,288,,"Pajak, pungutan, dan asuransi"
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,32909,rupiah,2024,survey_estimate,per_capita,10.1,288,,Keperluan pesta dan upacara/kenduri
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,18572,rupiah,2025,survey_estimate,per_capita,10.1,288,,Keperluan pesta dan upacara/kenduri
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,749567,rupiah,2024,survey_estimate,per_capita,10.1,288,,Jumlah bukan makanan
+32.15,2,Kabupaten Karawang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,716166,rupiah,2025,survey_estimate,per_capita,10.1,288,,Jumlah bukan makanan
+32.15,2,Kabupaten Karawang,expenditure,total,,1570402,rupiah,2024,survey_estimate,per_capita,10.1,288,,
+32.15,2,Kabupaten Karawang,expenditure,total,,1482403,rupiah,2025,survey_estimate,per_capita,10.1,288,,

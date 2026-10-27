@@ -1,0 +1,61 @@
+{
+  "datasetCode": "bps-3673-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "36.73",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kota Serang Dalam Angka 2026",
+  "publisherName": "BPS Kota Serang",
+  "publisherDomain": "3673",
+  "publisherWebsite": "https://serangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Serang (https://serangkota.bps.go.id), publikasi \"Kota Serang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3673",
+  "publicationNumber": "36730.26002",
+  "issn": "2302-3732",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://serangkota.bps.go.id/id/publication/2026/02/27/f8a1bed00d04b429930e4aca/kota-serang-dalam-angka-2026.html",
+  "sourceFileSha256": "e6371d6e48018c500d3d11f32e097edb56490c2f849e06e5828bfb1df74e6c11",
+  "sourceFileBytes": 26663737,
+  "sourcePages": [77, 80, 225],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Serang.",
+  "csvPath": "datasets/bps-3673-dalam-angka-2026.csv",
+  "csvSha256": "b2c4fd0cab6cf9b84064ab1f705725b64f509eba55ea2a6e02696c89b2168770",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kota Serang, 2025",
+      "printedPages": [77],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kota Serang (Jiwa), 2025",
+      "printedPages": [80],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kota Serang, 2025",
+      "printedPages": [225],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication",
+    "table 3.1.1: row not stored: row \"Kota Serang Serang Municipality\": unmatched ",
+    "table 3.1.2: row not stored: row \"Kota Serang Serang Municipality\": unmatched ",
+    "table 4.3.1: row not stored: row \"Kota Serang Serang Municipality\": unmatched "
+  ]
+}

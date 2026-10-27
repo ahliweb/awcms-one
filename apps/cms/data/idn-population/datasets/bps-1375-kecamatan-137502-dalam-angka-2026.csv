@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.75.02.1006,4,Pulai Anak Air,sex,laki_laki,,3555,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+13.75.02.1006,4,Pulai Anak Air,sex,perempuan,,3559,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+13.75.02.1006,4,Pulai Anak Air,total,total,,7114,jiwa,2025,registration,total_population,3.1,35,,
+13.75.02.1007,4,Koto Selayan,sex,laki_laki,,1005,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+13.75.02.1007,4,Koto Selayan,sex,perempuan,,991,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+13.75.02.1007,4,Koto Selayan,total,total,,1996,jiwa,2025,registration,total_population,3.1,35,,
+13.75.02.1008,4,Garegeh,sex,laki_laki,,1655,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+13.75.02.1008,4,Garegeh,sex,perempuan,,1600,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+13.75.02.1008,4,Garegeh,total,total,,3255,jiwa,2025,registration,total_population,3.1,35,,
+13.75.02.1009,4,Manggis Ganting,sex,laki_laki,,2887,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+13.75.02.1009,4,Manggis Ganting,sex,perempuan,,2867,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+13.75.02.1009,4,Manggis Ganting,total,total,,5754,jiwa,2025,registration,total_population,3.1,35,,
+13.75.02.1002,4,Campago Ipuh,sex,laki_laki,,6105,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+13.75.02.1002,4,Campago Ipuh,sex,perempuan,,5914,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+13.75.02.1002,4,Campago Ipuh,total,total,,12019,jiwa,2025,registration,total_population,3.1,35,,
+13.75.02.1003,4,Puhun Tembok,sex,laki_laki,,3345,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+13.75.02.1003,4,Puhun Tembok,sex,perempuan,,3343,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+13.75.02.1003,4,Puhun Tembok,total,total,,6688,jiwa,2025,registration,total_population,3.1,35,,
+13.75.02.1005,4,Puhun Pintu Kabun,sex,laki_laki,,4151,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+13.75.02.1005,4,Puhun Pintu Kabun,sex,perempuan,,4207,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+13.75.02.1005,4,Puhun Pintu Kabun,total,total,,8358,jiwa,2025,registration,total_population,3.1,35,,
+13.75.02.1004,4,Kubu Gulai Bancah,sex,laki_laki,,3658,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+13.75.02.1004,4,Kubu Gulai Bancah,sex,perempuan,,3655,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+13.75.02.1004,4,Kubu Gulai Bancah,total,total,,7313,jiwa,2025,registration,total_population,3.1,35,,
+13.75.02.1001,4,Campago Guguk Bulek,sex,laki_laki,,4428,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+13.75.02.1001,4,Campago Guguk Bulek,sex,perempuan,,4470,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+13.75.02.1001,4,Campago Guguk Bulek,total,total,,8898,jiwa,2025,registration,total_population,3.1,35,,
+13.75.02,3,Mandiangin Koto Selayan,sex,laki_laki,,30789,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki
+13.75.02,3,Mandiangin Koto Selayan,sex,perempuan,,30606,jiwa,2025,registration,total_population,3.1,35,,Perempuan
+13.75.02,3,Mandiangin Koto Selayan,total,total,,61395,jiwa,2025,registration,total_population,3.1,35,,

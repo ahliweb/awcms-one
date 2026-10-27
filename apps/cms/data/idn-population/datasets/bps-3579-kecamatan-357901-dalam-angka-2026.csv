@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.79.01.2006,4,Oro-Oro Ombo,sex,laki_laki,,5707,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+35.79.01.2006,4,Oro-Oro Ombo,sex,perempuan,,5620,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+35.79.01.2006,4,Oro-Oro Ombo,total,total,,11327,jiwa,2025,registration,total_population,3.1,28,,
+35.79.01.1001,4,Temas,sex,laki_laki,,9514,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+35.79.01.1001,4,Temas,sex,perempuan,,9369,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+35.79.01.1001,4,Temas,total,total,,18883,jiwa,2025,registration,total_population,3.1,28,,
+35.79.01.1004,4,Sisir,sex,laki_laki,,10836,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+35.79.01.1004,4,Sisir,sex,perempuan,,10856,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+35.79.01.1004,4,Sisir,total,total,,21692,jiwa,2025,registration,total_population,3.1,28,,
+35.79.01.1002,4,Ngaglik,sex,laki_laki,,6433,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+35.79.01.1002,4,Ngaglik,sex,perempuan,,6628,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+35.79.01.1002,4,Ngaglik,total,total,,13061,jiwa,2025,registration,total_population,3.1,28,,
+35.79.01.2008,4,Pesanggrahan,sex,laki_laki,,7295,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+35.79.01.2008,4,Pesanggrahan,sex,perempuan,,7036,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+35.79.01.2008,4,Pesanggrahan,total,total,,14331,jiwa,2025,registration,total_population,3.1,28,,
+35.79.01.1003,4,Songgokerto,sex,laki_laki,,3631,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+35.79.01.1003,4,Songgokerto,sex,perempuan,,3694,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+35.79.01.1003,4,Songgokerto,total,total,,7325,jiwa,2025,registration,total_population,3.1,28,,
+35.79.01.2005,4,Sumberejo,sex,laki_laki,,4089,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+35.79.01.2005,4,Sumberejo,sex,perempuan,,3983,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+35.79.01.2005,4,Sumberejo,total,total,,8072,jiwa,2025,registration,total_population,3.1,28,,
+35.79.01.2007,4,Sidomulyo,sex,laki_laki,,4349,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+35.79.01.2007,4,Sidomulyo,sex,perempuan,,4360,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+35.79.01.2007,4,Sidomulyo,total,total,,8709,jiwa,2025,registration,total_population,3.1,28,,
+35.79.01,3,Kecamatan Batu,sex,laki_laki,,51854,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+35.79.01,3,Kecamatan Batu,sex,perempuan,,51546,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+35.79.01,3,Kecamatan Batu,total,total,,103400,jiwa,2025,registration,total_population,3.1,28,,

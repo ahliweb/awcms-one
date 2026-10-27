@@ -1,0 +1,57 @@
+{
+  "datasetCode": "bps-1805-kecamatan-180214-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.02.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bumi Ratu Nuban Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lampung Tengah",
+  "publisherDomain": "1805",
+  "publisherWebsite": "https://lampungtengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lampung Tengah (https://lampungtengahkab.bps.go.id), publikasi \"Kecamatan Bumi Ratu Nuban Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1805042",
+  "publicationNumber": "1805.250015",
+  "issn": "2714-738X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lampungtengahkab.bps.go.id/id/publication/2026/09/28/15373c088a3b9777e8ed6d48/kecamatan-bumi-ratu-nuban-dalam-angka-2026.html",
+  "sourceFileSha256": "152ee2f56a307bba5f41c318b1ded11ce88f4777c0364f388087673b9ae48835",
+  "sourceFileBytes": 10340974,
+  "sourcePages": [37, 38, 39],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Lampung Tengah.",
+  "csvPath": "datasets/bps-1805-kecamatan-180214-dalam-angka-2026.csv",
+  "csvSha256": "256eae088c65d753a708d65a3a6075f9be04c47543dcb7e334ebdb8621adbdbc",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bumi Ratu Nuban , 2025",
+      "printedPages": [37, 38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bumi Ratu Nuban, 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sukajawa 14.26\": unmatched ",
+    "table 3.1: row not stored: row \"Sidokerto 13.35\": unmatched ",
+    "table 3.1: row not stored: row \"Sukajadi 7.29\": unmatched ",
+    "table 3.1: row not stored: row \"Wates 12.76\": unmatched ",
+    "table 3.1: row not stored: row \"Bumiratu 12.76\": unmatched ",
+    "table 3.1: row not stored: row \"Bumiraharjo 11.28\": unmatched ",
+    "table 3.1: row not stored: row \"Bumirahayu 5.95\": unmatched ",
+    "table 3.1: row not stored: row \"Sidowaras 5.02\": unmatched ",
+    "table 3.1: row not stored: row \"Bulusari 10.80\": unmatched ",
+    "table 3.1: row not stored: row \"Tulung Kakan 6.52\": unmatched ",
+    "table 3.1: row not stored: row \"Bumi Ratu Nuban 100.00\": unmatched ",
+    "table 3.1: 21 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: 28 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

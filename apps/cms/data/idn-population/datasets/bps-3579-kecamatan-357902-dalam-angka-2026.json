@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3579-kecamatan-357902-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.79.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bumiaji Dalam Angka 2026",
+  "publisherName": "BPS Kota Batu",
+  "publisherDomain": "3579",
+  "publisherWebsite": "https://batukota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Batu (https://batukota.bps.go.id), publikasi \"Kecamatan Bumiaji Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3579030",
+  "publicationNumber": "35790.26007",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://batukota.bps.go.id/id/publication/2026/09/28/ca12c4d0c93e1d7892d71575/kecamatan-bumiaji-dalam-angka-2026.html",
+  "sourceFileSha256": "bf1de0c8c14f9e7e80f7a08811c5cd7010de85b6cf785471dcdaa37035ace0f4",
+  "sourceFileBytes": 6946202,
+  "sourcePages": [28, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Batu.",
+  "csvPath": "datasets/bps-3579-kecamatan-357902-dalam-angka-2026.csv",
+  "csvSha256": "b776257e7dbb11d17ee39794e6666215f5bd47acea5c85d0b9b659e3d7cf1974",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bumiaji, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bumiaji, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: 47 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: the rows of region 35.79.02 are not stored: age_group (perempuan) vs sex value: parts sum 32449.0000 != 32443.0000 (diff 6.0000); the source itself is inconsistent"
+  ]
+}

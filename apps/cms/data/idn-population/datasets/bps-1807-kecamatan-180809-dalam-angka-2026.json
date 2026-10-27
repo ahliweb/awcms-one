@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-1807-kecamatan-180809-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.08.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Rebang Tangkas Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Way Kanan",
+  "publisherDomain": "1807",
+  "publisherWebsite": "https://waykanankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Way Kanan (https://waykanankab.bps.go.id), publikasi \"Kecamatan Rebang Tangkas Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1807031",
+  "publicationNumber": "18070.25010",
+  "issn": "3110-200X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://waykanankab.bps.go.id/id/publication/2026/09/28/9cb07c475cf7b167ddc309eb/kecamatan-rebang-tangkas-dalam-angka-2026.html",
+  "sourceFileSha256": "62150747220ee2acf43c5969675c0671d3fca9418dbecfdaff600a6dae1f17e2",
+  "sourceFileBytes": 18141174,
+  "sourcePages": [35, 36, 37],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Way Kanan.",
+  "csvPath": "datasets/bps-1807-kecamatan-180809-dalam-angka-2026.csv",
+  "csvSha256": "e9f485493cadaa3bd852b7f3d77276168993139c670c38ad3b9a24ea5cfa596a",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Rebang Tangkas, 2025",
+      "printedPages": [37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"001 Gunung Sari 1.257\": unmatched ",
+    "table 3.1: row not stored: row \"002 Lebak Peniangan 2.468\": unmatched ",
+    "table 3.1: row not stored: row \"003 Madang Jaya 747\": unmatched ",
+    "table 3.1: row not stored: row \"004 Tanjung Tiga 1.294\": unmatched ",
+    "table 3.1: row not stored: row \"005 Air Ringkih 1.652\": unmatched ",
+    "table 3.1: row not stored: row \"006 Simpang Tiga 1.701\": unmatched ",
+    "table 3.1: row not stored: row \"007 Tanjung Raya 853\": unmatched ",
+    "table 3.1: row not stored: row \"008 Beringin Jaya 967\": unmatched ",
+    "table 3.1: row not stored: row \"009 Karya Maju 535\": unmatched ",
+    "table 3.1: row not stored: row \"010 Mulya Jaya 1.090\": unmatched ",
+    "table 3.1: row not stored: row \"Rebang Tangkas 12.564\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)",
+    "table 3.2: row not stored: row \"Baradatu\": unmatched "
+  ]
+}

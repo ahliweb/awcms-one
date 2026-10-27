@@ -1,0 +1,53 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.10.09.2001,4,Fajar Baru,sex,perempuan,,772,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.09.2001,4,Fajar Baru,total,total,,1611,jiwa,2025,registration,total_population,3.1,32,,
+18.10.09.2002,4,Kemilin,sex,perempuan,,889,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.09.2002,4,Kemilin,total,total,,1915,jiwa,2025,registration,total_population,3.1,32,,
+18.10.09.2003,4,Neglasari,sex,perempuan,,652,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.09.2003,4,Neglasari,total,total,,1367,jiwa,2025,registration,total_population,3.1,32,,
+18.10.09.2007,4,Sumber Bandung,sex,perempuan,,676,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.09.2007,4,Sumber Bandung,total,total,,1438,jiwa,2025,registration,total_population,3.1,32,,
+18.10.09.2006,4,Giri Tunggal,sex,perempuan,,978,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.09.2006,4,Giri Tunggal,total,total,,2002,jiwa,2025,registration,total_population,3.1,32,,
+18.10.09.2005,4,Margosari,sex,perempuan,,1590,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.09.2005,4,Margosari,total,total,,3346,jiwa,2025,registration,total_population,3.1,32,,
+18.10.09.2004,4,Fajar Mulia,sex,perempuan,,1115,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.09.2004,4,Fajar Mulia,total,total,,2258,jiwa,2025,registration,total_population,3.1,32,,
+18.10.09.2008,4,Madaraya,sex,perempuan,,666,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.09.2008,4,Madaraya,total,total,,1373,jiwa,2025,registration,total_population,3.1,32,,
+18.10.09.2010,4,Gunung Raya,sex,perempuan,,403,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.09.2010,4,Gunung Raya,total,total,,838,jiwa,2025,registration,total_population,3.1,32,,
+18.10.09.2009,4,Way Kunir,sex,perempuan,,462,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.09.2009,4,Way Kunir,total,total,,950,jiwa,2025,registration,total_population,3.1,32,,
+18.10.09,3,Pagelaran Utara,sex,perempuan,,8203,jiwa,2025,registration,total_population,3.1,32,,Perempuan
+18.10.09,3,Pagelaran Utara,total,total,,17098,jiwa,2025,registration,total_population,3.1,32,,
+18.10.09,3,Pagelaran Utara,age_group,0-4,perempuan,571,jiwa,2025,registration,total_population,3.2,34,,0–4
+18.10.09,3,Pagelaran Utara,age_group,0-4,,1172,jiwa,2025,registration,total_population,3.2,34,,0–4
+18.10.09,3,Pagelaran Utara,age_group,5-9,perempuan,691,jiwa,2025,registration,total_population,3.2,34,,5–9
+18.10.09,3,Pagelaran Utara,age_group,5-9,,1457,jiwa,2025,registration,total_population,3.2,34,,5–9
+18.10.09,3,Pagelaran Utara,age_group,10-14,perempuan,718,jiwa,2025,registration,total_population,3.2,34,,10–14
+18.10.09,3,Pagelaran Utara,age_group,10-14,,1507,jiwa,2025,registration,total_population,3.2,34,,10–14
+18.10.09,3,Pagelaran Utara,age_group,15-19,perempuan,703,jiwa,2025,registration,total_population,3.2,34,,15–19
+18.10.09,3,Pagelaran Utara,age_group,15-19,,1412,jiwa,2025,registration,total_population,3.2,34,,15–19
+18.10.09,3,Pagelaran Utara,age_group,20-24,perempuan,635,jiwa,2025,registration,total_population,3.2,34,,20–24
+18.10.09,3,Pagelaran Utara,age_group,20-24,,1333,jiwa,2025,registration,total_population,3.2,34,,20–24
+18.10.09,3,Pagelaran Utara,age_group,25-29,perempuan,639,jiwa,2025,registration,total_population,3.2,34,,25–29
+18.10.09,3,Pagelaran Utara,age_group,25-29,,1394,jiwa,2025,registration,total_population,3.2,34,,25–29
+18.10.09,3,Pagelaran Utara,age_group,30-34,perempuan,584,jiwa,2025,registration,total_population,3.2,34,,30–34
+18.10.09,3,Pagelaran Utara,age_group,30-34,,1209,jiwa,2025,registration,total_population,3.2,34,,30–34
+18.10.09,3,Pagelaran Utara,age_group,35-39,perempuan,634,jiwa,2025,registration,total_population,3.2,34,,35–39
+18.10.09,3,Pagelaran Utara,age_group,35-39,,1293,jiwa,2025,registration,total_population,3.2,34,,35–39
+18.10.09,3,Pagelaran Utara,age_group,40-44,perempuan,626,jiwa,2025,registration,total_population,3.2,34,,40–44
+18.10.09,3,Pagelaran Utara,age_group,40-44,,1262,jiwa,2025,registration,total_population,3.2,34,,40–44
+18.10.09,3,Pagelaran Utara,age_group,45-49,perempuan,596,jiwa,2025,registration,total_population,3.2,34,,45–49
+18.10.09,3,Pagelaran Utara,age_group,45-49,,1293,jiwa,2025,registration,total_population,3.2,34,,45–49
+18.10.09,3,Pagelaran Utara,age_group,50-54,perempuan,484,jiwa,2025,registration,total_population,3.2,34,,50–54
+18.10.09,3,Pagelaran Utara,age_group,50-54,,1040,jiwa,2025,registration,total_population,3.2,34,,50–54
+18.10.09,3,Pagelaran Utara,age_group,55-59,perempuan,370,jiwa,2025,registration,total_population,3.2,34,,55–59
+18.10.09,3,Pagelaran Utara,age_group,55-59,,782,jiwa,2025,registration,total_population,3.2,34,,55–59
+18.10.09,3,Pagelaran Utara,age_group,60-64,perempuan,331,jiwa,2025,registration,total_population,3.2,34,,60–64
+18.10.09,3,Pagelaran Utara,age_group,60-64,,669,jiwa,2025,registration,total_population,3.2,34,,60–64
+18.10.09,3,Pagelaran Utara,age_group,65+,perempuan,621,jiwa,2025,registration,total_population,3.2,34,,65+
+18.10.09,3,Pagelaran Utara,age_group,65+,,1275,jiwa,2025,registration,total_population,3.2,34,,65+
+18.10.09,3,Pagelaran Utara,sex,perempuan,,8203,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+18.10.09,3,Pagelaran Utara,total,total,,17098,jiwa,2025,registration,total_population,3.2,34,,

@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3316-kecamatan-331613-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.16.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kunduran Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Blora",
+  "publisherDomain": "3316",
+  "publisherWebsite": "https://blorakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Blora (https://blorakab.bps.go.id), publikasi \"Kecamatan Kunduran Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3316150",
+  "publicationNumber": "33160.24026",
+  "issn": "2614-9664",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://blorakab.bps.go.id/id/publication/2026/09/28/03d7ca3a3891581e9c2b94a3/kecamatan-kunduran-dalam-angka-2026.html",
+  "sourceFileSha256": "df448b6210d82ff7aa96a653174b670812946f627666ac26f909e00a8d819a5c",
+  "sourceFileBytes": 18257394,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Blora.",
+  "csvPath": "datasets/bps-3316-kecamatan-331613-dalam-angka-2026.csv",
+  "csvSha256": "f964ae8d7c8652b3f17413f631652e455f2dab3f06e2be44ff7d98bcdbe2be13",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk menurut Desa/ Kelurahan di Kecamatan Kunduran, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kunduran, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: the rows of region 33.16.13.2002 are not stored: sex split vs total: parts sum 3743.0000 != 3721.0000 (diff 22.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 33.16.13 are not stored: age_group (perempuan) vs sex value: parts sum 35319.0000 != 35187.0000 (diff 132.0000); the source itself is inconsistent"
+  ]
+}

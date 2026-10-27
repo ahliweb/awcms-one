@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.12.20.2001,4,Ranjeng,sex,laki_laki,,2229,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.20.2001,4,Ranjeng,sex,perempuan,,2188,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.20.2001,4,Ranjeng,total,total,,4417,jiwa,2025,registration,total_population,3.1,30,,
+32.12.20.2002,4,Krimun,sex,laki_laki,,3011,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.20.2002,4,Krimun,sex,perempuan,,2919,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.20.2002,4,Krimun,total,total,,5930,jiwa,2025,registration,total_population,3.1,30,,
+32.12.20.2003,4,Puntang,sex,laki_laki,,3328,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.20.2003,4,Puntang,sex,perempuan,,3330,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.20.2003,4,Puntang,total,total,,6658,jiwa,2025,registration,total_population,3.1,30,,
+32.12.20.2004,4,Pegagan,sex,laki_laki,,2269,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.20.2004,4,Pegagan,sex,perempuan,,2280,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.20.2004,4,Pegagan,total,total,,4549,jiwa,2025,registration,total_population,3.1,30,,
+32.12.20.2005,4,Rajaiyang,sex,laki_laki,,1871,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.20.2005,4,Rajaiyang,sex,perempuan,,1872,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.20.2005,4,Rajaiyang,total,total,,3743,jiwa,2025,registration,total_population,3.1,30,,
+32.12.20.2006,4,Jangga,sex,laki_laki,,2344,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.20.2006,4,Jangga,sex,perempuan,,2252,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.20.2006,4,Jangga,total,total,,4596,jiwa,2025,registration,total_population,3.1,30,,
+32.12.20.2007,4,Jumbleng,sex,laki_laki,,2907,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.20.2007,4,Jumbleng,sex,perempuan,,2772,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.20.2007,4,Jumbleng,total,total,,5679,jiwa,2025,registration,total_population,3.1,30,,
+32.12.20.2008,4,Pangkalan,sex,laki_laki,,3258,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.20.2008,4,Pangkalan,sex,perempuan,,3286,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.20.2008,4,Pangkalan,total,total,,6544,jiwa,2025,registration,total_population,3.1,30,,
+32.12.20.2010,4,Losarang,sex,laki_laki,,2285,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.20.2010,4,Losarang,sex,perempuan,,2295,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.20.2010,4,Losarang,total,total,,4580,jiwa,2025,registration,total_population,3.1,30,,
+32.12.20.2011,4,Muntur,sex,laki_laki,,2399,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.20.2011,4,Muntur,sex,perempuan,,2222,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.20.2011,4,Muntur,total,total,,4621,jiwa,2025,registration,total_population,3.1,30,,
+32.12.20.2012,4,Santing,sex,laki_laki,,2993,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.20.2012,4,Santing,sex,perempuan,,2938,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.20.2012,4,Santing,total,total,,5931,jiwa,2025,registration,total_population,3.1,30,,
+32.12.20.2013,4,Cemara Kulon,sex,laki_laki,,1217,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.20.2013,4,Cemara Kulon,sex,perempuan,,1061,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.20.2013,4,Cemara Kulon,total,total,,2278,jiwa,2025,registration,total_population,3.1,30,,
+32.12.20,3,Kecamatan Losarang,sex,laki_laki,,30111,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.12.20,3,Kecamatan Losarang,sex,perempuan,,29415,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.12.20,3,Kecamatan Losarang,total,total,,59526,jiwa,2025,registration,total_population,3.1,30,,
+32.12.20,3,Losarang,age_group,0-4,laki_laki,2143,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.20,3,Losarang,age_group,0-4,perempuan,1992,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.20,3,Losarang,age_group,0-4,,4135,jiwa,2025,projection,total_population,3.2,32,,0-4
+32.12.20,3,Losarang,age_group,5-9,laki_laki,1912,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.20,3,Losarang,age_group,5-9,perempuan,1792,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.20,3,Losarang,age_group,5-9,,3704,jiwa,2025,projection,total_population,3.2,32,,5-9
+32.12.20,3,Losarang,age_group,10-14,laki_laki,2120,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.20,3,Losarang,age_group,10-14,perempuan,1958,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.20,3,Losarang,age_group,10-14,,4078,jiwa,2025,projection,total_population,3.2,32,,10-14
+32.12.20,3,Losarang,age_group,15-19,laki_laki,2110,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.20,3,Losarang,age_group,15-19,perempuan,1943,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.20,3,Losarang,age_group,15-19,,4053,jiwa,2025,projection,total_population,3.2,32,,15-19
+32.12.20,3,Losarang,age_group,20-24,laki_laki,2204,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.20,3,Losarang,age_group,20-24,perempuan,2029,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.20,3,Losarang,age_group,20-24,,4233,jiwa,2025,projection,total_population,3.2,32,,20-24
+32.12.20,3,Losarang,age_group,25-29,laki_laki,2241,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.20,3,Losarang,age_group,25-29,perempuan,2030,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.20,3,Losarang,age_group,25-29,,4271,jiwa,2025,projection,total_population,3.2,32,,25-29
+32.12.20,3,Losarang,age_group,30-34,laki_laki,2297,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.20,3,Losarang,age_group,30-34,perempuan,2010,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.20,3,Losarang,age_group,30-34,,4307,jiwa,2025,projection,total_population,3.2,32,,30-34
+32.12.20,3,Losarang,age_group,35-39,laki_laki,2151,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.20,3,Losarang,age_group,35-39,perempuan,2011,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.20,3,Losarang,age_group,35-39,,4162,jiwa,2025,projection,total_population,3.2,32,,35-39
+32.12.20,3,Losarang,age_group,40-44,laki_laki,1997,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.20,3,Losarang,age_group,40-44,perempuan,2157,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.20,3,Losarang,age_group,40-44,,4154,jiwa,2025,projection,total_population,3.2,32,,40-44
+32.12.20,3,Losarang,age_group,45-49,laki_laki,2057,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.20,3,Losarang,age_group,45-49,perempuan,2213,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.20,3,Losarang,age_group,45-49,,4270,jiwa,2025,projection,total_population,3.2,32,,45-49
+32.12.20,3,Losarang,age_group,50-54,laki_laki,1924,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.20,3,Losarang,age_group,50-54,perempuan,1928,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.20,3,Losarang,age_group,50-54,,3852,jiwa,2025,projection,total_population,3.2,32,,50-54
+32.12.20,3,Losarang,age_group,55-59,laki_laki,1622,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.20,3,Losarang,age_group,55-59,perempuan,1629,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.20,3,Losarang,age_group,55-59,,3251,jiwa,2025,projection,total_population,3.2,32,,55-59
+32.12.20,3,Losarang,age_group,60-64,laki_laki,1235,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.20,3,Losarang,age_group,60-64,perempuan,1252,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.20,3,Losarang,age_group,60-64,,2487,jiwa,2025,projection,total_population,3.2,32,,60-64
+32.12.20,3,Losarang,age_group,65-69,laki_laki,979,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.20,3,Losarang,age_group,65-69,perempuan,1000,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.20,3,Losarang,age_group,65-69,,1979,jiwa,2025,projection,total_population,3.2,32,,65-69
+32.12.20,3,Losarang,age_group,70-74,laki_laki,643,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.20,3,Losarang,age_group,70-74,perempuan,644,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.20,3,Losarang,age_group,70-74,,1287,jiwa,2025,projection,total_population,3.2,32,,70-74
+32.12.20,3,Losarang,age_group,75+,laki_laki,386,jiwa,2025,projection,total_population,3.2,32,,75+
+32.12.20,3,Losarang,age_group,75+,perempuan,462,jiwa,2025,projection,total_population,3.2,32,,75+
+32.12.20,3,Losarang,age_group,75+,,848,jiwa,2025,projection,total_population,3.2,32,,75+
+32.12.20,3,Kecamatan Losarang,sex,laki_laki,,28021,jiwa,2025,projection,total_population,3.2,32,,Laki-Laki
+32.12.20,3,Kecamatan Losarang,sex,perempuan,,27050,jiwa,2025,projection,total_population,3.2,32,,Perempuan
+32.12.20,3,Kecamatan Losarang,total,total,,55071,jiwa,2025,projection,total_population,3.2,32,,

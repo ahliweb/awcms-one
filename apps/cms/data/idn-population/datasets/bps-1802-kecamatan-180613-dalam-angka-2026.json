@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1802-kecamatan-180613-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.06.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sumberejo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tanggamus Sumber Ilustrasi",
+  "publisherDomain": "1802",
+  "publisherWebsite": "https://tanggamuskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tanggamus Sumber Ilustrasi (https://tanggamuskab.bps.go.id), publikasi \"Kecamatan Sumberejo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1802041",
+  "publicationNumber": "18020.26020",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tanggamuskab.bps.go.id/id/publication/2026/09/28/501f25f7fa37430e45218224/kecamatan-sumberejo-dalam-angka-2026.html",
+  "sourceFileSha256": "fe3683f23df334130b57767232a81249815fccd2d354ef364506226dbc1724b6",
+  "sourceFileBytes": 6952444,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tanggamus.",
+  "csvPath": "datasets/bps-1802-kecamatan-180613-dalam-angka-2026.csv",
+  "csvSha256": "82e890938c49e393b4d61c4c2d805783c466f88b464eb8cc4482bcdd913ff6bc",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sumberejo, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sumberejo, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Jumlah\": unmatched ",
+    "table 3.1: row not stored: row \"Jumlah\": unmatched "
+  ]
+}

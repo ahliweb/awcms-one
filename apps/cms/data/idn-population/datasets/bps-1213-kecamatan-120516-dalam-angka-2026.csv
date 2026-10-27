@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.05.16.2006,4,Sekoci,sex,laki_laki,,2307,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.16.2006,4,Sekoci,sex,perempuan,,2289,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.16.2006,4,Sekoci,total,total,,4596,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.16.2002,4,Bukit Mas,sex,laki_laki,,2874,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.16.2002,4,Bukit Mas,sex,perempuan,,2828,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.16.2002,4,Bukit Mas,total,total,,5702,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.16.2001,4,Halaban,sex,laki_laki,,4365,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.16.2001,4,Halaban,sex,perempuan,,4256,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.16.2001,4,Halaban,total,total,,8621,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.16.2008,4,Bukit Selamat,sex,laki_laki,,3085,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.16.2008,4,Bukit Selamat,sex,perempuan,,3090,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.16.2008,4,Bukit Selamat,total,total,,6175,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.16.1009,4,Pekan Besitang,sex,laki_laki,,4041,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.16.1009,4,Pekan Besitang,sex,perempuan,,3917,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.16.1009,4,Pekan Besitang,total,total,,7958,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.16.1011,4,Kampung Lama,sex,laki_laki,,1860,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.16.1011,4,Kampung Lama,sex,perempuan,,1722,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.16.1011,4,Kampung Lama,total,total,,3582,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.16.1010,4,Bukit Kubu,sex,laki_laki,,3002,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.16.1010,4,Bukit Kubu,sex,perempuan,,2984,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.16.1010,4,Bukit Kubu,total,total,,5986,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.16.2007,4,Suka Jaya,sex,laki_laki,,1040,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.16.2007,4,Suka Jaya,sex,perempuan,,1037,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.16.2007,4,Suka Jaya,total,total,,2077,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.16,3,Kecamatan Besitang,sex,laki_laki,,24180,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.16,3,Kecamatan Besitang,sex,perempuan,,23676,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.16,3,Kecamatan Besitang,total,total,,47856,jiwa,2025,registration,total_population,unnumbered-p39,39,,

@@ -1,0 +1,57 @@
+{
+  "datasetCode": "bps-1275-kecamatan-127118-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.71.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Medan Perjuangan Dalam Angka 2026",
+  "publisherName": "BPS Kota Medan",
+  "publisherDomain": "1275",
+  "publisherWebsite": "https://medankota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Medan (https://medankota.bps.go.id), publikasi \"Kecamatan Medan Perjuangan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1275160",
+  "publicationNumber": "12750.26023",
+  "issn": "2830-4012",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://medankota.bps.go.id/id/publication/2026/09/28/3712ba44052008fd29c8e5a6/kecamatan-medan-perjuangan-dalam-angka-2026.html",
+  "sourceFileSha256": "24631b595a4c6b14c3df70808643deef493cf73233cad45663853a39d4f18370",
+  "sourceFileBytes": 11161910,
+  "sourcePages": [31, 32, 33, 40],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kota Medan.",
+  "csvPath": "datasets/bps-1275-kecamatan-127118-dalam-angka-2026.csv",
+  "csvSha256": "fd41633db884af53552752a074625c5e48f6b23f6033f3cf8c2d093493a8a70b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Medan Perjuangan, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Medan Perjuangan, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.6",
+      "title": "Jumlah Penduduk Menurut Kelurahan dan Agama di Kecamatan Medan Perjuangan, 2025",
+      "printedPages": [40],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.6: the rows of region 12.71.18.1001 are not stored: religion vs total: parts sum 2745.0000 != 8538.0000 (diff 5793.0000); the source itself is inconsistent",
+    "table 3.6: the rows of region 12.71.18.1005 are not stored: religion vs total: parts sum 7695.0000 != 9988.0000 (diff 2293.0000); the source itself is inconsistent",
+    "table 3.6: the rows of region 12.71.18.1002 are not stored: religion vs total: parts sum 8786.0000 != 10005.0000 (diff 1219.0000); the source itself is inconsistent",
+    "table 3.6: the rows of region 12.71.18.1003 are not stored: religion vs total: parts sum 1662.0000 != 12097.0000 (diff 10435.0000); the source itself is inconsistent",
+    "table 3.6: the rows of region 12.71.18.1009 are not stored: religion vs total: parts sum 9551.0000 != 26969.0000 (diff 17418.0000); the source itself is inconsistent",
+    "table 3.6: the rows of region 12.71.18 are not stored: religion vs total: parts sum 99559.0000 != 109559.0000 (diff 10000.0000); the source itself is inconsistent"
+  ]
+}

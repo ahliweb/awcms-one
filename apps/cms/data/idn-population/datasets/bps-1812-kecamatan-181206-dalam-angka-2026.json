@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1812-kecamatan-181206-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.12.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Way Kenanga Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tulang Bawang Barat",
+  "publisherDomain": "1812",
+  "publisherWebsite": "https://tubabakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tulang Bawang Barat (https://tubabakab.bps.go.id), publikasi \"Kecamatan Way Kenanga Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1812080",
+  "publicationNumber": "18120.26015",
+  "issn": "3109-5380",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tubabakab.bps.go.id/id/publication/2026/09/28/8880d6757f1a946b0f2bf5e2/kecamatan-way-kenanga-dalam-angka-2026.html",
+  "sourceFileSha256": "58a8d92f3de627f151c3ba6d66303fd54ef6be74719afb84a8debc1160050764",
+  "sourceFileBytes": 9838267,
+  "sourcePages": [28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tulang Bawang Barat.",
+  "csvPath": "datasets/bps-1812-kecamatan-181206-dalam-angka-2026.csv",
+  "csvSha256": "01697a37e1a3658621e479095720fa8d0e558183f95b75e3ebf167abff5b324e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Way Kenanga, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

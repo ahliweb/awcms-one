@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.09.14.2002,4,Kemuningsari Lor,sex,laki_laki,,3877,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.14.2002,4,Kemuningsari Lor,sex,perempuan,,3840,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.14.2002,4,Kemuningsari Lor,total,total,,7717,jiwa,2025,registration,total_population,3.1,33,,
+35.09.14.2004,4,Glagahwero,sex,laki_laki,,2665,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.14.2004,4,Glagahwero,sex,perempuan,,2693,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.14.2004,4,Glagahwero,total,total,,5358,jiwa,2025,registration,total_population,3.1,33,,
+35.09.14.2007,4,Serut,sex,laki_laki,,6604,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.14.2007,4,Serut,sex,perempuan,,6744,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.14.2007,4,Serut,total,total,,13348,jiwa,2025,registration,total_population,3.1,33,,
+35.09.14.2003,4,Panti,sex,laki_laki,,5764,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.14.2003,4,Panti,sex,perempuan,,6004,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.14.2003,4,Panti,total,total,,11768,jiwa,2025,registration,total_population,3.1,33,,
+35.09.14.2001,4,Pakis,sex,laki_laki,,4052,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.14.2001,4,Pakis,sex,perempuan,,3982,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.14.2001,4,Pakis,total,total,,8034,jiwa,2025,registration,total_population,3.1,33,,
+35.09.14.2005,4,Suci,sex,laki_laki,,5967,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.14.2005,4,Suci,sex,perempuan,,6088,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.14.2005,4,Suci,total,total,,12055,jiwa,2025,registration,total_population,3.1,33,,
+35.09.14.2006,4,Kemiri,sex,laki_laki,,4757,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.14.2006,4,Kemiri,sex,perempuan,,4950,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.14.2006,4,Kemiri,total,total,,9707,jiwa,2025,registration,total_population,3.1,33,,
+35.09.14,3,Kecamatan Panti,sex,laki_laki,,33686,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.14,3,Kecamatan Panti,sex,perempuan,,34301,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.14,3,Kecamatan Panti,total,total,,67987,jiwa,2025,registration,total_population,3.1,33,,
+35.09.14,3,Panti,age_group,0-4,laki_laki,1714,jiwa,2025,registration,total_population,3.2,35,,0-4
+35.09.14,3,Panti,age_group,0-4,perempuan,1602,jiwa,2025,registration,total_population,3.2,35,,0-4
+35.09.14,3,Panti,age_group,0-4,,3316,jiwa,2025,registration,total_population,3.2,35,,0-4
+35.09.14,3,Panti,age_group,5-9,laki_laki,2573,jiwa,2025,registration,total_population,3.2,35,,5-9
+35.09.14,3,Panti,age_group,5-9,perempuan,2554,jiwa,2025,registration,total_population,3.2,35,,5-9
+35.09.14,3,Panti,age_group,5-9,,5127,jiwa,2025,registration,total_population,3.2,35,,5-9
+35.09.14,3,Panti,age_group,10-14,laki_laki,2612,jiwa,2025,registration,total_population,3.2,35,,10-14
+35.09.14,3,Panti,age_group,10-14,perempuan,2594,jiwa,2025,registration,total_population,3.2,35,,10-14
+35.09.14,3,Panti,age_group,10-14,,5206,jiwa,2025,registration,total_population,3.2,35,,10-14
+35.09.14,3,Panti,age_group,15-19,laki_laki,2353,jiwa,2025,registration,total_population,3.2,35,,15-19
+35.09.14,3,Panti,age_group,15-19,perempuan,2198,jiwa,2025,registration,total_population,3.2,35,,15-19
+35.09.14,3,Panti,age_group,15-19,,4551,jiwa,2025,registration,total_population,3.2,35,,15-19
+35.09.14,3,Panti,age_group,20-24,laki_laki,2613,jiwa,2025,registration,total_population,3.2,35,,20-24
+35.09.14,3,Panti,age_group,20-24,perempuan,2417,jiwa,2025,registration,total_population,3.2,35,,20-24
+35.09.14,3,Panti,age_group,20-24,,5030,jiwa,2025,registration,total_population,3.2,35,,20-24
+35.09.14,3,Panti,age_group,25-29,laki_laki,2597,jiwa,2025,registration,total_population,3.2,35,,25-29
+35.09.14,3,Panti,age_group,25-29,perempuan,2516,jiwa,2025,registration,total_population,3.2,35,,25-29
+35.09.14,3,Panti,age_group,25-29,,5113,jiwa,2025,registration,total_population,3.2,35,,25-29
+35.09.14,3,Panti,age_group,30-34,laki_laki,2436,jiwa,2025,registration,total_population,3.2,35,,30-34
+35.09.14,3,Panti,age_group,30-34,perempuan,2282,jiwa,2025,registration,total_population,3.2,35,,30-34
+35.09.14,3,Panti,age_group,30-34,,4718,jiwa,2025,registration,total_population,3.2,35,,30-34
+35.09.14,3,Panti,age_group,35-39,laki_laki,2336,jiwa,2025,registration,total_population,3.2,35,,35-39
+35.09.14,3,Panti,age_group,35-39,perempuan,2335,jiwa,2025,registration,total_population,3.2,35,,35-39
+35.09.14,3,Panti,age_group,35-39,,4671,jiwa,2025,registration,total_population,3.2,35,,35-39
+35.09.14,3,Panti,age_group,40-44,laki_laki,2464,jiwa,2025,registration,total_population,3.2,35,,40-44
+35.09.14,3,Panti,age_group,40-44,perempuan,2524,jiwa,2025,registration,total_population,3.2,35,,40-44
+35.09.14,3,Panti,age_group,40-44,,4988,jiwa,2025,registration,total_population,3.2,35,,40-44
+35.09.14,3,Panti,age_group,45-49,laki_laki,2151,jiwa,2025,registration,total_population,3.2,35,,45-49
+35.09.14,3,Panti,age_group,45-49,perempuan,2468,jiwa,2025,registration,total_population,3.2,35,,45-49
+35.09.14,3,Panti,age_group,45-49,,4619,jiwa,2025,registration,total_population,3.2,35,,45-49
+35.09.14,3,Panti,age_group,50-54,laki_laki,2278,jiwa,2025,registration,total_population,3.2,35,,50-54
+35.09.14,3,Panti,age_group,50-54,perempuan,2337,jiwa,2025,registration,total_population,3.2,35,,50-54
+35.09.14,3,Panti,age_group,50-54,,4615,jiwa,2025,registration,total_population,3.2,35,,50-54
+35.09.14,3,Panti,age_group,55-59,laki_laki,2057,jiwa,2025,registration,total_population,3.2,35,,55-59
+35.09.14,3,Panti,age_group,55-59,perempuan,2172,jiwa,2025,registration,total_population,3.2,35,,55-59
+35.09.14,3,Panti,age_group,55-59,,4229,jiwa,2025,registration,total_population,3.2,35,,55-59
+35.09.14,3,Panti,age_group,60-64,laki_laki,1684,jiwa,2025,registration,total_population,3.2,35,,60-64
+35.09.14,3,Panti,age_group,60-64,perempuan,1863,jiwa,2025,registration,total_population,3.2,35,,60-64
+35.09.14,3,Panti,age_group,60-64,,3547,jiwa,2025,registration,total_population,3.2,35,,60-64
+35.09.14,3,Panti,age_group,65-69,laki_laki,1394,jiwa,2025,registration,total_population,3.2,35,,65-69
+35.09.14,3,Panti,age_group,65-69,perempuan,1625,jiwa,2025,registration,total_population,3.2,35,,65-69
+35.09.14,3,Panti,age_group,65-69,,3019,jiwa,2025,registration,total_population,3.2,35,,65-69
+35.09.14,3,Panti,age_group,70-74,laki_laki,1024,jiwa,2025,registration,total_population,3.2,35,,70-74
+35.09.14,3,Panti,age_group,70-74,perempuan,1055,jiwa,2025,registration,total_population,3.2,35,,70-74
+35.09.14,3,Panti,age_group,70-74,,2079,jiwa,2025,registration,total_population,3.2,35,,70-74
+35.09.14,3,Panti,age_group,75+,laki_laki,1400,jiwa,2025,registration,total_population,3.2,35,,75+
+35.09.14,3,Panti,age_group,75+,perempuan,1759,jiwa,2025,registration,total_population,3.2,35,,75+
+35.09.14,3,Panti,age_group,75+,,3159,jiwa,2025,registration,total_population,3.2,35,,75+
+35.09.14,3,Kecamatan Panti,sex,laki_laki,,33686,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+35.09.14,3,Kecamatan Panti,sex,perempuan,,34301,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+35.09.14,3,Kecamatan Panti,total,total,,67987,jiwa,2025,registration,total_population,3.2,35,,

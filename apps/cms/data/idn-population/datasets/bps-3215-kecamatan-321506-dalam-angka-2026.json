@@ -1,0 +1,54 @@
+{
+  "datasetCode": "bps-3215-kecamatan-321506-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.15.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Rengasdengklok Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Karawang",
+  "publisherDomain": "3215",
+  "publisherWebsite": "https://karawangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Karawang (https://karawangkab.bps.go.id), publikasi \"Kecamatan Rengasdengklok Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3215150",
+  "publicationNumber": "32150.26013",
+  "issn": "2828-722X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://karawangkab.bps.go.id/id/publication/2026/09/28/f66453674fee65099a52c096/kecamatan-rengasdengklok-dalam-angka-2026.html",
+  "sourceFileSha256": "fc8bce50d55a3ef5b20d78103872f2baaf452677b7be1cbc9bfcbf0598e722ab",
+  "sourceFileBytes": 4315121,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Karawang.",
+  "csvPath": "datasets/bps-3215-kecamatan-321506-dalam-angka-2026.csv",
+  "csvSha256": "f76a5e22d82beb3dc6a8ba15e8593cbbdf4d6e1c49ded9a727b493bfbc85dc05",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Rengasdengklok, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Rengasdengklok, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kalangsuria\": unmatched ",
+    "table 3.1: row not stored: row \"Kalangsuria\": unmatched ",
+    "table 3.1: the rows of region 32.15.06.2008 are not stored: sex split vs total: parts sum 15645.0000 != 15900.0000 (diff 255.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 32.15.06.2006 are not stored: sex split vs total: parts sum 16565.0000 != 16694.0000 (diff 129.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 32.15.06.2007 are not stored: sex split vs total: parts sum 5495.0000 != 5541.0000 (diff 46.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 32.15.06.2005 are not stored: sex split vs total: parts sum 11499.0000 != 11594.0000 (diff 95.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 32.15.06.2001 are not stored: sex split vs total: parts sum 24763.0000 != 24964.0000 (diff 201.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 32.15.06.2002 are not stored: sex split vs total: parts sum 18060.0000 != 18127.0000 (diff 67.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 32.15.06.2003 are not stored: sex split vs total: parts sum 11911.0000 != 12008.0000 (diff 97.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 32.15.06.2004 are not stored: sex split vs total: parts sum 8641.0000 != 8674.0000 (diff 33.0000); the source itself is inconsistent"
+  ]
+}

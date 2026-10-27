@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.08.22,3,Bandar Huluan,age_group,0-4,laki_laki,680,jiwa,2025,registration,total_population,3.2,30,,0 –4
+12.08.22,3,Bandar Huluan,age_group,0-4,perempuan,650,jiwa,2025,registration,total_population,3.2,30,,0 –4
+12.08.22,3,Bandar Huluan,age_group,0-4,,1330,jiwa,2025,registration,total_population,3.2,30,,0 –4
+12.08.22,3,Bandar Huluan,age_group,5-9,laki_laki,1155,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+12.08.22,3,Bandar Huluan,age_group,5-9,perempuan,1121,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+12.08.22,3,Bandar Huluan,age_group,5-9,,2276,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+12.08.22,3,Bandar Huluan,age_group,10-14,laki_laki,1400,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+12.08.22,3,Bandar Huluan,age_group,10-14,perempuan,1324,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+12.08.22,3,Bandar Huluan,age_group,10-14,,2724,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+12.08.22,3,Bandar Huluan,age_group,15-19,laki_laki,1400,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+12.08.22,3,Bandar Huluan,age_group,15-19,perempuan,1352,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+12.08.22,3,Bandar Huluan,age_group,15-19,,2752,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+12.08.22,3,Bandar Huluan,age_group,20-24,laki_laki,1295,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+12.08.22,3,Bandar Huluan,age_group,20-24,perempuan,1198,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+12.08.22,3,Bandar Huluan,age_group,20-24,,2493,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+12.08.22,3,Bandar Huluan,age_group,25-29,laki_laki,1053,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+12.08.22,3,Bandar Huluan,age_group,25-29,perempuan,1018,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+12.08.22,3,Bandar Huluan,age_group,25-29,,2071,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+12.08.22,3,Bandar Huluan,age_group,30-34,laki_laki,1005,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+12.08.22,3,Bandar Huluan,age_group,30-34,perempuan,905,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+12.08.22,3,Bandar Huluan,age_group,30-34,,1910,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+12.08.22,3,Bandar Huluan,age_group,35-39,laki_laki,948,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+12.08.22,3,Bandar Huluan,age_group,35-39,perempuan,920,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+12.08.22,3,Bandar Huluan,age_group,35-39,,1868,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+12.08.22,3,Bandar Huluan,age_group,40-44,laki_laki,1034,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+12.08.22,3,Bandar Huluan,age_group,40-44,perempuan,1013,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+12.08.22,3,Bandar Huluan,age_group,40-44,,2047,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+12.08.22,3,Bandar Huluan,age_group,45-49,laki_laki,936,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+12.08.22,3,Bandar Huluan,age_group,45-49,perempuan,891,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+12.08.22,3,Bandar Huluan,age_group,45-49,,1827,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+12.08.22,3,Bandar Huluan,age_group,50-54,laki_laki,805,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+12.08.22,3,Bandar Huluan,age_group,50-54,perempuan,837,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+12.08.22,3,Bandar Huluan,age_group,50-54,,1642,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+12.08.22,3,Bandar Huluan,age_group,55-59,laki_laki,721,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+12.08.22,3,Bandar Huluan,age_group,55-59,perempuan,803,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+12.08.22,3,Bandar Huluan,age_group,55-59,,1524,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+12.08.22,3,Bandar Huluan,age_group,60-64,laki_laki,581,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+12.08.22,3,Bandar Huluan,age_group,60-64,perempuan,727,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+12.08.22,3,Bandar Huluan,age_group,60-64,,1308,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+12.08.22,3,Bandar Huluan,age_group,65-69,laki_laki,578,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+12.08.22,3,Bandar Huluan,age_group,65-69,perempuan,638,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+12.08.22,3,Bandar Huluan,age_group,65-69,,1216,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+12.08.22,3,Bandar Huluan,age_group,70-74,laki_laki,362,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+12.08.22,3,Bandar Huluan,age_group,70-74,perempuan,426,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+12.08.22,3,Bandar Huluan,age_group,70-74,,788,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+12.08.22,3,Bandar Huluan,age_group,75+,laki_laki,384,jiwa,2025,registration,total_population,3.2,30,,75 +
+12.08.22,3,Bandar Huluan,age_group,75+,perempuan,589,jiwa,2025,registration,total_population,3.2,30,,75 +
+12.08.22,3,Bandar Huluan,age_group,75+,,973,jiwa,2025,registration,total_population,3.2,30,,75 +
+12.08.22,3,Bandar Huluan,sex,laki_laki,,14337,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+12.08.22,3,Bandar Huluan,sex,perempuan,,14412,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+12.08.22,3,Bandar Huluan,total,total,,28749,jiwa,2025,registration,total_population,3.2,30,,
