@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3512-kecamatan-351202-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.12.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Besuki Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Situbondo",
+  "publisherDomain": "3512",
+  "publisherWebsite": "https://situbondokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Situbondo (https://situbondokab.bps.go.id), publikasi \"Kecamatan Besuki Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3512040",
+  "publicationNumber": "35120.26005",
+  "issn": "2620-6889",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://situbondokab.bps.go.id/id/publication/2026/09/28/ea37f356bfe41ef9dcb88418/kecamatan-besuki-dalam-angka-2026.html",
+  "sourceFileSha256": "6b6a9e8528b1112f19a078ab5c7360c990b215ae7395b7f824c2e999b94df440",
+  "sourceFileBytes": 8500987,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Situbondo.",
+  "csvPath": "datasets/bps-3512-kecamatan-351202-dalam-angka-2026.csv",
+  "csvSha256": "cabb153f9413cb1b144ce52a4e421aac3ddde56e9f2680029558f60b2b265d4d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Besuki , 2025 2.2.5",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Besuki , 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.3 (religion-by-region) could not be read reliably and is not included (religion column 3 header \"3.3 Konghuchu Confucian\" not recognised)",
+    "table 3.1 is not included: its published figures do not add up (sex/laki_laki/- 2025: parts sum 33871.0000 != 32891.0000 (diff 980.0000)); the source itself is inconsistent"
+  ]
+}

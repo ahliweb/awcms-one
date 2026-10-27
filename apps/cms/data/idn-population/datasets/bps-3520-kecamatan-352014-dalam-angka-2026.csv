@@ -1,0 +1,59 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.20.14.2010,4,Botok,sex,perempuan,,952,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.14.2010,4,Botok,total,total,,1824,jiwa,2025,registration,total_population,3.1,29,,
+35.20.14.2011,4,Ginuk,sex,perempuan,,2840,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.14.2011,4,Ginuk,total,total,,5618,jiwa,2025,registration,total_population,3.1,29,,
+35.20.14.2004,4,Taji,sex,perempuan,,1262,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.14.2004,4,Taji,total,total,,2431,jiwa,2025,registration,total_population,3.1,29,,
+35.20.14.2007,4,Temboro,sex,perempuan,,4630,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.14.2007,4,Temboro,total,total,,9130,jiwa,2025,registration,total_population,3.1,29,,
+35.20.14.2008,4,Temenggungan,sex,perempuan,,1507,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.14.2008,4,Temenggungan,total,total,,2898,jiwa,2025,registration,total_population,3.1,29,,
+35.20.14.2006,4,Jungke,sex,perempuan,,1033,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.14.2006,4,Jungke,total,total,,1980,jiwa,2025,registration,total_population,3.1,29,,
+35.20.14.2009,4,Geplak,sex,perempuan,,872,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.14.2009,4,Geplak,total,total,,1683,jiwa,2025,registration,total_population,3.1,29,,
+35.20.14.2001,4,Karas,sex,perempuan,,1936,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.14.2001,4,Karas,total,total,,3787,jiwa,2025,registration,total_population,3.1,29,,
+35.20.14.2005,4,Kuwon,sex,perempuan,,2205,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.14.2005,4,Kuwon,total,total,,4329,jiwa,2025,registration,total_population,3.1,29,,
+35.20.14.2002,4,Sobontoro,sex,perempuan,,1956,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.14.2002,4,Sobontoro,total,total,,3862,jiwa,2025,registration,total_population,3.1,29,,
+35.20.14.2003,4,Sumursongo,sex,perempuan,,1348,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.14.2003,4,Sumursongo,total,total,,2669,jiwa,2025,registration,total_population,3.1,29,,
+35.20.14,3,Kecamatan Karas,sex,perempuan,,20541,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.14,3,Kecamatan Karas,total,total,,40211,jiwa,2025,registration,total_population,3.1,29,,
+35.20.14,3,Karas,age_group,0-4,perempuan,1156,jiwa,2025,registration,total_population,3.3,32,,0 – 4
+35.20.14,3,Karas,age_group,0-4,,2365,jiwa,2025,registration,total_population,3.3,32,,0 – 4
+35.20.14,3,Karas,age_group,5-9,perempuan,1435,jiwa,2025,registration,total_population,3.3,32,,5–9
+35.20.14,3,Karas,age_group,5-9,,2995,jiwa,2025,registration,total_population,3.3,32,,5–9
+35.20.14,3,Karas,age_group,10-14,perempuan,1542,jiwa,2025,registration,total_population,3.3,32,,10–14
+35.20.14,3,Karas,age_group,10-14,,3094,jiwa,2025,registration,total_population,3.3,32,,10–14
+35.20.14,3,Karas,age_group,15-19,perempuan,1463,jiwa,2025,registration,total_population,3.3,32,,15–19
+35.20.14,3,Karas,age_group,15-19,,2916,jiwa,2025,registration,total_population,3.3,32,,15–19
+35.20.14,3,Karas,age_group,20-24,perempuan,1389,jiwa,2025,registration,total_population,3.3,32,,20–24
+35.20.14,3,Karas,age_group,20-24,,2724,jiwa,2025,registration,total_population,3.3,32,,20–24
+35.20.14,3,Karas,age_group,25-29,perempuan,1243,jiwa,2025,registration,total_population,3.3,32,,25–29
+35.20.14,3,Karas,age_group,25-29,,2481,jiwa,2025,registration,total_population,3.3,32,,25–29
+35.20.14,3,Karas,age_group,30-34,perempuan,1225,jiwa,2025,registration,total_population,3.3,32,,30–34
+35.20.14,3,Karas,age_group,30-34,,2454,jiwa,2025,registration,total_population,3.3,32,,30–34
+35.20.14,3,Karas,age_group,35-39,perempuan,1392,jiwa,2025,registration,total_population,3.3,32,,35–39
+35.20.14,3,Karas,age_group,35-39,,2793,jiwa,2025,registration,total_population,3.3,32,,35–39
+35.20.14,3,Karas,age_group,40-44,perempuan,1695,jiwa,2025,registration,total_population,3.3,32,,40–44
+35.20.14,3,Karas,age_group,40-44,,3304,jiwa,2025,registration,total_population,3.3,32,,40–44
+35.20.14,3,Karas,age_group,45-49,perempuan,1521,jiwa,2025,registration,total_population,3.3,32,,45–49
+35.20.14,3,Karas,age_group,45-49,,3084,jiwa,2025,registration,total_population,3.3,32,,45–49
+35.20.14,3,Karas,age_group,50-54,perempuan,1308,jiwa,2025,registration,total_population,3.3,32,,50–54
+35.20.14,3,Karas,age_group,50-54,,2545,jiwa,2025,registration,total_population,3.3,32,,50–54
+35.20.14,3,Karas,age_group,55-59,perempuan,1241,jiwa,2025,registration,total_population,3.3,32,,55–59
+35.20.14,3,Karas,age_group,55-59,,2358,jiwa,2025,registration,total_population,3.3,32,,55–59
+35.20.14,3,Karas,age_group,60-64,perempuan,1071,jiwa,2025,registration,total_population,3.3,32,,60–64
+35.20.14,3,Karas,age_group,60-64,,1989,jiwa,2025,registration,total_population,3.3,32,,60–64
+35.20.14,3,Karas,age_group,65-69,perempuan,948,jiwa,2025,registration,total_population,3.3,32,,65–69
+35.20.14,3,Karas,age_group,65-69,,1794,jiwa,2025,registration,total_population,3.3,32,,65–69
+35.20.14,3,Karas,age_group,70-74,perempuan,681,jiwa,2025,registration,total_population,3.3,32,,70–74
+35.20.14,3,Karas,age_group,70-74,,1324,jiwa,2025,registration,total_population,3.3,32,,70–74
+35.20.14,3,Karas,age_group,75+,perempuan,1231,jiwa,2025,registration,total_population,3.3,32,,75 +
+35.20.14,3,Karas,age_group,75+,,1991,jiwa,2025,registration,total_population,3.3,32,,75 +
+35.20.14,3,Kecamatan Karas,sex,perempuan,,20541,jiwa,2025,registration,total_population,3.3,32,,Perempuan
+35.20.14,3,Kecamatan Karas,total,total,,40211,jiwa,2025,registration,total_population,3.3,32,,

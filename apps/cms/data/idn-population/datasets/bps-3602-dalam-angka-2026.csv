@@ -1,0 +1,262 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.02.01,3,Malingping,total,total,,80817,jiwa,2025,registration,total_population,3.1.1,51,,
+36.02.21,3,Wanasalam,total,total,,65952,jiwa,2025,registration,total_population,3.1.1,51,,
+36.02.02,3,Panggarangan,total,total,,43842,jiwa,2025,registration,total_population,3.1.1,51,,
+36.02.26,3,Cihara,total,total,,37622,jiwa,2025,registration,total_population,3.1.1,51,,
+36.02.03,3,Bayah,total,total,,50171,jiwa,2025,registration,total_population,3.1.1,51,,
+36.02.20,3,Cilograng,total,total,,38867,jiwa,2025,registration,total_population,3.1.1,51,,
+36.02.19,3,Cibeber,total,total,,62832,jiwa,2025,registration,total_population,3.1.1,51,,
+36.02.16,3,Cijaku,total,total,,34521,jiwa,2025,registration,total_population,3.1.1,51,,
+36.02.28,3,Cigemblong,total,total,,24346,jiwa,2025,registration,total_population,3.1.1,51,,
+36.02.09,3,Banjarsari,total,total,,73331,jiwa,2025,registration,total_population,3.1.1,51,,
+36.02.10,3,Cileles,total,total,,62253,jiwa,2025,registration,total_population,3.1.1,51,,
+36.02.08,3,Gunungkencana,total,total,,43215,jiwa,2025,registration,total_population,3.1.1,51,,
+36.02.07,3,Bojongmanik,total,total,,26985,jiwa,2025,registration,total_population,3.1.1,51,,
+36.02.27,3,Cirinten,total,total,,32539,jiwa,2025,registration,total_population,3.1.1,51,,
+36.02.06,3,Leuwidamar,total,total,,63767,jiwa,2025,registration,total_population,3.1.1,51,,
+36.02,2,Kabupaten Lebak,age_group,0-4,perempuan,55920,jiwa,2025,registration,total_population,3.1.2,57,,0–4
+36.02,2,Kabupaten Lebak,age_group,0-4,,116003,jiwa,2025,registration,total_population,3.1.2,57,,0–4
+36.02,2,Kabupaten Lebak,age_group,5-9,perempuan,70766,jiwa,2025,registration,total_population,3.1.2,57,,5–9
+36.02,2,Kabupaten Lebak,age_group,5-9,,146324,jiwa,2025,registration,total_population,3.1.2,57,,5–9
+36.02,2,Kabupaten Lebak,age_group,10-14,perempuan,67339,jiwa,2025,registration,total_population,3.1.2,57,,10–14
+36.02,2,Kabupaten Lebak,age_group,10-14,,139741,jiwa,2025,registration,total_population,3.1.2,57,,10–14
+36.02,2,Kabupaten Lebak,age_group,15-19,perempuan,58633,jiwa,2025,registration,total_population,3.1.2,57,,15–19
+36.02,2,Kabupaten Lebak,age_group,15-19,,118804,jiwa,2025,registration,total_population,3.1.2,57,,15–19
+36.02,2,Kabupaten Lebak,age_group,20-24,perempuan,61996,jiwa,2025,registration,total_population,3.1.2,57,,20–24
+36.02,2,Kabupaten Lebak,age_group,20-24,,127519,jiwa,2025,registration,total_population,3.1.2,57,,20–24
+36.02,2,Kabupaten Lebak,age_group,25-29,perempuan,63544,jiwa,2025,registration,total_population,3.1.2,57,,25–29
+36.02,2,Kabupaten Lebak,age_group,25-29,,135592,jiwa,2025,registration,total_population,3.1.2,57,,25–29
+36.02,2,Kabupaten Lebak,age_group,30-34,perempuan,57920,jiwa,2025,registration,total_population,3.1.2,57,,30–34
+36.02,2,Kabupaten Lebak,age_group,30-34,,122905,jiwa,2025,registration,total_population,3.1.2,57,,30–34
+36.02,2,Kabupaten Lebak,age_group,35-39,perempuan,59774,jiwa,2025,registration,total_population,3.1.2,57,,35–39
+36.02,2,Kabupaten Lebak,age_group,35-39,,122968,jiwa,2025,registration,total_population,3.1.2,57,,35–39
+36.02,2,Kabupaten Lebak,age_group,40-44,perempuan,56179,jiwa,2025,registration,total_population,3.1.2,57,,40–44
+36.02,2,Kabupaten Lebak,age_group,40-44,,115252,jiwa,2025,registration,total_population,3.1.2,57,,40–44
+36.02,2,Kabupaten Lebak,age_group,45-49,perempuan,50768,jiwa,2025,registration,total_population,3.1.2,57,,45–49
+36.02,2,Kabupaten Lebak,age_group,45-49,,102753,jiwa,2025,registration,total_population,3.1.2,57,,45–49
+36.02,2,Kabupaten Lebak,age_group,50-54,perempuan,41670,jiwa,2025,registration,total_population,3.1.2,57,,50–54
+36.02,2,Kabupaten Lebak,age_group,50-54,,84824,jiwa,2025,registration,total_population,3.1.2,57,,50–54
+36.02,2,Kabupaten Lebak,age_group,55-59,perempuan,38541,jiwa,2025,registration,total_population,3.1.2,57,,55–59
+36.02,2,Kabupaten Lebak,age_group,55-59,,76901,jiwa,2025,registration,total_population,3.1.2,57,,55–59
+36.02,2,Kabupaten Lebak,age_group,60-64,perempuan,26988,jiwa,2025,registration,total_population,3.1.2,57,,60–64
+36.02,2,Kabupaten Lebak,age_group,60-64,,55460,jiwa,2025,registration,total_population,3.1.2,57,,60–64
+36.02,2,Kabupaten Lebak,age_group,65-69,perempuan,22035,jiwa,2025,registration,total_population,3.1.2,57,,65–69
+36.02,2,Kabupaten Lebak,age_group,65-69,,44803,jiwa,2025,registration,total_population,3.1.2,57,,65–69
+36.02,2,Kabupaten Lebak,age_group,70-74,perempuan,11140,jiwa,2025,registration,total_population,3.1.2,57,,70–74
+36.02,2,Kabupaten Lebak,age_group,70-74,,22920,jiwa,2025,registration,total_population,3.1.2,57,,70–74
+36.02,2,Kabupaten Lebak,age_group,75+,perempuan,18473,jiwa,2025,registration,total_population,3.1.2,57,,75+
+36.02,2,Kabupaten Lebak,age_group,75+,,33766,jiwa,2025,registration,total_population,3.1.2,57,,75+
+36.02.01,3,Malingping,religion,islam,,80750,jiwa,2025,registration,total_population,4.3.1,163,,Islam
+36.02.01,3,Malingping,religion,kristen,,8,jiwa,2025,registration,total_population,4.3.1,163,,Protestan
+36.02.01,3,Malingping,religion,katolik,,13,jiwa,2025,registration,total_population,4.3.1,163,,Katolik
+36.02.01,3,Malingping,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Hindu
+36.02.01,3,Malingping,religion,buddha,,45,jiwa,2025,registration,total_population,4.3.1,163,,Budha
+36.02.01,3,Malingping,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,163,,Lainnya
+36.02.21,3,Wanasalam,religion,islam,,65931,jiwa,2025,registration,total_population,4.3.1,163,,Islam
+36.02.21,3,Wanasalam,religion,kristen,,17,jiwa,2025,registration,total_population,4.3.1,163,,Protestan
+36.02.21,3,Wanasalam,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,163,,Katolik
+36.02.21,3,Wanasalam,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Hindu
+36.02.21,3,Wanasalam,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Budha
+36.02.21,3,Wanasalam,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,163,,Lainnya
+36.02.02,3,Panggarangan,religion,islam,,43817,jiwa,2025,registration,total_population,4.3.1,163,,Islam
+36.02.02,3,Panggarangan,religion,kristen,,21,jiwa,2025,registration,total_population,4.3.1,163,,Protestan
+36.02.02,3,Panggarangan,religion,katolik,,3,jiwa,2025,registration,total_population,4.3.1,163,,Katolik
+36.02.02,3,Panggarangan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Hindu
+36.02.02,3,Panggarangan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Budha
+36.02.02,3,Panggarangan,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,163,,Lainnya
+36.02.26,3,Cihara,religion,islam,,37617,jiwa,2025,registration,total_population,4.3.1,163,,Islam
+36.02.26,3,Cihara,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,163,,Protestan
+36.02.26,3,Cihara,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Katolik
+36.02.26,3,Cihara,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,163,,Hindu
+36.02.26,3,Cihara,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,163,,Budha
+36.02.26,3,Cihara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Lainnya
+36.02.03,3,Bayah,religion,islam,,50130,jiwa,2025,registration,total_population,4.3.1,163,,Islam
+36.02.03,3,Bayah,religion,kristen,,38,jiwa,2025,registration,total_population,4.3.1,163,,Protestan
+36.02.03,3,Bayah,religion,katolik,,3,jiwa,2025,registration,total_population,4.3.1,163,,Katolik
+36.02.03,3,Bayah,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Hindu
+36.02.03,3,Bayah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Budha
+36.02.03,3,Bayah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Lainnya
+36.02.20,3,Cilograng,religion,islam,,38866,jiwa,2025,registration,total_population,4.3.1,163,,Islam
+36.02.20,3,Cilograng,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,163,,Protestan
+36.02.20,3,Cilograng,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Katolik
+36.02.20,3,Cilograng,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Hindu
+36.02.20,3,Cilograng,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Budha
+36.02.20,3,Cilograng,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Lainnya
+36.02.19,3,Cibeber,religion,islam,,62805,jiwa,2025,registration,total_population,4.3.1,163,,Islam
+36.02.19,3,Cibeber,religion,kristen,,13,jiwa,2025,registration,total_population,4.3.1,163,,Protestan
+36.02.19,3,Cibeber,religion,katolik,,12,jiwa,2025,registration,total_population,4.3.1,163,,Katolik
+36.02.19,3,Cibeber,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Hindu
+36.02.19,3,Cibeber,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,163,,Budha
+36.02.19,3,Cibeber,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Lainnya
+36.02.16,3,Cijaku,religion,islam,,34516,jiwa,2025,registration,total_population,4.3.1,163,,Islam
+36.02.16,3,Cijaku,religion,kristen,,4,jiwa,2025,registration,total_population,4.3.1,163,,Protestan
+36.02.16,3,Cijaku,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Katolik
+36.02.16,3,Cijaku,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Hindu
+36.02.16,3,Cijaku,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,163,,Budha
+36.02.16,3,Cijaku,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Lainnya
+36.02.28,3,Cigemblong,religion,islam,,24346,jiwa,2025,registration,total_population,4.3.1,163,,Islam
+36.02.28,3,Cigemblong,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Protestan
+36.02.28,3,Cigemblong,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Katolik
+36.02.28,3,Cigemblong,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Hindu
+36.02.28,3,Cigemblong,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Budha
+36.02.28,3,Cigemblong,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Lainnya
+36.02.09,3,Banjarsari,religion,islam,,73328,jiwa,2025,registration,total_population,4.3.1,163,,Islam
+36.02.09,3,Banjarsari,religion,kristen,,2,jiwa,2025,registration,total_population,4.3.1,163,,Protestan
+36.02.09,3,Banjarsari,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Katolik
+36.02.09,3,Banjarsari,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Hindu
+36.02.09,3,Banjarsari,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,163,,Budha
+36.02.09,3,Banjarsari,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Lainnya
+36.02.10,3,Cileles,religion,islam,,62250,jiwa,2025,registration,total_population,4.3.1,163,,Islam
+36.02.10,3,Cileles,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,163,,Protestan
+36.02.10,3,Cileles,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,163,,Katolik
+36.02.10,3,Cileles,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Hindu
+36.02.10,3,Cileles,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Budha
+36.02.10,3,Cileles,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,163,,Lainnya
+36.02.08,3,Gunungkencana,religion,islam,,43206,jiwa,2025,registration,total_population,4.3.1,163,,Islam
+36.02.08,3,Gunungkencana,religion,kristen,,8,jiwa,2025,registration,total_population,4.3.1,163,,Protestan
+36.02.08,3,Gunungkencana,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,163,,Katolik
+36.02.08,3,Gunungkencana,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Hindu
+36.02.08,3,Gunungkencana,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Budha
+36.02.08,3,Gunungkencana,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Lainnya
+36.02.07,3,Bojongmanik,religion,islam,,26979,jiwa,2025,registration,total_population,4.3.1,163,,Islam
+36.02.07,3,Bojongmanik,religion,kristen,,6,jiwa,2025,registration,total_population,4.3.1,163,,Protestan
+36.02.07,3,Bojongmanik,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Katolik
+36.02.07,3,Bojongmanik,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Hindu
+36.02.07,3,Bojongmanik,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Budha
+36.02.07,3,Bojongmanik,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Lainnya
+36.02.27,3,Cirinten,religion,islam,,32539,jiwa,2025,registration,total_population,4.3.1,163,,Islam
+36.02.27,3,Cirinten,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Protestan
+36.02.27,3,Cirinten,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Katolik
+36.02.27,3,Cirinten,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Hindu
+36.02.27,3,Cirinten,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Budha
+36.02.27,3,Cirinten,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Lainnya
+36.02.06,3,Leuwidamar,religion,islam,,53487,jiwa,2025,registration,total_population,4.3.1,163,,Islam
+36.02.06,3,Leuwidamar,religion,kristen,,41,jiwa,2025,registration,total_population,4.3.1,163,,Protestan
+36.02.06,3,Leuwidamar,religion,katolik,,6,jiwa,2025,registration,total_population,4.3.1,163,,Katolik
+36.02.06,3,Leuwidamar,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,163,nil,Hindu
+36.02.06,3,Leuwidamar,religion,buddha,,14,jiwa,2025,registration,total_population,4.3.1,163,,Budha
+36.02.06,3,Leuwidamar,religion,lainnya,,10219,jiwa,2025,registration,total_population,4.3.1,163,,Lainnya
+36.02.05,3,Muncang,religion,islam,,41890,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+36.02.05,3,Muncang,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Protestan
+36.02.05,3,Muncang,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Katolik
+36.02.05,3,Muncang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Hindu
+36.02.05,3,Muncang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Budha
+36.02.05,3,Muncang,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,164,,Lainnya
+36.02.22,3,Sobang,religion,islam,,34428,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+36.02.22,3,Sobang,religion,kristen,,2,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+36.02.22,3,Sobang,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Katolik
+36.02.22,3,Sobang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Hindu
+36.02.22,3,Sobang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Budha
+36.02.22,3,Sobang,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,164,,Lainnya
+36.02.04,3,Cipanas,religion,islam,,55961,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+36.02.04,3,Cipanas,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Protestan
+36.02.04,3,Cipanas,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+36.02.04,3,Cipanas,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+36.02.04,3,Cipanas,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Budha
+36.02.04,3,Cipanas,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Lainnya
+36.02.25,3,Lebakgedong,religion,islam,,24325,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+36.02.25,3,Lebakgedong,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+36.02.25,3,Lebakgedong,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Katolik
+36.02.25,3,Lebakgedong,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Hindu
+36.02.25,3,Lebakgedong,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Budha
+36.02.25,3,Lebakgedong,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Lainnya
+36.02.12,3,Sajira,religion,islam,,63250,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+36.02.12,3,Sajira,religion,kristen,,104,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+36.02.12,3,Sajira,religion,katolik,,46,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+36.02.12,3,Sajira,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+36.02.12,3,Sajira,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+36.02.12,3,Sajira,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Lainnya
+36.02.11,3,Cimarga,religion,islam,,80739,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+36.02.11,3,Cimarga,religion,kristen,,10,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+36.02.11,3,Cimarga,religion,katolik,,5,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+36.02.11,3,Cimarga,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Hindu
+36.02.11,3,Cimarga,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+36.02.11,3,Cimarga,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Lainnya
+36.02.17,3,Cikulur,religion,islam,,67091,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+36.02.17,3,Cikulur,religion,kristen,,4,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+36.02.17,3,Cikulur,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Katolik
+36.02.17,3,Cikulur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Hindu
+36.02.17,3,Cikulur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Budha
+36.02.17,3,Cikulur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Lainnya
+36.02.15,3,Warunggunung,religion,islam,,71142,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+36.02.15,3,Warunggunung,religion,kristen,,20,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+36.02.15,3,Warunggunung,religion,katolik,,20,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+36.02.15,3,Warunggunung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Hindu
+36.02.15,3,Warunggunung,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+36.02.15,3,Warunggunung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Lainnya
+36.02.18,3,Cibadak,religion,islam,,148547,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+36.02.18,3,Cibadak,religion,kristen,,1013,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+36.02.18,3,Cibadak,religion,katolik,,643,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+36.02.18,3,Cibadak,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+36.02.18,3,Cibadak,religion,buddha,,1054,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+36.02.18,3,Cibadak,religion,lainnya,,6,jiwa,2025,registration,total_population,4.3.1,164,,Lainnya
+36.02.14,3,Rangkasbitung,religion,islam,,78563,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+36.02.14,3,Rangkasbitung,religion,kristen,,566,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+36.02.14,3,Rangkasbitung,religion,katolik,,163,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+36.02.14,3,Rangkasbitung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Hindu
+36.02.14,3,Rangkasbitung,religion,buddha,,157,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+36.02.14,3,Rangkasbitung,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,164,,Lainnya
+36.02.24,3,Kalanganyar,religion,islam,,43572,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+36.02.24,3,Kalanganyar,religion,kristen,,109,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+36.02.24,3,Kalanganyar,religion,katolik,,47,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+36.02.24,3,Kalanganyar,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Hindu
+36.02.24,3,Kalanganyar,religion,buddha,,54,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+36.02.24,3,Kalanganyar,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,164,,Lainnya
+36.02.13,3,Maja,religion,islam,,69913,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+36.02.13,3,Maja,religion,kristen,,671,jiwa,2025,registration,total_population,4.3.1,164,,Protestan
+36.02.13,3,Maja,religion,katolik,,198,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+36.02.13,3,Maja,religion,hindu,,7,jiwa,2025,registration,total_population,4.3.1,164,,Hindu
+36.02.13,3,Maja,religion,buddha,,185,jiwa,2025,registration,total_population,4.3.1,164,,Budha
+36.02.13,3,Maja,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,164,,Lainnya
+36.02.23,3,Curugbitung,religion,islam,,40939,jiwa,2025,registration,total_population,4.3.1,164,,Islam
+36.02.23,3,Curugbitung,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Protestan
+36.02.23,3,Curugbitung,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,164,,Katolik
+36.02.23,3,Curugbitung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Hindu
+36.02.23,3,Curugbitung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Budha
+36.02.23,3,Curugbitung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,164,nil,Lainnya
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/padi_padian,,100866,rupiah,2024,survey_estimate,per_capita,10.1,338,,Padi-padian
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/padi_padian,,100019,rupiah,2025,survey_estimate,per_capita,10.1,338,,Padi-padian
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/umbi_umbian,,2282,rupiah,2024,survey_estimate,per_capita,10.1,338,,Umbi-umbian
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/umbi_umbian,,9714,rupiah,2025,survey_estimate,per_capita,10.1,338,,Umbi-umbian
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,76230,rupiah,2024,survey_estimate,per_capita,10.1,338,,Ikan/udang/cumi/kerang
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,63269,rupiah,2025,survey_estimate,per_capita,10.1,338,,Ikan/udang/cumi/kerang
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/daging,,8687,rupiah,2024,survey_estimate,per_capita,10.1,338,,Daging
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/daging,,26823,rupiah,2025,survey_estimate,per_capita,10.1,338,,Daging
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/telur_dan_susu,,24302,rupiah,2024,survey_estimate,per_capita,10.1,338,,Telur dan susu
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/telur_dan_susu,,27652,rupiah,2025,survey_estimate,per_capita,10.1,338,,Telur dan susu
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/sayur_sayuran,,56368,rupiah,2024,survey_estimate,per_capita,10.1,338,,Sayur-sayuran
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/sayur_sayuran,,58666,rupiah,2025,survey_estimate,per_capita,10.1,338,,Sayur-sayuran
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/kacang_kacangan,,2224,rupiah,2024,survey_estimate,per_capita,10.1,338,,Kacang-kacangan
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/kacang_kacangan,,17616,rupiah,2025,survey_estimate,per_capita,10.1,338,,Kacang-kacangan
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/buah_buahan,,17047,rupiah,2024,survey_estimate,per_capita,10.1,338,,Buah-buahan
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/buah_buahan,,49233,rupiah,2025,survey_estimate,per_capita,10.1,338,,Buah-buahan
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/minyak_dan_kelapa,,17966,rupiah,2024,survey_estimate,per_capita,10.1,338,,Minyak dan kelapa
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20703,rupiah,2025,survey_estimate,per_capita,10.1,338,,Minyak dan kelapa
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/bahan_minuman,,14956,rupiah,2024,survey_estimate,per_capita,10.1,338,,Bahan minuman
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/bahan_minuman,,25765,rupiah,2025,survey_estimate,per_capita,10.1,338,,Bahan minuman
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/bumbu_bumbuan,,10348,rupiah,2024,survey_estimate,per_capita,10.1,338,,Bumbu-bumbuan
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/bumbu_bumbuan,,16390,rupiah,2025,survey_estimate,per_capita,10.1,338,,Bumbu-bumbuan
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/konsumsi_lainnya,,8222,rupiah,2024,survey_estimate,per_capita,10.1,338,,Konsumsi lainnya
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/konsumsi_lainnya,,15996,rupiah,2025,survey_estimate,per_capita,10.1,338,,Konsumsi lainnya
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,120783,rupiah,2024,survey_estimate,per_capita,10.1,338,,Makanan dan minuman jadi
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,265685,rupiah,2025,survey_estimate,per_capita,10.1,338,,Makanan dan minuman jadi
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/rokok,,98038,rupiah,2024,survey_estimate,per_capita,10.1,338,,Rokok
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/rokok,,129568,rupiah,2025,survey_estimate,per_capita,10.1,338,,Rokok
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/jumlah_makanan,,558319,rupiah,2024,survey_estimate,per_capita,10.1,338,,Jumlah makanan
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/jumlah_makanan,,827100,rupiah,2025,survey_estimate,per_capita,10.1,338,,Jumlah makanan
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,198687,rupiah,2024,survey_estimate,per_capita,10.1,338,,Perumahan dan fasilitas rumah tangga
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,239217,rupiah,2025,survey_estimate,per_capita,10.1,338,,Perumahan dan fasilitas rumah tangga
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,79175,rupiah,2024,survey_estimate,per_capita,10.1,338,,Aneka barang dan jasa
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,90599,rupiah,2025,survey_estimate,per_capita,10.1,338,,Aneka barang dan jasa
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,35199,rupiah,2024,survey_estimate,per_capita,10.1,338,,"Pakaian, alas kaki, dan tutup kepala"
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,28467,rupiah,2025,survey_estimate,per_capita,10.1,338,,"Pakaian, alas kaki, dan tutup kepala"
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/barang_tahan_lama,,12711,rupiah,2024,survey_estimate,per_capita,10.1,338,,Barang tahan lama
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/barang_tahan_lama,,20322,rupiah,2025,survey_estimate,per_capita,10.1,338,,Barang tahan lama
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,46964,rupiah,2024,survey_estimate,per_capita,10.1,338,,"Pajak, pungutan, dan asuransi"
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,29590,rupiah,2025,survey_estimate,per_capita,10.1,338,,"Pajak, pungutan, dan asuransi"
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,9888,rupiah,2024,survey_estimate,per_capita,10.1,338,,Keperluan pesta dan upacara/kenduri
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,18119,rupiah,2025,survey_estimate,per_capita,10.1,338,,Keperluan pesta dan upacara/kenduri
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,382624,rupiah,2024,survey_estimate,per_capita,10.1,338,,Jumlah bukan makanan
+36.02,2,Kabupaten Lebak,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,426315,rupiah,2025,survey_estimate,per_capita,10.1,338,,Jumlah bukan makanan
+36.02,2,Kabupaten Lebak,expenditure,total,,940943,rupiah,2024,survey_estimate,per_capita,10.1,338,,
+36.02,2,Kabupaten Lebak,expenditure,total,,1253414,rupiah,2025,survey_estimate,per_capita,10.1,338,,

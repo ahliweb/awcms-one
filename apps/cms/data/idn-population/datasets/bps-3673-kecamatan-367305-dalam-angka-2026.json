@@ -1,0 +1,56 @@
+{
+  "datasetCode": "bps-3673-kecamatan-367305-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.73.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cipocok Jaya Dalam Angka 2026",
+  "publisherName": "BPS Kota Serang",
+  "publisherDomain": "3673",
+  "publisherWebsite": "https://serangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Serang (https://serangkota.bps.go.id), publikasi \"Kecamatan Cipocok Jaya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3673030",
+  "publicationNumber": "36730.26007",
+  "issn": "2714-9358",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://serangkota.bps.go.id/id/publication/2026/09/28/e50537b7cedc8b13b9df8d8d/kecamatan-cipocok-jaya-dalam-angka-2026.html",
+  "sourceFileSha256": "2258b51e1ca0b03f09a0a4298fc98701b94bd912d460083d72ad47933f75076e",
+  "sourceFileBytes": 6756811,
+  "sourcePages": [28, 29, 30, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Serang.",
+  "csvPath": "datasets/bps-3673-kecamatan-367305-dalam-angka-2026.csv",
+  "csvSha256": "1ac02a413beb6dea9e46e5af016e5db052fc698e9d48ec15dbb5b57c80ca377a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Cipocok Jaya, 2026",
+      "printedPages": [28, 29],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cipocok Jaya, 2026",
+      "printedPages": [30],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.5",
+      "title": "Jumlah Penduduk Menurut Agama dan Kelurahan di Kecamatan Cipocok Jaya, 2026",
+      "printedPages": [33, 34],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1: row not stored: row \"Kecamatan Cipocok Jaya Cipocok Jaya District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Cipocok Jaya Cipocok Jaya District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Cipocok Jaya Cipocok Jaya District\": unmatched ",
+    "table 3.5: row not stored: row \"Kecamatan Cipocok Jaya Cipocok Jaya District\": unmatched ",
+    "table 3.5: row not stored: row \"Kecamatan Cipocok Jaya Cipocok Jaya District\": unmatched "
+  ]
+}

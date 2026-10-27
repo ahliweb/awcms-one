@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3509-kecamatan-350916-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.09.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jenggawah Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Jember",
+  "publisherDomain": "3509",
+  "publisherWebsite": "https://jemberkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Jember (https://jemberkab.bps.go.id), publikasi \"Kecamatan Jenggawah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3509100",
+  "publicationNumber": "35090.26014",
+  "issn": "2620-455X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jemberkab.bps.go.id/id/publication/2026/09/28/37633cd2a98af652790d486d/kecamatan-jenggawah-dalam-angka-2026.html",
+  "sourceFileSha256": "f117ead5c2967ea030f871be6c89c2cf1b6387168f4234251ca52887fb397cca",
+  "sourceFileBytes": 23869738,
+  "sourcePages": [33, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jember.",
+  "csvPath": "datasets/bps-3509-kecamatan-350916-dalam-angka-2026.csv",
+  "csvSha256": "6c82ac72cbde1d8a2436dfa0813f80a0137104f50d3179ddc491bb40295a6947",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Jenggawah, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jenggawah, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: the rows of region 35.09.16.2002 are not stored: sex split vs total: parts sum 9537.0000 != 9527.0000 (diff 10.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 35.09.16 are not stored: age_group vs total: parts sum 180566.0000 != 92072.0000 (diff 88494.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-3601-kecamatan-360115-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.01.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cipeucang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pandeglang",
+  "publisherDomain": "3601",
+  "publisherWebsite": "https://pandeglangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pandeglang (https://pandeglangkab.bps.go.id), publikasi \"Kecamatan Cipeucang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3601161",
+  "publicationNumber": "36010.26031",
+  "issn": "3064-2078",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pandeglangkab.bps.go.id/id/publication/2026/09/28/20ce5724d2486611bb1f591d/kecamatan-cipeucang-dalam-angka-2026.html",
+  "sourceFileSha256": "785b903adc40d86c4671ecff989cabd3448e59f36a2f9db65ddadf99068df07f",
+  "sourceFileBytes": 7435245,
+  "sourcePages": [32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pandeglang.",
+  "csvPath": "datasets/bps-3601-kecamatan-360115-dalam-angka-2026.csv",
+  "csvSha256": "836f8727f18bb4f6fe10e65463c4f592310bceaa0d02be745d1b028f993f6b28",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Cipeucang, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"KECAMATAN CIPEUCANG CIPEUCANG DISTRICT\": unmatched ",
+    "table 3.1: row not stored: row \"KECAMATAN CIPEUCANG CIPEUCANG DISTRICT\": unmatched "
+  ]
+}

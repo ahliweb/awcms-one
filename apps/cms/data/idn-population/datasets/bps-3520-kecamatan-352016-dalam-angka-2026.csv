@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.20.16.2001,4,Selotinatah,sex,perempuan,,3339,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.16.2001,4,Selotinatah,total,total,,6653,jiwa,2025,registration,total_population,3.1,29,,
+35.20.16.2002,4,Pendem,sex,perempuan,,971,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.16.2002,4,Pendem,total,total,,1858,jiwa,2025,registration,total_population,3.1,29,,
+35.20.16.2010,4,Banyudono,sex,perempuan,,1401,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.16.2010,4,Banyudono,total,total,,2743,jiwa,2025,registration,total_population,3.1,29,,
+35.20.16.2011,4,Banjarpanjang,sex,perempuan,,910,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.16.2011,4,Banjarpanjang,total,total,,1748,jiwa,2025,registration,total_population,3.1,29,,
+35.20.16.2012,4,Banjarejo,sex,perempuan,,2570,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.16.2012,4,Banjarejo,total,total,,5080,jiwa,2025,registration,total_population,3.1,29,,
+35.20.16.2009,4,Mojopurno,sex,perempuan,,2143,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.16.2009,4,Mojopurno,total,total,,4297,jiwa,2025,registration,total_population,3.1,29,,
+35.20.16.2007,4,Balegondo,sex,perempuan,,2034,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.16.2007,4,Balegondo,total,total,,3998,jiwa,2025,registration,total_population,3.1,29,,
+35.20.16.2008,4,Ngariboyo,sex,perempuan,,2239,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.16.2008,4,Ngariboyo,total,total,,4520,jiwa,2025,registration,total_population,3.1,29,,
+35.20.16.2006,4,Baleasri,sex,perempuan,,1354,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.16.2006,4,Baleasri,total,total,,2718,jiwa,2025,registration,total_population,3.1,29,,
+35.20.16.2005,4,Sumberdukun,sex,perempuan,,1114,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.16.2005,4,Sumberdukun,total,total,,2178,jiwa,2025,registration,total_population,3.1,29,,
+35.20.16.2004,4,Selopanggung,sex,perempuan,,742,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.16.2004,4,Selopanggung,total,total,,1451,jiwa,2025,registration,total_population,3.1,29,,
+35.20.16.2003,4,Bangsri,sex,perempuan,,1281,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.16.2003,4,Bangsri,total,total,,2503,jiwa,2025,registration,total_population,3.1,29,,
+35.20.16,3,Kecamatan Ngariboyo,sex,perempuan,,20098,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.16,3,Kecamatan Ngariboyo,total,total,,39747,jiwa,2025,registration,total_population,3.1,29,,
+35.20.16,3,Ngariboyo,age_group,0-4,perempuan,973,jiwa,2025,registration,total_population,3.3,32,,0 – 4
+35.20.16,3,Ngariboyo,age_group,0-4,,1997,jiwa,2025,registration,total_population,3.3,32,,0 – 4
+35.20.16,3,Ngariboyo,age_group,5-9,perempuan,1230,jiwa,2025,registration,total_population,3.3,32,,5–9
+35.20.16,3,Ngariboyo,age_group,5-9,,2545,jiwa,2025,registration,total_population,3.3,32,,5–9
+35.20.16,3,Ngariboyo,age_group,10-14,perempuan,1333,jiwa,2025,registration,total_population,3.3,32,,10–14
+35.20.16,3,Ngariboyo,age_group,10-14,,2710,jiwa,2025,registration,total_population,3.3,32,,10–14
+35.20.16,3,Ngariboyo,age_group,15-19,perempuan,1409,jiwa,2025,registration,total_population,3.3,32,,15–19
+35.20.16,3,Ngariboyo,age_group,15-19,,2940,jiwa,2025,registration,total_population,3.3,32,,15–19
+35.20.16,3,Ngariboyo,age_group,20-24,perempuan,1322,jiwa,2025,registration,total_population,3.3,32,,20–24
+35.20.16,3,Ngariboyo,age_group,20-24,,2768,jiwa,2025,registration,total_population,3.3,32,,20–24
+35.20.16,3,Ngariboyo,age_group,25-29,perempuan,1289,jiwa,2025,registration,total_population,3.3,32,,25–29
+35.20.16,3,Ngariboyo,age_group,25-29,,2662,jiwa,2025,registration,total_population,3.3,32,,25–29
+35.20.16,3,Ngariboyo,age_group,30-34,perempuan,1217,jiwa,2025,registration,total_population,3.3,32,,30–34
+35.20.16,3,Ngariboyo,age_group,30-34,,2485,jiwa,2025,registration,total_population,3.3,32,,30–34
+35.20.16,3,Ngariboyo,age_group,35-39,perempuan,1245,jiwa,2025,registration,total_population,3.3,32,,35–39
+35.20.16,3,Ngariboyo,age_group,35-39,,2487,jiwa,2025,registration,total_population,3.3,32,,35–39
+35.20.16,3,Ngariboyo,age_group,40-44,perempuan,1531,jiwa,2025,registration,total_population,3.3,32,,40–44
+35.20.16,3,Ngariboyo,age_group,40-44,,3023,jiwa,2025,registration,total_population,3.3,32,,40–44
+35.20.16,3,Ngariboyo,age_group,45-49,perempuan,1438,jiwa,2025,registration,total_population,3.3,32,,45–49
+35.20.16,3,Ngariboyo,age_group,45-49,,2985,jiwa,2025,registration,total_population,3.3,32,,45–49
+35.20.16,3,Ngariboyo,age_group,50-54,perempuan,1463,jiwa,2025,registration,total_population,3.3,32,,50–54
+35.20.16,3,Ngariboyo,age_group,50-54,,2881,jiwa,2025,registration,total_population,3.3,32,,50–54
+35.20.16,3,Ngariboyo,age_group,55-59,perempuan,1267,jiwa,2025,registration,total_population,3.3,32,,55–59
+35.20.16,3,Ngariboyo,age_group,55-59,,2425,jiwa,2025,registration,total_population,3.3,32,,55–59
+35.20.16,3,Ngariboyo,age_group,60-64,perempuan,1199,jiwa,2025,registration,total_population,3.3,32,,60–64
+35.20.16,3,Ngariboyo,age_group,60-64,,2242,jiwa,2025,registration,total_population,3.3,32,,60–64
+35.20.16,3,Ngariboyo,age_group,65-69,perempuan,1047,jiwa,2025,registration,total_population,3.3,32,,65–69
+35.20.16,3,Ngariboyo,age_group,65-69,,1978,jiwa,2025,registration,total_population,3.3,32,,65–69
+35.20.16,3,Ngariboyo,age_group,70-74,perempuan,795,jiwa,2025,registration,total_population,3.3,32,,70–74
+35.20.16,3,Ngariboyo,age_group,70-74,,1450,jiwa,2025,registration,total_population,3.3,32,,70–74
+35.20.16,3,Ngariboyo,age_group,75+,perempuan,1340,jiwa,2025,registration,total_population,3.3,32,,75 +
+35.20.16,3,Ngariboyo,age_group,75+,,2169,jiwa,2025,registration,total_population,3.3,32,,75 +
+35.20.16,3,Kecamatan Ngariboyo,sex,perempuan,,20098,jiwa,2025,registration,total_population,3.3,32,,Perempuan
+35.20.16,3,Kecamatan Ngariboyo,total,total,,39747,jiwa,2025,registration,total_population,3.3,32,,

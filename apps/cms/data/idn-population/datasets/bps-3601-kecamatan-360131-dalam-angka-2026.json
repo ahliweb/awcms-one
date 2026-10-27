@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-3601-kecamatan-360131-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.01.31",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sindangresmi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pandeglang",
+  "publisherDomain": "3601",
+  "publisherWebsite": "https://pandeglangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pandeglang (https://pandeglangkab.bps.go.id), publikasi \"Kecamatan Sindangresmi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3601072",
+  "publicationNumber": "36010.26015",
+  "issn": "3064-1535",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pandeglangkab.bps.go.id/id/publication/2026/09/28/f49041a1926a4a59ad07726a/kecamatan-sindangresmi-dalam-angka-2026.html",
+  "sourceFileSha256": "c890af70af5300936309da47a2d0c33b4059df56becf55a6b9431708ee418cab",
+  "sourceFileBytes": 8493113,
+  "sourcePages": [32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pandeglang.",
+  "csvPath": "datasets/bps-3601-kecamatan-360131-dalam-angka-2026.csv",
+  "csvSha256": "867d90914e36d402432e7ce4cc0ddc9cddafeb3d8eed472ecf8d1c0b20932a79",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Sindangresmi, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"KECAMATAN SINDANGRESMI SINDANGRESMI DISTRICT\": unmatched ",
+    "table 3.1: row not stored: row \"KECAMATAN SINDANGRESMI SINDANGRESMI DISTRICT\": unmatched "
+  ]
+}

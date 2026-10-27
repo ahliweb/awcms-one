@@ -1,0 +1,41 @@
+{
+  "datasetCode": "bps-3601-kecamatan-360128-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.01.28",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Carita Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pandeglang",
+  "publisherDomain": "3601",
+  "publisherWebsite": "https://pandeglangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pandeglang (https://pandeglangkab.bps.go.id), publikasi \"Kecamatan Carita Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3601121",
+  "publicationNumber": "36010.26024",
+  "issn": "3064-1616",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pandeglangkab.bps.go.id/id/publication/2026/09/28/987a9dca2f1e123ba3924892/kecamatan-carita-dalam-angka-2026.html",
+  "sourceFileSha256": "0b29c67dff07e26db4f2346f7eb8b1f3753fed242dd387bfae39f0a3ac7f3a6a",
+  "sourceFileBytes": 8399865,
+  "sourcePages": [32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pandeglang.",
+  "csvPath": "datasets/bps-3601-kecamatan-360128-dalam-angka-2026.csv",
+  "csvSha256": "ac4fe0cd52a77ae0ec8e809852ec9b24f81b85119281a9b721d4afd6075fa25a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Carita, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sukanagara\": unmatched ",
+    "table 3.1: row not stored: row \"KECAMATAN CARITA CARITA DISTRICT\": unmatched ",
+    "table 3.1: row not stored: row \"Sukanagara\": unmatched ",
+    "table 3.1: row not stored: row \"KECAMATAN CARITA CARITA DISTRICT\": unmatched "
+  ]
+}

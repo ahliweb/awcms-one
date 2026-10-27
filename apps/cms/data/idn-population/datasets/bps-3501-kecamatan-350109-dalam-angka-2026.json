@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3501-kecamatan-350109-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.01.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tegalombo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pacitan",
+  "publisherDomain": "3501",
+  "publisherWebsite": "https://pacitankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pacitan (https://pacitankab.bps.go.id), publikasi \"Kecamatan Tegalombo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3501090",
+  "publicationNumber": "35010.26013",
+  "issn": "3110-4592",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pacitankab.bps.go.id/id/publication/2026/09/28/a40ab905902412bde41a4177/kecamatan-tegalombo-dalam-angka-2026.html",
+  "sourceFileSha256": "2d0b8dbd4eaaff4c8b1ef1fcda0ceaa54974630a5da892a77dad585d8995b03d",
+  "sourceFileBytes": 3031643,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pacitan.",
+  "csvPath": "datasets/bps-3501-kecamatan-350109-dalam-angka-2026.csv",
+  "csvSha256": "fc4085b6fbd1ee7f0f7944737dd77d96667d8fdb7cfa85dedded196362c22f63",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Tegalombo, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tegalombo, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

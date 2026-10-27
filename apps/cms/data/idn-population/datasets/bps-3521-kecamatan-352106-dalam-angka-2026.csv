@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.21.06.2011,4,BUDUG,sex,laki_laki,,682,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.06.2011,4,BUDUG,sex,perempuan,,714,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.06.2011,4,BUDUG,total,total,,1396,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.06.2012,4,MOJOMANIS,sex,laki_laki,,984,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.06.2012,4,MOJOMANIS,sex,perempuan,,1102,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.06.2012,4,MOJOMANIS,total,total,,2086,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.06.2014,4,KARANGSONO,sex,laki_laki,,1805,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.06.2014,4,KARANGSONO,sex,perempuan,,1896,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.06.2014,4,KARANGSONO,total,total,,3701,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.06.2013,4,BANGET,sex,laki_laki,,526,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.06.2013,4,BANGET,sex,perempuan,,553,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.06.2013,4,BANGET,total,total,,1079,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.06.2010,4,KWADUNGAN,sex,laki_laki,,532,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.06.2010,4,KWADUNGAN,sex,perempuan,,546,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.06.2010,4,KWADUNGAN,total,total,,1078,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.06.2009,4,WARUK KALONG,sex,laki_laki,,1269,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.06.2009,4,WARUK KALONG,sex,perempuan,,1343,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.06.2009,4,WARUK KALONG,total,total,,2612,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.06.2008,4,SIMO,sex,laki_laki,,803,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.06.2008,4,SIMO,sex,perempuan,,786,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.06.2008,4,SIMO,total,total,,1589,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.06.2007,4,SUMENGKO,sex,laki_laki,,641,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.06.2007,4,SUMENGKO,sex,perempuan,,659,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.06.2007,4,SUMENGKO,total,total,,1300,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.06.2006,4,TIRAK,sex,laki_laki,,745,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.06.2006,4,TIRAK,sex,perempuan,,773,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.06.2006,4,TIRAK,total,total,,1518,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.06.2005,4,PURWOSARI,sex,laki_laki,,1499,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.06.2005,4,PURWOSARI,sex,perempuan,,1541,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.06.2005,4,PURWOSARI,total,total,,3040,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.06.2004,4,JENANGAN,sex,laki_laki,,926,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.06.2004,4,JENANGAN,sex,perempuan,,916,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.06.2004,4,JENANGAN,total,total,,1842,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.06.2003,4,POJOK,sex,laki_laki,,1150,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.06.2003,4,POJOK,sex,perempuan,,1188,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.06.2003,4,POJOK,total,total,,2338,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.06.2002,4,DINDEN,sex,laki_laki,,962,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.06.2002,4,DINDEN,sex,perempuan,,987,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.06.2002,4,DINDEN,total,total,,1949,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.06.2001,4,KENDUNG,sex,laki_laki,,865,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.06.2001,4,KENDUNG,sex,perempuan,,912,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.06.2001,4,KENDUNG,total,total,,1777,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.06,3,Kecamatan Kwadungan,sex,laki_laki,,13389,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.06,3,Kecamatan Kwadungan,sex,perempuan,,13916,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.06,3,Kecamatan Kwadungan,total,total,,27305,jiwa,2025,registration,total_population,unnumbered-p38,38,,

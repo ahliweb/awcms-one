@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.13.05.2003,4,Tigasan Kulon,sex,laki_laki,,3717,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.05.2003,4,Tigasan Kulon,sex,perempuan,,3894,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.05.2003,4,Tigasan Kulon,total,total,,7611,jiwa,2025,registration,total_population,3.1,24,,
+35.13.05.2002,4,Tigasan Wetan,sex,laki_laki,,1649,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.05.2002,4,Tigasan Wetan,sex,perempuan,,1777,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.05.2002,4,Tigasan Wetan,total,total,,3426,jiwa,2025,registration,total_population,3.1,24,,
+35.13.05.2001,4,Malasan Kulon,sex,laki_laki,,1572,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.05.2001,4,Malasan Kulon,sex,perempuan,,1638,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.05.2001,4,Malasan Kulon,total,total,,3210,jiwa,2025,registration,total_population,3.1,24,,
+35.13.05.2005,4,Leces,sex,laki_laki,,3179,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.05.2005,4,Leces,sex,perempuan,,3270,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.05.2005,4,Leces,total,total,,6449,jiwa,2025,registration,total_population,3.1,24,,
+35.13.05.2004,4,Pondok Wuluh,sex,laki_laki,,3271,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.05.2004,4,Pondok Wuluh,sex,perempuan,,3355,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.05.2004,4,Pondok Wuluh,total,total,,6626,jiwa,2025,registration,total_population,3.1,24,,
+35.13.05.2007,4,Kerpangan,sex,laki_laki,,3035,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.05.2007,4,Kerpangan,sex,perempuan,,3008,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.05.2007,4,Kerpangan,total,total,,6043,jiwa,2025,registration,total_population,3.1,24,,
+35.13.05.2006,4,Sumber Kedawung,sex,laki_laki,,5449,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.05.2006,4,Sumber Kedawung,sex,perempuan,,5616,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.05.2006,4,Sumber Kedawung,total,total,,11065,jiwa,2025,registration,total_population,3.1,24,,
+35.13.05.2008,4,Clarak,sex,laki_laki,,1211,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.05.2008,4,Clarak,sex,perempuan,,1238,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.05.2008,4,Clarak,total,total,,2449,jiwa,2025,registration,total_population,3.1,24,,
+35.13.05.2009,4,Jorongan,sex,laki_laki,,4744,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.05.2009,4,Jorongan,sex,perempuan,,4698,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.05.2009,4,Jorongan,total,total,,9442,jiwa,2025,registration,total_population,3.1,24,,
+35.13.05.2010,4,Warujinggo,sex,laki_laki,,1401,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.05.2010,4,Warujinggo,sex,perempuan,,1395,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.05.2010,4,Warujinggo,total,total,,2796,jiwa,2025,registration,total_population,3.1,24,,
+35.13.05,3,Kecamatan Leces,sex,laki_laki,,29228,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.05,3,Kecamatan Leces,sex,perempuan,,29889,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.05,3,Kecamatan Leces,total,total,,59117,jiwa,2025,registration,total_population,3.1,24,,

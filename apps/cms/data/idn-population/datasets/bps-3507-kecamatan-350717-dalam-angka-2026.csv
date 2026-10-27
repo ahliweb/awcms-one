@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.07.17.2003,4,Kenongo,sex,laki_laki,,1392,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.17.2003,4,Kenongo,sex,perempuan,,1385,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.17.2003,4,Kenongo,total,total,,2777,jiwa,2025,registration,total_population,3.1,27,,
+35.07.17.2002,4,Ngadirejo,sex,laki_laki,,1109,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.17.2002,4,Ngadirejo,sex,perempuan,,1081,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.17.2002,4,Ngadirejo,total,total,,2190,jiwa,2025,registration,total_population,3.1,27,,
+35.07.17.2001,4,Taji,sex,laki_laki,,663,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.17.2001,4,Taji,sex,perempuan,,647,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.17.2001,4,Taji,total,total,,1310,jiwa,2025,registration,total_population,3.1,27,,
+35.07.17.2006,4,Pandansari Lor,sex,laki_laki,,2452,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.17.2006,4,Pandansari Lor,sex,perempuan,,2382,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.17.2006,4,Pandansari Lor,total,total,,4834,jiwa,2025,registration,total_population,3.1,27,,
+35.07.17.2005,4,Sukopuro,sex,laki_laki,,3282,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.17.2005,4,Sukopuro,sex,perempuan,,3199,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.17.2005,4,Sukopuro,total,total,,6481,jiwa,2025,registration,total_population,3.1,27,,
+35.07.17.2004,4,Sidorejo,sex,laki_laki,,2194,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.17.2004,4,Sidorejo,sex,perempuan,,2139,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.17.2004,4,Sidorejo,total,total,,4333,jiwa,2025,registration,total_population,3.1,27,,
+35.07.17.2011,4,Sukolilo,sex,laki_laki,,3273,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.17.2011,4,Sukolilo,sex,perempuan,,3128,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.17.2011,4,Sukolilo,total,total,,6401,jiwa,2025,registration,total_population,3.1,27,,
+35.07.17.2007,4,Sidomulyo,sex,laki_laki,,2587,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.17.2007,4,Sidomulyo,sex,perempuan,,2455,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.17.2007,4,Sidomulyo,total,total,,5042,jiwa,2025,registration,total_population,3.1,27,,
+35.07.17.2008,4,Gadingkembar,sex,laki_laki,,2441,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.17.2008,4,Gadingkembar,sex,perempuan,,2381,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.17.2008,4,Gadingkembar,total,total,,4822,jiwa,2025,registration,total_population,3.1,27,,
+35.07.17.2010,4,Kemantren,sex,laki_laki,,6203,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.17.2010,4,Kemantren,sex,perempuan,,5700,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.17.2010,4,Kemantren,total,total,,11903,jiwa,2025,registration,total_population,3.1,27,,
+35.07.17.2009,4,Argosari,sex,laki_laki,,2273,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.17.2009,4,Argosari,sex,perempuan,,2178,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.17.2009,4,Argosari,total,total,,4451,jiwa,2025,registration,total_population,3.1,27,,
+35.07.17.2014,4,Slamparejo,sex,laki_laki,,2945,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.17.2014,4,Slamparejo,sex,perempuan,,2843,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.17.2014,4,Slamparejo,total,total,,5788,jiwa,2025,registration,total_population,3.1,27,,
+35.07.17.2015,4,Kemiri,sex,laki_laki,,3314,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.17.2015,4,Kemiri,sex,perempuan,,3167,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.17.2015,4,Kemiri,total,total,,6481,jiwa,2025,registration,total_population,3.1,27,,
+35.07.17.2013,4,Jabung,sex,laki_laki,,4724,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.17.2013,4,Jabung,sex,perempuan,,4520,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.17.2013,4,Jabung,total,total,,9244,jiwa,2025,registration,total_population,3.1,27,,
+35.07.17.2012,4,Gunungjati,sex,laki_laki,,1986,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.17.2012,4,Gunungjati,sex,perempuan,,1881,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.17.2012,4,Gunungjati,total,total,,3867,jiwa,2025,registration,total_population,3.1,27,,
+35.07.17,3,Kecamatan Jabung,sex,laki_laki,,40838,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.17,3,Kecamatan Jabung,sex,perempuan,,39086,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.17,3,Kecamatan Jabung,total,total,,79924,jiwa,2025,registration,total_population,3.1,27,,

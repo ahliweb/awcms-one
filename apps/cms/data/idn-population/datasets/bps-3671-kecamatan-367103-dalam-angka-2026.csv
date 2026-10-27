@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.71.03.1004,4,Porisgaga Baru,sex,laki_laki,,5888,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+36.71.03.1004,4,Porisgaga Baru,sex,perempuan,,5691,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+36.71.03.1004,4,Porisgaga Baru,total,total,,11579,jiwa,2025,registration,total_population,3.1,22,,
+36.71.03.1007,4,Porisjaya,sex,laki_laki,,5778,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+36.71.03.1007,4,Porisjaya,sex,perempuan,,5604,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+36.71.03.1007,4,Porisjaya,total,total,,11382,jiwa,2025,registration,total_population,3.1,22,,
+36.71.03.1003,4,Porisgaga,sex,laki_laki,,9570,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+36.71.03.1003,4,Porisgaga,sex,perempuan,,9463,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+36.71.03.1003,4,Porisgaga,total,total,,19033,jiwa,2025,registration,total_population,3.1,22,,
+36.71.03.1005,4,Kebon besar,sex,laki_laki,,6360,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+36.71.03.1005,4,Kebon besar,sex,perempuan,,6094,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+36.71.03.1005,4,Kebon besar,total,total,,12454,jiwa,2025,registration,total_population,3.1,22,,
+36.71.03.1001,4,Batuceper,sex,laki_laki,,7382,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+36.71.03.1001,4,Batuceper,sex,perempuan,,7469,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+36.71.03.1001,4,Batuceper,total,total,,14851,jiwa,2025,registration,total_population,3.1,22,,
+36.71.03.1002,4,Batujaya,sex,laki_laki,,5749,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+36.71.03.1002,4,Batujaya,sex,perempuan,,5470,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+36.71.03.1002,4,Batujaya,total,total,,11219,jiwa,2025,registration,total_population,3.1,22,,
+36.71.03.1006,4,Batusari,sex,laki_laki,,9186,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+36.71.03.1006,4,Batusari,sex,perempuan,,8800,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+36.71.03.1006,4,Batusari,total,total,,17986,jiwa,2025,registration,total_population,3.1,22,,
+36.71.03,3,Batu Ceper,sex,laki_laki,,49913,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+36.71.03,3,Batu Ceper,sex,perempuan,,48591,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+36.71.03,3,Batu Ceper,total,total,,98504,jiwa,2025,registration,total_population,3.1,22,,
+36.71.03,3,Batuceper,age_group,0-4,laki_laki,3159,jiwa,2025,registration,total_population,3.2,24,,0 - 4
+36.71.03,3,Batuceper,age_group,0-4,perempuan,2850,jiwa,2025,registration,total_population,3.2,24,,0 - 4
+36.71.03,3,Batuceper,age_group,0-4,,6009,jiwa,2025,registration,total_population,3.2,24,,0 - 4
+36.71.03,3,Batuceper,age_group,5-9,laki_laki,4439,jiwa,2025,registration,total_population,3.2,24,,5 – 9
+36.71.03,3,Batuceper,age_group,5-9,perempuan,4000,jiwa,2025,registration,total_population,3.2,24,,5 – 9
+36.71.03,3,Batuceper,age_group,5-9,,8439,jiwa,2025,registration,total_population,3.2,24,,5 – 9
+36.71.03,3,Batuceper,age_group,10-14,laki_laki,4504,jiwa,2025,registration,total_population,3.2,24,,10 - 14
+36.71.03,3,Batuceper,age_group,10-14,perempuan,4141,jiwa,2025,registration,total_population,3.2,24,,10 - 14
+36.71.03,3,Batuceper,age_group,10-14,,8645,jiwa,2025,registration,total_population,3.2,24,,10 - 14
+36.71.03,3,Batuceper,age_group,15-19,laki_laki,4119,jiwa,2025,registration,total_population,3.2,24,,15 - 19
+36.71.03,3,Batuceper,age_group,15-19,perempuan,3815,jiwa,2025,registration,total_population,3.2,24,,15 - 19
+36.71.03,3,Batuceper,age_group,15-19,,7934,jiwa,2025,registration,total_population,3.2,24,,15 - 19
+36.71.03,3,Batuceper,age_group,20-24,laki_laki,3927,jiwa,2025,registration,total_population,3.2,24,,20 - 24
+36.71.03,3,Batuceper,age_group,20-24,perempuan,3703,jiwa,2025,registration,total_population,3.2,24,,20 - 24
+36.71.03,3,Batuceper,age_group,20-24,,7630,jiwa,2025,registration,total_population,3.2,24,,20 - 24
+36.71.03,3,Batuceper,age_group,25-29,laki_laki,3781,jiwa,2025,registration,total_population,3.2,24,,25 - 29
+36.71.03,3,Batuceper,age_group,25-29,perempuan,3733,jiwa,2025,registration,total_population,3.2,24,,25 - 29
+36.71.03,3,Batuceper,age_group,25-29,,7514,jiwa,2025,registration,total_population,3.2,24,,25 - 29
+36.71.03,3,Batuceper,age_group,30-34,laki_laki,3745,jiwa,2025,registration,total_population,3.2,24,,30 - 34
+36.71.03,3,Batuceper,age_group,30-34,perempuan,3758,jiwa,2025,registration,total_population,3.2,24,,30 - 34
+36.71.03,3,Batuceper,age_group,30-34,,7503,jiwa,2025,registration,total_population,3.2,24,,30 - 34
+36.71.03,3,Batuceper,age_group,35-39,laki_laki,3759,jiwa,2025,registration,total_population,3.2,24,,35 - 39
+36.71.03,3,Batuceper,age_group,35-39,perempuan,3689,jiwa,2025,registration,total_population,3.2,24,,35 - 39
+36.71.03,3,Batuceper,age_group,35-39,,7448,jiwa,2025,registration,total_population,3.2,24,,35 - 39
+36.71.03,3,Batuceper,age_group,40-44,laki_laki,4124,jiwa,2025,registration,total_population,3.2,24,,40 - 44
+36.71.03,3,Batuceper,age_group,40-44,perempuan,4234,jiwa,2025,registration,total_population,3.2,24,,40 - 44
+36.71.03,3,Batuceper,age_group,40-44,,8358,jiwa,2025,registration,total_population,3.2,24,,40 - 44
+36.71.03,3,Batuceper,age_group,45-49,laki_laki,4045,jiwa,2025,registration,total_population,3.2,24,,45 - 49
+36.71.03,3,Batuceper,age_group,45-49,perempuan,4057,jiwa,2025,registration,total_population,3.2,24,,45 - 49
+36.71.03,3,Batuceper,age_group,45-49,,8102,jiwa,2025,registration,total_population,3.2,24,,45 - 49
+36.71.03,3,Batuceper,age_group,50-54,laki_laki,3478,jiwa,2025,registration,total_population,3.2,24,,50 - 54
+36.71.03,3,Batuceper,age_group,50-54,perempuan,3457,jiwa,2025,registration,total_population,3.2,24,,50 - 54
+36.71.03,3,Batuceper,age_group,50-54,,6935,jiwa,2025,registration,total_population,3.2,24,,50 - 54
+36.71.03,3,Batuceper,age_group,55-59,laki_laki,2653,jiwa,2025,registration,total_population,3.2,24,,55 - 59
+36.71.03,3,Batuceper,age_group,55-59,perempuan,2561,jiwa,2025,registration,total_population,3.2,24,,55 - 59
+36.71.03,3,Batuceper,age_group,55-59,,5214,jiwa,2025,registration,total_population,3.2,24,,55 - 59
+36.71.03,3,Batuceper,age_group,60-64,laki_laki,1738,jiwa,2025,registration,total_population,3.2,24,,60 - 64
+36.71.03,3,Batuceper,age_group,60-64,perempuan,1869,jiwa,2025,registration,total_population,3.2,24,,60 - 64
+36.71.03,3,Batuceper,age_group,60-64,,3607,jiwa,2025,registration,total_population,3.2,24,,60 - 64
+36.71.03,3,Batuceper,age_group,65-69,laki_laki,1181,jiwa,2025,registration,total_population,3.2,24,,65 - 69
+36.71.03,3,Batuceper,age_group,65-69,perempuan,1264,jiwa,2025,registration,total_population,3.2,24,,65 - 69
+36.71.03,3,Batuceper,age_group,65-69,,2445,jiwa,2025,registration,total_population,3.2,24,,65 - 69
+36.71.03,3,Batuceper,age_group,70-74,laki_laki,704,jiwa,2025,registration,total_population,3.2,24,,70 - 74
+36.71.03,3,Batuceper,age_group,70-74,perempuan,719,jiwa,2025,registration,total_population,3.2,24,,70 - 74
+36.71.03,3,Batuceper,age_group,70-74,,1423,jiwa,2025,registration,total_population,3.2,24,,70 - 74
+36.71.03,3,Batuceper,age_group,75+,laki_laki,557,jiwa,2025,registration,total_population,3.2,24,,75+
+36.71.03,3,Batuceper,age_group,75+,perempuan,741,jiwa,2025,registration,total_population,3.2,24,,75+
+36.71.03,3,Batuceper,age_group,75+,,1298,jiwa,2025,registration,total_population,3.2,24,,75+
+36.71.03,3,Batu Ceper,sex,laki_laki,,49913,jiwa,2025,registration,total_population,3.2,24,,Laki-Laki
+36.71.03,3,Batu Ceper,sex,perempuan,,48591,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+36.71.03,3,Batu Ceper,total,total,,98504,jiwa,2025,registration,total_population,3.2,24,,

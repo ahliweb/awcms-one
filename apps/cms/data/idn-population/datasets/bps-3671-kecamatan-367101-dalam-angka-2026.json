@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3671-kecamatan-367101-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.71.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tangerang Dalam Angka 2026",
+  "publisherName": "BPS Kota Tangerang",
+  "publisherDomain": "3671",
+  "publisherWebsite": "https://tangerangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Tangerang (https://tangerangkota.bps.go.id), publikasi \"Kecamatan Tangerang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3671",
+  "publicationNumber": "36710.26015",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tangerangkota.bps.go.id/id/publication/2026/09/28/fe94878e98b783bbbbd4ef6d/kecamatan-tangerang-dalam-angka-2026.html",
+  "sourceFileSha256": "b48b872d117fe5424adaf1b50e3b5ee328e134d0e018bf05021e744e8bd06d25",
+  "sourceFileBytes": 4383824,
+  "sourcePages": [24, 26],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Tangerang",
+  "csvPath": "datasets/bps-3671-kecamatan-367101-dalam-angka-2026.csv",
+  "csvSha256": "ed5c17524780122c05ed7ecafab89c7bb9ed8376754171df9aca93fcae7ab13a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Tangerang, 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tangerang, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

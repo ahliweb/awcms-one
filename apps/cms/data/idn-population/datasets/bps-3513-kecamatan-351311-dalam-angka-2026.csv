@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.13.11.2001,4,SUMBER CENTENG,sex,laki_laki,,760,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.11.2001,4,SUMBER CENTENG,sex,perempuan,,798,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.11.2001,4,SUMBER CENTENG,total,total,,1558,jiwa,2025,registration,total_population,3.1,24,,
+35.13.11.2002,4,SAMBIRAMPAK KIDUL,sex,laki_laki,,1773,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.11.2002,4,SAMBIRAMPAK KIDUL,sex,perempuan,,1768,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.11.2002,4,SAMBIRAMPAK KIDUL,total,total,,3541,jiwa,2025,registration,total_population,3.1,24,,
+35.13.11.2003,4,SIDOMULYO,sex,laki_laki,,1210,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.11.2003,4,SIDOMULYO,sex,perempuan,,1228,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.11.2003,4,SIDOMULYO,total,total,,2438,jiwa,2025,registration,total_population,3.1,24,,
+35.13.11.2004,4,TAMBAKUKIR,sex,laki_laki,,823,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.11.2004,4,TAMBAKUKIR,sex,perempuan,,871,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.11.2004,4,TAMBAKUKIR,total,total,,1694,jiwa,2025,registration,total_population,3.1,24,,
+35.13.11.2005,4,CURAHTEMU,sex,laki_laki,,376,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.11.2005,4,CURAHTEMU,sex,perempuan,,402,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.11.2005,4,CURAHTEMU,total,total,,778,jiwa,2025,registration,total_population,3.1,24,,
+35.13.11.2006,4,SIDOREJO,sex,laki_laki,,1007,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.11.2006,4,SIDOREJO,sex,perempuan,,1118,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.11.2006,4,SIDOREJO,total,total,,2125,jiwa,2025,registration,total_population,3.1,24,,
+35.13.11.2007,4,SAMBIRAMPAK LOR,sex,laki_laki,,1496,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.11.2007,4,SAMBIRAMPAK LOR,sex,perempuan,,1509,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.11.2007,4,SAMBIRAMPAK LOR,total,total,,3005,jiwa,2025,registration,total_population,3.1,24,,
+35.13.11.2008,4,KEDUNGREJOSO,sex,laki_laki,,1582,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.11.2008,4,KEDUNGREJOSO,sex,perempuan,,1574,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.11.2008,4,KEDUNGREJOSO,total,total,,3156,jiwa,2025,registration,total_population,3.1,24,,
+35.13.11.2009,4,TALKANDANG,sex,laki_laki,,2541,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.11.2009,4,TALKANDANG,sex,perempuan,,2627,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.11.2009,4,TALKANDANG,total,total,,5168,jiwa,2025,registration,total_population,3.1,24,,
+35.13.11.2010,4,TRIWUNGAN,sex,laki_laki,,2502,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.11.2010,4,TRIWUNGAN,sex,perempuan,,2580,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.11.2010,4,TRIWUNGAN,total,total,,5082,jiwa,2025,registration,total_population,3.1,24,,
+35.13.11.2011,4,SUKOREJO,sex,laki_laki,,1940,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.11.2011,4,SUKOREJO,sex,perempuan,,2027,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.11.2011,4,SUKOREJO,total,total,,3967,jiwa,2025,registration,total_population,3.1,24,,
+35.13.11.2012,4,PASEMBON,sex,laki_laki,,801,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.11.2012,4,PASEMBON,sex,perempuan,,816,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.11.2012,4,PASEMBON,total,total,,1617,jiwa,2025,registration,total_population,3.1,24,,
+35.13.11.2013,4,KOTAANYAR,sex,laki_laki,,2177,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.11.2013,4,KOTAANYAR,sex,perempuan,,2253,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.11.2013,4,KOTAANYAR,total,total,,4430,jiwa,2025,registration,total_population,3.1,24,,
+35.13.11,3,KECAMATAN KOTAANYAR,sex,laki_laki,,18988,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.11,3,KECAMATAN KOTAANYAR,sex,perempuan,,19571,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.11,3,KECAMATAN KOTAANYAR,total,total,,38559,jiwa,2025,registration,total_population,3.1,24,,

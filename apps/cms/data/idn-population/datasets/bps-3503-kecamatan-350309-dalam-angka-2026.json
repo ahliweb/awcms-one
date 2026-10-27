@@ -1,0 +1,54 @@
+{
+  "datasetCode": "bps-3503-kecamatan-350309-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.03.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bendungan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Trenggalek",
+  "publisherDomain": "3503",
+  "publisherWebsite": "https://trenggalekkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Trenggalek (https://trenggalekkab.bps.go.id), publikasi \"Kecamatan Bendungan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3503130",
+  "publicationNumber": "35030.25016",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://trenggalekkab.bps.go.id/id/publication/2026/09/28/7a1f20193d4cb88ce8079949/kecamatan-bendungan-dalam-angka-2026.html",
+  "sourceFileSha256": "7254e52fb0c29d3b2bf10f6c1c5651b15a7fbfef1ab174dc5e56081f114ccc39",
+  "sourceFileBytes": 8081719,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Trenggalek.",
+  "csvPath": "datasets/bps-3503-kecamatan-350309-dalam-angka-2026.csv",
+  "csvSha256": "3ff6decdfd91e3fd0205e5fe9d2eff660298be8ace845ab7102dec0673fb4b49",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Bendungan, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bendungan, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"TOTAL KESELURUHAN\": unmatched ",
+    "table 3.1: the rows of region 35.03.09.2001 are not stored: sex split vs total: parts sum 2315.0000 != 2307.0000 (diff 8.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 35.03.09.2002 are not stored: sex split vs total: parts sum 2102.0000 != 2083.0000 (diff 19.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 35.03.09.2004 are not stored: sex split vs total: parts sum 6094.0000 != 6081.0000 (diff 13.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 35.03.09.2005 are not stored: sex split vs total: parts sum 2452.0000 != 2449.0000 (diff 3.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 35.03.09.2007 are not stored: sex split vs total: parts sum 4704.0000 != 4695.0000 (diff 9.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 35.03.09.2003 are not stored: sex split vs total: parts sum 3156.0000 != 3157.0000 (diff 1.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 35.03.09.2006 are not stored: sex split vs total: parts sum 3522.0000 != 3524.0000 (diff 2.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 35.03.09.2008 are not stored: sex split vs total: parts sum 4178.0000 != 4150.0000 (diff 28.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 35.03.09 are not stored: sex split vs total: parts sum 28523.0000 != 28446.0000 (diff 77.0000); the source itself is inconsistent"
+  ]
+}

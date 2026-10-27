@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3526-kecamatan-352616-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.26.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Modung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bangkalan",
+  "publisherDomain": "3526",
+  "publisherWebsite": "https://bangkalankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bangkalan (https://bangkalankab.bps.go.id), publikasi \"Kecamatan Modung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3526040",
+  "publicationNumber": "35260.26008",
+  "issn": "2808-0246",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bangkalankab.bps.go.id/id/publication/2026/09/28/8bd3fa24f47257baf2abf11c/kecamatan-modung-dalam-angka-2026.html",
+  "sourceFileSha256": "4cc4e93b8acc85958681f90ddbeac488add5651949b59db516a6c2abc4593ef2",
+  "sourceFileBytes": 22674409,
+  "sourcePages": [31, 32, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bangkalan.",
+  "csvPath": "datasets/bps-3526-kecamatan-352616-dalam-angka-2026.csv",
+  "csvSha256": "2e17be560d37cf9e7648bfd37f28cf39632be6228670c2a029f74b893a8bf1dd",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Modung, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Modung, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Catatan : Data Konsolidasi Bersih Desember Sumber : Dinas Kependudukan dan Pencatatan\": unmatched ",
+    "table 3.3: row not stored: row \"Catatan : Data Konsolidasi Bersih Desember Sumber : Dinas Kependudukan dan Pencatatan\": unmatched "
+  ]
+}

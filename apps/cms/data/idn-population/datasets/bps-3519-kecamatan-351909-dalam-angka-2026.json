@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3519-kecamatan-351909-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.19.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jiwan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Madiun",
+  "publisherDomain": "3519",
+  "publisherWebsite": "https://madiunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Madiun (https://madiunkab.bps.go.id), publikasi \"Kecamatan Jiwan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3519150",
+  "publicationNumber": "35190.26019",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://madiunkab.bps.go.id/id/publication/2026/09/28/084381ea5d0edb790ef246d6/kecamatan-jiwan-dalam-angka-2026.html",
+  "sourceFileSha256": "60b3fc5548a1143fa5000942e87c3371890ce2426c8ef8327b2a53e385bd6bbf",
+  "sourceFileBytes": 4214622,
+  "sourcePages": [],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Madiun.",
+  "csvPath": "datasets/bps-3519-kecamatan-351909-dalam-angka-2026.csv",
+  "csvSha256": "f4c6314f9cc89251cfc07e4c85fc7f997b0cff2654fc1dd1910b7a5714ea33eb",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Jiwan, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jiwan, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: the rows of region 35.19.09 are not stored: sex split vs total: parts sum 114072.0000 != 57036.0000 (diff 57036.0000); the source itself is inconsistent"
+  ]
+}

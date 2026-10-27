@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.13.03.2001,4,WONOASRI,sex,laki_laki,,1325,jiwa,2025,registration,total_population,3.1,14,,Laki-Laki
+35.13.03.2001,4,WONOASRI,sex,perempuan,,1459,jiwa,2025,registration,total_population,3.1,14,,Perempuan
+35.13.03.2001,4,WONOASRI,total,total,,2784,jiwa,2025,registration,total_population,3.1,14,,
+35.13.03.2002,4,JATISARI,sex,laki_laki,,2320,jiwa,2025,registration,total_population,3.1,14,,Laki-Laki
+35.13.03.2002,4,JATISARI,sex,perempuan,,2483,jiwa,2025,registration,total_population,3.1,14,,Perempuan
+35.13.03.2002,4,JATISARI,total,total,,4803,jiwa,2025,registration,total_population,3.1,14,,
+35.13.03.2003,4,KEDAWUNG,sex,laki_laki,,3278,jiwa,2025,registration,total_population,3.1,14,,Laki-Laki
+35.13.03.2003,4,KEDAWUNG,sex,perempuan,,3343,jiwa,2025,registration,total_population,3.1,14,,Perempuan
+35.13.03.2003,4,KEDAWUNG,total,total,,6621,jiwa,2025,registration,total_population,3.1,14,,
+35.13.03.2004,4,KARANGREJO,sex,laki_laki,,710,jiwa,2025,registration,total_population,3.1,14,,Laki-Laki
+35.13.03.2004,4,KARANGREJO,sex,perempuan,,754,jiwa,2025,registration,total_population,3.1,14,,Perempuan
+35.13.03.2004,4,KARANGREJO,total,total,,1464,jiwa,2025,registration,total_population,3.1,14,,
+35.13.03.2005,4,RESONGO,sex,laki_laki,,3107,jiwa,2025,registration,total_population,3.1,14,,Laki-Laki
+35.13.03.2005,4,RESONGO,sex,perempuan,,3360,jiwa,2025,registration,total_population,3.1,14,,Perempuan
+35.13.03.2005,4,RESONGO,total,total,,6467,jiwa,2025,registration,total_population,3.1,14,,
+35.13.03.2006,4,MENYONO,sex,laki_laki,,2115,jiwa,2025,registration,total_population,3.1,14,,Laki-Laki
+35.13.03.2006,4,MENYONO,sex,perempuan,,2273,jiwa,2025,registration,total_population,3.1,14,,Perempuan
+35.13.03.2006,4,MENYONO,total,total,,4388,jiwa,2025,registration,total_population,3.1,14,,
+35.13.03.2007,4,WRINGINANOM,sex,laki_laki,,2604,jiwa,2025,registration,total_population,3.1,14,,Laki-Laki
+35.13.03.2007,4,WRINGINANOM,sex,perempuan,,2725,jiwa,2025,registration,total_population,3.1,14,,Perempuan
+35.13.03.2007,4,WRINGINANOM,total,total,,5329,jiwa,2025,registration,total_population,3.1,14,,
+35.13.03,3,Kecamatan Kuripan,sex,laki_laki,,15459,jiwa,2025,registration,total_population,3.1,14,,Laki-Laki
+35.13.03,3,Kecamatan Kuripan,sex,perempuan,,16397,jiwa,2025,registration,total_population,3.1,14,,Perempuan
+35.13.03,3,Kecamatan Kuripan,total,total,,31856,jiwa,2025,registration,total_population,3.1,14,,

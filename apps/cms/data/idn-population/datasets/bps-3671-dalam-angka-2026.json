@@ -1,0 +1,52 @@
+{
+  "datasetCode": "bps-3671-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "36.71",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kota Tangerang Dalam Angka 2026",
+  "publisherName": "BPS Kota Tangerang",
+  "publisherDomain": "3671",
+  "publisherWebsite": "https://tangerangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Tangerang (https://tangerangkota.bps.go.id), publikasi \"Kota Tangerang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3671",
+  "publicationNumber": "36710.25001",
+  "issn": "2597-7253",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://tangerangkota.bps.go.id/id/publication/2026/02/27/f98a04d5dce12c989826d3a6/kota-tangerang-dalam-angka-2026.html",
+  "sourceFileSha256": "2e5914589fd2ae72b343abb5f45acbae28b8c6db2288cf80f865faa2354f8eb1",
+  "sourceFileBytes": 35542671,
+  "sourcePages": [103, 223],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Tangerang.",
+  "csvPath": "datasets/bps-3671-dalam-angka-2026.csv",
+  "csvSha256": "29ad52642b279b8ee6660dc699626a51b7493b92d05c0dbb723cdd6c18b57f50",
+  "tablesUsed": [
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kota Tangerang, 2025",
+      "printedPages": [103],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kota Tangerang (rupiah), 2024 dan 2025",
+      "printedPages": [223],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Total population per child region (3.1.1): no table with this title was found in the publication",
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 4.3.1: row not stored: row \"Kota Tangerang Tangerang Municipality\": unmatched "
+  ]
+}

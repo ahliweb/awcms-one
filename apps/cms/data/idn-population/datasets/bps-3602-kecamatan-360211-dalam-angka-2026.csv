@@ -1,0 +1,100 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.02.11.2001,4,Sarageni,sex,laki_laki,,1894,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.11.2001,4,Sarageni,sex,perempuan,,1806,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.11.2001,4,Sarageni,total,total,,3700,jiwa,2025,registration,total_population,3.1,23,,
+36.02.11.2013,4,Jayasari,sex,laki_laki,,1663,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.11.2013,4,Jayasari,sex,perempuan,,1556,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.11.2013,4,Jayasari,total,total,,3219,jiwa,2025,registration,total_population,3.1,23,,
+36.02.11.2010,4,Margatirta,sex,laki_laki,,2312,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.11.2010,4,Margatirta,sex,perempuan,,2112,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.11.2010,4,Margatirta,total,total,,4424,jiwa,2025,registration,total_population,3.1,23,,
+36.02.11.2002,4,Gunung Anten,sex,laki_laki,,2716,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.11.2002,4,Gunung Anten,sex,perempuan,,2533,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.11.2002,4,Gunung Anten,total,total,,5249,jiwa,2025,registration,total_population,3.1,23,,
+36.02.11.2015,4,Sangkan Manik,sex,laki_laki,,2192,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.11.2015,4,Sangkan Manik,sex,perempuan,,1987,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.11.2015,4,Sangkan Manik,total,total,,4179,jiwa,2025,registration,total_population,3.1,23,,
+36.02.11.2003,4,Sudamanik,sex,laki_laki,,2967,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.11.2003,4,Sudamanik,sex,perempuan,,2920,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.11.2003,4,Sudamanik,total,total,,5887,jiwa,2025,registration,total_population,3.1,23,,
+36.02.11.2014,4,Girimukti,sex,laki_laki,,2078,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.11.2014,4,Girimukti,sex,perempuan,,2108,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.11.2014,4,Girimukti,total,total,,4186,jiwa,2025,registration,total_population,3.1,23,,
+36.02.11.2008,4,Jayamanik,sex,laki_laki,,2802,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.11.2008,4,Jayamanik,sex,perempuan,,2617,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.11.2008,4,Jayamanik,total,total,,5419,jiwa,2025,registration,total_population,3.1,23,,
+36.02.11.2009,4,Margaluyu,sex,laki_laki,,2332,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.11.2009,4,Margaluyu,sex,perempuan,,2164,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.11.2009,4,Margaluyu,total,total,,4496,jiwa,2025,registration,total_population,3.1,23,,
+36.02.11.2016,4,Sangiang Jaya,sex,laki_laki,,2072,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.11.2016,4,Sangiang Jaya,sex,perempuan,,1840,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.11.2016,4,Sangiang Jaya,total,total,,3912,jiwa,2025,registration,total_population,3.1,23,,
+36.02.11.2004,4,Tambak,sex,laki_laki,,1916,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.11.2004,4,Tambak,sex,perempuan,,1738,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.11.2004,4,Tambak,total,total,,3654,jiwa,2025,registration,total_population,3.1,23,,
+36.02.11.2007,4,Marga Jaya,sex,laki_laki,,3928,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.11.2007,4,Marga Jaya,sex,perempuan,,3751,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.11.2007,4,Marga Jaya,total,total,,7679,jiwa,2025,registration,total_population,3.1,23,,
+36.02.11.2005,4,Cimarga,sex,laki_laki,,2651,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.11.2005,4,Cimarga,sex,perempuan,,2540,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.11.2005,4,Cimarga,total,total,,5191,jiwa,2025,registration,total_population,3.1,23,,
+36.02.11.2012,4,Mekar Jaya,sex,laki_laki,,2560,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.11.2012,4,Mekar Jaya,sex,perempuan,,2384,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.11.2012,4,Mekar Jaya,total,total,,4944,jiwa,2025,registration,total_population,3.1,23,,
+36.02.11.2011,4,Inten Jaya,sex,laki_laki,,2495,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.11.2011,4,Inten Jaya,sex,perempuan,,2292,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.11.2011,4,Inten Jaya,total,total,,4787,jiwa,2025,registration,total_population,3.1,23,,
+36.02.11.2006,4,Karya Jaya,sex,laki_laki,,3074,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.11.2006,4,Karya Jaya,sex,perempuan,,2801,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.11.2006,4,Karya Jaya,total,total,,5875,jiwa,2025,registration,total_population,3.1,23,,
+36.02.11.2017,4,Mekarmulya,sex,laki_laki,,2071,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+36.02.11.2017,4,Mekarmulya,sex,perempuan,,1887,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+36.02.11.2017,4,Mekarmulya,total,total,,3958,jiwa,2025,registration,total_population,3.1,23,,
+36.02.11,3,Cimarga,age_group,0-4,laki_laki,3519,jiwa,2025,registration,total_population,3.2,25,,0-4
+36.02.11,3,Cimarga,age_group,0-4,perempuan,3120,jiwa,2025,registration,total_population,3.2,25,,0-4
+36.02.11,3,Cimarga,age_group,0-4,,6639,jiwa,2025,registration,total_population,3.2,25,,0-4
+36.02.11,3,Cimarga,age_group,5-9,laki_laki,4051,jiwa,2025,registration,total_population,3.2,25,,5-9
+36.02.11,3,Cimarga,age_group,5-9,perempuan,3821,jiwa,2025,registration,total_population,3.2,25,,5-9
+36.02.11,3,Cimarga,age_group,5-9,,7872,jiwa,2025,registration,total_population,3.2,25,,5-9
+36.02.11,3,Cimarga,age_group,10-14,laki_laki,3857,jiwa,2025,registration,total_population,3.2,25,,10-14
+36.02.11,3,Cimarga,age_group,10-14,perempuan,3485,jiwa,2025,registration,total_population,3.2,25,,10-14
+36.02.11,3,Cimarga,age_group,10-14,,7342,jiwa,2025,registration,total_population,3.2,25,,10-14
+36.02.11,3,Cimarga,age_group,15-19,laki_laki,3243,jiwa,2025,registration,total_population,3.2,25,,15-19
+36.02.11,3,Cimarga,age_group,15-19,perempuan,3311,jiwa,2025,registration,total_population,3.2,25,,15-19
+36.02.11,3,Cimarga,age_group,15-19,,6554,jiwa,2025,registration,total_population,3.2,25,,15-19
+36.02.11,3,Cimarga,age_group,20-24,laki_laki,3510,jiwa,2025,registration,total_population,3.2,25,,20-24
+36.02.11,3,Cimarga,age_group,20-24,perempuan,3253,jiwa,2025,registration,total_population,3.2,25,,20-24
+36.02.11,3,Cimarga,age_group,20-24,,6763,jiwa,2025,registration,total_population,3.2,25,,20-24
+36.02.11,3,Cimarga,age_group,25-29,laki_laki,3699,jiwa,2025,registration,total_population,3.2,25,,25-29
+36.02.11,3,Cimarga,age_group,25-29,perempuan,3205,jiwa,2025,registration,total_population,3.2,25,,25-29
+36.02.11,3,Cimarga,age_group,25-29,,6904,jiwa,2025,registration,total_population,3.2,25,,25-29
+36.02.11,3,Cimarga,age_group,30-34,laki_laki,3427,jiwa,2025,registration,total_population,3.2,25,,30-34
+36.02.11,3,Cimarga,age_group,30-34,perempuan,3003,jiwa,2025,registration,total_population,3.2,25,,30-34
+36.02.11,3,Cimarga,age_group,30-34,,6430,jiwa,2025,registration,total_population,3.2,25,,30-34
+36.02.11,3,Cimarga,age_group,35-39,laki_laki,3387,jiwa,2025,registration,total_population,3.2,25,,35-39
+36.02.11,3,Cimarga,age_group,35-39,perempuan,3092,jiwa,2025,registration,total_population,3.2,25,,35-39
+36.02.11,3,Cimarga,age_group,35-39,,6479,jiwa,2025,registration,total_population,3.2,25,,35-39
+36.02.11,3,Cimarga,age_group,40-44,laki_laki,2971,jiwa,2025,registration,total_population,3.2,25,,40-44
+36.02.11,3,Cimarga,age_group,40-44,perempuan,2706,jiwa,2025,registration,total_population,3.2,25,,40-44
+36.02.11,3,Cimarga,age_group,40-44,,5677,jiwa,2025,registration,total_population,3.2,25,,40-44
+36.02.11,3,Cimarga,age_group,45-49,laki_laki,2440,jiwa,2025,registration,total_population,3.2,25,,45-49
+36.02.11,3,Cimarga,age_group,45-49,perempuan,2266,jiwa,2025,registration,total_population,3.2,25,,45-49
+36.02.11,3,Cimarga,age_group,45-49,,4706,jiwa,2025,registration,total_population,3.2,25,,45-49
+36.02.11,3,Cimarga,age_group,50-54,laki_laki,1929,jiwa,2025,registration,total_population,3.2,25,,50-54
+36.02.11,3,Cimarga,age_group,50-54,perempuan,1879,jiwa,2025,registration,total_population,3.2,25,,50-54
+36.02.11,3,Cimarga,age_group,50-54,,3808,jiwa,2025,registration,total_population,3.2,25,,50-54
+36.02.11,3,Cimarga,age_group,55-59,laki_laki,1747,jiwa,2025,registration,total_population,3.2,25,,55-59
+36.02.11,3,Cimarga,age_group,55-59,perempuan,1903,jiwa,2025,registration,total_population,3.2,25,,55-59
+36.02.11,3,Cimarga,age_group,55-59,,3650,jiwa,2025,registration,total_population,3.2,25,,55-59
+36.02.11,3,Cimarga,age_group,60-64,laki_laki,1429,jiwa,2025,registration,total_population,3.2,25,,60-64
+36.02.11,3,Cimarga,age_group,60-64,perempuan,1315,jiwa,2025,registration,total_population,3.2,25,,60-64
+36.02.11,3,Cimarga,age_group,60-64,,2744,jiwa,2025,registration,total_population,3.2,25,,60-64
+36.02.11,3,Cimarga,age_group,65-69,laki_laki,1209,jiwa,2025,registration,total_population,3.2,25,,65-69
+36.02.11,3,Cimarga,age_group,65-69,perempuan,1111,jiwa,2025,registration,total_population,3.2,25,,65-69
+36.02.11,3,Cimarga,age_group,65-69,,2320,jiwa,2025,registration,total_population,3.2,25,,65-69
+36.02.11,3,Cimarga,age_group,70-74,laki_laki,543,jiwa,2025,registration,total_population,3.2,25,,70-74
+36.02.11,3,Cimarga,age_group,70-74,perempuan,544,jiwa,2025,registration,total_population,3.2,25,,70-74
+36.02.11,3,Cimarga,age_group,70-74,,1087,jiwa,2025,registration,total_population,3.2,25,,70-74
+36.02.11,3,Cimarga,age_group,75+,laki_laki,762,jiwa,2025,registration,total_population,3.2,25,,75+
+36.02.11,3,Cimarga,age_group,75+,perempuan,1022,jiwa,2025,registration,total_population,3.2,25,,75+
+36.02.11,3,Cimarga,age_group,75+,,1784,jiwa,2025,registration,total_population,3.2,25,,75+

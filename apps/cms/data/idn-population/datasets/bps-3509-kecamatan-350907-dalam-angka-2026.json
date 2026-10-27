@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3509-kecamatan-350907-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.09.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Semboro Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Jember",
+  "publisherDomain": "3509",
+  "publisherWebsite": "https://jemberkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Jember (https://jemberkab.bps.go.id), publikasi \"Kecamatan Semboro Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3509150",
+  "publicationNumber": "35090.26019",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jemberkab.bps.go.id/id/publication/2026/09/28/ded2486392d7b46184399706/kecamatan-semboro-dalam-angka-2026.html",
+  "sourceFileSha256": "2247bfd3ed2ba98231610f1765eac67e113117393338d7b4eafd03c0c29139d5",
+  "sourceFileBytes": 29074358,
+  "sourcePages": [33, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jember.",
+  "csvPath": "datasets/bps-3509-kecamatan-350907-dalam-angka-2026.csv",
+  "csvSha256": "c1e07719a77f4951764320f990c7afb9c4daa68efa5e6eec9910a3f29ce53e63",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Semboro, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Semboro, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,65 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.28.01.2001,4,Dabuan,sex,perempuan,,1025,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+35.28.01.2001,4,Dabuan,total,total,,2008,jiwa,2025,registration,total_population,3.1,27,,
+35.28.01.2002,4,Terrak,sex,perempuan,,2118,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+35.28.01.2002,4,Terrak,total,total,,4152,jiwa,2025,registration,total_population,3.1,27,,
+35.28.01.2003,4,Mangar,sex,perempuan,,1407,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+35.28.01.2003,4,Mangar,total,total,,2818,jiwa,2025,registration,total_population,3.1,27,,
+35.28.01.2004,4,Bandaran,sex,perempuan,,3307,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+35.28.01.2004,4,Bandaran,total,total,,6562,jiwa,2025,registration,total_population,3.1,27,,
+35.28.01.2005,4,Kramat,sex,perempuan,,2398,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+35.28.01.2005,4,Kramat,total,total,,4739,jiwa,2025,registration,total_population,3.1,27,,
+35.28.01.2006,4,Ambat,sex,perempuan,,2856,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+35.28.01.2006,4,Ambat,total,total,,5626,jiwa,2025,registration,total_population,3.1,27,,
+35.28.01.2008,4,Tlanakan,sex,perempuan,,2029,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+35.28.01.2008,4,Tlanakan,total,total,,4019,jiwa,2025,registration,total_population,3.1,27,,
+35.28.01.2009,4,Branta Tinggi,sex,perempuan,,1319,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+35.28.01.2009,4,Branta Tinggi,total,total,,2603,jiwa,2025,registration,total_population,3.1,27,,
+35.28.01.2010,4,Tlesah,sex,perempuan,,774,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+35.28.01.2010,4,Tlesah,total,total,,1504,jiwa,2025,registration,total_population,3.1,27,,
+35.28.01.2011,4,Larangan Tokol,sex,perempuan,,4144,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+35.28.01.2011,4,Larangan Tokol,total,total,,8022,jiwa,2025,registration,total_population,3.1,27,,
+35.28.01.2012,4,Ceguk,sex,perempuan,,1297,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+35.28.01.2012,4,Ceguk,total,total,,2535,jiwa,2025,registration,total_population,3.1,27,,
+35.28.01.2013,4,Panglegur,sex,perempuan,,2709,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+35.28.01.2013,4,Panglegur,total,total,,5344,jiwa,2025,registration,total_population,3.1,27,,
+35.28.01.2015,4,Gugul,sex,perempuan,,2007,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+35.28.01.2015,4,Gugul,total,total,,3963,jiwa,2025,registration,total_population,3.1,27,,
+35.28.01.2014,4,Bukek,sex,perempuan,,1040,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+35.28.01.2014,4,Bukek,total,total,,1988,jiwa,2025,registration,total_population,3.1,27,,
+35.28.01.2016,4,Larangan Slampar,sex,perempuan,,2559,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+35.28.01.2016,4,Larangan Slampar,total,total,,4941,jiwa,2025,registration,total_population,3.1,27,,
+35.28.01.2017,4,Taro’an,sex,perempuan,,1284,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+35.28.01.2017,4,Taro’an,total,total,,2590,jiwa,2025,registration,total_population,3.1,27,,
+35.28.01,3,Tlanakan,age_group,0-4,perempuan,2742,jiwa,2025,registration,total_population,3.2,29,,0–4
+35.28.01,3,Tlanakan,age_group,0-4,,5591,jiwa,2025,registration,total_population,3.2,29,,0–4
+35.28.01,3,Tlanakan,age_group,5-9,perempuan,2938,jiwa,2025,registration,total_population,3.2,29,,5–9
+35.28.01,3,Tlanakan,age_group,5-9,,5976,jiwa,2025,registration,total_population,3.2,29,,5–9
+35.28.01,3,Tlanakan,age_group,10-14,perempuan,2637,jiwa,2025,registration,total_population,3.2,29,,10–14
+35.28.01,3,Tlanakan,age_group,10-14,,5583,jiwa,2025,registration,total_population,3.2,29,,10–14
+35.28.01,3,Tlanakan,age_group,15-19,perempuan,2202,jiwa,2025,registration,total_population,3.2,29,,15–19
+35.28.01,3,Tlanakan,age_group,15-19,,4517,jiwa,2025,registration,total_population,3.2,29,,15–19
+35.28.01,3,Tlanakan,age_group,20-24,perempuan,2635,jiwa,2025,registration,total_population,3.2,29,,20–24
+35.28.01,3,Tlanakan,age_group,20-24,,5242,jiwa,2025,registration,total_population,3.2,29,,20–24
+35.28.01,3,Tlanakan,age_group,25-29,perempuan,2630,jiwa,2025,registration,total_population,3.2,29,,25–29
+35.28.01,3,Tlanakan,age_group,25-29,,5348,jiwa,2025,registration,total_population,3.2,29,,25–29
+35.28.01,3,Tlanakan,age_group,30-34,perempuan,2494,jiwa,2025,registration,total_population,3.2,29,,30–34
+35.28.01,3,Tlanakan,age_group,30-34,,5063,jiwa,2025,registration,total_population,3.2,29,,30–34
+35.28.01,3,Tlanakan,age_group,35-39,perempuan,2464,jiwa,2025,registration,total_population,3.2,29,,35–39
+35.28.01,3,Tlanakan,age_group,35-39,,4803,jiwa,2025,registration,total_population,3.2,29,,35–39
+35.28.01,3,Tlanakan,age_group,40-44,perempuan,2646,jiwa,2025,registration,total_population,3.2,29,,40–44
+35.28.01,3,Tlanakan,age_group,40-44,,4995,jiwa,2025,registration,total_population,3.2,29,,40–44
+35.28.01,3,Tlanakan,age_group,45-49,perempuan,2605,jiwa,2025,registration,total_population,3.2,29,,45–49
+35.28.01,3,Tlanakan,age_group,45-49,,5102,jiwa,2025,registration,total_population,3.2,29,,45–49
+35.28.01,3,Tlanakan,age_group,50-54,perempuan,2171,jiwa,2025,registration,total_population,3.2,29,,50–54
+35.28.01,3,Tlanakan,age_group,50-54,,4149,jiwa,2025,registration,total_population,3.2,29,,50–54
+35.28.01,3,Tlanakan,age_group,55-59,perempuan,1903,jiwa,2025,registration,total_population,3.2,29,,55–59
+35.28.01,3,Tlanakan,age_group,55-59,,3683,jiwa,2025,registration,total_population,3.2,29,,55–59
+35.28.01,3,Tlanakan,age_group,60-64,perempuan,1578,jiwa,2025,registration,total_population,3.2,29,,60–64
+35.28.01,3,Tlanakan,age_group,60-64,,2937,jiwa,2025,registration,total_population,3.2,29,,60–64
+35.28.01,3,Tlanakan,age_group,65-69,perempuan,1314,jiwa,2025,registration,total_population,3.2,29,,65–69
+35.28.01,3,Tlanakan,age_group,65-69,,2345,jiwa,2025,registration,total_population,3.2,29,,65–69
+35.28.01,3,Tlanakan,age_group,70-74,perempuan,886,jiwa,2025,registration,total_population,3.2,29,,70–74
+35.28.01,3,Tlanakan,age_group,70-74,,1651,jiwa,2025,registration,total_population,3.2,29,,70–74
+35.28.01,3,Tlanakan,age_group,75+,perempuan,1259,jiwa,2025,registration,total_population,3.2,29,,75+
+35.28.01,3,Tlanakan,age_group,75+,,2058,jiwa,2025,registration,total_population,3.2,29,,75+

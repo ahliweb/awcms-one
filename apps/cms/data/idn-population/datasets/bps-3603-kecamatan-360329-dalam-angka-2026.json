@@ -1,0 +1,62 @@
+{
+  "datasetCode": "bps-3603-kecamatan-360329-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.03.29",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sindang Jaya Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tangerang",
+  "publisherDomain": "3603",
+  "publisherWebsite": "https://tangerangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tangerang (https://tangerangkab.bps.go.id), publikasi \"Kecamatan Sindang Jaya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3603121",
+  "publicationNumber": "36030.26018",
+  "issn": "2407-473X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tangerangkab.bps.go.id/id/publication/2026/09/28/1997e923b8e0aa1a8fe9f78a/kecamatan-sindang-jaya-dalam-angka-2026.html",
+  "sourceFileSha256": "8f765d1739d9e8311c69697818c8372ef640705f86cb6356bfea406fba26595c",
+  "sourceFileBytes": 13227201,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tangerang.",
+  "csvPath": "datasets/bps-3603-kecamatan-360329-dalam-angka-2026.csv",
+  "csvSha256": "304273d57c3c897370814f84b5a3c0f0ff0a36e12dc91be47ea29d3bd7a08bc9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sindang Jaya, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sindang Jaya, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Sindang Jaya Sindang Jaya District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Sindang Jaya Sindang Jaya District\": unmatched ",
+    "table 3.2: row not stored: row \"00--04\": unmatched ",
+    "table 3.2: row not stored: row \"05--09\": unmatched ",
+    "table 3.2: row not stored: row \"10--14\": unmatched ",
+    "table 3.2: row not stored: row \"15--19\": unmatched ",
+    "table 3.2: row not stored: row \"20--24\": unmatched ",
+    "table 3.2: row not stored: row \"25--29\": unmatched ",
+    "table 3.2: row not stored: row \"30--34\": unmatched ",
+    "table 3.2: row not stored: row \"35--39\": unmatched ",
+    "table 3.2: row not stored: row \"40--44\": unmatched ",
+    "table 3.2: row not stored: row \"45--49\": unmatched ",
+    "table 3.2: row not stored: row \"50--54\": unmatched ",
+    "table 3.2: row not stored: row \"55--59\": unmatched ",
+    "table 3.2: row not stored: row \"60--64\": unmatched ",
+    "table 3.2: row not stored: row \"65--69\": unmatched ",
+    "table 3.2: row not stored: row \"70--74\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Sindang Jaya Sindang Jaya District\": unmatched "
+  ]
+}

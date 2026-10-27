@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.03.08.2006,4,Gunung Sari,sex,laki_laki,,2653,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.08.2006,4,Gunung Sari,sex,perempuan,,2409,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.08.2006,4,Gunung Sari,total,total,,5062,jiwa,2025,registration,total_population,3.1,25,,
+36.03.08.2005,4,Sasak,sex,laki_laki,,3365,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.08.2005,4,Sasak,sex,perempuan,,3140,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.08.2005,4,Sasak,total,total,,6505,jiwa,2025,registration,total_population,3.1,25,,
+36.03.08.2007,4,Kedung Dalem,sex,laki_laki,,4673,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.08.2007,4,Kedung Dalem,sex,perempuan,,4534,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.08.2007,4,Kedung Dalem,total,total,,9207,jiwa,2025,registration,total_population,3.1,25,,
+36.03.08.2003,4,Tegal Kunir Kidul,sex,laki_laki,,5467,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.08.2003,4,Tegal Kunir Kidul,sex,perempuan,,5162,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.08.2003,4,Tegal Kunir Kidul,total,total,,10629,jiwa,2025,registration,total_population,3.1,25,,
+36.03.08.2010,4,Jati Waringin,sex,laki_laki,,4617,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.08.2010,4,Jati Waringin,sex,perempuan,,4634,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.08.2010,4,Jati Waringin,total,total,,9251,jiwa,2025,registration,total_population,3.1,25,,
+36.03.08.2004,4,Tegal Kunir Lor,sex,laki_laki,,4599,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.08.2004,4,Tegal Kunir Lor,sex,perempuan,,4333,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.08.2004,4,Tegal Kunir Lor,total,total,,8932,jiwa,2025,registration,total_population,3.1,25,,
+36.03.08.2011,4,Banyu Asih,sex,laki_laki,,4378,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.08.2011,4,Banyu Asih,sex,perempuan,,4224,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.08.2011,4,Banyu Asih,total,total,,8602,jiwa,2025,registration,total_population,3.1,25,,
+36.03.08.1002,4,Mauk Timur,sex,laki_laki,,3151,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.08.1002,4,Mauk Timur,sex,perempuan,,3032,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.08.1002,4,Mauk Timur,total,total,,6183,jiwa,2025,registration,total_population,3.1,25,,
+36.03.08.2001,4,Mauk Barat,sex,laki_laki,,3674,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.08.2001,4,Mauk Barat,sex,perempuan,,3537,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.08.2001,4,Mauk Barat,total,total,,7211,jiwa,2025,registration,total_population,3.1,25,,
+36.03.08.2012,4,Ketapang,sex,laki_laki,,3799,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.08.2012,4,Ketapang,sex,perempuan,,3674,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.08.2012,4,Ketapang,total,total,,7473,jiwa,2025,registration,total_population,3.1,25,,
+36.03.08.2008,4,Marga Mulya,sex,laki_laki,,4424,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.08.2008,4,Marga Mulya,sex,perempuan,,4195,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.08.2008,4,Marga Mulya,total,total,,8619,jiwa,2025,registration,total_population,3.1,25,,
+36.03.08.2009,4,Tanjung Anom,sex,laki_laki,,4761,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.08.2009,4,Tanjung Anom,sex,perempuan,,4448,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.08.2009,4,Tanjung Anom,total,total,,9209,jiwa,2025,registration,total_population,3.1,25,,
+36.03.08,3,Kecamatan Mauk,sex,laki_laki,,49561,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.08,3,Kecamatan Mauk,sex,perempuan,,47322,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.08,3,Kecamatan Mauk,total,total,,96883,jiwa,2025,registration,total_population,3.1,25,,
+36.03.08,3,Mauk,age_group,0-4,laki_laki,3633,jiwa,2025,registration,total_population,3.2,27,,00–04
+36.03.08,3,Mauk,age_group,0-4,perempuan,3340,jiwa,2025,registration,total_population,3.2,27,,00–04
+36.03.08,3,Mauk,age_group,0-4,,6973,jiwa,2025,registration,total_population,3.2,27,,00–04
+36.03.08,3,Mauk,age_group,5-9,laki_laki,4754,jiwa,2025,registration,total_population,3.2,27,,05–09
+36.03.08,3,Mauk,age_group,5-9,perempuan,4426,jiwa,2025,registration,total_population,3.2,27,,05–09
+36.03.08,3,Mauk,age_group,5-9,,9180,jiwa,2025,registration,total_population,3.2,27,,05–09
+36.03.08,3,Mauk,age_group,10-14,laki_laki,4496,jiwa,2025,registration,total_population,3.2,27,,10–14
+36.03.08,3,Mauk,age_group,10-14,perempuan,4211,jiwa,2025,registration,total_population,3.2,27,,10–14
+36.03.08,3,Mauk,age_group,10-14,,8707,jiwa,2025,registration,total_population,3.2,27,,10–14
+36.03.08,3,Mauk,age_group,15-19,laki_laki,3750,jiwa,2025,registration,total_population,3.2,27,,15–19
+36.03.08,3,Mauk,age_group,15-19,perempuan,3598,jiwa,2025,registration,total_population,3.2,27,,15–19
+36.03.08,3,Mauk,age_group,15-19,,7348,jiwa,2025,registration,total_population,3.2,27,,15–19
+36.03.08,3,Mauk,age_group,20-24,laki_laki,3442,jiwa,2025,registration,total_population,3.2,27,,20–24
+36.03.08,3,Mauk,age_group,20-24,perempuan,3349,jiwa,2025,registration,total_population,3.2,27,,20–24
+36.03.08,3,Mauk,age_group,20-24,,6791,jiwa,2025,registration,total_population,3.2,27,,20–24
+36.03.08,3,Mauk,age_group,25-29,laki_laki,3905,jiwa,2025,registration,total_population,3.2,27,,25–29
+36.03.08,3,Mauk,age_group,25-29,perempuan,3525,jiwa,2025,registration,total_population,3.2,27,,25–29
+36.03.08,3,Mauk,age_group,25-29,,7430,jiwa,2025,registration,total_population,3.2,27,,25–29
+36.03.08,3,Mauk,age_group,30-34,laki_laki,4447,jiwa,2025,registration,total_population,3.2,27,,30–34
+36.03.08,3,Mauk,age_group,30-34,perempuan,3960,jiwa,2025,registration,total_population,3.2,27,,30–34
+36.03.08,3,Mauk,age_group,30-34,,8407,jiwa,2025,registration,total_population,3.2,27,,30–34
+36.03.08,3,Mauk,age_group,35-39,laki_laki,4508,jiwa,2025,registration,total_population,3.2,27,,35–39
+36.03.08,3,Mauk,age_group,35-39,perempuan,4068,jiwa,2025,registration,total_population,3.2,27,,35–39
+36.03.08,3,Mauk,age_group,35-39,,8576,jiwa,2025,registration,total_population,3.2,27,,35–39
+36.03.08,3,Mauk,age_group,40-44,laki_laki,4030,jiwa,2025,registration,total_population,3.2,27,,40–44
+36.03.08,3,Mauk,age_group,40-44,perempuan,3755,jiwa,2025,registration,total_population,3.2,27,,40–44
+36.03.08,3,Mauk,age_group,40-44,,7785,jiwa,2025,registration,total_population,3.2,27,,40–44
+36.03.08,3,Mauk,age_group,45-49,laki_laki,3315,jiwa,2025,registration,total_population,3.2,27,,45–49
+36.03.08,3,Mauk,age_group,45-49,perempuan,3452,jiwa,2025,registration,total_population,3.2,27,,45–49
+36.03.08,3,Mauk,age_group,45-49,,6767,jiwa,2025,registration,total_population,3.2,27,,45–49
+36.03.08,3,Mauk,age_group,50-54,laki_laki,2693,jiwa,2025,registration,total_population,3.2,27,,50–54
+36.03.08,3,Mauk,age_group,50-54,perempuan,2733,jiwa,2025,registration,total_population,3.2,27,,50–54
+36.03.08,3,Mauk,age_group,50-54,,5426,jiwa,2025,registration,total_population,3.2,27,,50–54
+36.03.08,3,Mauk,age_group,55-59,laki_laki,2200,jiwa,2025,registration,total_population,3.2,27,,55–59
+36.03.08,3,Mauk,age_group,55-59,perempuan,2226,jiwa,2025,registration,total_population,3.2,27,,55–59
+36.03.08,3,Mauk,age_group,55-59,,4426,jiwa,2025,registration,total_population,3.2,27,,55–59
+36.03.08,3,Mauk,age_group,60-64,laki_laki,1590,jiwa,2025,registration,total_population,3.2,27,,60–64
+36.03.08,3,Mauk,age_group,60-64,perempuan,1761,jiwa,2025,registration,total_population,3.2,27,,60–64
+36.03.08,3,Mauk,age_group,60-64,,3351,jiwa,2025,registration,total_population,3.2,27,,60–64
+36.03.08,3,Mauk,age_group,65-69,laki_laki,1272,jiwa,2025,registration,total_population,3.2,27,,65–69
+36.03.08,3,Mauk,age_group,65-69,perempuan,1379,jiwa,2025,registration,total_population,3.2,27,,65–69
+36.03.08,3,Mauk,age_group,65-69,,2651,jiwa,2025,registration,total_population,3.2,27,,65–69
+36.03.08,3,Mauk,age_group,70-74,laki_laki,802,jiwa,2025,registration,total_population,3.2,27,,70–74
+36.03.08,3,Mauk,age_group,70-74,perempuan,705,jiwa,2025,registration,total_population,3.2,27,,70–74
+36.03.08,3,Mauk,age_group,70-74,,1507,jiwa,2025,registration,total_population,3.2,27,,70–74
+36.03.08,3,Mauk,age_group,75+,laki_laki,724,jiwa,2025,registration,total_population,3.2,27,,>75
+36.03.08,3,Mauk,age_group,75+,perempuan,834,jiwa,2025,registration,total_population,3.2,27,,>75
+36.03.08,3,Mauk,age_group,75+,,1558,jiwa,2025,registration,total_population,3.2,27,,>75
+36.03.08,3,Kecamatan Mauk,sex,laki_laki,,49561,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+36.03.08,3,Kecamatan Mauk,sex,perempuan,,47322,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+36.03.08,3,Kecamatan Mauk,total,total,,96883,jiwa,2025,registration,total_population,3.2,27,,

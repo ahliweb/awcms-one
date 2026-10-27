@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3503-kecamatan-350301-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.03.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Panggul Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Trenggalek",
+  "publisherDomain": "3503",
+  "publisherWebsite": "https://trenggalekkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Trenggalek (https://trenggalekkab.bps.go.id), publikasi \"Kecamatan Panggul Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3503010",
+  "publicationNumber": "35030.25014",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://trenggalekkab.bps.go.id/id/publication/2026/09/28/e4a3a3e1d27dd51ae315500d/kecamatan-panggul-dalam-angka-2026.html",
+  "sourceFileSha256": "cce3b8588ccb48aac3a85a8f583f2a50f2c5f76fc77119c83c8aa0a7df911690",
+  "sourceFileBytes": 5174006,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Trenggalek.",
+  "csvPath": "datasets/bps-3503-kecamatan-350301-dalam-angka-2026.csv",
+  "csvSha256": "2284181526c63468ae0e80306c5b0ad81104494e4c274e14f1f35ccabe78a203",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, dan Kepadatan Penduduk Menurut Desa di Kecamatan Panggul, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Panggul, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "cross-table disagreement, both stored as published: 35.03.01 sex/perempuan/ 2025: 39611 (table 3.1) vs 40241 (table 3.2)",
+    "cross-table disagreement, both stored as published: 35.03.01 total/total/ 2025: 80614 (table 3.1) vs 81244 (table 3.2)"
+  ]
+}

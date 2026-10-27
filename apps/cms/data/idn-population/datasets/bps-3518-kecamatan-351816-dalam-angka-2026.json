@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-3518-kecamatan-351816-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.18.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Rejoso Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Nganjuk",
+  "publisherDomain": "3518",
+  "publisherWebsite": "https://nganjukkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Nganjuk (https://nganjukkab.bps.go.id), publikasi \"Kecamatan Rejoso Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "35180.2622",
+  "issn": "2598-6643",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://nganjukkab.bps.go.id/id/publication/2026/09/28/70d02b38dbf779adcee64e8b/kecamatan-rejoso-dalam-angka-2026.html",
+  "sourceFileSha256": "a95b20ad4d3aa1f939903b442a0c9bd5de0b7d410c4ed2d41ff43a161f1ab765",
+  "sourceFileBytes": 7241934,
+  "sourcePages": [24, 25, 26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Nganjuk.",
+  "csvPath": "datasets/bps-3518-kecamatan-351816-dalam-angka-2026.csv",
+  "csvSha256": "4080952a79a8bf6d62c9d04546a4e0154d2da9382b0ea05b7b1fd065161dceb6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Rejoso, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Rejoso, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Desa dan Agama di Kecamatan Rejoso, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": ["table 3.3: row not stored: row \"Desa/Villages\": unmatched "]
+}

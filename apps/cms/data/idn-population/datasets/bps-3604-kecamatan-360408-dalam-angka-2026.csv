@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.04.08.2006,4,Argawana,sex,laki_laki,,4118,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.04.08.2006,4,Argawana,sex,perempuan,,4091,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.04.08.2006,4,Argawana,total,total,,8209,jiwa,2025,registration,total_population,3.1,25,,
+36.04.08.2007,4,Banyuwangi,sex,laki_laki,,2073,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.04.08.2007,4,Banyuwangi,sex,perempuan,,2153,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.04.08.2007,4,Banyuwangi,total,total,,4226,jiwa,2025,registration,total_population,3.1,25,,
+36.04.08.2008,4,Margasari,sex,laki_laki,,2130,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.04.08.2008,4,Margasari,sex,perempuan,,2169,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.04.08.2008,4,Margasari,total,total,,4299,jiwa,2025,registration,total_population,3.1,25,,
+36.04.08.2001,4,PuloAmpel,sex,laki_laki,,1622,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.04.08.2001,4,PuloAmpel,sex,perempuan,,1503,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.04.08.2001,4,PuloAmpel,total,total,,3125,jiwa,2025,registration,total_population,3.1,25,,
+36.04.08.2002,4,Sumuranja,sex,laki_laki,,2587,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.04.08.2002,4,Sumuranja,sex,perempuan,,2584,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.04.08.2002,4,Sumuranja,total,total,,5171,jiwa,2025,registration,total_population,3.1,25,,
+36.04.08.2004,4,Kedung Soka,sex,laki_laki,,2827,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.04.08.2004,4,Kedung Soka,sex,perempuan,,2654,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.04.08.2004,4,Kedung Soka,total,total,,5481,jiwa,2025,registration,total_population,3.1,25,,
+36.04.08.2003,4,Mangunreja,sex,laki_laki,,1820,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.04.08.2003,4,Mangunreja,sex,perempuan,,1827,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.04.08.2003,4,Mangunreja,total,total,,3647,jiwa,2025,registration,total_population,3.1,25,,
+36.04.08.2005,4,Salira,sex,laki_laki,,2638,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.04.08.2005,4,Salira,sex,perempuan,,2562,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.04.08.2005,4,Salira,total,total,,5200,jiwa,2025,registration,total_population,3.1,25,,
+36.04.08.2009,4,Pulo Panjang,sex,laki_laki,,1803,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.04.08.2009,4,Pulo Panjang,sex,perempuan,,1727,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.04.08.2009,4,Pulo Panjang,total,total,,3530,jiwa,2025,registration,total_population,3.1,25,,

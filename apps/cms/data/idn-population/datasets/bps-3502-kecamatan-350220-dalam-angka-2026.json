@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3502-kecamatan-350220-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.02.20",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jambon Dalam Angka 2026",
+  "publisherName": "BPS Ponorogo",
+  "publisherDomain": "3502",
+  "publisherWebsite": "https://ponorogokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Ponorogo (https://ponorogokab.bps.go.id), publikasi \"Kecamatan Jambon Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3502130",
+  "publicationNumber": "35020.26018",
+  "issn": "2829-7164",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://ponorogokab.bps.go.id/id/publication/2026/09/28/eaaaee7389e8ad208cd7ca1e/kecamatan-jambon-dalam-angka-2026.html",
+  "sourceFileSha256": "a9071df571f06cb0f79ff037af313b1ddcb72be811ccb7e4e509a9e41a55bb1a",
+  "sourceFileBytes": 1389298,
+  "sourcePages": [31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ponorogo.",
+  "csvPath": "datasets/bps-3502-kecamatan-350220-dalam-angka-2026.csv",
+  "csvSha256": "84af9f0db710cdf0afe42c9bbf9358210062b036de94106f42f15724b5deeb77",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Jambon, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jambon, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

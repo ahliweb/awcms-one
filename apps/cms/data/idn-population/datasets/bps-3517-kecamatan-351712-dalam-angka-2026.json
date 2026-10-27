@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3517-kecamatan-351712-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.17.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kesamben Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN JOMBANG",
+  "publisherDomain": "3517",
+  "publisherWebsite": "https://jombangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN JOMBANG (https://jombangkab.bps.go.id), publikasi \"Kecamatan Kesamben Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3517160",
+  "publicationNumber": "35170.26021",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jombangkab.bps.go.id/id/publication/2026/09/28/29e3c165c0c8d278e5be4917/kecamatan-kesamben-dalam-angka-2026.html",
+  "sourceFileSha256": "18cdde4bfff0ab490225710976168a28a90e95502e975ff6cbd3c2c9e9848fee",
+  "sourceFileBytes": 13728212,
+  "sourcePages": [37, 38, 39],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jombang.",
+  "csvPath": "datasets/bps-3517-kecamatan-351712-dalam-angka-2026.csv",
+  "csvSha256": "7a063c45c2d62394e548f9645c054271a3ee5727f60fcd7a8cd182bd1faf694e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kesamben, 2025",
+      "printedPages": [37, 38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kesamben, 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

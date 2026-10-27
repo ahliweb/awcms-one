@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3517-kecamatan-351705-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.17.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Wonosalam Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN JOMBANG",
+  "publisherDomain": "3517",
+  "publisherWebsite": "https://jombangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN JOMBANG (https://jombangkab.bps.go.id), publikasi \"Kecamatan Wonosalam Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3517080",
+  "publicationNumber": "35170.26011",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jombangkab.bps.go.id/id/publication/2026/09/28/935373ceac07a92a53b70947/kecamatan-wonosalam-dalam-angka-2026.html",
+  "sourceFileSha256": "229e510eaaebceacfc97034f380712aef0d890ecc93ef59fa03f770dc637e86b",
+  "sourceFileBytes": 10441689,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jombang.",
+  "csvPath": "datasets/bps-3517-kecamatan-351705-dalam-angka-2026.csv",
+  "csvSha256": "3a6c4d4dfedd6e5ee9150984826fc537216dee0ee31a994c5638629a0a775418",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Wonosalam, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Wonosalam, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1 is not included: its published figures do not add up (sex/perempuan/- 2025: parts sum 17527.0000 != 17871.0000 (diff 344.0000)); the source itself is inconsistent"
+  ]
+}

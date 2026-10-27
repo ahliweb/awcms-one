@@ -1,0 +1,336 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.07.01,3,Donomulyo,total,total,,70507,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.11,3,Kalipare,total,total,,71352,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.02,3,Pagak,total,total,,53862,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.03,3,Bantur,total,total,,80233,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.29,3,Gedangan,total,total,,60996,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.04,3,Sumbermanjing Wetan,total,total,,106205,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.05,3,Dampit,total,total,,134579,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.30,3,Tirtoyudo,total,total,,69469,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.06,3,Ampelgading,total,total,,60913,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.07,3,Poncokusumo,total,total,,102047,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.08,3,Wajak,total,total,,91394,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.09,3,Turen,total,total,,128198,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.14,3,Bululawang,total,total,,74413,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.10,3,Gondanglegi,total,total,,91792,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.33,3,Pagelaran,total,total,,78088,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.13,3,Kepanjen,total,total,,116704,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.12,3,Sumberpucung,total,total,,59376,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.31,3,Kromengan,total,total,,43606,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.20,3,Ngajum,total,total,,55153,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.32,3,Wonosari,total,total,,46141,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.21,3,Wagir,total,total,,92101,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.19,3,Pakisaji,total,total,,94442,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.15,3,Tajinan,total,total,,59792,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.16,3,Tumpang,total,total,,81819,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.18,3,Pakis,total,total,,154736,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.17,3,Jabung,total,total,,79924,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.25,3,Lawang,total,total,,114780,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.24,3,Singosari,total,total,,185640,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.23,3,Karangploso,total,total,,85568,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.22,3,Dau,total,total,,69782,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.26,3,Pujon,total,total,,72477,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.27,3,Ngantang,total,total,,60565,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07.28,3,Kasembon,total,total,,32278,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07,2,Kabupaten Malang,total,total,,2778932,jiwa,2025,registration,total_population,3.1.1,97,,
+35.07,2,Kabupaten Malang,age_group,0-4,laki_laki,102255,jiwa,2025,projection,total_population,3.1.2,100,,0–4
+35.07,2,Kabupaten Malang,age_group,0-4,perempuan,98216,jiwa,2025,projection,total_population,3.1.2,100,,0–4
+35.07,2,Kabupaten Malang,age_group,0-4,,200471,jiwa,2025,projection,total_population,3.1.2,100,,0–4
+35.07,2,Kabupaten Malang,age_group,5-9,laki_laki,89737,jiwa,2025,projection,total_population,3.1.2,100,,5–9
+35.07,2,Kabupaten Malang,age_group,5-9,perempuan,85980,jiwa,2025,projection,total_population,3.1.2,100,,5–9
+35.07,2,Kabupaten Malang,age_group,5-9,,175717,jiwa,2025,projection,total_population,3.1.2,100,,5–9
+35.07,2,Kabupaten Malang,age_group,10-14,laki_laki,100235,jiwa,2025,projection,total_population,3.1.2,100,,10–14
+35.07,2,Kabupaten Malang,age_group,10-14,perempuan,96778,jiwa,2025,projection,total_population,3.1.2,100,,10–14
+35.07,2,Kabupaten Malang,age_group,10-14,,197013,jiwa,2025,projection,total_population,3.1.2,100,,10–14
+35.07,2,Kabupaten Malang,age_group,15-19,laki_laki,98917,jiwa,2025,projection,total_population,3.1.2,100,,15–19
+35.07,2,Kabupaten Malang,age_group,15-19,perempuan,94778,jiwa,2025,projection,total_population,3.1.2,100,,15–19
+35.07,2,Kabupaten Malang,age_group,15-19,,193695,jiwa,2025,projection,total_population,3.1.2,100,,15–19
+35.07,2,Kabupaten Malang,age_group,20-24,laki_laki,98216,jiwa,2025,projection,total_population,3.1.2,100,,20–24
+35.07,2,Kabupaten Malang,age_group,20-24,perempuan,93613,jiwa,2025,projection,total_population,3.1.2,100,,20–24
+35.07,2,Kabupaten Malang,age_group,20-24,,191829,jiwa,2025,projection,total_population,3.1.2,100,,20–24
+35.07,2,Kabupaten Malang,age_group,25-29,laki_laki,102386,jiwa,2025,projection,total_population,3.1.2,100,,25–29
+35.07,2,Kabupaten Malang,age_group,25-29,perempuan,96209,jiwa,2025,projection,total_population,3.1.2,100,,25–29
+35.07,2,Kabupaten Malang,age_group,25-29,,198595,jiwa,2025,projection,total_population,3.1.2,100,,25–29
+35.07,2,Kabupaten Malang,age_group,30-34,laki_laki,103851,jiwa,2025,projection,total_population,3.1.2,100,,30–34
+35.07,2,Kabupaten Malang,age_group,30-34,perempuan,97549,jiwa,2025,projection,total_population,3.1.2,100,,30–34
+35.07,2,Kabupaten Malang,age_group,30-34,,201400,jiwa,2025,projection,total_population,3.1.2,100,,30–34
+35.07,2,Kabupaten Malang,age_group,35-39,laki_laki,105178,jiwa,2025,projection,total_population,3.1.2,100,,35–39
+35.07,2,Kabupaten Malang,age_group,35-39,perempuan,101254,jiwa,2025,projection,total_population,3.1.2,100,,35–39
+35.07,2,Kabupaten Malang,age_group,35-39,,206432,jiwa,2025,projection,total_population,3.1.2,100,,35–39
+35.07,2,Kabupaten Malang,age_group,40-44,laki_laki,104531,jiwa,2025,projection,total_population,3.1.2,100,,40–44
+35.07,2,Kabupaten Malang,age_group,40-44,perempuan,102911,jiwa,2025,projection,total_population,3.1.2,100,,40–44
+35.07,2,Kabupaten Malang,age_group,40-44,,207442,jiwa,2025,projection,total_population,3.1.2,100,,40–44
+35.07,2,Kabupaten Malang,age_group,45-49,laki_laki,101733,jiwa,2025,projection,total_population,3.1.2,100,,45–49
+35.07,2,Kabupaten Malang,age_group,45-49,perempuan,101439,jiwa,2025,projection,total_population,3.1.2,100,,45–49
+35.07,2,Kabupaten Malang,age_group,45-49,,203172,jiwa,2025,projection,total_population,3.1.2,100,,45–49
+35.07,2,Kabupaten Malang,age_group,50-54,laki_laki,91006,jiwa,2025,projection,total_population,3.1.2,100,,50–54
+35.07,2,Kabupaten Malang,age_group,50-54,perempuan,94878,jiwa,2025,projection,total_population,3.1.2,100,,50–54
+35.07,2,Kabupaten Malang,age_group,50-54,,185884,jiwa,2025,projection,total_population,3.1.2,100,,50–54
+35.07,2,Kabupaten Malang,age_group,55-59,laki_laki,83751,jiwa,2025,projection,total_population,3.1.2,100,,55–59
+35.07,2,Kabupaten Malang,age_group,55-59,perempuan,88120,jiwa,2025,projection,total_population,3.1.2,100,,55–59
+35.07,2,Kabupaten Malang,age_group,55-59,,171871,jiwa,2025,projection,total_population,3.1.2,100,,55–59
+35.07,2,Kabupaten Malang,age_group,60-64,laki_laki,71967,jiwa,2025,projection,total_population,3.1.2,100,,60–64
+35.07,2,Kabupaten Malang,age_group,60-64,perempuan,75851,jiwa,2025,projection,total_population,3.1.2,100,,60–64
+35.07,2,Kabupaten Malang,age_group,60-64,,147818,jiwa,2025,projection,total_population,3.1.2,100,,60–64
+35.07,2,Kabupaten Malang,age_group,65-69,laki_laki,56991,jiwa,2025,projection,total_population,3.1.2,100,,65–69
+35.07,2,Kabupaten Malang,age_group,65-69,perempuan,58401,jiwa,2025,projection,total_population,3.1.2,100,,65–69
+35.07,2,Kabupaten Malang,age_group,65-69,,115392,jiwa,2025,projection,total_population,3.1.2,100,,65–69
+35.07,2,Kabupaten Malang,age_group,70-74,laki_laki,38848,jiwa,2025,projection,total_population,3.1.2,100,,70–74
+35.07,2,Kabupaten Malang,age_group,70-74,perempuan,41004,jiwa,2025,projection,total_population,3.1.2,100,,70–74
+35.07,2,Kabupaten Malang,age_group,70-74,,79852,jiwa,2025,projection,total_population,3.1.2,100,,70–74
+35.07,2,Kabupaten Malang,age_group,75+,laki_laki,34238,jiwa,2025,projection,total_population,3.1.2,100,,75+
+35.07,2,Kabupaten Malang,age_group,75+,perempuan,44617,jiwa,2025,projection,total_population,3.1.2,100,,75+
+35.07,2,Kabupaten Malang,age_group,75+,,78855,jiwa,2025,projection,total_population,3.1.2,100,,75+
+35.07,2,Kabupaten Malang,sex,laki_laki,,1383840,jiwa,2025,projection,total_population,3.1.2,100,,Laki-Laki
+35.07,2,Kabupaten Malang,sex,perempuan,,1371598,jiwa,2025,projection,total_population,3.1.2,100,,Perempuan
+35.07,2,Kabupaten Malang,total,total,,2755438,jiwa,2025,projection,total_population,3.1.2,100,,
+35.07.01,3,Donomulyo,religion,islam,,67820,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.01,3,Donomulyo,religion,kristen,,801,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.01,3,Donomulyo,religion,katolik,,1856,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.01,3,Donomulyo,religion,hindu,,13,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.01,3,Donomulyo,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.01,3,Donomulyo,religion,lainnya,,12,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.11,3,Kalipare,religion,islam,,69101,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.11,3,Kalipare,religion,kristen,,526,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.11,3,Kalipare,religion,katolik,,1367,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.11,3,Kalipare,religion,hindu,,352,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.11,3,Kalipare,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.11,3,Kalipare,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.02,3,Pagak,religion,islam,,53482,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.02,3,Pagak,religion,kristen,,155,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.02,3,Pagak,religion,katolik,,39,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.02,3,Pagak,religion,hindu,,182,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.02,3,Pagak,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.02,3,Pagak,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.03,3,Bantur,religion,islam,,79136,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.03,3,Bantur,religion,kristen,,1035,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.03,3,Bantur,religion,katolik,,59,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.03,3,Bantur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,211,nil,Hindu
+35.07.03,3,Bantur,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.03,3,Bantur,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.29,3,Gedangan,religion,islam,,59977,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.29,3,Gedangan,religion,kristen,,523,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.29,3,Gedangan,religion,katolik,,10,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.29,3,Gedangan,religion,hindu,,373,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.29,3,Gedangan,religion,buddha,,112,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.29,3,Gedangan,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.04,3,Sumbermanjing Wetan,religion,islam,,92309,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.04,3,Sumbermanjing Wetan,religion,kristen,,13808,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.04,3,Sumbermanjing Wetan,religion,katolik,,58,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.04,3,Sumbermanjing Wetan,religion,hindu,,23,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.04,3,Sumbermanjing Wetan,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.04,3,Sumbermanjing Wetan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,211,nil,Lainnya
+35.07.05,3,Dampit,religion,islam,,131205,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.05,3,Dampit,religion,kristen,,2996,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.05,3,Dampit,religion,katolik,,263,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.05,3,Dampit,religion,hindu,,19,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.05,3,Dampit,religion,buddha,,79,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.05,3,Dampit,religion,lainnya,,17,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.30,3,Tirtoyudo,religion,islam,,61921,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.30,3,Tirtoyudo,religion,kristen,,7454,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.30,3,Tirtoyudo,religion,katolik,,40,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.30,3,Tirtoyudo,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.30,3,Tirtoyudo,religion,buddha,,50,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.30,3,Tirtoyudo,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.06,3,Ampelgading,religion,islam,,58888,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.06,3,Ampelgading,religion,kristen,,1599,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.06,3,Ampelgading,religion,katolik,,16,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.06,3,Ampelgading,religion,hindu,,401,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.06,3,Ampelgading,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.06,3,Ampelgading,religion,lainnya,,7,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.07,3,Poncokusumo,religion,islam,,101045,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.07,3,Poncokusumo,religion,kristen,,94,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.07,3,Poncokusumo,religion,katolik,,80,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.07,3,Poncokusumo,religion,hindu,,117,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.07,3,Poncokusumo,religion,buddha,,711,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.07,3,Poncokusumo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,211,nil,Lainnya
+35.07.08,3,Wajak,religion,islam,,91173,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.08,3,Wajak,religion,kristen,,170,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.08,3,Wajak,religion,katolik,,43,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.08,3,Wajak,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.08,3,Wajak,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.08,3,Wajak,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,211,nil,Lainnya
+35.07.09,3,Turen,religion,islam,,125898,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.09,3,Turen,religion,kristen,,1943,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.09,3,Turen,religion,katolik,,259,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.09,3,Turen,religion,hindu,,17,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.09,3,Turen,religion,buddha,,30,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.09,3,Turen,religion,lainnya,,51,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.14,3,Bululawang,religion,islam,,73799,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.14,3,Bululawang,religion,kristen,,522,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.14,3,Bululawang,religion,katolik,,70,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.14,3,Bululawang,religion,hindu,,10,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.14,3,Bululawang,religion,buddha,,9,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.14,3,Bululawang,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.10,3,Gondanglegi,religion,islam,,91656,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.10,3,Gondanglegi,religion,kristen,,116,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.10,3,Gondanglegi,religion,katolik,,12,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.10,3,Gondanglegi,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,211,nil,Hindu
+35.07.10,3,Gondanglegi,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.10,3,Gondanglegi,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.33,3,Pagelaran,religion,islam,,76511,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.33,3,Pagelaran,religion,kristen,,1508,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.33,3,Pagelaran,religion,katolik,,67,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.33,3,Pagelaran,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,211,nil,Hindu
+35.07.33,3,Pagelaran,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.33,3,Pagelaran,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.13,3,Kepanjen,religion,islam,,114483,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.13,3,Kepanjen,religion,kristen,,1280,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.13,3,Kepanjen,religion,katolik,,677,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.13,3,Kepanjen,religion,hindu,,215,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.13,3,Kepanjen,religion,buddha,,35,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.13,3,Kepanjen,religion,lainnya,,14,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.12,3,Sumberpucung,religion,islam,,58097,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.12,3,Sumberpucung,religion,kristen,,899,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.12,3,Sumberpucung,religion,katolik,,307,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.12,3,Sumberpucung,religion,hindu,,9,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.12,3,Sumberpucung,religion,buddha,,61,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.12,3,Sumberpucung,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.31,3,Kromengan,religion,islam,,39934,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.31,3,Kromengan,religion,kristen,,3555,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.31,3,Kromengan,religion,katolik,,103,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.31,3,Kromengan,religion,hindu,,13,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.31,3,Kromengan,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.31,3,Kromengan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,211,nil,Lainnya
+35.07.20,3,Ngajum,religion,islam,,53101,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.20,3,Ngajum,religion,kristen,,277,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.20,3,Ngajum,religion,katolik,,29,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.20,3,Ngajum,religion,hindu,,1740,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.20,3,Ngajum,religion,buddha,,6,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.20,3,Ngajum,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,211,nil,Lainnya
+35.07.32,3,Wonosari,religion,islam,,44994,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.32,3,Wonosari,religion,kristen,,884,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.32,3,Wonosari,religion,katolik,,176,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.32,3,Wonosari,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.32,3,Wonosari,religion,buddha,,78,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.32,3,Wonosari,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.21,3,Wagir,religion,islam,,85764,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.21,3,Wagir,religion,kristen,,2104,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.21,3,Wagir,religion,katolik,,624,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.21,3,Wagir,religion,hindu,,3528,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.21,3,Wagir,religion,buddha,,69,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.21,3,Wagir,religion,lainnya,,12,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.19,3,Pakisaji,religion,islam,,90463,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.19,3,Pakisaji,religion,kristen,,1935,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.19,3,Pakisaji,religion,katolik,,606,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.19,3,Pakisaji,religion,hindu,,1419,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.19,3,Pakisaji,religion,buddha,,19,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.19,3,Pakisaji,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,211,nil,Lainnya
+35.07.15,3,Tajinan,religion,islam,,59429,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.15,3,Tajinan,religion,kristen,,290,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.15,3,Tajinan,religion,katolik,,68,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.15,3,Tajinan,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.15,3,Tajinan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,211,nil,Budha
+35.07.15,3,Tajinan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,211,nil,Lainnya
+35.07.16,3,Tumpang,religion,islam,,80729,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.16,3,Tumpang,religion,kristen,,697,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.16,3,Tumpang,religion,katolik,,371,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.16,3,Tumpang,religion,hindu,,11,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.16,3,Tumpang,religion,buddha,,11,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.16,3,Tumpang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,211,nil,Lainnya
+35.07.18,3,Pakis,religion,islam,,150252,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.18,3,Pakis,religion,kristen,,2750,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.18,3,Pakis,religion,katolik,,1499,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.18,3,Pakis,religion,hindu,,138,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.18,3,Pakis,religion,buddha,,81,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.18,3,Pakis,religion,lainnya,,16,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.17,3,Jabung,religion,islam,,79491,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.17,3,Jabung,religion,kristen,,235,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.17,3,Jabung,religion,katolik,,140,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.17,3,Jabung,religion,hindu,,51,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.17,3,Jabung,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.17,3,Jabung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,211,nil,Lainnya
+35.07.25,3,Lawang,religion,islam,,109142,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.25,3,Lawang,religion,kristen,,3674,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.25,3,Lawang,religion,katolik,,1616,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.25,3,Lawang,religion,hindu,,96,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.25,3,Lawang,religion,buddha,,212,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.25,3,Lawang,religion,lainnya,,40,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.24,3,Singosari,religion,islam,,181196,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.24,3,Singosari,religion,kristen,,2905,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.24,3,Singosari,religion,katolik,,1230,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.24,3,Singosari,religion,hindu,,221,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.24,3,Singosari,religion,buddha,,71,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.24,3,Singosari,religion,lainnya,,17,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.23,3,Karangploso,religion,islam,,83629,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.23,3,Karangploso,religion,kristen,,1441,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.23,3,Karangploso,religion,katolik,,428,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.23,3,Karangploso,religion,hindu,,51,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.23,3,Karangploso,religion,buddha,,15,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.23,3,Karangploso,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.22,3,Dau,religion,islam,,65027,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.22,3,Dau,religion,kristen,,3008,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.22,3,Dau,religion,katolik,,1532,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.22,3,Dau,religion,hindu,,75,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.22,3,Dau,religion,buddha,,125,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.22,3,Dau,religion,lainnya,,15,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.26,3,Pujon,religion,islam,,71960,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.26,3,Pujon,religion,kristen,,262,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.26,3,Pujon,religion,katolik,,46,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.26,3,Pujon,religion,hindu,,153,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.26,3,Pujon,religion,buddha,,8,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.26,3,Pujon,religion,lainnya,,48,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07.27,3,Ngantang,religion,islam,,60026,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.27,3,Ngantang,religion,kristen,,444,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.27,3,Ngantang,religion,katolik,,77,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.27,3,Ngantang,religion,hindu,,8,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.27,3,Ngantang,religion,buddha,,10,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.27,3,Ngantang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,211,nil,Lainnya
+35.07.28,3,Kasembon,religion,islam,,30842,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07.28,3,Kasembon,religion,kristen,,600,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07.28,3,Kasembon,religion,katolik,,26,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07.28,3,Kasembon,religion,hindu,,514,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07.28,3,Kasembon,religion,buddha,,283,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07.28,3,Kasembon,religion,lainnya,,13,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07,2,Kabupaten Malang,religion,islam,,2692480,jiwa,2025,registration,total_population,4.3.1,211,,Islam
+35.07,2,Kabupaten Malang,religion,kristen,,60490,jiwa,2025,registration,total_population,4.3.1,211,,Protestan
+35.07,2,Kabupaten Malang,religion,katolik,,13794,jiwa,2025,registration,total_population,4.3.1,211,,Katolik
+35.07,2,Kabupaten Malang,religion,hindu,,9765,jiwa,2025,registration,total_population,4.3.1,211,,Hindu
+35.07,2,Kabupaten Malang,religion,buddha,,2115,jiwa,2025,registration,total_population,4.3.1,211,,Budha
+35.07,2,Kabupaten Malang,religion,lainnya,,288,jiwa,2025,registration,total_population,4.3.1,211,,Lainnya
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/padi_padian,,78192,rupiah,2024,survey_estimate,per_capita,10.1,491,,Padi-padian
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/padi_padian,,75144,rupiah,2025,survey_estimate,per_capita,10.1,491,,Padi-padian
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/umbi_umbian,,5376,rupiah,2024,survey_estimate,per_capita,10.1,491,,Umbi-umbian
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/umbi_umbian,,5837,rupiah,2025,survey_estimate,per_capita,10.1,491,,Umbi-umbian
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,26119,rupiah,2024,survey_estimate,per_capita,10.1,491,,Ikan/udang/cumi/kerang
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,25646,rupiah,2025,survey_estimate,per_capita,10.1,491,,Ikan/udang/cumi/kerang
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/daging,,28313,rupiah,2024,survey_estimate,per_capita,10.1,491,,Daging
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/daging,,27641,rupiah,2025,survey_estimate,per_capita,10.1,491,,Daging
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/telur_dan_susu,,35526,rupiah,2024,survey_estimate,per_capita,10.1,491,,Telur dan susu
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/telur_dan_susu,,30900,rupiah,2025,survey_estimate,per_capita,10.1,491,,Telur dan susu
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/sayur_sayuran,,53005,rupiah,2024,survey_estimate,per_capita,10.1,491,,Sayur-sayuran
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/sayur_sayuran,,52534,rupiah,2025,survey_estimate,per_capita,10.1,491,,Sayur-sayuran
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/kacang_kacangan,,20448,rupiah,2024,survey_estimate,per_capita,10.1,491,,Kacang-kacangan
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/kacang_kacangan,,18919,rupiah,2025,survey_estimate,per_capita,10.1,491,,Kacang-kacangan
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/buah_buahan,,37621,rupiah,2024,survey_estimate,per_capita,10.1,491,,Buah-buahan
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/buah_buahan,,31336,rupiah,2025,survey_estimate,per_capita,10.1,491,,Buah-buahan
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,17520,rupiah,2024,survey_estimate,per_capita,10.1,491,,Minyak dan kelapa
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18419,rupiah,2025,survey_estimate,per_capita,10.1,491,,Minyak dan kelapa
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/bahan_minuman,,22761,rupiah,2024,survey_estimate,per_capita,10.1,491,,Bahan minuman
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/bahan_minuman,,22774,rupiah,2025,survey_estimate,per_capita,10.1,491,,Bahan minuman
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/bumbu_bumbuan,,13050,rupiah,2024,survey_estimate,per_capita,10.1,491,,Bumbu-bumbuan
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/bumbu_bumbuan,,12702,rupiah,2025,survey_estimate,per_capita,10.1,491,,Bumbu-bumbuan
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/konsumsi_lainnya,,11656,rupiah,2024,survey_estimate,per_capita,10.1,491,,Konsumsi lainnya
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/konsumsi_lainnya,,11063,rupiah,2025,survey_estimate,per_capita,10.1,491,,Konsumsi lainnya
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,192964,rupiah,2024,survey_estimate,per_capita,10.1,491,,Makanan dan minuman jadi
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,194004,rupiah,2025,survey_estimate,per_capita,10.1,491,,Makanan dan minuman jadi
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/rokok,,88546,rupiah,2024,survey_estimate,per_capita,10.1,491,,Rokok
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/rokok,,92458,rupiah,2025,survey_estimate,per_capita,10.1,491,,Rokok
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/jumlah_makanan,,631096,rupiah,2024,survey_estimate,per_capita,10.1,491,,Jumlah makanan
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/jumlah_makanan,,619374,rupiah,2025,survey_estimate,per_capita,10.1,491,,Jumlah makanan
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,265757,rupiah,2024,survey_estimate,per_capita,10.1,491,,Perumahan dan fasilitas rumah tangga
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,260139,rupiah,2025,survey_estimate,per_capita,10.1,491,,Perumahan dan fasilitas rumah tangga
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,144620,rupiah,2024,survey_estimate,per_capita,10.1,491,,Aneka barang dan jasa
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,160119,rupiah,2025,survey_estimate,per_capita,10.1,491,,Aneka barang dan jasa
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,27236,rupiah,2024,survey_estimate,per_capita,10.1,491,,"Pakaian, alas kaki, dan tutup kepala"
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,32983,rupiah,2025,survey_estimate,per_capita,10.1,491,,"Pakaian, alas kaki, dan tutup kepala"
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/barang_tahan_lama,,42781,rupiah,2024,survey_estimate,per_capita,10.1,491,,Barang tahan lama
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/barang_tahan_lama,,56402,rupiah,2025,survey_estimate,per_capita,10.1,491,,Barang tahan lama
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,42518,rupiah,2024,survey_estimate,per_capita,10.1,491,,"Pajak, pungutan, dan asuransi"
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,45813,rupiah,2025,survey_estimate,per_capita,10.1,491,,"Pajak, pungutan, dan asuransi"
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,6946,rupiah,2024,survey_estimate,per_capita,10.1,491,,Keperluan pesta dan upacara/kenduri
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,22846,rupiah,2025,survey_estimate,per_capita,10.1,491,,Keperluan pesta dan upacara/kenduri
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,529858,rupiah,2024,survey_estimate,per_capita,10.1,491,,Jumlah bukan makanan
+35.07,2,Kabupaten Malang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,578303,rupiah,2025,survey_estimate,per_capita,10.1,491,,Jumlah bukan makanan
+35.07,2,Kabupaten Malang,expenditure,total,,1160954,rupiah,2024,survey_estimate,per_capita,10.1,491,,
+35.07,2,Kabupaten Malang,expenditure,total,,1197677,rupiah,2025,survey_estimate,per_capita,10.1,491,,

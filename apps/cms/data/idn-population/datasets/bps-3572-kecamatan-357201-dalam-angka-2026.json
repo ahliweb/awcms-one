@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3572-kecamatan-357201-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.72.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kepanjenkidul Dalam Angka 2026",
+  "publisherName": "BPS Kota Blitar",
+  "publisherDomain": "3572",
+  "publisherWebsite": "https://blitarkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Blitar (https://blitarkota.bps.go.id), publikasi \"Kecamatan Kepanjenkidul Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3572020",
+  "publicationNumber": "35720.26007",
+  "issn": "2579-664X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://blitarkota.bps.go.id/id/publication/2026/09/28/aa24f547a3f1d2adba41275a/kecamatan-kepanjenkidul-dalam-angka-2026.html",
+  "sourceFileSha256": "b77d207e42f3c3400aa906a0c1544eb54d171d5f5351c9de7be19d7b37cba145",
+  "sourceFileBytes": 10691470,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Blitar.",
+  "csvPath": "datasets/bps-3572-kecamatan-357201-dalam-angka-2026.csv",
+  "csvSha256": "bcc390a7f7fd434294300f69093aa4800d3ed0ada5794cb27b43850d94f3ecbf",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Kepanjenkidul, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kepanjenkidul, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: 4 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

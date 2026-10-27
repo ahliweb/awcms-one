@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.09.09.2005,4,Karangsono,sex,laki_laki,,4400,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.09.2005,4,Karangsono,sex,perempuan,,4300,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.09.2005,4,Karangsono,total,total,,8700,jiwa,2025,registration,total_population,3.1,33,,
+35.09.09.2006,4,Sukorejo,sex,laki_laki,,6397,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.09.2006,4,Sukorejo,sex,perempuan,,6191,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.09.2006,4,Sukorejo,total,total,,12588,jiwa,2025,registration,total_population,3.1,33,,
+35.09.09.2009,4,Petung,sex,laki_laki,,4773,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.09.2009,4,Petung,sex,perempuan,,4863,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.09.2009,4,Petung,total,total,,9636,jiwa,2025,registration,total_population,3.1,33,,
+35.09.09.2008,4,Tisnogambar,sex,laki_laki,,6301,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.09.2008,4,Tisnogambar,sex,perempuan,,6274,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.09.2008,4,Tisnogambar,total,total,,12575,jiwa,2025,registration,total_population,3.1,33,,
+35.09.09.2007,4,Langkap,sex,laki_laki,,3846,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.09.2007,4,Langkap,sex,perempuan,,3999,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.09.2007,4,Langkap,total,total,,7845,jiwa,2025,registration,total_population,3.1,33,,
+35.09.09.2003,4,Bangsalsari,sex,laki_laki,,8469,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.09.2003,4,Bangsalsari,sex,perempuan,,8570,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.09.2003,4,Bangsalsari,total,total,,17039,jiwa,2025,registration,total_population,3.1,33,,
+35.09.09.2002,4,Gambirono,sex,laki_laki,,7377,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.09.2002,4,Gambirono,sex,perempuan,,7319,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.09.2002,4,Gambirono,total,total,,14696,jiwa,2025,registration,total_population,3.1,33,,
+35.09.09.2001,4,Curah Kalong,sex,laki_laki,,8677,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.09.2001,4,Curah Kalong,sex,perempuan,,8511,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.09.2001,4,Curah Kalong,total,total,,17188,jiwa,2025,registration,total_population,3.1,33,,
+35.09.09.2004,4,Tugusari,sex,laki_laki,,8007,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.09.2004,4,Tugusari,sex,perempuan,,8034,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.09.2004,4,Tugusari,total,total,,16041,jiwa,2025,registration,total_population,3.1,33,,
+35.09.09.2010,4,Banjarsari,sex,laki_laki,,2301,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.09.2010,4,Banjarsari,sex,perempuan,,2433,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.09.2010,4,Banjarsari,total,total,,4734,jiwa,2025,registration,total_population,3.1,33,,
+35.09.09.2011,4,Badean,sex,laki_laki,,4009,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.09.2011,4,Badean,sex,perempuan,,4102,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.09.2011,4,Badean,total,total,,8111,jiwa,2025,registration,total_population,3.1,33,,
+35.09.09,3,Kecamatan Bangsalsari,sex,laki_laki,,64557,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.09,3,Kecamatan Bangsalsari,sex,perempuan,,64596,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.09,3,Kecamatan Bangsalsari,total,total,,129153,jiwa,2025,registration,total_population,3.1,33,,

@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.21.07.2001,4,CAMPUR ASRI,sex,laki_laki,,1548,jiwa,2025,registration,total_population,unnumbered-p40,40,,Laki-Laki/Male
+35.21.07.2001,4,CAMPUR ASRI,sex,perempuan,,1642,jiwa,2025,registration,total_population,unnumbered-p40,40,,Perempuan/Female
+35.21.07.2001,4,CAMPUR ASRI,total,total,,3190,jiwa,2025,registration,total_population,unnumbered-p40,40,,
+35.21.07.2002,4,DANGUK,sex,laki_laki,,846,jiwa,2025,registration,total_population,unnumbered-p40,40,,Laki-Laki/Male
+35.21.07.2002,4,DANGUK,sex,perempuan,,880,jiwa,2025,registration,total_population,unnumbered-p40,40,,Perempuan/Female
+35.21.07.2002,4,DANGUK,total,total,,1726,jiwa,2025,registration,total_population,unnumbered-p40,40,,
+35.21.07.2003,4,GEMPOL,sex,laki_laki,,1209,jiwa,2025,registration,total_population,unnumbered-p40,40,,Laki-Laki/Male
+35.21.07.2003,4,GEMPOL,sex,perempuan,,1239,jiwa,2025,registration,total_population,unnumbered-p40,40,,Perempuan/Female
+35.21.07.2003,4,GEMPOL,total,total,,2448,jiwa,2025,registration,total_population,unnumbered-p40,40,,
+35.21.07.2004,4,RINGIN ANOM,sex,laki_laki,,827,jiwa,2025,registration,total_population,unnumbered-p40,40,,Laki-Laki/Male
+35.21.07.2004,4,RINGIN ANOM,sex,perempuan,,856,jiwa,2025,registration,total_population,unnumbered-p40,40,,Perempuan/Female
+35.21.07.2004,4,RINGIN ANOM,total,total,,1683,jiwa,2025,registration,total_population,unnumbered-p40,40,,
+35.21.07.2005,4,SEMBUNG,sex,laki_laki,,1136,jiwa,2025,registration,total_population,unnumbered-p40,40,,Laki-Laki/Male
+35.21.07.2005,4,SEMBUNG,sex,perempuan,,1176,jiwa,2025,registration,total_population,unnumbered-p40,40,,Perempuan/Female
+35.21.07.2005,4,SEMBUNG,total,total,,2312,jiwa,2025,registration,total_population,unnumbered-p40,40,,
+35.21.07.2006,4,SIDOREJO,sex,laki_laki,,1744,jiwa,2025,registration,total_population,unnumbered-p40,40,,Laki-Laki/Male
+35.21.07.2006,4,SIDOREJO,sex,perempuan,,1784,jiwa,2025,registration,total_population,unnumbered-p40,40,,Perempuan/Female
+35.21.07.2006,4,SIDOREJO,total,total,,3528,jiwa,2025,registration,total_population,unnumbered-p40,40,,
+35.21.07.2007,4,DUNGMIRI,sex,laki_laki,,1144,jiwa,2025,registration,total_population,unnumbered-p40,40,,Laki-Laki/Male
+35.21.07.2007,4,DUNGMIRI,sex,perempuan,,1174,jiwa,2025,registration,total_population,unnumbered-p40,40,,Perempuan/Female
+35.21.07.2007,4,DUNGMIRI,total,total,,2318,jiwa,2025,registration,total_population,unnumbered-p40,40,,
+35.21.07.2008,4,BRANGOL,sex,laki_laki,,820,jiwa,2025,registration,total_population,unnumbered-p40,40,,Laki-Laki/Male
+35.21.07.2008,4,BRANGOL,sex,perempuan,,890,jiwa,2025,registration,total_population,unnumbered-p40,40,,Perempuan/Female
+35.21.07.2008,4,BRANGOL,total,total,,1710,jiwa,2025,registration,total_population,unnumbered-p40,40,,
+35.21.07.2009,4,SIDOKERTO,sex,laki_laki,,1572,jiwa,2025,registration,total_population,unnumbered-p40,40,,Laki-Laki/Male
+35.21.07.2009,4,SIDOKERTO,sex,perempuan,,1616,jiwa,2025,registration,total_population,unnumbered-p40,40,,Perempuan/Female
+35.21.07.2009,4,SIDOKERTO,total,total,,3188,jiwa,2025,registration,total_population,unnumbered-p40,40,,
+35.21.07.2010,4,JATIPURO,sex,laki_laki,,1708,jiwa,2025,registration,total_population,unnumbered-p40,40,,Laki-Laki/Male
+35.21.07.2010,4,JATIPURO,sex,perempuan,,1669,jiwa,2025,registration,total_population,unnumbered-p40,40,,Perempuan/Female
+35.21.07.2010,4,JATIPURO,total,total,,3377,jiwa,2025,registration,total_population,unnumbered-p40,40,,
+35.21.07.2011,4,PUHTI,sex,laki_laki,,1405,jiwa,2025,registration,total_population,unnumbered-p40,40,,Laki-Laki/Male
+35.21.07.2011,4,PUHTI,sex,perempuan,,1408,jiwa,2025,registration,total_population,unnumbered-p40,40,,Perempuan/Female
+35.21.07.2011,4,PUHTI,total,total,,2813,jiwa,2025,registration,total_population,unnumbered-p40,40,,
+35.21.07.2012,4,SAWO,sex,laki_laki,,1152,jiwa,2025,registration,total_population,unnumbered-p40,40,,Laki-Laki/Male
+35.21.07.2012,4,SAWO,sex,perempuan,,1231,jiwa,2025,registration,total_population,unnumbered-p40,40,,Perempuan/Female
+35.21.07.2012,4,SAWO,total,total,,2383,jiwa,2025,registration,total_population,unnumbered-p40,40,,
+35.21.07.2013,4,KARANGJATI,sex,laki_laki,,1695,jiwa,2025,registration,total_population,unnumbered-p40,40,,Laki-Laki/Male
+35.21.07.2013,4,KARANGJATI,sex,perempuan,,1804,jiwa,2025,registration,total_population,unnumbered-p40,40,,Perempuan/Female
+35.21.07.2013,4,KARANGJATI,total,total,,3499,jiwa,2025,registration,total_population,unnumbered-p40,40,,
+35.21.07.2014,4,LEGUNDI,sex,laki_laki,,1822,jiwa,2025,registration,total_population,unnumbered-p40,40,,Laki-Laki/Male
+35.21.07.2014,4,LEGUNDI,sex,perempuan,,1937,jiwa,2025,registration,total_population,unnumbered-p40,40,,Perempuan/Female
+35.21.07.2014,4,LEGUNDI,total,total,,3759,jiwa,2025,registration,total_population,unnumbered-p40,40,,
+35.21.07.2015,4,REJOMULYO,sex,laki_laki,,1923,jiwa,2025,registration,total_population,unnumbered-p40,40,,Laki-Laki/Male
+35.21.07.2015,4,REJOMULYO,sex,perempuan,,1989,jiwa,2025,registration,total_population,unnumbered-p40,40,,Perempuan/Female
+35.21.07.2015,4,REJOMULYO,total,total,,3912,jiwa,2025,registration,total_population,unnumbered-p40,40,,
+35.21.07.2016,4,REJUNO,sex,laki_laki,,1870,jiwa,2025,registration,total_population,unnumbered-p40,40,,Laki-Laki/Male
+35.21.07.2016,4,REJUNO,sex,perempuan,,1980,jiwa,2025,registration,total_population,unnumbered-p40,40,,Perempuan/Female
+35.21.07.2016,4,REJUNO,total,total,,3850,jiwa,2025,registration,total_population,unnumbered-p40,40,,
+35.21.07.2017,4,PLOSO LOR,sex,laki_laki,,1297,jiwa,2025,registration,total_population,unnumbered-p40,40,,Laki-Laki/Male
+35.21.07.2017,4,PLOSO LOR,sex,perempuan,,1290,jiwa,2025,registration,total_population,unnumbered-p40,40,,Perempuan/Female
+35.21.07.2017,4,PLOSO LOR,total,total,,2587,jiwa,2025,registration,total_population,unnumbered-p40,40,,
+35.21.07,3,Kecamatan Karangjati,sex,laki_laki,,23718,jiwa,2025,registration,total_population,unnumbered-p40,40,,Laki-Laki/Male
+35.21.07,3,Kecamatan Karangjati,sex,perempuan,,24565,jiwa,2025,registration,total_population,unnumbered-p40,40,,Perempuan/Female
+35.21.07,3,Kecamatan Karangjati,total,total,,48283,jiwa,2025,registration,total_population,unnumbered-p40,40,,

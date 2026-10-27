@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.26.17.2009,4,Galis Dajah,sex,laki_laki,,1440,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.17.2009,4,Galis Dajah,sex,perempuan,,1393,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.17.2009,4,Galis Dajah,total,total,,2833,jiwa,2025,registration,total_population,3.1,31,,
+35.26.17.2011,4,Durin Barat,sex,laki_laki,,2270,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.17.2011,4,Durin Barat,sex,perempuan,,2293,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.17.2011,4,Durin Barat,total,total,,4563,jiwa,2025,registration,total_population,3.1,31,,
+35.26.17.2010,4,Kanegarah,sex,laki_laki,,833,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.17.2010,4,Kanegarah,sex,perempuan,,790,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.17.2010,4,Kanegarah,total,total,,1623,jiwa,2025,registration,total_population,3.1,31,,
+35.26.17.2013,4,Batokaban,sex,laki_laki,,3038,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.17.2013,4,Batokaban,sex,perempuan,,3080,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.17.2013,4,Batokaban,total,total,,6118,jiwa,2025,registration,total_population,3.1,31,,
+35.26.17.2012,4,Durin Timur,sex,laki_laki,,2736,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.17.2012,4,Durin Timur,sex,perempuan,,2731,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.17.2012,4,Durin Timur,total,total,,5467,jiwa,2025,registration,total_population,3.1,31,,
+35.26.17.2004,4,Pakes,sex,laki_laki,,2106,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.17.2004,4,Pakes,sex,perempuan,,2070,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.17.2004,4,Pakes,total,total,,4176,jiwa,2025,registration,total_population,3.1,31,,
+35.26.17.2001,4,Bandung,sex,laki_laki,,2184,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.17.2001,4,Bandung,sex,perempuan,,2112,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.17.2001,4,Bandung,total,total,,4296,jiwa,2025,registration,total_population,3.1,31,,
+35.26.17.2002,4,Konang,sex,laki_laki,,2481,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.17.2002,4,Konang,sex,perempuan,,2374,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.17.2002,4,Konang,total,total,,4855,jiwa,2025,registration,total_population,3.1,31,,
+35.26.17.2006,4,Senasen,sex,laki_laki,,1866,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.17.2006,4,Senasen,sex,perempuan,,1730,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.17.2006,4,Senasen,total,total,,3596,jiwa,2025,registration,total_population,3.1,31,,
+35.26.17.2008,4,Campor,sex,laki_laki,,1000,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.17.2008,4,Campor,sex,perempuan,,991,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.17.2008,4,Campor,total,total,,1991,jiwa,2025,registration,total_population,3.1,31,,
+35.26.17.2007,4,Sambiyan,sex,laki_laki,,1834,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.17.2007,4,Sambiyan,sex,perempuan,,1713,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.17.2007,4,Sambiyan,total,total,,3547,jiwa,2025,registration,total_population,3.1,31,,
+35.26.17.2003,4,Genteng,sex,laki_laki,,3530,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.17.2003,4,Genteng,sex,perempuan,,3525,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.17.2003,4,Genteng,total,total,,7055,jiwa,2025,registration,total_population,3.1,31,,
+35.26.17,3,Kecamatan Konang,sex,laki_laki,,27019,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.17,3,Kecamatan Konang,sex,perempuan,,26426,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.17,3,Kecamatan Konang,total,total,,53445,jiwa,2025,registration,total_population,3.1,31,,
+35.26.17,3,Konang,age_group,0-4,laki_laki,2190,jiwa,2025,registration,total_population,3.3,35,,00 - 04
+35.26.17,3,Konang,age_group,0-4,perempuan,1983,jiwa,2025,registration,total_population,3.3,35,,00 - 04
+35.26.17,3,Konang,age_group,0-4,,4173,jiwa,2025,registration,total_population,3.3,35,,00 - 04
+35.26.17,3,Konang,age_group,5-9,laki_laki,2727,jiwa,2025,registration,total_population,3.3,35,,05 - 09
+35.26.17,3,Konang,age_group,5-9,perempuan,2538,jiwa,2025,registration,total_population,3.3,35,,05 - 09
+35.26.17,3,Konang,age_group,5-9,,5265,jiwa,2025,registration,total_population,3.3,35,,05 - 09
+35.26.17,3,Konang,age_group,10-14,laki_laki,2441,jiwa,2025,registration,total_population,3.3,35,,10 - 14
+35.26.17,3,Konang,age_group,10-14,perempuan,2280,jiwa,2025,registration,total_population,3.3,35,,10 - 14
+35.26.17,3,Konang,age_group,10-14,,4721,jiwa,2025,registration,total_population,3.3,35,,10 - 14
+35.26.17,3,Konang,age_group,15-19,laki_laki,1610,jiwa,2025,registration,total_population,3.3,35,,15 - 19
+35.26.17,3,Konang,age_group,15-19,perempuan,1475,jiwa,2025,registration,total_population,3.3,35,,15 - 19
+35.26.17,3,Konang,age_group,15-19,,3085,jiwa,2025,registration,total_population,3.3,35,,15 - 19
+35.26.17,3,Konang,age_group,20-24,laki_laki,2491,jiwa,2025,registration,total_population,3.3,35,,20 - 24
+35.26.17,3,Konang,age_group,20-24,perempuan,2437,jiwa,2025,registration,total_population,3.3,35,,20 - 24
+35.26.17,3,Konang,age_group,20-24,,4928,jiwa,2025,registration,total_population,3.3,35,,20 - 24
+35.26.17,3,Konang,age_group,25-29,laki_laki,2756,jiwa,2025,registration,total_population,3.3,35,,25 - 29
+35.26.17,3,Konang,age_group,25-29,perempuan,2577,jiwa,2025,registration,total_population,3.3,35,,25 - 29
+35.26.17,3,Konang,age_group,25-29,,5333,jiwa,2025,registration,total_population,3.3,35,,25 - 29
+35.26.17,3,Konang,age_group,30-34,laki_laki,2507,jiwa,2025,registration,total_population,3.3,35,,30 - 34
+35.26.17,3,Konang,age_group,30-34,perempuan,2224,jiwa,2025,registration,total_population,3.3,35,,30 - 34
+35.26.17,3,Konang,age_group,30-34,,4731,jiwa,2025,registration,total_population,3.3,35,,30 - 34
+35.26.17,3,Konang,age_group,35-39,laki_laki,2164,jiwa,2025,registration,total_population,3.3,35,,35 - 39
+35.26.17,3,Konang,age_group,35-39,perempuan,2154,jiwa,2025,registration,total_population,3.3,35,,35 - 39
+35.26.17,3,Konang,age_group,35-39,,4318,jiwa,2025,registration,total_population,3.3,35,,35 - 39
+35.26.17,3,Konang,age_group,40-44,laki_laki,1729,jiwa,2025,registration,total_population,3.3,35,,40 - 44
+35.26.17,3,Konang,age_group,40-44,perempuan,1810,jiwa,2025,registration,total_population,3.3,35,,40 - 44
+35.26.17,3,Konang,age_group,40-44,,3539,jiwa,2025,registration,total_population,3.3,35,,40 - 44
+35.26.17,3,Konang,age_group,45-49,laki_laki,1406,jiwa,2025,registration,total_population,3.3,35,,45 - 49
+35.26.17,3,Konang,age_group,45-49,perempuan,1638,jiwa,2025,registration,total_population,3.3,35,,45 - 49
+35.26.17,3,Konang,age_group,45-49,,3044,jiwa,2025,registration,total_population,3.3,35,,45 - 49
+35.26.17,3,Konang,age_group,50-54,laki_laki,1130,jiwa,2025,registration,total_population,3.3,35,,50 - 54
+35.26.17,3,Konang,age_group,50-54,perempuan,1393,jiwa,2025,registration,total_population,3.3,35,,50 - 54
+35.26.17,3,Konang,age_group,50-54,,2523,jiwa,2025,registration,total_population,3.3,35,,50 - 54
+35.26.17,3,Konang,age_group,55-59,laki_laki,1096,jiwa,2025,registration,total_population,3.3,35,,55 - 59
+35.26.17,3,Konang,age_group,55-59,perempuan,1465,jiwa,2025,registration,total_population,3.3,35,,55 - 59
+35.26.17,3,Konang,age_group,55-59,,2561,jiwa,2025,registration,total_population,3.3,35,,55 - 59
+35.26.17,3,Konang,age_group,60-64,laki_laki,953,jiwa,2025,registration,total_population,3.3,35,,60 - 64
+35.26.17,3,Konang,age_group,60-64,perempuan,1220,jiwa,2025,registration,total_population,3.3,35,,60 - 64
+35.26.17,3,Konang,age_group,60-64,,2173,jiwa,2025,registration,total_population,3.3,35,,60 - 64
+35.26.17,3,Konang,age_group,65-69,laki_laki,756,jiwa,2025,registration,total_population,3.3,35,,65 - 69
+35.26.17,3,Konang,age_group,65-69,perempuan,957,jiwa,2025,registration,total_population,3.3,35,,65 - 69
+35.26.17,3,Konang,age_group,65-69,,1713,jiwa,2025,registration,total_population,3.3,35,,65 - 69
+35.26.17,3,Konang,age_group,70-74,laki_laki,514,jiwa,2025,registration,total_population,3.3,35,,70 - 74
+35.26.17,3,Konang,age_group,70-74,perempuan,116,jiwa,2025,registration,total_population,3.3,35,,70 - 74
+35.26.17,3,Konang,age_group,70-74,,630,jiwa,2025,registration,total_population,3.3,35,,70 - 74
+35.26.17,3,Konang,age_group,75+,laki_laki,549,jiwa,2025,registration,total_population,3.3,35,,75 +
+35.26.17,3,Konang,age_group,75+,perempuan,159,jiwa,2025,registration,total_population,3.3,35,,75 +
+35.26.17,3,Konang,age_group,75+,,708,jiwa,2025,registration,total_population,3.3,35,,75 +
+35.26.17,3,Konang,sex,laki_laki,,27019,jiwa,2025,registration,total_population,3.3,35,,Laki-Laki
+35.26.17,3,Konang,sex,perempuan,,26426,jiwa,2025,registration,total_population,3.3,35,,Perempuan
+35.26.17,3,Konang,total,total,,53445,jiwa,2025,registration,total_population,3.3,35,,

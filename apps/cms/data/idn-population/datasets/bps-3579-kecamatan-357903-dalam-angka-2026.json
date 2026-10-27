@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3579-kecamatan-357903-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.79.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Junrejo Dalam Angka 2026",
+  "publisherName": "BPS Kota Batu",
+  "publisherDomain": "3579",
+  "publisherWebsite": "https://batukota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Batu (https://batukota.bps.go.id), publikasi \"Kecamatan Junrejo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3579020",
+  "publicationNumber": "35790.26006",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://batukota.bps.go.id/id/publication/2026/09/28/743721f475a00bd4e837759a/kecamatan-junrejo-dalam-angka-2026.html",
+  "sourceFileSha256": "bf3ff50373eec46daa5b3e584e82a1261f5cc0fc6e23299efd9e2bb5df7992d1",
+  "sourceFileBytes": 6830000,
+  "sourcePages": [30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Batu.",
+  "csvPath": "datasets/bps-3579-kecamatan-357903-dalam-angka-2026.csv",
+  "csvSha256": "4b26fff1ffe68980cb97c5c6bd16672563a8395bb9a9261f78adca4670b9f65a",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Junrejo . 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

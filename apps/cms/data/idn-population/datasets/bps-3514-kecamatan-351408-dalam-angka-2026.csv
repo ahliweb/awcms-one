@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.14.08.2002,4,Sekar Mojo,sex,laki_laki,,3825,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.08.2002,4,Sekar Mojo,sex,perempuan,,3844,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.08.2002,4,Sekar Mojo,total,total,,7669,jiwa,2025,registration,total_population,3.1,29,,
+35.14.08.2003,4,Tejowangi,sex,laki_laki,,3193,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.08.2003,4,Tejowangi,sex,perempuan,,3090,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.08.2003,4,Tejowangi,total,total,,6283,jiwa,2025,registration,total_population,3.1,29,,
+35.14.08.2004,4,Kertosari,sex,laki_laki,,2525,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.08.2004,4,Kertosari,sex,perempuan,,2507,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.08.2004,4,Kertosari,total,total,,5032,jiwa,2025,registration,total_population,3.1,29,,
+35.14.08.2005,4,Martopuro,sex,laki_laki,,5891,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.08.2005,4,Martopuro,sex,perempuan,,5845,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.08.2005,4,Martopuro,total,total,,11736,jiwa,2025,registration,total_population,3.1,29,,
+35.14.08.1006,4,Purwosari,sex,laki_laki,,4102,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.08.1006,4,Purwosari,sex,perempuan,,4133,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.08.1006,4,Purwosari,total,total,,8235,jiwa,2025,registration,total_population,3.1,29,,
+35.14.08.2001,4,Sumber Rejo,sex,laki_laki,,3282,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.08.2001,4,Sumber Rejo,sex,perempuan,,3189,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.08.2001,4,Sumber Rejo,total,total,,6471,jiwa,2025,registration,total_population,3.1,29,,
+35.14.08.2008,4,Pager,sex,laki_laki,,2261,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.08.2008,4,Pager,sex,perempuan,,2273,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.08.2008,4,Pager,total,total,,4534,jiwa,2025,registration,total_population,3.1,29,,
+35.14.08.2009,4,Cendono,sex,laki_laki,,2209,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.08.2009,4,Cendono,sex,perempuan,,2177,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.08.2009,4,Cendono,total,total,,4386,jiwa,2025,registration,total_population,3.1,29,,
+35.14.08.2010,4,Karang Rejo,sex,laki_laki,,3205,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.08.2010,4,Karang Rejo,sex,perempuan,,3152,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.08.2010,4,Karang Rejo,total,total,,6357,jiwa,2025,registration,total_population,3.1,29,,
+35.14.08.2011,4,Sumber Suko,sex,laki_laki,,2791,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.08.2011,4,Sumber Suko,sex,perempuan,,2785,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.08.2011,4,Sumber Suko,total,total,,5576,jiwa,2025,registration,total_population,3.1,29,,
+35.14.08.2007,4,Sengon Agung,sex,laki_laki,,3692,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.08.2007,4,Sengon Agung,sex,perempuan,,3717,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.08.2007,4,Sengon Agung,total,total,,7409,jiwa,2025,registration,total_population,3.1,29,,
+35.14.08.2015,4,Bakalan,sex,laki_laki,,3168,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.08.2015,4,Bakalan,sex,perempuan,,3155,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.08.2015,4,Bakalan,total,total,,6323,jiwa,2025,registration,total_population,3.1,29,,
+35.14.08.2014,4,Sukodermo,sex,laki_laki,,1063,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.08.2014,4,Sukodermo,sex,perempuan,,1074,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.08.2014,4,Sukodermo,total,total,,2137,jiwa,2025,registration,total_population,3.1,29,,
+35.14.08.2012,4,Pucangsari,sex,laki_laki,,2429,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.08.2012,4,Pucangsari,sex,perempuan,,2377,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.08.2012,4,Pucangsari,total,total,,4806,jiwa,2025,registration,total_population,3.1,29,,
+35.14.08.2013,4,Kayoman,sex,laki_laki,,1108,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.08.2013,4,Kayoman,sex,perempuan,,1105,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.08.2013,4,Kayoman,total,total,,2213,jiwa,2025,registration,total_population,3.1,29,,
+35.14.08,3,Kecamatan Purwosari,sex,laki_laki,,44744,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.14.08,3,Kecamatan Purwosari,sex,perempuan,,44423,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.14.08,3,Kecamatan Purwosari,total,total,,89167,jiwa,2025,registration,total_population,3.1,29,,

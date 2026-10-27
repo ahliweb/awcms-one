@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.24.27.2001,4,Kedungkumpul,sex,laki_laki,,1269,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/
+35.24.27.2001,4,Kedungkumpul,sex,perempuan,,1248,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+35.24.27.2001,4,Kedungkumpul,total,total,,2517,jiwa,2025,registration,total_population,3.1,26,,
+35.24.27.2002,4,Dermolemahbang,sex,laki_laki,,2747,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/
+35.24.27.2002,4,Dermolemahbang,sex,perempuan,,2781,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+35.24.27.2002,4,Dermolemahbang,total,total,,5528,jiwa,2025,registration,total_population,3.1,26,,
+35.24.27.2008,4,Gempoltukmloko,sex,laki_laki,,1040,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/
+35.24.27.2008,4,Gempoltukmloko,sex,perempuan,,1093,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+35.24.27.2008,4,Gempoltukmloko,total,total,,2133,jiwa,2025,registration,total_population,3.1,26,,
+35.24.27.2009,4,Sarirejo,sex,laki_laki,,1171,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/
+35.24.27.2009,4,Sarirejo,sex,perempuan,,1222,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+35.24.27.2009,4,Sarirejo,total,total,,2393,jiwa,2025,registration,total_population,3.1,26,,
+35.24.27.2007,4,Tambakmenjangan,sex,laki_laki,,2498,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/
+35.24.27.2007,4,Tambakmenjangan,sex,perempuan,,2593,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+35.24.27.2007,4,Tambakmenjangan,total,total,,5091,jiwa,2025,registration,total_population,3.1,26,,
+35.24.27.2004,4,Sumberjo,sex,laki_laki,,1279,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/
+35.24.27.2004,4,Sumberjo,sex,perempuan,,1376,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+35.24.27.2004,4,Sumberjo,total,total,,2655,jiwa,2025,registration,total_population,3.1,26,,
+35.24.27.2003,4,Simbatan,sex,laki_laki,,966,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/
+35.24.27.2003,4,Simbatan,sex,perempuan,,986,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+35.24.27.2003,4,Simbatan,total,total,,1952,jiwa,2025,registration,total_population,3.1,26,,
+35.24.27.2005,4,Canggah,sex,laki_laki,,448,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/
+35.24.27.2005,4,Canggah,sex,perempuan,,471,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+35.24.27.2005,4,Canggah,total,total,,919,jiwa,2025,registration,total_population,3.1,26,,
+35.24.27.2006,4,Beru,sex,laki_laki,,1030,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/
+35.24.27.2006,4,Beru,sex,perempuan,,1093,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+35.24.27.2006,4,Beru,total,total,,2123,jiwa,2025,registration,total_population,3.1,26,,
+35.24.27,3,Kecamatan Sarirejo,sex,laki_laki,,12448,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/
+35.24.27,3,Kecamatan Sarirejo,sex,perempuan,,12863,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+35.24.27,3,Kecamatan Sarirejo,total,total,,25311,jiwa,2025,registration,total_population,3.1,26,,
+35.24.27,3,Kecamatan Sarirejo,sex,laki_laki,,12448,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+35.24.27,3,Kecamatan Sarirejo,sex,perempuan,,12863,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+35.24.27,3,Kecamatan Sarirejo,total,total,,25311,jiwa,2025,registration,total_population,3.2,28,,

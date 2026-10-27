@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.24.23.2006,4,Kelorarum,sex,laki_laki,,1110,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.23.2006,4,Kelorarum,sex,perempuan,,1103,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.23.2006,4,Kelorarum,total,total,,2213,jiwa,2025,registration,total_population,3.1,31,,
+35.24.23.2002,4,Soko,sex,laki_laki,,2178,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.23.2002,4,Soko,sex,perempuan,,2220,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.23.2002,4,Soko,total,total,,4398,jiwa,2025,registration,total_population,3.1,31,,
+35.24.23.2013,4,Balongwangi,sex,laki_laki,,1833,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.23.2013,4,Balongwangi,sex,perempuan,,1830,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.23.2013,4,Balongwangi,total,total,,3663,jiwa,2025,registration,total_population,3.1,31,,
+35.24.23.2001,4,Wonokromo,sex,laki_laki,,1864,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.23.2001,4,Wonokromo,sex,perempuan,,1920,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.23.2001,4,Wonokromo,total,total,,3784,jiwa,2025,registration,total_population,3.1,31,,
+35.24.23.2005,4,Takeranklating,sex,laki_laki,,2139,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.23.2005,4,Takeranklating,sex,perempuan,,2152,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.23.2005,4,Takeranklating,total,total,,4291,jiwa,2025,registration,total_population,3.1,31,,
+35.24.23.2012,4,Botoputih,sex,laki_laki,,1007,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.23.2012,4,Botoputih,sex,perempuan,,1023,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.23.2012,4,Botoputih,total,total,,2030,jiwa,2025,registration,total_population,3.1,31,,
+35.24.23.2010,4,Dukuhagung,sex,laki_laki,,1794,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.23.2010,4,Dukuhagung,sex,perempuan,,1822,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.23.2010,4,Dukuhagung,total,total,,3616,jiwa,2025,registration,total_population,3.1,31,,
+35.24.23.2008,4,Pengumbulanadi,sex,laki_laki,,1481,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.23.2008,4,Pengumbulanadi,sex,perempuan,,1465,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.23.2008,4,Pengumbulanadi,total,total,,2946,jiwa,2025,registration,total_population,3.1,31,,
+35.24.23.2004,4,Bakalanpule,sex,laki_laki,,1949,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.23.2004,4,Bakalanpule,sex,perempuan,,1962,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.23.2004,4,Bakalanpule,total,total,,3911,jiwa,2025,registration,total_population,3.1,31,,
+35.24.23.2003,4,Guminingrejo,sex,laki_laki,,1093,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.23.2003,4,Guminingrejo,sex,perempuan,,1116,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.23.2003,4,Guminingrejo,total,total,,2209,jiwa,2025,registration,total_population,3.1,31,,
+35.24.23.2007,4,Jotosanur,sex,laki_laki,,2098,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.23.2007,4,Jotosanur,sex,perempuan,,2153,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.23.2007,4,Jotosanur,total,total,,4251,jiwa,2025,registration,total_population,3.1,31,,
+35.24.23.2009,4,Jatirejo,sex,laki_laki,,1927,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.23.2009,4,Jatirejo,sex,perempuan,,2002,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.23.2009,4,Jatirejo,total,total,,3929,jiwa,2025,registration,total_population,3.1,31,,
+35.24.23.2011,4,Tambakrigadung,sex,laki_laki,,3289,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.23.2011,4,Tambakrigadung,sex,perempuan,,3457,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.23.2011,4,Tambakrigadung,total,total,,6746,jiwa,2025,registration,total_population,3.1,31,,
+35.24.23,3,Kecamatan Tikung,sex,laki_laki,,23762,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.24.23,3,Kecamatan Tikung,sex,perempuan,,24225,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.24.23,3,Kecamatan Tikung,total,total,,47987,jiwa,2025,registration,total_population,3.1,31,,

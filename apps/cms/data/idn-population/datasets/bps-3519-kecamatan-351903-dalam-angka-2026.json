@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3519-kecamatan-351903-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.19.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Geger Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Madiun",
+  "publisherDomain": "3519",
+  "publisherWebsite": "https://madiunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Madiun (https://madiunkab.bps.go.id), publikasi \"Kecamatan Geger Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.35190020",
+  "publicationNumber": "35190.26006",
+  "issn": "2598-6619",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://madiunkab.bps.go.id/id/publication/2026/09/28/e738f182dceae1e14f8fd9a6/kecamatan-geger-dalam-angka-2026.html",
+  "sourceFileSha256": "781586e8525d6348f32ee8be3d70b35aab4e8de39b0d23bda9657f322f1e9713",
+  "sourceFileBytes": 4607531,
+  "sourcePages": [1],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Madiun.",
+  "csvPath": "datasets/bps-3519-kecamatan-351903-dalam-angka-2026.csv",
+  "csvSha256": "406841a47d3238778472306304d562670af82bc1b09f5fa91e7168270a5b4254",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Geger, 2025",
+      "printedPages": [1],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Geger, 2025",
+      "printedPages": [1],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: 58 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

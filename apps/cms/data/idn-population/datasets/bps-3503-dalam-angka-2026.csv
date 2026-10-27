@@ -1,0 +1,113 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.03.01,3,Panggul,total,total,,81244,jiwa,2025,registration,total_population,3.1.1,67,,
+35.03.02,3,Munjungan,total,total,,54572,jiwa,2025,registration,total_population,3.1.1,67,,
+35.03.08,3,Watulimo,total,total,,72449,jiwa,2025,registration,total_population,3.1.1,67,,
+35.03.07,3,Kampak,total,total,,38261,jiwa,2025,registration,total_population,3.1.1,67,,
+35.03.04,3,Dongko,total,total,,68012,jiwa,2025,registration,total_population,3.1.1,67,,
+35.03.03,3,Pule,total,total,,57553,jiwa,2025,registration,total_population,3.1.1,67,,
+35.03.06,3,Karangan,total,total,,50630,jiwa,2025,registration,total_population,3.1.1,67,,
+35.03.14,3,Suruh,total,total,,26782,jiwa,2025,registration,total_population,3.1.1,67,,
+35.03.10,3,Gandusari,total,total,,54063,jiwa,2025,registration,total_population,3.1.1,67,,
+35.03.13,3,Durenan,total,total,,52122,jiwa,2025,registration,total_population,3.1.1,67,,
+35.03.12,3,Pogalan,total,total,,53692,jiwa,2025,registration,total_population,3.1.1,67,,
+35.03.11,3,Trenggalek,total,total,,66931,jiwa,2025,registration,total_population,3.1.1,67,,
+35.03.05,3,Tugu,total,total,,49423,jiwa,2025,registration,total_population,3.1.1,67,,
+35.03.09,3,Bendungan,total,total,,28523,jiwa,2025,registration,total_population,3.1.1,67,,
+35.03,2,Kabupaten Trenggalek,total,total,,754257,jiwa,2025,registration,total_population,3.1.1,67,,
+35.03,2,Kabupaten Trenggalek,age_group,0-4,laki_laki,17173,ribu_jiwa,2025,registration,total_population,3.1.2,70,,0-4
+35.03,2,Kabupaten Trenggalek,age_group,0-4,perempuan,16089,ribu_jiwa,2025,registration,total_population,3.1.2,70,,0-4
+35.03,2,Kabupaten Trenggalek,age_group,0-4,,33262,ribu_jiwa,2025,registration,total_population,3.1.2,70,,0-4
+35.03,2,Kabupaten Trenggalek,age_group,5-9,laki_laki,23099,ribu_jiwa,2025,registration,total_population,3.1.2,70,,5-9
+35.03,2,Kabupaten Trenggalek,age_group,5-9,perempuan,21594,ribu_jiwa,2025,registration,total_population,3.1.2,70,,5-9
+35.03,2,Kabupaten Trenggalek,age_group,5-9,,44693,ribu_jiwa,2025,registration,total_population,3.1.2,70,,5-9
+35.03,2,Kabupaten Trenggalek,age_group,10-14,laki_laki,25277,ribu_jiwa,2025,registration,total_population,3.1.2,70,,10-14
+35.03,2,Kabupaten Trenggalek,age_group,10-14,perempuan,23904,ribu_jiwa,2025,registration,total_population,3.1.2,70,,10-14
+35.03,2,Kabupaten Trenggalek,age_group,10-14,,49181,ribu_jiwa,2025,registration,total_population,3.1.2,70,,10-14
+35.03,2,Kabupaten Trenggalek,age_group,15-19,laki_laki,25829,ribu_jiwa,2025,registration,total_population,3.1.2,70,,15-19
+35.03,2,Kabupaten Trenggalek,age_group,15-19,perempuan,24350,ribu_jiwa,2025,registration,total_population,3.1.2,70,,15-19
+35.03,2,Kabupaten Trenggalek,age_group,15-19,,50179,ribu_jiwa,2025,registration,total_population,3.1.2,70,,15-19
+35.03,2,Kabupaten Trenggalek,age_group,20-24,laki_laki,26118,ribu_jiwa,2025,registration,total_population,3.1.2,70,,20-24
+35.03,2,Kabupaten Trenggalek,age_group,20-24,perempuan,24823,ribu_jiwa,2025,registration,total_population,3.1.2,70,,20-24
+35.03,2,Kabupaten Trenggalek,age_group,20-24,,50941,ribu_jiwa,2025,registration,total_population,3.1.2,70,,20-24
+35.03,2,Kabupaten Trenggalek,age_group,25-29,laki_laki,26600,ribu_jiwa,2025,registration,total_population,3.1.2,70,,25-29
+35.03,2,Kabupaten Trenggalek,age_group,25-29,perempuan,26004,ribu_jiwa,2025,registration,total_population,3.1.2,70,,25-29
+35.03,2,Kabupaten Trenggalek,age_group,25-29,,52604,ribu_jiwa,2025,registration,total_population,3.1.2,70,,25-29
+35.03,2,Kabupaten Trenggalek,age_group,30-34,laki_laki,26296,ribu_jiwa,2025,registration,total_population,3.1.2,70,,30-34
+35.03,2,Kabupaten Trenggalek,age_group,30-34,perempuan,25688,ribu_jiwa,2025,registration,total_population,3.1.2,70,,30-34
+35.03,2,Kabupaten Trenggalek,age_group,30-34,,51984,ribu_jiwa,2025,registration,total_population,3.1.2,70,,30-34
+35.03,2,Kabupaten Trenggalek,age_group,35-39,laki_laki,25371,ribu_jiwa,2025,registration,total_population,3.1.2,70,,35-39
+35.03,2,Kabupaten Trenggalek,age_group,35-39,perempuan,24751,ribu_jiwa,2025,registration,total_population,3.1.2,70,,35-39
+35.03,2,Kabupaten Trenggalek,age_group,35-39,,50122,ribu_jiwa,2025,registration,total_population,3.1.2,70,,35-39
+35.03,2,Kabupaten Trenggalek,age_group,40-44,laki_laki,29687,ribu_jiwa,2025,registration,total_population,3.1.2,70,,40-44
+35.03,2,Kabupaten Trenggalek,age_group,40-44,perempuan,29237,ribu_jiwa,2025,registration,total_population,3.1.2,70,,40-44
+35.03,2,Kabupaten Trenggalek,age_group,40-44,,58924,ribu_jiwa,2025,registration,total_population,3.1.2,70,,40-44
+35.03,2,Kabupaten Trenggalek,age_group,45-49,laki_laki,26863,ribu_jiwa,2025,registration,total_population,3.1.2,70,,45-49
+35.03,2,Kabupaten Trenggalek,age_group,45-49,perempuan,26427,ribu_jiwa,2025,registration,total_population,3.1.2,70,,45-49
+35.03,2,Kabupaten Trenggalek,age_group,45-49,,53290,ribu_jiwa,2025,registration,total_population,3.1.2,70,,45-49
+35.03,2,Kabupaten Trenggalek,age_group,50-54,laki_laki,27005,ribu_jiwa,2025,registration,total_population,3.1.2,70,,50-54
+35.03,2,Kabupaten Trenggalek,age_group,50-54,perempuan,27440,ribu_jiwa,2025,registration,total_population,3.1.2,70,,50-54
+35.03,2,Kabupaten Trenggalek,age_group,50-54,,54445,ribu_jiwa,2025,registration,total_population,3.1.2,70,,50-54
+35.03,2,Kabupaten Trenggalek,age_group,55-59,laki_laki,26364,ribu_jiwa,2025,registration,total_population,3.1.2,70,,55-59
+35.03,2,Kabupaten Trenggalek,age_group,55-59,perempuan,26457,ribu_jiwa,2025,registration,total_population,3.1.2,70,,55-59
+35.03,2,Kabupaten Trenggalek,age_group,55-59,,52821,ribu_jiwa,2025,registration,total_population,3.1.2,70,,55-59
+35.03,2,Kabupaten Trenggalek,age_group,60-64,laki_laki,23356,ribu_jiwa,2025,registration,total_population,3.1.2,70,,60-64
+35.03,2,Kabupaten Trenggalek,age_group,60-64,perempuan,24146,ribu_jiwa,2025,registration,total_population,3.1.2,70,,60-64
+35.03,2,Kabupaten Trenggalek,age_group,60-64,,47502,ribu_jiwa,2025,registration,total_population,3.1.2,70,,60-64
+35.03,2,Kabupaten Trenggalek,age_group,65-69,laki_laki,19177,ribu_jiwa,2025,registration,total_population,3.1.2,70,,65-69
+35.03,2,Kabupaten Trenggalek,age_group,65-69,perempuan,19952,ribu_jiwa,2025,registration,total_population,3.1.2,70,,65-69
+35.03,2,Kabupaten Trenggalek,age_group,65-69,,39129,ribu_jiwa,2025,registration,total_population,3.1.2,70,,65-69
+35.03,2,Kabupaten Trenggalek,age_group,70-74,laki_laki,13563,ribu_jiwa,2025,registration,total_population,3.1.2,70,,70-74
+35.03,2,Kabupaten Trenggalek,age_group,70-74,perempuan,13262,ribu_jiwa,2025,registration,total_population,3.1.2,70,,70-74
+35.03,2,Kabupaten Trenggalek,age_group,70-74,,26825,ribu_jiwa,2025,registration,total_population,3.1.2,70,,70-74
+35.03,2,Kabupaten Trenggalek,age_group,75+,laki_laki,17070,ribu_jiwa,2025,registration,total_population,3.1.2,70,,75+
+35.03,2,Kabupaten Trenggalek,age_group,75+,perempuan,21285,ribu_jiwa,2025,registration,total_population,3.1.2,70,,75+
+35.03,2,Kabupaten Trenggalek,age_group,75+,,38355,ribu_jiwa,2025,registration,total_population,3.1.2,70,,75+
+35.03,2,Kabupaten Trenggalek,sex,laki_laki,,378848,ribu_jiwa,2025,registration,total_population,3.1.2,70,,Laki-Laki
+35.03,2,Kabupaten Trenggalek,sex,perempuan,,375409,ribu_jiwa,2025,registration,total_population,3.1.2,70,,Perempuan
+35.03,2,Kabupaten Trenggalek,total,total,,754257,ribu_jiwa,2025,registration,total_population,3.1.2,70,,
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/padi_padian,,82092,rupiah,2024,survey_estimate,per_capita,10.1,389,,Padi-padian
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/padi_padian,,76739,rupiah,2025,survey_estimate,per_capita,10.1,389,,Padi-padian
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/umbi_umbian,,4637,rupiah,2024,survey_estimate,per_capita,10.1,389,,Umbi-umbian
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/umbi_umbian,,5114,rupiah,2025,survey_estimate,per_capita,10.1,389,,Umbi-umbian
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,29008,rupiah,2024,survey_estimate,per_capita,10.1,389,,Ikan/udang/cumi/kerang
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,31228,rupiah,2025,survey_estimate,per_capita,10.1,389,,Ikan/udang/cumi/kerang
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/daging,,21050,rupiah,2024,survey_estimate,per_capita,10.1,389,,Daging
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/daging,,23028,rupiah,2025,survey_estimate,per_capita,10.1,389,,Daging
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/telur_dan_susu,,31128,rupiah,2024,survey_estimate,per_capita,10.1,389,,Telur dan susu
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/telur_dan_susu,,33400,rupiah,2025,survey_estimate,per_capita,10.1,389,,Telur dan susu
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/sayur_sayuran,,47283,rupiah,2024,survey_estimate,per_capita,10.1,389,,Sayur-sayuran
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/sayur_sayuran,,56771,rupiah,2025,survey_estimate,per_capita,10.1,389,,Sayur-sayuran
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/kacang_kacangan,,13936,rupiah,2024,survey_estimate,per_capita,10.1,389,,Kacang-kacangan
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/kacang_kacangan,,15939,rupiah,2025,survey_estimate,per_capita,10.1,389,,Kacang-kacangan
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/buah_buahan,,32985,rupiah,2024,survey_estimate,per_capita,10.1,389,,Buah-buahan
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/buah_buahan,,34270,rupiah,2025,survey_estimate,per_capita,10.1,389,,Buah-buahan
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20751,rupiah,2024,survey_estimate,per_capita,10.1,389,,Minyak dan kelapa
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/minyak_dan_kelapa,,25408,rupiah,2025,survey_estimate,per_capita,10.1,389,,Minyak dan kelapa
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/bahan_minuman,,19297,rupiah,2024,survey_estimate,per_capita,10.1,389,,Bahan minuman
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/bahan_minuman,,21657,rupiah,2025,survey_estimate,per_capita,10.1,389,,Bahan minuman
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/bumbu_bumbuan,,8520,rupiah,2024,survey_estimate,per_capita,10.1,389,,Bumbu-bumbuan
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/bumbu_bumbuan,,9934,rupiah,2025,survey_estimate,per_capita,10.1,389,,Bumbu-bumbuan
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/konsumsi_lainnya,,7920,rupiah,2024,survey_estimate,per_capita,10.1,389,,Konsumsi lainnya
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/konsumsi_lainnya,,8085,rupiah,2025,survey_estimate,per_capita,10.1,389,,Konsumsi lainnya
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,135264,rupiah,2024,survey_estimate,per_capita,10.1,389,,Makanan dan minuman jadi
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,181230,rupiah,2025,survey_estimate,per_capita,10.1,389,,Makanan dan minuman jadi
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/rokok,,47122,rupiah,2024,survey_estimate,per_capita,10.1,389,,Rokok
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/rokok,,52854,rupiah,2025,survey_estimate,per_capita,10.1,389,,Rokok
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/jumlah_makanan,,500993,rupiah,2024,survey_estimate,per_capita,10.1,389,,Jumlah makanan
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/jumlah_makanan,,575710,rupiah,2025,survey_estimate,per_capita,10.1,389,,Jumlah makanan
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,221609,rupiah,2024,survey_estimate,per_capita,10.1,389,,Perumahan dan fasilitas rumah tangga
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,227330,rupiah,2025,survey_estimate,per_capita,10.1,389,,Perumahan dan fasilitas rumah tangga
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,129064,rupiah,2024,survey_estimate,per_capita,10.1,389,,Aneka barang dan jasa
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,125137,rupiah,2025,survey_estimate,per_capita,10.1,389,,Aneka barang dan jasa
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,20329,rupiah,2024,survey_estimate,per_capita,10.1,389,,"Pakaian, alas kaki, dan tutup kepala"
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,25789,rupiah,2025,survey_estimate,per_capita,10.1,389,,"Pakaian, alas kaki, dan tutup kepala"
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/barang_tahan_lama,,42705,rupiah,2024,survey_estimate,per_capita,10.1,389,,Barang tahan lama
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/barang_tahan_lama,,52423,rupiah,2025,survey_estimate,per_capita,10.1,389,,Barang tahan lama
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,36837,rupiah,2024,survey_estimate,per_capita,10.1,389,,"Pajak, pungutan, dan asuransi"
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,38402,rupiah,2025,survey_estimate,per_capita,10.1,389,,"Pajak, pungutan, dan asuransi"
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,17460,rupiah,2024,survey_estimate,per_capita,10.1,389,,Keperluan pesta dan upacara/kenduri
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,20497,rupiah,2025,survey_estimate,per_capita,10.1,389,,Keperluan pesta dan upacara/kenduri
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,468003,rupiah,2024,survey_estimate,per_capita,10.1,389,,Jumlah bukan makanan
+35.03,2,Kabupaten Trenggalek,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,489579,rupiah,2025,survey_estimate,per_capita,10.1,389,,Jumlah bukan makanan
+35.03,2,Kabupaten Trenggalek,expenditure,total,,968997,rupiah,2024,survey_estimate,per_capita,10.1,389,,
+35.03,2,Kabupaten Trenggalek,expenditure,total,,1065289,rupiah,2025,survey_estimate,per_capita,10.1,389,,

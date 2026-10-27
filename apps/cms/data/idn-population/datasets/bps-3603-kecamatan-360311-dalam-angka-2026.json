@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3603-kecamatan-360311-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.03.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Rajeg Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tangerang",
+  "publisherDomain": "3603",
+  "publisherWebsite": "https://tangerangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tangerang (https://tangerangkab.bps.go.id), publikasi \"Kecamatan Rajeg Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3603170",
+  "publicationNumber": "36030.26029",
+  "issn": "2407-5493",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tangerangkab.bps.go.id/id/publication/2026/09/28/5ffddd33f6b19f7fa918a747/kecamatan-rajeg-dalam-angka-2026.html",
+  "sourceFileSha256": "07d41ade333bedf7e8e1467e66b281300c21205f3bad7708ff08fcb0f1bdb367",
+  "sourceFileBytes": 16144704,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tangerang.",
+  "csvPath": "datasets/bps-3603-kecamatan-360311-dalam-angka-2026.csv",
+  "csvSha256": "735167a484becd9ef1ecd962957e38ab7e85e311b75391f79bf2e812e42ca645",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Rajeg, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Rajeg, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Rajeg Rajeg District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Rajeg Rajeg District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Rajeg Rajeg District\": unmatched "
+  ]
+}

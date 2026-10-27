@@ -1,0 +1,242 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.12.15,3,Sumbermalang,total,total,,29164,jiwa,2025,registration,total_population,3.1.1,54,,
+35.12.01,3,Jatibanteng,total,total,,23513,jiwa,2025,registration,total_population,3.1.1,54,,
+35.12.16,3,Banyuglugur,total,total,,24545,jiwa,2025,registration,total_population,3.1.1,54,,
+35.12.02,3,Besuki,total,total,,66982,jiwa,2025,registration,total_population,3.1.1,54,,
+35.12.03,3,Suboh,total,total,,29223,jiwa,2025,registration,total_population,3.1.1,54,,
+35.12.04,3,Mlandingan,total,total,,24952,jiwa,2025,registration,total_population,3.1.1,54,,
+35.12.17,3,Bungatan,total,total,,26529,jiwa,2025,registration,total_population,3.1.1,54,,
+35.12.05,3,Kendit,total,total,,30475,jiwa,2025,registration,total_population,3.1.1,54,,
+35.12.06,3,Panarukan,total,total,,60032,jiwa,2025,registration,total_population,3.1.1,54,,
+35.12.07,3,Situbondo,total,total,,49641,jiwa,2025,registration,total_population,3.1.1,54,,
+35.12.09,3,Mangaran,total,total,,35871,jiwa,2025,registration,total_population,3.1.1,54,,
+35.12.08,3,Panji,total,total,,67983,jiwa,2025,registration,total_population,3.1.1,54,,
+35.12.10,3,Kapongan,total,total,,40715,jiwa,2025,registration,total_population,3.1.1,54,,
+35.12.11,3,Arjasa,total,total,,44345,jiwa,2025,registration,total_population,3.1.1,54,,
+35.12.12,3,Jangkar,total,total,,41258,jiwa,2025,registration,total_population,3.1.1,54,,
+35.12.13,3,Asembagus,total,total,,50384,jiwa,2025,registration,total_population,3.1.1,54,,
+35.12.14,3,Banyuputih,total,total,,52763,jiwa,2025,registration,total_population,3.1.1,54,,
+35.12,2,Kabupaten Situbondo,total,total,,698375,jiwa,2025,registration,total_population,3.1.1,54,,
+35.12,2,Kabupaten Situbondo,age_group,0-4,laki_laki,19725,jiwa,2025,registration,total_population,3.1.2,57,,0–4
+35.12,2,Kabupaten Situbondo,age_group,0-4,perempuan,18413,jiwa,2025,registration,total_population,3.1.2,57,,0–4
+35.12,2,Kabupaten Situbondo,age_group,0-4,,38138,jiwa,2025,registration,total_population,3.1.2,57,,0–4
+35.12,2,Kabupaten Situbondo,age_group,5-9,laki_laki,23305,jiwa,2025,registration,total_population,3.1.2,57,,5–9
+35.12,2,Kabupaten Situbondo,age_group,5-9,perempuan,22259,jiwa,2025,registration,total_population,3.1.2,57,,5–9
+35.12,2,Kabupaten Situbondo,age_group,5-9,,45564,jiwa,2025,registration,total_population,3.1.2,57,,5–9
+35.12,2,Kabupaten Situbondo,age_group,10-14,laki_laki,23445,jiwa,2025,registration,total_population,3.1.2,57,,10–14
+35.12,2,Kabupaten Situbondo,age_group,10-14,perempuan,22502,jiwa,2025,registration,total_population,3.1.2,57,,10–14
+35.12,2,Kabupaten Situbondo,age_group,10-14,,45947,jiwa,2025,registration,total_population,3.1.2,57,,10–14
+35.12,2,Kabupaten Situbondo,age_group,15-19,laki_laki,23202,jiwa,2025,registration,total_population,3.1.2,57,,15–19
+35.12,2,Kabupaten Situbondo,age_group,15-19,perempuan,21880,jiwa,2025,registration,total_population,3.1.2,57,,15–19
+35.12,2,Kabupaten Situbondo,age_group,15-19,,45082,jiwa,2025,registration,total_population,3.1.2,57,,15–19
+35.12,2,Kabupaten Situbondo,age_group,20-24,laki_laki,24075,jiwa,2025,registration,total_population,3.1.2,57,,20–24
+35.12,2,Kabupaten Situbondo,age_group,20-24,perempuan,23393,jiwa,2025,registration,total_population,3.1.2,57,,20–24
+35.12,2,Kabupaten Situbondo,age_group,20-24,,47468,jiwa,2025,registration,total_population,3.1.2,57,,20–24
+35.12,2,Kabupaten Situbondo,age_group,25-29,laki_laki,24374,jiwa,2025,registration,total_population,3.1.2,57,,25–29
+35.12,2,Kabupaten Situbondo,age_group,25-29,perempuan,23387,jiwa,2025,registration,total_population,3.1.2,57,,25–29
+35.12,2,Kabupaten Situbondo,age_group,25-29,,47761,jiwa,2025,registration,total_population,3.1.2,57,,25–29
+35.12,2,Kabupaten Situbondo,age_group,30-34,laki_laki,22165,jiwa,2025,registration,total_population,3.1.2,57,,30–34
+35.12,2,Kabupaten Situbondo,age_group,30-34,perempuan,22235,jiwa,2025,registration,total_population,3.1.2,57,,30–34
+35.12,2,Kabupaten Situbondo,age_group,30-34,,44400,jiwa,2025,registration,total_population,3.1.2,57,,30–34
+35.12,2,Kabupaten Situbondo,age_group,35-39,laki_laki,21794,jiwa,2025,registration,total_population,3.1.2,57,,35–39
+35.12,2,Kabupaten Situbondo,age_group,35-39,perempuan,22477,jiwa,2025,registration,total_population,3.1.2,57,,35–39
+35.12,2,Kabupaten Situbondo,age_group,35-39,,44271,jiwa,2025,registration,total_population,3.1.2,57,,35–39
+35.12,2,Kabupaten Situbondo,age_group,40-44,laki_laki,23634,jiwa,2025,registration,total_population,3.1.2,57,,40–44
+35.12,2,Kabupaten Situbondo,age_group,40-44,perempuan,25981,jiwa,2025,registration,total_population,3.1.2,57,,40–44
+35.12,2,Kabupaten Situbondo,age_group,40-44,,49615,jiwa,2025,registration,total_population,3.1.2,57,,40–44
+35.12,2,Kabupaten Situbondo,age_group,45-49,laki_laki,24658,jiwa,2025,registration,total_population,3.1.2,57,,45–49
+35.12,2,Kabupaten Situbondo,age_group,45-49,perempuan,26631,jiwa,2025,registration,total_population,3.1.2,57,,45–49
+35.12,2,Kabupaten Situbondo,age_group,45-49,,51289,jiwa,2025,registration,total_population,3.1.2,57,,45–49
+35.12,2,Kabupaten Situbondo,age_group,50-54,laki_laki,24034,jiwa,2025,registration,total_population,3.1.2,57,,50–54
+35.12,2,Kabupaten Situbondo,age_group,50-54,perempuan,25551,jiwa,2025,registration,total_population,3.1.2,57,,50–54
+35.12,2,Kabupaten Situbondo,age_group,50-54,,49585,jiwa,2025,registration,total_population,3.1.2,57,,50–54
+35.12,2,Kabupaten Situbondo,age_group,55-59,laki_laki,23019,jiwa,2025,registration,total_population,3.1.2,57,,55–59
+35.12,2,Kabupaten Situbondo,age_group,55-59,perempuan,24350,jiwa,2025,registration,total_population,3.1.2,57,,55–59
+35.12,2,Kabupaten Situbondo,age_group,55-59,,47369,jiwa,2025,registration,total_population,3.1.2,57,,55–59
+35.12,2,Kabupaten Situbondo,age_group,60-64,laki_laki,18788,jiwa,2025,registration,total_population,3.1.2,57,,60–64
+35.12,2,Kabupaten Situbondo,age_group,60-64,perempuan,21585,jiwa,2025,registration,total_population,3.1.2,57,,60–64
+35.12,2,Kabupaten Situbondo,age_group,60-64,,40373,jiwa,2025,registration,total_population,3.1.2,57,,60–64
+35.12,2,Kabupaten Situbondo,age_group,65-69,laki_laki,16652,jiwa,2025,registration,total_population,3.1.2,57,,65–69
+35.12,2,Kabupaten Situbondo,age_group,65-69,perempuan,19155,jiwa,2025,registration,total_population,3.1.2,57,,65–69
+35.12,2,Kabupaten Situbondo,age_group,65-69,,35807,jiwa,2025,registration,total_population,3.1.2,57,,65–69
+35.12,2,Kabupaten Situbondo,age_group,70-74,laki_laki,12266,jiwa,2025,registration,total_population,3.1.2,57,,70–74
+35.12,2,Kabupaten Situbondo,age_group,70-74,perempuan,13058,jiwa,2025,registration,total_population,3.1.2,57,,70–74
+35.12,2,Kabupaten Situbondo,age_group,70-74,,25324,jiwa,2025,registration,total_population,3.1.2,57,,70–74
+35.12,2,Kabupaten Situbondo,age_group,75+,laki_laki,16377,jiwa,2025,registration,total_population,3.1.2,57,,75+
+35.12,2,Kabupaten Situbondo,age_group,75+,perempuan,24005,jiwa,2025,registration,total_population,3.1.2,57,,75+
+35.12,2,Kabupaten Situbondo,age_group,75+,,40382,jiwa,2025,registration,total_population,3.1.2,57,,75+
+35.12,2,Kabupaten Situbondo,sex,laki_laki,,341513,jiwa,2025,registration,total_population,3.1.2,57,,Laki-Laki
+35.12,2,Kabupaten Situbondo,sex,perempuan,,356862,jiwa,2025,registration,total_population,3.1.2,57,,Perempuan
+35.12,2,Kabupaten Situbondo,total,total,,698375,jiwa,2025,registration,total_population,3.1.2,57,,
+35.12.15,3,Sumbermalang,religion,islam,,28985,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+35.12.15,3,Sumbermalang,religion,kristen,,2,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+35.12.15,3,Sumbermalang,religion,katolik,,5,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+35.12.15,3,Sumbermalang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Hindu
+35.12.15,3,Sumbermalang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Budha
+35.12.15,3,Sumbermalang,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Konghucu
+35.12.15,3,Sumbermalang,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,120,,Lainnya
+35.12.01,3,Jatibanteng,religion,islam,,23318,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+35.12.01,3,Jatibanteng,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Protestan
+35.12.01,3,Jatibanteng,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Katolik
+35.12.01,3,Jatibanteng,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Hindu
+35.12.01,3,Jatibanteng,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+35.12.01,3,Jatibanteng,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Konghucu
+35.12.01,3,Jatibanteng,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+35.12.16,3,Banyuglugur,religion,islam,,24246,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+35.12.16,3,Banyuglugur,religion,kristen,,38,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+35.12.16,3,Banyuglugur,religion,katolik,,9,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+35.12.16,3,Banyuglugur,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+35.12.16,3,Banyuglugur,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+35.12.16,3,Banyuglugur,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Konghucu
+35.12.16,3,Banyuglugur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+35.12.02,3,Besuki,religion,islam,,66098,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+35.12.02,3,Besuki,religion,kristen,,281,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+35.12.02,3,Besuki,religion,katolik,,149,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+35.12.02,3,Besuki,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+35.12.02,3,Besuki,religion,buddha,,33,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+35.12.02,3,Besuki,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.3.1,120,,Konghucu
+35.12.02,3,Besuki,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,120,,Lainnya
+35.12.03,3,Suboh,religion,islam,,29022,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+35.12.03,3,Suboh,religion,kristen,,36,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+35.12.03,3,Suboh,religion,katolik,,12,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+35.12.03,3,Suboh,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+35.12.03,3,Suboh,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+35.12.03,3,Suboh,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Konghucu
+35.12.03,3,Suboh,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+35.12.04,3,Mlandingan,religion,islam,,24814,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+35.12.04,3,Mlandingan,religion,kristen,,6,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+35.12.04,3,Mlandingan,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+35.12.04,3,Mlandingan,religion,hindu,,9,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+35.12.04,3,Mlandingan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Budha
+35.12.04,3,Mlandingan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Konghucu
+35.12.04,3,Mlandingan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+35.12.17,3,Bungatan,religion,islam,,26286,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+35.12.17,3,Bungatan,religion,kristen,,23,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+35.12.17,3,Bungatan,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+35.12.17,3,Bungatan,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+35.12.17,3,Bungatan,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+35.12.17,3,Bungatan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Konghucu
+35.12.17,3,Bungatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+35.12.05,3,Kendit,religion,islam,,30310,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+35.12.05,3,Kendit,religion,kristen,,41,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+35.12.05,3,Kendit,religion,katolik,,6,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+35.12.05,3,Kendit,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+35.12.05,3,Kendit,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+35.12.05,3,Kendit,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.3.1,120,,Konghucu
+35.12.05,3,Kendit,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+35.12.06,3,Panarukan,religion,islam,,59235,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+35.12.06,3,Panarukan,religion,kristen,,326,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+35.12.06,3,Panarukan,religion,katolik,,179,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+35.12.06,3,Panarukan,religion,hindu,,31,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+35.12.06,3,Panarukan,religion,buddha,,16,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+35.12.06,3,Panarukan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Konghucu
+35.12.06,3,Panarukan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+35.12.07,3,Situbondo,religion,islam,,48230,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+35.12.07,3,Situbondo,religion,kristen,,733,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+35.12.07,3,Situbondo,religion,katolik,,455,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+35.12.07,3,Situbondo,religion,hindu,,35,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+35.12.07,3,Situbondo,religion,buddha,,78,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+35.12.07,3,Situbondo,religion,khonghucu,,6,jiwa,2025,registration,total_population,4.3.1,120,,Konghucu
+35.12.07,3,Situbondo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+35.12.09,3,Mangaran,religion,islam,,35562,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+35.12.09,3,Mangaran,religion,kristen,,78,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+35.12.09,3,Mangaran,religion,katolik,,30,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+35.12.09,3,Mangaran,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Hindu
+35.12.09,3,Mangaran,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+35.12.09,3,Mangaran,religion,khonghucu,,6,jiwa,2025,registration,total_population,4.3.1,120,,Konghucu
+35.12.09,3,Mangaran,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+35.12.08,3,Panji,religion,islam,,66570,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+35.12.08,3,Panji,religion,kristen,,845,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+35.12.08,3,Panji,religion,katolik,,342,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+35.12.08,3,Panji,religion,hindu,,18,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+35.12.08,3,Panji,religion,buddha,,144,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+35.12.08,3,Panji,religion,khonghucu,,4,jiwa,2025,registration,total_population,4.3.1,120,,Konghucu
+35.12.08,3,Panji,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+35.12.10,3,Kapongan,religion,islam,,40415,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+35.12.10,3,Kapongan,religion,kristen,,17,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+35.12.10,3,Kapongan,religion,katolik,,23,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+35.12.10,3,Kapongan,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+35.12.10,3,Kapongan,religion,buddha,,10,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+35.12.10,3,Kapongan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Konghucu
+35.12.10,3,Kapongan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+35.12.11,3,Arjasa,religion,islam,,43936,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+35.12.11,3,Arjasa,religion,kristen,,71,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+35.12.11,3,Arjasa,religion,katolik,,8,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+35.12.11,3,Arjasa,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+35.12.11,3,Arjasa,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+35.12.11,3,Arjasa,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Konghucu
+35.12.11,3,Arjasa,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+35.12.12,3,Jangkar,religion,islam,,40837,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+35.12.12,3,Jangkar,religion,kristen,,105,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+35.12.12,3,Jangkar,religion,katolik,,18,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+35.12.12,3,Jangkar,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+35.12.12,3,Jangkar,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+35.12.12,3,Jangkar,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Konghucu
+35.12.12,3,Jangkar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+35.12.13,3,Asembagus,religion,islam,,49775,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+35.12.13,3,Asembagus,religion,kristen,,280,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+35.12.13,3,Asembagus,religion,katolik,,80,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+35.12.13,3,Asembagus,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+35.12.13,3,Asembagus,religion,buddha,,8,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+35.12.13,3,Asembagus,religion,khonghucu,,3,jiwa,2025,registration,total_population,4.3.1,120,,Konghucu
+35.12.13,3,Asembagus,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,120,,Lainnya
+35.12.14,3,Banyuputih,religion,islam,,50926,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+35.12.14,3,Banyuputih,religion,kristen,,1485,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+35.12.14,3,Banyuputih,religion,katolik,,38,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+35.12.14,3,Banyuputih,religion,hindu,,24,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+35.12.14,3,Banyuputih,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+35.12.14,3,Banyuputih,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.3.1,120,,Konghucu
+35.12.14,3,Banyuputih,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,120,nil,Lainnya
+35.12,2,Kabupaten Situbondo,religion,islam,,688565,jiwa,2025,registration,total_population,4.3.1,120,,Islam
+35.12,2,Kabupaten Situbondo,religion,kristen,,4367,jiwa,2025,registration,total_population,4.3.1,120,,Protestan
+35.12,2,Kabupaten Situbondo,religion,katolik,,1359,jiwa,2025,registration,total_population,4.3.1,120,,Katolik
+35.12,2,Kabupaten Situbondo,religion,hindu,,137,jiwa,2025,registration,total_population,4.3.1,120,,Hindu
+35.12,2,Kabupaten Situbondo,religion,buddha,,306,jiwa,2025,registration,total_population,4.3.1,120,,Budha
+35.12,2,Kabupaten Situbondo,religion,khonghucu,,22,jiwa,2025,registration,total_population,4.3.1,120,,Konghucu
+35.12,2,Kabupaten Situbondo,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,120,,Lainnya
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/padi_padian,,89503,rupiah,2024,survey_estimate,per_capita,10.1,284,,Padi-padian
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/padi_padian,,78103,rupiah,2025,survey_estimate,per_capita,10.1,284,,Padi-padian
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/umbi_umbian,,3329,rupiah,2024,survey_estimate,per_capita,10.1,284,,Umbi-umbian
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/umbi_umbian,,3006,rupiah,2025,survey_estimate,per_capita,10.1,284,,Umbi-umbian
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,35923,rupiah,2024,survey_estimate,per_capita,10.1,284,,Ikan/udang/cumi/kerang
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,34652,rupiah,2025,survey_estimate,per_capita,10.1,284,,Ikan/udang/cumi/kerang
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/daging,,20659,rupiah,2024,survey_estimate,per_capita,10.1,284,,Daging
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/daging,,17064,rupiah,2025,survey_estimate,per_capita,10.1,284,,Daging
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/telur_dan_susu,,25962,rupiah,2024,survey_estimate,per_capita,10.1,284,,Telur dan susu
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/telur_dan_susu,,22645,rupiah,2025,survey_estimate,per_capita,10.1,284,,Telur dan susu
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/sayur_sayuran,,37224,rupiah,2024,survey_estimate,per_capita,10.1,284,,Sayur-sayuran
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/sayur_sayuran,,39347,rupiah,2025,survey_estimate,per_capita,10.1,284,,Sayur-sayuran
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/kacang_kacangan,,17801,rupiah,2024,survey_estimate,per_capita,10.1,284,,Kacang-kacangan
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/kacang_kacangan,,20333,rupiah,2025,survey_estimate,per_capita,10.1,284,,Kacang-kacangan
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/buah_buahan,,27116,rupiah,2024,survey_estimate,per_capita,10.1,284,,Buah-buahan
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/buah_buahan,,21383,rupiah,2025,survey_estimate,per_capita,10.1,284,,Buah-buahan
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/minyak_dan_kelapa,,13230,rupiah,2024,survey_estimate,per_capita,10.1,284,,Minyak dan kelapa
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14815,rupiah,2025,survey_estimate,per_capita,10.1,284,,Minyak dan kelapa
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/bahan_minuman,,18875,rupiah,2024,survey_estimate,per_capita,10.1,284,,Bahan minuman
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/bahan_minuman,,18160,rupiah,2025,survey_estimate,per_capita,10.1,284,,Bahan minuman
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/bumbu_bumbuan,,13952,rupiah,2024,survey_estimate,per_capita,10.1,284,,Bumbu-bumbuan
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/bumbu_bumbuan,,11682,rupiah,2025,survey_estimate,per_capita,10.1,284,,Bumbu-bumbuan
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/konsumsi_lainnya,,10068,rupiah,2024,survey_estimate,per_capita,10.1,284,,Konsumsi lainnya
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/konsumsi_lainnya,,10182,rupiah,2025,survey_estimate,per_capita,10.1,284,,Konsumsi lainnya
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,186853,rupiah,2024,survey_estimate,per_capita,10.1,284,,Makanan dan minuman jadi
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,159790,rupiah,2025,survey_estimate,per_capita,10.1,284,,Makanan dan minuman jadi
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/rokok,,89756,rupiah,2024,survey_estimate,per_capita,10.1,284,,Rokok
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/rokok,,70108,rupiah,2025,survey_estimate,per_capita,10.1,284,,Rokok
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/jumlah_makanan,,590252,rupiah,2024,survey_estimate,per_capita,10.1,284,,Jumlah makanan
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/jumlah_makanan,,521268,rupiah,2025,survey_estimate,per_capita,10.1,284,,Jumlah makanan
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,242631,rupiah,2024,survey_estimate,per_capita,10.1,284,,Perumahan dan fasilitas rumah tangga
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,181712,rupiah,2025,survey_estimate,per_capita,10.1,284,,Perumahan dan fasilitas rumah tangga
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,153996,rupiah,2024,survey_estimate,per_capita,10.1,284,,Aneka barang dan jasa
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,100872,rupiah,2025,survey_estimate,per_capita,10.1,284,,Aneka barang dan jasa
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,30961,rupiah,2024,survey_estimate,per_capita,10.1,284,,"Pakaian, alas kaki, dan tutup kepala"
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,26426,rupiah,2025,survey_estimate,per_capita,10.1,284,,"Pakaian, alas kaki, dan tutup kepala"
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/barang_tahan_lama,,49084,rupiah,2024,survey_estimate,per_capita,10.1,284,,Barang tahan lama
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/barang_tahan_lama,,39465,rupiah,2025,survey_estimate,per_capita,10.1,284,,Barang tahan lama
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,35813,rupiah,2024,survey_estimate,per_capita,10.1,284,,"Pajak, pungutan, dan asuransi"
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,35118,rupiah,2025,survey_estimate,per_capita,10.1,284,,"Pajak, pungutan, dan asuransi"
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,36128,rupiah,2024,survey_estimate,per_capita,10.1,284,,Keperluan pesta dan upacara/kenduri
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,66850,rupiah,2025,survey_estimate,per_capita,10.1,284,,Keperluan pesta dan upacara/kenduri
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,548612,rupiah,2024,survey_estimate,per_capita,10.1,284,,Jumlah bukan makanan
+35.12,2,Kabupaten Situbondo,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,450443,rupiah,2025,survey_estimate,per_capita,10.1,284,,Jumlah bukan makanan
+35.12,2,Kabupaten Situbondo,expenditure,total,,1138864,rupiah,2024,survey_estimate,per_capita,10.1,284,,
+35.12,2,Kabupaten Situbondo,expenditure,total,,971711,rupiah,2025,survey_estimate,per_capita,10.1,284,,

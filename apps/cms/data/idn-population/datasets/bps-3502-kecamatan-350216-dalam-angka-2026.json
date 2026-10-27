@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3502-kecamatan-350216-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.02.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Babadan Dalam Angka 2026",
+  "publisherName": "BPS Ponorogo",
+  "publisherDomain": "3502",
+  "publisherWebsite": "https://ponorogokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Ponorogo (https://ponorogokab.bps.go.id), publikasi \"Kecamatan Babadan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3502180",
+  "publicationNumber": "35020.26023",
+  "issn": "0852-3088",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://ponorogokab.bps.go.id/id/publication/2026/09/28/189ef9231cf134572d5c9810/kecamatan-babadan-dalam-angka-2026.html",
+  "sourceFileSha256": "b8b18198ee0c059c2098643afa02aabbda8cbbff965d8aa0984c01cd2e4a015b",
+  "sourceFileBytes": 1481384,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ponorogo.",
+  "csvPath": "datasets/bps-3502-kecamatan-350216-dalam-angka-2026.csv",
+  "csvSha256": "cf9788a7c8f64ecaa947b0e07b0efc37f58cfa1d57922b4d7d302607a2d78002",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Babadan, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Babadan, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kepatihan Wetan\": unmatched ",
+    "table 3.1: row not stored: row \"Kepatihan Wetan\": unmatched "
+  ]
+}

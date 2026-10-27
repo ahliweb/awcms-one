@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.19.14.2002,4,Kanung,sex,laki_laki,,753,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+35.19.14.2002,4,Kanung,sex,perempuan,,823,jiwa,2025,registration,total_population,3.1,,,Perempuan
+35.19.14.2002,4,Kanung,total,total,,1576,jiwa,2025,registration,total_population,3.1,,,
+35.19.14.2001,4,Sidomulyo,sex,laki_laki,,1469,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+35.19.14.2001,4,Sidomulyo,sex,perempuan,,1520,jiwa,2025,registration,total_population,3.1,,,Perempuan
+35.19.14.2001,4,Sidomulyo,total,total,,2989,jiwa,2025,registration,total_population,3.1,,,
+35.19.14.2003,4,Rejosari,sex,laki_laki,,1465,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+35.19.14.2003,4,Rejosari,sex,perempuan,,1557,jiwa,2025,registration,total_population,3.1,,,Perempuan
+35.19.14.2003,4,Rejosari,total,total,,3022,jiwa,2025,registration,total_population,3.1,,,
+35.19.14.2007,4,Bakur,sex,laki_laki,,1321,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+35.19.14.2007,4,Bakur,sex,perempuan,,1296,jiwa,2025,registration,total_population,3.1,,,Perempuan
+35.19.14.2007,4,Bakur,total,total,,2617,jiwa,2025,registration,total_population,3.1,,,
+35.19.14.2004,4,Pucangrejo,sex,laki_laki,,1223,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+35.19.14.2004,4,Pucangrejo,sex,perempuan,,1195,jiwa,2025,registration,total_population,3.1,,,Perempuan
+35.19.14.2004,4,Pucangrejo,total,total,,2418,jiwa,2025,registration,total_population,3.1,,,
+35.19.14.2005,4,Krokeh,sex,laki_laki,,491,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+35.19.14.2005,4,Krokeh,sex,perempuan,,531,jiwa,2025,registration,total_population,3.1,,,Perempuan
+35.19.14.2005,4,Krokeh,total,total,,1022,jiwa,2025,registration,total_population,3.1,,,
+35.19.14.2006,4,Lebakayu,sex,laki_laki,,1101,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+35.19.14.2006,4,Lebakayu,sex,perempuan,,1061,jiwa,2025,registration,total_population,3.1,,,Perempuan
+35.19.14.2006,4,Lebakayu,total,total,,2162,jiwa,2025,registration,total_population,3.1,,,
+35.19.14.2008,4,Golan,sex,laki_laki,,972,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+35.19.14.2008,4,Golan,sex,perempuan,,1048,jiwa,2025,registration,total_population,3.1,,,Perempuan
+35.19.14.2008,4,Golan,total,total,,2020,jiwa,2025,registration,total_population,3.1,,,
+35.19.14.2009,4,Cabean,sex,laki_laki,,1148,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+35.19.14.2009,4,Cabean,sex,perempuan,,1182,jiwa,2025,registration,total_population,3.1,,,Perempuan
+35.19.14.2009,4,Cabean,total,total,,2330,jiwa,2025,registration,total_population,3.1,,,
+35.19.14.2010,4,Sawahan,sex,laki_laki,,971,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+35.19.14.2010,4,Sawahan,sex,perempuan,,1048,jiwa,2025,registration,total_population,3.1,,,Perempuan
+35.19.14.2010,4,Sawahan,total,total,,2019,jiwa,2025,registration,total_population,3.1,,,
+35.19.14.2011,4,Pule,sex,laki_laki,,385,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+35.19.14.2011,4,Pule,sex,perempuan,,370,jiwa,2025,registration,total_population,3.1,,,Perempuan
+35.19.14.2011,4,Pule,total,total,,755,jiwa,2025,registration,total_population,3.1,,,
+35.19.14.2012,4,Kajang,sex,laki_laki,,709,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+35.19.14.2012,4,Kajang,sex,perempuan,,712,jiwa,2025,registration,total_population,3.1,,,Perempuan
+35.19.14.2012,4,Kajang,total,total,,1421,jiwa,2025,registration,total_population,3.1,,,
+35.19.14.2013,4,Klumpit,sex,laki_laki,,511,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+35.19.14.2013,4,Klumpit,sex,perempuan,,524,jiwa,2025,registration,total_population,3.1,,,Perempuan
+35.19.14.2013,4,Klumpit,total,total,,1035,jiwa,2025,registration,total_population,3.1,,,
+35.19.14,3,Kecamatan Sawahan,sex,laki_laki,,12519,jiwa,2025,registration,total_population,3.1,,,Laki-Laki
+35.19.14,3,Kecamatan Sawahan,sex,perempuan,,12867,jiwa,2025,registration,total_population,3.1,,,Perempuan
+35.19.14,3,Kecamatan Sawahan,total,total,,25386,jiwa,2025,registration,total_population,3.1,,,

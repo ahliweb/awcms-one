@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3512-kecamatan-351216-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.12.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Banyuglugur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Situbondo",
+  "publisherDomain": "3512",
+  "publisherWebsite": "https://situbondokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Situbondo (https://situbondokab.bps.go.id), publikasi \"Kecamatan Banyuglugur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3512030",
+  "publicationNumber": "35120.260014",
+  "issn": "2808-6201",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://situbondokab.bps.go.id/id/publication/2026/09/28/e2fd508b63a32de4ad193ab1/kecamatan-banyuglugur-dalam-angka-2026.html",
+  "sourceFileSha256": "91f74a5125605ae7b644f6d211908d76eb1b1a6031fd1ffdd525aa9b85c156d8",
+  "sourceFileBytes": 5398765,
+  "sourcePages": [26, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Situbondo.",
+  "csvPath": "datasets/bps-3512-kecamatan-351216-dalam-angka-2026.csv",
+  "csvSha256": "f0198e9eea03fe843927d128758e2cee6177fd3e4a1cad396c32e80755765b9a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Banyuglugur , 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Banyuglugur , 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.3 (religion-by-region) could not be read reliably and is not included (religion column 3 header \"3.3 Konghuchu Confucian\" not recognised)",
+    "table 3.2: row not stored: row \"70 - 74 ≥ 75\": unmatched ",
+    "table 3.2: the rows of region 35.12.16 are not stored: age_group (perempuan) vs sex value: parts sum 10928.0000 != 12437.0000 (diff 1509.0000); the source itself is inconsistent"
+  ]
+}
