@@ -240,17 +240,48 @@ describe("the click target is never trusted (T7, third wall)", () => {
     }
   });
 
-  test("a click opens the fixed page, or focuses and navigates an existing tab of THIS origin", async () => {
+  test("a click opens the fixed page, or focuses and navigates an existing tab already under /akun", async () => {
     const worker = load();
     const fresh = await worker.click({ url: `${ORIGIN}/akun/pesanan` });
     expect(fresh.opened).toEqual([`${ORIGIN}/akun/pesanan`]);
 
-    const open = trackedClient(`${ORIGIN}/produk`);
-    const foreign = trackedClient("https://evil.example/");
+    const open = trackedClient(`${ORIGIN}/akun/profil`);
+    const foreign = trackedClient("https://evil.example/akun");
     const reused = await worker.click({ url: `${ORIGIN}/akun/pesan` }, [foreign as FakeClient, open as FakeClient]);
     expect(reused.opened).toEqual([]);
-    expect(reused.focused).toEqual([`${ORIGIN}/produk`]);
+    expect(reused.focused).toEqual([`${ORIGIN}/akun/profil`]);
     expect(reused.navigated).toEqual([`${ORIGIN}/akun/pesan`]);
+
+    const root = trackedClient(`${ORIGIN}/akun`);
+    const fromRoot = await worker.click({ url: `${ORIGIN}/akun/pesanan` }, [root as FakeClient]);
+    expect(fromRoot.focused).toEqual([`${ORIGIN}/akun`]);
+    expect(fromRoot.navigated).toEqual([`${ORIGIN}/akun/pesanan`]);
+  });
+
+  test("a click never takes over a tab outside /akun: checkout, a product page or a look-alike path", async () => {
+    const worker = load();
+    for (const url of [
+      `${ORIGIN}/checkout`,
+      `${ORIGIN}/produk`,
+      `${ORIGIN}/`,
+      `${ORIGIN}/akunx`,
+      `${ORIGIN}/produk/akun`,
+      `${ORIGIN}/produk?next=/akun`
+    ]) {
+      const tab = trackedClient(url);
+      const result = await worker.click({ url: `${ORIGIN}/akun/pesan` }, [tab as FakeClient]);
+      expect(result.focused).toEqual([]);
+      expect(result.navigated).toEqual([]);
+      expect(result.opened).toEqual([`${ORIGIN}/akun/pesan`]);
+    }
+
+    // An account tab behind an unrelated one is still the one reused.
+    const checkout = trackedClient(`${ORIGIN}/checkout`);
+    const account = trackedClient(`${ORIGIN}/akun/pesanan`);
+    const mixed = await worker.click({ url: `${ORIGIN}/akun/pesan` }, [checkout as FakeClient, account as FakeClient]);
+    expect(mixed.opened).toEqual([]);
+    expect(mixed.focused).toEqual([`${ORIGIN}/akun/pesanan`]);
+    expect((checkout as any).__navigated).toEqual([]);
   });
 });
 

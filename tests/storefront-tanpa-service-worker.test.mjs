@@ -209,6 +209,13 @@ describe("the push worker file cannot do anything but push and click", () => {
     assert.match(worker, /var ALLOWED_PATHS = \["\/akun", "\/akun\/pesanan", "\/akun\/pesan"\]/);
   });
 
+  test("a click reuses only a window already under /akun, never any same-origin tab", () => {
+    assert.match(worker, /function isAccountWindow\(href\)/);
+    assert.match(worker, /url\.pathname\.indexOf\(FALLBACK_PATH \+ "\/"\) === 0/);
+    assert.match(worker, /isAccountWindow\(client\.url\)/);
+    assert.doesNotMatch(worker, /sameOrigin\s*\(/);
+  });
+
   test("it takes no icon or image from the payload", () => {
     assert.doesNotMatch(worker, /source\.icon|source\.image|source\.badge|raw\.icon|raw\.image/);
   });

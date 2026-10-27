@@ -35,6 +35,9 @@
  *     third wall behind the server's closed path list and `validatePushTargetPath`
  *     (T7). The destination page authenticates with the stored bearer before it
  *     shows anything private.
+ *   - A CLICK ONLY TAKES OVER A TAB ALREADY UNDER `/akun`. Any other open
+ *     window of the origin (checkout, a product page) is left alone and the
+ *     target opens in a new window; a banner must not discard a shopper's form.
  *   - NO ICON OR IMAGE FROM THE PAYLOAD (fetching one would leak the shopper's
  *     address to whoever controls it); a fixed same-origin icon is used.
  *
@@ -93,9 +96,17 @@ function resolveTarget(raw) {
   }
 }
 
-function sameOrigin(href) {
+/**
+ * A window the click may take over: THIS origin AND already inside the account
+ * area (`/akun` or `/akun/...`, never `/akunx`). A shopper mid-checkout, or
+ * reading a product, in another tab must not lose that page to a banner click;
+ * such a click opens a new window instead.
+ */
+function isAccountWindow(href) {
   try {
-    return new URL(href).origin === self.location.origin;
+    var url = new URL(href);
+    if (url.origin !== self.location.origin) return false;
+    return url.pathname === FALLBACK_PATH || url.pathname.indexOf(FALLBACK_PATH + "/") === 0;
   } catch (error) {
     return false;
   }
@@ -161,7 +172,7 @@ self.addEventListener("notificationclick", function (event) {
     self.clients.matchAll({ type: "window", includeUncontrolled: true }).then(function (windowClients) {
       for (var index = 0; index < windowClients.length; index += 1) {
         var client = windowClients[index];
-        if (sameOrigin(client.url) && "focus" in client) {
+        if (isAccountWindow(client.url) && "focus" in client) {
           if ("navigate" in client) {
             Promise.resolve(client.navigate(target)).catch(function () {});
           }
