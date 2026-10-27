@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.01.01.2001,4,Cupel,sex,laki_laki,,2583,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.01.2001,4,Cupel,sex,perempuan,,2527,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.01.2001,4,Cupel,total,total,,5110,jiwa,2025,registration,total_population,3.1,40,,
+51.01.01.2010,4,Tegal Badeng Barat,sex,laki_laki,,3383,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.01.2010,4,Tegal Badeng Barat,sex,perempuan,,3305,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.01.2010,4,Tegal Badeng Barat,total,total,,6688,jiwa,2025,registration,total_population,3.1,40,,
+51.01.01.2009,4,Tegal Badeng Timur,sex,laki_laki,,2606,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.01.2009,4,Tegal Badeng Timur,sex,perempuan,,2565,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.01.2009,4,Tegal Badeng Timur,total,total,,5171,jiwa,2025,registration,total_population,3.1,40,,
+51.01.01.2011,4,Pengambengan,sex,laki_laki,,6972,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.01.2011,4,Pengambengan,sex,perempuan,,6695,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.01.2011,4,Pengambengan,total,total,,13667,jiwa,2025,registration,total_population,3.1,40,,
+51.01.01.1014,4,Loloan Barat,sex,laki_laki,,2551,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.01.1014,4,Loloan Barat,sex,perempuan,,2464,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.01.1014,4,Loloan Barat,total,total,,5015,jiwa,2025,registration,total_population,3.1,40,,
+51.01.01.1013,4,Lelateng,sex,laki_laki,,5506,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.01.1013,4,Lelateng,sex,perempuan,,5490,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.01.1013,4,Lelateng,total,total,,10996,jiwa,2025,registration,total_population,3.1,40,,
+51.01.01.1008,4,Banjar Tengah,sex,laki_laki,,3298,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.01.1008,4,Banjar Tengah,sex,perempuan,,2909,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.01.1008,4,Banjar Tengah,total,total,,6207,jiwa,2025,registration,total_population,3.1,40,,
+51.01.01.2002,4,Baluk,sex,laki_laki,,4058,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.01.2002,4,Baluk,sex,perempuan,,3983,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.01.2002,4,Baluk,total,total,,8041,jiwa,2025,registration,total_population,3.1,40,,
+51.01.01.2003,4,Banyubiru,sex,laki_laki,,5508,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.01.2003,4,Banyubiru,sex,perempuan,,5303,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.01.2003,4,Banyubiru,total,total,,10811,jiwa,2025,registration,total_population,3.1,40,,
+51.01.01.2004,4,Kaliakah,sex,laki_laki,,4931,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.01.2004,4,Kaliakah,sex,perempuan,,4834,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.01.2004,4,Kaliakah,total,total,,9765,jiwa,2025,registration,total_population,3.1,40,,
+51.01.01.2005,4,Berangbang,sex,laki_laki,,3820,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.01.2005,4,Berangbang,sex,perempuan,,3708,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.01.2005,4,Berangbang,total,total,,7528,jiwa,2025,registration,total_population,3.1,40,,
+51.01.01.1006,4,Baler Bale Agung,sex,laki_laki,,6145,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.01.1006,4,Baler Bale Agung,sex,perempuan,,6019,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.01.1006,4,Baler Bale Agung,total,total,,12164,jiwa,2025,registration,total_population,3.1,40,,
+51.01.01,3,Negara,sex,laki_laki,,51361,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.01,3,Negara,sex,perempuan,,49802,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.01,3,Negara,total,total,,101163,jiwa,2025,registration,total_population,3.1,40,,

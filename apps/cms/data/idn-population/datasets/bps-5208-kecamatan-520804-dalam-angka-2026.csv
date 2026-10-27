@@ -1,0 +1,4 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.08.04,3,BAYAN,sex,laki_laki,,752,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+52.08.04,3,BAYAN,sex,perempuan,,812,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+52.08.04,3,BAYAN,total,total,,1564,jiwa,2025,registration,total_population,3.2,33,,

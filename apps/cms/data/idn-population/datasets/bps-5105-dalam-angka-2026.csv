@@ -1,0 +1,127 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.05,2,Kabupaten Klungkung,age_group,0-4,laki_laki,7.82,ribu_jiwa,2025,projection,total_population,3.1.2,55,,0–4
+51.05,2,Kabupaten Klungkung,age_group,0-4,perempuan,7.50,ribu_jiwa,2025,projection,total_population,3.1.2,55,,0–4
+51.05,2,Kabupaten Klungkung,age_group,0-4,,15.32,ribu_jiwa,2025,projection,total_population,3.1.2,55,,0–4
+51.05,2,Kabupaten Klungkung,age_group,5-9,laki_laki,7.44,ribu_jiwa,2025,projection,total_population,3.1.2,55,,5–9
+51.05,2,Kabupaten Klungkung,age_group,5-9,perempuan,7.12,ribu_jiwa,2025,projection,total_population,3.1.2,55,,5–9
+51.05,2,Kabupaten Klungkung,age_group,5-9,,14.56,ribu_jiwa,2025,projection,total_population,3.1.2,55,,5–9
+51.05,2,Kabupaten Klungkung,age_group,10-14,laki_laki,7.13,ribu_jiwa,2025,projection,total_population,3.1.2,55,,10–14
+51.05,2,Kabupaten Klungkung,age_group,10-14,perempuan,6.89,ribu_jiwa,2025,projection,total_population,3.1.2,55,,10–14
+51.05,2,Kabupaten Klungkung,age_group,10-14,,14.02,ribu_jiwa,2025,projection,total_population,3.1.2,55,,10–14
+51.05,2,Kabupaten Klungkung,age_group,15-19,laki_laki,7.87,ribu_jiwa,2025,projection,total_population,3.1.2,55,,15–19
+51.05,2,Kabupaten Klungkung,age_group,15-19,perempuan,7.37,ribu_jiwa,2025,projection,total_population,3.1.2,55,,15–19
+51.05,2,Kabupaten Klungkung,age_group,15-19,,15.24,ribu_jiwa,2025,projection,total_population,3.1.2,55,,15–19
+51.05,2,Kabupaten Klungkung,age_group,20-24,laki_laki,7.90,ribu_jiwa,2025,projection,total_population,3.1.2,55,,20–24
+51.05,2,Kabupaten Klungkung,age_group,20-24,perempuan,7.42,ribu_jiwa,2025,projection,total_population,3.1.2,55,,20–24
+51.05,2,Kabupaten Klungkung,age_group,20-24,,15.32,ribu_jiwa,2025,projection,total_population,3.1.2,55,,20–24
+51.05,2,Kabupaten Klungkung,age_group,25-29,laki_laki,7.73,ribu_jiwa,2025,projection,total_population,3.1.2,55,,25–29
+51.05,2,Kabupaten Klungkung,age_group,25-29,perempuan,7.22,ribu_jiwa,2025,projection,total_population,3.1.2,55,,25–29
+51.05,2,Kabupaten Klungkung,age_group,25-29,,14.95,ribu_jiwa,2025,projection,total_population,3.1.2,55,,25–29
+51.05,2,Kabupaten Klungkung,age_group,30-34,laki_laki,7.97,ribu_jiwa,2025,projection,total_population,3.1.2,55,,30–34
+51.05,2,Kabupaten Klungkung,age_group,30-34,perempuan,7.08,ribu_jiwa,2025,projection,total_population,3.1.2,55,,30–34
+51.05,2,Kabupaten Klungkung,age_group,30-34,,15.05,ribu_jiwa,2025,projection,total_population,3.1.2,55,,30–34
+51.05,2,Kabupaten Klungkung,age_group,35-39,laki_laki,7.50,ribu_jiwa,2025,projection,total_population,3.1.2,55,,35–39
+51.05,2,Kabupaten Klungkung,age_group,35-39,perempuan,6.94,ribu_jiwa,2025,projection,total_population,3.1.2,55,,35–39
+51.05,2,Kabupaten Klungkung,age_group,35-39,,14.43,ribu_jiwa,2025,projection,total_population,3.1.2,55,,35–39
+51.05,2,Kabupaten Klungkung,age_group,40-44,laki_laki,7.73,ribu_jiwa,2025,projection,total_population,3.1.2,55,,40–44
+51.05,2,Kabupaten Klungkung,age_group,40-44,perempuan,7.33,ribu_jiwa,2025,projection,total_population,3.1.2,55,,40–44
+51.05,2,Kabupaten Klungkung,age_group,40-44,,15.06,ribu_jiwa,2025,projection,total_population,3.1.2,55,,40–44
+51.05,2,Kabupaten Klungkung,age_group,45-49,laki_laki,7.69,ribu_jiwa,2025,projection,total_population,3.1.2,55,,45–49
+51.05,2,Kabupaten Klungkung,age_group,45-49,perempuan,7.60,ribu_jiwa,2025,projection,total_population,3.1.2,55,,45–49
+51.05,2,Kabupaten Klungkung,age_group,45-49,,15.28,ribu_jiwa,2025,projection,total_population,3.1.2,55,,45–49
+51.05,2,Kabupaten Klungkung,age_group,50-54,laki_laki,6.60,ribu_jiwa,2025,projection,total_population,3.1.2,55,,50–54
+51.05,2,Kabupaten Klungkung,age_group,50-54,perempuan,6.87,ribu_jiwa,2025,projection,total_population,3.1.2,55,,50–54
+51.05,2,Kabupaten Klungkung,age_group,50-54,,13.46,ribu_jiwa,2025,projection,total_population,3.1.2,55,,50–54
+51.05,2,Kabupaten Klungkung,age_group,55-59,laki_laki,5.92,ribu_jiwa,2025,projection,total_population,3.1.2,55,,55–59
+51.05,2,Kabupaten Klungkung,age_group,55-59,perempuan,6.37,ribu_jiwa,2025,projection,total_population,3.1.2,55,,55–59
+51.05,2,Kabupaten Klungkung,age_group,55-59,,12.29,ribu_jiwa,2025,projection,total_population,3.1.2,55,,55–59
+51.05,2,Kabupaten Klungkung,age_group,60-64,laki_laki,5.39,ribu_jiwa,2025,projection,total_population,3.1.2,55,,60–64
+51.05,2,Kabupaten Klungkung,age_group,60-64,perempuan,5.88,ribu_jiwa,2025,projection,total_population,3.1.2,55,,60–64
+51.05,2,Kabupaten Klungkung,age_group,60-64,,11.27,ribu_jiwa,2025,projection,total_population,3.1.2,55,,60–64
+51.05,2,Kabupaten Klungkung,age_group,65-69,laki_laki,4.08,ribu_jiwa,2025,projection,total_population,3.1.2,55,,65–69
+51.05,2,Kabupaten Klungkung,age_group,65-69,perempuan,4.67,ribu_jiwa,2025,projection,total_population,3.1.2,55,,65–69
+51.05,2,Kabupaten Klungkung,age_group,65-69,,8.75,ribu_jiwa,2025,projection,total_population,3.1.2,55,,65–69
+51.05,2,Kabupaten Klungkung,age_group,70-74,laki_laki,3.12,ribu_jiwa,2025,projection,total_population,3.1.2,55,,70–74
+51.05,2,Kabupaten Klungkung,age_group,70-74,perempuan,3.73,ribu_jiwa,2025,projection,total_population,3.1.2,55,,70–74
+51.05,2,Kabupaten Klungkung,age_group,70-74,,6.85,ribu_jiwa,2025,projection,total_population,3.1.2,55,,70–74
+51.05,2,Kabupaten Klungkung,age_group,75+,laki_laki,3.44,ribu_jiwa,2025,projection,total_population,3.1.2,55,,75+
+51.05,2,Kabupaten Klungkung,age_group,75+,perempuan,4.60,ribu_jiwa,2025,projection,total_population,3.1.2,55,,75+
+51.05,2,Kabupaten Klungkung,age_group,75+,,8.04,ribu_jiwa,2025,projection,total_population,3.1.2,55,,75+
+51.05,2,Klungkung,sex,laki_laki,,105.29,ribu_jiwa,2025,projection,total_population,3.1.2,55,,Laki-Laki
+51.05,2,Klungkung,sex,perempuan,,104.59,ribu_jiwa,2025,projection,total_population,3.1.2,55,,Perempuan
+51.05,2,Klungkung,total,total,,209.87,ribu_jiwa,2025,projection,total_population,3.1.2,55,,
+51.05.01,3,Nusa Penida,religion,islam,,1002,jiwa,2024,registration,total_population,4.3.1,120,,Islam
+51.05.01,3,Nusa Penida,religion,kristen,,61,jiwa,2024,registration,total_population,4.3.1,120,,Protestan
+51.05.01,3,Nusa Penida,religion,katolik,,11,jiwa,2024,registration,total_population,4.3.1,120,,Katolik
+51.05.01,3,Nusa Penida,religion,hindu,,64740,jiwa,2024,registration,total_population,4.3.1,120,,Hindu
+51.05.01,3,Nusa Penida,religion,buddha,,5,jiwa,2024,registration,total_population,4.3.1,120,,Budha
+51.05.01,3,Nusa Penida,religion,lainnya,,1,jiwa,2024,registration,total_population,4.3.1,120,,Lainnya
+51.05.02,3,Banjarangkan,religion,islam,,321,jiwa,2024,registration,total_population,4.3.1,120,,Islam
+51.05.02,3,Banjarangkan,religion,kristen,,66,jiwa,2024,registration,total_population,4.3.1,120,,Protestan
+51.05.02,3,Banjarangkan,religion,katolik,,26,jiwa,2024,registration,total_population,4.3.1,120,,Katolik
+51.05.02,3,Banjarangkan,religion,hindu,,46712,jiwa,2024,registration,total_population,4.3.1,120,,Hindu
+51.05.02,3,Banjarangkan,religion,buddha,,11,jiwa,2024,registration,total_population,4.3.1,120,,Budha
+51.05.02,3,Banjarangkan,religion,lainnya,,3,jiwa,2024,registration,total_population,4.3.1,120,,Lainnya
+51.05.03,3,Klungkung,religion,islam,,7361,jiwa,2024,registration,total_population,4.3.1,120,,Islam
+51.05.03,3,Klungkung,religion,kristen,,458,jiwa,2024,registration,total_population,4.3.1,120,,Protestan
+51.05.03,3,Klungkung,religion,katolik,,179,jiwa,2024,registration,total_population,4.3.1,120,,Katolik
+51.05.03,3,Klungkung,religion,hindu,,58501,jiwa,2024,registration,total_population,4.3.1,120,,Hindu
+51.05.03,3,Klungkung,religion,buddha,,559,jiwa,2024,registration,total_population,4.3.1,120,,Budha
+51.05.03,3,Klungkung,religion,lainnya,,7,jiwa,2024,registration,total_population,4.3.1,120,,Lainnya
+51.05.04,3,Dawan,religion,islam,,1013,jiwa,2024,registration,total_population,4.3.1,120,,Islam
+51.05.04,3,Dawan,religion,kristen,,40,jiwa,2024,registration,total_population,4.3.1,120,,Protestan
+51.05.04,3,Dawan,religion,katolik,,37,jiwa,2024,registration,total_population,4.3.1,120,,Katolik
+51.05.04,3,Dawan,religion,hindu,,42572,jiwa,2024,registration,total_population,4.3.1,120,,Hindu
+51.05.04,3,Dawan,religion,buddha,,34,jiwa,2024,registration,total_population,4.3.1,120,,Budha
+51.05.04,3,Dawan,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,120,nil,Lainnya
+51.05,2,Klungkung,religion,islam,,9697,jiwa,2024,registration,total_population,4.3.1,120,,Islam
+51.05,2,Klungkung,religion,kristen,,625,jiwa,2024,registration,total_population,4.3.1,120,,Protestan
+51.05,2,Klungkung,religion,katolik,,253,jiwa,2024,registration,total_population,4.3.1,120,,Katolik
+51.05,2,Klungkung,religion,buddha,,609,jiwa,2024,registration,total_population,4.3.1,120,,Budha
+51.05,2,Klungkung,religion,lainnya,,11,jiwa,2024,registration,total_population,4.3.1,120,,Lainnya
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/padi_padian,,119941,rupiah,2024,survey_estimate,per_capita,10.1,257,,Padi-padian
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/padi_padian,,107890,rupiah,2025,survey_estimate,per_capita,10.1,257,,Padi-padian
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/umbi_umbian,,4576,rupiah,2024,survey_estimate,per_capita,10.1,257,,Umbi-umbian
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/umbi_umbian,,6472,rupiah,2025,survey_estimate,per_capita,10.1,257,,Umbi-umbian
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,32245,rupiah,2024,survey_estimate,per_capita,10.1,257,,Ikan/udang/cumi/kerang
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,40023,rupiah,2025,survey_estimate,per_capita,10.1,257,,Ikan/udang/cumi/kerang
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/daging,,41526,rupiah,2024,survey_estimate,per_capita,10.1,257,,Daging
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/daging,,40972,rupiah,2025,survey_estimate,per_capita,10.1,257,,Daging
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/telur_dan_susu,,33031,rupiah,2024,survey_estimate,per_capita,10.1,257,,Telur dan susu
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/telur_dan_susu,,39282,rupiah,2025,survey_estimate,per_capita,10.1,257,,Telur dan susu
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/sayur_sayuran,,65683,rupiah,2024,survey_estimate,per_capita,10.1,257,,Sayur-sayuran
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/sayur_sayuran,,73659,rupiah,2025,survey_estimate,per_capita,10.1,257,,Sayur-sayuran
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/kacang_kacangan,,15520,rupiah,2024,survey_estimate,per_capita,10.1,257,,Kacang-kacangan
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/kacang_kacangan,,19200,rupiah,2025,survey_estimate,per_capita,10.1,257,,Kacang-kacangan
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/buah_buahan,,31914,rupiah,2024,survey_estimate,per_capita,10.1,257,,Buah-buahan
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/buah_buahan,,80611,rupiah,2025,survey_estimate,per_capita,10.1,257,,Buah-buahan
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16838,rupiah,2024,survey_estimate,per_capita,10.1,257,,Minyak dan kelapa
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/minyak_dan_kelapa,,17082,rupiah,2025,survey_estimate,per_capita,10.1,257,,Minyak dan kelapa
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/bahan_minuman,,16989,rupiah,2024,survey_estimate,per_capita,10.1,257,,Bahan minuman
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/bahan_minuman,,17523,rupiah,2025,survey_estimate,per_capita,10.1,257,,Bahan minuman
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/bumbu_bumbuan,,14268,rupiah,2024,survey_estimate,per_capita,10.1,257,,Bumbu-bumbuan
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/bumbu_bumbuan,,15227,rupiah,2025,survey_estimate,per_capita,10.1,257,,Bumbu-bumbuan
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/konsumsi_lainnya,,8030,rupiah,2024,survey_estimate,per_capita,10.1,257,,Konsumsi lainnya
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/konsumsi_lainnya,,8638,rupiah,2025,survey_estimate,per_capita,10.1,257,,Konsumsi lainnya
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,197833,rupiah,2024,survey_estimate,per_capita,10.1,257,,Makanan dan minuman jadi
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,240208,rupiah,2025,survey_estimate,per_capita,10.1,257,,Makanan dan minuman jadi
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/rokok,,42412,rupiah,2024,survey_estimate,per_capita,10.1,257,,Rokok
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/rokok,,50051,rupiah,2025,survey_estimate,per_capita,10.1,257,,Rokok
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/jumlah_makanan,,640809,rupiah,2024,survey_estimate,per_capita,10.1,257,,Jumlah makanan
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/jumlah_makanan,,756838,rupiah,2025,survey_estimate,per_capita,10.1,257,,Jumlah makanan
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,429608,rupiah,2024,survey_estimate,per_capita,10.1,257,,Perumahan dan fasilitas rumah tangga
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,403880,rupiah,2025,survey_estimate,per_capita,10.1,257,,Perumahan dan fasilitas rumah tangga
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,113545,rupiah,2024,survey_estimate,per_capita,10.1,257,,Aneka barang dan jasa
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,160599,rupiah,2025,survey_estimate,per_capita,10.1,257,,Aneka barang dan jasa
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,15274,rupiah,2024,survey_estimate,per_capita,10.1,257,,"Pakaian, alas kaki, dan tutup kepala"
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,20918,rupiah,2025,survey_estimate,per_capita,10.1,257,,"Pakaian, alas kaki, dan tutup kepala"
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/barang_tahan_lama,,23952,rupiah,2024,survey_estimate,per_capita,10.1,257,,Barang tahan lama
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/barang_tahan_lama,,35770,rupiah,2025,survey_estimate,per_capita,10.1,257,,Barang tahan lama
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,62434,rupiah,2024,survey_estimate,per_capita,10.1,257,,"Pajak, pungutan, dan asuransi"
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,53863,rupiah,2025,survey_estimate,per_capita,10.1,257,,"Pajak, pungutan, dan asuransi"
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,63507,rupiah,2024,survey_estimate,per_capita,10.1,257,,Keperluan pesta dan upacara/kenduri
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,85229,rupiah,2025,survey_estimate,per_capita,10.1,257,,Keperluan pesta dan upacara/kenduri
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,708321,rupiah,2024,survey_estimate,per_capita,10.1,257,,Jumlah bukan makanan
+51.05,2,Kabupaten Klungkung,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,760258,rupiah,2025,survey_estimate,per_capita,10.1,257,,Jumlah bukan makanan
+51.05,2,Kabupaten Klungkung,expenditure,total,,1349130,rupiah,2024,survey_estimate,per_capita,10.1,257,,
+51.05,2,Kabupaten Klungkung,expenditure,total,,1517096,rupiah,2025,survey_estimate,per_capita,10.1,257,,

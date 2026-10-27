@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5104-kecamatan-510403-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.04.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gianyar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Gianyar",
+  "publisherDomain": "5104",
+  "publisherWebsite": "https://gianyarkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Gianyar (https://gianyarkab.bps.go.id), publikasi \"Kecamatan Gianyar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5104030",
+  "publicationNumber": "51040.26012.030",
+  "issn": "2502-3071",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://gianyarkab.bps.go.id/id/publication/2026/09/28/8d59528a343ceef9362c589a/kecamatan-gianyar-dalam-angka-2026.html",
+  "sourceFileSha256": "aa0f0e9db43585e7e942d444ba1afb0ab7a42da56f28f4995c91a7887f1fdb3e",
+  "sourceFileBytes": 10713330,
+  "sourcePages": [28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Gianyar.",
+  "csvPath": "datasets/bps-5104-kecamatan-510403-dalam-angka-2026.csv",
+  "csvSha256": "9283087d987e1f1debf53cd2f5e913b2b4f951bd9e53973230d08fd39053560a",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p28",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Gianyar, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

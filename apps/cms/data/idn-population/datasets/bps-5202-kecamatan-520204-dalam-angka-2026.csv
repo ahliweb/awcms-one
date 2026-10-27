@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.02.04.2011,4,Tumpak,sex,laki_laki,,3697,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+52.02.04.2011,4,Tumpak,sex,perempuan,,3826,jiwa,2026,registration,total_population,3.1,24,,Perempuan/Female
+52.02.04.2011,4,Tumpak,total,total,,7523,jiwa,2026,registration,total_population,3.1,24,,
+52.02.04.2013,4,Prabu,sex,laki_laki,,2830,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+52.02.04.2013,4,Prabu,sex,perempuan,,2728,jiwa,2026,registration,total_population,3.1,24,,Perempuan/Female
+52.02.04.2013,4,Prabu,total,total,,5558,jiwa,2026,registration,total_population,3.1,24,,
+52.02.04.2009,4,Kuta,sex,laki_laki,,5296,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+52.02.04.2009,4,Kuta,sex,perempuan,,5332,jiwa,2026,registration,total_population,3.1,24,,Perempuan/Female
+52.02.04.2009,4,Kuta,total,total,,10628,jiwa,2026,registration,total_population,3.1,24,,
+52.02.04.2008,4,Rembitan,sex,laki_laki,,5243,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+52.02.04.2008,4,Rembitan,sex,perempuan,,5466,jiwa,2026,registration,total_population,3.1,24,,Perempuan/Female
+52.02.04.2008,4,Rembitan,total,total,,10709,jiwa,2026,registration,total_population,3.1,24,,
+52.02.04.2003,4,Sukadana,sex,laki_laki,,3379,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+52.02.04.2003,4,Sukadana,sex,perempuan,,3404,jiwa,2026,registration,total_population,3.1,24,,Perempuan/Female
+52.02.04.2003,4,Sukadana,total,total,,6783,jiwa,2026,registration,total_population,3.1,24,,
+52.02.04.2012,4,Mertak,sex,laki_laki,,5023,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+52.02.04.2012,4,Mertak,sex,perempuan,,5280,jiwa,2026,registration,total_population,3.1,24,,Perempuan/Female
+52.02.04.2012,4,Mertak,total,total,,10303,jiwa,2026,registration,total_population,3.1,24,,
+52.02.04.2005,4,Pengengat,sex,laki_laki,,2282,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+52.02.04.2005,4,Pengengat,sex,perempuan,,2316,jiwa,2026,registration,total_population,3.1,24,,Perempuan/Female
+52.02.04.2005,4,Pengengat,total,total,,4598,jiwa,2026,registration,total_population,3.1,24,,
+52.02.04.2004,4,Teruwai,sex,laki_laki,,3088,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+52.02.04.2004,4,Teruwai,sex,perempuan,,3133,jiwa,2026,registration,total_population,3.1,24,,Perempuan/Female
+52.02.04.2004,4,Teruwai,total,total,,6221,jiwa,2026,registration,total_population,3.1,24,,
+52.02.04.2007,4,Gapura,sex,laki_laki,,1704,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+52.02.04.2007,4,Gapura,sex,perempuan,,1821,jiwa,2026,registration,total_population,3.1,24,,Perempuan/Female
+52.02.04.2007,4,Gapura,total,total,,3525,jiwa,2026,registration,total_population,3.1,24,,
+52.02.04.2006,4,Kawo,sex,laki_laki,,6181,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+52.02.04.2006,4,Kawo,sex,perempuan,,6274,jiwa,2026,registration,total_population,3.1,24,,Perempuan/Female
+52.02.04.2006,4,Kawo,total,total,,12455,jiwa,2026,registration,total_population,3.1,24,,
+52.02.04.2001,4,Sengkol,sex,laki_laki,,6547,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+52.02.04.2001,4,Sengkol,sex,perempuan,,6870,jiwa,2026,registration,total_population,3.1,24,,Perempuan/Female
+52.02.04.2001,4,Sengkol,total,total,,13417,jiwa,2026,registration,total_population,3.1,24,,
+52.02.04.2010,4,Pengembur,sex,laki_laki,,3793,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+52.02.04.2010,4,Pengembur,sex,perempuan,,3910,jiwa,2026,registration,total_population,3.1,24,,Perempuan/Female
+52.02.04.2010,4,Pengembur,total,total,,7703,jiwa,2026,registration,total_population,3.1,24,,
+52.02.04.2015,4,Ketara,sex,laki_laki,,2628,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+52.02.04.2015,4,Ketara,sex,perempuan,,2756,jiwa,2026,registration,total_population,3.1,24,,Perempuan/Female
+52.02.04.2015,4,Ketara,total,total,,5384,jiwa,2026,registration,total_population,3.1,24,,
+52.02.04.2014,4,Tanak Awu,sex,laki_laki,,5731,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+52.02.04.2014,4,Tanak Awu,sex,perempuan,,5896,jiwa,2026,registration,total_population,3.1,24,,Perempuan/Female
+52.02.04.2014,4,Tanak Awu,total,total,,11627,jiwa,2026,registration,total_population,3.1,24,,
+52.02.04.2016,4,Bangket Parak,sex,laki_laki,,2631,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+52.02.04.2016,4,Bangket Parak,sex,perempuan,,2712,jiwa,2026,registration,total_population,3.1,24,,Perempuan/Female
+52.02.04.2016,4,Bangket Parak,total,total,,5343,jiwa,2026,registration,total_population,3.1,24,,
+52.02.04.2017,4,Dadap,sex,laki_laki,,1392,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+52.02.04.2017,4,Dadap,sex,perempuan,,1384,jiwa,2026,registration,total_population,3.1,24,,Perempuan/Female
+52.02.04.2017,4,Dadap,total,total,,2776,jiwa,2026,registration,total_population,3.1,24,,
+52.02.04,3,Pujut,sex,laki_laki,,65837,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+52.02.04,3,Pujut,sex,perempuan,,67594,jiwa,2026,registration,total_population,3.1,24,,Perempuan/Female
+52.02.04,3,Pujut,total,total,,133431,jiwa,2026,registration,total_population,3.1,24,,
+52.02.04,3,Pujut,age_group,0-4,laki_laki,285,jiwa,2026,registration,total_population,3.2,26,,0 - 4
+52.02.04,3,Pujut,age_group,0-4,perempuan,267,jiwa,2026,registration,total_population,3.2,26,,0 - 4
+52.02.04,3,Pujut,age_group,0-4,,552,jiwa,2026,registration,total_population,3.2,26,,0 - 4
+52.02.04,3,Pujut,age_group,5-9,laki_laki,405,jiwa,2026,registration,total_population,3.2,26,,5 - 9
+52.02.04,3,Pujut,age_group,5-9,perempuan,410,jiwa,2026,registration,total_population,3.2,26,,5 - 9
+52.02.04,3,Pujut,age_group,5-9,,815,jiwa,2026,registration,total_population,3.2,26,,5 - 9
+52.02.04,3,Pujut,age_group,10-14,laki_laki,382,jiwa,2026,registration,total_population,3.2,26,,10 - 14
+52.02.04,3,Pujut,age_group,10-14,perempuan,393,jiwa,2026,registration,total_population,3.2,26,,10 - 14
+52.02.04,3,Pujut,age_group,10-14,,775,jiwa,2026,registration,total_population,3.2,26,,10 - 14
+52.02.04,3,Pujut,age_group,15-19,laki_laki,300,jiwa,2026,registration,total_population,3.2,26,,15 -19
+52.02.04,3,Pujut,age_group,15-19,perempuan,314,jiwa,2026,registration,total_population,3.2,26,,15 -19
+52.02.04,3,Pujut,age_group,15-19,,614,jiwa,2026,registration,total_population,3.2,26,,15 -19
+52.02.04,3,Pujut,age_group,20-24,laki_laki,300,jiwa,2026,registration,total_population,3.2,26,,20 - 24
+52.02.04,3,Pujut,age_group,20-24,perempuan,306,jiwa,2026,registration,total_population,3.2,26,,20 - 24
+52.02.04,3,Pujut,age_group,20-24,,606,jiwa,2026,registration,total_population,3.2,26,,20 - 24
+52.02.04,3,Pujut,age_group,25-29,laki_laki,289,jiwa,2026,registration,total_population,3.2,26,,25 - 29
+52.02.04,3,Pujut,age_group,25-29,perempuan,334,jiwa,2026,registration,total_population,3.2,26,,25 - 29
+52.02.04,3,Pujut,age_group,25-29,,623,jiwa,2026,registration,total_population,3.2,26,,25 - 29
+52.02.04,3,Pujut,age_group,30-34,laki_laki,337,jiwa,2026,registration,total_population,3.2,26,,30 - 34
+52.02.04,3,Pujut,age_group,30-34,perempuan,371,jiwa,2026,registration,total_population,3.2,26,,30 - 34
+52.02.04,3,Pujut,age_group,30-34,,708,jiwa,2026,registration,total_population,3.2,26,,30 - 34
+52.02.04,3,Pujut,age_group,35-39,laki_laki,359,jiwa,2026,registration,total_population,3.2,26,,35 - 39
+52.02.04,3,Pujut,age_group,35-39,perempuan,354,jiwa,2026,registration,total_population,3.2,26,,35 - 39
+52.02.04,3,Pujut,age_group,35-39,,713,jiwa,2026,registration,total_population,3.2,26,,35 - 39
+52.02.04,3,Pujut,age_group,40-44,laki_laki,246,jiwa,2026,registration,total_population,3.2,26,,40 - 44
+52.02.04,3,Pujut,age_group,40-44,perempuan,233,jiwa,2026,registration,total_population,3.2,26,,40 - 44
+52.02.04,3,Pujut,age_group,40-44,,479,jiwa,2026,registration,total_population,3.2,26,,40 - 44
+52.02.04,3,Pujut,age_group,45-49,laki_laki,261,jiwa,2026,registration,total_population,3.2,26,,45 - 49
+52.02.04,3,Pujut,age_group,45-49,perempuan,249,jiwa,2026,registration,total_population,3.2,26,,45 - 49
+52.02.04,3,Pujut,age_group,45-49,,510,jiwa,2026,registration,total_population,3.2,26,,45 - 49
+52.02.04,3,Pujut,age_group,50-54,laki_laki,168,jiwa,2026,registration,total_population,3.2,26,,50 - 54
+52.02.04,3,Pujut,age_group,50-54,perempuan,147,jiwa,2026,registration,total_population,3.2,26,,50 - 54
+52.02.04,3,Pujut,age_group,50-54,,315,jiwa,2026,registration,total_population,3.2,26,,50 - 54
+52.02.04,3,Pujut,age_group,55-59,laki_laki,134,jiwa,2026,registration,total_population,3.2,26,,55 - 59
+52.02.04,3,Pujut,age_group,55-59,perempuan,173,jiwa,2026,registration,total_population,3.2,26,,55 - 59
+52.02.04,3,Pujut,age_group,55-59,,307,jiwa,2026,registration,total_population,3.2,26,,55 - 59
+52.02.04,3,Pujut,age_group,60-64,laki_laki,97,jiwa,2026,registration,total_population,3.2,26,,60 - 64
+52.02.04,3,Pujut,age_group,60-64,perempuan,104,jiwa,2026,registration,total_population,3.2,26,,60 - 64
+52.02.04,3,Pujut,age_group,60-64,,201,jiwa,2026,registration,total_population,3.2,26,,60 - 64
+52.02.04,3,Pujut,age_group,65+,laki_laki,134,jiwa,2026,registration,total_population,3.2,26,,≥ 65
+52.02.04,3,Pujut,age_group,65+,perempuan,171,jiwa,2026,registration,total_population,3.2,26,,≥ 65
+52.02.04,3,Pujut,age_group,65+,,305,jiwa,2026,registration,total_population,3.2,26,,≥ 65
+52.02.04.2011,4,Tumpak,sex,laki_laki,,3697,jiwa,2026,registration,total_population,3.2,26,,Laki-Laki
+52.02.04.2011,4,Tumpak,sex,perempuan,,3826,jiwa,2026,registration,total_population,3.2,26,,Perempuan
+52.02.04.2011,4,Tumpak,total,total,,7523,jiwa,2026,registration,total_population,3.2,26,,

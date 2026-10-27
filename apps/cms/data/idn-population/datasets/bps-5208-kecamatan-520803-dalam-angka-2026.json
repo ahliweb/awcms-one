@@ -1,0 +1,60 @@
+{
+  "datasetCode": "bps-5208-kecamatan-520803-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "52.08.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kayangan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lombok Utara",
+  "publisherDomain": "5208",
+  "publisherWebsite": "https://lombokutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lombok Utara (https://lombokutarakab.bps.go.id), publikasi \"Kecamatan Kayangan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5208010",
+  "publicationNumber": "52080.26011",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lombokutarakab.bps.go.id/id/publication/2026/09/28/6b5ba9255737daca810451f2/kecamatan-kayangan-dalam-angka-2026.html",
+  "sourceFileSha256": "b51697fa5c90d636e8868fdedd30b97508c6781cb61159bb00050b638ca1b3cf",
+  "sourceFileBytes": 13405872,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lombok Utara",
+  "csvPath": "datasets/bps-5208-kecamatan-520803-dalam-angka-2026.csv",
+  "csvSha256": "2a2b0c51dc86b2ca3f8a4d524445e58e6d4cf1e6a313b75d5486b6330443bf5f",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kayangan , 202 5",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kayangan , 202 5",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"0-4 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"5-9 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"10-14 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"15-19 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"20-24 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"25-29 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"30-34 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"35-39 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"40-44 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"45-49 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"50-54 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"55-59 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"60-64 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"65-69 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"70-74 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"75+ Tahun/ Years\": unmatched "
+  ]
+}

@@ -1,0 +1,96 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.02.04.2001,4,Tibubiu,sex,laki_laki,,851,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.04.2001,4,Tibubiu,sex,perempuan,,847,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.04.2001,4,Tibubiu,total,total,,1698,jiwa,2025,registration,total_population,3.1,26,,
+51.02.04.2002,4,Kelating,sex,laki_laki,,1347,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.04.2002,4,Kelating,sex,perempuan,,1300,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.04.2002,4,Kelating,total,total,,2647,jiwa,2025,registration,total_population,3.1,26,,
+51.02.04.2003,4,Penarukan,sex,laki_laki,,1589,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.04.2003,4,Penarukan,sex,perempuan,,1614,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.04.2003,4,Penarukan,total,total,,3203,jiwa,2025,registration,total_population,3.1,26,,
+51.02.04.2004,4,Belumbang,sex,laki_laki,,1041,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.04.2004,4,Belumbang,sex,perempuan,,1100,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.04.2004,4,Belumbang,total,total,,2141,jiwa,2025,registration,total_population,3.1,26,,
+51.02.04.2006,4,Kerambitan,sex,laki_laki,,1598,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.04.2006,4,Kerambitan,sex,perempuan,,1657,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.04.2006,4,Kerambitan,total,total,,3255,jiwa,2025,registration,total_population,3.1,26,,
+51.02.04.2007,4,Pangkung Karung,sex,laki_laki,,1563,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.04.2007,4,Pangkung Karung,sex,perempuan,,1592,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.04.2007,4,Pangkung Karung,total,total,,3155,jiwa,2025,registration,total_population,3.1,26,,
+51.02.04.2009,4,Kukuh,sex,laki_laki,,1250,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.04.2009,4,Kukuh,sex,perempuan,,1237,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.04.2009,4,Kukuh,total,total,,2487,jiwa,2025,registration,total_population,3.1,26,,
+51.02.04.2010,4,Baturiti,sex,laki_laki,,1508,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.04.2010,4,Baturiti,sex,perempuan,,1499,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.04.2011,4,Meliling,sex,laki_laki,,1343,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.04.2011,4,Meliling,sex,perempuan,,1366,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.04.2011,4,Meliling,total,total,,2709,jiwa,2025,registration,total_population,3.1,26,,
+51.02.04.2012,4,Sembung Gede,sex,laki_laki,,2520,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.04.2012,4,Sembung Gede,sex,perempuan,,2560,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.04.2012,4,Sembung Gede,total,total,,5080,jiwa,2025,registration,total_population,3.1,26,,
+51.02.04.2008,4,Samsam,sex,laki_laki,,1968,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.04.2008,4,Samsam,sex,perempuan,,2090,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.04.2008,4,Samsam,total,total,,4058,jiwa,2025,registration,total_population,3.1,26,,
+51.02.04.2013,4,Batuaji,sex,laki_laki,,1357,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.04.2013,4,Batuaji,sex,perempuan,,1353,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.04.2013,4,Batuaji,total,total,,2710,jiwa,2025,registration,total_population,3.1,26,,
+51.02.04.2014,4,Kesiut,sex,laki_laki,,1077,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.04.2014,4,Kesiut,sex,perempuan,,1104,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.04.2014,4,Kesiut,total,total,,2181,jiwa,2025,registration,total_population,3.1,26,,
+51.02.04.2015,4,Timpag,sex,laki_laki,,1771,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.04.2015,4,Timpag,sex,perempuan,,1803,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.04.2015,4,Timpag,total,total,,3574,jiwa,2025,registration,total_population,3.1,26,,
+51.02.04,3,Kecamatan Kerambitan,sex,laki_laki,,21737,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.04,3,Kecamatan Kerambitan,sex,perempuan,,22138,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.04,3,Kecamatan Kerambitan,total,total,,43875,jiwa,2025,registration,total_population,3.1,26,,
+51.02.04,3,Kerambitan,age_group,0-4,laki_laki,1174,jiwa,2025,registration,total_population,3.2,28,,00-04
+51.02.04,3,Kerambitan,age_group,0-4,perempuan,1042,jiwa,2025,registration,total_population,3.2,28,,00-04
+51.02.04,3,Kerambitan,age_group,0-4,,2216,jiwa,2025,registration,total_population,3.2,28,,00-04
+51.02.04,3,Kerambitan,age_group,5-9,laki_laki,1351,jiwa,2025,registration,total_population,3.2,28,,05-09
+51.02.04,3,Kerambitan,age_group,5-9,perempuan,1231,jiwa,2025,registration,total_population,3.2,28,,05-09
+51.02.04,3,Kerambitan,age_group,5-9,,2582,jiwa,2025,registration,total_population,3.2,28,,05-09
+51.02.04,3,Kerambitan,age_group,10-14,laki_laki,1298,jiwa,2025,registration,total_population,3.2,28,,10-14
+51.02.04,3,Kerambitan,age_group,10-14,perempuan,1187,jiwa,2025,registration,total_population,3.2,28,,10-14
+51.02.04,3,Kerambitan,age_group,10-14,,2485,jiwa,2025,registration,total_population,3.2,28,,10-14
+51.02.04,3,Kerambitan,age_group,15-19,laki_laki,1384,jiwa,2025,registration,total_population,3.2,28,,15-19
+51.02.04,3,Kerambitan,age_group,15-19,perempuan,1249,jiwa,2025,registration,total_population,3.2,28,,15-19
+51.02.04,3,Kerambitan,age_group,15-19,,2633,jiwa,2025,registration,total_population,3.2,28,,15-19
+51.02.04,3,Kerambitan,age_group,20-24,laki_laki,1474,jiwa,2025,registration,total_population,3.2,28,,20-24
+51.02.04,3,Kerambitan,age_group,20-24,perempuan,1383,jiwa,2025,registration,total_population,3.2,28,,20-24
+51.02.04,3,Kerambitan,age_group,20-24,,2857,jiwa,2025,registration,total_population,3.2,28,,20-24
+51.02.04,3,Kerambitan,age_group,25-29,laki_laki,1612,jiwa,2025,registration,total_population,3.2,28,,25-29
+51.02.04,3,Kerambitan,age_group,25-29,perempuan,1526,jiwa,2025,registration,total_population,3.2,28,,25-29
+51.02.04,3,Kerambitan,age_group,25-29,,3138,jiwa,2025,registration,total_population,3.2,28,,25-29
+51.02.04,3,Kerambitan,age_group,30-34,laki_laki,1485,jiwa,2025,registration,total_population,3.2,28,,30-34
+51.02.04,3,Kerambitan,age_group,30-34,perempuan,1485,jiwa,2025,registration,total_population,3.2,28,,30-34
+51.02.04,3,Kerambitan,age_group,30-34,,2970,jiwa,2025,registration,total_population,3.2,28,,30-34
+51.02.04,3,Kerambitan,age_group,35-39,laki_laki,1181,jiwa,2025,registration,total_population,3.2,28,,35-39
+51.02.04,3,Kerambitan,age_group,35-39,perempuan,1203,jiwa,2025,registration,total_population,3.2,28,,35-39
+51.02.04,3,Kerambitan,age_group,35-39,,2384,jiwa,2025,registration,total_population,3.2,28,,35-39
+51.02.04,3,Kerambitan,age_group,40-44,laki_laki,1314,jiwa,2025,registration,total_population,3.2,28,,40-44
+51.02.04,3,Kerambitan,age_group,40-44,perempuan,1351,jiwa,2025,registration,total_population,3.2,28,,40-44
+51.02.04,3,Kerambitan,age_group,40-44,,2665,jiwa,2025,registration,total_population,3.2,28,,40-44
+51.02.04,3,Kerambitan,age_group,45-49,laki_laki,1314,jiwa,2025,registration,total_population,3.2,28,,45-49
+51.02.04,3,Kerambitan,age_group,45-49,perempuan,1455,jiwa,2025,registration,total_population,3.2,28,,45-49
+51.02.04,3,Kerambitan,age_group,45-49,,2769,jiwa,2025,registration,total_population,3.2,28,,45-49
+51.02.04,3,Kerambitan,age_group,50-54,laki_laki,1612,jiwa,2025,registration,total_population,3.2,28,,50-54
+51.02.04,3,Kerambitan,age_group,50-54,perempuan,1790,jiwa,2025,registration,total_population,3.2,28,,50-54
+51.02.04,3,Kerambitan,age_group,50-54,,3402,jiwa,2025,registration,total_population,3.2,28,,50-54
+51.02.04,3,Kerambitan,age_group,55-59,laki_laki,1879,jiwa,2025,registration,total_population,3.2,28,,55-59
+51.02.04,3,Kerambitan,age_group,55-59,perempuan,1878,jiwa,2025,registration,total_population,3.2,28,,55-59
+51.02.04,3,Kerambitan,age_group,55-59,,3757,jiwa,2025,registration,total_population,3.2,28,,55-59
+51.02.04,3,Kerambitan,age_group,60-64,laki_laki,1434,jiwa,2025,registration,total_population,3.2,28,,60-64
+51.02.04,3,Kerambitan,age_group,60-64,perempuan,1527,jiwa,2025,registration,total_population,3.2,28,,60-64
+51.02.04,3,Kerambitan,age_group,60-64,,2961,jiwa,2025,registration,total_population,3.2,28,,60-64
+51.02.04,3,Kerambitan,age_group,65-69,laki_laki,1152,jiwa,2025,registration,total_population,3.2,28,,65-69
+51.02.04,3,Kerambitan,age_group,65-69,perempuan,1240,jiwa,2025,registration,total_population,3.2,28,,65-69
+51.02.04,3,Kerambitan,age_group,65-69,,2392,jiwa,2025,registration,total_population,3.2,28,,65-69
+51.02.04,3,Kerambitan,age_group,70-74,laki_laki,844,jiwa,2025,registration,total_population,3.2,28,,70-74
+51.02.04,3,Kerambitan,age_group,70-74,perempuan,971,jiwa,2025,registration,total_population,3.2,28,,70-74
+51.02.04,3,Kerambitan,age_group,70-74,,1815,jiwa,2025,registration,total_population,3.2,28,,70-74
+51.02.04,3,Kerambitan,age_group,75+,laki_laki,1229,jiwa,2025,registration,total_population,3.2,28,,75+
+51.02.04,3,Kerambitan,age_group,75+,perempuan,1620,jiwa,2025,registration,total_population,3.2,28,,75+
+51.02.04,3,Kerambitan,age_group,75+,,2849,jiwa,2025,registration,total_population,3.2,28,,75+
+51.02.04,3,KECAMATAN KERAMBITAN,sex,laki_laki,,21737,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+51.02.04,3,KECAMATAN KERAMBITAN,sex,perempuan,,22138,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+51.02.04,3,KECAMATAN KERAMBITAN,total,total,,43875,jiwa,2025,registration,total_population,3.2,28,,

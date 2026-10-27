@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.71.03.2003,4,Dauh Puri Kauh,sex,laki_laki,,6780,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.71.03.2003,4,Dauh Puri Kauh,sex,perempuan,,6781,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.71.03.2003,4,Dauh Puri Kauh,total,total,,13561,jiwa,2025,registration,total_population,3.1,28,,
+51.71.03.2006,4,Dauh Puri Kangin,sex,laki_laki,,2099,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.71.03.2006,4,Dauh Puri Kangin,sex,perempuan,,2176,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.71.03.2006,4,Dauh Puri Kangin,total,total,,4275,jiwa,2025,registration,total_population,3.1,28,,
+51.71.03.2008,4,Tegal Harum,sex,laki_laki,,6496,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.71.03.2008,4,Tegal Harum,sex,perempuan,,6510,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.71.03.2008,4,Tegal Harum,total,total,,13006,jiwa,2025,registration,total_population,3.1,28,,
+51.71.03.2009,4,Tegal Kertha,sex,laki_laki,,8334,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.71.03.2009,4,Tegal Kertha,sex,perempuan,,8617,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.71.03.2009,4,Tegal Kertha,total,total,,16951,jiwa,2025,registration,total_population,3.1,28,,
+51.71.03.2011,4,Padangsambian Kaja,sex,laki_laki,,8994,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.71.03.2011,4,Padangsambian Kaja,sex,perempuan,,9104,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.71.03.2011,4,Padangsambian Kaja,total,total,,18098,jiwa,2025,registration,total_population,3.1,28,,
+51.71.03.1005,4,Dauh Puri,sex,laki_laki,,4556,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.71.03.1005,4,Dauh Puri,sex,perempuan,,4522,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.71.03.1005,4,Dauh Puri,total,total,,9078,jiwa,2025,registration,total_population,3.1,28,,
+51.71.03.1007,4,Pemecutan,sex,laki_laki,,10599,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.71.03.1007,4,Pemecutan,sex,perempuan,,10595,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.71.03.1007,4,Pemecutan,total,total,,21194,jiwa,2025,registration,total_population,3.1,28,,
+51.71.03.1010,4,Padangsambian,sex,laki_laki,,15228,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.71.03.1010,4,Padangsambian,sex,perempuan,,15216,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.71.03.1010,4,Padangsambian,total,total,,30444,jiwa,2025,registration,total_population,3.1,28,,
+51.71.03,3,Denpasar Barat,sex,laki_laki,,96131,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.71.03,3,Denpasar Barat,sex,perempuan,,96730,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.71.03,3,Denpasar Barat,total,total,,192861,jiwa,2025,registration,total_population,3.1,28,,
+51.71.03,3,Denpasar Barat,age_group,0-4,laki_laki,5164,jiwa,2025,registration,total_population,3.2,30,,00-04
+51.71.03,3,Denpasar Barat,age_group,0-4,perempuan,4733,jiwa,2025,registration,total_population,3.2,30,,00-04
+51.71.03,3,Denpasar Barat,age_group,0-4,,9897,jiwa,2025,registration,total_population,3.2,30,,00-04
+51.71.03,3,Denpasar Barat,age_group,5-9,laki_laki,6902,jiwa,2025,registration,total_population,3.2,30,,05-09
+51.71.03,3,Denpasar Barat,age_group,5-9,perempuan,6446,jiwa,2025,registration,total_population,3.2,30,,05-09
+51.71.03,3,Denpasar Barat,age_group,5-9,,13348,jiwa,2025,registration,total_population,3.2,30,,05-09
+51.71.03,3,Denpasar Barat,age_group,10-14,laki_laki,7776,jiwa,2025,registration,total_population,3.2,30,,10-14
+51.71.03,3,Denpasar Barat,age_group,10-14,perempuan,7122,jiwa,2025,registration,total_population,3.2,30,,10-14
+51.71.03,3,Denpasar Barat,age_group,10-14,,14898,jiwa,2025,registration,total_population,3.2,30,,10-14
+51.71.03,3,Denpasar Barat,age_group,15-19,laki_laki,7764,jiwa,2025,registration,total_population,3.2,30,,15-19
+51.71.03,3,Denpasar Barat,age_group,15-19,perempuan,7287,jiwa,2025,registration,total_population,3.2,30,,15-19
+51.71.03,3,Denpasar Barat,age_group,15-19,,15051,jiwa,2025,registration,total_population,3.2,30,,15-19
+51.71.03,3,Denpasar Barat,age_group,20-24,laki_laki,8517,jiwa,2025,registration,total_population,3.2,30,,20-24
+51.71.03,3,Denpasar Barat,age_group,20-24,perempuan,7995,jiwa,2025,registration,total_population,3.2,30,,20-24
+51.71.03,3,Denpasar Barat,age_group,20-24,,16512,jiwa,2025,registration,total_population,3.2,30,,20-24
+51.71.03,3,Denpasar Barat,age_group,25-29,laki_laki,8076,jiwa,2025,registration,total_population,3.2,30,,25-29
+51.71.03,3,Denpasar Barat,age_group,25-29,perempuan,7834,jiwa,2025,registration,total_population,3.2,30,,25-29
+51.71.03,3,Denpasar Barat,age_group,25-29,,15910,jiwa,2025,registration,total_population,3.2,30,,25-29
+51.71.03,3,Denpasar Barat,age_group,30-34,laki_laki,6971,jiwa,2025,registration,total_population,3.2,30,,30-34
+51.71.03,3,Denpasar Barat,age_group,30-34,perempuan,7051,jiwa,2025,registration,total_population,3.2,30,,30-34
+51.71.03,3,Denpasar Barat,age_group,30-34,,14022,jiwa,2025,registration,total_population,3.2,30,,30-34
+51.71.03,3,Denpasar Barat,age_group,35-39,laki_laki,5844,jiwa,2025,registration,total_population,3.2,30,,35-39
+51.71.03,3,Denpasar Barat,age_group,35-39,perempuan,6190,jiwa,2025,registration,total_population,3.2,30,,35-39
+51.71.03,3,Denpasar Barat,age_group,35-39,,12034,jiwa,2025,registration,total_population,3.2,30,,35-39
+51.71.03,3,Denpasar Barat,age_group,40-44,laki_laki,6283,jiwa,2025,registration,total_population,3.2,30,,40-44
+51.71.03,3,Denpasar Barat,age_group,40-44,perempuan,7057,jiwa,2025,registration,total_population,3.2,30,,40-44
+51.71.03,3,Denpasar Barat,age_group,40-44,,13340,jiwa,2025,registration,total_population,3.2,30,,40-44
+51.71.03,3,Denpasar Barat,age_group,45-49,laki_laki,7046,jiwa,2025,registration,total_population,3.2,30,,45-49
+51.71.03,3,Denpasar Barat,age_group,45-49,perempuan,7784,jiwa,2025,registration,total_population,3.2,30,,45-49
+51.71.03,3,Denpasar Barat,age_group,45-49,,14830,jiwa,2025,registration,total_population,3.2,30,,45-49
+51.71.03,3,Denpasar Barat,age_group,50-54,laki_laki,7452,jiwa,2025,registration,total_population,3.2,30,,50-54
+51.71.03,3,Denpasar Barat,age_group,50-54,perempuan,8175,jiwa,2025,registration,total_population,3.2,30,,50-54
+51.71.03,3,Denpasar Barat,age_group,50-54,,15627,jiwa,2025,registration,total_population,3.2,30,,50-54
+51.71.03,3,Denpasar Barat,age_group,55-59,laki_laki,6887,jiwa,2025,registration,total_population,3.2,30,,55-59
+51.71.03,3,Denpasar Barat,age_group,55-59,perempuan,6822,jiwa,2025,registration,total_population,3.2,30,,55-59
+51.71.03,3,Denpasar Barat,age_group,55-59,,13709,jiwa,2025,registration,total_population,3.2,30,,55-59
+51.71.03,3,Denpasar Barat,age_group,60-64,laki_laki,4668,jiwa,2025,registration,total_population,3.2,30,,60-64
+51.71.03,3,Denpasar Barat,age_group,60-64,perempuan,4685,jiwa,2025,registration,total_population,3.2,30,,60-64
+51.71.03,3,Denpasar Barat,age_group,60-64,,9353,jiwa,2025,registration,total_population,3.2,30,,60-64
+51.71.03,3,Denpasar Barat,age_group,65-69,laki_laki,3039,jiwa,2025,registration,total_population,3.2,30,,65-69
+51.71.03,3,Denpasar Barat,age_group,65-69,perempuan,3273,jiwa,2025,registration,total_population,3.2,30,,65-69
+51.71.03,3,Denpasar Barat,age_group,65-69,,6312,jiwa,2025,registration,total_population,3.2,30,,65-69
+51.71.03,3,Denpasar Barat,age_group,70-74,laki_laki,1997,jiwa,2025,registration,total_population,3.2,30,,70-74
+51.71.03,3,Denpasar Barat,age_group,70-74,perempuan,2108,jiwa,2025,registration,total_population,3.2,30,,70-74
+51.71.03,3,Denpasar Barat,age_group,70-74,,4105,jiwa,2025,registration,total_population,3.2,30,,70-74
+51.71.03,3,Denpasar Barat,age_group,75+,laki_laki,1745,jiwa,2025,registration,total_population,3.2,30,,75+
+51.71.03,3,Denpasar Barat,age_group,75+,perempuan,2168,jiwa,2025,registration,total_population,3.2,30,,75+
+51.71.03,3,Denpasar Barat,age_group,75+,,3913,jiwa,2025,registration,total_population,3.2,30,,75+
+51.71.03,3,Denpasar Barat,sex,laki_laki,,96131,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+51.71.03,3,Denpasar Barat,sex,perempuan,,96730,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+51.71.03,3,Denpasar Barat,total,total,,192861,jiwa,2025,registration,total_population,3.2,30,,

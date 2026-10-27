@@ -1,0 +1,47 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/padi_padian,,131155,rupiah,2024,survey_estimate,per_capita,10.1,293,,Padi-padian
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/padi_padian,,131550,rupiah,2025,survey_estimate,per_capita,10.1,293,,Padi-padian
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/umbi_umbian,,5435,rupiah,2024,survey_estimate,per_capita,10.1,293,,Umbi-umbian
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/umbi_umbian,,6904,rupiah,2025,survey_estimate,per_capita,10.1,293,,Umbi-umbian
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,60606,rupiah,2024,survey_estimate,per_capita,10.1,293,,Ikan/udang/cumi/kerang
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,58426,rupiah,2025,survey_estimate,per_capita,10.1,293,,Ikan/udang/cumi/kerang
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/daging,,51213,rupiah,2024,survey_estimate,per_capita,10.1,293,,Daging
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/daging,,34568,rupiah,2025,survey_estimate,per_capita,10.1,293,,Daging
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/telur_dan_susu,,23239,rupiah,2024,survey_estimate,per_capita,10.1,293,,Telur dan susu
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/telur_dan_susu,,20299,rupiah,2025,survey_estimate,per_capita,10.1,293,,Telur dan susu
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/sayur_sayuran,,57874,rupiah,2024,survey_estimate,per_capita,10.1,293,,Sayur-sayuran
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/sayur_sayuran,,76641,rupiah,2025,survey_estimate,per_capita,10.1,293,,Sayur-sayuran
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/kacang_kacangan,,14942,rupiah,2024,survey_estimate,per_capita,10.1,293,,Kacang-kacangan
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/kacang_kacangan,,15490,rupiah,2025,survey_estimate,per_capita,10.1,293,,Kacang-kacangan
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/buah_buahan,,46014,rupiah,2024,survey_estimate,per_capita,10.1,293,,Buah-buahan
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/buah_buahan,,55808,rupiah,2025,survey_estimate,per_capita,10.1,293,,Buah-buahan
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14520,rupiah,2024,survey_estimate,per_capita,10.1,293,,Minyak dan kelapa
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19698,rupiah,2025,survey_estimate,per_capita,10.1,293,,Minyak dan kelapa
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/bahan_minuman,,15892,rupiah,2024,survey_estimate,per_capita,10.1,293,,Bahan minuman
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/bahan_minuman,,19077,rupiah,2025,survey_estimate,per_capita,10.1,293,,Bahan minuman
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/bumbu_bumbuan,,11863,rupiah,2024,survey_estimate,per_capita,10.1,293,,Bumbu-bumbuan
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/bumbu_bumbuan,,13584,rupiah,2025,survey_estimate,per_capita,10.1,293,,Bumbu-bumbuan
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/konsumsi_lainnya,,9715,rupiah,2024,survey_estimate,per_capita,10.1,293,,Konsumsi lainnya
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/konsumsi_lainnya,,11790,rupiah,2025,survey_estimate,per_capita,10.1,293,,Konsumsi lainnya
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,167831,rupiah,2024,survey_estimate,per_capita,10.1,293,,Makanan dan minuman jadi
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,187914,rupiah,2025,survey_estimate,per_capita,10.1,293,,Makanan dan minuman jadi
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/rokok,,45376,rupiah,2024,survey_estimate,per_capita,10.1,293,,Rokok
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/rokok,,52248,rupiah,2025,survey_estimate,per_capita,10.1,293,,Rokok
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/jumlah_makanan,,655673,rupiah,2024,survey_estimate,per_capita,10.1,293,,Jumlah makanan
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/jumlah_makanan,,703997,rupiah,2025,survey_estimate,per_capita,10.1,293,,Jumlah makanan
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,220268,rupiah,2024,survey_estimate,per_capita,10.1,293,,Perumahan dan fasilitas rumah tangga
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,212615,rupiah,2025,survey_estimate,per_capita,10.1,293,,Perumahan dan fasilitas rumah tangga
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,82589,rupiah,2024,survey_estimate,per_capita,10.1,293,,Aneka barang dan jasa
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,84914,rupiah,2025,survey_estimate,per_capita,10.1,293,,Aneka barang dan jasa
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,19463,rupiah,2024,survey_estimate,per_capita,10.1,293,,"Pakaian, alas kaki, dan tutup kepala"
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,21952,rupiah,2025,survey_estimate,per_capita,10.1,293,,"Pakaian, alas kaki, dan tutup kepala"
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/barang_tahan_lama,,28971,rupiah,2024,survey_estimate,per_capita,10.1,293,,Barang tahan lama
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/barang_tahan_lama,,60064,rupiah,2025,survey_estimate,per_capita,10.1,293,,Barang tahan lama
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,34144,rupiah,2024,survey_estimate,per_capita,10.1,293,,"Pajak, pungutan, dan asuransi"
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,38308,rupiah,2025,survey_estimate,per_capita,10.1,293,,"Pajak, pungutan, dan asuransi"
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,15569,rupiah,2024,survey_estimate,per_capita,10.1,293,,Keperluan pesta dan upacara/kenduri
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,12358,rupiah,2025,survey_estimate,per_capita,10.1,293,,Keperluan pesta dan upacara/kenduri
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,401005,rupiah,2024,survey_estimate,per_capita,10.1,293,,Jumlah bukan makanan
+52.08,2,Kabupaten Lombok Utara,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,430211,rupiah,2025,survey_estimate,per_capita,10.1,293,,Jumlah bukan makanan
+52.08,2,Kabupaten Lombok Utara,expenditure,total,,1056677,rupiah,2024,survey_estimate,per_capita,10.1,293,,
+52.08,2,Kabupaten Lombok Utara,expenditure,total,,1134207,rupiah,2025,survey_estimate,per_capita,10.1,293,,

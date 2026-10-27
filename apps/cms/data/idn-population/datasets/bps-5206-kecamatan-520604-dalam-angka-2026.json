@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5206-kecamatan-520604-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "52.06.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Belo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bima",
+  "publisherDomain": "5206",
+  "publisherWebsite": "https://bimakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bima (https://bimakab.bps.go.id), publikasi \"Kecamatan Belo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5206040",
+  "publicationNumber": "52060.26010",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bimakab.bps.go.id/id/publication/2026/09/28/2e4efd9412dee8bc3dfd8d6c/kecamatan-belo-dalam-angka-2026.html",
+  "sourceFileSha256": "c74fb3e59c5bf52addbfe71661b45c330035a35d11a45eb8eaa6f3d2f9918259",
+  "sourceFileBytes": 3856178,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bima.",
+  "csvPath": "datasets/bps-5206-kecamatan-520604-dalam-angka-2026.csv",
+  "csvSha256": "286c66944750408cc33608d9bf1bc9b614ba00f0b870e5a5b514936b9239ecb5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Belo, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Belo, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5208-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "52.08",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Lombok Utara Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lombok Utara",
+  "publisherDomain": "5208",
+  "publisherWebsite": "https://lombokutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lombok Utara (https://lombokutarakab.bps.go.id), publikasi \"Kabupaten Lombok Utara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5208",
+  "publicationNumber": "52080.2503",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://lombokutarakab.bps.go.id/id/publication/2026/02/27/ea92752cbf932e39aac4d549/kabupaten-lombok-utara-dalam-angka-2026.html",
+  "sourceFileSha256": "2840aba0cbcdcb837fc96580efa6cb566f258cbfb85016e2163517e4f4b0bcd1",
+  "sourceFileBytes": 38830796,
+  "sourcePages": [293],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lombok Utara.",
+  "csvPath": "datasets/bps-5208-dalam-angka-2026.csv",
+  "csvSha256": "cc7ae762e1513290b9017fb171e961e8a198353ac8472c37f7969caadb3cf905",
+  "tablesUsed": [
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Lombok Utara (rupiah), 2024 dan 2025",
+      "printedPages": [293],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 3.1.1 (total-by-region) could not be read reliably and is not included (basis of 2025 not determinable)",
+    "table 3.1.2 (age-by-sex) could not be read reliably and is not included (basis of 2025 not determinable)"
+  ]
+}

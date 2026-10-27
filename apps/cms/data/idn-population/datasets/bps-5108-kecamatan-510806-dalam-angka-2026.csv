@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.08.06.2001,4,Kalibukbuk,sex,laki_laki,,3687,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+51.08.06.2001,4,Kalibukbuk,sex,perempuan,,3676,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+51.08.06.2001,4,Kalibukbuk,total,total,,7363,jiwa,2025,registration,total_population,3.1,27,,
+51.08.06.2002,4,Anturan,sex,laki_laki,,3359,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+51.08.06.2002,4,Anturan,sex,perempuan,,3411,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+51.08.06.2002,4,Anturan,total,total,,6770,jiwa,2025,registration,total_population,3.1,27,,
+51.08.06.2003,4,Tukadmungga,sex,laki_laki,,2685,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+51.08.06.2003,4,Tukadmungga,sex,perempuan,,2590,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+51.08.06.2003,4,Tukadmungga,total,total,,5275,jiwa,2025,registration,total_population,3.1,27,,
+51.08.06.2004,4,Pemaron,sex,laki_laki,,2825,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+51.08.06.2004,4,Pemaron,sex,perempuan,,2768,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+51.08.06.2004,4,Pemaron,total,total,,5593,jiwa,2025,registration,total_population,3.1,27,,
+51.08.06.2005,4,Baktiseraga,sex,laki_laki,,3438,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+51.08.06.2005,4,Baktiseraga,sex,perempuan,,3417,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+51.08.06.2005,4,Baktiseraga,total,total,,6855,jiwa,2025,registration,total_population,3.1,27,,
+51.08.06.1006,4,Banyuasri,sex,laki_laki,,4845,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+51.08.06.1006,4,Banyuasri,sex,perempuan,,4839,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+51.08.06.1006,4,Banyuasri,total,total,,9684,jiwa,2025,registration,total_population,3.1,27,,
+51.08.06.1007,4,Banjar Tegal,sex,laki_laki,,2110,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+51.08.06.1007,4,Banjar Tegal,sex,perempuan,,2087,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+51.08.06.1007,4,Banjar Tegal,total,total,,4197,jiwa,2025,registration,total_population,3.1,27,,
+51.08.06.1012,4,Beratan,sex,laki_laki,,485,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+51.08.06.1012,4,Beratan,sex,perempuan,,479,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+51.08.06.1012,4,Beratan,total,total,,964,jiwa,2025,registration,total_population,3.1,27,,
+51.08.06.1011,4,Liligundi,sex,laki_laki,,887,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+51.08.06.1011,4,Liligundi,sex,perempuan,,917,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+51.08.06.1011,4,Liligundi,total,total,,1804,jiwa,2025,registration,total_population,3.1,27,,
+51.08.06.1010,4,Kampung Singaraja,sex,laki_laki,,671,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+51.08.06.1010,4,Kampung Singaraja,sex,perempuan,,634,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+51.08.06.1010,4,Kampung Singaraja,total,total,,1305,jiwa,2025,registration,total_population,3.1,27,,
+51.08.06.1008,4,Kendran,sex,laki_laki,,1491,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+51.08.06.1008,4,Kendran,sex,perempuan,,1439,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+51.08.06.1008,4,Kendran,total,total,,2930,jiwa,2025,registration,total_population,3.1,27,,
+51.08.06.1022,4,Astina,sex,laki_laki,,1292,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+51.08.06.1022,4,Astina,sex,perempuan,,1257,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+51.08.06.1022,4,Astina,total,total,,2549,jiwa,2025,registration,total_population,3.1,27,,
+51.08.06.1023,4,Banjar Jawa,sex,laki_laki,,2871,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+51.08.06.1023,4,Banjar Jawa,sex,perempuan,,2809,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+51.08.06.1023,4,Banjar Jawa,total,total,,5680,jiwa,2025,registration,total_population,3.1,27,,
+51.08.06.1027,4,Banjar Bali,sex,laki_laki,,1352,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+51.08.06.1027,4,Banjar Bali,sex,perempuan,,1375,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+51.08.06.1027,4,Banjar Bali,total,total,,2727,jiwa,2025,registration,total_population,3.1,27,,
+51.08.06.1021,4,Kampung Kajanan,sex,laki_laki,,2711,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+51.08.06.1021,4,Kampung Kajanan,sex,perempuan,,2697,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+51.08.06.1021,4,Kampung Kajanan,total,total,,5408,jiwa,2025,registration,total_population,3.1,27,,
+51.08.06.1024,4,Kaliuntu,sex,laki_laki,,2327,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+51.08.06.1024,4,Kaliuntu,sex,perempuan,,2378,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+51.08.06.1024,4,Kaliuntu,total,total,,4705,jiwa,2025,registration,total_population,3.1,27,,
+51.08.06,3,Buleleng,age_group,0-4,laki_laki,4870,jiwa,2025,registration,total_population,3.2,31,,00-04
+51.08.06,3,Buleleng,age_group,0-4,perempuan,4359,jiwa,2025,registration,total_population,3.2,31,,00-04
+51.08.06,3,Buleleng,age_group,0-4,,9229,jiwa,2025,registration,total_population,3.2,31,,00-04
+51.08.06,3,Buleleng,age_group,5-9,laki_laki,6461,jiwa,2025,registration,total_population,3.2,31,,05-09
+51.08.06,3,Buleleng,age_group,5-9,perempuan,5996,jiwa,2025,registration,total_population,3.2,31,,05-09
+51.08.06,3,Buleleng,age_group,5-9,,12457,jiwa,2025,registration,total_population,3.2,31,,05-09
+51.08.06,3,Buleleng,age_group,10-14,laki_laki,6959,jiwa,2025,registration,total_population,3.2,31,,10-14
+51.08.06,3,Buleleng,age_group,10-14,perempuan,6383,jiwa,2025,registration,total_population,3.2,31,,10-14
+51.08.06,3,Buleleng,age_group,10-14,,13342,jiwa,2025,registration,total_population,3.2,31,,10-14
+51.08.06,3,Buleleng,age_group,15-19,laki_laki,6316,jiwa,2025,registration,total_population,3.2,31,,15-19
+51.08.06,3,Buleleng,age_group,15-19,perempuan,5970,jiwa,2025,registration,total_population,3.2,31,,15-19
+51.08.06,3,Buleleng,age_group,15-19,,12286,jiwa,2025,registration,total_population,3.2,31,,15-19
+51.08.06,3,Buleleng,age_group,20-24,laki_laki,6731,jiwa,2025,registration,total_population,3.2,31,,20-24
+51.08.06,3,Buleleng,age_group,20-24,perempuan,6144,jiwa,2025,registration,total_population,3.2,31,,20-24
+51.08.06,3,Buleleng,age_group,20-24,,12875,jiwa,2025,registration,total_population,3.2,31,,20-24
+51.08.06,3,Buleleng,age_group,25-29,laki_laki,6209,jiwa,2025,registration,total_population,3.2,31,,25-29
+51.08.06,3,Buleleng,age_group,25-29,perempuan,5982,jiwa,2025,registration,total_population,3.2,31,,25-29
+51.08.06,3,Buleleng,age_group,25-29,,12191,jiwa,2025,registration,total_population,3.2,31,,25-29
+51.08.06,3,Buleleng,age_group,30-34,laki_laki,5610,jiwa,2025,registration,total_population,3.2,31,,30-34
+51.08.06,3,Buleleng,age_group,30-34,perempuan,5506,jiwa,2025,registration,total_population,3.2,31,,30-34
+51.08.06,3,Buleleng,age_group,30-34,,11116,jiwa,2025,registration,total_population,3.2,31,,30-34
+51.08.06,3,Buleleng,age_group,35-39,laki_laki,5406,jiwa,2025,registration,total_population,3.2,31,,35-39
+51.08.06,3,Buleleng,age_group,35-39,perempuan,5377,jiwa,2025,registration,total_population,3.2,31,,35-39
+51.08.06,3,Buleleng,age_group,35-39,,10783,jiwa,2025,registration,total_population,3.2,31,,35-39
+51.08.06,3,Buleleng,age_group,40-44,laki_laki,6082,jiwa,2025,registration,total_population,3.2,31,,40-44
+51.08.06,3,Buleleng,age_group,40-44,perempuan,5724,jiwa,2025,registration,total_population,3.2,31,,40-44
+51.08.06,3,Buleleng,age_group,40-44,,11806,jiwa,2025,registration,total_population,3.2,31,,40-44
+51.08.06,3,Buleleng,age_group,45-49,laki_laki,5497,jiwa,2025,registration,total_population,3.2,31,,45-49
+51.08.06,3,Buleleng,age_group,45-49,perempuan,5431,jiwa,2025,registration,total_population,3.2,31,,45-49
+51.08.06,3,Buleleng,age_group,45-49,,10928,jiwa,2025,registration,total_population,3.2,31,,45-49
+51.08.06,3,Buleleng,age_group,50-54,laki_laki,4865,jiwa,2025,registration,total_population,3.2,31,,50-54
+51.08.06,3,Buleleng,age_group,50-54,perempuan,4952,jiwa,2025,registration,total_population,3.2,31,,50-54
+51.08.06,3,Buleleng,age_group,50-54,,9817,jiwa,2025,registration,total_population,3.2,31,,50-54
+51.08.06,3,Buleleng,age_group,55-59,laki_laki,4093,jiwa,2025,registration,total_population,3.2,31,,55-59
+51.08.06,3,Buleleng,age_group,55-59,perempuan,4443,jiwa,2025,registration,total_population,3.2,31,,55-59
+51.08.06,3,Buleleng,age_group,55-59,,8536,jiwa,2025,registration,total_population,3.2,31,,55-59
+51.08.06,3,Buleleng,age_group,60-64,laki_laki,3388,jiwa,2025,registration,total_population,3.2,31,,60-64
+51.08.06,3,Buleleng,age_group,60-64,perempuan,3691,jiwa,2025,registration,total_population,3.2,31,,60-64
+51.08.06,3,Buleleng,age_group,60-64,,7079,jiwa,2025,registration,total_population,3.2,31,,60-64
+51.08.06,3,Buleleng,age_group,65-69,laki_laki,2751,jiwa,2025,registration,total_population,3.2,31,,65-69
+51.08.06,3,Buleleng,age_group,65-69,perempuan,3073,jiwa,2025,registration,total_population,3.2,31,,65-69
+51.08.06,3,Buleleng,age_group,65-69,,5824,jiwa,2025,registration,total_population,3.2,31,,65-69
+51.08.06,3,Buleleng,age_group,70-74,laki_laki,1667,jiwa,2025,registration,total_population,3.2,31,,70-74
+51.08.06,3,Buleleng,age_group,70-74,perempuan,1937,jiwa,2025,registration,total_population,3.2,31,,70-74
+51.08.06,3,Buleleng,age_group,70-74,,3604,jiwa,2025,registration,total_population,3.2,31,,70-74
+51.08.06,3,Buleleng,age_group,75+,laki_laki,1838,jiwa,2025,registration,total_population,3.2,31,,75+
+51.08.06,3,Buleleng,age_group,75+,perempuan,2550,jiwa,2025,registration,total_population,3.2,31,,75+
+51.08.06,3,Buleleng,age_group,75+,,4388,jiwa,2025,registration,total_population,3.2,31,,75+

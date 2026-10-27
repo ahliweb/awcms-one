@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.06.11.2007,4,Laju,sex,laki_laki,,2289,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.11.2007,4,Laju,sex,perempuan,,2274,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.11.2007,4,Laju,total,total,,4563,jiwa,2025,registration,total_population,3.1,28,,
+52.06.11.2006,4,Doro O'o,sex,laki_laki,,1219,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.11.2006,4,Doro O'o,sex,perempuan,,1248,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.11.2006,4,Doro O'o,total,total,,2467,jiwa,2025,registration,total_population,3.1,28,,
+52.06.11.2001,4,Waworada,sex,laki_laki,,1188,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.11.2001,4,Waworada,sex,perempuan,,1213,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.11.2001,4,Waworada,total,total,,2401,jiwa,2025,registration,total_population,3.1,28,,
+52.06.11.2005,4,Kawuwu,sex,laki_laki,,463,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.11.2005,4,Kawuwu,sex,perempuan,,483,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.11.2005,4,Kawuwu,total,total,,946,jiwa,2025,registration,total_population,3.1,28,,
+52.06.11.2002,4,Karumbu,sex,laki_laki,,2459,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.11.2002,4,Karumbu,sex,perempuan,,2603,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.11.2002,4,Karumbu,total,total,,5062,jiwa,2025,registration,total_population,3.1,28,,
+52.06.11.2004,4,Kalodu,sex,laki_laki,,458,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.11.2004,4,Kalodu,sex,perempuan,,492,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.11.2004,4,Kalodu,total,total,,950,jiwa,2025,registration,total_population,3.1,28,,
+52.06.11.2003,4,Rupe,sex,laki_laki,,1763,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.11.2003,4,Rupe,sex,perempuan,,1908,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.11.2003,4,Rupe,total,total,,3671,jiwa,2025,registration,total_population,3.1,28,,
+52.06.11.2008,4,Kangga,sex,laki_laki,,851,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.11.2008,4,Kangga,sex,perempuan,,864,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.11.2008,4,Kangga,total,total,,1715,jiwa,2025,registration,total_population,3.1,28,,
+52.06.11.2009,4,Karampi,sex,laki_laki,,1653,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.11.2009,4,Karampi,sex,perempuan,,1579,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.11.2009,4,Karampi,total,total,,3232,jiwa,2025,registration,total_population,3.1,28,,
+52.06.11.2010,4,Waduruka,sex,laki_laki,,834,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.11.2010,4,Waduruka,sex,perempuan,,760,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.11.2010,4,Waduruka,total,total,,1594,jiwa,2025,registration,total_population,3.1,28,,
+52.06.11.2011,4,Dumu,sex,laki_laki,,1109,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.11.2011,4,Dumu,sex,perempuan,,1112,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.11.2011,4,Dumu,total,total,,2221,jiwa,2025,registration,total_population,3.1,28,,
+52.06.11.2012,4,Rompo,sex,laki_laki,,1115,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.11.2012,4,Rompo,sex,perempuan,,1089,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.11.2012,4,Rompo,total,total,,2204,jiwa,2025,registration,total_population,3.1,28,,
+52.06.11.2015,4,Sambane,sex,laki_laki,,451,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.11.2015,4,Sambane,sex,perempuan,,449,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.11.2015,4,Sambane,total,total,,900,jiwa,2025,registration,total_population,3.1,28,,
+52.06.11.2013,4,Sarae Ruma,sex,laki_laki,,343,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.11.2013,4,Sarae Ruma,sex,perempuan,,332,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.11.2013,4,Sarae Ruma,total,total,,675,jiwa,2025,registration,total_population,3.1,28,,
+52.06.11.2014,4,Pusu,sex,laki_laki,,423,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.11.2014,4,Pusu,sex,perempuan,,404,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.11.2014,4,Pusu,total,total,,827,jiwa,2025,registration,total_population,3.1,28,,
+52.06.11,3,Langgudu,sex,laki_laki,,16618,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.11,3,Langgudu,sex,perempuan,,16810,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.11,3,Langgudu,total,total,,33428,jiwa,2025,registration,total_population,3.1,28,,
+52.06.11,3,Langgudu,age_group,0-14,laki_laki,4322,jiwa,2025,registration,total_population,3.2,30,,0-14
+52.06.11,3,Langgudu,age_group,0-14,perempuan,4093,jiwa,2025,registration,total_population,3.2,30,,0-14
+52.06.11,3,Langgudu,age_group,0-14,,8415,jiwa,2025,registration,total_population,3.2,30,,0-14
+52.06.11,3,Langgudu,age_group,15-64,laki_laki,11098,jiwa,2025,registration,total_population,3.2,30,,15-64
+52.06.11,3,Langgudu,age_group,15-64,perempuan,11446,jiwa,2025,registration,total_population,3.2,30,,15-64
+52.06.11,3,Langgudu,age_group,15-64,,22544,jiwa,2025,registration,total_population,3.2,30,,15-64
+52.06.11,3,Langgudu,age_group,65+,laki_laki,1198,jiwa,2025,registration,total_population,3.2,30,,65+
+52.06.11,3,Langgudu,age_group,65+,perempuan,1271,jiwa,2025,registration,total_population,3.2,30,,65+
+52.06.11,3,Langgudu,age_group,65+,,2469,jiwa,2025,registration,total_population,3.2,30,,65+
+52.06.11,3,Langgudu,sex,laki_laki,,16618,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+52.06.11,3,Langgudu,sex,perempuan,,16810,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+52.06.11,3,Langgudu,total,total,,33428,jiwa,2025,registration,total_population,3.2,30,,

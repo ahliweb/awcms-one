@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-5205-kecamatan-520507-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "52.05.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Manggalewa Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Dompu",
+  "publisherDomain": "5205",
+  "publisherWebsite": "https://dompukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Dompu (https://dompukab.bps.go.id), publikasi \"Kecamatan Manggalewa Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5205051",
+  "publicationNumber": "52050.26016",
+  "issn": "0852-0631",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://dompukab.bps.go.id/id/publication/2026/09/28/b24e3a52882586e47aff70f5/kecamatan-manggalewa-dalam-angka-2026.html",
+  "sourceFileSha256": "ef7e120b11353d69553e84a75c7b5aabf9c53c936e672f1c0d5ec27d360d1801",
+  "sourceFileBytes": 6859613,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Dompu.",
+  "csvPath": "datasets/bps-5205-kecamatan-520507-dalam-angka-2026.csv",
+  "csvSha256": "1fefb057e358d0bedbcb565f3419b95f1a1137a24c1878d76aff8ca9180f528c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Manggelewa, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Manggelewa, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kampas Meci\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Manggelewa\": unmatched ",
+    "table 3.1: row not stored: row \"Kampas Meci\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Manggelewa\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Manggelewa\": unmatched "
+  ]
+}

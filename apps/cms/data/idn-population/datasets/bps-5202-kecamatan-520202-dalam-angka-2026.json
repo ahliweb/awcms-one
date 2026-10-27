@@ -1,0 +1,51 @@
+{
+  "datasetCode": "bps-5202-kecamatan-520202-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "52.02.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jonggat Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN LOMBOK TENGAH",
+  "publisherDomain": "5202",
+  "publisherWebsite": "https://lomboktengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN LOMBOK TENGAH (https://lomboktengahkab.bps.go.id), publikasi \"Kecamatan Jonggat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5202070",
+  "publicationNumber": "5202.26015",
+  "issn": "2598-3636",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lomboktengahkab.bps.go.id/id/publication/2026/09/28/6c891a8e726a34664c31268d/kecamatan-jonggat-dalam-angka-2026.html",
+  "sourceFileSha256": "c37740c4e618884ce04c9e727ea755c59924caee8f2f62f252efed62e9383ee5",
+  "sourceFileBytes": 8604475,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lombok Tengah.",
+  "csvPath": "datasets/bps-5202-kecamatan-520202-dalam-angka-2026.csv",
+  "csvSha256": "054121dbd6a01d16e0ff2c0081ab3b588b9b8a7deb65c467be997350a3d154e8",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Labulia, Kecamatan Jonggat, 2026",
+      "printedPages": [28],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Labulia 6.778\": unmatched ",
+    "table 3.1: row not stored: row \"Sukarara 5.323\": unmatched ",
+    "table 3.1: row not stored: row \"Puyung 7.036\": unmatched ",
+    "table 3.1: row not stored: row \"Gemel 2.849\": unmatched ",
+    "table 3.1: row not stored: row \"Barejulat 4.293\": unmatched ",
+    "table 3.1: row not stored: row \"Bunkate 1.806\": unmatched ",
+    "table 3.1: row not stored: row \"Nyerot 2.510\": unmatched ",
+    "table 3.1: row not stored: row \"Batutulis 2.081\": unmatched ",
+    "table 3.1: row not stored: row \"Jelantik 5.807\": unmatched ",
+    "table 3.1: row not stored: row \"Ubung 5.388\": unmatched ",
+    "table 3.1: row not stored: row \"Bonjeruk 5.366\": unmatched ",
+    "table 3.1: row not stored: row \"Perina 1.882\": unmatched ",
+    "table 3.1: row not stored: row \"Pengenjek 6.395\": unmatched ",
+    "table 3.1: row not stored: row \"Jonggat 57.514\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

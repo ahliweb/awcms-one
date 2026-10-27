@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.72.01.1001,4,PARUGA,sex,laki_laki,,2652,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+52.72.01.1001,4,PARUGA,sex,perempuan,,2679,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+52.72.01.1001,4,PARUGA,total,total,,5331,jiwa,2025,registration,total_population,3.1,35,,
+52.72.01.1004,4,TANJUNG,sex,laki_laki,,3328,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+52.72.01.1004,4,TANJUNG,sex,perempuan,,3247,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+52.72.01.1004,4,TANJUNG,total,total,,6575,jiwa,2025,registration,total_population,3.1,35,,
+52.72.01.1003,4,SARAE,sex,laki_laki,,2614,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+52.72.01.1003,4,SARAE,sex,perempuan,,2525,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+52.72.01.1003,4,SARAE,total,total,,5139,jiwa,2025,registration,total_population,3.1,35,,
+52.72.01.1002,4,NAE,sex,laki_laki,,2091,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+52.72.01.1002,4,NAE,sex,perempuan,,2203,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+52.72.01.1002,4,NAE,total,total,,4294,jiwa,2025,registration,total_population,3.1,35,,
+52.72.01.1014,4,DARA,sex,laki_laki,,3511,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+52.72.01.1014,4,DARA,sex,perempuan,,3501,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+52.72.01.1014,4,DARA,total,total,,7012,jiwa,2025,registration,total_population,3.1,35,,
+52.72.01.1013,4,PANE,sex,laki_laki,,1311,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+52.72.01.1013,4,PANE,sex,perempuan,,1413,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+52.72.01.1013,4,PANE,total,total,,2724,jiwa,2025,registration,total_population,3.1,35,,
+52.72.01,3,RASANAE BARAT,sex,laki_laki,,15507,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+52.72.01,3,RASANAE BARAT,sex,perempuan,,15568,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+52.72.01,3,RASANAE BARAT,total,total,,31075,jiwa,2025,registration,total_population,3.1,35,,
+52.72.01,3,Rasanae Barat,age_group,0-4,laki_laki,1087,jiwa,2025,registration,total_population,3.2,37,,0-4
+52.72.01,3,Rasanae Barat,age_group,0-4,perempuan,967,jiwa,2025,registration,total_population,3.2,37,,0-4
+52.72.01,3,Rasanae Barat,age_group,0-4,,2054,jiwa,2025,registration,total_population,3.2,37,,0-4
+52.72.01,3,Rasanae Barat,age_group,5-9,laki_laki,1500,jiwa,2025,registration,total_population,3.2,37,,5-9
+52.72.01,3,Rasanae Barat,age_group,5-9,perempuan,1329,jiwa,2025,registration,total_population,3.2,37,,5-9
+52.72.01,3,Rasanae Barat,age_group,5-9,,2829,jiwa,2025,registration,total_population,3.2,37,,5-9
+52.72.01,3,Rasanae Barat,age_group,10-14,laki_laki,1496,jiwa,2025,registration,total_population,3.2,37,,10-14
+52.72.01,3,Rasanae Barat,age_group,10-14,perempuan,1380,jiwa,2025,registration,total_population,3.2,37,,10-14
+52.72.01,3,Rasanae Barat,age_group,10-14,,2876,jiwa,2025,registration,total_population,3.2,37,,10-14
+52.72.01,3,Rasanae Barat,age_group,15-19,laki_laki,1407,jiwa,2025,registration,total_population,3.2,37,,15-19
+52.72.01,3,Rasanae Barat,age_group,15-19,perempuan,1335,jiwa,2025,registration,total_population,3.2,37,,15-19
+52.72.01,3,Rasanae Barat,age_group,15-19,,2742,jiwa,2025,registration,total_population,3.2,37,,15-19
+52.72.01,3,Rasanae Barat,age_group,20-24,laki_laki,1322,jiwa,2025,registration,total_population,3.2,37,,20-24
+52.72.01,3,Rasanae Barat,age_group,20-24,perempuan,1255,jiwa,2025,registration,total_population,3.2,37,,20-24
+52.72.01,3,Rasanae Barat,age_group,20-24,,2577,jiwa,2025,registration,total_population,3.2,37,,20-24
+52.72.01,3,Rasanae Barat,age_group,25-29,laki_laki,1175,jiwa,2025,registration,total_population,3.2,37,,25-29
+52.72.01,3,Rasanae Barat,age_group,25-29,perempuan,1218,jiwa,2025,registration,total_population,3.2,37,,25-29
+52.72.01,3,Rasanae Barat,age_group,25-29,,2393,jiwa,2025,registration,total_population,3.2,37,,25-29
+52.72.01,3,Rasanae Barat,age_group,30-34,laki_laki,1127,jiwa,2025,registration,total_population,3.2,37,,30-34
+52.72.01,3,Rasanae Barat,age_group,30-34,perempuan,1129,jiwa,2025,registration,total_population,3.2,37,,30-34
+52.72.01,3,Rasanae Barat,age_group,30-34,,2256,jiwa,2025,registration,total_population,3.2,37,,30-34
+52.72.01,3,Rasanae Barat,age_group,35-39,laki_laki,1172,jiwa,2025,registration,total_population,3.2,37,,35-39
+52.72.01,3,Rasanae Barat,age_group,35-39,perempuan,1199,jiwa,2025,registration,total_population,3.2,37,,35-39
+52.72.01,3,Rasanae Barat,age_group,35-39,,2371,jiwa,2025,registration,total_population,3.2,37,,35-39
+52.72.01,3,Rasanae Barat,age_group,40-44,laki_laki,1155,jiwa,2025,registration,total_population,3.2,37,,40-44
+52.72.01,3,Rasanae Barat,age_group,40-44,perempuan,1202,jiwa,2025,registration,total_population,3.2,37,,40-44
+52.72.01,3,Rasanae Barat,age_group,40-44,,2357,jiwa,2025,registration,total_population,3.2,37,,40-44
+52.72.01,3,Rasanae Barat,age_group,45-49,laki_laki,1074,jiwa,2025,registration,total_population,3.2,37,,45-49
+52.72.01,3,Rasanae Barat,age_group,45-49,perempuan,1080,jiwa,2025,registration,total_population,3.2,37,,45-49
+52.72.01,3,Rasanae Barat,age_group,45-49,,2154,jiwa,2025,registration,total_population,3.2,37,,45-49
+52.72.01,3,Rasanae Barat,age_group,50-54,laki_laki,842,jiwa,2025,registration,total_population,3.2,37,,50-54
+52.72.01,3,Rasanae Barat,age_group,50-54,perempuan,898,jiwa,2025,registration,total_population,3.2,37,,50-54
+52.72.01,3,Rasanae Barat,age_group,50-54,,1740,jiwa,2025,registration,total_population,3.2,37,,50-54
+52.72.01,3,Rasanae Barat,age_group,55-59,laki_laki,719,jiwa,2025,registration,total_population,3.2,37,,55-59
+52.72.01,3,Rasanae Barat,age_group,55-59,perempuan,786,jiwa,2025,registration,total_population,3.2,37,,55-59
+52.72.01,3,Rasanae Barat,age_group,55-59,,1505,jiwa,2025,registration,total_population,3.2,37,,55-59
+52.72.01,3,Rasanae Barat,age_group,60-64,laki_laki,508,jiwa,2025,registration,total_population,3.2,37,,60-64
+52.72.01,3,Rasanae Barat,age_group,60-64,perempuan,606,jiwa,2025,registration,total_population,3.2,37,,60-64
+52.72.01,3,Rasanae Barat,age_group,60-64,,1114,jiwa,2025,registration,total_population,3.2,37,,60-64
+52.72.01,3,Rasanae Barat,age_group,65-69,laki_laki,406,jiwa,2025,registration,total_population,3.2,37,,65-69
+52.72.01,3,Rasanae Barat,age_group,65-69,perempuan,445,jiwa,2025,registration,total_population,3.2,37,,65-69
+52.72.01,3,Rasanae Barat,age_group,65-69,,851,jiwa,2025,registration,total_population,3.2,37,,65-69
+52.72.01,3,Rasanae Barat,age_group,70-74,laki_laki,247,jiwa,2025,registration,total_population,3.2,37,,70-74
+52.72.01,3,Rasanae Barat,age_group,70-74,perempuan,303,jiwa,2025,registration,total_population,3.2,37,,70-74
+52.72.01,3,Rasanae Barat,age_group,70-74,,550,jiwa,2025,registration,total_population,3.2,37,,70-74
+52.72.01,3,Rasanae Barat,age_group,75+,laki_laki,270,jiwa,2025,registration,total_population,3.2,37,,75+
+52.72.01,3,Rasanae Barat,age_group,75+,perempuan,436,jiwa,2025,registration,total_population,3.2,37,,75+
+52.72.01,3,Rasanae Barat,age_group,75+,,706,jiwa,2025,registration,total_population,3.2,37,,75+
+52.72.01,3,RASANAE BARAT,sex,laki_laki,,15507,jiwa,2025,registration,total_population,3.2,37,,Laki-Laki
+52.72.01,3,RASANAE BARAT,sex,perempuan,,15568,jiwa,2025,registration,total_population,3.2,37,,Perempuan
+52.72.01,3,RASANAE BARAT,total,total,,31075,jiwa,2025,registration,total_population,3.2,37,,

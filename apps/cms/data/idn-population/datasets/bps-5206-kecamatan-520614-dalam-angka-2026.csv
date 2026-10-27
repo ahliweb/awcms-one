@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.06.14.2002,4,Kawinda Nae,sex,laki_laki,,799,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.14.2002,4,Kawinda Nae,sex,perempuan,,786,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.14.2002,4,Kawinda Nae,total,total,,1585,jiwa,2025,registration,total_population,3.1,28,,
+52.06.14.2004,4,Oi Panihi,sex,laki_laki,,505,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.14.2004,4,Oi Panihi,sex,perempuan,,458,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.14.2004,4,Oi Panihi,total,total,,963,jiwa,2025,registration,total_population,3.1,28,,
+52.06.14.2003,4,Kawinda Toi,sex,laki_laki,,827,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.14.2003,4,Kawinda Toi,sex,perempuan,,769,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.14.2003,4,Kawinda Toi,total,total,,1596,jiwa,2025,registration,total_population,3.1,28,,
+52.06.14.2007,4,Rasabou,sex,laki_laki,,401,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.14.2007,4,Rasabou,sex,perempuan,,369,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.14.2007,4,Rasabou,total,total,,770,jiwa,2025,registration,total_population,3.1,28,,
+52.06.14.2005,4,Oi Bura,sex,laki_laki,,739,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.14.2005,4,Oi Bura,sex,perempuan,,646,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.14.2005,4,Oi Bura,total,total,,1385,jiwa,2025,registration,total_population,3.1,28,,
+52.06.14.2006,4,Oi Katupa,sex,laki_laki,,272,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.14.2006,4,Oi Katupa,sex,perempuan,,274,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.14.2006,4,Oi Katupa,total,total,,546,jiwa,2025,registration,total_population,3.1,28,,
+52.06.14,3,Tambora,sex,laki_laki,,4705,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.14,3,Tambora,sex,perempuan,,4376,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.14,3,Tambora,total,total,,9081,jiwa,2025,registration,total_population,3.1,28,,
+52.06.14,3,Tambora,age_group,0-14,laki_laki,1251,jiwa,2025,registration,total_population,3.2,30,,0-14
+52.06.14,3,Tambora,age_group,0-14,perempuan,1142,jiwa,2025,registration,total_population,3.2,30,,0-14
+52.06.14,3,Tambora,age_group,0-14,,2393,jiwa,2025,registration,total_population,3.2,30,,0-14
+52.06.14,3,Tambora,age_group,15-64,laki_laki,3184,jiwa,2025,registration,total_population,3.2,30,,15-64
+52.06.14,3,Tambora,age_group,15-64,perempuan,3035,jiwa,2025,registration,total_population,3.2,30,,15-64
+52.06.14,3,Tambora,age_group,15-64,,6219,jiwa,2025,registration,total_population,3.2,30,,15-64
+52.06.14,3,Tambora,age_group,65+,laki_laki,270,jiwa,2025,registration,total_population,3.2,30,,65+
+52.06.14,3,Tambora,age_group,65+,perempuan,199,jiwa,2025,registration,total_population,3.2,30,,65+
+52.06.14,3,Tambora,age_group,65+,,469,jiwa,2025,registration,total_population,3.2,30,,65+
+52.06.14,3,Tambora,sex,laki_laki,,4705,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+52.06.14,3,Tambora,sex,perempuan,,4376,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+52.06.14,3,Tambora,total,total,,9081,jiwa,2025,registration,total_population,3.2,30,,

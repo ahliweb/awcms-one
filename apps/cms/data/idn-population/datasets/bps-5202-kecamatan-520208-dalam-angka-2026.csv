@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.02.08,3,Pringgarata,age_group,0-4,laki_laki,115,jiwa,2026,registration,total_population,3.2,28,,0 - 4
+52.02.08,3,Pringgarata,age_group,0-4,perempuan,99,jiwa,2026,registration,total_population,3.2,28,,0 - 4
+52.02.08,3,Pringgarata,age_group,0-4,,214,jiwa,2026,registration,total_population,3.2,28,,0 - 4
+52.02.08,3,Pringgarata,age_group,5-9,laki_laki,185,jiwa,2026,registration,total_population,3.2,28,,5 - 9
+52.02.08,3,Pringgarata,age_group,5-9,perempuan,184,jiwa,2026,registration,total_population,3.2,28,,5 - 9
+52.02.08,3,Pringgarata,age_group,5-9,,369,jiwa,2026,registration,total_population,3.2,28,,5 - 9
+52.02.08,3,Pringgarata,age_group,10-14,laki_laki,204,jiwa,2026,registration,total_population,3.2,28,,10 - 14
+52.02.08,3,Pringgarata,age_group,10-14,perempuan,187,jiwa,2026,registration,total_population,3.2,28,,10 - 14
+52.02.08,3,Pringgarata,age_group,10-14,,391,jiwa,2026,registration,total_population,3.2,28,,10 - 14
+52.02.08,3,Pringgarata,age_group,15-19,laki_laki,175,jiwa,2026,registration,total_population,3.2,28,,15 -19
+52.02.08,3,Pringgarata,age_group,15-19,perempuan,160,jiwa,2026,registration,total_population,3.2,28,,15 -19
+52.02.08,3,Pringgarata,age_group,15-19,,335,jiwa,2026,registration,total_population,3.2,28,,15 -19
+52.02.08,3,Pringgarata,age_group,20-24,laki_laki,149,jiwa,2026,registration,total_population,3.2,28,,20 - 24
+52.02.08,3,Pringgarata,age_group,20-24,perempuan,148,jiwa,2026,registration,total_population,3.2,28,,20 - 24
+52.02.08,3,Pringgarata,age_group,20-24,,297,jiwa,2026,registration,total_population,3.2,28,,20 - 24
+52.02.08,3,Pringgarata,age_group,25-29,laki_laki,160,jiwa,2026,registration,total_population,3.2,28,,25 - 29
+52.02.08,3,Pringgarata,age_group,25-29,perempuan,132,jiwa,2026,registration,total_population,3.2,28,,25 - 29
+52.02.08,3,Pringgarata,age_group,25-29,,292,jiwa,2026,registration,total_population,3.2,28,,25 - 29
+52.02.08,3,Pringgarata,age_group,30-34,laki_laki,137,jiwa,2026,registration,total_population,3.2,28,,30 - 34
+52.02.08,3,Pringgarata,age_group,30-34,perempuan,135,jiwa,2026,registration,total_population,3.2,28,,30 - 34
+52.02.08,3,Pringgarata,age_group,30-34,,272,jiwa,2026,registration,total_population,3.2,28,,30 - 34
+52.02.08,3,Pringgarata,age_group,35-39,laki_laki,129,jiwa,2026,registration,total_population,3.2,28,,35 - 39
+52.02.08,3,Pringgarata,age_group,35-39,perempuan,178,jiwa,2026,registration,total_population,3.2,28,,35 - 39
+52.02.08,3,Pringgarata,age_group,35-39,,307,jiwa,2026,registration,total_population,3.2,28,,35 - 39
+52.02.08,3,Pringgarata,age_group,40-44,laki_laki,170,jiwa,2026,registration,total_population,3.2,28,,40 - 44
+52.02.08,3,Pringgarata,age_group,40-44,perempuan,160,jiwa,2026,registration,total_population,3.2,28,,40 - 44
+52.02.08,3,Pringgarata,age_group,40-44,,330,jiwa,2026,registration,total_population,3.2,28,,40 - 44
+52.02.08,3,Pringgarata,age_group,45-49,laki_laki,160,jiwa,2026,registration,total_population,3.2,28,,45 - 49
+52.02.08,3,Pringgarata,age_group,45-49,perempuan,187,jiwa,2026,registration,total_population,3.2,28,,45 - 49
+52.02.08,3,Pringgarata,age_group,45-49,,347,jiwa,2026,registration,total_population,3.2,28,,45 - 49
+52.02.08,3,Pringgarata,age_group,50-54,laki_laki,132,jiwa,2026,registration,total_population,3.2,28,,50 - 54
+52.02.08,3,Pringgarata,age_group,50-54,perempuan,110,jiwa,2026,registration,total_population,3.2,28,,50 - 54
+52.02.08,3,Pringgarata,age_group,50-54,,242,jiwa,2026,registration,total_population,3.2,28,,50 - 54
+52.02.08,3,Pringgarata,age_group,55-59,laki_laki,100,jiwa,2026,registration,total_population,3.2,28,,55 - 59
+52.02.08,3,Pringgarata,age_group,55-59,perempuan,115,jiwa,2026,registration,total_population,3.2,28,,55 - 59
+52.02.08,3,Pringgarata,age_group,55-59,,215,jiwa,2026,registration,total_population,3.2,28,,55 - 59
+52.02.08,3,Pringgarata,age_group,60-64,laki_laki,74,jiwa,2026,registration,total_population,3.2,28,,60 - 64
+52.02.08,3,Pringgarata,age_group,60-64,perempuan,77,jiwa,2026,registration,total_population,3.2,28,,60 - 64
+52.02.08,3,Pringgarata,age_group,60-64,,151,jiwa,2026,registration,total_population,3.2,28,,60 - 64
+52.02.08,3,Pringgarata,age_group,65+,laki_laki,153,jiwa,2026,registration,total_population,3.2,28,,≥ 65
+52.02.08,3,Pringgarata,age_group,65+,perempuan,183,jiwa,2026,registration,total_population,3.2,28,,≥ 65
+52.02.08,3,Pringgarata,age_group,65+,,336,jiwa,2026,registration,total_population,3.2,28,,≥ 65
+52.02.08.2006,4,Bilebante,sex,laki_laki,,2043,jiwa,2026,registration,total_population,3.2,28,,Laki-Laki
+52.02.08.2006,4,Bilebante,sex,perempuan,,2055,jiwa,2026,registration,total_population,3.2,28,,Perempuan
+52.02.08.2006,4,Bilebante,total,total,,4098,jiwa,2026,registration,total_population,3.2,28,,

@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-5101-kecamatan-510104-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.01.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Melaya Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Jembrana",
+  "publisherDomain": "5101",
+  "publisherWebsite": "https://jembranakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Jembrana (https://jembranakab.bps.go.id), publikasi \"Kecamatan Melaya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5101010",
+  "publicationNumber": "51010.26010",
+  "issn": "2477-6769",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jembranakab.bps.go.id/id/publication/2026/09/28/47a11f2c46892438d70bd703/kecamatan-melaya-dalam-angka-2026.html",
+  "sourceFileSha256": "8b19cdde38e13985a06b3baa94a028c95bf6468a7064fdad3584af92d6e8c4f5",
+  "sourceFileBytes": 10931127,
+  "sourcePages": [40, 41],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jembrana.",
+  "csvPath": "datasets/bps-5101-kecamatan-510104-dalam-angka-2026.csv",
+  "csvSha256": "16d79533bdc8258024053967b5b3eeed4fa7a8910a8f0e3908bb6e94dd376f30",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Melaya, 2025",
+      "printedPages": [40, 41],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"10. Blimbingsari\": unmatched ",
+    "table 3.1: row not stored: row \"10. Blimbingsari\": unmatched "
+  ]
+}

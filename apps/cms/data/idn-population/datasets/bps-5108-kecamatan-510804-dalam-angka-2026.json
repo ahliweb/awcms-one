@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-5108-kecamatan-510804-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.08.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Banjar Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Buleleng",
+  "publisherDomain": "5108",
+  "publisherWebsite": "https://bulelengkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Buleleng (https://bulelengkab.bps.go.id), publikasi \"Kecamatan Banjar Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5108040",
+  "publicationNumber": "51080.26011",
+  "issn": "2477-7013",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bulelengkab.bps.go.id/id/publication/2026/09/28/c7f833817fffc5848b947113/kecamatan-banjar-dalam-angka-2026.html",
+  "sourceFileSha256": "3be4902b1ebf3fbbf3653e00fb0e7de0b2117a770b008515fe20adb439e32daa",
+  "sourceFileBytes": 4188883,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Buleleng",
+  "csvPath": "datasets/bps-5108-kecamatan-510804-dalam-angka-2026.csv",
+  "csvSha256": "5da9e7864ff86647503350e358be67ffebcf4ae2a2b407ba4c8117b83df4f9cc",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Banjar, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Banjar, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Banjar Banjar District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Banjar Banjar District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Banjar Banjar District\": unmatched "
+  ]
+}

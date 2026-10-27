@@ -1,0 +1,51 @@
+{
+  "datasetCode": "bps-5107-kecamatan-510705-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.07.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Abang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Karangasem",
+  "publisherDomain": "5107",
+  "publisherWebsite": "https://karangasemkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Karangasem (https://karangasemkab.bps.go.id), publikasi \"Kecamatan Abang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5107050",
+  "publicationNumber": "51070.26011",
+  "issn": "2477-7374",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://karangasemkab.bps.go.id/id/publication/2026/09/28/19c7e2eb7b330006ba43bb75/kecamatan-abang-dalam-angka-2026.html",
+  "sourceFileSha256": "6f97366a9ecc50d1a83f8bc322f0b9198788a077e77b0bd6fc4f12e41c1150a4",
+  "sourceFileBytes": 4336191,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Karangasem.",
+  "csvPath": "datasets/bps-5107-kecamatan-510705-dalam-angka-2026.csv",
+  "csvSha256": "c04c7a40bfd71897e1422d7758724a69534243b6f91d35a7f4d4b12b5c140b20",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Abang, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Abang, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kerta Mandala\": unmatched ",
+    "table 3.1: row not stored: row \"Purwakerti\": unmatched ",
+    "table 3.1: row not stored: row \"Kerta Mandala\": unmatched ",
+    "table 3.1: row not stored: row \"Purwakerti\": unmatched ",
+    "cross-table disagreement, both stored as published: 51.07.05 sex/laki_laki/ 2025: 45679 (table 3.1) vs 29984 (table 3.2)",
+    "cross-table disagreement, both stored as published: 51.07.05 sex/perempuan/ 2025: 44104 (table 3.1) vs 29540 (table 3.2)",
+    "cross-table disagreement, both stored as published: 51.07.05 total/total/ 2025: 89783 (table 3.1) vs 59524 (table 3.2)"
+  ]
+}

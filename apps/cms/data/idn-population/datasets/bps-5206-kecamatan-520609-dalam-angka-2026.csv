@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.06.09.2005,4,Oi Saro,sex,laki_laki,,672,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.09.2005,4,Oi Saro,sex,perempuan,,648,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.09.2005,4,Oi Saro,total,total,,1320,jiwa,2025,registration,total_population,3.1,28,,
+52.06.09.2001,4,Piong,sex,laki_laki,,1026,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.09.2001,4,Piong,sex,perempuan,,1031,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.09.2001,4,Piong,total,total,,2057,jiwa,2025,registration,total_population,3.1,28,,
+52.06.09.2002,4,Boro,sex,laki_laki,,1507,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.09.2002,4,Boro,sex,perempuan,,1474,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.09.2002,4,Boro,total,total,,2981,jiwa,2025,registration,total_population,3.1,28,,
+52.06.09.2003,4,Kore,sex,laki_laki,,2293,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.09.2003,4,Kore,sex,perempuan,,2256,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.09.2003,4,Kore,total,total,,4549,jiwa,2025,registration,total_population,3.1,28,,
+52.06.09.2004,4,Taloko,sex,laki_laki,,1249,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.09.2004,4,Taloko,sex,perempuan,,1260,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.09.2004,4,Taloko,total,total,,2509,jiwa,2025,registration,total_population,3.1,28,,
+52.06.09.2006,4,Sandue,sex,laki_laki,,943,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.09.2006,4,Sandue,sex,perempuan,,910,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.09.2006,4,Sandue,total,total,,1853,jiwa,2025,registration,total_population,3.1,28,,
+52.06.09,3,Sanggar,sex,laki_laki,,7690,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.09,3,Sanggar,sex,perempuan,,7579,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.09,3,Sanggar,total,total,,15269,jiwa,2025,registration,total_population,3.1,28,,
+52.06.09,3,Sanggar,age_group,0-14,laki_laki,2042,jiwa,2025,registration,total_population,3.2,30,,0-14
+52.06.09,3,Sanggar,age_group,0-14,perempuan,1819,jiwa,2025,registration,total_population,3.2,30,,0-14
+52.06.09,3,Sanggar,age_group,0-14,,3861,jiwa,2025,registration,total_population,3.2,30,,0-14
+52.06.09,3,Sanggar,age_group,15-64,laki_laki,5169,jiwa,2025,registration,total_population,3.2,30,,15-64
+52.06.09,3,Sanggar,age_group,15-64,perempuan,5245,jiwa,2025,registration,total_population,3.2,30,,15-64
+52.06.09,3,Sanggar,age_group,15-64,,10414,jiwa,2025,registration,total_population,3.2,30,,15-64
+52.06.09,3,Sanggar,age_group,65+,laki_laki,479,jiwa,2025,registration,total_population,3.2,30,,65+
+52.06.09,3,Sanggar,age_group,65+,perempuan,515,jiwa,2025,registration,total_population,3.2,30,,65+
+52.06.09,3,Sanggar,age_group,65+,,994,jiwa,2025,registration,total_population,3.2,30,,65+
+52.06.09,3,Sanggar,sex,laki_laki,,7690,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+52.06.09,3,Sanggar,sex,perempuan,,7579,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+52.06.09,3,Sanggar,total,total,,15269,jiwa,2025,registration,total_population,3.2,30,,

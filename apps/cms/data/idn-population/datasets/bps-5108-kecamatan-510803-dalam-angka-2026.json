@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-5108-kecamatan-510803-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.08.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Busungbiu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Buleleng",
+  "publisherDomain": "5108",
+  "publisherWebsite": "https://bulelengkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Buleleng (https://bulelengkab.bps.go.id), publikasi \"Kecamatan Busungbiu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5108030",
+  "publicationNumber": "51080.26010",
+  "issn": "2477-7005",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bulelengkab.bps.go.id/id/publication/2026/09/28/517587af13641869f04d1029/kecamatan-busungbiu-dalam-angka-2026.html",
+  "sourceFileSha256": "05a37964b3f7082a9509f789fe6be7e5c033e57c7b919d7824e44b14be7483c1",
+  "sourceFileBytes": 3969764,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Buleleng.",
+  "csvPath": "datasets/bps-5108-kecamatan-510803-dalam-angka-2026.csv",
+  "csvSha256": "978f4a6a26f32cd38d91e760cd1ece061567ba069f9250627222d961d3adc083",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Busungbiu, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Busungbiu, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Busungbiu Busungbiu District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Busungbiu Busungbiu District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Busungbiu Busungbiu District\": unmatched ",
+    "table 3.1: the rows of region 51.08.03.2011 are not stored: sex split vs total: parts sum 6808.0000 != 9663.0000 (diff 2855.0000); the source itself is inconsistent"
+  ]
+}

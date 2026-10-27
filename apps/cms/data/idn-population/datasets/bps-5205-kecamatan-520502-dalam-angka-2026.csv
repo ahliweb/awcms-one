@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.05.02.2002,4,Taa,sex,laki_laki,,2279,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.05.02.2002,4,Taa,sex,perempuan,,2417,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.05.02.2002,4,Taa,total,total,,4696,jiwa,2025,registration,total_population,3.1,28,,
+52.05.02.2001,4,Kempo,sex,laki_laki,,2593,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.05.02.2001,4,Kempo,sex,perempuan,,2572,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.05.02.2001,4,Kempo,total,total,,5165,jiwa,2025,registration,total_population,3.1,28,,
+52.05.02.2003,4,Soro,sex,laki_laki,,1387,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.05.02.2003,4,Soro,sex,perempuan,,1355,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.05.02.2003,4,Soro,total,total,,2742,jiwa,2025,registration,total_population,3.1,28,,
+52.05.02.2004,4,Konte,sex,laki_laki,,612,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.05.02.2004,4,Konte,sex,perempuan,,628,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.05.02.2004,4,Konte,total,total,,1240,jiwa,2025,registration,total_population,3.1,28,,
+52.05.02.2005,4,Tolo Kalo,sex,laki_laki,,1338,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.05.02.2005,4,Tolo Kalo,sex,perempuan,,1357,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.05.02.2005,4,Tolo Kalo,total,total,,2695,jiwa,2025,registration,total_population,3.1,28,,
+52.05.02.2007,4,Doro Kobo,sex,laki_laki,,928,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.05.02.2007,4,Doro Kobo,sex,perempuan,,874,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.05.02.2007,4,Doro Kobo,total,total,,1802,jiwa,2025,registration,total_population,3.1,28,,
+52.05.02.2008,4,Soro Barat,sex,laki_laki,,1740,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.05.02.2008,4,Soro Barat,sex,perempuan,,1686,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.05.02.2008,4,Soro Barat,total,total,,3426,jiwa,2025,registration,total_population,3.1,28,,
+52.05.02,3,Kecamatan Kempo,sex,laki_laki,,11224,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.05.02,3,Kecamatan Kempo,sex,perempuan,,11229,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.05.02,3,Kecamatan Kempo,total,total,,22453,jiwa,2025,registration,total_population,3.1,28,,
+52.05.02,3,Kempo,age_group,0-4,laki_laki,716,jiwa,2025,registration,total_population,3.2,30,,0-4
+52.05.02,3,Kempo,age_group,0-4,perempuan,651,jiwa,2025,registration,total_population,3.2,30,,0-4
+52.05.02,3,Kempo,age_group,0-4,,1367,jiwa,2025,registration,total_population,3.2,30,,0-4
+52.05.02,3,Kempo,age_group,5-9,laki_laki,1060,jiwa,2025,registration,total_population,3.2,30,,5-9
+52.05.02,3,Kempo,age_group,5-9,perempuan,994,jiwa,2025,registration,total_population,3.2,30,,5-9
+52.05.02,3,Kempo,age_group,5-9,,2054,jiwa,2025,registration,total_population,3.2,30,,5-9
+52.05.02,3,Kempo,age_group,10-14,laki_laki,1042,jiwa,2025,registration,total_population,3.2,30,,10-14
+52.05.02,3,Kempo,age_group,10-14,perempuan,954,jiwa,2025,registration,total_population,3.2,30,,10-14
+52.05.02,3,Kempo,age_group,10-14,,1996,jiwa,2025,registration,total_population,3.2,30,,10-14
+52.05.02,3,Kempo,age_group,15-19,laki_laki,913,jiwa,2025,registration,total_population,3.2,30,,15-19
+52.05.02,3,Kempo,age_group,15-19,perempuan,939,jiwa,2025,registration,total_population,3.2,30,,15-19
+52.05.02,3,Kempo,age_group,15-19,,1852,jiwa,2025,registration,total_population,3.2,30,,15-19
+52.05.02,3,Kempo,age_group,20-24,laki_laki,952,jiwa,2025,registration,total_population,3.2,30,,20-24
+52.05.02,3,Kempo,age_group,20-24,perempuan,951,jiwa,2025,registration,total_population,3.2,30,,20-24
+52.05.02,3,Kempo,age_group,20-24,,1903,jiwa,2025,registration,total_population,3.2,30,,20-24
+52.05.02,3,Kempo,age_group,25-29,laki_laki,1003,jiwa,2025,registration,total_population,3.2,30,,25-29
+52.05.02,3,Kempo,age_group,25-29,perempuan,947,jiwa,2025,registration,total_population,3.2,30,,25-29
+52.05.02,3,Kempo,age_group,25-29,,1950,jiwa,2025,registration,total_population,3.2,30,,25-29
+52.05.02,3,Kempo,age_group,30-34,laki_laki,865,jiwa,2025,registration,total_population,3.2,30,,30-34
+52.05.02,3,Kempo,age_group,30-34,perempuan,840,jiwa,2025,registration,total_population,3.2,30,,30-34
+52.05.02,3,Kempo,age_group,30-34,,1705,jiwa,2025,registration,total_population,3.2,30,,30-34
+52.05.02,3,Kempo,age_group,35-39,laki_laki,810,jiwa,2025,registration,total_population,3.2,30,,35-39
+52.05.02,3,Kempo,age_group,35-39,perempuan,789,jiwa,2025,registration,total_population,3.2,30,,35-39
+52.05.02,3,Kempo,age_group,35-39,,1599,jiwa,2025,registration,total_population,3.2,30,,35-39
+52.05.02,3,Kempo,age_group,40-44,laki_laki,765,jiwa,2025,registration,total_population,3.2,30,,40-44
+52.05.02,3,Kempo,age_group,40-44,perempuan,838,jiwa,2025,registration,total_population,3.2,30,,40-44
+52.05.02,3,Kempo,age_group,40-44,,1603,jiwa,2025,registration,total_population,3.2,30,,40-44
+52.05.02,3,Kempo,age_group,45-49,laki_laki,680,jiwa,2025,registration,total_population,3.2,30,,45-49
+52.05.02,3,Kempo,age_group,45-49,perempuan,785,jiwa,2025,registration,total_population,3.2,30,,45-49
+52.05.02,3,Kempo,age_group,45-49,,1465,jiwa,2025,registration,total_population,3.2,30,,45-49
+52.05.02,3,Kempo,age_group,50-54,laki_laki,631,jiwa,2025,registration,total_population,3.2,30,,50-54
+52.05.02,3,Kempo,age_group,50-54,perempuan,671,jiwa,2025,registration,total_population,3.2,30,,50-54
+52.05.02,3,Kempo,age_group,50-54,,1302,jiwa,2025,registration,total_population,3.2,30,,50-54
+52.05.02,3,Kempo,age_group,55-59,laki_laki,508,jiwa,2025,registration,total_population,3.2,30,,55-59
+52.05.02,3,Kempo,age_group,55-59,perempuan,534,jiwa,2025,registration,total_population,3.2,30,,55-59
+52.05.02,3,Kempo,age_group,55-59,,1042,jiwa,2025,registration,total_population,3.2,30,,55-59
+52.05.02,3,Kempo,age_group,60-64,laki_laki,385,jiwa,2025,registration,total_population,3.2,30,,60-64
+52.05.02,3,Kempo,age_group,60-64,perempuan,413,jiwa,2025,registration,total_population,3.2,30,,60-64
+52.05.02,3,Kempo,age_group,60-64,,798,jiwa,2025,registration,total_population,3.2,30,,60-64
+52.05.02,3,Kempo,age_group,65-69,laki_laki,373,jiwa,2025,registration,total_population,3.2,30,,65-69
+52.05.02,3,Kempo,age_group,65-69,perempuan,400,jiwa,2025,registration,total_population,3.2,30,,65-69
+52.05.02,3,Kempo,age_group,65-69,,773,jiwa,2025,registration,total_population,3.2,30,,65-69
+52.05.02,3,Kempo,age_group,70-74,laki_laki,185,jiwa,2025,registration,total_population,3.2,30,,70-74
+52.05.02,3,Kempo,age_group,70-74,perempuan,171,jiwa,2025,registration,total_population,3.2,30,,70-74
+52.05.02,3,Kempo,age_group,70-74,,356,jiwa,2025,registration,total_population,3.2,30,,70-74
+52.05.02,3,Kempo,age_group,75+,laki_laki,336,jiwa,2025,registration,total_population,3.2,30,,75+
+52.05.02,3,Kempo,age_group,75+,perempuan,352,jiwa,2025,registration,total_population,3.2,30,,75+
+52.05.02,3,Kempo,age_group,75+,,688,jiwa,2025,registration,total_population,3.2,30,,75+
+52.05.02,3,Kecamatan Kempo,sex,laki_laki,,11224,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+52.05.02,3,Kecamatan Kempo,sex,perempuan,,11229,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+52.05.02,3,Kecamatan Kempo,total,total,,22453,jiwa,2025,registration,total_population,3.2,30,,

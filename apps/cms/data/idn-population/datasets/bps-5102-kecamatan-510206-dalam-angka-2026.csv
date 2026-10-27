@@ -1,0 +1,100 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.02.06.2002,4,Pangkung Tibah,sex,laki_laki,,704,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.06.2002,4,Pangkung Tibah,sex,perempuan,,692,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.06.2002,4,Pangkung Tibah,total,total,,1396,jiwa,2025,registration,total_population,3.1,26,,
+51.02.06.2003,4,Belalang,sex,laki_laki,,1432,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.06.2003,4,Belalang,sex,perempuan,,1459,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.06.2003,4,Belalang,total,total,,2891,jiwa,2025,registration,total_population,3.1,26,,
+51.02.06.2004,4,Beraban,sex,laki_laki,,3298,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.06.2004,4,Beraban,sex,perempuan,,3429,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.06.2004,4,Beraban,total,total,,6727,jiwa,2025,registration,total_population,3.1,26,,
+51.02.06.2005,4,Buwit,sex,laki_laki,,1395,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.06.2005,4,Buwit,sex,perempuan,,1410,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.06.2005,4,Buwit,total,total,,2805,jiwa,2025,registration,total_population,3.1,26,,
+51.02.06.2006,4,Cepaka,sex,laki_laki,,1369,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.06.2006,4,Cepaka,sex,perempuan,,1333,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.06.2006,4,Cepaka,total,total,,2702,jiwa,2025,registration,total_population,3.1,26,,
+51.02.06.2007,4,Kaba-Kaba,sex,laki_laki,,3913,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.06.2007,4,Kaba-Kaba,sex,perempuan,,3803,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.06.2007,4,Kaba-Kaba,total,total,,7716,jiwa,2025,registration,total_population,3.1,26,,
+51.02.06.2010,4,Pandak Gede,sex,laki_laki,,3315,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.06.2010,4,Pandak Gede,sex,perempuan,,3388,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.06.2010,4,Pandak Gede,total,total,,6703,jiwa,2025,registration,total_population,3.1,26,,
+51.02.06.2001,4,Bengkel,sex,laki_laki,,1202,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.06.2001,4,Bengkel,sex,perempuan,,1233,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.06.2001,4,Bengkel,total,total,,2435,jiwa,2025,registration,total_population,3.1,26,,
+51.02.06.2012,4,Pejaten,sex,laki_laki,,2165,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.06.2012,4,Pejaten,sex,perempuan,,2203,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.06.2012,4,Pejaten,total,total,,4368,jiwa,2025,registration,total_population,3.1,26,,
+51.02.06.2011,4,Nyitdah,sex,laki_laki,,2407,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.06.2011,4,Nyitdah,sex,perempuan,,2412,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.06.2011,4,Nyitdah,total,total,,4819,jiwa,2025,registration,total_population,3.1,26,,
+51.02.06.2009,4,Pandak Bandung,sex,laki_laki,,1478,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.06.2009,4,Pandak Bandung,sex,perempuan,,1470,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.06.2009,4,Pandak Bandung,total,total,,2948,jiwa,2025,registration,total_population,3.1,26,,
+51.02.06.2008,4,Nyambu,sex,laki_laki,,1832,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.06.2008,4,Nyambu,sex,perempuan,,1871,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.06.2008,4,Nyambu,total,total,,3703,jiwa,2025,registration,total_population,3.1,26,,
+51.02.06.2013,4,Kediri,sex,laki_laki,,5394,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.06.2013,4,Kediri,sex,perempuan,,5334,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.06.2013,4,Kediri,total,total,,10728,jiwa,2025,registration,total_population,3.1,26,,
+51.02.06.2014,4,Abian Tuwung,sex,laki_laki,,6129,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.06.2014,4,Abian Tuwung,sex,perempuan,,6191,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.06.2014,4,Abian Tuwung,total,total,,12320,jiwa,2025,registration,total_population,3.1,26,,
+51.02.06.2015,4,Banjar Anyar,sex,laki_laki,,9541,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.06.2015,4,Banjar Anyar,sex,perempuan,,9527,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.06.2015,4,Banjar Anyar,total,total,,19068,jiwa,2025,registration,total_population,3.1,26,,
+51.02.06,3,Kecamatan Kediri,sex,laki_laki,,45574,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.06,3,Kecamatan Kediri,sex,perempuan,,45755,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.06,3,Kecamatan Kediri,total,total,,91329,jiwa,2025,registration,total_population,3.1,26,,
+51.02.06,3,Kediri,age_group,0-4,laki_laki,2625,jiwa,2025,registration,total_population,3.2,28,,0-4
+51.02.06,3,Kediri,age_group,0-4,perempuan,2400,jiwa,2025,registration,total_population,3.2,28,,0-4
+51.02.06,3,Kediri,age_group,0-4,,5025,jiwa,2025,registration,total_population,3.2,28,,0-4
+51.02.06,3,Kediri,age_group,5-9,laki_laki,3054,jiwa,2025,registration,total_population,3.2,28,,5-9
+51.02.06,3,Kediri,age_group,5-9,perempuan,2920,jiwa,2025,registration,total_population,3.2,28,,5-9
+51.02.06,3,Kediri,age_group,5-9,,5974,jiwa,2025,registration,total_population,3.2,28,,5-9
+51.02.06,3,Kediri,age_group,10-14,laki_laki,3141,jiwa,2025,registration,total_population,3.2,28,,10-14
+51.02.06,3,Kediri,age_group,10-14,perempuan,3011,jiwa,2025,registration,total_population,3.2,28,,10-14
+51.02.06,3,Kediri,age_group,10-14,,6152,jiwa,2025,registration,total_population,3.2,28,,10-14
+51.02.06,3,Kediri,age_group,15-19,laki_laki,3238,jiwa,2025,registration,total_population,3.2,28,,15-19
+51.02.06,3,Kediri,age_group,15-19,perempuan,2946,jiwa,2025,registration,total_population,3.2,28,,15-19
+51.02.06,3,Kediri,age_group,15-19,,6184,jiwa,2025,registration,total_population,3.2,28,,15-19
+51.02.06,3,Kediri,age_group,20-24,laki_laki,3407,jiwa,2025,registration,total_population,3.2,28,,20-24
+51.02.06,3,Kediri,age_group,20-24,perempuan,3330,jiwa,2025,registration,total_population,3.2,28,,20-24
+51.02.06,3,Kediri,age_group,20-24,,6737,jiwa,2025,registration,total_population,3.2,28,,20-24
+51.02.06,3,Kediri,age_group,25-29,laki_laki,3493,jiwa,2025,registration,total_population,3.2,28,,25-29
+51.02.06,3,Kediri,age_group,25-29,perempuan,3348,jiwa,2025,registration,total_population,3.2,28,,25-29
+51.02.06,3,Kediri,age_group,25-29,,6841,jiwa,2025,registration,total_population,3.2,28,,25-29
+51.02.06,3,Kediri,age_group,30-34,laki_laki,3264,jiwa,2025,registration,total_population,3.2,28,,30-34
+51.02.06,3,Kediri,age_group,30-34,perempuan,3183,jiwa,2025,registration,total_population,3.2,28,,30-34
+51.02.06,3,Kediri,age_group,30-34,,6447,jiwa,2025,registration,total_population,3.2,28,,30-34
+51.02.06,3,Kediri,age_group,35-39,laki_laki,2588,jiwa,2025,registration,total_population,3.2,28,,35-39
+51.02.06,3,Kediri,age_group,35-39,perempuan,2722,jiwa,2025,registration,total_population,3.2,28,,35-39
+51.02.06,3,Kediri,age_group,35-39,,5310,jiwa,2025,registration,total_population,3.2,28,,35-39
+51.02.06,3,Kediri,age_group,40-44,laki_laki,2968,jiwa,2025,registration,total_population,3.2,28,,40-44
+51.02.06,3,Kediri,age_group,40-44,perempuan,3230,jiwa,2025,registration,total_population,3.2,28,,40-44
+51.02.06,3,Kediri,age_group,40-44,,6198,jiwa,2025,registration,total_population,3.2,28,,40-44
+51.02.06,3,Kediri,age_group,45-49,laki_laki,3067,jiwa,2025,registration,total_population,3.2,28,,45-49
+51.02.06,3,Kediri,age_group,45-49,perempuan,3270,jiwa,2025,registration,total_population,3.2,28,,45-49
+51.02.06,3,Kediri,age_group,45-49,,6337,jiwa,2025,registration,total_population,3.2,28,,45-49
+51.02.06,3,Kediri,age_group,50-54,laki_laki,3608,jiwa,2025,registration,total_population,3.2,28,,50-54
+51.02.06,3,Kediri,age_group,50-54,perempuan,3766,jiwa,2025,registration,total_population,3.2,28,,50-54
+51.02.06,3,Kediri,age_group,50-54,,7374,jiwa,2025,registration,total_population,3.2,28,,50-54
+51.02.06,3,Kediri,age_group,55-59,laki_laki,3581,jiwa,2025,registration,total_population,3.2,28,,55-59
+51.02.06,3,Kediri,age_group,55-59,perempuan,3509,jiwa,2025,registration,total_population,3.2,28,,55-59
+51.02.06,3,Kediri,age_group,55-59,,7090,jiwa,2025,registration,total_population,3.2,28,,55-59
+51.02.06,3,Kediri,age_group,60-64,laki_laki,2532,jiwa,2025,registration,total_population,3.2,28,,60-64
+51.02.06,3,Kediri,age_group,60-64,perempuan,2599,jiwa,2025,registration,total_population,3.2,28,,60-64
+51.02.06,3,Kediri,age_group,60-64,,5131,jiwa,2025,registration,total_population,3.2,28,,60-64
+51.02.06,3,Kediri,age_group,65-69,laki_laki,1967,jiwa,2025,registration,total_population,3.2,28,,65-69
+51.02.06,3,Kediri,age_group,65-69,perempuan,2056,jiwa,2025,registration,total_population,3.2,28,,65-69
+51.02.06,3,Kediri,age_group,65-69,,4023,jiwa,2025,registration,total_population,3.2,28,,65-69
+51.02.06,3,Kediri,age_group,70-74,laki_laki,1293,jiwa,2025,registration,total_population,3.2,28,,70-74
+51.02.06,3,Kediri,age_group,70-74,perempuan,1278,jiwa,2025,registration,total_population,3.2,28,,70-74
+51.02.06,3,Kediri,age_group,70-74,,2571,jiwa,2025,registration,total_population,3.2,28,,70-74
+51.02.06,3,Kediri,age_group,75+,laki_laki,1748,jiwa,2025,registration,total_population,3.2,28,,75+
+51.02.06,3,Kediri,age_group,75+,perempuan,2187,jiwa,2025,registration,total_population,3.2,28,,75+
+51.02.06,3,Kediri,age_group,75+,,3935,jiwa,2025,registration,total_population,3.2,28,,75+
+51.02.06,3,Kecamatan Kediri,sex,laki_laki,,45574,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+51.02.06,3,Kecamatan Kediri,sex,perempuan,,45755,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+51.02.06,3,Kecamatan Kediri,total,total,,91329,jiwa,2025,registration,total_population,3.2,28,,

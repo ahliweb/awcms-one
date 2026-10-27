@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5104-kecamatan-510406-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.04.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tegallalang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Gianyar",
+  "publisherDomain": "5104",
+  "publisherWebsite": "https://gianyarkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Gianyar (https://gianyarkab.bps.go.id), publikasi \"Kecamatan Tegallalang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5104060",
+  "publicationNumber": "51040.26015",
+  "issn": "2477-7757",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://gianyarkab.bps.go.id/id/publication/2026/09/28/64f6b07ffb25eb92a02a1cfe/kecamatan-tegallalang-dalam-angka-2026.html",
+  "sourceFileSha256": "1db5a9f3d623b54fb190dbcc93e4f38c685b2fa577feadea1674d8dd71bf278a",
+  "sourceFileBytes": 8673654,
+  "sourcePages": [28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Gianyar.",
+  "csvPath": "datasets/bps-5104-kecamatan-510406-dalam-angka-2026.csv",
+  "csvSha256": "5c9bd034e083b419711319d8247f209369e9c07bb0c545c21467ffdae52f23f3",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p28",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Tegallalang, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

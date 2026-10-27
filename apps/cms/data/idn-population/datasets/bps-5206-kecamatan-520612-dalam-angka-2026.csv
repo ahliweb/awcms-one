@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.06.12.2003,4,Mangge,sex,laki_laki,,867,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.12.2003,4,Mangge,sex,perempuan,,863,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.12.2003,4,Mangge,total,total,,1730,jiwa,2025,registration,total_population,3.1,28,,
+52.06.12.2001,4,Kaleo,sex,laki_laki,,1767,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.12.2001,4,Kaleo,sex,perempuan,,1774,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.12.2001,4,Kaleo,total,total,,3541,jiwa,2025,registration,total_population,3.1,28,,
+52.06.12.2002,4,Simpasai,sex,laki_laki,,1926,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.12.2002,4,Simpasai,sex,perempuan,,1843,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.12.2002,4,Simpasai,total,total,,3769,jiwa,2025,registration,total_population,3.1,28,,
+52.06.12.2008,4,Soro,sex,laki_laki,,2502,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.12.2008,4,Soro,sex,perempuan,,2401,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.12.2008,4,Soro,total,total,,4903,jiwa,2025,registration,total_population,3.1,28,,
+52.06.12.2004,4,Lanta,sex,laki_laki,,1906,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.12.2004,4,Lanta,sex,perempuan,,1788,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.12.2004,4,Lanta,total,total,,3694,jiwa,2025,registration,total_population,3.1,28,,
+52.06.12.2006,4,Rato,sex,laki_laki,,2625,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.12.2006,4,Rato,sex,perempuan,,2575,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.12.2006,4,Rato,total,total,,5200,jiwa,2025,registration,total_population,3.1,28,,
+52.06.12.2007,4,Sumi,sex,laki_laki,,2656,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.12.2007,4,Sumi,sex,perempuan,,2542,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.12.2007,4,Sumi,total,total,,5198,jiwa,2025,registration,total_population,3.1,28,,
+52.06.12.2005,4,Nggelu,sex,laki_laki,,979,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.12.2005,4,Nggelu,sex,perempuan,,993,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.12.2005,4,Nggelu,total,total,,1972,jiwa,2025,registration,total_population,3.1,28,,
+52.06.12.2009,4,Lambu,sex,laki_laki,,1245,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.12.2009,4,Lambu,sex,perempuan,,1236,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.12.2009,4,Lambu,total,total,,2481,jiwa,2025,registration,total_population,3.1,28,,
+52.06.12.2010,4,Hidirasa,sex,laki_laki,,639,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.12.2010,4,Hidirasa,sex,perempuan,,640,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.12.2010,4,Hidirasa,total,total,,1279,jiwa,2025,registration,total_population,3.1,28,,
+52.06.12.2012,4,Melayu,sex,laki_laki,,1432,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.12.2012,4,Melayu,sex,perempuan,,1509,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.12.2012,4,Melayu,total,total,,2941,jiwa,2025,registration,total_population,3.1,28,,
+52.06.12.2011,4,Lanta Barat,sex,laki_laki,,1214,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.12.2011,4,Lanta Barat,sex,perempuan,,1212,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.12.2011,4,Lanta Barat,total,total,,2426,jiwa,2025,registration,total_population,3.1,28,,
+52.06.12.2014,4,Monta Baru,sex,laki_laki,,1417,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.12.2014,4,Monta Baru,sex,perempuan,,1446,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.12.2014,4,Monta Baru,total,total,,2863,jiwa,2025,registration,total_population,3.1,28,,
+52.06.12.2013,4,Sangga,sex,laki_laki,,1139,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.12.2013,4,Sangga,sex,perempuan,,1124,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.12.2013,4,Sangga,total,total,,2263,jiwa,2025,registration,total_population,3.1,28,,
+52.06.12,3,Lambu,sex,laki_laki,,22314,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.12,3,Lambu,sex,perempuan,,21946,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.12,3,Lambu,total,total,,44260,jiwa,2025,registration,total_population,3.1,28,,
+52.06.12,3,Lambu,age_group,0-14,laki_laki,5744,jiwa,2025,registration,total_population,3.2,30,,0-14
+52.06.12,3,Lambu,age_group,0-14,perempuan,5231,jiwa,2025,registration,total_population,3.2,30,,0-14
+52.06.12,3,Lambu,age_group,0-14,,10975,jiwa,2025,registration,total_population,3.2,30,,0-14
+52.06.12,3,Lambu,age_group,15-64,laki_laki,15069,jiwa,2025,registration,total_population,3.2,30,,15-64
+52.06.12,3,Lambu,age_group,15-64,perempuan,15113,jiwa,2025,registration,total_population,3.2,30,,15-64
+52.06.12,3,Lambu,age_group,15-64,,30182,jiwa,2025,registration,total_population,3.2,30,,15-64
+52.06.12,3,Lambu,age_group,65+,laki_laki,1501,jiwa,2025,registration,total_population,3.2,30,,65+
+52.06.12,3,Lambu,age_group,65+,perempuan,1602,jiwa,2025,registration,total_population,3.2,30,,65+
+52.06.12,3,Lambu,age_group,65+,,3103,jiwa,2025,registration,total_population,3.2,30,,65+
+52.06.12,3,Lambu,sex,laki_laki,,22314,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+52.06.12,3,Lambu,sex,perempuan,,21946,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+52.06.12,3,Lambu,total,total,,44260,jiwa,2025,registration,total_population,3.2,30,,

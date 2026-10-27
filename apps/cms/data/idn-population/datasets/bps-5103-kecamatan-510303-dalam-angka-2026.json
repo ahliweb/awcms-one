@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5103-kecamatan-510303-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.03.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Abiansemal Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Badung",
+  "publisherDomain": "5103",
+  "publisherWebsite": "https://badungkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Badung (https://badungkab.bps.go.id), publikasi \"Kecamatan Abiansemal Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5103050",
+  "publicationNumber": "51030.26010",
+  "issn": "2087-6432",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://badungkab.bps.go.id/id/publication/2026/09/28/ece5d7994fa25d1b2e8c5845/kecamatan-abiansemal-dalam-angka-2026.html",
+  "sourceFileSha256": "93d0801902ed80a78bfbd4b233a8e27e7e7f530b7e90b07d55838116065e7fca",
+  "sourceFileBytes": 3061224,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Badung.",
+  "csvPath": "datasets/bps-5103-kecamatan-510303-dalam-angka-2026.csv",
+  "csvSha256": "d2e02eb6d78ec8b739653e95482effde7bbf9e6c6c00e9632e7ba927f79e51cd",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Abiansemal, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Abiansemal, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

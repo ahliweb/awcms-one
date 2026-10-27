@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.08.03.2002,4,Santong,sex,laki_laki,,4055,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+52.08.03.2002,4,Santong,sex,perempuan,,3935,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+52.08.03.2002,4,Santong,total,total,,7990,jiwa,2025,registration,total_population,3.1,33,,
+52.08.03.2008,4,Pendua,sex,laki_laki,,1570,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+52.08.03.2008,4,Pendua,sex,perempuan,,1585,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+52.08.03.2008,4,Pendua,total,total,,3155,jiwa,2025,registration,total_population,3.1,33,,
+52.08.03.2001,4,Kayangan,sex,laki_laki,,3649,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+52.08.03.2001,4,Kayangan,sex,perempuan,,3632,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+52.08.03.2001,4,Kayangan,total,total,,7281,jiwa,2025,registration,total_population,3.1,33,,
+52.08.03.2007,4,Dangiang,sex,laki_laki,,2074,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+52.08.03.2007,4,Dangiang,sex,perempuan,,2120,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+52.08.03.2007,4,Dangiang,total,total,,4194,jiwa,2025,registration,total_population,3.1,33,,
+52.08.03.2004,4,Sesait,sex,laki_laki,,3310,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+52.08.03.2004,4,Sesait,sex,perempuan,,3243,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+52.08.03.2004,4,Sesait,total,total,,6553,jiwa,2025,registration,total_population,3.1,33,,
+52.08.03.2005,4,Gumantar,sex,laki_laki,,3705,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+52.08.03.2005,4,Gumantar,sex,perempuan,,3533,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+52.08.03.2005,4,Gumantar,total,total,,7238,jiwa,2025,registration,total_population,3.1,33,,
+52.08.03.2003,4,Selengen,sex,laki_laki,,3691,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+52.08.03.2003,4,Selengen,sex,perempuan,,3641,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+52.08.03.2003,4,Selengen,total,total,,7332,jiwa,2025,registration,total_population,3.1,33,,
+52.08.03.2006,4,Salut,sex,laki_laki,,2184,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+52.08.03.2006,4,Salut,sex,perempuan,,2289,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+52.08.03.2006,4,Salut,total,total,,4473,jiwa,2025,registration,total_population,3.1,33,,
+52.08.03.2010,4,Santong Mulia,sex,laki_laki,,1276,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+52.08.03.2010,4,Santong Mulia,sex,perempuan,,1182,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+52.08.03.2010,4,Santong Mulia,total,total,,2458,jiwa,2025,registration,total_population,3.1,33,,
+52.08.03.2009,4,Pansor,sex,laki_laki,,1265,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+52.08.03.2009,4,Pansor,sex,perempuan,,1206,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+52.08.03.2009,4,Pansor,total,total,,2471,jiwa,2025,registration,total_population,3.1,33,,
+52.08.03,3,Kayangan,sex,laki_laki,,26779,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+52.08.03,3,Kayangan,sex,perempuan,,26366,jiwa,2025,registration,total_population,3.1,33,,Perempuan/
+52.08.03,3,Kayangan,total,total,,53145,jiwa,2025,registration,total_population,3.1,33,,
+52.08.03,3,Kayangan,sex,laki_laki,,26779,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+52.08.03,3,Kayangan,sex,perempuan,,26366,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+52.08.03,3,Kayangan,total,total,,53145,jiwa,2025,registration,total_population,3.2,35,,

@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.06.08.2010,4,Rora,sex,laki_laki,,856,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.08.2010,4,Rora,sex,perempuan,,883,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.08.2010,4,Rora,total,total,,1739,jiwa,2025,registration,total_population,3.1,28,,
+52.06.08.2009,4,Palama,sex,laki_laki,,787,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.08.2009,4,Palama,sex,perempuan,,737,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.08.2009,4,Palama,total,total,,1524,jiwa,2025,registration,total_population,3.1,28,,
+52.06.08.2008,4,Mbawa,sex,laki_laki,,2401,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.08.2008,4,Mbawa,sex,perempuan,,2483,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.08.2008,4,Mbawa,total,total,,4884,jiwa,2025,registration,total_population,3.1,28,,
+52.06.08.2007,4,O’o,sex,laki_laki,,1191,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.08.2007,4,O’o,sex,perempuan,,1268,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.08.2007,4,O’o,total,total,,2459,jiwa,2025,registration,total_population,3.1,28,,
+52.06.08.2005,4,Doridungga,sex,laki_laki,,1656,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.08.2005,4,Doridungga,sex,perempuan,,1751,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.08.2005,4,Doridungga,total,total,,3407,jiwa,2025,registration,total_population,3.1,28,,
+52.06.08.2006,4,Kala,sex,laki_laki,,863,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.08.2006,4,Kala,sex,perempuan,,917,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.08.2006,4,Kala,total,total,,1780,jiwa,2025,registration,total_population,3.1,28,,
+52.06.08.2013,4,Bumi Pajo,sex,laki_laki,,1190,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.08.2013,4,Bumi Pajo,sex,perempuan,,1171,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.08.2013,4,Bumi Pajo,total,total,,2361,jiwa,2025,registration,total_population,3.1,28,,
+52.06.08.2012,4,Mpili,sex,laki_laki,,1050,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.08.2012,4,Mpili,sex,perempuan,,1078,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.08.2012,4,Mpili,total,total,,2128,jiwa,2025,registration,total_population,3.1,28,,
+52.06.08.2014,4,Ndano Nae,sex,laki_laki,,566,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.08.2014,4,Ndano Nae,sex,perempuan,,600,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.08.2014,4,Ndano Nae,total,total,,1166,jiwa,2025,registration,total_population,3.1,28,,
+52.06.08,3,Donggo,sex,laki_laki,,10560,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+52.06.08,3,Donggo,sex,perempuan,,10888,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+52.06.08,3,Donggo,total,total,,21448,jiwa,2025,registration,total_population,3.1,28,,
+52.06.08,3,Donggo,age_group,0-14,laki_laki,2780,jiwa,2025,registration,total_population,3.2,30,,0-14
+52.06.08,3,Donggo,age_group,0-14,perempuan,2687,jiwa,2025,registration,total_population,3.2,30,,0-14
+52.06.08,3,Donggo,age_group,0-14,,5467,jiwa,2025,registration,total_population,3.2,30,,0-14
+52.06.08,3,Donggo,age_group,15-64,laki_laki,7015,jiwa,2025,registration,total_population,3.2,30,,15-64
+52.06.08,3,Donggo,age_group,15-64,perempuan,7436,jiwa,2025,registration,total_population,3.2,30,,15-64
+52.06.08,3,Donggo,age_group,15-64,,14451,jiwa,2025,registration,total_population,3.2,30,,15-64
+52.06.08,3,Donggo,age_group,65+,laki_laki,765,jiwa,2025,registration,total_population,3.2,30,,65+
+52.06.08,3,Donggo,age_group,65+,perempuan,765,jiwa,2025,registration,total_population,3.2,30,,65+
+52.06.08,3,Donggo,age_group,65+,,1530,jiwa,2025,registration,total_population,3.2,30,,65+
+52.06.08,3,Donggo,sex,laki_laki,,10560,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+52.06.08,3,Donggo,sex,perempuan,,10888,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+52.06.08,3,Donggo,total,total,,21448,jiwa,2025,registration,total_population,3.2,30,,

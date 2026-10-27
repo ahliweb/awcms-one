@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-5171-kecamatan-517103-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.71.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Denpasar Barat Dalam Angka 2026",
+  "publisherName": "BPS Kota Denpasar",
+  "publisherDomain": "5171",
+  "publisherWebsite": "https://denpasarkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Denpasar (https://denpasarkota.bps.go.id), publikasi \"Kecamatan Denpasar Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5171030",
+  "publicationNumber": "51710.26006",
+  "issn": "2477-7498",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://denpasarkota.bps.go.id/id/publication/2026/09/28/9c411aa76513259faed97136/kecamatan-denpasar-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "1426d181b337f4b0422f2adc81f21730d249fd89cba1b84571f32cbe33365a08",
+  "sourceFileBytes": 5481042,
+  "sourcePages": [28, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Denpasar",
+  "csvPath": "datasets/bps-5171-kecamatan-517103-dalam-angka-2026.csv",
+  "csvSha256": "df1b497e7bce3957d80908804f8704ae9ac7a6b441f5eea75a62edbe89b825ce",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Denpasar Barat, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Denpasar Barat, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Padangsambian Klod\": unmatched ",
+    "table 3.1: row not stored: row \"Pemecutan Klod\": unmatched ",
+    "table 3.1: row not stored: row \"Dauh Puri Klod\": unmatched "
+  ]
+}

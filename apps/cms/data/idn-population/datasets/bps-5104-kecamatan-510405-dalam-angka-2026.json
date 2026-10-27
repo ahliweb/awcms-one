@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-5104-kecamatan-510405-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.04.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ubud Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Gianyar",
+  "publisherDomain": "5104",
+  "publisherWebsite": "https://gianyarkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Gianyar (https://gianyarkab.bps.go.id), publikasi \"Kecamatan Ubud Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "51040.26013",
+  "issn": "2502-3098",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://gianyarkab.bps.go.id/id/publication/2026/09/28/e5c2d906f0337f6b51ed9563/kecamatan-ubud-dalam-angka-2026.html",
+  "sourceFileSha256": "b8e3669c5d947b8a03018bb68b0b32690c123b4536637ca71d3a05dbfc2846f0",
+  "sourceFileBytes": 8593209,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Gianyar.",
+  "csvPath": "datasets/bps-5104-kecamatan-510405-dalam-angka-2026.csv",
+  "csvSha256": "787527a38e3546d029026bb5ee59212c731a71e797149797861b9d867da63e88",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Ubud, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ubud, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Nama Kecamatan\": unmatched "
+  ]
+}

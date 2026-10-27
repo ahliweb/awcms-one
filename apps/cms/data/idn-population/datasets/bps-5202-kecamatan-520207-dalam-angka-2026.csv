@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.02.07,3,Janapria,age_group,0-4,laki_laki,133,jiwa,2026,registration,total_population,3.2,28,,0 - 4
+52.02.07,3,Janapria,age_group,0-4,perempuan,152,jiwa,2026,registration,total_population,3.2,28,,0 - 4
+52.02.07,3,Janapria,age_group,0-4,,285,jiwa,2026,registration,total_population,3.2,28,,0 - 4
+52.02.07,3,Janapria,age_group,5-9,laki_laki,207,jiwa,2026,registration,total_population,3.2,28,,5 - 9
+52.02.07,3,Janapria,age_group,5-9,perempuan,207,jiwa,2026,registration,total_population,3.2,28,,5 - 9
+52.02.07,3,Janapria,age_group,5-9,,414,jiwa,2026,registration,total_population,3.2,28,,5 - 9
+52.02.07,3,Janapria,age_group,10-14,laki_laki,217,jiwa,2026,registration,total_population,3.2,28,,10 - 14
+52.02.07,3,Janapria,age_group,10-14,perempuan,190,jiwa,2026,registration,total_population,3.2,28,,10 - 14
+52.02.07,3,Janapria,age_group,10-14,,407,jiwa,2026,registration,total_population,3.2,28,,10 - 14
+52.02.07,3,Janapria,age_group,15-19,laki_laki,194,jiwa,2026,registration,total_population,3.2,28,,15 -19
+52.02.07,3,Janapria,age_group,15-19,perempuan,191,jiwa,2026,registration,total_population,3.2,28,,15 -19
+52.02.07,3,Janapria,age_group,15-19,,385,jiwa,2026,registration,total_population,3.2,28,,15 -19
+52.02.07,3,Janapria,age_group,20-24,laki_laki,163,jiwa,2026,registration,total_population,3.2,28,,20 - 24
+52.02.07,3,Janapria,age_group,20-24,perempuan,150,jiwa,2026,registration,total_population,3.2,28,,20 - 24
+52.02.07,3,Janapria,age_group,20-24,,313,jiwa,2026,registration,total_population,3.2,28,,20 - 24
+52.02.07,3,Janapria,age_group,25-29,laki_laki,152,jiwa,2026,registration,total_population,3.2,28,,25 - 29
+52.02.07,3,Janapria,age_group,25-29,perempuan,163,jiwa,2026,registration,total_population,3.2,28,,25 - 29
+52.02.07,3,Janapria,age_group,25-29,,315,jiwa,2026,registration,total_population,3.2,28,,25 - 29
+52.02.07,3,Janapria,age_group,30-34,laki_laki,155,jiwa,2026,registration,total_population,3.2,28,,30 - 34
+52.02.07,3,Janapria,age_group,30-34,perempuan,160,jiwa,2026,registration,total_population,3.2,28,,30 - 34
+52.02.07,3,Janapria,age_group,30-34,,315,jiwa,2026,registration,total_population,3.2,28,,30 - 34
+52.02.07,3,Janapria,age_group,35-39,laki_laki,154,jiwa,2026,registration,total_population,3.2,28,,35 - 39
+52.02.07,3,Janapria,age_group,35-39,perempuan,181,jiwa,2026,registration,total_population,3.2,28,,35 - 39
+52.02.07,3,Janapria,age_group,35-39,,335,jiwa,2026,registration,total_population,3.2,28,,35 - 39
+52.02.07,3,Janapria,age_group,40-44,laki_laki,152,jiwa,2026,registration,total_population,3.2,28,,40 - 44
+52.02.07,3,Janapria,age_group,40-44,perempuan,164,jiwa,2026,registration,total_population,3.2,28,,40 - 44
+52.02.07,3,Janapria,age_group,40-44,,316,jiwa,2026,registration,total_population,3.2,28,,40 - 44
+52.02.07,3,Janapria,age_group,45-49,laki_laki,198,jiwa,2026,registration,total_population,3.2,28,,45 - 49
+52.02.07,3,Janapria,age_group,45-49,perempuan,215,jiwa,2026,registration,total_population,3.2,28,,45 - 49
+52.02.07,3,Janapria,age_group,45-49,,413,jiwa,2026,registration,total_population,3.2,28,,45 - 49
+52.02.07,3,Janapria,age_group,50-54,laki_laki,135,jiwa,2026,registration,total_population,3.2,28,,50 - 54
+52.02.07,3,Janapria,age_group,50-54,perempuan,134,jiwa,2026,registration,total_population,3.2,28,,50 - 54
+52.02.07,3,Janapria,age_group,50-54,,269,jiwa,2026,registration,total_population,3.2,28,,50 - 54
+52.02.07,3,Janapria,age_group,55-59,laki_laki,146,jiwa,2026,registration,total_population,3.2,28,,55 - 59
+52.02.07,3,Janapria,age_group,55-59,perempuan,123,jiwa,2026,registration,total_population,3.2,28,,55 - 59
+52.02.07,3,Janapria,age_group,55-59,,269,jiwa,2026,registration,total_population,3.2,28,,55 - 59
+52.02.07,3,Janapria,age_group,60-64,laki_laki,76,jiwa,2026,registration,total_population,3.2,28,,60 - 64
+52.02.07,3,Janapria,age_group,60-64,perempuan,84,jiwa,2026,registration,total_population,3.2,28,,60 - 64
+52.02.07,3,Janapria,age_group,60-64,,160,jiwa,2026,registration,total_population,3.2,28,,60 - 64
+52.02.07,3,Janapria,age_group,65+,laki_laki,175,jiwa,2026,registration,total_population,3.2,28,,≥ 65
+52.02.07,3,Janapria,age_group,65+,perempuan,171,jiwa,2026,registration,total_population,3.2,28,,≥ 65
+52.02.07,3,Janapria,age_group,65+,,346,jiwa,2026,registration,total_population,3.2,28,,≥ 65
+52.02.07.2004,4,Loang Maka,sex,laki_laki,,2257,jiwa,2026,registration,total_population,3.2,28,,Laki-Laki
+52.02.07.2004,4,Loang Maka,sex,perempuan,,2285,jiwa,2026,registration,total_population,3.2,28,,Perempuan
+52.02.07.2004,4,Loang Maka,total,total,,4542,jiwa,2026,registration,total_population,3.2,28,,

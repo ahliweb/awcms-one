@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.05.04.2001,4,Paksebali,sex,laki_laki,,2837,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.04.2001,4,Paksebali,sex,perempuan,,2823,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.04.2001,4,Paksebali,total,total,,5660,jiwa,2025,registration,total_population,3.1,28,,
+51.05.04.2002,4,Sampalan Tengah,sex,laki_laki,,995,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.04.2002,4,Sampalan Tengah,sex,perempuan,,1028,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.04.2002,4,Sampalan Tengah,total,total,,2023,jiwa,2025,registration,total_population,3.1,28,,
+51.05.04.2004,4,Sulang,sex,laki_laki,,537,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.04.2004,4,Sulang,sex,perempuan,,557,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.04.2004,4,Sulang,total,total,,1094,jiwa,2025,registration,total_population,3.1,28,,
+51.05.04.2005,4,Gunaksa,sex,laki_laki,,3046,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.04.2005,4,Gunaksa,sex,perempuan,,3061,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.04.2005,4,Gunaksa,total,total,,6107,jiwa,2025,registration,total_population,3.1,28,,
+51.05.04.2006,4,Kusamba,sex,laki_laki,,3782,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.04.2006,4,Kusamba,sex,perempuan,,3773,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.04.2006,4,Kusamba,total,total,,7555,jiwa,2025,registration,total_population,3.1,28,,
+51.05.04.2007,4,Kampung Kusamba,sex,laki_laki,,420,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.04.2007,4,Kampung Kusamba,sex,perempuan,,447,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.04.2007,4,Kampung Kusamba,total,total,,867,jiwa,2025,registration,total_population,3.1,28,,
+51.05.04.2008,4,Pesinggahan,sex,laki_laki,,2339,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.04.2008,4,Pesinggahan,sex,perempuan,,2327,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.04.2008,4,Pesinggahan,total,total,,4666,jiwa,2025,registration,total_population,3.1,28,,
+51.05.04.2010,4,Pikat,sex,laki_laki,,2022,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.04.2010,4,Pikat,sex,perempuan,,1947,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.04.2010,4,Pikat,total,total,,3969,jiwa,2025,registration,total_population,3.1,28,,
+51.05.04.2011,4,Dawan Kaler,sex,laki_laki,,1387,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.04.2011,4,Dawan Kaler,sex,perempuan,,1375,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.04.2011,4,Dawan Kaler,total,total,,2762,jiwa,2025,registration,total_population,3.1,28,,
+51.05.04.2012,4,Besan,sex,laki_laki,,1462,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.04.2012,4,Besan,sex,perempuan,,1397,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.04.2012,4,Besan,total,total,,2859,jiwa,2025,registration,total_population,3.1,28,,
+51.05.04,3,Dawan,sex,laki_laki,,21882,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.04,3,Dawan,sex,perempuan,,21813,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.04,3,Dawan,total,total,,43695,jiwa,2025,registration,total_population,3.1,28,,

@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.08.02.2002,4,Bentek,sex,laki_laki,,3867,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+52.08.02.2002,4,Bentek,sex,perempuan,,3889,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+52.08.02.2002,4,Bentek,total,total,,7756,jiwa,2025,registration,total_population,3.1,32,,
+52.08.02.2001,4,Gondang,sex,laki_laki,,6028,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+52.08.02.2001,4,Gondang,sex,perempuan,,5938,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+52.08.02.2001,4,Gondang,total,total,,11966,jiwa,2025,registration,total_population,3.1,32,,
+52.08.02.2003,4,Genggelang,sex,laki_laki,,4180,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+52.08.02.2003,4,Genggelang,sex,perempuan,,3916,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+52.08.02.2003,4,Genggelang,total,total,,8096,jiwa,2025,registration,total_population,3.1,32,,
+52.08.02.2004,4,Rempek,sex,laki_laki,,2582,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+52.08.02.2004,4,Rempek,sex,perempuan,,2558,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+52.08.02.2004,4,Rempek,total,total,,5140,jiwa,2025,registration,total_population,3.1,32,,
+52.08.02.2005,4,Sambik Bangkol,sex,laki_laki,,4550,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+52.08.02.2005,4,Sambik Bangkol,sex,perempuan,,4446,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+52.08.02.2005,4,Sambik Bangkol,total,total,,8996,jiwa,2025,registration,total_population,3.1,32,,
+52.08.02.2006,4,Selelos,sex,laki_laki,,1374,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+52.08.02.2006,4,Selelos,sex,perempuan,,1385,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+52.08.02.2006,4,Selelos,total,total,,2759,jiwa,2025,registration,total_population,3.1,32,,
+52.08.02.2007,4,Rempek Darussalam,sex,laki_laki,,2371,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+52.08.02.2007,4,Rempek Darussalam,sex,perempuan,,2255,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+52.08.02.2007,4,Rempek Darussalam,total,total,,4626,jiwa,2025,registration,total_population,3.1,32,,
+52.08.02.2008,4,Segara Katon,sex,laki_laki,,3497,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+52.08.02.2008,4,Segara Katon,sex,perempuan,,3557,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+52.08.02.2008,4,Segara Katon,total,total,,7054,jiwa,2025,registration,total_population,3.1,32,,
+52.08.02,3,Gangga,sex,laki_laki,,28449,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+52.08.02,3,Gangga,sex,perempuan,,27944,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+52.08.02,3,Gangga,total,total,,56393,jiwa,2025,registration,total_population,3.1,32,,
+52.08.02,3,Gangga,sex,laki_laki,,580,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+52.08.02,3,Gangga,sex,perempuan,,754,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+52.08.02,3,Gangga,total,total,,1334,jiwa,2025,registration,total_population,3.2,34,,

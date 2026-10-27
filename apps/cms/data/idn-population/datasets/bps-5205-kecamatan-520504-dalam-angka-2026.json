@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-5205-kecamatan-520504-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "52.05.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kilo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Dompu",
+  "publisherDomain": "5205",
+  "publisherWebsite": "https://dompukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Dompu (https://dompukab.bps.go.id), publikasi \"Kecamatan Kilo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5205040",
+  "publicationNumber": "52050.26040",
+  "issn": "2598-3431",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://dompukab.bps.go.id/id/publication/2026/09/28/bc7e4d8662935e2b9a70c89a/kecamatan-kilo-dalam-angka-2026.html",
+  "sourceFileSha256": "bdb54b87ba8ab34e51002639c66871a80f83f8d161be448a4669a29a4ed2680a",
+  "sourceFileBytes": 6248671,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Dompu.",
+  "csvPath": "datasets/bps-5205-kecamatan-520504-dalam-angka-2026.csv",
+  "csvSha256": "b0d1ff89e9959aa7fe0feb1d6f909d54e607a7c214e1e3efb1da1c78dc5f7b36",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Kilo, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kilo, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kramat\": unmatched ",
+    "table 3.1: row not stored: row \"Kramat\": unmatched "
+  ]
+}

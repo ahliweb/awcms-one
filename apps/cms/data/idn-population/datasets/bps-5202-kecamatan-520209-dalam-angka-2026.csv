@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.02.09,3,Kopang,age_group,0-4,laki_laki,298,jiwa,2026,registration,total_population,3.2,28,,0 - 4
+52.02.09,3,Kopang,age_group,0-4,perempuan,294,jiwa,2026,registration,total_population,3.2,28,,0 - 4
+52.02.09,3,Kopang,age_group,0-4,,592,jiwa,2026,registration,total_population,3.2,28,,0 - 4
+52.02.09,3,Kopang,age_group,5-9,laki_laki,416,jiwa,2026,registration,total_population,3.2,28,,5 - 9
+52.02.09,3,Kopang,age_group,5-9,perempuan,400,jiwa,2026,registration,total_population,3.2,28,,5 - 9
+52.02.09,3,Kopang,age_group,5-9,,816,jiwa,2026,registration,total_population,3.2,28,,5 - 9
+52.02.09,3,Kopang,age_group,10-14,laki_laki,434,jiwa,2026,registration,total_population,3.2,28,,10 - 14
+52.02.09,3,Kopang,age_group,10-14,perempuan,405,jiwa,2026,registration,total_population,3.2,28,,10 - 14
+52.02.09,3,Kopang,age_group,10-14,,839,jiwa,2026,registration,total_population,3.2,28,,10 - 14
+52.02.09,3,Kopang,age_group,15-19,laki_laki,332,jiwa,2026,registration,total_population,3.2,28,,15 -19
+52.02.09,3,Kopang,age_group,15-19,perempuan,304,jiwa,2026,registration,total_population,3.2,28,,15 -19
+52.02.09,3,Kopang,age_group,15-19,,636,jiwa,2026,registration,total_population,3.2,28,,15 -19
+52.02.09,3,Kopang,age_group,20-24,laki_laki,310,jiwa,2026,registration,total_population,3.2,28,,20 - 24
+52.02.09,3,Kopang,age_group,20-24,perempuan,312,jiwa,2026,registration,total_population,3.2,28,,20 - 24
+52.02.09,3,Kopang,age_group,20-24,,622,jiwa,2026,registration,total_population,3.2,28,,20 - 24
+52.02.09,3,Kopang,age_group,25-29,laki_laki,293,jiwa,2026,registration,total_population,3.2,28,,25 - 29
+52.02.09,3,Kopang,age_group,25-29,perempuan,290,jiwa,2026,registration,total_population,3.2,28,,25 - 29
+52.02.09,3,Kopang,age_group,25-29,,583,jiwa,2026,registration,total_population,3.2,28,,25 - 29
+52.02.09,3,Kopang,age_group,30-34,laki_laki,304,jiwa,2026,registration,total_population,3.2,28,,30 - 34
+52.02.09,3,Kopang,age_group,30-34,perempuan,326,jiwa,2026,registration,total_population,3.2,28,,30 - 34
+52.02.09,3,Kopang,age_group,30-34,,630,jiwa,2026,registration,total_population,3.2,28,,30 - 34
+52.02.09,3,Kopang,age_group,35-39,laki_laki,356,jiwa,2026,registration,total_population,3.2,28,,35 - 39
+52.02.09,3,Kopang,age_group,35-39,perempuan,355,jiwa,2026,registration,total_population,3.2,28,,35 - 39
+52.02.09,3,Kopang,age_group,35-39,,711,jiwa,2026,registration,total_population,3.2,28,,35 - 39
+52.02.09,3,Kopang,age_group,40-44,laki_laki,425,jiwa,2026,registration,total_population,3.2,28,,40 - 44
+52.02.09,3,Kopang,age_group,40-44,perempuan,370,jiwa,2026,registration,total_population,3.2,28,,40 - 44
+52.02.09,3,Kopang,age_group,40-44,,795,jiwa,2026,registration,total_population,3.2,28,,40 - 44
+52.02.09,3,Kopang,age_group,45-49,laki_laki,340,jiwa,2026,registration,total_population,3.2,28,,45 - 49
+52.02.09,3,Kopang,age_group,45-49,perempuan,344,jiwa,2026,registration,total_population,3.2,28,,45 - 49
+52.02.09,3,Kopang,age_group,45-49,,684,jiwa,2026,registration,total_population,3.2,28,,45 - 49
+52.02.09,3,Kopang,age_group,50-54,laki_laki,222,jiwa,2026,registration,total_population,3.2,28,,50 - 54
+52.02.09,3,Kopang,age_group,50-54,perempuan,245,jiwa,2026,registration,total_population,3.2,28,,50 - 54
+52.02.09,3,Kopang,age_group,50-54,,467,jiwa,2026,registration,total_population,3.2,28,,50 - 54
+52.02.09,3,Kopang,age_group,55-59,laki_laki,223,jiwa,2026,registration,total_population,3.2,28,,55 - 59
+52.02.09,3,Kopang,age_group,55-59,perempuan,222,jiwa,2026,registration,total_population,3.2,28,,55 - 59
+52.02.09,3,Kopang,age_group,55-59,,445,jiwa,2026,registration,total_population,3.2,28,,55 - 59
+52.02.09,3,Kopang,age_group,60-64,laki_laki,140,jiwa,2026,registration,total_population,3.2,28,,60 - 64
+52.02.09,3,Kopang,age_group,60-64,perempuan,171,jiwa,2026,registration,total_population,3.2,28,,60 - 64
+52.02.09,3,Kopang,age_group,60-64,,311,jiwa,2026,registration,total_population,3.2,28,,60 - 64
+52.02.09,3,Kopang,age_group,65+,laki_laki,292,jiwa,2026,registration,total_population,3.2,28,,≥ 65
+52.02.09,3,Kopang,age_group,65+,perempuan,341,jiwa,2026,registration,total_population,3.2,28,,≥ 65
+52.02.09,3,Kopang,age_group,65+,,633,jiwa,2026,registration,total_population,3.2,28,,≥ 65
+52.02.09.2003,4,Muncan,sex,laki_laki,,4385,jiwa,2026,registration,total_population,3.2,28,,Laki-Laki
+52.02.09.2003,4,Muncan,sex,perempuan,,4379,jiwa,2026,registration,total_population,3.2,28,,Perempuan
+52.02.09.2003,4,Muncan,total,total,,8764,jiwa,2026,registration,total_population,3.2,28,,

@@ -1,0 +1,154 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.05.03,3,Huu,total,total,,19250,jiwa,2025,projection,total_population,3.1.1,48,,
+52.05.08,3,Pajo,total,total,,14751,jiwa,2025,projection,total_population,3.1.1,48,,
+52.05.01,3,Dompu,total,total,,59250,jiwa,2025,projection,total_population,3.1.1,48,,
+52.05.05,3,Woja,total,total,,61441,jiwa,2025,projection,total_population,3.1.1,48,,
+52.05.04,3,Kilo,total,total,,14011,jiwa,2025,projection,total_population,3.1.1,48,,
+52.05.02,3,Kempo,total,total,,20432,jiwa,2025,projection,total_population,3.1.1,48,,
+52.05.06,3,Pekat,total,total,,32957,jiwa,2025,projection,total_population,3.1.1,48,,
+52.05,2,Kabupaten Dompu,total,total,,254667,jiwa,2025,projection,total_population,3.1.1,48,,
+52.05,2,Kabupaten Dompu,age_group,0-4,laki_laki,13073,jiwa,2025,projection,total_population,3.1.2,51,,0–4
+52.05,2,Kabupaten Dompu,age_group,0-4,perempuan,12526,jiwa,2025,projection,total_population,3.1.2,51,,0–4
+52.05,2,Kabupaten Dompu,age_group,0-4,,25599,jiwa,2025,projection,total_population,3.1.2,51,,0–4
+52.05,2,Kabupaten Dompu,age_group,5-9,laki_laki,10886,jiwa,2025,projection,total_population,3.1.2,51,,5–9
+52.05,2,Kabupaten Dompu,age_group,5-9,perempuan,10274,jiwa,2025,projection,total_population,3.1.2,51,,5–9
+52.05,2,Kabupaten Dompu,age_group,5-9,,21160,jiwa,2025,projection,total_population,3.1.2,51,,5–9
+52.05,2,Kabupaten Dompu,age_group,10-14,laki_laki,11528,jiwa,2025,projection,total_population,3.1.2,51,,10–14
+52.05,2,Kabupaten Dompu,age_group,10-14,perempuan,11096,jiwa,2025,projection,total_population,3.1.2,51,,10–14
+52.05,2,Kabupaten Dompu,age_group,10-14,,22624,jiwa,2025,projection,total_population,3.1.2,51,,10–14
+52.05,2,Kabupaten Dompu,age_group,15-19,laki_laki,11540,jiwa,2025,projection,total_population,3.1.2,51,,15–19
+52.05,2,Kabupaten Dompu,age_group,15-19,perempuan,10643,jiwa,2025,projection,total_population,3.1.2,51,,15–19
+52.05,2,Kabupaten Dompu,age_group,15-19,,22183,jiwa,2025,projection,total_population,3.1.2,51,,15–19
+52.05,2,Kabupaten Dompu,age_group,20-24,laki_laki,9901,jiwa,2025,projection,total_population,3.1.2,51,,20–24
+52.05,2,Kabupaten Dompu,age_group,20-24,perempuan,9038,jiwa,2025,projection,total_population,3.1.2,51,,20–24
+52.05,2,Kabupaten Dompu,age_group,20-24,,18939,jiwa,2025,projection,total_population,3.1.2,51,,20–24
+52.05,2,Kabupaten Dompu,age_group,25-29,laki_laki,10807,jiwa,2025,projection,total_population,3.1.2,51,,25–29
+52.05,2,Kabupaten Dompu,age_group,25-29,perempuan,10580,jiwa,2025,projection,total_population,3.1.2,51,,25–29
+52.05,2,Kabupaten Dompu,age_group,25-29,,21387,jiwa,2025,projection,total_population,3.1.2,51,,25–29
+52.05,2,Kabupaten Dompu,age_group,30-34,laki_laki,10096,jiwa,2025,projection,total_population,3.1.2,51,,30–34
+52.05,2,Kabupaten Dompu,age_group,30-34,perempuan,9664,jiwa,2025,projection,total_population,3.1.2,51,,30–34
+52.05,2,Kabupaten Dompu,age_group,30-34,,19760,jiwa,2025,projection,total_population,3.1.2,51,,30–34
+52.05,2,Kabupaten Dompu,age_group,35-39,laki_laki,9080,jiwa,2025,projection,total_population,3.1.2,51,,35–39
+52.05,2,Kabupaten Dompu,age_group,35-39,perempuan,9315,jiwa,2025,projection,total_population,3.1.2,51,,35–39
+52.05,2,Kabupaten Dompu,age_group,35-39,,18395,jiwa,2025,projection,total_population,3.1.2,51,,35–39
+52.05,2,Kabupaten Dompu,age_group,40-44,laki_laki,8642,jiwa,2025,projection,total_population,3.1.2,51,,40–44
+52.05,2,Kabupaten Dompu,age_group,40-44,perempuan,9196,jiwa,2025,projection,total_population,3.1.2,51,,40–44
+52.05,2,Kabupaten Dompu,age_group,40-44,,17838,jiwa,2025,projection,total_population,3.1.2,51,,40–44
+52.05,2,Kabupaten Dompu,age_group,45-49,laki_laki,7679,jiwa,2025,projection,total_population,3.1.2,51,,45–49
+52.05,2,Kabupaten Dompu,age_group,45-49,perempuan,8001,jiwa,2025,projection,total_population,3.1.2,51,,45–49
+52.05,2,Kabupaten Dompu,age_group,45-49,,15680,jiwa,2025,projection,total_population,3.1.2,51,,45–49
+52.05,2,Kabupaten Dompu,age_group,50-54,laki_laki,6857,jiwa,2025,projection,total_population,3.1.2,51,,50–54
+52.05,2,Kabupaten Dompu,age_group,50-54,perempuan,7570,jiwa,2025,projection,total_population,3.1.2,51,,50–54
+52.05,2,Kabupaten Dompu,age_group,50-54,,14427,jiwa,2025,projection,total_population,3.1.2,51,,50–54
+52.05,2,Kabupaten Dompu,age_group,55-59,laki_laki,5604,jiwa,2025,projection,total_population,3.1.2,51,,55–59
+52.05,2,Kabupaten Dompu,age_group,55-59,perempuan,5826,jiwa,2025,projection,total_population,3.1.2,51,,55–59
+52.05,2,Kabupaten Dompu,age_group,55-59,,11430,jiwa,2025,projection,total_population,3.1.2,51,,55–59
+52.05,2,Kabupaten Dompu,age_group,60-64,laki_laki,4608,jiwa,2025,projection,total_population,3.1.2,51,,60–64
+52.05,2,Kabupaten Dompu,age_group,60-64,perempuan,4767,jiwa,2025,projection,total_population,3.1.2,51,,60–64
+52.05,2,Kabupaten Dompu,age_group,60-64,,9375,jiwa,2025,projection,total_population,3.1.2,51,,60–64
+52.05,2,Kabupaten Dompu,age_group,65-69,laki_laki,3425,jiwa,2025,projection,total_population,3.1.2,51,,65–69
+52.05,2,Kabupaten Dompu,age_group,65-69,perempuan,3727,jiwa,2025,projection,total_population,3.1.2,51,,65–69
+52.05,2,Kabupaten Dompu,age_group,65-69,,7152,jiwa,2025,projection,total_population,3.1.2,51,,65–69
+52.05,2,Kabupaten Dompu,age_group,70-74,laki_laki,2157,jiwa,2025,projection,total_population,3.1.2,51,,70–74
+52.05,2,Kabupaten Dompu,age_group,70-74,perempuan,2246,jiwa,2025,projection,total_population,3.1.2,51,,70–74
+52.05,2,Kabupaten Dompu,age_group,70-74,,4403,jiwa,2025,projection,total_population,3.1.2,51,,70–74
+52.05,2,Kabupaten Dompu,age_group,75+,laki_laki,2134,jiwa,2025,projection,total_population,3.1.2,51,,75+
+52.05,2,Kabupaten Dompu,age_group,75+,perempuan,2181,jiwa,2025,projection,total_population,3.1.2,51,,75+
+52.05,2,Kabupaten Dompu,age_group,75+,,4315,jiwa,2025,projection,total_population,3.1.2,51,,75+
+52.05,2,Kabupaten Dompu,sex,laki_laki,,128017,jiwa,2025,projection,total_population,3.1.2,51,,Laki-Laki
+52.05,2,Kabupaten Dompu,sex,perempuan,,126650,jiwa,2025,projection,total_population,3.1.2,51,,Perempuan
+52.05,2,Kabupaten Dompu,total,total,,254667,jiwa,2025,projection,total_population,3.1.2,51,,
+52.05.03,3,Huu,religion,islam,,18191,jiwa,2025,registration,total_population,4.3.1,110,,Islam
+52.05.03,3,Huu,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,110,nil,Protestan
+52.05.03,3,Huu,religion,katolik,,23,jiwa,2025,registration,total_population,4.3.1,110,,Katolik
+52.05.03,3,Huu,religion,hindu,,32,jiwa,2025,registration,total_population,4.3.1,110,,Hindu
+52.05.03,3,Huu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,110,nil,Budha
+52.05.03,3,Huu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,110,nil,Lainnya
+52.05.08,3,Pajo,religion,islam,,16154,jiwa,2025,registration,total_population,4.3.1,110,,Islam
+52.05.08,3,Pajo,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,110,nil,Protestan
+52.05.08,3,Pajo,religion,katolik,,13,jiwa,2025,registration,total_population,4.3.1,110,,Katolik
+52.05.08,3,Pajo,religion,hindu,,23,jiwa,2025,registration,total_population,4.3.1,110,,Hindu
+52.05.08,3,Pajo,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,110,nil,Budha
+52.05.08,3,Pajo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,110,nil,Lainnya
+52.05.01,3,Dompu,religion,islam,,55848,jiwa,2025,registration,total_population,4.3.1,110,,Islam
+52.05.01,3,Dompu,religion,kristen,,326,jiwa,2025,registration,total_population,4.3.1,110,,Protestan
+52.05.01,3,Dompu,religion,katolik,,427,jiwa,2025,registration,total_population,4.3.1,110,,Katolik
+52.05.01,3,Dompu,religion,hindu,,218,jiwa,2025,registration,total_population,4.3.1,110,,Hindu
+52.05.01,3,Dompu,religion,buddha,,165,jiwa,2025,registration,total_population,4.3.1,110,,Budha
+52.05.01,3,Dompu,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,110,,Lainnya
+52.05.05,3,Woja,religion,islam,,77486,jiwa,2025,registration,total_population,4.3.1,110,,Islam
+52.05.05,3,Woja,religion,kristen,,83,jiwa,2025,registration,total_population,4.3.1,110,,Protestan
+52.05.05,3,Woja,religion,katolik,,78,jiwa,2025,registration,total_population,4.3.1,110,,Katolik
+52.05.05,3,Woja,religion,hindu,,52,jiwa,2025,registration,total_population,4.3.1,110,,Hindu
+52.05.05,3,Woja,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,110,nil,Budha
+52.05.05,3,Woja,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,110,,Lainnya
+52.05.04,3,Kilo,religion,islam,,17005,jiwa,2025,registration,total_population,4.3.1,110,,Islam
+52.05.04,3,Kilo,religion,kristen,,13,jiwa,2025,registration,total_population,4.3.1,110,,Protestan
+52.05.04,3,Kilo,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,110,nil,Katolik
+52.05.04,3,Kilo,religion,hindu,,215,jiwa,2025,registration,total_population,4.3.1,110,,Hindu
+52.05.04,3,Kilo,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,110,nil,Budha
+52.05.04,3,Kilo,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,110,,Lainnya
+52.05.02,3,Kempo,religion,islam,,20151,jiwa,2025,registration,total_population,4.3.1,110,,Islam
+52.05.02,3,Kempo,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,110,nil,Protestan
+52.05.02,3,Kempo,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,110,nil,Katolik
+52.05.02,3,Kempo,religion,hindu,,2110,jiwa,2025,registration,total_population,4.3.1,110,,Hindu
+52.05.02,3,Kempo,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,110,nil,Budha
+52.05.02,3,Kempo,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,110,,Lainnya
+52.05.06,3,Pekat,religion,islam,,33479,jiwa,2025,registration,total_population,4.3.1,110,,Islam
+52.05.06,3,Pekat,religion,kristen,,33,jiwa,2025,registration,total_population,4.3.1,110,,Protestan
+52.05.06,3,Pekat,religion,katolik,,12,jiwa,2025,registration,total_population,4.3.1,110,,Katolik
+52.05.06,3,Pekat,religion,hindu,,194,jiwa,2025,registration,total_population,4.3.1,110,,Hindu
+52.05.06,3,Pekat,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,110,,Budha
+52.05.06,3,Pekat,religion,lainnya,,6,jiwa,2025,registration,total_population,4.3.1,110,,Lainnya
+52.05,2,Kabupaten Dompu,religion,islam,,269042,jiwa,2025,registration,total_population,4.3.1,110,,Islam
+52.05,2,Kabupaten Dompu,religion,kristen,,472,jiwa,2025,registration,total_population,4.3.1,110,,Protestan
+52.05,2,Kabupaten Dompu,religion,katolik,,574,jiwa,2025,registration,total_population,4.3.1,110,,Katolik
+52.05,2,Kabupaten Dompu,religion,hindu,,3557,jiwa,2025,registration,total_population,4.3.1,110,,Hindu
+52.05,2,Kabupaten Dompu,religion,buddha,,167,jiwa,2025,registration,total_population,4.3.1,110,,Budha
+52.05,2,Kabupaten Dompu,religion,lainnya,,21,jiwa,2025,registration,total_population,4.3.1,110,,Lainnya
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/padi_padian,,139931,rupiah,2024,survey_estimate,per_capita,9.1,195,,Padi-padian
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/padi_padian,,142383,rupiah,2025,survey_estimate,per_capita,9.1,195,,Padi-padian
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/umbi_umbian,,2527,rupiah,2024,survey_estimate,per_capita,9.1,195,,Umbi-umbian
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/umbi_umbian,,3842,rupiah,2025,survey_estimate,per_capita,9.1,195,,Umbi-umbian
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,66909,rupiah,2024,survey_estimate,per_capita,9.1,195,,Ikan/udang/cumi/kerang
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,70350,rupiah,2025,survey_estimate,per_capita,9.1,195,,Ikan/udang/cumi/kerang
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/daging,,28679,rupiah,2024,survey_estimate,per_capita,9.1,195,,Daging
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/daging,,32276,rupiah,2025,survey_estimate,per_capita,9.1,195,,Daging
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/telur_dan_susu,,22665,rupiah,2024,survey_estimate,per_capita,9.1,195,,Telur dan susu
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/telur_dan_susu,,25882,rupiah,2025,survey_estimate,per_capita,9.1,195,,Telur dan susu
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/sayur_sayuran,,46876,rupiah,2024,survey_estimate,per_capita,9.1,195,,Sayur-sayuran
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/sayur_sayuran,,52506,rupiah,2025,survey_estimate,per_capita,9.1,195,,Sayur-sayuran
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/kacang_kacangan,,8500,rupiah,2024,survey_estimate,per_capita,9.1,195,,Kacang-kacangan
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/kacang_kacangan,,9986,rupiah,2025,survey_estimate,per_capita,9.1,195,,Kacang-kacangan
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/buah_buahan,,30402,rupiah,2024,survey_estimate,per_capita,9.1,195,,Buah-buahan
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/buah_buahan,,39453,rupiah,2025,survey_estimate,per_capita,9.1,195,,Buah-buahan
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14618,rupiah,2024,survey_estimate,per_capita,9.1,195,,Minyak dan kelapa
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14428,rupiah,2025,survey_estimate,per_capita,9.1,195,,Minyak dan kelapa
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/bahan_minuman,,17258,rupiah,2024,survey_estimate,per_capita,9.1,195,,Bahan minuman
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/bahan_minuman,,18449,rupiah,2025,survey_estimate,per_capita,9.1,195,,Bahan minuman
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/bumbu_bumbuan,,14136,rupiah,2024,survey_estimate,per_capita,9.1,195,,Bumbu-bumbuan
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/bumbu_bumbuan,,15618,rupiah,2025,survey_estimate,per_capita,9.1,195,,Bumbu-bumbuan
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/konsumsi_lainnya,,10790,rupiah,2024,survey_estimate,per_capita,9.1,195,,Konsumsi lainnya
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/konsumsi_lainnya,,10941,rupiah,2025,survey_estimate,per_capita,9.1,195,,Konsumsi lainnya
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,176307,rupiah,2024,survey_estimate,per_capita,9.1,195,,Makanan dan minuman jadi
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,184472,rupiah,2025,survey_estimate,per_capita,9.1,195,,Makanan dan minuman jadi
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/rokok,,112860,rupiah,2024,survey_estimate,per_capita,9.1,195,,Rokok
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/rokok,,91190,rupiah,2025,survey_estimate,per_capita,9.1,195,,Rokok
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/jumlah_makanan,,692458,rupiah,2024,survey_estimate,per_capita,9.1,195,,Jumlah makanan
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/jumlah_makanan,,711776,rupiah,2025,survey_estimate,per_capita,9.1,195,,Jumlah makanan
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,231478,rupiah,2024,survey_estimate,per_capita,9.1,195,,Perumahan dan fasilitas rumah tangga
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,289003,rupiah,2025,survey_estimate,per_capita,9.1,195,,Perumahan dan fasilitas rumah tangga
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,96109,rupiah,2024,survey_estimate,per_capita,9.1,195,,Aneka barang dan jasa
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,116091,rupiah,2025,survey_estimate,per_capita,9.1,195,,Aneka barang dan jasa
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,29269,rupiah,2024,survey_estimate,per_capita,9.1,195,,"Pakaian, alas kaki, dan tutup kepala"
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,31146,rupiah,2025,survey_estimate,per_capita,9.1,195,,"Pakaian, alas kaki, dan tutup kepala"
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/barang_tahan_lama,,21419,rupiah,2024,survey_estimate,per_capita,9.1,195,,Barang tahan lama
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/barang_tahan_lama,,29159,rupiah,2025,survey_estimate,per_capita,9.1,195,,Barang tahan lama
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,32174,rupiah,2024,survey_estimate,per_capita,9.1,195,,"Pajak, pungutan, dan asuransi"
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,50036,rupiah,2025,survey_estimate,per_capita,9.1,195,,"Pajak, pungutan, dan asuransi"
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,10748,rupiah,2024,survey_estimate,per_capita,9.1,195,,Keperluan pesta dan upacara/kenduri
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,11083,rupiah,2025,survey_estimate,per_capita,9.1,195,,Keperluan pesta dan upacara/kenduri
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,421197,rupiah,2024,survey_estimate,per_capita,9.1,195,,Jumlah bukan makanan
+52.05,2,Kabupaten Dompu,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,526518,rupiah,2025,survey_estimate,per_capita,9.1,195,,Jumlah bukan makanan
+52.05,2,Kabupaten Dompu,expenditure,total,,1113655,rupiah,2024,survey_estimate,per_capita,9.1,195,,
+52.05,2,Kabupaten Dompu,expenditure,total,,1238295,rupiah,2025,survey_estimate,per_capita,9.1,195,,

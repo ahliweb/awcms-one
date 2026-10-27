@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5206-kecamatan-520612-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "52.06.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lambu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bima",
+  "publisherDomain": "5206",
+  "publisherWebsite": "https://bimakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bima (https://bimakab.bps.go.id), publikasi \"Kecamatan Lambu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5206061",
+  "publicationNumber": "52060.26016",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bimakab.bps.go.id/id/publication/2026/09/28/971867c7f941724d5f3ea9c6/kecamatan-lambu-dalam-angka-2026.html",
+  "sourceFileSha256": "25d9ac379fc3741b79b68129b3443f579d03d153e25abc372b856b0fc16a4a1d",
+  "sourceFileBytes": 4010309,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bima.",
+  "csvPath": "datasets/bps-5206-kecamatan-520612-dalam-angka-2026.csv",
+  "csvSha256": "bf388f43c3375560d62745b462d96d9f10f108c5c966c8d16266b8b8ac9a8e02",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Lambu, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lambu, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

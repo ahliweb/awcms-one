@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-5102-kecamatan-510204-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.02.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kerambitan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tabanan",
+  "publisherDomain": "5102",
+  "publisherWebsite": "https://tabanankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tabanan (https://tabanankab.bps.go.id), publikasi \"Kecamatan Kerambitan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5102020",
+  "publicationNumber": "51020.26008",
+  "issn": "2477-7137",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tabanankab.bps.go.id/id/publication/2026/09/28/17bc758f940deeee6c6083c9/kecamatan-kerambitan-dalam-angka-2026.html",
+  "sourceFileSha256": "6dd492ba5fff1c3b510256d8547e0a2a900c55648d33a18f1f7aeb55109a11e6",
+  "sourceFileBytes": 11989139,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tabanan .",
+  "csvPath": "datasets/bps-5102-kecamatan-510204-dalam-angka-2026.csv",
+  "csvSha256": "a357e7a7adc5ce052486ea7d0990d8a4f3be758001e85a8f50257fed4c9f3674",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kerambitan , 202 5",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kerambitan , 202 5",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: the rows of region 51.02.04.2005 are not stored: sex split vs total: parts sum 1110.0000 != 1970.0000 (diff 860.0000); the source itself is inconsistent"
+  ]
+}

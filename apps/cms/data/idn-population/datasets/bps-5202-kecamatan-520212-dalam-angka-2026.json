@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-5202-kecamatan-520212-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "52.02.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Batukliang Utara Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN LOMBOK TENGAH",
+  "publisherDomain": "5202",
+  "publisherWebsite": "https://lomboktengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN LOMBOK TENGAH (https://lomboktengahkab.bps.go.id), publikasi \"Kecamatan Batukliang Utara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5202091",
+  "publicationNumber": "5202.26018",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lomboktengahkab.bps.go.id/id/publication/2026/09/28/bd12e91a310aba3832e37792/kecamatan-batukliang-utara-dalam-angka-2026.html",
+  "sourceFileSha256": "b75870f4be56fb3f31f9a45ad21b92dc21f44a08c8eac75759e786c75bb80b3e",
+  "sourceFileBytes": 7803599,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lombok Tengah.",
+  "csvPath": "datasets/bps-5202-kecamatan-520212-dalam-angka-2026.csv",
+  "csvSha256": "91aa7aa924afa24927f85170cbaf31694c986b71198bf3c202ff8bb64322b1b5",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Mas-Mas, Kecamatan Batukliang Utara, 2026",
+      "printedPages": [28],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Mas-Mas 2.976\": unmatched ",
+    "table 3.1: row not stored: row \"Aik Bukaq 4.828\": unmatched ",
+    "table 3.1: row not stored: row \"Setiling 4.688\": unmatched ",
+    "table 3.1: row not stored: row \"Aik Berik 4.610\": unmatched ",
+    "table 3.1: row not stored: row \"Teratak 4.961\": unmatched ",
+    "table 3.1: row not stored: row \"Lantan 3.340\": unmatched ",
+    "table 3.1: row not stored: row \"Tanak Beaq 4.004\": unmatched ",
+    "table 3.1: row not stored: row \"Karang Sidemen 4.022\": unmatched ",
+    "table 3.1: row not stored: row \"Batukliang Utara 33.429\": unmatched ",
+    "table 3.1: row not stored: row \"Tanak Beaq\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

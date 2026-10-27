@@ -1,0 +1,52 @@
+{
+  "datasetCode": "bps-5201-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "52.01",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Lombok Barat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lombok Barat",
+  "publisherDomain": "5201",
+  "publisherWebsite": "https://lombokbaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lombok Barat (https://lombokbaratkab.bps.go.id), publikasi \"Kabupaten Lombok Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5201",
+  "publicationNumber": "52010.26003",
+  "issn": "0215-563X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://lombokbaratkab.bps.go.id/id/publication/2026/02/27/d048dcf69726330f5dfd0be3/kabupaten-lombok-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "283438f16ad6d00933d0243b4255988f9631cdf7714e35d929329813f85d84fb",
+  "sourceFileBytes": 13738523,
+  "sourcePages": [34, 35, 72],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Lombok Barat.",
+  "csvPath": "datasets/bps-5201-dalam-angka-2026.csv",
+  "csvSha256": "8a6e1dd408a89a32299165f15a434b6e188d6f64a1aa67f86f9c52da3667de24",
+  "tablesUsed": [
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Lombok Barat, 2025",
+      "printedPages": [72],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "2.3.4",
+      "title": "Jumlah Pegawai Negeri Sipil (PNS) Menurut Agama dan Jenis Kelamin di Kabupaten Lombok Barat, Desember 2025",
+      "printedPages": [34, 35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication",
+    "table 3.1.1 (total-by-region) could not be read reliably and is not included (population unit not stated in the heading)",
+    "table 3.1.3 (age-by-region) could not be read reliably and is not included (unit or year not determinable)",
+    "table 2.3.4: the rows of region 52.01 are not stored: religion (perempuan) vs sex value: parts sum 4363.0000 != 2696.0000 (diff 1667.0000); the source itself is inconsistent"
+  ]
+}

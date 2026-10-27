@@ -1,0 +1,53 @@
+{
+  "datasetCode": "bps-5208-kecamatan-520804-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "52.08.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bayan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lombok Utara",
+  "publisherDomain": "5208",
+  "publisherWebsite": "https://lombokutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lombok Utara (https://lombokutarakab.bps.go.id), publikasi \"Kecamatan Bayan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "52080",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lombokutarakab.bps.go.id/id/publication/2026/09/28/44152d8a6f498b1bd88cc195/kecamatan-bayan-dalam-angka-2026.html",
+  "sourceFileSha256": "7d27017c3e1d008d8adf0bb53da985f736cffb76abab0dda8dd2a0202e638aae",
+  "sourceFileBytes": 1512364,
+  "sourcePages": [33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lombok Utara",
+  "csvPath": "datasets/bps-5208-kecamatan-520804-dalam-angka-2026.csv",
+  "csvSha256": "477c14e637d24d7fa30bfada52bc7cd62a0c73e750d29a6d25f50638a9515245",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bayan, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1 (sex-by-village) could not be read reliably and is not included (figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?))",
+    "table 3.2: row not stored: row \"0-4 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"5-9 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"10-14 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"11-15 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"16-20 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"21-24 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"25-29 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"30-34 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"40-44 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"45-49 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"50-59 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"50-64 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"70-74 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"65-69 Tahun/Years\": unmatched ",
+    "table 3.2: row not stored: row \"75+ Tahun/Years\": unmatched ",
+    "table 3.2: 1 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}
