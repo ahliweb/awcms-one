@@ -8,11 +8,11 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 34    |
-| Migrations                          | 358   |
+| Migrations                          | 359   |
 | `awcms_*` tables                    | 321   |
 | Tables with `FORCE` RLS             | 301   |
 | RLS-free tables (global, by design) | 20    |
-| Test files                          | 929   |
+| Test files                          | 931   |
 | Route files                         | 846   |
 | ADR                                 | 294   |
 
@@ -417,6 +417,7 @@
 | 356 | `sql/1054_awcms_commerce_booking_pos_guard_marker.sql`                      |
 | 357 | `sql/1054_awcms_commerce_booking_revenue_export_permission.sql`             |
 | 358 | `sql/1055_awcms_commerce_booking_revenue_refund_payable.sql`                |
+| 359 | `sql/1060_awcms_commerce_segment_rule_schema_version.sql`                   |
 
 ### Tables & Row-Level Security
 
@@ -750,7 +751,7 @@
 | ------------- | ---------- |
 | `(root)`      | 670        |
 | `e2e`         | 28         |
-| `integration` | 230        |
+| `integration` | 232        |
 | `unit`        | 1          |
 
 ### Routes

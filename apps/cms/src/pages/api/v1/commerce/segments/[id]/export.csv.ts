@@ -18,6 +18,7 @@ import {
 import { exportSegmentMembers } from "../../../../../../modules/commerce/application/segment-evaluator";
 import {
   evaluationRefusalResponse,
+  requireBookingRuleAccess,
   requireCustomersRead,
   requireSegmentsFeature,
   segmentNotFoundResponse
@@ -76,6 +77,15 @@ export const GET = defineTenantRoute<SegmentMembersQuery>({
       prepared.version
     );
     if (!resolved) return segmentNotFoundResponse();
+    const bookingDenied = await requireBookingRuleAccess(
+      tx,
+      tenantId,
+      tokenHash,
+      now,
+      resolved.node,
+      { requireFeature: false }
+    );
+    if (bookingDenied) return bookingDenied;
 
     const outcome = await exportSegmentMembers(
       tx,

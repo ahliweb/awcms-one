@@ -9,6 +9,7 @@ import { csvCellForWrite } from "../../../lib/security/csv-formula";
 import { maskPhone } from "./phone-normalisation";
 import { isUuid } from "./register";
 import {
+  SEGMENT_RULE_SCHEMA_VERSION,
   validateSegmentRules,
   type SegmentNode,
   type SegmentRuleError,
@@ -45,6 +46,8 @@ export type CreateSegmentInput = {
   node: SegmentNode;
   canonicalRules: Record<string, unknown>;
   stats: SegmentRuleStats;
+  /** The rule schema the version is written under (ADR-0052); always the current one for new input. */
+  ruleSchemaVersion: number;
 };
 
 export type UpdateSegmentInput = {
@@ -56,6 +59,7 @@ export type UpdateSegmentInput = {
     node: SegmentNode;
     canonicalRules: Record<string, unknown>;
     stats: SegmentRuleStats;
+    ruleSchemaVersion: number;
   };
 };
 
@@ -144,7 +148,8 @@ export function validateCreateSegmentInput(
       description: description ?? null,
       node: rules.node,
       canonicalRules: rules.canonical,
-      stats: rules.stats
+      stats: rules.stats,
+      ruleSchemaVersion: SEGMENT_RULE_SCHEMA_VERSION
     }
   };
 }
@@ -197,7 +202,8 @@ export function validateUpdateSegmentInput(
       value.rules = {
         node: rules.node,
         canonicalRules: rules.canonical,
-        stats: rules.stats
+        stats: rules.stats,
+        ruleSchemaVersion: SEGMENT_RULE_SCHEMA_VERSION
       };
     } else {
       errors.push(...rules.errors);

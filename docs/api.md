@@ -167,6 +167,15 @@ Every route below is behind the tenant's `segments` feature flag (default OFF â€
 
 Evaluation is bounded: `422 SEGMENT_TOO_EXPENSIVE` (cancelled at the 5 s statement timeout), `429 SEGMENT_EVALUATION_BUSY` (2 per tenant, 1 per actor; `Retry-After`) and `429 RATE_LIMITED` (30 previews per actor per minute). Walk-in, blocked and erased customers are never counted or listed. Seven permission keys: `commerce.segments.{read,create,update,delete}`, `commerce.segment_previews.read`, `commerce.segment_members.{read,export}`. No domain event is published yet.
 
+### Booking-derived segment rules (issue #390, [ADR-0052](adr/0052-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md))
+
+The five routes above accept five more `field` values in a rule - `booking_count`, `stay_count`, `no_show_count`, `cancellation_count` (operators `eq gt gte lt lte`, integer `value` 0 to 1,000,000, optional `windowDays`) and `last_stay_date` (operators `before after never`, `value` an ISO instant or `{ "daysAgo": n }`, no window) - and nothing else about their bodies changes. Every version in a response carries `ruleSchemaVersion` (`1` for versions saved before this change, `2` for new ones); a version is always read under the schema it carries, so a booking field inside a schema-1 version is refused rather than evaluated. A rule that reads any of the five additionally needs:
+
+- to **define** it (`POST commerce/segments`, `PATCH commerce/segments/{id}` with `rules`, `POST commerce/segments/preview` with an unsaved `rules`): the tenant's `booking` feature (`409 FEATURE_DISABLED`) **and** `commerce.booking_reservation_links.read` (`403`);
+- to **read** a saved one (`preview` with `segmentId`, `members`, `export.csv`) and to **aim** a campaign or a loyalty program version at it: `commerce.booking_reservation_links.read` (`403`), not the feature.
+
+A rule without a booking field, a rename, and `GET commerce/segments/{id}` (rules only) need nothing new.
+
 ### Loyalty program eligibility by segment (issue #361)
 
 `POST commerce/loyalty/programs` and `PATCH commerce/loyalty/programs/{id}` accept `eligibilitySegmentId` (uuid, or `null` to clear) and optionally `eligibilitySegmentVersion`; `GET` returns both on every program. Setting a segment needs the tenant's `loyaltySegments` **and** `segments` features (`409 FEATURE_DISABLED`, both default OFF) and `commerce.segments.read` in addition to `commerce.loyalty.manage`; an unknown, foreign, retired or non-existent segment or version is `422 SEGMENT_NOT_FOUND`. Omitting the version pins the segment's latest at save time, and the pair is immutable once the program is activated. Clearing needs only `commerce.loyalty.manage`. No new route.

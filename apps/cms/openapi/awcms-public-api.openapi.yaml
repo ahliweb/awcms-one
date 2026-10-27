@@ -19749,7 +19749,7 @@ paths:
       tags:
         - Commerce
       summary: "Issue #360 (ADR-0042). Define a segment: a name and a rule tree in the closed vocabulary. Creates version 1. Gated on `commerce.segments.create` and the tenant's `segments` feature."
-      description: "The rule tree is validated against the closed vocabulary (PRD 6.1, owner answer Q7): an unknown field, operator or key, a value of the wrong type, a depth above 4, more than 25 nodes, more than 10 children in a group, more than 3 distinct windows or more than 8 KiB of JSON is a 400 whose `details` name the offending path (`rules.and[1].field`). A key outside `name`, `description`, `rules` - a `tenantId`, for instance - is refused by name, never honoured. The stored rules are the canonical form."
+      description: "The rule tree is validated against the closed vocabulary (PRD 6.1, owner answer Q7): an unknown field, operator or key, a value of the wrong type, a depth above 4, more than 25 nodes, more than 10 children in a group, more than 3 distinct windows or more than 8 KiB of JSON is a 400 whose `details` name the offending path (`rules.and[1].field`). A key outside `name`, `description`, `rules` - a `tenantId`, for instance - is refused by name, never honoured. The stored rules are the canonical form. A rule that reads a booking-derived field (rule schema 2, Issue #390, ADR-0052) additionally needs the tenant's `booking` feature (`409 FEATURE_DISABLED`) and `commerce.booking_reservation_links.read` (`403`); the version is stored under rule schema 2."
       requestBody:
         required: true
         content:
@@ -19825,7 +19825,7 @@ paths:
       operationId: updateCommerceSegment
       tags:
         - Commerce
-      summary: "Issue #360 (ADR-0042, PRD S1). Rename a segment and/or add a NEW version of its rules - an existing version is never changed. Must carry the `baseVersion` the edit started from. Gated on `commerce.segments.update`."
+      summary: "Issue #360 (ADR-0042, PRD S1). Rename a segment and/or add a NEW version of its rules - an existing version is never changed. Must carry the `baseVersion` the edit started from. Gated on `commerce.segments.update`. Issue #390 (ADR-0052): `rules` that read a booking-derived field additionally need the `booking` feature (`409 FEATURE_DISABLED`) and `commerce.booking_reservation_links.read` (`403`); a rename needs neither. The new version is stored under rule schema 2."
       parameters:
         - name: id
           in: path
@@ -19910,7 +19910,7 @@ paths:
       operationId: exportCommerceSegmentMembersCsv
       tags:
         - Commerce
-      summary: "Issue #360 (ADR-0042, control C-27). The members of a segment version as CSV. Gated on `commerce.segment_members.export` - the high-risk `export` verb; reading members grants none - AND `commerce.customers.read`."
+      summary: "Issue #360 (ADR-0042, control C-27). The members of a segment version as CSV. Gated on `commerce.segment_members.export` - the high-risk `export` verb; reading members grants none - AND `commerce.customers.read`. Issue #390: a version whose rules read a booking-derived field also needs `commerce.booking_reservation_links.read` (403)."
       description: "Every cell is spreadsheet-formula-neutralised; phone and e-mail are the masked forms a list shows. Bounded: at most 10,000 rows with `X-Export-Truncated: true` when more existed - never a silent cut. `Cache-Control: no-store`. The export is audited at `warning` severity with the actor, the version and the row count."
       parameters:
         - name: id
@@ -19975,7 +19975,7 @@ paths:
       operationId: listCommerceSegmentMembers
       tags:
         - Commerce
-      summary: "Issue #360 (ADR-0042, PRD S4). The customers a segment version matches, keyset-paged by customer id, masked. Gated on `commerce.segment_members.read` AND `commerce.customers.read` (403 without the second)."
+      summary: "Issue #360 (ADR-0042, PRD S4). The customers a segment version matches, keyset-paged by customer id, masked. Gated on `commerce.segment_members.read` AND `commerce.customers.read` (403 without the second). Issue #390: a version whose rules read a booking-derived field also needs `commerce.booking_reservation_links.read` (403)."
       description: Walk-in, blocked and erased customers are never members. Fields are the customer's name, masked phone, masked e-mail and price level. Every page is audited (actor, version, count - never who). Bounded like a preview (422 `SEGMENT_TOO_EXPENSIVE`, 429 `SEGMENT_EVALUATION_BUSY`). Each page is evaluated at the server's current instant.
       parameters:
         - name: id
@@ -20050,7 +20050,7 @@ paths:
       tags:
         - Commerce
       summary: "Issue #360 (ADR-0042, PRD S2). How many customers a rule matches. Body: `{ rules }` (unsaved) OR `{ segmentId, version? }` (saved). Gated on `commerce.segment_previews.read` and the tenant's `segments` feature."
-      description: 'Read-only and bounded (control C-26): at most 2 concurrent evaluations per tenant and 1 per actor (429 `SEGMENT_EVALUATION_BUSY`), a 5 s statement timeout (422 `SEGMENT_TOO_EXPENSIVE`), and 30 previews per actor per minute (429 `RATE_LIMITED`). The answer carries the SERVER''s `asOf` instant; the request has no such field and one is refused by name. A count below 5 is withheld: `count` is `{ suppressed: true, count: null, label: "fewer_than_5" }` (control C-27). `sample` (at most 10 masked customers, never pageable) is present only for a caller who also holds `commerce.segment_members.read` and `commerce.customers.read`; otherwise it is null and no customer permission is needed. The walk-in placeholder, blocked and erased customers are never counted.'
+      description: 'Read-only and bounded (control C-26): at most 2 concurrent evaluations per tenant and 1 per actor (429 `SEGMENT_EVALUATION_BUSY`), a 5 s statement timeout (422 `SEGMENT_TOO_EXPENSIVE`), and 30 previews per actor per minute (429 `RATE_LIMITED`). The answer carries the SERVER''s `asOf` instant; the request has no such field and one is refused by name. A count below 5 is withheld: `count` is `{ suppressed: true, count: null, label: "fewer_than_5" }` (control C-27). `sample` (at most 10 masked customers, never pageable) is present only for a caller who also holds `commerce.segment_members.read` and `commerce.customers.read`; otherwise it is null and no customer permission is needed. The walk-in placeholder, blocked and erased customers are never counted. A rule that reads a booking-derived field (rule schema 2, Issue #390, ADR-0052) additionally needs `commerce.booking_reservation_links.read` (`403`), and - for an unsaved `rules` body, which is a definition - the tenant''s `booking` feature (`409 FEATURE_DISABLED`).'
       requestBody:
         required: true
         content:
@@ -54387,7 +54387,7 @@ components:
           minimum: 1
     CommerceSegmentRules:
       type: object
-      description: 'A rule tree in the CLOSED vocabulary (PRD 6.1; owner answer Q7 - no booking-derived field). A node has exactly one of `and` / `or` (arrays of 1..10 nodes), `not` (one node) or `field`. A leaf is `{ field, op, value?, windowDays? }`. Fields and their operators: `level` (eq, in; 1..4), `has_account` / `has_email` (eq; boolean), `customer_since` (before, after; a date value), `order_count` (eq, gt, gte, lt, lte; integer 0..1000000; optional `windowDays`), `paid_spend` (gt, gte, lt, lte; a `numeric(14,2)` STRING; optional `windowDays`), `last_order_date` / `first_order_date` (before, after with a date value, or never with no value), `loyalty_balance` (eq, gt, gte, lt, lte; integer points). A date value is an ISO 8601 date-time with a zone, or `{ "daysAgo": 0..3650 }` resolved against the server''s as-of. Bounds: depth 4, 25 nodes, 3 distinct windows (1..3650 days), 8 KiB. "Paid order" means a live order with `paid_at` set, not cancelled or expired, paid at or before the as-of; spend is the sum of order totals.'
+      description: 'A rule tree in the CLOSED vocabulary (PRD 6.1; owner answer Q7). Rule schema 1 is the nine commerce fields; rule schema 2 (Issue #390, ADR-0052) adds five booking-derived ones. A node has exactly one of `and` / `or` (arrays of 1..10 nodes), `not` (one node) or `field`. A leaf is `{ field, op, value?, windowDays? }`. Fields and their operators: `level` (eq, in; 1..4), `has_account` / `has_email` (eq; boolean), `customer_since` (before, after; a date value), `order_count` (eq, gt, gte, lt, lte; integer 0..1000000; optional `windowDays`), `paid_spend` (gt, gte, lt, lte; a `numeric(14,2)` STRING; optional `windowDays`), `last_order_date` / `first_order_date` (before, after with a date value, or never with no value), `loyalty_balance` (eq, gt, gte, lt, lte; integer points). Schema 2 adds `booking_count` (paid, standing bookings; window on the order''s `paid_at`), `stay_count` (checked-in or completed stays; window on the arrival), `no_show_count` and `cancellation_count` (cancellations the CUSTOMER made; window on the decision''s `created_at`) - all four eq, gt, gte, lt, lte; integer 0..1000000; optional `windowDays` - and `last_stay_date` (before, after with a date value, or never with no value; no window). A booking field needs the tenant''s `booking` feature and `commerce.booking_reservation_links.read` to DEFINE (create, a new version, an unsaved preview) and the permission alone to read, export or aim a campaign / loyalty program at a saved one. A date value is an ISO 8601 date-time with a zone, or `{ "daysAgo": 0..3650 }` resolved against the server''s as-of. Bounds: depth 4, 25 nodes, 3 distinct windows (1..3650 days), 8 KiB. "Paid order" means a live order with `paid_at` set, not cancelled or expired, paid at or before the as-of; spend is the sum of order totals.'
       additionalProperties: true
     CommerceSegmentUpdate:
       type: object
@@ -54414,6 +54414,7 @@ components:
       type: object
       required:
         - version
+        - ruleSchemaVersion
         - rules
         - nodeCount
         - depth
@@ -54421,6 +54422,10 @@ components:
       properties:
         version:
           type: integer
+        ruleSchemaVersion:
+          type: integer
+          minimum: 1
+          description: "Issue #390 (ADR-0052, C-29). The rule schema the version was written under (1 = the nine commerce fields, 2 = adds the booking-derived fields) and is always read under: a schema-1 version never gains a schema-2 field. Versions saved before schema 2 existed are 1; new versions are 2."
         rules:
           $ref: "#/components/schemas/CommerceSegmentRules"
         nodeCount:

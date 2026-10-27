@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:62ae2659dbba795d51dd7b3e3ad782e06ef16a1646a75b88c2a0288fd3271875 -->
+<!-- i18n-source-hash: sha256:532d82ae1c7a0f70d0abc14ef1b4966f6f61192879d03656e92ed0827674ee1c -->
 
 # Architecture Decision Records
 
@@ -73,6 +73,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0049](0049-install-metadata-is-derived-at-build-time-and-the-ios-help-page-is-opt-in.md)                                               | Metadata instalasi diturunkan saat build (ikon PNG netral hasil generate, `id` manifest stabil), dan halaman bantuan Layar Utama iOS adalah flag build opt-in yang mati secara bawaan                                                                                | Diterima                                                                                                                      |
 | [0050](0050-lynxjs-for-separate-persona-apps-astro-stays-for-admin-and-public-profiles.md)                                              | LynxJS/ReactLynx untuk aplikasi persona terpisah; Astro tetap untuk admin dan setiap profil publik (hanya arah, belum diimplementasikan)                                                                                                                             | Accepted as direction; not implemented                                                                                        |
 | [0051](0051-bps-population-statistics-are-versioned-global-reference-data-stored-exactly-as-published.md)                               | Statistik penduduk BPS adalah data referensi global berversi, disimpan persis seperti yang diterbitkan (nilai + unit + dasar + level, tidak pernah dikonversi; impor dan aktivasi lewat CLI operator; penahanan sel kecil; MIT hanya mencakup perkakas, bukan angka) | Accepted                                                                                                                      |
+| [0052](0052-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md)                    | Aturan segmen turunan booking adalah skema aturan 2 (lima field), dibaca langsung lewat tautan booking dan tidak pernah disimpan; versi skema disimpan per versi segmen, sehingga aturan lama dievaluasi tanpa berubah                                               | Diterima                                                                                                                      |
 
 ## Mengapa penomoran dimulai dari 0001
 

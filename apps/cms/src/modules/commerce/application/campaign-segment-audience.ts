@@ -51,7 +51,11 @@
 import { fail } from "../../_shared/api-response";
 import type { CampaignChannel } from "../domain/campaign-validation";
 import type { CommerceFeatures } from "../domain/commerce-features";
-import { suppressSmallCount, type SegmentCount } from "../domain/segment-rules";
+import {
+  suppressSmallCount,
+  type SegmentCount,
+  type SegmentNode
+} from "../domain/segment-rules";
 import { fetchCommerceFeatures } from "./commerce-feature-gate";
 import { resolveSegmentRules } from "./segment-directory";
 import { runBoundedEvaluation } from "./segment-evaluator";
@@ -102,7 +106,7 @@ export async function requireCampaignSegmentAudienceFeature(
 // ---------------------------------------------------------------------------
 
 export type ResolvePinOutcome =
-  | { kind: "ok"; pin: CampaignSegmentPin }
+  | { kind: "ok"; pin: CampaignSegmentPin; node: SegmentNode }
   | { kind: "not_found" }
   | { kind: "retired" };
 
@@ -141,7 +145,9 @@ export async function resolveCampaignSegmentPin(
       segmentId: resolved.segmentId,
       version: resolved.version,
       asOf: null
-    }
+    },
+    // The pinned rule tree, so a caller can check what the rule reads (ADR-0052).
+    node: resolved.node
   };
 }
 
