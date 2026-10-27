@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.72.05.1002,4,Pademangan Barat,sex,laki_laki,,45891,jiwa,2025,registration,total_population,5.1,,,Laki-Laki/Male
+31.72.05.1002,4,Pademangan Barat,sex,perempuan,,44011,jiwa,2025,registration,total_population,5.1,,,Perempuan/Fem
+31.72.05.1002,4,Pademangan Barat,total,total,,89902,jiwa,2025,registration,total_population,5.1,,,
+31.72.05.1001,4,Pademangan Timur,sex,laki_laki,,22836,jiwa,2025,registration,total_population,5.1,,,Laki-Laki/Male
+31.72.05.1001,4,Pademangan Timur,sex,perempuan,,23411,jiwa,2025,registration,total_population,5.1,,,Perempuan/Fem
+31.72.05.1001,4,Pademangan Timur,total,total,,46247,jiwa,2025,registration,total_population,5.1,,,
+31.72.05.1003,4,Ancol,sex,laki_laki,,15667,jiwa,2025,registration,total_population,5.1,,,Laki-Laki/Male
+31.72.05.1003,4,Ancol,sex,perempuan,,14880,jiwa,2025,registration,total_population,5.1,,,Perempuan/Fem
+31.72.05.1003,4,Ancol,total,total,,30547,jiwa,2025,registration,total_population,5.1,,,
+31.72.05,3,Pademangan,sex,laki_laki,,84394,jiwa,2025,registration,total_population,5.1,,,Laki-Laki/Male
+31.72.05,3,Pademangan,sex,perempuan,,82302,jiwa,2025,registration,total_population,5.1,,,Perempuan/Fem
+31.72.05,3,Pademangan,total,total,,166696,jiwa,2025,registration,total_population,5.1,,,
+31.72.05,3,Pademangan,age_group,0-4,laki_laki,5610,jiwa,2024,registration,total_population,5.2,36,,0-4
+31.72.05,3,Pademangan,age_group,0-4,perempuan,5210,jiwa,2024,registration,total_population,5.2,36,,0-4
+31.72.05,3,Pademangan,age_group,0-4,,10820,jiwa,2024,registration,total_population,5.2,36,,0-4
+31.72.05,3,Pademangan,age_group,5-9,laki_laki,7107,jiwa,2024,registration,total_population,5.2,36,,5-9
+31.72.05,3,Pademangan,age_group,5-9,perempuan,6677,jiwa,2024,registration,total_population,5.2,36,,5-9
+31.72.05,3,Pademangan,age_group,5-9,,13784,jiwa,2024,registration,total_population,5.2,36,,5-9
+31.72.05,3,Pademangan,age_group,10-14,laki_laki,7663,jiwa,2024,registration,total_population,5.2,36,,10-14
+31.72.05,3,Pademangan,age_group,10-14,perempuan,6998,jiwa,2024,registration,total_population,5.2,36,,10-14
+31.72.05,3,Pademangan,age_group,10-14,,14661,jiwa,2024,registration,total_population,5.2,36,,10-14
+31.72.05,3,Pademangan,age_group,15-19,laki_laki,7080,jiwa,2024,registration,total_population,5.2,36,,15-19
+31.72.05,3,Pademangan,age_group,15-19,perempuan,6619,jiwa,2024,registration,total_population,5.2,36,,15-19
+31.72.05,3,Pademangan,age_group,15-19,,13699,jiwa,2024,registration,total_population,5.2,36,,15-19
+31.72.05,3,Pademangan,age_group,20-24,laki_laki,6618,jiwa,2024,registration,total_population,5.2,36,,20-24
+31.72.05,3,Pademangan,age_group,20-24,perempuan,6305,jiwa,2024,registration,total_population,5.2,36,,20-24
+31.72.05,3,Pademangan,age_group,20-24,,12923,jiwa,2024,registration,total_population,5.2,36,,20-24
+31.72.05,3,Pademangan,age_group,25-29,laki_laki,6116,jiwa,2024,registration,total_population,5.2,36,,25-29
+31.72.05,3,Pademangan,age_group,25-29,perempuan,6118,jiwa,2024,registration,total_population,5.2,36,,25-29
+31.72.05,3,Pademangan,age_group,25-29,,12234,jiwa,2024,registration,total_population,5.2,36,,25-29
+31.72.05,3,Pademangan,age_group,30-34,laki_laki,6665,jiwa,2024,registration,total_population,5.2,36,,30-34
+31.72.05,3,Pademangan,age_group,30-34,perempuan,6488,jiwa,2024,registration,total_population,5.2,36,,30-34
+31.72.05,3,Pademangan,age_group,30-34,,13153,jiwa,2024,registration,total_population,5.2,36,,30-34
+31.72.05,3,Pademangan,age_group,35-39,laki_laki,7124,jiwa,2024,registration,total_population,5.2,36,,35-39
+31.72.05,3,Pademangan,age_group,35-39,perempuan,7153,jiwa,2024,registration,total_population,5.2,36,,35-39
+31.72.05,3,Pademangan,age_group,35-39,,14277,jiwa,2024,registration,total_population,5.2,36,,35-39
+31.72.05,3,Pademangan,age_group,40-44,laki_laki,7910,jiwa,2024,registration,total_population,5.2,36,,40-44
+31.72.05,3,Pademangan,age_group,40-44,perempuan,7619,jiwa,2024,registration,total_population,5.2,36,,40-44
+31.72.05,3,Pademangan,age_group,40-44,,15529,jiwa,2024,registration,total_population,5.2,36,,40-44
+31.72.05,3,Pademangan,age_group,45-49,laki_laki,6747,jiwa,2024,registration,total_population,5.2,36,,45-49
+31.72.05,3,Pademangan,age_group,45-49,perempuan,6461,jiwa,2024,registration,total_population,5.2,36,,45-49
+31.72.05,3,Pademangan,age_group,45-49,,13208,jiwa,2024,registration,total_population,5.2,36,,45-49
+31.72.05,3,Pademangan,age_group,50-54,laki_laki,5632,jiwa,2024,registration,total_population,5.2,36,,50-54
+31.72.05,3,Pademangan,age_group,50-54,perempuan,5318,jiwa,2024,registration,total_population,5.2,36,,50-54
+31.72.05,3,Pademangan,age_group,50-54,,10950,jiwa,2024,registration,total_population,5.2,36,,50-54
+31.72.05,3,Pademangan,age_group,55-59,laki_laki,4423,jiwa,2024,registration,total_population,5.2,36,,55-59
+31.72.05,3,Pademangan,age_group,55-59,perempuan,4208,jiwa,2024,registration,total_population,5.2,36,,55-59
+31.72.05,3,Pademangan,age_group,55-59,,8631,jiwa,2024,registration,total_population,5.2,36,,55-59
+31.72.05,3,Pademangan,age_group,60-64,laki_laki,3153,jiwa,2024,registration,total_population,5.2,36,,60-64
+31.72.05,3,Pademangan,age_group,60-64,perempuan,3246,jiwa,2024,registration,total_population,5.2,36,,60-64
+31.72.05,3,Pademangan,age_group,60-64,,6399,jiwa,2024,registration,total_population,5.2,36,,60-64
+31.72.05,3,Pademangan,age_group,65-69,laki_laki,2114,jiwa,2024,registration,total_population,5.2,36,,65-69
+31.72.05,3,Pademangan,age_group,65-69,perempuan,2510,jiwa,2024,registration,total_population,5.2,36,,65-69
+31.72.05,3,Pademangan,age_group,65-69,,4624,jiwa,2024,registration,total_population,5.2,36,,65-69
+31.72.05,3,Pademangan,age_group,70-74,laki_laki,1443,jiwa,2024,registration,total_population,5.2,36,,70-74
+31.72.05,3,Pademangan,age_group,70-74,perempuan,1828,jiwa,2024,registration,total_population,5.2,36,,70-74
+31.72.05,3,Pademangan,age_group,70-74,,3271,jiwa,2024,registration,total_population,5.2,36,,70-74
+31.72.05,3,Pademangan,age_group,75+,laki_laki,984,jiwa,2024,registration,total_population,5.2,36,,75+
+31.72.05,3,Pademangan,age_group,75+,perempuan,1365,jiwa,2024,registration,total_population,5.2,36,,75+
+31.72.05,3,Pademangan,age_group,75+,,2349,jiwa,2024,registration,total_population,5.2,36,,75+
+31.72.05,3,Pademangan,sex,laki_laki,,86389,jiwa,2024,registration,total_population,5.2,36,,Laki-Laki
+31.72.05,3,Pademangan,sex,perempuan,,84123,jiwa,2024,registration,total_population,5.2,36,,Perempuan
+31.72.05,3,Pademangan,total,total,,170512,jiwa,2024,registration,total_population,5.2,36,,

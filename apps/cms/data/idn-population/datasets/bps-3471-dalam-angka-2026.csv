@@ -1,0 +1,47 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/padi_padian,,59249,rupiah,2025,survey_estimate,per_capita,10.1,410,,Padi-padian
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/padi_padian,,67029,rupiah,2024,survey_estimate,per_capita,10.1,410,,Padi-padian
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/umbi_umbian,,6786,rupiah,2025,survey_estimate,per_capita,10.1,410,,Umbi-umbian
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/umbi_umbian,,5334,rupiah,2024,survey_estimate,per_capita,10.1,410,,Umbi-umbian
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,32053,rupiah,2025,survey_estimate,per_capita,10.1,410,,Ikan/udang/cumi/kerang
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,27715,rupiah,2024,survey_estimate,per_capita,10.1,410,,Ikan/udang/cumi/kerang
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/daging,,42427,rupiah,2025,survey_estimate,per_capita,10.1,410,,Daging
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/daging,,43458,rupiah,2024,survey_estimate,per_capita,10.1,410,,Daging
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/telur_dan_susu,,52413,rupiah,2025,survey_estimate,per_capita,10.1,410,,Telur dan susu
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/telur_dan_susu,,56440,rupiah,2024,survey_estimate,per_capita,10.1,410,,Telur dan susu
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/sayur_sayuran,,55472,rupiah,2025,survey_estimate,per_capita,10.1,410,,Sayur-sayuran
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/sayur_sayuran,,51147,rupiah,2024,survey_estimate,per_capita,10.1,410,,Sayur-sayuran
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/kacang_kacangan,,15182,rupiah,2025,survey_estimate,per_capita,10.1,410,,Kacang-kacangan
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/kacang_kacangan,,16024,rupiah,2024,survey_estimate,per_capita,10.1,410,,Kacang-kacangan
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/buah_buahan,,59977,rupiah,2025,survey_estimate,per_capita,10.1,410,,Buah-buahan
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/buah_buahan,,47018,rupiah,2024,survey_estimate,per_capita,10.1,410,,Buah-buahan
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14163,rupiah,2025,survey_estimate,per_capita,10.1,410,,Minyak dan kelapa
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/minyak_dan_kelapa,,13113,rupiah,2024,survey_estimate,per_capita,10.1,410,,Minyak dan kelapa
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/bahan_minuman,,19279,rupiah,2025,survey_estimate,per_capita,10.1,410,,Bahan minuman
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/bahan_minuman,,20146,rupiah,2024,survey_estimate,per_capita,10.1,410,,Bahan minuman
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/bumbu_bumbuan,,11518,rupiah,2025,survey_estimate,per_capita,10.1,410,,Bumbu-bumbuan
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/bumbu_bumbuan,,11173,rupiah,2024,survey_estimate,per_capita,10.1,410,,Bumbu-bumbuan
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/konsumsi_lainnya,,12739,rupiah,2025,survey_estimate,per_capita,10.1,410,,Konsumsi lainnya
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/konsumsi_lainnya,,12564,rupiah,2024,survey_estimate,per_capita,10.1,410,,Konsumsi lainnya
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,351480,rupiah,2025,survey_estimate,per_capita,10.1,410,,Makanan dan minuman jadi
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,402231,rupiah,2024,survey_estimate,per_capita,10.1,410,,Makanan dan minuman jadi
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/rokok,,56417,rupiah,2025,survey_estimate,per_capita,10.1,410,,Rokok
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/rokok,,60369,rupiah,2024,survey_estimate,per_capita,10.1,410,,Rokok
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/jumlah_makanan,,789155,rupiah,2025,survey_estimate,per_capita,10.1,410,,Jumlah makanan
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/jumlah_makanan,,833761,rupiah,2024,survey_estimate,per_capita,10.1,410,,Jumlah makanan
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,610538,rupiah,2025,survey_estimate,per_capita,10.1,410,,Perumahan dan fasilitas rumah tangga
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,718183,rupiah,2024,survey_estimate,per_capita,10.1,410,,Perumahan dan fasilitas rumah tangga
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,463567,rupiah,2025,survey_estimate,per_capita,10.1,410,,Aneka barang dan jasa
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,428293,rupiah,2024,survey_estimate,per_capita,10.1,410,,Aneka barang dan jasa
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,44351,rupiah,2025,survey_estimate,per_capita,10.1,410,,"Pakaian, alas kaki, dan tutup kepala"
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,41739,rupiah,2024,survey_estimate,per_capita,10.1,410,,"Pakaian, alas kaki, dan tutup kepala"
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/barang_tahan_lama,,131024,rupiah,2025,survey_estimate,per_capita,10.1,410,,Barang tahan lama
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/barang_tahan_lama,,88522,rupiah,2024,survey_estimate,per_capita,10.1,410,,Barang tahan lama
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,95777,rupiah,2025,survey_estimate,per_capita,10.1,410,,"Pajak, pungutan, dan asuransi"
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,96429,rupiah,2024,survey_estimate,per_capita,10.1,410,,"Pajak, pungutan, dan asuransi"
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,53267,rupiah,2025,survey_estimate,per_capita,10.1,410,,Keperluan pesta dan upacara/kenduri
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,41218,rupiah,2024,survey_estimate,per_capita,10.1,410,,Keperluan pesta dan upacara/kenduri
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1398523,rupiah,2025,survey_estimate,per_capita,10.1,410,,Jumlah bukan makanan
+34.71,2,Kota Yogyakarta,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1414383,rupiah,2024,survey_estimate,per_capita,10.1,410,,Jumlah bukan makanan
+34.71,2,Kota Yogyakarta,expenditure,total,,2187678,rupiah,2025,survey_estimate,per_capita,10.1,410,,
+34.71,2,Kota Yogyakarta,expenditure,total,,2248144,rupiah,2024,survey_estimate,per_capita,10.1,410,,

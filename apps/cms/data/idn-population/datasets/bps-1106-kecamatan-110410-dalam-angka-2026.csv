@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.04.10.2003,4,Bintang Pepara,sex,laki_laki,,117,jiwa,2025,registration,total_population,1.3,23,,Laki-Laki/Male
+11.04.10.2003,4,Bintang Pepara,sex,perempuan,,119,jiwa,2025,registration,total_population,1.3,23,,Perempuan/Female
+11.04.10.2003,4,Bintang Pepara,total,total,,236,jiwa,2025,registration,total_population,1.3,23,,
+11.04.10.2001,4,Bah,sex,laki_laki,,363,jiwa,2025,registration,total_population,1.3,23,,Laki-Laki/Male
+11.04.10.2001,4,Bah,sex,perempuan,,336,jiwa,2025,registration,total_population,1.3,23,,Perempuan/Female
+11.04.10.2001,4,Bah,total,total,,699,jiwa,2025,registration,total_population,1.3,23,,
+11.04.10.2006,4,Cang Duri,sex,laki_laki,,369,jiwa,2025,registration,total_population,1.3,23,,Laki-Laki/Male
+11.04.10.2006,4,Cang Duri,sex,perempuan,,363,jiwa,2025,registration,total_population,1.3,23,,Perempuan/Female
+11.04.10.2006,4,Cang Duri,total,total,,732,jiwa,2025,registration,total_population,1.3,23,,
+11.04.10.2008,4,Jaluk,sex,laki_laki,,466,jiwa,2025,registration,total_population,1.3,23,,Laki-Laki/Male
+11.04.10.2008,4,Jaluk,sex,perempuan,,447,jiwa,2025,registration,total_population,1.3,23,,Perempuan/Female
+11.04.10.2008,4,Jaluk,total,total,,913,jiwa,2025,registration,total_population,1.3,23,,
+11.04.10.2007,4,Gelumpang Payung,sex,laki_laki,,312,jiwa,2025,registration,total_population,1.3,23,,Laki-Laki/Male
+11.04.10.2007,4,Gelumpang Payung,sex,perempuan,,296,jiwa,2025,registration,total_population,1.3,23,,Perempuan/Female
+11.04.10.2007,4,Gelumpang Payung,total,total,,608,jiwa,2025,registration,total_population,1.3,23,,
+11.04.10.2002,4,Blang Mancung,sex,laki_laki,,957,jiwa,2025,registration,total_population,1.3,23,,Laki-Laki/Male
+11.04.10.2002,4,Blang Mancung,sex,perempuan,,926,jiwa,2025,registration,total_population,1.3,23,,Perempuan/Female
+11.04.10.2002,4,Blang Mancung,total,total,,1883,jiwa,2025,registration,total_population,1.3,23,,
+11.04.10.2012,4,Kute Gelime,sex,laki_laki,,346,jiwa,2025,registration,total_population,1.3,23,,Laki-Laki/Male
+11.04.10.2012,4,Kute Gelime,sex,perempuan,,345,jiwa,2025,registration,total_population,1.3,23,,Perempuan/Female
+11.04.10.2012,4,Kute Gelime,total,total,,691,jiwa,2025,registration,total_population,1.3,23,,
+11.04.10.2009,4,Kalaketol,sex,laki_laki,,266,jiwa,2025,registration,total_population,1.3,23,,Laki-Laki/Male
+11.04.10.2009,4,Kalaketol,sex,perempuan,,229,jiwa,2025,registration,total_population,1.3,23,,Perempuan/Female
+11.04.10.2009,4,Kalaketol,total,total,,495,jiwa,2025,registration,total_population,1.3,23,,
+11.04.10.2017,4,Serempah,sex,laki_laki,,217,jiwa,2025,registration,total_population,1.3,23,,Laki-Laki/Male
+11.04.10.2017,4,Serempah,sex,perempuan,,191,jiwa,2025,registration,total_population,1.3,23,,Perempuan/Female
+11.04.10.2017,4,Serempah,total,total,,408,jiwa,2025,registration,total_population,1.3,23,,
+11.04.10.2004,4,Burlah,sex,laki_laki,,178,jiwa,2025,registration,total_population,1.3,23,,Laki-Laki/Male
+11.04.10.2004,4,Burlah,sex,perempuan,,172,jiwa,2025,registration,total_population,1.3,23,,Perempuan/Female
+11.04.10.2004,4,Burlah,total,total,,350,jiwa,2025,registration,total_population,1.3,23,,
+11.04.10.2016,4,Rejewali,sex,laki_laki,,501,jiwa,2025,registration,total_population,1.3,23,,Laki-Laki/Male
+11.04.10.2016,4,Rejewali,sex,perempuan,,528,jiwa,2025,registration,total_population,1.3,23,,Perempuan/Female
+11.04.10.2016,4,Rejewali,total,total,,1029,jiwa,2025,registration,total_population,1.3,23,,
+11.04.10.2015,4,Pondok Balik,sex,laki_laki,,465,jiwa,2025,registration,total_population,1.3,23,,Laki-Laki/Male
+11.04.10.2015,4,Pondok Balik,sex,perempuan,,495,jiwa,2025,registration,total_population,1.3,23,,Perempuan/Female
+11.04.10.2015,4,Pondok Balik,total,total,,960,jiwa,2025,registration,total_population,1.3,23,,
+11.04.10.2005,4,Buter,sex,laki_laki,,317,jiwa,2025,registration,total_population,1.3,23,,Laki-Laki/Male
+11.04.10.2005,4,Buter,sex,perempuan,,300,jiwa,2025,registration,total_population,1.3,23,,Perempuan/Female
+11.04.10.2005,4,Buter,total,total,,617,jiwa,2025,registration,total_population,1.3,23,,
+11.04.10.2011,4,Kekuyang,sex,laki_laki,,653,jiwa,2025,registration,total_population,1.3,23,,Laki-Laki/Male
+11.04.10.2011,4,Kekuyang,sex,perempuan,,597,jiwa,2025,registration,total_population,1.3,23,,Perempuan/Female
+11.04.10.2011,4,Kekuyang,total,total,,1250,jiwa,2025,registration,total_population,1.3,23,,
+11.04.10.2010,4,Karang Ampar,sex,laki_laki,,293,jiwa,2025,registration,total_population,1.3,23,,Laki-Laki/Male
+11.04.10.2010,4,Karang Ampar,sex,perempuan,,246,jiwa,2025,registration,total_population,1.3,23,,Perempuan/Female
+11.04.10.2010,4,Karang Ampar,total,total,,539,jiwa,2025,registration,total_population,1.3,23,,
+11.04.10.2014,4,Pantan Reduk,sex,laki_laki,,244,jiwa,2025,registration,total_population,1.3,23,,Laki-Laki/Male
+11.04.10.2014,4,Pantan Reduk,sex,perempuan,,182,jiwa,2025,registration,total_population,1.3,23,,Perempuan/Female
+11.04.10.2014,4,Pantan Reduk,total,total,,426,jiwa,2025,registration,total_population,1.3,23,,
+11.04.10.2023,4,Jerata,sex,laki_laki,,207,jiwa,2025,registration,total_population,1.3,23,,Laki-Laki/Male
+11.04.10.2023,4,Jerata,sex,perempuan,,171,jiwa,2025,registration,total_population,1.3,23,,Perempuan/Female
+11.04.10.2023,4,Jerata,total,total,,378,jiwa,2025,registration,total_population,1.3,23,,
+11.04.10.2024,4,Simpang Juli,sex,laki_laki,,229,jiwa,2025,registration,total_population,1.3,23,,Laki-Laki/Male
+11.04.10.2024,4,Simpang Juli,sex,perempuan,,243,jiwa,2025,registration,total_population,1.3,23,,Perempuan/Female
+11.04.10.2024,4,Simpang Juli,total,total,,472,jiwa,2025,registration,total_population,1.3,23,,
+11.04.10.2022,4,Jalan Tengah,sex,laki_laki,,444,jiwa,2025,registration,total_population,1.3,23,,Laki-Laki/Male
+11.04.10.2022,4,Jalan Tengah,sex,perempuan,,462,jiwa,2025,registration,total_population,1.3,23,,Perempuan/Female
+11.04.10.2022,4,Jalan Tengah,total,total,,906,jiwa,2025,registration,total_population,1.3,23,,

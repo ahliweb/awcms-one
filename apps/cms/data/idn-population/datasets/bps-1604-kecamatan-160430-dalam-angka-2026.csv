@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.04.30.2010,4,Durian Dangkal,sex,laki_laki,,467,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.30.2010,4,Durian Dangkal,sex,perempuan,,428,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.30.2010,4,Durian Dangkal,total,total,,895,jiwa,2025,registration,total_population,3.1,28,,
+16.04.30.2009,4,Penandingan,sex,laki_laki,,384,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.30.2009,4,Penandingan,sex,perempuan,,344,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.30.2009,4,Penandingan,total,total,,728,jiwa,2025,registration,total_population,3.1,28,,
+16.04.30.2007,4,Talang Padang,sex,laki_laki,,139,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.30.2007,4,Talang Padang,sex,perempuan,,121,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.30.2007,4,Talang Padang,total,total,,260,jiwa,2025,registration,total_population,3.1,28,,
+16.04.30.2008,4,Lubuk Dendan,sex,laki_laki,,335,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.30.2008,4,Lubuk Dendan,sex,perempuan,,310,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.30.2008,4,Lubuk Dendan,total,total,,645,jiwa,2025,registration,total_population,3.1,28,,
+16.04.30.2001,4,Jadian Baru,sex,laki_laki,,284,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.30.2001,4,Jadian Baru,sex,perempuan,,260,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.30.2001,4,Jadian Baru,total,total,,544,jiwa,2025,registration,total_population,3.1,28,,
+16.04.30.2002,4,Jadian Lama,sex,laki_laki,,242,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.30.2002,4,Jadian Lama,sex,perempuan,,225,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.30.2002,4,Jadian Lama,total,total,,467,jiwa,2025,registration,total_population,3.1,28,,
+16.04.30.2003,4,Talang Berangin,sex,laki_laki,,197,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.30.2003,4,Talang Berangin,sex,perempuan,,174,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.30.2003,4,Talang Berangin,total,total,,371,jiwa,2025,registration,total_population,3.1,28,,
+16.04.30.2004,4,Padang Bindu,sex,laki_laki,,228,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.30.2004,4,Padang Bindu,sex,perempuan,,246,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.30.2004,4,Padang Bindu,total,total,,474,jiwa,2025,registration,total_population,3.1,28,,
+16.04.30.2005,4,Keban Agung,sex,laki_laki,,548,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.30.2005,4,Keban Agung,sex,perempuan,,490,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.30.2005,4,Keban Agung,total,total,,1038,jiwa,2025,registration,total_population,3.1,28,,
+16.04.30.2006,4,Danau Belidang,sex,laki_laki,,259,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.30.2006,4,Danau Belidang,sex,perempuan,,236,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.30.2006,4,Danau Belidang,total,total,,495,jiwa,2025,registration,total_population,3.1,28,,
+16.04.30,3,Mulak Sebingkai,sex,laki_laki,,3083,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.30,3,Mulak Sebingkai,sex,perempuan,,2834,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.30,3,Mulak Sebingkai,total,total,,5917,jiwa,2025,registration,total_population,3.1,28,,
+16.04.30,3,Mulak Sebingkai,age_group,0-4,laki_laki,153,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.04.30,3,Mulak Sebingkai,age_group,0-4,perempuan,140,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.04.30,3,Mulak Sebingkai,age_group,0-4,,293,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.04.30,3,Mulak Sebingkai,age_group,5-9,laki_laki,218,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.04.30,3,Mulak Sebingkai,age_group,5-9,perempuan,204,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.04.30,3,Mulak Sebingkai,age_group,5-9,,422,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.04.30,3,Mulak Sebingkai,age_group,10-14,laki_laki,246,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.04.30,3,Mulak Sebingkai,age_group,10-14,perempuan,244,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.04.30,3,Mulak Sebingkai,age_group,10-14,,490,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.04.30,3,Mulak Sebingkai,age_group,15-19,laki_laki,261,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.04.30,3,Mulak Sebingkai,age_group,15-19,perempuan,258,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.04.30,3,Mulak Sebingkai,age_group,15-19,,519,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.04.30,3,Mulak Sebingkai,age_group,20-24,laki_laki,236,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.04.30,3,Mulak Sebingkai,age_group,20-24,perempuan,227,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.04.30,3,Mulak Sebingkai,age_group,20-24,,463,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.04.30,3,Mulak Sebingkai,age_group,25-29,laki_laki,217,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.04.30,3,Mulak Sebingkai,age_group,25-29,perempuan,180,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.04.30,3,Mulak Sebingkai,age_group,25-29,,397,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.04.30,3,Mulak Sebingkai,age_group,30-34,laki_laki,178,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.04.30,3,Mulak Sebingkai,age_group,30-34,perempuan,156,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.04.30,3,Mulak Sebingkai,age_group,30-34,,334,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.04.30,3,Mulak Sebingkai,age_group,35-39,laki_laki,242,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.04.30,3,Mulak Sebingkai,age_group,35-39,perempuan,197,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.04.30,3,Mulak Sebingkai,age_group,35-39,,439,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.04.30,3,Mulak Sebingkai,age_group,40-44,laki_laki,263,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.04.30,3,Mulak Sebingkai,age_group,40-44,perempuan,221,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.04.30,3,Mulak Sebingkai,age_group,40-44,,484,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.04.30,3,Mulak Sebingkai,age_group,45-49,laki_laki,291,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.04.30,3,Mulak Sebingkai,age_group,45-49,perempuan,215,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.04.30,3,Mulak Sebingkai,age_group,45-49,,506,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.04.30,3,Mulak Sebingkai,age_group,50-54,laki_laki,187,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.04.30,3,Mulak Sebingkai,age_group,50-54,perempuan,177,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.04.30,3,Mulak Sebingkai,age_group,50-54,,364,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.04.30,3,Mulak Sebingkai,age_group,55-59,laki_laki,191,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.04.30,3,Mulak Sebingkai,age_group,55-59,perempuan,173,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.04.30,3,Mulak Sebingkai,age_group,55-59,,364,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.04.30,3,Mulak Sebingkai,age_group,60-64,laki_laki,126,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.04.30,3,Mulak Sebingkai,age_group,60-64,perempuan,129,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.04.30,3,Mulak Sebingkai,age_group,60-64,,255,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.04.30,3,Mulak Sebingkai,age_group,65-69,laki_laki,114,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.04.30,3,Mulak Sebingkai,age_group,65-69,perempuan,131,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.04.30,3,Mulak Sebingkai,age_group,65-69,,245,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.04.30,3,Mulak Sebingkai,age_group,70-74,laki_laki,76,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.04.30,3,Mulak Sebingkai,age_group,70-74,perempuan,69,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.04.30,3,Mulak Sebingkai,age_group,70-74,,145,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.04.30,3,Mulak Sebingkai,age_group,75+,laki_laki,84,jiwa,2025,registration,total_population,3.2,30,,75 +
+16.04.30,3,Mulak Sebingkai,age_group,75+,perempuan,113,jiwa,2025,registration,total_population,3.2,30,,75 +
+16.04.30,3,Mulak Sebingkai,age_group,75+,,197,jiwa,2025,registration,total_population,3.2,30,,75 +
+16.04.30,3,Mulak Sebingkai,sex,laki_laki,,3083,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+16.04.30,3,Mulak Sebingkai,sex,perempuan,,2834,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+16.04.30,3,Mulak Sebingkai,total,total,,5917,jiwa,2025,registration,total_population,3.2,30,,

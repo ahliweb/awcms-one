@@ -1,0 +1,248 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.04,2,Kabupaten Lahat,age_group,0-4,laki_laki,15378,jiwa,2025,registration,total_population,3.1.2,51,,0–4
+16.04,2,Kabupaten Lahat,age_group,0-4,perempuan,14239,jiwa,2025,registration,total_population,3.1.2,51,,0–4
+16.04,2,Kabupaten Lahat,age_group,0-4,,29617,jiwa,2025,registration,total_population,3.1.2,51,,0–4
+16.04,2,Kabupaten Lahat,age_group,5-9,laki_laki,19758,jiwa,2025,registration,total_population,3.1.2,51,,5–9
+16.04,2,Kabupaten Lahat,age_group,5-9,perempuan,18491,jiwa,2025,registration,total_population,3.1.2,51,,5–9
+16.04,2,Kabupaten Lahat,age_group,5-9,,38249,jiwa,2025,registration,total_population,3.1.2,51,,5–9
+16.04,2,Kabupaten Lahat,age_group,10-14,laki_laki,20642,jiwa,2025,registration,total_population,3.1.2,51,,10–14
+16.04,2,Kabupaten Lahat,age_group,10-14,perempuan,19107,jiwa,2025,registration,total_population,3.1.2,51,,10–14
+16.04,2,Kabupaten Lahat,age_group,10-14,,39749,jiwa,2025,registration,total_population,3.1.2,51,,10–14
+16.04,2,Kabupaten Lahat,age_group,15-19,laki_laki,20124,jiwa,2025,registration,total_population,3.1.2,51,,15–19
+16.04,2,Kabupaten Lahat,age_group,15-19,perempuan,19154,jiwa,2025,registration,total_population,3.1.2,51,,15–19
+16.04,2,Kabupaten Lahat,age_group,15-19,,39278,jiwa,2025,registration,total_population,3.1.2,51,,15–19
+16.04,2,Kabupaten Lahat,age_group,20-24,laki_laki,18753,jiwa,2025,registration,total_population,3.1.2,51,,20–24
+16.04,2,Kabupaten Lahat,age_group,20-24,perempuan,17745,jiwa,2025,registration,total_population,3.1.2,51,,20–24
+16.04,2,Kabupaten Lahat,age_group,20-24,,36498,jiwa,2025,registration,total_population,3.1.2,51,,20–24
+16.04,2,Kabupaten Lahat,age_group,25-29,laki_laki,17432,jiwa,2025,registration,total_population,3.1.2,51,,25–29
+16.04,2,Kabupaten Lahat,age_group,25-29,perempuan,16112,jiwa,2025,registration,total_population,3.1.2,51,,25–29
+16.04,2,Kabupaten Lahat,age_group,25-29,,33544,jiwa,2025,registration,total_population,3.1.2,51,,25–29
+16.04,2,Kabupaten Lahat,age_group,30-34,laki_laki,15527,jiwa,2025,registration,total_population,3.1.2,51,,30–34
+16.04,2,Kabupaten Lahat,age_group,30-34,perempuan,14308,jiwa,2025,registration,total_population,3.1.2,51,,30–34
+16.04,2,Kabupaten Lahat,age_group,30-34,,29835,jiwa,2025,registration,total_population,3.1.2,51,,30–34
+16.04,2,Kabupaten Lahat,age_group,35-39,laki_laki,17750,jiwa,2025,registration,total_population,3.1.2,51,,35–39
+16.04,2,Kabupaten Lahat,age_group,35-39,perempuan,16536,jiwa,2025,registration,total_population,3.1.2,51,,35–39
+16.04,2,Kabupaten Lahat,age_group,35-39,,34286,jiwa,2025,registration,total_population,3.1.2,51,,35–39
+16.04,2,Kabupaten Lahat,age_group,40-44,laki_laki,17859,jiwa,2025,registration,total_population,3.1.2,51,,40–44
+16.04,2,Kabupaten Lahat,age_group,40-44,perempuan,16766,jiwa,2025,registration,total_population,3.1.2,51,,40–44
+16.04,2,Kabupaten Lahat,age_group,40-44,,34625,jiwa,2025,registration,total_population,3.1.2,51,,40–44
+16.04,2,Kabupaten Lahat,age_group,45-49,laki_laki,17567,jiwa,2025,registration,total_population,3.1.2,51,,45–49
+16.04,2,Kabupaten Lahat,age_group,45-49,perempuan,16374,jiwa,2025,registration,total_population,3.1.2,51,,45–49
+16.04,2,Kabupaten Lahat,age_group,45-49,,33941,jiwa,2025,registration,total_population,3.1.2,51,,45–49
+16.04,2,Kabupaten Lahat,age_group,50-54,laki_laki,14095,jiwa,2025,registration,total_population,3.1.2,51,,50–54
+16.04,2,Kabupaten Lahat,age_group,50-54,perempuan,13282,jiwa,2025,registration,total_population,3.1.2,51,,50–54
+16.04,2,Kabupaten Lahat,age_group,50-54,,27377,jiwa,2025,registration,total_population,3.1.2,51,,50–54
+16.04,2,Kabupaten Lahat,age_group,55-59,laki_laki,11155,jiwa,2025,registration,total_population,3.1.2,51,,55–59
+16.04,2,Kabupaten Lahat,age_group,55-59,perempuan,11027,jiwa,2025,registration,total_population,3.1.2,51,,55–59
+16.04,2,Kabupaten Lahat,age_group,55-59,,22182,jiwa,2025,registration,total_population,3.1.2,51,,55–59
+16.04,2,Kabupaten Lahat,age_group,60-64,laki_laki,8896,jiwa,2025,registration,total_population,3.1.2,51,,60–64
+16.04,2,Kabupaten Lahat,age_group,60-64,perempuan,9212,jiwa,2025,registration,total_population,3.1.2,51,,60–64
+16.04,2,Kabupaten Lahat,age_group,60-64,,18108,jiwa,2025,registration,total_population,3.1.2,51,,60–64
+16.04,2,Kabupaten Lahat,age_group,65-69,laki_laki,7377,jiwa,2025,registration,total_population,3.1.2,51,,65–69
+16.04,2,Kabupaten Lahat,age_group,65-69,perempuan,7772,jiwa,2025,registration,total_population,3.1.2,51,,65–69
+16.04,2,Kabupaten Lahat,age_group,65-69,,15149,jiwa,2025,registration,total_population,3.1.2,51,,65–69
+16.04,2,Kabupaten Lahat,age_group,70-74,laki_laki,4365,jiwa,2025,registration,total_population,3.1.2,51,,70–74
+16.04,2,Kabupaten Lahat,age_group,70-74,perempuan,4573,jiwa,2025,registration,total_population,3.1.2,51,,70–74
+16.04,2,Kabupaten Lahat,age_group,70-74,,8938,jiwa,2025,registration,total_population,3.1.2,51,,70–74
+16.04,2,Kabupaten Lahat,age_group,75+,laki_laki,5073,jiwa,2025,registration,total_population,3.1.2,51,,75+
+16.04,2,Kabupaten Lahat,age_group,75+,perempuan,6851,jiwa,2025,registration,total_population,3.1.2,51,,75+
+16.04,2,Kabupaten Lahat,age_group,75+,,11924,jiwa,2025,registration,total_population,3.1.2,51,,75+
+16.04,2,Kabupaten Lahat,sex,laki_laki,,231751,jiwa,2025,registration,total_population,3.1.2,51,,Laki-Laki
+16.04,2,Kabupaten Lahat,sex,perempuan,,221549,jiwa,2025,registration,total_population,3.1.2,51,,Perempuan
+16.04,2,Kabupaten Lahat,total,total,,453300,jiwa,2025,registration,total_population,3.1.2,51,,
+16.04.24,3,Tanjung Sakti PUMI,religion,islam,,16964,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.24,3,Tanjung Sakti PUMI,religion,kristen,,4,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+16.04.24,3,Tanjung Sakti PUMI,religion,katolik,,197,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+16.04.24,3,Tanjung Sakti PUMI,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+16.04.24,3,Tanjung Sakti PUMI,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,108,,Budha
+16.04.24,3,Tanjung Sakti PUMI,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.01,3,Tanjung Sakti PUMU,religion,islam,,14809,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.01,3,Tanjung Sakti PUMU,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+16.04.01,3,Tanjung Sakti PUMU,religion,katolik,,10,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+16.04.01,3,Tanjung Sakti PUMU,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+16.04.01,3,Tanjung Sakti PUMU,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+16.04.01,3,Tanjung Sakti PUMU,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.07,3,Kota Agung,religion,islam,,14585,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.07,3,Kota Agung,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+16.04.07,3,Kota Agung,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Katolik
+16.04.07,3,Kota Agung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+16.04.07,3,Kota Agung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+16.04.07,3,Kota Agung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.15,3,Mulak Ulu,religion,islam,,13346,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.15,3,Mulak Ulu,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+16.04.15,3,Mulak Ulu,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Katolik
+16.04.15,3,Mulak Ulu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+16.04.15,3,Mulak Ulu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+16.04.15,3,Mulak Ulu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.27,3,Tanjung Tebat,religion,islam,,9077,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.27,3,Tanjung Tebat,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+16.04.27,3,Tanjung Tebat,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Katolik
+16.04.27,3,Tanjung Tebat,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+16.04.27,3,Tanjung Tebat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+16.04.27,3,Tanjung Tebat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.30,3,Mulak Sebingkai,religion,islam,,5917,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.30,3,Mulak Sebingkai,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+16.04.30,3,Mulak Sebingkai,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Katolik
+16.04.30,3,Mulak Sebingkai,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+16.04.30,3,Mulak Sebingkai,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+16.04.30,3,Mulak Sebingkai,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.08,3,Pulau Pinang,religion,islam,,10608,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.08,3,Pulau Pinang,religion,kristen,,25,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+16.04.08,3,Pulau Pinang,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+16.04.08,3,Pulau Pinang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+16.04.08,3,Pulau Pinang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+16.04.08,3,Pulau Pinang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.22,3,Pagar Gunung,religion,islam,,13220,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.22,3,Pagar Gunung,religion,kristen,,3,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+16.04.22,3,Pagar Gunung,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+16.04.22,3,Pagar Gunung,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,108,,Hindu
+16.04.22,3,Pagar Gunung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+16.04.22,3,Pagar Gunung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.25,3,Gumay Ulu,religion,islam,,6162,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.25,3,Gumay Ulu,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+16.04.25,3,Gumay Ulu,religion,katolik,,5,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+16.04.25,3,Gumay Ulu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+16.04.25,3,Gumay Ulu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+16.04.25,3,Gumay Ulu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.06,3,Jarai,religion,islam,,21023,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.06,3,Jarai,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+16.04.06,3,Jarai,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Katolik
+16.04.06,3,Jarai,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+16.04.06,3,Jarai,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+16.04.06,3,Jarai,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.12,3,Pajar Bulan,religion,islam,,13149,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.12,3,Pajar Bulan,religion,kristen,,2,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+16.04.12,3,Pajar Bulan,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+16.04.12,3,Pajar Bulan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+16.04.12,3,Pajar Bulan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+16.04.12,3,Pajar Bulan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.28,3,Muara Payang,religion,islam,,8702,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.28,3,Muara Payang,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+16.04.28,3,Muara Payang,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Katolik
+16.04.28,3,Muara Payang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+16.04.28,3,Muara Payang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+16.04.28,3,Muara Payang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.29,3,Sukamerindu,religion,islam,,8146,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.29,3,Sukamerindu,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+16.04.29,3,Sukamerindu,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+16.04.29,3,Sukamerindu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+16.04.29,3,Sukamerindu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+16.04.29,3,Sukamerindu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.19,3,Kikim Barat,religion,islam,,18437,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.19,3,Kikim Barat,religion,kristen,,309,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+16.04.19,3,Kikim Barat,religion,katolik,,98,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+16.04.19,3,Kikim Barat,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,108,,Hindu
+16.04.19,3,Kikim Barat,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,108,,Budha
+16.04.19,3,Kikim Barat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.17,3,Kikim Timur,religion,islam,,33222,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.17,3,Kikim Timur,religion,kristen,,230,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+16.04.17,3,Kikim Timur,religion,katolik,,83,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+16.04.17,3,Kikim Timur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+16.04.17,3,Kikim Timur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+16.04.17,3,Kikim Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.16,3,Kikim Selatan,religion,islam,,18159,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.16,3,Kikim Selatan,religion,kristen,,23,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+16.04.16,3,Kikim Selatan,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Katolik
+16.04.16,3,Kikim Selatan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+16.04.16,3,Kikim Selatan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+16.04.16,3,Kikim Selatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.18,3,Kikim Tengah,religion,islam,,10580,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.18,3,Kikim Tengah,religion,kristen,,59,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+16.04.18,3,Kikim Tengah,religion,katolik,,13,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+16.04.18,3,Kikim Tengah,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+16.04.18,3,Kikim Tengah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+16.04.18,3,Kikim Tengah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.10,3,Lahat,religion,islam,,110039,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.10,3,Lahat,religion,kristen,,1269,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+16.04.10,3,Lahat,religion,katolik,,580,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+16.04.10,3,Lahat,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,108,,Hindu
+16.04.10,3,Lahat,religion,buddha,,528,jiwa,2025,registration,total_population,4.3.1,108,,Budha
+16.04.10,3,Lahat,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,108,,Lainnya
+16.04.21,3,Gumay Talang,religion,islam,,13856,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.21,3,Gumay Talang,religion,kristen,,50,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+16.04.21,3,Gumay Talang,religion,katolik,,13,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+16.04.21,3,Gumay Talang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+16.04.21,3,Gumay Talang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+16.04.21,3,Gumay Talang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.20,3,PSEKSU,religion,islam,,9388,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.20,3,PSEKSU,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+16.04.20,3,PSEKSU,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+16.04.20,3,PSEKSU,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+16.04.20,3,PSEKSU,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+16.04.20,3,PSEKSU,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.31,3,Lahat Selatan,religion,islam,,15713,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.31,3,Lahat Selatan,religion,kristen,,46,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+16.04.31,3,Lahat Selatan,religion,katolik,,18,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+16.04.31,3,Lahat Selatan,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,108,,Hindu
+16.04.31,3,Lahat Selatan,religion,buddha,,9,jiwa,2025,registration,total_population,4.3.1,108,,Budha
+16.04.31,3,Lahat Selatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.09,3,Merapi Barat,religion,islam,,29305,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.09,3,Merapi Barat,religion,kristen,,61,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+16.04.09,3,Merapi Barat,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+16.04.09,3,Merapi Barat,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,108,,Hindu
+16.04.09,3,Merapi Barat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+16.04.09,3,Merapi Barat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.23,3,Merapi Timur,religion,islam,,25848,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.23,3,Merapi Timur,religion,kristen,,183,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+16.04.23,3,Merapi Timur,religion,katolik,,23,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+16.04.23,3,Merapi Timur,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,108,,Hindu
+16.04.23,3,Merapi Timur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+16.04.23,3,Merapi Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04.26,3,Merapi Selatan,religion,islam,,9164,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04.26,3,Merapi Selatan,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Protestan
+16.04.26,3,Merapi Selatan,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Katolik
+16.04.26,3,Merapi Selatan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+16.04.26,3,Merapi Selatan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Budha
+16.04.26,3,Merapi Selatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+16.04,2,Kabupaten Lahat,religion,islam,,449419,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+16.04,2,Kabupaten Lahat,religion,kristen,,2267,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+16.04,2,Kabupaten Lahat,religion,katolik,,1053,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+16.04,2,Kabupaten Lahat,religion,hindu,,19,jiwa,2025,registration,total_population,4.3.1,108,,Hindu
+16.04,2,Kabupaten Lahat,religion,buddha,,540,jiwa,2025,registration,total_population,4.3.1,108,,Budha
+16.04,2,Kabupaten Lahat,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,108,,Lainnya
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/padi_padian,,105553,rupiah,2024,survey_estimate,per_capita,10.1,222,,Padi-padian
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/padi_padian,,91577,rupiah,2025,survey_estimate,per_capita,10.1,222,,Padi-padian
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/umbi_umbian,,5120,rupiah,2024,survey_estimate,per_capita,10.1,222,,Umbi-umbian
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/umbi_umbian,,5563,rupiah,2025,survey_estimate,per_capita,10.1,222,,Umbi-umbian
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,61176,rupiah,2024,survey_estimate,per_capita,10.1,222,,Ikan/udang/cumi/kerang
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,64779,rupiah,2025,survey_estimate,per_capita,10.1,222,,Ikan/udang/cumi/kerang
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/daging,,32974,rupiah,2024,survey_estimate,per_capita,10.1,222,,Daging
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/daging,,34903,rupiah,2025,survey_estimate,per_capita,10.1,222,,Daging
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/telur_dan_susu,,35597,rupiah,2024,survey_estimate,per_capita,10.1,222,,Telur dan susu
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/telur_dan_susu,,39183,rupiah,2025,survey_estimate,per_capita,10.1,222,,Telur dan susu
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/sayur_sayuran,,78229,rupiah,2024,survey_estimate,per_capita,10.1,222,,Sayur-sayuran
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/sayur_sayuran,,83020,rupiah,2025,survey_estimate,per_capita,10.1,222,,Sayur-sayuran
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/kacang_kacangan,,11450,rupiah,2024,survey_estimate,per_capita,10.1,222,,Kacang-kacangan
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/kacang_kacangan,,11387,rupiah,2025,survey_estimate,per_capita,10.1,222,,Kacang-kacangan
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/buah_buahan,,47076,rupiah,2024,survey_estimate,per_capita,10.1,222,,Buah-buahan
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/buah_buahan,,38998,rupiah,2025,survey_estimate,per_capita,10.1,222,,Buah-buahan
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,17314,rupiah,2024,survey_estimate,per_capita,10.1,222,,Minyak dan kelapa
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20277,rupiah,2025,survey_estimate,per_capita,10.1,222,,Minyak dan kelapa
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/bahan_minuman,,27410,rupiah,2024,survey_estimate,per_capita,10.1,222,,Bahan minuman
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/bahan_minuman,,33055,rupiah,2025,survey_estimate,per_capita,10.1,222,,Bahan minuman
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/bumbu_bumbuan,,14897,rupiah,2024,survey_estimate,per_capita,10.1,222,,Bumbu-bumbuan
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/bumbu_bumbuan,,18559,rupiah,2025,survey_estimate,per_capita,10.1,222,,Bumbu-bumbuan
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/konsumsi_lainnya,,16755,rupiah,2024,survey_estimate,per_capita,10.1,222,,Konsumsi lainnya
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/konsumsi_lainnya,,16739,rupiah,2025,survey_estimate,per_capita,10.1,222,,Konsumsi lainnya
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,184363,rupiah,2024,survey_estimate,per_capita,10.1,222,,Makanan dan minuman jadi
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,187835,rupiah,2025,survey_estimate,per_capita,10.1,222,,Makanan dan minuman jadi
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/rokok,,115931,rupiah,2024,survey_estimate,per_capita,10.1,222,,Rokok
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/rokok,,112181,rupiah,2025,survey_estimate,per_capita,10.1,222,,Rokok
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/jumlah_makanan,,753846,rupiah,2024,survey_estimate,per_capita,10.1,222,,Jumlah makanan
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/jumlah_makanan,,758056,rupiah,2025,survey_estimate,per_capita,10.1,222,,Jumlah makanan
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,294725,rupiah,2024,survey_estimate,per_capita,10.1,222,,Perumahan dan fasilitas rumah tangga
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,285287,rupiah,2025,survey_estimate,per_capita,10.1,222,,Perumahan dan fasilitas rumah tangga
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,130955,rupiah,2024,survey_estimate,per_capita,10.1,222,,Aneka barang dan jasa
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,123626,rupiah,2025,survey_estimate,per_capita,10.1,222,,Aneka barang dan jasa
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,23466,rupiah,2024,survey_estimate,per_capita,10.1,222,,"Pakaian, alas kaki, dan tutup kepala"
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,28925,rupiah,2025,survey_estimate,per_capita,10.1,222,,"Pakaian, alas kaki, dan tutup kepala"
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/barang_tahan_lama,,46645,rupiah,2024,survey_estimate,per_capita,10.1,222,,Barang tahan lama
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/barang_tahan_lama,,49017,rupiah,2025,survey_estimate,per_capita,10.1,222,,Barang tahan lama
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,49585,rupiah,2024,survey_estimate,per_capita,10.1,222,,"Pajak, pungutan, dan asuransi"
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,51318,rupiah,2025,survey_estimate,per_capita,10.1,222,,"Pajak, pungutan, dan asuransi"
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,13386,rupiah,2024,survey_estimate,per_capita,10.1,222,,Keperluan pesta dan upacara/kenduri
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,12900,rupiah,2025,survey_estimate,per_capita,10.1,222,,Keperluan pesta dan upacara/kenduri
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,558762,rupiah,2024,survey_estimate,per_capita,10.1,222,,Jumlah bukan makanan
+16.04,2,Kabupaten Lahat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,551073,rupiah,2025,survey_estimate,per_capita,10.1,222,,Jumlah bukan makanan
+16.04,2,Kabupaten Lahat,expenditure,total,,1312608,rupiah,2024,survey_estimate,per_capita,10.1,222,,
+16.04,2,Kabupaten Lahat,expenditure,total,,1309129,rupiah,2025,survey_estimate,per_capita,10.1,222,,

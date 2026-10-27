@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.04.15.2008,4,Pagar Gunung,sex,laki_laki,,463,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.04.15.2008,4,Pagar Gunung,sex,perempuan,,438,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.04.15.2008,4,Pagar Gunung,total,total,,901,jiwa,2025,registration,total_population,3.1,30,,
+17.04.15.2007,4,Pagar Alam,sex,laki_laki,,418,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.04.15.2007,4,Pagar Alam,sex,perempuan,,412,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.04.15.2007,4,Pagar Alam,total,total,,830,jiwa,2025,registration,total_population,3.1,30,,
+17.04.15.2003,4,Bungin Tambun II,sex,laki_laki,,700,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.04.15.2003,4,Bungin Tambun II,sex,perempuan,,664,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.04.15.2003,4,Bungin Tambun II,total,total,,1364,jiwa,2025,registration,total_population,3.1,30,,
+17.04.15.2004,4,Bungin Tambun III,sex,laki_laki,,305,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.04.15.2004,4,Bungin Tambun III,sex,perempuan,,310,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.04.15.2004,4,Bungin Tambun III,total,total,,615,jiwa,2025,registration,total_population,3.1,30,,
+17.04.15.2001,4,Naga Rantai,sex,laki_laki,,470,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.04.15.2001,4,Naga Rantai,sex,perempuan,,415,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.04.15.2001,4,Naga Rantai,total,total,,885,jiwa,2025,registration,total_population,3.1,30,,
+17.04.15.2011,4,Jati Mulyo,sex,laki_laki,,147,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.04.15.2011,4,Jati Mulyo,sex,perempuan,,129,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.04.15.2011,4,Jati Mulyo,total,total,,276,jiwa,2025,registration,total_population,3.1,30,,
+17.04.15,3,Padang Guci Hulu,sex,laki_laki,,4447,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.04.15,3,Padang Guci Hulu,sex,perempuan,,4193,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.04.15,3,Padang Guci Hulu,total,total,,8640,jiwa,2025,registration,total_population,3.1,30,,
+17.04.15,3,Padang Guci Hulu,age_group,0-4,laki_laki,237,jiwa,2025,registration,total_population,3.2,32,,0-4
+17.04.15,3,Padang Guci Hulu,age_group,0-4,perempuan,220,jiwa,2025,registration,total_population,3.2,32,,0-4
+17.04.15,3,Padang Guci Hulu,age_group,0-4,,457,jiwa,2025,registration,total_population,3.2,32,,0-4
+17.04.15,3,Padang Guci Hulu,age_group,5-9,laki_laki,391,jiwa,2025,registration,total_population,3.2,32,,5-9
+17.04.15,3,Padang Guci Hulu,age_group,5-9,perempuan,373,jiwa,2025,registration,total_population,3.2,32,,5-9
+17.04.15,3,Padang Guci Hulu,age_group,5-9,,764,jiwa,2025,registration,total_population,3.2,32,,5-9
+17.04.15,3,Padang Guci Hulu,age_group,10-14,laki_laki,402,jiwa,2025,registration,total_population,3.2,32,,10-14
+17.04.15,3,Padang Guci Hulu,age_group,10-14,perempuan,350,jiwa,2025,registration,total_population,3.2,32,,10-14
+17.04.15,3,Padang Guci Hulu,age_group,10-14,,752,jiwa,2025,registration,total_population,3.2,32,,10-14
+17.04.15,3,Padang Guci Hulu,age_group,15-19,laki_laki,407,jiwa,2025,registration,total_population,3.2,32,,15-19
+17.04.15,3,Padang Guci Hulu,age_group,15-19,perempuan,387,jiwa,2025,registration,total_population,3.2,32,,15-19
+17.04.15,3,Padang Guci Hulu,age_group,15-19,,794,jiwa,2025,registration,total_population,3.2,32,,15-19
+17.04.15,3,Padang Guci Hulu,age_group,20-24,laki_laki,408,jiwa,2025,registration,total_population,3.2,32,,20-24
+17.04.15,3,Padang Guci Hulu,age_group,20-24,perempuan,381,jiwa,2025,registration,total_population,3.2,32,,20-24
+17.04.15,3,Padang Guci Hulu,age_group,20-24,,789,jiwa,2025,registration,total_population,3.2,32,,20-24
+17.04.15,3,Padang Guci Hulu,age_group,25-29,laki_laki,336,jiwa,2025,registration,total_population,3.2,32,,25-29
+17.04.15,3,Padang Guci Hulu,age_group,25-29,perempuan,292,jiwa,2025,registration,total_population,3.2,32,,25-29
+17.04.15,3,Padang Guci Hulu,age_group,25-29,,628,jiwa,2025,registration,total_population,3.2,32,,25-29
+17.04.15,3,Padang Guci Hulu,age_group,30-34,laki_laki,264,jiwa,2025,registration,total_population,3.2,32,,30-34
+17.04.15,3,Padang Guci Hulu,age_group,30-34,perempuan,269,jiwa,2025,registration,total_population,3.2,32,,30-34
+17.04.15,3,Padang Guci Hulu,age_group,30-34,,533,jiwa,2025,registration,total_population,3.2,32,,30-34
+17.04.15,3,Padang Guci Hulu,age_group,35-39,laki_laki,332,jiwa,2025,registration,total_population,3.2,32,,35-39
+17.04.15,3,Padang Guci Hulu,age_group,35-39,perempuan,296,jiwa,2025,registration,total_population,3.2,32,,35-39
+17.04.15,3,Padang Guci Hulu,age_group,35-39,,628,jiwa,2025,registration,total_population,3.2,32,,35-39
+17.04.15,3,Padang Guci Hulu,age_group,40-44,laki_laki,358,jiwa,2025,registration,total_population,3.2,32,,40-44
+17.04.15,3,Padang Guci Hulu,age_group,40-44,perempuan,332,jiwa,2025,registration,total_population,3.2,32,,40-44
+17.04.15,3,Padang Guci Hulu,age_group,40-44,,690,jiwa,2025,registration,total_population,3.2,32,,40-44
+17.04.15,3,Padang Guci Hulu,age_group,45-49,laki_laki,374,jiwa,2025,registration,total_population,3.2,32,,45-49
+17.04.15,3,Padang Guci Hulu,age_group,45-49,perempuan,315,jiwa,2025,registration,total_population,3.2,32,,45-49
+17.04.15,3,Padang Guci Hulu,age_group,45-49,,689,jiwa,2025,registration,total_population,3.2,32,,45-49
+17.04.15,3,Padang Guci Hulu,age_group,50-54,laki_laki,298,jiwa,2025,registration,total_population,3.2,32,,50-54
+17.04.15,3,Padang Guci Hulu,age_group,50-54,perempuan,229,jiwa,2025,registration,total_population,3.2,32,,50-54
+17.04.15,3,Padang Guci Hulu,age_group,50-54,,527,jiwa,2025,registration,total_population,3.2,32,,50-54
+17.04.15,3,Padang Guci Hulu,age_group,55-59,laki_laki,191,jiwa,2025,registration,total_population,3.2,32,,55-59
+17.04.15,3,Padang Guci Hulu,age_group,55-59,perempuan,223,jiwa,2025,registration,total_population,3.2,32,,55-59
+17.04.15,3,Padang Guci Hulu,age_group,55-59,,414,jiwa,2025,registration,total_population,3.2,32,,55-59
+17.04.15,3,Padang Guci Hulu,age_group,60-64,laki_laki,156,jiwa,2025,registration,total_population,3.2,32,,60-64
+17.04.15,3,Padang Guci Hulu,age_group,60-64,perempuan,170,jiwa,2025,registration,total_population,3.2,32,,60-64
+17.04.15,3,Padang Guci Hulu,age_group,60-64,,326,jiwa,2025,registration,total_population,3.2,32,,60-64
+17.04.15,3,Padang Guci Hulu,age_group,65-69,laki_laki,127,jiwa,2025,registration,total_population,3.2,32,,65-69
+17.04.15,3,Padang Guci Hulu,age_group,65-69,perempuan,146,jiwa,2025,registration,total_population,3.2,32,,65-69
+17.04.15,3,Padang Guci Hulu,age_group,65-69,,273,jiwa,2025,registration,total_population,3.2,32,,65-69
+17.04.15,3,Padang Guci Hulu,age_group,70-74,laki_laki,67,jiwa,2025,registration,total_population,3.2,32,,70-74
+17.04.15,3,Padang Guci Hulu,age_group,70-74,perempuan,69,jiwa,2025,registration,total_population,3.2,32,,70-74
+17.04.15,3,Padang Guci Hulu,age_group,70-74,,136,jiwa,2025,registration,total_population,3.2,32,,70-74
+17.04.15,3,Padang Guci Hulu,age_group,75+,laki_laki,99,jiwa,2025,registration,total_population,3.2,32,,75+
+17.04.15,3,Padang Guci Hulu,age_group,75+,perempuan,141,jiwa,2025,registration,total_population,3.2,32,,75+
+17.04.15,3,Padang Guci Hulu,age_group,75+,,240,jiwa,2025,registration,total_population,3.2,32,,75+
+17.04.15,3,Padang Guci Hulu,sex,laki_laki,,4447,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+17.04.15,3,Padang Guci Hulu,sex,perempuan,,4193,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+17.04.15,3,Padang Guci Hulu,total,total,,8640,jiwa,2025,registration,total_population,3.2,32,,

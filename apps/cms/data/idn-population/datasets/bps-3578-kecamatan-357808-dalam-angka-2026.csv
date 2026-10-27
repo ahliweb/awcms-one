@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.78.08.1005,4,Baratajaya,sex,laki_laki,,7279,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.08.1005,4,Baratajaya,sex,perempuan,,7933,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.08.1005,4,Baratajaya,total,total,,15212,jiwa,2025,registration,total_population,3.1,29,,
+35.78.08.1006,4,Pucang Sewu,sex,laki_laki,,6432,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.08.1006,4,Pucang Sewu,sex,perempuan,,6864,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.08.1006,4,Pucang Sewu,total,total,,13296,jiwa,2025,registration,total_population,3.1,29,,
+35.78.08.1004,4,Kertajaya,sex,laki_laki,,12042,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.08.1004,4,Kertajaya,sex,perempuan,,12472,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.08.1004,4,Kertajaya,total,total,,24514,jiwa,2025,registration,total_population,3.1,29,,
+35.78.08.1001,4,Gubeng,sex,laki_laki,,6738,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.08.1001,4,Gubeng,sex,perempuan,,6885,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.08.1001,4,Gubeng,total,total,,13623,jiwa,2025,registration,total_population,3.1,29,,
+35.78.08.1003,4,Airlangga,sex,laki_laki,,9089,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.08.1003,4,Airlangga,sex,perempuan,,9747,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.08.1003,4,Airlangga,total,total,,18836,jiwa,2025,registration,total_population,3.1,29,,
+35.78.08.1002,4,Mojo,sex,laki_laki,,22485,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.08.1002,4,Mojo,sex,perempuan,,23198,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.08.1002,4,Mojo,total,total,,45683,jiwa,2025,registration,total_population,3.1,29,,
+35.78.08,3,Kecamatan Gubeng,sex,laki_laki,,64065,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.08,3,Kecamatan Gubeng,sex,perempuan,,67099,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.08,3,Kecamatan Gubeng,total,total,,131164,jiwa,2025,registration,total_population,3.1,29,,
+35.78.08,3,Gubeng,age_group,0-4,laki_laki,3448,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.08,3,Gubeng,age_group,0-4,perempuan,3164,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.08,3,Gubeng,age_group,0-4,,6612,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.08,3,Gubeng,age_group,5-9,laki_laki,4588,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.08,3,Gubeng,age_group,5-9,perempuan,4258,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.08,3,Gubeng,age_group,5-9,,8846,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.08,3,Gubeng,age_group,10-14,laki_laki,5081,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.08,3,Gubeng,age_group,10-14,perempuan,4633,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.08,3,Gubeng,age_group,10-14,,9714,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.08,3,Gubeng,age_group,15-19,laki_laki,5116,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.08,3,Gubeng,age_group,15-19,perempuan,4839,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.08,3,Gubeng,age_group,15-19,,9955,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.08,3,Gubeng,age_group,20-24,laki_laki,5076,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.08,3,Gubeng,age_group,20-24,perempuan,4903,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.08,3,Gubeng,age_group,20-24,,9979,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.08,3,Gubeng,age_group,25-29,laki_laki,4860,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.08,3,Gubeng,age_group,25-29,perempuan,4787,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.08,3,Gubeng,age_group,25-29,,9647,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.08,3,Gubeng,age_group,30-34,laki_laki,4502,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.08,3,Gubeng,age_group,30-34,perempuan,4554,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.08,3,Gubeng,age_group,30-34,,9056,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.08,3,Gubeng,age_group,35-39,laki_laki,4143,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.08,3,Gubeng,age_group,35-39,perempuan,4136,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.08,3,Gubeng,age_group,35-39,,8279,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.08,3,Gubeng,age_group,40-44,laki_laki,4758,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.08,3,Gubeng,age_group,40-44,perempuan,5034,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.08,3,Gubeng,age_group,40-44,,9792,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.08,3,Gubeng,age_group,45-49,laki_laki,4780,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.08,3,Gubeng,age_group,45-49,perempuan,5135,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.08,3,Gubeng,age_group,45-49,,9915,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.08,3,Gubeng,age_group,50-54,laki_laki,4659,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.08,3,Gubeng,age_group,50-54,perempuan,5022,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.08,3,Gubeng,age_group,50-54,,9681,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.08,3,Gubeng,age_group,55-59,laki_laki,4126,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.08,3,Gubeng,age_group,55-59,perempuan,4761,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.08,3,Gubeng,age_group,55-59,,8887,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.08,3,Gubeng,age_group,60-64,laki_laki,3306,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.08,3,Gubeng,age_group,60-64,perempuan,3763,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.08,3,Gubeng,age_group,60-64,,7069,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.08,3,Gubeng,age_group,65-69,laki_laki,2370,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.08,3,Gubeng,age_group,65-69,perempuan,2997,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.08,3,Gubeng,age_group,65-69,,5367,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.08,3,Gubeng,age_group,70-74,laki_laki,1589,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.08,3,Gubeng,age_group,70-74,perempuan,2113,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.08,3,Gubeng,age_group,70-74,,3702,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.08,3,Gubeng,age_group,75+,laki_laki,1663,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.08,3,Gubeng,age_group,75+,perempuan,3000,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.08,3,Gubeng,age_group,75+,,4663,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.08,3,Kecamatan Gubeng,sex,laki_laki,,64065,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+35.78.08,3,Kecamatan Gubeng,sex,perempuan,,67099,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+35.78.08,3,Kecamatan Gubeng,total,total,,131164,jiwa,2025,registration,total_population,3.2,31,,

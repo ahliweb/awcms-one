@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3578-kecamatan-357820-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.78.20",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Wiyung Dalam Angka 2026",
+  "publisherName": "BPS Kota Surabaya",
+  "publisherDomain": "3578",
+  "publisherWebsite": "https://surabayakota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Surabaya (https://surabayakota.bps.go.id), publikasi \"Kecamatan Wiyung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3578130",
+  "publicationNumber": "35780.24024",
+  "issn": "3110-5378",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://surabayakota.bps.go.id/id/publication/2026/09/28/d52cd7954ba5f628b5400a88/kecamatan-wiyung-dalam-angka-2026.html",
+  "sourceFileSha256": "a61038fd2746ac1a9d0d4b007f2f3587c31dbd6bc125a7d9f0bf8246faabd37a",
+  "sourceFileBytes": 24461994,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Surabaya.",
+  "csvPath": "datasets/bps-3578-kecamatan-357820-dalam-angka-2026.csv",
+  "csvSha256": "c17b6ac3ca23241bd633af3a7c1d4084d751699a8182f020646e3f2f490024b5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Wiyung, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Wiyung, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

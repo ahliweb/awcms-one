@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1219-kecamatan-121907-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.19.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sei Balai Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Batu Bara",
+  "publisherDomain": "1219",
+  "publisherWebsite": "https://batubarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Batu Bara (https://batubarakab.bps.go.id), publikasi \"Kecamatan Sei Balai Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1219010",
+  "publicationNumber": "12190.26010",
+  "issn": "2614-4166",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://batubarakab.bps.go.id/id/publication/2026/09/28/2857087b190aedd7306908b1/kecamatan-sei-balai-dalam-angka-2026.html",
+  "sourceFileSha256": "4aacb0cbfd34c4c45b2d73d5e1c2a5e1c01639ad10de51c26ce8f58bfed7c074",
+  "sourceFileBytes": 22780550,
+  "sourcePages": [28, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Batu Bara.",
+  "csvPath": "datasets/bps-1219-kecamatan-121907-dalam-angka-2026.csv",
+  "csvSha256": "c49219675757a7e22f13993aabd3a78d4d39ce8518c487a64b6ac60b47420af9",
+  "tablesUsed": [
+    {
+      "table": "3.2.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa / Kelurahan di Kecamatan Sei Balai, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sei Balai, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

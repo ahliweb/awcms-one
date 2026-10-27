@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.09.02.2001,4,Bandar Alai,sex,laki_laki,,435,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02.2001,4,Bandar Alai,sex,perempuan,,480,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02.2001,4,Bandar Alai,total,total,,915,jiwa,2025,registration,total_population,3.1,22,,
+14.09.02.2002,4,Pulau Kedundung,sex,laki_laki,,551,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02.2002,4,Pulau Kedundung,sex,perempuan,,580,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02.2002,4,Pulau Kedundung,total,total,,1131,jiwa,2025,registration,total_population,3.1,22,,
+14.09.02.2003,4,Pulau Aro,sex,laki_laki,,674,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02.2003,4,Pulau Aro,sex,perempuan,,653,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02.2003,4,Pulau Aro,total,total,,1327,jiwa,2025,registration,total_population,3.1,22,,
+14.09.02.2004,4,Seberang Taluk,sex,laki_laki,,1135,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02.2004,4,Seberang Taluk,sex,perempuan,,1089,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02.2004,4,Seberang Taluk,total,total,,2224,jiwa,2025,registration,total_population,3.1,22,,
+14.09.02.2005,4,Pulau Baru,sex,laki_laki,,525,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02.2005,4,Pulau Baru,sex,perempuan,,532,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02.2005,4,Pulau Baru,total,total,,1057,jiwa,2025,registration,total_population,3.1,22,,
+14.09.02.2006,4,Koto Tuo,sex,laki_laki,,369,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02.2006,4,Koto Tuo,sex,perempuan,,357,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02.2006,4,Koto Tuo,total,total,,726,jiwa,2025,registration,total_population,3.1,22,,
+14.09.02.2007,4,Kopah,sex,laki_laki,,306,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02.2007,4,Kopah,sex,perempuan,,305,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02.2007,4,Kopah,total,total,,611,jiwa,2025,registration,total_population,3.1,22,,
+14.09.02.2022,4,Jaya,sex,laki_laki,,906,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02.2022,4,Jaya,sex,perempuan,,868,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02.2022,4,Jaya,total,total,,1774,jiwa,2025,registration,total_population,3.1,22,,
+14.09.02.2008,4,Munsalo,sex,laki_laki,,1082,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02.2008,4,Munsalo,sex,perempuan,,992,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02.2008,4,Munsalo,total,total,,2074,jiwa,2025,registration,total_population,3.1,22,,
+14.09.02.2023,4,Beringin Taluk,sex,laki_laki,,2592,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02.2023,4,Beringin Taluk,sex,perempuan,,2557,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02.2023,4,Beringin Taluk,total,total,,5149,jiwa,2025,registration,total_population,3.1,22,,
+14.09.02.2014,4,Sawah,sex,laki_laki,,1179,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02.2014,4,Sawah,sex,perempuan,,1160,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02.2014,4,Sawah,total,total,,2339,jiwa,2025,registration,total_population,3.1,22,,
+14.09.02.2015,4,Koto Taluk,sex,laki_laki,,3007,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02.2015,4,Koto Taluk,sex,perempuan,,2980,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02.2015,4,Koto Taluk,total,total,,5987,jiwa,2025,registration,total_population,3.1,22,,
+14.09.02.1018,4,Simpang Tiga,sex,laki_laki,,1652,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02.1018,4,Simpang Tiga,sex,perempuan,,1699,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02.1018,4,Simpang Tiga,total,total,,3351,jiwa,2025,registration,total_population,3.1,22,,
+14.09.02.2017,4,Koto Kari,sex,laki_laki,,1197,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02.2017,4,Koto Kari,sex,perempuan,,1216,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02.2017,4,Koto Kari,total,total,,2413,jiwa,2025,registration,total_population,3.1,22,,
+14.09.02.2019,4,Pintu Gobang,sex,laki_laki,,1226,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02.2019,4,Pintu Gobang,sex,perempuan,,1228,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02.2019,4,Pintu Gobang,total,total,,2454,jiwa,2025,registration,total_population,3.1,22,,
+14.09.02.2020,4,Jake,sex,laki_laki,,3301,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02.2020,4,Jake,sex,perempuan,,3366,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02.2020,4,Jake,total,total,,6667,jiwa,2025,registration,total_population,3.1,22,,
+14.09.02.2024,4,Sitorajo,sex,laki_laki,,1141,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02.2024,4,Sitorajo,sex,perempuan,,1147,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02.2024,4,Sitorajo,total,total,,2288,jiwa,2025,registration,total_population,3.1,22,,
+14.09.02.1025,4,Sungai Jering,sex,laki_laki,,4022,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02.1025,4,Sungai Jering,sex,perempuan,,3935,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02.1025,4,Sungai Jering,total,total,,7957,jiwa,2025,registration,total_population,3.1,22,,
+14.09.02.2027,4,Titian Modang Kopah,sex,laki_laki,,994,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02.2027,4,Titian Modang Kopah,sex,perempuan,,960,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02.2027,4,Titian Modang Kopah,total,total,,1954,jiwa,2025,registration,total_population,3.1,22,,
+14.09.02.2028,4,Pulau Banjar Kari,sex,laki_laki,,316,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02.2028,4,Pulau Banjar Kari,sex,perempuan,,332,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02.2028,4,Pulau Banjar Kari,total,total,,648,jiwa,2025,registration,total_population,3.1,22,,
+14.09.02,3,Kuantan Tengah,sex,laki_laki,,28599,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.02,3,Kuantan Tengah,sex,perempuan,,28403,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.02,3,Kuantan Tengah,total,total,,57002,jiwa,2025,registration,total_population,3.1,22,,

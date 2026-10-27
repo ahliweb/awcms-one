@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.07.08,3,Muara Telang,age_group,0-4,laki_laki,1348,jiwa,2026,registration,total_population,3.2,36,,0 - 4
+16.07.08,3,Muara Telang,age_group,0-4,perempuan,1346,jiwa,2026,registration,total_population,3.2,36,,0 - 4
+16.07.08,3,Muara Telang,age_group,0-4,,2694,jiwa,2026,registration,total_population,3.2,36,,0 - 4
+16.07.08,3,Muara Telang,age_group,5-9,laki_laki,1827,jiwa,2026,registration,total_population,3.2,36,,5 - 9
+16.07.08,3,Muara Telang,age_group,5-9,perempuan,1627,jiwa,2026,registration,total_population,3.2,36,,5 - 9
+16.07.08,3,Muara Telang,age_group,5-9,,3454,jiwa,2026,registration,total_population,3.2,36,,5 - 9
+16.07.08,3,Muara Telang,age_group,10-14,laki_laki,1863,jiwa,2026,registration,total_population,3.2,36,,10 - 14
+16.07.08,3,Muara Telang,age_group,10-14,perempuan,1723,jiwa,2026,registration,total_population,3.2,36,,10 - 14
+16.07.08,3,Muara Telang,age_group,10-14,,3586,jiwa,2026,registration,total_population,3.2,36,,10 - 14
+16.07.08,3,Muara Telang,age_group,15-19,laki_laki,1825,jiwa,2026,registration,total_population,3.2,36,,15 - 19
+16.07.08,3,Muara Telang,age_group,15-19,perempuan,1667,jiwa,2026,registration,total_population,3.2,36,,15 - 19
+16.07.08,3,Muara Telang,age_group,15-19,,3492,jiwa,2026,registration,total_population,3.2,36,,15 - 19
+16.07.08,3,Muara Telang,age_group,20-24,laki_laki,1640,jiwa,2026,registration,total_population,3.2,36,,20 - 24
+16.07.08,3,Muara Telang,age_group,20-24,perempuan,1641,jiwa,2026,registration,total_population,3.2,36,,20 - 24
+16.07.08,3,Muara Telang,age_group,20-24,,3281,jiwa,2026,registration,total_population,3.2,36,,20 - 24
+16.07.08,3,Muara Telang,age_group,25-29,laki_laki,1578,jiwa,2026,registration,total_population,3.2,36,,25 - 29
+16.07.08,3,Muara Telang,age_group,25-29,perempuan,1591,jiwa,2026,registration,total_population,3.2,36,,25 - 29
+16.07.08,3,Muara Telang,age_group,25-29,,3169,jiwa,2026,registration,total_population,3.2,36,,25 - 29
+16.07.08,3,Muara Telang,age_group,30-34,laki_laki,1503,jiwa,2026,registration,total_population,3.2,36,,30 - 34
+16.07.08,3,Muara Telang,age_group,30-34,perempuan,1488,jiwa,2026,registration,total_population,3.2,36,,30 - 34
+16.07.08,3,Muara Telang,age_group,30-34,,2991,jiwa,2026,registration,total_population,3.2,36,,30 - 34
+16.07.08,3,Muara Telang,age_group,35-39,laki_laki,1603,jiwa,2026,registration,total_population,3.2,36,,35 - 39
+16.07.08,3,Muara Telang,age_group,35-39,perempuan,1561,jiwa,2026,registration,total_population,3.2,36,,35 - 39
+16.07.08,3,Muara Telang,age_group,35-39,,3164,jiwa,2026,registration,total_population,3.2,36,,35 - 39
+16.07.08,3,Muara Telang,age_group,40-44,laki_laki,1598,jiwa,2026,registration,total_population,3.2,36,,40 - 44
+16.07.08,3,Muara Telang,age_group,40-44,perempuan,1586,jiwa,2026,registration,total_population,3.2,36,,40 - 44
+16.07.08,3,Muara Telang,age_group,40-44,,3184,jiwa,2026,registration,total_population,3.2,36,,40 - 44
+16.07.08,3,Muara Telang,age_group,45-49,laki_laki,1434,jiwa,2026,registration,total_population,3.2,36,,45 - 49
+16.07.08,3,Muara Telang,age_group,45-49,perempuan,1330,jiwa,2026,registration,total_population,3.2,36,,45 - 49
+16.07.08,3,Muara Telang,age_group,45-49,,2764,jiwa,2026,registration,total_population,3.2,36,,45 - 49
+16.07.08,3,Muara Telang,age_group,50-59,laki_laki,1277,jiwa,2026,registration,total_population,3.2,36,,50 - 59
+16.07.08,3,Muara Telang,age_group,50-59,perempuan,1246,jiwa,2026,registration,total_population,3.2,36,,50 - 59
+16.07.08,3,Muara Telang,age_group,50-59,,2523,jiwa,2026,registration,total_population,3.2,36,,50 - 59
+16.07.08,3,Muara Telang,age_group,55-69,laki_laki,1058,jiwa,2026,registration,total_population,3.2,36,,55 - 69
+16.07.08,3,Muara Telang,age_group,55-69,perempuan,964,jiwa,2026,registration,total_population,3.2,36,,55 - 69
+16.07.08,3,Muara Telang,age_group,55-69,,2022,jiwa,2026,registration,total_population,3.2,36,,55 - 69
+16.07.08,3,Muara Telang,age_group,60-64,laki_laki,874,jiwa,2026,registration,total_population,3.2,36,,60 - 64
+16.07.08,3,Muara Telang,age_group,60-64,perempuan,748,jiwa,2026,registration,total_population,3.2,36,,60 - 64
+16.07.08,3,Muara Telang,age_group,60-64,,1622,jiwa,2026,registration,total_population,3.2,36,,60 - 64
+16.07.08,3,Muara Telang,age_group,65-69,laki_laki,580,jiwa,2026,registration,total_population,3.2,36,,65 - 69
+16.07.08,3,Muara Telang,age_group,65-69,perempuan,566,jiwa,2026,registration,total_population,3.2,36,,65 - 69
+16.07.08,3,Muara Telang,age_group,65-69,,1146,jiwa,2026,registration,total_population,3.2,36,,65 - 69
+16.07.08,3,Muara Telang,age_group,70-74,laki_laki,421,jiwa,2026,registration,total_population,3.2,36,,70 - 74
+16.07.08,3,Muara Telang,age_group,70-74,perempuan,374,jiwa,2026,registration,total_population,3.2,36,,70 - 74
+16.07.08,3,Muara Telang,age_group,70-74,,795,jiwa,2026,registration,total_population,3.2,36,,70 - 74
+16.07.08,3,Muara Telang,age_group,75+,laki_laki,548,jiwa,2026,registration,total_population,3.2,36,,75+
+16.07.08,3,Muara Telang,age_group,75+,perempuan,527,jiwa,2026,registration,total_population,3.2,36,,75+
+16.07.08,3,Muara Telang,age_group,75+,,1075,jiwa,2026,registration,total_population,3.2,36,,75+
+16.07.08,3,Muara Telang,sex,laki_laki,,20977,jiwa,2026,registration,total_population,3.2,36,,Laki-Laki
+16.07.08,3,Muara Telang,sex,perempuan,,19985,jiwa,2026,registration,total_population,3.2,36,,Perempuan
+16.07.08,3,Muara Telang,total,total,,40962,jiwa,2026,registration,total_population,3.2,36,,

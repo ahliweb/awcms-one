@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.02.11.1001,4,Alai,sex,laki_laki,,1354,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+21.02.11.1001,4,Alai,sex,perempuan,,1297,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+21.02.11.1001,4,Alai,total,total,,2651,jiwa,2025,registration,total_population,3.1,,,
+21.02.11.2002,4,Batu Limau,sex,laki_laki,,775,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+21.02.11.2002,4,Batu Limau,sex,perempuan,,737,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+21.02.11.2002,4,Batu Limau,total,total,,1512,jiwa,2025,registration,total_population,3.1,,,
+21.02.11.2003,4,Ngal,sex,laki_laki,,357,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+21.02.11.2003,4,Ngal,sex,perempuan,,326,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+21.02.11.2003,4,Ngal,total,total,,683,jiwa,2025,registration,total_population,3.1,,,
+21.02.11.2004,4,Sungai Buluh,sex,laki_laki,,574,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+21.02.11.2004,4,Sungai Buluh,sex,perempuan,,557,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+21.02.11.2004,4,Sungai Buluh,total,total,,1131,jiwa,2025,registration,total_population,3.1,,,
+21.02.11,3,Ungar,sex,laki_laki,,3060,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+21.02.11,3,Ungar,sex,perempuan,,2917,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+21.02.11,3,Ungar,total,total,,5977,jiwa,2025,registration,total_population,3.1,,,
+21.02.11,3,Ungar,age_group,0-4,laki_laki,162,jiwa,2025,registration,total_population,3.2,34,,0–4
+21.02.11,3,Ungar,age_group,0-4,perempuan,129,jiwa,2025,registration,total_population,3.2,34,,0–4
+21.02.11,3,Ungar,age_group,0-4,,291,jiwa,2025,registration,total_population,3.2,34,,0–4
+21.02.11,3,Ungar,age_group,5-9,laki_laki,216,jiwa,2025,registration,total_population,3.2,34,,5–9
+21.02.11,3,Ungar,age_group,5-9,perempuan,232,jiwa,2025,registration,total_population,3.2,34,,5–9
+21.02.11,3,Ungar,age_group,5-9,,448,jiwa,2025,registration,total_population,3.2,34,,5–9
+21.02.11,3,Ungar,age_group,10-14,laki_laki,254,jiwa,2025,registration,total_population,3.2,34,,10–14
+21.02.11,3,Ungar,age_group,10-14,perempuan,246,jiwa,2025,registration,total_population,3.2,34,,10–14
+21.02.11,3,Ungar,age_group,10-14,,500,jiwa,2025,registration,total_population,3.2,34,,10–14
+21.02.11,3,Ungar,age_group,15-19,laki_laki,233,jiwa,2025,registration,total_population,3.2,34,,15–19
+21.02.11,3,Ungar,age_group,15-19,perempuan,234,jiwa,2025,registration,total_population,3.2,34,,15–19
+21.02.11,3,Ungar,age_group,15-19,,467,jiwa,2025,registration,total_population,3.2,34,,15–19
+21.02.11,3,Ungar,age_group,20-24,laki_laki,249,jiwa,2025,registration,total_population,3.2,34,,20–24
+21.02.11,3,Ungar,age_group,20-24,perempuan,202,jiwa,2025,registration,total_population,3.2,34,,20–24
+21.02.11,3,Ungar,age_group,20-24,,451,jiwa,2025,registration,total_population,3.2,34,,20–24
+21.02.11,3,Ungar,age_group,25-29,laki_laki,231,jiwa,2025,registration,total_population,3.2,34,,25–29
+21.02.11,3,Ungar,age_group,25-29,perempuan,217,jiwa,2025,registration,total_population,3.2,34,,25–29
+21.02.11,3,Ungar,age_group,25-29,,448,jiwa,2025,registration,total_population,3.2,34,,25–29
+21.02.11,3,Ungar,age_group,30-34,laki_laki,196,jiwa,2025,registration,total_population,3.2,34,,30–34
+21.02.11,3,Ungar,age_group,30-34,perempuan,185,jiwa,2025,registration,total_population,3.2,34,,30–34
+21.02.11,3,Ungar,age_group,30-34,,381,jiwa,2025,registration,total_population,3.2,34,,30–34
+21.02.11,3,Ungar,age_group,35-39,laki_laki,205,jiwa,2025,registration,total_population,3.2,34,,35–39
+21.02.11,3,Ungar,age_group,35-39,perempuan,196,jiwa,2025,registration,total_population,3.2,34,,35–39
+21.02.11,3,Ungar,age_group,35-39,,401,jiwa,2025,registration,total_population,3.2,34,,35–39
+21.02.11,3,Ungar,age_group,40-44,laki_laki,225,jiwa,2025,registration,total_population,3.2,34,,40–44
+21.02.11,3,Ungar,age_group,40-44,perempuan,219,jiwa,2025,registration,total_population,3.2,34,,40–44
+21.02.11,3,Ungar,age_group,40-44,,444,jiwa,2025,registration,total_population,3.2,34,,40–44
+21.02.11,3,Ungar,age_group,45-49,laki_laki,261,jiwa,2025,registration,total_population,3.2,34,,45–49
+21.02.11,3,Ungar,age_group,45-49,perempuan,265,jiwa,2025,registration,total_population,3.2,34,,45–49
+21.02.11,3,Ungar,age_group,45-49,,526,jiwa,2025,registration,total_population,3.2,34,,45–49
+21.02.11,3,Ungar,age_group,50-54,laki_laki,262,jiwa,2025,registration,total_population,3.2,34,,50–54
+21.02.11,3,Ungar,age_group,50-54,perempuan,183,jiwa,2025,registration,total_population,3.2,34,,50–54
+21.02.11,3,Ungar,age_group,50-54,,445,jiwa,2025,registration,total_population,3.2,34,,50–54
+21.02.11,3,Ungar,age_group,55-59,laki_laki,161,jiwa,2025,registration,total_population,3.2,34,,55–59
+21.02.11,3,Ungar,age_group,55-59,perempuan,176,jiwa,2025,registration,total_population,3.2,34,,55–59
+21.02.11,3,Ungar,age_group,55-59,,337,jiwa,2025,registration,total_population,3.2,34,,55–59
+21.02.11,3,Ungar,age_group,60-64,laki_laki,135,jiwa,2025,registration,total_population,3.2,34,,60–64
+21.02.11,3,Ungar,age_group,60-64,perempuan,117,jiwa,2025,registration,total_population,3.2,34,,60–64
+21.02.11,3,Ungar,age_group,60-64,,252,jiwa,2025,registration,total_population,3.2,34,,60–64
+21.02.11,3,Ungar,age_group,65-69,laki_laki,107,jiwa,2025,registration,total_population,3.2,34,,65–69
+21.02.11,3,Ungar,age_group,65-69,perempuan,122,jiwa,2025,registration,total_population,3.2,34,,65–69
+21.02.11,3,Ungar,age_group,65-69,,229,jiwa,2025,registration,total_population,3.2,34,,65–69
+21.02.11,3,Ungar,age_group,70-74,laki_laki,87,jiwa,2025,registration,total_population,3.2,34,,70–74
+21.02.11,3,Ungar,age_group,70-74,perempuan,86,jiwa,2025,registration,total_population,3.2,34,,70–74
+21.02.11,3,Ungar,age_group,70-74,,173,jiwa,2025,registration,total_population,3.2,34,,70–74
+21.02.11,3,Ungar,age_group,75+,laki_laki,76,jiwa,2025,registration,total_population,3.2,34,,75+
+21.02.11,3,Ungar,age_group,75+,perempuan,108,jiwa,2025,registration,total_population,3.2,34,,75+
+21.02.11,3,Ungar,age_group,75+,,184,jiwa,2025,registration,total_population,3.2,34,,75+
+21.02.11,3,Ungar,sex,laki_laki,,3060,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+21.02.11,3,Ungar,sex,perempuan,,2917,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+21.02.11,3,Ungar,total,total,,5977,jiwa,2025,registration,total_population,3.2,34,,

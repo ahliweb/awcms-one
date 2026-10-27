@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1504-kecamatan-150405-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.04.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pemayung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Batang Hari",
+  "publisherDomain": "1504",
+  "publisherWebsite": "https://batangharikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Batang Hari (https://batangharikab.bps.go.id), publikasi \"Kecamatan Pemayung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1504050",
+  "publicationNumber": "15040.26012",
+  "issn": "2723-4991",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://batangharikab.bps.go.id/id/publication/2026/09/28/08cb3ca89d5afceb239d65ae/kecamatan-pemayung-dalam-angka-2026.html",
+  "sourceFileSha256": "7d430e2cecb87f40d2c37c0dee1564eca5898c9f85e334c5361b78e515fc51da",
+  "sourceFileBytes": 10467512,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Batang Hari .",
+  "csvPath": "datasets/bps-1504-kecamatan-150405-dalam-angka-2026.csv",
+  "csvSha256": "3c24f291cba8b701b1ded1f4838947823728f2bfc2c99c5084939d3391857743",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pemayung , 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pemayung , 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

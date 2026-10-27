@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.03.03.2002,4,Bumi Ratu,sex,laki_laki,,1445,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.03.2002,4,Bumi Ratu,sex,perempuan,,1380,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.03.2002,4,Bumi Ratu,total,total,,2825,jiwa,2025,registration,total_population,3.1,28,,
+18.03.03.2003,4,Labuhan Ratu Pasar,sex,laki_laki,,947,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.03.2003,4,Labuhan Ratu Pasar,sex,perempuan,,930,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.03.2003,4,Labuhan Ratu Pasar,total,total,,1877,jiwa,2025,registration,total_population,3.1,28,,
+18.03.03.2005,4,Labuhan Ratu Kampung,sex,laki_laki,,568,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.03.2005,4,Labuhan Ratu Kampung,sex,perempuan,,515,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.03.2005,4,Labuhan Ratu Kampung,total,total,,1083,jiwa,2025,registration,total_population,3.1,28,,
+18.03.03.2006,4,Gedung Ketapang,sex,laki_laki,,1605,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.03.2006,4,Gedung Ketapang,sex,perempuan,,1611,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.03.2006,4,Gedung Ketapang,total,total,,3216,jiwa,2025,registration,total_population,3.1,28,,
+18.03.03.2010,4,Banjar Ketapang,sex,laki_laki,,474,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.03.2010,4,Banjar Ketapang,sex,perempuan,,463,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.03.2010,4,Banjar Ketapang,total,total,,937,jiwa,2025,registration,total_population,3.1,28,,
+18.03.03.2007,4,Kota Agung,sex,laki_laki,,820,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.03.2007,4,Kota Agung,sex,perempuan,,876,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.03.2007,4,Kota Agung,total,total,,1696,jiwa,2025,registration,total_population,3.1,28,,
+18.03.03.2008,4,Ketapang,sex,laki_laki,,3491,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.03.2008,4,Ketapang,sex,perempuan,,3400,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.03.2008,4,Ketapang,total,total,,6891,jiwa,2025,registration,total_population,3.1,28,,
+18.03.03.2017,4,Sidodadi,sex,laki_laki,,817,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.03.2017,4,Sidodadi,sex,perempuan,,794,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.03.2017,4,Sidodadi,total,total,,1611,jiwa,2025,registration,total_population,3.1,28,,
+18.03.03.2023,4,Gunung Labuhan,sex,laki_laki,,831,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.03.2023,4,Gunung Labuhan,sex,perempuan,,778,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.03.2023,4,Gunung Labuhan,total,total,,1609,jiwa,2025,registration,total_population,3.1,28,,
+18.03.03,3,Kecamatan Sungkai Selatan,sex,laki_laki,,12510,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.03,3,Kecamatan Sungkai Selatan,sex,perempuan,,12208,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.03,3,Kecamatan Sungkai Selatan,total,total,,24718,jiwa,2025,registration,total_population,3.1,28,,
+18.03.03,3,Sungkai Selatan,age_group,0-4,laki_laki,942,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.03,3,Sungkai Selatan,age_group,0-4,perempuan,839,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.03,3,Sungkai Selatan,age_group,0-4,,1781,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.03,3,Sungkai Selatan,age_group,5-9,laki_laki,1148,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.03,3,Sungkai Selatan,age_group,5-9,perempuan,1161,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.03,3,Sungkai Selatan,age_group,5-9,,2309,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.03,3,Sungkai Selatan,age_group,10-14,laki_laki,1093,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.03,3,Sungkai Selatan,age_group,10-14,perempuan,1038,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.03,3,Sungkai Selatan,age_group,10-14,,2131,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.03,3,Sungkai Selatan,age_group,15-19,laki_laki,983,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.03,3,Sungkai Selatan,age_group,15-19,perempuan,906,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.03,3,Sungkai Selatan,age_group,15-19,,1889,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.03,3,Sungkai Selatan,age_group,20-24,laki_laki,949,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.03,3,Sungkai Selatan,age_group,20-24,perempuan,871,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.03,3,Sungkai Selatan,age_group,20-24,,1820,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.03,3,Sungkai Selatan,age_group,25-29,laki_laki,879,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.03,3,Sungkai Selatan,age_group,25-29,perempuan,840,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.03,3,Sungkai Selatan,age_group,25-29,,1719,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.03,3,Sungkai Selatan,age_group,30-34,laki_laki,962,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.03,3,Sungkai Selatan,age_group,30-34,perempuan,927,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.03,3,Sungkai Selatan,age_group,30-34,,1889,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.03,3,Sungkai Selatan,age_group,35-39,laki_laki,930,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.03,3,Sungkai Selatan,age_group,35-39,perempuan,862,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.03,3,Sungkai Selatan,age_group,35-39,,1792,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.03,3,Sungkai Selatan,age_group,40-44,laki_laki,839,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.03,3,Sungkai Selatan,age_group,40-44,perempuan,798,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.03,3,Sungkai Selatan,age_group,40-44,,1637,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.03,3,Sungkai Selatan,age_group,45-49,laki_laki,1064,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.03,3,Sungkai Selatan,age_group,45-49,perempuan,1065,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.03,3,Sungkai Selatan,age_group,45-49,,2129,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.03,3,Sungkai Selatan,age_group,50-54,laki_laki,705,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.03,3,Sungkai Selatan,age_group,50-54,perempuan,706,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.03,3,Sungkai Selatan,age_group,50-54,,1411,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.03,3,Sungkai Selatan,age_group,55-59,laki_laki,561,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.03,3,Sungkai Selatan,age_group,55-59,perempuan,634,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.03,3,Sungkai Selatan,age_group,55-59,,1195,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.03,3,Sungkai Selatan,age_group,60-64,laki_laki,475,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.03,3,Sungkai Selatan,age_group,60-64,perempuan,527,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.03,3,Sungkai Selatan,age_group,60-64,,1002,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.03,3,Sungkai Selatan,age_group,65-69,laki_laki,403,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.03,3,Sungkai Selatan,age_group,65-69,perempuan,378,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.03,3,Sungkai Selatan,age_group,65-69,,781,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.03,3,Sungkai Selatan,age_group,70-75,laki_laki,260,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.03,3,Sungkai Selatan,age_group,70-75,perempuan,271,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.03,3,Sungkai Selatan,age_group,70-75,,531,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.03,3,Sungkai Selatan,age_group,75+,laki_laki,317,jiwa,2025,registration,total_population,3.2,30,,75+
+18.03.03,3,Sungkai Selatan,age_group,75+,perempuan,385,jiwa,2025,registration,total_population,3.2,30,,75+
+18.03.03,3,Sungkai Selatan,age_group,75+,,702,jiwa,2025,registration,total_population,3.2,30,,75+

@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.13.07.2001,4,Puntukrejo,sex,laki_laki,,2202,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.07.2001,4,Puntukrejo,sex,perempuan,,2234,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.07.2001,4,Puntukrejo,total,total,,4436,jiwa,2025,registration,total_population,3.1,27,,
+33.13.07.2002,4,Berjo,sex,laki_laki,,3156,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.07.2002,4,Berjo,sex,perempuan,,3117,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.07.2002,4,Berjo,total,total,,6273,jiwa,2025,registration,total_population,3.1,27,,
+33.13.07.2003,4,Girimulyo,sex,laki_laki,,2314,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.07.2003,4,Girimulyo,sex,perempuan,,2308,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.07.2003,4,Girimulyo,total,total,,4622,jiwa,2025,registration,total_population,3.1,27,,
+33.13.07.2004,4,Segorogunung,sex,laki_laki,,978,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.07.2004,4,Segorogunung,sex,perempuan,,1010,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.07.2004,4,Segorogunung,total,total,,1988,jiwa,2025,registration,total_population,3.1,27,,
+33.13.07.2005,4,Kemuning,sex,laki_laki,,3467,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.07.2005,4,Kemuning,sex,perempuan,,3558,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.07.2005,4,Kemuning,total,total,,7025,jiwa,2025,registration,total_population,3.1,27,,
+33.13.07.2006,4,Nglegok,sex,laki_laki,,2340,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.07.2006,4,Nglegok,sex,perempuan,,2239,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.07.2006,4,Nglegok,total,total,,4579,jiwa,2025,registration,total_population,3.1,27,,
+33.13.07.2007,4,Dukuh,sex,laki_laki,,1111,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.07.2007,4,Dukuh,sex,perempuan,,1189,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.07.2007,4,Dukuh,total,total,,2300,jiwa,2025,registration,total_population,3.1,27,,
+33.13.07.2008,4,Jatirejo,sex,laki_laki,,1187,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.07.2008,4,Jatirejo,sex,perempuan,,1184,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.07.2008,4,Jatirejo,total,total,,2371,jiwa,2025,registration,total_population,3.1,27,,
+33.13.07.2009,4,Ngargoyoso,sex,laki_laki,,2509,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.07.2009,4,Ngargoyoso,sex,perempuan,,2489,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.07.2009,4,Ngargoyoso,total,total,,4998,jiwa,2025,registration,total_population,3.1,27,,
+33.13.07,3,Kecamatan Ngargoyoso,sex,laki_laki,,19264,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+33.13.07,3,Kecamatan Ngargoyoso,sex,perempuan,,19328,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.13.07,3,Kecamatan Ngargoyoso,total,total,,38592,jiwa,2025,registration,total_population,3.1,27,,
+33.13.07,3,Ngargoyoso,age_group,0-4,laki_laki,1185,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.07,3,Ngargoyoso,age_group,0-4,perempuan,1179,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.07,3,Ngargoyoso,age_group,0-4,,2364,jiwa,2025,registration,total_population,3.2,29,,0–4
+33.13.07,3,Ngargoyoso,age_group,5-9,laki_laki,1502,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.07,3,Ngargoyoso,age_group,5-9,perempuan,1363,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.07,3,Ngargoyoso,age_group,5-9,,2865,jiwa,2025,registration,total_population,3.2,29,,5–9
+33.13.07,3,Ngargoyoso,age_group,10-14,laki_laki,1524,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.07,3,Ngargoyoso,age_group,10-14,perempuan,1433,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.07,3,Ngargoyoso,age_group,10-14,,2957,jiwa,2025,registration,total_population,3.2,29,,10–14
+33.13.07,3,Ngargoyoso,age_group,15-19,laki_laki,1490,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.07,3,Ngargoyoso,age_group,15-19,perempuan,1428,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.07,3,Ngargoyoso,age_group,15-19,,2918,jiwa,2025,registration,total_population,3.2,29,,15–19
+33.13.07,3,Ngargoyoso,age_group,20-24,laki_laki,1426,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.07,3,Ngargoyoso,age_group,20-24,perempuan,1383,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.07,3,Ngargoyoso,age_group,20-24,,2809,jiwa,2025,registration,total_population,3.2,29,,20–24
+33.13.07,3,Ngargoyoso,age_group,25-29,laki_laki,1415,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.07,3,Ngargoyoso,age_group,25-29,perempuan,1372,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.07,3,Ngargoyoso,age_group,25-29,,2787,jiwa,2025,registration,total_population,3.2,29,,25–29
+33.13.07,3,Ngargoyoso,age_group,30-34,laki_laki,1309,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.07,3,Ngargoyoso,age_group,30-34,perempuan,1219,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.07,3,Ngargoyoso,age_group,30-34,,2528,jiwa,2025,registration,total_population,3.2,29,,30–34
+33.13.07,3,Ngargoyoso,age_group,35-39,laki_laki,1170,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.07,3,Ngargoyoso,age_group,35-39,perempuan,1188,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.07,3,Ngargoyoso,age_group,35-39,,2358,jiwa,2025,registration,total_population,3.2,29,,35–39
+33.13.07,3,Ngargoyoso,age_group,40-44,laki_laki,1375,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.07,3,Ngargoyoso,age_group,40-44,perempuan,1420,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.07,3,Ngargoyoso,age_group,40-44,,2795,jiwa,2025,registration,total_population,3.2,29,,40–44
+33.13.07,3,Ngargoyoso,age_group,45-49,laki_laki,1413,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.07,3,Ngargoyoso,age_group,45-49,perempuan,1423,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.07,3,Ngargoyoso,age_group,45-49,,2836,jiwa,2025,registration,total_population,3.2,29,,45–49
+33.13.07,3,Ngargoyoso,age_group,50-54,laki_laki,1275,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.07,3,Ngargoyoso,age_group,50-54,perempuan,1249,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.07,3,Ngargoyoso,age_group,50-54,,2524,jiwa,2025,registration,total_population,3.2,29,,50–54
+33.13.07,3,Ngargoyoso,age_group,55-59,laki_laki,1168,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.07,3,Ngargoyoso,age_group,55-59,perempuan,1143,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.07,3,Ngargoyoso,age_group,55-59,,2311,jiwa,2025,registration,total_population,3.2,29,,55–59
+33.13.07,3,Ngargoyoso,age_group,60-64,laki_laki,870,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.07,3,Ngargoyoso,age_group,60-64,perempuan,1029,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.07,3,Ngargoyoso,age_group,60-64,,1899,jiwa,2025,registration,total_population,3.2,29,,60–64
+33.13.07,3,Ngargoyoso,age_group,65-69,laki_laki,912,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.07,3,Ngargoyoso,age_group,65-69,perempuan,998,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.07,3,Ngargoyoso,age_group,65-69,,1910,jiwa,2025,registration,total_population,3.2,29,,65–69
+33.13.07,3,Ngargoyoso,age_group,70-74,laki_laki,550,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.07,3,Ngargoyoso,age_group,70-74,perempuan,638,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.07,3,Ngargoyoso,age_group,70-74,,1188,jiwa,2025,registration,total_population,3.2,29,,70–74
+33.13.07,3,Ngargoyoso,age_group,75+,laki_laki,680,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.07,3,Ngargoyoso,age_group,75+,perempuan,863,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.07,3,Ngargoyoso,age_group,75+,,1543,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.13.07,3,Kecamatan Ngargoyoso,sex,laki_laki,,19264,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+33.13.07,3,Kecamatan Ngargoyoso,sex,perempuan,,19328,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+33.13.07,3,Kecamatan Ngargoyoso,total,total,,38592,jiwa,2025,registration,total_population,3.2,29,,

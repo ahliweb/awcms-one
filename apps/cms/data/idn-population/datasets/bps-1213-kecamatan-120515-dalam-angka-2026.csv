@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.05.15.2011,4,Pangkalan Siata,sex,laki_laki,,1747,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.15.2011,4,Pangkalan Siata,sex,perempuan,,1670,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.15.2011,4,Pangkalan Siata,total,total,,3417,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.15.2006,4,Sei Meran,sex,laki_laki,,1161,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.15.2006,4,Sei Meran,sex,perempuan,,1071,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.15.2006,4,Sei Meran,total,total,,2232,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.15.2001,4,Alur Cempedak,sex,laki_laki,,1920,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.15.2001,4,Alur Cempedak,sex,perempuan,,1931,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.15.2001,4,Alur Cempedak,total,total,,3851,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.15.2004,4,Paya Tampak,sex,laki_laki,,1636,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.15.2004,4,Paya Tampak,sex,perempuan,,1649,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.15.2004,4,Paya Tampak,total,total,,3285,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.15.2002,4,Sei Siur,sex,laki_laki,,2886,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.15.2002,4,Sei Siur,sex,perempuan,,2910,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.15.2002,4,Sei Siur,total,total,,5796,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.15.2003,4,Tanjung Pasir,sex,laki_laki,,2450,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.15.2003,4,Tanjung Pasir,sex,perempuan,,2430,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.15.2003,4,Tanjung Pasir,total,total,,4880,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.15.2005,4,Pintu Air,sex,laki_laki,,1119,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.15.2005,4,Pintu Air,sex,perempuan,,1051,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.15.2005,4,Pintu Air,total,total,,2170,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.15.1009,4,Beras Basah,sex,laki_laki,,4666,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.15.1009,4,Beras Basah,sex,perempuan,,4722,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.15.1009,4,Beras Basah,total,total,,9388,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.15.1010,4,Bukit Jengkol,sex,laki_laki,,2902,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.15.1010,4,Bukit Jengkol,sex,perempuan,,2953,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.15.1010,4,Bukit Jengkol,total,total,,5855,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.15.2007,4,Pulau Sembilan,sex,laki_laki,,1053,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.15.2007,4,Pulau Sembilan,sex,perempuan,,1002,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.15.2007,4,Pulau Sembilan,total,total,,2055,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.15.2008,4,Pulau Kampai,sex,laki_laki,,2248,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.15.2008,4,Pulau Kampai,sex,perempuan,,2114,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.15.2008,4,Pulau Kampai,total,total,,4362,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.15,3,Kecamatan Pangkalan Susu,sex,laki_laki,,23788,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.15,3,Kecamatan Pangkalan Susu,sex,perempuan,,23503,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.15,3,Kecamatan Pangkalan Susu,total,total,,47291,jiwa,2025,registration,total_population,unnumbered-p39,39,,

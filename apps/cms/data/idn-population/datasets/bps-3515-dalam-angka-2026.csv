@@ -1,0 +1,215 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.15.01,3,Tarik,total,total,,68369,jiwa,2025,registration,total_population,3.1.1,76,,
+35.15.02,3,Prambon,total,total,,80375,jiwa,2025,registration,total_population,3.1.1,76,,
+35.15.03,3,Krembung,total,total,,69719,jiwa,2025,registration,total_population,3.1.1,76,,
+35.15.04,3,Porong,total,total,,70875,jiwa,2025,registration,total_population,3.1.1,76,,
+35.15.05,3,Jabon,total,total,,56352,jiwa,2025,registration,total_population,3.1.1,76,,
+35.15.06,3,Tanggulangin,total,total,,89194,jiwa,2025,registration,total_population,3.1.1,76,,
+35.15.07,3,Candi,total,total,,160352,jiwa,2025,registration,total_population,3.1.1,76,,
+35.15.09,3,Tulangan,total,total,,104284,jiwa,2025,registration,total_population,3.1.1,76,,
+35.15.10,3,Wonoayu,total,total,,86651,jiwa,2025,registration,total_population,3.1.1,76,,
+35.15.14,3,Sukodono,total,total,,127963,jiwa,2025,registration,total_population,3.1.1,76,,
+35.15.08,3,Sidoarjo,total,total,,201718,jiwa,2025,registration,total_population,3.1.1,76,,
+35.15.15,3,Buduran,total,total,,103097,jiwa,2025,registration,total_population,3.1.1,76,,
+35.15.17,3,Sedati,total,total,,99527,jiwa,2025,registration,total_population,3.1.1,76,,
+35.15.18,3,Waru,total,total,,196721,jiwa,2025,registration,total_population,3.1.1,76,,
+35.15.16,3,Gedangan,total,total,,121297,jiwa,2025,registration,total_population,3.1.1,76,,
+35.15.13,3,Taman,total,total,,204982,jiwa,2025,registration,total_population,3.1.1,76,,
+35.15.11,3,Krian,total,total,,134883,jiwa,2025,registration,total_population,3.1.1,76,,
+35.15.12,3,Balongbendo,total,total,,74918,jiwa,2025,registration,total_population,3.1.1,76,,
+35.15,2,Kabupaten Sidoarjo,total,total,,2051277,jiwa,2025,registration,total_population,3.1.1,76,,
+35.15.01,3,Tarik,religion,islam,,67665,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.15.01,3,Tarik,religion,kristen,,625,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.15.01,3,Tarik,religion,katolik,,74,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.15.01,3,Tarik,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,179,nil,Hindu
+35.15.01,3,Tarik,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.15.02,3,Prambon,religion,islam,,79649,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.15.02,3,Prambon,religion,kristen,,459,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.15.02,3,Prambon,religion,katolik,,198,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.15.02,3,Prambon,religion,hindu,,45,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.15.02,3,Prambon,religion,buddha,,19,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.15.03,3,Krembung,religion,islam,,69118,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.15.03,3,Krembung,religion,kristen,,471,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.15.03,3,Krembung,religion,katolik,,68,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.15.03,3,Krembung,religion,hindu,,49,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.15.03,3,Krembung,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.15.04,3,Porong,religion,islam,,70161,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.15.04,3,Porong,religion,kristen,,482,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.15.04,3,Porong,religion,katolik,,145,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.15.04,3,Porong,religion,hindu,,32,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.15.04,3,Porong,religion,buddha,,52,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.15.05,3,Jabon,religion,islam,,56297,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.15.05,3,Jabon,religion,kristen,,36,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.15.05,3,Jabon,religion,katolik,,15,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.15.05,3,Jabon,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.15.05,3,Jabon,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,179,nil,Budha
+35.15.06,3,Tanggulangin,religion,islam,,87986,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.15.06,3,Tanggulangin,religion,kristen,,844,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.15.06,3,Tanggulangin,religion,katolik,,285,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.15.06,3,Tanggulangin,religion,hindu,,38,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.15.06,3,Tanggulangin,religion,buddha,,33,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.15.07,3,Candi,religion,islam,,153008,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.15.07,3,Candi,religion,kristen,,4975,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.15.07,3,Candi,religion,katolik,,1776,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.15.07,3,Candi,religion,hindu,,324,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.15.07,3,Candi,religion,buddha,,224,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.15.09,3,Tulangan,religion,islam,,103047,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.15.09,3,Tulangan,religion,kristen,,928,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.15.09,3,Tulangan,religion,katolik,,241,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.15.09,3,Tulangan,religion,hindu,,43,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.15.09,3,Tulangan,religion,buddha,,20,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.15.10,3,Wonoayu,religion,islam,,86182,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.15.10,3,Wonoayu,religion,kristen,,335,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.15.10,3,Wonoayu,religion,katolik,,100,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.15.10,3,Wonoayu,religion,hindu,,8,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.15.10,3,Wonoayu,religion,buddha,,25,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.15.14,3,Sukodono,religion,islam,,124206,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.15.14,3,Sukodono,religion,kristen,,2374,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.15.14,3,Sukodono,religion,katolik,,1126,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.15.14,3,Sukodono,religion,hindu,,189,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.15.14,3,Sukodono,religion,buddha,,65,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.15.08,3,Sidoarjo,religion,islam,,183728,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.15.08,3,Sidoarjo,religion,kristen,,11609,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.15.08,3,Sidoarjo,religion,katolik,,4667,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.15.08,3,Sidoarjo,religion,hindu,,503,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.15.08,3,Sidoarjo,religion,buddha,,1157,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.15.15,3,Buduran,religion,islam,,97818,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.15.15,3,Buduran,religion,kristen,,3261,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.15.15,3,Buduran,religion,katolik,,1669,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.15.15,3,Buduran,religion,hindu,,179,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.15.15,3,Buduran,religion,buddha,,162,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.15.17,3,Sedati,religion,islam,,94223,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.15.17,3,Sedati,religion,kristen,,3565,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.15.17,3,Sedati,religion,katolik,,1401,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.15.17,3,Sedati,religion,hindu,,213,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.15.17,3,Sedati,religion,buddha,,124,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.15.18,3,Waru,religion,islam,,176055,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.15.18,3,Waru,religion,kristen,,12453,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.15.18,3,Waru,religion,katolik,,6604,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.15.18,3,Waru,religion,hindu,,515,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.15.18,3,Waru,religion,buddha,,1058,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.15.16,3,Gedangan,religion,islam,,115492,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.15.16,3,Gedangan,religion,kristen,,3693,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.15.16,3,Gedangan,religion,katolik,,1674,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.15.16,3,Gedangan,religion,hindu,,231,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.15.16,3,Gedangan,religion,buddha,,201,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.15.13,3,Taman,religion,islam,,195677,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.15.13,3,Taman,religion,kristen,,5816,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.15.13,3,Taman,religion,katolik,,2747,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.15.13,3,Taman,religion,hindu,,344,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.15.13,3,Taman,religion,buddha,,368,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.15.11,3,Krian,religion,islam,,131856,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.15.11,3,Krian,religion,kristen,,1996,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.15.11,3,Krian,religion,katolik,,730,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.15.11,3,Krian,religion,hindu,,67,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.15.11,3,Krian,religion,buddha,,144,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.15.12,3,Balongbendo,religion,islam,,74087,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.15.12,3,Balongbendo,religion,kristen,,692,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.15.12,3,Balongbendo,religion,katolik,,99,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.15.12,3,Balongbendo,religion,hindu,,16,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.15.12,3,Balongbendo,religion,buddha,,20,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.15,2,Kabupaten Sidoarjo,religion,islam,,1966255,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.15,2,Kabupaten Sidoarjo,religion,kristen,,54614,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.15,2,Kabupaten Sidoarjo,religion,katolik,,23619,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.15,2,Kabupaten Sidoarjo,religion,hindu,,2797,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.15,2,Kabupaten Sidoarjo,religion,buddha,,3683,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.15.01,3,Tarik,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,180,nil,Konghucu
+35.15.01,3,Tarik,religion,kepercayaan,,1,jiwa,2025,registration,total_population,4.3.1,180,,Kepercayaan
+35.15.01,3,Tarik,total,total,,68369,jiwa,2025,registration,total_population,4.3.1,180,,
+35.15.02,3,Prambon,religion,khonghucu,,2,jiwa,2025,registration,total_population,4.3.1,180,,Konghucu
+35.15.02,3,Prambon,religion,kepercayaan,,3,jiwa,2025,registration,total_population,4.3.1,180,,Kepercayaan
+35.15.02,3,Prambon,total,total,,80375,jiwa,2025,registration,total_population,4.3.1,180,,
+35.15.03,3,Krembung,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,180,nil,Konghucu
+35.15.03,3,Krembung,religion,kepercayaan,,6,jiwa,2025,registration,total_population,4.3.1,180,,Kepercayaan
+35.15.03,3,Krembung,total,total,,69719,jiwa,2025,registration,total_population,4.3.1,180,,
+35.15.04,3,Porong,religion,khonghucu,,2,jiwa,2025,registration,total_population,4.3.1,180,,Konghucu
+35.15.04,3,Porong,religion,kepercayaan,,1,jiwa,2025,registration,total_population,4.3.1,180,,Kepercayaan
+35.15.04,3,Porong,total,total,,70875,jiwa,2025,registration,total_population,4.3.1,180,,
+35.15.05,3,Jabon,religion,khonghucu,,3,jiwa,2025,registration,total_population,4.3.1,180,,Konghucu
+35.15.05,3,Jabon,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,180,nil,Kepercayaan
+35.15.05,3,Jabon,total,total,,56352,jiwa,2025,registration,total_population,4.3.1,180,,
+35.15.06,3,Tanggulangin,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.3.1,180,,Konghucu
+35.15.06,3,Tanggulangin,religion,kepercayaan,,7,jiwa,2025,registration,total_population,4.3.1,180,,Kepercayaan
+35.15.06,3,Tanggulangin,total,total,,89194,jiwa,2025,registration,total_population,4.3.1,180,,
+35.15.07,3,Candi,religion,khonghucu,,4,jiwa,2025,registration,total_population,4.3.1,180,,Konghucu
+35.15.07,3,Candi,religion,kepercayaan,,41,jiwa,2025,registration,total_population,4.3.1,180,,Kepercayaan
+35.15.07,3,Candi,total,total,,160352,jiwa,2025,registration,total_population,4.3.1,180,,
+35.15.09,3,Tulangan,religion,khonghucu,,2,jiwa,2025,registration,total_population,4.3.1,180,,Konghucu
+35.15.09,3,Tulangan,religion,kepercayaan,,3,jiwa,2025,registration,total_population,4.3.1,180,,Kepercayaan
+35.15.09,3,Tulangan,total,total,,104284,jiwa,2025,registration,total_population,4.3.1,180,,
+35.15.10,3,Wonoayu,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,180,nil,Konghucu
+35.15.10,3,Wonoayu,religion,kepercayaan,,1,jiwa,2025,registration,total_population,4.3.1,180,,Kepercayaan
+35.15.10,3,Wonoayu,total,total,,86651,jiwa,2025,registration,total_population,4.3.1,180,,
+35.15.14,3,Sukodono,religion,khonghucu,,3,jiwa,2025,registration,total_population,4.3.1,180,,Konghucu
+35.15.14,3,Sukodono,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,180,nil,Kepercayaan
+35.15.14,3,Sukodono,total,total,,127963,jiwa,2025,registration,total_population,4.3.1,180,,
+35.15.08,3,Sidoarjo,religion,khonghucu,,35,jiwa,2025,registration,total_population,4.3.1,180,,Konghucu
+35.15.08,3,Sidoarjo,religion,kepercayaan,,19,jiwa,2025,registration,total_population,4.3.1,180,,Kepercayaan
+35.15.08,3,Sidoarjo,total,total,,201718,jiwa,2025,registration,total_population,4.3.1,180,,
+35.15.15,3,Buduran,religion,khonghucu,,3,jiwa,2025,registration,total_population,4.3.1,180,,Konghucu
+35.15.15,3,Buduran,religion,kepercayaan,,5,jiwa,2025,registration,total_population,4.3.1,180,,Kepercayaan
+35.15.15,3,Buduran,total,total,,103097,jiwa,2025,registration,total_population,4.3.1,180,,
+35.15.17,3,Sedati,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,180,nil,Konghucu
+35.15.17,3,Sedati,religion,kepercayaan,,1,jiwa,2025,registration,total_population,4.3.1,180,,Kepercayaan
+35.15.17,3,Sedati,total,total,,99527,jiwa,2025,registration,total_population,4.3.1,180,,
+35.15.18,3,Waru,religion,khonghucu,,27,jiwa,2025,registration,total_population,4.3.1,180,,Konghucu
+35.15.18,3,Waru,religion,kepercayaan,,9,jiwa,2025,registration,total_population,4.3.1,180,,Kepercayaan
+35.15.18,3,Waru,total,total,,196721,jiwa,2025,registration,total_population,4.3.1,180,,
+35.15.16,3,Gedangan,religion,khonghucu,,5,jiwa,2025,registration,total_population,4.3.1,180,,Konghucu
+35.15.16,3,Gedangan,religion,kepercayaan,,1,jiwa,2025,registration,total_population,4.3.1,180,,Kepercayaan
+35.15.16,3,Gedangan,total,total,,121297,jiwa,2025,registration,total_population,4.3.1,180,,
+35.15.13,3,Taman,religion,khonghucu,,19,jiwa,2025,registration,total_population,4.3.1,180,,Konghucu
+35.15.13,3,Taman,religion,kepercayaan,,11,jiwa,2025,registration,total_population,4.3.1,180,,Kepercayaan
+35.15.13,3,Taman,total,total,,204982,jiwa,2025,registration,total_population,4.3.1,180,,
+35.15.12,3,Balongbendo,religion,khonghucu,,4,jiwa,2025,registration,total_population,4.3.1,180,,Konghucu
+35.15.12,3,Balongbendo,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,180,nil,Kepercayaan
+35.15.12,3,Balongbendo,total,total,,74918,jiwa,2025,registration,total_population,4.3.1,180,,
+35.15,2,Kabupaten Sidoarjo,religion,khonghucu,,190,jiwa,2025,registration,total_population,4.3.1,180,,Konghucu
+35.15,2,Kabupaten Sidoarjo,religion,kepercayaan,,119,jiwa,2025,registration,total_population,4.3.1,180,,Kepercayaan
+35.15,2,Kabupaten Sidoarjo,total,total,,2051277,jiwa,2025,registration,total_population,4.3.1,180,,
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/padi_padian,,93287,rupiah,2024,survey_estimate,per_capita,10.1,380,,Padi-padian
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/padi_padian,,80401,rupiah,2025,survey_estimate,per_capita,10.1,380,,Padi-padian
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/umbi_umbian,,7734,rupiah,2024,survey_estimate,per_capita,10.1,380,,Umbi-umbian
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/umbi_umbian,,8653,rupiah,2025,survey_estimate,per_capita,10.1,380,,Umbi-umbian
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,67370,rupiah,2024,survey_estimate,per_capita,10.1,380,,Ikan/udang/cumi/kerang
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,68007,rupiah,2025,survey_estimate,per_capita,10.1,380,,Ikan/udang/cumi/kerang
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/daging,,54232,rupiah,2024,survey_estimate,per_capita,10.1,380,,Daging
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/daging,,61329,rupiah,2025,survey_estimate,per_capita,10.1,380,,Daging
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/telur_dan_susu,,50800,rupiah,2024,survey_estimate,per_capita,10.1,380,,Telur dan susu
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/telur_dan_susu,,46314,rupiah,2025,survey_estimate,per_capita,10.1,380,,Telur dan susu
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/sayur_sayuran,,60832,rupiah,2024,survey_estimate,per_capita,10.1,380,,Sayur-sayuran
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/sayur_sayuran,,60833,rupiah,2025,survey_estimate,per_capita,10.1,380,,Sayur-sayuran
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/kacang_kacangan,,22034,rupiah,2024,survey_estimate,per_capita,10.1,380,,Kacang-kacangan
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/kacang_kacangan,,23035,rupiah,2025,survey_estimate,per_capita,10.1,380,,Kacang-kacangan
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/buah_buahan,,51246,rupiah,2024,survey_estimate,per_capita,10.1,380,,Buah-buahan
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/buah_buahan,,55725,rupiah,2025,survey_estimate,per_capita,10.1,380,,Buah-buahan
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20352,rupiah,2024,survey_estimate,per_capita,10.1,380,,Minyak dan kelapa
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23985,rupiah,2025,survey_estimate,per_capita,10.1,380,,Minyak dan kelapa
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/bahan_minuman,,21425,rupiah,2024,survey_estimate,per_capita,10.1,380,,Bahan minuman
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/bahan_minuman,,24576,rupiah,2025,survey_estimate,per_capita,10.1,380,,Bahan minuman
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/bumbu_bumbuan,,19813,rupiah,2024,survey_estimate,per_capita,10.1,380,,Bumbu-bumbuan
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/bumbu_bumbuan,,19243,rupiah,2025,survey_estimate,per_capita,10.1,380,,Bumbu-bumbuan
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/konsumsi_lainnya,,14737,rupiah,2024,survey_estimate,per_capita,10.1,380,,Konsumsi lainnya
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/konsumsi_lainnya,,14674,rupiah,2025,survey_estimate,per_capita,10.1,380,,Konsumsi lainnya
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,300193,rupiah,2024,survey_estimate,per_capita,10.1,380,,Makanan dan minuman jadi
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,303931,rupiah,2025,survey_estimate,per_capita,10.1,380,,Makanan dan minuman jadi
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/rokok,,97796,rupiah,2024,survey_estimate,per_capita,10.1,380,,Rokok
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/rokok,,85531,rupiah,2025,survey_estimate,per_capita,10.1,380,,Rokok
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/jumlah_makanan,,881850,rupiah,2024,survey_estimate,per_capita,10.1,380,,Jumlah makanan
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/jumlah_makanan,,876237,rupiah,2025,survey_estimate,per_capita,10.1,380,,Jumlah makanan
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,552663,rupiah,2024,survey_estimate,per_capita,10.1,380,,Perumahan dan fasilitas rumah tangga
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,530648,rupiah,2025,survey_estimate,per_capita,10.1,380,,Perumahan dan fasilitas rumah tangga
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,274984,rupiah,2024,survey_estimate,per_capita,10.1,380,,Aneka barang dan jasa
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,285583,rupiah,2025,survey_estimate,per_capita,10.1,380,,Aneka barang dan jasa
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,37134,rupiah,2024,survey_estimate,per_capita,10.1,380,,"Pakaian, alas kaki, dan tutup kepala"
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,39695,rupiah,2025,survey_estimate,per_capita,10.1,380,,"Pakaian, alas kaki, dan tutup kepala"
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/barang_tahan_lama,,53381,rupiah,2024,survey_estimate,per_capita,10.1,380,,Barang tahan lama
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/barang_tahan_lama,,55131,rupiah,2025,survey_estimate,per_capita,10.1,380,,Barang tahan lama
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,114751,rupiah,2024,survey_estimate,per_capita,10.1,380,,"Pajak, pungutan, dan asuransi"
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,114220,rupiah,2025,survey_estimate,per_capita,10.1,380,,"Pajak, pungutan, dan asuransi"
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,44485,rupiah,2024,survey_estimate,per_capita,10.1,380,,Keperluan pesta dan upacara/kenduri
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,25309,rupiah,2025,survey_estimate,per_capita,10.1,380,,Keperluan pesta dan upacara/kenduri
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1077398,rupiah,2024,survey_estimate,per_capita,10.1,380,,Jumlah bukan makanan
+35.15,2,Kabupaten Sidoarjo,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1050587,rupiah,2025,survey_estimate,per_capita,10.1,380,,Jumlah bukan makanan
+35.15,2,Kabupaten Sidoarjo,expenditure,total,,1959248,rupiah,2024,survey_estimate,per_capita,10.1,380,,
+35.15,2,Kabupaten Sidoarjo,expenditure,total,,1926824,rupiah,2025,survey_estimate,per_capita,10.1,380,,

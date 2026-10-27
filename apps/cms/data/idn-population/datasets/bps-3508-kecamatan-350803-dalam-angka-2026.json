@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3508-kecamatan-350803-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.08.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Candipuro Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lumajang",
+  "publisherDomain": "3508",
+  "publisherWebsite": "https://lumajangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lumajang (https://lumajangkab.bps.go.id), publikasi \"Kecamatan Candipuro Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3508030",
+  "publicationNumber": "35080.26008",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lumajangkab.bps.go.id/id/publication/2026/09/28/c5bafccdcb8f5a3c78c8ddc3/kecamatan-candipuro-dalam-angka-2026.html",
+  "sourceFileSha256": "1e0b8767605a6ddb4d33acaaf924c13cb06ebcfd85e09312d42712085fe8cd68",
+  "sourceFileBytes": 4130791,
+  "sourcePages": [31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lumajang",
+  "csvPath": "datasets/bps-3508-kecamatan-350803-dalam-angka-2026.csv",
+  "csvSha256": "2d8e52a46f07b14fcfd8493ca19a3365eb2878298dabe2796d97830b73cd9ae8",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Candipuro, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Candipuro , 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 35.08.03 are not stored: age_group (perempuan) vs sex value: parts sum 38445.0000 != 38437.0000 (diff 8.0000); the source itself is inconsistent"
+  ]
+}

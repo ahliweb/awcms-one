@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.04.13.2002,4,Tanjung Bunian,sex,laki_laki,,263,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.04.13.2002,4,Tanjung Bunian,sex,perempuan,,247,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.04.13.2002,4,Tanjung Bunian,total,total,,510,jiwa,2025,registration,total_population,3.1,28,,
+17.04.13.2003,4,Sinar Bulan,sex,laki_laki,,195,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.04.13.2003,4,Sinar Bulan,sex,perempuan,,196,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.04.13.2003,4,Sinar Bulan,total,total,,391,jiwa,2025,registration,total_population,3.1,28,,
+17.04.13.2004,4,Suka Nanti,sex,laki_laki,,133,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.04.13.2004,4,Suka Nanti,sex,perempuan,,152,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.04.13.2004,4,Suka Nanti,total,total,,285,jiwa,2025,registration,total_population,3.1,28,,
+17.04.13.2005,4,Lawang Agung,sex,laki_laki,,298,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.04.13.2005,4,Lawang Agung,sex,perempuan,,279,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.04.13.2005,4,Lawang Agung,total,total,,577,jiwa,2025,registration,total_population,3.1,28,,
+17.04.13.2006,4,Tanjung Kurung,sex,laki_laki,,342,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.04.13.2006,4,Tanjung Kurung,sex,perempuan,,310,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.04.13.2006,4,Tanjung Kurung,total,total,,652,jiwa,2025,registration,total_population,3.1,28,,
+17.04.13.2007,4,Senak,sex,laki_laki,,156,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.04.13.2007,4,Senak,sex,perempuan,,125,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.04.13.2007,4,Senak,total,total,,281,jiwa,2025,registration,total_population,3.1,28,,
+17.04.13.2008,4,Datar Lebar II,sex,laki_laki,,135,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.04.13.2008,4,Datar Lebar II,sex,perempuan,,126,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.04.13.2008,4,Datar Lebar II,total,total,,261,jiwa,2025,registration,total_population,3.1,28,,
+17.04.13.2009,4,Aur Gading,sex,laki_laki,,151,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.04.13.2009,4,Aur Gading,sex,perempuan,,129,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.04.13.2009,4,Aur Gading,total,total,,280,jiwa,2025,registration,total_population,3.1,28,,
+17.04.13,3,Lungkang Kule,sex,laki_laki,,2006,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.04.13,3,Lungkang Kule,sex,perempuan,,1895,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.04.13,3,Lungkang Kule,total,total,,3901,jiwa,2025,registration,total_population,3.1,28,,
+17.04.13,3,Lungkang Kule,age_group,0-4,laki_laki,113,jiwa,2025,registration,total_population,3.2,30,,0-4
+17.04.13,3,Lungkang Kule,age_group,0-4,perempuan,111,jiwa,2025,registration,total_population,3.2,30,,0-4
+17.04.13,3,Lungkang Kule,age_group,0-4,,224,jiwa,2025,registration,total_population,3.2,30,,0-4
+17.04.13,3,Lungkang Kule,age_group,5-9,laki_laki,188,jiwa,2025,registration,total_population,3.2,30,,5-9
+17.04.13,3,Lungkang Kule,age_group,5-9,perempuan,160,jiwa,2025,registration,total_population,3.2,30,,5-9
+17.04.13,3,Lungkang Kule,age_group,5-9,,348,jiwa,2025,registration,total_population,3.2,30,,5-9
+17.04.13,3,Lungkang Kule,age_group,10-14,laki_laki,163,jiwa,2025,registration,total_population,3.2,30,,10-14
+17.04.13,3,Lungkang Kule,age_group,10-14,perempuan,175,jiwa,2025,registration,total_population,3.2,30,,10-14
+17.04.13,3,Lungkang Kule,age_group,10-14,,338,jiwa,2025,registration,total_population,3.2,30,,10-14
+17.04.13,3,Lungkang Kule,age_group,15-19,laki_laki,184,jiwa,2025,registration,total_population,3.2,30,,15-19
+17.04.13,3,Lungkang Kule,age_group,15-19,perempuan,169,jiwa,2025,registration,total_population,3.2,30,,15-19
+17.04.13,3,Lungkang Kule,age_group,15-19,,353,jiwa,2025,registration,total_population,3.2,30,,15-19
+17.04.13,3,Lungkang Kule,age_group,20-24,laki_laki,182,jiwa,2025,registration,total_population,3.2,30,,20-24
+17.04.13,3,Lungkang Kule,age_group,20-24,perempuan,177,jiwa,2025,registration,total_population,3.2,30,,20-24
+17.04.13,3,Lungkang Kule,age_group,20-24,,359,jiwa,2025,registration,total_population,3.2,30,,20-24
+17.04.13,3,Lungkang Kule,age_group,25-29,laki_laki,141,jiwa,2025,registration,total_population,3.2,30,,25-29
+17.04.13,3,Lungkang Kule,age_group,25-29,perempuan,127,jiwa,2025,registration,total_population,3.2,30,,25-29
+17.04.13,3,Lungkang Kule,age_group,25-29,,268,jiwa,2025,registration,total_population,3.2,30,,25-29
+17.04.13,3,Lungkang Kule,age_group,30-34,laki_laki,146,jiwa,2025,registration,total_population,3.2,30,,30-34
+17.04.13,3,Lungkang Kule,age_group,30-34,perempuan,132,jiwa,2025,registration,total_population,3.2,30,,30-34
+17.04.13,3,Lungkang Kule,age_group,30-34,,278,jiwa,2025,registration,total_population,3.2,30,,30-34
+17.04.13,3,Lungkang Kule,age_group,35-39,laki_laki,131,jiwa,2025,registration,total_population,3.2,30,,35-39
+17.04.13,3,Lungkang Kule,age_group,35-39,perempuan,139,jiwa,2025,registration,total_population,3.2,30,,35-39
+17.04.13,3,Lungkang Kule,age_group,35-39,,270,jiwa,2025,registration,total_population,3.2,30,,35-39
+17.04.13,3,Lungkang Kule,age_group,40-44,laki_laki,178,jiwa,2025,registration,total_population,3.2,30,,40-44
+17.04.13,3,Lungkang Kule,age_group,40-44,perempuan,142,jiwa,2025,registration,total_population,3.2,30,,40-44
+17.04.13,3,Lungkang Kule,age_group,40-44,,320,jiwa,2025,registration,total_population,3.2,30,,40-44
+17.04.13,3,Lungkang Kule,age_group,45-49,laki_laki,156,jiwa,2025,registration,total_population,3.2,30,,45-49
+17.04.13,3,Lungkang Kule,age_group,45-49,perempuan,134,jiwa,2025,registration,total_population,3.2,30,,45-49
+17.04.13,3,Lungkang Kule,age_group,45-49,,290,jiwa,2025,registration,total_population,3.2,30,,45-49
+17.04.13,3,Lungkang Kule,age_group,50-54,laki_laki,112,jiwa,2025,registration,total_population,3.2,30,,50-54
+17.04.13,3,Lungkang Kule,age_group,50-54,perempuan,95,jiwa,2025,registration,total_population,3.2,30,,50-54
+17.04.13,3,Lungkang Kule,age_group,50-54,,207,jiwa,2025,registration,total_population,3.2,30,,50-54
+17.04.13,3,Lungkang Kule,age_group,55-59,laki_laki,98,jiwa,2025,registration,total_population,3.2,30,,55-59
+17.04.13,3,Lungkang Kule,age_group,55-59,perempuan,109,jiwa,2025,registration,total_population,3.2,30,,55-59
+17.04.13,3,Lungkang Kule,age_group,55-59,,207,jiwa,2025,registration,total_population,3.2,30,,55-59
+17.04.13,3,Lungkang Kule,age_group,60-64,laki_laki,80,jiwa,2025,registration,total_population,3.2,30,,60-64
+17.04.13,3,Lungkang Kule,age_group,60-64,perempuan,81,jiwa,2025,registration,total_population,3.2,30,,60-64
+17.04.13,3,Lungkang Kule,age_group,60-64,,161,jiwa,2025,registration,total_population,3.2,30,,60-64
+17.04.13,3,Lungkang Kule,age_group,65-69,laki_laki,59,jiwa,2025,registration,total_population,3.2,30,,65-69
+17.04.13,3,Lungkang Kule,age_group,65-69,perempuan,56,jiwa,2025,registration,total_population,3.2,30,,65-69
+17.04.13,3,Lungkang Kule,age_group,65-69,,115,jiwa,2025,registration,total_population,3.2,30,,65-69
+17.04.13,3,Lungkang Kule,age_group,70-74,laki_laki,30,jiwa,2025,registration,total_population,3.2,30,,70-74
+17.04.13,3,Lungkang Kule,age_group,70-74,perempuan,29,jiwa,2025,registration,total_population,3.2,30,,70-74
+17.04.13,3,Lungkang Kule,age_group,70-74,,59,jiwa,2025,registration,total_population,3.2,30,,70-74
+17.04.13,3,Lungkang Kule,age_group,75+,laki_laki,45,jiwa,2025,registration,total_population,3.2,30,,75+
+17.04.13,3,Lungkang Kule,age_group,75+,perempuan,59,jiwa,2025,registration,total_population,3.2,30,,75+
+17.04.13,3,Lungkang Kule,age_group,75+,,104,jiwa,2025,registration,total_population,3.2,30,,75+
+17.04.13,3,Lungkang Kule,sex,laki_laki,,2006,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+17.04.13,3,Lungkang Kule,sex,perempuan,,1895,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+17.04.13,3,Lungkang Kule,total,total,,3901,jiwa,2025,registration,total_population,3.2,30,,

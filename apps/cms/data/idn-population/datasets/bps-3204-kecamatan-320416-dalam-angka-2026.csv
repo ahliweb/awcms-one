@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.16.2003,4,Batukarut,sex,laki_laki,,5958,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.16.2003,4,Batukarut,sex,perempuan,,5775,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.16.2003,4,Batukarut,total,total,,11733,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.16.2006,4,Mangunjaya,sex,laki_laki,,4898,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.16.2006,4,Mangunjaya,sex,perempuan,,4745,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.16.2006,4,Mangunjaya,total,total,,9643,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.16.2007,4,Mekarjaya,sex,laki_laki,,3649,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.16.2007,4,Mekarjaya,sex,perempuan,,3497,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.16.2007,4,Mekarjaya,total,total,,7146,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.16.2005,4,Baros,sex,laki_laki,,6250,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.16.2005,4,Baros,sex,perempuan,,5967,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.16.2005,4,Baros,total,total,,12217,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.16.2002,4,Lebakwangi,sex,laki_laki,,7291,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.16.2002,4,Lebakwangi,sex,perempuan,,7104,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.16.2002,4,Lebakwangi,total,total,,14395,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.16.2011,4,Wargaluyu,sex,laki_laki,,5035,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.16.2011,4,Wargaluyu,sex,perempuan,,4926,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.16.2011,4,Wargaluyu,total,total,,9961,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.16.2001,4,Arjasari,sex,laki_laki,,6914,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.16.2001,4,Arjasari,sex,perempuan,,6858,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.16.2001,4,Arjasari,total,total,,13772,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.16.2008,4,Pinggirsari,sex,laki_laki,,6988,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.16.2008,4,Pinggirsari,sex,perempuan,,6650,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.16.2008,4,Pinggirsari,total,total,,13638,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.16.2009,4,Patrolsari,sex,laki_laki,,5467,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.16.2009,4,Patrolsari,sex,perempuan,,5133,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.16.2009,4,Patrolsari,total,total,,10600,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.16.2010,4,Rancakole,sex,laki_laki,,5915,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.16.2010,4,Rancakole,sex,perempuan,,5672,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.16.2010,4,Rancakole,total,total,,11587,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.16.2004,4,Ancolmekar,sex,laki_laki,,2891,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.16.2004,4,Ancolmekar,sex,perempuan,,2808,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.16.2004,4,Ancolmekar,total,total,,5699,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.16,3,Kecamatan Arjasari,sex,laki_laki,,61256,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.16,3,Kecamatan Arjasari,sex,perempuan,,59135,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.16,3,Kecamatan Arjasari,total,total,,120391,jiwa,2025,registration,total_population,unnumbered-p28,28,,

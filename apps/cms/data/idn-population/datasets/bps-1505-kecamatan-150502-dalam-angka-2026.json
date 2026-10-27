@@ -1,0 +1,61 @@
+{
+  "datasetCode": "bps-1505-kecamatan-150502-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.05.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sekernan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Muaro Jambi",
+  "publisherDomain": "1505",
+  "publisherWebsite": "https://muarojambikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Muaro Jambi (https://muarojambikab.bps.go.id), publikasi \"Kecamatan Sekernan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1505060",
+  "publicationNumber": "15050.26015",
+  "issn": "2722-6875",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://muarojambikab.bps.go.id/id/publication/2026/09/28/1f7fb36f7dae24dac731b381/kecamatan-sekernan-dalam-angka-2026.html",
+  "sourceFileSha256": "b50241c54054c9c66b0f06f5334272674b3a87aa5f6a8f4254897d2df7a33c38",
+  "sourceFileBytes": 8016117,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Muaro Jambi.",
+  "csvPath": "datasets/bps-1505-kecamatan-150502-dalam-angka-2026.csv",
+  "csvSha256": "c96227acc771e836d85664f23a1f6d61caa6c3775a9ea4506c24abd864d7f385",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sekernan, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sekernan, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Tantan 5.07\": unmatched ",
+    "table 3.1: row not stored: row \"Kedotan 3.10\": unmatched ",
+    "table 3.1: row not stored: row \"Keranggan 1.87\": unmatched ",
+    "table 3.1: row not stored: row \"Sekernan 7.80\": unmatched ",
+    "table 3.1: row not stored: row \"Tunas Baru 4.03\": unmatched ",
+    "table 3.1: row not stored: row \"Berembang 5.69\": unmatched ",
+    "table 3.1: row not stored: row \"Pematang Pulai 2.53\": unmatched ",
+    "table 3.1: row not stored: row \"Pulau Kayu Aro 2.91\": unmatched ",
+    "table 3.1: row not stored: row \"Rantau Majo 2.21\": unmatched ",
+    "table 3.1: row not stored: row \"Bukit Baling 17.77\": unmatched ",
+    "table 3.1: row not stored: row \"Gerunggung 1.48\": unmatched ",
+    "table 3.1: row not stored: row \"Suak Putat 3.87\": unmatched ",
+    "table 3.1: row not stored: row \"Tanjung Lanjut 2.74\": unmatched ",
+    "table 3.1: row not stored: row \"Suko Awin Jaya 17.57\": unmatched ",
+    "table 3.1: row not stored: row \"Tunas Mudo 3.85\": unmatched ",
+    "table 3.1: row not stored: row \"Sengeti 17.50\": unmatched ",
+    "table 3.2: the rows of region 15.05.02 are not stored: sex split vs total: parts sum 52702.0000 != 53004.0000 (diff 302.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "datasetCode": "bps-1114-kecamatan-111606-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.16.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kejuruan Muda Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Tamiang",
+  "publisherDomain": "1114",
+  "publisherWebsite": "https://acehtamiangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Tamiang (https://acehtamiangkab.bps.go.id), publikasi \"Kecamatan Kejuruan Muda Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1114080",
+  "publicationNumber": "11140.26010",
+  "issn": "2962-4916",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehtamiangkab.bps.go.id/id/publication/2026/09/28/c66bab315817d5bcc3f0c989/kecamatan-kejuruan-muda-dalam-angka-2026.html",
+  "sourceFileSha256": "2ca333440c59b98f04eb877308fc804ef28ecf40b12254ed84d6a9101648d648",
+  "sourceFileBytes": 3515617,
+  "sourcePages": [13, 14],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Tamiang",
+  "csvPath": "datasets/bps-1114-kecamatan-111606-dalam-angka-2026.csv",
+  "csvSha256": "f5d3c76d776c9a7f3200e57598a130cfd3c1f4fee848e5a33b7dbedefa89cee9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Kejuruan Muda, 2025",
+      "printedPages": [13, 14],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Semadam\": unmatched ",
+    "table 3.1: row not stored: row \"Kampung Jawa\": unmatched ",
+    "table 3.1: row not stored: row \"Tanjung Genting\": unmatched ",
+    "table 3.1: row not stored: row \"Semadam\": unmatched ",
+    "table 3.1: row not stored: row \"Kampung Jawa\": unmatched ",
+    "table 3.1: row not stored: row \"Tanjung Genting\": unmatched "
+  ]
+}

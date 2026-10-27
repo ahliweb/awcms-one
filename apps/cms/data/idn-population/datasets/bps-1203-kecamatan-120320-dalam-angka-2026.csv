@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.03.20.1004,4,Pasar Sempurna,sex,laki_laki,,988,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+12.03.20.1004,4,Pasar Sempurna,sex,perempuan,,971,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+12.03.20.1004,4,Pasar Sempurna,total,total,,1959,jiwa,2025,registration,total_population,3.1,36,,
+12.03.20.2002,4,Huraba,sex,laki_laki,,550,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+12.03.20.2002,4,Huraba,sex,perempuan,,537,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+12.03.20.2002,4,Huraba,total,total,,1087,jiwa,2025,registration,total_population,3.1,36,,
+12.03.20.2014,4,Gunung Binanga,sex,laki_laki,,386,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+12.03.20.2014,4,Gunung Binanga,sex,perempuan,,347,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+12.03.20.2014,4,Gunung Binanga,total,total,,733,jiwa,2025,registration,total_population,3.1,36,,
+12.03.20.2015,4,Marancar Godang,sex,laki_laki,,395,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+12.03.20.2015,4,Marancar Godang,sex,perempuan,,379,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+12.03.20.2015,4,Marancar Godang,total,total,,774,jiwa,2025,registration,total_population,3.1,36,,
+12.03.20.2016,4,Simaninggir,sex,laki_laki,,483,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+12.03.20.2016,4,Simaninggir,sex,perempuan,,511,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+12.03.20.2016,4,Simaninggir,total,total,,994,jiwa,2025,registration,total_population,3.1,36,,
+12.03.20.2023,4,Sugi,sex,laki_laki,,436,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+12.03.20.2023,4,Sugi,sex,perempuan,,411,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+12.03.20.2023,4,Sugi,total,total,,847,jiwa,2025,registration,total_population,3.1,36,,
+12.03.20.2028,4,Haunatas,sex,laki_laki,,315,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+12.03.20.2028,4,Haunatas,sex,perempuan,,272,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+12.03.20.2028,4,Haunatas,total,total,,587,jiwa,2025,registration,total_population,3.1,36,,
+12.03.20.2032,4,Aek Nabara,sex,laki_laki,,417,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+12.03.20.2032,4,Aek Nabara,sex,perempuan,,401,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+12.03.20.2032,4,Aek Nabara,total,total,,818,jiwa,2025,registration,total_population,3.1,36,,
+12.03.20.2033,4,Gapuk Tua,sex,laki_laki,,585,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+12.03.20.2033,4,Gapuk Tua,sex,perempuan,,591,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+12.03.20.2033,4,Gapuk Tua,total,total,,1176,jiwa,2025,registration,total_population,3.1,36,,
+12.03.20.2034,4,Marancar Julu,sex,laki_laki,,535,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+12.03.20.2034,4,Marancar Julu,sex,perempuan,,584,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+12.03.20.2034,4,Marancar Julu,total,total,,1119,jiwa,2025,registration,total_population,3.1,36,,
+12.03.20.2035,4,Aek Sabaon,sex,laki_laki,,334,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+12.03.20.2035,4,Aek Sabaon,sex,perempuan,,343,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+12.03.20.2035,4,Aek Sabaon,total,total,,677,jiwa,2025,registration,total_population,3.1,36,,
+12.03.20.2036,4,Tanjung Dolok,sex,laki_laki,,338,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+12.03.20.2036,4,Tanjung Dolok,sex,perempuan,,310,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+12.03.20.2036,4,Tanjung Dolok,total,total,,648,jiwa,2025,registration,total_population,3.1,36,,
+12.03.20,3,Marancar,sex,laki_laki,,5762,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+12.03.20,3,Marancar,sex,perempuan,,5657,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+12.03.20,3,Marancar,total,total,,11419,jiwa,2025,registration,total_population,3.1,36,,

@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.04.09.2002,4,Pulau Lalang,sex,laki_laki,,187,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.09.2002,4,Pulau Lalang,sex,perempuan,,150,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.09.2002,4,Pulau Lalang,total,total,,337,jiwa,2025,registration,total_population,3.1,19,,
+21.04.09.2001,4,Marok Kecil,sex,laki_laki,,685,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.09.2001,4,Marok Kecil,sex,perempuan,,656,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.09.2001,4,Marok Kecil,total,total,,1341,jiwa,2025,registration,total_population,3.1,19,,
+21.04.09.2003,4,Resang,sex,laki_laki,,484,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.09.2003,4,Resang,sex,perempuan,,482,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.09.2003,4,Resang,total,total,,966,jiwa,2025,registration,total_population,3.1,19,,
+21.04.09.1004,4,Berlian,sex,laki_laki,,87,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.09.1004,4,Berlian,sex,perempuan,,77,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.09.1004,4,Berlian,total,total,,164,jiwa,2025,registration,total_population,3.1,19,,
+21.04.09,3,Kecamatan Singkep Selatan,sex,laki_laki,,1443,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.09,3,Kecamatan Singkep Selatan,sex,perempuan,,1365,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.09,3,Kecamatan Singkep Selatan,total,total,,2808,jiwa,2025,registration,total_population,3.1,19,,

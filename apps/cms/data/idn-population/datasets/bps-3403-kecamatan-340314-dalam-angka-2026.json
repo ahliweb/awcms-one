@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3403-kecamatan-340314-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "34.03.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gedangsari Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Gunungkidul",
+  "publisherDomain": "3403",
+  "publisherWebsite": "https://gunungkidulkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Gunungkidul (https://gunungkidulkab.bps.go.id), publikasi \"Kecamatan Gedangsari Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3403120",
+  "publicationNumber": "34030.25021",
+  "issn": "2087-6068",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://gunungkidulkab.bps.go.id/id/publication/2026/09/28/12e2de54d69037c582b75eed/kecamatan-gedangsari-dalam-angka-2026.html",
+  "sourceFileSha256": "a51ea37039ca6282bd33960fc5a97cca6e1d9f4aa5df458bf6a11d9cc5d72a57",
+  "sourceFileBytes": 4231980,
+  "sourcePages": [21, 22],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Gunungkidul.",
+  "csvPath": "datasets/bps-3403-kecamatan-340314-dalam-angka-2026.csv",
+  "csvSha256": "8d5a3c45c72d7f58d9bc6621e3a7db25602fafc47cbf44c2a658a28fe926cc7e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Gedangsari, 2025",
+      "printedPages": [21, 22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

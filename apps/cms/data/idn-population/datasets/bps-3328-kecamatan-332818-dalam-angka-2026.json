@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3328-kecamatan-332818-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.28.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Dukuhwaru Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tegal",
+  "publisherDomain": "3328",
+  "publisherWebsite": "https://tegalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tegal (https://tegalkab.bps.go.id), publikasi \"Kecamatan Dukuhwaru Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3328020",
+  "publicationNumber": "33280.26011",
+  "issn": "2621-1793",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tegalkab.bps.go.id/id/publication/2026/09/28/46724e8ffd00065ab401621b/kecamatan-dukuhwaru-dalam-angka-2026.html",
+  "sourceFileSha256": "3715ee73540ad3579f1c5591250381d6697818e5fb1f7e529a8734ed45febb2c",
+  "sourceFileBytes": 4712300,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tegal.",
+  "csvPath": "datasets/bps-3328-kecamatan-332818-dalam-angka-2026.csv",
+  "csvSha256": "56e3e2c9e0916383997925cf3571ac2f35126204fd04de50e1d419849fe3279d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Dukuhwaru, 2026",
+      "printedPages": [30, 31],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Dukuhwaru, 2026",
+      "printedPages": [32],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

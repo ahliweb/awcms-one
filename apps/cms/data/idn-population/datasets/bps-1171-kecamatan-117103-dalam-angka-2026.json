@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-1171-kecamatan-117103-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.71.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Meuraxa Dalam Angka 2026",
+  "publisherName": "BPS Kota Banda Aceh",
+  "publisherDomain": "1171",
+  "publisherWebsite": "https://bandaacehkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Banda Aceh (https://bandaacehkota.bps.go.id), publikasi \"Kecamatan Meuraxa Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1171010",
+  "publicationNumber": "11710.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandaacehkota.bps.go.id/id/publication/2026/09/28/18296af9e75520d483d4eeee/kecamatan-meuraxa-dalam-angka-2026.html",
+  "sourceFileSha256": "9925fda1b79ff9880ca2d916a8a12aa2761fab3a5c04fa08942d23ad40d683d2",
+  "sourceFileBytes": 3278461,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kota Banda Aceh.",
+  "csvPath": "datasets/bps-1171-kecamatan-117103-dalam-angka-2026.csv",
+  "csvSha256": "a8b1410d53b79b82b9e223a4b374c07ba843193928c3ed463b6110520d13ca5f",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Gampong di Kecamatan Meuraxa, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Meuraxa, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Aso Nanggroe\": unmatched ",
+    "table 3.1: the rows of region 11.71.03.2015 are not stored: sex split vs total: parts sum 2156.0000 != 2158.0000 (diff 2.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 11.71.03.2001 are not stored: sex split vs total: parts sum 3485.0000 != 4419.0000 (diff 934.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 11.71.03 are not stored: age_group (laki_laki) vs sex value: parts sum 14764.0000 != 1476.0000 (diff 13288.0000); the source itself is inconsistent"
+  ]
+}

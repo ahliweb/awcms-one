@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.01.14.2002,4,Sapik,sex,laki_laki,,646,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.14.2002,4,Sapik,sex,perempuan,,655,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.14.2002,4,Sapik,total,total,,1301,jiwa,2025,registration,total_population,3.1,20,,
+11.01.14.2004,4,Durian Kawan,sex,laki_laki,,908,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.14.2004,4,Durian Kawan,sex,perempuan,,890,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.14.2004,4,Durian Kawan,total,total,,1798,jiwa,2025,registration,total_population,3.1,20,,
+11.01.14.2003,4,Alai,sex,laki_laki,,343,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.14.2003,4,Alai,sex,perempuan,,349,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.14.2003,4,Alai,total,total,,692,jiwa,2025,registration,total_population,3.1,20,,
+11.01.14.2001,4,Paya Dapur,sex,laki_laki,,927,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.14.2001,4,Paya Dapur,sex,perempuan,,917,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.14.2001,4,Paya Dapur,total,total,,1844,jiwa,2025,registration,total_population,3.1,20,,
+11.01.14.2007,4,Pucuk Lembang,sex,laki_laki,,609,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.14.2007,4,Pucuk Lembang,sex,perempuan,,594,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.14.2007,4,Pucuk Lembang,total,total,,1203,jiwa,2025,registration,total_population,3.1,20,,
+11.01.14.2006,4,Lawe Buluh Didi,sex,laki_laki,,160,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.14.2006,4,Lawe Buluh Didi,sex,perempuan,,141,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.14.2006,4,Lawe Buluh Didi,total,total,,301,jiwa,2025,registration,total_population,3.1,20,,
+11.01.14.2005,4,Lawe Sawah,sex,laki_laki,,525,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.14.2005,4,Lawe Sawah,sex,perempuan,,524,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.14.2005,4,Lawe Sawah,total,total,,1049,jiwa,2025,registration,total_population,3.1,20,,
+11.01.14.2008,4,Paya Laba,sex,laki_laki,,695,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.14.2008,4,Paya Laba,sex,perempuan,,632,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.14.2008,4,Paya Laba,total,total,,1327,jiwa,2025,registration,total_population,3.1,20,,
+11.01.14.2009,4,Lawe Cimanok,sex,laki_laki,,721,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.14.2009,4,Lawe Cimanok,sex,perempuan,,722,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.14.2009,4,Lawe Cimanok,total,total,,1443,jiwa,2025,registration,total_population,3.1,20,,
+11.01.14,3,Kluet Timur,sex,laki_laki,,5534,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.14,3,Kluet Timur,sex,perempuan,,5424,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.14,3,Kluet Timur,total,total,,10958,jiwa,2025,registration,total_population,3.1,20,,
+11.01.14,3,Kluet Timur,age_group,0-4,laki_laki,445,jiwa,2025,registration,total_population,3.2,22,,0-4
+11.01.14,3,Kluet Timur,age_group,0-4,perempuan,428,jiwa,2025,registration,total_population,3.2,22,,0-4
+11.01.14,3,Kluet Timur,age_group,0-4,,873,jiwa,2025,registration,total_population,3.2,22,,0-4
+11.01.14,3,Kluet Timur,age_group,5-9,laki_laki,445,jiwa,2025,registration,total_population,3.2,22,,5-9
+11.01.14,3,Kluet Timur,age_group,5-9,perempuan,430,jiwa,2025,registration,total_population,3.2,22,,5-9
+11.01.14,3,Kluet Timur,age_group,5-9,,875,jiwa,2025,registration,total_population,3.2,22,,5-9
+11.01.14,3,Kluet Timur,age_group,10-14,laki_laki,453,jiwa,2025,registration,total_population,3.2,22,,10-14
+11.01.14,3,Kluet Timur,age_group,10-14,perempuan,393,jiwa,2025,registration,total_population,3.2,22,,10-14
+11.01.14,3,Kluet Timur,age_group,10-14,,846,jiwa,2025,registration,total_population,3.2,22,,10-14
+11.01.14,3,Kluet Timur,age_group,15-19,laki_laki,434,jiwa,2025,registration,total_population,3.2,22,,15-19
+11.01.14,3,Kluet Timur,age_group,15-19,perempuan,446,jiwa,2025,registration,total_population,3.2,22,,15-19
+11.01.14,3,Kluet Timur,age_group,15-19,,880,jiwa,2025,registration,total_population,3.2,22,,15-19
+11.01.14,3,Kluet Timur,age_group,20-24,laki_laki,596,jiwa,2025,registration,total_population,3.2,22,,20-24
+11.01.14,3,Kluet Timur,age_group,20-24,perempuan,524,jiwa,2025,registration,total_population,3.2,22,,20-24
+11.01.14,3,Kluet Timur,age_group,20-24,,1120,jiwa,2025,registration,total_population,3.2,22,,20-24
+11.01.14,3,Kluet Timur,age_group,25-29,laki_laki,594,jiwa,2025,registration,total_population,3.2,22,,25-29
+11.01.14,3,Kluet Timur,age_group,25-29,perempuan,452,jiwa,2025,registration,total_population,3.2,22,,25-29
+11.01.14,3,Kluet Timur,age_group,25-29,,1046,jiwa,2025,registration,total_population,3.2,22,,25-29
+11.01.14,3,Kluet Timur,age_group,30-34,laki_laki,394,jiwa,2025,registration,total_population,3.2,22,,30-34
+11.01.14,3,Kluet Timur,age_group,30-34,perempuan,360,jiwa,2025,registration,total_population,3.2,22,,30-34
+11.01.14,3,Kluet Timur,age_group,30-34,,754,jiwa,2025,registration,total_population,3.2,22,,30-34
+11.01.14,3,Kluet Timur,age_group,35-39,laki_laki,376,jiwa,2025,registration,total_population,3.2,22,,35-39
+11.01.14,3,Kluet Timur,age_group,35-39,perempuan,360,jiwa,2025,registration,total_population,3.2,22,,35-39
+11.01.14,3,Kluet Timur,age_group,35-39,,736,jiwa,2025,registration,total_population,3.2,22,,35-39
+11.01.14,3,Kluet Timur,age_group,40-44,laki_laki,321,jiwa,2025,registration,total_population,3.2,22,,40-44
+11.01.14,3,Kluet Timur,age_group,40-44,perempuan,347,jiwa,2025,registration,total_population,3.2,22,,40-44
+11.01.14,3,Kluet Timur,age_group,40-44,,668,jiwa,2025,registration,total_population,3.2,22,,40-44
+11.01.14,3,Kluet Timur,age_group,45-49,laki_laki,366,jiwa,2025,registration,total_population,3.2,22,,45-49
+11.01.14,3,Kluet Timur,age_group,45-49,perempuan,399,jiwa,2025,registration,total_population,3.2,22,,45-49
+11.01.14,3,Kluet Timur,age_group,45-49,,765,jiwa,2025,registration,total_population,3.2,22,,45-49
+11.01.14,3,Kluet Timur,age_group,50-54,laki_laki,387,jiwa,2025,registration,total_population,3.2,22,,50-54
+11.01.14,3,Kluet Timur,age_group,50-54,perempuan,364,jiwa,2025,registration,total_population,3.2,22,,50-54
+11.01.14,3,Kluet Timur,age_group,50-54,,751,jiwa,2025,registration,total_population,3.2,22,,50-54
+11.01.14,3,Kluet Timur,age_group,55-59,laki_laki,278,jiwa,2025,registration,total_population,3.2,22,,55-59
+11.01.14,3,Kluet Timur,age_group,55-59,perempuan,289,jiwa,2025,registration,total_population,3.2,22,,55-59
+11.01.14,3,Kluet Timur,age_group,55-59,,567,jiwa,2025,registration,total_population,3.2,22,,55-59
+11.01.14,3,Kluet Timur,age_group,60-64,laki_laki,182,jiwa,2025,registration,total_population,3.2,22,,60-64
+11.01.14,3,Kluet Timur,age_group,60-64,perempuan,211,jiwa,2025,registration,total_population,3.2,22,,60-64
+11.01.14,3,Kluet Timur,age_group,60-64,,393,jiwa,2025,registration,total_population,3.2,22,,60-64
+11.01.14,3,Kluet Timur,age_group,65-69,laki_laki,95,jiwa,2025,registration,total_population,3.2,22,,65-69
+11.01.14,3,Kluet Timur,age_group,65-69,perempuan,125,jiwa,2025,registration,total_population,3.2,22,,65-69
+11.01.14,3,Kluet Timur,age_group,65-69,,220,jiwa,2025,registration,total_population,3.2,22,,65-69
+11.01.14,3,Kluet Timur,age_group,70-74,laki_laki,81,jiwa,2025,registration,total_population,3.2,22,,70-74
+11.01.14,3,Kluet Timur,age_group,70-74,perempuan,122,jiwa,2025,registration,total_population,3.2,22,,70-74
+11.01.14,3,Kluet Timur,age_group,70-74,,203,jiwa,2025,registration,total_population,3.2,22,,70-74
+11.01.14,3,Kluet Timur,age_group,75+,laki_laki,87,jiwa,2025,registration,total_population,3.2,22,,75+
+11.01.14,3,Kluet Timur,age_group,75+,perempuan,156,jiwa,2025,registration,total_population,3.2,22,,75+
+11.01.14,3,Kluet Timur,age_group,75+,,243,jiwa,2025,registration,total_population,3.2,22,,75+

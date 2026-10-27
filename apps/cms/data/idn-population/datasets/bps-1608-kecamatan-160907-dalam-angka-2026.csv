@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.09.07.2002,4,Padang Sari,sex,laki_laki,,334,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.07.2002,4,Padang Sari,sex,perempuan,,310,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.07.2002,4,Padang Sari,total,total,,644,jiwa,2025,registration,total_population,3.1,27,,
+16.09.07.2003,4,Padang Bindu,sex,laki_laki,,660,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.07.2003,4,Padang Bindu,sex,perempuan,,618,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.07.2003,4,Padang Bindu,total,total,,1278,jiwa,2025,registration,total_population,3.1,27,,
+16.09.07.2005,4,Saung Naga,sex,laki_laki,,512,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.07.2005,4,Saung Naga,sex,perempuan,,497,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.07.2005,4,Saung Naga,total,total,,1009,jiwa,2025,registration,total_population,3.1,27,,
+16.09.07.2006,4,Negeri Batin Baru,sex,laki_laki,,206,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.07.2006,4,Negeri Batin Baru,sex,perempuan,,195,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.07.2006,4,Negeri Batin Baru,total,total,,401,jiwa,2025,registration,total_population,3.1,27,,
+16.09.07.2007,4,Kota Aman,sex,laki_laki,,391,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.07.2007,4,Kota Aman,sex,perempuan,,389,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.07.2007,4,Kota Aman,total,total,,780,jiwa,2025,registration,total_population,3.1,27,,
+16.09.07.2008,4,Belambangan,sex,laki_laki,,555,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.07.2008,4,Belambangan,sex,perempuan,,546,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.07.2008,4,Belambangan,total,total,,1101,jiwa,2025,registration,total_population,3.1,27,,
+16.09.07.2009,4,Paninjauan,sex,laki_laki,,657,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.07.2009,4,Paninjauan,sex,perempuan,,604,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.07.2009,4,Paninjauan,total,total,,1261,jiwa,2025,registration,total_population,3.1,27,,
+16.09.07.2018,4,Nagar Agung,sex,laki_laki,,489,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.07.2018,4,Nagar Agung,sex,perempuan,,428,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.07.2018,4,Nagar Agung,total,total,,917,jiwa,2025,registration,total_population,3.1,27,,
+16.09.07.2019,4,Simpang Saga,sex,laki_laki,,703,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.07.2019,4,Simpang Saga,sex,perempuan,,579,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.07.2019,4,Simpang Saga,total,total,,1282,jiwa,2025,registration,total_population,3.1,27,,
+16.09.07.2020,4,Perupus Blambangan,sex,laki_laki,,278,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.07.2020,4,Perupus Blambangan,sex,perempuan,,267,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.07.2020,4,Perupus Blambangan,total,total,,545,jiwa,2025,registration,total_population,3.1,27,,
+16.09.07.2021,4,Kagelang Blambangan,sex,laki_laki,,426,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.07.2021,4,Kagelang Blambangan,sex,perempuan,,352,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.07.2021,4,Kagelang Blambangan,total,total,,778,jiwa,2025,registration,total_population,3.1,27,,
+16.09.07.2022,4,Sukajadi Blambangan,sex,laki_laki,,371,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.07.2022,4,Sukajadi Blambangan,sex,perempuan,,339,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.07.2022,4,Sukajadi Blambangan,total,total,,710,jiwa,2025,registration,total_population,3.1,27,,
+16.09.07.2023,4,Bedeng Blambangan,sex,laki_laki,,308,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.07.2023,4,Bedeng Blambangan,sex,perempuan,,260,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.07.2023,4,Bedeng Blambangan,total,total,,568,jiwa,2025,registration,total_population,3.1,27,,
+16.09.07,3,Buay Runjung,sex,laki_laki,,6487,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.07,3,Buay Runjung,sex,perempuan,,5925,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.07,3,Buay Runjung,total,total,,12412,jiwa,2025,registration,total_population,3.1,27,,

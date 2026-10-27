@@ -1,0 +1,69 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.03.07.2002,4,Sungai Ulu,sex,laki_laki,,992,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.07.2002,4,Sungai Ulu,sex,perempuan,,976,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+21.03.07.2002,4,Sungai Ulu,total,total,,1968,jiwa,2025,registration,total_population,3.1,26,,
+21.03.07.2004,4,Sepempang,sex,laki_laki,,1343,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.07.2004,4,Sepempang,sex,perempuan,,1274,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+21.03.07.2004,4,Sepempang,total,total,,2617,jiwa,2025,registration,total_population,3.1,26,,
+21.03.07.2014,4,Batu Gajah,sex,laki_laki,,628,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.07.2014,4,Batu Gajah,sex,perempuan,,569,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+21.03.07.2014,4,Batu Gajah,total,total,,1197,jiwa,2025,registration,total_population,3.1,26,,
+21.03.07.1011,4,Ranai Kota,sex,laki_laki,,4697,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.07.1011,4,Ranai Kota,sex,perempuan,,4664,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+21.03.07.1011,4,Ranai Kota,total,total,,9361,jiwa,2025,registration,total_population,3.1,26,,
+21.03.07.1016,4,Ranai Darat,sex,perempuan,,1756,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+21.03.07.1016,4,Ranai Darat,total,total,,3536,jiwa,2025,registration,total_population,3.1,26,,
+21.03.07.1017,4,Bandarsyah,sex,laki_laki,,2923,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.07.1017,4,Bandarsyah,sex,perempuan,,2815,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+21.03.07.1017,4,Bandarsyah,total,total,,5738,jiwa,2025,registration,total_population,3.1,26,,
+21.03.07.1019,4,Batu Hitam,sex,laki_laki,,2655,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.07.1019,4,Batu Hitam,sex,perempuan,,2603,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+21.03.07.1019,4,Batu Hitam,total,total,,5258,jiwa,2025,registration,total_population,3.1,26,,
+21.03.07,3,Bunguran Timur,age_group,0-4,laki_laki,1013,jiwa,2025,registration,total_population,3.2,28,,0–4
+21.03.07,3,Bunguran Timur,age_group,0-4,perempuan,1054,jiwa,2025,registration,total_population,3.2,28,,0–4
+21.03.07,3,Bunguran Timur,age_group,0-4,,2067,jiwa,2025,registration,total_population,3.2,28,,0–4
+21.03.07,3,Bunguran Timur,age_group,5-9,laki_laki,1363,jiwa,2025,registration,total_population,3.2,28,,5–9
+21.03.07,3,Bunguran Timur,age_group,5-9,perempuan,1276,jiwa,2025,registration,total_population,3.2,28,,5–9
+21.03.07,3,Bunguran Timur,age_group,5-9,,2639,jiwa,2025,registration,total_population,3.2,28,,5–9
+21.03.07,3,Bunguran Timur,age_group,10-14,laki_laki,1527,jiwa,2025,registration,total_population,3.2,28,,10–14
+21.03.07,3,Bunguran Timur,age_group,10-14,perempuan,1471,jiwa,2025,registration,total_population,3.2,28,,10–14
+21.03.07,3,Bunguran Timur,age_group,10-14,,2998,jiwa,2025,registration,total_population,3.2,28,,10–14
+21.03.07,3,Bunguran Timur,age_group,15-19,laki_laki,1591,jiwa,2025,registration,total_population,3.2,28,,15–19
+21.03.07,3,Bunguran Timur,age_group,15-19,perempuan,1465,jiwa,2025,registration,total_population,3.2,28,,15–19
+21.03.07,3,Bunguran Timur,age_group,15-19,,3056,jiwa,2025,registration,total_population,3.2,28,,15–19
+21.03.07,3,Bunguran Timur,age_group,20-24,laki_laki,1383,jiwa,2025,registration,total_population,3.2,28,,20–24
+21.03.07,3,Bunguran Timur,age_group,20-24,perempuan,1224,jiwa,2025,registration,total_population,3.2,28,,20–24
+21.03.07,3,Bunguran Timur,age_group,20-24,,2607,jiwa,2025,registration,total_population,3.2,28,,20–24
+21.03.07,3,Bunguran Timur,age_group,25-29,laki_laki,1134,jiwa,2025,registration,total_population,3.2,28,,25–29
+21.03.07,3,Bunguran Timur,age_group,25-29,perempuan,1118,jiwa,2025,registration,total_population,3.2,28,,25–29
+21.03.07,3,Bunguran Timur,age_group,25-29,,2252,jiwa,2025,registration,total_population,3.2,28,,25–29
+21.03.07,3,Bunguran Timur,age_group,30-34,laki_laki,996,jiwa,2025,registration,total_population,3.2,28,,30–34
+21.03.07,3,Bunguran Timur,age_group,30-34,perempuan,1044,jiwa,2025,registration,total_population,3.2,28,,30–34
+21.03.07,3,Bunguran Timur,age_group,30-34,,204,jiwa,2025,registration,total_population,3.2,28,,30–34
+21.03.07,3,Bunguran Timur,age_group,35-39,laki_laki,1019,jiwa,2025,registration,total_population,3.2,28,,35–39
+21.03.07,3,Bunguran Timur,age_group,35-39,perempuan,1149,jiwa,2025,registration,total_population,3.2,28,,35–39
+21.03.07,3,Bunguran Timur,age_group,35-39,,2168,jiwa,2025,registration,total_population,3.2,28,,35–39
+21.03.07,3,Bunguran Timur,age_group,40-44,laki_laki,1268,jiwa,2025,registration,total_population,3.2,28,,40–44
+21.03.07,3,Bunguran Timur,age_group,40-44,perempuan,1346,jiwa,2025,registration,total_population,3.2,28,,40–44
+21.03.07,3,Bunguran Timur,age_group,40-44,,2614,jiwa,2025,registration,total_population,3.2,28,,40–44
+21.03.07,3,Bunguran Timur,age_group,45-49,laki_laki,1124,jiwa,2025,registration,total_population,3.2,28,,45–49
+21.03.07,3,Bunguran Timur,age_group,45-49,perempuan,1101,jiwa,2025,registration,total_population,3.2,28,,45–49
+21.03.07,3,Bunguran Timur,age_group,45-49,,2225,jiwa,2025,registration,total_population,3.2,28,,45–49
+21.03.07,3,Bunguran Timur,age_group,50-54,laki_laki,938,jiwa,2025,registration,total_population,3.2,28,,50–54
+21.03.07,3,Bunguran Timur,age_group,50-54,perempuan,798,jiwa,2025,registration,total_population,3.2,28,,50–54
+21.03.07,3,Bunguran Timur,age_group,50-54,,1736,jiwa,2025,registration,total_population,3.2,28,,50–54
+21.03.07,3,Bunguran Timur,age_group,55-59,laki_laki,632,jiwa,2025,registration,total_population,3.2,28,,55–59
+21.03.07,3,Bunguran Timur,age_group,55-59,perempuan,526,jiwa,2025,registration,total_population,3.2,28,,55–59
+21.03.07,3,Bunguran Timur,age_group,55-59,,1158,jiwa,2025,registration,total_population,3.2,28,,55–59
+21.03.07,3,Bunguran Timur,age_group,60-64,laki_laki,428,jiwa,2025,registration,total_population,3.2,28,,60–64
+21.03.07,3,Bunguran Timur,age_group,60-64,perempuan,411,jiwa,2025,registration,total_population,3.2,28,,60–64
+21.03.07,3,Bunguran Timur,age_group,60-64,,839,jiwa,2025,registration,total_population,3.2,28,,60–64
+21.03.07,3,Bunguran Timur,age_group,65-69,laki_laki,283,jiwa,2025,registration,total_population,3.2,28,,65–69
+21.03.07,3,Bunguran Timur,age_group,65-69,perempuan,267,jiwa,2025,registration,total_population,3.2,28,,65–69
+21.03.07,3,Bunguran Timur,age_group,65-69,,550,jiwa,2025,registration,total_population,3.2,28,,65–69
+21.03.07,3,Bunguran Timur,age_group,70-74,laki_laki,154,jiwa,2025,registration,total_population,3.2,28,,70–74
+21.03.07,3,Bunguran Timur,age_group,70-74,perempuan,181,jiwa,2025,registration,total_population,3.2,28,,70–74
+21.03.07,3,Bunguran Timur,age_group,70-74,,335,jiwa,2025,registration,total_population,3.2,28,,70–74
+21.03.07,3,Bunguran Timur,age_group,75+,laki_laki,165,jiwa,2025,registration,total_population,3.2,28,,75+
+21.03.07,3,Bunguran Timur,age_group,75+,perempuan,226,jiwa,2025,registration,total_population,3.2,28,,75+
+21.03.07,3,Bunguran Timur,age_group,75+,,391,jiwa,2025,registration,total_population,3.2,28,,75+

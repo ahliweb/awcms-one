@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.08.2005,4,Bojongsari,sex,laki_laki,,10383,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.08.2005,4,Bojongsari,sex,perempuan,,10037,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.08.2005,4,Bojongsari,total,total,,20420,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.08.2002,4,Bojongsoang,sex,laki_laki,,11098,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.08.2002,4,Bojongsoang,sex,perempuan,,11059,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.08.2002,4,Bojongsoang,total,total,,22157,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.08.2001,4,Lengkong,sex,laki_laki,,8247,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.08.2001,4,Lengkong,sex,perempuan,,8125,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.08.2001,4,Lengkong,total,total,,16372,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.08.2004,4,Cipagalo,sex,laki_laki,,10663,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.08.2004,4,Cipagalo,sex,perempuan,,10601,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.08.2004,4,Cipagalo,total,total,,21264,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.08.2003,4,Buahbatu,sex,laki_laki,,7596,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.08.2003,4,Buahbatu,sex,perempuan,,7561,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.08.2003,4,Buahbatu,total,total,,15157,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.08.2006,4,Tegalluar,sex,laki_laki,,9464,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.08.2006,4,Tegalluar,sex,perempuan,,9232,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.08.2006,4,Tegalluar,total,total,,18696,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.08,3,Kecamatan Bojongsoang,sex,laki_laki,,57451,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.08,3,Kecamatan Bojongsoang,sex,perempuan,,56615,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.08,3,Kecamatan Bojongsoang,total,total,,114066,jiwa,2025,registration,total_population,unnumbered-p28,28,,

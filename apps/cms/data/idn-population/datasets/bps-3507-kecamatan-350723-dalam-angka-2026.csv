@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.07.23.2001,4,Tegalgondo,sex,laki_laki,,3515,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.23.2001,4,Tegalgondo,sex,perempuan,,3452,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.23.2001,4,Tegalgondo,total,total,,6967,jiwa,2025,registration,total_population,3.1,27,,
+35.07.23.2002,4,Kepuharjo,sex,laki_laki,,4063,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.23.2002,4,Kepuharjo,sex,perempuan,,4070,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.23.2002,4,Kepuharjo,total,total,,8133,jiwa,2025,registration,total_population,3.1,27,,
+35.07.23.2003,4,Ngenep,sex,laki_laki,,6974,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.23.2003,4,Ngenep,sex,perempuan,,6792,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.23.2003,4,Ngenep,total,total,,13766,jiwa,2025,registration,total_population,3.1,27,,
+35.07.23.2004,4,Ngijo,sex,laki_laki,,8644,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.23.2004,4,Ngijo,sex,perempuan,,8600,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.23.2004,4,Ngijo,total,total,,17244,jiwa,2025,registration,total_population,3.1,27,,
+35.07.23.2005,4,Ampeldento,sex,laki_laki,,2668,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.23.2005,4,Ampeldento,sex,perempuan,,2621,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.23.2005,4,Ampeldento,total,total,,5289,jiwa,2025,registration,total_population,3.1,27,,
+35.07.23.2006,4,Girimoyo,sex,laki_laki,,3053,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.23.2006,4,Girimoyo,sex,perempuan,,3063,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.23.2006,4,Girimoyo,total,total,,6116,jiwa,2025,registration,total_population,3.1,27,,
+35.07.23.2007,4,Bocek,sex,laki_laki,,4572,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.23.2007,4,Bocek,sex,perempuan,,4369,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.23.2007,4,Bocek,total,total,,8941,jiwa,2025,registration,total_population,3.1,27,,
+35.07.23.2008,4,Donowarih,sex,laki_laki,,4934,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.23.2008,4,Donowarih,sex,perempuan,,4890,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.23.2008,4,Donowarih,total,total,,9824,jiwa,2025,registration,total_population,3.1,27,,
+35.07.23.2009,4,Tawangargo,sex,laki_laki,,4687,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.23.2009,4,Tawangargo,sex,perempuan,,4601,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.23.2009,4,Tawangargo,total,total,,9288,jiwa,2025,registration,total_population,3.1,27,,
+35.07.23,3,Kecamatan Karangploso,sex,laki_laki,,43110,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.23,3,Kecamatan Karangploso,sex,perempuan,,42458,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.23,3,Kecamatan Karangploso,total,total,,85568,jiwa,2025,registration,total_population,3.1,27,,
+35.07.23,3,Karangploso,age_group,0-4,laki_laki,2327,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+35.07.23,3,Karangploso,age_group,0-4,perempuan,2332,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+35.07.23,3,Karangploso,age_group,0-4,,4659,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+35.07.23,3,Karangploso,age_group,5-9,laki_laki,3365,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+35.07.23,3,Karangploso,age_group,5-9,perempuan,3226,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+35.07.23,3,Karangploso,age_group,5-9,,6591,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+35.07.23,3,Karangploso,age_group,10-14,laki_laki,3456,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+35.07.23,3,Karangploso,age_group,10-14,perempuan,3270,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+35.07.23,3,Karangploso,age_group,10-14,,6726,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+35.07.23,3,Karangploso,age_group,15-19,laki_laki,3178,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+35.07.23,3,Karangploso,age_group,15-19,perempuan,3100,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+35.07.23,3,Karangploso,age_group,15-19,,6278,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+35.07.23,3,Karangploso,age_group,20-24,laki_laki,3265,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+35.07.23,3,Karangploso,age_group,20-24,perempuan,3157,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+35.07.23,3,Karangploso,age_group,20-24,,6422,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+35.07.23,3,Karangploso,age_group,25-29,laki_laki,3424,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+35.07.23,3,Karangploso,age_group,25-29,perempuan,3243,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+35.07.23,3,Karangploso,age_group,25-29,,6667,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+35.07.23,3,Karangploso,age_group,30-34,laki_laki,3233,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+35.07.23,3,Karangploso,age_group,30-34,perempuan,3250,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+35.07.23,3,Karangploso,age_group,30-34,,6483,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+35.07.23,3,Karangploso,age_group,35-39,laki_laki,3186,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+35.07.23,3,Karangploso,age_group,35-39,perempuan,2990,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+35.07.23,3,Karangploso,age_group,35-39,,6176,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+35.07.23,3,Karangploso,age_group,40-44,laki_laki,3292,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+35.07.23,3,Karangploso,age_group,40-44,perempuan,3312,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+35.07.23,3,Karangploso,age_group,40-44,,6604,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+35.07.23,3,Karangploso,age_group,45-49,laki_laki,3073,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+35.07.23,3,Karangploso,age_group,45-49,perempuan,3109,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+35.07.23,3,Karangploso,age_group,45-49,,6182,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+35.07.23,3,Karangploso,age_group,50-54,laki_laki,2943,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+35.07.23,3,Karangploso,age_group,50-54,perempuan,3013,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+35.07.23,3,Karangploso,age_group,50-54,,5956,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+35.07.23,3,Karangploso,age_group,55-59,laki_laki,2576,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+35.07.23,3,Karangploso,age_group,55-59,perempuan,2711,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+35.07.23,3,Karangploso,age_group,55-59,,5287,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+35.07.23,3,Karangploso,age_group,60-64,laki_laki,2168,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+35.07.23,3,Karangploso,age_group,60-64,perempuan,2206,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+35.07.23,3,Karangploso,age_group,60-64,,4374,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+35.07.23,3,Karangploso,age_group,65+,laki_laki,3624,jiwa,2025,registration,total_population,3.2,29,,>= 65
+35.07.23,3,Karangploso,age_group,65+,perempuan,3539,jiwa,2025,registration,total_population,3.2,29,,>= 65
+35.07.23,3,Karangploso,age_group,65+,,7163,jiwa,2025,registration,total_population,3.2,29,,>= 65
+35.07.23,3,Kecamatan Karangploso,sex,laki_laki,,43110,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+35.07.23,3,Kecamatan Karangploso,sex,perempuan,,42458,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+35.07.23,3,Kecamatan Karangploso,total,total,,85568,jiwa,2025,registration,total_population,3.2,29,,

@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.06.12.2009,4,Cukangjayaguna,sex,laki_laki,,2535,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+32.06.12.2009,4,Cukangjayaguna,sex,perempuan,,2484,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+32.06.12.2009,4,Cukangjayaguna,total,total,,5019,jiwa,2025,registration,total_population,3.1,27,,
+32.06.12.2012,4,Sukabakti,sex,laki_laki,,2193,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+32.06.12.2012,4,Sukabakti,sex,perempuan,,2066,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+32.06.12.2012,4,Sukabakti,total,total,,4259,jiwa,2025,registration,total_population,3.1,27,,
+32.06.12.2001,4,Parumasan,sex,laki_laki,,2846,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+32.06.12.2001,4,Parumasan,sex,perempuan,,2478,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+32.06.12.2001,4,Parumasan,total,total,,5324,jiwa,2025,registration,total_population,3.1,27,,
+32.06.12.2008,4,Sepatnunggal,sex,laki_laki,,2362,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+32.06.12.2008,4,Sepatnunggal,sex,perempuan,,2269,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+32.06.12.2008,4,Sepatnunggal,total,total,,4631,jiwa,2025,registration,total_population,3.1,27,,
+32.06.12.2010,4,Raksajaya,sex,laki_laki,,2614,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+32.06.12.2010,4,Raksajaya,sex,perempuan,,2561,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+32.06.12.2010,4,Raksajaya,total,total,,5175,jiwa,2025,registration,total_population,3.1,27,,
+32.06.12.2003,4,Sodonghilir,sex,laki_laki,,3989,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+32.06.12.2003,4,Sodonghilir,sex,perempuan,,3908,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+32.06.12.2003,4,Sodonghilir,total,total,,7897,jiwa,2025,registration,total_population,3.1,27,,
+32.06.12.2002,4,Cukangkawung,sex,laki_laki,,5974,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+32.06.12.2002,4,Cukangkawung,sex,perempuan,,5628,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+32.06.12.2002,4,Cukangkawung,total,total,,11602,jiwa,2025,registration,total_population,3.1,27,,
+32.06.12.2004,4,Cikalong,sex,laki_laki,,4383,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+32.06.12.2004,4,Cikalong,sex,perempuan,,4049,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+32.06.12.2004,4,Cikalong,total,total,,8432,jiwa,2025,registration,total_population,3.1,27,,
+32.06.12.2005,4,Cipaingeun,sex,laki_laki,,2497,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+32.06.12.2005,4,Cipaingeun,sex,perempuan,,2647,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+32.06.12.2005,4,Cipaingeun,total,total,,5144,jiwa,2025,registration,total_population,3.1,27,,
+32.06.12.2011,4,Pakalongan,sex,laki_laki,,2371,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+32.06.12.2011,4,Pakalongan,sex,perempuan,,2369,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+32.06.12.2011,4,Pakalongan,total,total,,4740,jiwa,2025,registration,total_population,3.1,27,,
+32.06.12.2006,4,Leuwidulang,sex,laki_laki,,2648,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+32.06.12.2006,4,Leuwidulang,sex,perempuan,,2494,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+32.06.12.2006,4,Leuwidulang,total,total,,5142,jiwa,2025,registration,total_population,3.1,27,,
+32.06.12.2007,4,Muncang,sex,laki_laki,,3227,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+32.06.12.2007,4,Muncang,sex,perempuan,,2981,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+32.06.12.2007,4,Muncang,total,total,,6208,jiwa,2025,registration,total_population,3.1,27,,
+32.06.12,3,Sodonghilir,age_group,0-4,laki_laki,2674,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+32.06.12,3,Sodonghilir,age_group,0-4,perempuan,2538,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+32.06.12,3,Sodonghilir,age_group,0-4,,5212,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+32.06.12,3,Sodonghilir,age_group,5-9,laki_laki,2578,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+32.06.12,3,Sodonghilir,age_group,5-9,perempuan,2683,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+32.06.12,3,Sodonghilir,age_group,5-9,,5261,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+32.06.12,3,Sodonghilir,age_group,10-14,laki_laki,2659,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+32.06.12,3,Sodonghilir,age_group,10-14,perempuan,2555,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+32.06.12,3,Sodonghilir,age_group,10-14,,5214,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+32.06.12,3,Sodonghilir,age_group,15-19,laki_laki,3011,jiwa,2025,registration,total_population,3.2,29,,15 - 19
+32.06.12,3,Sodonghilir,age_group,15-19,perempuan,2749,jiwa,2025,registration,total_population,3.2,29,,15 - 19
+32.06.12,3,Sodonghilir,age_group,15-19,,5760,jiwa,2025,registration,total_population,3.2,29,,15 - 19
+32.06.12,3,Sodonghilir,age_group,20-24,laki_laki,3194,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+32.06.12,3,Sodonghilir,age_group,20-24,perempuan,2901,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+32.06.12,3,Sodonghilir,age_group,20-24,,6095,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+32.06.12,3,Sodonghilir,age_group,25-29,laki_laki,3183,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+32.06.12,3,Sodonghilir,age_group,25-29,perempuan,2611,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+32.06.12,3,Sodonghilir,age_group,25-29,,5794,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+32.06.12,3,Sodonghilir,age_group,30-34,laki_laki,2809,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+32.06.12,3,Sodonghilir,age_group,30-34,perempuan,2535,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+32.06.12,3,Sodonghilir,age_group,30-34,,5344,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+32.06.12,3,Sodonghilir,age_group,35-39,laki_laki,2438,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+32.06.12,3,Sodonghilir,age_group,35-39,perempuan,2367,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+32.06.12,3,Sodonghilir,age_group,35-39,,4805,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+32.06.12,3,Sodonghilir,age_group,40-44,laki_laki,2337,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+32.06.12,3,Sodonghilir,age_group,40-44,perempuan,2439,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+32.06.12,3,Sodonghilir,age_group,40-44,,4776,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+32.06.12,3,Sodonghilir,age_group,45-49,laki_laki,2351,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+32.06.12,3,Sodonghilir,age_group,45-49,perempuan,2337,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+32.06.12,3,Sodonghilir,age_group,45-49,,4688,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+32.06.12,3,Sodonghilir,age_group,50-54,laki_laki,2433,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+32.06.12,3,Sodonghilir,age_group,50-54,perempuan,2504,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+32.06.12,3,Sodonghilir,age_group,50-54,,4937,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+32.06.12,3,Sodonghilir,age_group,55-59,laki_laki,2317,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+32.06.12,3,Sodonghilir,age_group,55-59,perempuan,2343,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+32.06.12,3,Sodonghilir,age_group,55-59,,4660,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+32.06.12,3,Sodonghilir,age_group,60-64,laki_laki,2005,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+32.06.12,3,Sodonghilir,age_group,60-64,perempuan,1933,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+32.06.12,3,Sodonghilir,age_group,60-64,,3938,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+32.06.12,3,Sodonghilir,age_group,65-69,laki_laki,1541,jiwa,2025,registration,total_population,3.2,29,,65 - 69
+32.06.12,3,Sodonghilir,age_group,65-69,perempuan,1405,jiwa,2025,registration,total_population,3.2,29,,65 - 69
+32.06.12,3,Sodonghilir,age_group,65-69,,2946,jiwa,2025,registration,total_population,3.2,29,,65 - 69
+32.06.12,3,Sodonghilir,age_group,70-74,laki_laki,990,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+32.06.12,3,Sodonghilir,age_group,70-74,perempuan,989,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+32.06.12,3,Sodonghilir,age_group,70-74,,1979,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+32.06.12,3,Sodonghilir,age_group,75+,laki_laki,1119,jiwa,2025,registration,total_population,3.2,29,,75 +
+32.06.12,3,Sodonghilir,age_group,75+,perempuan,1045,jiwa,2025,registration,total_population,3.2,29,,75 +
+32.06.12,3,Sodonghilir,age_group,75+,,2164,jiwa,2025,registration,total_population,3.2,29,,75 +

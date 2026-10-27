@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.12.22.2001,4,Cipedang,sex,laki_laki,,2759,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.12.22.2001,4,Cipedang,sex,perempuan,,2754,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.12.22.2001,4,Cipedang,total,total,,5513,jiwa,2025,registration,total_population,3.1,28,,
+32.12.22.2002,4,Sidamulya,sex,laki_laki,,3552,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.12.22.2002,4,Sidamulya,sex,perempuan,,3493,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.12.22.2002,4,Sidamulya,total,total,,7045,jiwa,2025,registration,total_population,3.1,28,,
+32.12.22.2003,4,Margamulya,sex,laki_laki,,4471,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.12.22.2003,4,Margamulya,sex,perempuan,,4446,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.12.22.2003,4,Margamulya,total,total,,8917,jiwa,2025,registration,total_population,3.1,28,,
+32.12.22.2004,4,Kertajaya,sex,laki_laki,,4671,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.12.22.2004,4,Kertajaya,sex,perempuan,,4681,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.12.22.2004,4,Kertajaya,total,total,,9352,jiwa,2025,registration,total_population,3.1,28,,
+32.12.22.2005,4,Bongas,sex,laki_laki,,2985,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.12.22.2005,4,Bongas,sex,perempuan,,3001,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.12.22.2005,4,Bongas,total,total,,5986,jiwa,2025,registration,total_population,3.1,28,,
+32.12.22.2006,4,Cipaat,sex,laki_laki,,3996,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.12.22.2006,4,Cipaat,sex,perempuan,,3992,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.12.22.2006,4,Cipaat,total,total,,7988,jiwa,2025,registration,total_population,3.1,28,,
+32.12.22.2007,4,Kertamulya,sex,laki_laki,,3932,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.12.22.2007,4,Kertamulya,sex,perempuan,,3929,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.12.22.2007,4,Kertamulya,total,total,,7861,jiwa,2025,registration,total_population,3.1,28,,
+32.12.22.2008,4,Plawangan,sex,laki_laki,,1348,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.12.22.2008,4,Plawangan,sex,perempuan,,1326,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.12.22.2008,4,Plawangan,total,total,,2674,jiwa,2025,registration,total_population,3.1,28,,
+32.12.22,3,Kecamatan Bongas,sex,laki_laki,,27714,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.12.22,3,Kecamatan Bongas,sex,perempuan,,27622,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.12.22,3,Kecamatan Bongas,total,total,,55336,jiwa,2025,registration,total_population,3.1,28,,

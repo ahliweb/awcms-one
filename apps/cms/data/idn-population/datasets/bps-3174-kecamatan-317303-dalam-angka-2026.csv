@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.73.03.1002,4,Krukut,sex,laki_laki,,11588,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+31.73.03.1002,4,Krukut,sex,perempuan,,11415,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+31.73.03.1002,4,Krukut,total,total,,23003,jiwa,2025,registration,total_population,3.1,32,,
+31.73.03.1003,4,Maphar,sex,laki_laki,,9303,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+31.73.03.1003,4,Maphar,sex,perempuan,,9408,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+31.73.03.1003,4,Maphar,total,total,,18711,jiwa,2025,registration,total_population,3.1,32,,
+31.73.03.1001,4,Taman Sari,sex,laki_laki,,8152,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+31.73.03.1001,4,Taman Sari,sex,perempuan,,8343,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+31.73.03.1001,4,Taman Sari,total,total,,16495,jiwa,2025,registration,total_population,3.1,32,,
+31.73.03.1004,4,Tangki,sex,laki_laki,,7355,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+31.73.03.1004,4,Tangki,sex,perempuan,,7547,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+31.73.03.1004,4,Tangki,total,total,,14902,jiwa,2025,registration,total_population,3.1,32,,
+31.73.03.1005,4,Mangga Besar,sex,laki_laki,,4186,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+31.73.03.1005,4,Mangga Besar,sex,perempuan,,4285,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+31.73.03.1005,4,Mangga Besar,total,total,,8471,jiwa,2025,registration,total_population,3.1,32,,
+31.73.03.1006,4,Keagungan,sex,laki_laki,,10454,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+31.73.03.1006,4,Keagungan,sex,perempuan,,10247,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+31.73.03.1006,4,Keagungan,total,total,,20701,jiwa,2025,registration,total_population,3.1,32,,
+31.73.03.1007,4,Glodok,sex,laki_laki,,4158,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+31.73.03.1007,4,Glodok,sex,perempuan,,4452,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+31.73.03.1007,4,Glodok,total,total,,8610,jiwa,2025,registration,total_population,3.1,32,,
+31.73.03.1008,4,Pinangsia,sex,laki_laki,,6196,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+31.73.03.1008,4,Pinangsia,sex,perempuan,,5980,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+31.73.03.1008,4,Pinangsia,total,total,,12176,jiwa,2025,registration,total_population,3.1,32,,
+31.73.03,3,Taman Sari,sex,laki_laki,,61392,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+31.73.03,3,Taman Sari,sex,perempuan,,61677,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+31.73.03,3,Taman Sari,total,total,,123069,jiwa,2025,registration,total_population,3.1,32,,

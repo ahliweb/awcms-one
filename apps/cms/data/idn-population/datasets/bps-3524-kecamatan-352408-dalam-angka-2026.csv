@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.24.08.2005,4,Duri Kulon,sex,laki_laki,,650,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.24.08.2005,4,Duri Kulon,sex,perempuan,,665,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.24.08.2005,4,Duri Kulon,total,total,,1315,jiwa,2025,registration,total_population,3.1,33,,
+35.24.08.2004,4,Centini,sex,laki_laki,,1759,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.24.08.2004,4,Centini,sex,perempuan,,1676,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.24.08.2004,4,Centini,total,total,,3435,jiwa,2025,registration,total_population,3.1,33,,
+35.24.08.2003,4,Keduyung,sex,laki_laki,,609,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.24.08.2003,4,Keduyung,sex,perempuan,,610,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.24.08.2003,4,Keduyung,total,total,,1219,jiwa,2025,registration,total_population,3.1,33,,
+35.24.08.2006,4,Pesanggrahan,sex,laki_laki,,763,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.24.08.2006,4,Pesanggrahan,sex,perempuan,,749,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.24.08.2006,4,Pesanggrahan,total,total,,1512,jiwa,2025,registration,total_population,3.1,33,,
+35.24.08.2002,4,Jabung,sex,laki_laki,,1127,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.24.08.2002,4,Jabung,sex,perempuan,,1118,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.24.08.2002,4,Jabung,total,total,,2245,jiwa,2025,registration,total_population,3.1,33,,
+35.24.08.2001,4,Dateng,sex,laki_laki,,778,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.24.08.2001,4,Dateng,sex,perempuan,,759,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.24.08.2001,4,Dateng,total,total,,1537,jiwa,2025,registration,total_population,3.1,33,,
+35.24.08.2007,4,Gelap,sex,laki_laki,,1234,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.24.08.2007,4,Gelap,sex,perempuan,,1244,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.24.08.2007,4,Gelap,total,total,,2478,jiwa,2025,registration,total_population,3.1,33,,
+35.24.08.2008,4,Mojo Asem,sex,laki_laki,,559,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.24.08.2008,4,Mojo Asem,sex,perempuan,,581,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.24.08.2008,4,Mojo Asem,total,total,,1140,jiwa,2025,registration,total_population,3.1,33,,
+35.24.08.2009,4,Siser,sex,laki_laki,,577,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.24.08.2009,4,Siser,sex,perempuan,,560,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.24.08.2009,4,Siser,total,total,,1137,jiwa,2025,registration,total_population,3.1,33,,
+35.24.08.2010,4,Bulutigo,sex,laki_laki,,1476,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.24.08.2010,4,Bulutigo,sex,perempuan,,1483,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.24.08.2010,4,Bulutigo,total,total,,2959,jiwa,2025,registration,total_population,3.1,33,,
+35.24.08.2011,4,Pelangwot,sex,laki_laki,,2511,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.24.08.2011,4,Pelangwot,sex,perempuan,,2385,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.24.08.2011,4,Pelangwot,total,total,,4896,jiwa,2025,registration,total_population,3.1,33,,
+35.24.08.2012,4,Laren,sex,laki_laki,,1944,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.24.08.2012,4,Laren,sex,perempuan,,1919,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.24.08.2012,4,Laren,total,total,,3863,jiwa,2025,registration,total_population,3.1,33,,
+35.24.08.2013,4,Gampang Sejati,sex,laki_laki,,1071,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.24.08.2013,4,Gampang Sejati,sex,perempuan,,1062,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.24.08.2013,4,Gampang Sejati,total,total,,2133,jiwa,2025,registration,total_population,3.1,33,,
+35.24.08.2015,4,Karangtawar,sex,laki_laki,,873,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.24.08.2015,4,Karangtawar,sex,perempuan,,857,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.24.08.2015,4,Karangtawar,total,total,,1730,jiwa,2025,registration,total_population,3.1,33,,
+35.24.08.2016,4,Tejoasri,sex,laki_laki,,2245,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.24.08.2016,4,Tejoasri,sex,perempuan,,2368,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.24.08.2016,4,Tejoasri,total,total,,4613,jiwa,2025,registration,total_population,3.1,33,,
+35.24.08.2017,4,Godog,sex,laki_laki,,1420,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.24.08.2017,4,Godog,sex,perempuan,,1434,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.24.08.2017,4,Godog,total,total,,2854,jiwa,2025,registration,total_population,3.1,33,,
+35.24.08.2018,4,Bulubrangsi,sex,laki_laki,,2086,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.24.08.2018,4,Bulubrangsi,sex,perempuan,,2034,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.24.08.2018,4,Bulubrangsi,total,total,,4120,jiwa,2025,registration,total_population,3.1,33,,
+35.24.08.2019,4,Karangwungu Lor,sex,laki_laki,,755,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.24.08.2019,4,Karangwungu Lor,sex,perempuan,,748,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.24.08.2019,4,Karangwungu Lor,total,total,,1503,jiwa,2025,registration,total_population,3.1,33,,
+35.24.08.2020,4,Brangsi,sex,laki_laki,,1013,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.24.08.2020,4,Brangsi,sex,perempuan,,1016,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.24.08.2020,4,Brangsi,total,total,,2029,jiwa,2025,registration,total_population,3.1,33,,
+35.24.08,3,Kecamatan Laren,sex,laki_laki,,25266,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.24.08,3,Kecamatan Laren,sex,perempuan,,25110,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.24.08,3,Kecamatan Laren,total,total,,50376,jiwa,2025,registration,total_population,3.1,33,,

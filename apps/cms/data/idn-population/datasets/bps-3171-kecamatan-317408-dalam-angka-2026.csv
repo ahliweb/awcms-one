@@ -1,0 +1,44 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.74.08.1001,4,PANCORAN,sex,laki_laki,,11885,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+31.74.08.1001,4,PANCORAN,sex,perempuan,,11812,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+31.74.08.1001,4,PANCORAN,total,total,,23697,jiwa,2025,registration,total_population,3.1,27,,
+31.74.08.1003,4,RAWAJATI,sex,laki_laki,,12738,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+31.74.08.1003,4,RAWAJATI,sex,perempuan,,13184,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+31.74.08.1003,4,RAWAJATI,total,total,,25922,jiwa,2025,registration,total_population,3.1,27,,
+31.74.08.1005,4,PENGADEGAN,sex,laki_laki,,12971,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+31.74.08.1005,4,PENGADEGAN,sex,perempuan,,13138,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+31.74.08.1005,4,PENGADEGAN,total,total,,26109,jiwa,2025,registration,total_population,3.1,27,,
+31.74.08.1004,4,DUREN TIGA,sex,laki_laki,,16382,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+31.74.08.1004,4,DUREN TIGA,sex,perempuan,,16159,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+31.74.08.1004,4,DUREN TIGA,total,total,,32541,jiwa,2025,registration,total_population,3.1,27,,
+31.74.08.1002,4,KALIBATA,sex,laki_laki,,25172,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+31.74.08.1002,4,KALIBATA,sex,perempuan,,25324,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+31.74.08.1002,4,KALIBATA,total,total,,50496,jiwa,2025,registration,total_population,3.1,27,,
+31.74.08,3,Kecamatan Pancoran,sex,laki_laki,,85124,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+31.74.08,3,Kecamatan Pancoran,sex,perempuan,,85679,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+31.74.08,3,Kecamatan Pancoran,total,total,,170803,jiwa,2025,registration,total_population,3.1,27,,
+31.74.08,3,Pancoran,age_group,0-10,laki_laki,13027,jiwa,2025,registration,total_population,3.2,29,,0-10
+31.74.08,3,Pancoran,age_group,0-10,perempuan,12213,jiwa,2025,registration,total_population,3.2,29,,0-10
+31.74.08,3,Pancoran,age_group,0-10,,25240,jiwa,2025,registration,total_population,3.2,29,,0-10
+31.74.08,3,Pancoran,age_group,11-20,laki_laki,13967,jiwa,2025,registration,total_population,3.2,29,,11-20
+31.74.08,3,Pancoran,age_group,11-20,,27247,jiwa,2025,registration,total_population,3.2,29,,11-20
+31.74.08,3,Pancoran,age_group,21-30,laki_laki,13029,jiwa,2025,registration,total_population,3.2,29,,21-30
+31.74.08,3,Pancoran,age_group,21-30,perempuan,12787,jiwa,2025,registration,total_population,3.2,29,,21-30
+31.74.08,3,Pancoran,age_group,21-30,,25816,jiwa,2025,registration,total_population,3.2,29,,21-30
+31.74.08,3,Pancoran,age_group,31-40,laki_laki,12669,jiwa,2025,registration,total_population,3.2,29,,31-40
+31.74.08,3,Pancoran,age_group,31-40,perempuan,13382,jiwa,2025,registration,total_population,3.2,29,,31-40
+31.74.08,3,Pancoran,age_group,31-40,,26051,jiwa,2025,registration,total_population,3.2,29,,31-40
+31.74.08,3,Pancoran,age_group,41-50,laki_laki,13908,jiwa,2025,registration,total_population,3.2,29,,41-50
+31.74.08,3,Pancoran,age_group,41-50,perempuan,14347,jiwa,2025,registration,total_population,3.2,29,,41-50
+31.74.08,3,Pancoran,age_group,41-50,,28255,jiwa,2025,registration,total_population,3.2,29,,41-50
+31.74.08,3,Pancoran,age_group,51-60,laki_laki,10951,jiwa,2025,registration,total_population,3.2,29,,51-60
+31.74.08,3,Pancoran,age_group,51-60,,21771,jiwa,2025,registration,total_population,3.2,29,,51-60
+31.74.08,3,Pancoran,age_group,61-70,laki_laki,5305,jiwa,2025,registration,total_population,3.2,29,,61-70
+31.74.08,3,Pancoran,age_group,61-70,perempuan,5927,jiwa,2025,registration,total_population,3.2,29,,61-70
+31.74.08,3,Pancoran,age_group,61-70,,11232,jiwa,2025,registration,total_population,3.2,29,,61-70
+31.74.08,3,Pancoran,age_group,71-80,laki_laki,1793,jiwa,2025,registration,total_population,3.2,29,,71-80
+31.74.08,3,Pancoran,age_group,71-80,perempuan,2315,jiwa,2025,registration,total_population,3.2,29,,71-80
+31.74.08,3,Pancoran,age_group,71-80,,4108,jiwa,2025,registration,total_population,3.2,29,,71-80
+31.74.08,3,Pancoran,age_group,81+,laki_laki,474,jiwa,2025,registration,total_population,3.2,29,,81+
+31.74.08,3,Pancoran,age_group,81+,perempuan,604,jiwa,2025,registration,total_population,3.2,29,,81+
+31.74.08,3,Pancoran,age_group,81+,,1078,jiwa,2025,registration,total_population,3.2,29,,81+

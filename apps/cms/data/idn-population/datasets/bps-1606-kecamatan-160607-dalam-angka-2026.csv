@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.06.07.2008,4,Sumber Rejeki,sex,laki_laki,,2114,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.07.2008,4,Sumber Rejeki,sex,perempuan,,2014,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.07.2008,4,Sumber Rejeki,total,total,,4128,jiwa,2026,registration,total_population,3.1,34,,
+16.06.07.2011,4,Sukadamai Baru,sex,laki_laki,,1589,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.07.2011,4,Sukadamai Baru,sex,perempuan,,1549,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.07.2011,4,Sukadamai Baru,total,total,,3138,jiwa,2026,registration,total_population,3.1,34,,
+16.06.07.2012,4,Cinta Damai,sex,laki_laki,,1695,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.07.2012,4,Cinta Damai,sex,perempuan,,1637,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.07.2012,4,Cinta Damai,total,total,,3332,jiwa,2026,registration,total_population,3.1,34,,
+16.06.07.2013,4,Berlian Makmur,sex,laki_laki,,2496,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.07.2013,4,Berlian Makmur,sex,perempuan,,2436,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.07.2013,4,Berlian Makmur,total,total,,4932,jiwa,2026,registration,total_population,3.1,34,,
+16.06.07.2007,4,Srigunung,sex,laki_laki,,3932,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.07.2007,4,Srigunung,sex,perempuan,,3898,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.07.2007,4,Srigunung,total,total,,7830,jiwa,2026,registration,total_population,3.1,34,,
+16.06.07.2014,4,Bumi Kencana,sex,laki_laki,,2672,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.07.2014,4,Bumi Kencana,sex,perempuan,,2512,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.07.2014,4,Bumi Kencana,total,total,,5184,jiwa,2026,registration,total_population,3.1,34,,
+16.06.07.2019,4,Panca Tunggal,sex,laki_laki,,1816,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.07.2019,4,Panca Tunggal,sex,perempuan,,1740,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.07.2019,4,Panca Tunggal,total,total,,3556,jiwa,2026,registration,total_population,3.1,34,,
+16.06.07.2010,4,Mulyorejo,sex,laki_laki,,1782,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.07.2010,4,Mulyorejo,sex,perempuan,,1782,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.07.2010,4,Mulyorejo,total,total,,3564,jiwa,2026,registration,total_population,3.1,34,,
+16.06.07.2009,4,Linggo Sari,sex,laki_laki,,1385,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.07.2009,4,Linggo Sari,sex,perempuan,,1350,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.07.2009,4,Linggo Sari,total,total,,2735,jiwa,2026,registration,total_population,3.1,34,,
+16.06.07.2016,4,Nusa Serasan,sex,laki_laki,,2074,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.07.2016,4,Nusa Serasan,sex,perempuan,,1956,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.07.2016,4,Nusa Serasan,total,total,,4030,jiwa,2026,registration,total_population,3.1,34,,
+16.06.07.2017,4,Pinang Banjar,sex,laki_laki,,2807,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.07.2017,4,Pinang Banjar,sex,perempuan,,2665,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.07.2017,4,Pinang Banjar,total,total,,5472,jiwa,2026,registration,total_population,3.1,34,,
+16.06.07.2015,4,Mekar Jadi,sex,laki_laki,,1199,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.07.2015,4,Mekar Jadi,sex,perempuan,,1177,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.07.2015,4,Mekar Jadi,total,total,,2376,jiwa,2026,registration,total_population,3.1,34,,
+16.06.07.2021,4,Bukit Jaya,sex,laki_laki,,1192,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.07.2021,4,Bukit Jaya,sex,perempuan,,1169,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.07.2021,4,Bukit Jaya,total,total,,2361,jiwa,2026,registration,total_population,3.1,34,,
+16.06.07.1030,4,Sungai Lilin Jaya,sex,laki_laki,,3428,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.07.1030,4,Sungai Lilin Jaya,sex,perempuan,,3337,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.07.1030,4,Sungai Lilin Jaya,total,total,,6765,jiwa,2026,registration,total_population,3.1,34,,
+16.06.07,3,Sungai Lilin,sex,laki_laki,,37359,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.07,3,Sungai Lilin,sex,perempuan,,35951,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.07,3,Sungai Lilin,total,total,,73310,jiwa,2026,registration,total_population,3.1,34,,
+16.06.07,3,Sungai Lilin,age_group,0-14,laki_laki,9099,jiwa,2026,projection,total_population,3.2,36,,0-14
+16.06.07,3,Sungai Lilin,age_group,0-14,perempuan,8635,jiwa,2026,projection,total_population,3.2,36,,0-14
+16.06.07,3,Sungai Lilin,age_group,0-14,,17734,jiwa,2026,projection,total_population,3.2,36,,0-14
+16.06.07,3,Sungai Lilin,age_group,15-64,laki_laki,22992,jiwa,2026,projection,total_population,3.2,36,,15-64
+16.06.07,3,Sungai Lilin,age_group,15-64,perempuan,22255,jiwa,2026,projection,total_population,3.2,36,,15-64
+16.06.07,3,Sungai Lilin,age_group,15-64,,45247,jiwa,2026,projection,total_population,3.2,36,,15-64
+16.06.07,3,Sungai Lilin,age_group,65+,laki_laki,1974,jiwa,2026,projection,total_population,3.2,36,,65+
+16.06.07,3,Sungai Lilin,age_group,65+,perempuan,1917,jiwa,2026,projection,total_population,3.2,36,,65+
+16.06.07,3,Sungai Lilin,age_group,65+,,3891,jiwa,2026,projection,total_population,3.2,36,,65+
+16.06.07,3,Sungai Lilin,sex,laki_laki,,34065,jiwa,2026,projection,total_population,3.2,36,,Laki-Laki
+16.06.07,3,Sungai Lilin,sex,perempuan,,32807,jiwa,2026,projection,total_population,3.2,36,,Perempuan
+16.06.07,3,Sungai Lilin,total,total,,66872,jiwa,2026,projection,total_population,3.2,36,,

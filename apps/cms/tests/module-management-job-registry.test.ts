@@ -135,6 +135,8 @@ describe("fetchModuleJobs", () => {
         "bun run identity-access:business-scope:expiry",
         "bun run identity-access:delegated-access:expiry",
         "bun run identity-access:subscription-lifecycle",
+        "bun run idn-population:activate",
+        "bun run idn-population:import",
         "bun run idn-regions:activate",
         "bun run idn-regions:import",
         "bun run idn-regions:rollback",

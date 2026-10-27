@@ -592,6 +592,12 @@ export const GLOBAL_TABLE_FORBIDDEN_PRIVILEGES: Record<string, string[]> = {
   // never deleted, so 91k rows are never one wrong query away.
   awcms_idn_region_datasets: ["INSERT", "DELETE"],
   awcms_idn_admin_regions: ["INSERT", "UPDATE", "DELETE"],
+  // BPS population statistics (awcms-one ADR-0051, sql/882) — global for the same
+  // reason as the region tables. The request path is READ-ONLY on both: nothing
+  // in a request imports, edits or activates population data (activation is the
+  // `idn-population:activate` job, as `awcms_worker`), and no role may DELETE.
+  awcms_idn_population_datasets: ["INSERT", "UPDATE", "DELETE"],
+  awcms_idn_population_stats: ["INSERT", "UPDATE", "DELETE"],
   // Entitlement catalogue (ADR-0084, sql/109) — the operator's plan catalogue.
   // Global because a plan is not tenant-owned data: `pro` means the same thing
   // to every customer, exactly as `province "Aceh"` does above.
@@ -1613,6 +1619,12 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // itself is a request-path action on awcms_app, not this job's business.
   awcms_idn_region_datasets: ["SELECT", "INSERT", "UPDATE"],
   awcms_idn_admin_regions: ["SELECT", "INSERT"],
+  // idn_admin_regions — idn-population:import / :activate (sql/882, awcms-one
+  // ADR-0051). The import INSERTs one dataset row plus its statistics rows;
+  // activation UPDATEs the dataset row's status. Statistics rows are never
+  // edited in place and nothing is ever DELETEd (a dataset is superseded).
+  awcms_idn_population_datasets: ["SELECT", "INSERT", "UPDATE"],
+  awcms_idn_population_stats: ["SELECT", "INSERT"],
   // visitor_analytics — analytics:rollup + analytics:purge (sql/050). Rollup
   // SELECTs raw events and SELECT/INSERT/UPDATEs the daily rollups; purge
   // DELETEs aged events, SELECT/UPDATE/DELETEs sessions (raw-detail clear +
@@ -2936,6 +2948,8 @@ export const NON_CREDENTIAL_LOOKALIKES: Readonly<Record<string, string>> = {
     "keyed hash of the request body that binds a replay to its first request (ADR-0145); not a login secret",
   "awcms_idn_admin_regions.source_row_hash":
     "checksum of an imported public dataset row",
+  "awcms_idn_population_stats.source_row_hash":
+    "checksum of an imported public statistics row (awcms-one ADR-0051)",
   "awcms_newsletter_subscribers.consent_ip_hash":
     "keyed hash of the IP recorded as consent evidence; not a login secret",
   "awcms_omes_worker_nonces.nonce":

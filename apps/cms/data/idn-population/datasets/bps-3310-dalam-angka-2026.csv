@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.10.23,3,Kalikotes,total,total,,0.54,ribu_jiwa,2025,registration,total_population,3.1.1,54,,
+33.10.22,3,Ngawen,total,total,,0.31,ribu_jiwa,2025,registration,total_population,3.1.1,54,,
+33.10.15,3,Wonosari,total,total,,0.73,ribu_jiwa,2025,registration,total_population,3.1.1,54,,
+33.10.16,3,Delanggu,total,total,,0.32,ribu_jiwa,2025,registration,total_population,3.1.1,54,,
+33.10.17,3,Polanharjo,total,total,,0.23,ribu_jiwa,2025,registration,total_population,3.1.1,54,,
+33.10.18,3,Karanganom,total,total,,0.80,ribu_jiwa,2025,registration,total_population,3.1.1,54,,
+33.10.19,3,Tulung,total,total,,0.88,ribu_jiwa,2025,registration,total_population,3.1.1,54,,
+33.10.20,3,Jatinom,total,total,,0.93,ribu_jiwa,2025,registration,total_population,3.1.1,54,,
+33.10.21,3,Kemalang,total,total,,1.07,ribu_jiwa,2025,registration,total_population,3.1.1,54,,
+33.10.26,3,Klaten Selatan,total,total,,1.01,ribu_jiwa,2025,registration,total_population,3.1.1,54,,
+33.10.25,3,Klaten Tengah,total,total,,0.14,ribu_jiwa,2025,registration,total_population,3.1.1,54,,
+33.10.24,3,Klaten Utara,total,total,,0.64,ribu_jiwa,2025,registration,total_population,3.1.1,54,,
+33.10,2,Kabupaten Klaten,age_group,0-4,laki_laki,35495,jiwa,2025,registration,total_population,3.1.2,57,,0–4
+33.10,2,Kabupaten Klaten,age_group,0-4,perempuan,33434,jiwa,2025,registration,total_population,3.1.2,57,,0–4
+33.10,2,Kabupaten Klaten,age_group,0-4,,68929,jiwa,2025,registration,total_population,3.1.2,57,,0–4
+33.10,2,Kabupaten Klaten,age_group,5-9,laki_laki,46670,jiwa,2025,registration,total_population,3.1.2,57,,5–9
+33.10,2,Kabupaten Klaten,age_group,5-9,perempuan,43534,jiwa,2025,registration,total_population,3.1.2,57,,5–9
+33.10,2,Kabupaten Klaten,age_group,5-9,,90204,jiwa,2025,registration,total_population,3.1.2,57,,5–9
+33.10,2,Kabupaten Klaten,age_group,10-14,laki_laki,49914,jiwa,2025,registration,total_population,3.1.2,57,,10–14
+33.10,2,Kabupaten Klaten,age_group,10-14,perempuan,46488,jiwa,2025,registration,total_population,3.1.2,57,,10–14
+33.10,2,Kabupaten Klaten,age_group,10-14,,96402,jiwa,2025,registration,total_population,3.1.2,57,,10–14
+33.10,2,Kabupaten Klaten,age_group,15-19,laki_laki,51579,jiwa,2025,registration,total_population,3.1.2,57,,15–19
+33.10,2,Kabupaten Klaten,age_group,15-19,perempuan,49242,jiwa,2025,registration,total_population,3.1.2,57,,15–19
+33.10,2,Kabupaten Klaten,age_group,15-19,,100821,jiwa,2025,registration,total_population,3.1.2,57,,15–19
+33.10,2,Kabupaten Klaten,age_group,20-24,laki_laki,48322,jiwa,2025,registration,total_population,3.1.2,57,,20–24
+33.10,2,Kabupaten Klaten,age_group,20-24,perempuan,45715,jiwa,2025,registration,total_population,3.1.2,57,,20–24
+33.10,2,Kabupaten Klaten,age_group,20-24,,94037,jiwa,2025,registration,total_population,3.1.2,57,,20–24
+33.10,2,Kabupaten Klaten,age_group,25-29,laki_laki,47034,jiwa,2025,registration,total_population,3.1.2,57,,25–29
+33.10,2,Kabupaten Klaten,age_group,25-29,perempuan,44353,jiwa,2025,registration,total_population,3.1.2,57,,25–29
+33.10,2,Kabupaten Klaten,age_group,25-29,,91387,jiwa,2025,registration,total_population,3.1.2,57,,25–29
+33.10,2,Kabupaten Klaten,age_group,30-34,laki_laki,44773,jiwa,2025,registration,total_population,3.1.2,57,,30–34
+33.10,2,Kabupaten Klaten,age_group,30-34,perempuan,43485,jiwa,2025,registration,total_population,3.1.2,57,,30–34
+33.10,2,Kabupaten Klaten,age_group,30-34,,88258,jiwa,2025,registration,total_population,3.1.2,57,,30–34
+33.10,2,Kabupaten Klaten,age_group,35-39,laki_laki,42665,jiwa,2025,registration,total_population,3.1.2,57,,35–39
+33.10,2,Kabupaten Klaten,age_group,35-39,perempuan,42213,jiwa,2025,registration,total_population,3.1.2,57,,35–39
+33.10,2,Kabupaten Klaten,age_group,35-39,,84878,jiwa,2025,registration,total_population,3.1.2,57,,35–39
+33.10,2,Kabupaten Klaten,age_group,40-44,laki_laki,49984,jiwa,2025,registration,total_population,3.1.2,57,,40–44
+33.10,2,Kabupaten Klaten,age_group,40-44,perempuan,49200,jiwa,2025,registration,total_population,3.1.2,57,,40–44
+33.10,2,Kabupaten Klaten,age_group,40-44,,99184,jiwa,2025,registration,total_population,3.1.2,57,,40–44
+33.10,2,Kabupaten Klaten,age_group,45-49,laki_laki,47727,jiwa,2025,registration,total_population,3.1.2,57,,45–49
+33.10,2,Kabupaten Klaten,age_group,45-49,perempuan,47013,jiwa,2025,registration,total_population,3.1.2,57,,45–49
+33.10,2,Kabupaten Klaten,age_group,45-49,,94740,jiwa,2025,registration,total_population,3.1.2,57,,45–49
+33.10,2,Kabupaten Klaten,age_group,50-54,laki_laki,43046,jiwa,2025,registration,total_population,3.1.2,57,,50–54
+33.10,2,Kabupaten Klaten,age_group,50-54,perempuan,44469,jiwa,2025,registration,total_population,3.1.2,57,,50–54
+33.10,2,Kabupaten Klaten,age_group,50-54,,87515,jiwa,2025,registration,total_population,3.1.2,57,,50–54
+33.10,2,Kabupaten Klaten,age_group,55-59,laki_laki,39967,jiwa,2025,registration,total_population,3.1.2,57,,55–59
+33.10,2,Kabupaten Klaten,age_group,55-59,perempuan,43476,jiwa,2025,registration,total_population,3.1.2,57,,55–59
+33.10,2,Kabupaten Klaten,age_group,55-59,,83443,jiwa,2025,registration,total_population,3.1.2,57,,55–59
+33.10,2,Kabupaten Klaten,age_group,60-64,laki_laki,33706,jiwa,2025,registration,total_population,3.1.2,57,,60–64
+33.10,2,Kabupaten Klaten,age_group,60-64,perempuan,39096,jiwa,2025,registration,total_population,3.1.2,57,,60–64
+33.10,2,Kabupaten Klaten,age_group,60-64,,72802,jiwa,2025,registration,total_population,3.1.2,57,,60–64
+33.10,2,Kabupaten Klaten,age_group,65-69,laki_laki,27155,jiwa,2025,registration,total_population,3.1.2,57,,65–69
+33.10,2,Kabupaten Klaten,age_group,65-69,perempuan,31652,jiwa,2025,registration,total_population,3.1.2,57,,65–69
+33.10,2,Kabupaten Klaten,age_group,65-69,,58807,jiwa,2025,registration,total_population,3.1.2,57,,65–69
+33.10,2,Kabupaten Klaten,age_group,70-74,laki_laki,18581,jiwa,2025,registration,total_population,3.1.2,57,,70–74
+33.10,2,Kabupaten Klaten,age_group,70-74,perempuan,20634,jiwa,2025,registration,total_population,3.1.2,57,,70–74
+33.10,2,Kabupaten Klaten,age_group,70-74,,39215,jiwa,2025,registration,total_population,3.1.2,57,,70–74
+33.10,2,Kabupaten Klaten,age_group,75+,laki_laki,21769,jiwa,2025,registration,total_population,3.1.2,57,,75+
+33.10,2,Kabupaten Klaten,age_group,75+,perempuan,32037,jiwa,2025,registration,total_population,3.1.2,57,,75+
+33.10,2,Kabupaten Klaten,age_group,75+,,53806,jiwa,2025,registration,total_population,3.1.2,57,,75+
+33.10,2,Kabupaten Klaten,sex,laki_laki,,648387,jiwa,2025,registration,total_population,3.1.2,57,,Laki-Laki
+33.10,2,Kabupaten Klaten,sex,perempuan,,656041,jiwa,2025,registration,total_population,3.1.2,57,,Perempuan
+33.10,2,Kabupaten Klaten,total,total,,1304428,jiwa,2025,registration,total_population,3.1.2,57,,

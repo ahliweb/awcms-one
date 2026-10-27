@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1504-kecamatan-150402-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.04.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Muara Tembesi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Batang Hari",
+  "publisherDomain": "1504",
+  "publisherWebsite": "https://batangharikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Batang Hari (https://batangharikab.bps.go.id), publikasi \"Kecamatan Muara Tembesi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1504030",
+  "publicationNumber": "15040.26008",
+  "issn": "2723-4991",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://batangharikab.bps.go.id/id/publication/2026/09/28/5d829a1efc95595a6927a7fc/kecamatan-muara-tembesi-dalam-angka-2026.html",
+  "sourceFileSha256": "13d681a283cfa2da6544f4e84510266fddd2e6738da6133cabc71cac40cce5b9",
+  "sourceFileBytes": 10551675,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Batang Hari .",
+  "csvPath": "datasets/bps-1504-kecamatan-150402-dalam-angka-2026.csv",
+  "csvSha256": "5439dc185e4b7f155ccca3555f94aeff2a5cd120509c4391c37e3c2e4bcd4a21",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Muara Tembesi , 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Muara Tembesi , 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

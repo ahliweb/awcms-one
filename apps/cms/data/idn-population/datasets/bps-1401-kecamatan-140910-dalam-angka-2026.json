@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1401-kecamatan-140910-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.09.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Logas Tanah Darat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kuantan Singingi",
+  "publisherDomain": "1401",
+  "publisherWebsite": "https://kuansingkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kuantan Singingi (https://kuansingkab.bps.go.id), publikasi \"Kecamatan Logas Tanah Darat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1401052",
+  "publicationNumber": "14010.26018",
+  "issn": "2722-5887",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kuansingkab.bps.go.id/id/publication/2026/09/28/24285f72d549cc745efbfa48/kecamatan-logas-tanah-darat-dalam-angka-2026.html",
+  "sourceFileSha256": "683f2c24bc96e38bd37a9c44c4d0df7275b5ad8f383fc06427875531cded9009",
+  "sourceFileBytes": 15264937,
+  "sourcePages": [22, 23],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kuantan Singingi.",
+  "csvPath": "datasets/bps-1401-kecamatan-140910-dalam-angka-2026.csv",
+  "csvSha256": "e2f27c48641c08e3c8f20ff8e6b9d071090fc0bd71c4a27fcac4b2e9ae61c90d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Logas Tanah Darat, 2025",
+      "printedPages": [22, 23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

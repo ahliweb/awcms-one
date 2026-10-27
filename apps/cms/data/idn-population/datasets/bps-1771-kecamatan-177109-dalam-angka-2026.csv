@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.71.09,3,Singaran Pati,age_group,0-4,laki_laki,1503,jiwa,2025,registration,total_population,3.2,27,,0 - 4
+17.71.09,3,Singaran Pati,age_group,0-4,perempuan,1402,jiwa,2025,registration,total_population,3.2,27,,0 - 4
+17.71.09,3,Singaran Pati,age_group,0-4,,2905,jiwa,2025,registration,total_population,3.2,27,,0 - 4
+17.71.09,3,Singaran Pati,age_group,5-9,laki_laki,1861,jiwa,2025,registration,total_population,3.2,27,,5 - 9
+17.71.09,3,Singaran Pati,age_group,5-9,perempuan,1687,jiwa,2025,registration,total_population,3.2,27,,5 - 9
+17.71.09,3,Singaran Pati,age_group,5-9,,3548,jiwa,2025,registration,total_population,3.2,27,,5 - 9
+17.71.09,3,Singaran Pati,age_group,10-14,laki_laki,1985,jiwa,2025,registration,total_population,3.2,27,,10 - 14
+17.71.09,3,Singaran Pati,age_group,10-14,perempuan,1767,jiwa,2025,registration,total_population,3.2,27,,10 - 14
+17.71.09,3,Singaran Pati,age_group,10-14,,3752,jiwa,2025,registration,total_population,3.2,27,,10 - 14
+17.71.09,3,Singaran Pati,age_group,15-19,laki_laki,1811,jiwa,2025,registration,total_population,3.2,27,,15 - 19
+17.71.09,3,Singaran Pati,age_group,15-19,perempuan,1765,jiwa,2025,registration,total_population,3.2,27,,15 - 19
+17.71.09,3,Singaran Pati,age_group,15-19,,3576,jiwa,2025,registration,total_population,3.2,27,,15 - 19
+17.71.09,3,Singaran Pati,age_group,20-24,laki_laki,1808,jiwa,2025,registration,total_population,3.2,27,,20 -24
+17.71.09,3,Singaran Pati,age_group,20-24,perempuan,1741,jiwa,2025,registration,total_population,3.2,27,,20 -24
+17.71.09,3,Singaran Pati,age_group,20-24,,3549,jiwa,2025,registration,total_population,3.2,27,,20 -24
+17.71.09,3,Singaran Pati,age_group,25-29,laki_laki,1818,jiwa,2025,registration,total_population,3.2,27,,25 - 29
+17.71.09,3,Singaran Pati,age_group,25-29,perempuan,1815,jiwa,2025,registration,total_population,3.2,27,,25 - 29
+17.71.09,3,Singaran Pati,age_group,25-29,,3633,jiwa,2025,registration,total_population,3.2,27,,25 - 29
+17.71.09,3,Singaran Pati,age_group,30-34,laki_laki,1653,jiwa,2025,registration,total_population,3.2,27,,30 - 34
+17.71.09,3,Singaran Pati,age_group,30-34,perempuan,1626,jiwa,2025,registration,total_population,3.2,27,,30 - 34
+17.71.09,3,Singaran Pati,age_group,30-34,,3279,jiwa,2025,registration,total_population,3.2,27,,30 - 34
+17.71.09,3,Singaran Pati,age_group,35-39,laki_laki,1666,jiwa,2025,registration,total_population,3.2,27,,35 - 39
+17.71.09,3,Singaran Pati,age_group,35-39,perempuan,1650,jiwa,2025,registration,total_population,3.2,27,,35 - 39
+17.71.09,3,Singaran Pati,age_group,35-39,,3316,jiwa,2025,registration,total_population,3.2,27,,35 - 39
+17.71.09,3,Singaran Pati,age_group,40-44,laki_laki,1519,jiwa,2025,registration,total_population,3.2,27,,40 - 44
+17.71.09,3,Singaran Pati,age_group,40-44,perempuan,1622,jiwa,2025,registration,total_population,3.2,27,,40 - 44
+17.71.09,3,Singaran Pati,age_group,40-44,,3141,jiwa,2025,registration,total_population,3.2,27,,40 - 44
+17.71.09,3,Singaran Pati,age_group,45-49,laki_laki,1367,jiwa,2025,registration,total_population,3.2,27,,45 - 49
+17.71.09,3,Singaran Pati,age_group,45-49,perempuan,1395,jiwa,2025,registration,total_population,3.2,27,,45 - 49
+17.71.09,3,Singaran Pati,age_group,45-49,,2762,jiwa,2025,registration,total_population,3.2,27,,45 - 49
+17.71.09,3,Singaran Pati,age_group,50-54,laki_laki,1090,jiwa,2025,registration,total_population,3.2,27,,50 - 54
+17.71.09,3,Singaran Pati,age_group,50-54,perempuan,1181,jiwa,2025,registration,total_population,3.2,27,,50 - 54
+17.71.09,3,Singaran Pati,age_group,50-54,,2271,jiwa,2025,registration,total_population,3.2,27,,50 - 54
+17.71.09,3,Singaran Pati,age_group,55-59,laki_laki,922,jiwa,2025,registration,total_population,3.2,27,,55 - 59
+17.71.09,3,Singaran Pati,age_group,55-59,perempuan,1048,jiwa,2025,registration,total_population,3.2,27,,55 - 59
+17.71.09,3,Singaran Pati,age_group,55-59,,1970,jiwa,2025,registration,total_population,3.2,27,,55 - 59
+17.71.09,3,Singaran Pati,age_group,60-64,laki_laki,762,jiwa,2025,registration,total_population,3.2,27,,60 - 64
+17.71.09,3,Singaran Pati,age_group,60-64,perempuan,847,jiwa,2025,registration,total_population,3.2,27,,60 - 64
+17.71.09,3,Singaran Pati,age_group,60-64,,1609,jiwa,2025,registration,total_population,3.2,27,,60 - 64
+17.71.09,3,Singaran Pati,age_group,65-69,laki_laki,649,jiwa,2025,registration,total_population,3.2,27,,65 - 69
+17.71.09,3,Singaran Pati,age_group,65-69,perempuan,655,jiwa,2025,registration,total_population,3.2,27,,65 - 69
+17.71.09,3,Singaran Pati,age_group,65-69,,1304,jiwa,2025,registration,total_population,3.2,27,,65 - 69
+17.71.09,3,Singaran Pati,age_group,70-74,laki_laki,360,jiwa,2025,registration,total_population,3.2,27,,70 - 74
+17.71.09,3,Singaran Pati,age_group,70-74,perempuan,328,jiwa,2025,registration,total_population,3.2,27,,70 - 74
+17.71.09,3,Singaran Pati,age_group,70-74,,688,jiwa,2025,registration,total_population,3.2,27,,70 - 74
+17.71.09,3,Singaran Pati,age_group,75+,laki_laki,203,jiwa,2025,registration,total_population,3.2,27,,> 75
+17.71.09,3,Singaran Pati,age_group,75+,perempuan,290,jiwa,2025,registration,total_population,3.2,27,,> 75
+17.71.09,3,Singaran Pati,age_group,75+,,493,jiwa,2025,registration,total_population,3.2,27,,> 75
+17.71.09,3,Singaran Pati,sex,laki_laki,,20977,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki/Male
+17.71.09,3,Singaran Pati,sex,perempuan,,20819,jiwa,2025,registration,total_population,3.2,27,,Perempuan/Female
+17.71.09,3,Singaran Pati,total,total,,41796,jiwa,2025,registration,total_population,3.2,27,,

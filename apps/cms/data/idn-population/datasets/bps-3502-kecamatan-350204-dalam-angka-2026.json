@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3502-kecamatan-350204-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.02.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sambit Dalam Angka 2026",
+  "publisherName": "BPS Ponorogo",
+  "publisherDomain": "3502",
+  "publisherWebsite": "https://ponorogokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Ponorogo (https://ponorogokab.bps.go.id), publikasi \"Kecamatan Sambit Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3502040",
+  "publicationNumber": "35020.26008",
+  "issn": "2615-0093",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://ponorogokab.bps.go.id/id/publication/2026/09/28/d9f001a8f8743c16651bd65f/kecamatan-sambit-dalam-angka-2026.html",
+  "sourceFileSha256": "26ade7e4be3dd72fd5f786d6ae32744f1d5e7f927ac85cf06bae3e9180c05ae7",
+  "sourceFileBytes": 1506674,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ponorogo.",
+  "csvPath": "datasets/bps-3502-kecamatan-350204-dalam-angka-2026.csv",
+  "csvSha256": "9d2e4478fa35d9dc234cc9ced45479f003ab3ed149c964a58bdc876f5b0f809e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sambit, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sambit, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.03.12.2015,4,Suka Asih,sex,laki_laki,,7307,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.12.2015,4,Suka Asih,sex,perempuan,,6988,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.12.2015,4,Suka Asih,total,total,,14295,jiwa,2025,registration,total_population,3.1,25,,
+36.03.12.2001,4,Pasar Kemis,sex,laki_laki,,10723,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.12.2001,4,Pasar Kemis,sex,perempuan,,10163,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.12.2001,4,Pasar Kemis,total,total,,20886,jiwa,2025,registration,total_population,3.1,25,,
+36.03.12.2008,4,Sukamantri,sex,laki_laki,,17121,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.12.2008,4,Sukamantri,sex,perempuan,,16665,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.12.2008,4,Sukamantri,total,total,,33786,jiwa,2025,registration,total_population,3.1,25,,
+36.03.12.1012,4,Kuta Jaya,sex,laki_laki,,15819,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.12.1012,4,Kuta Jaya,sex,perempuan,,15675,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.12.1012,4,Kuta Jaya,total,total,,31494,jiwa,2025,registration,total_population,3.1,25,,
+36.03.12.2013,4,Gelam Jaya,sex,laki_laki,,19392,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.12.2013,4,Gelam Jaya,sex,perempuan,,18923,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.12.2013,4,Gelam Jaya,total,total,,38315,jiwa,2025,registration,total_population,3.1,25,,
+36.03.12.1014,4,Kuta Baru,sex,laki_laki,,15177,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.12.1014,4,Kuta Baru,sex,perempuan,,15194,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.12.1014,4,Kuta Baru,total,total,,30371,jiwa,2025,registration,total_population,3.1,25,,
+36.03.12.1010,4,Kuta Bumi,sex,laki_laki,,21980,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.12.1010,4,Kuta Bumi,sex,perempuan,,21548,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.12.1010,4,Kuta Bumi,total,total,,43528,jiwa,2025,registration,total_population,3.1,25,,
+36.03.12.2011,4,Pangadegan,sex,laki_laki,,8536,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.12.2011,4,Pangadegan,sex,perempuan,,8197,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.12.2011,4,Pangadegan,total,total,,16733,jiwa,2025,registration,total_population,3.1,25,,
+36.03.12.1005,4,Sindang Sari,sex,laki_laki,,19335,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.12.1005,4,Sindang Sari,sex,perempuan,,18596,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.12.1005,4,Sindang Sari,total,total,,37931,jiwa,2025,registration,total_population,3.1,25,,
+36.03.12,3,Pasar Kemis,age_group,0-4,laki_laki,8115,jiwa,2025,registration,total_population,3.2,27,,00-04 Tahun
+36.03.12,3,Pasar Kemis,age_group,0-4,perempuan,7378,jiwa,2025,registration,total_population,3.2,27,,00-04 Tahun
+36.03.12,3,Pasar Kemis,age_group,0-4,,15493,jiwa,2025,registration,total_population,3.2,27,,00-04 Tahun
+36.03.12,3,Pasar Kemis,age_group,5-9,laki_laki,10760,jiwa,2025,registration,total_population,3.2,27,,05-09 Tahun
+36.03.12,3,Pasar Kemis,age_group,5-9,perempuan,10153,jiwa,2025,registration,total_population,3.2,27,,05-09 Tahun
+36.03.12,3,Pasar Kemis,age_group,5-9,,20913,jiwa,2025,registration,total_population,3.2,27,,05-09 Tahun
+36.03.12,3,Pasar Kemis,age_group,10-14,laki_laki,11499,jiwa,2025,registration,total_population,3.2,27,,10-14 Tahun
+36.03.12,3,Pasar Kemis,age_group,10-14,perempuan,10957,jiwa,2025,registration,total_population,3.2,27,,10-14 Tahun
+36.03.12,3,Pasar Kemis,age_group,10-14,,22456,jiwa,2025,registration,total_population,3.2,27,,10-14 Tahun
+36.03.12,3,Pasar Kemis,age_group,15-19,laki_laki,11710,jiwa,2025,registration,total_population,3.2,27,,15-19 Tahun
+36.03.12,3,Pasar Kemis,age_group,15-19,perempuan,10884,jiwa,2025,registration,total_population,3.2,27,,15-19 Tahun
+36.03.12,3,Pasar Kemis,age_group,15-19,,22594,jiwa,2025,registration,total_population,3.2,27,,15-19 Tahun
+36.03.12,3,Pasar Kemis,age_group,20-24,laki_laki,12399,jiwa,2025,registration,total_population,3.2,27,,20-24 Tahun
+36.03.12,3,Pasar Kemis,age_group,20-24,perempuan,11707,jiwa,2025,registration,total_population,3.2,27,,20-24 Tahun
+36.03.12,3,Pasar Kemis,age_group,20-24,,24106,jiwa,2025,registration,total_population,3.2,27,,20-24 Tahun
+36.03.12,3,Pasar Kemis,age_group,25-29,laki_laki,12039,jiwa,2025,registration,total_population,3.2,27,,25-29 Tahun
+36.03.12,3,Pasar Kemis,age_group,25-29,perempuan,11556,jiwa,2025,registration,total_population,3.2,27,,25-29 Tahun
+36.03.12,3,Pasar Kemis,age_group,25-29,,23595,jiwa,2025,registration,total_population,3.2,27,,25-29 Tahun
+36.03.12,3,Pasar Kemis,age_group,30-34,laki_laki,10584,jiwa,2025,registration,total_population,3.2,27,,30-34 Tahun
+36.03.12,3,Pasar Kemis,age_group,30-34,perempuan,10222,jiwa,2025,registration,total_population,3.2,27,,30-34 Tahun
+36.03.12,3,Pasar Kemis,age_group,30-34,,20806,jiwa,2025,registration,total_population,3.2,27,,30-34 Tahun
+36.03.12,3,Pasar Kemis,age_group,35-39,laki_laki,8898,jiwa,2025,registration,total_population,3.2,27,,35-39 Tahun
+36.03.12,3,Pasar Kemis,age_group,35-39,perempuan,8395,jiwa,2025,registration,total_population,3.2,27,,35-39 Tahun
+36.03.12,3,Pasar Kemis,age_group,35-39,,17293,jiwa,2025,registration,total_population,3.2,27,,35-39 Tahun
+36.03.12,3,Pasar Kemis,age_group,40-44,laki_laki,9638,jiwa,2025,registration,total_population,3.2,27,,40-44 Tahun
+36.03.12,3,Pasar Kemis,age_group,40-44,perempuan,10176,jiwa,2025,registration,total_population,3.2,27,,40-44 Tahun
+36.03.12,3,Pasar Kemis,age_group,40-44,,19814,jiwa,2025,registration,total_population,3.2,27,,40-44 Tahun
+36.03.12,3,Pasar Kemis,age_group,45-49,laki_laki,10510,jiwa,2025,registration,total_population,3.2,27,,45-49 Tahun
+36.03.12,3,Pasar Kemis,age_group,45-49,perempuan,12376,jiwa,2025,registration,total_population,3.2,27,,45-49 Tahun
+36.03.12,3,Pasar Kemis,age_group,45-49,,22886,jiwa,2025,registration,total_population,3.2,27,,45-49 Tahun
+36.03.12,3,Pasar Kemis,age_group,50-54,laki_laki,10640,jiwa,2025,registration,total_population,3.2,27,,50-54 Tahun
+36.03.12,3,Pasar Kemis,age_group,50-54,perempuan,11664,jiwa,2025,registration,total_population,3.2,27,,50-54 Tahun
+36.03.12,3,Pasar Kemis,age_group,50-54,,22304,jiwa,2025,registration,total_population,3.2,27,,50-54 Tahun
+36.03.12,3,Pasar Kemis,age_group,55-59,laki_laki,9204,jiwa,2025,registration,total_population,3.2,27,,55-59 Tahun
+36.03.12,3,Pasar Kemis,age_group,55-59,perempuan,8014,jiwa,2025,registration,total_population,3.2,27,,55-59 Tahun
+36.03.12,3,Pasar Kemis,age_group,55-59,,17218,jiwa,2025,registration,total_population,3.2,27,,55-59 Tahun
+36.03.12,3,Pasar Kemis,age_group,60-64,laki_laki,4842,jiwa,2025,registration,total_population,3.2,27,,60-64 Tahun
+36.03.12,3,Pasar Kemis,age_group,60-64,perempuan,4030,jiwa,2025,registration,total_population,3.2,27,,60-64 Tahun
+36.03.12,3,Pasar Kemis,age_group,60-64,,8872,jiwa,2025,registration,total_population,3.2,27,,60-64 Tahun
+36.03.12,3,Pasar Kemis,age_group,65-69,laki_laki,2566,jiwa,2025,registration,total_population,3.2,27,,65-69 Tahun
+36.03.12,3,Pasar Kemis,age_group,65-69,perempuan,2244,jiwa,2025,registration,total_population,3.2,27,,65-69 Tahun
+36.03.12,3,Pasar Kemis,age_group,65-69,,4810,jiwa,2025,registration,total_population,3.2,27,,65-69 Tahun
+36.03.12,3,Pasar Kemis,age_group,70-74,laki_laki,1166,jiwa,2025,registration,total_population,3.2,27,,70-74 Tahun
+36.03.12,3,Pasar Kemis,age_group,70-74,perempuan,1080,jiwa,2025,registration,total_population,3.2,27,,70-74 Tahun
+36.03.12,3,Pasar Kemis,age_group,70-74,,2246,jiwa,2025,registration,total_population,3.2,27,,70-74 Tahun

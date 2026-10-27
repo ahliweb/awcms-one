@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.07.31.2001,4,Slorok,sex,laki_laki,,2710,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.31.2001,4,Slorok,sex,perempuan,,2873,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.31.2001,4,Slorok,total,total,,5583,jiwa,2025,registration,total_population,3.1,27,,
+35.07.31.2002,4,Jatikerto,sex,laki_laki,,4500,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.31.2002,4,Jatikerto,sex,perempuan,,4387,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.31.2002,4,Jatikerto,total,total,,8887,jiwa,2025,registration,total_population,3.1,27,,
+35.07.31.2003,4,Ngadirejo,sex,laki_laki,,2438,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.31.2003,4,Ngadirejo,sex,perempuan,,2505,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.31.2003,4,Ngadirejo,total,total,,4943,jiwa,2025,registration,total_population,3.1,27,,
+35.07.31.2007,4,Karangrejo,sex,laki_laki,,3377,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.31.2007,4,Karangrejo,sex,perempuan,,3403,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.31.2007,4,Karangrejo,total,total,,6780,jiwa,2025,registration,total_population,3.1,27,,
+35.07.31.2004,4,Kromengan,sex,laki_laki,,4080,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.31.2004,4,Kromengan,sex,perempuan,,4046,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.31.2004,4,Kromengan,total,total,,8126,jiwa,2025,registration,total_population,3.1,27,,
+35.07.31.2005,4,Peniwen,sex,laki_laki,,1630,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.31.2005,4,Peniwen,sex,perempuan,,1653,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.31.2005,4,Peniwen,total,total,,3283,jiwa,2025,registration,total_population,3.1,27,,
+35.07.31.2006,4,Jambuwer,sex,laki_laki,,3002,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.31.2006,4,Jambuwer,sex,perempuan,,3002,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.31.2006,4,Jambuwer,total,total,,6004,jiwa,2025,registration,total_population,3.1,27,,
+35.07.31,3,Kecamatan Kromengan,sex,laki_laki,,21737,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.31,3,Kecamatan Kromengan,sex,perempuan,,21869,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.31,3,Kecamatan Kromengan,total,total,,43606,jiwa,2025,registration,total_population,3.1,27,,
+35.07.31,3,Kromengan,age_group,0-4,laki_laki,1030,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+35.07.31,3,Kromengan,age_group,0-4,perempuan,1025,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+35.07.31,3,Kromengan,age_group,0-4,,2055,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+35.07.31,3,Kromengan,age_group,5-9,laki_laki,1496,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+35.07.31,3,Kromengan,age_group,5-9,perempuan,1414,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+35.07.31,3,Kromengan,age_group,5-9,,2910,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+35.07.31,3,Kromengan,age_group,10-14,laki_laki,1584,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+35.07.31,3,Kromengan,age_group,10-14,perempuan,1480,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+35.07.31,3,Kromengan,age_group,10-14,,3064,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+35.07.31,3,Kromengan,age_group,15-19,laki_laki,1565,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+35.07.31,3,Kromengan,age_group,15-19,perempuan,1445,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+35.07.31,3,Kromengan,age_group,15-19,,3010,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+35.07.31,3,Kromengan,age_group,20-24,laki_laki,1517,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+35.07.31,3,Kromengan,age_group,20-24,perempuan,1531,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+35.07.31,3,Kromengan,age_group,20-24,,3048,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+35.07.31,3,Kromengan,age_group,25-29,laki_laki,1552,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+35.07.31,3,Kromengan,age_group,25-29,perempuan,1410,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+35.07.31,3,Kromengan,age_group,25-29,,2962,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+35.07.31,3,Kromengan,age_group,30-34,laki_laki,1428,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+35.07.31,3,Kromengan,age_group,30-34,perempuan,1413,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+35.07.31,3,Kromengan,age_group,30-34,,2841,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+35.07.31,3,Kromengan,age_group,35-39,laki_laki,1475,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+35.07.31,3,Kromengan,age_group,35-39,perempuan,1407,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+35.07.31,3,Kromengan,age_group,35-39,,2882,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+35.07.31,3,Kromengan,age_group,40-44,laki_laki,1647,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+35.07.31,3,Kromengan,age_group,40-44,perempuan,1674,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+35.07.31,3,Kromengan,age_group,40-44,,3321,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+35.07.31,3,Kromengan,age_group,45-49,laki_laki,1539,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+35.07.31,3,Kromengan,age_group,45-49,perempuan,1636,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+35.07.31,3,Kromengan,age_group,45-49,,3175,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+35.07.31,3,Kromengan,age_group,50-54,laki_laki,1490,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+35.07.31,3,Kromengan,age_group,50-54,perempuan,1605,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+35.07.31,3,Kromengan,age_group,50-54,,3095,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+35.07.31,3,Kromengan,age_group,55-59,laki_laki,1512,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+35.07.31,3,Kromengan,age_group,55-59,perempuan,1564,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+35.07.31,3,Kromengan,age_group,55-59,,3076,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+35.07.31,3,Kromengan,age_group,60-64,laki_laki,1308,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+35.07.31,3,Kromengan,age_group,60-64,perempuan,1467,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+35.07.31,3,Kromengan,age_group,60-64,,2775,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+35.07.31,3,Kromengan,age_group,65+,laki_laki,2594,jiwa,2025,registration,total_population,3.2,29,,>= 65
+35.07.31,3,Kromengan,age_group,65+,perempuan,2798,jiwa,2025,registration,total_population,3.2,29,,>= 65
+35.07.31,3,Kromengan,age_group,65+,,5392,jiwa,2025,registration,total_population,3.2,29,,>= 65
+35.07.31,3,Kecamatan Kromengan,sex,laki_laki,,21737,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+35.07.31,3,Kecamatan Kromengan,sex,perempuan,,21869,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+35.07.31,3,Kecamatan Kromengan,total,total,,43606,jiwa,2025,registration,total_population,3.2,29,,

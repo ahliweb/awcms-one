@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.11.10.2005,4,Parbuluan II,sex,laki_laki,,586,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/
+12.11.10.2005,4,Parbuluan II,sex,perempuan,,562,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.10.2005,4,Parbuluan II,total,total,,1148,jiwa,2025,registration,total_population,3.1,22,,
+12.11.10.2006,4,Parbuluan I,sex,laki_laki,,1869,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/
+12.11.10.2006,4,Parbuluan I,sex,perempuan,,1788,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.10.2006,4,Parbuluan I,total,total,,3657,jiwa,2025,registration,total_population,3.1,22,,
+12.11.10.2007,4,Parbuluan V,sex,laki_laki,,887,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/
+12.11.10.2007,4,Parbuluan V,sex,perempuan,,905,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.10.2007,4,Parbuluan V,total,total,,1792,jiwa,2025,registration,total_population,3.1,22,,
+12.11.10.2004,4,Parbuluan III,sex,laki_laki,,1429,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/
+12.11.10.2004,4,Parbuluan III,sex,perempuan,,1440,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.10.2004,4,Parbuluan III,total,total,,2869,jiwa,2025,registration,total_population,3.1,22,,
+12.11.10.2003,4,Parbuluan IV,sex,laki_laki,,2313,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/
+12.11.10.2003,4,Parbuluan IV,sex,perempuan,,2384,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.10.2003,4,Parbuluan IV,total,total,,4697,jiwa,2025,registration,total_population,3.1,22,,
+12.11.10.2008,4,Parbuluan VI,sex,laki_laki,,2706,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/
+12.11.10.2008,4,Parbuluan VI,sex,perempuan,,2666,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.10.2008,4,Parbuluan VI,total,total,,5372,jiwa,2025,registration,total_population,3.1,22,,
+12.11.10.2002,4,Lae Hole,sex,laki_laki,,1256,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/
+12.11.10.2002,4,Lae Hole,sex,perempuan,,1198,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.10.2002,4,Lae Hole,total,total,,2454,jiwa,2025,registration,total_population,3.1,22,,
+12.11.10.2001,4,Bangun,sex,laki_laki,,1181,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/
+12.11.10.2001,4,Bangun,sex,perempuan,,1129,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.10.2001,4,Bangun,total,total,,2310,jiwa,2025,registration,total_population,3.1,22,,
+12.11.10.2009,4,Lae Hole I,sex,laki_laki,,612,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/
+12.11.10.2009,4,Lae Hole I,sex,perempuan,,619,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.10.2009,4,Lae Hole I,total,total,,1231,jiwa,2025,registration,total_population,3.1,22,,
+12.11.10.2010,4,Lae Hole II,sex,laki_laki,,578,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/
+12.11.10.2010,4,Lae Hole II,sex,perempuan,,594,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.10.2010,4,Lae Hole II,total,total,,1172,jiwa,2025,registration,total_population,3.1,22,,
+12.11.10.2011,4,Bangun I,sex,laki_laki,,1048,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/
+12.11.10.2011,4,Bangun I,sex,perempuan,,1083,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.10.2011,4,Bangun I,total,total,,2131,jiwa,2025,registration,total_population,3.1,22,,
+12.11.10,3,Parbuluan,sex,laki_laki,,14465,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/
+12.11.10,3,Parbuluan,sex,perempuan,,14368,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+12.11.10,3,Parbuluan,total,total,,28833,jiwa,2025,registration,total_population,3.1,22,,

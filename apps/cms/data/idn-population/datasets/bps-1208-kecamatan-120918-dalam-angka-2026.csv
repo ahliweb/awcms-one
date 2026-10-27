@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.09.18.2009,4,Sengon Sari,sex,laki_laki,,2086,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+12.09.18.2009,4,Sengon Sari,sex,perempuan,,2048,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+12.09.18.2009,4,Sengon Sari,total,total,,4134,jiwa,2025,registration,total_population,3.1,28,,
+12.09.18.2010,4,Lobu Jiur,sex,laki_laki,,770,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+12.09.18.2010,4,Lobu Jiur,sex,perempuan,,779,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+12.09.18.2010,4,Lobu Jiur,total,total,,1549,jiwa,2025,registration,total_population,3.1,28,,
+12.09.18.1001,4,Aek Loba Pekan,sex,laki_laki,,3248,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+12.09.18.1001,4,Aek Loba Pekan,sex,perempuan,,3108,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+12.09.18.1001,4,Aek Loba Pekan,total,total,,6356,jiwa,2025,registration,total_population,3.1,28,,
+12.09.18.2003,4,Alang Bonbon,sex,laki_laki,,1632,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+12.09.18.2003,4,Alang Bonbon,sex,perempuan,,1554,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+12.09.18.2003,4,Alang Bonbon,total,total,,3186,jiwa,2025,registration,total_population,3.1,28,,
+12.09.18.2011,4,Rawasari,sex,laki_laki,,2346,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+12.09.18.2011,4,Rawasari,sex,perempuan,,2236,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+12.09.18.2011,4,Rawasari,total,total,,4582,jiwa,2025,registration,total_population,3.1,28,,
+12.09.18.2013,4,Aek Loba,sex,laki_laki,,1717,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+12.09.18.2013,4,Aek Loba,sex,perempuan,,1676,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+12.09.18.2013,4,Aek Loba,total,total,,3393,jiwa,2025,registration,total_population,3.1,28,,
+12.09.18,3,Aek Kuasan,sex,laki_laki,,13641,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki
+12.09.18,3,Aek Kuasan,sex,perempuan,,13241,jiwa,2025,registration,total_population,3.1,28,,Perempuan
+12.09.18,3,Aek Kuasan,total,total,,26882,jiwa,2025,registration,total_population,3.1,28,,

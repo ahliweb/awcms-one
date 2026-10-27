@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.74.04.1003,4,Cilandak Timur,sex,laki_laki,,15189,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.04.1003,4,Cilandak Timur,sex,perempuan,,14151,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+31.74.04.1003,4,Cilandak Timur,total,total,,29340,jiwa,2025,registration,total_population,3.1,26,,
+31.74.04.1004,4,Ragunan,sex,laki_laki,,23648,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.04.1004,4,Ragunan,sex,perempuan,,23414,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+31.74.04.1004,4,Ragunan,total,total,,47062,jiwa,2025,registration,total_population,3.1,26,,
+31.74.04.1007,4,Kebagusan,sex,laki_laki,,28508,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.04.1007,4,Kebagusan,sex,perempuan,,28108,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+31.74.04.1007,4,Kebagusan,total,total,,56616,jiwa,2025,registration,total_population,3.1,26,,
+31.74.04.1001,4,Pasar Minggu,sex,laki_laki,,14393,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.04.1001,4,Pasar Minggu,sex,perempuan,,14576,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+31.74.04.1001,4,Pasar Minggu,total,total,,28969,jiwa,2025,registration,total_population,3.1,26,,
+31.74.04.1002,4,Jati Padang,sex,laki_laki,,21617,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.04.1002,4,Jati Padang,sex,perempuan,,22035,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+31.74.04.1002,4,Jati Padang,total,total,,43652,jiwa,2025,registration,total_population,3.1,26,,
+31.74.04.1006,4,Pejaten Barat,sex,laki_laki,,21706,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.04.1006,4,Pejaten Barat,sex,perempuan,,22083,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+31.74.04.1006,4,Pejaten Barat,total,total,,43789,jiwa,2025,registration,total_population,3.1,26,,
+31.74.04.1005,4,Pejaten Timur,sex,laki_laki,,35414,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.04.1005,4,Pejaten Timur,sex,perempuan,,35116,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+31.74.04.1005,4,Pejaten Timur,total,total,,70530,jiwa,2025,registration,total_population,3.1,26,,
+31.74.04,3,Pasar Minggu,sex,laki_laki,,160475,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+31.74.04,3,Pasar Minggu,sex,perempuan,,159483,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+31.74.04,3,Pasar Minggu,total,total,,319958,jiwa,2025,registration,total_population,3.1,26,,
+31.74.04,3,Pasar Minggu,age_group,0-10,laki_laki,24396,jiwa,2025,registration,total_population,3.2,28,,0-10
+31.74.04,3,Pasar Minggu,age_group,0-10,perempuan,22871,jiwa,2025,registration,total_population,3.2,28,,0-10
+31.74.04,3,Pasar Minggu,age_group,0-10,,47267,jiwa,2025,registration,total_population,3.2,28,,0-10
+31.74.04,3,Pasar Minggu,age_group,11-20,laki_laki,27086,jiwa,2025,registration,total_population,3.2,28,,11-20
+31.74.04,3,Pasar Minggu,age_group,11-20,perempuan,25124,jiwa,2025,registration,total_population,3.2,28,,11-20
+31.74.04,3,Pasar Minggu,age_group,11-20,,52210,jiwa,2025,registration,total_population,3.2,28,,11-20
+31.74.04,3,Pasar Minggu,age_group,21-30,laki_laki,25821,jiwa,2025,registration,total_population,3.2,28,,21-30
+31.74.04,3,Pasar Minggu,age_group,21-30,perempuan,24410,jiwa,2025,registration,total_population,3.2,28,,21-30
+31.74.04,3,Pasar Minggu,age_group,21-30,,50231,jiwa,2025,registration,total_population,3.2,28,,21-30
+31.74.04,3,Pasar Minggu,age_group,31-40,laki_laki,23433,jiwa,2025,registration,total_population,3.2,28,,31-40
+31.74.04,3,Pasar Minggu,age_group,31-40,perempuan,24635,jiwa,2025,registration,total_population,3.2,28,,31-40
+31.74.04,3,Pasar Minggu,age_group,31-40,,48068,jiwa,2025,registration,total_population,3.2,28,,31-40
+31.74.04,3,Pasar Minggu,age_group,41-50,laki_laki,25893,jiwa,2025,registration,total_population,3.2,28,,41-50
+31.74.04,3,Pasar Minggu,age_group,41-50,perempuan,26549,jiwa,2025,registration,total_population,3.2,28,,41-50
+31.74.04,3,Pasar Minggu,age_group,41-50,,52442,jiwa,2025,registration,total_population,3.2,28,,41-50
+31.74.04,3,Pasar Minggu,age_group,51-60,laki_laki,19813,jiwa,2025,registration,total_population,3.2,28,,51-60
+31.74.04,3,Pasar Minggu,age_group,51-60,perempuan,19591,jiwa,2025,registration,total_population,3.2,28,,51-60
+31.74.04,3,Pasar Minggu,age_group,51-60,,39404,jiwa,2025,registration,total_population,3.2,28,,51-60
+31.74.04,3,Pasar Minggu,age_group,61-70,laki_laki,9809,jiwa,2025,registration,total_population,3.2,28,,61-70
+31.74.04,3,Pasar Minggu,age_group,61-70,perempuan,11056,jiwa,2025,registration,total_population,3.2,28,,61-70
+31.74.04,3,Pasar Minggu,age_group,61-70,,20865,jiwa,2025,registration,total_population,3.2,28,,61-70
+31.74.04,3,Pasar Minggu,age_group,71-80,laki_laki,3438,jiwa,2025,registration,total_population,3.2,28,,71-80
+31.74.04,3,Pasar Minggu,age_group,71-80,perempuan,4146,jiwa,2025,registration,total_population,3.2,28,,71-80
+31.74.04,3,Pasar Minggu,age_group,71-80,,7584,jiwa,2025,registration,total_population,3.2,28,,71-80
+31.74.04,3,Pasar Minggu,age_group,81+,laki_laki,786,jiwa,2025,registration,total_population,3.2,28,,81+
+31.74.04,3,Pasar Minggu,age_group,81+,perempuan,1101,jiwa,2025,registration,total_population,3.2,28,,81+
+31.74.04,3,Pasar Minggu,age_group,81+,,1887,jiwa,2025,registration,total_population,3.2,28,,81+
+31.74.04,3,Pasar Minggu,sex,laki_laki,,160475,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+31.74.04,3,Pasar Minggu,sex,perempuan,,159483,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+31.74.04,3,Pasar Minggu,total,total,,319958,jiwa,2025,registration,total_population,3.2,28,,

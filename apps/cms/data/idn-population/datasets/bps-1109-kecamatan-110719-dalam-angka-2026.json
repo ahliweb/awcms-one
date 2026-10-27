@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-1109-kecamatan-110719-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.07.19",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tangse Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "1109",
+  "publisherWebsite": "https://pidiekab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://pidiekab.bps.go.id), publikasi \"Kecamatan Tangse Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.081",
+  "publicationNumber": "11090.26013",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pidiekab.bps.go.id/id/publication/2026/09/28/3d813a1d4adf81bb5ba5a551/kecamatan-tangse-dalam-angka-2026.html",
+  "sourceFileSha256": "5920e5171271ac3c5398a342d1da25d8cef8e8af0cd4b8c522147b52d79d2732",
+  "sourceFileBytes": 4015594,
+  "sourcePages": [36, 37, 38, 39],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pidie",
+  "csvPath": "datasets/bps-1109-kecamatan-110719-dalam-angka-2026.csv",
+  "csvSha256": "fcad1978c84eb301969b7dba634f749ad32f64fc0946094b7393081688ed988e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Tangse 2025",
+      "printedPages": [36, 37, 38, 39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Pulo Sejahtra\": unmatched ",
+    "table 3.1: row not stored: row \"Blang Dhod\": unmatched ",
+    "table 3.1: row not stored: row \"Neubok Badeuk\": unmatched ",
+    "table 3.1: row not stored: row \"Krueng Seukeuk\": unmatched ",
+    "table 3.1: row not stored: row \"Pulo Iee\": unmatched ",
+    "table 3.1: row not stored: row \"Pulo Sejahtra\": unmatched ",
+    "table 3.1: row not stored: row \"Blang Dhod\": unmatched ",
+    "table 3.1: row not stored: row \"Neubok Badeuk\": unmatched ",
+    "table 3.1: row not stored: row \"Krueng Seukeuk\": unmatched ",
+    "table 3.1: row not stored: row \"Pulo Iee\": unmatched ",
+    "table 3.1: the rows of region 11.07.19.2028 are not stored: sex split vs total: parts sum 1168.0000 != 1169.0000 (diff 1.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 11.07.19 are not stored: sex split vs total: parts sum 27545.0000 != 27546.0000 (diff 1.0000); the source itself is inconsistent"
+  ]
+}

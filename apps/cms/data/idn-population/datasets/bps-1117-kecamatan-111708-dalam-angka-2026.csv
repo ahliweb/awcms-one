@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.17.08.2004,4,Bener Lukup Ii,sex,laki_laki,,108,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.08.2004,4,Bener Lukup Ii,sex,perempuan,,105,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.08.2004,4,Bener Lukup Ii,total,total,,213,jiwa,2025,registration,total_population,3.1,26,,
+11.17.08.2009,4,Bener Kelipah Utara,sex,laki_laki,,531,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.08.2009,4,Bener Kelipah Utara,sex,perempuan,,533,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.08.2009,4,Bener Kelipah Utara,total,total,,1064,jiwa,2025,registration,total_population,3.1,26,,
+11.17.08.2006,4,Bener Kelipah Selatan,sex,laki_laki,,262,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.08.2006,4,Bener Kelipah Selatan,sex,perempuan,,255,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.08.2006,4,Bener Kelipah Selatan,total,total,,517,jiwa,2025,registration,total_population,3.1,26,,
+11.17.08.2007,4,Bintang Musara,sex,laki_laki,,271,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.08.2007,4,Bintang Musara,sex,perempuan,,223,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.08.2007,4,Bintang Musara,total,total,,494,jiwa,2025,registration,total_population,3.1,26,,
+11.17.08.2001,4,Bandar Jaya,sex,laki_laki,,209,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.08.2001,4,Bandar Jaya,sex,perempuan,,228,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.08.2001,4,Bandar Jaya,total,total,,437,jiwa,2025,registration,total_population,3.1,26,,
+11.17.08.2011,4,Nosar Tawar Jaya,sex,laki_laki,,134,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.08.2011,4,Nosar Tawar Jaya,sex,perempuan,,143,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.08.2011,4,Nosar Tawar Jaya,total,total,,277,jiwa,2025,registration,total_population,3.1,26,,
+11.17.08.2002,4,Jongok Meluem,sex,laki_laki,,163,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.08.2002,4,Jongok Meluem,sex,perempuan,,170,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.08.2002,4,Jongok Meluem,total,total,,333,jiwa,2025,registration,total_population,3.1,26,,
+11.17.08.2003,4,Suku Bener,sex,laki_laki,,169,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.08.2003,4,Suku Bener,sex,perempuan,,157,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.08.2003,4,Suku Bener,total,total,,326,jiwa,2025,registration,total_population,3.1,26,,
+11.17.08.2010,4,Lot Bener Kelipah,sex,laki_laki,,495,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.08.2010,4,Lot Bener Kelipah,sex,perempuan,,445,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.08.2010,4,Lot Bener Kelipah,total,total,,940,jiwa,2025,registration,total_population,3.1,26,,
+11.17.08.2008,4,Kala Tenang,sex,laki_laki,,212,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.08.2008,4,Kala Tenang,sex,perempuan,,194,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.08.2008,4,Kala Tenang,total,total,,406,jiwa,2025,registration,total_population,3.1,26,,
+11.17.08.2005,4,Gunung Musara,sex,laki_laki,,211,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.08.2005,4,Gunung Musara,sex,perempuan,,229,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.08.2005,4,Gunung Musara,total,total,,440,jiwa,2025,registration,total_population,3.1,26,,
+11.17.08.2012,4,Nosar Baru,sex,laki_laki,,194,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.08.2012,4,Nosar Baru,sex,perempuan,,170,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.08.2012,4,Nosar Baru,total,total,,364,jiwa,2025,registration,total_population,3.1,26,,
+11.17.08,3,Bener Kelipah,sex,laki_laki,,2959,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+11.17.08,3,Bener Kelipah,sex,perempuan,,2852,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+11.17.08,3,Bener Kelipah,total,total,,5811,jiwa,2025,registration,total_population,3.1,26,,

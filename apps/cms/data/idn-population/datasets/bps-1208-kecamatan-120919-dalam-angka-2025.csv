@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.09.19.1008,4,Sei Renggas,sex,laki_laki,,3050,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.19.1008,4,Sei Renggas,sex,perempuan,,2927,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.19.1008,4,Sei Renggas,total,total,,5977,jiwa,2024,registration,total_population,3.1,24,,
+12.09.19.1009,4,Sendang Sari,sex,laki_laki,,2805,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.19.1009,4,Sendang Sari,sex,perempuan,,2866,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.19.1009,4,Sendang Sari,total,total,,5671,jiwa,2024,registration,total_population,3.1,24,,
+12.09.19.1004,4,Kisaran Barat,sex,laki_laki,,1714,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.19.1004,4,Kisaran Barat,sex,perempuan,,1708,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.19.1004,4,Kisaran Barat,total,total,,3422,jiwa,2024,registration,total_population,3.1,24,,
+12.09.19.1013,4,Tegal Sari,sex,laki_laki,,1566,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.19.1013,4,Tegal Sari,sex,perempuan,,1605,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.19.1013,4,Tegal Sari,total,total,,3171,jiwa,2024,registration,total_population,3.1,24,,
+12.09.19.1012,4,Tebing Kisaran,sex,laki_laki,,2043,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.19.1012,4,Tebing Kisaran,sex,perempuan,,2018,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.19.1012,4,Tebing Kisaran,total,total,,4061,jiwa,2024,registration,total_population,3.1,24,,
+12.09.19.1006,4,Kisaran Kota,sex,laki_laki,,1321,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.19.1006,4,Kisaran Kota,sex,perempuan,,1427,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.19.1006,4,Kisaran Kota,total,total,,2748,jiwa,2024,registration,total_population,3.1,24,,
+12.09.19.1005,4,Kisaran Baru,sex,laki_laki,,2673,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.19.1005,4,Kisaran Baru,sex,perempuan,,2754,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.19.1005,4,Kisaran Baru,total,total,,5427,jiwa,2024,registration,total_population,3.1,24,,
+12.09.19.1007,4,Mekar Baru,sex,laki_laki,,1707,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.19.1007,4,Mekar Baru,sex,perempuan,,1780,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.19.1007,4,Mekar Baru,total,total,,3487,jiwa,2024,registration,total_population,3.1,24,,
+12.09.19.1010,4,Sidodadi,sex,laki_laki,,3028,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.19.1010,4,Sidodadi,sex,perempuan,,3088,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.19.1010,4,Sidodadi,total,total,,6116,jiwa,2024,registration,total_population,3.1,24,,
+12.09.19.1003,4,Dadimulyo,sex,laki_laki,,2538,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.19.1003,4,Dadimulyo,sex,perempuan,,2430,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.19.1003,4,Dadimulyo,total,total,,4968,jiwa,2024,registration,total_population,3.1,24,,
+12.09.19.1011,4,Sidomukti,sex,laki_laki,,3230,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.19.1011,4,Sidomukti,sex,perempuan,,3201,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.19.1011,4,Sidomukti,total,total,,6431,jiwa,2024,registration,total_population,3.1,24,,
+12.09.19.1001,4,Bunut,sex,laki_laki,,1324,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.19.1001,4,Bunut,sex,perempuan,,1291,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.19.1001,4,Bunut,total,total,,2615,jiwa,2024,registration,total_population,3.1,24,,
+12.09.19.1002,4,Bunut Barat,sex,laki_laki,,3351,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.19.1002,4,Bunut Barat,sex,perempuan,,3324,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.19.1002,4,Bunut Barat,total,total,,6675,jiwa,2024,registration,total_population,3.1,24,,
+12.09.19,3,Kota Kisaran Barat,sex,laki_laki,,30350,jiwa,2024,registration,total_population,3.1,24,,Laki-Laki
+12.09.19,3,Kota Kisaran Barat,sex,perempuan,,30419,jiwa,2024,registration,total_population,3.1,24,,Perempuan
+12.09.19,3,Kota Kisaran Barat,total,total,,60769,jiwa,2024,registration,total_population,3.1,24,,

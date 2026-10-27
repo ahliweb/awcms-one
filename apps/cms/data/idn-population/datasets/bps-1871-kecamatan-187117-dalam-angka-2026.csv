@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.71.17.1004,4,Gunung Sari,sex,laki_laki,,1324,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.17.1004,4,Gunung Sari,sex,perempuan,,1311,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.17.1004,4,Gunung Sari,total,total,,2635,jiwa,2025,registration,total_population,3.1,26,,
+18.71.17.1003,4,Tanjung Karang,sex,laki_laki,,1761,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.17.1003,4,Tanjung Karang,sex,perempuan,,1788,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.17.1003,4,Tanjung Karang,total,total,,3549,jiwa,2025,registration,total_population,3.1,26,,
+18.71.17.1002,4,Pelita,sex,laki_laki,,1816,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.17.1002,4,Pelita,sex,perempuan,,1781,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.17.1002,4,Pelita,total,total,,3597,jiwa,2025,registration,total_population,3.1,26,,
+18.71.17.1001,4,Enggal,sex,laki_laki,,2881,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.17.1001,4,Enggal,sex,perempuan,,2971,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.17.1001,4,Enggal,total,total,,5852,jiwa,2025,registration,total_population,3.1,26,,
+18.71.17.1005,4,Rawa Laut,sex,laki_laki,,2518,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.17.1005,4,Rawa Laut,sex,perempuan,,2589,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.17.1005,4,Rawa Laut,total,total,,5107,jiwa,2025,registration,total_population,3.1,26,,
+18.71.17.1006,4,Pahoman,sex,laki_laki,,1907,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.17.1006,4,Pahoman,sex,perempuan,,1989,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.17.1006,4,Pahoman,total,total,,3896,jiwa,2025,registration,total_population,3.1,26,,
+18.71.17,3,Enggal,sex,laki_laki,,12207,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.17,3,Enggal,sex,perempuan,,12429,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.17,3,Enggal,total,total,,24636,jiwa,2025,registration,total_population,3.1,26,,

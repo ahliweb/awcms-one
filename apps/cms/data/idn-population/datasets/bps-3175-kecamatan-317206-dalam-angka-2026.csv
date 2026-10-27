@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.72.06.1003,4,Kelapa Gading Barat,sex,laki_laki,,21745,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+31.72.06.1003,4,Kelapa Gading Barat,sex,perempuan,,22687,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+31.72.06.1003,4,Kelapa Gading Barat,total,total,,44432,jiwa,2025,registration,total_population,3.1,,,
+31.72.06.1001,4,Kelapa Gading Timur,sex,laki_laki,,18973,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+31.72.06.1001,4,Kelapa Gading Timur,sex,perempuan,,20721,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+31.72.06.1001,4,Kelapa Gading Timur,total,total,,39694,jiwa,2025,registration,total_population,3.1,,,
+31.72.06.1002,4,Pegangsaan Dua,sex,laki_laki,,29767,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+31.72.06.1002,4,Pegangsaan Dua,sex,perempuan,,30981,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+31.72.06.1002,4,Pegangsaan Dua,total,total,,60748,jiwa,2025,registration,total_population,3.1,,,
+31.72.06,3,Kelapa Gading,sex,laki_laki,,70485,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+31.72.06,3,Kelapa Gading,sex,perempuan,,74389,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+31.72.06,3,Kelapa Gading,total,total,,144874,jiwa,2025,registration,total_population,3.1,,,

@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.71.02.1004,4,Kampung Seraya,sex,laki_laki,,6081,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.02.1004,4,Kampung Seraya,sex,perempuan,,5877,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/
+21.71.02.1004,4,Kampung Seraya,total,total,,11958,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.02.1002,4,Sungai Jodoh,sex,laki_laki,,6219,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.02.1002,4,Sungai Jodoh,sex,perempuan,,6020,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/
+21.71.02.1002,4,Sungai Jodoh,total,total,,12239,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.02.1001,4,Tanjung Sengkuang,sex,laki_laki,,16790,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.02.1001,4,Tanjung Sengkuang,sex,perempuan,,16053,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/
+21.71.02.1001,4,Tanjung Sengkuang,total,total,,32843,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.02.1003,4,Batu Merah,sex,laki_laki,,4420,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.02.1003,4,Batu Merah,sex,perempuan,,4102,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/
+21.71.02.1003,4,Batu Merah,total,total,,8522,jiwa,2025,registration,total_population,unnumbered-p21,21,,

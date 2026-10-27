@@ -1,0 +1,58 @@
+{
+  "datasetCode": "bps-3310-kecamatan-331007-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.10.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kebonarum Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Klaten",
+  "publisherDomain": "3310",
+  "publisherWebsite": "https://klatenkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Klaten (https://klatenkab.bps.go.id), publikasi \"Kecamatan Kebonarum Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "33100.25012",
+  "issn": "0853-6503",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://klatenkab.bps.go.id/id/publication/2026/09/28/831bc74a6a1473223b806cfd/kecamatan-kebonarum-dalam-angka-2026.html",
+  "sourceFileSha256": "bb38946bd75873ed5a5ddb2bd6f1e3df01152ef08119e578d7391eb37683ff88",
+  "sourceFileBytes": 9469977,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Klaten",
+  "csvPath": "datasets/bps-3310-kecamatan-331007-dalam-angka-2026.csv",
+  "csvSha256": "8c15874ddb1bb6b705809d490c4c980f643a93d9df7506e13adc2de1ee24e305",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kebonarum, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kebonarum, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Jimbung\": unmatched ",
+    "table 3.1: row not stored: row \"Ngemplak\": unmatched ",
+    "table 3.1: row not stored: row \"Kebonarum\": unmatched ",
+    "table 3.1: row not stored: row \"Krajan\": unmatched ",
+    "table 3.1: row not stored: row \"Tambongwetan\": unmatched ",
+    "table 3.1: row not stored: row \"Gemblegan\": unmatched ",
+    "table 3.1: row not stored: row \"Jogosetran\": unmatched ",
+    "table 3.1: row not stored: row \"Jimbung\": unmatched ",
+    "table 3.1: row not stored: row \"Ngemplak\": unmatched ",
+    "table 3.1: row not stored: row \"Kebonarum\": unmatched ",
+    "table 3.1: row not stored: row \"Krajan\": unmatched ",
+    "table 3.1: row not stored: row \"Tambongwetan\": unmatched ",
+    "table 3.1: row not stored: row \"Gemblegan\": unmatched ",
+    "table 3.1: row not stored: row \"Jogosetran\": unmatched "
+  ]
+}

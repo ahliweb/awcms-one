@@ -1,0 +1,15 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.71.06.1009,4,Lawangkidul,sex,perempuan,,5603,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.06.1009,4,Lawangkidul,total,total,,11394,jiwa,2025,registration,total_population,3.1,32,,
+16.71.06.1006,4,Tiga Ilir,sex,perempuan,,8473,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.06.1006,4,Tiga Ilir,total,total,,16698,jiwa,2025,registration,total_population,3.1,32,,
+16.71.06.1007,4,Satu Ilir,sex,perempuan,,3152,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.06.1007,4,Satu Ilir,total,total,,6307,jiwa,2025,registration,total_population,3.1,32,,
+16.71.06.1012,4,Sungaibuah,sex,perempuan,,7787,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.06.1012,4,Sungaibuah,total,total,,15473,jiwa,2025,registration,total_population,3.1,32,,
+16.71.06.1008,4,Dua Ilir,sex,perempuan,,11527,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.06.1008,4,Dua Ilir,total,total,,22792,jiwa,2025,registration,total_population,3.1,32,,
+16.71.06.1005,4,Lima Ilir,sex,perempuan,,5898,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.06.1005,4,Lima Ilir,total,total,,11845,jiwa,2025,registration,total_population,3.1,32,,
+16.71.06,3,Ilir Timur Dua,sex,perempuan,,42440,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.06,3,Ilir Timur Dua,total,total,,84509,jiwa,2025,registration,total_population,3.1,32,,

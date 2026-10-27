@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3205-kecamatan-320512-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.05.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cibatu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Garut",
+  "publisherDomain": "3205",
+  "publisherWebsite": "https://garutkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Garut (https://garutkab.bps.go.id), publikasi \"Kecamatan Cibatu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3205260",
+  "publicationNumber": "32050.26040",
+  "issn": "2830-0858",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://garutkab.bps.go.id/id/publication/2026/09/28/ffc6b3365be5e054002e9788/kecamatan-cibatu-dalam-angka-2026.html",
+  "sourceFileSha256": "e3d97b280c59f946311b6b1d3e907255a70f559c8c47cc8100c6c88793e79e38",
+  "sourceFileBytes": 6087171,
+  "sourcePages": [24, 25, 26],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Garut",
+  "csvPath": "datasets/bps-3205-kecamatan-320512-dalam-angka-2026.csv",
+  "csvSha256": "bb5d65e3ed00cfba8c7552b8938dd38659decd9b26fcd5aa0dabeab4d3764e2d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Cibatu, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cibatu 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

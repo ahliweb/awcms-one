@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.03.16.2002,4,Tepi Laut,sex,laki_laki,,603,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.03.16.2002,4,Tepi Laut,sex,perempuan,,620,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.03.16.2002,4,Tepi Laut,total,total,,1223,jiwa,2025,registration,total_population,3.1,30,,
+17.03.16.2001,4,Pasar Bembah,sex,laki_laki,,371,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.03.16.2001,4,Pasar Bembah,sex,perempuan,,378,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.03.16.2001,4,Pasar Bembah,total,total,,749,jiwa,2025,registration,total_population,3.1,30,,
+17.03.16.2003,4,Pasar Kerkap,sex,laki_laki,,659,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.03.16.2003,4,Pasar Kerkap,sex,perempuan,,659,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.03.16.2003,4,Pasar Kerkap,total,total,,1318,jiwa,2025,registration,total_population,3.1,30,,
+17.03.16.2005,4,Air Napal,sex,laki_laki,,316,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.03.16.2005,4,Air Napal,sex,perempuan,,340,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.03.16.2005,4,Air Napal,total,total,,656,jiwa,2025,registration,total_population,3.1,30,,
+17.03.16.2016,4,Talang Jarang,sex,laki_laki,,246,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.03.16.2016,4,Talang Jarang,sex,perempuan,,260,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.03.16.2016,4,Talang Jarang,total,total,,506,jiwa,2025,registration,total_population,3.1,30,,
+17.03.16.2006,4,Talang Kering,sex,laki_laki,,695,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.03.16.2006,4,Talang Kering,sex,perempuan,,630,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.03.16.2006,4,Talang Kering,total,total,,1325,jiwa,2025,registration,total_population,3.1,30,,
+17.03.16.2007,4,Selubuk,sex,laki_laki,,405,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.03.16.2007,4,Selubuk,sex,perempuan,,397,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.03.16.2007,4,Selubuk,total,total,,802,jiwa,2025,registration,total_population,3.1,30,,
+17.03.16.2008,4,Pasar Tebat,sex,laki_laki,,370,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.03.16.2008,4,Pasar Tebat,sex,perempuan,,380,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.03.16.2008,4,Pasar Tebat,total,total,,750,jiwa,2025,registration,total_population,3.1,30,,
+17.03.16.2009,4,Lubuk Tanjung,sex,laki_laki,,406,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.03.16.2009,4,Lubuk Tanjung,sex,perempuan,,351,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.03.16.2009,4,Lubuk Tanjung,total,total,,757,jiwa,2025,registration,total_population,3.1,30,,
+17.03.16.2014,4,Pasar Palik,sex,laki_laki,,446,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.03.16.2014,4,Pasar Palik,sex,perempuan,,428,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.03.16.2014,4,Pasar Palik,total,total,,874,jiwa,2025,registration,total_population,3.1,30,,
+17.03.16.2015,4,Tebing Kandang,sex,laki_laki,,452,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.03.16.2015,4,Tebing Kandang,sex,perempuan,,444,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.03.16.2015,4,Tebing Kandang,total,total,,896,jiwa,2025,registration,total_population,3.1,30,,
+17.03.16,3,Air Napal,sex,laki_laki,,5241,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+17.03.16,3,Air Napal,sex,perempuan,,5139,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+17.03.16,3,Air Napal,total,total,,10380,jiwa,2025,registration,total_population,3.1,30,,

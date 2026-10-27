@@ -1,0 +1,53 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.11,2,Kabupaten Sumedang,religion,islam,,1236021,jiwa,2025,registration,total_population,4.3.1,123,,Islam
+32.11,2,Kabupaten Sumedang,religion,kristen,,4813,jiwa,2025,registration,total_population,4.3.1,123,,Protestan
+32.11,2,Kabupaten Sumedang,religion,katolik,,698,jiwa,2025,registration,total_population,4.3.1,123,,Katolik
+32.11,2,Kabupaten Sumedang,religion,hindu,,32,jiwa,2025,registration,total_population,4.3.1,123,,Hindu
+32.11,2,Kabupaten Sumedang,religion,buddha,,206,jiwa,2025,registration,total_population,4.3.1,123,,Budha
+32.11,2,Kabupaten Sumedang,religion,lainnya,,25,jiwa,2025,registration,total_population,4.3.1,123,,Lainnya
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/padi_padian,,100791,rupiah,2024,survey_estimate,per_capita,10.1,273,,Padi-padian
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/padi_padian,,91073,rupiah,2025,survey_estimate,per_capita,10.1,273,,Padi-padian
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/umbi_umbian,,5742,rupiah,2024,survey_estimate,per_capita,10.1,273,,Umbi-umbian
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/umbi_umbian,,7988,rupiah,2025,survey_estimate,per_capita,10.1,273,,Umbi-umbian
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,30078,rupiah,2024,survey_estimate,per_capita,10.1,273,,Ikan/udang/cumi/kerang
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,34052,rupiah,2025,survey_estimate,per_capita,10.1,273,,Ikan/udang/cumi/kerang
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/daging,,34401,rupiah,2024,survey_estimate,per_capita,10.1,273,,Daging
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/daging,,42756,rupiah,2025,survey_estimate,per_capita,10.1,273,,Daging
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/telur_dan_susu,,34891,rupiah,2024,survey_estimate,per_capita,10.1,273,,Telur dan susu
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/telur_dan_susu,,40611,rupiah,2025,survey_estimate,per_capita,10.1,273,,Telur dan susu
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/sayur_sayuran,,43993,rupiah,2024,survey_estimate,per_capita,10.1,273,,Sayur-sayuran
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/sayur_sayuran,,48924,rupiah,2025,survey_estimate,per_capita,10.1,273,,Sayur-sayuran
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/kacang_kacangan,,15445,rupiah,2024,survey_estimate,per_capita,10.1,273,,Kacang-kacangan
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/kacang_kacangan,,17994,rupiah,2025,survey_estimate,per_capita,10.1,273,,Kacang-kacangan
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/buah_buahan,,40184,rupiah,2024,survey_estimate,per_capita,10.1,273,,Buah-buahan
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/buah_buahan,,50143,rupiah,2025,survey_estimate,per_capita,10.1,273,,Buah-buahan
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,15762,rupiah,2024,survey_estimate,per_capita,10.1,273,,Minyak dan kelapa
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18617,rupiah,2025,survey_estimate,per_capita,10.1,273,,Minyak dan kelapa
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/bahan_minuman,,26523,rupiah,2024,survey_estimate,per_capita,10.1,273,,Bahan minuman
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/bahan_minuman,,29259,rupiah,2025,survey_estimate,per_capita,10.1,273,,Bahan minuman
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/bumbu_bumbuan,,12782,rupiah,2024,survey_estimate,per_capita,10.1,273,,Bumbu-bumbuan
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/bumbu_bumbuan,,16101,rupiah,2025,survey_estimate,per_capita,10.1,273,,Bumbu-bumbuan
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/konsumsi_lainnya,,17027,rupiah,2024,survey_estimate,per_capita,10.1,273,,Konsumsi lainnya
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/konsumsi_lainnya,,17668,rupiah,2025,survey_estimate,per_capita,10.1,273,,Konsumsi lainnya
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,270260,rupiah,2024,survey_estimate,per_capita,10.1,273,,Makanan dan minuman jadi
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,288042,rupiah,2025,survey_estimate,per_capita,10.1,273,,Makanan dan minuman jadi
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/rokok,,117655,rupiah,2024,survey_estimate,per_capita,10.1,273,,Rokok
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/rokok,,104030,rupiah,2025,survey_estimate,per_capita,10.1,273,,Rokok
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/jumlah_makanan,,765533,rupiah,2024,survey_estimate,per_capita,10.1,273,,Jumlah makanan
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/jumlah_makanan,,807257,rupiah,2025,survey_estimate,per_capita,10.1,273,,Jumlah makanan
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,308789,rupiah,2024,survey_estimate,per_capita,10.1,273,,Perumahan dan fasilitas rumah tangga
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,330311,rupiah,2025,survey_estimate,per_capita,10.1,273,,Perumahan dan fasilitas rumah tangga
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,134657,rupiah,2024,survey_estimate,per_capita,10.1,273,,Aneka barang dan jasa
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,177280,rupiah,2025,survey_estimate,per_capita,10.1,273,,Aneka barang dan jasa
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,35079,rupiah,2024,survey_estimate,per_capita,10.1,273,,"Pakaian, alas kaki, dan tutup kepala"
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,43920,rupiah,2025,survey_estimate,per_capita,10.1,273,,"Pakaian, alas kaki, dan tutup kepala"
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/barang_tahan_lama,,44767,rupiah,2024,survey_estimate,per_capita,10.1,273,,Barang tahan lama
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/barang_tahan_lama,,57924,rupiah,2025,survey_estimate,per_capita,10.1,273,,Barang tahan lama
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,52928,rupiah,2024,survey_estimate,per_capita,10.1,273,,"Pajak, pungutan, dan asuransi"
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,60910,rupiah,2025,survey_estimate,per_capita,10.1,273,,"Pajak, pungutan, dan asuransi"
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,24751,rupiah,2024,survey_estimate,per_capita,10.1,273,,Keperluan pesta dan upacara/kenduri
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,39165,rupiah,2025,survey_estimate,per_capita,10.1,273,,Keperluan pesta dan upacara/kenduri
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,600969,rupiah,2024,survey_estimate,per_capita,10.1,273,,Jumlah bukan makanan
+32.11,2,Kabupaten Sumedang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,709510,rupiah,2025,survey_estimate,per_capita,10.1,273,,Jumlah bukan makanan
+32.11,2,Kabupaten Sumedang,expenditure,total,,1366502,rupiah,2024,survey_estimate,per_capita,10.1,273,,
+32.11,2,Kabupaten Sumedang,expenditure,total,,1516767,rupiah,2025,survey_estimate,per_capita,10.1,273,,

@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.02.30.2003,4,Muaradua,sex,laki_laki,,3338,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.30.2003,4,Muaradua,sex,perempuan,,3099,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.30.2003,4,Muaradua,total,total,,6437,jiwa,2025,registration,total_population,3.1,24,,
+32.02.30.2002,4,Citamiang,sex,laki_laki,,3185,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.30.2002,4,Citamiang,sex,perempuan,,3127,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.30.2002,4,Citamiang,total,total,,6312,jiwa,2025,registration,total_population,3.1,24,,
+32.02.30.2009,4,Cikahuripan,sex,laki_laki,,4129,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.30.2009,4,Cikahuripan,sex,perempuan,,3876,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.30.2009,4,Cikahuripan,total,total,,8005,jiwa,2025,registration,total_population,3.1,24,,
+32.02.30.2005,4,Sukamanis,sex,laki_laki,,3255,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.30.2005,4,Sukamanis,sex,perempuan,,3173,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.30.2005,4,Sukamanis,total,total,,6428,jiwa,2025,registration,total_population,3.1,24,,
+32.02.30.2001,4,Kadudampit,sex,laki_laki,,3798,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.30.2001,4,Kadudampit,sex,perempuan,,3526,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.30.2001,4,Kadudampit,total,total,,7324,jiwa,2025,registration,total_population,3.1,24,,
+32.02.30.2004,4,Gede Pangrango,sex,laki_laki,,3784,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.30.2004,4,Gede Pangrango,sex,perempuan,,3732,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.30.2004,4,Gede Pangrango,total,total,,7516,jiwa,2025,registration,total_population,3.1,24,,
+32.02.30.2008,4,Sukamaju,sex,laki_laki,,3521,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.30.2008,4,Sukamaju,sex,perempuan,,3328,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.30.2008,4,Sukamaju,total,total,,6849,jiwa,2025,registration,total_population,3.1,24,,
+32.02.30.2007,4,Cipetir,sex,laki_laki,,4621,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.30.2007,4,Cipetir,sex,perempuan,,4378,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.30.2007,4,Cipetir,total,total,,8999,jiwa,2025,registration,total_population,3.1,24,,
+32.02.30.2006,4,Undrus Binangun,sex,laki_laki,,2867,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.30.2006,4,Undrus Binangun,sex,perempuan,,2703,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.30.2006,4,Undrus Binangun,total,total,,5570,jiwa,2025,registration,total_population,3.1,24,,
+32.02.30,3,Kadudampit,sex,laki_laki,,32498,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.30,3,Kadudampit,sex,perempuan,,30942,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.30,3,Kadudampit,total,total,,63440,jiwa,2025,registration,total_population,3.1,24,,

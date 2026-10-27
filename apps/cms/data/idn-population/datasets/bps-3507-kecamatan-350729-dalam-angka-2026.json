@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3507-kecamatan-350729-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.07.29",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gedangan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Malang",
+  "publisherDomain": "3507",
+  "publisherWebsite": "https://malangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Malang (https://malangkab.bps.go.id), publikasi \"Kecamatan Gedangan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3507050",
+  "publicationNumber": "35070.26011",
+  "issn": "2828-9889",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://malangkab.bps.go.id/id/publication/2026/09/28/35257587178b46cf448f73dd/kecamatan-gedangan-dalam-angka-2026.html",
+  "sourceFileSha256": "d7aaf0d9658aeef2b7192a1b9c73cd333899bc1b8055c30a76f8dd511d41e2e1",
+  "sourceFileBytes": 5721413,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Malang.",
+  "csvPath": "datasets/bps-3507-kecamatan-350729-dalam-angka-2026.csv",
+  "csvSha256": "82dc9d72d3ef67c03585fc3f019521da57d3c5424fa22151ae59e37cc0faa816",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Gedangan, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Gedangan, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

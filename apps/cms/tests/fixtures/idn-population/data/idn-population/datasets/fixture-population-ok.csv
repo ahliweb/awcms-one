@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62,1,Provinsi Uji,total,total,,100,jiwa,2025,projection,total_population,Tabel 3.1.1,10,,
+62,1,Provinsi Uji,sex,laki_laki,,55,jiwa,2025,projection,total_population,Tabel 3.1.1,10,,
+62,1,Provinsi Uji,sex,perempuan,,45,jiwa,2025,projection,total_population,Tabel 3.1.1,10,,
+62.01,2,Kabupaten Uji Satu,total,total,,60,jiwa,2025,projection,total_population,Tabel 3.1.1,10,,
+62.01,2,Kabupaten Uji Satu,sex,laki_laki,,33,jiwa,2025,projection,total_population,Tabel 3.1.1,10,,
+62.01,2,Kabupaten Uji Satu,sex,perempuan,,27,jiwa,2025,projection,total_population,Tabel 3.1.1,10,,
+62.71,2,Kota Uji Dua,total,total,,40,jiwa,2025,projection,total_population,Tabel 3.1.1,10,,
+62.71,2,Kota Uji Dua,sex,laki_laki,,22,jiwa,2025,projection,total_population,Tabel 3.1.1,10,,
+62.71,2,Kota Uji Dua,sex,perempuan,,18,jiwa,2025,projection,total_population,Tabel 3.1.1,10,,
+62,1,Provinsi Uji,age_group,0-14,,20,jiwa,2025,projection,total_population,Tabel 3.1.4,12,,
+62,1,Provinsi Uji,age_group,15-64,,70,jiwa,2025,projection,total_population,Tabel 3.1.4,12,,
+62,1,Provinsi Uji,age_group,65+,,10,jiwa,2025,projection,total_population,Tabel 3.1.4,12,,"65 tahun ke atas, lebih"
+62,1,Provinsi Uji,religion,islam,,70,jiwa,2025,projection,total_population,Tabel 4.5.4,40,,Islam
+62,1,Provinsi Uji,religion,kristen,,10,jiwa,2025,projection,total_population,Tabel 4.5.4,40,,
+62,1,Provinsi Uji,religion,katolik,,5,jiwa,2025,projection,total_population,Tabel 4.5.4,40,,
+62,1,Provinsi Uji,religion,hindu,,5,jiwa,2025,projection,total_population,Tabel 4.5.4,40,,
+62,1,Provinsi Uji,religion,buddha,,5,jiwa,2025,projection,total_population,Tabel 4.5.4,40,,
+62,1,Provinsi Uji,religion,khonghucu,,5,jiwa,2025,projection,total_population,Tabel 4.5.4,40,,
+62,1,Provinsi Uji,income,total,,3000000,rupiah,2025,survey_estimate,employees,Tabel 3.2.30,60,,
+62,1,Provinsi Uji,total,total,,100,jiwa,2025,projection,total_population,Tabel 3.1.4,12,,
+62,1,Provinsi Uji,total,total,,100,jiwa,2025,projection,total_population,Tabel 4.5.4,40,,

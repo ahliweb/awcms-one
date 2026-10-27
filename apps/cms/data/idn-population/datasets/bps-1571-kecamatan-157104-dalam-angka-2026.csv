@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.71.04.1001,4,Beringin,sex,laki_laki,,1843,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+15.71.04.1001,4,Beringin,sex,perempuan,,1818,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Fem
+15.71.04.1001,4,Beringin,total,total,,3661,jiwa,2025,registration,total_population,3.1,27,,
+15.71.04.1002,4,Orang Kayo Hitam,sex,laki_laki,,724,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+15.71.04.1002,4,Orang Kayo Hitam,sex,perempuan,,767,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Fem
+15.71.04.1002,4,Orang Kayo Hitam,total,total,,1491,jiwa,2025,registration,total_population,3.1,27,,
+15.71.04.1003,4,Pasar Jambi,sex,laki_laki,,205,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+15.71.04.1003,4,Pasar Jambi,sex,perempuan,,263,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Fem
+15.71.04.1003,4,Pasar Jambi,total,total,,468,jiwa,2025,registration,total_population,3.1,27,,
+15.71.04.1004,4,Sungai Asam,sex,laki_laki,,2575,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+15.71.04.1004,4,Sungai Asam,sex,perempuan,,2705,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Fem
+15.71.04.1004,4,Sungai Asam,total,total,,5280,jiwa,2025,registration,total_population,3.1,27,,
+15.71.04,3,Kecamatan Pasar Jambi,sex,laki_laki,,5347,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+15.71.04,3,Kecamatan Pasar Jambi,sex,perempuan,,5553,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Fem
+15.71.04,3,Kecamatan Pasar Jambi,total,total,,10900,jiwa,2025,registration,total_population,3.1,27,,

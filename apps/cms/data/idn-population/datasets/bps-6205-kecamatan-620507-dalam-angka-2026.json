@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-6205-kecamatan-620507-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.05.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Teweh Baru Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "6205",
+  "publisherWebsite": "https://barutkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://barutkab.bps.go.id), publikasi \"Kecamatan Teweh Baru Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6205051",
+  "publicationNumber": "62050.26019",
+  "issn": "2622-139X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://barutkab.bps.go.id/id/publication/2026/09/28/11131a0b371dfbd159362bc4/kecamatan-teweh-baru-dalam-angka-2026.html",
+  "sourceFileSha256": "c5f6470255ffe6ed2bec6396dd86db4ddde51e21be162cd8d881af440dc0639d",
+  "sourceFileBytes": 5567219,
+  "sourcePages": [41, 43],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Barito Utara",
+  "csvPath": "datasets/bps-6205-kecamatan-620507-dalam-angka-2026.csv",
+  "csvSha256": "cfbbbe8c63eccfa818115c9ce217aec68eba22f42b233e1865df156aafb658a7",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p41",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Teweh Baru, 2025",
+      "printedPages": [41],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "unnumbered-p43",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Teweh Baru, 2025",
+      "printedPages": [43],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.03.09.2002,4,Subi Besar,sex,laki_laki,,171,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.09.2002,4,Subi Besar,sex,perempuan,,185,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+21.03.09.2002,4,Subi Besar,total,total,,356,jiwa,2026,registration,total_population,3.1,26,,
+21.03.09.2001,4,Subi,sex,laki_laki,,284,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.09.2001,4,Subi,sex,perempuan,,318,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+21.03.09.2001,4,Subi,total,total,,602,jiwa,2026,registration,total_population,3.1,26,,
+21.03.09.2003,4,Meliah,sex,laki_laki,,177,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.09.2003,4,Meliah,sex,perempuan,,179,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+21.03.09.2003,4,Meliah,total,total,,356,jiwa,2026,registration,total_population,3.1,26,,
+21.03.09.2005,4,Terayak,sex,laki_laki,,196,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.09.2005,4,Terayak,sex,perempuan,,201,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+21.03.09.2005,4,Terayak,total,total,,397,jiwa,2026,registration,total_population,3.1,26,,
+21.03.09.2007,4,Subi Besar Timur,sex,laki_laki,,158,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.09.2007,4,Subi Besar Timur,sex,perempuan,,159,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+21.03.09.2007,4,Subi Besar Timur,total,total,,317,jiwa,2026,registration,total_population,3.1,26,,
+21.03.09.2008,4,Meliah Selatan,sex,laki_laki,,130,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+21.03.09.2008,4,Meliah Selatan,sex,perempuan,,136,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+21.03.09.2008,4,Meliah Selatan,total,total,,266,jiwa,2026,registration,total_population,3.1,26,,
+21.03.09,3,Subi,age_group,0-4,laki_laki,56,jiwa,2025,registration,total_population,3.2,28,,0–4
+21.03.09,3,Subi,age_group,0-4,perempuan,80,jiwa,2025,registration,total_population,3.2,28,,0–4
+21.03.09,3,Subi,age_group,0-4,,136,jiwa,2025,registration,total_population,3.2,28,,0–4
+21.03.09,3,Subi,age_group,5-9,laki_laki,92,jiwa,2025,registration,total_population,3.2,28,,5–9
+21.03.09,3,Subi,age_group,5-9,perempuan,108,jiwa,2025,registration,total_population,3.2,28,,5–9
+21.03.09,3,Subi,age_group,5-9,,200,jiwa,2025,registration,total_population,3.2,28,,5–9
+21.03.09,3,Subi,age_group,10-14,laki_laki,102,jiwa,2025,registration,total_population,3.2,28,,10–14
+21.03.09,3,Subi,age_group,10-14,perempuan,88,jiwa,2025,registration,total_population,3.2,28,,10–14
+21.03.09,3,Subi,age_group,10-14,,190,jiwa,2025,registration,total_population,3.2,28,,10–14
+21.03.09,3,Subi,age_group,15-19,laki_laki,104,jiwa,2025,registration,total_population,3.2,28,,15–19
+21.03.09,3,Subi,age_group,15-19,perempuan,107,jiwa,2025,registration,total_population,3.2,28,,15–19
+21.03.09,3,Subi,age_group,15-19,,211,jiwa,2025,registration,total_population,3.2,28,,15–19
+21.03.09,3,Subi,age_group,20-24,laki_laki,88,jiwa,2025,registration,total_population,3.2,28,,20–24
+21.03.09,3,Subi,age_group,20-24,perempuan,100,jiwa,2025,registration,total_population,3.2,28,,20–24
+21.03.09,3,Subi,age_group,20-24,,188,jiwa,2025,registration,total_population,3.2,28,,20–24
+21.03.09,3,Subi,age_group,25-29,laki_laki,84,jiwa,2025,registration,total_population,3.2,28,,25–29
+21.03.09,3,Subi,age_group,25-29,perempuan,95,jiwa,2025,registration,total_population,3.2,28,,25–29
+21.03.09,3,Subi,age_group,25-29,,179,jiwa,2025,registration,total_population,3.2,28,,25–29
+21.03.09,3,Subi,age_group,30-34,laki_laki,67,jiwa,2025,registration,total_population,3.2,28,,30–34
+21.03.09,3,Subi,age_group,30-34,perempuan,78,jiwa,2025,registration,total_population,3.2,28,,30–34
+21.03.09,3,Subi,age_group,30-34,,145,jiwa,2025,registration,total_population,3.2,28,,30–34
+21.03.09,3,Subi,age_group,35-39,laki_laki,74,jiwa,2025,registration,total_population,3.2,28,,35–39
+21.03.09,3,Subi,age_group,35-39,perempuan,91,jiwa,2025,registration,total_population,3.2,28,,35–39
+21.03.09,3,Subi,age_group,35-39,,165,jiwa,2025,registration,total_population,3.2,28,,35–39
+21.03.09,3,Subi,age_group,40-44,laki_laki,109,jiwa,2025,registration,total_population,3.2,28,,40–44
+21.03.09,3,Subi,age_group,40-44,perempuan,104,jiwa,2025,registration,total_population,3.2,28,,40–44
+21.03.09,3,Subi,age_group,40-44,,213,jiwa,2025,registration,total_population,3.2,28,,40–44
+21.03.09,3,Subi,age_group,45-49,laki_laki,105,jiwa,2025,registration,total_population,3.2,28,,45–49
+21.03.09,3,Subi,age_group,45-49,perempuan,91,jiwa,2025,registration,total_population,3.2,28,,45–49
+21.03.09,3,Subi,age_group,45-49,,196,jiwa,2025,registration,total_population,3.2,28,,45–49
+21.03.09,3,Subi,age_group,50-54,laki_laki,70,jiwa,2025,registration,total_population,3.2,28,,50–54
+21.03.09,3,Subi,age_group,50-54,perempuan,60,jiwa,2025,registration,total_population,3.2,28,,50–54
+21.03.09,3,Subi,age_group,50-54,,130,jiwa,2025,registration,total_population,3.2,28,,50–54
+21.03.09,3,Subi,age_group,55-59,laki_laki,58,jiwa,2025,registration,total_population,3.2,28,,55–59
+21.03.09,3,Subi,age_group,55-59,perempuan,49,jiwa,2025,registration,total_population,3.2,28,,55–59
+21.03.09,3,Subi,age_group,55-59,,107,jiwa,2025,registration,total_population,3.2,28,,55–59
+21.03.09,3,Subi,age_group,60-64,laki_laki,39,jiwa,2025,registration,total_population,3.2,28,,60–64
+21.03.09,3,Subi,age_group,60-64,perempuan,39,jiwa,2025,registration,total_population,3.2,28,,60–64
+21.03.09,3,Subi,age_group,60-64,,78,jiwa,2025,registration,total_population,3.2,28,,60–64
+21.03.09,3,Subi,age_group,65-69,laki_laki,29,jiwa,2025,registration,total_population,3.2,28,,65–69
+21.03.09,3,Subi,age_group,65-69,perempuan,42,jiwa,2025,registration,total_population,3.2,28,,65–69
+21.03.09,3,Subi,age_group,65-69,,71,jiwa,2025,registration,total_population,3.2,28,,65–69
+21.03.09,3,Subi,age_group,70-74,laki_laki,15,jiwa,2025,registration,total_population,3.2,28,,70–74
+21.03.09,3,Subi,age_group,70-74,perempuan,19,jiwa,2025,registration,total_population,3.2,28,,70–74
+21.03.09,3,Subi,age_group,70-74,,34,jiwa,2025,registration,total_population,3.2,28,,70–74
+21.03.09,3,Subi,age_group,75+,laki_laki,24,jiwa,2025,registration,total_population,3.2,28,,75+
+21.03.09,3,Subi,age_group,75+,perempuan,27,jiwa,2025,registration,total_population,3.2,28,,75+
+21.03.09,3,Subi,age_group,75+,,51,jiwa,2025,registration,total_population,3.2,28,,75+

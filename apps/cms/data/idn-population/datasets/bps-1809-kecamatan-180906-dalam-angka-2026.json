@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-1809-kecamatan-180906-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.09.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Punduh Pidada Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pesawaran",
+  "publisherDomain": "1809",
+  "publisherWebsite": "https://pesawarankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pesawaran (https://pesawarankab.bps.go.id), publikasi \"Kecamatan Punduh Pidada Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "18090.26006",
+  "issn": "2830-733X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pesawarankab.bps.go.id/id/publication/2026/09/28/1814c179ff7337013cdf460c/kecamatan-punduh-pidada-dalam-angka-2026.html",
+  "sourceFileSha256": "2a93890ab429a126764ae8bd004887272c4e5c52f04b0f150800a7b5cbf311a4",
+  "sourceFileBytes": 11275875,
+  "sourcePages": [30, 31, 32, 56, 57],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pesawaran.",
+  "csvPath": "datasets/bps-1809-kecamatan-180906-dalam-angka-2026.csv",
+  "csvSha256": "3bc4f99b396638ccc93098d712be71fb3039d2fd8fe6ddfdfa1ac7b2e54ce27f",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Punduh Pidada, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Punduh Pidada, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.4.3",
+      "title": "Jumlah Penduduk Menurut Desa dan Agama yang Dianut di Kecamatan Punduh Pidada, 2025",
+      "printedPages": [56, 57],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": []
+}

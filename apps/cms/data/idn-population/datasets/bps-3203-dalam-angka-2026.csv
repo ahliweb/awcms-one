@@ -1,0 +1,221 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.03.22,3,Agrabinta,religion,islam,,42546,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.22,3,Agrabinta,religion,kristen,,3,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.22,3,Agrabinta,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Katolik
+32.03.22,3,Agrabinta,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+32.03.22,3,Agrabinta,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+32.03.22,3,Agrabinta,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+32.03.30,3,Leles,religion,islam,,33976,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.30,3,Leles,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Protestan
+32.03.30,3,Leles,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Katolik
+32.03.30,3,Leles,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+32.03.30,3,Leles,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Budha
+32.03.30,3,Leles,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+32.03.21,3,Sindangbarang,religion,islam,,62766,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.21,3,Sindangbarang,religion,kristen,,20,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.21,3,Sindangbarang,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Katolik
+32.03.21,3,Sindangbarang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+32.03.21,3,Sindangbarang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Budha
+32.03.21,3,Sindangbarang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+32.03.23,3,Cidaun,religion,islam,,75539,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.23,3,Cidaun,religion,kristen,,6,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.23,3,Cidaun,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.23,3,Cidaun,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+32.03.23,3,Cidaun,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Budha
+32.03.23,3,Cidaun,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+32.03.24,3,Naringgul,religion,islam,,50606,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.24,3,Naringgul,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Protestan
+32.03.24,3,Naringgul,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Katolik
+32.03.24,3,Naringgul,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+32.03.24,3,Naringgul,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Budha
+32.03.24,3,Naringgul,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+32.03.26,3,Cikadu,religion,islam,,39939,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.26,3,Cikadu,religion,kristen,,2,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.26,3,Cikadu,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.26,3,Cikadu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+32.03.26,3,Cikadu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Budha
+32.03.26,3,Cikadu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+32.03.19,3,Tanggeung,religion,islam,,53546,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.19,3,Tanggeung,religion,kristen,,5,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.19,3,Tanggeung,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Katolik
+32.03.19,3,Tanggeung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+32.03.19,3,Tanggeung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Budha
+32.03.19,3,Tanggeung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+32.03.32,3,Pasirkuda,religion,islam,,39555,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.32,3,Pasirkuda,religion,kristen,,5,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.32,3,Pasirkuda,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.32,3,Pasirkuda,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+32.03.32,3,Pasirkuda,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Budha
+32.03.32,3,Pasirkuda,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+32.03.17,3,Kadupandak,religion,islam,,56749,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.17,3,Kadupandak,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Protestan
+32.03.17,3,Kadupandak,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.17,3,Kadupandak,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+32.03.17,3,Kadupandak,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Budha
+32.03.17,3,Kadupandak,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+32.03.29,3,Cijati,religion,islam,,37630,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.29,3,Cijati,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Protestan
+32.03.29,3,Cijati,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Katolik
+32.03.29,3,Cijati,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+32.03.29,3,Cijati,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Budha
+32.03.29,3,Cijati,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+32.03.16,3,Takokak,religion,islam,,57784,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.16,3,Takokak,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.16,3,Takokak,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.16,3,Takokak,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+32.03.16,3,Takokak,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Budha
+32.03.16,3,Takokak,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+32.03.14,3,Sukanagara,religion,islam,,59608,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.14,3,Sukanagara,religion,kristen,,9,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.14,3,Sukanagara,religion,katolik,,9,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.14,3,Sukanagara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+32.03.14,3,Sukanagara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Budha
+32.03.14,3,Sukanagara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+32.03.15,3,Campaka,religion,islam,,74864,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.15,3,Campaka,religion,kristen,,7,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.15,3,Campaka,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.15,3,Campaka,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+32.03.15,3,Campaka,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Budha
+32.03.15,3,Campaka,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,119,,Lainnya
+32.03.25,3,Campakamulya,religion,islam,,25198,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.25,3,Campakamulya,religion,kristen,,2,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.25,3,Campakamulya,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Katolik
+32.03.25,3,Campakamulya,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+32.03.25,3,Campakamulya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Budha
+32.03.25,3,Campakamulya,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,119,,Lainnya
+32.03.03,3,Cibeber,religion,islam,,145459,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.03,3,Cibeber,religion,kristen,,73,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.03,3,Cibeber,religion,katolik,,15,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.03,3,Cibeber,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+32.03.03,3,Cibeber,religion,buddha,,8,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+32.03.03,3,Cibeber,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+32.03.02,3,Warungkondang,religion,islam,,86552,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.02,3,Warungkondang,religion,kristen,,75,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.02,3,Warungkondang,religion,katolik,,6,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.02,3,Warungkondang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+32.03.02,3,Warungkondang,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+32.03.02,3,Warungkondang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+32.03.27,3,Gekbrong,religion,islam,,67251,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.27,3,Gekbrong,religion,kristen,,26,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.27,3,Gekbrong,religion,katolik,,6,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.27,3,Gekbrong,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+32.03.27,3,Gekbrong,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Budha
+32.03.27,3,Gekbrong,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,119,,Lainnya
+32.03.04,3,Cilaku,religion,islam,,127193,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.04,3,Cilaku,religion,kristen,,513,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.04,3,Cilaku,religion,katolik,,304,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.04,3,Cilaku,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+32.03.04,3,Cilaku,religion,buddha,,43,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+32.03.04,3,Cilaku,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+32.03.09,3,Sukaluyu,religion,islam,,99041,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.09,3,Sukaluyu,religion,kristen,,370,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.09,3,Sukaluyu,religion,katolik,,27,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.09,3,Sukaluyu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+32.03.09,3,Sukaluyu,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+32.03.09,3,Sukaluyu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+32.03.31,3,Haurwangi,religion,islam,,69304,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.31,3,Haurwangi,religion,kristen,,26,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.31,3,Haurwangi,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.31,3,Haurwangi,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+32.03.31,3,Haurwangi,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+32.03.31,3,Haurwangi,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+32.03.05,3,Ciranjang,religion,islam,,90567,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.05,3,Ciranjang,religion,kristen,,3325,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.05,3,Ciranjang,religion,katolik,,55,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.05,3,Ciranjang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+32.03.05,3,Ciranjang,religion,buddha,,13,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+32.03.05,3,Ciranjang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+32.03.08,3,Mande,religion,islam,,87999,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.08,3,Mande,religion,kristen,,91,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.08,3,Mande,religion,katolik,,17,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.08,3,Mande,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Hindu
+32.03.08,3,Mande,religion,buddha,,9,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+32.03.08,3,Mande,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,119,,Lainnya
+32.03.07,3,Karangtengah,religion,islam,,172709,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.07,3,Karangtengah,religion,kristen,,1943,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.07,3,Karangtengah,religion,katolik,,446,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.07,3,Karangtengah,religion,hindu,,32,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+32.03.07,3,Karangtengah,religion,buddha,,68,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+32.03.07,3,Karangtengah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+32.03.01,3,Cianjur,religion,islam,,180221,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.01,3,Cianjur,religion,kristen,,2939,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.01,3,Cianjur,religion,katolik,,781,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.01,3,Cianjur,religion,hindu,,19,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+32.03.01,3,Cianjur,religion,buddha,,1335,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+32.03.01,3,Cianjur,religion,lainnya,,7,jiwa,2025,registration,total_population,4.3.1,119,,Lainnya
+32.03.11,3,Cugenang,religion,islam,,127176,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.11,3,Cugenang,religion,kristen,,54,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.11,3,Cugenang,religion,katolik,,26,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.11,3,Cugenang,religion,hindu,,7,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+32.03.11,3,Cugenang,religion,buddha,,9,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+32.03.11,3,Cugenang,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,119,,Lainnya
+32.03.10,3,Pacet,religion,islam,,118176,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.10,3,Pacet,religion,kristen,,651,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.10,3,Pacet,religion,katolik,,309,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.10,3,Pacet,religion,hindu,,7,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+32.03.10,3,Pacet,religion,buddha,,148,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+32.03.10,3,Pacet,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,119,,Lainnya
+32.03.28,3,Cipanas,religion,islam,,119972,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.28,3,Cipanas,religion,kristen,,494,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.28,3,Cipanas,religion,katolik,,595,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.28,3,Cipanas,religion,hindu,,54,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+32.03.28,3,Cipanas,religion,buddha,,204,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+32.03.28,3,Cipanas,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,119,,Lainnya
+32.03.13,3,Sukaresmi,religion,islam,,99330,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.13,3,Sukaresmi,religion,kristen,,237,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.13,3,Sukaresmi,religion,katolik,,175,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.13,3,Sukaresmi,religion,hindu,,7,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+32.03.13,3,Sukaresmi,religion,buddha,,30,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+32.03.13,3,Sukaresmi,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,119,,Lainnya
+32.03.12,3,Cikalongkulon,religion,islam,,116715,jiwa,2025,registration,total_population,4.3.1,119,,Islam
+32.03.12,3,Cikalongkulon,religion,kristen,,49,jiwa,2025,registration,total_population,4.3.1,119,,Protestan
+32.03.12,3,Cikalongkulon,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,119,,Katolik
+32.03.12,3,Cikalongkulon,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,119,,Hindu
+32.03.12,3,Cikalongkulon,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,119,,Budha
+32.03.12,3,Cikalongkulon,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,119,nil,Lainnya
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/padi_padian,,105034,rupiah,2024,survey_estimate,per_capita,10.1,266,,Padi-padian
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/padi_padian,,100411,rupiah,2025,survey_estimate,per_capita,10.1,266,,Padi-padian
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/umbi_umbian,,6737,rupiah,2024,survey_estimate,per_capita,10.1,266,,Umbi-umbian
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/umbi_umbian,,7955,rupiah,2025,survey_estimate,per_capita,10.1,266,,Umbi-umbian
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,44117,rupiah,2024,survey_estimate,per_capita,10.1,266,,Ikan/udang/cumi/kerang
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,39305,rupiah,2025,survey_estimate,per_capita,10.1,266,,Ikan/udang/cumi/kerang
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/daging,,34901,rupiah,2024,survey_estimate,per_capita,10.1,266,,Daging
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/daging,,34964,rupiah,2025,survey_estimate,per_capita,10.1,266,,Daging
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/telur_dan_susu,,28594,rupiah,2024,survey_estimate,per_capita,10.1,266,,Telur dan susu
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/telur_dan_susu,,29122,rupiah,2025,survey_estimate,per_capita,10.1,266,,Telur dan susu
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/sayur_sayuran,,45607,rupiah,2024,survey_estimate,per_capita,10.1,266,,Sayur-sayuran
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/sayur_sayuran,,45393,rupiah,2025,survey_estimate,per_capita,10.1,266,,Sayur-sayuran
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/kacang_kacangan,,14395,rupiah,2024,survey_estimate,per_capita,10.1,266,,Kacang-kacangan
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/kacang_kacangan,,12866,rupiah,2025,survey_estimate,per_capita,10.1,266,,Kacang-kacangan
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/buah_buahan,,41481,rupiah,2024,survey_estimate,per_capita,10.1,266,,Buah-buahan
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/buah_buahan,,40273,rupiah,2025,survey_estimate,per_capita,10.1,266,,Buah-buahan
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14455,rupiah,2024,survey_estimate,per_capita,10.1,266,,Minyak dan kelapa
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14915,rupiah,2025,survey_estimate,per_capita,10.1,266,,Minyak dan kelapa
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/bahan_minuman,,23197,rupiah,2024,survey_estimate,per_capita,10.1,266,,Bahan minuman
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/bahan_minuman,,26314,rupiah,2025,survey_estimate,per_capita,10.1,266,,Bahan minuman
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/bumbu_bumbuan,,13218,rupiah,2024,survey_estimate,per_capita,10.1,266,,Bumbu-bumbuan
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/bumbu_bumbuan,,13211,rupiah,2025,survey_estimate,per_capita,10.1,266,,Bumbu-bumbuan
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/konsumsi_lainnya,,15388,rupiah,2024,survey_estimate,per_capita,10.1,266,,Konsumsi lainnya
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/konsumsi_lainnya,,13696,rupiah,2025,survey_estimate,per_capita,10.1,266,,Konsumsi lainnya
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,198583,rupiah,2024,survey_estimate,per_capita,10.1,266,,Makanan dan minuman jadi
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,190025,rupiah,2025,survey_estimate,per_capita,10.1,266,,Makanan dan minuman jadi
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/rokok,,115558,rupiah,2024,survey_estimate,per_capita,10.1,266,,Rokok
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/rokok,,103263,rupiah,2025,survey_estimate,per_capita,10.1,266,,Rokok
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/jumlah_makanan,,701264,rupiah,2024,survey_estimate,per_capita,10.1,266,,Jumlah makanan
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/jumlah_makanan,,671713,rupiah,2025,survey_estimate,per_capita,10.1,266,,Jumlah makanan
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,264799,rupiah,2024,survey_estimate,per_capita,10.1,266,,Perumahan dan fasilitas rumah tangga
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,238337,rupiah,2025,survey_estimate,per_capita,10.1,266,,Perumahan dan fasilitas rumah tangga
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,110677,rupiah,2024,survey_estimate,per_capita,10.1,266,,Aneka barang dan jasa
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,117491,rupiah,2025,survey_estimate,per_capita,10.1,266,,Aneka barang dan jasa
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,36342,rupiah,2024,survey_estimate,per_capita,10.1,266,,"Pakaian, alas kaki, dan tutup kepala"
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,32655,rupiah,2025,survey_estimate,per_capita,10.1,266,,"Pakaian, alas kaki, dan tutup kepala"
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/barang_tahan_lama,,25801,rupiah,2024,survey_estimate,per_capita,10.1,266,,Barang tahan lama
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/barang_tahan_lama,,34628,rupiah,2025,survey_estimate,per_capita,10.1,266,,Barang tahan lama
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,34841,rupiah,2024,survey_estimate,per_capita,10.1,266,,"Pajak, pungutan, dan asuransi"
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,35598,rupiah,2025,survey_estimate,per_capita,10.1,266,,"Pajak, pungutan, dan asuransi"
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,14074,rupiah,2024,survey_estimate,per_capita,10.1,266,,Keperluan pesta dan upacara/kenduri
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,19240,rupiah,2025,survey_estimate,per_capita,10.1,266,,Keperluan pesta dan upacara/kenduri
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,486534,rupiah,2024,survey_estimate,per_capita,10.1,266,,Jumlah bukan makanan
+32.03,2,Kabupaten Cianjur,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,477949,rupiah,2025,survey_estimate,per_capita,10.1,266,,Jumlah bukan makanan
+32.03,2,Kabupaten Cianjur,expenditure,total,,1187797,rupiah,2024,survey_estimate,per_capita,10.1,266,,
+32.03,2,Kabupaten Cianjur,expenditure,total,,1149662,rupiah,2025,survey_estimate,per_capita,10.1,266,,

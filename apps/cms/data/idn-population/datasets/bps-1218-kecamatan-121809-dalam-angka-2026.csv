@@ -1,0 +1,127 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.18.09.2013,4,Pertambatan,sex,laki_laki,,1547,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.09.2013,4,Pertambatan,sex,perempuan,,1647,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.09.2013,4,Pertambatan,total,total,,3194,jiwa,2025,registration,total_population,3.1,27,,
+12.18.09.2027,4,Bah Kerapuh,sex,laki_laki,,89,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.09.2027,4,Bah Kerapuh,sex,perempuan,,99,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.09.2027,4,Bah Kerapuh,total,total,,188,jiwa,2025,registration,total_population,3.1,27,,
+12.18.09.2009,4,Dolok Sagala,sex,laki_laki,,2172,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.09.2009,4,Dolok Sagala,sex,perempuan,,2279,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.09.2009,4,Dolok Sagala,total,total,,4451,jiwa,2025,registration,total_population,3.1,27,,
+12.18.09.2017,4,Bukit Cermin Hilir,sex,laki_laki,,395,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.09.2017,4,Bukit Cermin Hilir,sex,perempuan,,414,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.09.2017,4,Bukit Cermin Hilir,total,total,,809,jiwa,2025,registration,total_population,3.1,27,,
+12.18.09.2026,4,Tanjung Maria,sex,laki_laki,,229,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.09.2026,4,Tanjung Maria,sex,perempuan,,213,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.09.2026,4,Tanjung Maria,total,total,,442,jiwa,2025,registration,total_population,3.1,27,,
+12.18.09.2028,4,Ujung Silau,sex,laki_laki,,189,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.09.2028,4,Ujung Silau,sex,perempuan,,180,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.09.2028,4,Ujung Silau,total,total,,369,jiwa,2025,registration,total_population,3.1,27,,
+12.18.09.2025,4,Kerapuh,sex,laki_laki,,1205,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.09.2025,4,Kerapuh,sex,perempuan,,1252,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.09.2025,4,Kerapuh,total,total,,2457,jiwa,2025,registration,total_population,3.1,27,,
+12.18.09.2021,4,Sarang Torop,sex,laki_laki,,265,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.09.2021,4,Sarang Torop,sex,perempuan,,250,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.09.2021,4,Sarang Torop,total,total,,515,jiwa,2025,registration,total_population,3.1,27,,
+12.18.09.2010,4,Dolok Manampang,sex,laki_laki,,2640,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.09.2010,4,Dolok Manampang,sex,perempuan,,2696,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.09.2010,4,Dolok Manampang,total,total,,5336,jiwa,2025,registration,total_population,3.1,27,,
+12.18.09.1029,4,Pekan Dolok Masihul,sex,laki_laki,,3075,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.09.1029,4,Pekan Dolok Masihul,sex,perempuan,,3106,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.09.1029,4,Pekan Dolok Masihul,total,total,,6181,jiwa,2025,registration,total_population,3.1,27,,
+12.18.09.2023,4,Aras Panjang,sex,laki_laki,,559,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.09.2023,4,Aras Panjang,sex,perempuan,,604,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.09.2023,4,Aras Panjang,total,total,,1163,jiwa,2025,registration,total_population,3.1,27,,
+12.18.09.2024,4,Martebing,sex,laki_laki,,1639,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.09.2024,4,Martebing,sex,perempuan,,1671,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.09.2024,4,Martebing,total,total,,3310,jiwa,2025,registration,total_population,3.1,27,,
+12.18.09.2016,4,Bantan,sex,laki_laki,,2693,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.09.2016,4,Bantan,sex,perempuan,,2692,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.09.2016,4,Bantan,total,total,,5385,jiwa,2025,registration,total_population,3.1,27,,
+12.18.09.2006,4,Batu 12,sex,laki_laki,,1357,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.09.2006,4,Batu 12,sex,perempuan,,1395,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.09.2006,4,Batu 12,total,total,,2752,jiwa,2025,registration,total_population,3.1,27,,
+12.18.09.2004,4,Silau Merawan,sex,laki_laki,,340,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+12.18.09.2004,4,Silau Merawan,sex,perempuan,,403,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+12.18.09.2004,4,Silau Merawan,total,total,,743,jiwa,2025,registration,total_population,3.1,27,,
+12.18.09.2007,4,Batu 13,sex,laki_laki,,341,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.09.2007,4,Batu 13,sex,perempuan,,350,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.09.2007,4,Batu 13,total,total,,691,jiwa,2025,registration,total_population,3.1,28,,
+12.18.09.2011,4,Pardomuan,sex,laki_laki,,276,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.09.2011,4,Pardomuan,sex,perempuan,,278,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.09.2011,4,Pardomuan,total,total,,554,jiwa,2025,registration,total_population,3.1,28,,
+12.18.09.2001,4,Dame,sex,laki_laki,,488,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.09.2001,4,Dame,sex,perempuan,,486,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.09.2001,4,Dame,total,total,,974,jiwa,2025,registration,total_population,3.1,28,,
+12.18.09.2012,4,Tegal Sari,sex,laki_laki,,905,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.09.2012,4,Tegal Sari,sex,perempuan,,885,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.09.2012,4,Tegal Sari,total,total,,1790,jiwa,2025,registration,total_population,3.1,28,,
+12.18.09.2008,4,Baja Ronggi,sex,laki_laki,,1721,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.09.2008,4,Baja Ronggi,sex,perempuan,,1677,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.09.2008,4,Baja Ronggi,total,total,,3398,jiwa,2025,registration,total_population,3.1,28,,
+12.18.09.2020,4,Durian Puloan,sex,laki_laki,,96,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.09.2020,4,Durian Puloan,sex,perempuan,,105,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.09.2020,4,Durian Puloan,total,total,,201,jiwa,2025,registration,total_population,3.1,28,,
+12.18.09.2003,4,Kota Tengah,sex,laki_laki,,2140,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.09.2003,4,Kota Tengah,sex,perempuan,,2165,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.09.2003,4,Kota Tengah,total,total,,4305,jiwa,2025,registration,total_population,3.1,28,,
+12.18.09.2015,4,Huta Nauli,sex,laki_laki,,621,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.09.2015,4,Huta Nauli,sex,perempuan,,715,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.09.2015,4,Huta Nauli,total,total,,1336,jiwa,2025,registration,total_population,3.1,28,,
+12.18.09.2018,4,Malasori,sex,laki_laki,,721,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.09.2018,4,Malasori,sex,perempuan,,708,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.09.2018,4,Malasori,total,total,,1429,jiwa,2025,registration,total_population,3.1,28,,
+12.18.09,3,Kecamatan Dolok Masihul,sex,laki_laki,,28471,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.09,3,Kecamatan Dolok Masihul,sex,perempuan,,29056,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.09,3,Kecamatan Dolok Masihul,total,total,,57527,jiwa,2025,registration,total_population,3.1,28,,
+12.18.09,3,Dolok Masihul,age_group,0-4,laki_laki,1675,jiwa,2025,registration,total_population,3.2,31,,0-4 tahun
+12.18.09,3,Dolok Masihul,age_group,0-4,perempuan,1558,jiwa,2025,registration,total_population,3.2,31,,0-4 tahun
+12.18.09,3,Dolok Masihul,age_group,0-4,,3233,jiwa,2025,registration,total_population,3.2,31,,0-4 tahun
+12.18.09,3,Dolok Masihul,age_group,5-9,laki_laki,2438,jiwa,2025,registration,total_population,3.2,31,,5-9 tahun
+12.18.09,3,Dolok Masihul,age_group,5-9,perempuan,2347,jiwa,2025,registration,total_population,3.2,31,,5-9 tahun
+12.18.09,3,Dolok Masihul,age_group,5-9,,4785,jiwa,2025,registration,total_population,3.2,31,,5-9 tahun
+12.18.09,3,Dolok Masihul,age_group,10-14,laki_laki,2813,jiwa,2025,registration,total_population,3.2,31,,10-14 tahun
+12.18.09,3,Dolok Masihul,age_group,10-14,perempuan,2703,jiwa,2025,registration,total_population,3.2,31,,10-14 tahun
+12.18.09,3,Dolok Masihul,age_group,10-14,,5516,jiwa,2025,registration,total_population,3.2,31,,10-14 tahun
+12.18.09,3,Dolok Masihul,age_group,15-19,laki_laki,2691,jiwa,2025,registration,total_population,3.2,31,,15-19 tahun
+12.18.09,3,Dolok Masihul,age_group,15-19,perempuan,2555,jiwa,2025,registration,total_population,3.2,31,,15-19 tahun
+12.18.09,3,Dolok Masihul,age_group,15-19,,5246,jiwa,2025,registration,total_population,3.2,31,,15-19 tahun
+12.18.09,3,Dolok Masihul,age_group,20-24,laki_laki,2532,jiwa,2025,registration,total_population,3.2,31,,20-24 tahun
+12.18.09,3,Dolok Masihul,age_group,20-24,perempuan,2535,jiwa,2025,registration,total_population,3.2,31,,20-24 tahun
+12.18.09,3,Dolok Masihul,age_group,20-24,,5067,jiwa,2025,registration,total_population,3.2,31,,20-24 tahun
+12.18.09,3,Dolok Masihul,age_group,25-29,laki_laki,2285,jiwa,2025,registration,total_population,3.2,31,,25-29 tahun
+12.18.09,3,Dolok Masihul,age_group,25-29,perempuan,2099,jiwa,2025,registration,total_population,3.2,31,,25-29 tahun
+12.18.09,3,Dolok Masihul,age_group,25-29,,4384,jiwa,2025,registration,total_population,3.2,31,,25-29 tahun
+12.18.09,3,Dolok Masihul,age_group,30-34,laki_laki,1978,jiwa,2025,registration,total_population,3.2,31,,30-34 tahun
+12.18.09,3,Dolok Masihul,age_group,30-34,perempuan,1818,jiwa,2025,registration,total_population,3.2,31,,30-34 tahun
+12.18.09,3,Dolok Masihul,age_group,30-34,,3796,jiwa,2025,registration,total_population,3.2,31,,30-34 tahun
+12.18.09,3,Dolok Masihul,age_group,35-39,laki_laki,1971,jiwa,2025,registration,total_population,3.2,31,,35-39 tahun
+12.18.09,3,Dolok Masihul,age_group,35-39,perempuan,1967,jiwa,2025,registration,total_population,3.2,31,,35-39 tahun
+12.18.09,3,Dolok Masihul,age_group,35-39,,3938,jiwa,2025,registration,total_population,3.2,31,,35-39 tahun
+12.18.09,3,Dolok Masihul,age_group,40-44,laki_laki,2084,jiwa,2025,registration,total_population,3.2,31,,40-44 tahun
+12.18.09,3,Dolok Masihul,age_group,40-44,perempuan,2115,jiwa,2025,registration,total_population,3.2,31,,40-44 tahun
+12.18.09,3,Dolok Masihul,age_group,40-44,,4199,jiwa,2025,registration,total_population,3.2,31,,40-44 tahun
+12.18.09,3,Dolok Masihul,age_group,45-49,laki_laki,1937,jiwa,2025,registration,total_population,3.2,31,,45-49 tahun
+12.18.09,3,Dolok Masihul,age_group,45-49,perempuan,1960,jiwa,2025,registration,total_population,3.2,31,,45-49 tahun
+12.18.09,3,Dolok Masihul,age_group,45-49,,3897,jiwa,2025,registration,total_population,3.2,31,,45-49 tahun
+12.18.09,3,Dolok Masihul,age_group,50-54,laki_laki,1584,jiwa,2025,registration,total_population,3.2,31,,50-54 tahun
+12.18.09,3,Dolok Masihul,age_group,50-54,perempuan,1689,jiwa,2025,registration,total_population,3.2,31,,50-54 tahun
+12.18.09,3,Dolok Masihul,age_group,50-54,,3273,jiwa,2025,registration,total_population,3.2,31,,50-54 tahun
+12.18.09,3,Dolok Masihul,age_group,55-59,laki_laki,1356,jiwa,2025,registration,total_population,3.2,31,,55-59 tahun
+12.18.09,3,Dolok Masihul,age_group,55-59,perempuan,1549,jiwa,2025,registration,total_population,3.2,31,,55-59 tahun
+12.18.09,3,Dolok Masihul,age_group,55-59,,2905,jiwa,2025,registration,total_population,3.2,31,,55-59 tahun
+12.18.09,3,Dolok Masihul,age_group,60-64,laki_laki,1121,jiwa,2025,registration,total_population,3.2,31,,60-64 tahun
+12.18.09,3,Dolok Masihul,age_group,60-64,perempuan,1477,jiwa,2025,registration,total_population,3.2,31,,60-64 tahun
+12.18.09,3,Dolok Masihul,age_group,60-64,,2598,jiwa,2025,registration,total_population,3.2,31,,60-64 tahun
+12.18.09,3,Dolok Masihul,age_group,65-69,laki_laki,971,jiwa,2025,registration,total_population,3.2,31,,65-69 tahun
+12.18.09,3,Dolok Masihul,age_group,65-69,perempuan,1125,jiwa,2025,registration,total_population,3.2,31,,65-69 tahun
+12.18.09,3,Dolok Masihul,age_group,65-69,,2096,jiwa,2025,registration,total_population,3.2,31,,65-69 tahun
+12.18.09,3,Dolok Masihul,age_group,70-74,laki_laki,550,jiwa,2025,registration,total_population,3.2,31,,70-74 tahun
+12.18.09,3,Dolok Masihul,age_group,70-74,perempuan,700,jiwa,2025,registration,total_population,3.2,31,,70-74 tahun
+12.18.09,3,Dolok Masihul,age_group,70-74,,1250,jiwa,2025,registration,total_population,3.2,31,,70-74 tahun
+12.18.09,3,Dolok Masihul,age_group,75+,laki_laki,485,jiwa,2025,registration,total_population,3.2,31,,75 tahun ke atas
+12.18.09,3,Dolok Masihul,age_group,75+,perempuan,859,jiwa,2025,registration,total_population,3.2,31,,75 tahun ke atas
+12.18.09,3,Dolok Masihul,age_group,75+,,1344,jiwa,2025,registration,total_population,3.2,31,,75 tahun ke atas
+12.18.09,3,Kecamatan Dolok Masihul,sex,laki_laki,,28471,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+12.18.09,3,Kecamatan Dolok Masihul,sex,perempuan,,29056,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+12.18.09,3,Kecamatan Dolok Masihul,total,total,,57527,jiwa,2025,registration,total_population,3.2,31,,

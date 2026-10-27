@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-2103-kecamatan-210310-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.03.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pulau Laut Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Natuna",
+  "publisherDomain": "2103",
+  "publisherWebsite": "https://natunakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Natuna (https://natunakab.bps.go.id), publikasi \"Kecamatan Pulau Laut Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2103042",
+  "publicationNumber": "2103.26012",
+  "issn": "2963-6973",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://natunakab.bps.go.id/id/publication/2026/09/28/7b6249f1187d3c51404ed574/kecamatan-pulau-laut-dalam-angka-2026.html",
+  "sourceFileSha256": "04db488360474cbc884e9fc395c56e35b7803c6e8947442f84234e1d2772f4a2",
+  "sourceFileBytes": 6021914,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Natuna.",
+  "csvPath": "datasets/bps-2103-kecamatan-210310-dalam-angka-2026.csv",
+  "csvSha256": "bc444f3da4251b7e709932aaabbd0b4e81d532abe4ce1bf1b9af9a00e29689f0",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pulau Laut, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan PULAU LAUT, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Pulau Laut Pulau Laut District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Pulau Laut Pulau Laut District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan YYYY Pulau Laut District\": unmatched "
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1904-kecamatan-190403-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "19.04.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sungai Selan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bangka Tengah",
+  "publisherDomain": "1904",
+  "publisherWebsite": "https://bangkatengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bangka Tengah (https://bangkatengahkab.bps.go.id), publikasi \"Kecamatan Sungai Selan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1904030",
+  "publicationNumber": "19040.26012",
+  "issn": "2654-3370",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bangkatengahkab.bps.go.id/id/publication/2026/09/28/9a6ca576d0f5e093fb42b75d/kecamatan-sungai-selan-dalam-angka-2026.html",
+  "sourceFileSha256": "8558309b02d48c1e06c783e09a96adf6e78af794878ea2b76a266602650815db",
+  "sourceFileBytes": 9547233,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bangka Tengah.",
+  "csvPath": "datasets/bps-1904-kecamatan-190403-dalam-angka-2026.csv",
+  "csvSha256": "27c845cf83e0817f1594135a9ea2068311d1fb437e504a1fb2318a3f68d8f364",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Koba, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sungai Selan, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.4 (religion-by-region) could not be read reliably and is not included (religion column 3 header \"Konghuchu\" not recognised)",
+    "table 3.1: row not stored: row \"Ramadhon\": unmatched ",
+    "table 3.1: row not stored: row \"Ramadhon\": unmatched "
+  ]
+}

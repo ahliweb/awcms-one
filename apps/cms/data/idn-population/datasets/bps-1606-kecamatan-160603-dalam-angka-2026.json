@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1606-kecamatan-160603-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.06.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sungai Keruh Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Musi Banyuasin",
+  "publisherDomain": "1606",
+  "publisherWebsite": "https://musibanyuasinkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Musi Banyuasin (https://musibanyuasinkab.bps.go.id), publikasi \"Kecamatan Sungai Keruh Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1606030",
+  "publicationNumber": "16060.26010",
+  "issn": "2745-3243",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://musibanyuasinkab.bps.go.id/id/publication/2026/09/28/ff1baa8532074ee152ee8810/kecamatan-sungai-keruh-dalam-angka-2026.html",
+  "sourceFileSha256": "61214533c59a6aa18d3492c6885e6851a6023733bceb497fcd9573caebd6a7e8",
+  "sourceFileBytes": 9515563,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Musi Banyuasin.",
+  "csvPath": "datasets/bps-1606-kecamatan-160603-dalam-angka-2026.csv",
+  "csvSha256": "4f7cbb47ac5fc04d5eca209c979ea9de16624a954bb6dbca99d86171141bb187",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sungai Keruh, 2026",
+      "printedPages": [34, 35],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sungai Keruh, 2026",
+      "printedPages": [36],
+      "referenceYears": [2026],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kertayu\": unmatched ",
+    "table 3.1: row not stored: row \"Kertayu\": unmatched "
+  ]
+}

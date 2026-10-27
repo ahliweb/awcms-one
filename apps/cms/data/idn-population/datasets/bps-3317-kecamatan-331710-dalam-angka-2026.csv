@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.17.10,3,Rembang,age_group,0-14,laki_laki,10757,jiwa,2025,registration,total_population,3.2,36,,00 -14
+33.17.10,3,Rembang,age_group,0-14,perempuan,10122,jiwa,2025,registration,total_population,3.2,36,,00 -14
+33.17.10,3,Rembang,age_group,0-14,,20879,jiwa,2025,registration,total_population,3.2,36,,00 -14
+33.17.10,3,Rembang,age_group,15-64,laki_laki,32901,jiwa,2025,registration,total_population,3.2,36,,15 - 64
+33.17.10,3,Rembang,age_group,15-64,perempuan,33074,jiwa,2025,registration,total_population,3.2,36,,15 - 64
+33.17.10,3,Rembang,age_group,15-64,,65975,jiwa,2025,registration,total_population,3.2,36,,15 - 64
+33.17.10,3,Rembang,age_group,65+,laki_laki,3887,jiwa,2025,registration,total_population,3.2,36,,65 +
+33.17.10,3,Rembang,age_group,65+,perempuan,4824,jiwa,2025,registration,total_population,3.2,36,,65 +
+33.17.10,3,Rembang,age_group,65+,,8711,jiwa,2025,registration,total_population,3.2,36,,65 +
+33.17.10,3,Rembang,age_group,60+,laki_laki,6356,jiwa,2025,registration,total_population,3.2,36,,60 +
+33.17.10,3,Rembang,age_group,60+,perempuan,7544,jiwa,2025,registration,total_population,3.2,36,,60 +
+33.17.10,3,Rembang,age_group,60+,,13900,jiwa,2025,registration,total_population,3.2,36,,60 +

@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.10.04.2003,4,Pulo Sarok,sex,laki_laki,,2742,jiwa,2025,registration,total_population,2.1,35,,Laki-Laki/Male
+11.10.04.2003,4,Pulo Sarok,sex,perempuan,,2738,jiwa,2025,registration,total_population,2.1,35,,Perempuan/Female
+11.10.04.2003,4,Pulo Sarok,total,total,,5480,jiwa,2025,registration,total_population,2.1,35,,
+11.10.04.2002,4,Ujung,sex,laki_laki,,1005,jiwa,2025,registration,total_population,2.1,35,,Laki-Laki/Male
+11.10.04.2002,4,Ujung,sex,perempuan,,1039,jiwa,2025,registration,total_population,2.1,35,,Perempuan/Female
+11.10.04.2002,4,Ujung,total,total,,2044,jiwa,2025,registration,total_population,2.1,35,,
+11.10.04.2004,4,Kilangan,sex,laki_laki,,808,jiwa,2025,registration,total_population,2.1,35,,Laki-Laki/Male
+11.10.04.2004,4,Kilangan,sex,perempuan,,836,jiwa,2025,registration,total_population,2.1,35,,Perempuan/Female
+11.10.04.2004,4,Kilangan,total,total,,1644,jiwa,2025,registration,total_population,2.1,35,,
+11.10.04.2007,4,Teluk Ambun,sex,laki_laki,,484,jiwa,2025,registration,total_population,2.1,35,,Laki-Laki/Male
+11.10.04.2007,4,Teluk Ambun,sex,perempuan,,505,jiwa,2025,registration,total_population,2.1,35,,Perempuan/Female
+11.10.04.2007,4,Teluk Ambun,total,total,,989,jiwa,2025,registration,total_population,2.1,35,,
+11.10.04.2008,4,Rantau Gedang,sex,laki_laki,,321,jiwa,2025,registration,total_population,2.1,35,,Laki-Laki/Male
+11.10.04.2008,4,Rantau Gedang,sex,perempuan,,356,jiwa,2025,registration,total_population,2.1,35,,Perempuan/Female
+11.10.04.2008,4,Rantau Gedang,total,total,,677,jiwa,2025,registration,total_population,2.1,35,,
+11.10.04.2009,4,Teluk Rumbia,sex,laki_laki,,554,jiwa,2025,registration,total_population,2.1,35,,Laki-Laki/Male
+11.10.04.2009,4,Teluk Rumbia,sex,perempuan,,522,jiwa,2025,registration,total_population,2.1,35,,Perempuan/Female
+11.10.04.2009,4,Teluk Rumbia,total,total,,1076,jiwa,2025,registration,total_population,2.1,35,,
+11.10.04.2012,4,Takal Pasir,sex,laki_laki,,394,jiwa,2025,registration,total_population,2.1,35,,Laki-Laki/Male
+11.10.04.2012,4,Takal Pasir,sex,perempuan,,404,jiwa,2025,registration,total_population,2.1,35,,Perempuan/Female
+11.10.04.2012,4,Takal Pasir,total,total,,798,jiwa,2025,registration,total_population,2.1,35,,
+11.10.04.2014,4,Selok Aceh,sex,laki_laki,,365,jiwa,2025,registration,total_population,2.1,35,,Laki-Laki/Male
+11.10.04.2014,4,Selok Aceh,sex,perempuan,,367,jiwa,2025,registration,total_population,2.1,35,,Perempuan/Female
+11.10.04.2014,4,Selok Aceh,total,total,,732,jiwa,2025,registration,total_population,2.1,35,,
+11.10.04.2010,4,Pea Bumbung,sex,laki_laki,,364,jiwa,2025,registration,total_population,2.1,35,,Laki-Laki/Male
+11.10.04.2010,4,Pea Bumbung,sex,perempuan,,362,jiwa,2025,registration,total_population,2.1,35,,Perempuan/Female
+11.10.04.2010,4,Pea Bumbung,total,total,,726,jiwa,2025,registration,total_population,2.1,35,,
+11.10.04.2011,4,Pemuka,sex,laki_laki,,263,jiwa,2025,registration,total_population,2.1,35,,Laki-Laki/Male
+11.10.04.2011,4,Pemuka,sex,perempuan,,227,jiwa,2025,registration,total_population,2.1,35,,Perempuan/Female
+11.10.04.2011,4,Pemuka,total,total,,490,jiwa,2025,registration,total_population,2.1,35,,
+11.10.04.2020,4,Suka Damai,sex,laki_laki,,910,jiwa,2025,registration,total_population,2.1,35,,Laki-Laki/Male
+11.10.04.2020,4,Suka Damai,sex,perempuan,,906,jiwa,2025,registration,total_population,2.1,35,,Perempuan/Female
+11.10.04.2020,4,Suka Damai,total,total,,1816,jiwa,2025,registration,total_population,2.1,35,,
+11.10.04.2017,4,Ujung Bawang,sex,laki_laki,,554,jiwa,2025,registration,total_population,2.1,35,,Laki-Laki/Male
+11.10.04.2017,4,Ujung Bawang,sex,perempuan,,560,jiwa,2025,registration,total_population,2.1,35,,Perempuan/Female
+11.10.04.2017,4,Ujung Bawang,total,total,,1114,jiwa,2025,registration,total_population,2.1,35,,
+11.10.04.2019,4,Siti Ambia,sex,laki_laki,,433,jiwa,2025,registration,total_population,2.1,35,,Laki-Laki/Male
+11.10.04.2019,4,Siti Ambia,sex,perempuan,,403,jiwa,2025,registration,total_population,2.1,35,,Perempuan/Female
+11.10.04.2019,4,Siti Ambia,total,total,,836,jiwa,2025,registration,total_population,2.1,35,,
+11.10.04.2016,4,Suka Makmur,sex,laki_laki,,448,jiwa,2025,registration,total_population,2.1,35,,Laki-Laki/Male
+11.10.04.2016,4,Suka Makmur,sex,perempuan,,409,jiwa,2025,registration,total_population,2.1,35,,Perempuan/Female
+11.10.04.2016,4,Suka Makmur,total,total,,857,jiwa,2025,registration,total_population,2.1,35,,
+11.10.04,3,Kecamatan Singkil,sex,laki_laki,,10551,jiwa,2025,registration,total_population,2.1,35,,Laki-Laki/Male
+11.10.04,3,Kecamatan Singkil,sex,perempuan,,10574,jiwa,2025,registration,total_population,2.1,35,,Perempuan/Female
+11.10.04,3,Kecamatan Singkil,total,total,,21125,jiwa,2025,registration,total_population,2.1,35,,

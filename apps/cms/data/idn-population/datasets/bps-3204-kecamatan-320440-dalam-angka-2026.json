@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3204-kecamatan-320440-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.04.40",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Rancabali Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bandung",
+  "publisherDomain": "3204",
+  "publisherWebsite": "https://bandungkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bandung (https://bandungkab.bps.go.id), publikasi \"Kecamatan Rancabali Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3204011",
+  "publicationNumber": "32040.26010",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandungkab.bps.go.id/id/publication/2026/09/28/3a0fffd258a79db63b2c8128/kecamatan-rancabali-dalam-angka-2026.html",
+  "sourceFileSha256": "b69649b668beef2b175bbc0939f7cc221d134271e67c9b6c497c71d4121c9172",
+  "sourceFileBytes": 9286875,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bandung.",
+  "csvPath": "datasets/bps-3204-kecamatan-320440-dalam-angka-2026.csv",
+  "csvSha256": "59e8c7ca756f60486ad6d4785bd3bf648ac8cdd02fff6a5ec1ed92399f45515a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Rancabali, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Rancabali, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

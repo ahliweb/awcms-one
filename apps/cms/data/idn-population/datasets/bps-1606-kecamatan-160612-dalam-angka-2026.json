@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1606-kecamatan-160612-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.06.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tungkal Jaya Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Musi Banyuasin",
+  "publisherDomain": "1606",
+  "publisherWebsite": "https://musibanyuasinkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Musi Banyuasin (https://musibanyuasinkab.bps.go.id), publikasi \"Kecamatan Tungkal Jaya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1606102",
+  "publicationNumber": "16060.26019",
+  "issn": "2745-3235",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://musibanyuasinkab.bps.go.id/id/publication/2026/09/28/24a338fddf6f65c623406ef6/kecamatan-tungkal-jaya-dalam-angka-2026.html",
+  "sourceFileSha256": "4aff375672147230293242b928813079f0143dcecb16e36506f56302234654d1",
+  "sourceFileBytes": 10229825,
+  "sourcePages": [34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Musi Banyuasin.",
+  "csvPath": "datasets/bps-1606-kecamatan-160612-dalam-angka-2026.csv",
+  "csvSha256": "e15938cf61ba8942bd7331d061ad8798de20706c6eee61771e93ff61c52c2371",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Tungkal Jaya, 2026",
+      "printedPages": [34, 35],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

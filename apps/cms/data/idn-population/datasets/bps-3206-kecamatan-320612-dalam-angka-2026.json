@@ -1,0 +1,59 @@
+{
+  "datasetCode": "bps-3206-kecamatan-320612-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.06.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sodonghilir Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tasikmalaya",
+  "publisherDomain": "3206",
+  "publisherWebsite": "https://tasikmalayakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tasikmalaya (https://tasikmalayakab.bps.go.id), publikasi \"Kecamatan Sodonghilir Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3206090",
+  "publicationNumber": "32060.26011",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tasikmalayakab.bps.go.id/id/publication/2026/09/28/5b7241309946fb8e2082af89/kecamatan-sodonghilir-dalam-angka-2026.html",
+  "sourceFileSha256": "5f974363aa96733f635ca4b45ec11dec47dd7ebdce0ca5234d2d0367e1420422",
+  "sourceFileBytes": 11369533,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tasikmalaya.",
+  "csvPath": "datasets/bps-3206-kecamatan-320612-dalam-angka-2026.csv",
+  "csvSha256": "fb1ad977f28a91a0532ff8a2d053746c55e40ce6eeb4b51bef017242d80b9292",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Sodonghilir, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sodonghilir, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Sodonghilir Sodonghilir District\": unmatched ",
+    "table 3.1: row not stored: row \"Cukangjayaguna 6,82%\": unmatched ",
+    "table 3.1: row not stored: row \"Sukabakti 5,79%\": unmatched ",
+    "table 3.1: row not stored: row \"Parumasan 7,24%\": unmatched ",
+    "table 3.1: row not stored: row \"Sepatnunggal 6,29%\": unmatched ",
+    "table 3.1: row not stored: row \"Raksajaya 7,03%\": unmatched ",
+    "table 3.1: row not stored: row \"Sodonghilir 10,73%\": unmatched ",
+    "table 3.1: row not stored: row \"Cukangkawung 15,77%\": unmatched ",
+    "table 3.1: row not stored: row \"Cikalong 11,46%\": unmatched ",
+    "table 3.1: row not stored: row \"Cipaingeun 6,99%\": unmatched ",
+    "table 3.1: row not stored: row \"Pakalongan 6,44%\": unmatched ",
+    "table 3.1: row not stored: row \"Leuwidulang 6,99%\": unmatched ",
+    "table 3.1: row not stored: row \"Muncang 8,44%\": unmatched ",
+    "table 3.1: row not stored: row \"100,00% Sodonghilir District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Sodonghilir Sodonghilir District\": unmatched "
+  ]
+}

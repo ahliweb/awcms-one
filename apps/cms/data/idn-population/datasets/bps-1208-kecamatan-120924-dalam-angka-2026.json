@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1208-kecamatan-120924-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.09.24",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sei Kepayang Barat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Asahan",
+  "publisherDomain": "1208",
+  "publisherWebsite": "https://asahankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Asahan (https://asahankab.bps.go.id), publikasi \"Kecamatan Sei Kepayang Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1208041",
+  "publicationNumber": "12080.26029",
+  "issn": "3110-2700",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://asahankab.bps.go.id/id/publication/2026/09/28/1488a3906efc163802f3bd48/kecamatan-sei-kepayang-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "9116c3391af6573d20a59bff156e89097b7094e173effb31d0e8696ec355c26e",
+  "sourceFileBytes": 8600954,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Asahan.",
+  "csvPath": "datasets/bps-1208-kecamatan-120924-dalam-angka-2026.csv",
+  "csvSha256": "eb06b85399e9fec30ed1c21f8f29fa4f3c7421feccc4e84727d7d2b68a839dea",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa Di Kecamatan Sei Kepayang Barat, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sei Kepayang Barat, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

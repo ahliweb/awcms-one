@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.71.03.1004,4,Pasir Garam,sex,laki_laki,,1413,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+19.71.03.1004,4,Pasir Garam,sex,perempuan,,1370,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+19.71.03.1004,4,Pasir Garam,total,total,,2783,jiwa,2025,registration,total_population,3.1,,,
+19.71.03.1005,4,Lontong Pancur,sex,laki_laki,,3521,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+19.71.03.1005,4,Lontong Pancur,sex,perempuan,,3310,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+19.71.03.1005,4,Lontong Pancur,total,total,,6831,jiwa,2025,registration,total_population,3.1,,,
+19.71.03.1006,4,Ketapang,sex,laki_laki,,2666,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+19.71.03.1006,4,Ketapang,sex,perempuan,,2495,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+19.71.03.1006,4,Ketapang,total,total,,5161,jiwa,2025,registration,total_population,3.1,,,
+19.71.03.1007,4,Ampui,sex,laki_laki,,1793,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+19.71.03.1007,4,Ampui,sex,perempuan,,1760,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+19.71.03.1007,4,Ampui,total,total,,3553,jiwa,2025,registration,total_population,3.1,,,
+19.71.03.1008,4,Rejosari,sex,laki_laki,,2509,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+19.71.03.1008,4,Rejosari,sex,perempuan,,2394,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+19.71.03.1008,4,Rejosari,total,total,,4903,jiwa,2025,registration,total_population,3.1,,,
+19.71.03,3,Pangkal Balam,sex,laki_laki,,11902,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+19.71.03,3,Pangkal Balam,sex,perempuan,,11329,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+19.71.03,3,Pangkal Balam,total,total,,23231,jiwa,2025,registration,total_population,3.1,,,

@@ -1,0 +1,244 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.04.09,3,Keritang,total,total,,71026,jiwa,2025,registration,total_population,3.1.1,90,,
+14.04.14,3,Kemuning,total,total,,46771,jiwa,2025,registration,total_population,3.1.1,90,,
+14.04.01,3,Reteh,total,total,,37448,jiwa,2025,registration,total_population,3.1.1,90,,
+14.04.20,3,Sungai Batang,total,total,,10662,jiwa,2025,registration,total_population,3.1.1,90,,
+14.04.02,3,Enok,total,total,,37213,jiwa,2025,registration,total_population,3.1.1,90,,
+14.04.10,3,Tanah Merah,total,total,,26920,jiwa,2025,registration,total_population,3.1.1,90,,
+14.04.03,3,Kuala Indragiri,total,total,,16845,jiwa,2025,registration,total_population,3.1.1,90,,
+14.04.18,3,Concong,total,total,,12254,jiwa,2025,registration,total_population,3.1.1,90,,
+14.04.04,3,Tembilahan,total,total,,86705,jiwa,2025,registration,total_population,3.1.1,90,,
+14.04.13,3,Tembilahan Hulu,total,total,,52886,jiwa,2025,registration,total_population,3.1.1,90,,
+14.04.05,3,Tempuling,total,total,,36780,jiwa,2025,registration,total_population,3.1.1,90,,
+14.04.19,3,Kempas,total,total,,42888,jiwa,2025,registration,total_population,3.1.1,90,,
+14.04.11,3,Batang Tuaka,total,total,,31325,jiwa,2025,registration,total_population,3.1.1,90,,
+14.04.06,3,Gaung Anak Serka,total,total,,25195,jiwa,2025,registration,total_population,3.1.1,90,,
+14.04.12,3,Gaung,total,total,,45377,jiwa,2025,registration,total_population,3.1.1,90,,
+14.04.07,3,Mandah,total,total,,40466,jiwa,2025,registration,total_population,3.1.1,90,,
+14.04.08,3,Kateman,total,total,,46116,jiwa,2025,registration,total_population,3.1.1,90,,
+14.04.15,3,Pelangiran,total,total,,34004,jiwa,2025,registration,total_population,3.1.1,90,,
+14.04.16,3,Teluk Belengkong,total,total,,9326,jiwa,2025,registration,total_population,3.1.1,90,,
+14.04.17,3,Pulau Burung,total,total,,21167,jiwa,2025,registration,total_population,3.1.1,90,,
+14.04,2,Kabupaten Indragiri Hilir,age_group,0-4,laki_laki,21330,ribu_jiwa,2025,registration,total_population,3.1.2,93,,0–4
+14.04,2,Kabupaten Indragiri Hilir,age_group,0-4,perempuan,19766,ribu_jiwa,2025,registration,total_population,3.1.2,93,,0–4
+14.04,2,Kabupaten Indragiri Hilir,age_group,0-4,,41096,ribu_jiwa,2025,registration,total_population,3.1.2,93,,0–4
+14.04,2,Kabupaten Indragiri Hilir,age_group,5-9,laki_laki,32818,ribu_jiwa,2025,registration,total_population,3.1.2,93,,5–9
+14.04,2,Kabupaten Indragiri Hilir,age_group,5-9,perempuan,30578,ribu_jiwa,2025,registration,total_population,3.1.2,93,,5–9
+14.04,2,Kabupaten Indragiri Hilir,age_group,5-9,,63396,ribu_jiwa,2025,registration,total_population,3.1.2,93,,5–9
+14.04,2,Kabupaten Indragiri Hilir,age_group,10-14,laki_laki,35018,ribu_jiwa,2025,registration,total_population,3.1.2,93,,10–14
+14.04,2,Kabupaten Indragiri Hilir,age_group,10-14,perempuan,32819,ribu_jiwa,2025,registration,total_population,3.1.2,93,,10–14
+14.04,2,Kabupaten Indragiri Hilir,age_group,10-14,,67837,ribu_jiwa,2025,registration,total_population,3.1.2,93,,10–14
+14.04,2,Kabupaten Indragiri Hilir,age_group,15-19,laki_laki,31038,ribu_jiwa,2025,registration,total_population,3.1.2,93,,15–19
+14.04,2,Kabupaten Indragiri Hilir,age_group,15-19,perempuan,29204,ribu_jiwa,2025,registration,total_population,3.1.2,93,,15–19
+14.04,2,Kabupaten Indragiri Hilir,age_group,15-19,,60242,ribu_jiwa,2025,registration,total_population,3.1.2,93,,15–19
+14.04,2,Kabupaten Indragiri Hilir,age_group,20-24,laki_laki,32256,ribu_jiwa,2025,registration,total_population,3.1.2,93,,20–24
+14.04,2,Kabupaten Indragiri Hilir,age_group,20-24,perempuan,30857,ribu_jiwa,2025,registration,total_population,3.1.2,93,,20–24
+14.04,2,Kabupaten Indragiri Hilir,age_group,20-24,,63113,ribu_jiwa,2025,registration,total_population,3.1.2,93,,20–24
+14.04,2,Kabupaten Indragiri Hilir,age_group,25-29,laki_laki,30623,ribu_jiwa,2025,registration,total_population,3.1.2,93,,25–29
+14.04,2,Kabupaten Indragiri Hilir,age_group,25-29,perempuan,28611,ribu_jiwa,2025,registration,total_population,3.1.2,93,,25–29
+14.04,2,Kabupaten Indragiri Hilir,age_group,25-29,,59234,ribu_jiwa,2025,registration,total_population,3.1.2,93,,25–29
+14.04,2,Kabupaten Indragiri Hilir,age_group,30-34,laki_laki,27874,ribu_jiwa,2025,registration,total_population,3.1.2,93,,30–34
+14.04,2,Kabupaten Indragiri Hilir,age_group,30-34,perempuan,26442,ribu_jiwa,2025,registration,total_population,3.1.2,93,,30–34
+14.04,2,Kabupaten Indragiri Hilir,age_group,30-34,,54316,ribu_jiwa,2025,registration,total_population,3.1.2,93,,30–34
+14.04,2,Kabupaten Indragiri Hilir,age_group,35-39,laki_laki,29057,ribu_jiwa,2025,registration,total_population,3.1.2,93,,35–39
+14.04,2,Kabupaten Indragiri Hilir,age_group,35-39,perempuan,27775,ribu_jiwa,2025,registration,total_population,3.1.2,93,,35–39
+14.04,2,Kabupaten Indragiri Hilir,age_group,35-39,,56832,ribu_jiwa,2025,registration,total_population,3.1.2,93,,35–39
+14.04,2,Kabupaten Indragiri Hilir,age_group,40-44,laki_laki,29196,ribu_jiwa,2025,registration,total_population,3.1.2,93,,40–44
+14.04,2,Kabupaten Indragiri Hilir,age_group,40-44,perempuan,27903,ribu_jiwa,2025,registration,total_population,3.1.2,93,,40–44
+14.04,2,Kabupaten Indragiri Hilir,age_group,40-44,,57099,ribu_jiwa,2025,registration,total_population,3.1.2,93,,40–44
+14.04,2,Kabupaten Indragiri Hilir,age_group,45-49,laki_laki,27737,ribu_jiwa,2025,registration,total_population,3.1.2,93,,45–49
+14.04,2,Kabupaten Indragiri Hilir,age_group,45-49,perempuan,26533,ribu_jiwa,2025,registration,total_population,3.1.2,93,,45–49
+14.04,2,Kabupaten Indragiri Hilir,age_group,45-49,,54270,ribu_jiwa,2025,registration,total_population,3.1.2,93,,45–49
+14.04,2,Kabupaten Indragiri Hilir,age_group,50-54,laki_laki,23440,ribu_jiwa,2025,registration,total_population,3.1.2,93,,50–54
+14.04,2,Kabupaten Indragiri Hilir,age_group,50-54,perempuan,21802,ribu_jiwa,2025,registration,total_population,3.1.2,93,,50–54
+14.04,2,Kabupaten Indragiri Hilir,age_group,50-54,,45242,ribu_jiwa,2025,registration,total_population,3.1.2,93,,50–54
+14.04,2,Kabupaten Indragiri Hilir,age_group,55-59,laki_laki,18435,ribu_jiwa,2025,registration,total_population,3.1.2,93,,55–59
+14.04,2,Kabupaten Indragiri Hilir,age_group,55-59,perempuan,17169,ribu_jiwa,2025,registration,total_population,3.1.2,93,,55–59
+14.04,2,Kabupaten Indragiri Hilir,age_group,55-59,,35604,ribu_jiwa,2025,registration,total_population,3.1.2,93,,55–59
+14.04,2,Kabupaten Indragiri Hilir,age_group,60-64,laki_laki,13266,ribu_jiwa,2025,registration,total_population,3.1.2,93,,60–64
+14.04,2,Kabupaten Indragiri Hilir,age_group,60-64,perempuan,12636,ribu_jiwa,2025,registration,total_population,3.1.2,93,,60–64
+14.04,2,Kabupaten Indragiri Hilir,age_group,60-64,,25902,ribu_jiwa,2025,registration,total_population,3.1.2,93,,60–64
+14.04,2,Kabupaten Indragiri Hilir,age_group,65-69,laki_laki,10365,ribu_jiwa,2025,registration,total_population,3.1.2,93,,65–69
+14.04,2,Kabupaten Indragiri Hilir,age_group,65-69,perempuan,10034,ribu_jiwa,2025,registration,total_population,3.1.2,93,,65–69
+14.04,2,Kabupaten Indragiri Hilir,age_group,65-69,,20399,ribu_jiwa,2025,registration,total_population,3.1.2,93,,65–69
+14.04,2,Kabupaten Indragiri Hilir,age_group,70-74,laki_laki,6796,ribu_jiwa,2025,registration,total_population,3.1.2,93,,70–74
+14.04,2,Kabupaten Indragiri Hilir,age_group,70-74,perempuan,5749,ribu_jiwa,2025,registration,total_population,3.1.2,93,,70–74
+14.04,2,Kabupaten Indragiri Hilir,age_group,70-74,,12545,ribu_jiwa,2025,registration,total_population,3.1.2,93,,70–74
+14.04,2,Kabupaten Indragiri Hilir,age_group,75+,laki_laki,7500,ribu_jiwa,2025,registration,total_population,3.1.2,93,,75+
+14.04,2,Kabupaten Indragiri Hilir,age_group,75+,perempuan,6747,ribu_jiwa,2025,registration,total_population,3.1.2,93,,75+
+14.04,2,Kabupaten Indragiri Hilir,age_group,75+,,14247,ribu_jiwa,2025,registration,total_population,3.1.2,93,,75+
+14.04,2,Indragiri Hilir,sex,laki_laki,,376749,ribu_jiwa,2025,registration,total_population,3.1.2,93,,Laki-Laki
+14.04,2,Indragiri Hilir,sex,perempuan,,354625,ribu_jiwa,2025,registration,total_population,3.1.2,93,,Perempuan
+14.04,2,Indragiri Hilir,total,total,,731374,ribu_jiwa,2025,registration,total_population,3.1.2,93,,
+14.04.09,3,Keritang,religion,islam,,86919,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04.09,3,Keritang,religion,kristen,,95,jiwa,2025,registration,total_population,4.3.1,195,,Protestan
+14.04.09,3,Keritang,religion,katolik,,847,jiwa,2025,registration,total_population,4.3.1,195,,Katolik
+14.04.09,3,Keritang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04.09,3,Keritang,religion,buddha,,1442,jiwa,2025,registration,total_population,4.3.1,195,,Budha
+14.04.09,3,Keritang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04.14,3,Kemuning,religion,islam,,28311,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04.14,3,Kemuning,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Protestan
+14.04.14,3,Kemuning,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Katolik
+14.04.14,3,Kemuning,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04.14,3,Kemuning,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Budha
+14.04.14,3,Kemuning,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04.01,3,Reteh,religion,islam,,14689,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04.01,3,Reteh,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Protestan
+14.04.01,3,Reteh,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Katolik
+14.04.01,3,Reteh,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04.01,3,Reteh,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Budha
+14.04.01,3,Reteh,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04.20,3,Sungai Batang,religion,islam,,33880,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04.20,3,Sungai Batang,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Protestan
+14.04.20,3,Sungai Batang,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Katolik
+14.04.20,3,Sungai Batang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04.20,3,Sungai Batang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Budha
+14.04.20,3,Sungai Batang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04.02,3,Enok,religion,islam,,27398,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04.02,3,Enok,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Protestan
+14.04.02,3,Enok,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Katolik
+14.04.02,3,Enok,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04.02,3,Enok,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Budha
+14.04.02,3,Enok,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04.10,3,Tanah Merah,religion,islam,,42351,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04.10,3,Tanah Merah,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,195,,Protestan
+14.04.10,3,Tanah Merah,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Katolik
+14.04.10,3,Tanah Merah,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04.10,3,Tanah Merah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Budha
+14.04.10,3,Tanah Merah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04.03,3,Kuala Indragiri,religion,islam,,59141,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04.03,3,Kuala Indragiri,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Protestan
+14.04.03,3,Kuala Indragiri,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Katolik
+14.04.03,3,Kuala Indragiri,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04.03,3,Kuala Indragiri,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Budha
+14.04.03,3,Kuala Indragiri,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04.18,3,Concong,religion,islam,,30611,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04.18,3,Concong,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Protestan
+14.04.18,3,Concong,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Katolik
+14.04.18,3,Concong,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04.18,3,Concong,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Budha
+14.04.18,3,Concong,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04.04,3,Tembilahan,religion,islam,,22918,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04.04,3,Tembilahan,religion,kristen,,21,jiwa,2025,registration,total_population,4.3.1,195,,Protestan
+14.04.04,3,Tembilahan,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Katolik
+14.04.04,3,Tembilahan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04.04,3,Tembilahan,religion,buddha,,234,jiwa,2025,registration,total_population,4.3.1,195,,Budha
+14.04.04,3,Tembilahan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04.13,3,Tembilahan Hulu,religion,islam,,35339,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04.13,3,Tembilahan Hulu,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Protestan
+14.04.13,3,Tembilahan Hulu,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Katolik
+14.04.13,3,Tembilahan Hulu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04.13,3,Tembilahan Hulu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Budha
+14.04.13,3,Tembilahan Hulu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04.05,3,Tempuling,religion,islam,,24364,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04.05,3,Tempuling,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Protestan
+14.04.05,3,Tempuling,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Katolik
+14.04.05,3,Tempuling,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04.05,3,Tempuling,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Budha
+14.04.05,3,Tempuling,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04.19,3,Kempas,religion,islam,,28568,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04.19,3,Kempas,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Protestan
+14.04.19,3,Kempas,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Katolik
+14.04.19,3,Kempas,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04.19,3,Kempas,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Budha
+14.04.19,3,Kempas,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04.11,3,Batang Tuaka,religion,islam,,40574,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04.11,3,Batang Tuaka,religion,kristen,,692,jiwa,2025,registration,total_population,4.3.1,195,,Protestan
+14.04.11,3,Batang Tuaka,religion,katolik,,1268,jiwa,2025,registration,total_population,4.3.1,195,,Katolik
+14.04.11,3,Batang Tuaka,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04.11,3,Batang Tuaka,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Budha
+14.04.11,3,Batang Tuaka,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04.06,3,Gaung Anak Serka,religion,islam,,41431,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04.06,3,Gaung Anak Serka,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Protestan
+14.04.06,3,Gaung Anak Serka,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Katolik
+14.04.06,3,Gaung Anak Serka,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04.06,3,Gaung Anak Serka,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Budha
+14.04.06,3,Gaung Anak Serka,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04.12,3,Gaung,religion,islam,,17438,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04.12,3,Gaung,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Protestan
+14.04.12,3,Gaung,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Katolik
+14.04.12,3,Gaung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04.12,3,Gaung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Budha
+14.04.12,3,Gaung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04.07,3,Mandah,religion,islam,,31921,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04.07,3,Mandah,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Protestan
+14.04.07,3,Mandah,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Katolik
+14.04.07,3,Mandah,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04.07,3,Mandah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Budha
+14.04.07,3,Mandah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04.08,3,Kateman,religion,islam,,9737,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04.08,3,Kateman,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Protestan
+14.04.08,3,Kateman,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Katolik
+14.04.08,3,Kateman,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04.08,3,Kateman,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Budha
+14.04.08,3,Kateman,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04.15,3,Pelangiran,religion,islam,,34912,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04.15,3,Pelangiran,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Protestan
+14.04.15,3,Pelangiran,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Katolik
+14.04.15,3,Pelangiran,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04.15,3,Pelangiran,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Budha
+14.04.15,3,Pelangiran,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04.16,3,Teluk Belengkong,religion,islam,,11021,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04.16,3,Teluk Belengkong,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Protestan
+14.04.16,3,Teluk Belengkong,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Katolik
+14.04.16,3,Teluk Belengkong,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04.16,3,Teluk Belengkong,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Budha
+14.04.16,3,Teluk Belengkong,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04.17,3,Pulau Burung,religion,islam,,11246,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04.17,3,Pulau Burung,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Protestan
+14.04.17,3,Pulau Burung,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Katolik
+14.04.17,3,Pulau Burung,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04.17,3,Pulau Burung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Budha
+14.04.17,3,Pulau Burung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04,2,Indragiri Hilir,religion,islam,,632769,jiwa,2025,registration,total_population,4.3.1,195,,Islam
+14.04,2,Indragiri Hilir,religion,kristen,,808,jiwa,2025,registration,total_population,4.3.1,195,,Protestan
+14.04,2,Indragiri Hilir,religion,katolik,,2115,jiwa,2025,registration,total_population,4.3.1,195,,Katolik
+14.04,2,Indragiri Hilir,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Hindu
+14.04,2,Indragiri Hilir,religion,buddha,,1676,jiwa,2025,registration,total_population,4.3.1,195,,Budha
+14.04,2,Indragiri Hilir,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,195,nil,Lainnya
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/padi_padian,,97980,rupiah,2024,survey_estimate,per_capita,10.1,491,,Padi-padian
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/padi_padian,,99274,rupiah,2025,survey_estimate,per_capita,10.1,491,,Padi-padian
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/umbi_umbian,,7624,rupiah,2024,survey_estimate,per_capita,10.1,491,,Umbi-umbian
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/umbi_umbian,,9638,rupiah,2025,survey_estimate,per_capita,10.1,491,,Umbi-umbian
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,83782,rupiah,2024,survey_estimate,per_capita,10.1,491,,Ikan/udang/cumi/kerang
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,91571,rupiah,2025,survey_estimate,per_capita,10.1,491,,Ikan/udang/cumi/kerang
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/daging,,26407,rupiah,2024,survey_estimate,per_capita,10.1,491,,Daging
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/daging,,26749,rupiah,2025,survey_estimate,per_capita,10.1,491,,Daging
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/telur_dan_susu,,37587,rupiah,2024,survey_estimate,per_capita,10.1,491,,Telur dan susu
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/telur_dan_susu,,40343,rupiah,2025,survey_estimate,per_capita,10.1,491,,Telur dan susu
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/sayur_sayuran,,71310,rupiah,2024,survey_estimate,per_capita,10.1,491,,Sayur-sayuran
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/sayur_sayuran,,81732,rupiah,2025,survey_estimate,per_capita,10.1,491,,Sayur-sayuran
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/kacang_kacangan,,8996,rupiah,2024,survey_estimate,per_capita,10.1,491,,Kacang-kacangan
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/kacang_kacangan,,12235,rupiah,2025,survey_estimate,per_capita,10.1,491,,Kacang-kacangan
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/buah_buahan,,33179,rupiah,2024,survey_estimate,per_capita,10.1,491,,Buah-buahan
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/buah_buahan,,38050,rupiah,2025,survey_estimate,per_capita,10.1,491,,Buah-buahan
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22137,rupiah,2024,survey_estimate,per_capita,10.1,491,,Minyak dan kelapa
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/minyak_dan_kelapa,,27062,rupiah,2025,survey_estimate,per_capita,10.1,491,,Minyak dan kelapa
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/bahan_minuman,,24364,rupiah,2024,survey_estimate,per_capita,10.1,491,,Bahan minuman
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/bahan_minuman,,28001,rupiah,2025,survey_estimate,per_capita,10.1,491,,Bahan minuman
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/bumbu_bumbuan,,15619,rupiah,2024,survey_estimate,per_capita,10.1,491,,Bumbu-bumbuan
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/bumbu_bumbuan,,19767,rupiah,2025,survey_estimate,per_capita,10.1,491,,Bumbu-bumbuan
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/konsumsi_lainnya,,15090,rupiah,2024,survey_estimate,per_capita,10.1,491,,Konsumsi lainnya
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/konsumsi_lainnya,,19541,rupiah,2025,survey_estimate,per_capita,10.1,491,,Konsumsi lainnya
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,177236,rupiah,2024,survey_estimate,per_capita,10.1,491,,Makanan dan minuman jadi
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,172015,rupiah,2025,survey_estimate,per_capita,10.1,491,,Makanan dan minuman jadi
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/rokok,,95581,rupiah,2024,survey_estimate,per_capita,10.1,491,,Rokok
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/rokok,,100947,rupiah,2025,survey_estimate,per_capita,10.1,491,,Rokok
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/jumlah_makanan,,716890,rupiah,2024,survey_estimate,per_capita,10.1,491,,Jumlah makanan
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/jumlah_makanan,,766926,rupiah,2025,survey_estimate,per_capita,10.1,491,,Jumlah makanan
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,274778,rupiah,2024,survey_estimate,per_capita,10.1,491,,Perumahan dan fasilitas rumah tangga
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,270442,rupiah,2025,survey_estimate,per_capita,10.1,491,,Perumahan dan fasilitas rumah tangga
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,113707,rupiah,2024,survey_estimate,per_capita,10.1,491,,Aneka barang dan jasa
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,112927,rupiah,2025,survey_estimate,per_capita,10.1,491,,Aneka barang dan jasa
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,33393,rupiah,2024,survey_estimate,per_capita,10.1,491,,"Pakaian, alas kaki, dan tutup kepala"
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,30771,rupiah,2025,survey_estimate,per_capita,10.1,491,,"Pakaian, alas kaki, dan tutup kepala"
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/barang_tahan_lama,,24681,rupiah,2024,survey_estimate,per_capita,10.1,491,,Barang tahan lama
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/barang_tahan_lama,,44447,rupiah,2025,survey_estimate,per_capita,10.1,491,,Barang tahan lama
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,32997,rupiah,2024,survey_estimate,per_capita,10.1,491,,"Pajak, pungutan, dan asuransi"
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,37762,rupiah,2025,survey_estimate,per_capita,10.1,491,,"Pajak, pungutan, dan asuransi"
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,30608,rupiah,2024,survey_estimate,per_capita,10.1,491,,Keperluan pesta dan upacara/kenduri
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,11922,rupiah,2025,survey_estimate,per_capita,10.1,491,,Keperluan pesta dan upacara/kenduri
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,510164,rupiah,2024,survey_estimate,per_capita,10.1,491,,Jumlah bukan makanan
+14.04,2,Kabupaten Indragiri Hilir,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,508272,rupiah,2025,survey_estimate,per_capita,10.1,491,,Jumlah bukan makanan
+14.04,2,Kabupaten Indragiri Hilir,expenditure,total,,1227055,rupiah,2024,survey_estimate,per_capita,10.1,491,,
+14.04,2,Kabupaten Indragiri Hilir,expenditure,total,,1275198,rupiah,2025,survey_estimate,per_capita,10.1,491,,

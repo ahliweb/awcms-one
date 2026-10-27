@@ -1,0 +1,65 @@
+{
+  "datasetCode": "bps-3201-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "32.01",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Bogor Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bogor",
+  "publisherDomain": "3201",
+  "publisherWebsite": "https://bogorkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bogor (https://bogorkab.bps.go.id), publikasi \"Kabupaten Bogor Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3201",
+  "publicationNumber": "32010.26003",
+  "issn": "0215-417X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://bogorkab.bps.go.id/id/publication/2026/02/27/41ce4f7c8d9b969aba5367c4/kabupaten-bogor-dalam-angka-2026.html",
+  "sourceFileSha256": "6fe2ff6527c5df9f77cb4c128e19f9cba5fcf4cf605de2bb37570500087cd247",
+  "sourceFileBytes": 6367697,
+  "sourcePages": [75, 81, 244, 245, 558],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bogor.",
+  "csvPath": "datasets/bps-3201-dalam-angka-2026.csv",
+  "csvSha256": "e598d10554ca2efb4593034195b161d310660fd188cff67736ffa9061af6e201",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk menurut Kecamatan di Kabupaten Bogor, 2025",
+      "printedPages": [75],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Bogor (jiwa) , 2025",
+      "printedPages": [81],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Bogor, 2025",
+      "printedPages": [244, 245],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan menurut Kelompok Komoditas di Kabupaten Bogor (rupiah), 2024 dan 2025",
+      "printedPages": [558],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication"
+  ]
+}

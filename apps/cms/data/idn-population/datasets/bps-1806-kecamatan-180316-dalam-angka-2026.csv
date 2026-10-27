@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.03.16.2002,4,Kota Napal,sex,laki_laki,,2170,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.16.2002,4,Kota Napal,sex,perempuan,,2039,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.16.2002,4,Kota Napal,total,total,,4209,jiwa,2025,registration,total_population,3.1,28,,
+18.03.16.2003,4,Tanah Abang,sex,laki_laki,,1218,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.16.2003,4,Tanah Abang,sex,perempuan,,1168,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.16.2003,4,Tanah Abang,total,total,,2386,jiwa,2025,registration,total_population,3.1,28,,
+18.03.16.2001,4,Negara Tulang Bawang,sex,laki_laki,,3376,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.16.2001,4,Negara Tulang Bawang,sex,perempuan,,3256,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.16.2001,4,Negara Tulang Bawang,total,total,,6632,jiwa,2025,registration,total_population,3.1,28,,
+18.03.16.2009,4,Tulang Bawang Baru,sex,laki_laki,,1809,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.16.2009,4,Tulang Bawang Baru,sex,perempuan,,1788,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.16.2009,4,Tulang Bawang Baru,total,total,,3597,jiwa,2025,registration,total_population,3.1,28,,
+18.03.16.2005,4,Sukadana Ilir,sex,laki_laki,,873,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.16.2005,4,Sukadana Ilir,sex,perempuan,,897,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.16.2005,4,Sukadana Ilir,total,total,,1770,jiwa,2025,registration,total_population,3.1,28,,
+18.03.16.2004,4,Sukadana Udik,sex,laki_laki,,1371,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.16.2004,4,Sukadana Udik,sex,perempuan,,1320,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.16.2004,4,Sukadana Udik,total,total,,2691,jiwa,2025,registration,total_population,3.1,28,,
+18.03.16.2006,4,Haduyang Ratu,sex,laki_laki,,817,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.16.2006,4,Haduyang Ratu,sex,perempuan,,779,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.16.2006,4,Haduyang Ratu,total,total,,1596,jiwa,2025,registration,total_population,3.1,28,,
+18.03.16.2007,4,Isorejo,sex,laki_laki,,2280,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.16.2007,4,Isorejo,sex,perempuan,,2255,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.16.2007,4,Isorejo,total,total,,4535,jiwa,2025,registration,total_population,3.1,28,,
+18.03.16.2008,4,Mulyo Rejo Ii,sex,laki_laki,,1500,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.16.2008,4,Mulyo Rejo Ii,sex,perempuan,,1450,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.16.2008,4,Mulyo Rejo Ii,total,total,,2950,jiwa,2025,registration,total_population,3.1,28,,
+18.03.16.2010,4,Mulyo Rejo I,sex,laki_laki,,1370,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.16.2010,4,Mulyo Rejo I,sex,perempuan,,1329,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.16.2010,4,Mulyo Rejo I,total,total,,2699,jiwa,2025,registration,total_population,3.1,28,,
+18.03.16.2011,4,Sukamaju,sex,laki_laki,,1076,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.16.2011,4,Sukamaju,sex,perempuan,,1010,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.16.2011,4,Sukamaju,total,total,,2086,jiwa,2025,registration,total_population,3.1,28,,
+18.03.16,3,Kecamatan Bunga Mayang,sex,laki_laki,,17860,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.16,3,Kecamatan Bunga Mayang,sex,perempuan,,17291,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.16,3,Kecamatan Bunga Mayang,total,total,,35151,jiwa,2025,registration,total_population,3.1,28,,
+18.03.16,3,Bunga Mayang,age_group,0-4,laki_laki,1140,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.16,3,Bunga Mayang,age_group,0-4,perempuan,1076,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.16,3,Bunga Mayang,age_group,0-4,,2216,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.16,3,Bunga Mayang,age_group,5-9,laki_laki,1569,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.16,3,Bunga Mayang,age_group,5-9,perempuan,1619,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.16,3,Bunga Mayang,age_group,5-9,,3188,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.16,3,Bunga Mayang,age_group,10-14,laki_laki,1448,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.16,3,Bunga Mayang,age_group,10-14,perempuan,1365,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.16,3,Bunga Mayang,age_group,10-14,,2813,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.16,3,Bunga Mayang,age_group,15-19,laki_laki,1251,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.16,3,Bunga Mayang,age_group,15-19,perempuan,1256,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.16,3,Bunga Mayang,age_group,15-19,,2507,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.16,3,Bunga Mayang,age_group,20-24,laki_laki,1359,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.16,3,Bunga Mayang,age_group,20-24,perempuan,1260,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.16,3,Bunga Mayang,age_group,20-24,,2619,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.16,3,Bunga Mayang,age_group,25-29,laki_laki,1320,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.16,3,Bunga Mayang,age_group,25-29,perempuan,1257,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.16,3,Bunga Mayang,age_group,25-29,,2577,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.16,3,Bunga Mayang,age_group,30-34,laki_laki,1421,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.16,3,Bunga Mayang,age_group,30-34,perempuan,1366,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.16,3,Bunga Mayang,age_group,30-34,,2787,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.16,3,Bunga Mayang,age_group,35-39,laki_laki,1226,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.16,3,Bunga Mayang,age_group,35-39,perempuan,1296,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.16,3,Bunga Mayang,age_group,35-39,,2522,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.16,3,Bunga Mayang,age_group,40-44,laki_laki,1202,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.16,3,Bunga Mayang,age_group,40-44,perempuan,1170,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.16,3,Bunga Mayang,age_group,40-44,,2372,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.16,3,Bunga Mayang,age_group,45-49,laki_laki,1544,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.16,3,Bunga Mayang,age_group,45-49,perempuan,1462,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.16,3,Bunga Mayang,age_group,45-49,,3006,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.16,3,Bunga Mayang,age_group,50-54,laki_laki,1041,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.16,3,Bunga Mayang,age_group,50-54,perempuan,1084,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.16,3,Bunga Mayang,age_group,50-54,,2125,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.16,3,Bunga Mayang,age_group,55-59,laki_laki,856,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.16,3,Bunga Mayang,age_group,55-59,perempuan,883,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.16,3,Bunga Mayang,age_group,55-59,,1739,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.16,3,Bunga Mayang,age_group,60-64,laki_laki,842,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.16,3,Bunga Mayang,age_group,60-64,perempuan,812,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.16,3,Bunga Mayang,age_group,60-64,,1654,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.16,3,Bunga Mayang,age_group,65-69,laki_laki,631,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.16,3,Bunga Mayang,age_group,65-69,perempuan,545,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.16,3,Bunga Mayang,age_group,65-69,,1176,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.16,3,Bunga Mayang,age_group,70-75,laki_laki,445,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.16,3,Bunga Mayang,age_group,70-75,perempuan,341,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.16,3,Bunga Mayang,age_group,70-75,,786,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.16,3,Bunga Mayang,age_group,75+,laki_laki,565,jiwa,2025,registration,total_population,3.2,30,,75+
+18.03.16,3,Bunga Mayang,age_group,75+,perempuan,499,jiwa,2025,registration,total_population,3.2,30,,75+
+18.03.16,3,Bunga Mayang,age_group,75+,,1064,jiwa,2025,registration,total_population,3.2,30,,75+

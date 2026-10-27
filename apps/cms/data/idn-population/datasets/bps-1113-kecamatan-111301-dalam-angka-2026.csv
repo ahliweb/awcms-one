@@ -1,0 +1,63 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.13.01.2021,4,Palok,sex,perempuan,,595,jiwa,2025,registration,total_population,unnumbered-p33,33,,Perempuan/
+11.13.01.2021,4,Palok,total,total,,1228,jiwa,2025,registration,total_population,unnumbered-p33,33,,
+11.13.01.2022,4,Penggalangan,sex,perempuan,,1073,jiwa,2025,registration,total_population,unnumbered-p33,33,,Perempuan/
+11.13.01.2022,4,Penggalangan,total,total,,2159,jiwa,2025,registration,total_population,unnumbered-p33,33,,
+11.13.01.2019,4,Lempuh,sex,perempuan,,415,jiwa,2025,registration,total_population,unnumbered-p33,33,,Perempuan/
+11.13.01.2019,4,Lempuh,total,total,,846,jiwa,2025,registration,total_population,unnumbered-p33,33,,
+11.13.01.2018,4,Cempa,sex,perempuan,,265,jiwa,2025,registration,total_population,unnumbered-p33,33,,Perempuan/
+11.13.01.2018,4,Cempa,total,total,,551,jiwa,2025,registration,total_population,unnumbered-p33,33,,
+11.13.01.2016,4,Gele,sex,perempuan,,1052,jiwa,2025,registration,total_population,unnumbered-p33,33,,Perempuan/
+11.13.01.2016,4,Gele,total,total,,2139,jiwa,2025,registration,total_population,unnumbered-p33,33,,
+11.13.01.2002,4,Penampaan,sex,perempuan,,795,jiwa,2025,registration,total_population,unnumbered-p33,33,,Perempuan/
+11.13.01.2002,4,Penampaan,total,total,,1529,jiwa,2025,registration,total_population,unnumbered-p33,33,,
+11.13.01.2008,4,Porang,sex,perempuan,,750,jiwa,2025,registration,total_population,unnumbered-p33,33,,Perempuan/
+11.13.01.2008,4,Porang,total,total,,1524,jiwa,2025,registration,total_population,unnumbered-p33,33,,
+11.13.01.2001,4,Kota Blangkejeren,sex,perempuan,,1434,jiwa,2025,registration,total_population,unnumbered-p33,33,,Perempuan/
+11.13.01.2001,4,Kota Blangkejeren,total,total,,2867,jiwa,2025,registration,total_population,unnumbered-p33,33,,
+11.13.01.2007,4,Kampung Jawa,sex,perempuan,,1324,jiwa,2025,registration,total_population,unnumbered-p33,33,,Perempuan/
+11.13.01.2007,4,Kampung Jawa,total,total,,2653,jiwa,2025,registration,total_population,unnumbered-p33,33,,
+11.13.01.2011,4,Kute Lintang,sex,perempuan,,2136,jiwa,2025,registration,total_population,unnumbered-p33,33,,Perempuan/
+11.13.01.2011,4,Kute Lintang,total,total,,4246,jiwa,2025,registration,total_population,unnumbered-p33,33,,
+11.13.01.2014,4,Leme,sex,perempuan,,557,jiwa,2025,registration,total_population,unnumbered-p33,33,,Perempuan/
+11.13.01.2014,4,Leme,total,total,,1125,jiwa,2025,registration,total_population,unnumbered-p33,33,,
+11.13.01.2003,4,Bukit,sex,perempuan,,551,jiwa,2025,registration,total_population,unnumbered-p33,33,,Perempuan/
+11.13.01.2003,4,Bukit,total,total,,1095,jiwa,2025,registration,total_population,unnumbered-p33,33,,
+11.13.01.2005,4,Durin,sex,perempuan,,534,jiwa,2025,registration,total_population,unnumbered-p33,33,,Perempuan/
+11.13.01.2005,4,Durin,total,total,,1043,jiwa,2025,registration,total_population,unnumbered-p33,33,,
+11.13.01.2004,4,Bacang,sex,perempuan,,254,jiwa,2025,registration,total_population,unnumbered-p33,33,,Perempuan/
+11.13.01.2004,4,Bacang,total,total,,498,jiwa,2025,registration,total_population,unnumbered-p33,33,,
+11.13.01.2027,4,Agusen,sex,perempuan,,502,jiwa,2025,registration,total_population,unnumbered-p33,33,,Perempuan/
+11.13.01.2027,4,Agusen,total,total,,981,jiwa,2025,registration,total_population,unnumbered-p33,33,,
+11.13.01,3,Blangkejeren,age_group,0-4,perempuan,1420,jiwa,2025,registration,total_population,unnumbered-p37,37,,0-4
+11.13.01,3,Blangkejeren,age_group,0-4,,2925,jiwa,2025,registration,total_population,unnumbered-p37,37,,0-4
+11.13.01,3,Blangkejeren,age_group,5-9,perempuan,1731,jiwa,2025,registration,total_population,unnumbered-p37,37,,5-9
+11.13.01,3,Blangkejeren,age_group,5-9,,3536,jiwa,2025,registration,total_population,unnumbered-p37,37,,5-9
+11.13.01,3,Blangkejeren,age_group,10-14,perempuan,1734,jiwa,2025,registration,total_population,unnumbered-p37,37,,10-14
+11.13.01,3,Blangkejeren,age_group,10-14,,3489,jiwa,2025,registration,total_population,unnumbered-p37,37,,10-14
+11.13.01,3,Blangkejeren,age_group,15-19,perempuan,1520,jiwa,2025,registration,total_population,unnumbered-p37,37,,15-19
+11.13.01,3,Blangkejeren,age_group,15-19,,3163,jiwa,2025,registration,total_population,unnumbered-p37,37,,15-19
+11.13.01,3,Blangkejeren,age_group,20-24,perempuan,1372,jiwa,2025,registration,total_population,unnumbered-p37,37,,20-24
+11.13.01,3,Blangkejeren,age_group,20-24,,2674,jiwa,2025,registration,total_population,unnumbered-p37,37,,20-24
+11.13.01,3,Blangkejeren,age_group,25-29,perempuan,1295,jiwa,2025,registration,total_population,unnumbered-p37,37,,25-29
+11.13.01,3,Blangkejeren,age_group,25-29,,2600,jiwa,2025,registration,total_population,unnumbered-p37,37,,25-29
+11.13.01,3,Blangkejeren,age_group,30-34,perempuan,1280,jiwa,2025,registration,total_population,unnumbered-p37,37,,30-34
+11.13.01,3,Blangkejeren,age_group,30-34,,2500,jiwa,2025,registration,total_population,unnumbered-p37,37,,30-34
+11.13.01,3,Blangkejeren,age_group,35-39,perempuan,1338,jiwa,2025,registration,total_population,unnumbered-p37,37,,35-39
+11.13.01,3,Blangkejeren,age_group,35-39,,2579,jiwa,2025,registration,total_population,unnumbered-p37,37,,35-39
+11.13.01,3,Blangkejeren,age_group,40-44,perempuan,1273,jiwa,2025,registration,total_population,unnumbered-p37,37,,40-44
+11.13.01,3,Blangkejeren,age_group,40-44,,2553,jiwa,2025,registration,total_population,unnumbered-p37,37,,40-44
+11.13.01,3,Blangkejeren,age_group,45-49,perempuan,1003,jiwa,2025,registration,total_population,unnumbered-p37,37,,45-49
+11.13.01,3,Blangkejeren,age_group,45-49,,2049,jiwa,2025,registration,total_population,unnumbered-p37,37,,45-49
+11.13.01,3,Blangkejeren,age_group,50-54,perempuan,764,jiwa,2025,registration,total_population,unnumbered-p37,37,,50-54
+11.13.01,3,Blangkejeren,age_group,50-54,,1613,jiwa,2025,registration,total_population,unnumbered-p37,37,,50-54
+11.13.01,3,Blangkejeren,age_group,55-59,perempuan,575,jiwa,2025,registration,total_population,unnumbered-p37,37,,55-59
+11.13.01,3,Blangkejeren,age_group,55-59,,1145,jiwa,2025,registration,total_population,unnumbered-p37,37,,55-59
+11.13.01,3,Blangkejeren,age_group,60-64,perempuan,439,jiwa,2025,registration,total_population,unnumbered-p37,37,,60-64
+11.13.01,3,Blangkejeren,age_group,60-64,,833,jiwa,2025,registration,total_population,unnumbered-p37,37,,60-64
+11.13.01,3,Blangkejeren,age_group,65-69,perempuan,313,jiwa,2025,registration,total_population,unnumbered-p37,37,,65-69
+11.13.01,3,Blangkejeren,age_group,65-69,,561,jiwa,2025,registration,total_population,unnumbered-p37,37,,65-69
+11.13.01,3,Blangkejeren,age_group,70-74,perempuan,164,jiwa,2025,registration,total_population,unnumbered-p37,37,,70-74
+11.13.01,3,Blangkejeren,age_group,70-74,,288,jiwa,2025,registration,total_population,unnumbered-p37,37,,70-74
+11.13.01,3,Blangkejeren,age_group,75+,perempuan,241,jiwa,2025,registration,total_population,unnumbered-p37,37,,75
+11.13.01,3,Blangkejeren,age_group,75+,,416,jiwa,2025,registration,total_population,unnumbered-p37,37,,75

@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-3601-kecamatan-360135-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.01.35",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sobang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pandeglang",
+  "publisherDomain": "3601",
+  "publisherWebsite": "https://pandeglangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pandeglang (https://pandeglangkab.bps.go.id), publikasi \"Kecamatan Sobang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3601061",
+  "publicationNumber": "36010.26012",
+  "issn": "3064-1632",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pandeglangkab.bps.go.id/id/publication/2026/09/28/3858384bd11c954f10e1e5da/kecamatan-sobang-dalam-angka-2026.html",
+  "sourceFileSha256": "80c8917ea4dc35aa3780c99910305b6df2758be969baf803d319018cc3726bb3",
+  "sourceFileBytes": 8220522,
+  "sourcePages": [32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pandeglang.",
+  "csvPath": "datasets/bps-3601-kecamatan-360135-dalam-angka-2026.csv",
+  "csvSha256": "6a716cdeac02145d405528e428755465d049887d8162ebdebafc0c02062d3fb6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Sobang, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"KECAMATAN SOBANG SOBANG DISTRICT\": unmatched ",
+    "table 3.1: row not stored: row \"KECAMATAN SOBANG SOBANG DISTRICT\": unmatched "
+  ]
+}

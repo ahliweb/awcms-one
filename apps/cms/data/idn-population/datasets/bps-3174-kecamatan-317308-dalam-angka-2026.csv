@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.73.08.1005,4,Joglo,sex,laki_laki,,25791,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.73.08.1005,4,Joglo,sex,perempuan,,26093,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.73.08.1005,4,Joglo,total,total,,51884,jiwa,2025,registration,total_population,3.1,28,,
+31.73.08.1004,4,Srengseng,sex,laki_laki,,29034,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.73.08.1004,4,Srengseng,sex,perempuan,,29014,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.73.08.1004,4,Srengseng,total,total,,58048,jiwa,2025,registration,total_population,3.1,28,,
+31.73.08.1003,4,Meruya Selatan,sex,laki_laki,,21171,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.73.08.1003,4,Meruya Selatan,sex,perempuan,,21099,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.73.08.1003,4,Meruya Selatan,total,total,,42270,jiwa,2025,registration,total_population,3.1,28,,
+31.73.08.1002,4,Meruya Utara,sex,laki_laki,,27666,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.73.08.1002,4,Meruya Utara,sex,perempuan,,27751,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.73.08.1002,4,Meruya Utara,total,total,,55417,jiwa,2025,registration,total_population,3.1,28,,
+31.73.08.1006,4,Kembangan Selatan,sex,laki_laki,,16919,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.73.08.1006,4,Kembangan Selatan,sex,perempuan,,17102,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.73.08.1006,4,Kembangan Selatan,total,total,,34021,jiwa,2025,registration,total_population,3.1,28,,
+31.73.08.1001,4,Kembangan Utara,sex,laki_laki,,35242,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.73.08.1001,4,Kembangan Utara,sex,perempuan,,34582,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.73.08.1001,4,Kembangan Utara,total,total,,69824,jiwa,2025,registration,total_population,3.1,28,,
+31.73.08,3,Kembangan,sex,laki_laki,,155823,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.73.08,3,Kembangan,sex,perempuan,,155641,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.73.08,3,Kembangan,total,total,,311464,jiwa,2025,registration,total_population,3.1,28,,
+31.73.08,3,Kembangan,age_group,0-4,laki_laki,9804,jiwa,2025,registration,total_population,3.2,30,,00-04
+31.73.08,3,Kembangan,age_group,0-4,perempuan,9047,jiwa,2025,registration,total_population,3.2,30,,00-04
+31.73.08,3,Kembangan,age_group,0-4,,18851,jiwa,2025,registration,total_population,3.2,30,,00-04
+31.73.08,3,Kembangan,age_group,5-9,laki_laki,13315,jiwa,2025,registration,total_population,3.2,30,,05-09
+31.73.08,3,Kembangan,age_group,5-9,perempuan,12375,jiwa,2025,registration,total_population,3.2,30,,05-09
+31.73.08,3,Kembangan,age_group,5-9,,25690,jiwa,2025,registration,total_population,3.2,30,,05-09
+31.73.08,3,Kembangan,age_group,10-14,laki_laki,13422,jiwa,2025,registration,total_population,3.2,30,,10-14
+31.73.08,3,Kembangan,age_group,10-14,perempuan,12519,jiwa,2025,registration,total_population,3.2,30,,10-14
+31.73.08,3,Kembangan,age_group,10-14,,25941,jiwa,2025,registration,total_population,3.2,30,,10-14
+31.73.08,3,Kembangan,age_group,15-19,laki_laki,12507,jiwa,2025,registration,total_population,3.2,30,,15-19
+31.73.08,3,Kembangan,age_group,15-19,perempuan,11642,jiwa,2025,registration,total_population,3.2,30,,15-19
+31.73.08,3,Kembangan,age_group,15-19,,24149,jiwa,2025,registration,total_population,3.2,30,,15-19
+31.73.08,3,Kembangan,age_group,20-24,laki_laki,11861,jiwa,2025,registration,total_population,3.2,30,,20-24
+31.73.08,3,Kembangan,age_group,20-24,perempuan,11213,jiwa,2025,registration,total_population,3.2,30,,20-24
+31.73.08,3,Kembangan,age_group,20-24,,23074,jiwa,2025,registration,total_population,3.2,30,,20-24
+31.73.08,3,Kembangan,age_group,25-29,laki_laki,11221,jiwa,2025,registration,total_population,3.2,30,,25-29
+31.73.08,3,Kembangan,age_group,25-29,perempuan,11384,jiwa,2025,registration,total_population,3.2,30,,25-29
+31.73.08,3,Kembangan,age_group,25-29,,22605,jiwa,2025,registration,total_population,3.2,30,,25-29
+31.73.08,3,Kembangan,age_group,30-34,laki_laki,11793,jiwa,2025,registration,total_population,3.2,30,,30-34
+31.73.08,3,Kembangan,age_group,30-34,perempuan,12802,jiwa,2025,registration,total_population,3.2,30,,30-34
+31.73.08,3,Kembangan,age_group,30-34,,24595,jiwa,2025,registration,total_population,3.2,30,,30-34
+31.73.08,3,Kembangan,age_group,35-39,laki_laki,11888,jiwa,2025,registration,total_population,3.2,30,,35-39
+31.73.08,3,Kembangan,age_group,35-39,perempuan,12834,jiwa,2025,registration,total_population,3.2,30,,35-39
+31.73.08,3,Kembangan,age_group,35-39,,24722,jiwa,2025,registration,total_population,3.2,30,,35-39
+31.73.08,3,Kembangan,age_group,40-44,laki_laki,13266,jiwa,2025,registration,total_population,3.2,30,,40-44
+31.73.08,3,Kembangan,age_group,40-44,perempuan,13778,jiwa,2025,registration,total_population,3.2,30,,40-44
+31.73.08,3,Kembangan,age_group,40-44,,27044,jiwa,2025,registration,total_population,3.2,30,,40-44
+31.73.08,3,Kembangan,age_group,45-49,laki_laki,12201,jiwa,2025,registration,total_population,3.2,30,,45-49
+31.73.08,3,Kembangan,age_group,45-49,perempuan,12364,jiwa,2025,registration,total_population,3.2,30,,45-49
+31.73.08,3,Kembangan,age_group,45-49,,24565,jiwa,2025,registration,total_population,3.2,30,,45-49
+31.73.08,3,Kembangan,age_group,50-54,laki_laki,10118,jiwa,2025,registration,total_population,3.2,30,,50-54
+31.73.08,3,Kembangan,age_group,50-54,perempuan,9787,jiwa,2025,registration,total_population,3.2,30,,50-54
+31.73.08,3,Kembangan,age_group,50-54,,19905,jiwa,2025,registration,total_population,3.2,30,,50-54
+31.73.08,3,Kembangan,age_group,55-59,laki_laki,8169,jiwa,2025,registration,total_population,3.2,30,,55-59
+31.73.08,3,Kembangan,age_group,55-59,perempuan,7635,jiwa,2025,registration,total_population,3.2,30,,55-59
+31.73.08,3,Kembangan,age_group,55-59,,15804,jiwa,2025,registration,total_population,3.2,30,,55-59
+31.73.08,3,Kembangan,age_group,60-64,laki_laki,5623,jiwa,2025,registration,total_population,3.2,30,,60-64
+31.73.08,3,Kembangan,age_group,60-64,perempuan,6103,jiwa,2025,registration,total_population,3.2,30,,60-64
+31.73.08,3,Kembangan,age_group,60-64,,11726,jiwa,2025,registration,total_population,3.2,30,,60-64
+31.73.08,3,Kembangan,age_group,65-69,laki_laki,4019,jiwa,2025,registration,total_population,3.2,30,,65-69
+31.73.08,3,Kembangan,age_group,65-69,perempuan,4693,jiwa,2025,registration,total_population,3.2,30,,65-69
+31.73.08,3,Kembangan,age_group,65-69,,8712,jiwa,2025,registration,total_population,3.2,30,,65-69
+31.73.08,3,Kembangan,age_group,70-75,laki_laki,2770,jiwa,2025,registration,total_population,3.2,30,,70-75
+31.73.08,3,Kembangan,age_group,70-75,perempuan,3080,jiwa,2025,registration,total_population,3.2,30,,70-75
+31.73.08,3,Kembangan,age_group,70-75,,5850,jiwa,2025,registration,total_population,3.2,30,,70-75
+31.73.08,3,Kembangan,age_group,75+,laki_laki,2353,jiwa,2025,registration,total_population,3.2,30,,75+
+31.73.08,3,Kembangan,age_group,75+,perempuan,2907,jiwa,2025,registration,total_population,3.2,30,,75+
+31.73.08,3,Kembangan,age_group,75+,,5260,jiwa,2025,registration,total_population,3.2,30,,75+
+31.73.08,3,Kembangan,sex,laki_laki,,154330,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+31.73.08,3,Kembangan,sex,perempuan,,154163,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+31.73.08,3,Kembangan,total,total,,308493,jiwa,2025,registration,total_population,3.2,30,,

@@ -1,0 +1,100 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.04.10.2036,4,Pagar Sari,sex,laki_laki,,786,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+16.04.10.2036,4,Pagar Sari,sex,perempuan,,750,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+16.04.10.2036,4,Pagar Sari,total,total,,1536,jiwa,2025,registration,total_population,3.1,36,,
+16.04.10.2039,4,Pagar Negara,sex,laki_laki,,944,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+16.04.10.2039,4,Pagar Negara,sex,perempuan,,936,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+16.04.10.2039,4,Pagar Negara,total,total,,1880,jiwa,2025,registration,total_population,3.1,36,,
+16.04.10.2027,4,Selawi,sex,laki_laki,,2265,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+16.04.10.2027,4,Selawi,sex,perempuan,,2268,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+16.04.10.2027,4,Selawi,total,total,,4533,jiwa,2025,registration,total_population,3.1,36,,
+16.04.10.2050,4,Manggul,sex,laki_laki,,3664,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+16.04.10.2050,4,Manggul,sex,perempuan,,3592,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+16.04.10.2050,4,Manggul,total,total,,7256,jiwa,2025,registration,total_population,3.1,36,,
+16.04.10.2053,4,Ulak Lebar,sex,laki_laki,,1520,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+16.04.10.2053,4,Ulak Lebar,sex,perempuan,,1507,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+16.04.10.2053,4,Ulak Lebar,total,total,,3027,jiwa,2025,registration,total_population,3.1,36,,
+16.04.10.2012,4,Padang Lengkuas,sex,laki_laki,,442,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+16.04.10.2012,4,Padang Lengkuas,sex,perempuan,,416,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+16.04.10.2012,4,Padang Lengkuas,total,total,,858,jiwa,2025,registration,total_population,3.1,36,,
+16.04.10.2034,4,Kota Raya,sex,laki_laki,,610,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+16.04.10.2034,4,Kota Raya,sex,perempuan,,654,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+16.04.10.2034,4,Kota Raya,total,total,,1264,jiwa,2025,registration,total_population,3.1,36,,
+16.04.10.2035,4,Keban,sex,laki_laki,,696,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+16.04.10.2035,4,Keban,sex,perempuan,,625,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+16.04.10.2035,4,Keban,total,total,,1321,jiwa,2025,registration,total_population,3.1,36,,
+16.04.10.2049,4,Senabing,sex,laki_laki,,672,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+16.04.10.2049,4,Senabing,sex,perempuan,,580,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+16.04.10.2049,4,Senabing,total,total,,1252,jiwa,2025,registration,total_population,3.1,36,,
+16.04.10.2056,4,Makartitama,sex,laki_laki,,688,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+16.04.10.2056,4,Makartitama,sex,perempuan,,608,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+16.04.10.2056,4,Makartitama,total,total,,1296,jiwa,2025,registration,total_population,3.1,36,,
+16.04.10.2057,4,Ulak Mas,sex,laki_laki,,535,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+16.04.10.2057,4,Ulak Mas,sex,perempuan,,492,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+16.04.10.2057,4,Ulak Mas,total,total,,1027,jiwa,2025,registration,total_population,3.1,36,,
+16.04.10.2055,4,Girimulya,sex,laki_laki,,607,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+16.04.10.2055,4,Girimulya,sex,perempuan,,551,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+16.04.10.2055,4,Girimulya,total,total,,1158,jiwa,2025,registration,total_population,3.1,36,,
+16.04.10.1033,4,Pagar Agung,sex,laki_laki,,6071,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+16.04.10.1033,4,Pagar Agung,sex,perempuan,,5849,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+16.04.10.1033,4,Pagar Agung,total,total,,11920,jiwa,2025,registration,total_population,3.1,36,,
+16.04.10.1040,4,Kota Baru,sex,laki_laki,,2986,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+16.04.10.1040,4,Kota Baru,sex,perempuan,,2835,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+16.04.10.1040,4,Kota Baru,total,total,,5821,jiwa,2025,registration,total_population,3.1,36,,
+16.04.10.1046,4,Bandar Agung,sex,laki_laki,,4389,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+16.04.10.1046,4,Bandar Agung,sex,perempuan,,4491,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+16.04.10.1046,4,Bandar Agung,total,total,,8880,jiwa,2025,registration,total_population,3.1,36,,
+16.04.10.1041,4,Pasar Lama,sex,laki_laki,,4614,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+16.04.10.1041,4,Pasar Lama,sex,perempuan,,4597,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+16.04.10.1041,4,Pasar Lama,total,total,,9211,jiwa,2025,registration,total_population,3.1,36,,
+16.04.10,3,Lahat,age_group,0-4,laki_laki,4143,jiwa,2025,registration,total_population,3.2,40,,0-4
+16.04.10,3,Lahat,age_group,0-4,perempuan,3754,jiwa,2025,registration,total_population,3.2,40,,0-4
+16.04.10,3,Lahat,age_group,0-4,,7897,jiwa,2025,registration,total_population,3.2,40,,0-4
+16.04.10,3,Lahat,age_group,5-9,laki_laki,5027,jiwa,2025,registration,total_population,3.2,40,,5-9
+16.04.10,3,Lahat,age_group,5-9,perempuan,4704,jiwa,2025,registration,total_population,3.2,40,,5-9
+16.04.10,3,Lahat,age_group,5-9,,9731,jiwa,2025,registration,total_population,3.2,40,,5-9
+16.04.10,3,Lahat,age_group,10-14,laki_laki,5281,jiwa,2025,registration,total_population,3.2,40,,10-14
+16.04.10,3,Lahat,age_group,10-14,perempuan,4825,jiwa,2025,registration,total_population,3.2,40,,10-14
+16.04.10,3,Lahat,age_group,10-14,,10106,jiwa,2025,registration,total_population,3.2,40,,10-14
+16.04.10,3,Lahat,age_group,15-19,laki_laki,5028,jiwa,2025,registration,total_population,3.2,40,,15-19
+16.04.10,3,Lahat,age_group,15-19,perempuan,4612,jiwa,2025,registration,total_population,3.2,40,,15-19
+16.04.10,3,Lahat,age_group,15-19,,9640,jiwa,2025,registration,total_population,3.2,40,,15-19
+16.04.10,3,Lahat,age_group,20-24,laki_laki,4554,jiwa,2025,registration,total_population,3.2,40,,20-24
+16.04.10,3,Lahat,age_group,20-24,perempuan,4303,jiwa,2025,registration,total_population,3.2,40,,20-24
+16.04.10,3,Lahat,age_group,20-24,,8857,jiwa,2025,registration,total_population,3.2,40,,20-24
+16.04.10,3,Lahat,age_group,25-29,laki_laki,4409,jiwa,2025,registration,total_population,3.2,40,,25-29
+16.04.10,3,Lahat,age_group,25-29,perempuan,4331,jiwa,2025,registration,total_population,3.2,40,,25-29
+16.04.10,3,Lahat,age_group,25-29,,8740,jiwa,2025,registration,total_population,3.2,40,,25-29
+16.04.10,3,Lahat,age_group,30-34,laki_laki,3989,jiwa,2025,registration,total_population,3.2,40,,30-34
+16.04.10,3,Lahat,age_group,30-34,perempuan,3867,jiwa,2025,registration,total_population,3.2,40,,30-34
+16.04.10,3,Lahat,age_group,30-34,,7856,jiwa,2025,registration,total_population,3.2,40,,30-34
+16.04.10,3,Lahat,age_group,35-39,laki_laki,4249,jiwa,2025,registration,total_population,3.2,40,,35-39
+16.04.10,3,Lahat,age_group,35-39,perempuan,4245,jiwa,2025,registration,total_population,3.2,40,,35-39
+16.04.10,3,Lahat,age_group,35-39,,8494,jiwa,2025,registration,total_population,3.2,40,,35-39
+16.04.10,3,Lahat,age_group,40-44,laki_laki,4140,jiwa,2025,registration,total_population,3.2,40,,40-44
+16.04.10,3,Lahat,age_group,40-44,perempuan,4206,jiwa,2025,registration,total_population,3.2,40,,40-44
+16.04.10,3,Lahat,age_group,40-44,,8346,jiwa,2025,registration,total_population,3.2,40,,40-44
+16.04.10,3,Lahat,age_group,45-49,laki_laki,3949,jiwa,2025,registration,total_population,3.2,40,,45-49
+16.04.10,3,Lahat,age_group,45-49,perempuan,3953,jiwa,2025,registration,total_population,3.2,40,,45-49
+16.04.10,3,Lahat,age_group,45-49,,7902,jiwa,2025,registration,total_population,3.2,40,,45-49
+16.04.10,3,Lahat,age_group,50-54,laki_laki,3244,jiwa,2025,registration,total_population,3.2,40,,50-54
+16.04.10,3,Lahat,age_group,50-54,perempuan,3323,jiwa,2025,registration,total_population,3.2,40,,50-54
+16.04.10,3,Lahat,age_group,50-54,,6567,jiwa,2025,registration,total_population,3.2,40,,50-54
+16.04.10,3,Lahat,age_group,55-59,laki_laki,2752,jiwa,2025,registration,total_population,3.2,40,,55-59
+16.04.10,3,Lahat,age_group,55-59,perempuan,2921,jiwa,2025,registration,total_population,3.2,40,,55-59
+16.04.10,3,Lahat,age_group,55-59,,5673,jiwa,2025,registration,total_population,3.2,40,,55-59
+16.04.10,3,Lahat,age_group,60-64,laki_laki,2295,jiwa,2025,registration,total_population,3.2,40,,60-64
+16.04.10,3,Lahat,age_group,60-64,perempuan,2485,jiwa,2025,registration,total_population,3.2,40,,60-64
+16.04.10,3,Lahat,age_group,60-64,,4780,jiwa,2025,registration,total_population,3.2,40,,60-64
+16.04.10,3,Lahat,age_group,65-69,laki_laki,1783,jiwa,2025,registration,total_population,3.2,40,,65-69
+16.04.10,3,Lahat,age_group,65-69,perempuan,1836,jiwa,2025,registration,total_population,3.2,40,,65-69
+16.04.10,3,Lahat,age_group,65-69,,3619,jiwa,2025,registration,total_population,3.2,40,,65-69
+16.04.10,3,Lahat,age_group,70-74,laki_laki,925,jiwa,2025,registration,total_population,3.2,40,,70-74
+16.04.10,3,Lahat,age_group,70-74,perempuan,1071,jiwa,2025,registration,total_population,3.2,40,,70-74
+16.04.10,3,Lahat,age_group,70-74,,1996,jiwa,2025,registration,total_population,3.2,40,,70-74
+16.04.10,3,Lahat,age_group,75+,laki_laki,905,jiwa,2025,registration,total_population,3.2,40,,75 +
+16.04.10,3,Lahat,age_group,75+,perempuan,1313,jiwa,2025,registration,total_population,3.2,40,,75 +
+16.04.10,3,Lahat,age_group,75+,,2218,jiwa,2025,registration,total_population,3.2,40,,75 +
+16.04.10,3,Kecamatan Lahat,sex,laki_laki,,56673,jiwa,2025,registration,total_population,3.2,40,,Laki-Laki
+16.04.10,3,Kecamatan Lahat,sex,perempuan,,55749,jiwa,2025,registration,total_population,3.2,40,,Perempuan
+16.04.10,3,Kecamatan Lahat,total,total,,112422,jiwa,2025,registration,total_population,3.2,40,,

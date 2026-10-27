@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.08.05.2001,4,MUARA KELANTAN,sex,laki_laki,,913,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+14.08.05.2001,4,MUARA KELANTAN,sex,perempuan,,840,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+14.08.05.2001,4,MUARA KELANTAN,total,total,,1753,jiwa,2026,registration,total_population,3.1,26,,
+14.08.05.2002,4,TELUK LANCANG,sex,laki_laki,,177,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+14.08.05.2002,4,TELUK LANCANG,sex,perempuan,,178,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+14.08.05.2002,4,TELUK LANCANG,total,total,,355,jiwa,2026,registration,total_population,3.1,26,,
+14.08.05.2003,4,SUNGAI SELODANG,sex,laki_laki,,801,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+14.08.05.2003,4,SUNGAI SELODANG,sex,perempuan,,766,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+14.08.05.2003,4,SUNGAI SELODANG,total,total,,1567,jiwa,2026,registration,total_population,3.1,26,,
+14.08.05.2004,4,OLAK,sex,laki_laki,,873,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+14.08.05.2004,4,OLAK,sex,perempuan,,846,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+14.08.05.2004,4,OLAK,total,total,,1719,jiwa,2026,registration,total_population,3.1,26,,
+14.08.05.2005,4,LUBUK JERING,sex,laki_laki,,1116,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+14.08.05.2005,4,LUBUK JERING,sex,perempuan,,1011,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+14.08.05.2005,4,LUBUK JERING,total,total,,2127,jiwa,2026,registration,total_population,3.1,26,,
+14.08.05.2006,4,MUARA BUNGKAL,sex,laki_laki,,827,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+14.08.05.2006,4,MUARA BUNGKAL,sex,perempuan,,762,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+14.08.05.2006,4,MUARA BUNGKAL,total,total,,1589,jiwa,2026,registration,total_population,3.1,26,,
+14.08.05.2007,4,LUBUK UMBUT,sex,laki_laki,,476,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+14.08.05.2007,4,LUBUK UMBUT,sex,perempuan,,460,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+14.08.05.2007,4,LUBUK UMBUT,total,total,,936,jiwa,2026,registration,total_population,3.1,26,,
+14.08.05.2008,4,BENCAH UMBAI,sex,laki_laki,,403,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+14.08.05.2008,4,BENCAH UMBAI,sex,perempuan,,375,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+14.08.05.2008,4,BENCAH UMBAI,total,total,,778,jiwa,2026,registration,total_population,3.1,26,,
+14.08.05.2009,4,TASIK BETUNG,sex,laki_laki,,668,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+14.08.05.2009,4,TASIK BETUNG,sex,perempuan,,586,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+14.08.05.2009,4,TASIK BETUNG,total,total,,1254,jiwa,2026,registration,total_population,3.1,26,,
+14.08.05,3,SUNGAI MANDAU,sex,laki_laki,,6254,jiwa,2026,registration,total_population,3.1,26,,Laki-Laki/Male
+14.08.05,3,SUNGAI MANDAU,sex,perempuan,,5824,jiwa,2026,registration,total_population,3.1,26,,Perempuan/Female
+14.08.05,3,SUNGAI MANDAU,total,total,,12078,jiwa,2026,registration,total_population,3.1,26,,
+14.08.05,3,Sungai Mandau,age_group,0-4,laki_laki,486,jiwa,2025,registration,total_population,3.2,28,,0-4
+14.08.05,3,Sungai Mandau,age_group,0-4,perempuan,455,jiwa,2025,registration,total_population,3.2,28,,0-4
+14.08.05,3,Sungai Mandau,age_group,0-4,,941,jiwa,2025,registration,total_population,3.2,28,,0-4
+14.08.05,3,Sungai Mandau,age_group,5-9,laki_laki,637,jiwa,2025,registration,total_population,3.2,28,,5-9
+14.08.05,3,Sungai Mandau,age_group,5-9,perempuan,591,jiwa,2025,registration,total_population,3.2,28,,5-9
+14.08.05,3,Sungai Mandau,age_group,5-9,,1228,jiwa,2025,registration,total_population,3.2,28,,5-9
+14.08.05,3,Sungai Mandau,age_group,10-14,laki_laki,670,jiwa,2025,registration,total_population,3.2,28,,10-14
+14.08.05,3,Sungai Mandau,age_group,10-14,perempuan,643,jiwa,2025,registration,total_population,3.2,28,,10-14
+14.08.05,3,Sungai Mandau,age_group,10-14,,1313,jiwa,2025,registration,total_population,3.2,28,,10-14
+14.08.05,3,Sungai Mandau,age_group,15-19,laki_laki,564,jiwa,2025,registration,total_population,3.2,28,,15-19
+14.08.05,3,Sungai Mandau,age_group,15-19,perempuan,483,jiwa,2025,registration,total_population,3.2,28,,15-19
+14.08.05,3,Sungai Mandau,age_group,15-19,,1047,jiwa,2025,registration,total_population,3.2,28,,15-19
+14.08.05,3,Sungai Mandau,age_group,20-24,laki_laki,523,jiwa,2025,registration,total_population,3.2,28,,20-24
+14.08.05,3,Sungai Mandau,age_group,20-24,perempuan,494,jiwa,2025,registration,total_population,3.2,28,,20-24
+14.08.05,3,Sungai Mandau,age_group,20-24,,1017,jiwa,2025,registration,total_population,3.2,28,,20-24
+14.08.05,3,Sungai Mandau,age_group,25-29,laki_laki,480,jiwa,2025,registration,total_population,3.2,28,,25-29
+14.08.05,3,Sungai Mandau,age_group,25-29,perempuan,472,jiwa,2025,registration,total_population,3.2,28,,25-29
+14.08.05,3,Sungai Mandau,age_group,25-29,,952,jiwa,2025,registration,total_population,3.2,28,,25-29
+14.08.05,3,Sungai Mandau,age_group,30-34,laki_laki,468,jiwa,2025,registration,total_population,3.2,28,,30-34
+14.08.05,3,Sungai Mandau,age_group,30-34,perempuan,496,jiwa,2025,registration,total_population,3.2,28,,30-34
+14.08.05,3,Sungai Mandau,age_group,30-34,,964,jiwa,2025,registration,total_population,3.2,28,,30-34
+14.08.05,3,Sungai Mandau,age_group,35-39,laki_laki,526,jiwa,2025,registration,total_population,3.2,28,,35-39
+14.08.05,3,Sungai Mandau,age_group,35-39,perempuan,501,jiwa,2025,registration,total_population,3.2,28,,35-39
+14.08.05,3,Sungai Mandau,age_group,35-39,,1027,jiwa,2025,registration,total_population,3.2,28,,35-39
+14.08.05,3,Sungai Mandau,age_group,40-44,laki_laki,473,jiwa,2025,registration,total_population,3.2,28,,40-44
+14.08.05,3,Sungai Mandau,age_group,40-44,perempuan,446,jiwa,2025,registration,total_population,3.2,28,,40-44
+14.08.05,3,Sungai Mandau,age_group,40-44,,919,jiwa,2025,registration,total_population,3.2,28,,40-44
+14.08.05,3,Sungai Mandau,age_group,45-49,laki_laki,443,jiwa,2025,registration,total_population,3.2,28,,45-49
+14.08.05,3,Sungai Mandau,age_group,45-49,perempuan,372,jiwa,2025,registration,total_population,3.2,28,,45-49
+14.08.05,3,Sungai Mandau,age_group,45-49,,815,jiwa,2025,registration,total_population,3.2,28,,45-49
+14.08.05,3,Sungai Mandau,age_group,50-54,laki_laki,308,jiwa,2025,registration,total_population,3.2,28,,50-54
+14.08.05,3,Sungai Mandau,age_group,50-54,perempuan,289,jiwa,2025,registration,total_population,3.2,28,,50-54
+14.08.05,3,Sungai Mandau,age_group,50-54,,597,jiwa,2025,registration,total_population,3.2,28,,50-54
+14.08.05,3,Sungai Mandau,age_group,55-59,laki_laki,235,jiwa,2025,registration,total_population,3.2,28,,55-59
+14.08.05,3,Sungai Mandau,age_group,55-59,perempuan,220,jiwa,2025,registration,total_population,3.2,28,,55-59
+14.08.05,3,Sungai Mandau,age_group,55-59,,455,jiwa,2025,registration,total_population,3.2,28,,55-59
+14.08.05,3,Sungai Mandau,age_group,60-64,laki_laki,174,jiwa,2025,registration,total_population,3.2,28,,60-64
+14.08.05,3,Sungai Mandau,age_group,60-64,perempuan,155,jiwa,2025,registration,total_population,3.2,28,,60-64
+14.08.05,3,Sungai Mandau,age_group,60-64,,329,jiwa,2025,registration,total_population,3.2,28,,60-64
+14.08.05,3,Sungai Mandau,age_group,65-69,laki_laki,138,jiwa,2025,registration,total_population,3.2,28,,65-69
+14.08.05,3,Sungai Mandau,age_group,65-69,perempuan,100,jiwa,2025,registration,total_population,3.2,28,,65-69
+14.08.05,3,Sungai Mandau,age_group,65-69,,238,jiwa,2025,registration,total_population,3.2,28,,65-69
+14.08.05,3,Sungai Mandau,age_group,70-74,laki_laki,74,jiwa,2025,registration,total_population,3.2,28,,70-74
+14.08.05,3,Sungai Mandau,age_group,70-74,perempuan,51,jiwa,2025,registration,total_population,3.2,28,,70-74
+14.08.05,3,Sungai Mandau,age_group,70-74,,125,jiwa,2025,registration,total_population,3.2,28,,70-74
+14.08.05,3,Sungai Mandau,age_group,75+,laki_laki,55,jiwa,2025,registration,total_population,3.2,28,,75+
+14.08.05,3,Sungai Mandau,age_group,75+,perempuan,56,jiwa,2025,registration,total_population,3.2,28,,75+
+14.08.05,3,Sungai Mandau,age_group,75+,,111,jiwa,2025,registration,total_population,3.2,28,,75+
+14.08.05,3,Kecamatan Sungai Mandau,sex,laki_laki,,6254,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+14.08.05,3,Kecamatan Sungai Mandau,sex,perempuan,,5824,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+14.08.05,3,Kecamatan Sungai Mandau,total,total,,12078,jiwa,2025,registration,total_population,3.2,28,,

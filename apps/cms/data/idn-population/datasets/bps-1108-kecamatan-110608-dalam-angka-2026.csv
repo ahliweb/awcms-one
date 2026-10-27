@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.06.08.2001,4,Lambadeuk,sex,laki_laki,,144,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.06.08.2001,4,Lambadeuk,sex,perempuan,,160,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.06.08.2001,4,Lambadeuk,total,total,,304,jiwa,2025,registration,total_population,3.1,29,,
+11.06.08.2002,4,Lamguron,sex,laki_laki,,104,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.06.08.2002,4,Lamguron,sex,perempuan,,100,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.06.08.2002,4,Lamguron,total,total,,204,jiwa,2025,registration,total_population,3.1,29,,
+11.06.08.2003,4,Lambaro Nejid,sex,laki_laki,,497,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.06.08.2003,4,Lambaro Nejid,sex,perempuan,,504,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.06.08.2003,4,Lambaro Nejid,total,total,,1001,jiwa,2025,registration,total_population,3.1,29,,
+11.06.08.2004,4,Lampageu,sex,laki_laki,,210,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.06.08.2004,4,Lampageu,sex,perempuan,,188,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.06.08.2004,4,Lampageu,total,total,,398,jiwa,2025,registration,total_population,3.1,29,,
+11.06.08.2005,4,Gampong Baro,sex,laki_laki,,328,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.06.08.2005,4,Gampong Baro,sex,perempuan,,304,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.06.08.2005,4,Gampong Baro,total,total,,632,jiwa,2025,registration,total_population,3.1,29,,
+11.06.08.2006,4,Lam Manyang,sex,laki_laki,,360,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.06.08.2006,4,Lam Manyang,sex,perempuan,,314,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.06.08.2006,4,Lam Manyang,total,total,,674,jiwa,2025,registration,total_population,3.1,29,,
+11.06.08.2007,4,Lamteh,sex,laki_laki,,599,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.06.08.2007,4,Lamteh,sex,perempuan,,563,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.06.08.2007,4,Lamteh,total,total,,1162,jiwa,2025,registration,total_population,3.1,29,,
+11.06.08.2008,4,Lam Lumpu,sex,laki_laki,,1178,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.06.08.2008,4,Lam Lumpu,sex,perempuan,,1128,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.06.08.2008,4,Lam Lumpu,total,total,,2306,jiwa,2025,registration,total_population,3.1,29,,
+11.06.08.2009,4,Lamteungoh,sex,laki_laki,,210,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.06.08.2009,4,Lamteungoh,sex,perempuan,,214,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.06.08.2009,4,Lamteungoh,total,total,,424,jiwa,2025,registration,total_population,3.1,29,,
+11.06.08.2010,4,Lamtutui,sex,laki_laki,,207,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.06.08.2010,4,Lamtutui,sex,perempuan,,204,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.06.08.2010,4,Lamtutui,total,total,,411,jiwa,2025,registration,total_population,3.1,29,,
+11.06.08.2011,4,Meunasah Tuha,sex,laki_laki,,435,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.06.08.2011,4,Meunasah Tuha,sex,perempuan,,448,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.06.08.2011,4,Meunasah Tuha,total,total,,883,jiwa,2025,registration,total_population,3.1,29,,
+11.06.08.2012,4,Lam Awe,sex,laki_laki,,207,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.06.08.2012,4,Lam Awe,sex,perempuan,,199,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.06.08.2012,4,Lam Awe,total,total,,406,jiwa,2025,registration,total_population,3.1,29,,
+11.06.08.2013,4,Pulo Bunta,sex,laki_laki,,41,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.06.08.2013,4,Pulo Bunta,sex,perempuan,,37,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.06.08.2013,4,Pulo Bunta,total,total,,78,jiwa,2025,registration,total_population,3.1,29,,
+11.06.08.2014,4,Beuradeun,sex,laki_laki,,207,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.06.08.2014,4,Beuradeun,sex,perempuan,,223,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.06.08.2014,4,Beuradeun,total,total,,430,jiwa,2025,registration,total_population,3.1,29,,
+11.06.08.2015,4,Lampisang,sex,laki_laki,,438,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.06.08.2015,4,Lampisang,sex,perempuan,,460,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.06.08.2015,4,Lampisang,total,total,,898,jiwa,2025,registration,total_population,3.1,29,,
+11.06.08.2016,4,Keuneu Eu,sex,laki_laki,,303,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.06.08.2016,4,Keuneu Eu,sex,perempuan,,311,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.06.08.2016,4,Keuneu Eu,total,total,,614,jiwa,2025,registration,total_population,3.1,29,,
+11.06.08.2017,4,Lam Isek,sex,laki_laki,,509,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.06.08.2017,4,Lam Isek,sex,perempuan,,469,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.06.08.2017,4,Lam Isek,total,total,,978,jiwa,2025,registration,total_population,3.1,29,,
+11.06.08.2018,4,Lamkeumok,sex,laki_laki,,264,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.06.08.2018,4,Lamkeumok,sex,perempuan,,252,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.06.08.2018,4,Lamkeumok,total,total,,516,jiwa,2025,registration,total_population,3.1,29,,
+11.06.08.2019,4,Lam Rukam,sex,laki_laki,,368,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.06.08.2019,4,Lam Rukam,sex,perempuan,,348,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.06.08.2019,4,Lam Rukam,total,total,,716,jiwa,2025,registration,total_population,3.1,29,,
+11.06.08.2020,4,Gurah,sex,laki_laki,,464,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+11.06.08.2020,4,Gurah,sex,perempuan,,419,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+11.06.08.2020,4,Gurah,total,total,,883,jiwa,2025,registration,total_population,3.1,29,,
+11.06.08.2021,4,Rima Jeuneu,sex,laki_laki,,565,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.08.2021,4,Rima Jeuneu,sex,perempuan,,505,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.08.2021,4,Rima Jeuneu,total,total,,1070,jiwa,2025,registration,total_population,3.1,30,,
+11.06.08.2022,4,Lam Geu Eu,sex,laki_laki,,988,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.08.2022,4,Lam Geu Eu,sex,perempuan,,945,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.08.2022,4,Lam Geu Eu,total,total,,1933,jiwa,2025,registration,total_population,3.1,30,,
+11.06.08.2023,4,Lam Hasan,sex,laki_laki,,1548,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.08.2023,4,Lam Hasan,sex,perempuan,,1629,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.08.2023,4,Lam Hasan,total,total,,3177,jiwa,2025,registration,total_population,3.1,30,,
+11.06.08.2024,4,Paya Tieng,sex,laki_laki,,624,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.08.2024,4,Paya Tieng,sex,perempuan,,578,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.08.2024,4,Paya Tieng,total,total,,1202,jiwa,2025,registration,total_population,3.1,30,,
+11.06.08.2025,4,Ajuen,sex,laki_laki,,1431,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.08.2025,4,Ajuen,sex,perempuan,,1501,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.08.2025,4,Ajuen,total,total,,2932,jiwa,2025,registration,total_population,3.1,30,,
+11.06.08.2026,4,Rima Keuneurom,sex,laki_laki,,519,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.08.2026,4,Rima Keuneurom,sex,perempuan,,507,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.08.2026,4,Rima Keuneurom,total,total,,1026,jiwa,2025,registration,total_population,3.1,30,,
+11.06.08,3,Kecamatan Peukan Bada,sex,laki_laki,,12748,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+11.06.08,3,Kecamatan Peukan Bada,sex,perempuan,,12510,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+11.06.08,3,Kecamatan Peukan Bada,total,total,,25258,jiwa,2025,registration,total_population,3.1,30,,

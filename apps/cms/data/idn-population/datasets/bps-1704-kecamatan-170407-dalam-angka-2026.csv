@@ -1,0 +1,106 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.04.07.2007,4,Tanjung Betuah,sex,laki_laki,,251,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+17.04.07.2007,4,Tanjung Betuah,sex,perempuan,,263,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+17.04.07.2007,4,Tanjung Betuah,total,total,,514,jiwa,2025,registration,total_population,3.1,25,,
+17.04.07.2002,4,Gedung Menung,sex,laki_laki,,161,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+17.04.07.2002,4,Gedung Menung,sex,perempuan,,160,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+17.04.07.2002,4,Gedung Menung,total,total,,321,jiwa,2025,registration,total_population,3.1,25,,
+17.04.07.2003,4,Ulak Pandan,sex,laki_laki,,633,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+17.04.07.2003,4,Ulak Pandan,sex,perempuan,,610,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+17.04.07.2003,4,Ulak Pandan,total,total,,1243,jiwa,2025,registration,total_population,3.1,25,,
+17.04.07.2005,4,Merpas,sex,laki_laki,,895,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+17.04.07.2005,4,Merpas,sex,perempuan,,856,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+17.04.07.2005,4,Merpas,total,total,,1751,jiwa,2025,registration,total_population,3.1,25,,
+17.04.07.2008,4,Air Palawan,sex,laki_laki,,672,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+17.04.07.2008,4,Air Palawan,sex,perempuan,,574,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+17.04.07.2008,4,Air Palawan,total,total,,1246,jiwa,2025,registration,total_population,3.1,25,,
+17.04.07.2001,4,Muara Dua,sex,laki_laki,,644,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+17.04.07.2001,4,Muara Dua,sex,perempuan,,552,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+17.04.07.2001,4,Muara Dua,total,total,,1196,jiwa,2025,registration,total_population,3.1,25,,
+17.04.07.2013,4,Bukit Indah,sex,laki_laki,,555,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+17.04.07.2013,4,Bukit Indah,sex,perempuan,,503,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+17.04.07.2013,4,Bukit Indah,total,total,,1058,jiwa,2025,registration,total_population,3.1,25,,
+17.04.07.2012,4,Suku Tiga,sex,laki_laki,,405,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+17.04.07.2012,4,Suku Tiga,sex,perempuan,,378,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+17.04.07.2012,4,Suku Tiga,total,total,,783,jiwa,2025,registration,total_population,3.1,25,,
+17.04.07.2009,4,Tebing Rambutan,sex,laki_laki,,788,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+17.04.07.2009,4,Tebing Rambutan,sex,perempuan,,685,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+17.04.07.2009,4,Tebing Rambutan,total,total,,1473,jiwa,2025,registration,total_population,3.1,25,,
+17.04.07.2010,4,Batu Lungun,sex,laki_laki,,623,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+17.04.07.2010,4,Batu Lungun,sex,perempuan,,599,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+17.04.07.2010,4,Batu Lungun,total,total,,1222,jiwa,2025,registration,total_population,3.1,25,,
+17.04.07.2011,4,Sumber Harapan,sex,laki_laki,,728,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+17.04.07.2011,4,Sumber Harapan,sex,perempuan,,663,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+17.04.07.2011,4,Sumber Harapan,total,total,,1391,jiwa,2025,registration,total_population,3.1,25,,
+17.04.07.2014,4,Suka Jaya,sex,laki_laki,,589,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+17.04.07.2014,4,Suka Jaya,sex,perempuan,,532,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+17.04.07.2014,4,Suka Jaya,total,total,,1121,jiwa,2025,registration,total_population,3.1,25,,
+17.04.07.2015,4,Pasar Baru,sex,laki_laki,,609,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+17.04.07.2015,4,Pasar Baru,sex,perempuan,,583,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+17.04.07.2015,4,Pasar Baru,total,total,,1192,jiwa,2025,registration,total_population,3.1,25,,
+17.04.07.2016,4,Tri Jaya,sex,laki_laki,,365,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+17.04.07.2016,4,Tri Jaya,sex,perempuan,,334,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+17.04.07.2016,4,Tri Jaya,total,total,,699,jiwa,2025,registration,total_population,3.1,25,,
+17.04.07.2017,4,Air Batang,sex,laki_laki,,758,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+17.04.07.2017,4,Air Batang,sex,perempuan,,659,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+17.04.07.2017,4,Air Batang,total,total,,1417,jiwa,2025,registration,total_population,3.1,25,,
+17.04.07.2018,4,Sinar Banten,sex,laki_laki,,221,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+17.04.07.2018,4,Sinar Banten,sex,perempuan,,186,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+17.04.07.2018,4,Sinar Banten,total,total,,407,jiwa,2025,registration,total_population,3.1,25,,
+17.04.07.2019,4,Pasar Jumat,sex,laki_laki,,271,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+17.04.07.2019,4,Pasar Jumat,sex,perempuan,,219,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+17.04.07.2019,4,Pasar Jumat,total,total,,490,jiwa,2025,registration,total_population,3.1,25,,
+17.04.07,3,Kecamatan Nasal,sex,laki_laki,,9168,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+17.04.07,3,Kecamatan Nasal,sex,perempuan,,8356,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+17.04.07,3,Kecamatan Nasal,total,total,,17524,jiwa,2025,registration,total_population,3.1,25,,
+17.04.07,3,Nasal,age_group,0-4,laki_laki,565,jiwa,2025,registration,total_population,3.2,27,,0-4
+17.04.07,3,Nasal,age_group,0-4,perempuan,534,jiwa,2025,registration,total_population,3.2,27,,0-4
+17.04.07,3,Nasal,age_group,0-4,,1099,jiwa,2025,registration,total_population,3.2,27,,0-4
+17.04.07,3,Nasal,age_group,5-9,laki_laki,817,jiwa,2025,registration,total_population,3.2,27,,5-9
+17.04.07,3,Nasal,age_group,5-9,perempuan,758,jiwa,2025,registration,total_population,3.2,27,,5-9
+17.04.07,3,Nasal,age_group,5-9,,1575,jiwa,2025,registration,total_population,3.2,27,,5-9
+17.04.07,3,Nasal,age_group,10-14,laki_laki,823,jiwa,2025,registration,total_population,3.2,27,,10-14
+17.04.07,3,Nasal,age_group,10-14,perempuan,767,jiwa,2025,registration,total_population,3.2,27,,10-14
+17.04.07,3,Nasal,age_group,10-14,,1590,jiwa,2025,registration,total_population,3.2,27,,10-14
+17.04.07,3,Nasal,age_group,15-19,laki_laki,797,jiwa,2025,registration,total_population,3.2,27,,15-19
+17.04.07,3,Nasal,age_group,15-19,perempuan,740,jiwa,2025,registration,total_population,3.2,27,,15-19
+17.04.07,3,Nasal,age_group,15-19,,1537,jiwa,2025,registration,total_population,3.2,27,,15-19
+17.04.07,3,Nasal,age_group,20-24,laki_laki,738,jiwa,2025,registration,total_population,3.2,27,,20-24
+17.04.07,3,Nasal,age_group,20-24,perempuan,702,jiwa,2025,registration,total_population,3.2,27,,20-24
+17.04.07,3,Nasal,age_group,20-24,,1440,jiwa,2025,registration,total_population,3.2,27,,20-24
+17.04.07,3,Nasal,age_group,25-29,laki_laki,731,jiwa,2025,registration,total_population,3.2,27,,25-29
+17.04.07,3,Nasal,age_group,25-29,perempuan,698,jiwa,2025,registration,total_population,3.2,27,,25-29
+17.04.07,3,Nasal,age_group,25-29,,1429,jiwa,2025,registration,total_population,3.2,27,,25-29
+17.04.07,3,Nasal,age_group,30-34,laki_laki,685,jiwa,2025,registration,total_population,3.2,27,,30-34
+17.04.07,3,Nasal,age_group,30-34,perempuan,671,jiwa,2025,registration,total_population,3.2,27,,30-34
+17.04.07,3,Nasal,age_group,30-34,,1356,jiwa,2025,registration,total_population,3.2,27,,30-34
+17.04.07,3,Nasal,age_group,35-39,laki_laki,738,jiwa,2025,registration,total_population,3.2,27,,35-39
+17.04.07,3,Nasal,age_group,35-39,perempuan,697,jiwa,2025,registration,total_population,3.2,27,,35-39
+17.04.07,3,Nasal,age_group,35-39,,1435,jiwa,2025,registration,total_population,3.2,27,,35-39
+17.04.07,3,Nasal,age_group,40-44,laki_laki,723,jiwa,2025,registration,total_population,3.2,27,,40-44
+17.04.07,3,Nasal,age_group,40-44,perempuan,692,jiwa,2025,registration,total_population,3.2,27,,40-44
+17.04.07,3,Nasal,age_group,40-44,,1415,jiwa,2025,registration,total_population,3.2,27,,40-44
+17.04.07,3,Nasal,age_group,45-49,laki_laki,708,jiwa,2025,registration,total_population,3.2,27,,45-49
+17.04.07,3,Nasal,age_group,45-49,perempuan,568,jiwa,2025,registration,total_population,3.2,27,,45-49
+17.04.07,3,Nasal,age_group,45-49,,1276,jiwa,2025,registration,total_population,3.2,27,,45-49
+17.04.07,3,Nasal,age_group,50-54,laki_laki,503,jiwa,2025,registration,total_population,3.2,27,,50-54
+17.04.07,3,Nasal,age_group,50-54,perempuan,449,jiwa,2025,registration,total_population,3.2,27,,50-54
+17.04.07,3,Nasal,age_group,50-54,,952,jiwa,2025,registration,total_population,3.2,27,,50-54
+17.04.07,3,Nasal,age_group,55-59,laki_laki,406,jiwa,2025,registration,total_population,3.2,27,,55-59
+17.04.07,3,Nasal,age_group,55-59,perempuan,397,jiwa,2025,registration,total_population,3.2,27,,55-59
+17.04.07,3,Nasal,age_group,55-59,,803,jiwa,2025,registration,total_population,3.2,27,,55-59
+17.04.07,3,Nasal,age_group,60-64,laki_laki,337,jiwa,2025,registration,total_population,3.2,27,,60-64
+17.04.07,3,Nasal,age_group,60-64,perempuan,266,jiwa,2025,registration,total_population,3.2,27,,60-64
+17.04.07,3,Nasal,age_group,60-64,,603,jiwa,2025,registration,total_population,3.2,27,,60-64
+17.04.07,3,Nasal,age_group,65-69,laki_laki,244,jiwa,2025,registration,total_population,3.2,27,,65-69
+17.04.07,3,Nasal,age_group,65-69,perempuan,182,jiwa,2025,registration,total_population,3.2,27,,65-69
+17.04.07,3,Nasal,age_group,65-69,,426,jiwa,2025,registration,total_population,3.2,27,,65-69
+17.04.07,3,Nasal,age_group,70-74,laki_laki,177,jiwa,2025,registration,total_population,3.2,27,,70-74
+17.04.07,3,Nasal,age_group,70-74,perempuan,96,jiwa,2025,registration,total_population,3.2,27,,70-74
+17.04.07,3,Nasal,age_group,70-74,,273,jiwa,2025,registration,total_population,3.2,27,,70-74
+17.04.07,3,Nasal,age_group,75+,laki_laki,176,jiwa,2025,registration,total_population,3.2,27,,75+
+17.04.07,3,Nasal,age_group,75+,perempuan,139,jiwa,2025,registration,total_population,3.2,27,,75+
+17.04.07,3,Nasal,age_group,75+,,315,jiwa,2025,registration,total_population,3.2,27,,75+
+17.04.07,3,Kecamatan Nasal,sex,laki_laki,,9168,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+17.04.07,3,Kecamatan Nasal,sex,perempuan,,8356,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+17.04.07,3,Kecamatan Nasal,total,total,,17524,jiwa,2025,registration,total_population,3.2,27,,

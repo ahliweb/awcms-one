@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3315-kecamatan-331507-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.15.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kradenan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Grobogan",
+  "publisherDomain": "3315",
+  "publisherWebsite": "https://grobogankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Grobogan (https://grobogankab.bps.go.id), publikasi \"Kecamatan Kradenan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3315070",
+  "publicationNumber": "33150.26013",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://grobogankab.bps.go.id/id/publication/2026/09/28/5ab95e58ef66e6a02e9780f3/kecamatan-kradenan-dalam-angka-2026.html",
+  "sourceFileSha256": "febfbe5930f12df8e711c58624655445eced362a982d51f6d0e7768e57231f36",
+  "sourceFileBytes": 15426767,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Grobogan.",
+  "csvPath": "datasets/bps-3315-kecamatan-331507-dalam-angka-2026.csv",
+  "csvSha256": "189cd0fbf99223102144575740e7fcc614e7cd46c436880fddc8a33f4a294df6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kradenan , 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kradenan , 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 33.15.07 are not stored: age_group vs total: parts sum 87084.0000 != 86724.0000 (diff 360.0000); the source itself is inconsistent"
+  ]
+}

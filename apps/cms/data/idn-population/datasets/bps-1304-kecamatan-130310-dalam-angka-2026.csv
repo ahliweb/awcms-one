@@ -1,0 +1,45 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.03.10.2001,4,Batu Manjulur,sex,perempuan,,1005,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+13.03.10.2001,4,Batu Manjulur,total,total,,1996,jiwa,2025,registration,total_population,3.1,35,,
+13.03.10.2002,4,Pamuatan,sex,perempuan,,774,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+13.03.10.2002,4,Pamuatan,total,total,,1624,jiwa,2025,registration,total_population,3.1,35,,
+13.03.10.2003,4,Padang Sibusuk,sex,perempuan,,3936,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+13.03.10.2003,4,Padang Sibusuk,total,total,,7826,jiwa,2025,registration,total_population,3.1,35,,
+13.03.10.2004,4,Kampung Baru,sex,perempuan,,843,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+13.03.10.2004,4,Kampung Baru,total,total,,1683,jiwa,2025,registration,total_population,3.1,35,,
+13.03.10,3,Kupitan,sex,perempuan,,6558,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+13.03.10,3,Kupitan,total,total,,13129,jiwa,2025,registration,total_population,3.1,35,,
+13.03.10,3,Kupitan,age_group,0-4,perempuan,317,jiwa,2025,registration,total_population,3.2,37,,0–4
+13.03.10,3,Kupitan,age_group,0-4,,677,jiwa,2025,registration,total_population,3.2,37,,0–4
+13.03.10,3,Kupitan,age_group,5-9,perempuan,461,jiwa,2025,registration,total_population,3.2,37,,5–9
+13.03.10,3,Kupitan,age_group,5-9,,918,jiwa,2025,registration,total_population,3.2,37,,5–9
+13.03.10,3,Kupitan,age_group,10-14,perempuan,591,jiwa,2025,registration,total_population,3.2,37,,10–14
+13.03.10,3,Kupitan,age_group,10-14,,1205,jiwa,2025,registration,total_population,3.2,37,,10–14
+13.03.10,3,Kupitan,age_group,15-19,perempuan,624,jiwa,2025,registration,total_population,3.2,37,,15–19
+13.03.10,3,Kupitan,age_group,15-19,,1323,jiwa,2025,registration,total_population,3.2,37,,15–19
+13.03.10,3,Kupitan,age_group,20-24,perempuan,596,jiwa,2025,registration,total_population,3.2,37,,20–24
+13.03.10,3,Kupitan,age_group,20-24,,1228,jiwa,2025,registration,total_population,3.2,37,,20–24
+13.03.10,3,Kupitan,age_group,25-29,perempuan,475,jiwa,2025,registration,total_population,3.2,37,,25–29
+13.03.10,3,Kupitan,age_group,25-29,,1015,jiwa,2025,registration,total_population,3.2,37,,25–29
+13.03.10,3,Kupitan,age_group,30-34,perempuan,324,jiwa,2025,registration,total_population,3.2,37,,30–34
+13.03.10,3,Kupitan,age_group,30-34,,721,jiwa,2025,registration,total_population,3.2,37,,30–34
+13.03.10,3,Kupitan,age_group,35-39,perempuan,375,jiwa,2025,registration,total_population,3.2,37,,35–39
+13.03.10,3,Kupitan,age_group,35-39,,748,jiwa,2025,registration,total_population,3.2,37,,35–39
+13.03.10,3,Kupitan,age_group,40-44,perempuan,440,jiwa,2025,registration,total_population,3.2,37,,40–44
+13.03.10,3,Kupitan,age_group,40-44,,871,jiwa,2025,registration,total_population,3.2,37,,40–44
+13.03.10,3,Kupitan,age_group,45-49,perempuan,471,jiwa,2025,registration,total_population,3.2,37,,45–49
+13.03.10,3,Kupitan,age_group,45-49,,893,jiwa,2025,registration,total_population,3.2,37,,45–49
+13.03.10,3,Kupitan,age_group,50-54,perempuan,449,jiwa,2025,registration,total_population,3.2,37,,50–54
+13.03.10,3,Kupitan,age_group,50-54,,928,jiwa,2025,registration,total_population,3.2,37,,50–54
+13.03.10,3,Kupitan,age_group,55-59,perempuan,370,jiwa,2025,registration,total_population,3.2,37,,55–59
+13.03.10,3,Kupitan,age_group,55-59,,682,jiwa,2025,registration,total_population,3.2,37,,55–59
+13.03.10,3,Kupitan,age_group,60-64,perempuan,336,jiwa,2025,registration,total_population,3.2,37,,60–64
+13.03.10,3,Kupitan,age_group,60-64,,649,jiwa,2025,registration,total_population,3.2,37,,60–64
+13.03.10,3,Kupitan,age_group,65-69,perempuan,261,jiwa,2025,registration,total_population,3.2,37,,65–69
+13.03.10,3,Kupitan,age_group,65-69,,495,jiwa,2025,registration,total_population,3.2,37,,65–69
+13.03.10,3,Kupitan,age_group,70-74,perempuan,238,jiwa,2025,registration,total_population,3.2,37,,70–74
+13.03.10,3,Kupitan,age_group,70-74,,410,jiwa,2025,registration,total_population,3.2,37,,70–74
+13.03.10,3,Kupitan,age_group,75+,perempuan,230,jiwa,2025,registration,total_population,3.2,37,,75+
+13.03.10,3,Kupitan,age_group,75+,,366,jiwa,2025,registration,total_population,3.2,37,,75+
+13.03.10,3,Kupitan,sex,perempuan,,6558,jiwa,2025,registration,total_population,3.2,37,,Perempuan
+13.03.10,3,Kupitan,total,total,,13129,jiwa,2025,registration,total_population,3.2,37,,

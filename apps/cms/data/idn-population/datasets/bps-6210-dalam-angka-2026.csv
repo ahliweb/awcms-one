@@ -1,0 +1,171 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.11.02,3,Kahayan Kuala,total,total,,20.15,ribu_jiwa,2025,projection,total_population,3.1.1,65,,
+62.11.08,3,Sebangau Kuala,total,total,,8.48,ribu_jiwa,2025,projection,total_population,3.1.1,65,,
+62.11.01,3,Pandih Batu,total,total,,21.74,ribu_jiwa,2025,projection,total_population,3.1.1,65,,
+62.11.06,3,Maliku,total,total,,27.27,ribu_jiwa,2025,projection,total_population,3.1.1,65,,
+62.11.05,3,Kahayan Hilir,total,total,,33.63,ribu_jiwa,2025,projection,total_population,3.1.1,65,,
+62.11.07,3,Jabiren Raya,total,total,,9.55,ribu_jiwa,2025,projection,total_population,3.1.1,65,,
+62.11.03,3,Kahayan Tengah,total,total,,9.07,ribu_jiwa,2025,projection,total_population,3.1.1,65,,
+62.11.04,3,Banama Tingang,total,total,,10.89,ribu_jiwa,2025,projection,total_population,3.1.1,65,,
+62.11,2,Pulang Pisau,total,total,,140.78,ribu_jiwa,2025,projection,total_population,3.1.1,65,,
+62.11,2,Kabupaten Pulang Pisau,total,total,,146.48,ribu_jiwa,2025,registration,total_population,3.1.1,65,,
+62.11,2,Kabupaten Pulang Pisau,age_group,0-4,laki_laki,5.90,ribu_jiwa,2025,projection,total_population,3.1.2,68,,0–4
+62.11,2,Kabupaten Pulang Pisau,age_group,0-4,perempuan,5.65,ribu_jiwa,2025,projection,total_population,3.1.2,68,,0–4
+62.11,2,Kabupaten Pulang Pisau,age_group,0-4,,11.55,ribu_jiwa,2025,projection,total_population,3.1.2,68,,0–4
+62.11,2,Kabupaten Pulang Pisau,age_group,5-9,laki_laki,5.92,ribu_jiwa,2025,projection,total_population,3.1.2,68,,5–9
+62.11,2,Kabupaten Pulang Pisau,age_group,5-9,perempuan,5.67,ribu_jiwa,2025,projection,total_population,3.1.2,68,,5–9
+62.11,2,Kabupaten Pulang Pisau,age_group,5-9,,11.59,ribu_jiwa,2025,projection,total_population,3.1.2,68,,5–9
+62.11,2,Kabupaten Pulang Pisau,age_group,10-14,laki_laki,5.74,ribu_jiwa,2025,projection,total_population,3.1.2,68,,10–14
+62.11,2,Kabupaten Pulang Pisau,age_group,10-14,perempuan,5.60,ribu_jiwa,2025,projection,total_population,3.1.2,68,,10–14
+62.11,2,Kabupaten Pulang Pisau,age_group,10-14,,11.34,ribu_jiwa,2025,projection,total_population,3.1.2,68,,10–14
+62.11,2,Kabupaten Pulang Pisau,age_group,15-19,laki_laki,5.99,ribu_jiwa,2025,projection,total_population,3.1.2,68,,15–19
+62.11,2,Kabupaten Pulang Pisau,age_group,15-19,perempuan,5.38,ribu_jiwa,2025,projection,total_population,3.1.2,68,,15–19
+62.11,2,Kabupaten Pulang Pisau,age_group,15-19,,11.37,ribu_jiwa,2025,projection,total_population,3.1.2,68,,15–19
+62.11,2,Kabupaten Pulang Pisau,age_group,20-24,laki_laki,5.59,ribu_jiwa,2025,projection,total_population,3.1.2,68,,20–24
+62.11,2,Kabupaten Pulang Pisau,age_group,20-24,perempuan,5.43,ribu_jiwa,2025,projection,total_population,3.1.2,68,,20–24
+62.11,2,Kabupaten Pulang Pisau,age_group,20-24,,11.02,ribu_jiwa,2025,projection,total_population,3.1.2,68,,20–24
+62.11,2,Kabupaten Pulang Pisau,age_group,25-29,laki_laki,6.17,ribu_jiwa,2025,projection,total_population,3.1.2,68,,25–29
+62.11,2,Kabupaten Pulang Pisau,age_group,25-29,perempuan,5.64,ribu_jiwa,2025,projection,total_population,3.1.2,68,,25–29
+62.11,2,Kabupaten Pulang Pisau,age_group,25-29,,11.81,ribu_jiwa,2025,projection,total_population,3.1.2,68,,25–29
+62.11,2,Kabupaten Pulang Pisau,age_group,30-34,laki_laki,6.04,ribu_jiwa,2025,projection,total_population,3.1.2,68,,30–34
+62.11,2,Kabupaten Pulang Pisau,age_group,30-34,perempuan,5.28,ribu_jiwa,2025,projection,total_population,3.1.2,68,,30–34
+62.11,2,Kabupaten Pulang Pisau,age_group,30-34,,11.32,ribu_jiwa,2025,projection,total_population,3.1.2,68,,30–34
+62.11,2,Kabupaten Pulang Pisau,age_group,35-39,laki_laki,5.52,ribu_jiwa,2025,projection,total_population,3.1.2,68,,35–39
+62.11,2,Kabupaten Pulang Pisau,age_group,35-39,perempuan,4.96,ribu_jiwa,2025,projection,total_population,3.1.2,68,,35–39
+62.11,2,Kabupaten Pulang Pisau,age_group,35-39,,10.47,ribu_jiwa,2025,projection,total_population,3.1.2,68,,35–39
+62.11,2,Kabupaten Pulang Pisau,age_group,40-44,laki_laki,5.30,ribu_jiwa,2025,projection,total_population,3.1.2,68,,40–44
+62.11,2,Kabupaten Pulang Pisau,age_group,40-44,perempuan,4.81,ribu_jiwa,2025,projection,total_population,3.1.2,68,,40–44
+62.11,2,Kabupaten Pulang Pisau,age_group,40-44,,10.11,ribu_jiwa,2025,projection,total_population,3.1.2,68,,40–44
+62.11,2,Kabupaten Pulang Pisau,age_group,45-49,laki_laki,4.91,ribu_jiwa,2025,projection,total_population,3.1.2,68,,45–49
+62.11,2,Kabupaten Pulang Pisau,age_group,45-49,perempuan,4.38,ribu_jiwa,2025,projection,total_population,3.1.2,68,,45–49
+62.11,2,Kabupaten Pulang Pisau,age_group,45-49,,9.29,ribu_jiwa,2025,projection,total_population,3.1.2,68,,45–49
+62.11,2,Kabupaten Pulang Pisau,age_group,50-54,laki_laki,4.28,ribu_jiwa,2025,projection,total_population,3.1.2,68,,50–54
+62.11,2,Kabupaten Pulang Pisau,age_group,50-54,perempuan,3.98,ribu_jiwa,2025,projection,total_population,3.1.2,68,,50–54
+62.11,2,Kabupaten Pulang Pisau,age_group,50-54,,8.26,ribu_jiwa,2025,projection,total_population,3.1.2,68,,50–54
+62.11,2,Kabupaten Pulang Pisau,age_group,55-59,laki_laki,3.55,ribu_jiwa,2025,projection,total_population,3.1.2,68,,55–59
+62.11,2,Kabupaten Pulang Pisau,age_group,55-59,perempuan,3.13,ribu_jiwa,2025,projection,total_population,3.1.2,68,,55–59
+62.11,2,Kabupaten Pulang Pisau,age_group,55-59,,6.68,ribu_jiwa,2025,projection,total_population,3.1.2,68,,55–59
+62.11,2,Kabupaten Pulang Pisau,age_group,60-64,laki_laki,2.86,ribu_jiwa,2025,projection,total_population,3.1.2,68,,60–64
+62.11,2,Kabupaten Pulang Pisau,age_group,60-64,perempuan,2.78,ribu_jiwa,2025,projection,total_population,3.1.2,68,,60–64
+62.11,2,Kabupaten Pulang Pisau,age_group,60-64,,5.63,ribu_jiwa,2025,projection,total_population,3.1.2,68,,60–64
+62.11,2,Kabupaten Pulang Pisau,age_group,65-69,laki_laki,2.08,ribu_jiwa,2025,projection,total_population,3.1.2,68,,65–69
+62.11,2,Kabupaten Pulang Pisau,age_group,65-69,perempuan,2.10,ribu_jiwa,2025,projection,total_population,3.1.2,68,,65–69
+62.11,2,Kabupaten Pulang Pisau,age_group,65-69,,4.18,ribu_jiwa,2025,projection,total_population,3.1.2,68,,65–69
+62.11,2,Kabupaten Pulang Pisau,age_group,70-74,laki_laki,1.48,ribu_jiwa,2025,projection,total_population,3.1.2,68,,70–74
+62.11,2,Kabupaten Pulang Pisau,age_group,70-74,perempuan,1.53,ribu_jiwa,2025,projection,total_population,3.1.2,68,,70–74
+62.11,2,Kabupaten Pulang Pisau,age_group,70-74,,3.01,ribu_jiwa,2025,projection,total_population,3.1.2,68,,70–74
+62.11,2,Kabupaten Pulang Pisau,age_group,75+,laki_laki,1.62,ribu_jiwa,2025,projection,total_population,3.1.2,68,,75+
+62.11,2,Kabupaten Pulang Pisau,age_group,75+,perempuan,1.54,ribu_jiwa,2025,projection,total_population,3.1.2,68,,75+
+62.11,2,Kabupaten Pulang Pisau,age_group,75+,,3.16,ribu_jiwa,2025,projection,total_population,3.1.2,68,,75+
+62.11,2,Pulang Pisau,sex,laki_laki,,72.92,ribu_jiwa,2025,projection,total_population,3.1.2,68,,Laki-Laki
+62.11,2,Pulang Pisau,sex,perempuan,,67.86,ribu_jiwa,2025,projection,total_population,3.1.2,68,,Perempuan
+62.11,2,Pulang Pisau,total,total,,140.78,ribu_jiwa,2025,projection,total_population,3.1.2,68,,
+62.11.02,3,Kahayan Kuala,religion,islam,,21791,jiwa,2025,registration,total_population,4.3.1,162,,Islam
+62.11.02,3,Kahayan Kuala,religion,kristen,,180,jiwa,2025,registration,total_population,4.3.1,162,,Protestan
+62.11.02,3,Kahayan Kuala,religion,katolik,,25,jiwa,2025,registration,total_population,4.3.1,162,,Katolik
+62.11.02,3,Kahayan Kuala,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Hindu
+62.11.02,3,Kahayan Kuala,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Budha
+62.11.02,3,Kahayan Kuala,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Khonghucu
+62.11.02,3,Kahayan Kuala,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Lainnya
+62.11.08,3,Sebangau Kuala,religion,islam,,7095,jiwa,2025,registration,total_population,4.3.1,162,,Islam
+62.11.08,3,Sebangau Kuala,religion,kristen,,206,jiwa,2025,registration,total_population,4.3.1,162,,Protestan
+62.11.08,3,Sebangau Kuala,religion,katolik,,106,jiwa,2025,registration,total_population,4.3.1,162,,Katolik
+62.11.08,3,Sebangau Kuala,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Hindu
+62.11.08,3,Sebangau Kuala,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Budha
+62.11.08,3,Sebangau Kuala,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Khonghucu
+62.11.08,3,Sebangau Kuala,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Lainnya
+62.11.01,3,Pandih Batu,religion,islam,,21224,jiwa,2025,registration,total_population,4.3.1,162,,Islam
+62.11.01,3,Pandih Batu,religion,kristen,,900,jiwa,2025,registration,total_population,4.3.1,162,,Protestan
+62.11.01,3,Pandih Batu,religion,katolik,,89,jiwa,2025,registration,total_population,4.3.1,162,,Katolik
+62.11.01,3,Pandih Batu,religion,hindu,,63,jiwa,2025,registration,total_population,4.3.1,162,,Hindu
+62.11.01,3,Pandih Batu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Budha
+62.11.01,3,Pandih Batu,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Khonghucu
+62.11.01,3,Pandih Batu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Lainnya
+62.11.06,3,Maliku,religion,islam,,26526,jiwa,2025,registration,total_population,4.3.1,162,,Islam
+62.11.06,3,Maliku,religion,kristen,,1177,jiwa,2025,registration,total_population,4.3.1,162,,Protestan
+62.11.06,3,Maliku,religion,katolik,,101,jiwa,2025,registration,total_population,4.3.1,162,,Katolik
+62.11.06,3,Maliku,religion,hindu,,180,jiwa,2025,registration,total_population,4.3.1,162,,Hindu
+62.11.06,3,Maliku,religion,buddha,,6,jiwa,2025,registration,total_population,4.3.1,162,,Budha
+62.11.06,3,Maliku,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Khonghucu
+62.11.06,3,Maliku,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Lainnya
+62.11.05,3,Kahayan Hilir,religion,islam,,27052,jiwa,2025,registration,total_population,4.3.1,162,,Islam
+62.11.05,3,Kahayan Hilir,religion,kristen,,6789,jiwa,2025,registration,total_population,4.3.1,162,,Protestan
+62.11.05,3,Kahayan Hilir,religion,katolik,,895,jiwa,2025,registration,total_population,4.3.1,162,,Katolik
+62.11.05,3,Kahayan Hilir,religion,hindu,,403,jiwa,2025,registration,total_population,4.3.1,162,,Hindu
+62.11.05,3,Kahayan Hilir,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Budha
+62.11.05,3,Kahayan Hilir,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Khonghucu
+62.11.05,3,Kahayan Hilir,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Lainnya
+62.11.07,3,Jabiren Raya,religion,islam,,6704,jiwa,2025,registration,total_population,4.3.1,162,,Islam
+62.11.07,3,Jabiren Raya,religion,kristen,,3082,jiwa,2025,registration,total_population,4.3.1,162,,Protestan
+62.11.07,3,Jabiren Raya,religion,katolik,,108,jiwa,2025,registration,total_population,4.3.1,162,,Katolik
+62.11.07,3,Jabiren Raya,religion,hindu,,160,jiwa,2025,registration,total_population,4.3.1,162,,Hindu
+62.11.07,3,Jabiren Raya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Budha
+62.11.07,3,Jabiren Raya,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Khonghucu
+62.11.07,3,Jabiren Raya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Lainnya
+62.11.03,3,Kahayan Tengah,religion,islam,,1694,jiwa,2025,registration,total_population,4.3.1,162,,Islam
+62.11.03,3,Kahayan Tengah,religion,kristen,,7376,jiwa,2025,registration,total_population,4.3.1,162,,Protestan
+62.11.03,3,Kahayan Tengah,religion,katolik,,100,jiwa,2025,registration,total_population,4.3.1,162,,Katolik
+62.11.03,3,Kahayan Tengah,religion,hindu,,879,jiwa,2025,registration,total_population,4.3.1,162,,Hindu
+62.11.03,3,Kahayan Tengah,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,162,,Budha
+62.11.03,3,Kahayan Tengah,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Khonghucu
+62.11.03,3,Kahayan Tengah,religion,lainnya,,6,jiwa,2025,registration,total_population,4.3.1,162,,Lainnya
+62.11.04,3,Banama Tingang,religion,islam,,1703,jiwa,2025,registration,total_population,4.3.1,162,,Islam
+62.11.04,3,Banama Tingang,religion,kristen,,8638,jiwa,2025,registration,total_population,4.3.1,162,,Protestan
+62.11.04,3,Banama Tingang,religion,katolik,,346,jiwa,2025,registration,total_population,4.3.1,162,,Katolik
+62.11.04,3,Banama Tingang,religion,hindu,,875,jiwa,2025,registration,total_population,4.3.1,162,,Hindu
+62.11.04,3,Banama Tingang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Budha
+62.11.04,3,Banama Tingang,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Khonghucu
+62.11.04,3,Banama Tingang,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,162,,Lainnya
+62.11,2,Pulang Pisau,religion,islam,,113789,jiwa,2025,registration,total_population,4.3.1,162,,Islam
+62.11,2,Pulang Pisau,religion,kristen,,28348,jiwa,2025,registration,total_population,4.3.1,162,,Protestan
+62.11,2,Pulang Pisau,religion,katolik,,1770,jiwa,2025,registration,total_population,4.3.1,162,,Katolik
+62.11,2,Pulang Pisau,religion,hindu,,2560,jiwa,2025,registration,total_population,4.3.1,162,,Hindu
+62.11,2,Pulang Pisau,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,162,,Budha
+62.11,2,Pulang Pisau,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,162,nil,Khonghucu
+62.11,2,Pulang Pisau,religion,lainnya,,7,jiwa,2025,registration,total_population,4.3.1,162,,Lainnya
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/padi_padian,,112945,rupiah,2024,survey_estimate,per_capita,10.1,338,,Padi-padian
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/padi_padian,,100586,rupiah,2025,survey_estimate,per_capita,10.1,338,,Padi-padian
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/umbi_umbian,,7839,rupiah,2024,survey_estimate,per_capita,10.1,338,,Umbi-umbian
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/umbi_umbian,,7585,rupiah,2025,survey_estimate,per_capita,10.1,338,,Umbi-umbian
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,94951,rupiah,2024,survey_estimate,per_capita,10.1,338,,Ikan/udang/cumi/kerang
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,98491,rupiah,2025,survey_estimate,per_capita,10.1,338,,Ikan/udang/cumi/kerang
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/daging,,48435,rupiah,2024,survey_estimate,per_capita,10.1,338,,Daging
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/daging,,51218,rupiah,2025,survey_estimate,per_capita,10.1,338,,Daging
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/telur_dan_susu,,34067,rupiah,2024,survey_estimate,per_capita,10.1,338,,Telur dan susu
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/telur_dan_susu,,38110,rupiah,2025,survey_estimate,per_capita,10.1,338,,Telur dan susu
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/sayur_sayuran,,70731,rupiah,2024,survey_estimate,per_capita,10.1,338,,Sayur-sayuran
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/sayur_sayuran,,76182,rupiah,2025,survey_estimate,per_capita,10.1,338,,Sayur-sayuran
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/kacang_kacangan,,12505,rupiah,2024,survey_estimate,per_capita,10.1,338,,Kacang-kacangan
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/kacang_kacangan,,13228,rupiah,2025,survey_estimate,per_capita,10.1,338,,Kacang-kacangan
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/buah_buahan,,42825,rupiah,2024,survey_estimate,per_capita,10.1,338,,Buah-buahan
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/buah_buahan,,40011,rupiah,2025,survey_estimate,per_capita,10.1,338,,Buah-buahan
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22086,rupiah,2024,survey_estimate,per_capita,10.1,338,,Minyak dan kelapa
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23251,rupiah,2025,survey_estimate,per_capita,10.1,338,,Minyak dan kelapa
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/bahan_minuman,,30097,rupiah,2024,survey_estimate,per_capita,10.1,338,,Bahan minuman
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/bahan_minuman,,32161,rupiah,2025,survey_estimate,per_capita,10.1,338,,Bahan minuman
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/bumbu_bumbuan,,24728,rupiah,2024,survey_estimate,per_capita,10.1,338,,Bumbu-bumbuan
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/bumbu_bumbuan,,23440,rupiah,2025,survey_estimate,per_capita,10.1,338,,Bumbu-bumbuan
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/konsumsi_lainnya,,18232,rupiah,2024,survey_estimate,per_capita,10.1,338,,Konsumsi lainnya
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/konsumsi_lainnya,,17433,rupiah,2025,survey_estimate,per_capita,10.1,338,,Konsumsi lainnya
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,205643,rupiah,2024,survey_estimate,per_capita,10.1,338,,Makanan dan minuman jadi
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,212891,rupiah,2025,survey_estimate,per_capita,10.1,338,,Makanan dan minuman jadi
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/rokok,,116844,rupiah,2024,survey_estimate,per_capita,10.1,338,,Rokok
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/rokok,,107258,rupiah,2025,survey_estimate,per_capita,10.1,338,,Rokok
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/jumlah_makanan,,841928,rupiah,2024,survey_estimate,per_capita,10.1,338,,Jumlah makanan
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/jumlah_makanan,,841845,rupiah,2025,survey_estimate,per_capita,10.1,338,,Jumlah makanan
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,358443,rupiah,2024,survey_estimate,per_capita,10.1,338,,Perumahan dan fasilitas rumah tangga
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,353640,rupiah,2025,survey_estimate,per_capita,10.1,338,,Perumahan dan fasilitas rumah tangga
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,106099,rupiah,2024,survey_estimate,per_capita,10.1,338,,Aneka barang dan jasa
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,121678,rupiah,2025,survey_estimate,per_capita,10.1,338,,Aneka barang dan jasa
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,27554,rupiah,2024,survey_estimate,per_capita,10.1,338,,"Pakaian, alas kaki, dan tutup kepala"
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,33095,rupiah,2025,survey_estimate,per_capita,10.1,338,,"Pakaian, alas kaki, dan tutup kepala"
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/barang_tahan_lama,,29326,rupiah,2024,survey_estimate,per_capita,10.1,338,,Barang tahan lama
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/barang_tahan_lama,,122055,rupiah,2025,survey_estimate,per_capita,10.1,338,,Barang tahan lama
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,40485,rupiah,2024,survey_estimate,per_capita,10.1,338,,"Pajak, pungutan, dan asuransi"
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,48018,rupiah,2025,survey_estimate,per_capita,10.1,338,,"Pajak, pungutan, dan asuransi"
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,24201,rupiah,2024,survey_estimate,per_capita,10.1,338,,Keperluan pesta dan upacara/kenduri
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,31770,rupiah,2025,survey_estimate,per_capita,10.1,338,,Keperluan pesta dan upacara/kenduri
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,586106,rupiah,2024,survey_estimate,per_capita,10.1,338,,Jumlah bukan makanan
+62.11,2,Kabupaten Pulang Pisau,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,710256,rupiah,2025,survey_estimate,per_capita,10.1,338,,Jumlah bukan makanan
+62.11,2,Kabupaten Pulang Pisau,expenditure,total,,1428035,rupiah,2024,survey_estimate,per_capita,10.1,338,,
+62.11,2,Kabupaten Pulang Pisau,expenditure,total,,1552101,rupiah,2025,survey_estimate,per_capita,10.1,338,,

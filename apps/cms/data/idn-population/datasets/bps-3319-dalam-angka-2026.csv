@@ -1,0 +1,161 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.19.01,3,Kaliwungu,total,total,,110.13,ribu_jiwa,2025,projection,total_population,3.1.1,38,,
+33.19.03,3,Jati,total,total,,114.08,ribu_jiwa,2025,projection,total_population,3.1.1,38,,
+33.19.04,3,Undaan,total,total,,80.83,ribu_jiwa,2025,projection,total_population,3.1.1,38,,
+33.19.05,3,Mejobo,total,total,,81.75,ribu_jiwa,2025,projection,total_population,3.1.1,38,,
+33.19.06,3,Jekulo,total,total,,114.23,ribu_jiwa,2025,projection,total_population,3.1.1,38,,
+33.19.07,3,Bae,total,total,,78.16,ribu_jiwa,2025,projection,total_population,3.1.1,38,,
+33.19.08,3,Gebog,total,total,,110.16,ribu_jiwa,2025,projection,total_population,3.1.1,38,,
+33.19.09,3,Dawe,total,total,,112.58,ribu_jiwa,2025,projection,total_population,3.1.1,38,,
+33.19,2,Kabupaten Kudus,total,total,,891.72,ribu_jiwa,2025,projection,total_population,3.1.1,38,,
+33.19,2,Kabupaten Kudus,age_group,0-4,laki_laki,34076,jiwa,2025,projection,total_population,3.1.2,41,,00 – 04
+33.19,2,Kabupaten Kudus,age_group,0-4,perempuan,32723,jiwa,2025,projection,total_population,3.1.2,41,,00 – 04
+33.19,2,Kabupaten Kudus,age_group,0-4,,66799,jiwa,2025,projection,total_population,3.1.2,41,,00 – 04
+33.19,2,Kabupaten Kudus,age_group,5-9,laki_laki,33674,jiwa,2025,projection,total_population,3.1.2,41,,05 – 09
+33.19,2,Kabupaten Kudus,age_group,5-9,perempuan,32132,jiwa,2025,projection,total_population,3.1.2,41,,05 – 09
+33.19,2,Kabupaten Kudus,age_group,5-9,,65806,jiwa,2025,projection,total_population,3.1.2,41,,05 – 09
+33.19,2,Kabupaten Kudus,age_group,10-14,laki_laki,33824,jiwa,2025,projection,total_population,3.1.2,41,,10 – 14
+33.19,2,Kabupaten Kudus,age_group,10-14,perempuan,32171,jiwa,2025,projection,total_population,3.1.2,41,,10 – 14
+33.19,2,Kabupaten Kudus,age_group,10-14,,65995,jiwa,2025,projection,total_population,3.1.2,41,,10 – 14
+33.19,2,Kabupaten Kudus,age_group,15-19,laki_laki,34013,jiwa,2025,projection,total_population,3.1.2,41,,15 – 19
+33.19,2,Kabupaten Kudus,age_group,15-19,perempuan,31970,jiwa,2025,projection,total_population,3.1.2,41,,15 – 19
+33.19,2,Kabupaten Kudus,age_group,15-19,,65983,jiwa,2025,projection,total_population,3.1.2,41,,15 – 19
+33.19,2,Kabupaten Kudus,age_group,20-24,laki_laki,34103,jiwa,2025,projection,total_population,3.1.2,41,,20 – 24
+33.19,2,Kabupaten Kudus,age_group,20-24,perempuan,32573,jiwa,2025,projection,total_population,3.1.2,41,,20 – 24
+33.19,2,Kabupaten Kudus,age_group,20-24,,66676,jiwa,2025,projection,total_population,3.1.2,41,,20 – 24
+33.19,2,Kabupaten Kudus,age_group,25-29,laki_laki,33385,jiwa,2025,projection,total_population,3.1.2,41,,25 – 29
+33.19,2,Kabupaten Kudus,age_group,25-29,perempuan,32234,jiwa,2025,projection,total_population,3.1.2,41,,25 – 29
+33.19,2,Kabupaten Kudus,age_group,25-29,,65619,jiwa,2025,projection,total_population,3.1.2,41,,25 – 29
+33.19,2,Kabupaten Kudus,age_group,30-34,laki_laki,33626,jiwa,2025,projection,total_population,3.1.2,41,,30 – 34
+33.19,2,Kabupaten Kudus,age_group,30-34,perempuan,33003,jiwa,2025,projection,total_population,3.1.2,41,,30 – 34
+33.19,2,Kabupaten Kudus,age_group,30-34,,66629,jiwa,2025,projection,total_population,3.1.2,41,,30 – 34
+33.19,2,Kabupaten Kudus,age_group,35-39,laki_laki,35476,jiwa,2025,projection,total_population,3.1.2,41,,35 – 39
+33.19,2,Kabupaten Kudus,age_group,35-39,perempuan,34517,jiwa,2025,projection,total_population,3.1.2,41,,35 – 39
+33.19,2,Kabupaten Kudus,age_group,35-39,,69993,jiwa,2025,projection,total_population,3.1.2,41,,35 – 39
+33.19,2,Kabupaten Kudus,age_group,40-44,laki_laki,34101,jiwa,2025,projection,total_population,3.1.2,41,,40 – 44
+33.19,2,Kabupaten Kudus,age_group,40-44,perempuan,34217,jiwa,2025,projection,total_population,3.1.2,41,,40 – 44
+33.19,2,Kabupaten Kudus,age_group,40-44,,68318,jiwa,2025,projection,total_population,3.1.2,41,,40 – 44
+33.19,2,Kabupaten Kudus,age_group,45-49,laki_laki,32481,jiwa,2025,projection,total_population,3.1.2,41,,45 – 49
+33.19,2,Kabupaten Kudus,age_group,45-49,perempuan,33554,jiwa,2025,projection,total_population,3.1.2,41,,45 – 49
+33.19,2,Kabupaten Kudus,age_group,45-49,,66035,jiwa,2025,projection,total_population,3.1.2,41,,45 – 49
+33.19,2,Kabupaten Kudus,age_group,50-54,laki_laki,28203,jiwa,2025,projection,total_population,3.1.2,41,,50 – 54
+33.19,2,Kabupaten Kudus,age_group,50-54,perempuan,30510,jiwa,2025,projection,total_population,3.1.2,41,,50 – 54
+33.19,2,Kabupaten Kudus,age_group,50-54,,58713,jiwa,2025,projection,total_population,3.1.2,41,,50 – 54
+33.19,2,Kabupaten Kudus,age_group,55-59,laki_laki,25985,jiwa,2025,projection,total_population,3.1.2,41,,55 – 59
+33.19,2,Kabupaten Kudus,age_group,55-59,perempuan,28128,jiwa,2025,projection,total_population,3.1.2,41,,55 – 59
+33.19,2,Kabupaten Kudus,age_group,55-59,,54113,jiwa,2025,projection,total_population,3.1.2,41,,55 – 59
+33.19,2,Kabupaten Kudus,age_group,60-64,laki_laki,20777,jiwa,2025,projection,total_population,3.1.2,41,,60 – 64
+33.19,2,Kabupaten Kudus,age_group,60-64,perempuan,22551,jiwa,2025,projection,total_population,3.1.2,41,,60 – 64
+33.19,2,Kabupaten Kudus,age_group,60-64,,43328,jiwa,2025,projection,total_population,3.1.2,41,,60 – 64
+33.19,2,Kabupaten Kudus,age_group,65-69,laki_laki,15522,jiwa,2025,projection,total_population,3.1.2,41,,65 – 69
+33.19,2,Kabupaten Kudus,age_group,65-69,perempuan,16413,jiwa,2025,projection,total_population,3.1.2,41,,65 – 69
+33.19,2,Kabupaten Kudus,age_group,65-69,,31935,jiwa,2025,projection,total_population,3.1.2,41,,65 – 69
+33.19,2,Kabupaten Kudus,age_group,70-74,laki_laki,8949,jiwa,2025,projection,total_population,3.1.2,41,,70 – 74
+33.19,2,Kabupaten Kudus,age_group,70-74,perempuan,10262,jiwa,2025,projection,total_population,3.1.2,41,,70 – 74
+33.19,2,Kabupaten Kudus,age_group,70-74,,19211,jiwa,2025,projection,total_population,3.1.2,41,,70 – 74
+33.19,2,Kabupaten Kudus,age_group,75+,laki_laki,6300,jiwa,2025,projection,total_population,3.1.2,41,,75 +
+33.19,2,Kabupaten Kudus,age_group,75+,perempuan,10268,jiwa,2025,projection,total_population,3.1.2,41,,75 +
+33.19,2,Kabupaten Kudus,age_group,75+,,16568,jiwa,2025,projection,total_population,3.1.2,41,,75 +
+33.19,2,Kabupaten Kudus,sex,laki_laki,,444495,jiwa,2025,projection,total_population,3.1.2,41,,Laki-laki
+33.19,2,Kabupaten Kudus,sex,perempuan,,447226,jiwa,2025,projection,total_population,3.1.2,41,,Perempuan
+33.19,2,Kabupaten Kudus,total,total,,891721,jiwa,2025,projection,total_population,3.1.2,41,,
+33.19.01,3,Kaliwungu,religion,islam,,106883,jiwa,2025,registration,total_population,4.3.1,99,,Islam
+33.19.01,3,Kaliwungu,religion,kristen,,883,jiwa,2025,registration,total_population,4.3.1,99,,Protestan
+33.19.01,3,Kaliwungu,religion,katolik,,458,jiwa,2025,registration,total_population,4.3.1,99,,Katolik
+33.19.01,3,Kaliwungu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,99,nil,Hindu
+33.19.01,3,Kaliwungu,religion,buddha,,15,jiwa,2025,registration,total_population,4.3.1,99,,Budha
+33.19.01,3,Kaliwungu,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,99,,Lainnya
+33.19.02,3,Kota Kudus,religion,islam,,84495,jiwa,2025,registration,total_population,4.3.1,99,,Islam
+33.19.02,3,Kota Kudus,religion,kristen,,4286,jiwa,2025,registration,total_population,4.3.1,99,,Protestan
+33.19.02,3,Kota Kudus,religion,katolik,,2141,jiwa,2025,registration,total_population,4.3.1,99,,Katolik
+33.19.02,3,Kota Kudus,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,99,,Hindu
+33.19.02,3,Kota Kudus,religion,buddha,,160,jiwa,2025,registration,total_population,4.3.1,99,,Budha
+33.19.02,3,Kota Kudus,religion,lainnya,,20,jiwa,2025,registration,total_population,4.3.1,99,,Lainnya
+33.19.03,3,Jati,religion,islam,,106758,jiwa,2025,registration,total_population,4.3.1,99,,Islam
+33.19.03,3,Jati,religion,kristen,,3078,jiwa,2025,registration,total_population,4.3.1,99,,Protestan
+33.19.03,3,Jati,religion,katolik,,1224,jiwa,2025,registration,total_population,4.3.1,99,,Katolik
+33.19.03,3,Jati,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,99,,Hindu
+33.19.03,3,Jati,religion,buddha,,60,jiwa,2025,registration,total_population,4.3.1,99,,Budha
+33.19.03,3,Jati,religion,lainnya,,6,jiwa,2025,registration,total_population,4.3.1,99,,Lainnya
+33.19.05,3,Mejobo,religion,islam,,80133,jiwa,2025,registration,total_population,4.3.1,99,,Islam
+33.19.05,3,Mejobo,religion,kristen,,211,jiwa,2025,registration,total_population,4.3.1,99,,Protestan
+33.19.05,3,Mejobo,religion,katolik,,64,jiwa,2025,registration,total_population,4.3.1,99,,Katolik
+33.19.05,3,Mejobo,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,99,,Hindu
+33.19.05,3,Mejobo,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,99,,Budha
+33.19.05,3,Mejobo,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,99,,Lainnya
+33.19.06,3,Jekulo,religion,islam,,112446,jiwa,2025,registration,total_population,4.3.1,99,,Islam
+33.19.06,3,Jekulo,religion,kristen,,826,jiwa,2025,registration,total_population,4.3.1,99,,Protestan
+33.19.06,3,Jekulo,religion,katolik,,92,jiwa,2025,registration,total_population,4.3.1,99,,Katolik
+33.19.06,3,Jekulo,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,99,nil,Hindu
+33.19.06,3,Jekulo,religion,buddha,,32,jiwa,2025,registration,total_population,4.3.1,99,,Budha
+33.19.06,3,Jekulo,religion,lainnya,,14,jiwa,2025,registration,total_population,4.3.1,99,,Lainnya
+33.19.07,3,Bae,religion,islam,,73594,jiwa,2025,registration,total_population,4.3.1,99,,Islam
+33.19.07,3,Bae,religion,kristen,,2068,jiwa,2025,registration,total_population,4.3.1,99,,Protestan
+33.19.07,3,Bae,religion,katolik,,598,jiwa,2025,registration,total_population,4.3.1,99,,Katolik
+33.19.07,3,Bae,religion,hindu,,17,jiwa,2025,registration,total_population,4.3.1,99,,Hindu
+33.19.07,3,Bae,religion,buddha,,12,jiwa,2025,registration,total_population,4.3.1,99,,Budha
+33.19.07,3,Bae,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,99,,Lainnya
+33.19.08,3,Gebog,religion,islam,,109126,jiwa,2025,registration,total_population,4.3.1,99,,Islam
+33.19.08,3,Gebog,religion,kristen,,129,jiwa,2025,registration,total_population,4.3.1,99,,Protestan
+33.19.08,3,Gebog,religion,katolik,,50,jiwa,2025,registration,total_population,4.3.1,99,,Katolik
+33.19.08,3,Gebog,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,99,,Hindu
+33.19.08,3,Gebog,religion,buddha,,125,jiwa,2025,registration,total_population,4.3.1,99,,Budha
+33.19.08,3,Gebog,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,99,nil,Lainnya
+33.19.09,3,Dawe,religion,islam,,112073,jiwa,2025,registration,total_population,4.3.1,99,,Islam
+33.19.09,3,Dawe,religion,kristen,,89,jiwa,2025,registration,total_population,4.3.1,99,,Protestan
+33.19.09,3,Dawe,religion,katolik,,138,jiwa,2025,registration,total_population,4.3.1,99,,Katolik
+33.19.09,3,Dawe,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,99,,Hindu
+33.19.09,3,Dawe,religion,buddha,,71,jiwa,2025,registration,total_population,4.3.1,99,,Budha
+33.19.09,3,Dawe,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,99,,Lainnya
+33.19,2,Kabupaten Kudus,religion,islam,,865368,jiwa,2025,registration,total_population,4.3.1,99,,Islam
+33.19,2,Kabupaten Kudus,religion,kristen,,11918,jiwa,2025,registration,total_population,4.3.1,99,,Protestan
+33.19,2,Kabupaten Kudus,religion,katolik,,4767,jiwa,2025,registration,total_population,4.3.1,99,,Katolik
+33.19,2,Kabupaten Kudus,religion,hindu,,25,jiwa,2025,registration,total_population,4.3.1,99,,Hindu
+33.19,2,Kabupaten Kudus,religion,buddha,,832,jiwa,2025,registration,total_population,4.3.1,99,,Budha
+33.19,2,Kabupaten Kudus,religion,lainnya,,284,jiwa,2025,registration,total_population,4.3.1,99,,Lainnya
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/padi_padian,,75388.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,Padi-padian
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/padi_padian,,72396.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,Padi-padian
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/umbi_umbian,,4573.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,Umbi-umbian
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/umbi_umbian,,5020.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,Umbi-umbian
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,42466.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,Ikan/udang/cumi/kerang
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,47385.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,Ikan/udang/cumi/kerang
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/daging,,24760.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,Daging
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/daging,,26730.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,Daging
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/telur_dan_susu,,34715.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,Telur dan susu
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/telur_dan_susu,,38794.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,Telur dan susu
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/sayur_sayuran,,46495.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,Sayur-sayuran
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/sayur_sayuran,,53042.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,Sayur-sayuran
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/kacang_kacangan,,14859.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,Kacang-kacangan
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/kacang_kacangan,,16551.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,Kacang-kacangan
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/buah_buahan,,33616.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,Buah-buahan
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/buah_buahan,,40858.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,Buah-buahan
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/minyak_dan_kelapa,,13839.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,Minyak dan kelapa
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/minyak_dan_kelapa,,17717.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,Minyak dan kelapa
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/bahan_minuman,,20591.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,Bahan minuman
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/bahan_minuman,,22351.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,Bahan minuman
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/bumbu_bumbuan,,14464.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,Bumbu-bumbuan
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/bumbu_bumbuan,,14450.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,Bumbu-bumbuan
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/bahan_makanan_lainnya,,12368.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,Bahan Makanan Lainnya
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/bahan_makanan_lainnya,,13315.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,Bahan Makanan Lainnya
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,289857.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,Makanan dan Minuman Jadi
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,260795.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,Makanan dan Minuman Jadi
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/rokok,,84968.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,Rokok
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/rokok,,79788.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,Rokok
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/jumlah_makanan,,712957.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,Jumlah makanan
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/jumlah_makanan,,709189.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,Jumlah makanan
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,351707.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,Perumahan dan fasilitas rumah tangga
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,361957.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,Perumahan dan fasilitas rumah tangga
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,161088.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,Aneka komoditas dan jasa
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,186328.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,Aneka komoditas dan jasa
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,33650.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,"Pakaian, alas kaki, dan tutup kepala"
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,35924.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,"Pakaian, alas kaki, dan tutup kepala"
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/komoditas_tahan_lama,,39140.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,Komoditas tahan lama
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/komoditas_tahan_lama,,43258.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,Komoditas tahan lama
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,71010.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,"Pajak, pungutan, dan asuransi"
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,64514.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,"Pajak, pungutan, dan asuransi"
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,33750.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,Keperluan pesta dan upacara/kenduri
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,19098.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,Keperluan pesta dan upacara/kenduri
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,690344.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,Jumlah bukan makanan
+33.19,2,Kabupaten Kudus,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,711078.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,Jumlah bukan makanan
+33.19,2,Kabupaten Kudus,expenditure,total,,1403301.00,rupiah,2024,survey_estimate,per_capita,10.1,205,,
+33.19,2,Kabupaten Kudus,expenditure,total,,1420267.00,rupiah,2025,survey_estimate,per_capita,10.1,205,,

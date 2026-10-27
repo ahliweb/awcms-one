@@ -1,0 +1,129 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.76.01.1010,4,Rangkapan Jaya Baru,sex,laki_laki,,20457,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.01.1010,4,Rangkapan Jaya Baru,sex,perempuan,,20297,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.01.1010,4,Rangkapan Jaya Baru,total,total,,40754,jiwa,2025,registration,total_population,3.1,19,,
+32.76.01.1011,4,Rangkapan Jaya,sex,laki_laki,,21890,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.01.1011,4,Rangkapan Jaya,sex,perempuan,,21510,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.01.1011,4,Rangkapan Jaya,total,total,,43400,jiwa,2025,registration,total_population,3.1,19,,
+32.76.01.1009,4,Mampang,sex,laki_laki,,14387,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.01.1009,4,Mampang,sex,perempuan,,14265,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.01.1009,4,Mampang,total,total,,28652,jiwa,2025,registration,total_population,3.1,19,,
+32.76.01.1008,4,Pancoran Mas,sex,laki_laki,,32754,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.01.1008,4,Pancoran Mas,sex,perempuan,,32362,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.01.1008,4,Pancoran Mas,total,total,,65116,jiwa,2025,registration,total_population,3.1,19,,
+32.76.01.1007,4,Depok Jaya,sex,laki_laki,,11607,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.01.1007,4,Depok Jaya,sex,perempuan,,12643,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.01.1007,4,Depok Jaya,total,total,,24250,jiwa,2025,registration,total_population,3.1,19,,
+32.76.01.1006,4,Depok,sex,laki_laki,,23008,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.01.1006,4,Depok,sex,perempuan,,23070,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.01.1006,4,Depok,total,total,,46078,jiwa,2025,registration,total_population,3.1,19,,
+32.76.01,3,Kecamatan Pancoran Mas,sex,laki_laki,,124103,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.01,3,Kecamatan Pancoran Mas,sex,perempuan,,124147,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.01,3,Kecamatan Pancoran Mas,total,total,,248250,jiwa,2025,registration,total_population,3.1,19,,
+32.76.01,3,Pancoran Mas,age_group,0-4,laki_laki,7466,jiwa,2025,registration,total_population,3.2,22,,0-4
+32.76.01,3,Pancoran Mas,age_group,0-4,perempuan,6803,jiwa,2025,registration,total_population,3.2,22,,0-4
+32.76.01,3,Pancoran Mas,age_group,0-4,,14269,jiwa,2025,registration,total_population,3.2,22,,0-4
+32.76.01,3,Pancoran Mas,age_group,5-9,laki_laki,10218,jiwa,2025,registration,total_population,3.2,22,,5-9
+32.76.01,3,Pancoran Mas,age_group,5-9,perempuan,9461,jiwa,2025,registration,total_population,3.2,22,,5-9
+32.76.01,3,Pancoran Mas,age_group,5-9,,19679,jiwa,2025,registration,total_population,3.2,22,,5-9
+32.76.01,3,Pancoran Mas,age_group,10-14,laki_laki,10835,jiwa,2025,registration,total_population,3.2,22,,10-14
+32.76.01,3,Pancoran Mas,age_group,10-14,perempuan,9934,jiwa,2025,registration,total_population,3.2,22,,10-14
+32.76.01,3,Pancoran Mas,age_group,10-14,,20769,jiwa,2025,registration,total_population,3.2,22,,10-14
+32.76.01,3,Pancoran Mas,age_group,15-19,laki_laki,10630,jiwa,2025,registration,total_population,3.2,22,,15-19
+32.76.01,3,Pancoran Mas,age_group,15-19,perempuan,9903,jiwa,2025,registration,total_population,3.2,22,,15-19
+32.76.01,3,Pancoran Mas,age_group,15-19,,20533,jiwa,2025,registration,total_population,3.2,22,,15-19
+32.76.01,3,Pancoran Mas,age_group,20-24,laki_laki,10311,jiwa,2025,registration,total_population,3.2,22,,20-24
+32.76.01,3,Pancoran Mas,age_group,20-24,perempuan,9987,jiwa,2025,registration,total_population,3.2,22,,20-24
+32.76.01,3,Pancoran Mas,age_group,20-24,,20298,jiwa,2025,registration,total_population,3.2,22,,20-24
+32.76.01,3,Pancoran Mas,age_group,25-29,laki_laki,9911,jiwa,2025,registration,total_population,3.2,22,,25-29
+32.76.01,3,Pancoran Mas,age_group,25-29,perempuan,9632,jiwa,2025,registration,total_population,3.2,22,,25-29
+32.76.01,3,Pancoran Mas,age_group,25-29,,19543,jiwa,2025,registration,total_population,3.2,22,,25-29
+32.76.01,3,Pancoran Mas,age_group,30-34,laki_laki,9230,jiwa,2025,registration,total_population,3.2,22,,30-34
+32.76.01,3,Pancoran Mas,age_group,30-34,perempuan,9272,jiwa,2025,registration,total_population,3.2,22,,30-34
+32.76.01,3,Pancoran Mas,age_group,30-34,,18502,jiwa,2025,registration,total_population,3.2,22,,30-34
+32.76.01,3,Pancoran Mas,age_group,35-39,laki_laki,8580,jiwa,2025,registration,total_population,3.2,22,,35-39
+32.76.01,3,Pancoran Mas,age_group,35-39,perempuan,8692,jiwa,2025,registration,total_population,3.2,22,,35-39
+32.76.01,3,Pancoran Mas,age_group,35-39,,17272,jiwa,2025,registration,total_population,3.2,22,,35-39
+32.76.01,3,Pancoran Mas,age_group,40-44,laki_laki,9385,jiwa,2025,registration,total_population,3.2,22,,40-44
+32.76.01,3,Pancoran Mas,age_group,40-44,perempuan,9728,jiwa,2025,registration,total_population,3.2,22,,40-44
+32.76.01,3,Pancoran Mas,age_group,40-44,,19113,jiwa,2025,registration,total_population,3.2,22,,40-44
+32.76.01,3,Pancoran Mas,age_group,45-49,laki_laki,9438,jiwa,2025,registration,total_population,3.2,22,,45-49
+32.76.01,3,Pancoran Mas,age_group,45-49,perempuan,9963,jiwa,2025,registration,total_population,3.2,22,,45-49
+32.76.01,3,Pancoran Mas,age_group,45-49,,19401,jiwa,2025,registration,total_population,3.2,22,,45-49
+32.76.01,3,Pancoran Mas,age_group,50-54,laki_laki,8906,jiwa,2025,registration,total_population,3.2,22,,50-54
+32.76.01,3,Pancoran Mas,age_group,50-54,perempuan,9154,jiwa,2025,registration,total_population,3.2,22,,50-54
+32.76.01,3,Pancoran Mas,age_group,50-54,,18060,jiwa,2025,registration,total_population,3.2,22,,50-54
+32.76.01,3,Pancoran Mas,age_group,55-59,laki_laki,7282,jiwa,2025,registration,total_population,3.2,22,,55-59
+32.76.01,3,Pancoran Mas,age_group,55-59,perempuan,7348,jiwa,2025,registration,total_population,3.2,22,,55-59
+32.76.01,3,Pancoran Mas,age_group,55-59,,14630,jiwa,2025,registration,total_population,3.2,22,,55-59
+32.76.01,3,Pancoran Mas,age_group,60-64,laki_laki,5090,jiwa,2025,registration,total_population,3.2,22,,60-64
+32.76.01,3,Pancoran Mas,age_group,60-64,perempuan,5555,jiwa,2025,registration,total_population,3.2,22,,60-64
+32.76.01,3,Pancoran Mas,age_group,60-64,,10645,jiwa,2025,registration,total_population,3.2,22,,60-64
+32.76.01,3,Pancoran Mas,age_group,65-69,laki_laki,3270,jiwa,2025,registration,total_population,3.2,22,,65-69
+32.76.01,3,Pancoran Mas,age_group,65-69,perempuan,3712,jiwa,2025,registration,total_population,3.2,22,,65-69
+32.76.01,3,Pancoran Mas,age_group,65-69,,6982,jiwa,2025,registration,total_population,3.2,22,,65-69
+32.76.01,3,Pancoran Mas,age_group,70-74,laki_laki,1887,jiwa,2025,registration,total_population,3.2,22,,70-74
+32.76.01,3,Pancoran Mas,age_group,70-74,perempuan,2293,jiwa,2025,registration,total_population,3.2,22,,70-74
+32.76.01,3,Pancoran Mas,age_group,70-74,,4180,jiwa,2025,registration,total_population,3.2,22,,70-74
+32.76.01,3,Pancoran Mas,age_group,75+,laki_laki,1664,jiwa,2025,registration,total_population,3.2,22,,>75
+32.76.01,3,Pancoran Mas,age_group,75+,perempuan,2710,jiwa,2025,registration,total_population,3.2,22,,>75
+32.76.01,3,Pancoran Mas,age_group,75+,,4374,jiwa,2025,registration,total_population,3.2,22,,>75
+32.76.01,3,Kecamatan Pancoran Mas,sex,laki_laki,,124103,jiwa,2025,registration,total_population,3.2,22,,Laki-Laki
+32.76.01,3,Kecamatan Pancoran Mas,sex,perempuan,,124147,jiwa,2025,registration,total_population,3.2,22,,Perempuan
+32.76.01,3,Kecamatan Pancoran Mas,total,total,,248250,jiwa,2025,registration,total_population,3.2,22,,
+32.76.01.1010,4,Rangkapan Jaya Baru,religion,islam,,38452,jiwa,2025,registration,total_population,3.6,28,,Islam
+32.76.01.1010,4,Rangkapan Jaya Baru,religion,kristen,,1678,jiwa,2025,registration,total_population,3.6,28,,Kristen
+32.76.01.1010,4,Rangkapan Jaya Baru,religion,katolik,,459,jiwa,2025,registration,total_population,3.6,28,,Katolik
+32.76.01.1010,4,Rangkapan Jaya Baru,religion,hindu,,97,jiwa,2025,registration,total_population,3.6,28,,Hindu
+32.76.01.1011,4,Rangkapan Jaya,religion,islam,,41543,jiwa,2025,registration,total_population,3.6,28,,Islam
+32.76.01.1011,4,Rangkapan Jaya,religion,kristen,,1341,jiwa,2025,registration,total_population,3.6,28,,Kristen
+32.76.01.1011,4,Rangkapan Jaya,religion,katolik,,390,jiwa,2025,registration,total_population,3.6,28,,Katolik
+32.76.01.1011,4,Rangkapan Jaya,religion,hindu,,75,jiwa,2025,registration,total_population,3.6,28,,Hindu
+32.76.01.1009,4,Mampang,religion,islam,,27582,jiwa,2025,registration,total_population,3.6,28,,Islam
+32.76.01.1009,4,Mampang,religion,kristen,,743,jiwa,2025,registration,total_population,3.6,28,,Kristen
+32.76.01.1009,4,Mampang,religion,katolik,,245,jiwa,2025,registration,total_population,3.6,28,,Katolik
+32.76.01.1009,4,Mampang,religion,hindu,,42,jiwa,2025,registration,total_population,3.6,28,,Hindu
+32.76.01.1008,4,Pancoran Mas,religion,islam,,62067,jiwa,2025,registration,total_population,3.6,28,,Islam
+32.76.01.1008,4,Pancoran Mas,religion,kristen,,2188,jiwa,2025,registration,total_population,3.6,28,,Kristen
+32.76.01.1008,4,Pancoran Mas,religion,katolik,,609,jiwa,2025,registration,total_population,3.6,28,,Katolik
+32.76.01.1008,4,Pancoran Mas,religion,hindu,,43,jiwa,2025,registration,total_population,3.6,28,,Hindu
+32.76.01.1007,4,Depok Jaya,religion,islam,,20963,jiwa,2025,registration,total_population,3.6,28,,Islam
+32.76.01.1007,4,Depok Jaya,religion,kristen,,2234,jiwa,2025,registration,total_population,3.6,28,,Kristen
+32.76.01.1007,4,Depok Jaya,religion,katolik,,844,jiwa,2025,registration,total_population,3.6,28,,Katolik
+32.76.01.1007,4,Depok Jaya,religion,hindu,,37,jiwa,2025,registration,total_population,3.6,28,,Hindu
+32.76.01.1006,4,Depok,religion,islam,,38134,jiwa,2025,registration,total_population,3.6,28,,Islam
+32.76.01.1006,4,Depok,religion,kristen,,6544,jiwa,2025,registration,total_population,3.6,28,,Kristen
+32.76.01.1006,4,Depok,religion,katolik,,1042,jiwa,2025,registration,total_population,3.6,28,,Katolik
+32.76.01.1006,4,Depok,religion,hindu,,30,jiwa,2025,registration,total_population,3.6,28,,Hindu
+32.76.01,3,Kecamatan Pancoran Mas,religion,islam,,228741,jiwa,2025,registration,total_population,3.6,28,,Islam
+32.76.01,3,Kecamatan Pancoran Mas,religion,kristen,,14728,jiwa,2025,registration,total_population,3.6,28,,Kristen
+32.76.01,3,Kecamatan Pancoran Mas,religion,katolik,,3589,jiwa,2025,registration,total_population,3.6,28,,Katolik
+32.76.01,3,Kecamatan Pancoran Mas,religion,hindu,,324,jiwa,2025,registration,total_population,3.6,28,,Hindu
+32.76.01.1010,4,Rangkapan Jaya Baru,religion,buddha,,68,jiwa,2025,registration,total_population,3.6,29,,Budha
+32.76.01.1010,4,Rangkapan Jaya Baru,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,29,nil,Khonghucu
+32.76.01.1010,4,Rangkapan Jaya Baru,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,29,nil,Aliran
+32.76.01.1010,4,Rangkapan Jaya Baru,total,total,,40754,jiwa,2025,registration,total_population,3.6,29,,
+32.76.01.1011,4,Rangkapan Jaya,religion,buddha,,49,jiwa,2025,registration,total_population,3.6,29,,Budha
+32.76.01.1011,4,Rangkapan Jaya,religion,khonghucu,,1,jiwa,2025,registration,total_population,3.6,29,,Khonghucu
+32.76.01.1011,4,Rangkapan Jaya,religion,kepercayaan,,1,jiwa,2025,registration,total_population,3.6,29,,Aliran
+32.76.01.1011,4,Rangkapan Jaya,total,total,,43400,jiwa,2025,registration,total_population,3.6,29,,
+32.76.01.1009,4,Mampang,religion,buddha,,39,jiwa,2025,registration,total_population,3.6,29,,Budha
+32.76.01.1009,4,Mampang,religion,khonghucu,,1,jiwa,2025,registration,total_population,3.6,29,,Khonghucu
+32.76.01.1009,4,Mampang,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,29,nil,Aliran
+32.76.01.1009,4,Mampang,total,total,,28652,jiwa,2025,registration,total_population,3.6,29,,
+32.76.01.1008,4,Pancoran Mas,religion,buddha,,132,jiwa,2025,registration,total_population,3.6,29,,Budha
+32.76.01.1008,4,Pancoran Mas,religion,khonghucu,,77,jiwa,2025,registration,total_population,3.6,29,,Khonghucu
+32.76.01.1008,4,Pancoran Mas,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,29,nil,Aliran
+32.76.01.1008,4,Pancoran Mas,total,total,,65116,jiwa,2025,registration,total_population,3.6,29,,
+32.76.01.1007,4,Depok Jaya,religion,buddha,,160,jiwa,2025,registration,total_population,3.6,29,,Budha
+32.76.01.1007,4,Depok Jaya,religion,khonghucu,,12,jiwa,2025,registration,total_population,3.6,29,,Khonghucu
+32.76.01.1007,4,Depok Jaya,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.6,29,nil,Aliran
+32.76.01.1007,4,Depok Jaya,total,total,,24250,jiwa,2025,registration,total_population,3.6,29,,
+32.76.01.1006,4,Depok,religion,buddha,,294,jiwa,2025,registration,total_population,3.6,29,,Budha
+32.76.01.1006,4,Depok,religion,khonghucu,,32,jiwa,2025,registration,total_population,3.6,29,,Khonghucu
+32.76.01.1006,4,Depok,religion,kepercayaan,,2,jiwa,2025,registration,total_population,3.6,29,,Aliran
+32.76.01.1006,4,Depok,total,total,,46078,jiwa,2025,registration,total_population,3.6,29,,
+32.76.01,3,Kecamatan Pancoran Mas,religion,buddha,,742,jiwa,2025,registration,total_population,3.6,29,,Budha
+32.76.01,3,Kecamatan Pancoran Mas,religion,khonghucu,,123,jiwa,2025,registration,total_population,3.6,29,,Khonghucu
+32.76.01,3,Kecamatan Pancoran Mas,religion,kepercayaan,,3,jiwa,2025,registration,total_population,3.6,29,,Aliran
+32.76.01,3,Kecamatan Pancoran Mas,total,total,,248250,jiwa,2025,registration,total_population,3.6,29,,

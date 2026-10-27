@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.09.17.2007,4,Huta Padang,sex,laki_laki,,3460,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.09.17.2007,4,Huta Padang,sex,perempuan,,3432,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+12.09.17.2007,4,Huta Padang,total,total,,6892,jiwa,2025,registration,total_population,3.1,22,,
+12.09.17.2002,4,Huta Bagasan,sex,laki_laki,,2287,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.09.17.2002,4,Huta Bagasan,sex,perempuan,,2288,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+12.09.17.2002,4,Huta Bagasan,total,total,,4575,jiwa,2025,registration,total_population,3.1,22,,
+12.09.17.2001,4,Bandar Pasir Mandoge,sex,laki_laki,,4012,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.09.17.2001,4,Bandar Pasir Mandoge,sex,perempuan,,4065,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+12.09.17.2001,4,Bandar Pasir Mandoge,total,total,,8077,jiwa,2025,registration,total_population,3.1,22,,
+12.09.17.2005,4,Suka Makmur,sex,laki_laki,,1931,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.09.17.2005,4,Suka Makmur,sex,perempuan,,1821,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+12.09.17.2005,4,Suka Makmur,total,total,,3752,jiwa,2025,registration,total_population,3.1,22,,
+12.09.17.2006,4,Sei Kopas,sex,laki_laki,,1881,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.09.17.2006,4,Sei Kopas,sex,perempuan,,1875,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+12.09.17.2006,4,Sei Kopas,total,total,,3756,jiwa,2025,registration,total_population,3.1,22,,
+12.09.17.2004,4,Silau Jawa,sex,laki_laki,,1361,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.09.17.2004,4,Silau Jawa,sex,perempuan,,1288,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+12.09.17.2004,4,Silau Jawa,total,total,,2649,jiwa,2025,registration,total_population,3.1,22,,
+12.09.17.2003,4,Sei Nadoras,sex,laki_laki,,953,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.09.17.2003,4,Sei Nadoras,sex,perempuan,,945,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+12.09.17.2003,4,Sei Nadoras,total,total,,1898,jiwa,2025,registration,total_population,3.1,22,,
+12.09.17.2008,4,Tomuan Holbung,sex,laki_laki,,825,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.09.17.2008,4,Tomuan Holbung,sex,perempuan,,686,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+12.09.17.2008,4,Tomuan Holbung,total,total,,1511,jiwa,2025,registration,total_population,3.1,22,,
+12.09.17.2009,4,Gotting Sidodadi,sex,laki_laki,,1002,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.09.17.2009,4,Gotting Sidodadi,sex,perempuan,,991,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+12.09.17.2009,4,Gotting Sidodadi,total,total,,1993,jiwa,2025,registration,total_population,3.1,22,,
+12.09.17,3,Bandar Pasir Mandoge,sex,laki_laki,,17712,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+12.09.17,3,Bandar Pasir Mandoge,sex,perempuan,,17391,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+12.09.17,3,Bandar Pasir Mandoge,total,total,,35103,jiwa,2025,registration,total_population,3.1,22,,
+12.09.17,3,Bandar Pasir Mandoge,age_group,0-4,laki_laki,936,jiwa,2025,registration,total_population,3.3,25,,0 – 4
+12.09.17,3,Bandar Pasir Mandoge,age_group,0-4,perempuan,802,jiwa,2025,registration,total_population,3.3,25,,0 – 4
+12.09.17,3,Bandar Pasir Mandoge,age_group,0-4,,1738,jiwa,2025,registration,total_population,3.3,25,,0 – 4
+12.09.17,3,Bandar Pasir Mandoge,age_group,5-9,laki_laki,1545,jiwa,2025,registration,total_population,3.3,25,,5 – 9
+12.09.17,3,Bandar Pasir Mandoge,age_group,5-9,perempuan,1463,jiwa,2025,registration,total_population,3.3,25,,5 – 9
+12.09.17,3,Bandar Pasir Mandoge,age_group,5-9,,3008,jiwa,2025,registration,total_population,3.3,25,,5 – 9
+12.09.17,3,Bandar Pasir Mandoge,age_group,10-14,laki_laki,1900,jiwa,2025,registration,total_population,3.3,25,,10 – 14
+12.09.17,3,Bandar Pasir Mandoge,age_group,10-14,perempuan,1772,jiwa,2025,registration,total_population,3.3,25,,10 – 14
+12.09.17,3,Bandar Pasir Mandoge,age_group,10-14,,3672,jiwa,2025,registration,total_population,3.3,25,,10 – 14
+12.09.17,3,Bandar Pasir Mandoge,age_group,15-19,laki_laki,1874,jiwa,2025,registration,total_population,3.3,25,,15 – 19
+12.09.17,3,Bandar Pasir Mandoge,age_group,15-19,perempuan,1793,jiwa,2025,registration,total_population,3.3,25,,15 – 19
+12.09.17,3,Bandar Pasir Mandoge,age_group,15-19,,3667,jiwa,2025,registration,total_population,3.3,25,,15 – 19
+12.09.17,3,Bandar Pasir Mandoge,age_group,20-24,laki_laki,1702,jiwa,2025,registration,total_population,3.3,25,,20 -24
+12.09.17,3,Bandar Pasir Mandoge,age_group,20-24,perempuan,1754,jiwa,2025,registration,total_population,3.3,25,,20 -24
+12.09.17,3,Bandar Pasir Mandoge,age_group,20-24,,3456,jiwa,2025,registration,total_population,3.3,25,,20 -24
+12.09.17,3,Bandar Pasir Mandoge,age_group,25-29,laki_laki,1598,jiwa,2025,registration,total_population,3.3,25,,25 – 29
+12.09.17,3,Bandar Pasir Mandoge,age_group,25-29,perempuan,1505,jiwa,2025,registration,total_population,3.3,25,,25 – 29
+12.09.17,3,Bandar Pasir Mandoge,age_group,25-29,,3103,jiwa,2025,registration,total_population,3.3,25,,25 – 29
+12.09.17,3,Bandar Pasir Mandoge,age_group,30-34,laki_laki,1384,jiwa,2025,registration,total_population,3.3,25,,30 -34
+12.09.17,3,Bandar Pasir Mandoge,age_group,30-34,perempuan,1268,jiwa,2025,registration,total_population,3.3,25,,30 -34
+12.09.17,3,Bandar Pasir Mandoge,age_group,30-34,,2652,jiwa,2025,registration,total_population,3.3,25,,30 -34
+12.09.17,3,Bandar Pasir Mandoge,age_group,35-39,laki_laki,1294,jiwa,2025,registration,total_population,3.3,25,,35 – 39
+12.09.17,3,Bandar Pasir Mandoge,age_group,35-39,perempuan,1236,jiwa,2025,registration,total_population,3.3,25,,35 – 39
+12.09.17,3,Bandar Pasir Mandoge,age_group,35-39,,2530,jiwa,2025,registration,total_population,3.3,25,,35 – 39
+12.09.17,3,Bandar Pasir Mandoge,age_group,40-44,laki_laki,1322,jiwa,2025,registration,total_population,3.3,25,,40 – 44
+12.09.17,3,Bandar Pasir Mandoge,age_group,40-44,perempuan,1240,jiwa,2025,registration,total_population,3.3,25,,40 – 44
+12.09.17,3,Bandar Pasir Mandoge,age_group,40-44,,2562,jiwa,2025,registration,total_population,3.3,25,,40 – 44
+12.09.17,3,Bandar Pasir Mandoge,age_group,45-49,laki_laki,1113,jiwa,2025,registration,total_population,3.3,25,,45 – 49
+12.09.17,3,Bandar Pasir Mandoge,age_group,45-49,perempuan,1129,jiwa,2025,registration,total_population,3.3,25,,45 – 49
+12.09.17,3,Bandar Pasir Mandoge,age_group,45-49,,2242,jiwa,2025,registration,total_population,3.3,25,,45 – 49
+12.09.17,3,Bandar Pasir Mandoge,age_group,50-54,laki_laki,1010,jiwa,2025,registration,total_population,3.3,25,,50 – 54
+12.09.17,3,Bandar Pasir Mandoge,age_group,50-54,perempuan,982,jiwa,2025,registration,total_population,3.3,25,,50 – 54
+12.09.17,3,Bandar Pasir Mandoge,age_group,50-54,,1992,jiwa,2025,registration,total_population,3.3,25,,50 – 54
+12.09.17,3,Bandar Pasir Mandoge,age_group,55-59,laki_laki,743,jiwa,2025,registration,total_population,3.3,25,,55 – 59
+12.09.17,3,Bandar Pasir Mandoge,age_group,55-59,perempuan,782,jiwa,2025,registration,total_population,3.3,25,,55 – 59
+12.09.17,3,Bandar Pasir Mandoge,age_group,55-59,,1525,jiwa,2025,registration,total_population,3.3,25,,55 – 59
+12.09.17,3,Bandar Pasir Mandoge,age_group,60-64,laki_laki,500,jiwa,2025,registration,total_population,3.3,25,,60 – 64
+12.09.17,3,Bandar Pasir Mandoge,age_group,60-64,perempuan,638,jiwa,2025,registration,total_population,3.3,25,,60 – 64
+12.09.17,3,Bandar Pasir Mandoge,age_group,60-64,,1138,jiwa,2025,registration,total_population,3.3,25,,60 – 64
+12.09.17,3,Bandar Pasir Mandoge,age_group,65-69,laki_laki,402,jiwa,2025,registration,total_population,3.3,25,,65 – 69
+12.09.17,3,Bandar Pasir Mandoge,age_group,65-69,perempuan,506,jiwa,2025,registration,total_population,3.3,25,,65 – 69
+12.09.17,3,Bandar Pasir Mandoge,age_group,65-69,,908,jiwa,2025,registration,total_population,3.3,25,,65 – 69
+12.09.17,3,Bandar Pasir Mandoge,age_group,70-74,laki_laki,214,jiwa,2025,registration,total_population,3.3,25,,70 – 74
+12.09.17,3,Bandar Pasir Mandoge,age_group,70-74,perempuan,301,jiwa,2025,registration,total_population,3.3,25,,70 – 74
+12.09.17,3,Bandar Pasir Mandoge,age_group,70-74,,515,jiwa,2025,registration,total_population,3.3,25,,70 – 74
+12.09.17,3,Bandar Pasir Mandoge,age_group,75+,laki_laki,175,jiwa,2025,registration,total_population,3.3,25,,75 +
+12.09.17,3,Bandar Pasir Mandoge,age_group,75+,perempuan,220,jiwa,2025,registration,total_population,3.3,25,,75 +
+12.09.17,3,Bandar Pasir Mandoge,age_group,75+,,395,jiwa,2025,registration,total_population,3.3,25,,75 +
+12.09.17,3,Bandar Pasir Mandoge,sex,laki_laki,,17712,jiwa,2025,registration,total_population,3.3,25,,Laki-Laki
+12.09.17,3,Bandar Pasir Mandoge,sex,perempuan,,17391,jiwa,2025,registration,total_population,3.3,25,,Perempuan
+12.09.17,3,Bandar Pasir Mandoge,total,total,,35103,jiwa,2025,registration,total_population,3.3,25,,

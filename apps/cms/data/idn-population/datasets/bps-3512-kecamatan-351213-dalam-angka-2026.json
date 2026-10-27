@@ -1,0 +1,53 @@
+{
+  "datasetCode": "bps-3512-kecamatan-351213-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.12.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Asembagus Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Situbondo",
+  "publisherDomain": "3512",
+  "publisherWebsite": "https://situbondokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Situbondo (https://situbondokab.bps.go.id), publikasi \"Kecamatan Asembagus Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3512160",
+  "publicationNumber": "35120.25024",
+  "issn": "2808-0645",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://situbondokab.bps.go.id/id/publication/2026/09/28/d34f5e5adb9d42ba1beb7ade/kecamatan-asembagus-dalam-angka-2026.html",
+  "sourceFileSha256": "cccb53b1a54f8cae2b317ae4a92bd1038a24c48497adc3bb7f8d761504ea8341",
+  "sourceFileBytes": 6846879,
+  "sourcePages": [25, 26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Situbondo.",
+  "csvPath": "datasets/bps-3512-kecamatan-351213-dalam-angka-2026.csv",
+  "csvSha256": "d3085f75e4f7bebf91aadb3a1a4280039a3d5d8cd0cf919726918b44b28845b5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Asembagus, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Asembagus, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.3",
+      "title": "Banyaknya Penduduk Menurut Desa dan Agama yang Dianut di Kecamatan Asembagus, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.2: the rows of region 35.12.13 are not stored: age_group vs total: parts sum 50384.0000 != 51384.0000 (diff 1000.0000); the source itself is inconsistent",
+    "table 3.3 is not included: its published figures do not add up (religion/islam/- 2025: parts sum 89009.0000 != 50009.0000 (diff 39000.0000)); the source itself is inconsistent"
+  ]
+}

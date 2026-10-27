@@ -1,0 +1,35 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.17.04,3,Bareng,age_group,0-4,perempuan,1542,jiwa,2025,registration,total_population,3.2,35,,0–4
+35.17.04,3,Bareng,age_group,0-4,,3170,jiwa,2025,registration,total_population,3.2,35,,0–4
+35.17.04,3,Bareng,age_group,5-9,perempuan,2012,jiwa,2025,registration,total_population,3.2,35,,5–9
+35.17.04,3,Bareng,age_group,5-9,,4183,jiwa,2025,registration,total_population,3.2,35,,5–9
+35.17.04,3,Bareng,age_group,10-14,perempuan,2315,jiwa,2025,registration,total_population,3.2,35,,10–14
+35.17.04,3,Bareng,age_group,10-14,,4743,jiwa,2025,registration,total_population,3.2,35,,10–14
+35.17.04,3,Bareng,age_group,15-19,perempuan,2191,jiwa,2025,registration,total_population,3.2,35,,15–19
+35.17.04,3,Bareng,age_group,15-19,,4575,jiwa,2025,registration,total_population,3.2,35,,15–19
+35.17.04,3,Bareng,age_group,20-24,perempuan,2299,jiwa,2025,registration,total_population,3.2,35,,20–24
+35.17.04,3,Bareng,age_group,20-24,,4703,jiwa,2025,registration,total_population,3.2,35,,20–24
+35.17.04,3,Bareng,age_group,25-29,perempuan,2157,jiwa,2025,registration,total_population,3.2,35,,25–29
+35.17.04,3,Bareng,age_group,25-29,,4403,jiwa,2025,registration,total_population,3.2,35,,25–29
+35.17.04,3,Bareng,age_group,30-34,perempuan,2102,jiwa,2025,registration,total_population,3.2,35,,30–34
+35.17.04,3,Bareng,age_group,30-34,,4471,jiwa,2025,registration,total_population,3.2,35,,30–34
+35.17.04,3,Bareng,age_group,35-39,perempuan,2010,jiwa,2025,registration,total_population,3.2,35,,35–39
+35.17.04,3,Bareng,age_group,35-39,,4223,jiwa,2025,registration,total_population,3.2,35,,35–39
+35.17.04,3,Bareng,age_group,40-44,perempuan,2170,jiwa,2025,registration,total_population,3.2,35,,40–44
+35.17.04,3,Bareng,age_group,40-44,,4449,jiwa,2025,registration,total_population,3.2,35,,40–44
+35.17.04,3,Bareng,age_group,45-49,perempuan,2068,jiwa,2025,registration,total_population,3.2,35,,45–49
+35.17.04,3,Bareng,age_group,45-49,,4185,jiwa,2025,registration,total_population,3.2,35,,45–49
+35.17.04,3,Bareng,age_group,50-54,perempuan,1924,jiwa,2025,registration,total_population,3.2,35,,50–54
+35.17.04,3,Bareng,age_group,50-54,,3815,jiwa,2025,registration,total_population,3.2,35,,50–54
+35.17.04,3,Bareng,age_group,55-59,perempuan,1903,jiwa,2025,registration,total_population,3.2,35,,55–59
+35.17.04,3,Bareng,age_group,55-59,,3682,jiwa,2025,registration,total_population,3.2,35,,55–59
+35.17.04,3,Bareng,age_group,60-64,perempuan,1641,jiwa,2025,registration,total_population,3.2,35,,60–64
+35.17.04,3,Bareng,age_group,60-64,,3212,jiwa,2025,registration,total_population,3.2,35,,60–64
+35.17.04,3,Bareng,age_group,65-69,perempuan,1202,jiwa,2025,registration,total_population,3.2,35,,65–69
+35.17.04,3,Bareng,age_group,65-69,,2312,jiwa,2025,registration,total_population,3.2,35,,65–69
+35.17.04,3,Bareng,age_group,70-74,perempuan,761,jiwa,2025,registration,total_population,3.2,35,,70–74
+35.17.04,3,Bareng,age_group,70-74,,1569,jiwa,2025,registration,total_population,3.2,35,,70–74
+35.17.04,3,Bareng,age_group,75+,perempuan,1218,jiwa,2025,registration,total_population,3.2,35,,75+
+35.17.04,3,Bareng,age_group,75+,,2107,jiwa,2025,registration,total_population,3.2,35,,75+
+35.17.04,3,Kecamatan Bareng,sex,perempuan,,29515,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+35.17.04,3,Kecamatan Bareng,total,total,,59802,jiwa,2025,registration,total_population,3.2,35,,

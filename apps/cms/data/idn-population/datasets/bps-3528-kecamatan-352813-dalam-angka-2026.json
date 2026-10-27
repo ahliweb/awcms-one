@@ -1,0 +1,51 @@
+{
+  "datasetCode": "bps-3528-kecamatan-352813-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.28.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pasean Dalam Angka 2026",
+  "publisherName": "BPS BPS Kabupaten Pamekasan",
+  "publisherDomain": "3528",
+  "publisherWebsite": "https://pamekasankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS BPS Kabupaten Pamekasan (https://pamekasankab.bps.go.id), publikasi \"Kecamatan Pasean Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3528130",
+  "publicationNumber": "35280.26017",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pamekasankab.bps.go.id/id/publication/2026/09/28/2bbb9601447e18d7e95e86b6/kecamatan-pasean-dalam-angka-2026.html",
+  "sourceFileSha256": "1e049bb95d14c49e7bdc13ee4a9af34d1796656ef3f0a8ed1ecf7e2ad66c9fcf",
+  "sourceFileBytes": 13628483,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pamekasan.",
+  "csvPath": "datasets/bps-3528-kecamatan-352813-dalam-angka-2026.csv",
+  "csvSha256": "ab567523561e09e500e7a0b0ab03e065cfdc3bcf1b218b84673f68371956e629",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pasean , 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pasean , 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Batukerbuy\": unmatched ",
+    "table 3.1: row not stored: row \"Tegangser Daja\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Pasean Pasean District\": unmatched ",
+    "table 3.1: row not stored: row \"Batukerbuy\": unmatched ",
+    "table 3.1: row not stored: row \"Tegangser Daja\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Pasean Pasean District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Pasean Pasean District\": unmatched "
+  ]
+}

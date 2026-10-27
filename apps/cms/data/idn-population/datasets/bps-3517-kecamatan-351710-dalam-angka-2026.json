@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3517-kecamatan-351710-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.17.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Peterongan Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN JOMBANG",
+  "publisherDomain": "3517",
+  "publisherWebsite": "https://jombangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN JOMBANG (https://jombangkab.bps.go.id), publikasi \"Kecamatan Peterongan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3517120",
+  "publicationNumber": "35170.26024",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jombangkab.bps.go.id/id/publication/2026/09/28/46dcc075976bf7e1885f4843/kecamatan-peterongan-dalam-angka-2026.html",
+  "sourceFileSha256": "61497dd19428593cc2cab50f6d2ddd58d5f0cff731ec31894c56411b92618a6d",
+  "sourceFileBytes": 13116826,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jombang.",
+  "csvPath": "datasets/bps-3517-kecamatan-351710-dalam-angka-2026.csv",
+  "csvSha256": "16f0f0daeaad23655dd9c671521831a31554595f4ddf5e766652b8c645f877d8",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Peterongan, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Peterongan, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1 is not included: its published figures do not add up (sex/perempuan/- 2025: parts sum 35129.0000 != 35775.0000 (diff 646.0000)); the source itself is inconsistent"
+  ]
+}

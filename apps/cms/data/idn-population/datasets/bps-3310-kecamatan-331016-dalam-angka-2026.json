@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3310-kecamatan-331016-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.10.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Delanggu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Klaten",
+  "publisherDomain": "3310",
+  "publisherWebsite": "https://klatenkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Klaten (https://klatenkab.bps.go.id), publikasi \"Kecamatan Delanggu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "33100.260",
+  "issn": "2828-8297",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://klatenkab.bps.go.id/id/publication/2026/09/28/6046833e54b618fccb4c9136/kecamatan-delanggu-dalam-angka-2026.html",
+  "sourceFileSha256": "6f18d4f29b234d054077d2eac00c928c25d7d29c8a58d9a4be72719da1ca6fb5",
+  "sourceFileBytes": 5537448,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Klaten",
+  "csvPath": "datasets/bps-3310-kecamatan-331016-dalam-angka-2026.csv",
+  "csvSha256": "f1430b8fd3261eb2ab7b00b40361ff8db2722ff9efae1d924f4170a61dfba259",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Delanggu, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Delanggu, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

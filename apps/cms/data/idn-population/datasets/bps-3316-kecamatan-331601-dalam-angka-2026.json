@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3316-kecamatan-331601-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.16.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jati Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Blora",
+  "publisherDomain": "3316",
+  "publisherWebsite": "https://blorakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Blora (https://blorakab.bps.go.id), publikasi \"Kecamatan Jati Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3316010",
+  "publicationNumber": "33160.26020",
+  "issn": "2614-9699",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://blorakab.bps.go.id/id/publication/2026/09/28/676fb3790c465f43739db53a/kecamatan-jati-dalam-angka-2026.html",
+  "sourceFileSha256": "a6bda2c792973860d7838080504e260f0d487b4b8415d6fda47fc3f1a5f8bac2",
+  "sourceFileBytes": 10825452,
+  "sourcePages": [8, 9, 10],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Blora.",
+  "csvPath": "datasets/bps-3316-kecamatan-331601-dalam-angka-2026.csv",
+  "csvSha256": "1f50cd4a258925e9714261e50d1bf09af26b59aaa52e2b7eab047302b99339bd",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk menurut Desa/ Kelurahan di Kecamatan Jati, 2025",
+      "printedPages": [8, 9],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jati, 2025",
+      "printedPages": [10],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.05.23.2008,4,Salahaji,sex,laki_laki,,1394,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.23.2008,4,Salahaji,sex,perempuan,,1450,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.23.2008,4,Salahaji,total,total,,2844,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.23.2007,4,Serang Jaya,sex,laki_laki,,928,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.23.2007,4,Serang Jaya,sex,perempuan,,910,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.23.2007,4,Serang Jaya,total,total,,1838,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.23.2001,4,Pematang Tengah,sex,laki_laki,,1215,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.23.2001,4,Pematang Tengah,sex,perempuan,,1135,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.23.2001,4,Pematang Tengah,total,total,,2350,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.23.2004,4,Perkebunan Perapen,sex,laki_laki,,354,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.23.2004,4,Perkebunan Perapen,sex,perempuan,,360,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.23.2004,4,Perkebunan Perapen,total,total,,714,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.23.2005,4,Limau Mungkur,sex,laki_laki,,690,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.23.2005,4,Limau Mungkur,sex,perempuan,,697,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.23.2005,4,Limau Mungkur,total,total,,1387,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.23.2002,4,Damar Condong,sex,laki_laki,,783,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.23.2002,4,Damar Condong,sex,perempuan,,791,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.23.2002,4,Damar Condong,total,total,,1574,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.23.2006,4,Serang Jaya Hilir,sex,laki_laki,,877,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.23.2006,4,Serang Jaya Hilir,sex,perempuan,,873,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.23.2006,4,Serang Jaya Hilir,total,total,,1750,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.23,3,Kecamatan Pematang Jaya,sex,laki_laki,,6410,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.23,3,Kecamatan Pematang Jaya,sex,perempuan,,6367,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.23,3,Kecamatan Pematang Jaya,total,total,,12777,jiwa,2025,registration,total_population,unnumbered-p39,39,,

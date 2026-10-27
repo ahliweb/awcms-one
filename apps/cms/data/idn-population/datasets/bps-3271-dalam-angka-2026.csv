@@ -1,0 +1,147 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.71.01,3,Bogor Selatan,total,total,,213862,jiwa,2025,projection,total_population,3.1.1,61,,
+32.71.02,3,Bogor Timur,total,total,,108040,jiwa,2025,projection,total_population,3.1.1,61,,
+32.71.05,3,Bogor Utara,total,total,,193240,jiwa,2025,projection,total_population,3.1.1,61,,
+32.71.03,3,Bogor Tengah,total,total,,95315,jiwa,2025,projection,total_population,3.1.1,61,,
+32.71.04,3,Bogor Barat,total,total,,242997,jiwa,2025,projection,total_population,3.1.1,61,,
+32.71.06,3,Tanah Sareal,total,total,,230322,jiwa,2025,projection,total_population,3.1.1,61,,
+32.71,2,Kota Bogor,total,total,,1083776,jiwa,2025,projection,total_population,3.1.1,61,,
+32.71,2,Kota Bogor,age_group,0-4,laki_laki,39180,jiwa,2025,projection,total_population,3.1.2,64,,0–4
+32.71,2,Kota Bogor,age_group,0-4,perempuan,37640,jiwa,2025,projection,total_population,3.1.2,64,,0–4
+32.71,2,Kota Bogor,age_group,0-4,,76820,jiwa,2025,projection,total_population,3.1.2,64,,0–4
+32.71,2,Kota Bogor,age_group,5-9,laki_laki,43015,jiwa,2025,projection,total_population,3.1.2,64,,5–9
+32.71,2,Kota Bogor,age_group,5-9,perempuan,41150,jiwa,2025,projection,total_population,3.1.2,64,,5–9
+32.71,2,Kota Bogor,age_group,5-9,,84165,jiwa,2025,projection,total_population,3.1.2,64,,5–9
+32.71,2,Kota Bogor,age_group,10-14,laki_laki,42099,jiwa,2025,projection,total_population,3.1.2,64,,10–14
+32.71,2,Kota Bogor,age_group,10-14,perempuan,39701,jiwa,2025,projection,total_population,3.1.2,64,,10–14
+32.71,2,Kota Bogor,age_group,10-14,,81800,jiwa,2025,projection,total_population,3.1.2,64,,10–14
+32.71,2,Kota Bogor,age_group,15-19,laki_laki,44505,jiwa,2025,projection,total_population,3.1.2,64,,15–19
+32.71,2,Kota Bogor,age_group,15-19,perempuan,41759,jiwa,2025,projection,total_population,3.1.2,64,,15–19
+32.71,2,Kota Bogor,age_group,15-19,,86264,jiwa,2025,projection,total_population,3.1.2,64,,15–19
+32.71,2,Kota Bogor,age_group,20-24,laki_laki,44020,jiwa,2025,projection,total_population,3.1.2,64,,20–24
+32.71,2,Kota Bogor,age_group,20-24,perempuan,41398,jiwa,2025,projection,total_population,3.1.2,64,,20–24
+32.71,2,Kota Bogor,age_group,20-24,,85418,jiwa,2025,projection,total_population,3.1.2,64,,20–24
+32.71,2,Kota Bogor,age_group,25-29,laki_laki,43084,jiwa,2025,projection,total_population,3.1.2,64,,25–29
+32.71,2,Kota Bogor,age_group,25-29,perempuan,41671,jiwa,2025,projection,total_population,3.1.2,64,,25–29
+32.71,2,Kota Bogor,age_group,25-29,,84755,jiwa,2025,projection,total_population,3.1.2,64,,25–29
+32.71,2,Kota Bogor,age_group,30-34,laki_laki,43925,jiwa,2025,projection,total_population,3.1.2,64,,30–34
+32.71,2,Kota Bogor,age_group,30-34,perempuan,42359,jiwa,2025,projection,total_population,3.1.2,64,,30–34
+32.71,2,Kota Bogor,age_group,30-34,,86284,jiwa,2025,projection,total_population,3.1.2,64,,30–34
+32.71,2,Kota Bogor,age_group,35-39,laki_laki,43275,jiwa,2025,projection,total_population,3.1.2,64,,35–39
+32.71,2,Kota Bogor,age_group,35-39,perempuan,41368,jiwa,2025,projection,total_population,3.1.2,64,,35–39
+32.71,2,Kota Bogor,age_group,35-39,,84643,jiwa,2025,projection,total_population,3.1.2,64,,35–39
+32.71,2,Kota Bogor,age_group,40-44,laki_laki,40874,jiwa,2025,projection,total_population,3.1.2,64,,40–44
+32.71,2,Kota Bogor,age_group,40-44,perempuan,39512,jiwa,2025,projection,total_population,3.1.2,64,,40–44
+32.71,2,Kota Bogor,age_group,40-44,,80386,jiwa,2025,projection,total_population,3.1.2,64,,40–44
+32.71,2,Kota Bogor,age_group,45-49,laki_laki,39153,jiwa,2025,projection,total_population,3.1.2,64,,45–49
+32.71,2,Kota Bogor,age_group,45-49,perempuan,38201,jiwa,2025,projection,total_population,3.1.2,64,,45–49
+32.71,2,Kota Bogor,age_group,45-49,,77354,jiwa,2025,projection,total_population,3.1.2,64,,45–49
+32.71,2,Kota Bogor,age_group,50-54,laki_laki,35003,jiwa,2025,projection,total_population,3.1.2,64,,50–54
+32.71,2,Kota Bogor,age_group,50-54,perempuan,34442,jiwa,2025,projection,total_population,3.1.2,64,,50–54
+32.71,2,Kota Bogor,age_group,50-54,,69445,jiwa,2025,projection,total_population,3.1.2,64,,50–54
+32.71,2,Kota Bogor,age_group,55-59,laki_laki,29759,jiwa,2025,projection,total_population,3.1.2,64,,55–59
+32.71,2,Kota Bogor,age_group,55-59,perempuan,30154,jiwa,2025,projection,total_population,3.1.2,64,,55–59
+32.71,2,Kota Bogor,age_group,55-59,,59913,jiwa,2025,projection,total_population,3.1.2,64,,55–59
+32.71,2,Kota Bogor,age_group,60-64,laki_laki,23372,jiwa,2025,projection,total_population,3.1.2,64,,60–64
+32.71,2,Kota Bogor,age_group,60-64,perempuan,24037,jiwa,2025,projection,total_population,3.1.2,64,,60–64
+32.71,2,Kota Bogor,age_group,60-64,,47409,jiwa,2025,projection,total_population,3.1.2,64,,60–64
+32.71,2,Kota Bogor,age_group,65-69,laki_laki,17128,jiwa,2025,projection,total_population,3.1.2,64,,65–69
+32.71,2,Kota Bogor,age_group,65-69,perempuan,18250,jiwa,2025,projection,total_population,3.1.2,64,,65–69
+32.71,2,Kota Bogor,age_group,65-69,,35378,jiwa,2025,projection,total_population,3.1.2,64,,65–69
+32.71,2,Kota Bogor,age_group,70-74,laki_laki,11497,jiwa,2025,projection,total_population,3.1.2,64,,70–74
+32.71,2,Kota Bogor,age_group,70-74,perempuan,12762,jiwa,2025,projection,total_population,3.1.2,64,,70–74
+32.71,2,Kota Bogor,age_group,70-74,,24259,jiwa,2025,projection,total_population,3.1.2,64,,70–74
+32.71,2,Kota Bogor,age_group,75+,laki_laki,8440,jiwa,2025,projection,total_population,3.1.2,64,,75+
+32.71,2,Kota Bogor,age_group,75+,perempuan,11043,jiwa,2025,projection,total_population,3.1.2,64,,75+
+32.71,2,Kota Bogor,age_group,75+,,19483,jiwa,2025,projection,total_population,3.1.2,64,,75+
+32.71,2,Kota Bogor,sex,laki_laki,,548329,jiwa,2025,projection,total_population,3.1.2,64,,Laki-Laki
+32.71,2,Kota Bogor,sex,perempuan,,535447,jiwa,2025,projection,total_population,3.1.2,64,,Perempuan
+32.71,2,Kota Bogor,total,total,,1083776,jiwa,2025,projection,total_population,3.1.2,64,,
+32.71.01,3,Bogor Selatan,religion,islam,,208657,jiwa,2025,registration,total_population,4.3.1,148,,Islam
+32.71.01,3,Bogor Selatan,religion,kristen,,9325,jiwa,2025,registration,total_population,4.3.1,148,,Protestan
+32.71.01,3,Bogor Selatan,religion,katolik,,4715,jiwa,2025,registration,total_population,4.3.1,148,,Katolik
+32.71.01,3,Bogor Selatan,religion,hindu,,96,jiwa,2025,registration,total_population,4.3.1,148,,Hindu
+32.71.01,3,Bogor Selatan,religion,buddha,,2159,jiwa,2025,registration,total_population,4.3.1,148,,Budha
+32.71.01,3,Bogor Selatan,religion,lainnya,,103,jiwa,2025,registration,total_population,4.3.1,148,,Lainnya
+32.71.02,3,Bogor Timur,religion,islam,,98426,jiwa,2025,registration,total_population,4.3.1,148,,Islam
+32.71.02,3,Bogor Timur,religion,kristen,,6447,jiwa,2025,registration,total_population,4.3.1,148,,Protestan
+32.71.02,3,Bogor Timur,religion,katolik,,4260,jiwa,2025,registration,total_population,4.3.1,148,,Katolik
+32.71.02,3,Bogor Timur,religion,hindu,,82,jiwa,2025,registration,total_population,4.3.1,148,,Hindu
+32.71.02,3,Bogor Timur,religion,buddha,,1345,jiwa,2025,registration,total_population,4.3.1,148,,Budha
+32.71.02,3,Bogor Timur,religion,lainnya,,34,jiwa,2025,registration,total_population,4.3.1,148,,Lainnya
+32.71.05,3,Bogor Utara,religion,islam,,194219,jiwa,2025,registration,total_population,4.3.1,148,,Islam
+32.71.05,3,Bogor Utara,religion,kristen,,9446,jiwa,2025,registration,total_population,4.3.1,148,,Protestan
+32.71.05,3,Bogor Utara,religion,katolik,,3496,jiwa,2025,registration,total_population,4.3.1,148,,Katolik
+32.71.05,3,Bogor Utara,religion,hindu,,484,jiwa,2025,registration,total_population,4.3.1,148,,Hindu
+32.71.05,3,Bogor Utara,religion,buddha,,744,jiwa,2025,registration,total_population,4.3.1,148,,Budha
+32.71.05,3,Bogor Utara,religion,lainnya,,83,jiwa,2025,registration,total_population,4.3.1,148,,Lainnya
+32.71.03,3,Bogor Tengah,religion,islam,,98699,jiwa,2025,registration,total_population,4.3.1,148,,Islam
+32.71.03,3,Bogor Tengah,religion,kristen,,5210,jiwa,2025,registration,total_population,4.3.1,148,,Protestan
+32.71.03,3,Bogor Tengah,religion,katolik,,3450,jiwa,2025,registration,total_population,4.3.1,148,,Katolik
+32.71.03,3,Bogor Tengah,religion,hindu,,68,jiwa,2025,registration,total_population,4.3.1,148,,Hindu
+32.71.03,3,Bogor Tengah,religion,buddha,,2059,jiwa,2025,registration,total_population,4.3.1,148,,Budha
+32.71.03,3,Bogor Tengah,religion,lainnya,,88,jiwa,2025,registration,total_population,4.3.1,148,,Lainnya
+32.71.04,3,Bogor Barat,religion,islam,,250227,jiwa,2025,registration,total_population,4.3.1,148,,Islam
+32.71.04,3,Bogor Barat,religion,kristen,,5789,jiwa,2025,registration,total_population,4.3.1,148,,Protestan
+32.71.04,3,Bogor Barat,religion,katolik,,2733,jiwa,2025,registration,total_population,4.3.1,148,,Katolik
+32.71.04,3,Bogor Barat,religion,hindu,,266,jiwa,2025,registration,total_population,4.3.1,148,,Hindu
+32.71.04,3,Bogor Barat,religion,buddha,,670,jiwa,2025,registration,total_population,4.3.1,148,,Budha
+32.71.04,3,Bogor Barat,religion,lainnya,,58,jiwa,2025,registration,total_population,4.3.1,148,,Lainnya
+32.71.06,3,Tanah Sareal,religion,islam,,225872,jiwa,2025,registration,total_population,4.3.1,148,,Islam
+32.71.06,3,Tanah Sareal,religion,kristen,,7178,jiwa,2025,registration,total_population,4.3.1,148,,Protestan
+32.71.06,3,Tanah Sareal,religion,katolik,,3281,jiwa,2025,registration,total_population,4.3.1,148,,Katolik
+32.71.06,3,Tanah Sareal,religion,hindu,,235,jiwa,2025,registration,total_population,4.3.1,148,,Hindu
+32.71.06,3,Tanah Sareal,religion,buddha,,658,jiwa,2025,registration,total_population,4.3.1,148,,Budha
+32.71.06,3,Tanah Sareal,religion,lainnya,,59,jiwa,2025,registration,total_population,4.3.1,148,,Lainnya
+32.71,2,Kota Bogor,religion,islam,,1076100,jiwa,2025,registration,total_population,4.3.1,148,,Islam
+32.71,2,Kota Bogor,religion,kristen,,43395,jiwa,2025,registration,total_population,4.3.1,148,,Protestan
+32.71,2,Kota Bogor,religion,katolik,,21935,jiwa,2025,registration,total_population,4.3.1,148,,Katolik
+32.71,2,Kota Bogor,religion,hindu,,1231,jiwa,2025,registration,total_population,4.3.1,148,,Hindu
+32.71,2,Kota Bogor,religion,buddha,,7635,jiwa,2025,registration,total_population,4.3.1,148,,Budha
+32.71,2,Kota Bogor,religion,lainnya,,425,jiwa,2025,registration,total_population,4.3.1,148,,Lainnya
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/padi_padian,,104043,rupiah,2024,survey_estimate,per_capita,10.1,319,,Padi-padian
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/padi_padian,,91228,rupiah,2025,survey_estimate,per_capita,10.1,319,,Padi-padian
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/umbi_umbian,,7127,rupiah,2024,survey_estimate,per_capita,10.1,319,,Umbi-umbian
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/umbi_umbian,,11458,rupiah,2025,survey_estimate,per_capita,10.1,319,,Umbi-umbian
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,51255,rupiah,2024,survey_estimate,per_capita,10.1,319,,Ikan/udang/cumi/kerang
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,66574,rupiah,2025,survey_estimate,per_capita,10.1,319,,Ikan/udang/cumi/kerang
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/daging,,53909,rupiah,2024,survey_estimate,per_capita,10.1,319,,Daging
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/daging,,70863,rupiah,2025,survey_estimate,per_capita,10.1,319,,Daging
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/telur_dan_susu,,52919,rupiah,2024,survey_estimate,per_capita,10.1,319,,Telur dan susu
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/telur_dan_susu,,62330,rupiah,2025,survey_estimate,per_capita,10.1,319,,Telur dan susu
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/sayur_sayuran,,62591,rupiah,2024,survey_estimate,per_capita,10.1,319,,Sayur-sayuran
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/sayur_sayuran,,75243,rupiah,2025,survey_estimate,per_capita,10.1,319,,Sayur-sayuran
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/kacang_kacangan,,16969,rupiah,2024,survey_estimate,per_capita,10.1,319,,Kacang-kacangan
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/kacang_kacangan,,19845,rupiah,2025,survey_estimate,per_capita,10.1,319,,Kacang-kacangan
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/buah_buahan,,43510,rupiah,2024,survey_estimate,per_capita,10.1,319,,Buah-buahan
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/buah_buahan,,70333,rupiah,2025,survey_estimate,per_capita,10.1,319,,Buah-buahan
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19059,rupiah,2024,survey_estimate,per_capita,10.1,319,,Minyak dan kelapa
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/minyak_dan_kelapa,,22157,rupiah,2025,survey_estimate,per_capita,10.1,319,,Minyak dan kelapa
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/bahan_minuman,,23754,rupiah,2024,survey_estimate,per_capita,10.1,319,,Bahan minuman
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/bahan_minuman,,29311,rupiah,2025,survey_estimate,per_capita,10.1,319,,Bahan minuman
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/bumbu_bumbuan,,15567,rupiah,2024,survey_estimate,per_capita,10.1,319,,Bumbu-bumbuan
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/bumbu_bumbuan,,20162,rupiah,2025,survey_estimate,per_capita,10.1,319,,Bumbu-bumbuan
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/konsumsi_lainnya,,17664,rupiah,2024,survey_estimate,per_capita,10.1,319,,Konsumsi lainnya
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/konsumsi_lainnya,,19394,rupiah,2025,survey_estimate,per_capita,10.1,319,,Konsumsi lainnya
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,348077,rupiah,2024,survey_estimate,per_capita,10.1,319,,Makanan dan minuman jadi
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,399847,rupiah,2025,survey_estimate,per_capita,10.1,319,,Makanan dan minuman jadi
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/rokok,,92722,rupiah,2024,survey_estimate,per_capita,10.1,319,,Rokok
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/rokok,,103683,rupiah,2025,survey_estimate,per_capita,10.1,319,,Rokok
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/jumlah_makanan,,909166,rupiah,2024,survey_estimate,per_capita,10.1,319,,Jumlah makanan
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/jumlah_makanan,,1062428,rupiah,2025,survey_estimate,per_capita,10.1,319,,Jumlah makanan
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,769252,rupiah,2024,survey_estimate,per_capita,10.1,319,,Perumahan dan fasilitas rumah tangga
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,657047,rupiah,2025,survey_estimate,per_capita,10.1,319,,Perumahan dan fasilitas rumah tangga
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,456097,rupiah,2024,survey_estimate,per_capita,10.1,319,,Aneka barang dan jasa
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,383307,rupiah,2025,survey_estimate,per_capita,10.1,319,,Aneka barang dan jasa
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,50081,rupiah,2024,survey_estimate,per_capita,10.1,319,,"Pakaian, alas kaki, dan tutup kepala"
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,54041,rupiah,2025,survey_estimate,per_capita,10.1,319,,"Pakaian, alas kaki, dan tutup kepala"
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/barang_tahan_lama,,116982,rupiah,2024,survey_estimate,per_capita,10.1,319,,Barang tahan lama
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/barang_tahan_lama,,113213,rupiah,2025,survey_estimate,per_capita,10.1,319,,Barang tahan lama
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,133561,rupiah,2024,survey_estimate,per_capita,10.1,319,,"Pajak, pungutan, dan asuransi"
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,111008,rupiah,2025,survey_estimate,per_capita,10.1,319,,"Pajak, pungutan, dan asuransi"
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,35418,rupiah,2024,survey_estimate,per_capita,10.1,319,,Keperluan pesta dan upacara/kenduri
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,24553,rupiah,2025,survey_estimate,per_capita,10.1,319,,Keperluan pesta dan upacara/kenduri
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1561391,rupiah,2024,survey_estimate,per_capita,10.1,319,,Jumlah bukan makanan
+32.71,2,Kota Bogor,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1343170,rupiah,2025,survey_estimate,per_capita,10.1,319,,Jumlah bukan makanan
+32.71,2,Kota Bogor,expenditure,total,,2470557,rupiah,2024,survey_estimate,per_capita,10.1,319,,
+32.71,2,Kota Bogor,expenditure,total,,2405598,rupiah,2025,survey_estimate,per_capita,10.1,319,,

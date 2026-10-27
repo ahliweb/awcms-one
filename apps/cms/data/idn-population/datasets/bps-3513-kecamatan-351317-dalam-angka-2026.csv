@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.13.17.2001,4,BRABE,sex,laki_laki,,3481,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.17.2001,4,BRABE,sex,perempuan,,3495,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.17.2001,4,BRABE,total,total,,6976,jiwa,2025,registration,total_population,3.1,24,,
+35.13.17.2002,4,GERONGAN,sex,laki_laki,,894,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.17.2002,4,GERONGAN,sex,perempuan,,973,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.17.2002,4,GERONGAN,total,total,,1867,jiwa,2025,registration,total_population,3.1,24,,
+35.13.17.2003,4,MARON KIDUL,sex,laki_laki,,3627,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.17.2003,4,MARON KIDUL,sex,perempuan,,3728,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.17.2003,4,MARON KIDUL,total,total,,7355,jiwa,2025,registration,total_population,3.1,24,,
+35.13.17.2004,4,SUMBERDAWE,sex,laki_laki,,1404,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.17.2004,4,SUMBERDAWE,sex,perempuan,,1520,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.17.2004,4,SUMBERDAWE,total,total,,2924,jiwa,2025,registration,total_population,3.1,24,,
+35.13.17.2005,4,SUMBERPOH,sex,laki_laki,,1282,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.17.2005,4,SUMBERPOH,sex,perempuan,,1361,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.17.2005,4,SUMBERPOH,total,total,,2643,jiwa,2025,registration,total_population,3.1,24,,
+35.13.17.2006,4,KEDUNGSARI,sex,laki_laki,,1573,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.17.2006,4,KEDUNGSARI,sex,perempuan,,1602,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.17.2006,4,KEDUNGSARI,total,total,,3175,jiwa,2025,registration,total_population,3.1,24,,
+35.13.17.2007,4,MARON KULON,sex,laki_laki,,1454,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.17.2007,4,MARON KULON,sex,perempuan,,1562,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.17.2007,4,MARON KULON,total,total,,3016,jiwa,2025,registration,total_population,3.1,24,,
+35.13.17.2008,4,MARON WETAN,sex,laki_laki,,2330,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.17.2008,4,MARON WETAN,sex,perempuan,,2358,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.17.2008,4,MARON WETAN,total,total,,4688,jiwa,2025,registration,total_population,3.1,24,,
+35.13.17.2009,4,BRANI KULON,sex,laki_laki,,1515,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.17.2009,4,BRANI KULON,sex,perempuan,,1547,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.17.2009,4,BRANI KULON,total,total,,3062,jiwa,2025,registration,total_population,3.1,24,,
+35.13.17.2010,4,SATREYAN,sex,laki_laki,,3007,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.17.2010,4,SATREYAN,sex,perempuan,,3086,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.17.2010,4,SATREYAN,total,total,,6093,jiwa,2025,registration,total_population,3.1,24,,
+35.13.17.2011,4,BRANI WETAN,sex,laki_laki,,2562,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.17.2011,4,BRANI WETAN,sex,perempuan,,2581,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.17.2011,4,BRANI WETAN,total,total,,5143,jiwa,2025,registration,total_population,3.1,24,,
+35.13.17.2012,4,PUSPAN,sex,laki_laki,,873,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.17.2012,4,PUSPAN,sex,perempuan,,917,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.17.2012,4,PUSPAN,total,total,,1790,jiwa,2025,registration,total_population,3.1,24,,
+35.13.17.2013,4,WONOREJO,sex,laki_laki,,3102,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.17.2013,4,WONOREJO,sex,perempuan,,3278,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.17.2013,4,WONOREJO,total,total,,6380,jiwa,2025,registration,total_population,3.1,24,,
+35.13.17.2014,4,BRUMBUNGAN KIDUL,sex,laki_laki,,1835,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.17.2014,4,BRUMBUNGAN KIDUL,sex,perempuan,,1935,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.17.2014,4,BRUMBUNGAN KIDUL,total,total,,3770,jiwa,2025,registration,total_population,3.1,24,,
+35.13.17.2015,4,PEGALANGAN KIDUL,sex,laki_laki,,1558,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.17.2015,4,PEGALANGAN KIDUL,sex,perempuan,,1649,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.17.2015,4,PEGALANGAN KIDUL,total,total,,3207,jiwa,2025,registration,total_population,3.1,24,,
+35.13.17.2016,4,SUKO,sex,laki_laki,,1137,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.17.2016,4,SUKO,sex,perempuan,,1237,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.17.2016,4,SUKO,total,total,,2374,jiwa,2025,registration,total_population,3.1,24,,
+35.13.17.2017,4,GANTING KULON,sex,laki_laki,,1243,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.17.2017,4,GANTING KULON,sex,perempuan,,1310,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.17.2017,4,GANTING KULON,total,total,,2553,jiwa,2025,registration,total_population,3.1,24,,
+35.13.17.2018,4,GANTING WETAN,sex,laki_laki,,1242,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.17.2018,4,GANTING WETAN,sex,perempuan,,1235,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.17.2018,4,GANTING WETAN,total,total,,2477,jiwa,2025,registration,total_population,3.1,24,,
+35.13.17,3,KECAMATAN MARON,sex,laki_laki,,34119,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.17,3,KECAMATAN MARON,sex,perempuan,,35374,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.17,3,KECAMATAN MARON,total,total,,69493,jiwa,2025,registration,total_population,3.1,24,,

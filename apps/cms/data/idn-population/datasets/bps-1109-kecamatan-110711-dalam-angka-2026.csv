@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.07.11.2017,4,Tuha Lala,sex,laki_laki,,335,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.11.2017,4,Tuha Lala,sex,perempuan,,319,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.11.2017,4,Tuha Lala,total,total,,654,jiwa,2025,registration,total_population,3.1,34,,
+11.07.11.2016,4,Meuyub Lala,sex,laki_laki,,260,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.11.2016,4,Meuyub Lala,sex,perempuan,,257,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.11.2016,4,Meuyub Lala,total,total,,517,jiwa,2025,registration,total_population,3.1,34,,
+11.07.11.2014,4,Kulu,sex,laki_laki,,398,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.11.2014,4,Kulu,sex,perempuan,,396,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.11.2014,4,Kulu,total,total,,794,jiwa,2025,registration,total_population,3.1,34,,
+11.07.11.2018,4,Lhok Lubu,sex,laki_laki,,132,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.11.2018,4,Lhok Lubu,sex,perempuan,,140,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.11.2018,4,Lhok Lubu,total,total,,272,jiwa,2025,registration,total_population,3.1,34,,
+11.07.11.2020,4,Krueng Lala,sex,laki_laki,,185,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.11.2020,4,Krueng Lala,sex,perempuan,,197,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.11.2020,4,Krueng Lala,total,total,,382,jiwa,2025,registration,total_population,3.1,34,,
+11.07.11.2019,4,Babah Jurong,sex,laki_laki,,238,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.11.2019,4,Babah Jurong,sex,perempuan,,259,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.11.2019,4,Babah Jurong,total,total,,497,jiwa,2025,registration,total_population,3.1,34,,
+11.07.11.2015,4,Mesjid Andeue,sex,laki_laki,,274,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.11.2015,4,Mesjid Andeue,sex,perempuan,,302,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.11.2015,4,Mesjid Andeue,total,total,,576,jiwa,2025,registration,total_population,3.1,34,,
+11.07.11.2012,4,Dayah Andeue,sex,laki_laki,,435,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.11.2012,4,Dayah Andeue,sex,perempuan,,416,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.11.2012,4,Dayah Andeue,total,total,,851,jiwa,2025,registration,total_population,3.1,34,,
+11.07.11.2013,4,Dayah Sinthop,sex,laki_laki,,472,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.11.2013,4,Dayah Sinthop,sex,perempuan,,490,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.11.2013,4,Dayah Sinthop,total,total,,962,jiwa,2025,registration,total_population,3.1,34,,
+11.07.11.2005,4,Pulo Tanjong,sex,laki_laki,,247,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.11.2005,4,Pulo Tanjong,sex,perempuan,,254,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.11.2005,4,Pulo Tanjong,total,total,,501,jiwa,2025,registration,total_population,3.1,34,,
+11.07.11.2002,4,Teumeucet,sex,laki_laki,,171,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.11.2002,4,Teumeucet,sex,perempuan,,202,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.11.2002,4,Teumeucet,total,total,,373,jiwa,2025,registration,total_population,3.1,34,,
+11.07.11.2003,4,Blang Cut,sex,laki_laki,,239,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.11.2003,4,Blang Cut,sex,perempuan,,263,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.11.2003,4,Blang Cut,total,total,,502,jiwa,2025,registration,total_population,3.1,34,,
+11.07.11.2004,4,Kumbang,sex,laki_laki,,388,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.11.2004,4,Kumbang,sex,perempuan,,367,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.11.2004,4,Kumbang,total,total,,755,jiwa,2025,registration,total_population,3.1,34,,
+11.07.11.2007,4,Lagang,sex,laki_laki,,206,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.11.2007,4,Lagang,sex,perempuan,,238,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.11.2007,4,Lagang,total,total,,444,jiwa,2025,registration,total_population,3.1,34,,
+11.07.11.2010,4,Tunong Ilot,sex,laki_laki,,143,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.11.2010,4,Tunong Ilot,sex,perempuan,,155,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.11.2010,4,Tunong Ilot,total,total,,298,jiwa,2025,registration,total_population,3.1,34,,
+11.07.11.2009,4,Baroh Ilot,sex,laki_laki,,170,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.11.2009,4,Baroh Ilot,sex,perempuan,,158,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.11.2009,4,Baroh Ilot,total,total,,328,jiwa,2025,registration,total_population,3.1,34,,
+11.07.11.2008,4,Mesjid Ilot,sex,laki_laki,,278,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.11.2008,4,Mesjid Ilot,sex,perempuan,,277,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.11.2008,4,Mesjid Ilot,total,total,,555,jiwa,2025,registration,total_population,3.1,34,,
+11.07.11.2006,4,Ara Bungkok,sex,laki_laki,,155,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.11.2006,4,Ara Bungkok,sex,perempuan,,153,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.11.2006,4,Ara Bungkok,total,total,,308,jiwa,2025,registration,total_population,3.1,34,,
+11.07.11,3,Mila,sex,laki_laki,,5126,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.11,3,Mila,sex,perempuan,,5261,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.11,3,Mila,total,total,,10387,jiwa,2025,registration,total_population,3.1,34,,

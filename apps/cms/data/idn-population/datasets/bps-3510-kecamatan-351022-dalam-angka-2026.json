@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3510-kecamatan-351022-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.10.22",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Siliragung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Banyuwangi",
+  "publisherDomain": "3510",
+  "publisherWebsite": "https://banyuwangikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Banyuwangi (https://banyuwangikab.bps.go.id), publikasi \"Kecamatan Siliragung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3510011",
+  "publicationNumber": "35100.26027",
+  "issn": "2407-0335",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banyuwangikab.bps.go.id/id/publication/2026/09/28/a2b11477e4d0cd2bc9e9b28d/kecamatan-siliragung-dalam-angka-2026.html",
+  "sourceFileSha256": "cd7a1d8db68b26039d031a2141c1673bfb66c4ad3e39278c92049eff34d08fa7",
+  "sourceFileBytes": 1472892,
+  "sourcePages": [3],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengkomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik",
+  "csvPath": "datasets/bps-3510-kecamatan-351022-dalam-angka-2026.csv",
+  "csvSha256": "56d53c3973ee14e5579031e82fc7e7b23b3b0205cccbeac1de42b50cb4dede4f",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p3",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 2.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Siliragung, 2025",
+      "printedPages": [3],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

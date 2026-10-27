@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1502-kecamatan-150215-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.02.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tabir Timur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Merangin",
+  "publisherDomain": "1502",
+  "publisherWebsite": "https://meranginkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Merangin (https://meranginkab.bps.go.id), publikasi \"Kecamatan Tabir Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "15020.26028",
+  "issn": "3064-5662",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://meranginkab.bps.go.id/id/publication/2026/09/28/55891f3b094756fe7cb38522/kecamatan-tabir-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "0965ae3b8c57fa06b08dfe0feb20c5026164954a143b14f5cd34c9e0684c98f2",
+  "sourceFileBytes": 4290487,
+  "sourcePages": [25, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Merangin",
+  "csvPath": "datasets/bps-1502-kecamatan-150215-dalam-angka-2026.csv",
+  "csvSha256": "67dde57519fe7780cb890aa5ab3a2291546c84055b69b76705ffea117a9f79b6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Tabir Timur, 2025",
+      "printedPages": [25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tabir Timur, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

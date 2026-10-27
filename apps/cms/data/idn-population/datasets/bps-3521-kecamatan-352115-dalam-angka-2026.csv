@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.21.15.2005,4,DERO,sex,laki_laki,,1404,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.15.2005,4,DERO,sex,perempuan,,1506,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.15.2005,4,DERO,total,total,,2910,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.15.2003,4,KROMPOL,sex,laki_laki,,1316,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.15.2003,4,KROMPOL,sex,perempuan,,1370,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.15.2003,4,KROMPOL,total,total,,2686,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.15.2002,4,MOJO,sex,laki_laki,,1047,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.15.2002,4,MOJO,sex,perempuan,,1038,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.15.2002,4,MOJO,total,total,,2085,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.15.2001,4,SUMBERBENING,sex,laki_laki,,3773,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.15.2001,4,SUMBERBENING,sex,perempuan,,3715,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.15.2001,4,SUMBERBENING,total,total,,7488,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.15.2004,4,BRINGIN,sex,laki_laki,,1510,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.15.2004,4,BRINGIN,sex,perempuan,,1556,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.15.2004,4,BRINGIN,total,total,,3066,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.15.2008,4,DAMPIT,sex,laki_laki,,687,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.15.2008,4,DAMPIT,sex,perempuan,,624,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.15.2008,4,DAMPIT,total,total,,1311,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.15.2009,4,SURUH,sex,laki_laki,,560,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.15.2009,4,SURUH,sex,perempuan,,592,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.15.2009,4,SURUH,total,total,,1152,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.15.2007,4,GANDONG,sex,laki_laki,,1256,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.15.2007,4,GANDONG,sex,perempuan,,1237,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.15.2007,4,GANDONG,total,total,,2493,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.15.2010,4,KENONGOREJO,sex,laki_laki,,2763,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.15.2010,4,KENONGOREJO,sex,perempuan,,2828,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.15.2010,4,KENONGOREJO,total,total,,5591,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.15,3,Kecamatan Bringin,sex,laki_laki,,16041,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.15,3,Kecamatan Bringin,sex,perempuan,,16236,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.15,3,Kecamatan Bringin,total,total,,32277,jiwa,2025,registration,total_population,unnumbered-p38,38,,

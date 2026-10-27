@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3322-kecamatan-332208-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.22.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jambu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Semarang",
+  "publisherDomain": "3322",
+  "publisherWebsite": "https://semarangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Semarang (https://semarangkab.bps.go.id), publikasi \"Kecamatan Jambu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3322080",
+  "publicationNumber": "33220.26030",
+  "issn": "2828-9021",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://semarangkab.bps.go.id/id/publication/2026/09/28/82f29026d537cfdbe8218238/kecamatan-jambu-dalam-angka-2026.html",
+  "sourceFileSha256": "25012dd3ac942c13caf0388fec75431ab1a0d05377b413dd965f214bd83c42d6",
+  "sourceFileBytes": 4451323,
+  "sourcePages": [22, 23, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Semarang.",
+  "csvPath": "datasets/bps-3322-kecamatan-332208-dalam-angka-2026.csv",
+  "csvSha256": "e3b02761c117e4e54e24e05f31e7e605d21a42a9610b0e488ddcf93b76796bb8",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Jambu, 2025",
+      "printedPages": [22, 23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jambu, 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Jumlah/ Total\": unmatched ",
+    "table 3.1: row not stored: row \"Jumlah/ Total\": unmatched "
+  ]
+}

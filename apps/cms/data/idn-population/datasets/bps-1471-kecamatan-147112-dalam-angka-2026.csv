@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.71.12.1011,4,Umban Sari,sex,laki_laki,,11262,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.12.1011,4,Umban Sari,sex,perempuan,,11294,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.12.1011,4,Umban Sari,total,total,,22556,jiwa,2025,registration,total_population,3.1,22,,
+14.71.12.1010,4,Palas,sex,laki_laki,,7005,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.12.1010,4,Palas,sex,perempuan,,6578,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.12.1010,4,Palas,total,total,,13583,jiwa,2025,registration,total_population,3.1,22,,
+14.71.12.1009,4,Sri Meranti,sex,laki_laki,,14072,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.12.1009,4,Sri Meranti,sex,perempuan,,13576,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.12.1009,4,Sri Meranti,total,total,,27648,jiwa,2025,registration,total_population,3.1,22,,
+14.71.12.1001,4,Meranti Pandak,sex,laki_laki,,6675,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.12.1001,4,Meranti Pandak,sex,perempuan,,6364,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.12.1001,4,Meranti Pandak,total,total,,13039,jiwa,2025,registration,total_population,3.1,22,,
+14.71.12.1004,4,Lembah Damai,sex,laki_laki,,4274,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.12.1004,4,Lembah Damai,sex,perempuan,,4230,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.12.1004,4,Lembah Damai,total,total,,8504,jiwa,2025,registration,total_population,3.1,22,,
+14.71.12.1006,4,Limbungan Baru,sex,laki_laki,,10556,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.12.1006,4,Limbungan Baru,sex,perempuan,,10662,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.12.1006,4,Limbungan Baru,total,total,,21218,jiwa,2025,registration,total_population,3.1,22,,
+14.71.12,3,Rumbai,sex,laki_laki,,53844,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.12,3,Rumbai,sex,perempuan,,52704,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.12,3,Rumbai,total,total,,106548,jiwa,2025,registration,total_population,3.1,22,,

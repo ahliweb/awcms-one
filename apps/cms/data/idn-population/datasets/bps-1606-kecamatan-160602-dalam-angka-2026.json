@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1606-kecamatan-160602-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.06.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lais Dalam Angka 2026",
+  "publisherName": "BPS Musi Banyuasin",
+  "publisherDomain": "1606",
+  "publisherWebsite": "https://musibanyuasinkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Musi Banyuasin (https://musibanyuasinkab.bps.go.id), publikasi \"Kecamatan Lais Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1606041",
+  "publicationNumber": "16060.26012",
+  "issn": "2745-3316",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://musibanyuasinkab.bps.go.id/id/publication/2026/09/28/77019c39bb55b2181c47a4c4/kecamatan-lais-dalam-angka-2026.html",
+  "sourceFileSha256": "2c3cca2fbe89466d9b559f9b08abcea9805566936f803156e8591140ea01a2d8",
+  "sourceFileBytes": 6364687,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Musi Banyuasin.",
+  "csvPath": "datasets/bps-1606-kecamatan-160602-dalam-angka-2026.csv",
+  "csvSha256": "56c6cf345f7bacb34c0f128e47610eecddaa40aa5014ba353d811364be301706",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk dan Rasio Jenis Kelamin Menurut Desa di Kecamatan Lais, 2026",
+      "printedPages": [32, 33],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lais, 2026",
+      "printedPages": [34],
+      "referenceYears": [2026],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -308,6 +308,16 @@ export const JOB_WORK_CLASS_REGISTRY: Readonly<
     rationale:
       "One-shot reference-data import (idn-regions:import, ADR-0046) — 91,599 rows written in a single transaction on deploy, not on a timer. Tolerant of delay and never latency-sensitive, but deliberately NOT background_sync: it is a long single write, so it belongs in the class sized for sweeps rather than the one sized for recurring dispatchers competing with request traffic."
   },
+  "scripts/idn-population-import.ts": {
+    workClass: "maintenance",
+    rationale:
+      "One-shot reference-data import (idn-population:import, awcms-one ADR-0051) — a BPS publication's figures written in a single transaction, run by hand after a reviewed dataset is added, never on a timer. Tolerant of delay and never latency-sensitive; same class and reasoning as idn-regions-import."
+  },
+  "scripts/idn-population-activate.ts": {
+    workClass: "maintenance",
+    rationale:
+      "Operator-run population dataset activation (idn-population:activate, awcms-one ADR-0051) — a short status flip plus a superseding update, run by hand and never on a timer. Same class and reasoning as idn-regions-activate."
+  },
   "scripts/idn-regions-activate.ts": {
     workClass: "maintenance",
     rationale:

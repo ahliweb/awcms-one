@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1212-kecamatan-120733-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.07.33",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Beringin Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Deli Serdang",
+  "publisherDomain": "1212",
+  "publisherWebsite": "https://deliserdangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Deli Serdang (https://deliserdangkab.bps.go.id), publikasi \"Kecamatan Beringin Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1212290",
+  "publicationNumber": "12120.26026",
+  "issn": "2776-0480",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://deliserdangkab.bps.go.id/id/publication/2026/09/28/ec159747b5f756fac3b6b35a/kecamatan-beringin-dalam-angka-2026.html",
+  "sourceFileSha256": "be94564f739763cae2c57e1c06c6682e3c0b3c16673cda9c2c4c4832c892fbb3",
+  "sourceFileBytes": 6435933,
+  "sourcePages": [40],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Deli Serdang.",
+  "csvPath": "datasets/bps-1212-kecamatan-120733-dalam-angka-2026.csv",
+  "csvSha256": "b5585ed30be811d492d4bed68eaa67e7e8289c663b86fecde98fd42425790448",
+  "tablesUsed": [
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Beringin, 2024",
+      "printedPages": [40],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

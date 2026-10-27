@@ -1,0 +1,58 @@
+{
+  "datasetCode": "bps-6202-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "62.02",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Kotawaringin Timur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kotawaringin Timur",
+  "publisherDomain": "6202",
+  "publisherWebsite": "https://kotimkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kotawaringin Timur (https://kotimkab.bps.go.id), publikasi \"Kabupaten Kotawaringin Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6202",
+  "publicationNumber": "62020.26002",
+  "issn": "2580-9474",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://kotimkab.bps.go.id/id/publication/2026/02/27/1b0919acd6a65af15770df56/kabupaten-kotawaringin-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "7748414b7784c4aa129da2209b0463c2e1adfdcceb4684c16c94fc7b3eab3f0e",
+  "sourceFileBytes": 8883006,
+  "sourcePages": [111, 114, 224],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kotawaringin Timur.",
+  "csvPath": "datasets/bps-6202-dalam-angka-2026.csv",
+  "csvSha256": "28c6d60b80d60d707636980d14801ae869e710c78350016395f46d250d16a80e",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Kotawaringin Timur, 2025 Total",
+      "printedPages": [111],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Kotawaringin Timur (ribu jiwa), 2025 Total",
+      "printedPages": [114],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Kotawaringin Timur, 2025",
+      "printedPages": [224],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication"
+  ]
+}

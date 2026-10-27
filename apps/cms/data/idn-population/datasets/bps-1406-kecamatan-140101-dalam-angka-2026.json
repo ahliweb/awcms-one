@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1406-kecamatan-140101-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.01.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bangkinang Kota Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kampar",
+  "publisherDomain": "1406",
+  "publisherWebsite": "https://kamparkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kampar (https://kamparkab.bps.go.id), publikasi \"Kecamatan Bangkinang Kota Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1406050",
+  "publicationNumber": "14060.26018",
+  "issn": "2987-1611",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kamparkab.bps.go.id/id/publication/2026/09/28/97b09ccd7418dcff556d56fc/kecamatan-bangkinang-kota-dalam-angka-2026.html",
+  "sourceFileSha256": "ba01b2eafbce046e8c98abc80d00d4db6b9dc0d8caf65e43ad481d1b1f55bcf1",
+  "sourceFileBytes": 2620702,
+  "sourcePages": [11, 12, 13],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kampar.",
+  "csvPath": "datasets/bps-1406-kecamatan-140101-dalam-angka-2026.csv",
+  "csvSha256": "31d2fe234b0da33d7872bfdf1e5c16577b1972f7fc4cbaa0da7b7aa0e9da11c5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bangkinang Kota, 2025",
+      "printedPages": [11, 12],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bangkinang Kota, 2025",
+      "printedPages": [13],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \">75 Tahun\": unmatched ",
+    "table 3.2: the rows of region 14.01.01 are not stored: age_group (perempuan) vs sex value: parts sum 20459.0000 != 20784.0000 (diff 325.0000); the source itself is inconsistent"
+  ]
+}

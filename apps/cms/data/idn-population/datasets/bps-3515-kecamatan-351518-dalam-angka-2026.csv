@@ -1,0 +1,106 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.15.18.2016,4,Medaeng,sex,laki_laki,,4959,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.18.2016,4,Medaeng,sex,perempuan,,5120,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.18.2016,4,Medaeng,total,total,,10079,jiwa,2025,registration,total_population,3.1,38,,
+35.15.18.2001,4,Pepelegi,sex,laki_laki,,7236,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.18.2001,4,Pepelegi,sex,perempuan,,7332,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.18.2001,4,Pepelegi,total,total,,14568,jiwa,2025,registration,total_population,3.1,38,,
+35.15.18.2002,4,Waru,sex,laki_laki,,4246,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.18.2002,4,Waru,sex,perempuan,,4429,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.18.2002,4,Waru,total,total,,8675,jiwa,2025,registration,total_population,3.1,38,,
+35.15.18.2003,4,Kureksari,sex,laki_laki,,6842,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.18.2003,4,Kureksari,sex,perempuan,,7194,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.18.2003,4,Kureksari,total,total,,14036,jiwa,2025,registration,total_population,3.1,38,,
+35.15.18.2004,4,Ngingas,sex,laki_laki,,7327,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.18.2004,4,Ngingas,sex,perempuan,,7294,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.18.2004,4,Ngingas,total,total,,14621,jiwa,2025,registration,total_population,3.1,38,,
+35.15.18.2005,4,Tropodo,sex,laki_laki,,9306,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.18.2005,4,Tropodo,sex,perempuan,,9614,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.18.2005,4,Tropodo,total,total,,18920,jiwa,2025,registration,total_population,3.1,38,,
+35.15.18.2006,4,Tambak Sawah,sex,laki_laki,,4240,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.18.2006,4,Tambak Sawah,sex,perempuan,,4440,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.18.2006,4,Tambak Sawah,total,total,,8680,jiwa,2025,registration,total_population,3.1,38,,
+35.15.18.2007,4,Tambak Rejo,sex,laki_laki,,8412,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.18.2007,4,Tambak Rejo,sex,perempuan,,8600,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.18.2007,4,Tambak Rejo,total,total,,17012,jiwa,2025,registration,total_population,3.1,38,,
+35.15.18.2008,4,Tambak Oso,sex,laki_laki,,1725,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.18.2008,4,Tambak Oso,sex,perempuan,,1662,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.18.2008,4,Tambak Oso,total,total,,3387,jiwa,2025,registration,total_population,3.1,38,,
+35.15.18.2009,4,Tambak Sumur,sex,laki_laki,,4050,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.18.2009,4,Tambak Sumur,sex,perempuan,,4231,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.18.2009,4,Tambak Sumur,total,total,,8281,jiwa,2025,registration,total_population,3.1,38,,
+35.15.18.2010,4,Wadungasri,sex,laki_laki,,4459,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.18.2010,4,Wadungasri,sex,perempuan,,4605,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.18.2010,4,Wadungasri,total,total,,9064,jiwa,2025,registration,total_population,3.1,38,,
+35.15.18.2012,4,Berbek,sex,laki_laki,,4968,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.18.2012,4,Berbek,sex,perempuan,,4936,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.18.2012,4,Berbek,total,total,,9904,jiwa,2025,registration,total_population,3.1,38,,
+35.15.18.2011,4,Kepuh Kiriman,sex,laki_laki,,7945,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.18.2011,4,Kepuh Kiriman,sex,perempuan,,8208,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.18.2011,4,Kepuh Kiriman,total,total,,16153,jiwa,2025,registration,total_population,3.1,38,,
+35.15.18.2013,4,Wedoro,sex,laki_laki,,7602,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.18.2013,4,Wedoro,sex,perempuan,,7719,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.18.2013,4,Wedoro,total,total,,15321,jiwa,2025,registration,total_population,3.1,38,,
+35.15.18.2014,4,Janti,sex,laki_laki,,2671,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.18.2014,4,Janti,sex,perempuan,,2734,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.18.2014,4,Janti,total,total,,5405,jiwa,2025,registration,total_population,3.1,38,,
+35.15.18.2015,4,Kedungrejo,sex,laki_laki,,5842,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.18.2015,4,Kedungrejo,sex,perempuan,,5888,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.18.2015,4,Kedungrejo,total,total,,11730,jiwa,2025,registration,total_population,3.1,38,,
+35.15.18.2017,4,Bungurasih,sex,laki_laki,,5476,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.18.2017,4,Bungurasih,sex,perempuan,,5409,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.18.2017,4,Bungurasih,total,total,,10885,jiwa,2025,registration,total_population,3.1,38,,
+35.15.18,3,Kecamatan Waru,sex,laki_laki,,97306,jiwa,2025,registration,total_population,3.1,38,,Laki-Laki/Male
+35.15.18,3,Kecamatan Waru,sex,perempuan,,99415,jiwa,2025,registration,total_population,3.1,38,,Perempuan/Female
+35.15.18,3,Kecamatan Waru,total,total,,196721,jiwa,2025,registration,total_population,3.1,38,,
+35.15.18,3,Waru,age_group,0-4,laki_laki,5193,jiwa,2025,registration,total_population,3.2,40,,0 - 4
+35.15.18,3,Waru,age_group,0-4,perempuan,4712,jiwa,2025,registration,total_population,3.2,40,,0 - 4
+35.15.18,3,Waru,age_group,0-4,,9905,jiwa,2025,registration,total_population,3.2,40,,0 - 4
+35.15.18,3,Waru,age_group,5-9,laki_laki,7090,jiwa,2025,registration,total_population,3.2,40,,5 - 9
+35.15.18,3,Waru,age_group,5-9,perempuan,6588,jiwa,2025,registration,total_population,3.2,40,,5 - 9
+35.15.18,3,Waru,age_group,5-9,,13678,jiwa,2025,registration,total_population,3.2,40,,5 - 9
+35.15.18,3,Waru,age_group,10-14,laki_laki,7690,jiwa,2025,registration,total_population,3.2,40,,10 - 14
+35.15.18,3,Waru,age_group,10-14,perempuan,7212,jiwa,2025,registration,total_population,3.2,40,,10 - 14
+35.15.18,3,Waru,age_group,10-14,,14902,jiwa,2025,registration,total_population,3.2,40,,10 - 14
+35.15.18,3,Waru,age_group,15-19,laki_laki,7457,jiwa,2025,registration,total_population,3.2,40,,15 - 19
+35.15.18,3,Waru,age_group,15-19,perempuan,7027,jiwa,2025,registration,total_population,3.2,40,,15 - 19
+35.15.18,3,Waru,age_group,15-19,,14484,jiwa,2025,registration,total_population,3.2,40,,15 - 19
+35.15.18,3,Waru,age_group,20-24,laki_laki,7675,jiwa,2025,registration,total_population,3.2,40,,20 - 24
+35.15.18,3,Waru,age_group,20-24,perempuan,7479,jiwa,2025,registration,total_population,3.2,40,,20 - 24
+35.15.18,3,Waru,age_group,20-24,,15154,jiwa,2025,registration,total_population,3.2,40,,20 - 24
+35.15.18,3,Waru,age_group,25-29,laki_laki,7686,jiwa,2025,registration,total_population,3.2,40,,25 - 29
+35.15.18,3,Waru,age_group,25-29,perempuan,7317,jiwa,2025,registration,total_population,3.2,40,,25 - 29
+35.15.18,3,Waru,age_group,25-29,,15003,jiwa,2025,registration,total_population,3.2,40,,25 - 29
+35.15.18,3,Waru,age_group,30-34,laki_laki,7263,jiwa,2025,registration,total_population,3.2,40,,30 - 34
+35.15.18,3,Waru,age_group,30-34,perempuan,7065,jiwa,2025,registration,total_population,3.2,40,,30 - 34
+35.15.18,3,Waru,age_group,30-34,,14328,jiwa,2025,registration,total_population,3.2,40,,30 - 34
+35.15.18,3,Waru,age_group,35-39,laki_laki,6760,jiwa,2025,registration,total_population,3.2,40,,35-39
+35.15.18,3,Waru,age_group,35-39,perempuan,6782,jiwa,2025,registration,total_population,3.2,40,,35-39
+35.15.18,3,Waru,age_group,35-39,,13542,jiwa,2025,registration,total_population,3.2,40,,35-39
+35.15.18,3,Waru,age_group,40-44,laki_laki,7828,jiwa,2025,registration,total_population,3.2,40,,40 - 44
+35.15.18,3,Waru,age_group,40-44,perempuan,8004,jiwa,2025,registration,total_population,3.2,40,,40 - 44
+35.15.18,3,Waru,age_group,40-44,,15832,jiwa,2025,registration,total_population,3.2,40,,40 - 44
+35.15.18,3,Waru,age_group,45-49,laki_laki,7121,jiwa,2025,registration,total_population,3.2,40,,45 - 49
+35.15.18,3,Waru,age_group,45-49,perempuan,7693,jiwa,2025,registration,total_population,3.2,40,,45 - 49
+35.15.18,3,Waru,age_group,45-49,,14814,jiwa,2025,registration,total_population,3.2,40,,45 - 49
+35.15.18,3,Waru,age_group,50-54,laki_laki,6772,jiwa,2025,registration,total_population,3.2,40,,50 - 54
+35.15.18,3,Waru,age_group,50-54,perempuan,7537,jiwa,2025,registration,total_population,3.2,40,,50 - 54
+35.15.18,3,Waru,age_group,50-54,,14309,jiwa,2025,registration,total_population,3.2,40,,50 - 54
+35.15.18,3,Waru,age_group,55-59,laki_laki,5955,jiwa,2025,registration,total_population,3.2,40,,55 - 59
+35.15.18,3,Waru,age_group,55-59,perempuan,6677,jiwa,2025,registration,total_population,3.2,40,,55 - 59
+35.15.18,3,Waru,age_group,55-59,,12632,jiwa,2025,registration,total_population,3.2,40,,55 - 59
+35.15.18,3,Waru,age_group,60-64,laki_laki,4568,jiwa,2025,registration,total_population,3.2,40,,60 - 64
+35.15.18,3,Waru,age_group,60-64,perempuan,5826,jiwa,2025,registration,total_population,3.2,40,,60 - 64
+35.15.18,3,Waru,age_group,60-64,,10394,jiwa,2025,registration,total_population,3.2,40,,60 - 64
+35.15.18,3,Waru,age_group,65-69,laki_laki,3976,jiwa,2025,registration,total_population,3.2,40,,65 -69
+35.15.18,3,Waru,age_group,65-69,perempuan,4470,jiwa,2025,registration,total_population,3.2,40,,65 -69
+35.15.18,3,Waru,age_group,65-69,,8446,jiwa,2025,registration,total_population,3.2,40,,65 -69
+35.15.18,3,Waru,age_group,70-74,laki_laki,2498,jiwa,2025,registration,total_population,3.2,40,,70 - 74
+35.15.18,3,Waru,age_group,70-74,perempuan,2559,jiwa,2025,registration,total_population,3.2,40,,70 - 74
+35.15.18,3,Waru,age_group,70-74,,5057,jiwa,2025,registration,total_population,3.2,40,,70 - 74
+35.15.18,3,Waru,age_group,75+,laki_laki,1774,jiwa,2025,registration,total_population,3.2,40,,75+
+35.15.18,3,Waru,age_group,75+,perempuan,2467,jiwa,2025,registration,total_population,3.2,40,,75+
+35.15.18,3,Waru,age_group,75+,,4241,jiwa,2025,registration,total_population,3.2,40,,75+
+35.15.18,3,Kecamatan Waru,sex,laki_laki,,97306,jiwa,2025,registration,total_population,3.2,40,,Laki-Laki
+35.15.18,3,Kecamatan Waru,sex,perempuan,,99415,jiwa,2025,registration,total_population,3.2,40,,Perempuan
+35.15.18,3,Kecamatan Waru,total,total,,196721,jiwa,2025,registration,total_population,3.2,40,,

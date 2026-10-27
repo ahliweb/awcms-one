@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1505-kecamatan-150509-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.05.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bahar Utara Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Muaro Jambi",
+  "publisherDomain": "1505",
+  "publisherWebsite": "https://muarojambikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Muaro Jambi (https://muarojambikab.bps.go.id), publikasi \"Kecamatan Bahar Utara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "15050.26007",
+  "issn": "2722-6816",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://muarojambikab.bps.go.id/id/publication/2026/09/28/7f76ec5b8f87ca0dc528ceb0/kecamatan-bahar-utara-dalam-angka-2026.html",
+  "sourceFileSha256": "1f4299a9473f28519823277809a0bbdd2884b28a95c28c89aa078cb55861e4b1",
+  "sourceFileBytes": 8280706,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Muaro Jambi.",
+  "csvPath": "datasets/bps-1505-kecamatan-150509-dalam-angka-2026.csv",
+  "csvSha256": "ed0a3bc20ff2b82312dc40e4d5d28ce88163e1da6afebedfddafb4a7c95fca31",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bahar Utara, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bahar Utara, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 15.05.09 are not stored: sex split vs total: parts sum 22712.0000 != 7759.0000 (diff 14953.0000); the source itself is inconsistent"
+  ]
+}

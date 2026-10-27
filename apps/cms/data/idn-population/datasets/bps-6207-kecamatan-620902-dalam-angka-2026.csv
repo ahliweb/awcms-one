@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.09.02.2005,4,Sepoyu,sex,laki_laki,,303,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.02.2005,4,Sepoyu,sex,perempuan,,259,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.02.2005,4,Sepoyu,total,total,,562,jiwa,2025,registration,total_population,3.1,28,,
+62.09.02.2011,4,Riam Tinggi,sex,laki_laki,,94,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.02.2011,4,Riam Tinggi,sex,perempuan,,89,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.02.2011,4,Riam Tinggi,total,total,,183,jiwa,2025,registration,total_population,3.1,28,,
+62.09.02.2012,4,Landau Kantu,sex,laki_laki,,89,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.02.2012,4,Landau Kantu,sex,perempuan,,69,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.02.2012,4,Landau Kantu,total,total,,158,jiwa,2025,registration,total_population,3.1,28,,
+62.09.02.2010,4,Nyalang,sex,laki_laki,,216,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.02.2010,4,Nyalang,sex,perempuan,,204,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.02.2010,4,Nyalang,total,total,,420,jiwa,2025,registration,total_population,3.1,28,,
+62.09.02.2013,4,Lopus,sex,laki_laki,,394,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.02.2013,4,Lopus,sex,perempuan,,372,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.02.2013,4,Lopus,total,total,,766,jiwa,2025,registration,total_population,3.1,28,,
+62.09.02.2014,4,Kubung,sex,laki_laki,,257,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.02.2014,4,Kubung,sex,perempuan,,230,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.02.2014,4,Kubung,total,total,,487,jiwa,2025,registration,total_population,3.1,28,,
+62.09.02.2015,4,Sekombulan,sex,laki_laki,,393,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.02.2015,4,Sekombulan,sex,perempuan,,339,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.02.2015,4,Sekombulan,total,total,,732,jiwa,2025,registration,total_population,3.1,28,,
+62.09.02.1017,4,Kudangan,sex,laki_laki,,689,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.02.1017,4,Kudangan,sex,perempuan,,653,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.02.1017,4,Kudangan,total,total,,1342,jiwa,2025,registration,total_population,3.1,28,,
+62.09.02.2016,4,Penyombaan,sex,laki_laki,,498,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.02.2016,4,Penyombaan,sex,perempuan,,448,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.02.2016,4,Penyombaan,total,total,,946,jiwa,2025,registration,total_population,3.1,28,,
+62.09.02.2020,4,Hulu Jojabo,sex,laki_laki,,238,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.02.2020,4,Hulu Jojabo,sex,perempuan,,223,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.02.2020,4,Hulu Jojabo,total,total,,461,jiwa,2025,registration,total_population,3.1,28,,
+62.09.02,3,Kecamatan Delang,sex,laki_laki,,3360,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+62.09.02,3,Kecamatan Delang,sex,perempuan,,3077,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+62.09.02,3,Kecamatan Delang,total,total,,6437,jiwa,2025,registration,total_population,3.1,28,,
+62.09.02,3,Delang,age_group,0-4,laki_laki,185,jiwa,2025,registration,total_population,3.2,30,,0–4
+62.09.02,3,Delang,age_group,0-4,perempuan,161,jiwa,2025,registration,total_population,3.2,30,,0–4
+62.09.02,3,Delang,age_group,0-4,,346,jiwa,2025,registration,total_population,3.2,30,,0–4
+62.09.02,3,Delang,age_group,5-9,laki_laki,263,jiwa,2025,registration,total_population,3.2,30,,5–9
+62.09.02,3,Delang,age_group,5-9,perempuan,261,jiwa,2025,registration,total_population,3.2,30,,5–9
+62.09.02,3,Delang,age_group,5-9,,524,jiwa,2025,registration,total_population,3.2,30,,5–9
+62.09.02,3,Delang,age_group,10-14,laki_laki,302,jiwa,2025,registration,total_population,3.2,30,,10–14
+62.09.02,3,Delang,age_group,10-14,perempuan,249,jiwa,2025,registration,total_population,3.2,30,,10–14
+62.09.02,3,Delang,age_group,10-14,,551,jiwa,2025,registration,total_population,3.2,30,,10–14
+62.09.02,3,Delang,age_group,15-19,laki_laki,245,jiwa,2025,registration,total_population,3.2,30,,15–19
+62.09.02,3,Delang,age_group,15-19,perempuan,252,jiwa,2025,registration,total_population,3.2,30,,15–19
+62.09.02,3,Delang,age_group,15-19,,497,jiwa,2025,registration,total_population,3.2,30,,15–19
+62.09.02,3,Delang,age_group,20-24,laki_laki,292,jiwa,2025,registration,total_population,3.2,30,,20–24
+62.09.02,3,Delang,age_group,20-24,perempuan,287,jiwa,2025,registration,total_population,3.2,30,,20–24
+62.09.02,3,Delang,age_group,20-24,,579,jiwa,2025,registration,total_population,3.2,30,,20–24
+62.09.02,3,Delang,age_group,25-29,laki_laki,268,jiwa,2025,registration,total_population,3.2,30,,25–29
+62.09.02,3,Delang,age_group,25-29,perempuan,214,jiwa,2025,registration,total_population,3.2,30,,25–29
+62.09.02,3,Delang,age_group,25-29,,482,jiwa,2025,registration,total_population,3.2,30,,25–29
+62.09.02,3,Delang,age_group,30-34,laki_laki,220,jiwa,2025,registration,total_population,3.2,30,,30–34
+62.09.02,3,Delang,age_group,30-34,perempuan,220,jiwa,2025,registration,total_population,3.2,30,,30–34
+62.09.02,3,Delang,age_group,30-34,,440,jiwa,2025,registration,total_population,3.2,30,,30–34
+62.09.02,3,Delang,age_group,35-39,laki_laki,202,jiwa,2025,registration,total_population,3.2,30,,35–39
+62.09.02,3,Delang,age_group,35-39,perempuan,212,jiwa,2025,registration,total_population,3.2,30,,35–39
+62.09.02,3,Delang,age_group,35-39,,414,jiwa,2025,registration,total_population,3.2,30,,35–39
+62.09.02,3,Delang,age_group,40-44,laki_laki,271,jiwa,2025,registration,total_population,3.2,30,,40–44
+62.09.02,3,Delang,age_group,40-44,perempuan,239,jiwa,2025,registration,total_population,3.2,30,,40–44
+62.09.02,3,Delang,age_group,40-44,,510,jiwa,2025,registration,total_population,3.2,30,,40–44
+62.09.02,3,Delang,age_group,45-49,laki_laki,299,jiwa,2025,registration,total_population,3.2,30,,45–49
+62.09.02,3,Delang,age_group,45-49,perempuan,245,jiwa,2025,registration,total_population,3.2,30,,45–49
+62.09.02,3,Delang,age_group,45-49,,544,jiwa,2025,registration,total_population,3.2,30,,45–49
+62.09.02,3,Delang,age_group,50-54,laki_laki,206,jiwa,2025,registration,total_population,3.2,30,,50–54
+62.09.02,3,Delang,age_group,50-54,perempuan,182,jiwa,2025,registration,total_population,3.2,30,,50–54
+62.09.02,3,Delang,age_group,50-54,,388,jiwa,2025,registration,total_population,3.2,30,,50–54
+62.09.02,3,Delang,age_group,55-59,laki_laki,161,jiwa,2025,registration,total_population,3.2,30,,55–59
+62.09.02,3,Delang,age_group,55-59,perempuan,141,jiwa,2025,registration,total_population,3.2,30,,55–59
+62.09.02,3,Delang,age_group,55-59,,302,jiwa,2025,registration,total_population,3.2,30,,55–59
+62.09.02,3,Delang,age_group,60-64,laki_laki,143,jiwa,2025,registration,total_population,3.2,30,,60–64
+62.09.02,3,Delang,age_group,60-64,perempuan,122,jiwa,2025,registration,total_population,3.2,30,,60–64
+62.09.02,3,Delang,age_group,60-64,,265,jiwa,2025,registration,total_population,3.2,30,,60–64
+62.09.02,3,Delang,age_group,65-69,laki_laki,99,jiwa,2025,registration,total_population,3.2,30,,65–69
+62.09.02,3,Delang,age_group,65-69,perempuan,87,jiwa,2025,registration,total_population,3.2,30,,65–69
+62.09.02,3,Delang,age_group,65-69,,186,jiwa,2025,registration,total_population,3.2,30,,65–69
+62.09.02,3,Delang,age_group,70-74,laki_laki,83,jiwa,2025,registration,total_population,3.2,30,,70–74
+62.09.02,3,Delang,age_group,70-74,perempuan,84,jiwa,2025,registration,total_population,3.2,30,,70–74
+62.09.02,3,Delang,age_group,70-74,,167,jiwa,2025,registration,total_population,3.2,30,,70–74
+62.09.02,3,Delang,age_group,75+,laki_laki,121,jiwa,2025,registration,total_population,3.2,30,,75+
+62.09.02,3,Delang,age_group,75+,perempuan,121,jiwa,2025,registration,total_population,3.2,30,,75+
+62.09.02,3,Delang,age_group,75+,,242,jiwa,2025,registration,total_population,3.2,30,,75+
+62.09.02,3,Kecamatan Delang,sex,laki_laki,,3360,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki/Male
+62.09.02,3,Kecamatan Delang,sex,perempuan,,3077,jiwa,2025,registration,total_population,3.2,30,,Perempuan/Female
+62.09.02,3,Kecamatan Delang,total,total,,6437,jiwa,2025,registration,total_population,3.2,30,,

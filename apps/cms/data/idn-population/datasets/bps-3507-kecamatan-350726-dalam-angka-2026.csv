@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.07.26.2001,4,Bendosari,sex,laki_laki,,2122,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.26.2001,4,Bendosari,sex,perempuan,,2089,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.26.2001,4,Bendosari,total,total,,4211,jiwa,2025,registration,total_population,3.1,27,,
+35.07.26.2002,4,Sukomulyo,sex,laki_laki,,3494,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.26.2002,4,Sukomulyo,sex,perempuan,,3326,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.26.2002,4,Sukomulyo,total,total,,6820,jiwa,2025,registration,total_population,3.1,27,,
+35.07.26.2003,4,Pujon Kidul,sex,laki_laki,,2399,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.26.2003,4,Pujon Kidul,sex,perempuan,,2347,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.26.2003,4,Pujon Kidul,total,total,,4746,jiwa,2025,registration,total_population,3.1,27,,
+35.07.26.2004,4,Pandesari,sex,laki_laki,,5748,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.26.2004,4,Pandesari,sex,perempuan,,5574,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.26.2004,4,Pandesari,total,total,,11322,jiwa,2025,registration,total_population,3.1,27,,
+35.07.26.2005,4,Pujon Lor,sex,laki_laki,,4108,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.26.2005,4,Pujon Lor,sex,perempuan,,3888,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.26.2005,4,Pujon Lor,total,total,,7996,jiwa,2025,registration,total_population,3.1,27,,
+35.07.26.2006,4,Ngroto,sex,laki_laki,,3426,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.26.2006,4,Ngroto,sex,perempuan,,3370,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.26.2006,4,Ngroto,total,total,,6796,jiwa,2025,registration,total_population,3.1,27,,
+35.07.26.2007,4,Ngabab,sex,laki_laki,,4261,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.26.2007,4,Ngabab,sex,perempuan,,4044,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.26.2007,4,Ngabab,total,total,,8305,jiwa,2025,registration,total_population,3.1,27,,
+35.07.26.2008,4,Tawangsari,sex,laki_laki,,3716,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.26.2008,4,Tawangsari,sex,perempuan,,3490,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.26.2008,4,Tawangsari,total,total,,7206,jiwa,2025,registration,total_population,3.1,27,,
+35.07.26.2009,4,Madiredo,sex,laki_laki,,4788,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.26.2009,4,Madiredo,sex,perempuan,,4468,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.26.2009,4,Madiredo,total,total,,9256,jiwa,2025,registration,total_population,3.1,27,,
+35.07.26.2010,4,Wiyurejo,sex,laki_laki,,3017,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.26.2010,4,Wiyurejo,sex,perempuan,,2802,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.26.2010,4,Wiyurejo,total,total,,5819,jiwa,2025,registration,total_population,3.1,27,,
+35.07.26,3,Kecamatan Pujon,sex,laki_laki,,37079,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.26,3,Kecamatan Pujon,sex,perempuan,,35398,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.26,3,Kecamatan Pujon,total,total,,72477,jiwa,2025,registration,total_population,3.1,27,,
+35.07.26,3,Pujon,age_group,0-4,laki_laki,2048,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+35.07.26,3,Pujon,age_group,0-4,perempuan,1892,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+35.07.26,3,Pujon,age_group,0-4,,3940,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+35.07.26,3,Pujon,age_group,5-9,laki_laki,2785,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+35.07.26,3,Pujon,age_group,5-9,perempuan,2689,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+35.07.26,3,Pujon,age_group,5-9,,5474,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+35.07.26,3,Pujon,age_group,10-14,laki_laki,3036,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+35.07.26,3,Pujon,age_group,10-14,perempuan,2870,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+35.07.26,3,Pujon,age_group,10-14,,5906,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+35.07.26,3,Pujon,age_group,15-19,laki_laki,2762,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+35.07.26,3,Pujon,age_group,15-19,perempuan,2631,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+35.07.26,3,Pujon,age_group,15-19,,5393,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+35.07.26,3,Pujon,age_group,20-24,laki_laki,2850,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+35.07.26,3,Pujon,age_group,20-24,perempuan,2782,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+35.07.26,3,Pujon,age_group,20-24,,5632,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+35.07.26,3,Pujon,age_group,25-29,laki_laki,2934,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+35.07.26,3,Pujon,age_group,25-29,perempuan,2902,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+35.07.26,3,Pujon,age_group,25-29,,5836,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+35.07.26,3,Pujon,age_group,30-34,laki_laki,2876,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+35.07.26,3,Pujon,age_group,30-34,perempuan,2703,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+35.07.26,3,Pujon,age_group,30-34,,5579,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+35.07.26,3,Pujon,age_group,35-39,laki_laki,2757,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+35.07.26,3,Pujon,age_group,35-39,perempuan,2502,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+35.07.26,3,Pujon,age_group,35-39,,5259,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+35.07.26,3,Pujon,age_group,40-44,laki_laki,2810,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+35.07.26,3,Pujon,age_group,40-44,perempuan,2728,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+35.07.26,3,Pujon,age_group,40-44,,5538,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+35.07.26,3,Pujon,age_group,45-49,laki_laki,2617,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+35.07.26,3,Pujon,age_group,45-49,perempuan,2512,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+35.07.26,3,Pujon,age_group,45-49,,5129,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+35.07.26,3,Pujon,age_group,50-54,laki_laki,2470,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+35.07.26,3,Pujon,age_group,50-54,perempuan,2490,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+35.07.26,3,Pujon,age_group,50-54,,4960,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+35.07.26,3,Pujon,age_group,55-59,laki_laki,2237,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+35.07.26,3,Pujon,age_group,55-59,perempuan,2008,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+35.07.26,3,Pujon,age_group,55-59,,4245,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+35.07.26,3,Pujon,age_group,60-64,laki_laki,1788,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+35.07.26,3,Pujon,age_group,60-64,perempuan,1740,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+35.07.26,3,Pujon,age_group,60-64,,3528,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+35.07.26,3,Pujon,age_group,65+,laki_laki,3109,jiwa,2025,registration,total_population,3.2,29,,>= 65
+35.07.26,3,Pujon,age_group,65+,perempuan,2949,jiwa,2025,registration,total_population,3.2,29,,>= 65
+35.07.26,3,Pujon,age_group,65+,,6058,jiwa,2025,registration,total_population,3.2,29,,>= 65
+35.07.26,3,Kecamatan Pujon,sex,laki_laki,,37079,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+35.07.26,3,Kecamatan Pujon,sex,perempuan,,35398,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+35.07.26,3,Kecamatan Pujon,total,total,,72477,jiwa,2025,registration,total_population,3.2,29,,

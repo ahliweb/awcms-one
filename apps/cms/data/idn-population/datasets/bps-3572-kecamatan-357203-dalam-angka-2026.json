@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3572-kecamatan-357203-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.72.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sananwetan Dalam Angka 2026",
+  "publisherName": "BPS Kota Blitar",
+  "publisherDomain": "3572",
+  "publisherWebsite": "https://blitarkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Blitar (https://blitarkota.bps.go.id), publikasi \"Kecamatan Sananwetan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3572030",
+  "publicationNumber": "35720.26008",
+  "issn": "2598-4470",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://blitarkota.bps.go.id/id/publication/2026/09/28/fee01f68f7e0a2177c1b3c68/kecamatan-sananwetan-dalam-angka-2026.html",
+  "sourceFileSha256": "b9209120e9978bc8d9c1b320d4db28049ea37497c0a2daab6192627d5475c042",
+  "sourceFileBytes": 10646512,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Blitar.",
+  "csvPath": "datasets/bps-3572-kecamatan-357203-dalam-angka-2026.csv",
+  "csvSha256": "061bd09cc236a2357d2efef8996b31ef666a831d1466199cf822004ab26e1908",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Sananwetan, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sananwetan, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

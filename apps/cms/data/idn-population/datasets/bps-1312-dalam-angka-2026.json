@@ -1,0 +1,51 @@
+{
+  "datasetCode": "bps-1312-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "13.12",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Pasaman Barat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pasaman Barat",
+  "publisherDomain": "1312",
+  "publisherWebsite": "https://pasamanbaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pasaman Barat (https://pasamanbaratkab.bps.go.id), publikasi \"Kabupaten Pasaman Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1312",
+  "publicationNumber": "13120.26004",
+  "issn": "2654-962X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://pasamanbaratkab.bps.go.id/id/publication/2026/02/27/379d9b88e0cd3f2fd7f295b0/kabupaten-pasaman-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "14bd7a285c2eaf242d15d39bb2baa2fccebc98df95581747db2da44202802240",
+  "sourceFileBytes": 4580293,
+  "sourcePages": [118, 422],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pasaman Barat",
+  "csvPath": "datasets/bps-1312-dalam-angka-2026.csv",
+  "csvSha256": "cd4f9b91b64412e4ad1118f49e5cd85f7d5f8fb45ec8fd1f709462acc1683ff9",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Pasaman Barat, 2024 dan 2025",
+      "printedPages": [118],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Pasaman Barat (rupiah), 2024 dan 2025",
+      "printedPages": [422],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 3.1.2 (age-by-sex) could not be read reliably and is not included (year of a column not determinable)"
+  ]
+}

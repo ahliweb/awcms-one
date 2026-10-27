@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.06.15.2002,4,Padang Gading,sex,laki_laki,,679,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.06.15.2002,4,Padang Gading,sex,perempuan,,634,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.06.15.2002,4,Padang Gading,total,total,,1313,jiwa,2025,registration,total_population,3.1,28,,
+17.06.15.2001,4,Retak Mudik,sex,laki_laki,,637,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.06.15.2001,4,Retak Mudik,sex,perempuan,,635,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.06.15.2001,4,Retak Mudik,total,total,,1272,jiwa,2025,registration,total_population,3.1,28,,
+17.06.15.2003,4,Gajah Mati,sex,laki_laki,,538,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.06.15.2003,4,Gajah Mati,sex,perempuan,,560,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.06.15.2003,4,Gajah Mati,total,total,,1098,jiwa,2025,registration,total_population,3.1,28,,
+17.06.15.2006,4,Sumber Makmur,sex,laki_laki,,928,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.06.15.2006,4,Sumber Makmur,sex,perempuan,,839,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.06.15.2006,4,Sumber Makmur,total,total,,1767,jiwa,2025,registration,total_population,3.1,28,,
+17.06.15.2007,4,Talang Gading,sex,laki_laki,,338,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.06.15.2007,4,Talang Gading,sex,perempuan,,345,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.06.15.2007,4,Talang Gading,total,total,,683,jiwa,2025,registration,total_population,3.1,28,,
+17.06.15.2005,4,Sidodadi,sex,laki_laki,,641,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.06.15.2005,4,Sidodadi,sex,perempuan,,597,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.06.15.2005,4,Sidodadi,total,total,,1238,jiwa,2025,registration,total_population,3.1,28,,
+17.06.15.2008,4,Gading Jaya,sex,laki_laki,,386,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.06.15.2008,4,Gading Jaya,sex,perempuan,,353,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.06.15.2008,4,Gading Jaya,total,total,,739,jiwa,2025,registration,total_population,3.1,28,,
+17.06.15.2009,4,Banjar Sari,sex,laki_laki,,463,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.06.15.2009,4,Banjar Sari,sex,perempuan,,471,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.06.15.2009,4,Banjar Sari,total,total,,934,jiwa,2025,registration,total_population,3.1,28,,
+17.06.15,3,Sungai Rumbai,sex,laki_laki,,5212,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+17.06.15,3,Sungai Rumbai,sex,perempuan,,5010,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+17.06.15,3,Sungai Rumbai,total,total,,10222,jiwa,2025,registration,total_population,3.1,28,,

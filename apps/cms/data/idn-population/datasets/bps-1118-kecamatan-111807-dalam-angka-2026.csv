@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.18.07.2005,4,Lhok Pu'uk,sex,laki_laki,,304,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.18.07.2005,4,Lhok Pu'uk,sex,perempuan,,319,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.18.07.2005,4,Lhok Pu'uk,total,total,,623,jiwa,2025,registration,total_population,3.1,20,,
+11.18.07.2008,4,Tunong,sex,laki_laki,,317,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.18.07.2008,4,Tunong,sex,perempuan,,354,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.18.07.2008,4,Tunong,total,total,,671,jiwa,2025,registration,total_population,3.1,20,,
+11.18.07.2009,4,Peurade,sex,laki_laki,,625,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.18.07.2009,4,Peurade,sex,perempuan,,639,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.18.07.2009,4,Peurade,total,total,,1264,jiwa,2025,registration,total_population,3.1,20,,
+11.18.07.2010,4,Reudeup,sex,laki_laki,,495,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.18.07.2010,4,Reudeup,sex,perempuan,,471,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.18.07.2010,4,Reudeup,total,total,,966,jiwa,2025,registration,total_population,3.1,20,,
+11.18.07.2006,4,Mesjid,sex,laki_laki,,623,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.18.07.2006,4,Mesjid,sex,perempuan,,654,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.18.07.2006,4,Mesjid,total,total,,1277,jiwa,2025,registration,total_population,3.1,20,,
+11.18.07.2004,4,Muka Blang,sex,laki_laki,,389,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.18.07.2004,4,Muka Blang,sex,perempuan,,380,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.18.07.2004,4,Muka Blang,total,total,,769,jiwa,2025,registration,total_population,3.1,20,,
+11.18.07.2003,4,Hagu,sex,laki_laki,,237,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.18.07.2003,4,Hagu,sex,perempuan,,224,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.18.07.2003,4,Hagu,total,total,,461,jiwa,2025,registration,total_population,3.1,20,,
+11.18.07,3,Panteraja,sex,laki_laki,,4726,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.18.07,3,Panteraja,sex,perempuan,,4766,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.18.07,3,Panteraja,total,total,,9492,jiwa,2025,registration,total_population,3.1,20,,

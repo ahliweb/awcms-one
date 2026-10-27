@@ -1,0 +1,71 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.01.04.2004,4,Widarapayung Kulon,sex,perempuan,,2131,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.04.2004,4,Widarapayung Kulon,total,total,,4348,jiwa,2025,registration,total_population,3.1,7,,
+33.01.04.2016,4,Sidayu,sex,perempuan,,1914,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.04.2016,4,Sidayu,total,total,,3952,jiwa,2025,registration,total_population,3.1,7,,
+33.01.04.2008,4,Widarapayung Wetan,sex,perempuan,,3456,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.04.2008,4,Widarapayung Wetan,total,total,,6957,jiwa,2025,registration,total_population,3.1,7,,
+33.01.04.2011,4,Sidaurip,sex,perempuan,,3151,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.04.2011,4,Sidaurip,total,total,,6413,jiwa,2025,registration,total_population,3.1,7,,
+33.01.04.2017,4,Pagubugan Kulon,sex,perempuan,,2683,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.04.2017,4,Pagubugan Kulon,total,total,,5350,jiwa,2025,registration,total_population,3.1,7,,
+33.01.04.2012,4,Pagubugan,sex,perempuan,,2115,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.04.2012,4,Pagubugan,total,total,,4298,jiwa,2025,registration,total_population,3.1,7,,
+33.01.04.2015,4,Karangnangka,sex,perempuan,,377,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.04.2015,4,Karangnangka,total,total,,742,jiwa,2025,registration,total_population,3.1,7,,
+33.01.04.2014,4,Kemojing,sex,perempuan,,1241,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.04.2014,4,Kemojing,total,total,,2474,jiwa,2025,registration,total_population,3.1,7,,
+33.01.04.2013,4,Pesawahan,sex,perempuan,,2097,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.04.2013,4,Pesawahan,total,total,,4217,jiwa,2025,registration,total_population,3.1,7,,
+33.01.04.2010,4,Pasuruhan,sex,perempuan,,2658,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.04.2010,4,Pasuruhan,total,total,,5381,jiwa,2025,registration,total_population,3.1,7,,
+33.01.04.2009,4,Alangamba,sex,perempuan,,1695,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.04.2009,4,Alangamba,total,total,,3363,jiwa,2025,registration,total_population,3.1,7,,
+33.01.04.2007,4,Binangun,sex,perempuan,,2291,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.04.2007,4,Binangun,total,total,,4595,jiwa,2025,registration,total_population,3.1,7,,
+33.01.04.2006,4,Bangkal,sex,perempuan,,1320,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.04.2006,4,Bangkal,total,total,,2743,jiwa,2025,registration,total_population,3.1,7,,
+33.01.04.2005,4,Jepara Wetan,sex,perempuan,,3173,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.04.2005,4,Jepara Wetan,total,total,,6475,jiwa,2025,registration,total_population,3.1,7,,
+33.01.04.2003,4,Jepara Kulon,sex,perempuan,,3151,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.04.2003,4,Jepara Kulon,total,total,,6424,jiwa,2025,registration,total_population,3.1,7,,
+33.01.04.2002,4,Kepudang,sex,perempuan,,1249,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.04.2002,4,Kepudang,total,total,,2568,jiwa,2025,registration,total_population,3.1,7,,
+33.01.04.2001,4,Jati,sex,perempuan,,1614,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.04.2001,4,Jati,total,total,,3272,jiwa,2025,registration,total_population,3.1,7,,
+33.01.04,3,Binangun,sex,perempuan,,36316,jiwa,2025,registration,total_population,3.1,7,,Perempuan/Female
+33.01.04,3,Binangun,total,total,,73572,jiwa,2025,registration,total_population,3.1,7,,
+33.01.04,3,Binangun,age_group,0-4,perempuan,1876,jiwa,2025,registration,total_population,3.2,9,,0–4
+33.01.04,3,Binangun,age_group,0-4,,3874,jiwa,2025,registration,total_population,3.2,9,,0–4
+33.01.04,3,Binangun,age_group,5-9,perempuan,2502,jiwa,2025,registration,total_population,3.2,9,,5–9
+33.01.04,3,Binangun,age_group,5-9,,5220,jiwa,2025,registration,total_population,3.2,9,,5–9
+33.01.04,3,Binangun,age_group,10-14,perempuan,2609,jiwa,2025,registration,total_population,3.2,9,,10–14
+33.01.04,3,Binangun,age_group,10-14,,5369,jiwa,2025,registration,total_population,3.2,9,,10–14
+33.01.04,3,Binangun,age_group,15-19,perempuan,2428,jiwa,2025,registration,total_population,3.2,9,,15–19
+33.01.04,3,Binangun,age_group,15-19,,5050,jiwa,2025,registration,total_population,3.2,9,,15–19
+33.01.04,3,Binangun,age_group,20-24,perempuan,2422,jiwa,2025,registration,total_population,3.2,9,,20–24
+33.01.04,3,Binangun,age_group,20-24,,5002,jiwa,2025,registration,total_population,3.2,9,,20–24
+33.01.04,3,Binangun,age_group,25-29,perempuan,2509,jiwa,2025,registration,total_population,3.2,9,,25–29
+33.01.04,3,Binangun,age_group,25-29,,5343,jiwa,2025,registration,total_population,3.2,9,,25–29
+33.01.04,3,Binangun,age_group,30-34,perempuan,2544,jiwa,2025,registration,total_population,3.2,9,,30–34
+33.01.04,3,Binangun,age_group,30-34,,5282,jiwa,2025,registration,total_population,3.2,9,,30–34
+33.01.04,3,Binangun,age_group,35-39,perempuan,2616,jiwa,2025,registration,total_population,3.2,9,,35–39
+33.01.04,3,Binangun,age_group,35-39,,5316,jiwa,2025,registration,total_population,3.2,9,,35–39
+33.01.04,3,Binangun,age_group,40-44,perempuan,3101,jiwa,2025,registration,total_population,3.2,9,,40–44
+33.01.04,3,Binangun,age_group,40-44,,6089,jiwa,2025,registration,total_population,3.2,9,,40–44
+33.01.04,3,Binangun,age_group,45-49,perempuan,2979,jiwa,2025,registration,total_population,3.2,9,,45–49
+33.01.04,3,Binangun,age_group,45-49,,5758,jiwa,2025,registration,total_population,3.2,9,,45–49
+33.01.04,3,Binangun,age_group,50-54,perempuan,2557,jiwa,2025,registration,total_population,3.2,9,,50–54
+33.01.04,3,Binangun,age_group,50-54,,5067,jiwa,2025,registration,total_population,3.2,9,,50–54
+33.01.04,3,Binangun,age_group,55-59,perempuan,2154,jiwa,2025,registration,total_population,3.2,9,,55–59
+33.01.04,3,Binangun,age_group,55-59,,4380,jiwa,2025,registration,total_population,3.2,9,,55–59
+33.01.04,3,Binangun,age_group,60-64,perempuan,1919,jiwa,2025,registration,total_population,3.2,9,,60–64
+33.01.04,3,Binangun,age_group,60-64,,3679,jiwa,2025,registration,total_population,3.2,9,,60–64
+33.01.04,3,Binangun,age_group,65-69,perempuan,1591,jiwa,2025,registration,total_population,3.2,9,,65–69
+33.01.04,3,Binangun,age_group,65-69,,3082,jiwa,2025,registration,total_population,3.2,9,,65–69
+33.01.04,3,Binangun,age_group,70-74,perempuan,1068,jiwa,2025,registration,total_population,3.2,9,,70–74
+33.01.04,3,Binangun,age_group,70-74,,2288,jiwa,2025,registration,total_population,3.2,9,,70–74
+33.01.04,3,Binangun,age_group,75+,perempuan,1441,jiwa,2025,registration,total_population,3.2,9,,75+
+33.01.04,3,Binangun,age_group,75+,,2773,jiwa,2025,registration,total_population,3.2,9,,75+
+33.01.04,3,Binangun,sex,perempuan,,36316,jiwa,2025,registration,total_population,3.2,9,,Perempuan
+33.01.04,3,Binangun,total,total,,73572,jiwa,2025,registration,total_population,3.2,9,,

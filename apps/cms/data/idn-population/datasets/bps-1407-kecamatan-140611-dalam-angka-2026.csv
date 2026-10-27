@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.06.11.2002,4,Kumain,sex,laki_laki,,1497,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.11.2002,4,Kumain,sex,perempuan,,1430,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.11.2002,4,Kumain,total,total,,2927,jiwa,2025,registration,total_population,3.1,30,,
+14.06.11.2003,4,Bono Tapung,sex,laki_laki,,1198,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.11.2003,4,Bono Tapung,sex,perempuan,,1220,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.11.2003,4,Bono Tapung,total,total,,2418,jiwa,2025,registration,total_population,3.1,30,,
+14.06.11.2004,4,Dayo,sex,laki_laki,,2232,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.11.2004,4,Dayo,sex,perempuan,,2060,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.11.2004,4,Dayo,total,total,,4292,jiwa,2025,registration,total_population,3.1,30,,
+14.06.11.2005,4,Tapung Jaya,sex,laki_laki,,1733,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.11.2005,4,Tapung Jaya,sex,perempuan,,1727,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.11.2005,4,Tapung Jaya,total,total,,3460,jiwa,2025,registration,total_population,3.1,30,,
+14.06.11.2001,4,Tandun,sex,laki_laki,,4287,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.11.2001,4,Tandun,sex,perempuan,,4083,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.11.2001,4,Tandun,total,total,,8370,jiwa,2025,registration,total_population,3.1,30,,
+14.06.11.2006,4,Puo Raya,sex,laki_laki,,1897,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.11.2006,4,Puo Raya,sex,perempuan,,1793,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.11.2006,4,Puo Raya,total,total,,3690,jiwa,2025,registration,total_population,3.1,30,,
+14.06.11.2008,4,Koto Tandun,sex,laki_laki,,1742,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.11.2008,4,Koto Tandun,sex,perempuan,,1620,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.11.2008,4,Koto Tandun,total,total,,3362,jiwa,2025,registration,total_population,3.1,30,,
+14.06.11.2009,4,Tandun Barat,sex,laki_laki,,1212,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.11.2009,4,Tandun Barat,sex,perempuan,,1271,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.11.2009,4,Tandun Barat,total,total,,2483,jiwa,2025,registration,total_population,3.1,30,,
+14.06.11,3,Tandun,sex,laki_laki,,17310,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.11,3,Tandun,sex,perempuan,,16578,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.11,3,Tandun,total,total,,33888,jiwa,2025,registration,total_population,3.1,30,,

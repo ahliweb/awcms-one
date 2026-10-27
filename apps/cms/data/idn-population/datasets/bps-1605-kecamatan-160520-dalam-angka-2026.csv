@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.05.20.2009,4,Air Beliti,sex,laki_laki,,884,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.20.2009,4,Air Beliti,sex,perempuan,,878,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.20.2009,4,Air Beliti,total,total,,1762,jiwa,2025,registration,total_population,3.1,23,,
+16.05.20.2003,4,Suka Mulya,sex,laki_laki,,614,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.20.2003,4,Suka Mulya,sex,perempuan,,589,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.20.2003,4,Suka Mulya,total,total,,1203,jiwa,2025,registration,total_population,3.1,23,,
+16.05.20.2002,4,Jaya Tunggal,sex,laki_laki,,802,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.20.2002,4,Jaya Tunggal,sex,perempuan,,727,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.20.2002,4,Jaya Tunggal,total,total,,1529,jiwa,2025,registration,total_population,3.1,23,,
+16.05.20.2006,4,Remayu,sex,laki_laki,,888,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.20.2006,4,Remayu,sex,perempuan,,822,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.20.2006,4,Remayu,total,total,,1710,jiwa,2025,registration,total_population,3.1,23,,
+16.05.20.2007,4,Petunang,sex,laki_laki,,1554,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.20.2007,4,Petunang,sex,perempuan,,1459,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.20.2007,4,Petunang,total,total,,3013,jiwa,2025,registration,total_population,3.1,23,,
+16.05.20.2001,4,Banpres,sex,laki_laki,,1411,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.20.2001,4,Banpres,sex,perempuan,,1331,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.20.2001,4,Banpres,total,total,,2742,jiwa,2025,registration,total_population,3.1,23,,
+16.05.20.2008,4,Lubuk Rumbai,sex,laki_laki,,1573,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.20.2008,4,Lubuk Rumbai,sex,perempuan,,1525,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.20.2008,4,Lubuk Rumbai,total,total,,3098,jiwa,2025,registration,total_population,3.1,23,,
+16.05.20.2010,4,Leban Jaya,sex,laki_laki,,2750,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.20.2010,4,Leban Jaya,sex,perempuan,,2606,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.20.2010,4,Leban Jaya,total,total,,5356,jiwa,2025,registration,total_population,3.1,23,,
+16.05.20,3,Tuah Negeri,sex,laki_laki,,14786,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.20,3,Tuah Negeri,sex,perempuan,,13937,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.20,3,Tuah Negeri,total,total,,28723,jiwa,2025,registration,total_population,3.1,23,,
+16.05.20,3,Tuah Negeri,age_group,0-14,laki_laki,3545,jiwa,2025,registration,total_population,3.2,25,,0-14
+16.05.20,3,Tuah Negeri,age_group,0-14,perempuan,3213,jiwa,2025,registration,total_population,3.2,25,,0-14
+16.05.20,3,Tuah Negeri,age_group,0-14,,6758,jiwa,2025,registration,total_population,3.2,25,,0-14
+16.05.20,3,Tuah Negeri,age_group,15-64,laki_laki,10268,jiwa,2025,registration,total_population,3.2,25,,15-64
+16.05.20,3,Tuah Negeri,age_group,15-64,perempuan,9784,jiwa,2025,registration,total_population,3.2,25,,15-64
+16.05.20,3,Tuah Negeri,age_group,15-64,,20052,jiwa,2025,registration,total_population,3.2,25,,15-64
+16.05.20,3,Tuah Negeri,age_group,65+,laki_laki,973,jiwa,2025,registration,total_population,3.2,25,,65+
+16.05.20,3,Tuah Negeri,age_group,65+,perempuan,940,jiwa,2025,registration,total_population,3.2,25,,65+
+16.05.20,3,Tuah Negeri,age_group,65+,,1913,jiwa,2025,registration,total_population,3.2,25,,65+
+16.05.20,3,Tuah Negeri,sex,laki_laki,,14786,jiwa,2025,registration,total_population,3.2,25,,Laki-Laki
+16.05.20,3,Tuah Negeri,sex,perempuan,,13937,jiwa,2025,registration,total_population,3.2,25,,Perempuan
+16.05.20,3,Tuah Negeri,total,total,,28723,jiwa,2025,registration,total_population,3.2,25,,

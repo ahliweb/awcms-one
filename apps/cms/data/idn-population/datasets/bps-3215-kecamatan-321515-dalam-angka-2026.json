@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3215-kecamatan-321515-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.15.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cilamaya Wetan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Karawang",
+  "publisherDomain": "3215",
+  "publisherWebsite": "https://karawangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Karawang (https://karawangkab.bps.go.id), publikasi \"Kecamatan Cilamaya Wetan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3215081",
+  "publicationNumber": "32150.26033",
+  "issn": "2828-7371",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://karawangkab.bps.go.id/id/publication/2026/09/28/0aad5db9c1976f6de1a3768a/kecamatan-cilamaya-wetan-dalam-angka-2026.html",
+  "sourceFileSha256": "cc4d0069876ccc6e52478da0990600525e397c8ace421f21f134fcfab6b33d10",
+  "sourceFileBytes": 4777036,
+  "sourcePages": [21, 23],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Karawang.",
+  "csvPath": "datasets/bps-3215-kecamatan-321515-dalam-angka-2026.csv",
+  "csvSha256": "a7e29f6b84da93224ff441d8e112e7cd7a1a4a8321c19109f8ff556a52c00638",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Pendudu k Menurut Desa/Kelurahan di Kecamatan Cilamaya Wetan, 2024",
+      "printedPages": [21],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur da n Jenis Kelamin di Kecamatan Cilamaya Wetan, 20 24",
+      "printedPages": [23],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3524-kecamatan-352422-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.24.22",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lamongan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lamongan",
+  "publisherDomain": "3524",
+  "publisherWebsite": "https://lamongankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lamongan (https://lamongankab.bps.go.id), publikasi \"Kecamatan Lamongan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "35240.26018",
+  "publicationNumber": "35240.26018",
+  "issn": "2798-7906",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lamongankab.bps.go.id/id/publication/2026/09/28/2366be95341fb159f88d890e/kecamatan-lamongan-dalam-angka-2026.html",
+  "sourceFileSha256": "7b6eb7427ffe68c58323081d2f7fd077d8c813bfeffdb60e1dea69fdf2eb10f7",
+  "sourceFileBytes": 11073777,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lamongan",
+  "csvPath": "datasets/bps-3524-kecamatan-352422-dalam-angka-2026.csv",
+  "csvSha256": "72e41dc0d5f61cfb4c1081d5b10f78e1147b5e76bf417eea049fbd6f88ec6c49",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Lamongan , 202 5",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lamongan , 202 5",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1 is not included: its published figures do not add up (sex/laki_laki/- 2025: parts sum 35079.0000 != 35179.0000 (diff 100.0000)); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.71.04.1001,4,Pintu Air,sex,laki_laki,,2566,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+19.71.04.1001,4,Pintu Air,sex,perempuan,,2475,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+19.71.04.1001,4,Pintu Air,total,total,,5041,jiwa,2025,registration,total_population,3.1,30,,
+19.71.04.1002,4,Bintang,sex,laki_laki,,1223,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+19.71.04.1002,4,Bintang,sex,perempuan,,1361,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+19.71.04.1002,4,Bintang,total,total,,2584,jiwa,2025,registration,total_population,3.1,30,,
+19.71.04.1005,4,Masjid Jamik,sex,laki_laki,,1162,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+19.71.04.1005,4,Masjid Jamik,sex,perempuan,,1229,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+19.71.04.1005,4,Masjid Jamik,total,total,,2391,jiwa,2025,registration,total_population,3.1,30,,
+19.71.04.1006,4,Asam,sex,laki_laki,,2147,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+19.71.04.1006,4,Asam,sex,perempuan,,2006,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+19.71.04.1006,4,Asam,total,total,,4153,jiwa,2025,registration,total_population,3.1,30,,
+19.71.04.1007,4,Melintang,sex,laki_laki,,1882,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+19.71.04.1007,4,Melintang,sex,perempuan,,1789,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+19.71.04.1007,4,Melintang,total,total,,3671,jiwa,2025,registration,total_population,3.1,30,,
+19.71.04.1008,4,Parit Lalang,sex,laki_laki,,4044,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+19.71.04.1008,4,Parit Lalang,sex,perempuan,,4013,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+19.71.04.1008,4,Parit Lalang,total,total,,8057,jiwa,2025,registration,total_population,3.1,30,,
+19.71.04.1009,4,Keramat,sex,laki_laki,,4666,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+19.71.04.1009,4,Keramat,sex,perempuan,,4447,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+19.71.04.1009,4,Keramat,total,total,,9113,jiwa,2025,registration,total_population,3.1,30,,
+19.71.04.1010,4,Gajah Mada,sex,laki_laki,,2565,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+19.71.04.1010,4,Gajah Mada,sex,perempuan,,2538,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+19.71.04.1010,4,Gajah Mada,total,total,,5103,jiwa,2025,registration,total_population,3.1,30,,
+19.71.04,3,Rangkui,sex,laki_laki,,20255,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+19.71.04,3,Rangkui,sex,perempuan,,19858,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+19.71.04,3,Rangkui,total,total,,40113,jiwa,2025,registration,total_population,3.1,30,,
+19.71.04,3,Rangkui,age_group,0-4,laki_laki,1359,jiwa,2025,registration,total_population,3.2,32,,0-4
+19.71.04,3,Rangkui,age_group,0-4,perempuan,1282,jiwa,2025,registration,total_population,3.2,32,,0-4
+19.71.04,3,Rangkui,age_group,0-4,,2641,jiwa,2025,registration,total_population,3.2,32,,0-4
+19.71.04,3,Rangkui,age_group,5-9,laki_laki,1750,jiwa,2025,registration,total_population,3.2,32,,5-9
+19.71.04,3,Rangkui,age_group,5-9,perempuan,1653,jiwa,2025,registration,total_population,3.2,32,,5-9
+19.71.04,3,Rangkui,age_group,5-9,,3403,jiwa,2025,registration,total_population,3.2,32,,5-9
+19.71.04,3,Rangkui,age_group,10-14,laki_laki,1935,jiwa,2025,registration,total_population,3.2,32,,10-14
+19.71.04,3,Rangkui,age_group,10-14,perempuan,1748,jiwa,2025,registration,total_population,3.2,32,,10-14
+19.71.04,3,Rangkui,age_group,10-14,,3683,jiwa,2025,registration,total_population,3.2,32,,10-14
+19.71.04,3,Rangkui,age_group,15-19,laki_laki,1672,jiwa,2025,registration,total_population,3.2,32,,15-19
+19.71.04,3,Rangkui,age_group,15-19,perempuan,1614,jiwa,2025,registration,total_population,3.2,32,,15-19
+19.71.04,3,Rangkui,age_group,15-19,,3286,jiwa,2025,registration,total_population,3.2,32,,15-19
+19.71.04,3,Rangkui,age_group,20-24,laki_laki,1579,jiwa,2025,registration,total_population,3.2,32,,20-24
+19.71.04,3,Rangkui,age_group,20-24,perempuan,1501,jiwa,2025,registration,total_population,3.2,32,,20-24
+19.71.04,3,Rangkui,age_group,20-24,,3080,jiwa,2025,registration,total_population,3.2,32,,20-24
+19.71.04,3,Rangkui,age_group,25-29,laki_laki,1553,jiwa,2025,registration,total_population,3.2,32,,25-29
+19.71.04,3,Rangkui,age_group,25-29,perempuan,1522,jiwa,2025,registration,total_population,3.2,32,,25-29
+19.71.04,3,Rangkui,age_group,25-29,,3075,jiwa,2025,registration,total_population,3.2,32,,25-29
+19.71.04,3,Rangkui,age_group,30-34,laki_laki,1442,jiwa,2025,registration,total_population,3.2,32,,30-34
+19.71.04,3,Rangkui,age_group,30-34,perempuan,1438,jiwa,2025,registration,total_population,3.2,32,,30-34
+19.71.04,3,Rangkui,age_group,30-34,,2880,jiwa,2025,registration,total_population,3.2,32,,30-34
+19.71.04,3,Rangkui,age_group,35-39,laki_laki,1629,jiwa,2025,registration,total_population,3.2,32,,35-39
+19.71.04,3,Rangkui,age_group,35-39,perempuan,1678,jiwa,2025,registration,total_population,3.2,32,,35-39
+19.71.04,3,Rangkui,age_group,35-39,,3307,jiwa,2025,registration,total_population,3.2,32,,35-39
+19.71.04,3,Rangkui,age_group,40-44,laki_laki,1711,jiwa,2025,registration,total_population,3.2,32,,40-44
+19.71.04,3,Rangkui,age_group,40-44,perempuan,1626,jiwa,2025,registration,total_population,3.2,32,,40-44
+19.71.04,3,Rangkui,age_group,40-44,,3337,jiwa,2025,registration,total_population,3.2,32,,40-44
+19.71.04,3,Rangkui,age_group,45-49,laki_laki,1433,jiwa,2025,registration,total_population,3.2,32,,45-49
+19.71.04,3,Rangkui,age_group,45-49,perempuan,1339,jiwa,2025,registration,total_population,3.2,32,,45-49
+19.71.04,3,Rangkui,age_group,45-49,,2772,jiwa,2025,registration,total_population,3.2,32,,45-49
+19.71.04,3,Rangkui,age_group,50-54,laki_laki,1126,jiwa,2025,registration,total_population,3.2,32,,50-54
+19.71.04,3,Rangkui,age_group,50-54,perempuan,1040,jiwa,2025,registration,total_population,3.2,32,,50-54
+19.71.04,3,Rangkui,age_group,50-54,,2166,jiwa,2025,registration,total_population,3.2,32,,50-54
+19.71.04,3,Rangkui,age_group,55-59,laki_laki,937,jiwa,2025,registration,total_population,3.2,32,,55-59
+19.71.04,3,Rangkui,age_group,55-59,perempuan,918,jiwa,2025,registration,total_population,3.2,32,,55-59
+19.71.04,3,Rangkui,age_group,55-59,,1855,jiwa,2025,registration,total_population,3.2,32,,55-59
+19.71.04,3,Rangkui,age_group,60-64,laki_laki,700,jiwa,2025,registration,total_population,3.2,32,,60-64
+19.71.04,3,Rangkui,age_group,60-64,perempuan,839,jiwa,2025,registration,total_population,3.2,32,,60-64
+19.71.04,3,Rangkui,age_group,60-64,,1539,jiwa,2025,registration,total_population,3.2,32,,60-64
+19.71.04,3,Rangkui,age_group,65-69,laki_laki,653,jiwa,2025,registration,total_population,3.2,32,,65-69
+19.71.04,3,Rangkui,age_group,65-69,perempuan,696,jiwa,2025,registration,total_population,3.2,32,,65-69
+19.71.04,3,Rangkui,age_group,65-69,,1349,jiwa,2025,registration,total_population,3.2,32,,65-69
+19.71.04,3,Rangkui,age_group,70-74,laki_laki,417,jiwa,2025,registration,total_population,3.2,32,,70-74
+19.71.04,3,Rangkui,age_group,70-74,perempuan,444,jiwa,2025,registration,total_population,3.2,32,,70-74
+19.71.04,3,Rangkui,age_group,70-74,,861,jiwa,2025,registration,total_population,3.2,32,,70-74
+19.71.04,3,Rangkui,age_group,74+,laki_laki,359,jiwa,2025,registration,total_population,3.2,32,,>74
+19.71.04,3,Rangkui,age_group,74+,perempuan,520,jiwa,2025,registration,total_population,3.2,32,,>74
+19.71.04,3,Rangkui,age_group,74+,,879,jiwa,2025,registration,total_population,3.2,32,,>74
+19.71.04,3,Rangkui,sex,laki_laki,,20255,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+19.71.04,3,Rangkui,sex,perempuan,,19858,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+19.71.04,3,Rangkui,total,total,,40113,jiwa,2025,registration,total_population,3.2,32,,

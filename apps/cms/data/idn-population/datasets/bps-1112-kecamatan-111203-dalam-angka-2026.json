@@ -1,0 +1,43 @@
+{
+  "datasetCode": "bps-1112-kecamatan-111203-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.12.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Manggeng Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Barat Daya",
+  "publisherDomain": "1112",
+  "publisherWebsite": "https://acehbaratdayakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Barat Daya (https://acehbaratdayakab.bps.go.id), publikasi \"Kecamatan Manggeng Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1112010",
+  "publicationNumber": "11120.26005",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehbaratdayakab.bps.go.id/id/publication/2026/09/28/68f0f9053e385a682516c768/kecamatan-manggeng-dalam-angka-2026.html",
+  "sourceFileSha256": "ad74a0cfa833044bb6074a772416a0bf3fcf0886d8db9f9ec8057a29835f3cdb",
+  "sourceFileBytes": 7709732,
+  "sourcePages": [21, 22],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Barat Daya",
+  "csvPath": "datasets/bps-1112-kecamatan-111203-dalam-angka-2026.csv",
+  "csvSha256": "42363a5b94480fd969bc76fc951db465d720b71d859ea290c6156eb520177a9a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Manggeng , 202 5",
+      "printedPages": [21, 22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"019 Seunalop\": unmatched ",
+    "table 3.1: row not stored: row \"023 Pusu\": unmatched ",
+    "table 3.1: row not stored: row \"025 Lhung Baro\": unmatched ",
+    "table 3.1: row not stored: row \"019 Seunalop\": unmatched ",
+    "table 3.1: row not stored: row \"023 Pusu\": unmatched ",
+    "table 3.1: row not stored: row \"025 Lhung Baro\": unmatched "
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "datasetCode": "bps-3311-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "33.11",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Sukoharjo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sukoharjo",
+  "publisherDomain": "3311",
+  "publisherWebsite": "https://sukoharjokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sukoharjo (https://sukoharjokab.bps.go.id), publikasi \"Kabupaten Sukoharjo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3311",
+  "publicationNumber": "33110.26002",
+  "issn": "0215-6180",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://sukoharjokab.bps.go.id/id/publication/2026/02/27/0a2c3647a19045efe0a72367/kabupaten-sukoharjo-dalam-angka-2026.html",
+  "sourceFileSha256": "8b1e86d79dc637ea8d426c74798ccc2df124cfa6ebfa769c41765285676ad84f",
+  "sourceFileBytes": 7204224,
+  "sourcePages": [50, 124, 255],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik",
+  "csvPath": "datasets/bps-3311-dalam-angka-2026.csv",
+  "csvSha256": "feb63d141f3fb6f51e12a158f21e9cac68c32238ab462251ba428788ab62d8f8",
+  "tablesUsed": [
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Sukoharjo (jiwa), 2025",
+      "printedPages": [50],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Sukoharjo, 2025",
+      "printedPages": [124],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Sukoharjo (rupiah), 2024 dan 2025",
+      "printedPages": [255],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Total population per child region (3.1.1): no table with this title was found in the publication",
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "datasetCode": "bps-3513-kecamatan-351315-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.13.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Krejengan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Probolinggo",
+  "publisherDomain": "3513",
+  "publisherWebsite": "https://probolinggokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Probolinggo (https://probolinggokab.bps.go.id), publikasi \"Kecamatan Krejengan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3513160",
+  "publicationNumber": "35130.26020",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://probolinggokab.bps.go.id/id/publication/2026/09/28/cf727544961a822a4b313bd1/kecamatan-krejengan-dalam-angka-2026.html",
+  "sourceFileSha256": "84898413dcd54e8d2c0e6cfd643643eee6d888b7ea8c5c802aa5ded158d828d3",
+  "sourceFileBytes": 7106185,
+  "sourcePages": [24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Probolinggo.",
+  "csvPath": "datasets/bps-3513-kecamatan-351315-dalam-angka-2026.csv",
+  "csvSha256": "71c63d4896d3fe27b6ecaae66352a8f4a9c49aea5aff51cccbb4e3b04f9e30b2",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Krejengan, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"DAWUHAN\": unmatched ",
+    "table 3.1: row not stored: row \"DAWUHAN\": unmatched ",
+    "table 3.1: the rows of region 35.13.15 are not stored: sex split vs total: parts sum 42831.0000 != 42409.0000 (diff 422.0000); the source itself is inconsistent"
+  ]
+}

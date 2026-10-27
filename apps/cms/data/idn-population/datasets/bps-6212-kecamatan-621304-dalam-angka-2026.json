@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-6212-kecamatan-621304-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.13.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Awang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Barito Timur",
+  "publisherDomain": "6212",
+  "publisherWebsite": "https://bartimkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Barito Timur (https://bartimkab.bps.go.id), publikasi \"Kecamatan Awang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6212030",
+  "publicationNumber": "62120.26014",
+  "issn": "2302-5115",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bartimkab.bps.go.id/id/publication/2026/09/28/5091bcfa66e05365dc525708/kecamatan-awang-dalam-angka-2026.html",
+  "sourceFileSha256": "0aa3826a3502d3b118e8bb6f50a330052501cd156b43ae511bc8e4d28f4abdaf",
+  "sourceFileBytes": 5742776,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Barito Timur.",
+  "csvPath": "datasets/bps-6212-kecamatan-621304-dalam-angka-2026.csv",
+  "csvSha256": "49282bb01a95f9c7d8194f20c19d2e1b1b83571f1d76b7bf6686bf8401ce6a46",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Awang, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Awang, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.02.02.2024,4,Sungai Kapas,sex,laki_laki,,3163,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+15.02.02.2024,4,Sungai Kapas,sex,perempuan,,2970,jiwa,2025,registration,total_population,3.1,,,Perempuan/
+15.02.02.2024,4,Sungai Kapas,total,total,,6133,jiwa,2025,registration,total_population,3.1,,,
+15.02.02.2012,4,Langling,sex,laki_laki,,1178,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+15.02.02.2012,4,Langling,sex,perempuan,,1118,jiwa,2025,registration,total_population,3.1,,,Perempuan/
+15.02.02.2012,4,Langling,total,total,,2296,jiwa,2025,registration,total_population,3.1,,,
+15.02.02.2004,4,Kungkai,sex,laki_laki,,1917,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+15.02.02.2004,4,Kungkai,sex,perempuan,,1859,jiwa,2025,registration,total_population,3.1,,,Perempuan/
+15.02.02.2004,4,Kungkai,total,total,,3776,jiwa,2025,registration,total_population,3.1,,,
+15.02.02.1010,4,Pasar Bangko,sex,laki_laki,,1166,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+15.02.02.1010,4,Pasar Bangko,sex,perempuan,,1156,jiwa,2025,registration,total_population,3.1,,,Perempuan/
+15.02.02.1010,4,Pasar Bangko,total,total,,2322,jiwa,2025,registration,total_population,3.1,,,
+15.02.02.1013,4,Pematang Kandis,sex,laki_laki,,8808,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+15.02.02.1013,4,Pematang Kandis,sex,perempuan,,8635,jiwa,2025,registration,total_population,3.1,,,Perempuan/
+15.02.02.1013,4,Pematang Kandis,total,total,,17443,jiwa,2025,registration,total_population,3.1,,,
+15.02.02.1011,4,Dusun Bangko,sex,laki_laki,,7097,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+15.02.02.1011,4,Dusun Bangko,sex,perempuan,,6855,jiwa,2025,registration,total_population,3.1,,,Perempuan/
+15.02.02.1011,4,Dusun Bangko,total,total,,13952,jiwa,2025,registration,total_population,3.1,,,
+15.02.02.2008,4,Mudo,sex,laki_laki,,433,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+15.02.02.2008,4,Mudo,sex,perempuan,,402,jiwa,2025,registration,total_population,3.1,,,Perempuan/
+15.02.02.2008,4,Mudo,total,total,,835,jiwa,2025,registration,total_population,3.1,,,
+15.02.02,3,Bangko,sex,laki_laki,,26733,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+15.02.02,3,Bangko,sex,perempuan,,25995,jiwa,2025,registration,total_population,3.1,,,Perempuan/
+15.02.02,3,Bangko,total,total,,52728,jiwa,2025,registration,total_population,3.1,,,
+15.02.02,3,Bangko,age_group,0-4,laki_laki,1881,jiwa,2025,registration,total_population,3.2,,,0-4
+15.02.02,3,Bangko,age_group,0-4,perempuan,1736,jiwa,2025,registration,total_population,3.2,,,0-4
+15.02.02,3,Bangko,age_group,0-4,,3617,jiwa,2025,registration,total_population,3.2,,,0-4
+15.02.02,3,Bangko,age_group,5-9,laki_laki,2524,jiwa,2025,registration,total_population,3.2,,,5-9
+15.02.02,3,Bangko,age_group,5-9,perempuan,2423,jiwa,2025,registration,total_population,3.2,,,5-9
+15.02.02,3,Bangko,age_group,5-9,,4947,jiwa,2025,registration,total_population,3.2,,,5-9
+15.02.02,3,Bangko,age_group,10-14,laki_laki,2654,jiwa,2025,registration,total_population,3.2,,,10-14
+15.02.02,3,Bangko,age_group,10-14,perempuan,2415,jiwa,2025,registration,total_population,3.2,,,10-14
+15.02.02,3,Bangko,age_group,10-14,,5069,jiwa,2025,registration,total_population,3.2,,,10-14
+15.02.02,3,Bangko,age_group,15-19,laki_laki,2322,jiwa,2025,registration,total_population,3.2,,,15-19
+15.02.02,3,Bangko,age_group,15-19,perempuan,2267,jiwa,2025,registration,total_population,3.2,,,15-19
+15.02.02,3,Bangko,age_group,15-19,,4589,jiwa,2025,registration,total_population,3.2,,,15-19
+15.02.02,3,Bangko,age_group,20-24,laki_laki,2195,jiwa,2025,registration,total_population,3.2,,,20-24
+15.02.02,3,Bangko,age_group,20-24,perempuan,2097,jiwa,2025,registration,total_population,3.2,,,20-24
+15.02.02,3,Bangko,age_group,20-24,,4292,jiwa,2025,registration,total_population,3.2,,,20-24
+15.02.02,3,Bangko,age_group,25-29,laki_laki,2122,jiwa,2025,registration,total_population,3.2,,,25-29
+15.02.02,3,Bangko,age_group,25-29,perempuan,2045,jiwa,2025,registration,total_population,3.2,,,25-29
+15.02.02,3,Bangko,age_group,25-29,,4167,jiwa,2025,registration,total_population,3.2,,,25-29
+15.02.02,3,Bangko,age_group,30-34,laki_laki,1975,jiwa,2025,registration,total_population,3.2,,,30-34
+15.02.02,3,Bangko,age_group,30-34,perempuan,1993,jiwa,2025,registration,total_population,3.2,,,30-34
+15.02.02,3,Bangko,age_group,30-34,,3968,jiwa,2025,registration,total_population,3.2,,,30-34
+15.02.02,3,Bangko,age_group,35-39,laki_laki,1919,jiwa,2025,registration,total_population,3.2,,,35-39
+15.02.02,3,Bangko,age_group,35-39,perempuan,2083,jiwa,2025,registration,total_population,3.2,,,35-39
+15.02.02,3,Bangko,age_group,35-39,,4002,jiwa,2025,registration,total_population,3.2,,,35-39
+15.02.02,3,Bangko,age_group,40-44,laki_laki,2102,jiwa,2025,registration,total_population,3.2,,,40-44
+15.02.02,3,Bangko,age_group,40-44,perempuan,2118,jiwa,2025,registration,total_population,3.2,,,40-44
+15.02.02,3,Bangko,age_group,40-44,,4220,jiwa,2025,registration,total_population,3.2,,,40-44
+15.02.02,3,Bangko,age_group,45-49,laki_laki,1977,jiwa,2025,registration,total_population,3.2,,,45-49
+15.02.02,3,Bangko,age_group,45-49,perempuan,1891,jiwa,2025,registration,total_population,3.2,,,45-49
+15.02.02,3,Bangko,age_group,45-49,,3868,jiwa,2025,registration,total_population,3.2,,,45-49
+15.02.02,3,Bangko,age_group,50-54,laki_laki,1499,jiwa,2025,registration,total_population,3.2,,,50-54
+15.02.02,3,Bangko,age_group,50-54,perempuan,1481,jiwa,2025,registration,total_population,3.2,,,50-54
+15.02.02,3,Bangko,age_group,50-54,,2980,jiwa,2025,registration,total_population,3.2,,,50-54
+15.02.02,3,Bangko,age_group,55-59,laki_laki,1271,jiwa,2025,registration,total_population,3.2,,,55-59
+15.02.02,3,Bangko,age_group,55-59,perempuan,1147,jiwa,2025,registration,total_population,3.2,,,55-59
+15.02.02,3,Bangko,age_group,55-59,,2418,jiwa,2025,registration,total_population,3.2,,,55-59
+15.02.02,3,Bangko,age_group,60-64,laki_laki,983,jiwa,2025,registration,total_population,3.2,,,60-64
+15.02.02,3,Bangko,age_group,60-64,perempuan,989,jiwa,2025,registration,total_population,3.2,,,60-64
+15.02.02,3,Bangko,age_group,60-64,,1972,jiwa,2025,registration,total_population,3.2,,,60-64
+15.02.02,3,Bangko,age_group,65-69,laki_laki,718,jiwa,2025,registration,total_population,3.2,,,65-69
+15.02.02,3,Bangko,age_group,65-69,perempuan,692,jiwa,2025,registration,total_population,3.2,,,65-69
+15.02.02,3,Bangko,age_group,65-69,,1410,jiwa,2025,registration,total_population,3.2,,,65-69
+15.02.02,3,Bangko,age_group,70-74,laki_laki,352,jiwa,2025,registration,total_population,3.2,,,70-74
+15.02.02,3,Bangko,age_group,70-74,perempuan,317,jiwa,2025,registration,total_population,3.2,,,70-74
+15.02.02,3,Bangko,age_group,70-74,,669,jiwa,2025,registration,total_population,3.2,,,70-74
+15.02.02,3,Bangko,age_group,75+,laki_laki,239,jiwa,2025,registration,total_population,3.2,,,75+
+15.02.02,3,Bangko,age_group,75+,perempuan,301,jiwa,2025,registration,total_population,3.2,,,75+
+15.02.02,3,Bangko,age_group,75+,,540,jiwa,2025,registration,total_population,3.2,,,75+
+15.02.02,3,Bangko,sex,laki_laki,,26733,jiwa,2025,registration,total_population,3.2,,,Laki-Laki
+15.02.02,3,Bangko,sex,perempuan,,25995,jiwa,2025,registration,total_population,3.2,,,Perempuan
+15.02.02,3,Bangko,total,total,,52728,jiwa,2025,registration,total_population,3.2,,,

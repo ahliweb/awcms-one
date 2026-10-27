@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.03.09.2002,4,Kali Cinta,sex,laki_laki,,3654,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.09.2002,4,Kali Cinta,sex,perempuan,,3545,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.09.2002,4,Kali Cinta,total,total,,7199,jiwa,2025,registration,total_population,3.1,28,,
+18.03.09.2001,4,Madukoro,sex,laki_laki,,3804,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.09.2001,4,Madukoro,sex,perempuan,,3618,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.09.2001,4,Madukoro,total,total,,7422,jiwa,2025,registration,total_population,3.1,28,,
+18.03.09.2004,4,Talang Jali,sex,laki_laki,,2099,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.09.2004,4,Talang Jali,sex,perempuan,,2039,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.09.2004,4,Talang Jali,total,total,,4138,jiwa,2025,registration,total_population,3.1,28,,
+18.03.09.2005,4,Margorejo,sex,laki_laki,,2110,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.09.2005,4,Margorejo,sex,perempuan,,2077,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.09.2005,4,Margorejo,total,total,,4187,jiwa,2025,registration,total_population,3.1,28,,
+18.03.09.2006,4,Banjar Wangi,sex,laki_laki,,616,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.09.2006,4,Banjar Wangi,sex,perempuan,,587,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.09.2006,4,Banjar Wangi,total,total,,1203,jiwa,2025,registration,total_population,3.1,28,,
+18.03.09.2003,4,Wonomarto,sex,laki_laki,,2009,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.09.2003,4,Wonomarto,sex,perempuan,,2019,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.09.2003,4,Wonomarto,total,total,,4028,jiwa,2025,registration,total_population,3.1,28,,
+18.03.09.2007,4,Sawo Jajar,sex,laki_laki,,2758,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.09.2007,4,Sawo Jajar,sex,perempuan,,2684,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.09.2007,4,Sawo Jajar,total,total,,5442,jiwa,2025,registration,total_population,3.1,28,,
+18.03.09,3,Kecamatan Kotabumi Utara,sex,laki_laki,,18578,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.09,3,Kecamatan Kotabumi Utara,sex,perempuan,,18109,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.09,3,Kecamatan Kotabumi Utara,total,total,,36687,jiwa,2025,registration,total_population,3.1,28,,
+18.03.09,3,Kotabumi Utara,age_group,0-4,laki_laki,1120,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.09,3,Kotabumi Utara,age_group,0-4,perempuan,1064,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.09,3,Kotabumi Utara,age_group,0-4,,2184,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.09,3,Kotabumi Utara,age_group,5-9,laki_laki,1700,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.09,3,Kotabumi Utara,age_group,5-9,perempuan,1768,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.09,3,Kotabumi Utara,age_group,5-9,,3468,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.09,3,Kotabumi Utara,age_group,10-14,laki_laki,1639,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.09,3,Kotabumi Utara,age_group,10-14,perempuan,1448,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.09,3,Kotabumi Utara,age_group,10-14,,3087,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.09,3,Kotabumi Utara,age_group,15-19,laki_laki,1437,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.09,3,Kotabumi Utara,age_group,15-19,perempuan,1327,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.09,3,Kotabumi Utara,age_group,15-19,,2764,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.09,3,Kotabumi Utara,age_group,20-24,laki_laki,1308,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.09,3,Kotabumi Utara,age_group,20-24,perempuan,1238,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.09,3,Kotabumi Utara,age_group,20-24,,2546,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.09,3,Kotabumi Utara,age_group,25-29,laki_laki,1280,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.09,3,Kotabumi Utara,age_group,25-29,perempuan,1174,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.09,3,Kotabumi Utara,age_group,25-29,,2454,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.09,3,Kotabumi Utara,age_group,30-34,laki_laki,1331,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.09,3,Kotabumi Utara,age_group,30-34,perempuan,1365,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.09,3,Kotabumi Utara,age_group,30-34,,2696,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.09,3,Kotabumi Utara,age_group,35-39,laki_laki,1355,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.09,3,Kotabumi Utara,age_group,35-39,perempuan,1353,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.09,3,Kotabumi Utara,age_group,35-39,,2708,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.09,3,Kotabumi Utara,age_group,40-44,laki_laki,1278,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.09,3,Kotabumi Utara,age_group,40-44,perempuan,1265,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.09,3,Kotabumi Utara,age_group,40-44,,2543,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.09,3,Kotabumi Utara,age_group,45-49,laki_laki,1508,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.09,3,Kotabumi Utara,age_group,45-49,perempuan,1442,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.09,3,Kotabumi Utara,age_group,45-49,,2950,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.09,3,Kotabumi Utara,age_group,50-54,laki_laki,1213,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.09,3,Kotabumi Utara,age_group,50-54,perempuan,1175,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.09,3,Kotabumi Utara,age_group,50-54,,2388,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.09,3,Kotabumi Utara,age_group,55-59,laki_laki,1024,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.09,3,Kotabumi Utara,age_group,55-59,perempuan,926,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.09,3,Kotabumi Utara,age_group,55-59,,1950,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.09,3,Kotabumi Utara,age_group,60-64,laki_laki,753,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.09,3,Kotabumi Utara,age_group,60-64,perempuan,761,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.09,3,Kotabumi Utara,age_group,60-64,,1514,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.09,3,Kotabumi Utara,age_group,65-69,laki_laki,605,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.09,3,Kotabumi Utara,age_group,65-69,perempuan,579,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.09,3,Kotabumi Utara,age_group,65-69,,1184,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.09,3,Kotabumi Utara,age_group,70-75,laki_laki,410,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.09,3,Kotabumi Utara,age_group,70-75,perempuan,435,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.09,3,Kotabumi Utara,age_group,70-75,,845,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.09,3,Kotabumi Utara,age_group,75+,laki_laki,617,jiwa,2025,registration,total_population,3.2,30,,75+
+18.03.09,3,Kotabumi Utara,age_group,75+,perempuan,789,jiwa,2025,registration,total_population,3.2,30,,75+
+18.03.09,3,Kotabumi Utara,age_group,75+,,1406,jiwa,2025,registration,total_population,3.2,30,,75+

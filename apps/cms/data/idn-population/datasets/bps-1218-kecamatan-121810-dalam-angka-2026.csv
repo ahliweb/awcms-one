@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.18.10.2023,4,Huta Galuh,sex,laki_laki,,438,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.10.2023,4,Huta Galuh,sex,perempuan,,432,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.10.2023,4,Huta Galuh,total,total,,870,jiwa,2025,registration,total_population,3.1,28,,
+12.18.10.2024,4,Rubun Dunia,sex,laki_laki,,242,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.10.2024,4,Rubun Dunia,sex,perempuan,,225,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.10.2024,4,Rubun Dunia,total,total,,467,jiwa,2025,registration,total_population,3.1,28,,
+12.18.10.2022,4,Sialtong,sex,laki_laki,,316,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.10.2022,4,Sialtong,sex,perempuan,,317,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.10.2022,4,Sialtong,total,total,,633,jiwa,2025,registration,total_population,3.1,28,,
+12.18.10.2013,4,Bandar Bayu,sex,laki_laki,,210,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.10.2013,4,Bandar Bayu,sex,perempuan,,195,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.10.2013,4,Bandar Bayu,total,total,,405,jiwa,2025,registration,total_population,3.1,28,,
+12.18.10.2002,4,Kotarih Baru,sex,laki_laki,,1559,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.10.2002,4,Kotarih Baru,sex,perempuan,,1516,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.10.2002,4,Kotarih Baru,total,total,,3075,jiwa,2025,registration,total_population,3.1,28,,
+12.18.10.2014,4,Durian Kondot,sex,laki_laki,,120,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.10.2014,4,Durian Kondot,sex,perempuan,,134,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.10.2014,4,Durian Kondot,total,total,,254,jiwa,2025,registration,total_population,3.1,28,,
+12.18.10.2001,4,Kotarih Pekan,sex,laki_laki,,662,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.10.2001,4,Kotarih Pekan,sex,perempuan,,719,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.10.2001,4,Kotarih Pekan,total,total,,1381,jiwa,2025,registration,total_population,3.1,28,,
+12.18.10.2015,4,Perbahingan,sex,laki_laki,,206,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.10.2015,4,Perbahingan,sex,perempuan,,222,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.10.2015,4,Perbahingan,total,total,,428,jiwa,2025,registration,total_population,3.1,28,,
+12.18.10.2010,4,Sei Kari,sex,laki_laki,,188,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.10.2010,4,Sei Kari,sex,perempuan,,174,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.10.2010,4,Sei Kari,total,total,,362,jiwa,2025,registration,total_population,3.1,28,,
+12.18.10.2003,4,Banjaran Godang,sex,laki_laki,,517,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.10.2003,4,Banjaran Godang,sex,perempuan,,549,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.10.2003,4,Banjaran Godang,total,total,,1066,jiwa,2025,registration,total_population,3.1,28,,
+12.18.10,3,Kecamatan Kotarih,sex,laki_laki,,4947,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.18.10,3,Kecamatan Kotarih,sex,perempuan,,4940,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.18.10,3,Kecamatan Kotarih,total,total,,9887,jiwa,2025,registration,total_population,3.1,28,,

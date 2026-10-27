@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.01.08.2001,4,Tarahan,sex,laki_laki,,4259,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.08.2001,4,Tarahan,sex,perempuan,,4054,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.08.2001,4,Tarahan,total,total,,8313,jiwa,2025,registration,total_population,3.1,24,,
+18.01.08.2018,4,Karya Tunggal,sex,laki_laki,,1477,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.08.2018,4,Karya Tunggal,sex,perempuan,,1401,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.08.2018,4,Karya Tunggal,total,total,,2878,jiwa,2025,registration,total_population,3.1,24,,
+18.01.08.2002,4,Babatan,sex,laki_laki,,3118,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.08.2002,4,Babatan,sex,perempuan,,3035,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.08.2002,4,Babatan,total,total,,6153,jiwa,2025,registration,total_population,3.1,24,,
+18.01.08.2003,4,Pardasuka,sex,laki_laki,,6040,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.08.2003,4,Pardasuka,sex,perempuan,,5671,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.08.2003,4,Pardasuka,total,total,,11711,jiwa,2025,registration,total_population,3.1,24,,
+18.01.08.2004,4,Sukajaya,sex,laki_laki,,1443,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.08.2004,4,Sukajaya,sex,perempuan,,1411,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.08.2004,4,Sukajaya,total,total,,2854,jiwa,2025,registration,total_population,3.1,24,,
+18.01.08.2005,4,Tanjungratu,sex,laki_laki,,4886,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.08.2005,4,Tanjungratu,sex,perempuan,,4646,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.08.2005,4,Tanjungratu,total,total,,9532,jiwa,2025,registration,total_population,3.1,24,,
+18.01.08.2006,4,Tanjungagung,sex,laki_laki,,4332,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.08.2006,4,Tanjungagung,sex,perempuan,,4166,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.08.2006,4,Tanjungagung,total,total,,8498,jiwa,2025,registration,total_population,3.1,24,,
+18.01.08.2007,4,Tanjungan,sex,laki_laki,,2630,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.08.2007,4,Tanjungan,sex,perempuan,,2504,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.08.2007,4,Tanjungan,total,total,,5134,jiwa,2025,registration,total_population,3.1,24,,
+18.01.08.2008,4,Trans Tanjungan,sex,laki_laki,,2927,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.08.2008,4,Trans Tanjungan,sex,perempuan,,2838,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.08.2008,4,Trans Tanjungan,total,total,,5765,jiwa,2025,registration,total_population,3.1,24,,
+18.01.08.2009,4,Neglasari,sex,laki_laki,,2548,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.08.2009,4,Neglasari,sex,perempuan,,2477,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.08.2009,4,Neglasari,total,total,,5025,jiwa,2025,registration,total_population,3.1,24,,
+18.01.08.2019,4,Rangai Tri Tunggal,sex,laki_laki,,4331,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.08.2019,4,Rangai Tri Tunggal,sex,perempuan,,4288,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.08.2019,4,Rangai Tri Tunggal,total,total,,8619,jiwa,2025,registration,total_population,3.1,24,,
+18.01.08.2020,4,Sido Mekar,sex,laki_laki,,1685,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.08.2020,4,Sido Mekar,sex,perempuan,,1642,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.08.2020,4,Sido Mekar,total,total,,3327,jiwa,2025,registration,total_population,3.1,24,,
+18.01.08,3,Katibung,sex,laki_laki,,39676,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+18.01.08,3,Katibung,sex,perempuan,,38133,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+18.01.08,3,Katibung,total,total,,77809,jiwa,2025,registration,total_population,3.1,24,,

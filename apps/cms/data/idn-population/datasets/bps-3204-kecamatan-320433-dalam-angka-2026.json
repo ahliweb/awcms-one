@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-3204-kecamatan-320433-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.04.33",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Majalaya Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bandung",
+  "publisherDomain": "3204",
+  "publisherWebsite": "https://bandungkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bandung (https://bandungkab.bps.go.id), publikasi \"Kecamatan Majalaya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3204120",
+  "publicationNumber": "32040.26018",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandungkab.bps.go.id/id/publication/2026/09/28/fd7559c67c396b7e16ce172e/kecamatan-majalaya-dalam-angka-2026.html",
+  "sourceFileSha256": "f58ac4f12b9e92405bdf6faf833e6b5b35b27512a9e6f9e99e6c160f09af9c74",
+  "sourceFileBytes": 5517704,
+  "sourcePages": [28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bandung.",
+  "csvPath": "datasets/bps-3204-kecamatan-320433-dalam-angka-2026.csv",
+  "csvSha256": "d8930d044635703c00dee9f0ccd758c8b3861a0cc96bfd95b89f92d42b895f32",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p28",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Majalaya , 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p28: row not stored: row \"MAJASETRAVV\": unmatched "
+  ]
+}

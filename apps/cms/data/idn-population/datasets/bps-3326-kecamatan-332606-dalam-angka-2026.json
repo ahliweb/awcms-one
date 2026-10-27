@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3326-kecamatan-332606-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.26.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Doro Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pekalongan",
+  "publisherDomain": "3326",
+  "publisherWebsite": "https://pekalongankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pekalongan (https://pekalongankab.bps.go.id), publikasi \"Kecamatan Doro Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3326060",
+  "publicationNumber": "33260.26011",
+  "issn": "0853-6147",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pekalongankab.bps.go.id/id/publication/2026/09/28/5d9943f12e6f5a470f71dbc6/kecamatan-doro-dalam-angka-2026.html",
+  "sourceFileSha256": "a6d9bdf27848bbff21a9f0a7594b801810082fb6469b3c09f44e3c4046db19dc",
+  "sourceFileBytes": 13779565,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pekalongan.",
+  "csvPath": "datasets/bps-3326-kecamatan-332606-dalam-angka-2026.csv",
+  "csvSha256": "5f6d720548d11e9a20d9df460cdceaf1a2182a1c12181847f14be56cf8548daa",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Doro, 2025",
+      "printedPages": [34, 35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Doro, 2025",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Doro 100,00%\": unmatched ",
+    "table 3.1: 1 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

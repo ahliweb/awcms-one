@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-6202-kecamatan-620210-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.02.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Antang Kalang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kotawaringin Timur",
+  "publisherDomain": "6202",
+  "publisherWebsite": "https://kotimkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kotawaringin Timur (https://kotimkab.bps.go.id), publikasi \"Kecamatan Antang Kalang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6202230",
+  "publicationNumber": "62020.26023",
+  "issn": "2621-8607",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kotimkab.bps.go.id/id/publication/2026/09/28/fa8bf5277f6cde200452748a/kecamatan-antang-kalang-dalam-angka-2026.html",
+  "sourceFileSha256": "8b65f6d31ac7cb9e2ff8f9458a1c6cb1e4189db3a8db0088db3d72334c5441a8",
+  "sourceFileBytes": 8232645,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kotawaringin Tmur.",
+  "csvPath": "datasets/bps-6202-kecamatan-620210-dalam-angka-2026.csv",
+  "csvSha256": "c00ef48d4e8b788ee6f36b6fb106970ab21189db3af231f23d3e533ce6741355",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Antang Kalang, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

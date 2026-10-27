@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.34.2004,4,Panyadap,sex,laki_laki,,7133,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.34.2004,4,Panyadap,sex,perempuan,,6784,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.34.2004,4,Panyadap,total,total,,13917,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.34.2006,4,Padamukti,sex,laki_laki,,4759,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.34.2006,4,Padamukti,sex,perempuan,,4598,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.34.2006,4,Padamukti,total,total,,9357,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.34.2003,4,Cibodas,sex,laki_laki,,6691,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.34.2003,4,Cibodas,sex,perempuan,,6320,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.34.2003,4,Cibodas,total,total,,13011,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.34.2007,4,Langensari,sex,laki_laki,,6222,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.34.2007,4,Langensari,sex,perempuan,,5985,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.34.2007,4,Langensari,total,total,,12207,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.34.2002,4,Solokanjeruk,sex,laki_laki,,9338,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.34.2002,4,Solokanjeruk,sex,perempuan,,8977,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.34.2002,4,Solokanjeruk,total,total,,18315,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.34.2001,4,Rancakasumba,sex,laki_laki,,6835,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.34.2001,4,Rancakasumba,sex,perempuan,,6311,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.34.2001,4,Rancakasumba,total,total,,13146,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.34.2005,4,Bojongemas,sex,laki_laki,,7496,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.34.2005,4,Bojongemas,sex,perempuan,,7173,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.34.2005,4,Bojongemas,total,total,,14669,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.34,3,Kecamatan Solokanjeruk,sex,laki_laki,,48474,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.34,3,Kecamatan Solokanjeruk,sex,perempuan,,46148,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.34,3,Kecamatan Solokanjeruk,total,total,,94622,jiwa,2025,registration,total_population,unnumbered-p28,28,,

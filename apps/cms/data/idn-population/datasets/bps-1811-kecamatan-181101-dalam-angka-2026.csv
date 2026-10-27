@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.11.01.2006,4,Tirta Laga,sex,laki_laki,,1017,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.11.01.2006,4,Tirta Laga,sex,perempuan,,898,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.11.01.2006,4,Tirta Laga,total,total,,1915,jiwa,2025,registration,total_population,3.1,26,,
+18.11.01.2001,4,Wiralaga I,sex,laki_laki,,1231,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.11.01.2001,4,Wiralaga I,sex,perempuan,,1217,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.11.01.2001,4,Wiralaga I,total,total,,2448,jiwa,2025,registration,total_population,3.1,26,,
+18.11.01.2002,4,Wiralaga II,sex,laki_laki,,1264,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.11.01.2002,4,Wiralaga II,sex,perempuan,,1211,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.11.01.2002,4,Wiralaga II,total,total,,2475,jiwa,2025,registration,total_population,3.1,26,,
+18.11.01.2007,4,Tanjung Serayan,sex,laki_laki,,1054,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.11.01.2007,4,Tanjung Serayan,sex,perempuan,,938,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.11.01.2007,4,Tanjung Serayan,total,total,,1992,jiwa,2025,registration,total_population,3.1,26,,
+18.11.01.2004,4,Nipah Kuning,sex,laki_laki,,606,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.11.01.2004,4,Nipah Kuning,sex,perempuan,,611,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.11.01.2004,4,Nipah Kuning,total,total,,1217,jiwa,2025,registration,total_population,3.1,26,,
+18.11.01.2003,4,Sungai Badak,sex,laki_laki,,2401,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.11.01.2003,4,Sungai Badak,sex,perempuan,,2334,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.11.01.2003,4,Sungai Badak,total,total,,4735,jiwa,2025,registration,total_population,3.1,26,,
+18.11.01.2005,4,Sidomulyo,sex,laki_laki,,2316,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.11.01.2005,4,Sidomulyo,sex,perempuan,,2166,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.11.01.2005,4,Sidomulyo,total,total,,4482,jiwa,2025,registration,total_population,3.1,26,,
+18.11.01.2008,4,Sumber Makmur,sex,laki_laki,,1014,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.11.01.2008,4,Sumber Makmur,sex,perempuan,,841,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.11.01.2008,4,Sumber Makmur,total,total,,1855,jiwa,2025,registration,total_population,3.1,26,,
+18.11.01.2009,4,Mulya Sari,sex,laki_laki,,729,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.11.01.2009,4,Mulya Sari,sex,perempuan,,628,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.11.01.2009,4,Mulya Sari,total,total,,1357,jiwa,2025,registration,total_population,3.1,26,,
+18.11.01.2010,4,Wiralaga Mulya,sex,laki_laki,,704,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.11.01.2010,4,Wiralaga Mulya,sex,perempuan,,669,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.11.01.2010,4,Wiralaga Mulya,total,total,,1373,jiwa,2025,registration,total_population,3.1,26,,
+18.11.01.2011,4,Suka Maju,sex,laki_laki,,452,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.11.01.2011,4,Suka Maju,sex,perempuan,,391,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.11.01.2011,4,Suka Maju,total,total,,843,jiwa,2025,registration,total_population,3.1,26,,
+18.11.01,3,Kecamatan Mesuji,sex,laki_laki,,12788,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.11.01,3,Kecamatan Mesuji,sex,perempuan,,11904,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.11.01,3,Kecamatan Mesuji,total,total,,24692,jiwa,2025,registration,total_population,3.1,26,,

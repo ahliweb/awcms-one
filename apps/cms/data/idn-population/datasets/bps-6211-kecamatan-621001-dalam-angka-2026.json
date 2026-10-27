@@ -1,0 +1,61 @@
+{
+  "datasetCode": "bps-6211-kecamatan-621001-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.10.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sepang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Gunung Mas",
+  "publisherDomain": "6211",
+  "publisherWebsite": "https://gumaskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Gunung Mas (https://gumaskab.bps.go.id), publikasi \"Kecamatan Sepang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6211010",
+  "publicationNumber": "62110.26010",
+  "issn": "2407-1118",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://gumaskab.bps.go.id/id/publication/2026/09/28/83f9cb848890f1e40bcc38c7/kecamatan-sepang-dalam-angka-2026.html",
+  "sourceFileSha256": "79022cf14f8d56a918a78ebe17a695099b24e9292305ffa4e7ccc5bf65376e54",
+  "sourceFileBytes": 3741799,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Gunung Mas",
+  "csvPath": "datasets/bps-6211-kecamatan-621001-dalam-angka-2026.csv",
+  "csvSha256": "4f80832f67f19e652fcd4eb66acfe6d0946d5a69f635a111544023492d328eb0",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Sepang, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sepang, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"[001] Pematang Limau\": unmatched ",
+    "table 3.1: row not stored: row \"[002] Tampelas\": unmatched ",
+    "table 3.1: row not stored: row \"[003] Sepang Kota\": unmatched ",
+    "table 3.1: row not stored: row \"[005] Tewai Baru\": unmatched ",
+    "table 3.1: row not stored: row \"[006] Tanjung Karitak\": unmatched ",
+    "table 3.1: row not stored: row \"[007] Rabauh\": unmatched ",
+    "table 3.1: row not stored: row \"[004] Sepang Simin\": unmatched ",
+    "table 3.1: row not stored: row \"[001] Pematang Limau\": unmatched ",
+    "table 3.1: row not stored: row \"[002] Tampelas\": unmatched ",
+    "table 3.1: row not stored: row \"[003] Sepang Kota\": unmatched ",
+    "table 3.1: row not stored: row \"[005] Tewai Baru\": unmatched ",
+    "table 3.1: row not stored: row \"[006] Tanjung Karitak\": unmatched ",
+    "table 3.1: row not stored: row \"[007] Rabauh\": unmatched ",
+    "table 3.1: row not stored: row \"Kelurahan/Subdistrict\": unmatched ",
+    "table 3.1: row not stored: row \"[004] Sepang Simin\": unmatched ",
+    "table 3.2: row not stored: row \"> 75\": unmatched ",
+    "table 3.2 is not included: its published figures do not add up (age_group vs total: parts sum 9259.0000 != 9389.0000 (diff 130.0000)); the source itself is inconsistent"
+  ]
+}

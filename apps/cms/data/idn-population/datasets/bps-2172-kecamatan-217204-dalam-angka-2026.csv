@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.72.04.1002,4,Dompak,sex,laki_laki,,2545,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+21.72.04.1002,4,Dompak,sex,perempuan,,2342,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+21.72.04.1002,4,Dompak,total,total,,4887,jiwa,2025,registration,total_population,3.1,26,,
+21.72.04.1001,4,Tanjungpinang Timur,sex,laki_laki,,4480,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+21.72.04.1001,4,Tanjungpinang Timur,sex,perempuan,,4519,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+21.72.04.1001,4,Tanjungpinang Timur,total,total,,8999,jiwa,2025,registration,total_population,3.1,26,,
+21.72.04.1003,4,Tanjung Ayun Sakti,sex,laki_laki,,5509,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+21.72.04.1003,4,Tanjung Ayun Sakti,sex,perempuan,,5586,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+21.72.04.1003,4,Tanjung Ayun Sakti,total,total,,11095,jiwa,2025,registration,total_population,3.1,26,,
+21.72.04.1004,4,Sei Jang,sex,laki_laki,,8694,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+21.72.04.1004,4,Sei Jang,sex,perempuan,,8707,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+21.72.04.1004,4,Sei Jang,total,total,,17401,jiwa,2025,registration,total_population,3.1,26,,
+21.72.04.1005,4,Tanjung Unggat,sex,laki_laki,,6750,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+21.72.04.1005,4,Tanjung Unggat,sex,perempuan,,6704,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+21.72.04.1005,4,Tanjung Unggat,total,total,,13454,jiwa,2025,registration,total_population,3.1,26,,
+21.72.04,3,Bukit Bestari,age_group,75+,laki_laki,444,jiwa,2025,registration,total_population,3.2,28,,75+
+21.72.04,3,Bukit Bestari,age_group,75+,perempuan,597,jiwa,2025,registration,total_population,3.2,28,,75+
+21.72.04,3,Bukit Bestari,age_group,75+,,1041,jiwa,2025,registration,total_population,3.2,28,,75+

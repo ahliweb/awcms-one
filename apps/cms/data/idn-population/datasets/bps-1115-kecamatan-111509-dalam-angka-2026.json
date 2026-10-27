@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-1115-kecamatan-111509-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.15.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tripa Makmur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Nagan Raya",
+  "publisherDomain": "1115",
+  "publisherWebsite": "https://naganrayakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Nagan Raya (https://naganrayakab.bps.go.id), publikasi \"Kecamatan Tripa Makmur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "11020001.1115011",
+  "publicationNumber": "11150.26007",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://naganrayakab.bps.go.id/id/publication/2026/09/28/8414d700ea9c5b4eb107a749/kecamatan-tripa-makmur-dalam-angka-2026.html",
+  "sourceFileSha256": "e750a01d131035c101dac34be4c81f9701d4acd531d27fa288d41254a19ad460",
+  "sourceFileBytes": 11976170,
+  "sourcePages": [31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Nagan Raya",
+  "csvPath": "datasets/bps-1115-kecamatan-111509-dalam-angka-2026.csv",
+  "csvSha256": "7cd94b1a3d33b95c62ef0dbc4b6418686797c1f08080b5075456c2ecb660c424",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Tripa Makmur , 202 6",
+      "printedPages": [31, 32],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tripa Makmur , 202 6",
+      "printedPages": [33],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"KUALA TERIPA\": unmatched ",
+    "table 3.1: row not stored: row \"PASIE KEUBEU DOM\": unmatched ",
+    "table 3.1: row not stored: row \"PASI KEUBEU DOM\": unmatched "
+  ]
+}

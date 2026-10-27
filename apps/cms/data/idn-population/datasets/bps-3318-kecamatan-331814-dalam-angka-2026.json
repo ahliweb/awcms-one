@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3318-kecamatan-331814-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.18.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tlogowungu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pati",
+  "publisherDomain": "3318",
+  "publisherWebsite": "https://patikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pati (https://patikab.bps.go.id), publikasi \"Kecamatan Tlogowungu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3318140",
+  "publicationNumber": "33180.26022",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://patikab.bps.go.id/id/publication/2026/09/28/bb26bfc8d82926086862b2f6/kecamatan-tlogowungu-dalam-angka-2026.html",
+  "sourceFileSha256": "907726c5598c848312694ef21b79357bc95538bea974b44423931ff60e14c0c1",
+  "sourceFileBytes": 31229560,
+  "sourcePages": [22, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statsistik Kabupaten Pati",
+  "csvPath": "datasets/bps-3318-kecamatan-331814-dalam-angka-2026.csv",
+  "csvSha256": "53cf8b6834e43f7eb88ffaa501d745d931e181f792791e3d80146d28c97eec26",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Tlogowungu, 2025",
+      "printedPages": [22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tlogowungu, 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"010 Tajungsari\": unmatched ",
+    "table 3.1: the rows of region 33.18.14.2003 are not stored: sex split vs total: parts sum 5439.0000 != 4780.0000 (diff 659.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 33.18.14 are not stored: sex split vs total: parts sum 58352.0000 != 57693.0000 (diff 659.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.02.24.2009,4,Pasiripis,sex,laki_laki,,7152,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.24.2009,4,Pasiripis,sex,perempuan,,7234,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.24.2009,4,Pasiripis,total,total,,14386,jiwa,2025,registration,total_population,3.1,24,,
+32.02.24.2010,4,Buniwangi,sex,laki_laki,,6039,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.24.2010,4,Buniwangi,sex,perempuan,,6185,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.24.2010,4,Buniwangi,total,total,,12224,jiwa,2025,registration,total_population,3.1,24,,
+32.02.24.2008,4,Cipeundeuy,sex,laki_laki,,2608,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.24.2008,4,Cipeundeuy,sex,perempuan,,2512,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.24.2008,4,Cipeundeuy,total,total,,5120,jiwa,2025,registration,total_population,3.1,24,,
+32.02.24.2007,4,Gunung Sungging,sex,laki_laki,,3076,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.24.2007,4,Gunung Sungging,sex,perempuan,,3023,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.24.2007,4,Gunung Sungging,total,total,,6099,jiwa,2025,registration,total_population,3.1,24,,
+32.02.24.2002,4,Citanglar,sex,laki_laki,,3682,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.24.2002,4,Citanglar,sex,perempuan,,3601,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.24.2002,4,Citanglar,total,total,,7283,jiwa,2025,registration,total_population,3.1,24,,
+32.02.24.2001,4,Jagamukti,sex,laki_laki,,3159,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.24.2001,4,Jagamukti,sex,perempuan,,3181,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.24.2001,4,Jagamukti,total,total,,6340,jiwa,2025,registration,total_population,3.1,24,,
+32.02.24.1013,4,Surade,sex,laki_laki,,5347,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.24.1013,4,Surade,sex,perempuan,,5260,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.24.1013,4,Surade,total,total,,10607,jiwa,2025,registration,total_population,3.1,24,,
+32.02.24.2006,4,Kadaleman,sex,laki_laki,,3038,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.24.2006,4,Kadaleman,sex,perempuan,,2916,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.24.2006,4,Kadaleman,total,total,,5954,jiwa,2025,registration,total_population,3.1,24,,
+32.02.24.2003,4,Wanasari,sex,laki_laki,,2802,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.24.2003,4,Wanasari,sex,perempuan,,2817,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.24.2003,4,Wanasari,total,total,,5619,jiwa,2025,registration,total_population,3.1,24,,
+32.02.24.2005,4,Sirnasari,sex,laki_laki,,3341,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.24.2005,4,Sirnasari,sex,perempuan,,3400,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.24.2005,4,Sirnasari,total,total,,6741,jiwa,2025,registration,total_population,3.1,24,,
+32.02.24.2011,4,Sukatani,sex,laki_laki,,2337,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.24.2011,4,Sukatani,sex,perempuan,,2296,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.24.2011,4,Sukatani,total,total,,4633,jiwa,2025,registration,total_population,3.1,24,,
+32.02.24.2012,4,Kademangan,sex,laki_laki,,2523,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.24.2012,4,Kademangan,sex,perempuan,,2450,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.24.2012,4,Kademangan,total,total,,4973,jiwa,2025,registration,total_population,3.1,24,,
+32.02.24,3,Surade,sex,laki_laki,,45104,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.24,3,Surade,sex,perempuan,,44875,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.24,3,Surade,total,total,,89979,jiwa,2025,registration,total_population,3.1,24,,

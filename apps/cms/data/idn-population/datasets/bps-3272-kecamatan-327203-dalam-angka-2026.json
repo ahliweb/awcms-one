@@ -1,0 +1,43 @@
+{
+  "datasetCode": "bps-3272-kecamatan-327203-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.72.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Citamiang Dalam Angka 2026",
+  "publisherName": "BPS Kota Sukabumi",
+  "publisherDomain": "3272",
+  "publisherWebsite": "https://sukabumikota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Sukabumi (https://sukabumikota.bps.go.id), publikasi \"Kecamatan Citamiang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3272020",
+  "publicationNumber": "32720.26008",
+  "issn": "2798-8376",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sukabumikota.bps.go.id/id/publication/2026/09/28/e42ff3530ec79805ac721a0f/kecamatan-citamiang-dalam-angka-2026.html",
+  "sourceFileSha256": "188c3f2a995615532c0a2fcbd5c4b3df45247eb87d195dc367adc0a97fefd710",
+  "sourceFileBytes": 7695729,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Sukabumi.",
+  "csvPath": "datasets/bps-3272-kecamatan-327203-dalam-angka-2026.csv",
+  "csvSha256": "3895a8c18f45428f72a04879c5b51110f66213e443017c2f65cfed417cda4fbc",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Citamiang, 2026",
+      "printedPages": [32],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Cikondang 4.538\": unmatched ",
+    "table 3.1: row not stored: row \"Gedong Panjang 4.790\": unmatched ",
+    "table 3.1: row not stored: row \"Citamiang 5.173\": unmatched ",
+    "table 3.1: row not stored: row \"Nanggeleng 9.188\": unmatched ",
+    "table 3.1: row not stored: row \"Tipar 5.034\": unmatched ",
+    "table 3.1: row not stored: row \"Citamiang 28.723\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

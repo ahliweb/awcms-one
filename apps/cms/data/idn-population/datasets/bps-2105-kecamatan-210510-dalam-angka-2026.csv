@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.05.10.2001,4,Payalaman,sex,laki_laki,,759,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.05.10.2001,4,Payalaman,sex,perempuan,,711,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.05.10.2001,4,Payalaman,total,total,,1470,jiwa,2025,registration,total_population,3.1,32,,
+21.05.10.2005,4,Teluk Bayur,sex,laki_laki,,258,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.05.10.2005,4,Teluk Bayur,sex,perempuan,,240,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.05.10.2005,4,Teluk Bayur,total,total,,498,jiwa,2025,registration,total_population,3.1,32,,
+21.05.10.2004,4,Matak,sex,laki_laki,,223,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.05.10.2004,4,Matak,sex,perempuan,,212,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.05.10.2004,4,Matak,total,total,,435,jiwa,2025,registration,total_population,3.1,32,,
+21.05.10.2002,4,Payamaram,sex,laki_laki,,323,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.05.10.2002,4,Payamaram,sex,perempuan,,300,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.05.10.2002,4,Payamaram,total,total,,623,jiwa,2025,registration,total_population,3.1,32,,
+21.05.10.2003,4,Batu Ampar,sex,laki_laki,,483,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.05.10.2003,4,Batu Ampar,sex,perempuan,,460,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.05.10.2003,4,Batu Ampar,total,total,,943,jiwa,2025,registration,total_population,3.1,32,,
+21.05.10,3,Kute Siantan,sex,laki_laki,,2046,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.05.10,3,Kute Siantan,sex,perempuan,,1923,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.05.10,3,Kute Siantan,total,total,,3969,jiwa,2025,registration,total_population,3.1,32,,
+21.05.10,3,Kute Siantan,age_group,0-4,laki_laki,145,jiwa,2025,registration,total_population,3.2,34,,0-4
+21.05.10,3,Kute Siantan,age_group,0-4,perempuan,122,jiwa,2025,registration,total_population,3.2,34,,0-4
+21.05.10,3,Kute Siantan,age_group,0-4,,267,jiwa,2025,registration,total_population,3.2,34,,0-4
+21.05.10,3,Kute Siantan,age_group,5-9,laki_laki,198,jiwa,2025,registration,total_population,3.2,34,,5-9
+21.05.10,3,Kute Siantan,age_group,5-9,perempuan,165,jiwa,2025,registration,total_population,3.2,34,,5-9
+21.05.10,3,Kute Siantan,age_group,5-9,,363,jiwa,2025,registration,total_population,3.2,34,,5-9
+21.05.10,3,Kute Siantan,age_group,10-14,laki_laki,199,jiwa,2025,registration,total_population,3.2,34,,10-14
+21.05.10,3,Kute Siantan,age_group,10-14,perempuan,197,jiwa,2025,registration,total_population,3.2,34,,10-14
+21.05.10,3,Kute Siantan,age_group,10-14,,396,jiwa,2025,registration,total_population,3.2,34,,10-14
+21.05.10,3,Kute Siantan,age_group,15-19,laki_laki,195,jiwa,2025,registration,total_population,3.2,34,,15-19
+21.05.10,3,Kute Siantan,age_group,15-19,perempuan,177,jiwa,2025,registration,total_population,3.2,34,,15-19
+21.05.10,3,Kute Siantan,age_group,15-19,,372,jiwa,2025,registration,total_population,3.2,34,,15-19
+21.05.10,3,Kute Siantan,age_group,20-24,laki_laki,179,jiwa,2025,registration,total_population,3.2,34,,20-24
+21.05.10,3,Kute Siantan,age_group,20-24,perempuan,173,jiwa,2025,registration,total_population,3.2,34,,20-24
+21.05.10,3,Kute Siantan,age_group,20-24,,352,jiwa,2025,registration,total_population,3.2,34,,20-24
+21.05.10,3,Kute Siantan,age_group,25-29,laki_laki,138,jiwa,2025,registration,total_population,3.2,34,,25-29
+21.05.10,3,Kute Siantan,age_group,25-29,perempuan,152,jiwa,2025,registration,total_population,3.2,34,,25-29
+21.05.10,3,Kute Siantan,age_group,25-29,,290,jiwa,2025,registration,total_population,3.2,34,,25-29
+21.05.10,3,Kute Siantan,age_group,30-34,laki_laki,144,jiwa,2025,registration,total_population,3.2,34,,30-34
+21.05.10,3,Kute Siantan,age_group,30-34,perempuan,154,jiwa,2025,registration,total_population,3.2,34,,30-34
+21.05.10,3,Kute Siantan,age_group,30-34,,298,jiwa,2025,registration,total_population,3.2,34,,30-34
+21.05.10,3,Kute Siantan,age_group,35-39,laki_laki,140,jiwa,2025,registration,total_population,3.2,34,,35-39
+21.05.10,3,Kute Siantan,age_group,35-39,perempuan,131,jiwa,2025,registration,total_population,3.2,34,,35-39
+21.05.10,3,Kute Siantan,age_group,35-39,,271,jiwa,2025,registration,total_population,3.2,34,,35-39
+21.05.10,3,Kute Siantan,age_group,40-44,laki_laki,171,jiwa,2025,registration,total_population,3.2,34,,40-44
+21.05.10,3,Kute Siantan,age_group,40-44,perempuan,164,jiwa,2025,registration,total_population,3.2,34,,40-44
+21.05.10,3,Kute Siantan,age_group,40-44,,335,jiwa,2025,registration,total_population,3.2,34,,40-44
+21.05.10,3,Kute Siantan,age_group,45-49,laki_laki,149,jiwa,2025,registration,total_population,3.2,34,,45-49
+21.05.10,3,Kute Siantan,age_group,45-49,perempuan,134,jiwa,2025,registration,total_population,3.2,34,,45-49
+21.05.10,3,Kute Siantan,age_group,45-49,,283,jiwa,2025,registration,total_population,3.2,34,,45-49
+21.05.10,3,Kute Siantan,age_group,50-54,laki_laki,136,jiwa,2025,registration,total_population,3.2,34,,50-54
+21.05.10,3,Kute Siantan,age_group,50-54,perempuan,106,jiwa,2025,registration,total_population,3.2,34,,50-54
+21.05.10,3,Kute Siantan,age_group,50-54,,242,jiwa,2025,registration,total_population,3.2,34,,50-54
+21.05.10,3,Kute Siantan,age_group,55-59,laki_laki,89,jiwa,2025,registration,total_population,3.2,34,,55-59
+21.05.10,3,Kute Siantan,age_group,55-59,perempuan,86,jiwa,2025,registration,total_population,3.2,34,,55-59
+21.05.10,3,Kute Siantan,age_group,55-59,,175,jiwa,2025,registration,total_population,3.2,34,,55-59
+21.05.10,3,Kute Siantan,age_group,60-64,laki_laki,76,jiwa,2025,registration,total_population,3.2,34,,60-64
+21.05.10,3,Kute Siantan,age_group,60-64,perempuan,61,jiwa,2025,registration,total_population,3.2,34,,60-64
+21.05.10,3,Kute Siantan,age_group,60-64,,137,jiwa,2025,registration,total_population,3.2,34,,60-64
+21.05.10,3,Kute Siantan,age_group,65-69,laki_laki,47,jiwa,2025,registration,total_population,3.2,34,,65-69
+21.05.10,3,Kute Siantan,age_group,65-69,perempuan,47,jiwa,2025,registration,total_population,3.2,34,,65-69
+21.05.10,3,Kute Siantan,age_group,65-69,,94,jiwa,2025,registration,total_population,3.2,34,,65-69
+21.05.10,3,Kute Siantan,age_group,70-74,laki_laki,15,jiwa,2025,registration,total_population,3.2,34,,70-74
+21.05.10,3,Kute Siantan,age_group,70-74,perempuan,19,jiwa,2025,registration,total_population,3.2,34,,70-74
+21.05.10,3,Kute Siantan,age_group,70-74,,34,jiwa,2025,registration,total_population,3.2,34,,70-74
+21.05.10,3,Kute Siantan,age_group,75+,laki_laki,25,jiwa,2025,registration,total_population,3.2,34,,75+
+21.05.10,3,Kute Siantan,age_group,75+,perempuan,35,jiwa,2025,registration,total_population,3.2,34,,75+
+21.05.10,3,Kute Siantan,age_group,75+,,60,jiwa,2025,registration,total_population,3.2,34,,75+
+21.05.10,3,Kute Siantan,sex,laki_laki,,2046,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+21.05.10,3,Kute Siantan,sex,perempuan,,1923,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+21.05.10,3,Kute Siantan,total,total,,3969,jiwa,2025,registration,total_population,3.2,34,,

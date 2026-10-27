@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.26.03.2002,4,PAMUTUH,sex,laki_laki,,501,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.03.2002,4,PAMUTUH,sex,perempuan,,496,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.03.2002,4,PAMUTUH,total,total,,997,jiwa,2025,registration,total_population,3.1,34,,
+33.26.03.2003,4,DEPOK,sex,laki_laki,,301,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.03.2003,4,DEPOK,sex,perempuan,,297,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.03.2003,4,DEPOK,total,total,,598,jiwa,2025,registration,total_population,3.1,34,,
+33.26.03.2004,4,WONOSIDO,sex,laki_laki,,255,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.03.2004,4,WONOSIDO,sex,perempuan,,237,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.03.2004,4,WONOSIDO,total,total,,492,jiwa,2025,registration,total_population,3.1,34,,
+33.26.03.2005,4,TIMBANGSARI,sex,laki_laki,,328,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.03.2005,4,TIMBANGSARI,sex,perempuan,,314,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.03.2005,4,TIMBANGSARI,total,total,,642,jiwa,2025,registration,total_population,3.1,34,,
+33.26.03.2006,4,SIDOMULYO,sex,laki_laki,,1254,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.03.2006,4,SIDOMULYO,sex,perempuan,,1294,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.03.2006,4,SIDOMULYO,total,total,,2548,jiwa,2025,registration,total_population,3.1,34,,
+33.26.03.2007,4,KUTOREMBET,sex,laki_laki,,349,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.03.2007,4,KUTOREMBET,sex,perempuan,,303,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.03.2007,4,KUTOREMBET,total,total,,652,jiwa,2025,registration,total_population,3.1,34,,
+33.26.03.2008,4,LEBAKBARANG,sex,laki_laki,,1138,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.03.2008,4,LEBAKBARANG,sex,perempuan,,1128,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.03.2008,4,LEBAKBARANG,total,total,,2266,jiwa,2025,registration,total_population,3.1,34,,
+33.26.03.2009,4,KAPUNDUTAN,sex,laki_laki,,232,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.03.2009,4,KAPUNDUTAN,sex,perempuan,,229,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.03.2009,4,KAPUNDUTAN,total,total,,461,jiwa,2025,registration,total_population,3.1,34,,
+33.26.03.2010,4,BANTARKULON,sex,laki_laki,,348,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.03.2010,4,BANTARKULON,sex,perempuan,,353,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.03.2010,4,BANTARKULON,total,total,,701,jiwa,2025,registration,total_population,3.1,34,,
+33.26.03.2011,4,MENDOLO,sex,laki_laki,,430,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.03.2011,4,MENDOLO,sex,perempuan,,373,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.03.2011,4,MENDOLO,total,total,,803,jiwa,2025,registration,total_population,3.1,34,,
+33.26.03,3,Kecamatan Lebakbarang,sex,laki_laki,,5892,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+33.26.03,3,Kecamatan Lebakbarang,sex,perempuan,,5812,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+33.26.03,3,Kecamatan Lebakbarang,total,total,,11704,jiwa,2025,registration,total_population,3.1,34,,
+33.26.03,3,Lebakbarang,age_group,0-4,laki_laki,393,jiwa,2025,registration,total_population,3.2,35,,0 - 4
+33.26.03,3,Lebakbarang,age_group,0-4,perempuan,383,jiwa,2025,registration,total_population,3.2,35,,0 - 4
+33.26.03,3,Lebakbarang,age_group,0-4,,776,jiwa,2025,registration,total_population,3.2,35,,0 - 4
+33.26.03,3,Lebakbarang,age_group,5-9,laki_laki,449,jiwa,2025,registration,total_population,3.2,35,,5 - 9
+33.26.03,3,Lebakbarang,age_group,5-9,perempuan,444,jiwa,2025,registration,total_population,3.2,35,,5 - 9
+33.26.03,3,Lebakbarang,age_group,5-9,,893,jiwa,2025,registration,total_population,3.2,35,,5 - 9
+33.26.03,3,Lebakbarang,age_group,10-14,laki_laki,465,jiwa,2025,registration,total_population,3.2,35,,10 - 14
+33.26.03,3,Lebakbarang,age_group,10-14,perempuan,412,jiwa,2025,registration,total_population,3.2,35,,10 - 14
+33.26.03,3,Lebakbarang,age_group,10-14,,877,jiwa,2025,registration,total_population,3.2,35,,10 - 14
+33.26.03,3,Lebakbarang,age_group,15-19,laki_laki,409,jiwa,2025,registration,total_population,3.2,35,,15 - 19
+33.26.03,3,Lebakbarang,age_group,15-19,perempuan,448,jiwa,2025,registration,total_population,3.2,35,,15 - 19
+33.26.03,3,Lebakbarang,age_group,15-19,,857,jiwa,2025,registration,total_population,3.2,35,,15 - 19
+33.26.03,3,Lebakbarang,age_group,20-24,laki_laki,465,jiwa,2025,registration,total_population,3.2,35,,20 - 24
+33.26.03,3,Lebakbarang,age_group,20-24,perempuan,435,jiwa,2025,registration,total_population,3.2,35,,20 - 24
+33.26.03,3,Lebakbarang,age_group,20-24,,900,jiwa,2025,registration,total_population,3.2,35,,20 - 24
+33.26.03,3,Lebakbarang,age_group,25-29,laki_laki,450,jiwa,2025,registration,total_population,3.2,35,,25 - 29
+33.26.03,3,Lebakbarang,age_group,25-29,perempuan,445,jiwa,2025,registration,total_population,3.2,35,,25 - 29
+33.26.03,3,Lebakbarang,age_group,25-29,,895,jiwa,2025,registration,total_population,3.2,35,,25 - 29
+33.26.03,3,Lebakbarang,age_group,30-34,laki_laki,430,jiwa,2025,registration,total_population,3.2,35,,30 - 34
+33.26.03,3,Lebakbarang,age_group,30-34,perempuan,456,jiwa,2025,registration,total_population,3.2,35,,30 - 34
+33.26.03,3,Lebakbarang,age_group,30-34,,886,jiwa,2025,registration,total_population,3.2,35,,30 - 34
+33.26.03,3,Lebakbarang,age_group,35-39,laki_laki,433,jiwa,2025,registration,total_population,3.2,35,,35 - 39
+33.26.03,3,Lebakbarang,age_group,35-39,perempuan,390,jiwa,2025,registration,total_population,3.2,35,,35 - 39
+33.26.03,3,Lebakbarang,age_group,35-39,,823,jiwa,2025,registration,total_population,3.2,35,,35 - 39
+33.26.03,3,Lebakbarang,age_group,40-44,laki_laki,432,jiwa,2025,registration,total_population,3.2,35,,40 - 44
+33.26.03,3,Lebakbarang,age_group,40-44,perempuan,406,jiwa,2025,registration,total_population,3.2,35,,40 - 44
+33.26.03,3,Lebakbarang,age_group,40-44,,838,jiwa,2025,registration,total_population,3.2,35,,40 - 44
+33.26.03,3,Lebakbarang,age_group,45-49,laki_laki,341,jiwa,2025,registration,total_population,3.2,35,,45 - 49
+33.26.03,3,Lebakbarang,age_group,45-49,perempuan,352,jiwa,2025,registration,total_population,3.2,35,,45 - 49
+33.26.03,3,Lebakbarang,age_group,45-49,,693,jiwa,2025,registration,total_population,3.2,35,,45 - 49
+33.26.03,3,Lebakbarang,age_group,50-54,laki_laki,312,jiwa,2025,registration,total_population,3.2,35,,50 - 54
+33.26.03,3,Lebakbarang,age_group,50-54,perempuan,289,jiwa,2025,registration,total_population,3.2,35,,50 - 54
+33.26.03,3,Lebakbarang,age_group,50-54,,601,jiwa,2025,registration,total_population,3.2,35,,50 - 54
+33.26.03,3,Lebakbarang,age_group,55-59,laki_laki,300,jiwa,2025,registration,total_population,3.2,35,,55 - 59
+33.26.03,3,Lebakbarang,age_group,55-59,perempuan,370,jiwa,2025,registration,total_population,3.2,35,,55 - 59
+33.26.03,3,Lebakbarang,age_group,55-59,,670,jiwa,2025,registration,total_population,3.2,35,,55 - 59
+33.26.03,3,Lebakbarang,age_group,60-64,laki_laki,323,jiwa,2025,registration,total_population,3.2,35,,60 - 64
+33.26.03,3,Lebakbarang,age_group,60-64,perempuan,325,jiwa,2025,registration,total_population,3.2,35,,60 - 64
+33.26.03,3,Lebakbarang,age_group,60-64,,648,jiwa,2025,registration,total_population,3.2,35,,60 - 64
+33.26.03,3,Lebakbarang,age_group,65-69,laki_laki,295,jiwa,2025,registration,total_population,3.2,35,,65 - 69
+33.26.03,3,Lebakbarang,age_group,65-69,perempuan,251,jiwa,2025,registration,total_population,3.2,35,,65 - 69
+33.26.03,3,Lebakbarang,age_group,65-69,,546,jiwa,2025,registration,total_population,3.2,35,,65 - 69
+33.26.03,3,Lebakbarang,age_group,70-74,laki_laki,183,jiwa,2025,registration,total_population,3.2,35,,70 - 74
+33.26.03,3,Lebakbarang,age_group,70-74,perempuan,171,jiwa,2025,registration,total_population,3.2,35,,70 - 74
+33.26.03,3,Lebakbarang,age_group,70-74,,354,jiwa,2025,registration,total_population,3.2,35,,70 - 74
+33.26.03,3,Lebakbarang,age_group,75+,laki_laki,212,jiwa,2025,registration,total_population,3.2,35,,>75
+33.26.03,3,Lebakbarang,age_group,75+,perempuan,235,jiwa,2025,registration,total_population,3.2,35,,>75
+33.26.03,3,Lebakbarang,age_group,75+,,447,jiwa,2025,registration,total_population,3.2,35,,>75
+33.26.03,3,Kecamatan Lebakbarang,sex,laki_laki,,5892,jiwa,2025,registration,total_population,3.2,35,,Laki-Laki
+33.26.03,3,Kecamatan Lebakbarang,sex,perempuan,,5812,jiwa,2025,registration,total_population,3.2,35,,Perempuan
+33.26.03,3,Kecamatan Lebakbarang,total,total,,11704,jiwa,2025,registration,total_population,3.2,35,,

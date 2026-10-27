@@ -1,0 +1,92 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.71.04.1005,4,BINJAI,sex,laki_laki,,26302,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.04.1005,4,BINJAI,sex,perempuan,,26674,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.04.1006,4,Medan Tenggara,sex,laki_laki,,10830,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.04.1006,4,Medan Tenggara,sex,perempuan,,10981,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.04.1004,4,DENAI,sex,laki_laki,,12298,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.04.1004,4,DENAI,sex,perempuan,,12308,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.04,3,Medan Denai,sex,laki_laki,,89697,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.71.04,3,Medan Denai,sex,perempuan,,89813,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.71.04,3,Medan Denai,age_group,0-4,laki_laki,4730,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.71.04,3,Medan Denai,age_group,0-4,perempuan,4329,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.71.04,3,Medan Denai,age_group,0-4,,9059,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.71.04,3,Medan Denai,age_group,5-9,laki_laki,7742,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.71.04,3,Medan Denai,age_group,5-9,perempuan,7244,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.71.04,3,Medan Denai,age_group,5-9,,14986,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.71.04,3,Medan Denai,age_group,10-14,laki_laki,8534,jiwa,2025,registration,total_population,3.2,31,,10 -14
+12.71.04,3,Medan Denai,age_group,10-14,perempuan,7892,jiwa,2025,registration,total_population,3.2,31,,10 -14
+12.71.04,3,Medan Denai,age_group,10-14,,16426,jiwa,2025,registration,total_population,3.2,31,,10 -14
+12.71.04,3,Medan Denai,age_group,15-19,laki_laki,8261,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.71.04,3,Medan Denai,age_group,15-19,perempuan,7729,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.71.04,3,Medan Denai,age_group,15-19,,15990,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.71.04,3,Medan Denai,age_group,20-24,laki_laki,7604,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.71.04,3,Medan Denai,age_group,20-24,perempuan,7187,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.71.04,3,Medan Denai,age_group,20-24,,14791,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.71.04,3,Medan Denai,age_group,25-29,laki_laki,7362,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.71.04,3,Medan Denai,age_group,25-29,perempuan,7265,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.71.04,3,Medan Denai,age_group,25-29,,14627,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.71.04,3,Medan Denai,age_group,30-34,laki_laki,7217,jiwa,2025,registration,total_population,3.2,31,,30 -34
+12.71.04,3,Medan Denai,age_group,30-34,perempuan,7029,jiwa,2025,registration,total_population,3.2,31,,30 -34
+12.71.04,3,Medan Denai,age_group,30-34,,14246,jiwa,2025,registration,total_population,3.2,31,,30 -34
+12.71.04,3,Medan Denai,age_group,35-39,laki_laki,7083,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.71.04,3,Medan Denai,age_group,35-39,perempuan,6887,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.71.04,3,Medan Denai,age_group,35-39,,13970,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.71.04,3,Medan Denai,age_group,40-44,laki_laki,7098,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.71.04,3,Medan Denai,age_group,40-44,perempuan,7004,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.71.04,3,Medan Denai,age_group,40-44,,14102,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.71.04,3,Medan Denai,age_group,45-49,laki_laki,6048,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.71.04,3,Medan Denai,age_group,45-49,perempuan,6103,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.71.04,3,Medan Denai,age_group,45-49,,12151,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.71.04,3,Medan Denai,age_group,50-54,laki_laki,5015,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.71.04,3,Medan Denai,age_group,50-54,perempuan,5414,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.71.04,3,Medan Denai,age_group,50-54,,10429,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.71.04,3,Medan Denai,age_group,55-59,laki_laki,4174,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.71.04,3,Medan Denai,age_group,55-59,perempuan,4725,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.71.04,3,Medan Denai,age_group,55-59,,8899,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.71.04,3,Medan Denai,age_group,60-64,laki_laki,3260,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.71.04,3,Medan Denai,age_group,60-64,perempuan,3992,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.71.04,3,Medan Denai,age_group,60-64,,7252,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.71.04,3,Medan Denai,age_group,65-69,laki_laki,2642,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.71.04,3,Medan Denai,age_group,65-69,perempuan,3092,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.71.04,3,Medan Denai,age_group,65-69,,5734,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.71.04,3,Medan Denai,age_group,70-74,laki_laki,1549,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.71.04,3,Medan Denai,age_group,70-74,perempuan,1837,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.71.04,3,Medan Denai,age_group,70-74,,3386,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.71.04,3,Medan Denai,age_group,75+,laki_laki,1378,jiwa,2025,registration,total_population,3.2,31,,75 +
+12.71.04,3,Medan Denai,age_group,75+,perempuan,2084,jiwa,2025,registration,total_population,3.2,31,,75 +
+12.71.04,3,Medan Denai,age_group,75+,,3462,jiwa,2025,registration,total_population,3.2,31,,75 +
+12.71.04,3,Medan Denai,sex,laki_laki,,89697,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+12.71.04,3,Medan Denai,sex,perempuan,,89813,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+12.71.04,3,Medan Denai,total,total,,179510,jiwa,2025,registration,total_population,3.2,31,,
+12.71.04.1005,4,BINJAI,religion,islam,,37540,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.04.1005,4,BINJAI,religion,kristen,,13819,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.04.1005,4,BINJAI,religion,katolik,,1389,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.04.1005,4,BINJAI,religion,buddha,,115,jiwa,2025,registration,total_population,3.6,38,,Buddha
+12.71.04.1005,4,BINJAI,religion,hindu,,32,jiwa,2025,registration,total_population,3.6,38,,Hindu
+12.71.04.1005,4,BINJAI,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,38,nil,Khonghucu
+12.71.04.1005,4,BINJAI,religion,kepercayaan,,81,jiwa,2025,registration,total_population,3.6,38,,Kepercayaan
+12.71.04.1005,4,BINJAI,total,total,,52976,jiwa,2025,registration,total_population,3.6,38,,
+12.71.04.1006,4,Medan Tenggara,religion,islam,,12975,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.04.1006,4,Medan Tenggara,religion,kristen,,7787,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.04.1006,4,Medan Tenggara,religion,katolik,,796,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.04.1006,4,Medan Tenggara,religion,buddha,,229,jiwa,2025,registration,total_population,3.6,38,,Buddha
+12.71.04.1006,4,Medan Tenggara,religion,hindu,,3,jiwa,2025,registration,total_population,3.6,38,,Hindu
+12.71.04.1006,4,Medan Tenggara,religion,khonghucu,,1,jiwa,2025,registration,total_population,3.6,38,,Khonghucu
+12.71.04.1006,4,Medan Tenggara,religion,kepercayaan,,20,jiwa,2025,registration,total_population,3.6,38,,Kepercayaan
+12.71.04.1006,4,Medan Tenggara,total,total,,21811,jiwa,2025,registration,total_population,3.6,38,,
+12.71.04.1004,4,DENAI,religion,islam,,21587,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.04.1004,4,DENAI,religion,kristen,,2550,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.04.1004,4,DENAI,religion,katolik,,419,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.04.1004,4,DENAI,religion,buddha,,40,jiwa,2025,registration,total_population,3.6,38,,Buddha
+12.71.04.1004,4,DENAI,religion,hindu,,0,jiwa,2025,registration,total_population,3.6,38,nil,Hindu
+12.71.04.1004,4,DENAI,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.6,38,nil,Khonghucu
+12.71.04.1004,4,DENAI,religion,kepercayaan,,10,jiwa,2025,registration,total_population,3.6,38,,Kepercayaan
+12.71.04.1004,4,DENAI,total,total,,24606,jiwa,2025,registration,total_population,3.6,38,,
+12.71.04,3,Medan Denai,religion,islam,,128873,jiwa,2025,registration,total_population,3.6,38,,Islam
+12.71.04,3,Medan Denai,religion,kristen,,38966,jiwa,2025,registration,total_population,3.6,38,,Protestan
+12.71.04,3,Medan Denai,religion,katolik,,4283,jiwa,2025,registration,total_population,3.6,38,,Katolik
+12.71.04,3,Medan Denai,religion,buddha,,7156,jiwa,2025,registration,total_population,3.6,38,,Buddha
+12.71.04,3,Medan Denai,religion,hindu,,70,jiwa,2025,registration,total_population,3.6,38,,Hindu
+12.71.04,3,Medan Denai,religion,khonghucu,,37,jiwa,2025,registration,total_population,3.6,38,,Khonghucu
+12.71.04,3,Medan Denai,religion,kepercayaan,,125,jiwa,2025,registration,total_population,3.6,38,,Kepercayaan
+12.71.04,3,Medan Denai,total,total,,179510,jiwa,2025,registration,total_population,3.6,38,,

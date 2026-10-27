@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3277-kecamatan-327702-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.77.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cimahi Tengah Dalam Angka 2026",
+  "publisherName": "BPS Kota Cimahi",
+  "publisherDomain": "3277",
+  "publisherWebsite": "https://cimahikota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Cimahi (https://cimahikota.bps.go.id), publikasi \"Kecamatan Cimahi Tengah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "32770.26007",
+  "issn": "2830-7712",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cimahikota.bps.go.id/id/publication/2026/09/28/3658a85dc24ac73475940ee5/kecamatan-cimahi-tengah-dalam-angka-2026.html",
+  "sourceFileSha256": "bbe7d2c366e07030c4f78ce0aa5bf9dab8399e47c70ae15aca18700d2f8c3ae1",
+  "sourceFileBytes": 12076307,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Cimahi.",
+  "csvPath": "datasets/bps-3277-kecamatan-327702-dalam-angka-2026.csv",
+  "csvSha256": "1a94e2fe2b992f1b140dd9490855f122f88b6fe4f64761f95aeae574f7368c64",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Jumlah Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Cimahi Tengah, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cimahi Tengah, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

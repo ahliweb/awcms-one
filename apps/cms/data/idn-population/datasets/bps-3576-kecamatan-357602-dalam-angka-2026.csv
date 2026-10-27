@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.76.02.1001,4,Gunung Gedangan,religion,islam,,7856,jiwa,2025,registration,total_population,4.4.1,74,,Islam
+35.76.02.1001,4,Gunung Gedangan,religion,kristen,,302,jiwa,2025,registration,total_population,4.4.1,74,,Protestan
+35.76.02.1001,4,Gunung Gedangan,religion,katolik,,22,jiwa,2025,registration,total_population,4.4.1,74,,Katolik
+35.76.02.1001,4,Gunung Gedangan,religion,hindu,,5,jiwa,2025,registration,total_population,4.4.1,74,,Hindu
+35.76.02.1001,4,Gunung Gedangan,religion,buddha,,3,jiwa,2025,registration,total_population,4.4.1,74,,Budha
+35.76.02.1001,4,Gunung Gedangan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.1,74,,
+35.76.02.1009,4,Kedundung,religion,islam,,15770,jiwa,2025,registration,total_population,4.4.1,74,,Islam
+35.76.02.1009,4,Kedundung,religion,kristen,,487,jiwa,2025,registration,total_population,4.4.1,74,,Protestan
+35.76.02.1009,4,Kedundung,religion,katolik,,69,jiwa,2025,registration,total_population,4.4.1,74,,Katolik
+35.76.02.1009,4,Kedundung,religion,hindu,,1,jiwa,2025,registration,total_population,4.4.1,74,,Hindu
+35.76.02.1009,4,Kedundung,religion,buddha,,6,jiwa,2025,registration,total_population,4.4.1,74,,Budha
+35.76.02.1009,4,Kedundung,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.1,74,,
+35.76.02.1008,4,Balongsari,religion,islam,,7461,jiwa,2025,registration,total_population,4.4.1,74,,Islam
+35.76.02.1008,4,Balongsari,religion,kristen,,297,jiwa,2025,registration,total_population,4.4.1,74,,Protestan
+35.76.02.1008,4,Balongsari,religion,katolik,,99,jiwa,2025,registration,total_population,4.4.1,74,,Katolik
+35.76.02.1008,4,Balongsari,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,74,,Hindu
+35.76.02.1008,4,Balongsari,religion,buddha,,61,jiwa,2025,registration,total_population,4.4.1,74,,Budha
+35.76.02.1008,4,Balongsari,religion,khonghucu,,4,jiwa,2025,registration,total_population,4.4.1,74,,
+35.76.02.1004,4,Gedongan,religion,islam,,1745,jiwa,2025,registration,total_population,4.4.1,74,,Islam
+35.76.02.1004,4,Gedongan,religion,kristen,,284,jiwa,2025,registration,total_population,4.4.1,74,,Protestan
+35.76.02.1004,4,Gedongan,religion,katolik,,104,jiwa,2025,registration,total_population,4.4.1,74,,Katolik
+35.76.02.1004,4,Gedongan,religion,hindu,,1,jiwa,2025,registration,total_population,4.4.1,74,,Hindu
+35.76.02.1004,4,Gedongan,religion,buddha,,66,jiwa,2025,registration,total_population,4.4.1,74,,Budha
+35.76.02.1004,4,Gedongan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.1,74,,
+35.76.02.1003,4,Magersari,religion,islam,,4978,jiwa,2025,registration,total_population,4.4.1,74,,Islam
+35.76.02.1003,4,Magersari,religion,kristen,,423,jiwa,2025,registration,total_population,4.4.1,74,,Protestan
+35.76.02.1003,4,Magersari,religion,katolik,,200,jiwa,2025,registration,total_population,4.4.1,74,,Katolik
+35.76.02.1003,4,Magersari,religion,hindu,,8,jiwa,2025,registration,total_population,4.4.1,74,,Hindu
+35.76.02.1003,4,Magersari,religion,buddha,,61,jiwa,2025,registration,total_population,4.4.1,74,,Budha
+35.76.02.1003,4,Magersari,religion,khonghucu,,3,jiwa,2025,registration,total_population,4.4.1,74,,
+35.76.02.1010,4,Wates,religion,islam,,17965,jiwa,2025,registration,total_population,4.4.1,74,,Islam
+35.76.02.1010,4,Wates,religion,kristen,,1700,jiwa,2025,registration,total_population,4.4.1,74,,Protestan
+35.76.02.1010,4,Wates,religion,katolik,,540,jiwa,2025,registration,total_population,4.4.1,74,,Katolik
+35.76.02.1010,4,Wates,religion,hindu,,34,jiwa,2025,registration,total_population,4.4.1,74,,Hindu
+35.76.02.1010,4,Wates,religion,buddha,,113,jiwa,2025,registration,total_population,4.4.1,74,,Budha
+35.76.02.1010,4,Wates,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.4.1,74,,
+35.76.02,3,Kecamatan Magersari,religion,islam,,55775,jiwa,2025,registration,total_population,4.4.1,74,,Islam
+35.76.02,3,Kecamatan Magersari,religion,kristen,,3493,jiwa,2025,registration,total_population,4.4.1,74,,Protestan
+35.76.02,3,Kecamatan Magersari,religion,katolik,,1034,jiwa,2025,registration,total_population,4.4.1,74,,Katolik
+35.76.02,3,Kecamatan Magersari,religion,hindu,,49,jiwa,2025,registration,total_population,4.4.1,74,,Hindu
+35.76.02,3,Kecamatan Magersari,religion,buddha,,310,jiwa,2025,registration,total_population,4.4.1,74,,Budha
+35.76.02,3,Kecamatan Magersari,religion,khonghucu,,8,jiwa,2025,registration,total_population,4.4.1,74,,

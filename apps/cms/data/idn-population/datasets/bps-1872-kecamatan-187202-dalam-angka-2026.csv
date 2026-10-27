@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.72.02.1001,4,Banjarsari,sex,laki_laki,,6794,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.02.1001,4,Banjarsari,sex,perempuan,,6727,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.02.1001,4,Banjarsari,total,total,,13521,jiwa,2025,registration,total_population,3.1,31,,
+18.72.02.1002,4,Purwosari,sex,laki_laki,,3461,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.02.1002,4,Purwosari,sex,perempuan,,3412,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.02.1002,4,Purwosari,total,total,,6873,jiwa,2025,registration,total_population,3.1,31,,
+18.72.02.1004,4,Purwoasri,sex,laki_laki,,2587,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.02.1004,4,Purwoasri,sex,perempuan,,2527,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.02.1004,4,Purwoasri,total,total,,5114,jiwa,2025,registration,total_population,3.1,31,,
+18.72.02.1003,4,Karangrejo,sex,laki_laki,,5578,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.02.1003,4,Karangrejo,sex,perempuan,,5437,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.02.1003,4,Karangrejo,total,total,,11015,jiwa,2025,registration,total_population,3.1,31,,
+18.72.02,3,Metro Utara,sex,laki_laki,,18420,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.72.02,3,Metro Utara,sex,perempuan,,18103,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.72.02,3,Metro Utara,total,total,,36523,jiwa,2025,registration,total_population,3.1,31,,

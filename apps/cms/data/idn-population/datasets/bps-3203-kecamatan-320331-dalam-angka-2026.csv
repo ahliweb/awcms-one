@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.03.31.2002,4,Cihea,sex,laki_laki,,5523,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+32.03.31.2002,4,Cihea,sex,perempuan,,5058,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+32.03.31.2002,4,Cihea,total,total,,10581,jiwa,2025,registration,total_population,3.1,19,,
+32.03.31.2003,4,Ramasari,sex,laki_laki,,4540,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+32.03.31.2003,4,Ramasari,sex,perempuan,,4199,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+32.03.31.2003,4,Ramasari,total,total,,8739,jiwa,2025,registration,total_population,3.1,19,,
+32.03.31.2001,4,Haurwangi,sex,laki_laki,,6044,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+32.03.31.2001,4,Haurwangi,sex,perempuan,,5912,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+32.03.31.2001,4,Haurwangi,total,total,,11956,jiwa,2025,registration,total_population,3.1,19,,
+32.03.31.2006,4,Kertasari,sex,laki_laki,,4417,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+32.03.31.2006,4,Kertasari,sex,perempuan,,4074,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+32.03.31.2006,4,Kertasari,total,total,,8491,jiwa,2025,registration,total_population,3.1,19,,
+32.03.31.2008,4,Kertamukti,sex,laki_laki,,4997,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+32.03.31.2008,4,Kertamukti,sex,perempuan,,4775,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+32.03.31.2008,4,Kertamukti,total,total,,9772,jiwa,2025,registration,total_population,3.1,19,,
+32.03.31.2007,4,Cipeuyeum,sex,laki_laki,,3590,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+32.03.31.2007,4,Cipeuyeum,sex,perempuan,,3414,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+32.03.31.2007,4,Cipeuyeum,total,total,,7004,jiwa,2025,registration,total_population,3.1,19,,
+32.03.31.2005,4,Mekarwangi,sex,laki_laki,,2998,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+32.03.31.2005,4,Mekarwangi,sex,perempuan,,2965,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+32.03.31.2005,4,Mekarwangi,total,total,,5963,jiwa,2025,registration,total_population,3.1,19,,
+32.03.31,3,Kecamatan Haurwangi,sex,laki_laki,,36661,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+32.03.31,3,Kecamatan Haurwangi,sex,perempuan,,34690,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+32.03.31,3,Kecamatan Haurwangi,total,total,,71351,jiwa,2025,registration,total_population,3.1,19,,
+32.03.31,3,Haurwangi,age_group,0-4,laki_laki,2686,jiwa,2025,registration,total_population,3.2,21,,0-4
+32.03.31,3,Haurwangi,age_group,0-4,perempuan,2324,jiwa,2025,registration,total_population,3.2,21,,0-4
+32.03.31,3,Haurwangi,age_group,0-4,,5010,jiwa,2025,registration,total_population,3.2,21,,0-4
+32.03.31,3,Haurwangi,age_group,5-9,laki_laki,3503,jiwa,2025,registration,total_population,3.2,21,,5-9
+32.03.31,3,Haurwangi,age_group,5-9,perempuan,3252,jiwa,2025,registration,total_population,3.2,21,,5-9
+32.03.31,3,Haurwangi,age_group,5-9,,6755,jiwa,2025,registration,total_population,3.2,21,,5-9
+32.03.31,3,Haurwangi,age_group,10-14,laki_laki,3636,jiwa,2025,registration,total_population,3.2,21,,10-14
+32.03.31,3,Haurwangi,age_group,10-14,perempuan,3389,jiwa,2025,registration,total_population,3.2,21,,10-14
+32.03.31,3,Haurwangi,age_group,10-14,,7025,jiwa,2025,registration,total_population,3.2,21,,10-14
+32.03.31,3,Haurwangi,age_group,15-19,laki_laki,3102,jiwa,2025,registration,total_population,3.2,21,,15-19
+32.03.31,3,Haurwangi,age_group,15-19,perempuan,2895,jiwa,2025,registration,total_population,3.2,21,,15-19
+32.03.31,3,Haurwangi,age_group,15-19,,5997,jiwa,2025,registration,total_population,3.2,21,,15-19
+32.03.31,3,Haurwangi,age_group,20-24,laki_laki,3104,jiwa,2025,registration,total_population,3.2,21,,20-24
+32.03.31,3,Haurwangi,age_group,20-24,perempuan,2943,jiwa,2025,registration,total_population,3.2,21,,20-24
+32.03.31,3,Haurwangi,age_group,20-24,,6047,jiwa,2025,registration,total_population,3.2,21,,20-24
+32.03.31,3,Haurwangi,age_group,25-29,laki_laki,2980,jiwa,2025,registration,total_population,3.2,21,,25-29
+32.03.31,3,Haurwangi,age_group,25-29,perempuan,2718,jiwa,2025,registration,total_population,3.2,21,,25-29
+32.03.31,3,Haurwangi,age_group,25-29,,5698,jiwa,2025,registration,total_population,3.2,21,,25-29
+32.03.31,3,Haurwangi,age_group,30-34,laki_laki,2798,jiwa,2025,registration,total_population,3.2,21,,30-34
+32.03.31,3,Haurwangi,age_group,30-34,perempuan,2580,jiwa,2025,registration,total_population,3.2,21,,30-34
+32.03.31,3,Haurwangi,age_group,30-34,,5378,jiwa,2025,registration,total_population,3.2,21,,30-34
+32.03.31,3,Haurwangi,age_group,35-39,laki_laki,2463,jiwa,2025,registration,total_population,3.2,21,,35-39
+32.03.31,3,Haurwangi,age_group,35-39,perempuan,2351,jiwa,2025,registration,total_population,3.2,21,,35-39
+32.03.31,3,Haurwangi,age_group,35-39,,4814,jiwa,2025,registration,total_population,3.2,21,,35-39
+32.03.31,3,Haurwangi,age_group,40-44,laki_laki,2597,jiwa,2025,registration,total_population,3.2,21,,40-44
+32.03.31,3,Haurwangi,age_group,40-44,perempuan,2488,jiwa,2025,registration,total_population,3.2,21,,40-44
+32.03.31,3,Haurwangi,age_group,40-44,,5085,jiwa,2025,registration,total_population,3.2,21,,40-44
+32.03.31,3,Haurwangi,age_group,45-49,laki_laki,2210,jiwa,2025,registration,total_population,3.2,21,,45-49
+32.03.31,3,Haurwangi,age_group,45-49,perempuan,2207,jiwa,2025,registration,total_population,3.2,21,,45-49
+32.03.31,3,Haurwangi,age_group,45-49,,4417,jiwa,2025,registration,total_population,3.2,21,,45-49
+32.03.31,3,Haurwangi,age_group,50-54,laki_laki,2040,jiwa,2025,registration,total_population,3.2,21,,50-54
+32.03.31,3,Haurwangi,age_group,50-54,perempuan,2107,jiwa,2025,registration,total_population,3.2,21,,50-54
+32.03.31,3,Haurwangi,age_group,50-54,,4147,jiwa,2025,registration,total_population,3.2,21,,50-54
+32.03.31,3,Haurwangi,age_group,55-59,laki_laki,1594,jiwa,2025,registration,total_population,3.2,21,,55-59
+32.03.31,3,Haurwangi,age_group,55-59,perempuan,1616,jiwa,2025,registration,total_population,3.2,21,,55-59
+32.03.31,3,Haurwangi,age_group,55-59,,3210,jiwa,2025,registration,total_population,3.2,21,,55-59
+32.03.31,3,Haurwangi,age_group,60-64,laki_laki,1379,jiwa,2025,registration,total_population,3.2,21,,60-64
+32.03.31,3,Haurwangi,age_group,60-64,perempuan,1370,jiwa,2025,registration,total_population,3.2,21,,60-64
+32.03.31,3,Haurwangi,age_group,60-64,,2749,jiwa,2025,registration,total_population,3.2,21,,60-64
+32.03.31,3,Haurwangi,age_group,65-69,laki_laki,1048,jiwa,2025,registration,total_population,3.2,21,,65-69
+32.03.31,3,Haurwangi,age_group,65-69,perempuan,952,jiwa,2025,registration,total_population,3.2,21,,65-69
+32.03.31,3,Haurwangi,age_group,65-69,,2000,jiwa,2025,registration,total_population,3.2,21,,65-69
+32.03.31,3,Haurwangi,age_group,70-74,laki_laki,729,jiwa,2025,registration,total_population,3.2,21,,70-74
+32.03.31,3,Haurwangi,age_group,70-74,perempuan,676,jiwa,2025,registration,total_population,3.2,21,,70-74
+32.03.31,3,Haurwangi,age_group,70-74,,1405,jiwa,2025,registration,total_population,3.2,21,,70-74
+32.03.31,3,Haurwangi,age_group,75+,laki_laki,792,jiwa,2025,registration,total_population,3.2,21,,75+
+32.03.31,3,Haurwangi,age_group,75+,perempuan,822,jiwa,2025,registration,total_population,3.2,21,,75+
+32.03.31,3,Haurwangi,age_group,75+,,1614,jiwa,2025,registration,total_population,3.2,21,,75+
+32.03.31,3,Kecamatan Haurwangi,sex,laki_laki,,36661,jiwa,2025,registration,total_population,3.2,21,,Laki-Laki
+32.03.31,3,Kecamatan Haurwangi,sex,perempuan,,34690,jiwa,2025,registration,total_population,3.2,21,,Perempuan
+32.03.31,3,Kecamatan Haurwangi,total,total,,71351,jiwa,2025,registration,total_population,3.2,21,,

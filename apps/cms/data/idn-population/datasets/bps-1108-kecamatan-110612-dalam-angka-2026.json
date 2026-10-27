@@ -1,0 +1,62 @@
+{
+  "datasetCode": "bps-1108-kecamatan-110612-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.06.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Darussalam Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Besar",
+  "publisherDomain": "1108",
+  "publisherWebsite": "https://acehbesarkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Besar (https://acehbesarkab.bps.go.id), publikasi \"Kecamatan Darussalam Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "11080.26014",
+  "issn": "2407-5159",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehbesarkab.bps.go.id/id/publication/2026/09/28/d237c149c50af573a404c874/kecamatan-darussalam-dalam-angka-2026.html",
+  "sourceFileSha256": "610e2d214969a90a4f4d1db1726c1a249d465c2a8fc022b797af3f499278fc8b",
+  "sourceFileBytes": 8013718,
+  "sourcePages": [25, 26, 27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Besar.",
+  "csvPath": "datasets/bps-1108-kecamatan-110612-dalam-angka-2026.csv",
+  "csvSha256": "1738b8b6ca4da78a768cb2751416582552196c417a47a8b4c149ebcfff9eb311",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Darussalam, 2025",
+      "printedPages": [25, 26, 27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Darussalam, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"3. Lam Gawee\": unmatched ",
+    "table 3.1: row not stored: row \"9. Lambiheu Lambaro Angan\": unmatched ",
+    "table 3.1: row not stored: row \"12. Lamkeuneung\": unmatched ",
+    "table 3.1: row not stored: row \"16. Barabung\": unmatched ",
+    "table 3.1: row not stored: row \"17. Tungkob\": unmatched ",
+    "table 3.1: row not stored: row \"18. Lam Duro\": unmatched ",
+    "table 3.1: row not stored: row \"20. Li Eue\": unmatched ",
+    "table 3.1: row not stored: row \"28. Tanjong Deah\": unmatched ",
+    "table 3.1: row not stored: row \"29. Tanjung Selamat\": unmatched ",
+    "table 3.1: row not stored: row \"3. Lam Gawee\": unmatched ",
+    "table 3.1: row not stored: row \"9. Lambiheu Lambaro Angan\": unmatched ",
+    "table 3.1: row not stored: row \"12. Lamkeuneung\": unmatched ",
+    "table 3.1: row not stored: row \"16. Barabung\": unmatched ",
+    "table 3.1: row not stored: row \"17. Tungkob\": unmatched ",
+    "table 3.1: row not stored: row \"18. Lam Duro\": unmatched ",
+    "table 3.1: row not stored: row \"20. Li Eue\": unmatched ",
+    "table 3.1: row not stored: row \"28. Tanjong Deah\": unmatched ",
+    "table 3.1: row not stored: row \"29. Tanjung Selamat\": unmatched "
+  ]
+}

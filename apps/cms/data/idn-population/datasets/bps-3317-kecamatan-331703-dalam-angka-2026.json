@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3317-kecamatan-331703-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.17.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gunem Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Rembang",
+  "publisherDomain": "3317",
+  "publisherWebsite": "https://rembangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Rembang (https://rembangkab.bps.go.id), publikasi \"Kecamatan Gunem Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3317030",
+  "publicationNumber": "33170.26008",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://rembangkab.bps.go.id/id/publication/2026/09/28/0d22117e2e181714c20735a7/kecamatan-gunem-dalam-angka-2026.html",
+  "sourceFileSha256": "ac041618f7e616be4204255511c50d7e9caa00460a842fcee0514622de09c3ab",
+  "sourceFileBytes": 2709572,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Rembang.",
+  "csvPath": "datasets/bps-3317-kecamatan-331703-dalam-angka-2026.csv",
+  "csvSha256": "45eed2bf686fba678484963fd661fb9690bf3f33f681e4841e9742e58a1ec5fc",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Gunem, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Gunem, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"+70\": unmatched ",
+    "table 3.2: the rows of region 33.17.03 are not stored: age_group (perempuan) vs sex value: parts sum 12103.0000 != 12530.0000 (diff 427.0000); the source itself is inconsistent"
+  ]
+}

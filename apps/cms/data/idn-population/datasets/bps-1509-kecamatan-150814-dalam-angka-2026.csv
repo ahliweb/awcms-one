@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.08.14.2009,4,Sungai Telang,sex,laki_laki,,1039,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.14.2009,4,Sungai Telang,sex,perempuan,,966,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.14.2009,4,Sungai Telang,total,total,,2005,jiwa,2025,registration,total_population,3.1,32,,
+15.08.14.2005,4,Timbolasi,sex,laki_laki,,630,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.14.2005,4,Timbolasi,sex,perempuan,,636,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.14.2005,4,Timbolasi,total,total,,1266,jiwa,2025,registration,total_population,3.1,32,,
+15.08.14.2004,4,Karak Apung,sex,laki_laki,,764,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.14.2004,4,Karak Apung,sex,perempuan,,724,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.14.2004,4,Karak Apung,total,total,,1488,jiwa,2025,registration,total_population,3.1,32,,
+15.08.14.2001,4,Muara Buat,sex,laki_laki,,457,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.14.2001,4,Muara Buat,sex,perempuan,,484,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.14.2001,4,Muara Buat,total,total,,941,jiwa,2025,registration,total_population,3.1,32,,
+15.08.14.2002,4,Buat,sex,laki_laki,,643,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.14.2002,4,Buat,sex,perempuan,,590,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.14.2002,4,Buat,total,total,,1233,jiwa,2025,registration,total_population,3.1,32,,
+15.08.14.2008,4,Lubuk Beringin,sex,laki_laki,,270,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.14.2008,4,Lubuk Beringin,sex,perempuan,,270,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.14.2008,4,Lubuk Beringin,total,total,,540,jiwa,2025,registration,total_population,3.1,32,,
+15.08.14.2003,4,Laman Panjang,sex,laki_laki,,458,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.14.2003,4,Laman Panjang,sex,perempuan,,445,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.14.2003,4,Laman Panjang,total,total,,903,jiwa,2025,registration,total_population,3.1,32,,
+15.08.14.2006,4,Senamat Ulu,sex,laki_laki,,595,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.14.2006,4,Senamat Ulu,sex,perempuan,,551,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.14.2006,4,Senamat Ulu,total,total,,1146,jiwa,2025,registration,total_population,3.1,32,,
+15.08.14.2007,4,Aur Cino,sex,laki_laki,,376,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.14.2007,4,Aur Cino,sex,perempuan,,361,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.14.2007,4,Aur Cino,total,total,,737,jiwa,2025,registration,total_population,3.1,32,,
+15.08.14,3,Bathin III Ulu,sex,laki_laki,,5232,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.14,3,Bathin III Ulu,sex,perempuan,,5027,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.14,3,Bathin III Ulu,total,total,,10259,jiwa,2025,registration,total_population,3.1,32,,
+15.08.14,3,Bathin III Ulu,age_group,0-4,laki_laki,415,jiwa,2025,registration,total_population,3.2,34,,0-4
+15.08.14,3,Bathin III Ulu,age_group,0-4,perempuan,379,jiwa,2025,registration,total_population,3.2,34,,0-4
+15.08.14,3,Bathin III Ulu,age_group,0-4,,794,jiwa,2025,registration,total_population,3.2,34,,0-4
+15.08.14,3,Bathin III Ulu,age_group,5-9,laki_laki,505,jiwa,2025,registration,total_population,3.2,34,,5-9
+15.08.14,3,Bathin III Ulu,age_group,5-9,perempuan,489,jiwa,2025,registration,total_population,3.2,34,,5-9
+15.08.14,3,Bathin III Ulu,age_group,5-9,,994,jiwa,2025,registration,total_population,3.2,34,,5-9
+15.08.14,3,Bathin III Ulu,age_group,10-14,laki_laki,469,jiwa,2025,registration,total_population,3.2,34,,10-14
+15.08.14,3,Bathin III Ulu,age_group,10-14,perempuan,467,jiwa,2025,registration,total_population,3.2,34,,10-14
+15.08.14,3,Bathin III Ulu,age_group,10-14,,936,jiwa,2025,registration,total_population,3.2,34,,10-14
+15.08.14,3,Bathin III Ulu,age_group,15-19,laki_laki,464,jiwa,2025,registration,total_population,3.2,34,,15-19
+15.08.14,3,Bathin III Ulu,age_group,15-19,perempuan,414,jiwa,2025,registration,total_population,3.2,34,,15-19
+15.08.14,3,Bathin III Ulu,age_group,15-19,,878,jiwa,2025,registration,total_population,3.2,34,,15-19
+15.08.14,3,Bathin III Ulu,age_group,20-24,laki_laki,484,jiwa,2025,registration,total_population,3.2,34,,20-24
+15.08.14,3,Bathin III Ulu,age_group,20-24,perempuan,485,jiwa,2025,registration,total_population,3.2,34,,20-24
+15.08.14,3,Bathin III Ulu,age_group,20-24,,969,jiwa,2025,registration,total_population,3.2,34,,20-24
+15.08.14,3,Bathin III Ulu,age_group,25-29,laki_laki,475,jiwa,2025,registration,total_population,3.2,34,,25-29
+15.08.14,3,Bathin III Ulu,age_group,25-29,perempuan,415,jiwa,2025,registration,total_population,3.2,34,,25-29
+15.08.14,3,Bathin III Ulu,age_group,25-29,,890,jiwa,2025,registration,total_population,3.2,34,,25-29
+15.08.14,3,Bathin III Ulu,age_group,30-34,laki_laki,366,jiwa,2025,registration,total_population,3.2,34,,30-34
+15.08.14,3,Bathin III Ulu,age_group,30-34,perempuan,332,jiwa,2025,registration,total_population,3.2,34,,30-34
+15.08.14,3,Bathin III Ulu,age_group,30-34,,698,jiwa,2025,registration,total_population,3.2,34,,30-34
+15.08.14,3,Bathin III Ulu,age_group,35-39,laki_laki,400,jiwa,2025,registration,total_population,3.2,34,,35-39
+15.08.14,3,Bathin III Ulu,age_group,35-39,perempuan,384,jiwa,2025,registration,total_population,3.2,34,,35-39
+15.08.14,3,Bathin III Ulu,age_group,35-39,,784,jiwa,2025,registration,total_population,3.2,34,,35-39
+15.08.14,3,Bathin III Ulu,age_group,40-44,laki_laki,353,jiwa,2025,registration,total_population,3.2,34,,40-44
+15.08.14,3,Bathin III Ulu,age_group,40-44,perempuan,342,jiwa,2025,registration,total_population,3.2,34,,40-44
+15.08.14,3,Bathin III Ulu,age_group,40-44,,695,jiwa,2025,registration,total_population,3.2,34,,40-44
+15.08.14,3,Bathin III Ulu,age_group,45-49,laki_laki,349,jiwa,2025,registration,total_population,3.2,34,,45-49
+15.08.14,3,Bathin III Ulu,age_group,45-49,perempuan,358,jiwa,2025,registration,total_population,3.2,34,,45-49
+15.08.14,3,Bathin III Ulu,age_group,45-49,,707,jiwa,2025,registration,total_population,3.2,34,,45-49
+15.08.14,3,Bathin III Ulu,age_group,50-54,laki_laki,304,jiwa,2025,registration,total_population,3.2,34,,50-54
+15.08.14,3,Bathin III Ulu,age_group,50-54,perempuan,244,jiwa,2025,registration,total_population,3.2,34,,50-54
+15.08.14,3,Bathin III Ulu,age_group,50-54,,548,jiwa,2025,registration,total_population,3.2,34,,50-54
+15.08.14,3,Bathin III Ulu,age_group,55-59,laki_laki,209,jiwa,2025,registration,total_population,3.2,34,,55-59
+15.08.14,3,Bathin III Ulu,age_group,55-59,perempuan,234,jiwa,2025,registration,total_population,3.2,34,,55-59
+15.08.14,3,Bathin III Ulu,age_group,55-59,,443,jiwa,2025,registration,total_population,3.2,34,,55-59
+15.08.14,3,Bathin III Ulu,age_group,60-64,laki_laki,177,jiwa,2025,registration,total_population,3.2,34,,60-64
+15.08.14,3,Bathin III Ulu,age_group,60-64,perempuan,179,jiwa,2025,registration,total_population,3.2,34,,60-64
+15.08.14,3,Bathin III Ulu,age_group,60-64,,356,jiwa,2025,registration,total_population,3.2,34,,60-64
+15.08.14,3,Bathin III Ulu,age_group,65-69,laki_laki,133,jiwa,2025,registration,total_population,3.2,34,,65-69
+15.08.14,3,Bathin III Ulu,age_group,65-69,perempuan,140,jiwa,2025,registration,total_population,3.2,34,,65-69
+15.08.14,3,Bathin III Ulu,age_group,65-69,,273,jiwa,2025,registration,total_population,3.2,34,,65-69
+15.08.14,3,Bathin III Ulu,age_group,70-74,laki_laki,63,jiwa,2025,registration,total_population,3.2,34,,70-74
+15.08.14,3,Bathin III Ulu,age_group,70-74,perempuan,65,jiwa,2025,registration,total_population,3.2,34,,70-74
+15.08.14,3,Bathin III Ulu,age_group,70-74,,128,jiwa,2025,registration,total_population,3.2,34,,70-74
+15.08.14,3,Bathin III Ulu,age_group,75+,laki_laki,66,jiwa,2025,registration,total_population,3.2,34,,75+
+15.08.14,3,Bathin III Ulu,age_group,75+,perempuan,100,jiwa,2025,registration,total_population,3.2,34,,75+
+15.08.14,3,Bathin III Ulu,age_group,75+,,166,jiwa,2025,registration,total_population,3.2,34,,75+
+15.08.14,3,Bathin III Ulu,sex,laki_laki,,5232,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+15.08.14,3,Bathin III Ulu,sex,perempuan,,5027,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+15.08.14,3,Bathin III Ulu,total,total,,10259,jiwa,2025,registration,total_population,3.2,34,,

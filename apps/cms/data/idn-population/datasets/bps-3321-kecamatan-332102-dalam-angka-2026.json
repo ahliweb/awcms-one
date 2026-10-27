@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3321-kecamatan-332102-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.21.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Karangawen Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Demak",
+  "publisherDomain": "3321",
+  "publisherWebsite": "https://demakkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Demak (https://demakkab.bps.go.id), publikasi \"Kecamatan Karangawen Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3321020",
+  "publicationNumber": "33210.26008",
+  "issn": "3089-1183",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://demakkab.bps.go.id/id/publication/2026/09/28/1ab9abe71058c58569225254/kecamatan-karangawen-dalam-angka-2026.html",
+  "sourceFileSha256": "36246e922980b67c097f7485c7aadd33fa5cfdb338b6ec8804b2daa934717814",
+  "sourceFileBytes": 4130485,
+  "sourcePages": [24, 25, 26],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengkomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik",
+  "csvPath": "datasets/bps-3321-kecamatan-332102-dalam-angka-2026.csv",
+  "csvSha256": "c013902e9ca2f150da7dedee5cd209b900ef2de70a2620a70b20b0164cead72c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Karangawen, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Karangawen, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

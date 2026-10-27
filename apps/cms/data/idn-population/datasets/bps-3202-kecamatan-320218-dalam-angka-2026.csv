@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.02.18.2006,4,Walangsari,sex,laki_laki,,3681,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.18.2006,4,Walangsari,sex,perempuan,,3506,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.18.2006,4,Walangsari,total,total,,7187,jiwa,2025,registration,total_population,3.1,24,,
+32.02.18.2002,4,Palasari Girang,sex,laki_laki,,4472,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.18.2002,4,Palasari Girang,sex,perempuan,,4175,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.18.2002,4,Palasari Girang,total,total,,8647,jiwa,2025,registration,total_population,3.1,24,,
+32.02.18.2001,4,Kalapanunggal,sex,laki_laki,,3296,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.18.2001,4,Kalapanunggal,sex,perempuan,,3313,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.18.2001,4,Kalapanunggal,total,total,,6609,jiwa,2025,registration,total_population,3.1,24,,
+32.02.18.2005,4,Kadununggal,sex,laki_laki,,3322,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.18.2005,4,Kadununggal,sex,perempuan,,3142,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.18.2005,4,Kadununggal,total,total,,6464,jiwa,2025,registration,total_population,3.1,24,,
+32.02.18.2004,4,Makasari,sex,laki_laki,,4114,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.18.2004,4,Makasari,sex,perempuan,,3972,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.18.2004,4,Makasari,total,total,,8086,jiwa,2025,registration,total_population,3.1,24,,
+32.02.18.2007,4,Gunung Endut,sex,laki_laki,,5204,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.18.2007,4,Gunung Endut,sex,perempuan,,4913,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.18.2007,4,Gunung Endut,total,total,,10117,jiwa,2025,registration,total_population,3.1,24,,
+32.02.18.2003,4,Pulosari,sex,laki_laki,,5735,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.18.2003,4,Pulosari,sex,perempuan,,5503,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.18.2003,4,Pulosari,total,total,,11238,jiwa,2025,registration,total_population,3.1,24,,
+32.02.18,3,Kalapanunggal,sex,laki_laki,,29824,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.18,3,Kalapanunggal,sex,perempuan,,28524,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.18,3,Kalapanunggal,total,total,,58348,jiwa,2025,registration,total_population,3.1,24,,

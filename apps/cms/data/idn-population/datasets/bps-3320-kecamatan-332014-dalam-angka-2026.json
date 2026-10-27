@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-3320-kecamatan-332014-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.20.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kembang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Jepara",
+  "publisherDomain": "3320",
+  "publisherWebsite": "https://jeparakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Jepara (https://jeparakab.bps.go.id), publikasi \"Kecamatan Kembang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3320101",
+  "publicationNumber": "33200.26019",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jeparakab.bps.go.id/id/publication/2026/09/28/caf36f879b700b948884df16/kecamatan-kembang-dalam-angka-2026.html",
+  "sourceFileSha256": "b1bd12d111fdb76a80d287fa5221da69e24136b0b5b112f14a158e1aa1cc01b9",
+  "sourceFileBytes": 13175350,
+  "sourcePages": [30, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jepara.",
+  "csvPath": "datasets/bps-3320-kecamatan-332014-dalam-angka-2026.csv",
+  "csvSha256": "23264db3b40d66f3be18b0bff0ab8869d87418c0d875b13dbcba506578376176",
+  "tablesUsed": [
+    {
+      "table": "2.4",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kembang, 2024",
+      "printedPages": [32],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 2.3: row not stored: row \"001 Dudakawu 1.483\": unmatched ",
+    "table 2.3: row not stored: row \"002 Sumanding 1.501\": unmatched ",
+    "table 2.3: row not stored: row \"003 Bucu 2.268\": unmatched ",
+    "table 2.3: row not stored: row \"004 Cepogo 5.089\": unmatched ",
+    "table 2.3: row not stored: row \"005 Pendem 3.754\": unmatched ",
+    "table 2.3: row not stored: row \"006 Jinggotan 2.634\": unmatched ",
+    "table 2.3: row not stored: row \"007 Kancilan 2.859\": unmatched ",
+    "table 2.3: row not stored: row \"008 Dermolo 4.203\": unmatched ",
+    "table 2.3: row not stored: row \"009 Balong 5.852\": unmatched ",
+    "table 2.3: row not stored: row \"010 Tubanan 3.172\": unmatched ",
+    "table 2.3: row not stored: row \"011 Kaliaman 4.993\": unmatched ",
+    "table 2.3: row not stored: row \"Kembang 37.808\": unmatched ",
+    "table 2.3: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

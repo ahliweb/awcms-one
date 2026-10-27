@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-3508-kecamatan-350820-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.08.20",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ranuyoso Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lumajang",
+  "publisherDomain": "3508",
+  "publisherWebsite": "https://lumajangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lumajang (https://lumajangkab.bps.go.id), publikasi \"Kecamatan Ranuyoso Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3508200",
+  "publicationNumber": "35080.26026",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lumajangkab.bps.go.id/id/publication/2026/09/28/5e3ca75f1bf779913181b4fa/kecamatan-ranuyoso-dalam-angka-2026.html",
+  "sourceFileSha256": "561ef6c649fbee037b26d01cff80693c456a895ea1634e47f3b446c8f06b3603",
+  "sourceFileBytes": 2603095,
+  "sourcePages": [31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lumajang",
+  "csvPath": "datasets/bps-3508-kecamatan-350820-dalam-angka-2026.csv",
+  "csvSha256": "0c86a6f162aeb84af2eef92bb342c4251b24c948c219951bb94a3695de61929f",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Ranuyoso, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ranuyoso, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: 35 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: 47 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.1: the rows of region 35.08.20.2010 are not stored: sex split vs total: parts sum 4459.0000 != 4449.0000 (diff 10.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 35.08.20 are not stored: age_group vs total: parts sum 49467.0000 != 47467.0000 (diff 2000.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3502-kecamatan-350208-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.02.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mlarak Dalam Angka 2026",
+  "publisherName": "BPS Ponorogo",
+  "publisherDomain": "3502",
+  "publisherWebsite": "https://ponorogokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Ponorogo (https://ponorogokab.bps.go.id), publikasi \"Kecamatan Mlarak Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3502080",
+  "publicationNumber": "35020.26013",
+  "issn": "2615-0115",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://ponorogokab.bps.go.id/id/publication/2026/09/28/3bbb09342a095a42f639a245/kecamatan-mlarak-dalam-angka-2026.html",
+  "sourceFileSha256": "577f551159205d78670f1b7772ea0a34e967beafbab1738024ba597fe1ab25bf",
+  "sourceFileBytes": 1460983,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ponorogo.",
+  "csvPath": "datasets/bps-3502-kecamatan-350208-dalam-angka-2026.csv",
+  "csvSha256": "338b752c95c6248c37a73b013637313f0f910e11b21eedbe3f1bae8a1c352d0e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Mlarak, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mlarak, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

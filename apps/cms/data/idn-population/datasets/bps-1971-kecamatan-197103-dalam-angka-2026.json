@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1971-kecamatan-197103-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "19.71.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pangkal Balam Dalam Angka 2026",
+  "publisherName": "BPS Kota Pangkal Pinang",
+  "publisherDomain": "1971",
+  "publisherWebsite": "https://pangkalpinangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Pangkal Pinang (https://pangkalpinangkota.bps.go.id), publikasi \"Kecamatan Pangkal Balam Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1971030",
+  "publicationNumber": "1971.26011",
+  "issn": "2808-5736",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pangkalpinangkota.bps.go.id/id/publication/2026/09/28/34b0688d01899e65a8912701/kecamatan-pangkal-balam-dalam-angka-2026.html",
+  "sourceFileSha256": "2db0d6cf9ddbde09e12f60fba144b9e75ff1ae16f71459254e20ff4852482a18",
+  "sourceFileBytes": 3642336,
+  "sourcePages": [32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Pangkal Pinang",
+  "csvPath": "datasets/bps-1971-kecamatan-197103-dalam-angka-2026.csv",
+  "csvSha256": "0461d4b42299e117b64141b7019b7f5dff7b7bd0368387592a1dd038edb08b5a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pangkal Balam, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pangkal Balam, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 19.71.03 are not stored: sex split vs total: parts sum 23291.0000 != 24223.0000 (diff 932.0000); the source itself is inconsistent"
+  ]
+}

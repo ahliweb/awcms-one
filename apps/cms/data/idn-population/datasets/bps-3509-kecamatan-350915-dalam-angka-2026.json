@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3509-kecamatan-350915-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.09.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sukorambi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Jember",
+  "publisherDomain": "3509",
+  "publisherWebsite": "https://jemberkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Jember (https://jemberkab.bps.go.id), publikasi \"Kecamatan Sukorambi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3509210",
+  "publicationNumber": "35090.26025",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jemberkab.bps.go.id/id/publication/2026/09/28/ac373402cb08a593b2de70b6/kecamatan-sukorambi-dalam-angka-2026.html",
+  "sourceFileSha256": "a434f901a244b50ce2261ed0278c2173abf0c082689a8831f42911f399e2568d",
+  "sourceFileBytes": 13521473,
+  "sourcePages": [33, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jember.",
+  "csvPath": "datasets/bps-3509-kecamatan-350915-dalam-angka-2026.csv",
+  "csvSha256": "9c75ae3a046ab2652a6e1ebbbb77449a0ff9c9caec54bf7f240628719849c803",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Sukorambi, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sukorambi, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: the rows of region 35.09.15.2003 are not stored: sex split vs total: parts sum 21637.0000 != 8910.0000 (diff 12727.0000); the source itself is inconsistent"
+  ]
+}

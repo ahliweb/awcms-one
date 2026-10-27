@@ -1,0 +1,63 @@
+{
+  "datasetCode": "bps-3322-kecamatan-332205-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.22.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pabelan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Semarang",
+  "publisherDomain": "3322",
+  "publisherWebsite": "https://semarangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Semarang (https://semarangkab.bps.go.id), publikasi \"Kecamatan Pabelan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3322050",
+  "publicationNumber": "33220.26028",
+  "issn": "2828-8998",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://semarangkab.bps.go.id/id/publication/2026/09/28/5cbfc543d59d1fdb7de96f6a/kecamatan-pabelan-dalam-angka-2026.html",
+  "sourceFileSha256": "109e52c3d6a8b5a621086cc0b577d71b9b467a2eaabde70ed22e04437f03bc63",
+  "sourceFileBytes": 7334291,
+  "sourcePages": [22, 23, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Semarang.",
+  "csvPath": "datasets/bps-3322-kecamatan-332205-dalam-angka-2026.csv",
+  "csvSha256": "99cecef54d38cd4d35cd40d0f683a03e912729d3b0b3bc631c4637f28b8c323a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pabelan, 2025",
+      "printedPages": [22, 23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pabelan, 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Jumlah/ Total\": unmatched ",
+    "table 3.1: row not stored: row \"001. Ujung-ujung 7,28%\": unmatched ",
+    "table 3.1: row not stored: row \"002. Sumberejo 11,85%\": unmatched ",
+    "table 3.1: row not stored: row \"003. Segiri 5,12%\": unmatched ",
+    "table 3.1: row not stored: row \"004. Terban 4,32%\": unmatched ",
+    "table 3.1: row not stored: row \"005. Tukang 5,83%\": unmatched ",
+    "table 3.1: row not stored: row \"006. Semowo 10,21%\": unmatched ",
+    "table 3.1: row not stored: row \"007. Bendungan 2,90%\": unmatched ",
+    "table 3.1: row not stored: row \"008. Karanggondang 3,94%\": unmatched ",
+    "table 3.1: row not stored: row \"009. Sukoharjo 6,98%\": unmatched ",
+    "table 3.1: row not stored: row \"010. Jembrak 5,13%\": unmatched ",
+    "table 3.1: row not stored: row \"011. Glawan 4,19%\": unmatched ",
+    "table 3.1: row not stored: row \"012. Kadirejo 6,80%\": unmatched ",
+    "table 3.1: row not stored: row \"013. Bejaten 2,41%\": unmatched ",
+    "table 3.1: row not stored: row \"014. Giling 3,29%\": unmatched ",
+    "table 3.1: row not stored: row \"015. Padaan 6,20%\": unmatched ",
+    "table 3.1: row not stored: row \"016. Kauman Lor 5,66%\": unmatched ",
+    "table 3.1: row not stored: row \"017. Pabelan 7,90%\": unmatched ",
+    "table 3.1: row not stored: row \"Jumlah/ Total 100,00%\": unmatched "
+  ]
+}

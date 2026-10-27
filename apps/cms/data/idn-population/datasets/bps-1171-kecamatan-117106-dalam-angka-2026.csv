@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.71.06.2004,4,Lampaseh Kota,sex,laki_laki,,1294,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.06.2004,4,Lampaseh Kota,sex,perempuan,,1237,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.06.2004,4,Lampaseh Kota,total,total,,2531,jiwa,2025,registration,total_population,3.1,25,,
+11.71.06.2003,4,Merduati,sex,laki_laki,,1484,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.06.2003,4,Merduati,sex,perempuan,,1488,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.06.2003,4,Merduati,total,total,,2972,jiwa,2025,registration,total_population,3.1,25,,
+11.71.06.2001,4,Keudah,sex,laki_laki,,1174,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.06.2001,4,Keudah,sex,perempuan,,1130,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.06.2001,4,Keudah,total,total,,2304,jiwa,2025,registration,total_population,3.1,25,,
+11.71.06.2002,4,Peulanggahan,sex,laki_laki,,1435,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.06.2002,4,Peulanggahan,sex,perempuan,,1406,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.06.2002,4,Peulanggahan,total,total,,2841,jiwa,2025,registration,total_population,3.1,25,,
+11.71.06.2006,4,Gampong Jawa,sex,laki_laki,,1801,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.06.2006,4,Gampong Jawa,sex,perempuan,,1793,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.06.2006,4,Gampong Jawa,total,total,,3594,jiwa,2025,registration,total_population,3.1,25,,
+11.71.06.2005,4,Gampong Pande,sex,laki_laki,,625,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.71.06.2005,4,Gampong Pande,sex,perempuan,,593,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.71.06.2005,4,Gampong Pande,total,total,,1218,jiwa,2025,registration,total_population,3.1,25,,

@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.06.12.2011,4,Berojaya Timur,sex,laki_laki,,2855,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.12.2011,4,Berojaya Timur,sex,perempuan,,2744,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.12.2011,4,Berojaya Timur,total,total,,5599,jiwa,2026,registration,total_population,3.1,34,,
+16.06.12.2010,4,Beji Mulyo,sex,laki_laki,,2605,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.12.2010,4,Beji Mulyo,sex,perempuan,,2362,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.12.2010,4,Beji Mulyo,total,total,,4967,jiwa,2026,registration,total_population,3.1,34,,
+16.06.12.2013,4,Margo Mulyo,sex,laki_laki,,1877,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.12.2013,4,Margo Mulyo,sex,perempuan,,1784,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.12.2013,4,Margo Mulyo,total,total,,3661,jiwa,2026,registration,total_population,3.1,34,,
+16.06.12.2012,4,Pandan Sari,sex,laki_laki,,1113,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.12.2012,4,Pandan Sari,sex,perempuan,,1092,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.12.2012,4,Pandan Sari,total,total,,2205,jiwa,2026,registration,total_population,3.1,34,,
+16.06.12.2004,4,Simpang Tungkal,sex,laki_laki,,4157,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.12.2004,4,Simpang Tungkal,sex,perempuan,,3852,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.12.2004,4,Simpang Tungkal,total,total,,8009,jiwa,2026,registration,total_population,3.1,34,,
+16.06.12.2002,4,Suka Damai,sex,laki_laki,,3956,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.12.2002,4,Suka Damai,sex,perempuan,,3479,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.12.2002,4,Suka Damai,total,total,,7435,jiwa,2026,registration,total_population,3.1,34,,
+16.06.12.2001,4,Peninggalan,sex,laki_laki,,3409,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.12.2001,4,Peninggalan,sex,perempuan,,3136,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.12.2001,4,Peninggalan,total,total,,6545,jiwa,2026,registration,total_population,3.1,34,,
+16.06.12.2005,4,Pangkalan Tungkal,sex,laki_laki,,1680,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.12.2005,4,Pangkalan Tungkal,sex,perempuan,,1466,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.12.2005,4,Pangkalan Tungkal,total,total,,3146,jiwa,2026,registration,total_population,3.1,34,,
+16.06.12.2003,4,Berlian Jaya,sex,laki_laki,,1914,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.12.2003,4,Berlian Jaya,sex,perempuan,,1850,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.12.2003,4,Berlian Jaya,total,total,,3764,jiwa,2026,registration,total_population,3.1,34,,
+16.06.12.2006,4,Sumber Harum,sex,laki_laki,,1874,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.12.2006,4,Sumber Harum,sex,perempuan,,1852,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.12.2006,4,Sumber Harum,total,total,,3726,jiwa,2026,registration,total_population,3.1,34,,
+16.06.12.2007,4,Sumber Sari,sex,laki_laki,,1633,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.12.2007,4,Sumber Sari,sex,perempuan,,1523,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.12.2007,4,Sumber Sari,total,total,,3156,jiwa,2026,registration,total_population,3.1,34,,
+16.06.12.2014,4,Srimulyo,sex,laki_laki,,1420,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.12.2014,4,Srimulyo,sex,perempuan,,1374,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.12.2014,4,Srimulyo,total,total,,2794,jiwa,2026,registration,total_population,3.1,34,,
+16.06.12.2009,4,Banjar Jaya,sex,laki_laki,,1514,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.12.2009,4,Banjar Jaya,sex,perempuan,,1419,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.12.2009,4,Banjar Jaya,total,total,,2933,jiwa,2026,registration,total_population,3.1,34,,
+16.06.12.2008,4,Sinar Harapan,sex,laki_laki,,1135,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.12.2008,4,Sinar Harapan,sex,perempuan,,1065,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.12.2008,4,Sinar Harapan,total,total,,2200,jiwa,2026,registration,total_population,3.1,34,,
+16.06.12.2016,4,Sinar Tungkal,sex,laki_laki,,996,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.12.2016,4,Sinar Tungkal,sex,perempuan,,964,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.12.2016,4,Sinar Tungkal,total,total,,1960,jiwa,2026,registration,total_population,3.1,34,,
+16.06.12.2015,4,Sido Mulyo,sex,laki_laki,,848,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.12.2015,4,Sido Mulyo,sex,perempuan,,849,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.12.2015,4,Sido Mulyo,total,total,,1697,jiwa,2026,registration,total_population,3.1,34,,
+16.06.12,3,Tungkal Jaya,sex,laki_laki,,32986,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.12,3,Tungkal Jaya,sex,perempuan,,30811,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.12,3,Tungkal Jaya,total,total,,63797,jiwa,2026,registration,total_population,3.1,34,,

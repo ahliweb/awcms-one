@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.05.17.1009,4,Harapan Jaya,sex,laki_laki,,1412,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.17.1009,4,Harapan Jaya,sex,perempuan,,1430,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.17.1009,4,Harapan Jaya,total,total,,2842,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.17.2006,4,Telaga Said,sex,laki_laki,,2286,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.17.2006,4,Telaga Said,sex,perempuan,,2241,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.17.2006,4,Telaga Said,total,total,,4527,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.17.2007,4,Lama Baru,sex,laki_laki,,1073,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.17.2007,4,Lama Baru,sex,perempuan,,1045,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.17.2007,4,Lama Baru,total,total,,2118,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.17.2005,4,Lama,sex,laki_laki,,1378,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.17.2005,4,Lama,sex,perempuan,,1346,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.17.2005,4,Lama,total,total,,2724,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.17.1002,4,Alur Dua,sex,laki_laki,,4508,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.17.1002,4,Alur Dua,sex,perempuan,,4710,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.17.1002,4,Alur Dua,total,total,,9218,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.17.2004,4,Puraka II,sex,laki_laki,,740,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.17.2004,4,Puraka II,sex,perempuan,,508,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.17.2004,4,Puraka II,total,total,,1248,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.17.1008,4,Alur Dua Baru,sex,laki_laki,,1401,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.17.1008,4,Alur Dua Baru,sex,perempuan,,1469,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.17.1008,4,Alur Dua Baru,total,total,,2870,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.17.1001,4,Sei Bilah,sex,laki_laki,,5403,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.17.1001,4,Sei Bilah,sex,perempuan,,5198,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.17.1001,4,Sei Bilah,total,total,,10601,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.17.1010,4,Sei Bilah Timur,sex,laki_laki,,2058,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.17.1010,4,Sei Bilah Timur,sex,perempuan,,1849,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.17.1010,4,Sei Bilah Timur,total,total,,3907,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.17.2011,4,Mekar Makmur,sex,laki_laki,,1628,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.17.2011,4,Mekar Makmur,sex,perempuan,,1554,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.17.2011,4,Mekar Makmur,total,total,,3182,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.17.2012,4,Harapan Baru,sex,laki_laki,,929,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.17.2012,4,Harapan Baru,sex,perempuan,,900,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.17.2012,4,Harapan Baru,total,total,,1829,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.17.2013,4,Harapan Maju,sex,laki_laki,,2684,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.17.2013,4,Harapan Maju,sex,perempuan,,2562,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.17.2013,4,Harapan Maju,total,total,,5246,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.17.2014,4,Harapan Makmur,sex,laki_laki,,1034,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.17.2014,4,Harapan Makmur,sex,perempuan,,951,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.17.2014,4,Harapan Makmur,total,total,,1985,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.17,3,Kecamatan Sei Lepan,sex,laki_laki,,26902,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.17,3,Kecamatan Sei Lepan,sex,perempuan,,26128,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.17,3,Kecamatan Sei Lepan,total,total,,53030,jiwa,2025,registration,total_population,unnumbered-p39,39,,

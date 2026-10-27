@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.73.09.1002,4,Taman Sari,sex,laki_laki,,11512,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.09.1002,4,Taman Sari,sex,perempuan,,11472,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.09.1002,4,Taman Sari,total,total,,22984,jiwa,2025,registration,total_population,3.1,37,,
+32.73.09.1003,4,Citarum,sex,laki_laki,,1092,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.09.1003,4,Citarum,sex,perempuan,,1193,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.09.1003,4,Citarum,total,total,,2285,jiwa,2025,registration,total_population,3.1,37,,
+32.73.09.1001,4,Cihapit,sex,laki_laki,,2000,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+32.73.09.1001,4,Cihapit,sex,perempuan,,2223,jiwa,2025,registration,total_population,3.1,37,,Perempuan/Female
+32.73.09.1001,4,Cihapit,total,total,,4223,jiwa,2025,registration,total_population,3.1,37,,
+32.73.09,3,Bandung Wetan,age_group,0-4,laki_laki,765,jiwa,2025,registration,total_population,3.2,39,,0-4
+32.73.09,3,Bandung Wetan,age_group,0-4,perempuan,728,jiwa,2025,registration,total_population,3.2,39,,0-4
+32.73.09,3,Bandung Wetan,age_group,0-4,,1493,jiwa,2025,registration,total_population,3.2,39,,0-4
+32.73.09,3,Bandung Wetan,age_group,5-9,laki_laki,1128,jiwa,2025,registration,total_population,3.2,39,,5-9
+32.73.09,3,Bandung Wetan,age_group,5-9,perempuan,948,jiwa,2025,registration,total_population,3.2,39,,5-9
+32.73.09,3,Bandung Wetan,age_group,5-9,,2076,jiwa,2025,registration,total_population,3.2,39,,5-9
+32.73.09,3,Bandung Wetan,age_group,10-14,laki_laki,1121,jiwa,2025,registration,total_population,3.2,39,,10-14
+32.73.09,3,Bandung Wetan,age_group,10-14,perempuan,1024,jiwa,2025,registration,total_population,3.2,39,,10-14
+32.73.09,3,Bandung Wetan,age_group,10-14,,2145,jiwa,2025,registration,total_population,3.2,39,,10-14
+32.73.09,3,Bandung Wetan,age_group,15-19,laki_laki,1122,jiwa,2025,registration,total_population,3.2,39,,15-19
+32.73.09,3,Bandung Wetan,age_group,15-19,perempuan,1178,jiwa,2025,registration,total_population,3.2,39,,15-19
+32.73.09,3,Bandung Wetan,age_group,15-19,,2300,jiwa,2025,registration,total_population,3.2,39,,15-19
+32.73.09,3,Bandung Wetan,age_group,20-24,laki_laki,1114,jiwa,2025,registration,total_population,3.2,39,,20-24
+32.73.09,3,Bandung Wetan,age_group,20-24,perempuan,1102,jiwa,2025,registration,total_population,3.2,39,,20-24
+32.73.09,3,Bandung Wetan,age_group,20-24,,2216,jiwa,2025,registration,total_population,3.2,39,,20-24
+32.73.09,3,Bandung Wetan,age_group,25-29,laki_laki,1150,jiwa,2025,registration,total_population,3.2,39,,25-29
+32.73.09,3,Bandung Wetan,age_group,25-29,perempuan,1071,jiwa,2025,registration,total_population,3.2,39,,25-29
+32.73.09,3,Bandung Wetan,age_group,25-29,,2221,jiwa,2025,registration,total_population,3.2,39,,25-29
+32.73.09,3,Bandung Wetan,age_group,30-34,laki_laki,1000,jiwa,2025,registration,total_population,3.2,39,,30-34
+32.73.09,3,Bandung Wetan,age_group,30-34,perempuan,1055,jiwa,2025,registration,total_population,3.2,39,,30-34
+32.73.09,3,Bandung Wetan,age_group,30-34,,2055,jiwa,2025,registration,total_population,3.2,39,,30-34
+32.73.09,3,Bandung Wetan,age_group,35-39,laki_laki,948,jiwa,2025,registration,total_population,3.2,39,,35-39
+32.73.09,3,Bandung Wetan,age_group,35-39,perempuan,981,jiwa,2025,registration,total_population,3.2,39,,35-39
+32.73.09,3,Bandung Wetan,age_group,35-39,,1929,jiwa,2025,registration,total_population,3.2,39,,35-39
+32.73.09,3,Bandung Wetan,age_group,40-44,laki_laki,1118,jiwa,2025,registration,total_population,3.2,39,,40-44
+32.73.09,3,Bandung Wetan,age_group,40-44,perempuan,1066,jiwa,2025,registration,total_population,3.2,39,,40-44
+32.73.09,3,Bandung Wetan,age_group,40-44,,2184,jiwa,2025,registration,total_population,3.2,39,,40-44
+32.73.09,3,Bandung Wetan,age_group,45-49,laki_laki,1101,jiwa,2025,registration,total_population,3.2,39,,45-49
+32.73.09,3,Bandung Wetan,age_group,45-49,perempuan,1114,jiwa,2025,registration,total_population,3.2,39,,45-49
+32.73.09,3,Bandung Wetan,age_group,45-49,,2215,jiwa,2025,registration,total_population,3.2,39,,45-49
+32.73.09,3,Bandung Wetan,age_group,50-54,laki_laki,968,jiwa,2025,registration,total_population,3.2,39,,50-54
+32.73.09,3,Bandung Wetan,age_group,50-54,perempuan,1039,jiwa,2025,registration,total_population,3.2,39,,50-54
+32.73.09,3,Bandung Wetan,age_group,50-54,,2007,jiwa,2025,registration,total_population,3.2,39,,50-54
+32.73.09,3,Bandung Wetan,age_group,55-59,laki_laki,919,jiwa,2025,registration,total_population,3.2,39,,55-59
+32.73.09,3,Bandung Wetan,age_group,55-59,perempuan,1005,jiwa,2025,registration,total_population,3.2,39,,55-59
+32.73.09,3,Bandung Wetan,age_group,55-59,,1924,jiwa,2025,registration,total_population,3.2,39,,55-59
+32.73.09,3,Bandung Wetan,age_group,60-64,laki_laki,750,jiwa,2025,registration,total_population,3.2,39,,60-64
+32.73.09,3,Bandung Wetan,age_group,60-64,perempuan,759,jiwa,2025,registration,total_population,3.2,39,,60-64
+32.73.09,3,Bandung Wetan,age_group,60-64,,1509,jiwa,2025,registration,total_population,3.2,39,,60-64
+32.73.09,3,Bandung Wetan,age_group,65-69,laki_laki,556,jiwa,2025,registration,total_population,3.2,39,,65-69
+32.73.09,3,Bandung Wetan,age_group,65-69,perempuan,679,jiwa,2025,registration,total_population,3.2,39,,65-69
+32.73.09,3,Bandung Wetan,age_group,65-69,,1235,jiwa,2025,registration,total_population,3.2,39,,65-69
+32.73.09,3,Bandung Wetan,age_group,70-74,laki_laki,426,jiwa,2025,registration,total_population,3.2,39,,70-74
+32.73.09,3,Bandung Wetan,age_group,70-74,perempuan,457,jiwa,2025,registration,total_population,3.2,39,,70-74
+32.73.09,3,Bandung Wetan,age_group,70-74,,883,jiwa,2025,registration,total_population,3.2,39,,70-74
+32.73.09,3,Bandung Wetan,age_group,75+,laki_laki,418,jiwa,2025,registration,total_population,3.2,39,,75+
+32.73.09,3,Bandung Wetan,age_group,75+,perempuan,682,jiwa,2025,registration,total_population,3.2,39,,75+
+32.73.09,3,Bandung Wetan,age_group,75+,,1100,jiwa,2025,registration,total_population,3.2,39,,75+
+32.73.09.1002,4,Taman Sari,religion,islam,,21477,jiwa,2025,registration,total_population,4.4.5,89,,Islam
+32.73.09.1002,4,Taman Sari,religion,kristen,,1033,jiwa,2025,registration,total_population,4.4.5,89,,Protestan
+32.73.09.1002,4,Taman Sari,religion,katolik,,409,jiwa,2025,registration,total_population,4.4.5,89,,Catholic
+32.73.09.1002,4,Taman Sari,religion,hindu,,2,jiwa,2025,registration,total_population,4.4.5,89,,Hindu
+32.73.09.1002,4,Taman Sari,religion,buddha,,62,jiwa,2025,registration,total_population,4.4.5,89,,Budha
+32.73.09.1002,4,Taman Sari,religion,lainnya,,1,jiwa,2025,registration,total_population,4.4.5,89,,Lainnya
+32.73.09.1003,4,Citarum,religion,islam,,1314,jiwa,2025,registration,total_population,4.4.5,89,,Islam
+32.73.09.1003,4,Citarum,religion,kristen,,448,jiwa,2025,registration,total_population,4.4.5,89,,Protestan
+32.73.09.1003,4,Citarum,religion,katolik,,455,jiwa,2025,registration,total_population,4.4.5,89,,Catholic
+32.73.09.1003,4,Citarum,religion,hindu,,9,jiwa,2025,registration,total_population,4.4.5,89,,Hindu
+32.73.09.1003,4,Citarum,religion,buddha,,59,jiwa,2025,registration,total_population,4.4.5,89,,Budha
+32.73.09.1003,4,Citarum,religion,lainnya,,0,jiwa,2025,registration,total_population,4.4.5,89,,Lainnya
+32.73.09.1001,4,Cihapit,religion,islam,,2585,jiwa,2025,registration,total_population,4.4.5,89,,Islam
+32.73.09.1001,4,Cihapit,religion,kristen,,811,jiwa,2025,registration,total_population,4.4.5,89,,Protestan
+32.73.09.1001,4,Cihapit,religion,katolik,,761,jiwa,2025,registration,total_population,4.4.5,89,,Catholic
+32.73.09.1001,4,Cihapit,religion,hindu,,9,jiwa,2025,registration,total_population,4.4.5,89,,Hindu
+32.73.09.1001,4,Cihapit,religion,buddha,,50,jiwa,2025,registration,total_population,4.4.5,89,,Budha
+32.73.09.1001,4,Cihapit,religion,lainnya,,7,jiwa,2025,registration,total_population,4.4.5,89,,Lainnya

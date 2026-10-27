@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3215-kecamatan-321513-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.15.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cikampek Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Karawang",
+  "publisherDomain": "3215",
+  "publisherWebsite": "https://karawangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Karawang (https://karawangkab.bps.go.id), publikasi \"Kecamatan Cikampek Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "32150.26027",
+  "issn": "2828-7282",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://karawangkab.bps.go.id/id/publication/2026/09/28/99d2db2fd2812a2130dfd366/kecamatan-cikampek-dalam-angka-2026.html",
+  "sourceFileSha256": "2987e703e4be49810ed75c0d09fd0315d699f7b8b751708668b29ab075316ba2",
+  "sourceFileBytes": 3397418,
+  "sourcePages": [],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Karawang.",
+  "csvPath": "datasets/bps-3215-kecamatan-321513-dalam-angka-2026.csv",
+  "csvSha256": "d7ac435d15ab1b478cde844ef58db1b63bdde0dc90487eb64374354790b866ef",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Cikampek, 2025 3.1",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

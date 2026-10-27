@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3209-kecamatan-320911-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.09.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pangenan Dalam Angka 2026",
+  "publisherName": "BPS BPS Kabupaten Cirebon",
+  "publisherDomain": "3209",
+  "publisherWebsite": "https://cirebonkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS BPS Kabupaten Cirebon (https://cirebonkab.bps.go.id), publikasi \"Kecamatan Pangenan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3209081",
+  "publicationNumber": "32090.26019",
+  "issn": "2656-2073",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cirebonkab.bps.go.id/id/publication/2026/09/28/8d1af00acf5c07c8d262e738/kecamatan-pangenan-dalam-angka-2026.html",
+  "sourceFileSha256": "fa64ec7c44f8b89d8769f473ba0de5873af24a4fc2908ff846aaf1c100eb4ef2",
+  "sourceFileBytes": 8607829,
+  "sourcePages": [52, 53, 54],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Cirebon.",
+  "csvPath": "datasets/bps-3209-kecamatan-320911-dalam-angka-2026.csv",
+  "csvSha256": "7795eb96bf030786767db64814424091996296629cba704a0d4d7a475f53ac11",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pangenan, 2025",
+      "printedPages": [52, 53],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pangenan, 2025",
+      "printedPages": [54],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,100 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.04.15.2009,4,Karang Lebak,sex,laki_laki,,208,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.15.2009,4,Karang Lebak,sex,perempuan,,200,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.15.2009,4,Karang Lebak,total,total,,408,jiwa,2025,registration,total_population,3.1,30,,
+16.04.15.2008,4,Sukananti,sex,laki_laki,,218,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.15.2008,4,Sukananti,sex,perempuan,,200,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.15.2008,4,Sukananti,total,total,,418,jiwa,2025,registration,total_population,3.1,30,,
+16.04.15.2011,4,Babatan,sex,laki_laki,,186,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.15.2011,4,Babatan,sex,perempuan,,157,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.15.2011,4,Babatan,total,total,,343,jiwa,2025,registration,total_population,3.1,30,,
+16.04.15.2015,4,Sengkuang,sex,laki_laki,,131,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.15.2015,4,Sengkuang,sex,perempuan,,117,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.15.2015,4,Sengkuang,total,total,,248,jiwa,2025,registration,total_population,3.1,30,,
+16.04.15.2030,4,Padang Masat,sex,laki_laki,,243,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.15.2030,4,Padang Masat,sex,perempuan,,240,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.15.2030,4,Padang Masat,total,total,,483,jiwa,2025,registration,total_population,3.1,30,,
+16.04.15.2014,4,Muara Tiga,sex,laki_laki,,423,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.15.2014,4,Muara Tiga,sex,perempuan,,428,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.15.2014,4,Muara Tiga,total,total,,851,jiwa,2025,registration,total_population,3.1,30,,
+16.04.15.2018,4,Tebing Tinggi,sex,laki_laki,,202,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.15.2018,4,Tebing Tinggi,sex,perempuan,,186,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.15.2018,4,Tebing Tinggi,total,total,,388,jiwa,2025,registration,total_population,3.1,30,,
+16.04.15.2017,4,Datar Balam,sex,laki_laki,,492,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.15.2017,4,Datar Balam,sex,perempuan,,491,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.15.2017,4,Datar Balam,total,total,,983,jiwa,2025,registration,total_population,3.1,30,,
+16.04.15.2020,4,Pengentaan,sex,laki_laki,,309,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.15.2020,4,Pengentaan,sex,perempuan,,308,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.15.2020,4,Pengentaan,total,total,,617,jiwa,2025,registration,total_population,3.1,30,,
+16.04.15.2021,4,Lesung Batu,sex,laki_laki,,374,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.15.2021,4,Lesung Batu,sex,perempuan,,389,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.15.2021,4,Lesung Batu,total,total,,763,jiwa,2025,registration,total_population,3.1,30,,
+16.04.15.2022,4,Air Puar,sex,laki_laki,,513,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.15.2022,4,Air Puar,sex,perempuan,,529,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.15.2022,4,Air Puar,total,total,,1042,jiwa,2025,registration,total_population,3.1,30,,
+16.04.15.2007,4,Pajar Bulan,sex,laki_laki,,588,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.15.2007,4,Pajar Bulan,sex,perempuan,,555,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.15.2007,4,Pajar Bulan,total,total,,1143,jiwa,2025,registration,total_population,3.1,30,,
+16.04.15.2024,4,Mengkenang,sex,laki_laki,,790,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.15.2024,4,Mengkenang,sex,perempuan,,717,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.15.2024,4,Mengkenang,total,total,,1507,jiwa,2025,registration,total_population,3.1,30,,
+16.04.15.2029,4,Lawang Agung Mulak,sex,laki_laki,,1259,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.15.2029,4,Lawang Agung Mulak,sex,perempuan,,1204,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.15.2029,4,Lawang Agung Mulak,total,total,,2463,jiwa,2025,registration,total_population,3.1,30,,
+16.04.15.2019,4,Geramat,sex,laki_laki,,625,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.15.2019,4,Geramat,sex,perempuan,,622,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.15.2019,4,Geramat,total,total,,1247,jiwa,2025,registration,total_population,3.1,30,,
+16.04.15,3,Mulak Ulu,sex,laki_laki,,6793,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.04.15,3,Mulak Ulu,sex,perempuan,,6554,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.04.15,3,Mulak Ulu,total,total,,13347,jiwa,2025,registration,total_population,3.1,30,,
+16.04.15,3,Mulak Ulu,age_group,0-4,laki_laki,398,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+16.04.15,3,Mulak Ulu,age_group,0-4,perempuan,412,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+16.04.15,3,Mulak Ulu,age_group,0-4,,810,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+16.04.15,3,Mulak Ulu,age_group,5-9,laki_laki,542,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+16.04.15,3,Mulak Ulu,age_group,5-9,perempuan,542,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+16.04.15,3,Mulak Ulu,age_group,5-9,,1084,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+16.04.15,3,Mulak Ulu,age_group,10-14,laki_laki,582,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+16.04.15,3,Mulak Ulu,age_group,10-14,perempuan,556,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+16.04.15,3,Mulak Ulu,age_group,10-14,,1138,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+16.04.15,3,Mulak Ulu,age_group,15-19,laki_laki,607,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+16.04.15,3,Mulak Ulu,age_group,15-19,perempuan,581,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+16.04.15,3,Mulak Ulu,age_group,15-19,,1188,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+16.04.15,3,Mulak Ulu,age_group,20-24,laki_laki,563,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+16.04.15,3,Mulak Ulu,age_group,20-24,perempuan,543,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+16.04.15,3,Mulak Ulu,age_group,20-24,,1106,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+16.04.15,3,Mulak Ulu,age_group,25-29,laki_laki,468,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+16.04.15,3,Mulak Ulu,age_group,25-29,perempuan,420,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+16.04.15,3,Mulak Ulu,age_group,25-29,,888,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+16.04.15,3,Mulak Ulu,age_group,30-34,laki_laki,413,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+16.04.15,3,Mulak Ulu,age_group,30-34,perempuan,383,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+16.04.15,3,Mulak Ulu,age_group,30-34,,796,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+16.04.15,3,Mulak Ulu,age_group,35-39,laki_laki,463,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+16.04.15,3,Mulak Ulu,age_group,35-39,perempuan,432,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+16.04.15,3,Mulak Ulu,age_group,35-39,,895,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+16.04.15,3,Mulak Ulu,age_group,40-44,laki_laki,522,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+16.04.15,3,Mulak Ulu,age_group,40-44,perempuan,450,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+16.04.15,3,Mulak Ulu,age_group,40-44,,972,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+16.04.15,3,Mulak Ulu,age_group,45-49,laki_laki,638,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+16.04.15,3,Mulak Ulu,age_group,45-49,perempuan,547,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+16.04.15,3,Mulak Ulu,age_group,45-49,,1185,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+16.04.15,3,Mulak Ulu,age_group,50-54,laki_laki,485,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+16.04.15,3,Mulak Ulu,age_group,50-54,perempuan,449,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+16.04.15,3,Mulak Ulu,age_group,50-54,,934,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+16.04.15,3,Mulak Ulu,age_group,55-59,laki_laki,326,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+16.04.15,3,Mulak Ulu,age_group,55-59,perempuan,269,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+16.04.15,3,Mulak Ulu,age_group,55-59,,595,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+16.04.15,3,Mulak Ulu,age_group,60-64,laki_laki,236,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+16.04.15,3,Mulak Ulu,age_group,60-64,perempuan,273,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+16.04.15,3,Mulak Ulu,age_group,60-64,,509,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+16.04.15,3,Mulak Ulu,age_group,65-69,laki_laki,227,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+16.04.15,3,Mulak Ulu,age_group,65-69,perempuan,250,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+16.04.15,3,Mulak Ulu,age_group,65-69,,477,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+16.04.15,3,Mulak Ulu,age_group,70-74,laki_laki,143,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+16.04.15,3,Mulak Ulu,age_group,70-74,perempuan,161,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+16.04.15,3,Mulak Ulu,age_group,70-74,,304,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+16.04.15,3,Mulak Ulu,age_group,75+,laki_laki,180,jiwa,2025,registration,total_population,3.2,32,,75 +
+16.04.15,3,Mulak Ulu,age_group,75+,perempuan,286,jiwa,2025,registration,total_population,3.2,32,,75 +
+16.04.15,3,Mulak Ulu,age_group,75+,,466,jiwa,2025,registration,total_population,3.2,32,,75 +
+16.04.15,3,Mulak Ulu,sex,laki_laki,,6793,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+16.04.15,3,Mulak Ulu,sex,perempuan,,6554,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+16.04.15,3,Mulak Ulu,total,total,,13347,jiwa,2025,registration,total_population,3.2,32,,

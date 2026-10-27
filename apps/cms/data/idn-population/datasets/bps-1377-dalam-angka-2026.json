@@ -1,0 +1,69 @@
+{
+  "datasetCode": "bps-1377-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "13.77",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kota Pariaman Dalam Angka 2026",
+  "publisherName": "BPS Kota Pariaman",
+  "publisherDomain": "1377",
+  "publisherWebsite": "https://pariamankota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Pariaman (https://pariamankota.bps.go.id), publikasi \"Kota Pariaman Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1377",
+  "publicationNumber": "13770.26003",
+  "issn": "2477-0973",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://pariamankota.bps.go.id/id/publication/2026/02/27/643c85ddf0b04cdb207004c2/kota-pariaman-dalam-angka-2026.html",
+  "sourceFileSha256": "9f5cc8c5cba96b9b0a77a7f7ef50341f4a0cf819632bd1ba5ec4b769827b18cb",
+  "sourceFileBytes": 9462944,
+  "sourcePages": [81, 83, 84, 235],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuankomersial tanpa izin tertulis dari Badan Pusat Statistik Kota Pariaman.",
+  "csvPath": "datasets/bps-1377-dalam-angka-2026.csv",
+  "csvSha256": "db66d0b4f87789612763f0079a1a833f3984baaf4952924697f05efe706567b3",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kota Pariaman, 2025",
+      "printedPages": [81],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kota Pariaman (ribu jiwa), 2026",
+      "printedPages": [83],
+      "referenceYears": [2026],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "3.1.3",
+      "title": "Jumlah Penduduk dan Rasio Jenis Kelamin Menurut Kecamatan di Kota Pariaman (ribu jiwa), 2025",
+      "printedPages": [84],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kota Pariaman, 2025",
+      "printedPages": [235],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication",
+    "table 3.1.1: row not stored: row \"Jumlah Total\": unmatched ",
+    "table 3.1.3: row not stored: row \"Jumlah Total\": unmatched ",
+    "table 4.3.1: row not stored: row \"2025 Jumlah / Total\": unmatched ",
+    "table 4.3.1: row not stored: row \"2024\": unmatched "
+  ]
+}

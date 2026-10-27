@@ -1,0 +1,41 @@
+{
+  "datasetCode": "bps-3513-kecamatan-351320-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.13.20",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tegalsiwalan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Probolinggo",
+  "publisherDomain": "3513",
+  "publisherWebsite": "https://probolinggokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Probolinggo (https://probolinggokab.bps.go.id), publikasi \"Kecamatan Tegalsiwalan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3513060",
+  "publicationNumber": "35130.26010",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://probolinggokab.bps.go.id/id/publication/2026/09/28/28da20de57bb7a5e6ec409eb/kecamatan-tegalsiwalan-dalam-angka-2026.html",
+  "sourceFileSha256": "4e2a56508f114bcb847617eceff31fee4e1d25ea7fc7ca749680363f16a8cadc",
+  "sourceFileBytes": 9782201,
+  "sourcePages": [24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Probolinggo.",
+  "csvPath": "datasets/bps-3513-kecamatan-351320-dalam-angka-2026.csv",
+  "csvSha256": "1d0aefa7b612cc799b7cf0fa6e9f6d8f3b8c843d5152c326cb4daf5a8a5342d1",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa1/ Kelurahan di Kecamatan Tegalsiwalan, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"MALASAN WETAN\": unmatched ",
+    "table 3.1: row not stored: row \"BLADUKULON\": unmatched ",
+    "table 3.1: row not stored: row \"MALASAN WETAN\": unmatched ",
+    "table 3.1: row not stored: row \"BLADUKULON\": unmatched "
+  ]
+}

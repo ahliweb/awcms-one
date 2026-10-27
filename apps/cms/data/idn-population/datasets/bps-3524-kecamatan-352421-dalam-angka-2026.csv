@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.24.21.2007,4,Sukoanyar,sex,laki_laki,,1653,jiwa,2025,registration,total_population,3.3,33,,Laki-Laki/Male
+35.24.21.2007,4,Sukoanyar,sex,perempuan,,1659,jiwa,2025,registration,total_population,3.3,33,,Perempuan/Female
+35.24.21.2007,4,Sukoanyar,total,total,,3312,jiwa,2025,registration,total_population,3.3,33,,
+35.24.21.2011,4,Sukorejo,sex,laki_laki,,831,jiwa,2025,registration,total_population,3.3,33,,Laki-Laki/Male
+35.24.21.2011,4,Sukorejo,sex,perempuan,,834,jiwa,2025,registration,total_population,3.3,33,,Perempuan/Female
+35.24.21.2011,4,Sukorejo,total,total,,1665,jiwa,2025,registration,total_population,3.3,33,,
+35.24.21.2012,4,Tawangrejo,sex,laki_laki,,1867,jiwa,2025,registration,total_population,3.3,33,,Laki-Laki/Male
+35.24.21.2012,4,Tawangrejo,sex,perempuan,,1822,jiwa,2025,registration,total_population,3.3,33,,Perempuan/Female
+35.24.21.2012,4,Tawangrejo,total,total,,3689,jiwa,2025,registration,total_population,3.3,33,,
+35.24.21.2015,4,Tambakploso,sex,laki_laki,,1133,jiwa,2025,registration,total_population,3.3,33,,Laki-Laki/Male
+35.24.21.2015,4,Tambakploso,sex,perempuan,,1103,jiwa,2025,registration,total_population,3.3,33,,Perempuan/Female
+35.24.21.2015,4,Tambakploso,total,total,,2236,jiwa,2025,registration,total_population,3.3,33,,
+35.24.21.2016,4,Balun,sex,laki_laki,,2484,jiwa,2025,registration,total_population,3.3,33,,Laki-Laki/Male
+35.24.21.2016,4,Balun,sex,perempuan,,2502,jiwa,2025,registration,total_population,3.3,33,,Perempuan/Female
+35.24.21.2016,4,Balun,total,total,,4986,jiwa,2025,registration,total_population,3.3,33,,
+35.24.21.2017,4,Ngujungrejo,sex,laki_laki,,1131,jiwa,2025,registration,total_population,3.3,33,,Laki-Laki/Male
+35.24.21.2017,4,Ngujungrejo,sex,perempuan,,1078,jiwa,2025,registration,total_population,3.3,33,,Perempuan/Female
+35.24.21.2017,4,Ngujungrejo,total,total,,2209,jiwa,2025,registration,total_population,3.3,33,,
+35.24.21.2013,4,Bambang,sex,laki_laki,,671,jiwa,2025,registration,total_population,3.3,33,,Laki-Laki/Male
+35.24.21.2013,4,Bambang,sex,perempuan,,626,jiwa,2025,registration,total_population,3.3,33,,Perempuan/Female
+35.24.21.2013,4,Bambang,total,total,,1297,jiwa,2025,registration,total_population,3.3,33,,
+35.24.21.2008,4,Kemlagigede,sex,laki_laki,,1541,jiwa,2025,registration,total_population,3.3,33,,Laki-Laki/Male
+35.24.21.2008,4,Kemlagigede,sex,perempuan,,1495,jiwa,2025,registration,total_population,3.3,33,,Perempuan/Female
+35.24.21.2008,4,Kemlagigede,total,total,,3036,jiwa,2025,registration,total_population,3.3,33,,
+35.24.21.2009,4,Turi,sex,laki_laki,,1725,jiwa,2025,registration,total_population,3.3,33,,Laki-Laki/Male
+35.24.21.2009,4,Turi,sex,perempuan,,1644,jiwa,2025,registration,total_population,3.3,33,,Perempuan/Female
+35.24.21.2009,4,Turi,total,total,,3369,jiwa,2025,registration,total_population,3.3,33,,
+35.24.21.2006,4,Keben,sex,laki_laki,,1139,jiwa,2025,registration,total_population,3.3,33,,Laki-Laki/Male
+35.24.21.2006,4,Keben,sex,perempuan,,1107,jiwa,2025,registration,total_population,3.3,33,,Perempuan/Female
+35.24.21.2006,4,Keben,total,total,,2246,jiwa,2025,registration,total_population,3.3,33,,
+35.24.21.2004,4,Wangunrejo,sex,laki_laki,,838,jiwa,2025,registration,total_population,3.3,33,,Laki-Laki/Male
+35.24.21.2004,4,Wangunrejo,sex,perempuan,,888,jiwa,2025,registration,total_population,3.3,33,,Perempuan/Female
+35.24.21.2004,4,Wangunrejo,total,total,,1726,jiwa,2025,registration,total_population,3.3,33,,
+35.24.21.2001,4,Geger,sex,laki_laki,,2319,jiwa,2025,registration,total_population,3.3,33,,Laki-Laki/Male
+35.24.21.2001,4,Geger,sex,perempuan,,2351,jiwa,2025,registration,total_population,3.3,33,,Perempuan/Female
+35.24.21.2001,4,Geger,total,total,,4670,jiwa,2025,registration,total_population,3.3,33,,
+35.24.21.2002,4,Badurame,sex,laki_laki,,1167,jiwa,2025,registration,total_population,3.3,33,,Laki-Laki/Male
+35.24.21.2002,4,Badurame,sex,perempuan,,1218,jiwa,2025,registration,total_population,3.3,33,,Perempuan/Female
+35.24.21.2002,4,Badurame,total,total,,2385,jiwa,2025,registration,total_population,3.3,33,,
+35.24.21.2003,4,Karangwedoro,sex,laki_laki,,1765,jiwa,2025,registration,total_population,3.3,33,,Laki-Laki/Male
+35.24.21.2003,4,Karangwedoro,sex,perempuan,,1723,jiwa,2025,registration,total_population,3.3,33,,Perempuan/Female
+35.24.21.2003,4,Karangwedoro,total,total,,3488,jiwa,2025,registration,total_population,3.3,33,,
+35.24.21.2005,4,Putatkumpul,sex,laki_laki,,2065,jiwa,2025,registration,total_population,3.3,33,,Laki-Laki/Male
+35.24.21.2005,4,Putatkumpul,sex,perempuan,,2034,jiwa,2025,registration,total_population,3.3,33,,Perempuan/Female
+35.24.21.2005,4,Putatkumpul,total,total,,4099,jiwa,2025,registration,total_population,3.3,33,,
+35.24.21.2010,4,Kemlagi Lor,sex,laki_laki,,1412,jiwa,2025,registration,total_population,3.3,33,,Laki-Laki/Male
+35.24.21.2010,4,Kemlagi Lor,sex,perempuan,,1332,jiwa,2025,registration,total_population,3.3,33,,Perempuan/Female
+35.24.21.2010,4,Kemlagi Lor,total,total,,2744,jiwa,2025,registration,total_population,3.3,33,,
+35.24.21.2014,4,Pomahanjanggan,sex,laki_laki,,801,jiwa,2025,registration,total_population,3.3,33,,Laki-Laki/Male
+35.24.21.2014,4,Pomahanjanggan,sex,perempuan,,796,jiwa,2025,registration,total_population,3.3,33,,Perempuan/Female
+35.24.21.2014,4,Pomahanjanggan,total,total,,1597,jiwa,2025,registration,total_population,3.3,33,,
+35.24.21.2018,4,Kepudibener,sex,laki_laki,,1235,jiwa,2025,registration,total_population,3.3,33,,Laki-Laki/Male
+35.24.21.2018,4,Kepudibener,sex,perempuan,,1191,jiwa,2025,registration,total_population,3.3,33,,Perempuan/Female
+35.24.21.2018,4,Kepudibener,total,total,,2426,jiwa,2025,registration,total_population,3.3,33,,
+35.24.21,3,Kecamatan Turi,sex,laki_laki,,27552,jiwa,2025,registration,total_population,3.3,33,,Laki-Laki/Male
+35.24.21,3,Kecamatan Turi,sex,perempuan,,27166,jiwa,2025,registration,total_population,3.3,33,,Perempuan/Female
+35.24.21,3,Kecamatan Turi,total,total,,54718,jiwa,2025,registration,total_population,3.3,33,,

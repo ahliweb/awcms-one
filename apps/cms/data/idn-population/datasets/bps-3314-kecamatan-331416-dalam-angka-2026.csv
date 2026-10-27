@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.14.16.2001,4,Sono,sex,laki_laki,,1425,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.16.2001,4,Sono,sex,perempuan,,1507,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.16.2001,4,Sono,total,total,,2932,jiwa,2025,registration,total_population,3.1,32,,
+33.14.16.2002,4,Tempelrejo,sex,laki_laki,,2066,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.16.2002,4,Tempelrejo,sex,perempuan,,2025,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.16.2002,4,Tempelrejo,total,total,,4091,jiwa,2025,registration,total_population,3.1,32,,
+33.14.16.2003,4,Trombol,sex,laki_laki,,2127,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.16.2003,4,Trombol,sex,perempuan,,2111,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.16.2003,4,Trombol,total,total,,4238,jiwa,2025,registration,total_population,3.1,32,,
+33.14.16.2005,4,Jekani,sex,laki_laki,,2744,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.16.2005,4,Jekani,sex,perempuan,,2747,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.16.2005,4,Jekani,total,total,,5491,jiwa,2025,registration,total_population,3.1,32,,
+33.14.16.2004,4,Pare,sex,laki_laki,,2671,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.16.2004,4,Pare,sex,perempuan,,2617,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.16.2004,4,Pare,total,total,,5288,jiwa,2025,registration,total_population,3.1,32,,
+33.14.16.2006,4,Kedawung,sex,laki_laki,,2851,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.16.2006,4,Kedawung,sex,perempuan,,2846,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.16.2006,4,Kedawung,total,total,,5697,jiwa,2025,registration,total_population,3.1,32,,
+33.14.16.2007,4,Jambangan,sex,laki_laki,,2131,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.16.2007,4,Jambangan,sex,perempuan,,2108,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.16.2007,4,Jambangan,total,total,,4239,jiwa,2025,registration,total_population,3.1,32,,
+33.14.16.2008,4,Gemantar,sex,laki_laki,,3394,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.16.2008,4,Gemantar,sex,perempuan,,3346,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.16.2008,4,Gemantar,total,total,,6740,jiwa,2025,registration,total_population,3.1,32,,
+33.14.16.2009,4,Sumberejo,sex,laki_laki,,1697,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.16.2009,4,Sumberejo,sex,perempuan,,1671,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.16.2009,4,Sumberejo,total,total,,3368,jiwa,2025,registration,total_population,3.1,32,,
+33.14.16,3,Kecamatan Mondokan,sex,laki_laki,,21106,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.16,3,Kecamatan Mondokan,sex,perempuan,,20978,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.16,3,Kecamatan Mondokan,total,total,,42084,jiwa,2025,registration,total_population,3.1,32,,
+33.14.16,3,Mondokan,age_group,0-4,laki_laki,1354,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.16,3,Mondokan,age_group,0-4,perempuan,1265,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.16,3,Mondokan,age_group,0-4,,2619,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.16,3,Mondokan,age_group,5-9,laki_laki,1676,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.16,3,Mondokan,age_group,5-9,perempuan,1553,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.16,3,Mondokan,age_group,5-9,,3229,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.16,3,Mondokan,age_group,10-14,laki_laki,1596,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.16,3,Mondokan,age_group,10-14,perempuan,1545,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.16,3,Mondokan,age_group,10-14,,3141,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.16,3,Mondokan,age_group,15-19,laki_laki,1692,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.16,3,Mondokan,age_group,15-19,perempuan,1598,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.16,3,Mondokan,age_group,15-19,,3290,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.16,3,Mondokan,age_group,20-24,laki_laki,1495,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.16,3,Mondokan,age_group,20-24,perempuan,1414,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.16,3,Mondokan,age_group,20-24,,2909,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.16,3,Mondokan,age_group,25-29,laki_laki,1579,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.16,3,Mondokan,age_group,25-29,perempuan,1499,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.16,3,Mondokan,age_group,25-29,,3078,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.16,3,Mondokan,age_group,30-34,laki_laki,1470,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.16,3,Mondokan,age_group,30-34,perempuan,1510,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.16,3,Mondokan,age_group,30-34,,2980,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.16,3,Mondokan,age_group,35-39,laki_laki,1576,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.16,3,Mondokan,age_group,35-39,perempuan,1360,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.16,3,Mondokan,age_group,35-39,,2936,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.16,3,Mondokan,age_group,40-44,laki_laki,1711,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.16,3,Mondokan,age_group,40-44,perempuan,1618,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.16,3,Mondokan,age_group,40-44,,3329,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.16,3,Mondokan,age_group,45-49,laki_laki,1412,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.16,3,Mondokan,age_group,45-49,perempuan,1279,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.16,3,Mondokan,age_group,45-49,,2691,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.16,3,Mondokan,age_group,50-54,laki_laki,1226,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.16,3,Mondokan,age_group,50-54,perempuan,1214,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.16,3,Mondokan,age_group,50-54,,2440,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.16,3,Mondokan,age_group,55-59,laki_laki,1137,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.16,3,Mondokan,age_group,55-59,perempuan,1235,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.16,3,Mondokan,age_group,55-59,,2372,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.16,3,Mondokan,age_group,60-64,laki_laki,960,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.16,3,Mondokan,age_group,60-64,perempuan,1117,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.16,3,Mondokan,age_group,60-64,,2077,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.16,3,Mondokan,age_group,65-69,laki_laki,886,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.16,3,Mondokan,age_group,65-69,perempuan,1005,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.16,3,Mondokan,age_group,65-69,,1891,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.16,3,Mondokan,age_group,70-74,laki_laki,557,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.16,3,Mondokan,age_group,70-74,perempuan,544,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.16,3,Mondokan,age_group,70-74,,1101,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.16,3,Mondokan,age_group,75+,laki_laki,779,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.16,3,Mondokan,age_group,75+,perempuan,1222,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.16,3,Mondokan,age_group,75+,,2001,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.16,3,Kecamatan Mondokan,sex,laki_laki,,21106,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+33.14.16,3,Kecamatan Mondokan,sex,perempuan,,20978,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+33.14.16,3,Kecamatan Mondokan,total,total,,42084,jiwa,2025,registration,total_population,3.2,34,,

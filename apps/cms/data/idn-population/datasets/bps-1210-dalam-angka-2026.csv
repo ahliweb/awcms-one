@@ -1,0 +1,63 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.11.01,3,Sidikalang,total,total,,58727,jiwa,2025,projection,total_population,3.1.1,71,,
+12.11.13,3,Berampu,total,total,,9663,jiwa,2025,projection,total_population,3.1.1,71,,
+12.11.15,3,Sitinjo,total,total,,15780,jiwa,2025,projection,total_population,3.1.1,71,,
+12.11.10,3,Parbuluan,total,total,,28642,jiwa,2025,projection,total_population,3.1.1,71,,
+12.11.02,3,Sumbul,total,total,,48408,jiwa,2025,projection,total_population,3.1.1,71,,
+12.11.14,3,Silahisabungan,total,total,,6233,jiwa,2025,projection,total_population,3.1.1,71,,
+12.11.05,3,Silima Pungga-Pungga,total,total,,15950,jiwa,2025,projection,total_population,3.1.1,71,,
+12.11.11,3,Lae Parira,total,total,,16108,jiwa,2025,projection,total_population,3.1.1,71,,
+12.11.04,3,Siempat Nempu,total,total,,21711,jiwa,2025,projection,total_population,3.1.1,71,,
+12.11.07,3,Siempat Nempu Hulu,total,total,,21584,jiwa,2025,projection,total_population,3.1.1,71,,
+12.11.08,3,Siempat Nempu Hilir,total,total,,12782,jiwa,2025,projection,total_population,3.1.1,71,,
+12.11.03,3,Tigalingga,total,total,,25993,jiwa,2025,projection,total_population,3.1.1,71,,
+12.11.12,3,Gunung Sitember,total,total,,11349,jiwa,2025,projection,total_population,3.1.1,71,,
+12.11.09,3,Pegagan Hilir,total,total,,18803,jiwa,2025,projection,total_population,3.1.1,71,,
+12.11.06,3,Tanah Pinem,total,total,,24670,jiwa,2025,projection,total_population,3.1.1,71,,
+12.11,2,Dairi,total,total,,336403,jiwa,2025,projection,total_population,3.1.1,71,,
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/padi_padian,,122994,rupiah,2024,survey_estimate,per_capita,10.1,406,,Padi-padian
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/padi_padian,,124711,rupiah,2025,survey_estimate,per_capita,10.1,406,,Padi-padian
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/umbi_umbian,,5009,rupiah,2024,survey_estimate,per_capita,10.1,406,,Umbi-umbian
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/umbi_umbian,,5728,rupiah,2025,survey_estimate,per_capita,10.1,406,,Umbi-umbian
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,94964,rupiah,2024,survey_estimate,per_capita,10.1,406,,Ikan/udang/cumi/kerang
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,103010,rupiah,2025,survey_estimate,per_capita,10.1,406,,Ikan/udang/cumi/kerang
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/daging,,35536,rupiah,2024,survey_estimate,per_capita,10.1,406,,Daging
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/daging,,41036,rupiah,2025,survey_estimate,per_capita,10.1,406,,Daging
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/telur_dan_susu,,38548,rupiah,2024,survey_estimate,per_capita,10.1,406,,Telur dan susu
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/telur_dan_susu,,51102,rupiah,2025,survey_estimate,per_capita,10.1,406,,Telur dan susu
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/sayur_sayuran,,67767,rupiah,2024,survey_estimate,per_capita,10.1,406,,Sayur-sayuran
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/sayur_sayuran,,73857,rupiah,2025,survey_estimate,per_capita,10.1,406,,Sayur-sayuran
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/kacang_kacangan,,10594,rupiah,2024,survey_estimate,per_capita,10.1,406,,Kacang-kacangan
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/kacang_kacangan,,11578,rupiah,2025,survey_estimate,per_capita,10.1,406,,Kacang-kacangan
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/buah_buahan,,27410,rupiah,2024,survey_estimate,per_capita,10.1,406,,Buah-buahan
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/buah_buahan,,46098,rupiah,2025,survey_estimate,per_capita,10.1,406,,Buah-buahan
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18519,rupiah,2024,survey_estimate,per_capita,10.1,406,,Minyak dan kelapa
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23675,rupiah,2025,survey_estimate,per_capita,10.1,406,,Minyak dan kelapa
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/bahan_minuman,,24581,rupiah,2024,survey_estimate,per_capita,10.1,406,,Bahan minuman
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/bahan_minuman,,30949,rupiah,2025,survey_estimate,per_capita,10.1,406,,Bahan minuman
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/bumbu_bumbuan,,12870,rupiah,2024,survey_estimate,per_capita,10.1,406,,Bumbu-bumbuan
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/bumbu_bumbuan,,14825,rupiah,2025,survey_estimate,per_capita,10.1,406,,Bumbu-bumbuan
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/konsumsi_lainnya,,6128,rupiah,2024,survey_estimate,per_capita,10.1,406,,Konsumsi lainnya
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/konsumsi_lainnya,,6441,rupiah,2025,survey_estimate,per_capita,10.1,406,,Konsumsi lainnya
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,134850,rupiah,2024,survey_estimate,per_capita,10.1,406,,Makanan dan minuman jadi
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,143198,rupiah,2025,survey_estimate,per_capita,10.1,406,,Makanan dan minuman jadi
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/rokok,,122931,rupiah,2024,survey_estimate,per_capita,10.1,406,,Rokok
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/rokok,,130117,rupiah,2025,survey_estimate,per_capita,10.1,406,,Rokok
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/jumlah_makanan,,722701,rupiah,2024,survey_estimate,per_capita,10.1,406,,Jumlah makanan
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/jumlah_makanan,,806325,rupiah,2025,survey_estimate,per_capita,10.1,406,,Jumlah makanan
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,214025,rupiah,2024,survey_estimate,per_capita,10.1,406,,Perumahan dan fasilitas rumah tangga
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,252970,rupiah,2025,survey_estimate,per_capita,10.1,406,,Perumahan dan fasilitas rumah tangga
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,130586,rupiah,2024,survey_estimate,per_capita,10.1,406,,Aneka barang dan jasa
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,230879,rupiah,2025,survey_estimate,per_capita,10.1,406,,Aneka barang dan jasa
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,30899,rupiah,2024,survey_estimate,per_capita,10.1,406,,"Pakaian, alas kaki, dan tutup kepala"
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,35298,rupiah,2025,survey_estimate,per_capita,10.1,406,,"Pakaian, alas kaki, dan tutup kepala"
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/barang_tahan_lama,,16773,rupiah,2024,survey_estimate,per_capita,10.1,406,,Barang tahan lama
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/barang_tahan_lama,,21830,rupiah,2025,survey_estimate,per_capita,10.1,406,,Barang tahan lama
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,44415,rupiah,2024,survey_estimate,per_capita,10.1,406,,"Pajak, pungutan, dan asuransi"
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,62195,rupiah,2025,survey_estimate,per_capita,10.1,406,,"Pajak, pungutan, dan asuransi"
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,6998,rupiah,2024,survey_estimate,per_capita,10.1,406,,Keperluan pesta dan upacara/kenduri
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,18325,rupiah,2025,survey_estimate,per_capita,10.1,406,,Keperluan pesta dan upacara/kenduri
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,443697,rupiah,2024,survey_estimate,per_capita,10.1,406,,Jumlah bukan makanan
+12.11,2,Kabupaten Dairi,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,621497,rupiah,2025,survey_estimate,per_capita,10.1,406,,Jumlah bukan makanan
+12.11,2,Kabupaten Dairi,expenditure,total,,1166398,rupiah,2024,survey_estimate,per_capita,10.1,406,,
+12.11,2,Kabupaten Dairi,expenditure,total,,1427822,rupiah,2025,survey_estimate,per_capita,10.1,406,,

@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.04.16.2004,4,Griya Mukti Jaya,sex,laki_laki,,315,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.16.2004,4,Griya Mukti Jaya,sex,perempuan,,257,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.16.2004,4,Griya Mukti Jaya,total,total,,572,jiwa,2026,registration,total_population,3.1,29,,
+14.04.16.2003,4,Tunggal Rahayu Jaya,sex,laki_laki,,459,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.16.2003,4,Tunggal Rahayu Jaya,sex,perempuan,,464,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.16.2003,4,Tunggal Rahayu Jaya,total,total,,923,jiwa,2026,registration,total_population,3.1,29,,
+14.04.16.2002,4,Indra Sari Jaya,sex,laki_laki,,344,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.16.2002,4,Indra Sari Jaya,sex,perempuan,,307,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.16.2002,4,Indra Sari Jaya,total,total,,651,jiwa,2026,registration,total_population,3.1,29,,
+14.04.16.2008,4,Sumber Makmur Jaya,sex,laki_laki,,161,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.16.2008,4,Sumber Makmur Jaya,sex,perempuan,,141,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.16.2008,4,Sumber Makmur Jaya,total,total,,302,jiwa,2026,registration,total_population,3.1,29,,
+14.04.16.2007,4,Sumber Jaya,sex,laki_laki,,233,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.16.2007,4,Sumber Jaya,sex,perempuan,,203,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.16.2007,4,Sumber Jaya,total,total,,436,jiwa,2026,registration,total_population,3.1,29,,
+14.04.16.2006,4,Hibrida Jaya,sex,laki_laki,,322,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.16.2006,4,Hibrida Jaya,sex,perempuan,,323,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.16.2006,4,Hibrida Jaya,total,total,,645,jiwa,2026,registration,total_population,3.1,29,,
+14.04.16.2009,4,Sumber Sari Jaya,sex,laki_laki,,279,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.16.2009,4,Sumber Sari Jaya,sex,perempuan,,272,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.16.2009,4,Sumber Sari Jaya,total,total,,551,jiwa,2026,registration,total_population,3.1,29,,
+14.04.16.2010,4,Kelapa Patih Jaya,sex,laki_laki,,287,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.16.2010,4,Kelapa Patih Jaya,sex,perempuan,,246,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.16.2010,4,Kelapa Patih Jaya,total,total,,533,jiwa,2026,registration,total_population,3.1,29,,
+14.04.16.2013,4,Gembaran,sex,laki_laki,,871,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.16.2013,4,Gembaran,sex,perempuan,,765,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.16.2013,4,Gembaran,total,total,,1636,jiwa,2026,registration,total_population,3.1,29,,
+14.04.16.2012,4,Saka Rotan,sex,laki_laki,,730,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.16.2012,4,Saka Rotan,sex,perempuan,,652,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.16.2012,4,Saka Rotan,total,total,,1382,jiwa,2026,registration,total_population,3.1,29,,
+14.04.16,3,Teluk Belengkong,sex,laki_laki,,4895,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.16,3,Teluk Belengkong,sex,perempuan,,4428,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.16,3,Teluk Belengkong,total,total,,9323,jiwa,2026,registration,total_population,3.1,29,,

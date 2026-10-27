@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.13.04.2001,4,Pauh,sex,laki_laki,,1225,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.04.2001,4,Pauh,sex,perempuan,,1160,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.04.2001,4,Pauh,total,total,,2385,jiwa,2025,registration,total_population,3.1,24,,
+16.13.04.2002,4,Batu Kucing,sex,laki_laki,,697,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.04.2002,4,Batu Kucing,sex,perempuan,,670,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.04.2002,4,Batu Kucing,total,total,,1367,jiwa,2025,registration,total_population,3.1,24,,
+16.13.04.2003,4,Belani,sex,laki_laki,,835,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.04.2003,4,Belani,sex,perempuan,,736,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.04.2003,4,Belani,total,total,,1571,jiwa,2025,registration,total_population,3.1,24,,
+16.13.04.2004,4,Tanjung Raja,sex,laki_laki,,978,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.04.2004,4,Tanjung Raja,sex,perempuan,,889,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.04.2004,4,Tanjung Raja,total,total,,1867,jiwa,2025,registration,total_population,3.1,24,,
+16.13.04.2006,4,Mandi Angin,sex,laki_laki,,1499,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.04.2006,4,Mandi Angin,sex,perempuan,,1411,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.04.2006,4,Mandi Angin,total,total,,2910,jiwa,2025,registration,total_population,3.1,24,,
+16.13.04.2007,4,Air Bening,sex,laki_laki,,1375,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.04.2007,4,Air Bening,sex,perempuan,,1262,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.04.2007,4,Air Bening,total,total,,2637,jiwa,2025,registration,total_population,3.1,24,,
+16.13.04.2008,4,Beringin Sakti,sex,laki_laki,,358,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.04.2008,4,Beringin Sakti,sex,perempuan,,324,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.04.2008,4,Beringin Sakti,total,total,,682,jiwa,2025,registration,total_population,3.1,24,,
+16.13.04.2009,4,Beringin Makmur I,sex,laki_laki,,1836,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.04.2009,4,Beringin Makmur I,sex,perempuan,,1740,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.04.2009,4,Beringin Makmur I,total,total,,3576,jiwa,2025,registration,total_population,3.1,24,,
+16.13.04.2010,4,Beringin Makmur II,sex,laki_laki,,3301,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.04.2010,4,Beringin Makmur II,sex,perempuan,,3008,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.04.2010,4,Beringin Makmur II,total,total,,6309,jiwa,2025,registration,total_population,3.1,24,,
+16.13.04.2011,4,Pauh I,sex,laki_laki,,1707,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.04.2011,4,Pauh I,sex,perempuan,,1652,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.04.2011,4,Pauh I,total,total,,3359,jiwa,2025,registration,total_population,3.1,24,,
+16.13.04.2012,4,Ketapat Bening,sex,laki_laki,,764,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.04.2012,4,Ketapat Bening,sex,perempuan,,676,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.04.2012,4,Ketapat Bening,total,total,,1440,jiwa,2025,registration,total_population,3.1,24,,
+16.13.04.2013,4,Mekarsari,sex,laki_laki,,543,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.04.2013,4,Mekarsari,sex,perempuan,,506,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.04.2013,4,Mekarsari,total,total,,1049,jiwa,2025,registration,total_population,3.1,24,,
+16.13.04.1005,4,Bingin Teluk,sex,laki_laki,,1195,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.04.1005,4,Bingin Teluk,sex,perempuan,,1161,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.04.1005,4,Bingin Teluk,total,total,,2356,jiwa,2025,registration,total_population,3.1,24,,
+16.13.04,3,Rawas Ilir,sex,laki_laki,,16313,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+16.13.04,3,Rawas Ilir,sex,perempuan,,15195,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+16.13.04,3,Rawas Ilir,total,total,,31508,jiwa,2025,registration,total_population,3.1,24,,
+16.13.04,3,Rawas Ilir,sex,laki_laki,,16313,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+16.13.04,3,Rawas Ilir,sex,perempuan,,15195,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+16.13.04,3,Rawas Ilir,total,total,,31508,jiwa,2025,registration,total_population,3.2,26,,

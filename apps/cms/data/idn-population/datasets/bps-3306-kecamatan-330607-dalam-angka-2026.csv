@@ -1,0 +1,57 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.06.07.2001,4,Seborokrapyak,sex,perempuan,,565,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.07.2001,4,Seborokrapyak,total,total,,1124,jiwa,2025,registration,total_population,3.1,21,,
+33.06.07.2002,4,Triwarno,sex,perempuan,,621,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.07.2002,4,Triwarno,total,total,,1225,jiwa,2025,registration,total_population,3.1,21,,
+33.06.07.2003,4,Bajangrejo,sex,perempuan,,449,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.07.2003,4,Bajangrejo,total,total,,866,jiwa,2025,registration,total_population,3.1,21,,
+33.06.07.2004,4,Bencorejo,sex,perempuan,,541,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.07.2004,4,Bencorejo,total,total,,1085,jiwa,2025,registration,total_population,3.1,21,,
+33.06.07.2005,4,Surorejo,sex,perempuan,,652,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.07.2005,4,Surorejo,total,total,,1307,jiwa,2025,registration,total_population,3.1,21,,
+33.06.07.2006,4,Wangunrejo,sex,perempuan,,595,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.07.2006,4,Wangunrejo,total,total,,1183,jiwa,2025,registration,total_population,3.1,21,,
+33.06.07.2007,4,Cengkawakrejo,sex,perempuan,,1020,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.07.2007,4,Cengkawakrejo,total,total,,2051,jiwa,2025,registration,total_population,3.1,21,,
+33.06.07.2008,4,Popongan,sex,perempuan,,808,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.07.2008,4,Popongan,total,total,,1637,jiwa,2025,registration,total_population,3.1,21,,
+33.06.07.2009,4,Boro Wetan,sex,perempuan,,915,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.07.2009,4,Boro Wetan,total,total,,1843,jiwa,2025,registration,total_population,3.1,21,,
+33.06.07.1010,4,Boro Kulon,sex,perempuan,,1929,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.07.1010,4,Boro Kulon,total,total,,3784,jiwa,2025,registration,total_population,3.1,21,,
+33.06.07.2011,4,Tegalrejo,sex,perempuan,,628,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.07.2011,4,Tegalrejo,total,total,,1268,jiwa,2025,registration,total_population,3.1,21,,
+33.06.07.2012,4,Banyu Urip,sex,perempuan,,820,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.07.2012,4,Banyu Urip,total,total,,1555,jiwa,2025,registration,total_population,3.1,21,,
+33.06.07.2013,4,Malangrejo,sex,perempuan,,693,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.07.2013,4,Malangrejo,total,total,,1324,jiwa,2025,registration,total_population,3.1,21,,
+33.06.07.2014,4,Tegalkuning,sex,perempuan,,549,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.07.2014,4,Tegalkuning,total,total,,1104,jiwa,2025,registration,total_population,3.1,21,,
+33.06.07.2015,4,Kliwonan,sex,perempuan,,433,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.07.2015,4,Kliwonan,total,total,,844,jiwa,2025,registration,total_population,3.1,22,,
+33.06.07.2016,4,Kertosono,sex,perempuan,,525,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.07.2016,4,Kertosono,total,total,,1089,jiwa,2025,registration,total_population,3.1,22,,
+33.06.07.2017,4,Tanjunganom,sex,perempuan,,860,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.07.2017,4,Tanjunganom,total,total,,1721,jiwa,2025,registration,total_population,3.1,22,,
+33.06.07.2018,4,Sawit,sex,perempuan,,335,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.07.2018,4,Sawit,total,total,,675,jiwa,2025,registration,total_population,3.1,22,,
+33.06.07.2019,4,Sumber Sari,sex,perempuan,,1550,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.07.2019,4,Sumber Sari,total,total,,3080,jiwa,2025,registration,total_population,3.1,22,,
+33.06.07.2020,4,Pakisrejo,sex,perempuan,,511,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.07.2020,4,Pakisrejo,total,total,,990,jiwa,2025,registration,total_population,3.1,22,,
+33.06.07.2021,4,Candingasinan,sex,perempuan,,953,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.07.2021,4,Candingasinan,total,total,,1919,jiwa,2025,registration,total_population,3.1,22,,
+33.06.07.2022,4,Sokowaten,sex,perempuan,,682,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.07.2022,4,Sokowaten,total,total,,1329,jiwa,2025,registration,total_population,3.1,22,,
+33.06.07.2023,4,Golok,sex,perempuan,,385,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.07.2023,4,Golok,total,total,,764,jiwa,2025,registration,total_population,3.1,22,,
+33.06.07.2024,4,Candisari,sex,perempuan,,1052,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.07.2024,4,Candisari,total,total,,2125,jiwa,2025,registration,total_population,3.1,22,,
+33.06.07.2025,4,Condongsari,sex,perempuan,,1074,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.07.2025,4,Condongsari,total,total,,2112,jiwa,2025,registration,total_population,3.1,22,,
+33.06.07.1026,4,Kledung Kradenan,sex,perempuan,,2030,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.07.1026,4,Kledung Kradenan,total,total,,3976,jiwa,2025,registration,total_population,3.1,22,,
+33.06.07.1027,4,Kledung Karangdalem,sex,perempuan,,1287,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.07.1027,4,Kledung Karangdalem,total,total,,2544,jiwa,2025,registration,total_population,3.1,22,,
+33.06.07,3,Kecamatan Banyuurip,sex,perempuan,,22462,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.07,3,Kecamatan Banyuurip,total,total,,44524,jiwa,2025,registration,total_population,3.1,22,,

@@ -1,0 +1,285 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.09,2,Kabupaten Jember,age_group,0-4,laki_laki,64442,jiwa,2025,registration,total_population,3.1.2,102,,0–4
+35.09,2,Kabupaten Jember,age_group,0-4,perempuan,60739,jiwa,2025,registration,total_population,3.1.2,102,,0–4
+35.09,2,Kabupaten Jember,age_group,0-4,,125181,jiwa,2025,registration,total_population,3.1.2,102,,0–4
+35.09,2,Kabupaten Jember,age_group,5-9,laki_laki,96967,jiwa,2025,registration,total_population,3.1.2,102,,5–9
+35.09,2,Kabupaten Jember,age_group,5-9,perempuan,92112,jiwa,2025,registration,total_population,3.1.2,102,,5–9
+35.09,2,Kabupaten Jember,age_group,5-9,,189079,jiwa,2025,registration,total_population,3.1.2,102,,5–9
+35.09,2,Kabupaten Jember,age_group,10-14,laki_laki,100902,jiwa,2025,registration,total_population,3.1.2,102,,10–14
+35.09,2,Kabupaten Jember,age_group,10-14,perempuan,95368,jiwa,2025,registration,total_population,3.1.2,102,,10–14
+35.09,2,Kabupaten Jember,age_group,10-14,,196270,jiwa,2025,registration,total_population,3.1.2,102,,10–14
+35.09,2,Kabupaten Jember,age_group,15-19,laki_laki,89935,jiwa,2025,registration,total_population,3.1.2,102,,15–19
+35.09,2,Kabupaten Jember,age_group,15-19,perempuan,85862,jiwa,2025,registration,total_population,3.1.2,102,,15–19
+35.09,2,Kabupaten Jember,age_group,15-19,,175797,jiwa,2025,registration,total_population,3.1.2,102,,15–19
+35.09,2,Kabupaten Jember,age_group,20-24,laki_laki,98140,jiwa,2025,registration,total_population,3.1.2,102,,20–24
+35.09,2,Kabupaten Jember,age_group,20-24,perempuan,93809,jiwa,2025,registration,total_population,3.1.2,102,,20–24
+35.09,2,Kabupaten Jember,age_group,20-24,,191949,jiwa,2025,registration,total_population,3.1.2,102,,20–24
+35.09,2,Kabupaten Jember,age_group,25-29,laki_laki,100921,jiwa,2025,registration,total_population,3.1.2,102,,25–29
+35.09,2,Kabupaten Jember,age_group,25-29,perempuan,96541,jiwa,2025,registration,total_population,3.1.2,102,,25–29
+35.09,2,Kabupaten Jember,age_group,25-29,,197462,jiwa,2025,registration,total_population,3.1.2,102,,25–29
+35.09,2,Kabupaten Jember,age_group,30-34,laki_laki,96455,jiwa,2025,registration,total_population,3.1.2,102,,30–34
+35.09,2,Kabupaten Jember,age_group,30-34,perempuan,91692,jiwa,2025,registration,total_population,3.1.2,102,,30–34
+35.09,2,Kabupaten Jember,age_group,30-34,,188147,jiwa,2025,registration,total_population,3.1.2,102,,30–34
+35.09,2,Kabupaten Jember,age_group,35-39,laki_laki,90358,jiwa,2025,registration,total_population,3.1.2,102,,35–39
+35.09,2,Kabupaten Jember,age_group,35-39,perempuan,90187,jiwa,2025,registration,total_population,3.1.2,102,,35–39
+35.09,2,Kabupaten Jember,age_group,35-39,,180545,jiwa,2025,registration,total_population,3.1.2,102,,35–39
+35.09,2,Kabupaten Jember,age_group,40-44,laki_laki,95535,jiwa,2025,registration,total_population,3.1.2,102,,40–44
+35.09,2,Kabupaten Jember,age_group,40-44,perempuan,97255,jiwa,2025,registration,total_population,3.1.2,102,,40–44
+35.09,2,Kabupaten Jember,age_group,40-44,,192790,jiwa,2025,registration,total_population,3.1.2,102,,40–44
+35.09,2,Kabupaten Jember,age_group,45-49,laki_laki,89467,jiwa,2025,registration,total_population,3.1.2,102,,45–49
+35.09,2,Kabupaten Jember,age_group,45-49,perempuan,94612,jiwa,2025,registration,total_population,3.1.2,102,,45–49
+35.09,2,Kabupaten Jember,age_group,45-49,,184079,jiwa,2025,registration,total_population,3.1.2,102,,45–49
+35.09,2,Kabupaten Jember,age_group,50-54,laki_laki,89294,jiwa,2025,registration,total_population,3.1.2,102,,50–54
+35.09,2,Kabupaten Jember,age_group,50-54,perempuan,95124,jiwa,2025,registration,total_population,3.1.2,102,,50–54
+35.09,2,Kabupaten Jember,age_group,50-54,,184418,jiwa,2025,registration,total_population,3.1.2,102,,50–54
+35.09,2,Kabupaten Jember,age_group,55-59,laki_laki,83184,jiwa,2025,registration,total_population,3.1.2,102,,55–59
+35.09,2,Kabupaten Jember,age_group,55-59,perempuan,86774,jiwa,2025,registration,total_population,3.1.2,102,,55–59
+35.09,2,Kabupaten Jember,age_group,55-59,,169958,jiwa,2025,registration,total_population,3.1.2,102,,55–59
+35.09,2,Kabupaten Jember,age_group,60-64,laki_laki,67600,jiwa,2025,registration,total_population,3.1.2,102,,60–64
+35.09,2,Kabupaten Jember,age_group,60-64,perempuan,73200,jiwa,2025,registration,total_population,3.1.2,102,,60–64
+35.09,2,Kabupaten Jember,age_group,60-64,,140800,jiwa,2025,registration,total_population,3.1.2,102,,60–64
+35.09,2,Kabupaten Jember,age_group,65-69,laki_laki,56034,jiwa,2025,registration,total_population,3.1.2,102,,65–69
+35.09,2,Kabupaten Jember,age_group,65-69,perempuan,59186,jiwa,2025,registration,total_population,3.1.2,102,,65–69
+35.09,2,Kabupaten Jember,age_group,65-69,,115220,jiwa,2025,registration,total_population,3.1.2,102,,65–69
+35.09,2,Kabupaten Jember,age_group,70-74,laki_laki,40224,jiwa,2025,registration,total_population,3.1.2,102,,70–74
+35.09,2,Kabupaten Jember,age_group,70-74,perempuan,39838,jiwa,2025,registration,total_population,3.1.2,102,,70–74
+35.09,2,Kabupaten Jember,age_group,70-74,,80062,jiwa,2025,registration,total_population,3.1.2,102,,70–74
+35.09,2,Kabupaten Jember,age_group,75+,laki_laki,52244,jiwa,2025,registration,total_population,3.1.2,102,,75+
+35.09,2,Kabupaten Jember,age_group,75+,perempuan,61428,jiwa,2025,registration,total_population,3.1.2,102,,75+
+35.09,2,Kabupaten Jember,age_group,75+,,113672,jiwa,2025,registration,total_population,3.1.2,102,,75+
+35.09,2,Kabupaten Jember,sex,laki_laki,,1311702,jiwa,2025,registration,total_population,3.1.2,102,,Laki-Laki
+35.09,2,Kabupaten Jember,sex,perempuan,,1313727,jiwa,2025,registration,total_population,3.1.2,102,,Perempuan
+35.09,2,Kabupaten Jember,total,total,,2625429,jiwa,2025,registration,total_population,3.1.2,102,,
+35.09.02,3,Kencong,religion,islam,,69919,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.02,3,Kencong,religion,kristen,,1039,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.02,3,Kencong,religion,katolik,,79,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.02,3,Kencong,religion,hindu,,23,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.02,3,Kencong,religion,buddha,,22,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.02,3,Kencong,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.04,3,Gumukmas,religion,islam,,90482,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.04,3,Gumukmas,religion,kristen,,200,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.04,3,Gumukmas,religion,katolik,,32,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.04,3,Gumukmas,religion,hindu,,34,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.04,3,Gumukmas,religion,buddha,,8,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.04,3,Gumukmas,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.08,3,Puger,religion,islam,,126631,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.08,3,Puger,religion,kristen,,360,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.08,3,Puger,religion,katolik,,108,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.08,3,Puger,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.08,3,Puger,religion,buddha,,21,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.08,3,Puger,religion,lainnya,,17,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.11,3,Wuluhan,religion,islam,,129577,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.11,3,Wuluhan,religion,kristen,,189,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.11,3,Wuluhan,religion,katolik,,189,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.11,3,Wuluhan,religion,hindu,,18,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.11,3,Wuluhan,religion,buddha,,13,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.11,3,Wuluhan,religion,lainnya,,17,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.12,3,Ambulu,religion,kristen,,1341,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.12,3,Ambulu,religion,katolik,,298,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.12,3,Ambulu,religion,hindu,,22,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.12,3,Ambulu,religion,buddha,,53,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.12,3,Ambulu,religion,lainnya,,19,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.18,3,Tempurejo,religion,islam,,82234,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.18,3,Tempurejo,religion,kristen,,180,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.18,3,Tempurejo,religion,katolik,,55,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.18,3,Tempurejo,religion,hindu,,15,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.18,3,Tempurejo,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.18,3,Tempurejo,religion,lainnya,,9,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.30,3,Silo,religion,islam,,112433,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.30,3,Silo,religion,kristen,,262,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.30,3,Silo,religion,katolik,,53,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.30,3,Silo,religion,hindu,,14,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.30,3,Silo,religion,buddha,,16,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.30,3,Silo,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.26,3,Mayang,religion,islam,,52845,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.26,3,Mayang,religion,kristen,,91,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.26,3,Mayang,religion,katolik,,75,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.26,3,Mayang,religion,hindu,,15,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.26,3,Mayang,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.26,3,Mayang,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.23,3,Mumbulsari,religion,islam,,70638,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.23,3,Mumbulsari,religion,kristen,,39,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.23,3,Mumbulsari,religion,katolik,,15,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.23,3,Mumbulsari,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.23,3,Mumbulsari,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.23,3,Mumbulsari,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.16,3,Jenggawah,religion,islam,,91753,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.16,3,Jenggawah,religion,kristen,,184,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.16,3,Jenggawah,religion,katolik,,76,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.16,3,Jenggawah,religion,hindu,,10,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.16,3,Jenggawah,religion,buddha,,29,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.16,3,Jenggawah,religion,lainnya,,20,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.17,3,Ajung,religion,islam,,86317,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.17,3,Ajung,religion,kristen,,117,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.17,3,Ajung,religion,katolik,,50,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.17,3,Ajung,religion,hindu,,14,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.17,3,Ajung,religion,buddha,,24,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.17,3,Ajung,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.13,3,Rambipuji,religion,islam,,88281,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.13,3,Rambipuji,religion,kristen,,428,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.13,3,Rambipuji,religion,katolik,,225,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.13,3,Rambipuji,religion,hindu,,11,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.13,3,Rambipuji,religion,buddha,,69,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.13,3,Rambipuji,religion,lainnya,,10,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.10,3,Balung,religion,islam,,84432,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.10,3,Balung,religion,kristen,,312,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.10,3,Balung,religion,katolik,,147,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.10,3,Balung,religion,hindu,,19,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.10,3,Balung,religion,buddha,,44,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.10,3,Balung,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.05,3,Umbulsari,religion,islam,,77077,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.05,3,Umbulsari,religion,kristen,,1575,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.05,3,Umbulsari,religion,katolik,,180,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.05,3,Umbulsari,religion,hindu,,593,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.05,3,Umbulsari,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.05,3,Umbulsari,religion,lainnya,,8,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.07,3,Semboro,religion,islam,,47469,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.07,3,Semboro,religion,kristen,,2376,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.07,3,Semboro,religion,katolik,,118,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.07,3,Semboro,religion,hindu,,8,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.07,3,Semboro,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,179,nil,Budha
+35.09.07,3,Semboro,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,179,nil,Lainnya
+35.09.01,3,Jombang,religion,kristen,,140,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.01,3,Jombang,religion,katolik,,18,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.01,3,Jombang,religion,hindu,,200,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.01,3,Jombang,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.01,3,Jombang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,179,nil,Lainnya
+35.09.03,3,Sumberbaru,religion,islam,,117446,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.03,3,Sumberbaru,religion,kristen,,119,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.03,3,Sumberbaru,religion,katolik,,41,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.03,3,Sumberbaru,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.03,3,Sumberbaru,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.03,3,Sumberbaru,religion,lainnya,,19,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.06,3,Tanggul,religion,islam,,93752,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.06,3,Tanggul,religion,kristen,,417,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.06,3,Tanggul,religion,katolik,,224,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.06,3,Tanggul,religion,hindu,,32,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.06,3,Tanggul,religion,buddha,,69,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.06,3,Tanggul,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.09,3,Bangsalsari,religion,islam,,128844,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.09,3,Bangsalsari,religion,kristen,,263,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.09,3,Bangsalsari,religion,katolik,,29,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.09,3,Bangsalsari,religion,hindu,,9,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.09,3,Bangsalsari,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.09,3,Bangsalsari,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.14,3,Panti,religion,kristen,,37,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.14,3,Panti,religion,katolik,,23,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.14,3,Panti,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.14,3,Panti,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.14,3,Panti,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.15,3,Sukorambi,religion,kristen,,61,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.15,3,Sukorambi,religion,katolik,,44,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.15,3,Sukorambi,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.15,3,Sukorambi,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.15,3,Sukorambi,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,179,nil,Lainnya
+35.09.22,3,Arjasa,religion,islam,,43468,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.22,3,Arjasa,religion,kristen,,66,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.22,3,Arjasa,religion,katolik,,23,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.22,3,Arjasa,religion,hindu,,11,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.22,3,Arjasa,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.22,3,Arjasa,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.24,3,Pakusari,religion,islam,,46963,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.24,3,Pakusari,religion,kristen,,100,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.24,3,Pakusari,religion,katolik,,62,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.24,3,Pakusari,religion,hindu,,7,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.24,3,Pakusari,religion,buddha,,8,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.24,3,Pakusari,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.27,3,Kalisat,religion,islam,,80647,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.27,3,Kalisat,religion,kristen,,272,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.27,3,Kalisat,religion,katolik,,75,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.27,3,Kalisat,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.27,3,Kalisat,religion,buddha,,22,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.27,3,Kalisat,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.28,3,Ledokombo,religion,islam,,70758,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.28,3,Ledokombo,religion,kristen,,79,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.28,3,Ledokombo,religion,katolik,,18,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.28,3,Ledokombo,religion,hindu,,10,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.28,3,Ledokombo,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.28,3,Ledokombo,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.31,3,Sumberjambe,religion,islam,,64833,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.31,3,Sumberjambe,religion,kristen,,350,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.31,3,Sumberjambe,religion,katolik,,28,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.31,3,Sumberjambe,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.31,3,Sumberjambe,religion,buddha,,16,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.31,3,Sumberjambe,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,179,nil,Lainnya
+35.09.29,3,Sukowono,religion,islam,,62252,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.29,3,Sukowono,religion,kristen,,349,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.29,3,Sukowono,religion,katolik,,47,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.29,3,Sukowono,religion,hindu,,7,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.29,3,Sukowono,religion,buddha,,29,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.29,3,Sukowono,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.25,3,Jelbuk,religion,islam,,33898,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.25,3,Jelbuk,religion,kristen,,12,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.25,3,Jelbuk,religion,katolik,,3,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.25,3,Jelbuk,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.25,3,Jelbuk,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.25,3,Jelbuk,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.19,3,Kaliwates,religion,islam,,119713,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.19,3,Kaliwates,religion,kristen,,4163,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.19,3,Kaliwates,religion,katolik,,3363,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.19,3,Kaliwates,religion,hindu,,118,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.19,3,Kaliwates,religion,buddha,,564,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.19,3,Kaliwates,religion,lainnya,,30,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.21,3,Sumbersari,religion,islam,,133259,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.21,3,Sumbersari,religion,kristen,,2952,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.21,3,Sumbersari,religion,katolik,,1839,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.21,3,Sumbersari,religion,hindu,,275,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.21,3,Sumbersari,religion,buddha,,131,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.21,3,Sumbersari,religion,lainnya,,11,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09.20,3,Patrang,religion,islam,,102186,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09.20,3,Patrang,religion,kristen,,1358,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09.20,3,Patrang,religion,katolik,,564,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09.20,3,Patrang,religion,hindu,,87,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09.20,3,Patrang,religion,buddha,,67,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09.20,3,Patrang,religion,lainnya,,7,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09,2,Kabupaten Jember,religion,islam,,2594867,jiwa,2025,registration,total_population,4.3.1,179,,Islam
+35.09,2,Kabupaten Jember,religion,kristen,,19431,jiwa,2025,registration,total_population,4.3.1,179,,Protestan
+35.09,2,Kabupaten Jember,religion,katolik,,8101,jiwa,2025,registration,total_population,4.3.1,179,,Katolik
+35.09,2,Kabupaten Jember,religion,hindu,,1589,jiwa,2025,registration,total_population,4.3.1,179,,Hindu
+35.09,2,Kabupaten Jember,religion,buddha,,1244,jiwa,2025,registration,total_population,4.3.1,179,,Budha
+35.09,2,Kabupaten Jember,religion,lainnya,,197,jiwa,2025,registration,total_population,4.3.1,179,,Lainnya
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/padi_padian,,96684,rupiah,2024,survey_estimate,per_capita,10.1,328,,Padi-padian
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/padi_padian,,98020,rupiah,2025,survey_estimate,per_capita,10.1,328,,Padi-padian
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/umbi_umbian,,5627,rupiah,2024,survey_estimate,per_capita,10.1,328,,Umbi-umbian
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/umbi_umbian,,4484,rupiah,2025,survey_estimate,per_capita,10.1,328,,Umbi-umbian
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,36761,rupiah,2024,survey_estimate,per_capita,10.1,328,,Ikan/udang/cumi/kerang
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,36404,rupiah,2025,survey_estimate,per_capita,10.1,328,,Ikan/udang/cumi/kerang
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/daging,,28567,rupiah,2024,survey_estimate,per_capita,10.1,328,,Daging
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/daging,,29230,rupiah,2025,survey_estimate,per_capita,10.1,328,,Daging
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/telur_dan_susu,,28086,rupiah,2024,survey_estimate,per_capita,10.1,328,,Telur dan susu
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/telur_dan_susu,,25882,rupiah,2025,survey_estimate,per_capita,10.1,328,,Telur dan susu
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/sayur_sayuran,,49737,rupiah,2024,survey_estimate,per_capita,10.1,328,,Sayur-sayuran
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/sayur_sayuran,,54559,rupiah,2025,survey_estimate,per_capita,10.1,328,,Sayur-sayuran
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/kacang_kacangan,,22008,rupiah,2024,survey_estimate,per_capita,10.1,328,,Kacang-kacangan
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/kacang_kacangan,,22109,rupiah,2025,survey_estimate,per_capita,10.1,328,,Kacang-kacangan
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/buah_buahan,,31628,rupiah,2024,survey_estimate,per_capita,10.1,328,,Buah-buahan
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/buah_buahan,,35478,rupiah,2025,survey_estimate,per_capita,10.1,328,,Buah-buahan
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19759,rupiah,2024,survey_estimate,per_capita,10.1,328,,Minyak dan kelapa
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19685,rupiah,2025,survey_estimate,per_capita,10.1,328,,Minyak dan kelapa
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/bahan_minuman,,18390,rupiah,2024,survey_estimate,per_capita,10.1,328,,Bahan minuman
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/bahan_minuman,,18648,rupiah,2025,survey_estimate,per_capita,10.1,328,,Bahan minuman
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/bumbu_bumbuan,,12669,rupiah,2024,survey_estimate,per_capita,10.1,328,,Bumbu-bumbuan
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/bumbu_bumbuan,,12718,rupiah,2025,survey_estimate,per_capita,10.1,328,,Bumbu-bumbuan
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/konsumsi_lainnya,,12776,rupiah,2024,survey_estimate,per_capita,10.1,328,,Konsumsi lainnya
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/konsumsi_lainnya,,10644,rupiah,2025,survey_estimate,per_capita,10.1,328,,Konsumsi lainnya
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,174753,rupiah,2024,survey_estimate,per_capita,10.1,328,,Makanan dan minuman jadi
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,178677,rupiah,2025,survey_estimate,per_capita,10.1,328,,Makanan dan minuman jadi
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/rokok,,72837,rupiah,2024,survey_estimate,per_capita,10.1,328,,Rokok
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/rokok,,64316,rupiah,2025,survey_estimate,per_capita,10.1,328,,Rokok
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/jumlah_makanan,,610281,rupiah,2024,survey_estimate,per_capita,10.1,328,,Jumlah makanan
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/jumlah_makanan,,610853,rupiah,2025,survey_estimate,per_capita,10.1,328,,Jumlah makanan
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,231254,rupiah,2024,survey_estimate,per_capita,10.1,328,,Perumahan dan fasilitas rumah tangga
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,225793,rupiah,2025,survey_estimate,per_capita,10.1,328,,Perumahan dan fasilitas rumah tangga
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,122353,rupiah,2024,survey_estimate,per_capita,10.1,328,,Aneka barang dan jasa
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,135148,rupiah,2025,survey_estimate,per_capita,10.1,328,,Aneka barang dan jasa
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,27877,rupiah,2024,survey_estimate,per_capita,10.1,328,,"Pakaian, alas kaki, dan tutup kepala"
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,30633,rupiah,2025,survey_estimate,per_capita,10.1,328,,"Pakaian, alas kaki, dan tutup kepala"
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/barang_tahan_lama,,65976,rupiah,2024,survey_estimate,per_capita,10.1,328,,Barang tahan lama
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/barang_tahan_lama,,30977,rupiah,2025,survey_estimate,per_capita,10.1,328,,Barang tahan lama
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,35023,rupiah,2024,survey_estimate,per_capita,10.1,328,,"Pajak, pungutan, dan asuransi"
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,42268,rupiah,2025,survey_estimate,per_capita,10.1,328,,"Pajak, pungutan, dan asuransi"
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,18427,rupiah,2024,survey_estimate,per_capita,10.1,328,,Keperluan pesta dan upacara/kenduri
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,500910,rupiah,2024,survey_estimate,per_capita,10.1,328,,Jumlah bukan makanan
+35.09,2,Kabupaten Jember,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,501243,rupiah,2025,survey_estimate,per_capita,10.1,328,,Jumlah bukan makanan
+35.09,2,Kabupaten Jember,expenditure,total,,1111191,rupiah,2024,survey_estimate,per_capita,10.1,328,,
+35.09,2,Kabupaten Jember,expenditure,total,,1112097,rupiah,2025,survey_estimate,per_capita,10.1,328,,

@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.01.21.1002,4,Kadomas,sex,laki_laki,,3842,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+36.01.21.1002,4,Kadomas,sex,perempuan,,3565,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+36.01.21.1002,4,Kadomas,total,total,,7407,jiwa,2025,registration,total_population,3.1,32,,
+36.01.21.1003,4,Babakan Kalanganyar,sex,laki_laki,,3627,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+36.01.21.1003,4,Babakan Kalanganyar,sex,perempuan,,3261,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+36.01.21.1003,4,Babakan Kalanganyar,total,total,,6888,jiwa,2025,registration,total_population,3.1,32,,
+36.01.21.1004,4,Kabayan,sex,laki_laki,,6109,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+36.01.21.1004,4,Kabayan,sex,perempuan,,5754,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+36.01.21.1004,4,Kabayan,total,total,,11863,jiwa,2025,registration,total_population,3.1,32,,
+36.01.21.1009,4,Pandeglang,sex,laki_laki,,11569,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+36.01.21.1009,4,Pandeglang,sex,perempuan,,11073,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+36.01.21.1009,4,Pandeglang,total,total,,22642,jiwa,2025,registration,total_population,3.1,32,,

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3511-kecamatan-351117-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.11.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pakem Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bondowoso",
+  "publisherDomain": "3511",
+  "publisherWebsite": "https://bondowosokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bondowoso (https://bondowosokab.bps.go.id), publikasi \"Kecamatan Pakem Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3511120",
+  "publicationNumber": "35110.26019",
+  "issn": "2776-866X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bondowosokab.bps.go.id/id/publication/2026/09/28/5f5007eb515af8fce03785b6/kecamatan-pakem-dalam-angka-2026.html",
+  "sourceFileSha256": "fa387a79845ea629eb43eb52f276b3544e197442e97a124b7fade7a9a09089c1",
+  "sourceFileBytes": 9316480,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bondowoso .",
+  "csvPath": "datasets/bps-3511-kecamatan-351117-dalam-angka-2026.csv",
+  "csvSha256": "4c4a33373c206758f0c2dcc4bf83160983146167a8c66e254d4627962b3a65d8",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pakem , 202 5",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pakem , 202 5",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

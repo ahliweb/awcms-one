@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.04.2012,4,Babakan Losari,sex,laki_laki,,2186,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.04.2012,4,Babakan Losari,sex,perempuan,,2138,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.04.2012,4,Babakan Losari,total,total,,4324,jiwa,2025,registration,total_population,3.1,52,,
+32.09.04.2011,4,Sidaresmi,sex,laki_laki,,1278,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.04.2011,4,Sidaresmi,sex,perempuan,,1342,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.04.2011,4,Sidaresmi,total,total,,2620,jiwa,2025,registration,total_population,3.1,52,,
+32.09.04.2009,4,Kalibuntu,sex,laki_laki,,2483,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.04.2009,4,Kalibuntu,sex,perempuan,,2552,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.04.2009,4,Kalibuntu,total,total,,5035,jiwa,2025,registration,total_population,3.1,52,,
+32.09.04.2008,4,Dukuhwidara,sex,laki_laki,,3744,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.04.2008,4,Dukuhwidara,sex,perempuan,,3643,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.04.2008,4,Dukuhwidara,total,total,,7387,jiwa,2025,registration,total_population,3.1,52,,
+32.09.04.2007,4,Pasuruan,sex,laki_laki,,3306,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.04.2007,4,Pasuruan,sex,perempuan,,3129,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.04.2007,4,Pasuruan,total,total,,6435,jiwa,2025,registration,total_population,3.1,52,,
+32.09.04.2010,4,Kalimukti,sex,laki_laki,,2978,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.04.2010,4,Kalimukti,sex,perempuan,,2916,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.04.2010,4,Kalimukti,total,total,,5894,jiwa,2025,registration,total_population,3.1,52,,
+32.09.04.2004,4,Pabedilan Kaler,sex,laki_laki,,2170,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.04.2004,4,Pabedilan Kaler,sex,perempuan,,2151,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.04.2004,4,Pabedilan Kaler,total,total,,4321,jiwa,2025,registration,total_population,3.1,52,,
+32.09.04.2013,4,Babakan Losari Lor,sex,laki_laki,,1953,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.04.2013,4,Babakan Losari Lor,sex,perempuan,,1843,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.04.2013,4,Babakan Losari Lor,total,total,,3796,jiwa,2025,registration,total_population,3.1,52,,
+32.09.04.2001,4,Pabedilan Kidul,sex,laki_laki,,3124,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.04.2001,4,Pabedilan Kidul,sex,perempuan,,3016,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.04.2001,4,Pabedilan Kidul,total,total,,6140,jiwa,2025,registration,total_population,3.1,52,,
+32.09.04.2003,4,Pabedilan Kulon,sex,laki_laki,,2521,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.04.2003,4,Pabedilan Kulon,sex,perempuan,,2446,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.04.2003,4,Pabedilan Kulon,total,total,,4967,jiwa,2025,registration,total_population,3.1,52,,
+32.09.04.2002,4,Pabedilan Wetan,sex,laki_laki,,2219,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.04.2002,4,Pabedilan Wetan,sex,perempuan,,2253,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.04.2002,4,Pabedilan Wetan,total,total,,4472,jiwa,2025,registration,total_population,3.1,52,,
+32.09.04.2006,4,Tersana,sex,laki_laki,,2573,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.04.2006,4,Tersana,sex,perempuan,,2556,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.04.2006,4,Tersana,total,total,,5129,jiwa,2025,registration,total_population,3.1,52,,
+32.09.04.2005,4,Silihasih,sex,laki_laki,,2652,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.04.2005,4,Silihasih,sex,perempuan,,2657,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.04.2005,4,Silihasih,total,total,,5309,jiwa,2025,registration,total_population,3.1,52,,
+32.09.04,3,Kecamatan Pabedilan,sex,laki_laki,,33187,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.04,3,Kecamatan Pabedilan,sex,perempuan,,32642,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.04,3,Kecamatan Pabedilan,total,total,,65829,jiwa,2025,registration,total_population,3.1,52,,
+32.09.04,3,Pabedilan,age_group,0-4,laki_laki,2135,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.04,3,Pabedilan,age_group,0-4,perempuan,2019,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.04,3,Pabedilan,age_group,0-4,,4154,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.04,3,Pabedilan,age_group,5-9,laki_laki,2716,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.04,3,Pabedilan,age_group,5-9,perempuan,2480,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.04,3,Pabedilan,age_group,5-9,,5196,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.04,3,Pabedilan,age_group,10-14,laki_laki,2748,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.04,3,Pabedilan,age_group,10-14,perempuan,2556,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.04,3,Pabedilan,age_group,10-14,,5304,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.04,3,Pabedilan,age_group,15-19,laki_laki,2343,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.04,3,Pabedilan,age_group,15-19,perempuan,2120,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.04,3,Pabedilan,age_group,15-19,,4463,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.04,3,Pabedilan,age_group,20-24,laki_laki,2467,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.04,3,Pabedilan,age_group,20-24,perempuan,2302,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.04,3,Pabedilan,age_group,20-24,,4769,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.04,3,Pabedilan,age_group,25-29,laki_laki,2859,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.04,3,Pabedilan,age_group,25-29,perempuan,2626,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.04,3,Pabedilan,age_group,25-29,,5485,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.04,3,Pabedilan,age_group,30-34,laki_laki,2689,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.04,3,Pabedilan,age_group,30-34,perempuan,2404,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.04,3,Pabedilan,age_group,30-34,,5093,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.04,3,Pabedilan,age_group,35-39,laki_laki,2467,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.04,3,Pabedilan,age_group,35-39,perempuan,2246,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.04,3,Pabedilan,age_group,35-39,,4713,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.04,3,Pabedilan,age_group,40-44,laki_laki,2564,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.04,3,Pabedilan,age_group,40-44,perempuan,2860,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.04,3,Pabedilan,age_group,40-44,,5424,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.04,3,Pabedilan,age_group,45-49,laki_laki,2536,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.04,3,Pabedilan,age_group,45-49,perempuan,2735,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.04,3,Pabedilan,age_group,45-49,,5271,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.04,3,Pabedilan,age_group,50-54,laki_laki,2233,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.04,3,Pabedilan,age_group,50-54,perempuan,2222,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.04,3,Pabedilan,age_group,50-54,,4455,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.04,3,Pabedilan,age_group,55-59,laki_laki,1675,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.04,3,Pabedilan,age_group,55-59,perempuan,1804,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.04,3,Pabedilan,age_group,55-59,,3479,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.04,3,Pabedilan,age_group,60-64,laki_laki,1303,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.04,3,Pabedilan,age_group,60-64,perempuan,1348,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.04,3,Pabedilan,age_group,60-64,,2651,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.04,3,Pabedilan,age_group,65-69,laki_laki,1060,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.04,3,Pabedilan,age_group,65-69,perempuan,1120,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.04,3,Pabedilan,age_group,65-69,,2180,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.04,3,Pabedilan,age_group,70-74,laki_laki,689,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.04,3,Pabedilan,age_group,70-74,perempuan,757,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.04,3,Pabedilan,age_group,70-74,,1446,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.04,3,Pabedilan,age_group,75+,laki_laki,703,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.04,3,Pabedilan,age_group,75+,perempuan,1043,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.04,3,Pabedilan,age_group,75+,,1746,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.04,3,Kecamatan Pabedilan,sex,laki_laki,,33187,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.04,3,Kecamatan Pabedilan,sex,perempuan,,32642,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.04,3,Kecamatan Pabedilan,total,total,,65829,jiwa,2025,registration,total_population,3.2,54,,

@@ -1,0 +1,84 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.74.01,3,Kademangan,total,total,,44.84,ribu_jiwa,2025,registration,total_population,3.1.1,59,,
+35.74.05,3,Kedopok,total,total,,39.56,ribu_jiwa,2025,registration,total_population,3.1.1,59,,
+35.74.02,3,Wonoasih,total,total,,35.84,ribu_jiwa,2025,registration,total_population,3.1.1,59,,
+35.74.03,3,Mayangan,total,total,,61.34,ribu_jiwa,2025,registration,total_population,3.1.1,59,,
+35.74.04,3,Kanigaran,total,total,,63.27,ribu_jiwa,2025,registration,total_population,3.1.1,59,,
+35.74,2,Kota Probolinggo,age_group,0-4,laki_laki,8533,jiwa,2025,registration,total_population,3.1.2,62,,0–4
+35.74,2,Kota Probolinggo,age_group,0-4,perempuan,8205,jiwa,2025,registration,total_population,3.1.2,62,,0–4
+35.74,2,Kota Probolinggo,age_group,0-4,,16738,jiwa,2025,registration,total_population,3.1.2,62,,0–4
+35.74,2,Kota Probolinggo,age_group,5-9,laki_laki,9978,jiwa,2025,registration,total_population,3.1.2,62,,5–9
+35.74,2,Kota Probolinggo,age_group,5-9,perempuan,9730,jiwa,2025,registration,total_population,3.1.2,62,,5–9
+35.74,2,Kota Probolinggo,age_group,5-9,,19708,jiwa,2025,registration,total_population,3.1.2,62,,5–9
+35.74,2,Kota Probolinggo,age_group,10-14,laki_laki,10379,jiwa,2025,registration,total_population,3.1.2,62,,10–14
+35.74,2,Kota Probolinggo,age_group,10-14,perempuan,9684,jiwa,2025,registration,total_population,3.1.2,62,,10–14
+35.74,2,Kota Probolinggo,age_group,10-14,,20063,jiwa,2025,registration,total_population,3.1.2,62,,10–14
+35.74,2,Kota Probolinggo,age_group,15-19,laki_laki,10182,jiwa,2025,registration,total_population,3.1.2,62,,15–19
+35.74,2,Kota Probolinggo,age_group,15-19,perempuan,9822,jiwa,2025,registration,total_population,3.1.2,62,,15–19
+35.74,2,Kota Probolinggo,age_group,15-19,,20004,jiwa,2025,registration,total_population,3.1.2,62,,15–19
+35.74,2,Kota Probolinggo,age_group,20-24,laki_laki,10241,jiwa,2025,registration,total_population,3.1.2,62,,20–24
+35.74,2,Kota Probolinggo,age_group,20-24,perempuan,9585,jiwa,2025,registration,total_population,3.1.2,62,,20–24
+35.74,2,Kota Probolinggo,age_group,20-24,,19826,jiwa,2025,registration,total_population,3.1.2,62,,20–24
+35.74,2,Kota Probolinggo,age_group,25-29,laki_laki,10077,jiwa,2025,registration,total_population,3.1.2,62,,25–29
+35.74,2,Kota Probolinggo,age_group,25-29,perempuan,9510,jiwa,2025,registration,total_population,3.1.2,62,,25–29
+35.74,2,Kota Probolinggo,age_group,25-29,,19587,jiwa,2025,registration,total_population,3.1.2,62,,25–29
+35.74,2,Kota Probolinggo,age_group,30-34,laki_laki,9010,jiwa,2025,registration,total_population,3.1.2,62,,30–34
+35.74,2,Kota Probolinggo,age_group,30-34,perempuan,8955,jiwa,2025,registration,total_population,3.1.2,62,,30–34
+35.74,2,Kota Probolinggo,age_group,30-34,,17965,jiwa,2025,registration,total_population,3.1.2,62,,30–34
+35.74,2,Kota Probolinggo,age_group,35-39,laki_laki,8389,jiwa,2025,registration,total_population,3.1.2,62,,35–39
+35.74,2,Kota Probolinggo,age_group,35-39,perempuan,8411,jiwa,2025,registration,total_population,3.1.2,62,,35–39
+35.74,2,Kota Probolinggo,age_group,35-39,,16800,jiwa,2025,registration,total_population,3.1.2,62,,35–39
+35.74,2,Kota Probolinggo,age_group,40-44,laki_laki,9164,jiwa,2025,registration,total_population,3.1.2,62,,40–44
+35.74,2,Kota Probolinggo,age_group,40-44,perempuan,9687,jiwa,2025,registration,total_population,3.1.2,62,,40–44
+35.74,2,Kota Probolinggo,age_group,40-44,,18851,jiwa,2025,registration,total_population,3.1.2,62,,40–44
+35.74,2,Kota Probolinggo,age_group,45-49,laki_laki,8515,jiwa,2025,registration,total_population,3.1.2,62,,45–49
+35.74,2,Kota Probolinggo,age_group,45-49,perempuan,8859,jiwa,2025,registration,total_population,3.1.2,62,,45–49
+35.74,2,Kota Probolinggo,age_group,45-49,,17374,jiwa,2025,registration,total_population,3.1.2,62,,45–49
+35.74,2,Kota Probolinggo,age_group,50-54,laki_laki,7886,jiwa,2025,registration,total_population,3.1.2,62,,50–54
+35.74,2,Kota Probolinggo,age_group,50-54,perempuan,8205,jiwa,2025,registration,total_population,3.1.2,62,,50–54
+35.74,2,Kota Probolinggo,age_group,50-54,,16091,jiwa,2025,registration,total_population,3.1.2,62,,50–54
+35.74,2,Kota Probolinggo,age_group,55-59,laki_laki,6712,jiwa,2025,registration,total_population,3.1.2,62,,55–59
+35.74,2,Kota Probolinggo,age_group,55-59,perempuan,7419,jiwa,2025,registration,total_population,3.1.2,62,,55–59
+35.74,2,Kota Probolinggo,age_group,55-59,,14131,jiwa,2025,registration,total_population,3.1.2,62,,55–59
+35.74,2,Kota Probolinggo,age_group,60-64,laki_laki,4915,jiwa,2025,registration,total_population,3.1.2,62,,60–64
+35.74,2,Kota Probolinggo,age_group,60-64,perempuan,5762,jiwa,2025,registration,total_population,3.1.2,62,,60–64
+35.74,2,Kota Probolinggo,age_group,60-64,,10677,jiwa,2025,registration,total_population,3.1.2,62,,60–64
+35.74,2,Kota Probolinggo,age_group,65-69,laki_laki,3726,jiwa,2025,registration,total_population,3.1.2,62,,65–69
+35.74,2,Kota Probolinggo,age_group,65-69,perempuan,4164,jiwa,2025,registration,total_population,3.1.2,62,,65–69
+35.74,2,Kota Probolinggo,age_group,65-69,,7890,jiwa,2025,registration,total_population,3.1.2,62,,65–69
+35.74,2,Kota Probolinggo,age_group,70-74,laki_laki,2205,jiwa,2025,registration,total_population,3.1.2,62,,70–74
+35.74,2,Kota Probolinggo,age_group,70-74,perempuan,2391,jiwa,2025,registration,total_population,3.1.2,62,,70–74
+35.74,2,Kota Probolinggo,age_group,70-74,,4596,jiwa,2025,registration,total_population,3.1.2,62,,70–74
+35.74,2,Kota Probolinggo,age_group,75+,laki_laki,1766,jiwa,2025,registration,total_population,3.1.2,62,,75+
+35.74,2,Kota Probolinggo,age_group,75+,perempuan,2782,jiwa,2025,registration,total_population,3.1.2,62,,75+
+35.74,2,Kota Probolinggo,age_group,75+,,4548,jiwa,2025,registration,total_population,3.1.2,62,,75+
+35.74.01,3,Kademangan,religion,islam,,44411,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+35.74.01,3,Kademangan,religion,kristen,,207,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+35.74.01,3,Kademangan,religion,katolik,,178,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+35.74.01,3,Kademangan,religion,hindu,,10,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+35.74.01,3,Kademangan,religion,buddha,,31,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+35.74.01,3,Kademangan,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+35.74.05,3,Kedopok,religion,islam,,39401,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+35.74.05,3,Kedopok,religion,kristen,,113,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+35.74.05,3,Kedopok,religion,katolik,,41,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+35.74.05,3,Kedopok,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+35.74.05,3,Kedopok,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+35.74.05,3,Kedopok,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+35.74.02,3,Wonoasih,religion,islam,,35556,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+35.74.02,3,Wonoasih,religion,kristen,,161,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+35.74.02,3,Wonoasih,religion,katolik,,96,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+35.74.02,3,Wonoasih,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+35.74.02,3,Wonoasih,religion,buddha,,20,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+35.74.02,3,Wonoasih,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+35.74.03,3,Mayangan,religion,islam,,57067,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+35.74.03,3,Mayangan,religion,kristen,,2013,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+35.74.03,3,Mayangan,religion,katolik,,1507,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+35.74.03,3,Mayangan,religion,hindu,,19,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+35.74.03,3,Mayangan,religion,buddha,,724,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+35.74.03,3,Mayangan,religion,lainnya,,15,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya
+35.74.04,3,Kanigaran,religion,islam,,61722,jiwa,2025,registration,total_population,4.3.1,127,,Islam
+35.74.04,3,Kanigaran,religion,kristen,,718,jiwa,2025,registration,total_population,4.3.1,127,,Protestan
+35.74.04,3,Kanigaran,religion,katolik,,576,jiwa,2025,registration,total_population,4.3.1,127,,Katolik
+35.74.04,3,Kanigaran,religion,hindu,,60,jiwa,2025,registration,total_population,4.3.1,127,,Hindu
+35.74.04,3,Kanigaran,religion,buddha,,196,jiwa,2025,registration,total_population,4.3.1,127,,Budha
+35.74.04,3,Kanigaran,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,127,,Lainnya

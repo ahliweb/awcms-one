@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.07.29.2004,4,Bojongmalang,sex,laki_laki,,1412,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.07.29.2004,4,Bojongmalang,sex,perempuan,,1400,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.07.29.2004,4,Bojongmalang,total,total,,2812,jiwa,2025,registration,total_population,3.1,32,,
+32.07.29.2003,4,Raksabaya,sex,laki_laki,,1961,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.07.29.2003,4,Raksabaya,sex,perempuan,,2058,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.07.29.2003,4,Raksabaya,total,total,,4019,jiwa,2025,registration,total_population,3.1,32,,
+32.07.29.2002,4,Beber,sex,laki_laki,,1543,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.07.29.2002,4,Beber,sex,perempuan,,1554,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.07.29.2002,4,Beber,total,total,,3097,jiwa,2025,registration,total_population,3.1,32,,
+32.07.29.2001,4,Cimaragas,sex,laki_laki,,2330,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.07.29.2001,4,Cimaragas,sex,perempuan,,2394,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.07.29.2001,4,Cimaragas,total,total,,4724,jiwa,2025,registration,total_population,3.1,32,,
+32.07.29.2005,4,Jayaraksa,sex,laki_laki,,1205,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.07.29.2005,4,Jayaraksa,sex,perempuan,,1251,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.07.29.2005,4,Jayaraksa,total,total,,2456,jiwa,2025,registration,total_population,3.1,32,,
+32.07.29,3,Cimaragas,sex,laki_laki,,8451,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+32.07.29,3,Cimaragas,sex,perempuan,,8657,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+32.07.29,3,Cimaragas,total,total,,17108,jiwa,2025,registration,total_population,3.1,32,,
+32.07.29,3,Cimaragas,age_group,0-4,laki_laki,510,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+32.07.29,3,Cimaragas,age_group,0-4,perempuan,440,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+32.07.29,3,Cimaragas,age_group,0-4,,950,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+32.07.29,3,Cimaragas,age_group,5-9,laki_laki,586,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+32.07.29,3,Cimaragas,age_group,5-9,perempuan,602,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+32.07.29,3,Cimaragas,age_group,5-9,,1188,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+32.07.29,3,Cimaragas,age_group,10-14,laki_laki,605,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+32.07.29,3,Cimaragas,age_group,10-14,perempuan,570,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+32.07.29,3,Cimaragas,age_group,10-14,,1175,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+32.07.29,3,Cimaragas,age_group,15-19,laki_laki,587,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+32.07.29,3,Cimaragas,age_group,15-19,perempuan,519,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+32.07.29,3,Cimaragas,age_group,15-19,,1106,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+32.07.29,3,Cimaragas,age_group,20-24,laki_laki,649,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+32.07.29,3,Cimaragas,age_group,20-24,perempuan,621,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+32.07.29,3,Cimaragas,age_group,20-24,,1270,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+32.07.29,3,Cimaragas,age_group,25-29,laki_laki,623,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+32.07.29,3,Cimaragas,age_group,25-29,perempuan,627,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+32.07.29,3,Cimaragas,age_group,25-29,,1250,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+32.07.29,3,Cimaragas,age_group,30-34,laki_laki,634,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+32.07.29,3,Cimaragas,age_group,30-34,perempuan,575,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+32.07.29,3,Cimaragas,age_group,30-34,,1209,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+32.07.29,3,Cimaragas,age_group,35-39,laki_laki,502,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+32.07.29,3,Cimaragas,age_group,35-39,perempuan,509,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+32.07.29,3,Cimaragas,age_group,35-39,,1011,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+32.07.29,3,Cimaragas,age_group,40-44,laki_laki,571,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+32.07.29,3,Cimaragas,age_group,40-44,perempuan,534,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+32.07.29,3,Cimaragas,age_group,40-44,,1105,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+32.07.29,3,Cimaragas,age_group,45-49,laki_laki,528,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+32.07.29,3,Cimaragas,age_group,45-49,perempuan,572,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+32.07.29,3,Cimaragas,age_group,45-49,,1100,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+32.07.29,3,Cimaragas,age_group,50-54,laki_laki,519,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+32.07.29,3,Cimaragas,age_group,50-54,perempuan,555,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+32.07.29,3,Cimaragas,age_group,50-54,,1074,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+32.07.29,3,Cimaragas,age_group,55-59,laki_laki,483,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+32.07.29,3,Cimaragas,age_group,55-59,perempuan,521,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+32.07.29,3,Cimaragas,age_group,55-59,,1004,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+32.07.29,3,Cimaragas,age_group,60-64,laki_laki,467,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+32.07.29,3,Cimaragas,age_group,60-64,perempuan,565,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+32.07.29,3,Cimaragas,age_group,60-64,,1032,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+32.07.29,3,Cimaragas,age_group,65-69,laki_laki,463,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+32.07.29,3,Cimaragas,age_group,65-69,perempuan,527,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+32.07.29,3,Cimaragas,age_group,65-69,,990,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+32.07.29,3,Cimaragas,age_group,70-74,laki_laki,333,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+32.07.29,3,Cimaragas,age_group,70-74,perempuan,375,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+32.07.29,3,Cimaragas,age_group,70-74,,708,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+32.07.29,3,Cimaragas,age_group,75+,laki_laki,391,jiwa,2025,registration,total_population,3.2,34,,75+
+32.07.29,3,Cimaragas,age_group,75+,perempuan,545,jiwa,2025,registration,total_population,3.2,34,,75+
+32.07.29,3,Cimaragas,age_group,75+,,936,jiwa,2025,registration,total_population,3.2,34,,75+
+32.07.29,3,Cimaragas,sex,laki_laki,,8451,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+32.07.29,3,Cimaragas,sex,perempuan,,8657,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+32.07.29,3,Cimaragas,total,total,,17108,jiwa,2025,registration,total_population,3.2,34,,

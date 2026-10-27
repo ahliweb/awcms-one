@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.73.02.1001,4,KAYU ARA,sex,laki_laki,,1819,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.02.1001,4,KAYU ARA,sex,perempuan,,1805,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.02.1001,4,KAYU ARA,total,total,,3624,jiwa,2025,registration,total_population,3.1,26,,
+16.73.02.1015,4,WATAS LUBUK DURIAN,sex,laki_laki,,656,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.02.1015,4,WATAS LUBUK DURIAN,sex,perempuan,,667,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.02.1015,4,WATAS LUBUK DURIAN,total,total,,1323,jiwa,2025,registration,total_population,3.1,26,,
+16.73.02.1002,4,LUBUK TANJUNG,sex,laki_laki,,3689,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.02.1002,4,LUBUK TANJUNG,sex,perempuan,,3633,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.02.1002,4,LUBUK TANJUNG,total,total,,7322,jiwa,2025,registration,total_population,3.1,26,,
+16.73.02.1003,4,TANJUNG INDAH,sex,laki_laki,,1593,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.02.1003,4,TANJUNG INDAH,sex,perempuan,,1571,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.02.1003,4,TANJUNG INDAH,total,total,,3164,jiwa,2025,registration,total_population,3.1,26,,
+16.73.02.1018,4,TANJUNG AMAN,sex,laki_laki,,1692,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.02.1018,4,TANJUNG AMAN,sex,perempuan,,1672,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.02.1018,4,TANJUNG AMAN,total,total,,3364,jiwa,2025,registration,total_population,3.1,26,,
+16.73.02.1016,4,LUBUK AMAN,sex,laki_laki,,1032,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.02.1016,4,LUBUK AMAN,sex,perempuan,,1000,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.02.1016,4,LUBUK AMAN,total,total,,2032,jiwa,2025,registration,total_population,3.1,26,,
+16.73.02.1019,4,PELITA JAYA,sex,laki_laki,,1606,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.02.1019,4,PELITA JAYA,sex,perempuan,,1590,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.02.1019,4,PELITA JAYA,total,total,,3196,jiwa,2025,registration,total_population,3.1,26,,
+16.73.02.1004,4,BANDUNG UJUNG,sex,laki_laki,,1439,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.02.1004,4,BANDUNG UJUNG,sex,perempuan,,1523,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.02.1004,4,BANDUNG UJUNG,total,total,,2962,jiwa,2025,registration,total_population,3.1,26,,
+16.73.02.1008,4,BANDUNG KIRI,sex,laki_laki,,1518,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.02.1008,4,BANDUNG KIRI,sex,perempuan,,1579,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.02.1008,4,BANDUNG KIRI,total,total,,3097,jiwa,2025,registration,total_population,3.1,26,,
+16.73.02.1009,4,SUKAJADI,sex,laki_laki,,2120,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.02.1009,4,SUKAJADI,sex,perempuan,,2027,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.02.1009,4,SUKAJADI,total,total,,4147,jiwa,2025,registration,total_population,3.1,26,,
+16.73.02.1010,4,MUARA ENIM,sex,laki_laki,,3767,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.02.1010,4,MUARA ENIM,sex,perempuan,,3633,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.02.1010,4,MUARA ENIM,total,total,,7400,jiwa,2025,registration,total_population,3.1,26,,
+16.73.02,3,Lubuk Linggau Barat I,sex,laki_laki,,20931,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+16.73.02,3,Lubuk Linggau Barat I,sex,perempuan,,20700,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+16.73.02,3,Lubuk Linggau Barat I,total,total,,41631,jiwa,2025,registration,total_population,3.1,26,,

@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.72.03.2006,4,Beurawang,sex,laki_laki,,199,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+11.72.03.2006,4,Beurawang,sex,perempuan,,210,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Female
+11.72.03.2006,4,Beurawang,total,total,,409,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+11.72.03.2005,4,Keunekai,sex,laki_laki,,523,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+11.72.03.2005,4,Keunekai,sex,perempuan,,517,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Female
+11.72.03.2005,4,Keunekai,total,total,,1040,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+11.72.03.2004,4,Paya,sex,laki_laki,,384,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+11.72.03.2004,4,Paya,sex,perempuan,,374,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Female
+11.72.03.2004,4,Paya,total,total,,758,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+11.72.03.2003,4,Paya Seunara,sex,laki_laki,,1705,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+11.72.03.2003,4,Paya Seunara,sex,perempuan,,1655,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Female
+11.72.03.2003,4,Paya Seunara,total,total,,3360,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+11.72.03.2001,4,Iboih,sex,laki_laki,,810,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+11.72.03.2001,4,Iboih,sex,perempuan,,735,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Female
+11.72.03.2001,4,Iboih,total,total,,1545,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+11.72.03,3,Sukamakmue,sex,laki_laki,,4522,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+11.72.03,3,Sukamakmue,sex,perempuan,,4439,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Female
+11.72.03,3,Sukamakmue,total,total,,8961,jiwa,2025,registration,total_population,unnumbered-p16,16,,

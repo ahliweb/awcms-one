@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3278-kecamatan-327809-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.78.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bungursari Dalam Angka 2026",
+  "publisherName": "BPS KOTA TASIKMALAYA",
+  "publisherDomain": "3278",
+  "publisherWebsite": "https://tasikmalayakota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KOTA TASIKMALAYA (https://tasikmalayakota.bps.go.id), publikasi \"Kecamatan Bungursari Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3278071",
+  "publicationNumber": "32780.26013",
+  "issn": "2962-2700",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tasikmalayakota.bps.go.id/id/publication/2026/09/28/2cca5d2c50f6054979707c4c/kecamatan-bungursari-dalam-angka-2026.html",
+  "sourceFileSha256": "bf049c8364ba328b55869d31b06dc687f8568ec4d9268cbf7b78a11bdf4fbb89",
+  "sourceFileBytes": 14310444,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Tasikmalaya.",
+  "csvPath": "datasets/bps-3278-kecamatan-327809-dalam-angka-2026.csv",
+  "csvSha256": "6fbc8e4a328f21b3715ce408face40217de83f3941c416905ce7d55478357f35",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bungursari, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bungursari, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

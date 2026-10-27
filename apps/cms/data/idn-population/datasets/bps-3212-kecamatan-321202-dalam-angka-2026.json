@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3212-kecamatan-321202-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.12.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kroya Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN INDRAMAYU",
+  "publisherDomain": "3212",
+  "publisherWebsite": "https://indramayukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN INDRAMAYU (https://indramayukab.bps.go.id), publikasi \"Kecamatan Kroya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3212024",
+  "publicationNumber": "32120.24013",
+  "issn": "2807-4491",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://indramayukab.bps.go.id/id/publication/2026/09/28/1a5d5eacc9a1b02292894401/kecamatan-kroya-dalam-angka-2026.html",
+  "sourceFileSha256": "e75d7cb651737cac8cd55b1d7e5ed3d3b59f9556686dd988e87ba559dae9ad0b",
+  "sourceFileBytes": 21057100,
+  "sourcePages": [30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Indramayu.",
+  "csvPath": "datasets/bps-3212-kecamatan-321202-dalam-angka-2026.csv",
+  "csvSha256": "bce8b3ed75cb69082347c51bfe605f59371cddb1e0cc99ba4990d0b9dbd7a3ed",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kroya, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1 (sex-by-village) could not be read reliably and is not included (figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?))"
+  ]
+}

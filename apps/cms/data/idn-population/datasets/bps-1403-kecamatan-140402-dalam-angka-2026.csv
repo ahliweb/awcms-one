@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.04.02.2009,4,Bagan Jaya,sex,laki_laki,,3521,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.02.2009,4,Bagan Jaya,sex,perempuan,,3471,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.02.2009,4,Bagan Jaya,total,total,,6992,jiwa,2026,registration,total_population,3.1,29,,
+14.04.02.2010,4,Suhada,sex,laki_laki,,1706,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.02.2010,4,Suhada,sex,perempuan,,1612,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.02.2010,4,Suhada,total,total,,3318,jiwa,2026,registration,total_population,3.1,29,,
+14.04.02.2008,4,Sungai Rukam,sex,laki_laki,,1939,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.02.2008,4,Sungai Rukam,sex,perempuan,,1719,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.02.2008,4,Sungai Rukam,total,total,,3658,jiwa,2026,registration,total_population,3.1,29,,
+14.04.02.2004,4,Pengalihan,sex,laki_laki,,1671,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.02.2004,4,Pengalihan,sex,perempuan,,1590,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.02.2004,4,Pengalihan,total,total,,3261,jiwa,2026,registration,total_population,3.1,29,,
+14.04.02.2005,4,Sungai Ambat,sex,laki_laki,,929,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.02.2005,4,Sungai Ambat,sex,perempuan,,836,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.02.2005,4,Sungai Ambat,total,total,,1765,jiwa,2026,registration,total_population,3.1,29,,
+14.04.02.1002,4,Pusaran,sex,laki_laki,,1649,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.02.1002,4,Pusaran,sex,perempuan,,1502,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.02.1002,4,Pusaran,total,total,,3151,jiwa,2026,registration,total_population,3.1,29,,
+14.04.02.1001,4,Enok,sex,laki_laki,,2533,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.02.1001,4,Enok,sex,perempuan,,2384,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.02.1001,4,Enok,total,total,,4917,jiwa,2026,registration,total_population,3.1,29,,
+14.04.02.1003,4,Teluk Medan,sex,laki_laki,,299,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.02.1003,4,Teluk Medan,sex,perempuan,,276,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.02.1003,4,Teluk Medan,total,total,,575,jiwa,2026,registration,total_population,3.1,29,,
+14.04.02.2007,4,Rantau Panjang,sex,laki_laki,,928,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.02.2007,4,Rantau Panjang,sex,perempuan,,832,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.02.2007,4,Rantau Panjang,total,total,,1760,jiwa,2026,registration,total_population,3.1,29,,
+14.04.02.2006,4,Simpang Tiga,sex,laki_laki,,573,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.02.2006,4,Simpang Tiga,sex,perempuan,,499,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.02.2006,4,Simpang Tiga,total,total,,1072,jiwa,2026,registration,total_population,3.1,29,,
+14.04.02.2011,4,Jaya Bhakti,sex,laki_laki,,1171,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.02.2011,4,Jaya Bhakti,sex,perempuan,,1114,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.02.2011,4,Jaya Bhakti,total,total,,2285,jiwa,2026,registration,total_population,3.1,29,,
+14.04.02.2012,4,Sungai Lokan,sex,laki_laki,,726,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.02.2012,4,Sungai Lokan,sex,perempuan,,662,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.02.2012,4,Sungai Lokan,total,total,,1388,jiwa,2026,registration,total_population,3.1,29,,
+14.04.02.1013,4,Pantai Seberang Makmur,sex,laki_laki,,1001,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.02.1013,4,Pantai Seberang Makmur,sex,perempuan,,852,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.02.1013,4,Pantai Seberang Makmur,total,total,,1853,jiwa,2026,registration,total_population,3.1,29,,
+14.04.02.2014,4,Simpang Tiga Daratan,sex,laki_laki,,815,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.02.2014,4,Simpang Tiga Daratan,sex,perempuan,,715,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.02.2014,4,Simpang Tiga Daratan,total,total,,1530,jiwa,2026,registration,total_population,3.1,29,,
+14.04.02,3,Enok,sex,laki_laki,,19461,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.02,3,Enok,sex,perempuan,,18064,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.02,3,Enok,total,total,,37525,jiwa,2026,registration,total_population,3.1,29,,

@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.77.01.1001,4,Melong,sex,laki_laki,,32981,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.77.01.1001,4,Melong,sex,perempuan,,32916,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.77.01.1001,4,Melong,total,total,,65897,jiwa,2025,registration,total_population,3.1,30,,
+32.77.01.1002,4,Cibeureum,sex,laki_laki,,31402,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.77.01.1002,4,Cibeureum,sex,perempuan,,30846,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.77.01.1002,4,Cibeureum,total,total,,62248,jiwa,2025,registration,total_population,3.1,30,,
+32.77.01.1003,4,Utama,sex,laki_laki,,17843,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.77.01.1003,4,Utama,sex,perempuan,,17429,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.77.01.1003,4,Utama,total,total,,35272,jiwa,2025,registration,total_population,3.1,30,,
+32.77.01.1004,4,Leuwigajah,sex,laki_laki,,24309,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.77.01.1004,4,Leuwigajah,sex,perempuan,,24240,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.77.01.1004,4,Leuwigajah,total,total,,48549,jiwa,2025,registration,total_population,3.1,30,,
+32.77.01.1005,4,Cibeber,sex,laki_laki,,15632,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.77.01.1005,4,Cibeber,sex,perempuan,,15484,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.77.01.1005,4,Cibeber,total,total,,31116,jiwa,2025,registration,total_population,3.1,30,,
+32.77.01,3,Cimahi Selatan,sex,laki_laki,,122167,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+32.77.01,3,Cimahi Selatan,sex,perempuan,,120915,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+32.77.01,3,Cimahi Selatan,total,total,,243082,jiwa,2025,registration,total_population,3.1,30,,
+32.77.01,3,Cimahi Selatan,age_group,0-4,laki_laki,7599,jiwa,2025,registration,total_population,3.2,32,,0-4
+32.77.01,3,Cimahi Selatan,age_group,0-4,perempuan,7205,jiwa,2025,registration,total_population,3.2,32,,0-4
+32.77.01,3,Cimahi Selatan,age_group,0-4,,14804,jiwa,2025,registration,total_population,3.2,32,,0-4
+32.77.01,3,Cimahi Selatan,age_group,5-9,laki_laki,10021,jiwa,2025,registration,total_population,3.2,32,,5-9
+32.77.01,3,Cimahi Selatan,age_group,5-9,perempuan,9511,jiwa,2025,registration,total_population,3.2,32,,5-9
+32.77.01,3,Cimahi Selatan,age_group,5-9,,19532,jiwa,2025,registration,total_population,3.2,32,,5-9
+32.77.01,3,Cimahi Selatan,age_group,10-14,laki_laki,10243,jiwa,2025,registration,total_population,3.2,32,,10-14
+32.77.01,3,Cimahi Selatan,age_group,10-14,perempuan,9648,jiwa,2025,registration,total_population,3.2,32,,10-14
+32.77.01,3,Cimahi Selatan,age_group,10-14,,19891,jiwa,2025,registration,total_population,3.2,32,,10-14
+32.77.01,3,Cimahi Selatan,age_group,15-19,laki_laki,9693,jiwa,2025,registration,total_population,3.2,32,,15-19
+32.77.01,3,Cimahi Selatan,age_group,15-19,perempuan,9124,jiwa,2025,registration,total_population,3.2,32,,15-19
+32.77.01,3,Cimahi Selatan,age_group,15-19,,18817,jiwa,2025,registration,total_population,3.2,32,,15-19
+32.77.01,3,Cimahi Selatan,age_group,20-24,laki_laki,10489,jiwa,2025,registration,total_population,3.2,32,,20-24
+32.77.01,3,Cimahi Selatan,age_group,20-24,perempuan,10063,jiwa,2025,registration,total_population,3.2,32,,20-24
+32.77.01,3,Cimahi Selatan,age_group,20-24,,20552,jiwa,2025,registration,total_population,3.2,32,,20-24
+32.77.01,3,Cimahi Selatan,age_group,25-29,laki_laki,10108,jiwa,2025,registration,total_population,3.2,32,,25-29
+32.77.01,3,Cimahi Selatan,age_group,25-29,perempuan,9958,jiwa,2025,registration,total_population,3.2,32,,25-29
+32.77.01,3,Cimahi Selatan,age_group,25-29,,20066,jiwa,2025,registration,total_population,3.2,32,,25-29
+32.77.01,3,Cimahi Selatan,age_group,30-34,laki_laki,9624,jiwa,2025,registration,total_population,3.2,32,,30-34
+32.77.01,3,Cimahi Selatan,age_group,30-34,perempuan,9259,jiwa,2025,registration,total_population,3.2,32,,30-34
+32.77.01,3,Cimahi Selatan,age_group,30-34,,18883,jiwa,2025,registration,total_population,3.2,32,,30-34
+32.77.01,3,Cimahi Selatan,age_group,35-39,laki_laki,8365,jiwa,2025,registration,total_population,3.2,32,,35-39
+32.77.01,3,Cimahi Selatan,age_group,35-39,perempuan,7864,jiwa,2025,registration,total_population,3.2,32,,35-39
+32.77.01,3,Cimahi Selatan,age_group,35-39,,16229,jiwa,2025,registration,total_population,3.2,32,,35-39
+32.77.01,3,Cimahi Selatan,age_group,40-44,laki_laki,9296,jiwa,2025,registration,total_population,3.2,32,,40-44
+32.77.01,3,Cimahi Selatan,age_group,40-44,perempuan,9232,jiwa,2025,registration,total_population,3.2,32,,40-44
+32.77.01,3,Cimahi Selatan,age_group,40-44,,18528,jiwa,2025,registration,total_population,3.2,32,,40-44
+32.77.01,3,Cimahi Selatan,age_group,45-49,laki_laki,9175,jiwa,2025,registration,total_population,3.2,32,,45-49
+32.77.01,3,Cimahi Selatan,age_group,45-49,perempuan,9546,jiwa,2025,registration,total_population,3.2,32,,45-49
+32.77.01,3,Cimahi Selatan,age_group,45-49,,18721,jiwa,2025,registration,total_population,3.2,32,,45-49
+32.77.01,3,Cimahi Selatan,age_group,50-54,laki_laki,8263,jiwa,2025,registration,total_population,3.2,32,,50-54
+32.77.01,3,Cimahi Selatan,age_group,50-54,perempuan,8619,jiwa,2025,registration,total_population,3.2,32,,50-54
+32.77.01,3,Cimahi Selatan,age_group,50-54,,16882,jiwa,2025,registration,total_population,3.2,32,,50-54
+32.77.01,3,Cimahi Selatan,age_group,55-59,laki_laki,6746,jiwa,2025,registration,total_population,3.2,32,,55-59
+32.77.01,3,Cimahi Selatan,age_group,55-59,perempuan,6983,jiwa,2025,registration,total_population,3.2,32,,55-59
+32.77.01,3,Cimahi Selatan,age_group,55-59,,13729,jiwa,2025,registration,total_population,3.2,32,,55-59
+32.77.01,3,Cimahi Selatan,age_group,60-64,laki_laki,4824,jiwa,2025,registration,total_population,3.2,32,,60-64
+32.77.01,3,Cimahi Selatan,age_group,60-64,perempuan,5434,jiwa,2025,registration,total_population,3.2,32,,60-64
+32.77.01,3,Cimahi Selatan,age_group,60-64,,10258,jiwa,2025,registration,total_population,3.2,32,,60-64
+32.77.01,3,Cimahi Selatan,age_group,65-69,laki_laki,3675,jiwa,2025,registration,total_population,3.2,32,,65-69
+32.77.01,3,Cimahi Selatan,age_group,65-69,perempuan,3734,jiwa,2025,registration,total_population,3.2,32,,65-69
+32.77.01,3,Cimahi Selatan,age_group,65-69,,7409,jiwa,2025,registration,total_population,3.2,32,,65-69
+32.77.01,3,Cimahi Selatan,age_group,70-74,laki_laki,2204,jiwa,2025,registration,total_population,3.2,32,,70-74
+32.77.01,3,Cimahi Selatan,age_group,70-74,perempuan,2308,jiwa,2025,registration,total_population,3.2,32,,70-74
+32.77.01,3,Cimahi Selatan,age_group,70-74,,4512,jiwa,2025,registration,total_population,3.2,32,,70-74
+32.77.01,3,Cimahi Selatan,age_group,75+,laki_laki,1842,jiwa,2025,registration,total_population,3.2,32,,75+
+32.77.01,3,Cimahi Selatan,age_group,75+,perempuan,2427,jiwa,2025,registration,total_population,3.2,32,,75+
+32.77.01,3,Cimahi Selatan,age_group,75+,,4269,jiwa,2025,registration,total_population,3.2,32,,75+
+32.77.01,3,Cimahi Selatan,sex,laki_laki,,122167,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+32.77.01,3,Cimahi Selatan,sex,perempuan,,120915,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+32.77.01,3,Cimahi Selatan,total,total,,243082,jiwa,2025,registration,total_population,3.2,32,,

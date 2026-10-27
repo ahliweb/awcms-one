@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.07.11.1001,4,Simpang Kanan,sex,laki_laki,,3852,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.11.1001,4,Simpang Kanan,sex,perempuan,,3683,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.11.1001,4,Simpang Kanan,total,total,,7535,jiwa,2025,registration,total_population,3.1,18,,
+14.07.11.2002,4,Kota Parit,sex,laki_laki,,2231,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.11.2002,4,Kota Parit,sex,perempuan,,2117,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.11.2002,4,Kota Parit,total,total,,4348,jiwa,2025,registration,total_population,3.1,18,,
+14.07.11.2003,4,Bagan Nibung,sex,laki_laki,,2587,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.11.2003,4,Bagan Nibung,sex,perempuan,,2522,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.11.2003,4,Bagan Nibung,total,total,,5109,jiwa,2025,registration,total_population,3.1,18,,
+14.07.11.2004,4,Bukit Damar,sex,laki_laki,,2215,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.11.2004,4,Bukit Damar,sex,perempuan,,2171,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.11.2004,4,Bukit Damar,total,total,,4386,jiwa,2025,registration,total_population,3.1,18,,
+14.07.11.2005,4,Bukit Mas,sex,laki_laki,,226,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.11.2005,4,Bukit Mas,sex,perempuan,,199,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.11.2005,4,Bukit Mas,total,total,,425,jiwa,2025,registration,total_population,3.1,18,,
+14.07.11.2006,4,Bukit Selamat,sex,laki_laki,,2489,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.11.2006,4,Bukit Selamat,sex,perempuan,,2351,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.11.2006,4,Bukit Selamat,total,total,,4840,jiwa,2025,registration,total_population,3.1,18,,
+14.07.11,3,Simpang Kanan,sex,laki_laki,,13600,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.11,3,Simpang Kanan,sex,perempuan,,13043,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.11,3,Simpang Kanan,total,total,,26643,jiwa,2025,registration,total_population,3.1,18,,
+14.07.11,3,Simpang Kanan,age_group,0-4,laki_laki,790,jiwa,2025,registration,total_population,3.2,20,,0 - 4
+14.07.11,3,Simpang Kanan,age_group,0-4,perempuan,756,jiwa,2025,registration,total_population,3.2,20,,0 - 4
+14.07.11,3,Simpang Kanan,age_group,0-4,,1546,jiwa,2025,registration,total_population,3.2,20,,0 - 4
+14.07.11,3,Simpang Kanan,age_group,5-9,laki_laki,1257,jiwa,2025,registration,total_population,3.2,20,,5 - 9
+14.07.11,3,Simpang Kanan,age_group,5-9,perempuan,1171,jiwa,2025,registration,total_population,3.2,20,,5 - 9
+14.07.11,3,Simpang Kanan,age_group,5-9,,2428,jiwa,2025,registration,total_population,3.2,20,,5 - 9
+14.07.11,3,Simpang Kanan,age_group,10-14,laki_laki,1422,jiwa,2025,registration,total_population,3.2,20,,10 - 14
+14.07.11,3,Simpang Kanan,age_group,10-14,perempuan,1375,jiwa,2025,registration,total_population,3.2,20,,10 - 14
+14.07.11,3,Simpang Kanan,age_group,10-14,,2797,jiwa,2025,registration,total_population,3.2,20,,10 - 14
+14.07.11,3,Simpang Kanan,age_group,15-19,laki_laki,1282,jiwa,2025,registration,total_population,3.2,20,,15 - 19
+14.07.11,3,Simpang Kanan,age_group,15-19,perempuan,1228,jiwa,2025,registration,total_population,3.2,20,,15 - 19
+14.07.11,3,Simpang Kanan,age_group,15-19,,2510,jiwa,2025,registration,total_population,3.2,20,,15 - 19
+14.07.11,3,Simpang Kanan,age_group,20-24,laki_laki,1282,jiwa,2025,registration,total_population,3.2,20,,20 - 24
+14.07.11,3,Simpang Kanan,age_group,20-24,perempuan,1235,jiwa,2025,registration,total_population,3.2,20,,20 - 24
+14.07.11,3,Simpang Kanan,age_group,20-24,,2517,jiwa,2025,registration,total_population,3.2,20,,20 - 24
+14.07.11,3,Simpang Kanan,age_group,25-29,laki_laki,1083,jiwa,2025,registration,total_population,3.2,20,,25 - 29
+14.07.11,3,Simpang Kanan,age_group,25-29,perempuan,999,jiwa,2025,registration,total_population,3.2,20,,25 - 29
+14.07.11,3,Simpang Kanan,age_group,25-29,,2082,jiwa,2025,registration,total_population,3.2,20,,25 - 29
+14.07.11,3,Simpang Kanan,age_group,30-34,laki_laki,985,jiwa,2025,registration,total_population,3.2,20,,30 - 34
+14.07.11,3,Simpang Kanan,age_group,30-34,perempuan,961,jiwa,2025,registration,total_population,3.2,20,,30 - 34
+14.07.11,3,Simpang Kanan,age_group,30-34,,1946,jiwa,2025,registration,total_population,3.2,20,,30 - 34
+14.07.11,3,Simpang Kanan,age_group,35-39,laki_laki,899,jiwa,2025,registration,total_population,3.2,20,,35 - 39
+14.07.11,3,Simpang Kanan,age_group,35-39,perempuan,945,jiwa,2025,registration,total_population,3.2,20,,35 - 39
+14.07.11,3,Simpang Kanan,age_group,35-39,,1844,jiwa,2025,registration,total_population,3.2,20,,35 - 39
+14.07.11,3,Simpang Kanan,age_group,40-44,laki_laki,987,jiwa,2025,registration,total_population,3.2,20,,40 - 44
+14.07.11,3,Simpang Kanan,age_group,40-44,perempuan,985,jiwa,2025,registration,total_population,3.2,20,,40 - 44
+14.07.11,3,Simpang Kanan,age_group,40-44,,1972,jiwa,2025,registration,total_population,3.2,20,,40 - 44
+14.07.11,3,Simpang Kanan,age_group,45-49,laki_laki,931,jiwa,2025,registration,total_population,3.2,20,,45 - 49
+14.07.11,3,Simpang Kanan,age_group,45-49,perempuan,908,jiwa,2025,registration,total_population,3.2,20,,45 - 49
+14.07.11,3,Simpang Kanan,age_group,45-49,,1839,jiwa,2025,registration,total_population,3.2,20,,45 - 49
+14.07.11,3,Simpang Kanan,age_group,50-54,laki_laki,743,jiwa,2025,registration,total_population,3.2,20,,50 - 54
+14.07.11,3,Simpang Kanan,age_group,50-54,perempuan,712,jiwa,2025,registration,total_population,3.2,20,,50 - 54
+14.07.11,3,Simpang Kanan,age_group,50-54,,1455,jiwa,2025,registration,total_population,3.2,20,,50 - 54
+14.07.11,3,Simpang Kanan,age_group,55-59,laki_laki,610,jiwa,2025,registration,total_population,3.2,20,,55 - 59
+14.07.11,3,Simpang Kanan,age_group,55-59,perempuan,619,jiwa,2025,registration,total_population,3.2,20,,55 - 59
+14.07.11,3,Simpang Kanan,age_group,55-59,,1229,jiwa,2025,registration,total_population,3.2,20,,55 - 59
+14.07.11,3,Simpang Kanan,age_group,60-64,laki_laki,521,jiwa,2025,registration,total_population,3.2,20,,60 - 64
+14.07.11,3,Simpang Kanan,age_group,60-64,perempuan,497,jiwa,2025,registration,total_population,3.2,20,,60 - 64
+14.07.11,3,Simpang Kanan,age_group,60-64,,1018,jiwa,2025,registration,total_population,3.2,20,,60 - 64
+14.07.11,3,Simpang Kanan,age_group,65-69,laki_laki,400,jiwa,2025,registration,total_population,3.2,20,,65 - 69
+14.07.11,3,Simpang Kanan,age_group,65-69,perempuan,328,jiwa,2025,registration,total_population,3.2,20,,65 - 69
+14.07.11,3,Simpang Kanan,age_group,65-69,,728,jiwa,2025,registration,total_population,3.2,20,,65 - 69
+14.07.11,3,Simpang Kanan,age_group,70-74,laki_laki,217,jiwa,2025,registration,total_population,3.2,20,,70 - 74
+14.07.11,3,Simpang Kanan,age_group,70-74,perempuan,186,jiwa,2025,registration,total_population,3.2,20,,70 - 74
+14.07.11,3,Simpang Kanan,age_group,70-74,,403,jiwa,2025,registration,total_population,3.2,20,,70 - 74
+14.07.11,3,Simpang Kanan,age_group,75+,laki_laki,191,jiwa,2025,registration,total_population,3.2,20,,75 +
+14.07.11,3,Simpang Kanan,age_group,75+,perempuan,138,jiwa,2025,registration,total_population,3.2,20,,75 +
+14.07.11,3,Simpang Kanan,age_group,75+,,329,jiwa,2025,registration,total_population,3.2,20,,75 +
+14.07.11,3,Simpang Kanan,sex,laki_laki,,13600,jiwa,2025,registration,total_population,3.2,20,,Laki-Laki
+14.07.11,3,Simpang Kanan,sex,perempuan,,13043,jiwa,2025,registration,total_population,3.2,20,,Perempuan
+14.07.11,3,Simpang Kanan,total,total,,26643,jiwa,2025,registration,total_population,3.2,20,,

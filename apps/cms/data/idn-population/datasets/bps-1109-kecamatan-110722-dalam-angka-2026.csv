@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.07.22.2015,4,Pako,sex,laki_laki,,344,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.22.2015,4,Pako,sex,perempuan,,324,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.22.2015,4,Pako,total,total,,668,jiwa,2025,registration,total_population,3.1,34,,
+11.07.22.2014,4,Tunong,sex,laki_laki,,418,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.22.2014,4,Tunong,sex,perempuan,,401,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.22.2014,4,Tunong,total,total,,819,jiwa,2025,registration,total_population,3.1,34,,
+11.07.22.2031,4,Pulo Cahi,sex,laki_laki,,122,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.22.2031,4,Pulo Cahi,sex,perempuan,,138,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.22.2031,4,Pulo Cahi,total,total,,260,jiwa,2025,registration,total_population,3.1,34,,
+11.07.22.2012,4,Pulo Seupeng,sex,laki_laki,,114,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.22.2012,4,Pulo Seupeng,sex,perempuan,,111,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.22.2012,4,Pulo Seupeng,total,total,,225,jiwa,2025,registration,total_population,3.1,34,,
+11.07.22.2001,4,Ugadeng,sex,laki_laki,,443,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.22.2001,4,Ugadeng,sex,perempuan,,415,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.22.2001,4,Ugadeng,total,total,,858,jiwa,2025,registration,total_population,3.1,34,,
+11.07.22.2002,4,Kumbang,sex,laki_laki,,459,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.22.2002,4,Kumbang,sex,perempuan,,457,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.22.2002,4,Kumbang,total,total,,916,jiwa,2025,registration,total_population,3.1,34,,
+11.07.22.2003,4,Sagoe,sex,laki_laki,,437,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.22.2003,4,Sagoe,sex,perempuan,,386,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.22.2003,4,Sagoe,total,total,,823,jiwa,2025,registration,total_population,3.1,34,,
+11.07.22.2004,4,Dayah Keumala,sex,laki_laki,,350,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.22.2004,4,Dayah Keumala,sex,perempuan,,359,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.22.2004,4,Dayah Keumala,total,total,,709,jiwa,2025,registration,total_population,3.1,34,,
+11.07.22.2006,4,Rheng,sex,laki_laki,,223,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.22.2006,4,Rheng,sex,perempuan,,231,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.22.2006,4,Rheng,total,total,,454,jiwa,2025,registration,total_population,3.1,34,,
+11.07.22.2013,4,Mesjid Nicah,sex,laki_laki,,158,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.22.2013,4,Mesjid Nicah,sex,perempuan,,163,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.22.2013,4,Mesjid Nicah,total,total,,321,jiwa,2025,registration,total_population,3.1,34,,
+11.07.22.2010,4,Asan Nicah,sex,laki_laki,,312,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.22.2010,4,Asan Nicah,sex,perempuan,,308,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.22.2010,4,Asan Nicah,total,total,,620,jiwa,2025,registration,total_population,3.1,34,,
+11.07.22.2009,4,Paloh Teungoh,sex,laki_laki,,425,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.22.2009,4,Paloh Teungoh,sex,perempuan,,458,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.22.2009,4,Paloh Teungoh,total,total,,883,jiwa,2025,registration,total_population,3.1,34,,
+11.07.22.2005,4,Jijiem,sex,laki_laki,,533,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.22.2005,4,Jijiem,sex,perempuan,,536,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.22.2005,4,Jijiem,total,total,,1069,jiwa,2025,registration,total_population,3.1,34,,
+11.07.22.2017,4,Cot Kreh,sex,laki_laki,,276,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.22.2017,4,Cot Kreh,sex,perempuan,,309,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.22.2017,4,Cot Kreh,total,total,,585,jiwa,2025,registration,total_population,3.1,34,,
+11.07.22.2016,4,Pulo Baro,sex,laki_laki,,42,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.22.2016,4,Pulo Baro,sex,perempuan,,56,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.22.2016,4,Pulo Baro,total,total,,98,jiwa,2025,registration,total_population,3.1,34,,
+11.07.22.2007,4,Cot Nuran,sex,laki_laki,,408,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.22.2007,4,Cot Nuran,sex,perempuan,,387,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.22.2007,4,Cot Nuran,total,total,,795,jiwa,2025,registration,total_population,3.1,34,,
+11.07.22.2008,4,Pulo Pante,sex,laki_laki,,200,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.22.2008,4,Pulo Pante,sex,perempuan,,211,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.22.2008,4,Pulo Pante,total,total,,411,jiwa,2025,registration,total_population,3.1,34,,
+11.07.22,3,Keumala,sex,laki_laki,,5599,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.07.22,3,Keumala,sex,perempuan,,5590,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.07.22,3,Keumala,total,total,,11189,jiwa,2025,registration,total_population,3.1,34,,

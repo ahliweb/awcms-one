@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.03.21.2001,4,Embacang Kelekar,sex,laki_laki,,1077,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.21.2001,4,Embacang Kelekar,sex,perempuan,,955,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.21.2001,4,Embacang Kelekar,total,total,,2032,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.21.2006,4,Teluk Jaya,sex,laki_laki,,803,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.21.2006,4,Teluk Jaya,sex,perempuan,,791,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.21.2006,4,Teluk Jaya,total,total,,1594,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.21.2002,4,Menanti,sex,laki_laki,,1728,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.21.2002,4,Menanti,sex,perempuan,,1563,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.21.2002,4,Menanti,total,total,,3291,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.21.2004,4,Suban Baru,sex,laki_laki,,777,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.21.2004,4,Suban Baru,sex,perempuan,,767,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.21.2004,4,Suban Baru,total,total,,1544,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.21.2005,4,Pelempang,sex,laki_laki,,896,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.21.2005,4,Pelempang,sex,perempuan,,871,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.21.2005,4,Pelempang,total,total,,1767,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.21.2007,4,Tanjung Medang,sex,laki_laki,,678,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.21.2007,4,Tanjung Medang,sex,perempuan,,628,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.21.2007,4,Tanjung Medang,total,total,,1306,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.21.2003,4,Menanti Selatan,sex,laki_laki,,295,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.21.2003,4,Menanti Selatan,sex,perempuan,,284,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.21.2003,4,Menanti Selatan,total,total,,579,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.21,3,Kelekar,sex,laki_laki,,6254,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.21,3,Kelekar,sex,perempuan,,5859,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.21,3,Kelekar,total,total,,12113,jiwa,2025,registration,total_population,unnumbered-p23,23,,

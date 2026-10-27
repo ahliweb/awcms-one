@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.75.09.1002,4,Cibubur,sex,laki_laki,,41663,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+31.75.09.1002,4,Cibubur,sex,perempuan,,42187,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+31.75.09.1002,4,Cibubur,total,total,,83850,jiwa,2025,registration,total_population,3.1,29,,
+31.75.09.1003,4,Kelapa Dua Wetan,sex,laki_laki,,29710,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+31.75.09.1003,4,Kelapa Dua Wetan,sex,perempuan,,29998,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+31.75.09.1003,4,Kelapa Dua Wetan,total,total,,59708,jiwa,2025,registration,total_population,3.1,29,,
+31.75.09.1001,4,Ciracas,sex,laki_laki,,40552,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+31.75.09.1001,4,Ciracas,sex,perempuan,,40234,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+31.75.09.1001,4,Ciracas,total,total,,80786,jiwa,2025,registration,total_population,3.1,29,,
+31.75.09.1004,4,Susukan,sex,laki_laki,,23548,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+31.75.09.1004,4,Susukan,sex,perempuan,,22915,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+31.75.09.1004,4,Susukan,total,total,,46463,jiwa,2025,registration,total_population,3.1,29,,
+31.75.09.1005,4,Rambutan,sex,laki_laki,,23374,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+31.75.09.1005,4,Rambutan,sex,perempuan,,22968,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+31.75.09.1005,4,Rambutan,total,total,,46342,jiwa,2025,registration,total_population,3.1,29,,
+31.75.09,3,Kecamatan Ciracas,sex,laki_laki,,158847,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+31.75.09,3,Kecamatan Ciracas,sex,perempuan,,158302,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+31.75.09,3,Kecamatan Ciracas,total,total,,317149,jiwa,2025,registration,total_population,3.1,29,,
+31.75.09,3,Ciracas,age_group,0-4,laki_laki,10302,jiwa,2025,registration,total_population,3.2,31,,0-4
+31.75.09,3,Ciracas,age_group,0-4,perempuan,9870,jiwa,2025,registration,total_population,3.2,31,,0-4
+31.75.09,3,Ciracas,age_group,0-4,,20172,jiwa,2025,registration,total_population,3.2,31,,0-4
+31.75.09,3,Ciracas,age_group,5-9,laki_laki,13675,jiwa,2025,registration,total_population,3.2,31,,5-9
+31.75.09,3,Ciracas,age_group,5-9,perempuan,12790,jiwa,2025,registration,total_population,3.2,31,,5-9
+31.75.09,3,Ciracas,age_group,5-9,,26465,jiwa,2025,registration,total_population,3.2,31,,5-9
+31.75.09,3,Ciracas,age_group,10-14,laki_laki,14007,jiwa,2025,registration,total_population,3.2,31,,10-14
+31.75.09,3,Ciracas,age_group,10-14,perempuan,13114,jiwa,2025,registration,total_population,3.2,31,,10-14
+31.75.09,3,Ciracas,age_group,10-14,,27121,jiwa,2025,registration,total_population,3.2,31,,10-14
+31.75.09,3,Ciracas,age_group,15-19,laki_laki,13261,jiwa,2025,registration,total_population,3.2,31,,15-19
+31.75.09,3,Ciracas,age_group,15-19,perempuan,12287,jiwa,2025,registration,total_population,3.2,31,,15-19
+31.75.09,3,Ciracas,age_group,15-19,,25548,jiwa,2025,registration,total_population,3.2,31,,15-19
+31.75.09,3,Ciracas,age_group,20-24,laki_laki,12756,jiwa,2025,registration,total_population,3.2,31,,20-24
+31.75.09,3,Ciracas,age_group,20-24,perempuan,12297,jiwa,2025,registration,total_population,3.2,31,,20-24
+31.75.09,3,Ciracas,age_group,20-24,,25053,jiwa,2025,registration,total_population,3.2,31,,20-24
+31.75.09,3,Ciracas,age_group,25-29,laki_laki,12095,jiwa,2025,registration,total_population,3.2,31,,25-29
+31.75.09,3,Ciracas,age_group,25-29,perempuan,12239,jiwa,2025,registration,total_population,3.2,31,,25-29
+31.75.09,3,Ciracas,age_group,25-29,,24334,jiwa,2025,registration,total_population,3.2,31,,25-29
+31.75.09,3,Ciracas,age_group,30-34,laki_laki,12084,jiwa,2025,registration,total_population,3.2,31,,30-34
+31.75.09,3,Ciracas,age_group,30-34,perempuan,12697,jiwa,2025,registration,total_population,3.2,31,,30-34
+31.75.09,3,Ciracas,age_group,30-34,,24781,jiwa,2025,registration,total_population,3.2,31,,30-34
+31.75.09,3,Ciracas,age_group,35-39,laki_laki,11769,jiwa,2025,registration,total_population,3.2,31,,35-39
+31.75.09,3,Ciracas,age_group,35-39,perempuan,12155,jiwa,2025,registration,total_population,3.2,31,,35-39
+31.75.09,3,Ciracas,age_group,35-39,,23924,jiwa,2025,registration,total_population,3.2,31,,35-39
+31.75.09,3,Ciracas,age_group,40-44,laki_laki,13297,jiwa,2025,registration,total_population,3.2,31,,40-44
+31.75.09,3,Ciracas,age_group,40-44,perempuan,13681,jiwa,2025,registration,total_population,3.2,31,,40-44
+31.75.09,3,Ciracas,age_group,40-44,,26978,jiwa,2025,registration,total_population,3.2,31,,40-44
+31.75.09,3,Ciracas,age_group,45-49,laki_laki,12229,jiwa,2025,registration,total_population,3.2,31,,45-49
+31.75.09,3,Ciracas,age_group,45-49,perempuan,12339,jiwa,2025,registration,total_population,3.2,31,,45-49
+31.75.09,3,Ciracas,age_group,45-49,,24568,jiwa,2025,registration,total_population,3.2,31,,45-49
+31.75.09,3,Ciracas,age_group,50-54,laki_laki,10206,jiwa,2025,registration,total_population,3.2,31,,50-54
+31.75.09,3,Ciracas,age_group,50-54,perempuan,10288,jiwa,2025,registration,total_population,3.2,31,,50-54
+31.75.09,3,Ciracas,age_group,50-54,,20494,jiwa,2025,registration,total_population,3.2,31,,50-54
+31.75.09,3,Ciracas,age_group,55-59,laki_laki,8576,jiwa,2025,registration,total_population,3.2,31,,55-59
+31.75.09,3,Ciracas,age_group,55-59,perempuan,8348,jiwa,2025,registration,total_population,3.2,31,,55-59
+31.75.09,3,Ciracas,age_group,55-59,,16924,jiwa,2025,registration,total_population,3.2,31,,55-59
+31.75.09,3,Ciracas,age_group,60-64,laki_laki,6003,jiwa,2025,registration,total_population,3.2,31,,60-64
+31.75.09,3,Ciracas,age_group,60-64,perempuan,6700,jiwa,2025,registration,total_population,3.2,31,,60-64
+31.75.09,3,Ciracas,age_group,60-64,,12703,jiwa,2025,registration,total_population,3.2,31,,60-64
+31.75.09,3,Ciracas,age_group,65-69,laki_laki,4185,jiwa,2025,registration,total_population,3.2,31,,65-69
+31.75.09,3,Ciracas,age_group,65-69,perempuan,4842,jiwa,2025,registration,total_population,3.2,31,,65-69
+31.75.09,3,Ciracas,age_group,65-69,,9027,jiwa,2025,registration,total_population,3.2,31,,65-69
+31.75.09,3,Ciracas,age_group,70-75,laki_laki,2678,jiwa,2025,registration,total_population,3.2,31,,70-75
+31.75.09,3,Ciracas,age_group,70-75,perempuan,2648,jiwa,2025,registration,total_population,3.2,31,,70-75
+31.75.09,3,Ciracas,age_group,70-75,,5326,jiwa,2025,registration,total_population,3.2,31,,70-75
+31.75.09,3,Ciracas,age_group,75+,laki_laki,1724,jiwa,2025,registration,total_population,3.2,31,,75+
+31.75.09,3,Ciracas,age_group,75+,perempuan,2007,jiwa,2025,registration,total_population,3.2,31,,75+
+31.75.09,3,Ciracas,age_group,75+,,3731,jiwa,2025,registration,total_population,3.2,31,,75+
+31.75.09,3,Kecamatan Ciracas,sex,laki_laki,,158847,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+31.75.09,3,Kecamatan Ciracas,sex,perempuan,,158302,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+31.75.09,3,Kecamatan Ciracas,total,total,,317149,jiwa,2025,registration,total_population,3.2,31,,

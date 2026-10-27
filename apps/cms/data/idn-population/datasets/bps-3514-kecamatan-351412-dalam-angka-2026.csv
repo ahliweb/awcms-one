@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.14.12.2001,4,Wonosunyo,sex,laki_laki,,2448,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.14.12.2001,4,Wonosunyo,sex,perempuan,,2405,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.14.12.2001,4,Wonosunyo,total,total,,4853,jiwa,2025,registration,total_population,3.1,27,,
+35.14.12.2002,4,Sumber Suko,sex,laki_laki,,3958,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.14.12.2002,4,Sumber Suko,sex,perempuan,,3789,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.14.12.2002,4,Sumber Suko,total,total,,7747,jiwa,2025,registration,total_population,3.1,27,,
+35.14.12.2003,4,Wonosari,sex,laki_laki,,2161,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.14.12.2003,4,Wonosari,sex,perempuan,,2116,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.14.12.2003,4,Wonosari,total,total,,4277,jiwa,2025,registration,total_population,3.1,27,,
+35.14.12.2004,4,Kepulungan,sex,laki_laki,,5582,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.14.12.2004,4,Kepulungan,sex,perempuan,,5549,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.14.12.2004,4,Kepulungan,total,total,,11131,jiwa,2025,registration,total_population,3.1,27,,
+35.14.12.2005,4,Randupitu,sex,laki_laki,,3930,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.14.12.2005,4,Randupitu,sex,perempuan,,3912,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.14.12.2005,4,Randupitu,total,total,,7842,jiwa,2025,registration,total_population,3.1,27,,
+35.14.12.2006,4,Ngerong,sex,laki_laki,,5810,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.14.12.2006,4,Ngerong,sex,perempuan,,5705,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.14.12.2006,4,Ngerong,total,total,,11515,jiwa,2025,registration,total_population,3.1,27,,
+35.14.12.2009,4,Jeruk Purut,sex,laki_laki,,2726,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.14.12.2009,4,Jeruk Purut,sex,perempuan,,2680,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.14.12.2009,4,Jeruk Purut,total,total,,5406,jiwa,2025,registration,total_population,3.1,27,,
+35.14.12.2007,4,Karangrejo,sex,laki_laki,,5564,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.14.12.2007,4,Karangrejo,sex,perempuan,,5524,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.14.12.2007,4,Karangrejo,total,total,,11088,jiwa,2025,registration,total_population,3.1,27,,
+35.14.12.2010,4,Watukosek,sex,laki_laki,,2102,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.14.12.2010,4,Watukosek,sex,perempuan,,2073,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.14.12.2010,4,Watukosek,total,total,,4175,jiwa,2025,registration,total_population,3.1,27,,
+35.14.12.2011,4,Carat,sex,laki_laki,,3233,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.14.12.2011,4,Carat,sex,perempuan,,3195,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.14.12.2011,4,Carat,total,total,,6428,jiwa,2025,registration,total_population,3.1,27,,
+35.14.12.2012,4,Kejapanan,sex,laki_laki,,10889,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.14.12.2012,4,Kejapanan,sex,perempuan,,10991,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.14.12.2012,4,Kejapanan,total,total,,21880,jiwa,2025,registration,total_population,3.1,27,,
+35.14.12.2013,4,Winong,sex,laki_laki,,4084,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.14.12.2013,4,Winong,sex,perempuan,,3955,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.14.12.2013,4,Winong,total,total,,8039,jiwa,2025,registration,total_population,3.1,27,,
+35.14.12.2014,4,Legok,sex,laki_laki,,4658,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.14.12.2014,4,Legok,sex,perempuan,,4671,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.14.12.2014,4,Legok,total,total,,9329,jiwa,2025,registration,total_population,3.1,27,,
+35.14.12.2015,4,Gempol,sex,laki_laki,,5415,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.14.12.2015,4,Gempol,sex,perempuan,,5435,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.14.12.2015,4,Gempol,total,total,,10850,jiwa,2025,registration,total_population,3.1,27,,
+35.14.12,3,Kecamatan Gempol,sex,laki_laki,,67585,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.14.12,3,Kecamatan Gempol,sex,perempuan,,66895,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.14.12,3,Kecamatan Gempol,total,total,,134480,jiwa,2025,registration,total_population,3.1,27,,

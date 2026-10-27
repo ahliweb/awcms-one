@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.02.17.2005,4,Duku Ulu,sex,laki_laki,,759,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.17.2005,4,Duku Ulu,sex,perempuan,,713,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.17.2005,4,Duku Ulu,total,total,,1472,jiwa,2025,registration,total_population,3.1,22,,
+17.02.17.2006,4,Duku Ilir,sex,laki_laki,,462,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.17.2006,4,Duku Ilir,sex,perempuan,,465,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.17.2006,4,Duku Ilir,total,total,,927,jiwa,2025,registration,total_population,3.1,22,,
+17.02.17.2008,4,Kampung Delima,sex,laki_laki,,1050,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.17.2008,4,Kampung Delima,sex,perempuan,,991,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.17.2008,4,Kampung Delima,total,total,,2041,jiwa,2025,registration,total_population,3.1,22,,
+17.02.17.2009,4,Kesambe Lama,sex,laki_laki,,1211,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.17.2009,4,Kesambe Lama,sex,perempuan,,1222,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.17.2009,4,Kesambe Lama,total,total,,2433,jiwa,2025,registration,total_population,3.1,22,,
+17.02.17.1003,4,Karang Anyar,sex,laki_laki,,2496,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.17.1003,4,Karang Anyar,sex,perempuan,,2384,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.17.1003,4,Karang Anyar,total,total,,4880,jiwa,2025,registration,total_population,3.1,22,,
+17.02.17.2007,4,Air Meles Bawah,sex,laki_laki,,3678,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.17.2007,4,Air Meles Bawah,sex,perempuan,,3533,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.17.2007,4,Air Meles Bawah,total,total,,7211,jiwa,2025,registration,total_population,3.1,22,,
+17.02.17.1001,4,Sukaraja,sex,laki_laki,,1402,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.17.1001,4,Sukaraja,sex,perempuan,,1355,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.17.1001,4,Sukaraja,total,total,,2757,jiwa,2025,registration,total_population,3.1,22,,
+17.02.17.1002,4,Kesambe Baru,sex,laki_laki,,1503,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.17.1002,4,Kesambe Baru,sex,perempuan,,1456,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.17.1002,4,Kesambe Baru,total,total,,2959,jiwa,2025,registration,total_population,3.1,22,,
+17.02.17.1004,4,Talang Ulu,sex,laki_laki,,1652,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.17.1004,4,Talang Ulu,sex,perempuan,,1614,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.17.1004,4,Talang Ulu,total,total,,3266,jiwa,2025,registration,total_population,3.1,22,,
+17.02.17,3,Curup Timur,sex,laki_laki,,14213,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.17,3,Curup Timur,sex,perempuan,,13733,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.17,3,Curup Timur,total,total,,27946,jiwa,2025,registration,total_population,3.1,22,,

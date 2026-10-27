@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3323-kecamatan-332317-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.23.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kledung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Temanggung",
+  "publisherDomain": "3323",
+  "publisherWebsite": "https://temanggungkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Temanggung (https://temanggungkab.bps.go.id), publikasi \"Kecamatan Kledung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3323011",
+  "publicationNumber": "33230.26008",
+  "issn": "2807-4661",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://temanggungkab.bps.go.id/id/publication/2026/09/28/35aeda8eb63a86b3a3418f0b/kecamatan-kledung-dalam-angka-2026.html",
+  "sourceFileSha256": "cdcd7a44cad612befcbfb2e42fd06ba6676ce8166418b34cb80984fd22319f93",
+  "sourceFileBytes": 9375570,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Temanggung.",
+  "csvPath": "datasets/bps-3323-kecamatan-332317-dalam-angka-2026.csv",
+  "csvSha256": "12eac9ea3f77c6d41235b5e8a0c1d2110d3de085f0eaeaeafa905466433a3bc3",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kledung, 2026",
+      "printedPages": [25, 26],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kledung, 2026",
+      "printedPages": [27],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Tlahap\": unmatched ",
+    "table 3.1: row not stored: row \"Tlahap\": unmatched "
+  ]
+}

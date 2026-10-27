@@ -1,0 +1,41 @@
+{
+  "datasetCode": "bps-1204-kecamatan-120106-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.01.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kolang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tapanuli Tengah",
+  "publisherDomain": "1204",
+  "publisherWebsite": "https://tapanulitengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tapanuli Tengah (https://tapanulitengahkab.bps.go.id), publikasi \"Kecamatan Kolang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1204050",
+  "publicationNumber": "12040.26018",
+  "issn": "3031-5417",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tapanulitengahkab.bps.go.id/id/publication/2026/09/28/2fe40365258858a3ad1d1402/kecamatan-kolang-dalam-angka-2026.html",
+  "sourceFileSha256": "3f36571d132f8302c4e59e27a397c90db54eac64687d767ade2a181d709d0b2f",
+  "sourceFileBytes": 11918358,
+  "sourcePages": [37, 38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tapanuli Tengah .",
+  "csvPath": "datasets/bps-1204-kecamatan-120106-dalam-angka-2026.csv",
+  "csvSha256": "2f0cdc00b345537b169eb856a60036a20dfd6b0194d9bd2b7eb996079809e598",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kolang , 202 5",
+      "printedPages": [37, 38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Hudopa Nauli\": unmatched ",
+    "table 3.1: row not stored: row \"Simarpinggan\": unmatched ",
+    "table 3.1: row not stored: row \"Hudopa Nauli\": unmatched ",
+    "table 3.1: row not stored: row \"Simarpinggan\": unmatched "
+  ]
+}

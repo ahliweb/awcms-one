@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.10.17.2003,4,Garawangi,sex,laki_laki,,3187,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.17.2003,4,Garawangi,sex,perempuan,,3074,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.17.2003,4,Garawangi,total,total,,6261,jiwa,2025,registration,total_population,3.1,28,,
+32.10.17.2005,4,Banjaran,sex,laki_laki,,1780,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.17.2005,4,Banjaran,sex,perempuan,,1745,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.17.2005,4,Banjaran,total,total,,3525,jiwa,2025,registration,total_population,3.1,28,,
+32.10.17.2006,4,Sepat,sex,laki_laki,,692,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.17.2006,4,Sepat,sex,perempuan,,693,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.17.2006,4,Sepat,total,total,,1385,jiwa,2025,registration,total_population,3.1,28,,
+32.10.17.2007,4,Paningkiran,sex,laki_laki,,2152,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.17.2007,4,Paningkiran,sex,perempuan,,2068,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.17.2007,4,Paningkiran,total,total,,4220,jiwa,2025,registration,total_population,3.1,28,,
+32.10.17.2008,4,Parapatan,sex,laki_laki,,1089,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.17.2008,4,Parapatan,sex,perempuan,,1055,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.17.2008,4,Parapatan,total,total,,2144,jiwa,2025,registration,total_population,3.1,28,,
+32.10.17.2009,4,Panjalin Kidul,sex,laki_laki,,5977,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.17.2009,4,Panjalin Kidul,sex,perempuan,,5815,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.17.2009,4,Panjalin Kidul,total,total,,11792,jiwa,2025,registration,total_population,3.1,28,,
+32.10.17.2004,4,Rancaputat,sex,laki_laki,,1251,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.17.2004,4,Rancaputat,sex,perempuan,,1215,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.17.2004,4,Rancaputat,total,total,,2466,jiwa,2025,registration,total_population,3.1,28,,
+32.10.17.2001,4,Bongas Wetan,sex,laki_laki,,3400,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.17.2001,4,Bongas Wetan,sex,perempuan,,3373,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.17.2001,4,Bongas Wetan,total,total,,6773,jiwa,2025,registration,total_population,3.1,28,,
+32.10.17.2002,4,Bongas Kulon,sex,laki_laki,,2097,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.17.2002,4,Bongas Kulon,sex,perempuan,,2159,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.17.2002,4,Bongas Kulon,total,total,,4256,jiwa,2025,registration,total_population,3.1,28,,
+32.10.17.2012,4,Panjalin Lor,sex,laki_laki,,3115,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.17.2012,4,Panjalin Lor,sex,perempuan,,3017,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.17.2012,4,Panjalin Lor,total,total,,6132,jiwa,2025,registration,total_population,3.1,28,,
+32.10.17.2010,4,Cidenok,sex,laki_laki,,1801,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.17.2010,4,Cidenok,sex,perempuan,,1857,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.17.2010,4,Cidenok,total,total,,3658,jiwa,2025,registration,total_population,3.1,28,,
+32.10.17.2011,4,Loji Kobong,sex,laki_laki,,2870,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.17.2011,4,Loji Kobong,sex,perempuan,,2904,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.17.2011,4,Loji Kobong,total,total,,5774,jiwa,2025,registration,total_population,3.1,28,,
+32.10.17.2015,4,Gelokmulya,sex,laki_laki,,1104,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.17.2015,4,Gelokmulya,sex,perempuan,,1077,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.17.2015,4,Gelokmulya,total,total,,2181,jiwa,2025,registration,total_population,3.1,28,,
+32.10.17.2014,4,Pancaksuji,sex,laki_laki,,1001,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.17.2014,4,Pancaksuji,sex,perempuan,,1022,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.17.2014,4,Pancaksuji,total,total,,2023,jiwa,2025,registration,total_population,3.1,28,,
+32.10.17,3,Kecamatan Sumberjaya,sex,laki_laki,,34067,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+32.10.17,3,Kecamatan Sumberjaya,sex,perempuan,,33631,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+32.10.17,3,Kecamatan Sumberjaya,total,total,,67698,jiwa,2025,registration,total_population,3.1,28,,
+32.10.17,3,Sumberjaya,age_group,0-4,laki_laki,2204,jiwa,2025,registration,total_population,3.2,30,,00 - 04
+32.10.17,3,Sumberjaya,age_group,0-4,perempuan,2105,jiwa,2025,registration,total_population,3.2,30,,00 - 04
+32.10.17,3,Sumberjaya,age_group,0-4,,4309,jiwa,2025,registration,total_population,3.2,30,,00 - 04
+32.10.17,3,Sumberjaya,age_group,5-9,laki_laki,2813,jiwa,2025,registration,total_population,3.2,30,,05 - 09
+32.10.17,3,Sumberjaya,age_group,5-9,perempuan,2669,jiwa,2025,registration,total_population,3.2,30,,05 - 09
+32.10.17,3,Sumberjaya,age_group,5-9,,5482,jiwa,2025,registration,total_population,3.2,30,,05 - 09
+32.10.17,3,Sumberjaya,age_group,10-14,laki_laki,2824,jiwa,2025,registration,total_population,3.2,30,,10 - 14
+32.10.17,3,Sumberjaya,age_group,10-14,perempuan,2684,jiwa,2025,registration,total_population,3.2,30,,10 - 14
+32.10.17,3,Sumberjaya,age_group,10-14,,5508,jiwa,2025,registration,total_population,3.2,30,,10 - 14
+32.10.17,3,Sumberjaya,age_group,15-19,laki_laki,2442,jiwa,2025,registration,total_population,3.2,30,,15 - 19
+32.10.17,3,Sumberjaya,age_group,15-19,perempuan,2361,jiwa,2025,registration,total_population,3.2,30,,15 - 19
+32.10.17,3,Sumberjaya,age_group,15-19,,4803,jiwa,2025,registration,total_population,3.2,30,,15 - 19
+32.10.17,3,Sumberjaya,age_group,20-24,laki_laki,2658,jiwa,2025,registration,total_population,3.2,30,,20 - 24
+32.10.17,3,Sumberjaya,age_group,20-24,perempuan,2524,jiwa,2025,registration,total_population,3.2,30,,20 - 24
+32.10.17,3,Sumberjaya,age_group,20-24,,5182,jiwa,2025,registration,total_population,3.2,30,,20 - 24
+32.10.17,3,Sumberjaya,age_group,25-29,laki_laki,2912,jiwa,2025,registration,total_population,3.2,30,,25 - 29
+32.10.17,3,Sumberjaya,age_group,25-29,perempuan,2685,jiwa,2025,registration,total_population,3.2,30,,25 - 29
+32.10.17,3,Sumberjaya,age_group,25-29,,5597,jiwa,2025,registration,total_population,3.2,30,,25 - 29
+32.10.17,3,Sumberjaya,age_group,30-34,laki_laki,2667,jiwa,2025,registration,total_population,3.2,30,,30 - 34
+32.10.17,3,Sumberjaya,age_group,30-34,perempuan,2484,jiwa,2025,registration,total_population,3.2,30,,30 - 34
+32.10.17,3,Sumberjaya,age_group,30-34,,5151,jiwa,2025,registration,total_population,3.2,30,,30 - 34
+32.10.17,3,Sumberjaya,age_group,35-39,laki_laki,2416,jiwa,2025,registration,total_population,3.2,30,,35 -39
+32.10.17,3,Sumberjaya,age_group,35-39,perempuan,2395,jiwa,2025,registration,total_population,3.2,30,,35 -39
+32.10.17,3,Sumberjaya,age_group,35-39,,4811,jiwa,2025,registration,total_population,3.2,30,,35 -39
+32.10.17,3,Sumberjaya,age_group,40-44,laki_laki,2677,jiwa,2025,registration,total_population,3.2,30,,40 - 44
+32.10.17,3,Sumberjaya,age_group,40-44,perempuan,2783,jiwa,2025,registration,total_population,3.2,30,,40 - 44
+32.10.17,3,Sumberjaya,age_group,40-44,,5460,jiwa,2025,registration,total_population,3.2,30,,40 - 44
+32.10.17,3,Sumberjaya,age_group,45-49,laki_laki,2691,jiwa,2025,registration,total_population,3.2,30,,45 - 49
+32.10.17,3,Sumberjaya,age_group,45-49,perempuan,2722,jiwa,2025,registration,total_population,3.2,30,,45 - 49
+32.10.17,3,Sumberjaya,age_group,45-49,,5413,jiwa,2025,registration,total_population,3.2,30,,45 - 49
+32.10.17,3,Sumberjaya,age_group,50-54,laki_laki,2277,jiwa,2025,registration,total_population,3.2,30,,50 - 54
+32.10.17,3,Sumberjaya,age_group,50-54,perempuan,2326,jiwa,2025,registration,total_population,3.2,30,,50 - 54
+32.10.17,3,Sumberjaya,age_group,50-54,,4603,jiwa,2025,registration,total_population,3.2,30,,50 - 54
+32.10.17,3,Sumberjaya,age_group,55-59,laki_laki,1719,jiwa,2025,registration,total_population,3.2,30,,55 - 59
+32.10.17,3,Sumberjaya,age_group,55-59,perempuan,1823,jiwa,2025,registration,total_population,3.2,30,,55 - 59
+32.10.17,3,Sumberjaya,age_group,55-59,,3542,jiwa,2025,registration,total_population,3.2,30,,55 - 59
+32.10.17,3,Sumberjaya,age_group,60-64,laki_laki,1340,jiwa,2025,registration,total_population,3.2,30,,60 - 64
+32.10.17,3,Sumberjaya,age_group,60-64,perempuan,1419,jiwa,2025,registration,total_population,3.2,30,,60 - 64
+32.10.17,3,Sumberjaya,age_group,60-64,,2759,jiwa,2025,registration,total_population,3.2,30,,60 - 64
+32.10.17,3,Sumberjaya,age_group,65-69,laki_laki,1052,jiwa,2025,registration,total_population,3.2,30,,65 - 69
+32.10.17,3,Sumberjaya,age_group,65-69,perempuan,1117,jiwa,2025,registration,total_population,3.2,30,,65 - 69
+32.10.17,3,Sumberjaya,age_group,65-69,,2169,jiwa,2025,registration,total_population,3.2,30,,65 - 69
+32.10.17,3,Sumberjaya,age_group,70-74,laki_laki,697,jiwa,2025,registration,total_population,3.2,30,,70 - 74
+32.10.17,3,Sumberjaya,age_group,70-74,perempuan,687,jiwa,2025,registration,total_population,3.2,30,,70 - 74
+32.10.17,3,Sumberjaya,age_group,70-74,,1384,jiwa,2025,registration,total_population,3.2,30,,70 - 74
+32.10.17,3,Sumberjaya,age_group,75+,laki_laki,678,jiwa,2025,registration,total_population,3.2,30,,75 +
+32.10.17,3,Sumberjaya,age_group,75+,perempuan,847,jiwa,2025,registration,total_population,3.2,30,,75 +
+32.10.17,3,Sumberjaya,age_group,75+,,1525,jiwa,2025,registration,total_population,3.2,30,,75 +
+32.10.17,3,Kecamatan Sumberjaya,sex,laki_laki,,34067,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+32.10.17,3,Kecamatan Sumberjaya,sex,perempuan,,33631,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+32.10.17,3,Kecamatan Sumberjaya,total,total,,67698,jiwa,2025,registration,total_population,3.2,30,,

@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-1603-kecamatan-160326-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.03.26",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Empat Petulai Dangku Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Muara Enim",
+  "publisherDomain": "1603",
+  "publisherWebsite": "https://muaraenimkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Muara Enim (https://muaraenimkab.bps.go.id), publikasi \"Kecamatan Empat Petulai Dangku Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1603071",
+  "publicationNumber": "16030.26020",
+  "issn": "2797-3433",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://muaraenimkab.bps.go.id/id/publication/2026/09/28/ad94b393c58a5f3cef5b0d6b/kecamatan-empat-petulai-dangku-dalam-angka-2026.html",
+  "sourceFileSha256": "9d34ef72a95f6e68d0f2dd5e8c0cd91d523415b3d0fdb7628fc4828c09e70151",
+  "sourceFileBytes": 11157344,
+  "sourcePages": [23],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Muara Enim.",
+  "csvPath": "datasets/bps-1603-kecamatan-160326-dalam-angka-2026.csv",
+  "csvSha256": "991d021d3692434cd42446197db77dfeee644acf9f54b021e3846795c253d53f",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p23",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Empat Petulai Dangku, 2025",
+      "printedPages": [23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p23: row not stored: row \"Kuripan Seratan\": unmatched "
+  ]
+}

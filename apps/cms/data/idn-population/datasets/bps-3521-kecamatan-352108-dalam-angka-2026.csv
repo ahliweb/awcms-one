@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.21.08.2001,4,Banjaransari,sex,laki_laki,,1466,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.08.2001,4,Banjaransari,sex,perempuan,,1539,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.08.2001,4,Banjaransari,total,total,,3005,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.08.2002,4,Bendo,sex,laki_laki,,1322,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.08.2002,4,Bendo,sex,perempuan,,1392,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.08.2002,4,Bendo,total,total,,2714,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.08.2003,4,Tambakromo,sex,laki_laki,,1579,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.08.2003,4,Tambakromo,sex,perempuan,,1597,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.08.2003,4,Tambakromo,total,total,,3176,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.08.2004,4,Tungkulrejo,sex,laki_laki,,1084,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.08.2004,4,Tungkulrejo,sex,perempuan,,1128,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.08.2004,4,Tungkulrejo,total,total,,2212,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.08.2005,4,Bintoyo,sex,laki_laki,,872,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.08.2005,4,Bintoyo,sex,perempuan,,869,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.08.2005,4,Bintoyo,total,total,,1741,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.08.2006,4,Sukowiyono,sex,laki_laki,,2101,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.08.2006,4,Sukowiyono,sex,perempuan,,2135,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.08.2006,4,Sukowiyono,total,total,,4236,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.08.2007,4,Munggut,sex,laki_laki,,1800,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.08.2007,4,Munggut,sex,perempuan,,1809,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.08.2007,4,Munggut,total,total,,3609,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.08.2011,4,Pacing,sex,laki_laki,,1589,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.08.2011,4,Pacing,sex,perempuan,,1593,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.08.2011,4,Pacing,total,total,,3182,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.08.2012,4,Padas,sex,laki_laki,,1019,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.08.2012,4,Padas,sex,perempuan,,1053,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.08.2012,4,Padas,total,total,,2072,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.08.2013,4,Kedungprahu,sex,laki_laki,,1629,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.08.2013,4,Kedungprahu,sex,perempuan,,1665,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.08.2013,4,Kedungprahu,total,total,,3294,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.08.2014,4,Sambiroto,sex,laki_laki,,1384,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.08.2014,4,Sambiroto,sex,perempuan,,1443,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.08.2014,4,Sambiroto,total,total,,2827,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.08.2015,4,Kwadungan Lor,sex,laki_laki,,1699,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.08.2015,4,Kwadungan Lor,sex,perempuan,,1663,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.08.2015,4,Kwadungan Lor,total,total,,3362,jiwa,2025,registration,total_population,unnumbered-p38,38,,
+35.21.08,3,Kecamatan Padas,sex,laki_laki,,17544,jiwa,2025,registration,total_population,unnumbered-p38,38,,Laki-Laki/Male
+35.21.08,3,Kecamatan Padas,sex,perempuan,,17886,jiwa,2025,registration,total_population,unnumbered-p38,38,,Perempuan/Female
+35.21.08,3,Kecamatan Padas,total,total,,35430,jiwa,2025,registration,total_population,unnumbered-p38,38,,

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3501-kecamatan-350104-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.01.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pacitan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pacitan",
+  "publisherDomain": "3501",
+  "publisherWebsite": "https://pacitankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pacitan (https://pacitankab.bps.go.id), publikasi \"Kecamatan Pacitan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3501040",
+  "publicationNumber": "35010.26008",
+  "issn": "3110-4533",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pacitankab.bps.go.id/id/publication/2026/09/28/15112dcf931af7097e4deff1/kecamatan-pacitan-dalam-angka-2026.html",
+  "sourceFileSha256": "484bf83619df0bb8fc9f07402e8ecb432b90ec757c04232b88335b561c027f74",
+  "sourceFileBytes": 2926014,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pacitan.",
+  "csvPath": "datasets/bps-3501-kecamatan-350104-dalam-angka-2026.csv",
+  "csvSha256": "7da0bdd680526a2b9d7d1dab87d263b5b2238107e6b8cfc4232841e8e3e54e63",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pacitan, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pacitan, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

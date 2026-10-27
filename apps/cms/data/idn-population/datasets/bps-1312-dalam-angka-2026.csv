@@ -1,0 +1,71 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.12.01,3,Sungai Beremas,total,total,,29635,jiwa,2024,registration,total_population,3.1.1,118,,
+13.12.01,3,Sungai Beremas,total,total,,30423,jiwa,2025,registration,total_population,3.1.1,118,,
+13.12.07,3,Ranah Batahan,total,total,,29408,jiwa,2024,registration,total_population,3.1.1,118,,
+13.12.07,3,Ranah Batahan,total,total,,29987,jiwa,2025,registration,total_population,3.1.1,118,,
+13.12.08,3,Koto Balingka,total,total,,32143,jiwa,2024,registration,total_population,3.1.1,118,,
+13.12.08,3,Koto Balingka,total,total,,32678,jiwa,2025,registration,total_population,3.1.1,118,,
+13.12.09,3,Sungai Aur,total,total,,36501,jiwa,2024,registration,total_population,3.1.1,118,,
+13.12.09,3,Sungai Aur,total,total,,37041,jiwa,2025,registration,total_population,3.1.1,118,,
+13.12.02,3,Lembah Melintang,total,total,,51944,jiwa,2024,registration,total_population,3.1.1,118,,
+13.12.02,3,Lembah Melintang,total,total,,52841,jiwa,2025,registration,total_population,3.1.1,118,,
+13.12.06,3,Gunung Tuleh,total,total,,26086,jiwa,2024,registration,total_population,3.1.1,118,,
+13.12.06,3,Gunung Tuleh,total,total,,26465,jiwa,2025,registration,total_population,3.1.1,118,,
+13.12.04,3,Talamau,total,total,,31039,jiwa,2024,registration,total_population,3.1.1,118,,
+13.12.04,3,Talamau,total,total,,31547,jiwa,2025,registration,total_population,3.1.1,118,,
+13.12.03,3,Pasaman,total,total,,80774,jiwa,2024,registration,total_population,3.1.1,118,,
+13.12.03,3,Pasaman,total,total,,82304,jiwa,2025,registration,total_population,3.1.1,118,,
+13.12.10,3,Luhak Nan Duo,total,total,,46390,jiwa,2024,registration,total_population,3.1.1,118,,
+13.12.10,3,Luhak Nan Duo,total,total,,47068,jiwa,2025,registration,total_population,3.1.1,118,,
+13.12.11,3,Sasak Ranah Pasisie,total,total,,15788,jiwa,2024,registration,total_population,3.1.1,118,,
+13.12.11,3,Sasak Ranah Pasisie,total,total,,16112,jiwa,2025,registration,total_population,3.1.1,118,,
+13.12.05,3,Kinali,total,total,,74345,jiwa,2024,registration,total_population,3.1.1,118,,
+13.12.05,3,Kinali,total,total,,75401,jiwa,2025,registration,total_population,3.1.1,118,,
+13.12,2,Pasaman Barat,total,total,,454053,jiwa,2024,registration,total_population,3.1.1,118,,
+13.12,2,Pasaman Barat,total,total,,461867,jiwa,2025,registration,total_population,3.1.1,118,,
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/padi_padian,,109788,rupiah,2025,survey_estimate,per_capita,10.1,422,,Padi-padian
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/padi_padian,,116112,rupiah,2024,survey_estimate,per_capita,10.1,422,,Padi-padian
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/umbi_umbian,,7124,rupiah,2025,survey_estimate,per_capita,10.1,422,,Umbi-umbian
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/umbi_umbian,,6343,rupiah,2024,survey_estimate,per_capita,10.1,422,,Umbi-umbian
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,86819,rupiah,2025,survey_estimate,per_capita,10.1,422,,Ikan/udang/cumi/kerang
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,86439,rupiah,2024,survey_estimate,per_capita,10.1,422,,Ikan/udang/cumi/kerang
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/daging,,21768,rupiah,2025,survey_estimate,per_capita,10.1,422,,Daging
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/daging,,15102,rupiah,2024,survey_estimate,per_capita,10.1,422,,Daging
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/telur_dan_susu,,38270,rupiah,2025,survey_estimate,per_capita,10.1,422,,Telur dan susu
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/telur_dan_susu,,25979,rupiah,2024,survey_estimate,per_capita,10.1,422,,Telur dan susu
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/sayur_sayuran,,83053,rupiah,2025,survey_estimate,per_capita,10.1,422,,Sayur-sayuran
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/sayur_sayuran,,81672,rupiah,2024,survey_estimate,per_capita,10.1,422,,Sayur-sayuran
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/kacang_kacangan,,9337,rupiah,2025,survey_estimate,per_capita,10.1,422,,Kacang-kacangan
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/kacang_kacangan,,8907,rupiah,2024,survey_estimate,per_capita,10.1,422,,Kacang-kacangan
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/buah_buahan,,38902,rupiah,2025,survey_estimate,per_capita,10.1,422,,Buah-buahan
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/buah_buahan,,26726,rupiah,2024,survey_estimate,per_capita,10.1,422,,Buah-buahan
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,36282,rupiah,2025,survey_estimate,per_capita,10.1,422,,Minyak dan kelapa
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,31605,rupiah,2024,survey_estimate,per_capita,10.1,422,,Minyak dan kelapa
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/bahan_minuman,,17163,rupiah,2025,survey_estimate,per_capita,10.1,422,,Bahan minuman
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/bahan_minuman,,13719,rupiah,2024,survey_estimate,per_capita,10.1,422,,Bahan minuman
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/bumbu_bumbuan,,12084,rupiah,2025,survey_estimate,per_capita,10.1,422,,Bumbu-bumbuan
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/bumbu_bumbuan,,12964,rupiah,2024,survey_estimate,per_capita,10.1,422,,Bumbu-bumbuan
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/konsumsi_lainnya,,8352,rupiah,2025,survey_estimate,per_capita,10.1,422,,Konsumsi lainnya
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/konsumsi_lainnya,,7823,rupiah,2024,survey_estimate,per_capita,10.1,422,,Konsumsi lainnya
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,210985,rupiah,2025,survey_estimate,per_capita,10.1,422,,Makanan dan minuman jadi
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,186207,rupiah,2024,survey_estimate,per_capita,10.1,422,,Makanan dan minuman jadi
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/rokok,,139631,rupiah,2025,survey_estimate,per_capita,10.1,422,,Rokok
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/rokok,,142327,rupiah,2024,survey_estimate,per_capita,10.1,422,,Rokok
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/jumlah_makanan,,819558,rupiah,2025,survey_estimate,per_capita,10.1,422,,Jumlah makanan
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/jumlah_makanan,,761925,rupiah,2024,survey_estimate,per_capita,10.1,422,,Jumlah makanan
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,285541,rupiah,2025,survey_estimate,per_capita,10.1,422,,Perumahan dan fasilitas rumah tangga
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,278897,rupiah,2024,survey_estimate,per_capita,10.1,422,,Perumahan dan fasilitas rumah tangga
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,142134,rupiah,2025,survey_estimate,per_capita,10.1,422,,Aneka barang dan jasa
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,120527,rupiah,2024,survey_estimate,per_capita,10.1,422,,Aneka barang dan jasa
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,58189,rupiah,2025,survey_estimate,per_capita,10.1,422,,Pakaian. alas kaki. dan tutup kepala
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,56588,rupiah,2024,survey_estimate,per_capita,10.1,422,,Pakaian. alas kaki. dan tutup kepala
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/barang_tahan_lama,,45698,rupiah,2025,survey_estimate,per_capita,10.1,422,,Barang tahan lama
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/barang_tahan_lama,,25783,rupiah,2024,survey_estimate,per_capita,10.1,422,,Barang tahan lama
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,39872,rupiah,2025,survey_estimate,per_capita,10.1,422,,Pajak. pungutan. dan asuransi
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,52739,rupiah,2024,survey_estimate,per_capita,10.1,422,,Pajak. pungutan. dan asuransi
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,23723,rupiah,2025,survey_estimate,per_capita,10.1,422,,Keperluan pesta dan upacara/kenduri
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,10871,rupiah,2024,survey_estimate,per_capita,10.1,422,,Keperluan pesta dan upacara/kenduri
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,595158,rupiah,2025,survey_estimate,per_capita,10.1,422,,Jumlah bukan makanan
+13.12,2,Kabupaten Pasaman Barat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,545405,rupiah,2024,survey_estimate,per_capita,10.1,422,,Jumlah bukan makanan
+13.12,2,Kabupaten Pasaman Barat,expenditure,total,,1414716,rupiah,2025,survey_estimate,per_capita,10.1,422,,
+13.12,2,Kabupaten Pasaman Barat,expenditure,total,,1307330,rupiah,2024,survey_estimate,per_capita,10.1,422,,

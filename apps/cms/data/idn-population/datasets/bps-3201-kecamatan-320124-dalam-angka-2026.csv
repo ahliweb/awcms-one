@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.01.24.2001,4,Cileungsi,sex,laki_laki,,4833,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.24.2001,4,Cileungsi,sex,perempuan,,4447,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.24.2001,4,Cileungsi,total,total,,9280,jiwa,2025,registration,total_population,3.1,36,,
+32.01.24.2002,4,Citapen,sex,laki_laki,,5835,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.24.2002,4,Citapen,sex,perempuan,,5497,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.24.2002,4,Citapen,total,total,,11332,jiwa,2025,registration,total_population,3.1,36,,
+32.01.24.2003,4,Cibedug,sex,laki_laki,,4732,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.24.2003,4,Cibedug,sex,perempuan,,4298,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.24.2003,4,Cibedug,total,total,,9030,jiwa,2025,registration,total_population,3.1,36,,
+32.01.24.2010,4,Bojong Murni,sex,laki_laki,,3363,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.24.2010,4,Bojong Murni,sex,perempuan,,3150,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.24.2010,4,Bojong Murni,total,total,,6513,jiwa,2025,registration,total_population,3.1,36,,
+32.01.24.2004,4,Jambu Luwuk,sex,laki_laki,,4261,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.24.2004,4,Jambu Luwuk,sex,perempuan,,3911,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.24.2004,4,Jambu Luwuk,total,total,,8172,jiwa,2025,registration,total_population,3.1,36,,
+32.01.24.2005,4,Banjar Sari,sex,laki_laki,,5418,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.24.2005,4,Banjar Sari,sex,perempuan,,5294,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.24.2005,4,Banjar Sari,total,total,,10712,jiwa,2025,registration,total_population,3.1,36,,
+32.01.24.2011,4,Banjar Wangi,sex,laki_laki,,4857,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.24.2011,4,Banjar Wangi,sex,perempuan,,4701,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.24.2011,4,Banjar Wangi,total,total,,9558,jiwa,2025,registration,total_population,3.1,36,,
+32.01.24.2013,4,Bitung Sari,sex,laki_laki,,4430,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.24.2013,4,Bitung Sari,sex,perempuan,,4083,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.24.2013,4,Bitung Sari,total,total,,8513,jiwa,2025,registration,total_population,3.1,36,,
+32.01.24.2006,4,Teluk Pinang,sex,laki_laki,,5179,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.24.2006,4,Teluk Pinang,sex,perempuan,,4901,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.24.2006,4,Teluk Pinang,total,total,,10080,jiwa,2025,registration,total_population,3.1,36,,
+32.01.24.2007,4,Banjar Waru,sex,laki_laki,,5587,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.24.2007,4,Banjar Waru,sex,perempuan,,5423,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.24.2007,4,Banjar Waru,total,total,,11010,jiwa,2025,registration,total_population,3.1,36,,
+32.01.24.2012,4,Ciawi,sex,laki_laki,,4170,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.24.2012,4,Ciawi,sex,perempuan,,3957,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.24.2012,4,Ciawi,total,total,,8127,jiwa,2025,registration,total_population,3.1,36,,
+32.01.24.2008,4,Bendungan,sex,laki_laki,,5945,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.24.2008,4,Bendungan,sex,perempuan,,5839,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.24.2008,4,Bendungan,total,total,,11784,jiwa,2025,registration,total_population,3.1,36,,
+32.01.24.2009,4,Pandansari,sex,laki_laki,,5594,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.24.2009,4,Pandansari,sex,perempuan,,5351,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.24.2009,4,Pandansari,total,total,,10945,jiwa,2025,registration,total_population,3.1,36,,
+32.01.24,3,Kecamatan Ciawi,sex,laki_laki,,64204,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.24,3,Kecamatan Ciawi,sex,perempuan,,60852,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.24,3,Kecamatan Ciawi,total,total,,125056,jiwa,2025,registration,total_population,3.1,36,,
+32.01.24,3,Ciawi,age_group,0-4,laki_laki,4912,jiwa,2025,registration,total_population,3.2,38,,0-4
+32.01.24,3,Ciawi,age_group,0-4,perempuan,4509,jiwa,2025,registration,total_population,3.2,38,,0-4
+32.01.24,3,Ciawi,age_group,0-4,,9421,jiwa,2025,registration,total_population,3.2,38,,0-4
+32.01.24,3,Ciawi,age_group,5-9,laki_laki,6060,jiwa,2025,registration,total_population,3.2,38,,5-9
+32.01.24,3,Ciawi,age_group,5-9,perempuan,5800,jiwa,2025,registration,total_population,3.2,38,,5-9
+32.01.24,3,Ciawi,age_group,5-9,,11860,jiwa,2025,registration,total_population,3.2,38,,5-9
+32.01.24,3,Ciawi,age_group,10-14,laki_laki,5902,jiwa,2025,registration,total_population,3.2,38,,10-14
+32.01.24,3,Ciawi,age_group,10-14,perempuan,5575,jiwa,2025,registration,total_population,3.2,38,,10-14
+32.01.24,3,Ciawi,age_group,10-14,,11477,jiwa,2025,registration,total_population,3.2,38,,10-14
+32.01.24,3,Ciawi,age_group,15-19,laki_laki,5364,jiwa,2025,registration,total_population,3.2,38,,15-19
+32.01.24,3,Ciawi,age_group,15-19,perempuan,5040,jiwa,2025,registration,total_population,3.2,38,,15-19
+32.01.24,3,Ciawi,age_group,15-19,,10404,jiwa,2025,registration,total_population,3.2,38,,15-19
+32.01.24,3,Ciawi,age_group,20-24,laki_laki,5401,jiwa,2025,registration,total_population,3.2,38,,20-24
+32.01.24,3,Ciawi,age_group,20-24,perempuan,5199,jiwa,2025,registration,total_population,3.2,38,,20-24
+32.01.24,3,Ciawi,age_group,20-24,,10600,jiwa,2025,registration,total_population,3.2,38,,20-24
+32.01.24,3,Ciawi,age_group,25-29,laki_laki,5318,jiwa,2025,registration,total_population,3.2,38,,25-29
+32.01.24,3,Ciawi,age_group,25-29,perempuan,5055,jiwa,2025,registration,total_population,3.2,38,,25-29
+32.01.24,3,Ciawi,age_group,25-29,,10373,jiwa,2025,registration,total_population,3.2,38,,25-29
+32.01.24,3,Ciawi,age_group,30-34,laki_laki,5199,jiwa,2025,registration,total_population,3.2,38,,30-34
+32.01.24,3,Ciawi,age_group,30-34,perempuan,4652,jiwa,2025,registration,total_population,3.2,38,,30-34
+32.01.24,3,Ciawi,age_group,30-34,,9851,jiwa,2025,registration,total_population,3.2,38,,30-34
+32.01.24,3,Ciawi,age_group,35-39,laki_laki,4744,jiwa,2025,registration,total_population,3.2,38,,35-39
+32.01.24,3,Ciawi,age_group,35-39,perempuan,4306,jiwa,2025,registration,total_population,3.2,38,,35-39
+32.01.24,3,Ciawi,age_group,35-39,,9050,jiwa,2025,registration,total_population,3.2,38,,35-39
+32.01.24,3,Ciawi,age_group,40-44,laki_laki,4679,jiwa,2025,registration,total_population,3.2,38,,40-44
+32.01.24,3,Ciawi,age_group,40-44,perempuan,4309,jiwa,2025,registration,total_population,3.2,38,,40-44
+32.01.24,3,Ciawi,age_group,40-44,,8988,jiwa,2025,registration,total_population,3.2,38,,40-44
+32.01.24,3,Ciawi,age_group,45-49,laki_laki,4283,jiwa,2025,registration,total_population,3.2,38,,45-49
+32.01.24,3,Ciawi,age_group,45-49,perempuan,4109,jiwa,2025,registration,total_population,3.2,38,,45-49
+32.01.24,3,Ciawi,age_group,45-49,,8392,jiwa,2025,registration,total_population,3.2,38,,45-49
+32.01.24,3,Ciawi,age_group,50-54,laki_laki,3752,jiwa,2025,registration,total_population,3.2,38,,50-54
+32.01.24,3,Ciawi,age_group,50-54,perempuan,3721,jiwa,2025,registration,total_population,3.2,38,,50-54
+32.01.24,3,Ciawi,age_group,50-54,,7473,jiwa,2025,registration,total_population,3.2,38,,50-54
+32.01.24,3,Ciawi,age_group,55-59,laki_laki,2949,jiwa,2025,registration,total_population,3.2,38,,55-59
+32.01.24,3,Ciawi,age_group,55-59,perempuan,2750,jiwa,2025,registration,total_population,3.2,38,,55-59
+32.01.24,3,Ciawi,age_group,55-59,,5699,jiwa,2025,registration,total_population,3.2,38,,55-59
+32.01.24,3,Ciawi,age_group,60-64,laki_laki,2120,jiwa,2025,registration,total_population,3.2,38,,60-64
+32.01.24,3,Ciawi,age_group,60-64,perempuan,2100,jiwa,2025,registration,total_population,3.2,38,,60-64
+32.01.24,3,Ciawi,age_group,60-64,,4220,jiwa,2025,registration,total_population,3.2,38,,60-64
+32.01.24,3,Ciawi,age_group,65-69,laki_laki,1510,jiwa,2025,registration,total_population,3.2,38,,65-69
+32.01.24,3,Ciawi,age_group,65-69,perempuan,1666,jiwa,2025,registration,total_population,3.2,38,,65-69
+32.01.24,3,Ciawi,age_group,65-69,,3176,jiwa,2025,registration,total_population,3.2,38,,65-69
+32.01.24,3,Ciawi,age_group,70-74,laki_laki,1014,jiwa,2025,registration,total_population,3.2,38,,70-74
+32.01.24,3,Ciawi,age_group,70-74,perempuan,989,jiwa,2025,registration,total_population,3.2,38,,70-74
+32.01.24,3,Ciawi,age_group,70-74,,2003,jiwa,2025,registration,total_population,3.2,38,,70-74
+32.01.24,3,Ciawi,age_group,75+,laki_laki,997,jiwa,2025,registration,total_population,3.2,38,,75+
+32.01.24,3,Ciawi,age_group,75+,perempuan,1072,jiwa,2025,registration,total_population,3.2,38,,75+
+32.01.24,3,Ciawi,age_group,75+,,2069,jiwa,2025,registration,total_population,3.2,38,,75+
+32.01.24,3,Kecamatan Ciawi,sex,laki_laki,,64204,jiwa,2025,registration,total_population,3.2,38,,Laki-Laki
+32.01.24,3,Kecamatan Ciawi,sex,perempuan,,60852,jiwa,2025,registration,total_population,3.2,38,,Perempuan
+32.01.24,3,Kecamatan Ciawi,total,total,,125056,jiwa,2025,registration,total_population,3.2,38,,

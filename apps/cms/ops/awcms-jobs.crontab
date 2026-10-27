@@ -354,6 +354,15 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 #   on it. Running it on a schedule would re-derive state that is already
 #   correct.
 
+# idn-population:activate
+#   A platform operator serves a reviewed population dataset deliberately.
+#   Automatic activation would publish figures nobody read.
+
+# idn-population:import
+#   Runs by hand after a reviewed BPS publication (a manifest JSON plus its
+#   extracted CSV) is added under `data/idn-population/datasets/`. A timer would
+#   re-parse unchanged files forever.
+
 # idn-regions:activate
 #   A platform operator activates a reviewed dataset version deliberately.
 #   Automatic activation would publish a dataset nobody read.

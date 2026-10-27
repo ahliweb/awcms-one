@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.71.15.1004,4,Jagabaya I,sex,laki_laki,,1546,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.15.1004,4,Jagabaya I,sex,perempuan,,1520,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.15.1004,4,Jagabaya I,total,total,,3066,jiwa,2025,registration,total_population,3.1,26,,
+18.71.15.1005,4,Jagabaya II,sex,laki_laki,,8200,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.15.1005,4,Jagabaya II,sex,perempuan,,8096,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.15.1005,4,Jagabaya II,total,total,,16296,jiwa,2025,registration,total_population,3.1,26,,
+18.71.15.1006,4,Jagabaya III,sex,laki_laki,,4270,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.15.1006,4,Jagabaya III,sex,perempuan,,4310,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.15.1006,4,Jagabaya III,total,total,,8580,jiwa,2025,registration,total_population,3.1,26,,
+18.71.15.1003,4,Gunung Sulah,sex,laki_laki,,7135,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.15.1003,4,Gunung Sulah,sex,perempuan,,6904,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.15.1003,4,Gunung Sulah,total,total,,14039,jiwa,2025,registration,total_population,3.1,26,,
+18.71.15.1002,4,Way Halim Permai,sex,laki_laki,,6758,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.15.1002,4,Way Halim Permai,sex,perempuan,,6780,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.15.1002,4,Way Halim Permai,total,total,,13538,jiwa,2025,registration,total_population,3.1,26,,
+18.71.15.1001,4,Perumnas Way Halim,sex,laki_laki,,5523,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.15.1001,4,Perumnas Way Halim,sex,perempuan,,5839,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.15.1001,4,Perumnas Way Halim,total,total,,11362,jiwa,2025,registration,total_population,3.1,26,,
+18.71.15,3,Wayhalim,sex,laki_laki,,33432,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.15,3,Wayhalim,sex,perempuan,,33449,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.15,3,Wayhalim,total,total,,66881,jiwa,2025,registration,total_population,3.1,26,,

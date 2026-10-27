@@ -1,0 +1,103 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.77.01.1004,4,Wek IV,sex,laki_laki,,1340,jiwa,2024,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.01.1004,4,Wek IV,sex,perempuan,,1372,jiwa,2024,registration,total_population,3.1,25,,Perempuan/Female
+12.77.01.1004,4,Wek IV,total,total,,2712,jiwa,2024,registration,total_population,3.1,25,,
+12.77.01.1003,4,Wek III,sex,laki_laki,,1459,jiwa,2024,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.01.1003,4,Wek III,sex,perempuan,,1478,jiwa,2024,registration,total_population,3.1,25,,Perempuan/Female
+12.77.01.1003,4,Wek III,total,total,,2937,jiwa,2024,registration,total_population,3.1,25,,
+12.77.01.1002,4,Wek II,sex,laki_laki,,1588,jiwa,2024,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.01.1002,4,Wek II,sex,perempuan,,1581,jiwa,2024,registration,total_population,3.1,25,,Perempuan/Female
+12.77.01.1002,4,Wek II,total,total,,3169,jiwa,2024,registration,total_population,3.1,25,,
+12.77.01.1001,4,Wek I,sex,laki_laki,,3418,jiwa,2024,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.01.1001,4,Wek I,sex,perempuan,,3406,jiwa,2024,registration,total_population,3.1,25,,Perempuan/Female
+12.77.01.1001,4,Wek I,total,total,,6824,jiwa,2024,registration,total_population,3.1,25,,
+12.77.01.1008,4,Batang Ayumi Julu,sex,laki_laki,,2074,jiwa,2024,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.01.1008,4,Batang Ayumi Julu,sex,perempuan,,2124,jiwa,2024,registration,total_population,3.1,25,,Perempuan/Female
+12.77.01.1008,4,Batang Ayumi Julu,total,total,,4198,jiwa,2024,registration,total_population,3.1,25,,
+12.77.01.1007,4,Batang Ayumi Jae,sex,laki_laki,,958,jiwa,2024,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.01.1007,4,Batang Ayumi Jae,sex,perempuan,,995,jiwa,2024,registration,total_population,3.1,25,,Perempuan/Female
+12.77.01.1007,4,Batang Ayumi Jae,total,total,,1953,jiwa,2024,registration,total_population,3.1,25,,
+12.77.01.1006,4,Tobat,sex,laki_laki,,1370,jiwa,2024,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.01.1006,4,Tobat,sex,perempuan,,1422,jiwa,2024,registration,total_population,3.1,25,,Perempuan/Female
+12.77.01.1006,4,Tobat,total,total,,2792,jiwa,2024,registration,total_population,3.1,25,,
+12.77.01.1005,4,Tano Bato,sex,laki_laki,,2117,jiwa,2024,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.01.1005,4,Tano Bato,sex,perempuan,,2290,jiwa,2024,registration,total_population,3.1,25,,Perempuan/Female
+12.77.01.1005,4,Tano Bato,total,total,,4407,jiwa,2024,registration,total_population,3.1,25,,
+12.77.01.1011,4,Bonan Dolok,sex,laki_laki,,1307,jiwa,2024,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.01.1011,4,Bonan Dolok,sex,perempuan,,1264,jiwa,2024,registration,total_population,3.1,25,,Perempuan/Female
+12.77.01.1011,4,Bonan Dolok,total,total,,2571,jiwa,2024,registration,total_population,3.1,25,,
+12.77.01.1009,4,Sadabuan,sex,laki_laki,,2671,jiwa,2024,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.01.1009,4,Sadabuan,sex,perempuan,,2801,jiwa,2024,registration,total_population,3.1,25,,Perempuan/Female
+12.77.01.1009,4,Sadabuan,total,total,,5472,jiwa,2024,registration,total_population,3.1,25,,
+12.77.01.1010,4,Panyanggar,sex,laki_laki,,2628,jiwa,2024,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.01.1010,4,Panyanggar,sex,perempuan,,2700,jiwa,2024,registration,total_population,3.1,25,,Perempuan/Female
+12.77.01.1010,4,Panyanggar,total,total,,5328,jiwa,2024,registration,total_population,3.1,25,,
+12.77.01.1012,4,Losung Batu,sex,laki_laki,,3664,jiwa,2024,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.01.1012,4,Losung Batu,sex,perempuan,,3796,jiwa,2024,registration,total_population,3.1,25,,Perempuan/Female
+12.77.01.1012,4,Losung Batu,total,total,,7460,jiwa,2024,registration,total_population,3.1,25,,
+12.77.01.1015,4,Kantin,sex,laki_laki,,1124,jiwa,2024,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.01.1015,4,Kantin,sex,perempuan,,1160,jiwa,2024,registration,total_population,3.1,25,,Perempuan/Female
+12.77.01.1015,4,Kantin,total,total,,2284,jiwa,2024,registration,total_population,3.1,25,,
+12.77.01.1014,4,Bincar,sex,laki_laki,,2985,jiwa,2024,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.01.1014,4,Bincar,sex,perempuan,,3092,jiwa,2024,registration,total_population,3.1,25,,Perempuan/Female
+12.77.01.1014,4,Bincar,total,total,,6077,jiwa,2024,registration,total_population,3.1,25,,
+12.77.01.1013,4,Timbangan,sex,laki_laki,,2859,jiwa,2024,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.01.1013,4,Timbangan,sex,perempuan,,2775,jiwa,2024,registration,total_population,3.1,25,,Perempuan/Female
+12.77.01.1013,4,Timbangan,total,total,,5634,jiwa,2024,registration,total_population,3.1,25,,
+12.77.01.1016,4,Kayu Ombun,sex,laki_laki,,1392,jiwa,2024,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.01.1016,4,Kayu Ombun,sex,perempuan,,1427,jiwa,2024,registration,total_population,3.1,25,,Perempuan/Female
+12.77.01.1016,4,Kayu Ombun,total,total,,2819,jiwa,2024,registration,total_population,3.1,25,,
+12.77.01,3,Padangsidimpuan Utara,sex,laki_laki,,32954,jiwa,2024,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.01,3,Padangsidimpuan Utara,sex,perempuan,,33683,jiwa,2024,registration,total_population,3.1,25,,Perempuan/Female
+12.77.01,3,Padangsidimpuan Utara,total,total,,66637,jiwa,2024,registration,total_population,3.1,25,,
+12.77.01,3,Padangsidimpuan Utara,age_group,0-4,laki_laki,2103,jiwa,2025,registration,total_population,3.2,27,,0-4
+12.77.01,3,Padangsidimpuan Utara,age_group,0-4,perempuan,1979,jiwa,2025,registration,total_population,3.2,27,,0-4
+12.77.01,3,Padangsidimpuan Utara,age_group,0-4,,4082,jiwa,2025,registration,total_population,3.2,27,,0-4
+12.77.01,3,Padangsidimpuan Utara,age_group,5-9,laki_laki,3003,jiwa,2025,registration,total_population,3.2,27,,5-9
+12.77.01,3,Padangsidimpuan Utara,age_group,5-9,perempuan,2668,jiwa,2025,registration,total_population,3.2,27,,5-9
+12.77.01,3,Padangsidimpuan Utara,age_group,5-9,,5671,jiwa,2025,registration,total_population,3.2,27,,5-9
+12.77.01,3,Padangsidimpuan Utara,age_group,10-14,laki_laki,3046,jiwa,2025,registration,total_population,3.2,27,,10-14
+12.77.01,3,Padangsidimpuan Utara,age_group,10-14,perempuan,3031,jiwa,2025,registration,total_population,3.2,27,,10-14
+12.77.01,3,Padangsidimpuan Utara,age_group,10-14,,6077,jiwa,2025,registration,total_population,3.2,27,,10-14
+12.77.01,3,Padangsidimpuan Utara,age_group,15-19,laki_laki,3052,jiwa,2025,registration,total_population,3.2,27,,15-19
+12.77.01,3,Padangsidimpuan Utara,age_group,15-19,perempuan,2928,jiwa,2025,registration,total_population,3.2,27,,15-19
+12.77.01,3,Padangsidimpuan Utara,age_group,15-19,,5980,jiwa,2025,registration,total_population,3.2,27,,15-19
+12.77.01,3,Padangsidimpuan Utara,age_group,20-24,laki_laki,3016,jiwa,2025,registration,total_population,3.2,27,,20-24
+12.77.01,3,Padangsidimpuan Utara,age_group,20-24,perempuan,2908,jiwa,2025,registration,total_population,3.2,27,,20-24
+12.77.01,3,Padangsidimpuan Utara,age_group,20-24,,5924,jiwa,2025,registration,total_population,3.2,27,,20-24
+12.77.01,3,Padangsidimpuan Utara,age_group,25-29,laki_laki,2833,jiwa,2025,registration,total_population,3.2,27,,25-29
+12.77.01,3,Padangsidimpuan Utara,age_group,25-29,perempuan,2657,jiwa,2025,registration,total_population,3.2,27,,25-29
+12.77.01,3,Padangsidimpuan Utara,age_group,25-29,,5490,jiwa,2025,registration,total_population,3.2,27,,25-29
+12.77.01,3,Padangsidimpuan Utara,age_group,30-34,laki_laki,2599,jiwa,2025,registration,total_population,3.2,27,,30-34
+12.77.01,3,Padangsidimpuan Utara,age_group,30-34,perempuan,2526,jiwa,2025,registration,total_population,3.2,27,,30-34
+12.77.01,3,Padangsidimpuan Utara,age_group,30-34,,5125,jiwa,2025,registration,total_population,3.2,27,,30-34
+12.77.01,3,Padangsidimpuan Utara,age_group,35-39,laki_laki,2534,jiwa,2025,registration,total_population,3.2,27,,35-39
+12.77.01,3,Padangsidimpuan Utara,age_group,35-39,perempuan,2460,jiwa,2025,registration,total_population,3.2,27,,35-39
+12.77.01,3,Padangsidimpuan Utara,age_group,35-39,,4994,jiwa,2025,registration,total_population,3.2,27,,35-39
+12.77.01,3,Padangsidimpuan Utara,age_group,40-44,laki_laki,2464,jiwa,2025,registration,total_population,3.2,27,,40-44
+12.77.01,3,Padangsidimpuan Utara,age_group,40-44,perempuan,2366,jiwa,2025,registration,total_population,3.2,27,,40-44
+12.77.01,3,Padangsidimpuan Utara,age_group,40-44,,4830,jiwa,2025,registration,total_population,3.2,27,,40-44
+12.77.01,3,Padangsidimpuan Utara,age_group,45-49,laki_laki,2026,jiwa,2025,registration,total_population,3.2,27,,45-49
+12.77.01,3,Padangsidimpuan Utara,age_group,45-49,perempuan,2060,jiwa,2025,registration,total_population,3.2,27,,45-49
+12.77.01,3,Padangsidimpuan Utara,age_group,45-49,,4086,jiwa,2025,registration,total_population,3.2,27,,45-49
+12.77.01,3,Padangsidimpuan Utara,age_group,50-54,laki_laki,1655,jiwa,2025,registration,total_population,3.2,27,,50-54
+12.77.01,3,Padangsidimpuan Utara,age_group,50-54,perempuan,1908,jiwa,2025,registration,total_population,3.2,27,,50-54
+12.77.01,3,Padangsidimpuan Utara,age_group,50-54,,3563,jiwa,2025,registration,total_population,3.2,27,,50-54
+12.77.01,3,Padangsidimpuan Utara,age_group,55-59,laki_laki,1488,jiwa,2025,registration,total_population,3.2,27,,55-59
+12.77.01,3,Padangsidimpuan Utara,age_group,55-59,perempuan,1830,jiwa,2025,registration,total_population,3.2,27,,55-59
+12.77.01,3,Padangsidimpuan Utara,age_group,55-59,,3318,jiwa,2025,registration,total_population,3.2,27,,55-59
+12.77.01,3,Padangsidimpuan Utara,age_group,60-64,laki_laki,1193,jiwa,2025,registration,total_population,3.2,27,,60-64
+12.77.01,3,Padangsidimpuan Utara,age_group,60-64,perempuan,1520,jiwa,2025,registration,total_population,3.2,27,,60-64
+12.77.01,3,Padangsidimpuan Utara,age_group,60-64,,2713,jiwa,2025,registration,total_population,3.2,27,,60-64
+12.77.01,3,Padangsidimpuan Utara,age_group,65-69,laki_laki,966,jiwa,2025,registration,total_population,3.2,27,,65-69
+12.77.01,3,Padangsidimpuan Utara,age_group,65-69,perempuan,1255,jiwa,2025,registration,total_population,3.2,27,,65-69
+12.77.01,3,Padangsidimpuan Utara,age_group,65-69,,2221,jiwa,2025,registration,total_population,3.2,27,,65-69
+12.77.01,3,Padangsidimpuan Utara,age_group,70-74,laki_laki,510,jiwa,2025,registration,total_population,3.2,27,,70-74
+12.77.01,3,Padangsidimpuan Utara,age_group,70-74,perempuan,723,jiwa,2025,registration,total_population,3.2,27,,70-74
+12.77.01,3,Padangsidimpuan Utara,age_group,70-74,,1233,jiwa,2025,registration,total_population,3.2,27,,70-74
+12.77.01,3,Padangsidimpuan Utara,age_group,75+,laki_laki,466,jiwa,2025,registration,total_population,3.2,27,,75+
+12.77.01,3,Padangsidimpuan Utara,age_group,75+,perempuan,864,jiwa,2025,registration,total_population,3.2,27,,75+
+12.77.01,3,Padangsidimpuan Utara,age_group,75+,,1330,jiwa,2025,registration,total_population,3.2,27,,75+
+12.77.01,3,Padangsidimpuan Utara,sex,laki_laki,,32954,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+12.77.01,3,Padangsidimpuan Utara,sex,perempuan,,33683,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+12.77.01,3,Padangsidimpuan Utara,total,total,,66637,jiwa,2025,registration,total_population,3.2,27,,

@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-3208-kecamatan-320810-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.08.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ciawigebang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kuingan",
+  "publisherDomain": "3208",
+  "publisherWebsite": "https://kuningankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kuingan (https://kuningankab.bps.go.id), publikasi \"Kecamatan Ciawigebang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3208100",
+  "publicationNumber": "32080.25014",
+  "issn": "2580-8273",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kuningankab.bps.go.id/id/publication/2026/09/28/e40a11918c7a5cad4de9cd5c/kecamatan-ciawigebang-dalam-angka-2026.html",
+  "sourceFileSha256": "329d367942810bd257a74e9220543e3aaf80abc27d9cdef2360be9bda94f8295",
+  "sourceFileBytes": 3654331,
+  "sourcePages": [40, 147],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Kuningan.",
+  "csvPath": "datasets/bps-3208-kecamatan-320810-dalam-angka-2026.csv",
+  "csvSha256": "a81af64e76cafcc4f4fe930ad2a55b7964f17b3b428e8896f4eb3ed69160e7ce",
+  "tablesUsed": [
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ciawigebang, 2025",
+      "printedPages": [40],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Desa dan Agama yang Dianut di Kecamatan Ciawigebang, 2025",
+      "printedPages": [147],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1.1 (sex-by-village) could not be read reliably and is not included (year of a column not determinable)",
+    "table 3.1.2: row not stored: row \"75++\": unmatched ",
+    "table 3.1.2: row not stored: row \"Kecamatan Ciawigebang Ciawigebang District\": unmatched ",
+    "table 3.1.2: row not stored: row \"2024\": unmatched ",
+    "table 4.3.1: row not stored: row \"6. Keramatmulya\": unmatched ",
+    "table 4.3.1: row not stored: row \"Kecamatan Ciawigebang Ciawigebang District\": unmatched ",
+    "table 4.3.1: row not stored: row \"2024\": unmatched "
+  ]
+}

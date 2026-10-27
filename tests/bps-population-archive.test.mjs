@@ -1,0 +1,602 @@
+/**
+ * Unit tests for tools/bps-population/archive.ts. No network, no rclone, no
+ * database: the rclone runner and the local delete are injected fakes, and the
+ * eligibility positive case reads the committed dataset only when it exists.
+ */
+import { describe, test } from "bun:test";
+import assert from "node:assert/strict";
+import { existsSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+
+import {
+  archiveOne,
+  classifyPdfLocation,
+  compareVerification,
+  decideArchivePlacement,
+  decideEligibility,
+  findArchiveRecord,
+  isDeletableArchiveSource,
+  latestExtractBySha,
+  loadExtractLedger,
+  mergeArchiveRecord,
+  matchesOnly,
+  md5Hex,
+  normaliseRemoteRoot,
+  parseArchiveJson,
+  parseArgs,
+  parseExtractLedger,
+  parseRcloneMd5,
+  parseRcloneSizeJson,
+  remoteFilePath,
+  parseWilayahRegionLevels,
+  sha256Hex,
+  unextractedFolder,
+  WILAYAH_SQL_PATH
+} from "../tools/bps-population/archive.ts";
+import { parsePopulationManifest } from "../apps/cms/src/modules/idn-admin-regions/domain/population-manifest.ts";
+
+const REMOTE = "gdrive-test:Folder/Sub";
+const PDF_BYTES = new TextEncoder().encode("%PDF-1.4 fake publication bytes");
+const LOCAL = { md5: md5Hex(PDF_BYTES), bytes: PDF_BYTES.byteLength };
+const SHA = sha256Hex(PDF_BYTES);
+/** An empty region list: only for cases that fail before the region check. */
+const NO_REGIONS = new Map();
+
+/** A dataset candidate whose CSV is deliberately not a valid population file. */
+function candidate({ sourceFileSha256 = SHA, csvText = "not,the,header\n", csvBytesSha256 = null } = {}) {
+  const csv = csvText === null ? null : csvText;
+  const csvSha = csvBytesSha256 ?? (csv === null ? null : sha256Hex(new TextEncoder().encode(csv)));
+  const manifest = {
+    datasetCode: "bps-9999-dalam-angka-2026",
+    publicationSeries: "kabupaten_kota_dalam_angka",
+    coverageRegionCode: "99.99",
+    coverageRegionLevel: 2,
+    publicationTitle: "Test Dalam Angka 2026",
+    publisherName: "BPS Test",
+    publisherDomain: "9999",
+    publisherWebsite: "https://test.bps.go.id",
+    attribution: "test",
+    catalogueNumber: null,
+    publicationNumber: null,
+    issn: null,
+    publicationYear: 2026,
+    releaseDate: null,
+    publicationUrl: "https://test.bps.go.id/id/publication",
+    sourceFileSha256,
+    sourceFileBytes: PDF_BYTES.byteLength,
+    termsOfUse: "test",
+    csvPath: null,
+    csvSha256: csvSha
+  };
+  return { datasetCode: manifest.datasetCode, manifest, csvText: csv, csvBytesSha256: csvSha };
+}
+
+/** A fake rclone that answers from a table keyed by the first argument. */
+function fakeRclone({ md5 = LOCAL.md5, bytes = LOCAL.bytes, fileName = "6271-dalam-angka-2026.pdf", copyCode = 0, md5Code = 0 } = {}) {
+  const calls = [];
+  const run = async (args) => {
+    calls.push(args);
+    if (args[0] === "copyto") return { code: copyCode, stdout: "", stderr: copyCode ? "boom" : "" };
+    if (args[0] === "md5sum") {
+      return { code: md5Code, stdout: `${md5}  ${fileName}\n`, stderr: "" };
+    }
+    if (args[0] === "size") return { code: 0, stdout: JSON.stringify({ count: 1, bytes, sizeless: 0 }), stderr: "" };
+    return { code: 1, stdout: "", stderr: "unexpected" };
+  };
+  return { run, calls };
+}
+
+function deps(run, log = []) {
+  let records = [];
+  return {
+    run,
+    loadRecords: async () => records,
+    saveRecord: async (record) => {
+      log.push(["save", record.remote]);
+      records = mergeArchiveRecord(records, record);
+    },
+    deleteLocal: async (filePath) => {
+      log.push(["delete", filePath]);
+    },
+    now: () => new Date("2026-10-26T00:00:00Z")
+  };
+}
+
+const ITEM = {
+  filePath: "/cache/pdf/6271-dalam-angka-2026.pdf",
+  fileName: "6271-dalam-angka-2026.pdf",
+  sha256: SHA,
+  md5: LOCAL.md5,
+  bytes: LOCAL.bytes,
+  remote: `${REMOTE}/kabkota-provinsi/2026/6271-dalam-angka-2026.pdf`,
+  datasetCode: "bps-9999-dalam-angka-2026",
+  kind: "dataset"
+};
+
+describe("eligibility", () => {
+  test("no dataset cites the PDF: not eligible, 'no dataset yet'", () => {
+    const result = decideEligibility(SHA, [candidate({ sourceFileSha256: "f".repeat(64) })], NO_REGIONS);
+    assert.deepEqual(result, { eligible: false, reason: "no dataset yet" });
+  });
+
+  test("two datasets cite the same PDF: ambiguous, not eligible", () => {
+    const a = candidate();
+    const b = candidate();
+    b.datasetCode = "bps-9998-dalam-angka-2026";
+    const result = decideEligibility(SHA, [a, b], NO_REGIONS);
+    assert.equal(result.eligible, false);
+    assert.match(result.reason, /ambiguous/);
+  });
+
+  test("CSV missing: not eligible", () => {
+    const result = decideEligibility(SHA, [candidate({ csvText: null })], NO_REGIONS);
+    assert.equal(result.eligible, false);
+    assert.match(result.reason, /missing or unreadable/);
+  });
+
+  test("CSV checksum differs from the manifest: not eligible", () => {
+    const drifted = candidate();
+    drifted.manifest.csvSha256 = "0".repeat(64);
+    const result = decideEligibility(SHA, [drifted], NO_REGIONS);
+    assert.equal(result.eligible, false);
+    assert.match(result.reason, /checksum does not match/);
+  });
+
+  test("CSV that fails the importer's shape check: validation failed", () => {
+    const result = decideEligibility(SHA, [candidate({ csvText: "not,the,header\n" })], NO_REGIONS);
+    assert.equal(result.eligible, false);
+    assert.match(result.reason, /^validation failed/);
+  });
+
+  test("a valid header with no data rows: validation failed", () => {
+    const header =
+      "region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label";
+    const result = decideEligibility(SHA, [candidate({ csvText: `${header}\n` })], NO_REGIONS);
+    assert.equal(result.eligible, false);
+    assert.match(result.reason, /validation failed/);
+  });
+
+  test("the committed 6271 dataset, when present, is eligible for its own PDF", () => {
+    const dir = join(import.meta.dir ?? ".", "..", "apps", "cms", "data", "idn-population", "datasets");
+    const jsonPath = join(dir, "bps-6271-dalam-angka-2026.json");
+    const csvPath = join(dir, "bps-6271-dalam-angka-2026.csv");
+    if (!existsSync(jsonPath) || !existsSync(csvPath)) return;
+    const parsed = parsePopulationManifest(JSON.parse(readFileSync(jsonPath, "utf8")));
+    assert.equal(parsed.ok, true);
+    const csvBytes = new Uint8Array(readFileSync(csvPath));
+    const result = decideEligibility(parsed.manifest.sourceFileSha256, [
+      {
+        datasetCode: parsed.manifest.datasetCode,
+        manifest: parsed.manifest,
+        csvText: Buffer.from(csvBytes).toString("utf8"),
+        csvBytesSha256: sha256Hex(csvBytes)
+      }
+    ], parseWilayahRegionLevels(readFileSync(WILAYAH_SQL_PATH, "utf8")));
+    assert.deepEqual(result, { eligible: true, datasetCode: "bps-6271-dalam-angka-2026", year: 2026 });
+  });
+});
+
+describe("region list for the validator", () => {
+  test("every ('code','name') tuple of wilayah.sql becomes code -> level, names with doubled quotes included", () => {
+    const sql = "INSERT INTO wilayah (kode, nama) VALUES\n('11','Aceh'),\n('11.01','Kabupaten Aceh Selatan'),\n('11.01.01','Bakongan'),\n('62.71.02.1001','Marang'),\n('62.03.15.2004','Karetau Manta''a'),\n('11.01.02','Panu''ut');";
+    const levels = parseWilayahRegionLevels(sql);
+    assert.deepEqual(
+      [...levels],
+      [["11", 1], ["11.01", 2], ["11.01.01", 3], ["62.71.02.1001", 4], ["62.03.15.2004", 4], ["11.01.02", 3]]
+    );
+  });
+
+  test("the upstream wilayah.sql yields the full hierarchy, not only a PDF's own codes", () => {
+    const levels = parseWilayahRegionLevels(readFileSync(WILAYAH_SQL_PATH, "utf8"));
+    assert.equal(levels.get("62"), 1);
+    assert.equal(levels.get("62.71"), 2);
+    assert.equal(levels.get("62.71.02.1001"), 4);
+    const tupleLines = readFileSync(WILAYAH_SQL_PATH, "utf8").split("\n").filter((l) => /^\('/.test(l)).length;
+    assert.equal(levels.size, tupleLines, "every tuple line parses to one region");
+  });
+});
+
+describe("children_sum uses the full region list", () => {
+  // Kecamatan 62.71.02 has three villages in the region list; the PDF publishes only two.
+  const CSV = [
+    "region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label",
+    "62.71.02,3,Marang,total,total,,4000,jiwa,2025,registration,total_population,3.1.1,36,,",
+    "62.71.02.1001,4,Marang,total,total,,1213,jiwa,2025,registration,total_population,3.1.1,36,,",
+    "62.71.02.1002,4,Tumbang Tahai,total,total,,3224,jiwa,2025,registration,total_population,3.1.1,36,,"
+  ].join("\n") + "\n";
+  const kecamatanCandidate = () => {
+    const c = candidate({ csvText: CSV });
+    c.manifest.coverageRegionCode = "62.71";
+    return c;
+  };
+  const FULL = new Map([
+    ["62", 1],
+    ["62.71", 2],
+    ["62.71.02", 3],
+    ["62.71.02.1001", 4],
+    ["62.71.02.1002", 4],
+    ["62.71.02.1003", 4]
+  ]);
+
+  test("a parent with 3 children in the list and only 2 published: children_sum is skipped, dataset eligible", () => {
+    const result = decideEligibility(SHA, [kecamatanCandidate()], FULL);
+    assert.deepEqual(result, { eligible: true, datasetCode: "bps-9999-dalam-angka-2026", year: 2026 });
+  });
+
+  test("the same CSV with the list holding only the published children is checked and fails (the old, wrong behaviour)", () => {
+    const onlyPublished = new Map([
+      ["62", 1],
+      ["62.71", 2],
+      ["62.71.02", 3],
+      ["62.71.02.1001", 4],
+      ["62.71.02.1002", 4]
+    ]);
+    const result = decideEligibility(SHA, [kecamatanCandidate()], onlyPublished);
+    assert.equal(result.eligible, false);
+    assert.match(result.reason, /children_sum/);
+  });
+});
+
+describe("remote path", () => {
+  test("direct PDFs go to kabkota-provinsi/<year>", () => {
+    assert.equal(
+      remoteFilePath(REMOTE, "kabkota-provinsi", 2026, "6271-dalam-angka-2026.pdf"),
+      "gdrive-test:Folder/Sub/kabkota-provinsi/2026/6271-dalam-angka-2026.pdf"
+    );
+  });
+
+  test("kecamatan subfolder PDFs go to kecamatan/<year>", () => {
+    const loc = classifyPdfLocation(join("kecamatan", "6271010-dalam-angka-2026.pdf"));
+    assert.deepEqual(loc, { ok: true, scope: "kecamatan", fileName: "6271010-dalam-angka-2026.pdf" });
+    assert.equal(
+      remoteFilePath(REMOTE, loc.scope, 2026, loc.fileName),
+      "gdrive-test:Folder/Sub/kecamatan/2026/6271010-dalam-angka-2026.pdf"
+    );
+  });
+
+  test("a path that climbs out of pdf/ is refused", () => {
+    const loc = classifyPdfLocation(join("..", "state.json"));
+    assert.equal(loc.ok, false);
+    assert.match(loc.reason, /outside pdf/);
+    assert.equal(classifyPdfLocation(join("kecamatan", "..", "..", "x.pdf")).ok, false);
+    assert.equal(classifyPdfLocation("/etc/passwd.pdf").ok, false);
+  });
+
+  test("a deeper subfolder than kecamatan/ is refused", () => {
+    assert.equal(classifyPdfLocation(join("kecamatan", "extra", "x.pdf")).ok, false);
+    assert.equal(classifyPdfLocation(join("other", "x.pdf")).ok, false);
+  });
+
+  test("a file name with a separator or dot segment cannot build a remote path", () => {
+    assert.throws(() => remoteFilePath(REMOTE, "kecamatan", 2026, "../x.pdf"));
+    assert.throws(() => remoteFilePath(REMOTE, "kecamatan", 2026, ".."));
+    assert.throws(() => remoteFilePath(REMOTE, "kecamatan", 26, "x.pdf"));
+  });
+
+  test("the remote must name a path and must not look like a flag", () => {
+    assert.equal(normaliseRemoteRoot(undefined).ok, false);
+    assert.equal(normaliseRemoteRoot("   ").ok, false);
+    assert.equal(normaliseRemoteRoot("--config=/x").ok, false);
+    assert.equal(normaliseRemoteRoot("noColonHere").ok, false);
+    assert.equal(normaliseRemoteRoot("myremote:").ok, false);
+    assert.deepEqual(normaliseRemoteRoot("myremote:Folder/Sub/"), { ok: true, remote: "myremote:Folder/Sub" });
+  });
+});
+
+describe("pdf selection", () => {
+  test(".part downloads are never archivable", () => {
+    assert.equal(classifyPdfLocation("6271-dalam-angka-2026.pdf.part").ok, false);
+    assert.equal(classifyPdfLocation(join("kecamatan", "x.pdf.part")).ok, false);
+  });
+
+  test("only .pdf files are deletable, and only inside pdf/", () => {
+    const cache = "/home/u/.cache/awcms-bps-population";
+    assert.equal(isDeletableArchiveSource(cache, `${cache}/pdf/6271.pdf`), true);
+    assert.equal(isDeletableArchiveSource(cache, `${cache}/pdf/kecamatan/6271010.pdf`), true);
+    assert.equal(isDeletableArchiveSource(cache, `${cache}/state.json`), false);
+    assert.equal(isDeletableArchiveSource(cache, `${cache}/archive.json`), false);
+    assert.equal(isDeletableArchiveSource(cache, `${cache}/pdf/../state.json`), false);
+    assert.equal(isDeletableArchiveSource(cache, `${cache}/pdf/6271.pdf.part`), false);
+    assert.equal(isDeletableArchiveSource(cache, `${cache}/pdf`), false);
+  });
+
+  test("--only matches a domain or a whole file stem", () => {
+    assert.equal(matchesOnly("6271-dalam-angka-2026.pdf", "6271"), true);
+    assert.equal(matchesOnly("6271-dalam-angka-2026.pdf", "6271-dalam-angka-2026"), true);
+    assert.equal(matchesOnly("6271-dalam-angka-2026.pdf", "62"), false);
+    assert.equal(matchesOnly("6271-dalam-angka-2026.pdf", null), true);
+  });
+
+  test("argv parsing: dry run by default, --commit, --only and --include-unextracted", () => {
+    assert.deepEqual(parseArgs([]), { commit: false, only: null, includeUnextracted: false });
+    assert.deepEqual(parseArgs(["--commit", "--only", "6271"]), { commit: true, only: "6271", includeUnextracted: false });
+    assert.deepEqual(parseArgs(["--only=6271"]), { commit: false, only: "6271", includeUnextracted: false });
+    assert.deepEqual(parseArgs(["--commit", "--include-unextracted"]), {
+      commit: true,
+      only: null,
+      includeUnextracted: true
+    });
+    assert.throws(() => parseArgs(["--bogus"]));
+    assert.throws(() => parseArgs(["--only"]));
+  });
+
+  test("the unextracted folder name is only added for an unextracted PDF", () => {
+    const remote = remoteFilePath(REMOTE, "kecamatan", 2025, "6271010-x.pdf", "belum-diekstrak");
+    assert.equal(remote, "gdrive-test:Folder/Sub/belum-diekstrak/kecamatan/2025/6271010-x.pdf");
+    assert.equal(
+      remoteFilePath(REMOTE, "kabkota-provinsi", 2026, "6271-x.pdf", "perlu-ditinjau"),
+      "gdrive-test:Folder/Sub/perlu-ditinjau/kabkota-provinsi/2026/6271-x.pdf"
+    );
+    assert.equal(
+      remoteFilePath(REMOTE, "kabkota-provinsi", 2026, "6271-x.pdf"),
+      "gdrive-test:Folder/Sub/kabkota-provinsi/2026/6271-x.pdf"
+    );
+    assert.throws(() => remoteFilePath(REMOTE, "kecamatan", 2025, "x.pdf", "../escape"), /plain folder name/);
+  });
+});
+
+describe("verification", () => {
+  test("parses the rclone md5sum line for the named file only", () => {
+    const out = `${LOCAL.md5}  6271-dalam-angka-2026.pdf\n${"a".repeat(32)}  other.pdf\n`;
+    assert.equal(parseRcloneMd5(out, "6271-dalam-angka-2026.pdf"), LOCAL.md5);
+    assert.equal(parseRcloneMd5(out, "missing.pdf"), null);
+    assert.equal(parseRcloneMd5("garbage", "x.pdf"), null);
+  });
+
+  test("parses rclone size --json and refuses a count other than one", () => {
+    assert.equal(parseRcloneSizeJson(JSON.stringify({ count: 1, bytes: 42, sizeless: 0 })), 42);
+    assert.equal(parseRcloneSizeJson(JSON.stringify({ count: 0, bytes: 0, sizeless: 0 })), null);
+    assert.equal(parseRcloneSizeJson("not json"), null);
+  });
+
+  test("md5 mismatch fails the comparison", () => {
+    const result = compareVerification(LOCAL, { md5: "b".repeat(32), bytes: LOCAL.bytes });
+    assert.equal(result.ok, false);
+    assert.match(result.reason, /MD5 mismatch/);
+  });
+
+  test("size mismatch fails the comparison", () => {
+    const result = compareVerification(LOCAL, { md5: LOCAL.md5, bytes: LOCAL.bytes + 1 });
+    assert.equal(result.ok, false);
+    assert.match(result.reason, /size mismatch/);
+  });
+
+  test("an unreadable remote MD5 or size fails the comparison", () => {
+    assert.equal(compareVerification(LOCAL, { md5: null, bytes: LOCAL.bytes }).ok, false);
+    assert.equal(compareVerification(LOCAL, { md5: LOCAL.md5, bytes: null }).ok, false);
+  });
+
+  test("matching MD5 and size pass", () => {
+    assert.deepEqual(compareVerification(LOCAL, { md5: LOCAL.md5, bytes: LOCAL.bytes }), { ok: true });
+  });
+});
+
+describe("archive.json", () => {
+  const record = (overrides = {}) => ({
+    file: "6271-dalam-angka-2026.pdf",
+    sha256: SHA,
+    md5: LOCAL.md5,
+    bytes: LOCAL.bytes,
+    remote: ITEM.remote,
+    datasetCode: "bps-9999-dalam-angka-2026",
+    archivedAt: "2026-10-26T00:00:00.000Z",
+    kind: "dataset",
+    ...overrides
+  });
+
+  test("a record written before kind existed reads as a dataset archive", () => {
+    const { kind, ...legacy } = record();
+    const [parsed] = parseArchiveJson(JSON.stringify([legacy]));
+    assert.equal(parsed.kind, "dataset");
+  });
+
+  test("an explicit kind is kept, and an unknown kind is refused", () => {
+    const [gap] = parseArchiveJson(JSON.stringify([record({ kind: "gap_only", datasetCode: "" })]));
+    assert.equal(gap.kind, "gap_only");
+    assert.throws(() => parseArchiveJson(JSON.stringify([record({ kind: "elsewhere" })])), /unknown kind/);
+  });
+
+  test("merging the same sha256 and remote replaces, never duplicates", () => {
+    const once = mergeArchiveRecord([], record());
+    const twice = mergeArchiveRecord(once, record({ archivedAt: "2026-10-27T00:00:00.000Z" }));
+    assert.equal(twice.length, 1);
+    assert.equal(twice[0].archivedAt, "2026-10-27T00:00:00.000Z");
+  });
+
+  test("the same bytes archived to a second remote is a second record", () => {
+    const merged = mergeArchiveRecord([record()], record({ remote: "other:Elsewhere/x.pdf" }));
+    assert.equal(merged.length, 2);
+  });
+
+  test("findArchiveRecord matches on sha256 and remote together", () => {
+    const records = [record()];
+    assert.ok(findArchiveRecord(records, SHA, ITEM.remote));
+    assert.equal(findArchiveRecord(records, SHA, "other:x"), undefined);
+    assert.equal(findArchiveRecord(records, "0".repeat(64), ITEM.remote), undefined);
+  });
+
+  test("a corrupt ledger throws rather than being overwritten", () => {
+    assert.throws(() => parseArchiveJson("{}"));
+    assert.throws(() => parseArchiveJson('[{"file":1}]'));
+    assert.deepEqual(parseArchiveJson("[]"), []);
+  });
+});
+
+describe("archiveOne: verification gates the local delete", () => {
+  test("md5 mismatch on the remote: no delete, no record", async () => {
+    const log = [];
+    const { run } = fakeRclone({ md5: "c".repeat(32) });
+    const outcome = await archiveOne(ITEM, deps(run, log));
+    assert.equal(outcome.status, "failed");
+    assert.match(outcome.reason, /MD5 mismatch/);
+    assert.deepEqual(log, []);
+  });
+
+  test("size mismatch on the remote: no delete, no record", async () => {
+    const log = [];
+    const { run } = fakeRclone({ bytes: LOCAL.bytes + 5 });
+    const outcome = await archiveOne(ITEM, deps(run, log));
+    assert.equal(outcome.status, "failed");
+    assert.match(outcome.reason, /size mismatch/);
+    assert.deepEqual(log, []);
+  });
+
+  test("copy failure: no delete", async () => {
+    const log = [];
+    const { run } = fakeRclone({ copyCode: 1 });
+    const outcome = await archiveOne(ITEM, deps(run, log));
+    assert.equal(outcome.status, "failed");
+    assert.deepEqual(log, []);
+  });
+
+  test("success: record is written before the local delete, and the copy uses --checksum", async () => {
+    const log = [];
+    const { run, calls } = fakeRclone();
+    const outcome = await archiveOne(ITEM, deps(run, log));
+    assert.equal(outcome.status, "deleted");
+    assert.deepEqual(log, [
+      ["save", ITEM.remote],
+      ["delete", ITEM.filePath]
+    ]);
+    assert.deepEqual(calls[0], ["copyto", ITEM.filePath, ITEM.remote, "--checksum"]);
+  });
+
+  test("already archived and still present remotely: verify, delete, no second upload", async () => {
+    const log = [];
+    const { run, calls } = fakeRclone();
+    const d = deps(run, log);
+    await d.saveRecord({
+      file: ITEM.fileName,
+      sha256: SHA,
+      md5: LOCAL.md5,
+      bytes: LOCAL.bytes,
+      remote: ITEM.remote,
+      datasetCode: ITEM.datasetCode,
+      archivedAt: "2026-10-25T00:00:00.000Z"
+    });
+    log.length = 0;
+    const outcome = await archiveOne(ITEM, d);
+    assert.equal(outcome.status, "deleted");
+    assert.equal(calls.some((c) => c[0] === "copyto"), false);
+    assert.deepEqual(log, [["delete", ITEM.filePath]]);
+  });
+});
+
+describe("extract ledger", () => {
+  const row = (overrides = {}) => ({
+    file: "6271-dalam-angka-2026.pdf",
+    sha256: SHA,
+    outcome: "gap_only",
+    datasetCode: null,
+    reason: "no table could be read",
+    publicationYear: 2026,
+    extractedAt: "2026-10-26T01:00:00.000Z",
+    ...overrides
+  });
+
+  test("a well-formed ledger parses; a malformed entry makes the whole ledger corrupt", () => {
+    assert.equal(parseExtractLedger(JSON.stringify([row()])).length, 1);
+    assert.equal(parseExtractLedger("[]").length, 0);
+    assert.throws(() => parseExtractLedger("{}"), /JSON array/);
+    assert.throws(() => parseExtractLedger(JSON.stringify([row({ outcome: "maybe" })])), /malformed/);
+    assert.throws(() => parseExtractLedger(JSON.stringify([row({ publicationYear: "2026" })])), /malformed/);
+    assert.throws(() => parseExtractLedger("not json"), SyntaxError);
+  });
+
+  test("the latest record per sha256 wins, by extractedAt, and ties go to the later line", () => {
+    const older = row({ outcome: "refused", extractedAt: "2026-10-25T00:00:00.000Z" });
+    const newer = row({ outcome: "gap_only", extractedAt: "2026-10-26T00:00:00.000Z" });
+    assert.equal(latestExtractBySha([newer, older]).get(SHA).outcome, "gap_only");
+    assert.equal(latestExtractBySha([older, newer]).get(SHA).outcome, "gap_only");
+    const tieA = row({ outcome: "refused" });
+    const tieB = row({ outcome: "gap_only" });
+    assert.equal(latestExtractBySha([tieA, tieB]).get(SHA).outcome, "gap_only");
+  });
+
+  test("a corrupt or unreadable ledger is empty and warns; a missing one is empty and silent", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "bps-ledger-"));
+    const warnings = [];
+    assert.equal((await loadExtractLedger(join(dir, "extract-results.json"), warnings)).size, 0);
+    assert.deepEqual(warnings, []);
+    writeFileSync(join(dir, "extract-results.json"), "[{truncated");
+    const map = await loadExtractLedger(join(dir, "extract-results.json"), warnings);
+    assert.equal(map.size, 0);
+    assert.equal(warnings.length, 1);
+    assert.match(warnings[0], /unreadable/);
+  });
+
+  test("gap_only goes to belum-diekstrak, refused to perlu-ditinjau, written to nothing", () => {
+    assert.deepEqual(unextractedFolder(row({ outcome: "gap_only" })), { kind: "gap_only", folder: "belum-diekstrak" });
+    assert.deepEqual(unextractedFolder(row({ outcome: "refused" })), { kind: "refused", folder: "perlu-ditinjau" });
+    assert.equal(unextractedFolder(row({ outcome: "written", datasetCode: "bps-x" })), null);
+    assert.equal(unextractedFolder(undefined), null);
+  });
+});
+
+describe("placement: a PDF is moved only with a dataset or a ledger record and the flag", () => {
+  const eligible = { eligible: true, datasetCode: "bps-6271-dalam-angka-2026", year: 2026 };
+  const none = { eligible: false, reason: "no dataset yet" };
+  const gap = { file: "x.pdf", sha256: SHA, outcome: "gap_only", datasetCode: null, reason: null, publicationYear: 2025, extractedAt: "t" };
+  const refused = { ...gap, outcome: "refused", publicationYear: 2024 };
+  const written = { ...gap, outcome: "written", datasetCode: "bps-x" };
+
+  test("an eligible dataset is always a dataset archive, flag or not", () => {
+    assert.deepEqual(decideArchivePlacement({ eligibility: eligible, extract: gap, includeUnextracted: false }), {
+      place: true,
+      kind: "dataset",
+      year: 2026,
+      datasetCode: "bps-6271-dalam-angka-2026"
+    });
+  });
+
+  test("with the flag: gap_only and refused records place the PDF in their folder, year from the record", () => {
+    assert.deepEqual(decideArchivePlacement({ eligibility: none, extract: gap, includeUnextracted: true }), {
+      place: true,
+      kind: "gap_only",
+      year: 2025,
+      datasetCode: "",
+      folder: "belum-diekstrak"
+    });
+    assert.deepEqual(decideArchivePlacement({ eligibility: none, extract: refused, includeUnextracted: true }), {
+      place: true,
+      kind: "refused",
+      year: 2024,
+      datasetCode: "",
+      folder: "perlu-ditinjau"
+    });
+  });
+
+  test("without the flag, a ledger record changes nothing", () => {
+    const decision = decideArchivePlacement({ eligibility: none, extract: gap, includeUnextracted: false });
+    assert.deepEqual(decision, { place: false, reason: "no dataset yet" });
+  });
+
+  test("no ledger record, or a written outcome with no dataset, is never placed", () => {
+    assert.equal(decideArchivePlacement({ eligibility: none, extract: undefined, includeUnextracted: true }).place, false);
+    assert.equal(decideArchivePlacement({ eligibility: none, extract: written, includeUnextracted: true }).place, false);
+  });
+
+  test("an archived unextracted PDF is recorded with its kind and uploaded to the unextracted folder", async () => {
+    const log = [];
+    const { run, calls } = fakeRclone();
+    const remote = `${REMOTE}/belum-diekstrak/kabkota-provinsi/2025/6271-dalam-angka-2026.pdf`;
+    const outcome = await archiveOne({ ...ITEM, remote, datasetCode: "", kind: "gap_only" }, deps(run, log));
+    assert.equal(outcome.status, "deleted");
+    assert.deepEqual(calls[0], ["copyto", ITEM.filePath, remote, "--checksum"]);
+    assert.deepEqual(log, [
+      ["save", remote],
+      ["delete", ITEM.filePath]
+    ]);
+  });
+
+  test("the saved record for an unextracted PDF carries kind and an empty datasetCode", async () => {
+    const saved = [];
+    const { run } = fakeRclone();
+    const d = deps(run);
+    d.saveRecord = async (record) => saved.push(record);
+    await archiveOne({ ...ITEM, datasetCode: "", kind: "refused" }, d);
+    assert.equal(saved[0].kind, "refused");
+    assert.equal(saved[0].datasetCode, "");
+  });
+});

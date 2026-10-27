@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1871-kecamatan-187116-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.71.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Langkapura Dalam Angka 2026",
+  "publisherName": "BPS Kota Bandar Lampung",
+  "publisherDomain": "1871",
+  "publisherWebsite": "https://bandarlampungkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bandar Lampung (https://bandarlampungkota.bps.go.id), publikasi \"Kecamatan Langkapura Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1871072",
+  "publicationNumber": "18710.26019",
+  "issn": "2776-9607",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandarlampungkota.bps.go.id/id/publication/2026/09/28/e04eb2123eda1f891e1c3c79/kecamatan-langkapura-dalam-angka-2026.html",
+  "sourceFileSha256": "00da65a48a74e6996afe003e9ad9dcea1b2f07ad328ee9297a0bd9ffd8445069",
+  "sourceFileBytes": 16766812,
+  "sourcePages": [26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bandar Lampung.",
+  "csvPath": "datasets/bps-1871-kecamatan-187116-dalam-angka-2026.csv",
+  "csvSha256": "0d64c945dd7cd5079fdb150bf3c39cabd941121551b06f2f2f3d27dd1794ce5c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Langkapura, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

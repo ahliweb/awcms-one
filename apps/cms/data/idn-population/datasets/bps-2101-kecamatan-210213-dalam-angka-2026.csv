@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.02.13.2001,4,Parit,sex,laki_laki,,861,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+21.02.13.2001,4,Parit,sex,perempuan,,843,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+21.02.13.2001,4,Parit,total,total,,1704,jiwa,2025,registration,total_population,3.1,,,
+21.02.13.2002,4,Tulang,sex,laki_laki,,754,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+21.02.13.2002,4,Tulang,sex,perempuan,,681,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+21.02.13.2002,4,Tulang,total,total,,1435,jiwa,2025,registration,total_population,3.1,,,
+21.02.13.2003,4,Selat Mendaun,sex,laki_laki,,528,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+21.02.13.2003,4,Selat Mendaun,sex,perempuan,,488,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+21.02.13.2003,4,Selat Mendaun,total,total,,1016,jiwa,2025,registration,total_population,3.1,,,
+21.02.13,3,Selat Gelam,sex,laki_laki,,2143,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+21.02.13,3,Selat Gelam,sex,perempuan,,2012,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+21.02.13,3,Selat Gelam,total,total,,4155,jiwa,2025,registration,total_population,3.1,,,
+21.02.13,3,Selat Gelam,age_group,0-4,laki_laki,135,jiwa,2025,registration,total_population,3.2,34,,0–4
+21.02.13,3,Selat Gelam,age_group,0-4,perempuan,100,jiwa,2025,registration,total_population,3.2,34,,0–4
+21.02.13,3,Selat Gelam,age_group,0-4,,235,jiwa,2025,registration,total_population,3.2,34,,0–4
+21.02.13,3,Selat Gelam,age_group,5-9,laki_laki,161,jiwa,2025,registration,total_population,3.2,34,,5–9
+21.02.13,3,Selat Gelam,age_group,5-9,perempuan,147,jiwa,2025,registration,total_population,3.2,34,,5–9
+21.02.13,3,Selat Gelam,age_group,5-9,,308,jiwa,2025,registration,total_population,3.2,34,,5–9
+21.02.13,3,Selat Gelam,age_group,10-14,laki_laki,173,jiwa,2025,registration,total_population,3.2,34,,10–14
+21.02.13,3,Selat Gelam,age_group,10-14,perempuan,169,jiwa,2025,registration,total_population,3.2,34,,10–14
+21.02.13,3,Selat Gelam,age_group,10-14,,342,jiwa,2025,registration,total_population,3.2,34,,10–14
+21.02.13,3,Selat Gelam,age_group,15-19,laki_laki,198,jiwa,2025,registration,total_population,3.2,34,,15–19
+21.02.13,3,Selat Gelam,age_group,15-19,perempuan,172,jiwa,2025,registration,total_population,3.2,34,,15–19
+21.02.13,3,Selat Gelam,age_group,15-19,,370,jiwa,2025,registration,total_population,3.2,34,,15–19
+21.02.13,3,Selat Gelam,age_group,20-24,laki_laki,194,jiwa,2025,registration,total_population,3.2,34,,20–24
+21.02.13,3,Selat Gelam,age_group,20-24,perempuan,177,jiwa,2025,registration,total_population,3.2,34,,20–24
+21.02.13,3,Selat Gelam,age_group,20-24,,371,jiwa,2025,registration,total_population,3.2,34,,20–24
+21.02.13,3,Selat Gelam,age_group,25-29,laki_laki,141,jiwa,2025,registration,total_population,3.2,34,,25–29
+21.02.13,3,Selat Gelam,age_group,25-29,perempuan,124,jiwa,2025,registration,total_population,3.2,34,,25–29
+21.02.13,3,Selat Gelam,age_group,25-29,,265,jiwa,2025,registration,total_population,3.2,34,,25–29
+21.02.13,3,Selat Gelam,age_group,30-34,laki_laki,116,jiwa,2025,registration,total_population,3.2,34,,30–34
+21.02.13,3,Selat Gelam,age_group,30-34,perempuan,104,jiwa,2025,registration,total_population,3.2,34,,30–34
+21.02.13,3,Selat Gelam,age_group,30-34,,220,jiwa,2025,registration,total_population,3.2,34,,30–34
+21.02.13,3,Selat Gelam,age_group,35-39,laki_laki,122,jiwa,2025,registration,total_population,3.2,34,,35–39
+21.02.13,3,Selat Gelam,age_group,35-39,perempuan,129,jiwa,2025,registration,total_population,3.2,34,,35–39
+21.02.13,3,Selat Gelam,age_group,35-39,,251,jiwa,2025,registration,total_population,3.2,34,,35–39
+21.02.13,3,Selat Gelam,age_group,40-44,laki_laki,180,jiwa,2025,registration,total_population,3.2,34,,40–44
+21.02.13,3,Selat Gelam,age_group,40-44,perempuan,174,jiwa,2025,registration,total_population,3.2,34,,40–44
+21.02.13,3,Selat Gelam,age_group,40-44,,354,jiwa,2025,registration,total_population,3.2,34,,40–44
+21.02.13,3,Selat Gelam,age_group,45-49,laki_laki,176,jiwa,2025,registration,total_population,3.2,34,,45–49
+21.02.13,3,Selat Gelam,age_group,45-49,perempuan,165,jiwa,2025,registration,total_population,3.2,34,,45–49
+21.02.13,3,Selat Gelam,age_group,45-49,,341,jiwa,2025,registration,total_population,3.2,34,,45–49
+21.02.13,3,Selat Gelam,age_group,50-54,laki_laki,142,jiwa,2025,registration,total_population,3.2,34,,50–54
+21.02.13,3,Selat Gelam,age_group,50-54,perempuan,146,jiwa,2025,registration,total_population,3.2,34,,50–54
+21.02.13,3,Selat Gelam,age_group,50-54,,288,jiwa,2025,registration,total_population,3.2,34,,50–54
+21.02.13,3,Selat Gelam,age_group,55-59,laki_laki,119,jiwa,2025,registration,total_population,3.2,34,,55–59
+21.02.13,3,Selat Gelam,age_group,55-59,perempuan,93,jiwa,2025,registration,total_population,3.2,34,,55–59
+21.02.13,3,Selat Gelam,age_group,55-59,,212,jiwa,2025,registration,total_population,3.2,34,,55–59
+21.02.13,3,Selat Gelam,age_group,60-64,laki_laki,79,jiwa,2025,registration,total_population,3.2,34,,60–64
+21.02.13,3,Selat Gelam,age_group,60-64,perempuan,95,jiwa,2025,registration,total_population,3.2,34,,60–64
+21.02.13,3,Selat Gelam,age_group,60-64,,174,jiwa,2025,registration,total_population,3.2,34,,60–64
+21.02.13,3,Selat Gelam,age_group,65-69,laki_laki,76,jiwa,2025,registration,total_population,3.2,34,,65–69
+21.02.13,3,Selat Gelam,age_group,65-69,perempuan,78,jiwa,2025,registration,total_population,3.2,34,,65–69
+21.02.13,3,Selat Gelam,age_group,65-69,,154,jiwa,2025,registration,total_population,3.2,34,,65–69
+21.02.13,3,Selat Gelam,age_group,70-74,laki_laki,65,jiwa,2025,registration,total_population,3.2,34,,70–74
+21.02.13,3,Selat Gelam,age_group,70-74,perempuan,63,jiwa,2025,registration,total_population,3.2,34,,70–74
+21.02.13,3,Selat Gelam,age_group,70-74,,128,jiwa,2025,registration,total_population,3.2,34,,70–74
+21.02.13,3,Selat Gelam,age_group,75+,laki_laki,66,jiwa,2025,registration,total_population,3.2,34,,75+
+21.02.13,3,Selat Gelam,age_group,75+,perempuan,76,jiwa,2025,registration,total_population,3.2,34,,75+
+21.02.13,3,Selat Gelam,age_group,75+,,142,jiwa,2025,registration,total_population,3.2,34,,75+
+21.02.13,3,Selat Gelam,sex,laki_laki,,2143,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+21.02.13,3,Selat Gelam,sex,perempuan,,2012,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+21.02.13,3,Selat Gelam,total,total,,4155,jiwa,2025,registration,total_population,3.2,34,,

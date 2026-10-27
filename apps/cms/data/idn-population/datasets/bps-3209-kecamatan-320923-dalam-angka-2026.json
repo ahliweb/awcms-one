@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3209-kecamatan-320923-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.09.23",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Klangenan Dalam Angka 2026",
+  "publisherName": "BPS BPS Kabupaten Cirebon",
+  "publisherDomain": "3209",
+  "publisherWebsite": "https://cirebonkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS BPS Kabupaten Cirebon (https://cirebonkab.bps.go.id), publikasi \"Kecamatan Klangenan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3209190",
+  "publicationNumber": "32090.26036",
+  "issn": "2714-9137",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cirebonkab.bps.go.id/id/publication/2026/09/28/e32e3f5cb260ac91872f956b/kecamatan-klangenan-dalam-angka-2026.html",
+  "sourceFileSha256": "27ffe7cba9fef34eed065ed4aad025975e16537a8a08f89727912beedac8d9e8",
+  "sourceFileBytes": 22191928,
+  "sourcePages": [52, 53, 54],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Cirebon.",
+  "csvPath": "datasets/bps-3209-kecamatan-320923-dalam-angka-2026.csv",
+  "csvSha256": "c5eb96da05c58d79c582c56138608275198d792dc4975c4adec641375d2a39c4",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Klangenan, 2025",
+      "printedPages": [52, 53],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Klangenan, 2025",
+      "printedPages": [54],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

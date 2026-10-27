@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.11.03.2001,4,Air Kelinsar,sex,laki_laki,,2013,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.11.03.2001,4,Air Kelinsar,sex,perempuan,,1831,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.11.03.2001,4,Air Kelinsar,total,total,,3844,jiwa,2025,registration,total_population,3.1,30,,
+16.11.03.2002,4,Talang Bengkulu,sex,laki_laki,,410,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.11.03.2002,4,Talang Bengkulu,sex,perempuan,,374,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.11.03.2002,4,Talang Bengkulu,total,total,,784,jiwa,2025,registration,total_population,3.1,30,,
+16.11.03.2003,4,Kunduran,sex,laki_laki,,540,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.11.03.2003,4,Kunduran,sex,perempuan,,503,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.11.03.2003,4,Kunduran,total,total,,1043,jiwa,2025,registration,total_population,3.1,30,,
+16.11.03.2004,4,Simpang Perigi,sex,laki_laki,,628,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.11.03.2004,4,Simpang Perigi,sex,perempuan,,561,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.11.03.2004,4,Simpang Perigi,total,total,,1189,jiwa,2025,registration,total_population,3.1,30,,
+16.11.03.2005,4,Muara Kalangan,sex,laki_laki,,1035,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.11.03.2005,4,Muara Kalangan,sex,perempuan,,993,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.11.03.2005,4,Muara Kalangan,total,total,,2028,jiwa,2025,registration,total_population,3.1,30,,
+16.11.03.2006,4,Batu Lintang,sex,laki_laki,,831,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.11.03.2006,4,Batu Lintang,sex,perempuan,,809,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.11.03.2006,4,Batu Lintang,total,total,,1640,jiwa,2025,registration,total_population,3.1,30,,
+16.11.03.2025,4,Galang,sex,laki_laki,,729,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.11.03.2025,4,Galang,sex,perempuan,,639,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.11.03.2025,4,Galang,total,total,,1368,jiwa,2025,registration,total_population,3.1,30,,
+16.11.03.2024,4,Tanjung Agung,sex,laki_laki,,2897,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.11.03.2024,4,Tanjung Agung,sex,perempuan,,2569,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.11.03.2024,4,Tanjung Agung,total,total,,5466,jiwa,2025,registration,total_population,3.1,30,,
+16.11.03.2007,4,Padang Tepong,sex,laki_laki,,2020,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.11.03.2007,4,Padang Tepong,sex,perempuan,,1887,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.11.03.2007,4,Padang Tepong,total,total,,3907,jiwa,2025,registration,total_population,3.1,30,,
+16.11.03.2008,4,Muara Betung,sex,laki_laki,,718,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.11.03.2008,4,Muara Betung,sex,perempuan,,607,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.11.03.2008,4,Muara Betung,total,total,,1325,jiwa,2025,registration,total_population,3.1,30,,
+16.11.03.2010,4,Pulau Kemang,sex,laki_laki,,207,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.11.03.2010,4,Pulau Kemang,sex,perempuan,,200,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.11.03.2010,4,Pulau Kemang,total,total,,407,jiwa,2025,registration,total_population,3.1,30,,
+16.11.03.2012,4,Batu Bidung,sex,laki_laki,,352,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.11.03.2012,4,Batu Bidung,sex,perempuan,,353,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.11.03.2012,4,Batu Bidung,total,total,,705,jiwa,2025,registration,total_population,3.1,30,,
+16.11.03,3,Ulu Musi,sex,laki_laki,,13145,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.11.03,3,Ulu Musi,sex,perempuan,,12030,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.11.03,3,Ulu Musi,total,total,,25175,jiwa,2025,registration,total_population,3.1,30,,
+16.11.03,3,Ulu Musi,age_group,0-4,laki_laki,515,jiwa,2025,registration,total_population,3.2,32,,0–4
+16.11.03,3,Ulu Musi,age_group,0-4,perempuan,446,jiwa,2025,registration,total_population,3.2,32,,0–4
+16.11.03,3,Ulu Musi,age_group,0-4,,961,jiwa,2025,registration,total_population,3.2,32,,0–4
+16.11.03,3,Ulu Musi,age_group,5-9,laki_laki,784,jiwa,2025,registration,total_population,3.2,32,,5–9
+16.11.03,3,Ulu Musi,age_group,5-9,perempuan,698,jiwa,2025,registration,total_population,3.2,32,,5–9
+16.11.03,3,Ulu Musi,age_group,5-9,,1482,jiwa,2025,registration,total_population,3.2,32,,5–9
+16.11.03,3,Ulu Musi,age_group,10-14,laki_laki,984,jiwa,2025,registration,total_population,3.2,32,,10–14
+16.11.03,3,Ulu Musi,age_group,10-14,perempuan,862,jiwa,2025,registration,total_population,3.2,32,,10–14
+16.11.03,3,Ulu Musi,age_group,10-14,,1846,jiwa,2025,registration,total_population,3.2,32,,10–14
+16.11.03,3,Ulu Musi,age_group,15-19,laki_laki,980,jiwa,2025,registration,total_population,3.2,32,,15–19
+16.11.03,3,Ulu Musi,age_group,15-19,perempuan,918,jiwa,2025,registration,total_population,3.2,32,,15–19
+16.11.03,3,Ulu Musi,age_group,15-19,,1898,jiwa,2025,registration,total_population,3.2,32,,15–19
+16.11.03,3,Ulu Musi,age_group,20-24,laki_laki,1130,jiwa,2025,registration,total_population,3.2,32,,20–24
+16.11.03,3,Ulu Musi,age_group,20-24,perempuan,1040,jiwa,2025,registration,total_population,3.2,32,,20–24
+16.11.03,3,Ulu Musi,age_group,20-24,,2170,jiwa,2025,registration,total_population,3.2,32,,20–24
+16.11.03,3,Ulu Musi,age_group,25-29,laki_laki,1110,jiwa,2025,registration,total_population,3.2,32,,25–29
+16.11.03,3,Ulu Musi,age_group,25-29,perempuan,937,jiwa,2025,registration,total_population,3.2,32,,25–29
+16.11.03,3,Ulu Musi,age_group,25-29,,2047,jiwa,2025,registration,total_population,3.2,32,,25–29
+16.11.03,3,Ulu Musi,age_group,30-34,laki_laki,1074,jiwa,2025,registration,total_population,3.2,32,,30–34
+16.11.03,3,Ulu Musi,age_group,30-34,perempuan,969,jiwa,2025,registration,total_population,3.2,32,,30–34
+16.11.03,3,Ulu Musi,age_group,30-34,,2043,jiwa,2025,registration,total_population,3.2,32,,30–34
+16.11.03,3,Ulu Musi,age_group,35-39,laki_laki,1190,jiwa,2025,registration,total_population,3.2,32,,35–39
+16.11.03,3,Ulu Musi,age_group,35-39,perempuan,1092,jiwa,2025,registration,total_population,3.2,32,,35–39
+16.11.03,3,Ulu Musi,age_group,35-39,,2282,jiwa,2025,registration,total_population,3.2,32,,35–39
+16.11.03,3,Ulu Musi,age_group,40-44,laki_laki,1087,jiwa,2025,registration,total_population,3.2,32,,40–44
+16.11.03,3,Ulu Musi,age_group,40-44,perempuan,992,jiwa,2025,registration,total_population,3.2,32,,40–44
+16.11.03,3,Ulu Musi,age_group,40-44,,2079,jiwa,2025,registration,total_population,3.2,32,,40–44
+16.11.03,3,Ulu Musi,age_group,45-49,laki_laki,1111,jiwa,2025,registration,total_population,3.2,32,,45–49
+16.11.03,3,Ulu Musi,age_group,45-49,perempuan,1006,jiwa,2025,registration,total_population,3.2,32,,45–49
+16.11.03,3,Ulu Musi,age_group,45-49,,2117,jiwa,2025,registration,total_population,3.2,32,,45–49
+16.11.03,3,Ulu Musi,age_group,50-54,laki_laki,840,jiwa,2025,registration,total_population,3.2,32,,50–54
+16.11.03,3,Ulu Musi,age_group,50-54,perempuan,775,jiwa,2025,registration,total_population,3.2,32,,50–54
+16.11.03,3,Ulu Musi,age_group,50-54,,1615,jiwa,2025,registration,total_population,3.2,32,,50–54
+16.11.03,3,Ulu Musi,age_group,55-59,laki_laki,762,jiwa,2025,registration,total_population,3.2,32,,55–59
+16.11.03,3,Ulu Musi,age_group,55-59,perempuan,729,jiwa,2025,registration,total_population,3.2,32,,55–59
+16.11.03,3,Ulu Musi,age_group,55-59,,1491,jiwa,2025,registration,total_population,3.2,32,,55–59
+16.11.03,3,Ulu Musi,age_group,60-64,laki_laki,573,jiwa,2025,registration,total_population,3.2,32,,60–64
+16.11.03,3,Ulu Musi,age_group,60-64,perempuan,523,jiwa,2025,registration,total_population,3.2,32,,60–64
+16.11.03,3,Ulu Musi,age_group,60-64,,1096,jiwa,2025,registration,total_population,3.2,32,,60–64
+16.11.03,3,Ulu Musi,age_group,65-69,laki_laki,486,jiwa,2025,registration,total_population,3.2,32,,65–69
+16.11.03,3,Ulu Musi,age_group,65-69,perempuan,470,jiwa,2025,registration,total_population,3.2,32,,65–69
+16.11.03,3,Ulu Musi,age_group,65-69,,956,jiwa,2025,registration,total_population,3.2,32,,65–69
+16.11.03,3,Ulu Musi,age_group,70-74,laki_laki,247,jiwa,2025,registration,total_population,3.2,32,,70–74
+16.11.03,3,Ulu Musi,age_group,70-74,perempuan,236,jiwa,2025,registration,total_population,3.2,32,,70–74
+16.11.03,3,Ulu Musi,age_group,70-74,,483,jiwa,2025,registration,total_population,3.2,32,,70–74
+16.11.03,3,Ulu Musi,age_group,75+,laki_laki,272,jiwa,2025,registration,total_population,3.2,32,,≥ 75
+16.11.03,3,Ulu Musi,age_group,75+,perempuan,337,jiwa,2025,registration,total_population,3.2,32,,≥ 75
+16.11.03,3,Ulu Musi,age_group,75+,,609,jiwa,2025,registration,total_population,3.2,32,,≥ 75
+16.11.03,3,Ulu Musi,sex,laki_laki,,13145,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+16.11.03,3,Ulu Musi,sex,perempuan,,12030,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+16.11.03,3,Ulu Musi,total,total,,25175,jiwa,2025,registration,total_population,3.2,32,,

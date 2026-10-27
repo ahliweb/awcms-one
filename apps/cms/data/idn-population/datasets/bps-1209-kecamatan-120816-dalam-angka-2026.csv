@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.08.16,3,Girsang Sipangan Bolon,age_group,0-4,laki_laki,410,jiwa,2025,registration,total_population,3.2,30,,0 –4
+12.08.16,3,Girsang Sipangan Bolon,age_group,0-4,perempuan,389,jiwa,2025,registration,total_population,3.2,30,,0 –4
+12.08.16,3,Girsang Sipangan Bolon,age_group,0-4,,799,jiwa,2025,registration,total_population,3.2,30,,0 –4
+12.08.16,3,Girsang Sipangan Bolon,age_group,5-9,laki_laki,791,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+12.08.16,3,Girsang Sipangan Bolon,age_group,5-9,perempuan,776,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+12.08.16,3,Girsang Sipangan Bolon,age_group,5-9,,1567,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+12.08.16,3,Girsang Sipangan Bolon,age_group,10-14,laki_laki,1039,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+12.08.16,3,Girsang Sipangan Bolon,age_group,10-14,perempuan,960,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+12.08.16,3,Girsang Sipangan Bolon,age_group,10-14,,1999,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+12.08.16,3,Girsang Sipangan Bolon,age_group,15-19,laki_laki,1124,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+12.08.16,3,Girsang Sipangan Bolon,age_group,15-19,perempuan,1073,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+12.08.16,3,Girsang Sipangan Bolon,age_group,15-19,,2197,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+12.08.16,3,Girsang Sipangan Bolon,age_group,20-24,laki_laki,899,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+12.08.16,3,Girsang Sipangan Bolon,age_group,20-24,perempuan,916,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+12.08.16,3,Girsang Sipangan Bolon,age_group,20-24,,1815,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+12.08.16,3,Girsang Sipangan Bolon,age_group,25-29,laki_laki,742,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+12.08.16,3,Girsang Sipangan Bolon,age_group,25-29,perempuan,683,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+12.08.16,3,Girsang Sipangan Bolon,age_group,25-29,,1425,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+12.08.16,3,Girsang Sipangan Bolon,age_group,30-34,laki_laki,695,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+12.08.16,3,Girsang Sipangan Bolon,age_group,30-34,perempuan,636,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+12.08.16,3,Girsang Sipangan Bolon,age_group,30-34,,1331,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+12.08.16,3,Girsang Sipangan Bolon,age_group,35-39,laki_laki,652,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+12.08.16,3,Girsang Sipangan Bolon,age_group,35-39,perempuan,672,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+12.08.16,3,Girsang Sipangan Bolon,age_group,35-39,,1324,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+12.08.16,3,Girsang Sipangan Bolon,age_group,40-44,laki_laki,676,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+12.08.16,3,Girsang Sipangan Bolon,age_group,40-44,perempuan,711,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+12.08.16,3,Girsang Sipangan Bolon,age_group,40-44,,1387,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+12.08.16,3,Girsang Sipangan Bolon,age_group,45-49,laki_laki,698,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+12.08.16,3,Girsang Sipangan Bolon,age_group,45-49,perempuan,619,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+12.08.16,3,Girsang Sipangan Bolon,age_group,45-49,,1317,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+12.08.16,3,Girsang Sipangan Bolon,age_group,50-54,laki_laki,567,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+12.08.16,3,Girsang Sipangan Bolon,age_group,50-54,perempuan,604,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+12.08.16,3,Girsang Sipangan Bolon,age_group,50-54,,1171,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+12.08.16,3,Girsang Sipangan Bolon,age_group,55-59,laki_laki,525,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+12.08.16,3,Girsang Sipangan Bolon,age_group,55-59,perempuan,523,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+12.08.16,3,Girsang Sipangan Bolon,age_group,55-59,,1048,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+12.08.16,3,Girsang Sipangan Bolon,age_group,60-64,laki_laki,390,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+12.08.16,3,Girsang Sipangan Bolon,age_group,60-64,perempuan,474,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+12.08.16,3,Girsang Sipangan Bolon,age_group,60-64,,864,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+12.08.16,3,Girsang Sipangan Bolon,age_group,65-69,laki_laki,322,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+12.08.16,3,Girsang Sipangan Bolon,age_group,65-69,perempuan,390,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+12.08.16,3,Girsang Sipangan Bolon,age_group,65-69,,712,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+12.08.16,3,Girsang Sipangan Bolon,age_group,70-74,laki_laki,165,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+12.08.16,3,Girsang Sipangan Bolon,age_group,70-74,perempuan,258,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+12.08.16,3,Girsang Sipangan Bolon,age_group,70-74,,423,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+12.08.16,3,Girsang Sipangan Bolon,age_group,75+,laki_laki,206,jiwa,2025,registration,total_population,3.2,30,,75 +
+12.08.16,3,Girsang Sipangan Bolon,age_group,75+,perempuan,333,jiwa,2025,registration,total_population,3.2,30,,75 +
+12.08.16,3,Girsang Sipangan Bolon,age_group,75+,,539,jiwa,2025,registration,total_population,3.2,30,,75 +

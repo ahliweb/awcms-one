@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3671-kecamatan-367106-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.71.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ciledug Dalam Angka 2026",
+  "publisherName": "BPS Kota Tangerang",
+  "publisherDomain": "3671",
+  "publisherWebsite": "https://tangerangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Tangerang (https://tangerangkota.bps.go.id), publikasi \"Kecamatan Ciledug Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3671",
+  "publicationNumber": "36710.26006",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tangerangkota.bps.go.id/id/publication/2026/09/28/0347e7c0c089ce847381db75/kecamatan-ciledug-dalam-angka-2026.html",
+  "sourceFileSha256": "f826a112308e215526afefddf2269b952c8b9b66ee6c33b6ea041f96df92bc48",
+  "sourceFileBytes": 4559488,
+  "sourcePages": [22, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik KOTA TANGERANG",
+  "csvPath": "datasets/bps-3671-kecamatan-367106-dalam-angka-2026.csv",
+  "csvSha256": "34b4e96be6df887581a5fbcc3b36de7a7ce9be9c52628a42062f6a406f437311",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Ciledug, 2025",
+      "printedPages": [22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ciledug, 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

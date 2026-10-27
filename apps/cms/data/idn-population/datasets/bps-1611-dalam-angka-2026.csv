@@ -1,0 +1,109 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.11.01,3,Muara Pinang,total,total,,43401,jiwa,2025,registration,total_population,3.1.1,66,,
+16.11.05,3,Lintang Kanan,total,total,,35927,jiwa,2025,registration,total_population,3.1.1,66,,
+16.11.02,3,Pendopo,total,total,,54883,jiwa,2025,registration,total_population,3.1.1,66,,
+16.11.10,3,Pendopo Barat,total,total,,18128,jiwa,2025,registration,total_population,3.1.1,66,,
+16.11.07,3,Pasemah Air Keruh,total,total,,29694,jiwa,2025,registration,total_population,3.1.1,66,,
+16.11.03,3,Ulu Musi,total,total,,25175,jiwa,2025,registration,total_population,3.1.1,66,,
+16.11.08,3,SIkap Dalam,total,total,,21838,jiwa,2025,registration,total_population,3.1.1,66,,
+16.11.06,3,Talang Padang,total,total,,18478,jiwa,2025,registration,total_population,3.1.1,66,,
+16.11.04,3,Tebing Tinggi,total,total,,72583,jiwa,2025,registration,total_population,3.1.1,66,,
+16.11.09,3,Saling,total,total,,18337,jiwa,2025,registration,total_population,3.1.1,66,,
+16.11,2,Empat Lawang,total,total,,338444,jiwa,2025,registration,total_population,3.1.1,66,,
+16.11,2,Kabupaten Empat Lawang,age_group,0-4,laki_laki,8128,jiwa,2025,registration,total_population,3.1.2,69,,0–4
+16.11,2,Kabupaten Empat Lawang,age_group,0-4,perempuan,7444,jiwa,2025,registration,total_population,3.1.2,69,,0–4
+16.11,2,Kabupaten Empat Lawang,age_group,0-4,,15572,jiwa,2025,registration,total_population,3.1.2,69,,0–4
+16.11,2,Kabupaten Empat Lawang,age_group,5-9,laki_laki,10815,jiwa,2025,registration,total_population,3.1.2,69,,5–9
+16.11,2,Kabupaten Empat Lawang,age_group,5-9,perempuan,10143,jiwa,2025,registration,total_population,3.1.2,69,,5–9
+16.11,2,Kabupaten Empat Lawang,age_group,5-9,,20958,jiwa,2025,registration,total_population,3.1.2,69,,5–9
+16.11,2,Kabupaten Empat Lawang,age_group,10-14,laki_laki,13005,jiwa,2025,registration,total_population,3.1.2,69,,10–14
+16.11,2,Kabupaten Empat Lawang,age_group,10-14,perempuan,11615,jiwa,2025,registration,total_population,3.1.2,69,,10–14
+16.11,2,Kabupaten Empat Lawang,age_group,10-14,,24620,jiwa,2025,registration,total_population,3.1.2,69,,10–14
+16.11,2,Kabupaten Empat Lawang,age_group,15-19,laki_laki,14204,jiwa,2025,registration,total_population,3.1.2,69,,15–19
+16.11,2,Kabupaten Empat Lawang,age_group,15-19,perempuan,13417,jiwa,2025,registration,total_population,3.1.2,69,,15–19
+16.11,2,Kabupaten Empat Lawang,age_group,15-19,,27621,jiwa,2025,registration,total_population,3.1.2,69,,15–19
+16.11,2,Kabupaten Empat Lawang,age_group,20-24,laki_laki,15339,jiwa,2025,registration,total_population,3.1.2,69,,20–24
+16.11,2,Kabupaten Empat Lawang,age_group,20-24,perempuan,14352,jiwa,2025,registration,total_population,3.1.2,69,,20–24
+16.11,2,Kabupaten Empat Lawang,age_group,20-24,,29691,jiwa,2025,registration,total_population,3.1.2,69,,20–24
+16.11,2,Kabupaten Empat Lawang,age_group,25-29,laki_laki,14148,jiwa,2025,registration,total_population,3.1.2,69,,25–29
+16.11,2,Kabupaten Empat Lawang,age_group,25-29,perempuan,13051,jiwa,2025,registration,total_population,3.1.2,69,,25–29
+16.11,2,Kabupaten Empat Lawang,age_group,25-29,,27199,jiwa,2025,registration,total_population,3.1.2,69,,25–29
+16.11,2,Kabupaten Empat Lawang,age_group,30-34,laki_laki,13017,jiwa,2025,registration,total_population,3.1.2,69,,30–34
+16.11,2,Kabupaten Empat Lawang,age_group,30-34,perempuan,12308,jiwa,2025,registration,total_population,3.1.2,69,,30–34
+16.11,2,Kabupaten Empat Lawang,age_group,30-34,,25325,jiwa,2025,registration,total_population,3.1.2,69,,30–34
+16.11,2,Kabupaten Empat Lawang,age_group,35-39,laki_laki,16566,jiwa,2025,registration,total_population,3.1.2,69,,35–39
+16.11,2,Kabupaten Empat Lawang,age_group,35-39,perempuan,14818,jiwa,2025,registration,total_population,3.1.2,69,,35–39
+16.11,2,Kabupaten Empat Lawang,age_group,35-39,,31384,jiwa,2025,registration,total_population,3.1.2,69,,35–39
+16.11,2,Kabupaten Empat Lawang,age_group,40-44,laki_laki,14491,jiwa,2025,registration,total_population,3.1.2,69,,40–44
+16.11,2,Kabupaten Empat Lawang,age_group,40-44,perempuan,13227,jiwa,2025,registration,total_population,3.1.2,69,,40–44
+16.11,2,Kabupaten Empat Lawang,age_group,40-44,,27718,jiwa,2025,registration,total_population,3.1.2,69,,40–44
+16.11,2,Kabupaten Empat Lawang,age_group,45-49,laki_laki,14067,jiwa,2025,registration,total_population,3.1.2,69,,45–49
+16.11,2,Kabupaten Empat Lawang,age_group,45-49,perempuan,12964,jiwa,2025,registration,total_population,3.1.2,69,,45–49
+16.11,2,Kabupaten Empat Lawang,age_group,45-49,,27031,jiwa,2025,registration,total_population,3.1.2,69,,45–49
+16.11,2,Kabupaten Empat Lawang,age_group,50-54,laki_laki,10659,jiwa,2025,registration,total_population,3.1.2,69,,50–54
+16.11,2,Kabupaten Empat Lawang,age_group,50-54,perempuan,9870,jiwa,2025,registration,total_population,3.1.2,69,,50–54
+16.11,2,Kabupaten Empat Lawang,age_group,50-54,,20529,jiwa,2025,registration,total_population,3.1.2,69,,50–54
+16.11,2,Kabupaten Empat Lawang,age_group,55-59,laki_laki,9471,jiwa,2025,registration,total_population,3.1.2,69,,55–59
+16.11,2,Kabupaten Empat Lawang,age_group,55-59,perempuan,9091,jiwa,2025,registration,total_population,3.1.2,69,,55–59
+16.11,2,Kabupaten Empat Lawang,age_group,55-59,,18562,jiwa,2025,registration,total_population,3.1.2,69,,55–59
+16.11,2,Kabupaten Empat Lawang,age_group,60-64,laki_laki,7191,jiwa,2025,registration,total_population,3.1.2,69,,60–64
+16.11,2,Kabupaten Empat Lawang,age_group,60-64,perempuan,7002,jiwa,2025,registration,total_population,3.1.2,69,,60–64
+16.11,2,Kabupaten Empat Lawang,age_group,60-64,,14193,jiwa,2025,registration,total_population,3.1.2,69,,60–64
+16.11,2,Kabupaten Empat Lawang,age_group,65-69,laki_laki,6396,jiwa,2025,registration,total_population,3.1.2,69,,65–69
+16.11,2,Kabupaten Empat Lawang,age_group,65-69,perempuan,6106,jiwa,2025,registration,total_population,3.1.2,69,,65–69
+16.11,2,Kabupaten Empat Lawang,age_group,65-69,,12502,jiwa,2025,registration,total_population,3.1.2,69,,65–69
+16.11,2,Kabupaten Empat Lawang,age_group,70-74,laki_laki,3373,jiwa,2025,registration,total_population,3.1.2,69,,70–74
+16.11,2,Kabupaten Empat Lawang,age_group,70-74,perempuan,3134,jiwa,2025,registration,total_population,3.1.2,69,,70–74
+16.11,2,Kabupaten Empat Lawang,age_group,70-74,,6507,jiwa,2025,registration,total_population,3.1.2,69,,70–74
+16.11,2,Kabupaten Empat Lawang,age_group,75+,laki_laki,3981,jiwa,2025,registration,total_population,3.1.2,69,,75+
+16.11,2,Kabupaten Empat Lawang,age_group,75+,perempuan,5051,jiwa,2025,registration,total_population,3.1.2,69,,75+
+16.11,2,Kabupaten Empat Lawang,age_group,75+,,9032,jiwa,2025,registration,total_population,3.1.2,69,,75+
+16.11,2,Empat Lawang,sex,laki_laki,,174851,jiwa,2025,registration,total_population,3.1.2,69,,Laki-Laki
+16.11,2,Empat Lawang,sex,perempuan,,163593,jiwa,2025,registration,total_population,3.1.2,69,,Perempuan
+16.11,2,Empat Lawang,total,total,,338444,jiwa,2025,registration,total_population,3.1.2,69,,
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/padi_padian,,88084,rupiah,2025,survey_estimate,per_capita,10.1,283,,Padi-padian
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/padi_padian,,88899,rupiah,2024,survey_estimate,per_capita,10.1,283,,Padi-padian
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/umbi_umbian,,4660,rupiah,2025,survey_estimate,per_capita,10.1,283,,Umbi-umbian
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/umbi_umbian,,4319,rupiah,2024,survey_estimate,per_capita,10.1,283,,Umbi-umbian
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,40838,rupiah,2025,survey_estimate,per_capita,10.1,283,,Ikan/udang/cumi/kerang
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,38558,rupiah,2024,survey_estimate,per_capita,10.1,283,,Ikan/udang/cumi/kerang
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/daging,,20546,rupiah,2025,survey_estimate,per_capita,10.1,283,,Daging
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/daging,,22183,rupiah,2024,survey_estimate,per_capita,10.1,283,,Daging
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/telur_dan_susu,,26331,rupiah,2025,survey_estimate,per_capita,10.1,283,,Telur dan susu
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/telur_dan_susu,,20162,rupiah,2024,survey_estimate,per_capita,10.1,283,,Telur dan susu
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/sayur_sayuran,,64126,rupiah,2025,survey_estimate,per_capita,10.1,283,,Sayur-sayuran
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/sayur_sayuran,,60955,rupiah,2024,survey_estimate,per_capita,10.1,283,,Sayur-sayuran
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/kacang_kacangan,,8088,rupiah,2025,survey_estimate,per_capita,10.1,283,,Kacang-kacangan
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/kacang_kacangan,,8406,rupiah,2024,survey_estimate,per_capita,10.1,283,,Kacang-kacangan
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/buah_buahan,,37435,rupiah,2025,survey_estimate,per_capita,10.1,283,,Buah-buahan
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/buah_buahan,,39367,rupiah,2024,survey_estimate,per_capita,10.1,283,,Buah-buahan
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14720,rupiah,2025,survey_estimate,per_capita,10.1,283,,Minyak dan kelapa
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14491,rupiah,2024,survey_estimate,per_capita,10.1,283,,Minyak dan kelapa
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/bahan_minuman,,28436,rupiah,2025,survey_estimate,per_capita,10.1,283,,Bahan minuman
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/bahan_minuman,,24966,rupiah,2024,survey_estimate,per_capita,10.1,283,,Bahan minuman
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/bumbu_bumbuan,,13706,rupiah,2025,survey_estimate,per_capita,10.1,283,,Bumbu-bumbuan
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/bumbu_bumbuan,,12072,rupiah,2024,survey_estimate,per_capita,10.1,283,,Bumbu-bumbuan
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/konsumsi_lainnya,,15332,rupiah,2025,survey_estimate,per_capita,10.1,283,,Konsumsi lainnya
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/konsumsi_lainnya,,13493,rupiah,2024,survey_estimate,per_capita,10.1,283,,Konsumsi lainnya
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,146730,rupiah,2025,survey_estimate,per_capita,10.1,283,,Makanan dan minuman jadi
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,128976,rupiah,2024,survey_estimate,per_capita,10.1,283,,Makanan dan minuman jadi
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/rokok,,94873,rupiah,2025,survey_estimate,per_capita,10.1,283,,Rokok
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/rokok,,83956,rupiah,2024,survey_estimate,per_capita,10.1,283,,Rokok
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/jumlah_makanan,,603904,rupiah,2025,survey_estimate,per_capita,10.1,283,,Jumlah makanan
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/jumlah_makanan,,560804,rupiah,2024,survey_estimate,per_capita,10.1,283,,Jumlah makanan
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,198140,rupiah,2025,survey_estimate,per_capita,10.1,283,,Perumahan dan fasilitas rumah tangga
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,190297,rupiah,2024,survey_estimate,per_capita,10.1,283,,Perumahan dan fasilitas rumah tangga
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,86344,rupiah,2025,survey_estimate,per_capita,10.1,283,,Aneka barang dan jasa
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,73024,rupiah,2024,survey_estimate,per_capita,10.1,283,,Aneka barang dan jasa
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,22962,rupiah,2025,survey_estimate,per_capita,10.1,283,,"Pakaian, alas kaki, dan tutup kepala"
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,20873,rupiah,2024,survey_estimate,per_capita,10.1,283,,"Pakaian, alas kaki, dan tutup kepala"
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/barang_tahan_lama,,35275,rupiah,2025,survey_estimate,per_capita,10.1,283,,Barang tahan lama
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/barang_tahan_lama,,69503,rupiah,2024,survey_estimate,per_capita,10.1,283,,Barang tahan lama
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,28426,rupiah,2025,survey_estimate,per_capita,10.1,283,,"Pajak, pungutan, dan asuransi"
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,27351,rupiah,2024,survey_estimate,per_capita,10.1,283,,"Pajak, pungutan, dan asuransi"
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,9405,rupiah,2025,survey_estimate,per_capita,10.1,283,,Keperluan pesta dan upacara/kenduri
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,18195,rupiah,2024,survey_estimate,per_capita,10.1,283,,Keperluan pesta dan upacara/kenduri
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,380551,rupiah,2025,survey_estimate,per_capita,10.1,283,,Jumlah bukan makanan
+16.11,2,Kabupaten Empat Lawang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,399242,rupiah,2024,survey_estimate,per_capita,10.1,283,,Jumlah bukan makanan
+16.11,2,Kabupaten Empat Lawang,expenditure,total,,984455,rupiah,2025,survey_estimate,per_capita,10.1,283,,
+16.11,2,Kabupaten Empat Lawang,expenditure,total,,960046,rupiah,2024,survey_estimate,per_capita,10.1,283,,

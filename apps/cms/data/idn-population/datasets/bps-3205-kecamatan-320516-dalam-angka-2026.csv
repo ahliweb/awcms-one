@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.05.16.2004,4,Sindanggalih,sex,laki_laki,,3459,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.16.2004,4,Sindanggalih,sex,perempuan,,3228,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.16.2004,4,Sindanggalih,total,total,,6687,jiwa,2025,registration,total_population,3.1,22,,
+32.05.16.2003,4,Cinta,sex,laki_laki,,2392,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.16.2003,4,Cinta,sex,perempuan,,2268,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.16.2003,4,Cinta,total,total,,4660,jiwa,2025,registration,total_population,3.1,22,,
+32.05.16.2002,4,Cintamanik,sex,laki_laki,,2143,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.16.2002,4,Cintamanik,sex,perempuan,,1987,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.16.2002,4,Cintamanik,total,total,,4130,jiwa,2025,registration,total_population,3.1,22,,
+32.05.16.2001,4,Caringin,sex,laki_laki,,2746,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.16.2001,4,Caringin,sex,perempuan,,2596,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.16.2001,4,Caringin,total,total,,5342,jiwa,2025,registration,total_population,3.1,22,,
+32.05.16,3,Kecamatan Karangtengah,sex,laki_laki,,10740,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.05.16,3,Kecamatan Karangtengah,sex,perempuan,,10079,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.05.16,3,Kecamatan Karangtengah,total,total,,20819,jiwa,2025,registration,total_population,3.1,22,,
+32.05.16,3,Karangtengah,age_group,0-4,laki_laki,812,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.16,3,Karangtengah,age_group,0-4,perempuan,715,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.16,3,Karangtengah,age_group,0-4,,1527,jiwa,2025,registration,total_population,3.2,24,,0-4
+32.05.16,3,Karangtengah,age_group,5-9,laki_laki,990,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.16,3,Karangtengah,age_group,5-9,perempuan,962,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.16,3,Karangtengah,age_group,5-9,,1952,jiwa,2025,registration,total_population,3.2,24,,5-9
+32.05.16,3,Karangtengah,age_group,10-14,laki_laki,1027,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.16,3,Karangtengah,age_group,10-14,perempuan,912,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.16,3,Karangtengah,age_group,10-14,,1939,jiwa,2025,registration,total_population,3.2,24,,10-14
+32.05.16,3,Karangtengah,age_group,15-19,laki_laki,902,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.16,3,Karangtengah,age_group,15-19,perempuan,873,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.16,3,Karangtengah,age_group,15-19,,1775,jiwa,2025,registration,total_population,3.2,24,,15-19
+32.05.16,3,Karangtengah,age_group,20-24,laki_laki,1011,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.16,3,Karangtengah,age_group,20-24,perempuan,948,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.16,3,Karangtengah,age_group,20-24,,1959,jiwa,2025,registration,total_population,3.2,24,,20-24
+32.05.16,3,Karangtengah,age_group,25-29,laki_laki,1001,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.16,3,Karangtengah,age_group,25-29,perempuan,865,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.16,3,Karangtengah,age_group,25-29,,1866,jiwa,2025,registration,total_population,3.2,24,,25-29
+32.05.16,3,Karangtengah,age_group,30-34,laki_laki,809,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.16,3,Karangtengah,age_group,30-34,perempuan,741,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.16,3,Karangtengah,age_group,30-34,,1550,jiwa,2025,registration,total_population,3.2,24,,30-34
+32.05.16,3,Karangtengah,age_group,35-39,laki_laki,729,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.16,3,Karangtengah,age_group,35-39,perempuan,665,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.16,3,Karangtengah,age_group,35-39,,1394,jiwa,2025,registration,total_population,3.2,24,,35-39
+32.05.16,3,Karangtengah,age_group,40-44,laki_laki,757,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.16,3,Karangtengah,age_group,40-44,perempuan,703,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.16,3,Karangtengah,age_group,40-44,,1460,jiwa,2025,registration,total_population,3.2,24,,40-44
+32.05.16,3,Karangtengah,age_group,45-49,laki_laki,626,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.16,3,Karangtengah,age_group,45-49,perempuan,592,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.16,3,Karangtengah,age_group,45-49,,1218,jiwa,2025,registration,total_population,3.2,24,,45-49
+32.05.16,3,Karangtengah,age_group,50-54,laki_laki,564,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.16,3,Karangtengah,age_group,50-54,perempuan,575,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.16,3,Karangtengah,age_group,50-54,,1139,jiwa,2025,registration,total_population,3.2,24,,50-54
+32.05.16,3,Karangtengah,age_group,55-59,laki_laki,522,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.16,3,Karangtengah,age_group,55-59,perempuan,479,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.16,3,Karangtengah,age_group,55-59,,1001,jiwa,2025,registration,total_population,3.2,24,,55-59
+32.05.16,3,Karangtengah,age_group,60-64,laki_laki,390,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.16,3,Karangtengah,age_group,60-64,perempuan,384,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.16,3,Karangtengah,age_group,60-64,,774,jiwa,2025,registration,total_population,3.2,24,,60-64
+32.05.16,3,Karangtengah,age_group,65-69,laki_laki,259,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.16,3,Karangtengah,age_group,65-69,perempuan,277,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.16,3,Karangtengah,age_group,65-69,,536,jiwa,2025,registration,total_population,3.2,24,,65-69
+32.05.16,3,Karangtengah,age_group,70-74,laki_laki,142,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.16,3,Karangtengah,age_group,70-74,perempuan,141,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.16,3,Karangtengah,age_group,70-74,,283,jiwa,2025,registration,total_population,3.2,24,,70-74
+32.05.16,3,Karangtengah,age_group,75+,laki_laki,199,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.16,3,Karangtengah,age_group,75+,perempuan,247,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.16,3,Karangtengah,age_group,75+,,446,jiwa,2025,registration,total_population,3.2,24,,75+
+32.05.16,3,Kecamatan Karangtengah,sex,laki_laki,,10740,jiwa,2025,registration,total_population,3.2,24,,Laki-Laki
+32.05.16,3,Kecamatan Karangtengah,sex,perempuan,,10079,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+32.05.16,3,Kecamatan Karangtengah,total,total,,20819,jiwa,2025,registration,total_population,3.2,24,,

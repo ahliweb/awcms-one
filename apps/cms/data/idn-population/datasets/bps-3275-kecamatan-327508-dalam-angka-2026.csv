@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.75.08.1003,4,Jati Makmur,sex,laki_laki,,31196,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+32.75.08.1003,4,Jati Makmur,sex,perempuan,,31417,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+32.75.08.1003,4,Jati Makmur,total,total,,62613,jiwa,2025,registration,total_population,3.1,27,,
+32.75.08.1001,4,Jati Waringin,sex,laki_laki,,23898,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+32.75.08.1001,4,Jati Waringin,sex,perempuan,,24157,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+32.75.08.1001,4,Jati Waringin,total,total,,48055,jiwa,2025,registration,total_population,3.1,27,,
+32.75.08.1002,4,Jati Bening,sex,laki_laki,,19105,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+32.75.08.1002,4,Jati Bening,sex,perempuan,,19155,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+32.75.08.1002,4,Jati Bening,total,total,,38260,jiwa,2025,registration,total_population,3.1,27,,
+32.75.08.1007,4,Jati Cempaka,sex,laki_laki,,22897,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+32.75.08.1007,4,Jati Cempaka,sex,perempuan,,23214,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+32.75.08.1007,4,Jati Cempaka,total,total,,46111,jiwa,2025,registration,total_population,3.1,27,,
+32.75.08.1006,4,Jati Bening Baru,sex,laki_laki,,19566,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+32.75.08.1006,4,Jati Bening Baru,sex,perempuan,,19917,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+32.75.08.1006,4,Jati Bening Baru,total,total,,39483,jiwa,2025,registration,total_population,3.1,27,,
+32.75.08,3,Pondok Gede,sex,laki_laki,,116662,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+32.75.08,3,Pondok Gede,sex,perempuan,,117860,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+32.75.08,3,Pondok Gede,total,total,,234522,jiwa,2025,registration,total_population,3.1,27,,
+32.75.08,3,Pondokgede,age_group,0-4,laki_laki,6833,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+32.75.08,3,Pondokgede,age_group,0-4,perempuan,6587,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+32.75.08,3,Pondokgede,age_group,0-4,,13420,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+32.75.08,3,Pondokgede,age_group,5-9,laki_laki,9911,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+32.75.08,3,Pondokgede,age_group,5-9,perempuan,9043,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+32.75.08,3,Pondokgede,age_group,5-9,,18954,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+32.75.08,3,Pondokgede,age_group,10-14,laki_laki,9848,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+32.75.08,3,Pondokgede,age_group,10-14,perempuan,8961,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+32.75.08,3,Pondokgede,age_group,10-14,,18809,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+32.75.08,3,Pondokgede,age_group,15-19,laki_laki,8971,jiwa,2025,registration,total_population,3.2,29,,15 -19
+32.75.08,3,Pondokgede,age_group,15-19,perempuan,8646,jiwa,2025,registration,total_population,3.2,29,,15 -19
+32.75.08,3,Pondokgede,age_group,15-19,,17617,jiwa,2025,registration,total_population,3.2,29,,15 -19
+32.75.08,3,Pondokgede,age_group,20-24,laki_laki,9093,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+32.75.08,3,Pondokgede,age_group,20-24,perempuan,8506,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+32.75.08,3,Pondokgede,age_group,20-24,,17599,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+32.75.08,3,Pondokgede,age_group,25-29,laki_laki,9070,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+32.75.08,3,Pondokgede,age_group,25-29,perempuan,8993,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+32.75.08,3,Pondokgede,age_group,25-29,,18063,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+32.75.08,3,Pondokgede,age_group,30-34,laki_laki,9112,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+32.75.08,3,Pondokgede,age_group,30-34,perempuan,9429,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+32.75.08,3,Pondokgede,age_group,30-34,,18541,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+32.75.08,3,Pondokgede,age_group,35-39,laki_laki,8835,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+32.75.08,3,Pondokgede,age_group,35-39,perempuan,9168,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+32.75.08,3,Pondokgede,age_group,35-39,,18003,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+32.75.08,3,Pondokgede,age_group,40-44,laki_laki,9543,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+32.75.08,3,Pondokgede,age_group,40-44,perempuan,9925,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+32.75.08,3,Pondokgede,age_group,40-44,,19468,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+32.75.08,3,Pondokgede,age_group,45-49,laki_laki,8793,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+32.75.08,3,Pondokgede,age_group,45-49,perempuan,9075,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+32.75.08,3,Pondokgede,age_group,45-49,,17868,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+32.75.08,3,Pondokgede,age_group,50-54,laki_laki,7354,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+32.75.08,3,Pondokgede,age_group,50-54,perempuan,7824,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+32.75.08,3,Pondokgede,age_group,50-54,,15178,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+32.75.08,3,Pondokgede,age_group,55-59,laki_laki,6147,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+32.75.08,3,Pondokgede,age_group,55-59,perempuan,6512,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+32.75.08,3,Pondokgede,age_group,55-59,,12659,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+32.75.08,3,Pondokgede,age_group,60-64,laki_laki,4581,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+32.75.08,3,Pondokgede,age_group,60-64,perempuan,5488,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+32.75.08,3,Pondokgede,age_group,60-64,,10069,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+32.75.08,3,Pondokgede,age_group,65-69,laki_laki,3716,jiwa,2025,registration,total_population,3.2,29,,65 -69
+32.75.08,3,Pondokgede,age_group,65-69,perempuan,4485,jiwa,2025,registration,total_population,3.2,29,,65 -69
+32.75.08,3,Pondokgede,age_group,65-69,,8201,jiwa,2025,registration,total_population,3.2,29,,65 -69
+32.75.08,3,Pondokgede,age_group,70-74,laki_laki,2669,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+32.75.08,3,Pondokgede,age_group,70-74,perempuan,2827,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+32.75.08,3,Pondokgede,age_group,70-74,,5496,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+32.75.08,3,Pondokgede,age_group,75+,laki_laki,2186,jiwa,2025,registration,total_population,3.2,29,,75+
+32.75.08,3,Pondokgede,age_group,75+,perempuan,2391,jiwa,2025,registration,total_population,3.2,29,,75+
+32.75.08,3,Pondokgede,age_group,75+,,4577,jiwa,2025,registration,total_population,3.2,29,,75+
+32.75.08,3,Pondok Gede,sex,laki_laki,,116662,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+32.75.08,3,Pondok Gede,sex,perempuan,,117860,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+32.75.08,3,Pondok Gede,total,total,,234522,jiwa,2025,registration,total_population,3.2,29,,

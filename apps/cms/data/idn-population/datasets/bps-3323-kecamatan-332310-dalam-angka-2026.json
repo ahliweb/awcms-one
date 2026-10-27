@@ -1,0 +1,58 @@
+{
+  "datasetCode": "bps-3323-kecamatan-332310-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.23.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jumo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Temanggung",
+  "publisherDomain": "3323",
+  "publisherWebsite": "https://temanggungkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Temanggung (https://temanggungkab.bps.go.id), publikasi \"Kecamatan Jumo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3323110",
+  "publicationNumber": "33230.26021",
+  "issn": "2614-9133",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://temanggungkab.bps.go.id/id/publication/2026/09/28/15e2ef663788ce6283283a57/kecamatan-jumo-dalam-angka-2026.html",
+  "sourceFileSha256": "0653f0b6ae127d7bbf270e6ae2a87928cc6f67a445ed1dc86402cb28c4a149c8",
+  "sourceFileBytes": 10085941,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Temanggung.",
+  "csvPath": "datasets/bps-3323-kecamatan-332310-dalam-angka-2026.csv",
+  "csvSha256": "758fd38f5d00d9d91ab6d19bab2e253e123e7875980a4d0cd4138d15534bc0c8",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Jumo, 2026",
+      "printedPages": [25, 26],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jumo, 2026",
+      "printedPages": [27],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Morobongo 9.66\": unmatched ",
+    "table 3.1: row not stored: row \"Sukomarto 7.99\": unmatched ",
+    "table 3.1: row not stored: row \"Padureso 5.46\": unmatched ",
+    "table 3.1: row not stored: row \"Barang 4.96\": unmatched ",
+    "table 3.1: row not stored: row \"Karangtejo 5.22\": unmatched ",
+    "table 3.1: row not stored: row \"Ketitang 6.47\": unmatched ",
+    "table 3.1: row not stored: row \"Jombor 8.85\": unmatched ",
+    "table 3.1: row not stored: row \"Giyono 7.37\": unmatched ",
+    "table 3.1: row not stored: row \"Gunung Gempol 4.72\": unmatched ",
+    "table 3.1: row not stored: row \"Jumo 7.14\": unmatched ",
+    "table 3.1: row not stored: row \"Kertosari 9.07\": unmatched ",
+    "table 3.1: row not stored: row \"Jamusan 7.44\": unmatched ",
+    "table 3.1: row not stored: row \"Gedongsari 15.65\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Jumo 100.00\": unmatched "
+  ]
+}

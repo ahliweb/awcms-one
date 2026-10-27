@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.01.08.2005,4,Mombang Boru,sex,laki_laki,,693,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.08.2005,4,Mombang Boru,sex,perempuan,,667,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.08.2005,4,Mombang Boru,total,total,,1360,jiwa,2025,registration,total_population,3.1,35,,
+12.01.08.2006,4,Anggoli,sex,laki_laki,,1617,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.08.2006,4,Anggoli,sex,perempuan,,1615,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.08.2006,4,Anggoli,total,total,,3232,jiwa,2025,registration,total_population,3.1,35,,
+12.01.08.1002,4,Sibabangun,sex,laki_laki,,3329,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.08.1002,4,Sibabangun,sex,perempuan,,3273,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.08.1002,4,Sibabangun,total,total,,6602,jiwa,2025,registration,total_population,3.1,35,,
+12.01.08.2010,4,Simanosor,sex,laki_laki,,1346,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.08.2010,4,Simanosor,sex,perempuan,,1309,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.08.2010,4,Simanosor,total,total,,2655,jiwa,2025,registration,total_population,3.1,35,,
+12.01.08.2007,4,Muara Sibuntuon,sex,laki_laki,,928,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.08.2007,4,Muara Sibuntuon,sex,perempuan,,910,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.08.2007,4,Muara Sibuntuon,total,total,,1838,jiwa,2025,registration,total_population,3.1,35,,
+12.01.08.2008,4,Sibio Bio,sex,laki_laki,,671,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.08.2008,4,Sibio Bio,sex,perempuan,,657,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.08.2008,4,Sibio Bio,total,total,,1328,jiwa,2025,registration,total_population,3.1,35,,
+12.01.08.2011,4,Hutagurgur,sex,laki_laki,,895,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.08.2011,4,Hutagurgur,sex,perempuan,,914,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.08.2011,4,Hutagurgur,total,total,,1809,jiwa,2025,registration,total_population,3.1,35,,
+12.01.08,3,Sibabangun,sex,laki_laki,,9479,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.08,3,Sibabangun,sex,perempuan,,9345,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.08,3,Sibabangun,total,total,,18824,jiwa,2025,registration,total_population,3.1,35,,

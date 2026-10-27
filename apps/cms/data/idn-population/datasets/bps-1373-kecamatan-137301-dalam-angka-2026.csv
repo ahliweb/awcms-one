@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.73.01.1001,4,Aur Mulio,sex,laki_laki,,591,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.01.1001,4,Aur Mulio,sex,perempuan,,582,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.01.1001,4,Aur Mulio,total,total,,1173,jiwa,2025,registration,total_population,3.1,41,,
+13.73.01.1002,4,Kubang Sirakuk Utara,sex,laki_laki,,427,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.01.1002,4,Kubang Sirakuk Utara,sex,perempuan,,465,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.01.1002,4,Kubang Sirakuk Utara,total,total,,892,jiwa,2025,registration,total_population,3.1,41,,
+13.73.01.1003,4,Kubang S. Selatan,sex,laki_laki,,535,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.01.1003,4,Kubang S. Selatan,sex,perempuan,,536,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.01.1003,4,Kubang S. Selatan,total,total,,1071,jiwa,2025,registration,total_population,3.1,41,,
+13.73.01.1004,4,Pasar,sex,laki_laki,,727,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.01.1004,4,Pasar,sex,perempuan,,757,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.01.1004,4,Pasar,total,total,,1484,jiwa,2025,registration,total_population,3.1,41,,
+13.73.01.1005,4,Tanah Lapang,sex,laki_laki,,671,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.01.1005,4,Tanah Lapang,sex,perempuan,,674,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.01.1005,4,Tanah Lapang,total,total,,1345,jiwa,2025,registration,total_population,3.1,41,,
+13.73.01.1006,4,Aia Dingin,sex,laki_laki,,553,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.01.1006,4,Aia Dingin,sex,perempuan,,558,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.01.1006,4,Aia Dingin,total,total,,1111,jiwa,2025,registration,total_population,3.1,41,,
+13.73.01.2007,4,Lunto Timur,sex,laki_laki,,800,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.01.2007,4,Lunto Timur,sex,perempuan,,771,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.01.2007,4,Lunto Timur,total,total,,1571,jiwa,2025,registration,total_population,3.1,41,,
+13.73.01.2008,4,Lunto Barat,sex,laki_laki,,721,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.01.2008,4,Lunto Barat,sex,perempuan,,726,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.01.2008,4,Lunto Barat,total,total,,1447,jiwa,2025,registration,total_population,3.1,41,,
+13.73.01.2009,4,Kubang Tangah,sex,laki_laki,,778,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.01.2009,4,Kubang Tangah,sex,perempuan,,734,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.01.2009,4,Kubang Tangah,total,total,,1512,jiwa,2025,registration,total_population,3.1,41,,
+13.73.01.2010,4,Kubang Utara Sikabu,sex,laki_laki,,623,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.01.2010,4,Kubang Utara Sikabu,sex,perempuan,,645,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.01.2010,4,Kubang Utara Sikabu,total,total,,1268,jiwa,2025,registration,total_population,3.1,41,,
+13.73.01.2011,4,Pasa Kubang,sex,laki_laki,,545,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.01.2011,4,Pasa Kubang,sex,perempuan,,529,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.01.2011,4,Pasa Kubang,total,total,,1074,jiwa,2025,registration,total_population,3.1,41,,
+13.73.01,3,Kecamatan Lembah Segar,sex,laki_laki,,6971,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+13.73.01,3,Kecamatan Lembah Segar,sex,perempuan,,6977,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+13.73.01,3,Kecamatan Lembah Segar,total,total,,13948,jiwa,2025,registration,total_population,3.1,41,,
+13.73.01,3,Lembah Segar,age_group,0-4,laki_laki,416,jiwa,2025,registration,total_population,3.2,43,,0-4
+13.73.01,3,Lembah Segar,age_group,0-4,perempuan,384,jiwa,2025,registration,total_population,3.2,43,,0-4
+13.73.01,3,Lembah Segar,age_group,0-4,,800,jiwa,2025,registration,total_population,3.2,43,,0-4
+13.73.01,3,Lembah Segar,age_group,5-9,laki_laki,546,jiwa,2025,registration,total_population,3.2,43,,5-9
+13.73.01,3,Lembah Segar,age_group,5-9,perempuan,497,jiwa,2025,registration,total_population,3.2,43,,5-9
+13.73.01,3,Lembah Segar,age_group,5-9,,1043,jiwa,2025,registration,total_population,3.2,43,,5-9
+13.73.01,3,Lembah Segar,age_group,10-14,laki_laki,569,jiwa,2025,registration,total_population,3.2,43,,10-14
+13.73.01,3,Lembah Segar,age_group,10-14,perempuan,577,jiwa,2025,registration,total_population,3.2,43,,10-14
+13.73.01,3,Lembah Segar,age_group,10-14,,1146,jiwa,2025,registration,total_population,3.2,43,,10-14
+13.73.01,3,Lembah Segar,age_group,15-19,laki_laki,653,jiwa,2025,registration,total_population,3.2,43,,15-19
+13.73.01,3,Lembah Segar,age_group,15-19,perempuan,582,jiwa,2025,registration,total_population,3.2,43,,15-19
+13.73.01,3,Lembah Segar,age_group,15-19,,1235,jiwa,2025,registration,total_population,3.2,43,,15-19
+13.73.01,3,Lembah Segar,age_group,20-24,laki_laki,567,jiwa,2025,registration,total_population,3.2,43,,20-24
+13.73.01,3,Lembah Segar,age_group,20-24,perempuan,567,jiwa,2025,registration,total_population,3.2,43,,20-24
+13.73.01,3,Lembah Segar,age_group,20-24,,1134,jiwa,2025,registration,total_population,3.2,43,,20-24
+13.73.01,3,Lembah Segar,age_group,25-29,laki_laki,539,jiwa,2025,registration,total_population,3.2,43,,25-29
+13.73.01,3,Lembah Segar,age_group,25-29,perempuan,532,jiwa,2025,registration,total_population,3.2,43,,25-29
+13.73.01,3,Lembah Segar,age_group,25-29,,1071,jiwa,2025,registration,total_population,3.2,43,,25-29
+13.73.01,3,Lembah Segar,age_group,30-34,laki_laki,465,jiwa,2025,registration,total_population,3.2,43,,30-34
+13.73.01,3,Lembah Segar,age_group,30-34,perempuan,453,jiwa,2025,registration,total_population,3.2,43,,30-34
+13.73.01,3,Lembah Segar,age_group,30-34,,918,jiwa,2025,registration,total_population,3.2,43,,30-34
+13.73.01,3,Lembah Segar,age_group,35-39,laki_laki,463,jiwa,2025,registration,total_population,3.2,43,,35-39
+13.73.01,3,Lembah Segar,age_group,35-39,perempuan,418,jiwa,2025,registration,total_population,3.2,43,,35-39
+13.73.01,3,Lembah Segar,age_group,35-39,,881,jiwa,2025,registration,total_population,3.2,43,,35-39
+13.73.01,3,Lembah Segar,age_group,40-44,laki_laki,497,jiwa,2025,registration,total_population,3.2,43,,40-44
+13.73.01,3,Lembah Segar,age_group,40-44,perempuan,489,jiwa,2025,registration,total_population,3.2,43,,40-44
+13.73.01,3,Lembah Segar,age_group,40-44,,986,jiwa,2025,registration,total_population,3.2,43,,40-44
+13.73.01,3,Lembah Segar,age_group,45-49,laki_laki,456,jiwa,2025,registration,total_population,3.2,43,,45-49
+13.73.01,3,Lembah Segar,age_group,45-49,perempuan,421,jiwa,2025,registration,total_population,3.2,43,,45-49
+13.73.01,3,Lembah Segar,age_group,45-49,,877,jiwa,2025,registration,total_population,3.2,43,,45-49
+13.73.01,3,Lembah Segar,age_group,50-54,laki_laki,431,jiwa,2025,registration,total_population,3.2,43,,50-54
+13.73.01,3,Lembah Segar,age_group,50-54,perempuan,413,jiwa,2025,registration,total_population,3.2,43,,50-54
+13.73.01,3,Lembah Segar,age_group,50-54,,844,jiwa,2025,registration,total_population,3.2,43,,50-54
+13.73.01,3,Lembah Segar,age_group,55-59,laki_laki,390,jiwa,2025,registration,total_population,3.2,43,,55-59
+13.73.01,3,Lembah Segar,age_group,55-59,perempuan,396,jiwa,2025,registration,total_population,3.2,43,,55-59
+13.73.01,3,Lembah Segar,age_group,55-59,,786,jiwa,2025,registration,total_population,3.2,43,,55-59
+13.73.01,3,Lembah Segar,age_group,60-64,laki_laki,331,jiwa,2025,registration,total_population,3.2,43,,60-64
+13.73.01,3,Lembah Segar,age_group,60-64,perempuan,362,jiwa,2025,registration,total_population,3.2,43,,60-64
+13.73.01,3,Lembah Segar,age_group,60-64,,693,jiwa,2025,registration,total_population,3.2,43,,60-64
+13.73.01,3,Lembah Segar,age_group,65+,laki_laki,648,jiwa,2025,registration,total_population,3.2,43,,65+
+13.73.01,3,Lembah Segar,age_group,65+,perempuan,886,jiwa,2025,registration,total_population,3.2,43,,65+
+13.73.01,3,Lembah Segar,age_group,65+,,1534,jiwa,2025,registration,total_population,3.2,43,,65+
+13.73.01,3,Kecamatan Lembah Segar,sex,laki_laki,,6971,jiwa,2025,registration,total_population,3.2,43,,Laki-Laki
+13.73.01,3,Kecamatan Lembah Segar,sex,perempuan,,6977,jiwa,2025,registration,total_population,3.2,43,,Perempuan
+13.73.01,3,Kecamatan Lembah Segar,total,total,,13948,jiwa,2025,registration,total_population,3.2,43,,

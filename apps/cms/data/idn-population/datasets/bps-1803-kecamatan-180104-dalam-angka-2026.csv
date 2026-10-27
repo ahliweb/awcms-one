@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.01.04.2001,4,Hajimena,sex,laki_laki,,6920,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.01.04.2001,4,Hajimena,sex,perempuan,,7003,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.01.04.2001,4,Hajimena,total,total,,13923,jiwa,2025,registration,total_population,3.1,28,,
+18.01.04.2002,4,Sidosari,sex,laki_laki,,3299,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.01.04.2002,4,Sidosari,sex,perempuan,,3159,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.01.04.2002,4,Sidosari,total,total,,6458,jiwa,2025,registration,total_population,3.1,28,,
+18.01.04.2003,4,Pemanggilan,sex,laki_laki,,4682,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.01.04.2003,4,Pemanggilan,sex,perempuan,,4530,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.01.04.2003,4,Pemanggilan,total,total,,9212,jiwa,2025,registration,total_population,3.1,28,,
+18.01.04.2004,4,Natar,sex,laki_laki,,8986,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.01.04.2004,4,Natar,sex,perempuan,,8602,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.01.04.2004,4,Natar,total,total,,17588,jiwa,2025,registration,total_population,3.1,28,,
+18.01.04.2007,4,Merak Batin,sex,laki_laki,,9026,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.01.04.2007,4,Merak Batin,sex,perempuan,,8830,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.01.04.2007,4,Merak Batin,total,total,,17856,jiwa,2025,registration,total_population,3.1,28,,
+18.01.04.2022,4,Krawang Sari,sex,laki_laki,,2871,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.01.04.2022,4,Krawang Sari,sex,perempuan,,2714,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.01.04.2022,4,Krawang Sari,total,total,,5585,jiwa,2025,registration,total_population,3.1,28,,
+18.01.04.2005,4,Muara Putih,sex,laki_laki,,3803,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.01.04.2005,4,Muara Putih,sex,perempuan,,3595,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.01.04.2005,4,Muara Putih,total,total,,7398,jiwa,2025,registration,total_population,3.1,28,,
+18.01.04.2008,4,Tanjungsari,sex,laki_laki,,6063,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.01.04.2008,4,Tanjungsari,sex,perempuan,,5841,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.01.04.2008,4,Tanjungsari,total,total,,11904,jiwa,2025,registration,total_population,3.1,28,,
+18.01.04.2006,4,Negara Ratu,sex,laki_laki,,7977,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.01.04.2006,4,Negara Ratu,sex,perempuan,,7680,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.01.04.2006,4,Negara Ratu,total,total,,15657,jiwa,2025,registration,total_population,3.1,28,,
+18.01.04.2020,4,Rejosari,sex,laki_laki,,2199,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.01.04.2020,4,Rejosari,sex,perempuan,,2128,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.01.04.2020,4,Rejosari,total,total,,4327,jiwa,2025,registration,total_population,3.1,28,,
+18.01.04.2009,4,Bumisari,sex,laki_laki,,4589,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.01.04.2009,4,Bumisari,sex,perempuan,,4477,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.01.04.2009,4,Bumisari,total,total,,9066,jiwa,2025,registration,total_population,3.1,28,,
+18.01.04.2010,4,Candimas,sex,laki_laki,,6449,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.01.04.2010,4,Candimas,sex,perempuan,,6364,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.01.04.2010,4,Candimas,total,total,,12813,jiwa,2025,registration,total_population,3.1,28,,
+18.01.04.2019,4,Pancasila,sex,laki_laki,,1713,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.01.04.2019,4,Pancasila,sex,perempuan,,6364,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.01.04.2019,4,Pancasila,total,total,,8077,jiwa,2025,registration,total_population,3.1,28,,
+18.01.04.2017,4,Sukadamai,sex,laki_laki,,4030,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.01.04.2017,4,Sukadamai,sex,perempuan,,3876,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.01.04.2017,4,Sukadamai,total,total,,7906,jiwa,2025,registration,total_population,3.1,28,,
+18.01.04.2018,4,Purwosari,sex,laki_laki,,1965,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.01.04.2018,4,Purwosari,sex,perempuan,,1831,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.01.04.2018,4,Purwosari,total,total,,3796,jiwa,2025,registration,total_population,3.1,28,,
+18.01.04.2021,4,Rulung Raya,sex,laki_laki,,2781,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.01.04.2021,4,Rulung Raya,sex,perempuan,,2772,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.01.04.2021,4,Rulung Raya,total,total,,5553,jiwa,2025,registration,total_population,3.1,28,,
+18.01.04.2011,4,Brantiraya,sex,laki_laki,,6207,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.01.04.2011,4,Brantiraya,sex,perempuan,,6156,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.01.04.2011,4,Brantiraya,total,total,,12363,jiwa,2025,registration,total_population,3.1,28,,
+18.01.04.2012,4,Haduyang,sex,laki_laki,,3853,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.01.04.2012,4,Haduyang,sex,perempuan,,3811,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.01.04.2012,4,Haduyang,total,total,,7664,jiwa,2025,registration,total_population,3.1,28,,
+18.01.04.2013,4,Banjarnegeri,sex,laki_laki,,2753,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.01.04.2013,4,Banjarnegeri,sex,perempuan,,2655,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.01.04.2013,4,Banjarnegeri,total,total,,5408,jiwa,2025,registration,total_population,3.1,28,,

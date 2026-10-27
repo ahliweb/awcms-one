@@ -1,0 +1,200 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.06,2,Kabupaten Rokan Hulu,age_group,0-4,laki_laki,20298,jiwa,2025,registration,total_population,3.1.2,56,,0–4
+14.06,2,Kabupaten Rokan Hulu,age_group,0-4,perempuan,18839,jiwa,2025,registration,total_population,3.1.2,56,,0–4
+14.06,2,Kabupaten Rokan Hulu,age_group,0-4,,39137,jiwa,2025,registration,total_population,3.1.2,56,,0–4
+14.06,2,Kabupaten Rokan Hulu,age_group,5-9,laki_laki,29917,jiwa,2025,registration,total_population,3.1.2,56,,5–9
+14.06,2,Kabupaten Rokan Hulu,age_group,5-9,perempuan,28457,jiwa,2025,registration,total_population,3.1.2,56,,5–9
+14.06,2,Kabupaten Rokan Hulu,age_group,5-9,,58374,jiwa,2025,registration,total_population,3.1.2,56,,5–9
+14.06,2,Kabupaten Rokan Hulu,age_group,10-14,laki_laki,32769,jiwa,2025,registration,total_population,3.1.2,56,,10–14
+14.06,2,Kabupaten Rokan Hulu,age_group,10-14,perempuan,30913,jiwa,2025,registration,total_population,3.1.2,56,,10–14
+14.06,2,Kabupaten Rokan Hulu,age_group,10-14,,63682,jiwa,2025,registration,total_population,3.1.2,56,,10–14
+14.06,2,Kabupaten Rokan Hulu,age_group,15-19,laki_laki,28944,jiwa,2025,registration,total_population,3.1.2,56,,15–19
+14.06,2,Kabupaten Rokan Hulu,age_group,15-19,perempuan,27386,jiwa,2025,registration,total_population,3.1.2,56,,15–19
+14.06,2,Kabupaten Rokan Hulu,age_group,15-19,,56330,jiwa,2025,registration,total_population,3.1.2,56,,15–19
+14.06,2,Kabupaten Rokan Hulu,age_group,20-24,laki_laki,27710,jiwa,2025,registration,total_population,3.1.2,56,,20–24
+14.06,2,Kabupaten Rokan Hulu,age_group,20-24,perempuan,26728,jiwa,2025,registration,total_population,3.1.2,56,,20–24
+14.06,2,Kabupaten Rokan Hulu,age_group,20-24,,54438,jiwa,2025,registration,total_population,3.1.2,56,,20–24
+14.06,2,Kabupaten Rokan Hulu,age_group,25-29,laki_laki,25385,jiwa,2025,registration,total_population,3.1.2,56,,25–29
+14.06,2,Kabupaten Rokan Hulu,age_group,25-29,perempuan,24341,jiwa,2025,registration,total_population,3.1.2,56,,25–29
+14.06,2,Kabupaten Rokan Hulu,age_group,25-29,,49726,jiwa,2025,registration,total_population,3.1.2,56,,25–29
+14.06,2,Kabupaten Rokan Hulu,age_group,30-34,laki_laki,21994,jiwa,2025,registration,total_population,3.1.2,56,,30–34
+14.06,2,Kabupaten Rokan Hulu,age_group,30-34,perempuan,21853,jiwa,2025,registration,total_population,3.1.2,56,,30–34
+14.06,2,Kabupaten Rokan Hulu,age_group,30-34,,43847,jiwa,2025,registration,total_population,3.1.2,56,,30–34
+14.06,2,Kabupaten Rokan Hulu,age_group,35-39,laki_laki,21895,jiwa,2025,registration,total_population,3.1.2,56,,35–39
+14.06,2,Kabupaten Rokan Hulu,age_group,35-39,perempuan,23315,jiwa,2025,registration,total_population,3.1.2,56,,35–39
+14.06,2,Kabupaten Rokan Hulu,age_group,35-39,,45210,jiwa,2025,registration,total_population,3.1.2,56,,35–39
+14.06,2,Kabupaten Rokan Hulu,age_group,40-44,laki_laki,23135,jiwa,2025,registration,total_population,3.1.2,56,,40–44
+14.06,2,Kabupaten Rokan Hulu,age_group,40-44,perempuan,23151,jiwa,2025,registration,total_population,3.1.2,56,,40–44
+14.06,2,Kabupaten Rokan Hulu,age_group,40-44,,46286,jiwa,2025,registration,total_population,3.1.2,56,,40–44
+14.06,2,Kabupaten Rokan Hulu,age_group,45-49,laki_laki,20788,jiwa,2025,registration,total_population,3.1.2,56,,45–49
+14.06,2,Kabupaten Rokan Hulu,age_group,45-49,perempuan,20063,jiwa,2025,registration,total_population,3.1.2,56,,45–49
+14.06,2,Kabupaten Rokan Hulu,age_group,45-49,,40851,jiwa,2025,registration,total_population,3.1.2,56,,45–49
+14.06,2,Kabupaten Rokan Hulu,age_group,50-54,laki_laki,16421,jiwa,2025,registration,total_population,3.1.2,56,,50–54
+14.06,2,Kabupaten Rokan Hulu,age_group,50-54,perempuan,15203,jiwa,2025,registration,total_population,3.1.2,56,,50–54
+14.06,2,Kabupaten Rokan Hulu,age_group,50-54,,31624,jiwa,2025,registration,total_population,3.1.2,56,,50–54
+14.06,2,Kabupaten Rokan Hulu,age_group,55-59,laki_laki,12305,jiwa,2025,registration,total_population,3.1.2,56,,55–59
+14.06,2,Kabupaten Rokan Hulu,age_group,55-59,perempuan,11737,jiwa,2025,registration,total_population,3.1.2,56,,55–59
+14.06,2,Kabupaten Rokan Hulu,age_group,55-59,,24042,jiwa,2025,registration,total_population,3.1.2,56,,55–59
+14.06,2,Kabupaten Rokan Hulu,age_group,60-64,laki_laki,9078,jiwa,2025,registration,total_population,3.1.2,56,,60–64
+14.06,2,Kabupaten Rokan Hulu,age_group,60-64,perempuan,8957,jiwa,2025,registration,total_population,3.1.2,56,,60–64
+14.06,2,Kabupaten Rokan Hulu,age_group,60-64,,18035,jiwa,2025,registration,total_population,3.1.2,56,,60–64
+14.06,2,Kabupaten Rokan Hulu,age_group,65-69,laki_laki,6486,jiwa,2025,registration,total_population,3.1.2,56,,65–69
+14.06,2,Kabupaten Rokan Hulu,age_group,65-69,perempuan,6427,jiwa,2025,registration,total_population,3.1.2,56,,65–69
+14.06,2,Kabupaten Rokan Hulu,age_group,65-69,,12913,jiwa,2025,registration,total_population,3.1.2,56,,65–69
+14.06,2,Kabupaten Rokan Hulu,age_group,70-74,laki_laki,3725,jiwa,2025,registration,total_population,3.1.2,56,,70–74
+14.06,2,Kabupaten Rokan Hulu,age_group,70-74,perempuan,3551,jiwa,2025,registration,total_population,3.1.2,56,,70–74
+14.06,2,Kabupaten Rokan Hulu,age_group,70-74,,7276,jiwa,2025,registration,total_population,3.1.2,56,,70–74
+14.06,2,Kabupaten Rokan Hulu,age_group,75+,laki_laki,4093,jiwa,2025,registration,total_population,3.1.2,56,,75+
+14.06,2,Kabupaten Rokan Hulu,age_group,75+,perempuan,4332,jiwa,2025,registration,total_population,3.1.2,56,,75+
+14.06,2,Kabupaten Rokan Hulu,age_group,75+,,8425,jiwa,2025,registration,total_population,3.1.2,56,,75+
+14.06,2,Rokan Hulu,sex,laki_laki,,304943,jiwa,2025,registration,total_population,3.1.2,56,,Laki-Laki
+14.06,2,Rokan Hulu,sex,perempuan,,295253,jiwa,2025,registration,total_population,3.1.2,56,,Perempuan
+14.06,2,Rokan Hulu,total,total,,600196,jiwa,2025,registration,total_population,3.1.2,56,,
+14.06.02,3,Rokan IV Koto,religion,islam,,23643,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+14.06.02,3,Rokan IV Koto,religion,kristen,,188,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+14.06.02,3,Rokan IV Koto,religion,katolik,,18,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+14.06.02,3,Rokan IV Koto,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Hindu
+14.06.02,3,Rokan IV Koto,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Budha
+14.06.02,3,Rokan IV Koto,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+14.06.16,3,Pendalian IV Koto,religion,islam,,11423,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+14.06.16,3,Pendalian IV Koto,religion,kristen,,490,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+14.06.16,3,Pendalian IV Koto,religion,katolik,,55,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+14.06.16,3,Pendalian IV Koto,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Hindu
+14.06.16,3,Pendalian IV Koto,religion,buddha,,50,jiwa,2025,registration,total_population,4.3.1,121,,Budha
+14.06.16,3,Pendalian IV Koto,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+14.06.11,3,Tandun,religion,islam,,24715,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+14.06.11,3,Tandun,religion,kristen,,2985,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+14.06.11,3,Tandun,religion,katolik,,219,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+14.06.11,3,Tandun,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Hindu
+14.06.11,3,Tandun,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Budha
+14.06.11,3,Tandun,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+14.06.12,3,Kabun,religion,islam,,31335,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+14.06.12,3,Kabun,religion,kristen,,4546,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+14.06.12,3,Kabun,religion,katolik,,1225,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+14.06.12,3,Kabun,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Hindu
+14.06.12,3,Kabun,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Budha
+14.06.12,3,Kabun,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+14.06.01,3,Ujung Batu,religion,islam,,42785,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+14.06.01,3,Ujung Batu,religion,kristen,,4881,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+14.06.01,3,Ujung Batu,religion,katolik,,766,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+14.06.01,3,Ujung Batu,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,121,,Hindu
+14.06.01,3,Ujung Batu,religion,buddha,,25,jiwa,2025,registration,total_population,4.3.1,121,,Budha
+14.06.01,3,Ujung Batu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+14.06.07,3,Rambah Samo,religion,islam,,29084,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+14.06.07,3,Rambah Samo,religion,kristen,,1363,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+14.06.07,3,Rambah Samo,religion,katolik,,378,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+14.06.07,3,Rambah Samo,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Hindu
+14.06.07,3,Rambah Samo,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Budha
+14.06.07,3,Rambah Samo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+14.06.03,3,Rambah,religion,islam,,43436,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+14.06.03,3,Rambah,religion,kristen,,1216,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+14.06.03,3,Rambah,religion,katolik,,509,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+14.06.03,3,Rambah,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,121,,Hindu
+14.06.03,3,Rambah,religion,buddha,,8,jiwa,2025,registration,total_population,4.3.1,121,,Budha
+14.06.03,3,Rambah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+14.06.08,3,Rambah Hilir,religion,islam,,39632,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+14.06.08,3,Rambah Hilir,religion,kristen,,801,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+14.06.08,3,Rambah Hilir,religion,katolik,,406,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+14.06.08,3,Rambah Hilir,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Hindu
+14.06.08,3,Rambah Hilir,religion,buddha,,109,jiwa,2025,registration,total_population,4.3.1,121,,Budha
+14.06.08,3,Rambah Hilir,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+14.06.10,3,Bangun Purba,religion,islam,,18556,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+14.06.10,3,Bangun Purba,religion,kristen,,675,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+14.06.10,3,Bangun Purba,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+14.06.10,3,Bangun Purba,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Hindu
+14.06.10,3,Bangun Purba,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,121,,Budha
+14.06.10,3,Bangun Purba,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+14.06.04,3,Tambusai,religion,islam,,34065,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+14.06.04,3,Tambusai,religion,kristen,,8770,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+14.06.04,3,Tambusai,religion,katolik,,1785,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+14.06.04,3,Tambusai,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Hindu
+14.06.04,3,Tambusai,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Budha
+14.06.04,3,Tambusai,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+14.06.09,3,Tambusai Utara,religion,islam,,63853,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+14.06.09,3,Tambusai Utara,religion,kristen,,21555,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+14.06.09,3,Tambusai Utara,religion,katolik,,1508,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+14.06.09,3,Tambusai Utara,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Hindu
+14.06.09,3,Tambusai Utara,religion,buddha,,33,jiwa,2025,registration,total_population,4.3.1,121,,Budha
+14.06.09,3,Tambusai Utara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+14.06.05,3,Kepenuhan,religion,islam,,23490,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+14.06.05,3,Kepenuhan,religion,kristen,,1820,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+14.06.05,3,Kepenuhan,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Katolik
+14.06.05,3,Kepenuhan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Hindu
+14.06.05,3,Kepenuhan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Budha
+14.06.05,3,Kepenuhan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+14.06.15,3,Kepenuhan Hulu,religion,islam,,14044,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+14.06.15,3,Kepenuhan Hulu,religion,kristen,,1303,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+14.06.15,3,Kepenuhan Hulu,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Katolik
+14.06.15,3,Kepenuhan Hulu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Hindu
+14.06.15,3,Kepenuhan Hulu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Budha
+14.06.15,3,Kepenuhan Hulu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+14.06.06,3,Kunto Darussalam,religion,islam,,61327,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+14.06.06,3,Kunto Darussalam,religion,kristen,,3528,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+14.06.06,3,Kunto Darussalam,religion,katolik,,552,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+14.06.06,3,Kunto Darussalam,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Hindu
+14.06.06,3,Kunto Darussalam,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Budha
+14.06.06,3,Kunto Darussalam,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+14.06.14,3,Pagaran Tapah Darussalam,religion,islam,,17395,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+14.06.14,3,Pagaran Tapah Darussalam,religion,kristen,,3962,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+14.06.14,3,Pagaran Tapah Darussalam,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Katolik
+14.06.14,3,Pagaran Tapah Darussalam,religion,hindu,,103,jiwa,2025,registration,total_population,4.3.1,121,,Hindu
+14.06.14,3,Pagaran Tapah Darussalam,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Budha
+14.06.14,3,Pagaran Tapah Darussalam,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+14.06.13,3,Bonai Darussalam,religion,islam,,35350,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+14.06.13,3,Bonai Darussalam,religion,kristen,,5150,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+14.06.13,3,Bonai Darussalam,religion,katolik,,1150,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+14.06.13,3,Bonai Darussalam,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Hindu
+14.06.13,3,Bonai Darussalam,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Budha
+14.06.13,3,Bonai Darussalam,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+14.06,2,Rokan Hulu,religion,islam,,514133,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+14.06,2,Rokan Hulu,religion,kristen,,63233,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+14.06,2,Rokan Hulu,religion,katolik,,8575,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+14.06,2,Rokan Hulu,religion,hindu,,111,jiwa,2025,registration,total_population,4.3.1,121,,Hindu
+14.06,2,Rokan Hulu,religion,buddha,,228,jiwa,2025,registration,total_population,4.3.1,121,,Budha
+14.06,2,Rokan Hulu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/padi_padian,,117368,rupiah,2024,survey_estimate,per_capita,10.1,260,,Padi-padian
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/padi_padian,,107372,rupiah,2025,survey_estimate,per_capita,10.1,260,,Padi-padian
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/umbi_umbian,,9877,rupiah,2024,survey_estimate,per_capita,10.1,260,,Umbi-umbian
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/umbi_umbian,,11766,rupiah,2025,survey_estimate,per_capita,10.1,260,,Umbi-umbian
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,89352,rupiah,2024,survey_estimate,per_capita,10.1,260,,Ikan/udang/cumi/kerang
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,86083,rupiah,2025,survey_estimate,per_capita,10.1,260,,Ikan/udang/cumi/kerang
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/daging,,33609,rupiah,2024,survey_estimate,per_capita,10.1,260,,Daging
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/daging,,35952,rupiah,2025,survey_estimate,per_capita,10.1,260,,Daging
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/telur_dan_susu,,34909,rupiah,2024,survey_estimate,per_capita,10.1,260,,Telur dan susu
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/telur_dan_susu,,39687,rupiah,2025,survey_estimate,per_capita,10.1,260,,Telur dan susu
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/sayur_sayuran,,107587,rupiah,2024,survey_estimate,per_capita,10.1,260,,Sayur-sayuran
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/sayur_sayuran,,104258,rupiah,2025,survey_estimate,per_capita,10.1,260,,Sayur-sayuran
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/kacang_kacangan,,11572,rupiah,2024,survey_estimate,per_capita,10.1,260,,Kacang-kacangan
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/kacang_kacangan,,12371,rupiah,2025,survey_estimate,per_capita,10.1,260,,Kacang-kacangan
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/buah_buahan,,41671,rupiah,2024,survey_estimate,per_capita,10.1,260,,Buah-buahan
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/buah_buahan,,42947,rupiah,2025,survey_estimate,per_capita,10.1,260,,Buah-buahan
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/minyak_dan_kelapa,,28765,rupiah,2024,survey_estimate,per_capita,10.1,260,,Minyak dan kelapa
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/minyak_dan_kelapa,,30783,rupiah,2025,survey_estimate,per_capita,10.1,260,,Minyak dan kelapa
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/bahan_minuman,,20313,rupiah,2024,survey_estimate,per_capita,10.1,260,,Bahan minuman
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/bahan_minuman,,24862,rupiah,2025,survey_estimate,per_capita,10.1,260,,Bahan minuman
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/bumbu_bumbuan,,20305,rupiah,2024,survey_estimate,per_capita,10.1,260,,Bumbu-bumbuan
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/bumbu_bumbuan,,22832,rupiah,2025,survey_estimate,per_capita,10.1,260,,Bumbu-bumbuan
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/konsumsi_lainnya,,10769,rupiah,2024,survey_estimate,per_capita,10.1,260,,Konsumsi lainnya
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/konsumsi_lainnya,,12102,rupiah,2025,survey_estimate,per_capita,10.1,260,,Konsumsi lainnya
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,213802,rupiah,2024,survey_estimate,per_capita,10.1,260,,Makanan dan minuman jadi
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,180684,rupiah,2025,survey_estimate,per_capita,10.1,260,,Makanan dan minuman jadi
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/rokok,,177306,rupiah,2024,survey_estimate,per_capita,10.1,260,,Rokok
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/rokok,,152904,rupiah,2025,survey_estimate,per_capita,10.1,260,,Rokok
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/jumlah_makanan,,917205,rupiah,2024,survey_estimate,per_capita,10.1,260,,Jumlah makanan
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/jumlah_makanan,,864602,rupiah,2025,survey_estimate,per_capita,10.1,260,,Jumlah makanan
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,348410,rupiah,2024,survey_estimate,per_capita,10.1,260,,Perumahan dan fasilitas rumah tangga
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,344852,rupiah,2025,survey_estimate,per_capita,10.1,260,,Perumahan dan fasilitas rumah tangga
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,140580,rupiah,2024,survey_estimate,per_capita,10.1,260,,Aneka barang dan jasa
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,152344,rupiah,2025,survey_estimate,per_capita,10.1,260,,Aneka barang dan jasa
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,52093,rupiah,2024,survey_estimate,per_capita,10.1,260,,"Pakaian, alas kaki, dan tutup kepala"
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,49183,rupiah,2025,survey_estimate,per_capita,10.1,260,,"Pakaian, alas kaki, dan tutup kepala"
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/barang_tahan_lama,,47843,rupiah,2024,survey_estimate,per_capita,10.1,260,,Barang tahan lama
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/barang_tahan_lama,,42388,rupiah,2025,survey_estimate,per_capita,10.1,260,,Barang tahan lama
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,45112,rupiah,2024,survey_estimate,per_capita,10.1,260,,"Pajak, pungutan, dan asuransi"
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,45858,rupiah,2025,survey_estimate,per_capita,10.1,260,,"Pajak, pungutan, dan asuransi"
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,28621,rupiah,2024,survey_estimate,per_capita,10.1,260,,Keperluan pesta dan upacara/kenduri
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,20760,rupiah,2025,survey_estimate,per_capita,10.1,260,,Keperluan pesta dan upacara/kenduri
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,662660,rupiah,2024,survey_estimate,per_capita,10.1,260,,Jumlah bukan makanan
+14.06,2,Kabupaten Rokan Hulu,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,655385,rupiah,2025,survey_estimate,per_capita,10.1,260,,Jumlah bukan makanan
+14.06,2,Kabupaten Rokan Hulu,expenditure,total,,1579865,rupiah,2024,survey_estimate,per_capita,10.1,260,,
+14.06,2,Kabupaten Rokan Hulu,expenditure,total,,1519987,rupiah,2025,survey_estimate,per_capita,10.1,260,,

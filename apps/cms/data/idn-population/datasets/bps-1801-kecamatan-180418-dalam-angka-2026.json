@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1801-kecamatan-180418-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.04.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kebun Tebu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lampung Barat",
+  "publisherDomain": "1801",
+  "publisherWebsite": "https://lampungbaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lampung Barat (https://lampungbaratkab.bps.go.id), publikasi \"Kecamatan Kebun Tebu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1801063",
+  "publicationNumber": "18010.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lampungbaratkab.bps.go.id/id/publication/2026/09/28/3d88bf9cf20d6d0921b9a1d1/kecamatan-kebun-tebu-dalam-angka-2026.html",
+  "sourceFileSha256": "637c386fc05645941f29cdd85b5dccc79fea5eb57ba720616e3db57f48ee4aab",
+  "sourceFileBytes": 4127459,
+  "sourcePages": [30, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lampung Barat",
+  "csvPath": "datasets/bps-1801-kecamatan-180418-dalam-angka-2026.csv",
+  "csvSha256": "08fc415630a50e58ee258e200801ee3d814bdbd5208a9bc4575483817ae4ddcb",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kebun Tebu, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kebun Tebu, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

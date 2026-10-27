@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+34.01.06,3,Sentolo,age_group,0-4,laki_laki,1304,jiwa,2025,registration,total_population,3.2,22,,0 – 4
+34.01.06,3,Sentolo,age_group,0-4,perempuan,1222,jiwa,2025,registration,total_population,3.2,22,,0 – 4
+34.01.06,3,Sentolo,age_group,0-4,,2526,jiwa,2025,registration,total_population,3.2,22,,0 – 4
+34.01.06,3,Sentolo,age_group,5-9,laki_laki,1683,jiwa,2025,registration,total_population,3.2,22,,5 – 9
+34.01.06,3,Sentolo,age_group,5-9,perempuan,1588,jiwa,2025,registration,total_population,3.2,22,,5 – 9
+34.01.06,3,Sentolo,age_group,5-9,,3271,jiwa,2025,registration,total_population,3.2,22,,5 – 9
+34.01.06,3,Sentolo,age_group,10-14,laki_laki,1878,jiwa,2025,registration,total_population,3.2,22,,10 – 14
+34.01.06,3,Sentolo,age_group,10-14,perempuan,1660,jiwa,2025,registration,total_population,3.2,22,,10 – 14
+34.01.06,3,Sentolo,age_group,10-14,,3538,jiwa,2025,registration,total_population,3.2,22,,10 – 14
+34.01.06,3,Sentolo,age_group,15-19,laki_laki,1958,jiwa,2025,registration,total_population,3.2,22,,15 – 19
+34.01.06,3,Sentolo,age_group,15-19,perempuan,1877,jiwa,2025,registration,total_population,3.2,22,,15 – 19
+34.01.06,3,Sentolo,age_group,15-19,,3835,jiwa,2025,registration,total_population,3.2,22,,15 – 19
+34.01.06,3,Sentolo,age_group,20-24,laki_laki,1758,jiwa,2025,registration,total_population,3.2,22,,20 – 24
+34.01.06,3,Sentolo,age_group,20-24,perempuan,1751,jiwa,2025,registration,total_population,3.2,22,,20 – 24
+34.01.06,3,Sentolo,age_group,20-24,,3509,jiwa,2025,registration,total_population,3.2,22,,20 – 24
+34.01.06,3,Sentolo,age_group,25-29,laki_laki,1805,jiwa,2025,registration,total_population,3.2,22,,25 – 29
+34.01.06,3,Sentolo,age_group,25-29,perempuan,1781,jiwa,2025,registration,total_population,3.2,22,,25 – 29
+34.01.06,3,Sentolo,age_group,25-29,,3586,jiwa,2025,registration,total_population,3.2,22,,25 – 29
+34.01.06,3,Sentolo,age_group,30-34,laki_laki,1712,jiwa,2025,registration,total_population,3.2,22,,30 – 34
+34.01.06,3,Sentolo,age_group,30-34,perempuan,1752,jiwa,2025,registration,total_population,3.2,22,,30 – 34
+34.01.06,3,Sentolo,age_group,30-34,,3464,jiwa,2025,registration,total_population,3.2,22,,30 – 34
+34.01.06,3,Sentolo,age_group,35-39,laki_laki,1638,jiwa,2025,registration,total_population,3.2,22,,35 – 39
+34.01.06,3,Sentolo,age_group,35-39,perempuan,1602,jiwa,2025,registration,total_population,3.2,22,,35 – 39
+34.01.06,3,Sentolo,age_group,35-39,,3240,jiwa,2025,registration,total_population,3.2,22,,35 – 39
+34.01.06,3,Sentolo,age_group,40-44,laki_laki,1879,jiwa,2025,registration,total_population,3.2,22,,40 – 44
+34.01.06,3,Sentolo,age_group,40-44,perempuan,1881,jiwa,2025,registration,total_population,3.2,22,,40 – 44
+34.01.06,3,Sentolo,age_group,40-44,,3760,jiwa,2025,registration,total_population,3.2,22,,40 – 44
+34.01.06,3,Sentolo,age_group,45-49,laki_laki,1791,jiwa,2025,registration,total_population,3.2,22,,45 – 49
+34.01.06,3,Sentolo,age_group,45-49,perempuan,1759,jiwa,2025,registration,total_population,3.2,22,,45 – 49
+34.01.06,3,Sentolo,age_group,45-49,,3550,jiwa,2025,registration,total_population,3.2,22,,45 – 49
+34.01.06,3,Sentolo,age_group,50-54,laki_laki,1654,jiwa,2025,registration,total_population,3.2,22,,50 – 54
+34.01.06,3,Sentolo,age_group,50-54,perempuan,1672,jiwa,2025,registration,total_population,3.2,22,,50 – 54
+34.01.06,3,Sentolo,age_group,50-54,,3326,jiwa,2025,registration,total_population,3.2,22,,50 – 54
+34.01.06,3,Sentolo,age_group,55-59,laki_laki,1636,jiwa,2025,registration,total_population,3.2,22,,55 – 59
+34.01.06,3,Sentolo,age_group,55-59,perempuan,1742,jiwa,2025,registration,total_population,3.2,22,,55 – 59
+34.01.06,3,Sentolo,age_group,55-59,,3378,jiwa,2025,registration,total_population,3.2,22,,55 – 59
+34.01.06,3,Sentolo,age_group,60-64,laki_laki,1378,jiwa,2025,registration,total_population,3.2,22,,60 – 64
+34.01.06,3,Sentolo,age_group,60-64,perempuan,1489,jiwa,2025,registration,total_population,3.2,22,,60 – 64
+34.01.06,3,Sentolo,age_group,60-64,,2867,jiwa,2025,registration,total_population,3.2,22,,60 – 64
+34.01.06,3,Sentolo,age_group,65-69,laki_laki,1167,jiwa,2025,registration,total_population,3.2,22,,65 – 69
+34.01.06,3,Sentolo,age_group,65-69,perempuan,1359,jiwa,2025,registration,total_population,3.2,22,,65 – 69
+34.01.06,3,Sentolo,age_group,65-69,,2526,jiwa,2025,registration,total_population,3.2,22,,65 – 69
+34.01.06,3,Sentolo,age_group,70-74,laki_laki,842,jiwa,2025,registration,total_population,3.2,22,,70 – 74
+34.01.06,3,Sentolo,age_group,70-74,perempuan,866,jiwa,2025,registration,total_population,3.2,22,,70 – 74
+34.01.06,3,Sentolo,age_group,70-74,,1708,jiwa,2025,registration,total_population,3.2,22,,70 – 74
+34.01.06,3,Sentolo,age_group,75+,laki_laki,967,jiwa,2025,registration,total_population,3.2,22,,> 75
+34.01.06,3,Sentolo,age_group,75+,perempuan,1463,jiwa,2025,registration,total_population,3.2,22,,> 75
+34.01.06,3,Sentolo,age_group,75+,,2430,jiwa,2025,registration,total_population,3.2,22,,> 75
+34.01.06,3,Sentolo,sex,laki_laki,,25050,jiwa,2025,registration,total_population,3.2,22,,Laki-Laki
+34.01.06,3,Sentolo,sex,perempuan,,25464,jiwa,2025,registration,total_population,3.2,22,,Perempuan
+34.01.06,3,Sentolo,total,total,,50514,jiwa,2025,registration,total_population,3.2,22,,

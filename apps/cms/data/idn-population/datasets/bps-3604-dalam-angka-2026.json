@@ -1,0 +1,51 @@
+{
+  "datasetCode": "bps-3604-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "36.04",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Serang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Serang",
+  "publisherDomain": "3604",
+  "publisherWebsite": "https://serangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Serang (https://serangkab.bps.go.id), publikasi \"Kabupaten Serang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3604",
+  "publicationNumber": "36040.26003",
+  "issn": "2086-9894",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://serangkab.bps.go.id/id/publication/2026/02/27/edd1d40a533e4a6f85e29cbb/kabupaten-serang-dalam-angka-2026.html",
+  "sourceFileSha256": "a1d11728ce4c7e07193d477751433a4e0b25e2053df72c4d27e69c4702ff6f4d",
+  "sourceFileBytes": 3573631,
+  "sourcePages": [66, 397],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Serang.",
+  "csvPath": "datasets/bps-3604-dalam-angka-2026.csv",
+  "csvSha256": "9c352e87529577e9efa949641e090ee4aac0eda7c2099d77c60eddbcbeee0626",
+  "tablesUsed": [
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Serang (jiwa) , 2025",
+      "printedPages": [66],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Serang (rupiah), 2024 dan 2025",
+      "printedPages": [397],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Total population per child region (3.1.1): no table with this title was found in the publication",
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 4.3.1 (religion-by-region) could not be read reliably and is not included (religion column 7 header \"Konghuchu\" not recognised)"
+  ]
+}

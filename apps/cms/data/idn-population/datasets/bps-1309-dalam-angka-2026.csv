@@ -1,0 +1,92 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.08.13,3,Tigo Nagari,total,total,,33.75,ribu_jiwa,2025,projection,total_population,unnumbered-p77,77,,
+13.08.04,3,Bonjol,total,total,,27.71,ribu_jiwa,2025,projection,total_population,unnumbered-p77,77,,
+13.08.16,3,Simpang Alahan Mati,total,total,,13.26,ribu_jiwa,2025,projection,total_population,unnumbered-p77,77,,
+13.08.05,3,Lubuk Sikaping,total,total,,54.64,ribu_jiwa,2025,projection,total_population,unnumbered-p77,77,,
+13.08.07,3,Panti,total,total,,37.28,ribu_jiwa,2025,projection,total_population,unnumbered-p77,77,,
+13.08.17,3,Padang Gelugur,total,total,,35.14,ribu_jiwa,2025,projection,total_population,unnumbered-p77,77,,
+13.08.14,3,Rao,total,total,,27.93,ribu_jiwa,2025,projection,total_population,unnumbered-p77,77,,
+13.08.18,3,Rao Utara,total,total,,12.91,ribu_jiwa,2025,projection,total_population,unnumbered-p77,77,,
+13.08.19,3,Rao Selatan,total,total,,28.53,ribu_jiwa,2025,projection,total_population,unnumbered-p77,77,,
+13.08.08,3,Mapat Tunggul,total,total,,10.79,ribu_jiwa,2025,projection,total_population,unnumbered-p77,77,,
+13.08.15,3,Mapat Tunggul Selatan,total,total,,10.32,ribu_jiwa,2025,projection,total_population,unnumbered-p77,77,,
+13.08,2,Pasaman,total,total,,322.93,ribu_jiwa,2025,projection,total_population,unnumbered-p77,77,,
+13.08.13,3,Tigo Nagari,sex,laki_laki,,17.18,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Laki-Laki
+13.08.13,3,Tigo Nagari,sex,perempuan,,16.57,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Perempuan
+13.08.13,3,Tigo Nagari,total,total,,33.75,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,
+13.08.04,3,Bonjol,sex,laki_laki,,14.13,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Laki-Laki
+13.08.04,3,Bonjol,sex,perempuan,,13.58,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Perempuan
+13.08.04,3,Bonjol,total,total,,27.71,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,
+13.08.16,3,Simpang Alahan Mati,sex,laki_laki,,6.72,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Laki-Laki
+13.08.16,3,Simpang Alahan Mati,sex,perempuan,,6.54,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Perempuan
+13.08.16,3,Simpang Alahan Mati,total,total,,13.26,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,
+13.08.05,3,Lubuk Sikaping,sex,laki_laki,,27.35,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Laki-Laki
+13.08.05,3,Lubuk Sikaping,sex,perempuan,,27.29,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Perempuan
+13.08.05,3,Lubuk Sikaping,total,total,,54.64,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,
+13.08.07,3,Panti,sex,laki_laki,,18.92,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Laki-Laki
+13.08.07,3,Panti,sex,perempuan,,18.36,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Perempuan
+13.08.07,3,Panti,total,total,,37.28,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,
+13.08.17,3,Padang Gelugur,sex,laki_laki,,17.71,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Laki-Laki
+13.08.17,3,Padang Gelugur,sex,perempuan,,17.43,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Perempuan
+13.08.17,3,Padang Gelugur,total,total,,35.14,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,
+13.08.14,3,Rao,sex,laki_laki,,14.13,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Laki-Laki
+13.08.14,3,Rao,sex,perempuan,,13.80,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Perempuan
+13.08.14,3,Rao,total,total,,27.93,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,
+13.08.18,3,Rao Utara,sex,laki_laki,,6.46,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Laki-Laki
+13.08.18,3,Rao Utara,sex,perempuan,,6.45,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Perempuan
+13.08.18,3,Rao Utara,total,total,,12.91,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,
+13.08.19,3,Rao Selatan,sex,laki_laki,,14.23,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Laki-Laki
+13.08.19,3,Rao Selatan,sex,perempuan,,14.30,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Perempuan
+13.08.19,3,Rao Selatan,total,total,,28.53,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,
+13.08.08,3,Mapat Tunggul,sex,laki_laki,,5.51,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Laki-Laki
+13.08.08,3,Mapat Tunggul,sex,perempuan,,5.27,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Perempuan
+13.08.08,3,Mapat Tunggul,total,total,,10.79,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,
+13.08.15,3,Mapat Tunggul Selatan,sex,laki_laki,,5.24,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Laki-Laki
+13.08.15,3,Mapat Tunggul Selatan,sex,perempuan,,5.07,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,Perempuan
+13.08.15,3,Mapat Tunggul Selatan,total,total,,10.32,ribu_jiwa,2025,projection,total_population,unnumbered-p82,82,,
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/padi_padian,,117354,rupiah,2024,survey_estimate,per_capita,10.1,363,,Padi–padian
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/padi_padian,,113771,rupiah,2025,survey_estimate,per_capita,10.1,363,,Padi–padian
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/umbi_umbian,,7250,rupiah,2024,survey_estimate,per_capita,10.1,363,,Umbi–umbian
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/umbi_umbian,,7633,rupiah,2025,survey_estimate,per_capita,10.1,363,,Umbi–umbian
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,57073,rupiah,2024,survey_estimate,per_capita,10.1,363,,Ikan/udang/cumi/kerang
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,66803,rupiah,2025,survey_estimate,per_capita,10.1,363,,Ikan/udang/cumi/kerang
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/daging,,20548,rupiah,2024,survey_estimate,per_capita,10.1,363,,Daging
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/daging,,21292,rupiah,2025,survey_estimate,per_capita,10.1,363,,Daging
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/telur_dan_susu,,23909,rupiah,2024,survey_estimate,per_capita,10.1,363,,Telur dan susu
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/telur_dan_susu,,24105,rupiah,2025,survey_estimate,per_capita,10.1,363,,Telur dan susu
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/sayur_sayuran,,75967,rupiah,2024,survey_estimate,per_capita,10.1,363,,Sayur–sayuran
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/sayur_sayuran,,69893,rupiah,2025,survey_estimate,per_capita,10.1,363,,Sayur–sayuran
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/kacang_kacangan,,9191,rupiah,2024,survey_estimate,per_capita,10.1,363,,Kacang–kacangan
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/kacang_kacangan,,8579,rupiah,2025,survey_estimate,per_capita,10.1,363,,Kacang–kacangan
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/buah_buahan,,21969,rupiah,2024,survey_estimate,per_capita,10.1,363,,Buah–buahan
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/buah_buahan,,35991,rupiah,2025,survey_estimate,per_capita,10.1,363,,Buah–buahan
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/minyak_dan_kelapa,,25259,rupiah,2024,survey_estimate,per_capita,10.1,363,,Minyak dan kelapa
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/minyak_dan_kelapa,,31835,rupiah,2025,survey_estimate,per_capita,10.1,363,,Minyak dan kelapa
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/bahan_minuman,,15551,rupiah,2024,survey_estimate,per_capita,10.1,363,,Bahan minuman
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/bahan_minuman,,16295,rupiah,2025,survey_estimate,per_capita,10.1,363,,Bahan minuman
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/bumbu_bumbuan,,9355,rupiah,2024,survey_estimate,per_capita,10.1,363,,Bumbu–bumbuan
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/bumbu_bumbuan,,8107,rupiah,2025,survey_estimate,per_capita,10.1,363,,Bumbu–bumbuan
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/konsumsi_lainnya,,7193,rupiah,2024,survey_estimate,per_capita,10.1,363,,Konsumsi lainnya
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/konsumsi_lainnya,,6513,rupiah,2025,survey_estimate,per_capita,10.1,363,,Konsumsi lainnya
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,196883,rupiah,2024,survey_estimate,per_capita,10.1,363,,Makanan dan minuman jadi
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,182068,rupiah,2025,survey_estimate,per_capita,10.1,363,,Makanan dan minuman jadi
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/rokok,,91409,rupiah,2024,survey_estimate,per_capita,10.1,363,,Rokok
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/rokok,,94609,rupiah,2025,survey_estimate,per_capita,10.1,363,,Rokok
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/jumlah_makanan,,678911,rupiah,2024,survey_estimate,per_capita,10.1,363,,Jumlah makanan
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/jumlah_makanan,,687492,rupiah,2025,survey_estimate,per_capita,10.1,363,,Jumlah makanan
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,189831,rupiah,2024,survey_estimate,per_capita,10.1,363,,Perumahan dan fasilitas rumah tangga
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,191060,rupiah,2025,survey_estimate,per_capita,10.1,363,,Perumahan dan fasilitas rumah tangga
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,107362,rupiah,2024,survey_estimate,per_capita,10.1,363,,Aneka komoditas dan jasa
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,107711,rupiah,2025,survey_estimate,per_capita,10.1,363,,Aneka komoditas dan jasa
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,45044,rupiah,2024,survey_estimate,per_capita,10.1,363,,"Pakaian, alas kaki, dan tutup kepala"
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,43674,rupiah,2025,survey_estimate,per_capita,10.1,363,,"Pakaian, alas kaki, dan tutup kepala"
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/komoditas_tahan_lama,,24356,rupiah,2024,survey_estimate,per_capita,10.1,363,,Komoditas tahan lama
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/komoditas_tahan_lama,,37821,rupiah,2025,survey_estimate,per_capita,10.1,363,,Komoditas tahan lama
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,56745,rupiah,2024,survey_estimate,per_capita,10.1,363,,"Pajak, pungutan, dan asuransi"
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,58872,rupiah,2025,survey_estimate,per_capita,10.1,363,,"Pajak, pungutan, dan asuransi"
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,16522,rupiah,2024,survey_estimate,per_capita,10.1,363,,Keperluan pesta dan upacara/kenduri
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,10188,rupiah,2025,survey_estimate,per_capita,10.1,363,,Keperluan pesta dan upacara/kenduri
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,439859,rupiah,2024,survey_estimate,per_capita,10.1,363,,Jumlah bukan makanan
+13.08,2,Kabupaten Pasaman,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,449326,rupiah,2025,survey_estimate,per_capita,10.1,363,,Jumlah bukan makanan
+13.08,2,Kabupaten Pasaman,expenditure,total,,1118769,rupiah,2024,survey_estimate,per_capita,10.1,363,,
+13.08,2,Kabupaten Pasaman,expenditure,total,,1136818,rupiah,2025,survey_estimate,per_capita,10.1,363,,

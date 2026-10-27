@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1706-kecamatan-170613-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "17.06.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Air Manjunto Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Mukomuko",
+  "publisherDomain": "1706",
+  "publisherWebsite": "https://mukomukokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Mukomuko (https://mukomukokab.bps.go.id), publikasi \"Kecamatan Air Manjunto Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1101002.1706051",
+  "publicationNumber": "17060.26017",
+  "issn": "2797-1554",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://mukomukokab.bps.go.id/id/publication/2026/09/28/bd7aa1007c9c495383673d2a/kecamatan-air-manjunto-dalam-angka-2026.html",
+  "sourceFileSha256": "18ccff1b12029c433a938ba390ba60e26bddd4f1f3c329ebc4dbc7127609e725",
+  "sourceFileBytes": 22353451,
+  "sourcePages": [27, 28, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Mukomuko.",
+  "csvPath": "datasets/bps-1706-kecamatan-170613-dalam-angka-2026.csv",
+  "csvSha256": "611977b35e8001f5bad6463223f034be3074b7f0503a65c29ae9e6015f8cda24",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Air Manjunto, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Air Manjunto, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

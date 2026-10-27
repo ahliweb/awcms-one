@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.01.13.2001,4,Bonan Dolok,sex,laki_laki,,675,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.13.2001,4,Bonan Dolok,sex,perempuan,,688,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.13.2001,4,Bonan Dolok,total,total,,1363,jiwa,2025,registration,total_population,3.1,35,,
+12.01.13.2002,4,Rampa,sex,laki_laki,,415,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.13.2002,4,Rampa,sex,perempuan,,385,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.13.2002,4,Rampa,total,total,,800,jiwa,2025,registration,total_population,3.1,35,,
+12.01.13.2004,4,Mardame,sex,laki_laki,,455,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.13.2004,4,Mardame,sex,perempuan,,452,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.13.2004,4,Mardame,total,total,,907,jiwa,2025,registration,total_population,3.1,35,,
+12.01.13.1003,4,Nauli,sex,laki_laki,,657,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.13.1003,4,Nauli,sex,perempuan,,659,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.13.1003,4,Nauli,total,total,,1316,jiwa,2025,registration,total_population,3.1,35,,
+12.01.13.2005,4,Naga Timbul,sex,laki_laki,,489,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.13.2005,4,Naga Timbul,sex,perempuan,,470,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.13.2005,4,Naga Timbul,total,total,,959,jiwa,2025,registration,total_population,3.1,35,,
+12.01.13.2006,4,Simaninggir,sex,laki_laki,,210,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.13.2006,4,Simaninggir,sex,perempuan,,242,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.13.2006,4,Simaninggir,total,total,,452,jiwa,2025,registration,total_population,3.1,35,,
+12.01.13,3,Sitahuis,sex,laki_laki,,2901,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+12.01.13,3,Sitahuis,sex,perempuan,,2896,jiwa,2025,registration,total_population,3.1,35,,Perempuan/
+12.01.13,3,Sitahuis,total,total,,5797,jiwa,2025,registration,total_population,3.1,35,,

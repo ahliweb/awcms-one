@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.07.11.2005,4,Rawa Sari,sex,laki_laki,,400,jiwa,2025,registration,total_population,3.1,48,,Laki-Laki/Male
+15.07.11.2005,4,Rawa Sari,sex,perempuan,,400,jiwa,2025,registration,total_population,3.1,48,,Perempuan/Female
+15.07.11.2005,4,Rawa Sari,total,total,,800,jiwa,2025,registration,total_population,3.1,48,,
+15.07.11.2003,4,Rantau makmur,sex,laki_laki,,1500,jiwa,2025,registration,total_population,3.1,48,,Laki-Laki/Male
+15.07.11.2003,4,Rantau makmur,sex,perempuan,,1416,jiwa,2025,registration,total_population,3.1,48,,Perempuan/Female
+15.07.11.2003,4,Rantau makmur,total,total,,2916,jiwa,2025,registration,total_population,3.1,48,,
+15.07.11.2004,4,Sungai Rambut,sex,laki_laki,,349,jiwa,2025,registration,total_population,3.1,48,,Laki-Laki/Male
+15.07.11.2004,4,Sungai Rambut,sex,perempuan,,341,jiwa,2025,registration,total_population,3.1,48,,Perempuan/Female
+15.07.11.2004,4,Sungai Rambut,total,total,,690,jiwa,2025,registration,total_population,3.1,48,,
+15.07.11.2002,4,Rantau Rasau,sex,laki_laki,,1641,jiwa,2025,registration,total_population,3.1,48,,Laki-Laki/Male
+15.07.11.2002,4,Rantau Rasau,sex,perempuan,,1583,jiwa,2025,registration,total_population,3.1,48,,Perempuan/Female
+15.07.11.2002,4,Rantau Rasau,total,total,,3224,jiwa,2025,registration,total_population,3.1,48,,
+15.07.11.1001,4,Simpang,sex,laki_laki,,1262,jiwa,2025,registration,total_population,3.1,48,,Laki-Laki/Male
+15.07.11.1001,4,Simpang,sex,perempuan,,1153,jiwa,2025,registration,total_population,3.1,48,,Perempuan/Female
+15.07.11.1001,4,Simpang,total,total,,2415,jiwa,2025,registration,total_population,3.1,48,,
+15.07.11,3,Berbak,age_group,0-4,laki_laki,361,jiwa,2025,registration,total_population,3.2,50,,0–4
+15.07.11,3,Berbak,age_group,0-4,perempuan,356,jiwa,2025,registration,total_population,3.2,50,,0–4
+15.07.11,3,Berbak,age_group,0-4,,717,jiwa,2025,registration,total_population,3.2,50,,0–4
+15.07.11,3,Berbak,age_group,5-9,laki_laki,504,jiwa,2025,registration,total_population,3.2,50,,5–9
+15.07.11,3,Berbak,age_group,5-9,perempuan,428,jiwa,2025,registration,total_population,3.2,50,,5–9
+15.07.11,3,Berbak,age_group,5-9,,932,jiwa,2025,registration,total_population,3.2,50,,5–9
+15.07.11,3,Berbak,age_group,10-14,laki_laki,509,jiwa,2025,registration,total_population,3.2,50,,10–14
+15.07.11,3,Berbak,age_group,10-14,perempuan,467,jiwa,2025,registration,total_population,3.2,50,,10–14
+15.07.11,3,Berbak,age_group,10-14,,976,jiwa,2025,registration,total_population,3.2,50,,10–14
+15.07.11,3,Berbak,age_group,15-19,laki_laki,506,jiwa,2025,registration,total_population,3.2,50,,15–19
+15.07.11,3,Berbak,age_group,15-19,perempuan,511,jiwa,2025,registration,total_population,3.2,50,,15–19
+15.07.11,3,Berbak,age_group,15-19,,1017,jiwa,2025,registration,total_population,3.2,50,,15–19
+15.07.11,3,Berbak,age_group,20-24,laki_laki,488,jiwa,2025,registration,total_population,3.2,50,,20–24
+15.07.11,3,Berbak,age_group,20-24,perempuan,427,jiwa,2025,registration,total_population,3.2,50,,20–24
+15.07.11,3,Berbak,age_group,20-24,,915,jiwa,2025,registration,total_population,3.2,50,,20–24
+15.07.11,3,Berbak,age_group,25-29,laki_laki,408,jiwa,2025,registration,total_population,3.2,50,,25–29
+15.07.11,3,Berbak,age_group,25-29,perempuan,393,jiwa,2025,registration,total_population,3.2,50,,25–29
+15.07.11,3,Berbak,age_group,25-29,,801,jiwa,2025,registration,total_population,3.2,50,,25–29
+15.07.11,3,Berbak,age_group,30-34,laki_laki,347,jiwa,2025,registration,total_population,3.2,50,,30–34
+15.07.11,3,Berbak,age_group,30-34,perempuan,336,jiwa,2025,registration,total_population,3.2,50,,30–34
+15.07.11,3,Berbak,age_group,30-34,,683,jiwa,2025,registration,total_population,3.2,50,,30–34
+15.07.11,3,Berbak,age_group,35-39,laki_laki,435,jiwa,2025,registration,total_population,3.2,50,,35–39
+15.07.11,3,Berbak,age_group,35-39,perempuan,390,jiwa,2025,registration,total_population,3.2,50,,35–39
+15.07.11,3,Berbak,age_group,35-39,,825,jiwa,2025,registration,total_population,3.2,50,,35–39
+15.07.11,3,Berbak,age_group,40-44,laki_laki,464,jiwa,2025,registration,total_population,3.2,50,,40–44
+15.07.11,3,Berbak,age_group,40-44,perempuan,441,jiwa,2025,registration,total_population,3.2,50,,40–44
+15.07.11,3,Berbak,age_group,40-44,,905,jiwa,2025,registration,total_population,3.2,50,,40–44
+15.07.11,3,Berbak,age_group,45-49,laki_laki,372,jiwa,2025,registration,total_population,3.2,50,,45–49
+15.07.11,3,Berbak,age_group,45-49,perempuan,431,jiwa,2025,registration,total_population,3.2,50,,45–49
+15.07.11,3,Berbak,age_group,45-49,,803,jiwa,2025,registration,total_population,3.2,50,,45–49
+15.07.11,3,Berbak,age_group,50-54,laki_laki,380,jiwa,2025,registration,total_population,3.2,50,,50–54
+15.07.11,3,Berbak,age_group,50-54,perempuan,309,jiwa,2025,registration,total_population,3.2,50,,50–54
+15.07.11,3,Berbak,age_group,50-54,,689,jiwa,2025,registration,total_population,3.2,50,,50–54
+15.07.11,3,Berbak,age_group,55-59,laki_laki,328,jiwa,2025,registration,total_population,3.2,50,,55–59
+15.07.11,3,Berbak,age_group,55-59,perempuan,275,jiwa,2025,registration,total_population,3.2,50,,55–59
+15.07.11,3,Berbak,age_group,55-59,,603,jiwa,2025,registration,total_population,3.2,50,,55–59
+15.07.11,3,Berbak,age_group,60-64,laki_laki,214,jiwa,2025,registration,total_population,3.2,50,,60–64
+15.07.11,3,Berbak,age_group,60-64,perempuan,190,jiwa,2025,registration,total_population,3.2,50,,60–64
+15.07.11,3,Berbak,age_group,60-64,,404,jiwa,2025,registration,total_population,3.2,50,,60–64
+15.07.11,3,Berbak,age_group,65-69,laki_laki,128,jiwa,2025,registration,total_population,3.2,50,,65–69
+15.07.11,3,Berbak,age_group,65-69,perempuan,137,jiwa,2025,registration,total_population,3.2,50,,65–69
+15.07.11,3,Berbak,age_group,65-69,,265,jiwa,2025,registration,total_population,3.2,50,,65–69
+15.07.11,3,Berbak,age_group,70-74,laki_laki,120,jiwa,2025,registration,total_population,3.2,50,,70–74
+15.07.11,3,Berbak,age_group,70-74,perempuan,91,jiwa,2025,registration,total_population,3.2,50,,70–74
+15.07.11,3,Berbak,age_group,70-74,,211,jiwa,2025,registration,total_population,3.2,50,,70–74
+15.07.11,3,Berbak,age_group,75+,laki_laki,137,jiwa,2025,registration,total_population,3.2,50,,75+
+15.07.11,3,Berbak,age_group,75+,perempuan,141,jiwa,2025,registration,total_population,3.2,50,,75+
+15.07.11,3,Berbak,age_group,75+,,278,jiwa,2025,registration,total_population,3.2,50,,75+

@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.40.2001,4,Jamblang,sex,laki_laki,,2973,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.40.2001,4,Jamblang,sex,perempuan,,2931,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.40.2001,4,Jamblang,total,total,,5904,jiwa,2025,registration,total_population,3.1,52,,
+32.09.40.2002,4,Sitiwinangun,sex,laki_laki,,2462,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.40.2002,4,Sitiwinangun,sex,perempuan,,2334,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.40.2002,4,Sitiwinangun,total,total,,4796,jiwa,2025,registration,total_population,3.1,52,,
+32.09.40.2003,4,Wangunharja,sex,laki_laki,,2259,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.40.2003,4,Wangunharja,sex,perempuan,,2219,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.40.2003,4,Wangunharja,total,total,,4478,jiwa,2025,registration,total_population,3.1,52,,
+32.09.40.2004,4,Bojong Wetan,sex,laki_laki,,2594,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.40.2004,4,Bojong Wetan,sex,perempuan,,2545,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.40.2004,4,Bojong Wetan,total,total,,5139,jiwa,2025,registration,total_population,3.1,52,,
+32.09.40.2005,4,Bojong Lor,sex,laki_laki,,2428,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.40.2005,4,Bojong Lor,sex,perempuan,,2360,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.40.2005,4,Bojong Lor,total,total,,4788,jiwa,2025,registration,total_population,3.1,52,,
+32.09.40.2006,4,Orimalang,sex,laki_laki,,1961,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.40.2006,4,Orimalang,sex,perempuan,,1912,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.40.2006,4,Orimalang,total,total,,3873,jiwa,2025,registration,total_population,3.1,52,,
+32.09.40.2007,4,Bakung Kidul,sex,laki_laki,,3193,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.40.2007,4,Bakung Kidul,sex,perempuan,,3213,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.40.2007,4,Bakung Kidul,total,total,,6406,jiwa,2025,registration,total_population,3.1,52,,
+32.09.40.2008,4,Bakung Lor,sex,laki_laki,,3525,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.40.2008,4,Bakung Lor,sex,perempuan,,3311,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.40.2008,4,Bakung Lor,total,total,,6836,jiwa,2025,registration,total_population,3.1,52,,
+32.09.40,3,Kecamatan Jamblang,sex,laki_laki,,21395,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.40,3,Kecamatan Jamblang,sex,perempuan,,20825,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.40,3,Kecamatan Jamblang,total,total,,42220,jiwa,2025,registration,total_population,3.1,52,,
+32.09.40,3,Jamblang,age_group,0-4,laki_laki,1490,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.40,3,Jamblang,age_group,0-4,perempuan,1321,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.40,3,Jamblang,age_group,0-4,,2811,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.40,3,Jamblang,age_group,5-9,laki_laki,1799,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.40,3,Jamblang,age_group,5-9,perempuan,1602,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.40,3,Jamblang,age_group,5-9,,3401,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.40,3,Jamblang,age_group,10-14,laki_laki,1665,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.40,3,Jamblang,age_group,10-14,perempuan,1550,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.40,3,Jamblang,age_group,10-14,,3215,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.40,3,Jamblang,age_group,15-19,laki_laki,1557,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.40,3,Jamblang,age_group,15-19,perempuan,1496,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.40,3,Jamblang,age_group,15-19,,3053,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.40,3,Jamblang,age_group,20-24,laki_laki,1697,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.40,3,Jamblang,age_group,20-24,perempuan,1609,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.40,3,Jamblang,age_group,20-24,,3306,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.40,3,Jamblang,age_group,25-29,laki_laki,1878,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.40,3,Jamblang,age_group,25-29,perempuan,1725,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.40,3,Jamblang,age_group,25-29,,3603,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.40,3,Jamblang,age_group,30-34,laki_laki,1789,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.40,3,Jamblang,age_group,30-34,perempuan,1630,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.40,3,Jamblang,age_group,30-34,,3419,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.40,3,Jamblang,age_group,35-39,laki_laki,1728,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.40,3,Jamblang,age_group,35-39,perempuan,1594,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.40,3,Jamblang,age_group,35-39,,3322,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.40,3,Jamblang,age_group,40-44,laki_laki,1791,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.40,3,Jamblang,age_group,40-44,perempuan,1797,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.40,3,Jamblang,age_group,40-44,,3588,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.40,3,Jamblang,age_group,45-49,laki_laki,1678,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.40,3,Jamblang,age_group,45-49,perempuan,1575,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.40,3,Jamblang,age_group,45-49,,3253,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.40,3,Jamblang,age_group,50-54,laki_laki,1264,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.40,3,Jamblang,age_group,50-54,perempuan,1345,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.40,3,Jamblang,age_group,50-54,,2609,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.40,3,Jamblang,age_group,55-59,laki_laki,982,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.40,3,Jamblang,age_group,55-59,perempuan,1047,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.40,3,Jamblang,age_group,55-59,,2029,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.40,3,Jamblang,age_group,60-64,laki_laki,707,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.40,3,Jamblang,age_group,60-64,perempuan,770,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.40,3,Jamblang,age_group,60-64,,1477,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.40,3,Jamblang,age_group,65-69,laki_laki,575,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.40,3,Jamblang,age_group,65-69,perempuan,665,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.40,3,Jamblang,age_group,65-69,,1240,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.40,3,Jamblang,age_group,70-74,laki_laki,363,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.40,3,Jamblang,age_group,70-74,perempuan,414,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.40,3,Jamblang,age_group,70-74,,777,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.40,3,Jamblang,age_group,75+,laki_laki,432,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.40,3,Jamblang,age_group,75+,perempuan,685,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.40,3,Jamblang,age_group,75+,,1117,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.40,3,Kecamatan Jamblang,sex,laki_laki,,21395,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.40,3,Kecamatan Jamblang,sex,perempuan,,20825,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.40,3,Kecamatan Jamblang,total,total,,42220,jiwa,2025,registration,total_population,3.2,54,,

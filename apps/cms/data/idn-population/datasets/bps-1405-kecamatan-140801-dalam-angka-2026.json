@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1405-kecamatan-140801-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.08.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Siak Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Siak",
+  "publisherDomain": "1405",
+  "publisherWebsite": "https://siakkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Siak (https://siakkab.bps.go.id), publikasi \"Kecamatan Siak Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1405",
+  "publicationNumber": "14050.26010",
+  "issn": "2597-5617",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://siakkab.bps.go.id/id/publication/2026/09/28/3930de26ae3bcc36901f666c/kecamatan-siak-dalam-angka-2026.html",
+  "sourceFileSha256": "ac14506c9efd55a12e5bf4b755224be31a3fb6b410dddd87b2fd089ce36b55af",
+  "sourceFileBytes": 7706349,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Siak.",
+  "csvPath": "datasets/bps-1405-kecamatan-140801-dalam-angka-2026.csv",
+  "csvSha256": "8d1e7894f4b17f8553dfbddc7b6a47d2fe18a33fa537d65014e4db371c38b94b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Siak, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Siak, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 14.08.01 are not stored: age_group vs total: parts sum 36057.0000 != 36066.0000 (diff 9.0000); the source itself is inconsistent"
+  ]
+}

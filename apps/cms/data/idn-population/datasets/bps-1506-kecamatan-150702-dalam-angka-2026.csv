@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.07.02.2006,4,Sungai Raya,sex,laki_laki,,694,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.02.2006,4,Sungai Raya,sex,perempuan,,695,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.02.2006,4,Sungai Raya,total,total,,1389,jiwa,2025,registration,total_population,3.1,29,,
+15.07.02.2005,4,Teluk Kijing,sex,laki_laki,,591,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.02.2005,4,Teluk Kijing,sex,perempuan,,587,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.02.2005,4,Teluk Kijing,total,total,,1178,jiwa,2025,registration,total_population,3.1,29,,
+15.07.02.2007,4,Pemusiran,sex,laki_laki,,614,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.02.2007,4,Pemusiran,sex,perempuan,,596,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.02.2007,4,Pemusiran,total,total,,1210,jiwa,2025,registration,total_population,3.1,29,,
+15.07.02.2004,4,Simpang Datuk,sex,laki_laki,,674,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.02.2004,4,Simpang Datuk,sex,perempuan,,672,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.02.2004,4,Simpang Datuk,total,total,,1346,jiwa,2025,registration,total_population,3.1,29,,
+15.07.02.2003,4,Simpang Jelita,sex,laki_laki,,362,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.02.2003,4,Simpang Jelita,sex,perempuan,,335,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.02.2003,4,Simpang Jelita,total,total,,697,jiwa,2025,registration,total_population,3.1,29,,
+15.07.02.2010,4,Bunga Tanjung,sex,laki_laki,,822,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.02.2010,4,Bunga Tanjung,sex,perempuan,,816,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.02.2010,4,Bunga Tanjung,total,total,,1638,jiwa,2025,registration,total_population,3.1,29,,
+15.07.02.2008,4,Sungai Tering,sex,laki_laki,,1213,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.02.2008,4,Sungai Tering,sex,perempuan,,1145,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.02.2008,4,Sungai Tering,total,total,,2358,jiwa,2025,registration,total_population,3.1,29,,
+15.07.02.2009,4,Sungai Jeruk,sex,laki_laki,,943,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.02.2009,4,Sungai Jeruk,sex,perempuan,,926,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.02.2009,4,Sungai Jeruk,total,total,,1869,jiwa,2025,registration,total_population,3.1,29,,
+15.07.02.1001,4,Nipah Panjang I,sex,laki_laki,,3674,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.02.1001,4,Nipah Panjang I,sex,perempuan,,3477,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.02.1001,4,Nipah Panjang I,total,total,,7151,jiwa,2025,registration,total_population,3.1,29,,
+15.07.02.1002,4,Nipah Panjang II,sex,laki_laki,,4703,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.02.1002,4,Nipah Panjang II,sex,perempuan,,4611,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.02.1002,4,Nipah Panjang II,total,total,,9314,jiwa,2025,registration,total_population,3.1,29,,
+15.07.02,3,Nipah Panjang,sex,laki_laki,,14290,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+15.07.02,3,Nipah Panjang,sex,perempuan,,13860,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+15.07.02,3,Nipah Panjang,total,total,,28150,jiwa,2025,registration,total_population,3.1,29,,
+15.07.02,3,Nipah Panjang,age_group,0-4,laki_laki,880,jiwa,2025,registration,total_population,3.2,31,,0–4
+15.07.02,3,Nipah Panjang,age_group,0-4,perempuan,833,jiwa,2025,registration,total_population,3.2,31,,0–4
+15.07.02,3,Nipah Panjang,age_group,0-4,,1713,jiwa,2025,registration,total_population,3.2,31,,0–4
+15.07.02,3,Nipah Panjang,age_group,5-9,laki_laki,1205,jiwa,2025,registration,total_population,3.2,31,,5–9
+15.07.02,3,Nipah Panjang,age_group,5-9,perempuan,1153,jiwa,2025,registration,total_population,3.2,31,,5–9
+15.07.02,3,Nipah Panjang,age_group,5-9,,2358,jiwa,2025,registration,total_population,3.2,31,,5–9
+15.07.02,3,Nipah Panjang,age_group,10-14,laki_laki,1254,jiwa,2025,registration,total_population,3.2,31,,10–14
+15.07.02,3,Nipah Panjang,age_group,10-14,perempuan,1203,jiwa,2025,registration,total_population,3.2,31,,10–14
+15.07.02,3,Nipah Panjang,age_group,10-14,,2457,jiwa,2025,registration,total_population,3.2,31,,10–14
+15.07.02,3,Nipah Panjang,age_group,15-19,laki_laki,1225,jiwa,2025,registration,total_population,3.2,31,,15–19
+15.07.02,3,Nipah Panjang,age_group,15-19,perempuan,1195,jiwa,2025,registration,total_population,3.2,31,,15–19
+15.07.02,3,Nipah Panjang,age_group,15-19,,2420,jiwa,2025,registration,total_population,3.2,31,,15–19
+15.07.02,3,Nipah Panjang,age_group,20-24,laki_laki,1173,jiwa,2025,registration,total_population,3.2,31,,20–24
+15.07.02,3,Nipah Panjang,age_group,20-24,perempuan,1146,jiwa,2025,registration,total_population,3.2,31,,20–24
+15.07.02,3,Nipah Panjang,age_group,20-24,,2319,jiwa,2025,registration,total_population,3.2,31,,20–24
+15.07.02,3,Nipah Panjang,age_group,25-29,laki_laki,1088,jiwa,2025,registration,total_population,3.2,31,,25–29
+15.07.02,3,Nipah Panjang,age_group,25-29,perempuan,1065,jiwa,2025,registration,total_population,3.2,31,,25–29
+15.07.02,3,Nipah Panjang,age_group,25-29,,2153,jiwa,2025,registration,total_population,3.2,31,,25–29
+15.07.02,3,Nipah Panjang,age_group,30-34,laki_laki,987,jiwa,2025,registration,total_population,3.2,31,,30–34
+15.07.02,3,Nipah Panjang,age_group,30-34,perempuan,955,jiwa,2025,registration,total_population,3.2,31,,30–34
+15.07.02,3,Nipah Panjang,age_group,30-34,,1942,jiwa,2025,registration,total_population,3.2,31,,30–34
+15.07.02,3,Nipah Panjang,age_group,35-39,laki_laki,1047,jiwa,2025,registration,total_population,3.2,31,,35–39
+15.07.02,3,Nipah Panjang,age_group,35-39,perempuan,1093,jiwa,2025,registration,total_population,3.2,31,,35–39
+15.07.02,3,Nipah Panjang,age_group,35-39,,2140,jiwa,2025,registration,total_population,3.2,31,,35–39
+15.07.02,3,Nipah Panjang,age_group,40-44,laki_laki,1192,jiwa,2025,registration,total_population,3.2,31,,40–44
+15.07.02,3,Nipah Panjang,age_group,40-44,perempuan,1135,jiwa,2025,registration,total_population,3.2,31,,40–44
+15.07.02,3,Nipah Panjang,age_group,40-44,,2327,jiwa,2025,registration,total_population,3.2,31,,40–44
+15.07.02,3,Nipah Panjang,age_group,45-49,laki_laki,1088,jiwa,2025,registration,total_population,3.2,31,,45–49
+15.07.02,3,Nipah Panjang,age_group,45-49,perempuan,1028,jiwa,2025,registration,total_population,3.2,31,,45–49
+15.07.02,3,Nipah Panjang,age_group,45-49,,2116,jiwa,2025,registration,total_population,3.2,31,,45–49
+15.07.02,3,Nipah Panjang,age_group,50-54,laki_laki,885,jiwa,2025,registration,total_population,3.2,31,,50–54
+15.07.02,3,Nipah Panjang,age_group,50-54,perempuan,850,jiwa,2025,registration,total_population,3.2,31,,50–54
+15.07.02,3,Nipah Panjang,age_group,50-54,,1735,jiwa,2025,registration,total_population,3.2,31,,50–54
+15.07.02,3,Nipah Panjang,age_group,55-59,laki_laki,703,jiwa,2025,registration,total_population,3.2,31,,55–59
+15.07.02,3,Nipah Panjang,age_group,55-59,perempuan,675,jiwa,2025,registration,total_population,3.2,31,,55–59
+15.07.02,3,Nipah Panjang,age_group,55-59,,1378,jiwa,2025,registration,total_population,3.2,31,,55–59
+15.07.02,3,Nipah Panjang,age_group,60-64,laki_laki,539,jiwa,2025,registration,total_population,3.2,31,,60–64
+15.07.02,3,Nipah Panjang,age_group,60-64,perempuan,510,jiwa,2025,registration,total_population,3.2,31,,60–64
+15.07.02,3,Nipah Panjang,age_group,60-64,,1049,jiwa,2025,registration,total_population,3.2,31,,60–64
+15.07.02,3,Nipah Panjang,age_group,65-69,laki_laki,405,jiwa,2025,registration,total_population,3.2,31,,65–69
+15.07.02,3,Nipah Panjang,age_group,65-69,perempuan,396,jiwa,2025,registration,total_population,3.2,31,,65–69
+15.07.02,3,Nipah Panjang,age_group,65-69,,801,jiwa,2025,registration,total_population,3.2,31,,65–69
+15.07.02,3,Nipah Panjang,age_group,70-74,laki_laki,263,jiwa,2025,registration,total_population,3.2,31,,70–74
+15.07.02,3,Nipah Panjang,age_group,70-74,perempuan,245,jiwa,2025,registration,total_population,3.2,31,,70–74
+15.07.02,3,Nipah Panjang,age_group,70-74,,508,jiwa,2025,registration,total_population,3.2,31,,70–74
+15.07.02,3,Nipah Panjang,age_group,75+,laki_laki,356,jiwa,2025,registration,total_population,3.2,31,,75+
+15.07.02,3,Nipah Panjang,age_group,75+,perempuan,378,jiwa,2025,registration,total_population,3.2,31,,75+
+15.07.02,3,Nipah Panjang,age_group,75+,,734,jiwa,2025,registration,total_population,3.2,31,,75+
+15.07.02,3,Nipah Panjang,sex,laki_laki,,14290,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+15.07.02,3,Nipah Panjang,sex,perempuan,,13860,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+15.07.02,3,Nipah Panjang,total,total,,28150,jiwa,2025,registration,total_population,3.2,31,,

@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.05.25.2006,4,Pasiran Jaya,sex,laki_laki,,3302,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.25.2006,4,Pasiran Jaya,sex,perempuan,,3083,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.25.2006,4,Pasiran Jaya,total,total,,6385,jiwa,2025,registration,total_population,3.1,32,,
+18.05.25.2008,4,Bratasena Mandiri,sex,laki_laki,,889,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.25.2008,4,Bratasena Mandiri,sex,perempuan,,733,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.25.2008,4,Bratasena Mandiri,total,total,,1622,jiwa,2025,registration,total_population,3.1,32,,
+18.05.25.2007,4,Bratasena Adiwarna,sex,laki_laki,,1918,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.25.2007,4,Bratasena Adiwarna,sex,perempuan,,1692,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.25.2007,4,Bratasena Adiwarna,total,total,,3610,jiwa,2025,registration,total_population,3.1,32,,
+18.05.25.2005,4,Sungai Nibung,sex,laki_laki,,7922,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.25.2005,4,Sungai Nibung,sex,perempuan,,7095,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.25.2005,4,Sungai Nibung,total,total,,15017,jiwa,2025,registration,total_population,3.1,32,,
+18.05.25.2004,4,Mahabang,sex,laki_laki,,1645,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.25.2004,4,Mahabang,sex,perempuan,,1585,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.25.2004,4,Mahabang,total,total,,3230,jiwa,2025,registration,total_population,3.1,32,,
+18.05.25.2003,4,Kuala Teladas,sex,laki_laki,,960,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.25.2003,4,Kuala Teladas,sex,perempuan,,929,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.25.2003,4,Kuala Teladas,total,total,,1889,jiwa,2025,registration,total_population,3.1,32,,
+18.05.25.2002,4,Kekatung,sex,laki_laki,,2816,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.25.2002,4,Kekatung,sex,perempuan,,2678,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.25.2002,4,Kekatung,total,total,,5494,jiwa,2025,registration,total_population,3.1,32,,
+18.05.25.2001,4,Teladas,sex,laki_laki,,1486,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.25.2001,4,Teladas,sex,perempuan,,1336,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.25.2001,4,Teladas,total,total,,2822,jiwa,2025,registration,total_population,3.1,32,,
+18.05.25.2009,4,Way Dente,sex,laki_laki,,2251,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.25.2009,4,Way Dente,sex,perempuan,,2100,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.25.2009,4,Way Dente,total,total,,4351,jiwa,2025,registration,total_population,3.1,32,,
+18.05.25.2010,4,Dente Makmur,sex,laki_laki,,1857,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.25.2010,4,Dente Makmur,sex,perempuan,,1663,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.25.2010,4,Dente Makmur,total,total,,3520,jiwa,2025,registration,total_population,3.1,32,,
+18.05.25.2011,4,Pendowo Asri,sex,laki_laki,,3594,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.25.2011,4,Pendowo Asri,sex,perempuan,,3387,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.25.2011,4,Pendowo Asri,total,total,,6981,jiwa,2025,registration,total_population,3.1,32,,
+18.05.25.2012,4,Sungai Burung,sex,laki_laki,,606,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.25.2012,4,Sungai Burung,sex,perempuan,,538,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.25.2012,4,Sungai Burung,total,total,,1144,jiwa,2025,registration,total_population,3.1,32,,
+18.05.25,3,Dente Teladas,sex,laki_laki,,29246,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.25,3,Dente Teladas,sex,perempuan,,26819,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.25,3,Dente Teladas,total,total,,56065,jiwa,2025,registration,total_population,3.1,32,,
+18.05.25,3,Dente Teladas,age_group,0-4,laki_laki,1649,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.25,3,Dente Teladas,age_group,0-4,perempuan,1489,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.25,3,Dente Teladas,age_group,0-4,,3138,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.25,3,Dente Teladas,age_group,5-9,laki_laki,2603,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.25,3,Dente Teladas,age_group,5-9,perempuan,2471,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.25,3,Dente Teladas,age_group,5-9,,5074,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.25,3,Dente Teladas,age_group,10-14,laki_laki,2946,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.25,3,Dente Teladas,age_group,10-14,perempuan,2782,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.25,3,Dente Teladas,age_group,10-14,,5728,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.25,3,Dente Teladas,age_group,15-19,laki_laki,2809,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.25,3,Dente Teladas,age_group,15-19,perempuan,2685,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.25,3,Dente Teladas,age_group,15-19,,5494,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.25,3,Dente Teladas,age_group,20-24,laki_laki,2500,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.25,3,Dente Teladas,age_group,20-24,perempuan,2196,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.25,3,Dente Teladas,age_group,20-24,,4696,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.25,3,Dente Teladas,age_group,25-29,laki_laki,2206,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.25,3,Dente Teladas,age_group,25-29,perempuan,1962,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.25,3,Dente Teladas,age_group,25-29,,4168,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.25,3,Dente Teladas,age_group,30-34,laki_laki,1942,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.25,3,Dente Teladas,age_group,30-34,perempuan,1816,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.25,3,Dente Teladas,age_group,30-34,,3758,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.25,3,Dente Teladas,age_group,35-39,laki_laki,2033,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.25,3,Dente Teladas,age_group,35-39,perempuan,2141,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.25,3,Dente Teladas,age_group,35-39,,4174,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.25,3,Dente Teladas,age_group,40-44,laki_laki,2104,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.25,3,Dente Teladas,age_group,40-44,perempuan,2345,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.25,3,Dente Teladas,age_group,40-44,,4449,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.25,3,Dente Teladas,age_group,45-49,laki_laki,2053,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.25,3,Dente Teladas,age_group,45-49,perempuan,2098,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.25,3,Dente Teladas,age_group,45-49,,4151,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.25,3,Dente Teladas,age_group,50-54,laki_laki,2013,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.25,3,Dente Teladas,age_group,50-54,perempuan,1712,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.25,3,Dente Teladas,age_group,50-54,,3725,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.25,3,Dente Teladas,age_group,55-59,laki_laki,1550,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.25,3,Dente Teladas,age_group,55-59,perempuan,1137,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.25,3,Dente Teladas,age_group,55-59,,2687,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.25,3,Dente Teladas,age_group,60-64,laki_laki,989,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.25,3,Dente Teladas,age_group,60-64,perempuan,812,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.25,3,Dente Teladas,age_group,60-64,,1801,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.25,3,Dente Teladas,age_group,65-69,laki_laki,738,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.25,3,Dente Teladas,age_group,65-69,perempuan,524,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.25,3,Dente Teladas,age_group,65-69,,1262,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.25,3,Dente Teladas,age_group,70-74,laki_laki,473,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.25,3,Dente Teladas,age_group,70-74,perempuan,295,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.25,3,Dente Teladas,age_group,70-74,,768,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.25,3,Dente Teladas,age_group,75+,laki_laki,638,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.25,3,Dente Teladas,age_group,75+,perempuan,354,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.25,3,Dente Teladas,age_group,75+,,992,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.25,3,Dente Teladas,sex,laki_laki,,29246,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+18.05.25,3,Dente Teladas,sex,perempuan,,26819,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+18.05.25,3,Dente Teladas,total,total,,56065,jiwa,2025,registration,total_population,3.2,34,,

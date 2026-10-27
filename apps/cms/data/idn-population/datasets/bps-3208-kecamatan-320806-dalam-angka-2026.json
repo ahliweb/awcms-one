@@ -1,0 +1,53 @@
+{
+  "datasetCode": "bps-3208-kecamatan-320806-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.08.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Luragung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kuningan",
+  "publisherDomain": "3208",
+  "publisherWebsite": "https://kuningankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kuningan (https://kuningankab.bps.go.id), publikasi \"Kecamatan Luragung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3208080",
+  "publicationNumber": "32080.25034",
+  "issn": "2830-4160",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kuningankab.bps.go.id/id/publication/2026/09/28/c6d8aaa13185147acac6de0f/kecamatan-luragung-dalam-angka-2026.html",
+  "sourceFileSha256": "e88216a57575a97db51a93cd70a3c13a2c46a6c69dfbeac291bc6205bfc98c23",
+  "sourceFileBytes": 2959604,
+  "sourcePages": [35, 36, 37, 38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Kuningan.",
+  "csvPath": "datasets/bps-3208-kecamatan-320806-dalam-angka-2026.csv",
+  "csvSha256": "127e6a690729e55e404aae2c47e7338344cadf3f3d536283628231caebe69894",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Luragung, 2025",
+      "printedPages": [35, 36, 37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Luragung, 2025",
+      "printedPages": [38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1.1: row not stored: row \"Kecamatan Luragung Luragung District\": unmatched ",
+    "table 3.1.1: row not stored: row \"Kecamatan Luragung Luragung District\": unmatched ",
+    "table 3.1.1: row not stored: row \"2024\": unmatched ",
+    "table 3.1.1: row not stored: row \"Kecamatan Luragung Luragung District\": unmatched ",
+    "table 3.1.1: 1 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.1.2: row not stored: row \"F0-4\": unmatched ",
+    "table 3.1.2: row not stored: row \"75++\": unmatched ",
+    "table 3.1.2: row not stored: row \"Kecamatan Luragung Luragung District\": unmatched ",
+    "table 3.1.2: 38 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

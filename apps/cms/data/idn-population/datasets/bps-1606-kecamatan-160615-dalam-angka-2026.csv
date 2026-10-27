@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.06.15.2009,4,Sinar Jaya,sex,laki_laki,,858,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.15.2009,4,Sinar Jaya,sex,perempuan,,806,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.15.2009,4,Sinar Jaya,total,total,,1664,jiwa,2026,registration,total_population,3.1,33,,
+16.06.15.2010,4,SetiaJaya,sex,laki_laki,,697,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.15.2010,4,SetiaJaya,sex,perempuan,,697,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.15.2010,4,SetiaJaya,total,total,,1394,jiwa,2026,registration,total_population,3.1,33,,
+16.06.15.2007,4,Bangkit Jaya,sex,laki_laki,,391,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.15.2007,4,Bangkit Jaya,sex,perempuan,,349,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.15.2007,4,Bangkit Jaya,total,total,,740,jiwa,2026,registration,total_population,3.1,33,,
+16.06.15.2008,4,Baru Jaya,sex,laki_laki,,586,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.15.2008,4,Baru Jaya,sex,perempuan,,558,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.15.2008,4,Baru Jaya,total,total,,1144,jiwa,2026,registration,total_population,3.1,33,,
+16.06.15.2003,4,Talang Simpang,sex,laki_laki,,801,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.15.2003,4,Talang Simpang,sex,perempuan,,776,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.15.2003,4,Talang Simpang,total,total,,1577,jiwa,2026,registration,total_population,3.1,33,,
+16.06.15.2001,4,Jirak,sex,laki_laki,,3084,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.15.2001,4,Jirak,sex,perempuan,,2939,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.15.2001,4,Jirak,total,total,,6023,jiwa,2026,registration,total_population,3.1,33,,
+16.06.15.2006,4,Rejo Sari,sex,laki_laki,,681,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.15.2006,4,Rejo Sari,sex,perempuan,,657,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.15.2006,4,Rejo Sari,total,total,,1338,jiwa,2026,registration,total_population,3.1,33,,
+16.06.15.2004,4,Jembatan Gantung,sex,laki_laki,,928,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.15.2004,4,Jembatan Gantung,sex,perempuan,,844,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.15.2004,4,Jembatan Gantung,total,total,,1772,jiwa,2026,registration,total_population,3.1,33,,
+16.06.15.2012,4,Layan,sex,laki_laki,,507,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.15.2012,4,Layan,sex,perempuan,,461,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.15.2012,4,Layan,total,total,,968,jiwa,2026,registration,total_population,3.1,33,,
+16.06.15.2011,4,Mekarjaya,sex,laki_laki,,1414,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.15.2011,4,Mekarjaya,sex,perempuan,,1271,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.15.2011,4,Mekarjaya,total,total,,2685,jiwa,2026,registration,total_population,3.1,33,,
+16.06.15.2002,4,Rukun Rahayu,sex,laki_laki,,1370,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.15.2002,4,Rukun Rahayu,sex,perempuan,,1262,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.15.2002,4,Rukun Rahayu,total,total,,2632,jiwa,2026,registration,total_population,3.1,33,,
+16.06.15,3,Jirak Jaya,sex,laki_laki,,12076,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.15,3,Jirak Jaya,sex,perempuan,,11356,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.15,3,Jirak Jaya,total,total,,23432,jiwa,2026,registration,total_population,3.1,33,,
+16.06.15,3,Jirak Jaya,age_group,0-14,laki_laki,2945,jiwa,2026,projection,total_population,3.2,35,,0-14
+16.06.15,3,Jirak Jaya,age_group,0-14,perempuan,2752,jiwa,2026,projection,total_population,3.2,35,,0-14
+16.06.15,3,Jirak Jaya,age_group,0-14,,5697,jiwa,2026,projection,total_population,3.2,35,,0-14
+16.06.15,3,Jirak Jaya,age_group,15-64,laki_laki,6791,jiwa,2026,projection,total_population,3.2,35,,15-64
+16.06.15,3,Jirak Jaya,age_group,15-64,perempuan,6163,jiwa,2026,projection,total_population,3.2,35,,15-64
+16.06.15,3,Jirak Jaya,age_group,15-64,,12954,jiwa,2026,projection,total_population,3.2,35,,15-64
+16.06.15,3,Jirak Jaya,age_group,65+,laki_laki,644,jiwa,2026,projection,total_population,3.2,35,,65+
+16.06.15,3,Jirak Jaya,age_group,65+,perempuan,523,jiwa,2026,projection,total_population,3.2,35,,65+
+16.06.15,3,Jirak Jaya,age_group,65+,,1167,jiwa,2026,projection,total_population,3.2,35,,65+
+16.06.15,3,Jirak Jaya,sex,laki_laki,,10380,jiwa,2026,projection,total_population,3.2,35,,Laki-Laki
+16.06.15,3,Jirak Jaya,sex,perempuan,,9438,jiwa,2026,projection,total_population,3.2,35,,Perempuan
+16.06.15,3,Jirak Jaya,total,total,,19818,jiwa,2026,projection,total_population,3.2,35,,

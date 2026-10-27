@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1672-kecamatan-167403-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.74.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cambai Dalam Angka 2026",
+  "publisherName": "BPS KOTA PRABUMULIH",
+  "publisherDomain": "1672",
+  "publisherWebsite": "https://prabumulihkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KOTA PRABUMULIH (https://prabumulihkota.bps.go.id), publikasi \"Kecamatan Cambai Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1672040",
+  "publicationNumber": "16720.26007",
+  "issn": "2723-8296",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://prabumulihkota.bps.go.id/id/publication/2026/09/28/133a0c872383e8b306a871a7/kecamatan-cambai-dalam-angka-2026.html",
+  "sourceFileSha256": "91b4a0f4bc187e6b0b4a6ed3edb08bdd49b28e36c19033a1513d5eaefb17f288",
+  "sourceFileBytes": 7449099,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Prabumulih.",
+  "csvPath": "datasets/bps-1672-kecamatan-167403-dalam-angka-2026.csv",
+  "csvSha256": "94935f26542970003404c4dae3951c4b5d4ef70393801c01fc38f02ab2c377ea",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Cambai, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cambai, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 16.74.03 are not stored: age_group (perempuan) vs sex value: parts sum 10970.0000 != 10998.0000 (diff 28.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,15 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.71.04.1001,4,Bukitlama,sex,perempuan,,22119,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.04.1001,4,Bukitlama,total,total,,43935,jiwa,2025,registration,total_population,3.1,32,,
+16.71.04.1003,4,Dua–Puluh–Enam Ilir Satu,sex,perempuan,,2662,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.04.1003,4,Dua–Puluh–Enam Ilir Satu,total,total,,5222,jiwa,2025,registration,total_population,3.1,32,,
+16.71.04.1002,4,Lorokpakjo,sex,perempuan,,15164,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.04.1002,4,Lorokpakjo,total,total,,30239,jiwa,2025,registration,total_population,3.1,32,,
+16.71.04.1005,4,Demang–Lebardaun,sex,perempuan,,11941,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.04.1005,4,Demang–Lebardaun,total,total,,23498,jiwa,2025,registration,total_population,3.1,32,,
+16.71.04.1006,4,Bukitbaru,sex,perempuan,,16393,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.04.1006,4,Bukitbaru,total,total,,33001,jiwa,2025,registration,total_population,3.1,32,,
+16.71.04.1004,4,Siringagung,sex,perempuan,,10943,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.04.1004,4,Siringagung,total,total,,21665,jiwa,2025,registration,total_population,3.1,32,,
+16.71.04,3,Ilir Barat Satu,sex,perempuan,,79222,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.04,3,Ilir Barat Satu,total,total,,157560,jiwa,2025,registration,total_population,3.1,32,,

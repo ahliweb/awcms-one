@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1609-kecamatan-160815-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.08.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Semendawai Timur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ogan Komering Ulu Timur",
+  "publisherDomain": "1609",
+  "publisherWebsite": "https://okutimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ogan Komering Ulu Timur (https://okutimurkab.bps.go.id), publikasi \"Kecamatan Semendawai Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1609091",
+  "publicationNumber": "16090.26022",
+  "issn": "2962-5181",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://okutimurkab.bps.go.id/id/publication/2026/09/28/24298eb2f472eaeb57b3d9a3/kecamatan-semendawai-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "7c8fa140b5220cfe505b14b6e26bc67e66db04e04fdf3bff19701f0b29df97bf",
+  "sourceFileBytes": 6800582,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ogan Komering Ulu Timur.",
+  "csvPath": "datasets/bps-1609-kecamatan-160815-dalam-angka-2026.csv",
+  "csvSha256": "de1dc927bcce9f3a5ee36fe23630ff8a8f31a0be7bdc7d74b1d579ea86c2e580",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Semendawai Timur, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Semendawai Timur, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"MULYA JAYA\": unmatched ",
+    "table 3.1: 35 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

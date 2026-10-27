@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1503-kecamatan-150307-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.03.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Air Hitam Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sarolangun",
+  "publisherDomain": "1503",
+  "publisherWebsite": "https://sarolangunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sarolangun (https://sarolangunkab.bps.go.id), publikasi \"Kecamatan Air Hitam Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1503051",
+  "publicationNumber": "15030.26013",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sarolangunkab.bps.go.id/id/publication/2026/09/28/c2fee811bc2028a02714caf8/kecamatan-air-hitam-dalam-angka-2026.html",
+  "sourceFileSha256": "cabea11ce446479d9f1b91ac422882e74f943bf9baebb25fb1bb5e788a895911",
+  "sourceFileBytes": 10667602,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sarolangun.",
+  "csvPath": "datasets/bps-1503-kecamatan-150307-dalam-angka-2026.csv",
+  "csvSha256": "7658192281628075ddd33a20acc0d176050adb64fff8720886b77e1e68ba442a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Air Hitam, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

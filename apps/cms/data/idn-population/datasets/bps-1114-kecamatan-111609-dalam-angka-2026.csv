@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.16.09.2003,4,Alur Nunang,sex,laki_laki,,716,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.09.2003,4,Alur Nunang,sex,perempuan,,677,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.09.2003,4,Alur Nunang,total,total,,1393,jiwa,2025,registration,total_population,3.1,13,,
+11.16.09.2005,4,Matang Seping,sex,laki_laki,,916,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.09.2005,4,Matang Seping,sex,perempuan,,881,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.09.2005,4,Matang Seping,total,total,,1797,jiwa,2025,registration,total_population,3.1,13,,
+11.16.09.2007,4,Paya Rahat,sex,laki_laki,,862,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.09.2007,4,Paya Rahat,sex,perempuan,,852,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.09.2007,4,Paya Rahat,total,total,,1714,jiwa,2025,registration,total_population,3.1,13,,
+11.16.09.2010,4,Suka Damai,sex,laki_laki,,382,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.09.2010,4,Suka Damai,sex,perempuan,,400,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.09.2010,4,Suka Damai,total,total,,782,jiwa,2025,registration,total_population,3.1,13,,
+11.16.09.2008,4,Suka Jadi,sex,laki_laki,,758,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.09.2008,4,Suka Jadi,sex,perempuan,,744,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.09.2008,4,Suka Jadi,total,total,,1502,jiwa,2025,registration,total_population,3.1,13,,
+11.16.09.2009,4,Suka Mulia Upah,sex,laki_laki,,880,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.09.2009,4,Suka Mulia Upah,sex,perempuan,,831,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.09.2009,4,Suka Mulia Upah,total,total,,1711,jiwa,2025,registration,total_population,3.1,13,,
+11.16.09.2004,4,Tanjung Keramat,sex,laki_laki,,559,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.09.2004,4,Tanjung Keramat,sex,perempuan,,547,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.09.2004,4,Tanjung Keramat,total,total,,1106,jiwa,2025,registration,total_population,3.1,13,,
+11.16.09.2002,4,Telaga Meuku Dua,sex,laki_laki,,977,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.09.2002,4,Telaga Meuku Dua,sex,perempuan,,935,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.09.2002,4,Telaga Meuku Dua,total,total,,1912,jiwa,2025,registration,total_population,3.1,13,,
+11.16.09.2001,4,Telaga Meuku Sa,sex,laki_laki,,499,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.09.2001,4,Telaga Meuku Sa,sex,perempuan,,475,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.09.2001,4,Telaga Meuku Sa,total,total,,974,jiwa,2025,registration,total_population,3.1,13,,
+11.16.09,3,Banda Mulia,sex,laki_laki,,7026,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.09,3,Banda Mulia,sex,perempuan,,6797,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.09,3,Banda Mulia,total,total,,13823,jiwa,2025,registration,total_population,3.1,13,,

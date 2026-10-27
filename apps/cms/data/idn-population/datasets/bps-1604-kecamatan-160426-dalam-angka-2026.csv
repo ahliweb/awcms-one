@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.04.26.2009,4,Geramat,sex,laki_laki,,554,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.26.2009,4,Geramat,sex,perempuan,,503,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.26.2009,4,Geramat,total,total,,1057,jiwa,2025,registration,total_population,3.1,28,,
+16.04.26.2007,4,Lubuk Betung,sex,laki_laki,,940,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.26.2007,4,Lubuk Betung,sex,perempuan,,939,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.26.2007,4,Lubuk Betung,total,total,,1879,jiwa,2025,registration,total_population,3.1,28,,
+16.04.26.2008,4,Perangai,sex,laki_laki,,946,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.26.2008,4,Perangai,sex,perempuan,,972,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.26.2008,4,Perangai,total,total,,1918,jiwa,2025,registration,total_population,3.1,28,,
+16.04.26.2005,4,Tanjung Beringin,sex,laki_laki,,463,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.26.2005,4,Tanjung Beringin,sex,perempuan,,438,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.26.2005,4,Tanjung Beringin,total,total,,901,jiwa,2025,registration,total_population,3.1,28,,
+16.04.26.2004,4,Suka Merindu,sex,laki_laki,,398,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.26.2004,4,Suka Merindu,sex,perempuan,,364,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.26.2004,4,Suka Merindu,total,total,,762,jiwa,2025,registration,total_population,3.1,28,,
+16.04.26.2006,4,Talang Akar,sex,laki_laki,,185,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.26.2006,4,Talang Akar,sex,perempuan,,179,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.26.2006,4,Talang Akar,total,total,,364,jiwa,2025,registration,total_population,3.1,28,,
+16.04.26.2003,4,Lubuk Pedaro,sex,laki_laki,,370,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.26.2003,4,Lubuk Pedaro,sex,perempuan,,312,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.26.2003,4,Lubuk Pedaro,total,total,,682,jiwa,2025,registration,total_population,3.1,28,,
+16.04.26.2002,4,Tanjung Menang,sex,laki_laki,,157,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.26.2002,4,Tanjung Menang,sex,perempuan,,127,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.26.2002,4,Tanjung Menang,total,total,,284,jiwa,2025,registration,total_population,3.1,28,,
+16.04.26.2001,4,Padang,sex,laki_laki,,680,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.26.2001,4,Padang,sex,perempuan,,637,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.26.2001,4,Padang,total,total,,1317,jiwa,2025,registration,total_population,3.1,28,,
+16.04.26,3,Merapi Selatan,sex,laki_laki,,4693,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.26,3,Merapi Selatan,sex,perempuan,,4471,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.26,3,Merapi Selatan,total,total,,9164,jiwa,2025,registration,total_population,3.1,28,,

@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.78.15.1004,4,Dupak,sex,laki_laki,,11174,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.15.1004,4,Dupak,sex,perempuan,,11137,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.15.1004,4,Dupak,total,total,,22311,jiwa,2025,registration,total_population,3.1,29,,
+35.78.15.1005,4,Morokrembangan,sex,laki_laki,,23506,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.15.1005,4,Morokrembangan,sex,perempuan,,23492,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.15.1005,4,Morokrembangan,total,total,,46998,jiwa,2025,registration,total_population,3.1,29,,
+35.78.15.1003,4,Perak Barat,sex,laki_laki,,6285,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.15.1003,4,Perak Barat,sex,perempuan,,6725,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.15.1003,4,Perak Barat,total,total,,13010,jiwa,2025,registration,total_population,3.1,29,,
+35.78.15.1002,4,Kemayoran,sex,laki_laki,,8631,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.15.1002,4,Kemayoran,sex,perempuan,,8868,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.15.1002,4,Kemayoran,total,total,,17499,jiwa,2025,registration,total_population,3.1,29,,
+35.78.15.1001,4,Krembangan Selatan,sex,laki_laki,,6973,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.15.1001,4,Krembangan Selatan,sex,perempuan,,7099,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.15.1001,4,Krembangan Selatan,total,total,,14072,jiwa,2025,registration,total_population,3.1,29,,
+35.78.15,3,Kecamatan Krembangan,sex,laki_laki,,56569,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+35.78.15,3,Kecamatan Krembangan,sex,perempuan,,57321,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.78.15,3,Kecamatan Krembangan,total,total,,113890,jiwa,2025,registration,total_population,3.1,29,,
+35.78.15,3,Krembangan,age_group,0-4,laki_laki,3740,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.15,3,Krembangan,age_group,0-4,perempuan,3420,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.15,3,Krembangan,age_group,0-4,,7160,jiwa,2025,registration,total_population,3.2,31,,0-4
+35.78.15,3,Krembangan,age_group,5-9,laki_laki,4608,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.15,3,Krembangan,age_group,5-9,perempuan,4215,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.15,3,Krembangan,age_group,5-9,,8823,jiwa,2025,registration,total_population,3.2,31,,5-9
+35.78.15,3,Krembangan,age_group,10-14,laki_laki,4753,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.15,3,Krembangan,age_group,10-14,perempuan,4524,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.15,3,Krembangan,age_group,10-14,,9277,jiwa,2025,registration,total_population,3.2,31,,10-14
+35.78.15,3,Krembangan,age_group,15-19,laki_laki,4631,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.15,3,Krembangan,age_group,15-19,perempuan,4565,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.15,3,Krembangan,age_group,15-19,,9196,jiwa,2025,registration,total_population,3.2,31,,15-19
+35.78.15,3,Krembangan,age_group,20-24,laki_laki,4662,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.15,3,Krembangan,age_group,20-24,perempuan,4397,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.15,3,Krembangan,age_group,20-24,,9059,jiwa,2025,registration,total_population,3.2,31,,20-24
+35.78.15,3,Krembangan,age_group,25-29,laki_laki,4425,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.15,3,Krembangan,age_group,25-29,perempuan,4298,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.15,3,Krembangan,age_group,25-29,,8723,jiwa,2025,registration,total_population,3.2,31,,25-29
+35.78.15,3,Krembangan,age_group,30-34,laki_laki,4329,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.15,3,Krembangan,age_group,30-34,perempuan,4185,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.15,3,Krembangan,age_group,30-34,,8514,jiwa,2025,registration,total_population,3.2,31,,30-34
+35.78.15,3,Krembangan,age_group,35-39,laki_laki,3902,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.15,3,Krembangan,age_group,35-39,perempuan,3835,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.15,3,Krembangan,age_group,35-39,,7737,jiwa,2025,registration,total_population,3.2,31,,35-39
+35.78.15,3,Krembangan,age_group,40-44,laki_laki,4310,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.15,3,Krembangan,age_group,40-44,perempuan,4359,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.15,3,Krembangan,age_group,40-44,,8669,jiwa,2025,registration,total_population,3.2,31,,40-44
+35.78.15,3,Krembangan,age_group,45-49,laki_laki,3988,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.15,3,Krembangan,age_group,45-49,perempuan,4146,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.15,3,Krembangan,age_group,45-49,,8134,jiwa,2025,registration,total_population,3.2,31,,45-49
+35.78.15,3,Krembangan,age_group,50-54,laki_laki,3742,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.15,3,Krembangan,age_group,50-54,perempuan,3887,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.15,3,Krembangan,age_group,50-54,,7629,jiwa,2025,registration,total_population,3.2,31,,50-54
+35.78.15,3,Krembangan,age_group,55-59,laki_laki,3086,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.15,3,Krembangan,age_group,55-59,perempuan,3352,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.15,3,Krembangan,age_group,55-59,,6438,jiwa,2025,registration,total_population,3.2,31,,55-59
+35.78.15,3,Krembangan,age_group,60-64,laki_laki,2327,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.15,3,Krembangan,age_group,60-64,perempuan,2773,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.15,3,Krembangan,age_group,60-64,,5100,jiwa,2025,registration,total_population,3.2,31,,60-64
+35.78.15,3,Krembangan,age_group,65-69,laki_laki,1781,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.15,3,Krembangan,age_group,65-69,perempuan,2179,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.15,3,Krembangan,age_group,65-69,,3960,jiwa,2025,registration,total_population,3.2,31,,65-69
+35.78.15,3,Krembangan,age_group,70-74,laki_laki,1118,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.15,3,Krembangan,age_group,70-74,perempuan,1379,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.15,3,Krembangan,age_group,70-74,,2497,jiwa,2025,registration,total_population,3.2,31,,70-74
+35.78.15,3,Krembangan,age_group,75+,laki_laki,1167,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.15,3,Krembangan,age_group,75+,perempuan,1807,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.15,3,Krembangan,age_group,75+,,2974,jiwa,2025,registration,total_population,3.2,31,,75+
+35.78.15,3,Kecamatan Krembangan,sex,laki_laki,,56569,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+35.78.15,3,Kecamatan Krembangan,sex,perempuan,,57321,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+35.78.15,3,Kecamatan Krembangan,total,total,,113890,jiwa,2025,registration,total_population,3.2,31,,

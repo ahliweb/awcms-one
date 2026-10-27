@@ -1,0 +1,58 @@
+{
+  "datasetCode": "bps-1219-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "12.19",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Batu Bara Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Batu Bara",
+  "publisherDomain": "1219",
+  "publisherWebsite": "https://batubarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Batu Bara (https://batubarakab.bps.go.id), publikasi \"Kabupaten Batu Bara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1219",
+  "publicationNumber": "12190.25002",
+  "issn": "2089-6190",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://batubarakab.bps.go.id/id/publication/2026/02/27/1204fa0c6b07d0830896dc6c/kabupaten-batu-bara-dalam-angka-2026.html",
+  "sourceFileSha256": "641eea1b57174fe8c2fe8ab6e2c66f5d4d004567ae535f5e9e70f61dc809a90f",
+  "sourceFileBytes": 5078440,
+  "sourcePages": [73, 76, 201],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Batu Bara.",
+  "csvPath": "datasets/bps-1219-dalam-angka-2026.csv",
+  "csvSha256": "f8f10a0d61da102482b09aa5e3e5de3485ec0da7c5c767ef4586c6b7612c215d",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Batu Bara, 2025",
+      "printedPages": [73],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Batu Bara (jiwa), 2025",
+      "printedPages": [76],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama & Kepercayaan yang Dianut di Kabupaten Batu Bara, 2025",
+      "printedPages": [201],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication"
+  ]
+}

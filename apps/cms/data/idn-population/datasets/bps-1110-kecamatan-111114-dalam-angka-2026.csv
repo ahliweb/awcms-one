@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.11.14.2009,4,Cot Trieng,sex,laki_laki,,861,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.14.2009,4,Cot Trieng,sex,perempuan,,875,jiwa,2024,registration,total_population,3.1,,,Perempuan/Fem
+11.11.14.2009,4,Cot Trieng,total,total,,1736,jiwa,2024,registration,total_population,3.1,,,
+11.11.14.2010,4,Lhok Awe Awe,sex,laki_laki,,874,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.14.2010,4,Lhok Awe Awe,sex,perempuan,,948,jiwa,2024,registration,total_population,3.1,,,Perempuan/Fem
+11.11.14.2010,4,Lhok Awe Awe,total,total,,1822,jiwa,2024,registration,total_population,3.1,,,
+11.11.14.2002,4,Cot Unoe,sex,laki_laki,,440,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.14.2002,4,Cot Unoe,sex,perempuan,,443,jiwa,2024,registration,total_population,3.1,,,Perempuan/Fem
+11.11.14.2002,4,Cot Unoe,total,total,,883,jiwa,2024,registration,total_population,3.1,,,
+11.11.14.2001,4,Cot Batee,sex,laki_laki,,1131,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.14.2001,4,Cot Batee,sex,perempuan,,1215,jiwa,2024,registration,total_population,3.1,,,Perempuan/Fem
+11.11.14.2001,4,Cot Batee,total,total,,2346,jiwa,2024,registration,total_population,3.1,,,
+11.11.14.2005,4,Cot Kuta,sex,laki_laki,,405,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.14.2005,4,Cot Kuta,sex,perempuan,,427,jiwa,2024,registration,total_population,3.1,,,Perempuan/Fem
+11.11.14.2005,4,Cot Kuta,total,total,,832,jiwa,2024,registration,total_population,3.1,,,
+11.11.14.2004,4,Cot Glumpang,sex,laki_laki,,171,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.14.2004,4,Cot Glumpang,sex,perempuan,,193,jiwa,2024,registration,total_population,3.1,,,Perempuan/Fem
+11.11.14.2004,4,Cot Glumpang,total,total,,364,jiwa,2024,registration,total_population,3.1,,,
+11.11.14.2006,4,Glumpang Baroh,sex,laki_laki,,359,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.14.2006,4,Glumpang Baroh,sex,perempuan,,352,jiwa,2024,registration,total_population,3.1,,,Perempuan/Fem
+11.11.14.2006,4,Glumpang Baroh,total,total,,711,jiwa,2024,registration,total_population,3.1,,,
+11.11.14.2013,4,Lancok Pante Ara,sex,laki_laki,,219,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.14.2013,4,Lancok Pante Ara,sex,perempuan,,244,jiwa,2024,registration,total_population,3.1,,,Perempuan/Fem
+11.11.14.2013,4,Lancok Pante Ara,total,total,,463,jiwa,2024,registration,total_population,3.1,,,
+11.11.14.2016,4,Balee Kuyun,sex,laki_laki,,188,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.14.2016,4,Balee Kuyun,sex,perempuan,,199,jiwa,2024,registration,total_population,3.1,,,Perempuan/Fem
+11.11.14.2016,4,Balee Kuyun,total,total,,387,jiwa,2024,registration,total_population,3.1,,,
+11.11.14.2015,4,Kareung,sex,laki_laki,,369,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.14.2015,4,Kareung,sex,perempuan,,407,jiwa,2024,registration,total_population,3.1,,,Perempuan/Fem
+11.11.14.2015,4,Kareung,total,total,,776,jiwa,2024,registration,total_population,3.1,,,
+11.11.14.2014,4,Lancok Lancok,sex,laki_laki,,829,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.14.2014,4,Lancok Lancok,sex,perempuan,,884,jiwa,2024,registration,total_population,3.1,,,Perempuan/Fem
+11.11.14.2014,4,Lancok Lancok,total,total,,1713,jiwa,2024,registration,total_population,3.1,,,
+11.11.14.2012,4,Cot Usibak,sex,laki_laki,,277,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.14.2012,4,Cot Usibak,sex,perempuan,,290,jiwa,2024,registration,total_population,3.1,,,Perempuan/Fem
+11.11.14.2012,4,Cot Usibak,total,total,,567,jiwa,2024,registration,total_population,3.1,,,
+11.11.14.2018,4,Ujong Blang Mesjid,sex,laki_laki,,447,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.14.2018,4,Ujong Blang Mesjid,sex,perempuan,,445,jiwa,2024,registration,total_population,3.1,,,Perempuan/Fem
+11.11.14.2018,4,Ujong Blang Mesjid,total,total,,892,jiwa,2024,registration,total_population,3.1,,,
+11.11.14.2019,4,Weu Jangka,sex,laki_laki,,610,jiwa,2024,registration,total_population,3.1,,,Laki-Laki/Male
+11.11.14.2019,4,Weu Jangka,sex,perempuan,,596,jiwa,2024,registration,total_population,3.1,,,Perempuan/Fem
+11.11.14.2019,4,Weu Jangka,total,total,,1206,jiwa,2024,registration,total_population,3.1,,,

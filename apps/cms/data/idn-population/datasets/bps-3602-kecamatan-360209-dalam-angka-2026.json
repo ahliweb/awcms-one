@@ -1,0 +1,61 @@
+{
+  "datasetCode": "bps-3602-kecamatan-360209-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.02.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Banjarsari Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lebak",
+  "publisherDomain": "3602",
+  "publisherWebsite": "https://lebakkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lebak (https://lebakkab.bps.go.id), publikasi \"Kecamatan Banjarsari Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3602060",
+  "publicationNumber": "36020.26023",
+  "issn": "3031-6901",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lebakkab.bps.go.id/id/publication/2026/09/28/57ea69fe93612e5649825a07/kecamatan-banjarsari-dalam-angka-2026.html",
+  "sourceFileSha256": "2755bcd73af7e2f4b99783b1176808b6495662201a721e86c257b618eb13d33a",
+  "sourceFileBytes": 9227310,
+  "sourcePages": [30, 31, 32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lebak.",
+  "csvPath": "datasets/bps-3602-kecamatan-360209-dalam-angka-2026.csv",
+  "csvSha256": "b69685e211d56ea6aeec389a7a2a89e4d09060d411ede47ff540aabc29a83052",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Banjarsari, 2025",
+      "printedPages": [30, 31, 32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Banjarsari, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Banjarsari Banjarsari District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Banjarsari Banjarsari District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Banjarsari Banjarsari District\": unmatched ",
+    "table 3.1: the rows of region 36.02.09.2012 are not stored: sex split vs total: parts sum 5239.0000 != 4108.0000 (diff 1131.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.09.2001 are not stored: sex split vs total: parts sum 4108.0000 != 2716.0000 (diff 1392.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.09.2002 are not stored: sex split vs total: parts sum 2716.0000 != 3679.0000 (diff 963.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.09.2003 are not stored: sex split vs total: parts sum 3679.0000 != 4870.0000 (diff 1191.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.09.2015 are not stored: sex split vs total: parts sum 3967.0000 != 5321.0000 (diff 1354.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.09.2005 are not stored: sex split vs total: parts sum 4870.0000 != 2815.0000 (diff 2055.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.09.2013 are not stored: sex split vs total: parts sum 4178.0000 != 4283.0000 (diff 105.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.09.2016 are not stored: sex split vs total: parts sum 4273.0000 != 3444.0000 (diff 829.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.09.2006 are not stored: sex split vs total: parts sum 5321.0000 != 5239.0000 (diff 82.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.09.2017 are not stored: sex split vs total: parts sum 4122.0000 != 4178.0000 (diff 56.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.09.2007 are not stored: sex split vs total: parts sum 2815.0000 != 3888.0000 (diff 1073.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.09.2011 are not stored: sex split vs total: parts sum 3444.0000 != 3967.0000 (diff 523.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.09.2009 are not stored: sex split vs total: parts sum 4283.0000 != 4273.0000 (diff 10.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 36.02.09.2014 are not stored: sex split vs total: parts sum 3888.0000 != 4122.0000 (diff 234.0000); the source itself is inconsistent"
+  ]
+}

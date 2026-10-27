@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.12.10.2001,4,Kandang,sex,laki_laki,,2005,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.12.10.2001,4,Kandang,sex,perempuan,,2134,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.12.10.2001,4,Kandang,total,total,,4139,jiwa,2025,registration,total_population,3.1,,,
+35.12.10.2002,4,Curah Cottok,sex,laki_laki,,886,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.12.10.2002,4,Curah Cottok,sex,perempuan,,888,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.12.10.2002,4,Curah Cottok,total,total,,1774,jiwa,2025,registration,total_population,3.1,,,
+35.12.10.2004,4,Wonokoyo,sex,laki_laki,,1516,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.12.10.2004,4,Wonokoyo,sex,perempuan,,1686,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.12.10.2004,4,Wonokoyo,total,total,,3202,jiwa,2025,registration,total_population,3.1,,,
+35.12.10.2005,4,Seletreng,sex,laki_laki,,3680,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.12.10.2005,4,Seletreng,sex,perempuan,,3798,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.12.10.2005,4,Seletreng,total,total,,7478,jiwa,2025,registration,total_population,3.1,,,
+35.12.10.2006,4,Landangan,sex,laki_laki,,1739,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.12.10.2006,4,Landangan,sex,perempuan,,1785,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.12.10.2006,4,Landangan,total,total,,3524,jiwa,2025,registration,total_population,3.1,,,
+35.12.10.2007,4,Kapongan,sex,laki_laki,,1064,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.12.10.2007,4,Kapongan,sex,perempuan,,1128,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.12.10.2007,4,Kapongan,total,total,,2192,jiwa,2025,registration,total_population,3.1,,,
+35.12.10.2009,4,Gebangan,sex,laki_laki,,2193,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.12.10.2009,4,Gebangan,sex,perempuan,,2348,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.12.10.2009,4,Gebangan,total,total,,4541,jiwa,2025,registration,total_population,3.1,,,
+35.12.10.2010,4,Pokaan,sex,laki_laki,,2382,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+35.12.10.2010,4,Pokaan,sex,perempuan,,2536,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+35.12.10.2010,4,Pokaan,total,total,,4918,jiwa,2025,registration,total_population,3.1,,,

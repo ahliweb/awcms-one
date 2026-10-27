@@ -1,0 +1,63 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.01.01.1005,4,Kenanga,sex,perempuan,,3012,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.01.1005,4,Kenanga,total,total,,6151,jiwa,2025,registration,total_population,3.1,26,,
+19.01.01.2007,4,Rebo,sex,perempuan,,2663,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.01.2007,4,Rebo,total,total,,5455,jiwa,2025,registration,total_population,3.1,26,,
+19.01.01.1006,4,Parit Padang,sex,perempuan,,4828,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.01.1006,4,Parit Padang,total,total,,9764,jiwa,2025,registration,total_population,3.1,26,,
+19.01.01.1002,4,Sri Menanti,sex,perempuan,,6485,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.01.1002,4,Sri Menanti,total,total,,13043,jiwa,2025,registration,total_population,3.1,26,,
+19.01.01.1001,4,Sungailiat,sex,perempuan,,10412,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.01.1001,4,Sungailiat,total,total,,21309,jiwa,2025,registration,total_population,3.1,26,,
+19.01.01.1003,4,Kudai,sex,perempuan,,3103,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.01.1003,4,Kudai,total,total,,6173,jiwa,2025,registration,total_population,3.1,26,,
+19.01.01.1004,4,Sinar Baru,sex,perempuan,,1464,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.01.1004,4,Sinar Baru,total,total,,2987,jiwa,2025,registration,total_population,3.1,26,,
+19.01.01.1012,4,Lubuk Kelik,sex,perempuan,,1323,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.01.1012,4,Lubuk Kelik,total,total,,2660,jiwa,2025,registration,total_population,3.1,26,,
+19.01.01.1011,4,Surya Timur,sex,perempuan,,1906,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.01.1011,4,Surya Timur,total,total,,3900,jiwa,2025,registration,total_population,3.1,26,,
+19.01.01.1010,4,Jelitik,sex,perempuan,,2675,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.01.1010,4,Jelitik,total,total,,5518,jiwa,2025,registration,total_population,3.1,26,,
+19.01.01.1013,4,Bukit Betung,sex,perempuan,,4473,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.01.1013,4,Bukit Betung,total,total,,8773,jiwa,2025,registration,total_population,3.1,26,,
+19.01.01.1008,4,Sinar Jaya Jelutung,sex,perempuan,,3539,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.01.1008,4,Sinar Jaya Jelutung,total,total,,7341,jiwa,2025,registration,total_population,3.1,26,,
+19.01.01.1009,4,Matras,sex,perempuan,,2090,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.01.1009,4,Matras,total,total,,4243,jiwa,2025,registration,total_population,3.1,26,,
+19.01.01,3,Kecamatan Sungailiat,sex,perempuan,,47973,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+19.01.01,3,Kecamatan Sungailiat,total,total,,97317,jiwa,2025,registration,total_population,3.1,26,,
+19.01.01,3,Sungailiat,age_group,0-4,perempuan,2849,jiwa,2025,registration,total_population,3.2,28,,0-4
+19.01.01,3,Sungailiat,age_group,0-4,,5825,jiwa,2025,registration,total_population,3.2,28,,0-4
+19.01.01,3,Sungailiat,age_group,5-9,perempuan,3888,jiwa,2025,registration,total_population,3.2,28,,5-9
+19.01.01,3,Sungailiat,age_group,5-9,,7967,jiwa,2025,registration,total_population,3.2,28,,5-9
+19.01.01,3,Sungailiat,age_group,10-14,perempuan,4313,jiwa,2025,registration,total_population,3.2,28,,10-14
+19.01.01,3,Sungailiat,age_group,10-14,,9009,jiwa,2025,registration,total_population,3.2,28,,10-14
+19.01.01,3,Sungailiat,age_group,15-19,perempuan,4190,jiwa,2025,registration,total_population,3.2,28,,15-19
+19.01.01,3,Sungailiat,age_group,15-19,,8611,jiwa,2025,registration,total_population,3.2,28,,15-19
+19.01.01,3,Sungailiat,age_group,20-24,perempuan,3840,jiwa,2025,registration,total_population,3.2,28,,20-24
+19.01.01,3,Sungailiat,age_group,20-24,,7869,jiwa,2025,registration,total_population,3.2,28,,20-24
+19.01.01,3,Sungailiat,age_group,25-29,perempuan,3389,jiwa,2025,registration,total_population,3.2,28,,25-29
+19.01.01,3,Sungailiat,age_group,25-29,,7010,jiwa,2025,registration,total_population,3.2,28,,25-29
+19.01.01,3,Sungailiat,age_group,30-34,perempuan,3204,jiwa,2025,registration,total_population,3.2,28,,30-34
+19.01.01,3,Sungailiat,age_group,30-34,,6504,jiwa,2025,registration,total_population,3.2,28,,30-34
+19.01.01,3,Sungailiat,age_group,35-39,perempuan,3710,jiwa,2025,registration,total_population,3.2,28,,35-39
+19.01.01,3,Sungailiat,age_group,35-39,,7431,jiwa,2025,registration,total_population,3.2,28,,35-39
+19.01.01,3,Sungailiat,age_group,40-44,perempuan,3938,jiwa,2025,registration,total_population,3.2,28,,40-44
+19.01.01,3,Sungailiat,age_group,40-44,,8014,jiwa,2025,registration,total_population,3.2,28,,40-44
+19.01.01,3,Sungailiat,age_group,45-49,perempuan,3587,jiwa,2025,registration,total_population,3.2,28,,45-49
+19.01.01,3,Sungailiat,age_group,45-49,,7408,jiwa,2025,registration,total_population,3.2,28,,45-49
+19.01.01,3,Sungailiat,age_group,50-54,perempuan,2836,jiwa,2025,registration,total_population,3.2,28,,50-54
+19.01.01,3,Sungailiat,age_group,50-54,,5806,jiwa,2025,registration,total_population,3.2,28,,50-54
+19.01.01,3,Sungailiat,age_group,55-59,perempuan,2229,jiwa,2025,registration,total_population,3.2,28,,55-59
+19.01.01,3,Sungailiat,age_group,55-59,,4638,jiwa,2025,registration,total_population,3.2,28,,55-59
+19.01.01,3,Sungailiat,age_group,60-64,perempuan,1936,jiwa,2025,registration,total_population,3.2,28,,60-64
+19.01.01,3,Sungailiat,age_group,60-64,,3700,jiwa,2025,registration,total_population,3.2,28,,60-64
+19.01.01,3,Sungailiat,age_group,65-69,perempuan,1734,jiwa,2025,registration,total_population,3.2,28,,65-69
+19.01.01,3,Sungailiat,age_group,65-69,,3305,jiwa,2025,registration,total_population,3.2,28,,65-69
+19.01.01,3,Sungailiat,age_group,70-74,perempuan,1161,jiwa,2025,registration,total_population,3.2,28,,70-74
+19.01.01,3,Sungailiat,age_group,70-74,,2184,jiwa,2025,registration,total_population,3.2,28,,70-74
+19.01.01,3,Sungailiat,age_group,75+,perempuan,1169,jiwa,2025,registration,total_population,3.2,28,,75+
+19.01.01,3,Sungailiat,age_group,75+,,2036,jiwa,2025,registration,total_population,3.2,28,,75+
+19.01.01,3,Kecamatan Sungailiat,sex,perempuan,,47973,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+19.01.01,3,Kecamatan Sungailiat,total,total,,97317,jiwa,2025,registration,total_population,3.2,28,,
