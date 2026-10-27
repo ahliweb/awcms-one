@@ -1,0 +1,723 @@
+---
+/**
+ * CommerceFrontDesk - the cashier / front-desk surface of the booking adapter
+ * (Issue #388, `docs/booking-ux-flows.md` section 5, Surface D): find a
+ * reservation at the till, see its card, take the balance, check the guest in
+ * and out. Rendered by `/admin/commerce-pos?tab=front-desk` and driven by
+ * `lib/ui/front-desk-island.ts` (a dynamic import, so the other POS tabs carry
+ * none of its script) over the pure rules in `lib/ui/front-desk-client.ts`.
+ *
+ * ## What it talks to
+ *
+ * The four routes under `/api/v1/commerce/pos/booking/` (Issue #383) and nothing
+ * else: `POST lookup`, `POST reservations/{id}/check-in`, `.../check-out` and
+ * `.../balance-payments`. The screen never sends a balance, a price, an order or
+ * a customer (threat control C-36); the server reads each from the ledger and the
+ * order. The register is the one thing the screen names, and it must be a
+ * register whose OPEN session the signed-in cashier holds.
+ *
+ * ## What it deliberately does not do
+ *
+ * - **No list of arrivals and no search by name or date.** A list of the day's
+ *   guests is exactly the enumeration control C-34 forbids at the till. The
+ *   empty state says so and offers the ordinary walk-in sale instead.
+ * - **No browser persistence of a lookup.** The card, the masked contact and the
+ *   identifier the cashier typed live in a JavaScript variable only. Nothing is
+ *   written to `localStorage`, `sessionStorage` or IndexedDB; the contact field
+ *   is emptied the moment the card is found; "Clear" and leaving the tab drop
+ *   the rest. (The one thing in storage is the cashier's OWN shortcut remap,
+ *   written by the sale screen and only read here.)
+ * - **No override of the check-in policy.** Whether a guest with a balance owed
+ *   may be checked in is the TENANT's setting (`checkinRequiresSettlement`,
+ *   ADR-0045 D19, default block). The screen follows the card's
+ *   `actions.checkInBlockedReason` and shows the reason beside the control. The
+ *   setting is switched on the commerce settings screen, behind a step-up when
+ *   it is switched off; this surface adds no second way to bypass it. The default
+ *   is still pending the owner's confirmation (PR #443, residual R3).
+ * - **No browser dialogs.** Every outcome is inline text in a live region; the
+ *   shortcut help is a native `<dialog>`.
+ *
+ * Lives under `src/components/`, never `src/pages/admin/`
+ * (`access-chokepoint-check.ts` reads every `.astro` file there as a screen).
+ *
+ * Every sentence the script shows is rendered here through `t()` into a
+ * `data-*` attribute of `#fd-root` and read from there: the client cannot
+ * translate (skill `awcms-i18n`).
+ */
+import { getTranslatorFor } from "../lib/i18n";
+import { LOCALE_INTL_TAG, type Locale } from "../lib/i18n/locales";
+import { createBookingCancellationLabels } from "../lib/ui/commerce-booking-labels";
+import { statusTone } from "../lib/ui/front-desk-client";
+import {
+  DEFAULT_POS_SHORTCUTS,
+  type PosShortcutAction
+} from "../modules/commerce/domain/pos-shortcuts";
+
+interface Session {
+  id: string;
+  registerId: string;
+  registerCode: string;
+  registerName: string;
+}
+
+interface Props {
+  locale?: Locale | null | undefined;
+  registerEnabled: boolean;
+  sessions: Session[];
+  canCheckIn: boolean;
+  canCheckOut: boolean;
+  canCollect: boolean;
+  storedValueEnabled: boolean;
+  canReadAudit: boolean;
+  /** The store's own shortcut overrides (`posShortcuts`), already sanitised. */
+  tenantShortcuts: Record<string, string>;
+}
+
+const {
+  locale,
+  registerEnabled,
+  sessions,
+  canCheckIn,
+  canCheckOut,
+  canCollect,
+  storedValueEnabled,
+  canReadAudit,
+  tenantShortcuts
+} = Astro.props as Props;
+const { t } = getTranslatorFor(locale);
+const bookingLabels = createBookingCancellationLabels(t);
+const intlTag = LOCALE_INTL_TAG[locale ?? "en"];
+
+/** The shortcuts this surface answers to: the sale screen's own map, reused (no new action is invented). */
+const SHORTCUTS: { action: PosShortcutAction; label: string }[] = [
+  { action: "focusScan", label: t("Go to the reservation code") },
+  { action: "focusCustomer", label: t("Go to the customer contact") },
+  { action: "focusPayment", label: t("Go to the payment lines") },
+  { action: "finalize", label: t("Collect the balance") },
+  { action: "newSale", label: t("Look up another reservation") },
+  { action: "showHelp", label: t("Show keyboard shortcuts") }
+];
+const noSession = registerEnabled && sessions.length === 0;
+---
+
+<section
+  class="fade-in-up fd"
+  id="fd-root"
+  aria-labelledby="fd-heading"
+  data-intl-tag={intlTag}
+  data-currency="IDR"
+  data-register-mode={registerEnabled ? "true" : "false"}
+  data-can-check-in={canCheckIn ? "true" : "false"}
+  data-can-check-out={canCheckOut ? "true" : "false"}
+  data-can-collect={canCollect ? "true" : "false"}
+  data-can-read-audit={canReadAudit ? "true" : "false"}
+  data-register-labels={JSON.stringify(
+    Object.fromEntries(
+      sessions.map((session) => [
+        session.registerId,
+        `${session.registerCode} · ${session.registerName}`
+      ])
+    )
+  )}
+  data-tenant-shortcuts={JSON.stringify(tenantShortcuts)}
+  data-status-labels={JSON.stringify(bookingLabels.reservationStatus)}
+  data-msg-busy={t("Working…")}
+  data-msg-looking-up={t("Looking up the reservation…")}
+  data-msg-found={t("Reservation {code} found.")}
+  data-msg-code-required={t("Enter the reservation code.")}
+  data-msg-code-invalid={t(
+    "That is not a reservation code. Use the full code: letters, digits and dashes."
+  )}
+  data-msg-contact-required={t(
+    "Enter the customer's phone number or e-mail address."
+  )}
+  data-msg-contact-invalid={t(
+    "That is not a valid phone number or e-mail address."
+  )}
+  data-msg-not-found={t("Reservation not found.")}
+  data-msg-rate-limited={t("Too many lookups. Wait a moment, then try again.")}
+  data-msg-lookup-failed={t(
+    "Could not look up the reservation. Please try again."
+  )}
+  data-msg-network={t(
+    "The server could not be reached. Check the connection and try again."
+  )}
+  data-msg-generic={t("Could not complete that. Please try again.")}
+  data-msg-denied={t("You do not have permission to do that.")}
+  data-msg-session-required={t(
+    "Open a register session before taking payments or checking guests in."
+  )}
+  data-msg-session-closing={t(
+    "This register's session is being closed and accepts no more."
+  )}
+  data-msg-not-session-cashier={t(
+    "This register's session belongs to another cashier. Ask for a handover."
+  )}
+  data-msg-balance-not-settled={t("Collect the remaining balance first.")}
+  data-msg-no-balance-due={t("Nothing is owed on this reservation.")}
+  data-msg-order-not-payable={t(
+    "A cancelled or expired order cannot receive a payment."
+  )}
+  data-msg-overpayment={t(
+    "The non-cash payments are more than the balance. Only a cash payment may exceed it, as change."
+  )}
+  data-msg-state-changed={t(
+    "The reservation status changed. The card has been refreshed."
+  )}
+  data-msg-too-early={t("It is too early to check this guest in.")}
+  data-msg-idempotency-conflict={t(
+    "That request was already sent with different details. Check the card and try again."
+  )}
+  data-msg-feature-disabled={t("Point of sale is turned off for this store.")}
+  data-msg-not-found-write={t("That reservation no longer exists.")}
+  data-msg-sv-not-found={t("That gift card or credit code was not recognised.")}
+  data-msg-sv-unavailable={t(
+    "That gift card or credit is disabled or has expired."
+  )}
+  data-msg-sv-insufficient={t(
+    "That gift card or credit does not have enough balance for the amount entered."
+  )}
+  data-msg-sv-throttled={t(
+    "Too many code lookups. Wait a moment and try again."
+  )}
+  data-msg-no-tender={t("Add at least one payment line with an amount.")}
+  data-msg-bad-amount={t(
+    "Every payment line needs an amount greater than zero, like 25000 or 25000.50."
+  )}
+  data-msg-two-cash={t("Only one cash line is allowed.")}
+  data-msg-code-line-required={t(
+    "Enter the gift card or credit code for that payment line."
+  )}
+  data-msg-checked-in={t(
+    "Check-in complete. Reservation {code} is now checked in."
+  )}
+  data-msg-checked-out={t(
+    "Check-out complete. Reservation {code} is now completed."
+  )}
+  data-msg-collected={t("Balance of {amount} received.")}
+  data-msg-paid-in-full={t("The order is paid in full.")}
+  data-msg-still-owed={t("{amount} is still owed.")}
+  data-msg-change={t("Change to hand back: {amount}.")}
+  data-msg-recorded={t("Recorded against your account on register {register}.")}
+  data-msg-cleared={t("Cleared. Enter another reservation code.")}
+  data-msg-nights-one={t("1 night")}
+  data-msg-nights-many={t("{count} nights")}
+  data-msg-policy-blocks={t(
+    "This store requires the balance to be paid before check-in."
+  )}
+  data-msg-policy-allows={t(
+    "This store allows check-in while a balance is owed; the balance stays due."
+  )}
+  data-reason-no-permission={t("You do not have permission to do this.")}
+  data-reason-no-session={t("Open a register session first.")}
+  data-reason-balance-not-settled={t("Collect the remaining balance first.")}
+  data-reason-not-confirmed={t(
+    "Only a confirmed reservation can be checked in."
+  )}
+  data-reason-not-checked-in={t("Only a checked-in guest can be checked out.")}
+  data-reason-nothing-owed={t("Nothing is owed on this reservation.")}
+  data-reason-not-payable={t("This reservation can no longer take a payment.")}
+  data-label-tender={t("Payment line")}
+  data-label-method={t("Payment method")}
+  data-label-amount={t("Amount")}
+  data-label-amount-cash={t("Amount handed over")}
+  data-label-reference={t("Reference (optional)")}
+  data-label-code={t("Gift card or credit code")}
+  data-label-remove={t("Remove")}
+>
+  <h2 id="fd-heading">{t("Front desk")}</h2>
+  <p class="form-hint" id="fd-intro">
+    {t(
+      "Find a reservation by its code together with the customer's phone or e-mail, take the balance, then check the guest in or out. Nothing you look up is kept in this browser."
+    )}
+  </p>
+
+  {!registerEnabled && (
+    <p class="state-notice" id="fd-register-off" role="status">
+      {t(
+        "Taking payments and checking guests in need register sessions, and the register feature is off for this store. You can look a reservation up, but not change it."
+      )}{" "}
+      <a class="quick-link" href="/admin/commerce-settings">
+        {t("Turn it on under Features in the store settings.")}
+      </a>
+    </p>
+  )}
+
+  {registerEnabled && (
+    <section
+      class="admin-panel fd-register"
+      id="fd-register-banner"
+      aria-labelledby="fd-register-heading"
+    >
+      <h3 id="fd-register-heading">{t("Cash register")}</h3>
+      {noSession ? (
+        <p id="fd-register-none" role="status">
+          <span class="admin-status-pill" data-tone="warning">
+            <span class="admin-status-pill-dot" aria-hidden="true" />
+            {t("No open session")}
+          </span>{" "}
+          {t(
+            "Open a register session before taking payments or checking guests in."
+          )}{" "}
+          <a class="quick-link" href="/admin/commerce-registers">
+            {t("Open a register session")}
+          </a>
+        </p>
+      ) : (
+        <div id="fd-register-open">
+          <p role="status">
+            <span class="admin-status-pill" data-tone="success">
+              <span class="admin-status-pill-dot" aria-hidden="true" />
+              {t("Session open")}
+            </span>{" "}
+            {sessions.length === 1
+              ? t("Selling on {register}.", {
+                  register: `${sessions[0]!.registerCode} · ${sessions[0]!.registerName}`
+                })
+              : t("You have several open register sessions.")}
+          </p>
+          {sessions.length === 1 ? (
+            <input
+              type="hidden"
+              id="fd-register"
+              value={sessions[0]!.registerId}
+            />
+          ) : (
+            <label for="fd-register">
+              {t("Sell on register")}
+              <select id="fd-register">
+                {sessions.map((session) => (
+                  <option value={session.registerId}>
+                    {session.registerCode} · {session.registerName}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+        </div>
+      )}
+    </section>
+  )}
+
+  <form class="admin-panel admin-form fd-lookup" id="fd-lookup-form" novalidate>
+    <h3 id="fd-lookup-heading">{t("Find a reservation")}</h3>
+    <p
+      class="admin-create-error"
+      id="fd-lookup-error"
+      role="alert"
+      tabindex="-1"
+      hidden
+    ></p>
+    <label for="fd-code">
+      {t("Reservation code")}
+      <input
+        type="text"
+        id="fd-code"
+        name="reservationNo"
+        autocomplete="off"
+        autocapitalize="characters"
+        spellcheck="false"
+        maxlength="40"
+        required
+        aria-describedby="fd-code-hint fd-lookup-error"
+      />
+    </label>
+    <p class="form-hint" id="fd-code-hint">
+      {t("Type the code, or scan it, and press Enter.")}
+    </p>
+    <label for="fd-contact">
+      {t("Customer phone or e-mail")}
+      <input
+        type="text"
+        id="fd-contact"
+        name="contact"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+        maxlength="254"
+        required
+        aria-describedby="fd-contact-hint fd-lookup-error"
+      />
+    </label>
+    <p class="form-hint" id="fd-contact-hint">
+      {t(
+        "Both are needed. There is no search by name, date or part of a code, so the till cannot be used to list guests."
+      )}
+    </p>
+    <div class="admin-form-actions">
+      <button type="submit" class="module-toggle" id="fd-find">
+        {t("Find reservation")}
+      </button>
+      <button type="button" class="btn-inline" id="fd-clear">
+        {t("Clear")}
+      </button>
+      <button type="button" class="btn-inline" id="fd-shortcuts-open">
+        {t("Keyboard shortcuts")}
+      </button>
+    </div>
+    <p class="form-hint" id="fd-empty">
+      {t(
+        "There is no list of arrivals. A guest who has no reservation is an ordinary walk-in sale."
+      )}{" "}
+      <a class="quick-link" href="/admin/commerce-pos">
+        {t("Ring up a walk-in sale")}
+      </a>
+    </p>
+  </form>
+
+  <p
+    class="state-notice fd-result"
+    id="fd-result"
+    role="status"
+    tabindex="-1"
+    hidden
+  ></p>
+  <p class="sr-only" id="fd-announce" role="status" aria-live="polite"></p>
+
+  <section
+    class="admin-panel fd-card"
+    id="fd-card"
+    aria-labelledby="fd-card-heading"
+    aria-busy="false"
+    hidden
+  >
+    <div class="fd-card-head">
+      <h3 id="fd-card-heading" tabindex="-1"></h3>
+      <span class="admin-status-pill" id="fd-status" data-tone="neutral">
+        <span class="admin-status-pill-dot" aria-hidden="true"></span>
+        <span id="fd-status-text"></span>
+      </span>
+    </div>
+
+    <dl class="fd-facts">
+      <dt>{t("Guest")}</dt>
+      <dd id="fd-guest"></dd>
+      <dt>{t("Contact")}</dt>
+      <dd id="fd-contact-masked"></dd>
+      <dt>{t("Service")}</dt>
+      <dd id="fd-service"></dd>
+      <dt>{t("Stay")}</dt>
+      <dd id="fd-stay"></dd>
+      <dt>{t("Order")}</dt>
+      <dd>
+        <a
+          class="quick-link"
+          id="fd-order-link"
+          href="/admin/commerce-orders"
+        ></a>
+      </dd>
+    </dl>
+
+    <dl class="fd-money">
+      <dt>{t("Total")}</dt>
+      <dd class="fd-amount" id="fd-total"></dd>
+      <dt>{t("Paid so far")}</dt>
+      <dd class="fd-amount" id="fd-paid"></dd>
+      <dt>{t("Balance due")}</dt>
+      <dd class="fd-amount fd-amount--due" id="fd-due"></dd>
+    </dl>
+
+    <p class="form-hint" id="fd-policy"></p>
+
+    <div class="fd-stay-actions">
+      <div class="fd-action">
+        <button
+          type="button"
+          class="module-toggle"
+          id="fd-check-in"
+          aria-describedby="fd-check-in-reason"
+        >
+          {t("Check in guest")}
+        </button>
+        <span class="fd-reason" id="fd-check-in-reason"></span>
+      </div>
+      <div class="fd-action">
+        <button
+          type="button"
+          class="module-toggle"
+          id="fd-check-out"
+          aria-describedby="fd-check-out-reason"
+        >
+          {t("Check out guest")}
+        </button>
+        <span class="fd-reason" id="fd-check-out-reason"></span>
+      </div>
+    </div>
+
+    <form class="admin-form fd-balance" id="fd-balance-form" novalidate>
+      <h3 id="fd-balance-heading">{t("Collect balance")}</h3>
+      <p
+        class="admin-create-error"
+        id="fd-balance-error"
+        role="alert"
+        tabindex="-1"
+        hidden
+      ></p>
+      <div class="fd-tenders" id="fd-tenders"></div>
+      <div class="admin-form-actions">
+        <button type="button" class="btn-inline" id="fd-add-tender">
+          {t("Add payment line")}
+        </button>
+      </div>
+      <dl class="fd-summary" id="fd-summary">
+        <dt>{t("Balance due")}</dt>
+        <dd>
+          <output class="fd-amount" id="fd-sum-due"></output>
+        </dd>
+        <dt>{t("Payment applied")}</dt>
+        <dd>
+          <output class="fd-amount" id="fd-sum-applied"></output>
+        </dd>
+        <dt>{t("Change to hand back")}</dt>
+        <dd>
+          <output class="fd-amount" id="fd-sum-change"></output>
+        </dd>
+        <dt>{t("Still owed after this payment")}</dt>
+        <dd>
+          <output class="fd-amount" id="fd-sum-remaining"></output>
+        </dd>
+      </dl>
+      <div class="fd-action">
+        <button
+          type="submit"
+          class="module-toggle"
+          id="fd-collect"
+          aria-describedby="fd-collect-reason"
+        >
+          {t("Collect balance")}
+        </button>
+        <span class="fd-reason" id="fd-collect-reason"></span>
+      </div>
+    </form>
+
+    <p class="form-hint" id="fd-audit">
+      {t(
+        "Every check-in, check-out and payment is recorded with your name and the register session."
+      )}{" "}
+      {canReadAudit && (
+        <a
+          class="quick-link"
+          href="/admin/audit-trail?resourceType=commerce_booking_reservation_link"
+        >
+          {t("Open the audit trail")}
+        </a>
+      )}
+    </p>
+  </section>
+</section>
+
+<dialog
+  id="fd-shortcuts-dialog"
+  class="fd-shortcuts-dialog"
+  aria-labelledby="fd-shortcuts-heading"
+>
+  <h2 id="fd-shortcuts-heading">{t("Keyboard shortcuts")}</h2>
+  <p class="form-hint">
+    {t(
+      "These are the sale screen's shortcuts, used here for the same jobs. Change them on the New sale screen."
+    )}
+  </p>
+  <div
+    class="data-table-scroll"
+    tabindex="0"
+    role="region"
+    aria-label={t("Keyboard shortcuts")}
+  >
+    <table class="data-table" id="fd-shortcuts-table">
+      <thead>
+        <tr>
+          <th scope="col">{t("Action")}</th>
+          <th scope="col">{t("Shortcut")}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {SHORTCUTS.map(({ action, label }) => (
+          <tr data-action-id={action}>
+            <td data-label={t("Action")}>{label}</td>
+            <td data-label={t("Shortcut")}>
+              <kbd data-field="combo">{DEFAULT_POS_SHORTCUTS[action]}</kbd>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <div class="admin-form-actions">
+    <button type="button" class="module-toggle" id="fd-shortcuts-close">
+      {t("Close")}
+    </button>
+  </div>
+</dialog>
+
+<template id="fd-tender-row-template">
+  <div class="fd-tender-row" role="group">
+    <label>
+      <span data-field="type-label"></span>
+      <select data-field="type">
+        <option value="cash">{t("Cash")}</option>
+        <option value="manual_qris">{t("QRIS")}</option>
+        <option value="manual_bank_transfer">{t("Bank transfer")}</option>
+        {storedValueEnabled && (
+          <option value="gift_card">{t("Gift card")}</option>
+        )}
+        {storedValueEnabled && (
+          <option value="store_credit">{t("Store credit")}</option>
+        )}
+      </select>
+    </label>
+    <label>
+      <span data-field="amount-label"></span>
+      <input
+        type="text"
+        data-field="amount"
+        inputmode="decimal"
+        autocomplete="off"
+        placeholder="0.00"
+      />
+    </label>
+    <label data-field="reference-wrap">
+      <span data-field="reference-label"></span>
+      <input
+        type="text"
+        data-field="reference"
+        maxlength="100"
+        autocomplete="off"
+      />
+    </label>
+    <label data-field="code-wrap" hidden>
+      <span data-field="code-label"></span>
+      <input
+        type="text"
+        data-field="code"
+        maxlength="64"
+        autocomplete="off"
+        autocapitalize="characters"
+        spellcheck="false"
+      />
+    </label>
+    <button
+      type="button"
+      class="btn-inline btn-inline--danger"
+      data-field="remove"
+    ></button>
+  </div>
+</template>
+
+<style>
+  .fd {
+    display: grid;
+    gap: var(--sp-4);
+    min-width: 0;
+  }
+  .fd > * {
+    min-width: 0;
+  }
+  .fd-lookup {
+    max-width: 40rem;
+  }
+  .fd-card {
+    display: grid;
+    gap: var(--sp-3);
+  }
+  .fd-card-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2) var(--sp-3);
+    align-items: center;
+    justify-content: space-between;
+  }
+  .fd-card-head h3 {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+  .fd-facts,
+  .fd-money,
+  .fd-summary {
+    display: grid;
+    grid-template-columns: minmax(0, max-content) minmax(0, 1fr);
+    gap: var(--sp-1) var(--sp-3);
+    margin: 0;
+  }
+  .fd-facts dd,
+  .fd-money dd,
+  .fd-summary dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+  .fd-money dd,
+  .fd-summary dd {
+    text-align: right;
+  }
+  .fd-amount {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .fd-amount--due {
+    font-weight: 700;
+  }
+  .fd-stay-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+  }
+  .fd-action {
+    display: grid;
+    gap: var(--sp-1);
+    justify-items: start;
+    min-width: 0;
+  }
+  .fd-reason {
+    font-size: var(--fs-sm);
+    overflow-wrap: anywhere;
+  }
+  .fd-reason:empty {
+    display: none;
+  }
+  .fd-card button[aria-disabled="true"],
+  .fd button[aria-disabled="true"] {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .fd-tenders {
+    display: grid;
+    gap: var(--sp-3);
+  }
+  .fd-tender-row {
+    display: grid;
+    gap: var(--sp-2);
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    align-items: end;
+    padding-bottom: var(--sp-2);
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+  .fd-shortcuts-dialog {
+    max-width: min(36rem, 94vw);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-md, 8px);
+    padding: var(--sp-4);
+  }
+  .fd-shortcuts-dialog::backdrop {
+    background: rgb(0 0 0 / 0.45);
+  }
+  .fd-shortcuts-dialog kbd {
+    font-family: ui-monospace, "Courier New", monospace;
+    padding: 1px 6px;
+    border: 1px solid var(--color-border-soft);
+    border-radius: 4px;
+  }
+  @media (max-width: 480px) {
+    .fd-facts,
+    .fd-money,
+    .fd-summary {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .fd-money dd,
+    .fd-summary dd {
+      text-align: left;
+    }
+    .fd-stay-actions .fd-action,
+    .fd-stay-actions .fd-action button {
+      width: 100%;
+    }
+  }
+</style>

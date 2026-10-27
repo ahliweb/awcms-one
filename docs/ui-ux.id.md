@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](ui-ux.md)
 
-<!-- i18n-source-hash: sha256:1d0240456fd4ffd6cc43430f391292061f58fbb61e5b3bea22feb27f2b62447f -->
+<!-- i18n-source-hash: sha256:bfd1beae9220ffec52d8629737ff4dba2413fd18b7fc82c4b0654377bbe6a461 -->
 
 # UI / UX
 
@@ -229,6 +229,8 @@ Dibangun di atas token/primitif di atas — tidak ada perubahan pada `apps/store
 **Aturan yang diikuti di seluruh bagian ini: hanya data nyata, tak pernah angka placeholder atau baris karangan.** Layar dashboard baru (`/admin/commerce-dashboard`) secara eksplisit menghilangkan stat tingkat konversi karena belum ada proyeksi funnel/kunjungan untuk menghitungnya, alih-alih menampilkan persentase karangan; setiap stat card lain membaca tabel yang sudah ada atau proyeksi laporan penjualan yang sudah ada (issue #117). Pil status provider baru milik layar settings (WhatsApp, Midtrans, RajaOngkir) menunjukkan terkonfigurasi/belum diturunkan hanya dari KEBERADAAN environment variable, tak pernah nilai secret.
 
 Satu divergensi sengaja dari bentuk literal mockup: layar POS (`/admin/commerce-pos`) mempertahankan grid dua-panel `.pos-layout` sendiri alih-alih mengadopsi primitive generik `.admin-two-pane`, karena sisi keranjangnya butuh kontrol khusus POS (stepper kuantitas, pembacaan jumlah-dibayar/kembalian, blok resi `@media print`) yang tak dimodelkan primitive generik — penilaian "restyle, jangan paksa-cocokkan" yang sama yang diambil issue #167 untuk step-pill checkout di atas.
+
+**Tab kasir / meja depan (issue #388)** adalah satu-satunya tempat layar POS mengambil pekerjaan kedua. Ia bukan POS kedua dan bukan tata letak baru: ia tab ketiga (`?tab=front-desk`) di samping Penjualan baru dan Riwayat, satu kolom blok `.admin-panel` (spanduk register, formulir pencarian, kartu reservasi, formulir sisa pembayaran) yang menjadi daftar definisi dua kolom di atas 480px. Aturan yang diikutinya, yang sebaiknya ditiru permukaan back-office berikutnya alih-alih diputuskan ulang: uang adalah angka server yang dicetak dengan pemformat mata uang locale dan tidak pernah dihitung ulang untuk dikirim balik; kontrol yang tidak dapat dipakai `aria-disabled` dengan alasannya sebagai teks terlihat dan `aria-describedby`, sehingga pengguna papan ketik dapat menjangkaunya dan mendengar alasannya; setiap hasil mendarat di satu baris hasil yang dapat difokuskan (`role="status"` untuk berhasil, `role="alert"` untuk penolakan) dan mengambil fokus; nilai yang ditolak `aria-invalid` dan terikat pada pesannya; hasil pencarian hanya di memori; dan peta papan ketik layar penjualan dipakai ulang alih-alih peta kedua. Rinciannya ada di [`booking-ux-flows.md`](booking-ux-flows.md), "Status implementasi Permukaan D".
 
 Belum ada layar galeri media commerce khusus hari ini — gambar produk/slider/testimoni dikelola inline per record, bukan lewat galeri berdiri sendiri — sehingga `.admin-media-grid` tidak dipakai issue ini; ia tetap tersedia di `admin.css` untuk layar mana pun yang mengadopsinya berikutnya.
 
