@@ -1,0 +1,15 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.01.25.2004,4,Kuanheum,sex,perempuan,,728,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.25.2004,4,Kuanheum,total,total,,1464,jiwa,2025,registration,total_population,3.1,26,,
+53.01.25.2002,4,Kairane,sex,perempuan,,330,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.25.2002,4,Kairane,total,total,,667,jiwa,2025,registration,total_population,3.1,26,,
+53.01.25.2007,4,Niunbaun,sex,perempuan,,382,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.25.2007,4,Niunbaun,total,total,,791,jiwa,2025,registration,total_population,3.1,26,,
+53.01.25.2003,4,Raknamo,sex,perempuan,,1602,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.25.2003,4,Raknamo,total,total,,3162,jiwa,2025,registration,total_population,3.1,26,,
+53.01.25.2005,4,Fatuteta,sex,perempuan,,368,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.25.2005,4,Fatuteta,total,total,,731,jiwa,2025,registration,total_population,3.1,26,,
+53.01.25.2006,4,Oefeto,sex,perempuan,,414,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.25.2006,4,Oefeto,total,total,,859,jiwa,2025,registration,total_population,3.1,26,,
+53.01.25,3,Amabi Oefeto,sex,perempuan,,4923,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.25,3,Amabi Oefeto,total,total,,9909,jiwa,2025,registration,total_population,3.1,26,,

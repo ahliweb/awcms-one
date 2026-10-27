@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5300-dalam-angka-2026",
+  "publicationSeries": "provinsi_dalam_angka",
+  "coverageRegionCode": "53",
+  "coverageRegionLevel": 1,
+  "publicationTitle": "Provinsi Nusa Tenggara Timur Dalam Angka 2026",
+  "publisherName": "BPS Provinsi Nusa Tenggara Timur",
+  "publisherDomain": "5300",
+  "publisherWebsite": "https://ntt.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Provinsi Nusa Tenggara Timur (https://ntt.bps.go.id), publikasi \"Provinsi Nusa Tenggara Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.53",
+  "publicationNumber": "53000.26005",
+  "issn": "0215-2223",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://ntt.bps.go.id/id/publication/2026/02/27/d993a1b107b4d07b54afb390/provinsi-nusa-tenggara-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "f3f751d03320bdf0a005663fcc43efa9f406b20e3f7081878f5e9fac65ef560f",
+  "sourceFileBytes": 10661238,
+  "sourcePages": [102],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Provinsi Nusa Tenggara Timur.",
+  "csvPath": "datasets/bps-5300-dalam-angka-2026.csv",
+  "csvSha256": "302f96cad0b4df8a9a6863e4f6c3f9ba3eb853e8197e6db4b378e7d8707eff21",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Kabupaten/Kota di Provinsi Nusa Tenggara Timur, 2020, 2025, dan 2026",
+      "printedPages": [102],
+      "referenceYears": [2020, 2025, 2026],
+      "figureBasis": "census+projection",
+      "unit": "ribu_jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication",
+    "table 3.1.2 (age-by-sex) could not be read reliably and is not included (year of a column not determinable)",
+    "table 3.2.14 (employed-by-industry) could not be read reliably and is not included (basis not determinable)",
+    "table 3.2.21 (wage-by-industry) could not be read reliably and is not included (basis not determinable)",
+    "table 3.2.22 (wage-by-age) could not be read reliably and is not included (row \"Jumlah/Total\": unmatched )"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-5310-kecamatan-530711-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.07.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bola Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "5310",
+  "publisherWebsite": "https://sikkakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://sikkakab.bps.go.id), publikasi \"Kecamatan Bola Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5310030",
+  "publicationNumber": "53100.26010",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sikkakab.bps.go.id/id/publication/2026/09/28/30a2ca72adaa09977ed79fad/kecamatan-bola-dalam-angka-2026.html",
+  "sourceFileSha256": "cd9a39b9bd1d7b934ca8306676fc19127b665ce8972e032d589a74c7fd18e8fa",
+  "sourceFileBytes": 10952210,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Sikka",
+  "csvPath": "datasets/bps-5310-kecamatan-530711-dalam-angka-2026.csv",
+  "csvSha256": "8ac5882fa29c2d2a49f655e21978eadde8e54b7cb3e0c8573f7d83c315fd6175",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Bola, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bola, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 53.07.11 are not stored: age_group (perempuan) vs sex value: parts sum 5961.0000 != 7078.0000 (diff 1117.0000); the source itself is inconsistent"
+  ]
+}

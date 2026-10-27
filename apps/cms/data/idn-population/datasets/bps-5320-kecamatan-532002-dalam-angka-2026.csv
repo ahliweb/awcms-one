@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.20.02.2001,4,Bebae,sex,laki_laki,,465,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.02.2001,4,Bebae,sex,perempuan,,477,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.02.2001,4,Bebae,total,total,,942,jiwa,2025,registration,total_population,3.1,16,,
+53.20.02.2002,4,Tada,sex,laki_laki,,442,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.02.2002,4,Tada,sex,perempuan,,435,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.02.2002,4,Tada,total,total,,877,jiwa,2025,registration,total_population,3.1,16,,
+53.20.02.2003,4,Matei,sex,laki_laki,,626,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.02.2003,4,Matei,sex,perempuan,,556,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.02.2003,4,Matei,total,total,,1182,jiwa,2025,registration,total_population,3.1,16,,
+53.20.02.2005,4,Eimadake,sex,laki_laki,,698,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.02.2005,4,Eimadake,sex,perempuan,,681,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.02.2005,4,Eimadake,total,total,,1379,jiwa,2025,registration,total_population,3.1,16,,
+53.20.02.2004,4,Loboaju,sex,laki_laki,,461,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.02.2004,4,Loboaju,sex,perempuan,,397,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.02.2004,4,Loboaju,total,total,,858,jiwa,2025,registration,total_population,3.1,16,,
+53.20.02.2006,4,Jiwuwu,sex,laki_laki,,527,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.02.2006,4,Jiwuwu,sex,perempuan,,566,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.02.2006,4,Jiwuwu,total,total,,1093,jiwa,2025,registration,total_population,3.1,16,,
+53.20.02.2007,4,Eilode,sex,laki_laki,,767,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.02.2007,4,Eilode,sex,perempuan,,692,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.02.2007,4,Eilode,total,total,,1459,jiwa,2025,registration,total_population,3.1,16,,
+53.20.02.2008,4,Eimau,sex,laki_laki,,786,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.02.2008,4,Eimau,sex,perempuan,,765,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.02.2008,4,Eimau,total,total,,1551,jiwa,2025,registration,total_population,3.1,16,,
+53.20.02,3,Sabu Tengah,sex,laki_laki,,4772,jiwa,2025,registration,total_population,3.1,16,,Laki-laki/Male
+53.20.02,3,Sabu Tengah,sex,perempuan,,4569,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.20.02,3,Sabu Tengah,total,total,,9341,jiwa,2025,registration,total_population,3.1,16,,
+53.20.02,3,Sabu Tengah,age_group,0-4,laki_laki,401,jiwa,2025,registration,total_population,3.2,18,,0–4
+53.20.02,3,Sabu Tengah,age_group,0-4,perempuan,367,jiwa,2025,registration,total_population,3.2,18,,0–4
+53.20.02,3,Sabu Tengah,age_group,0-4,,768,jiwa,2025,registration,total_population,3.2,18,,0–4
+53.20.02,3,Sabu Tengah,age_group,5-9,laki_laki,514,jiwa,2025,registration,total_population,3.2,18,,5–9
+53.20.02,3,Sabu Tengah,age_group,5-9,perempuan,492,jiwa,2025,registration,total_population,3.2,18,,5–9
+53.20.02,3,Sabu Tengah,age_group,5-9,,1006,jiwa,2025,registration,total_population,3.2,18,,5–9
+53.20.02,3,Sabu Tengah,age_group,10-14,laki_laki,524,jiwa,2025,registration,total_population,3.2,18,,10–14
+53.20.02,3,Sabu Tengah,age_group,10-14,perempuan,518,jiwa,2025,registration,total_population,3.2,18,,10–14
+53.20.02,3,Sabu Tengah,age_group,10-14,,1042,jiwa,2025,registration,total_population,3.2,18,,10–14
+53.20.02,3,Sabu Tengah,age_group,15-19,laki_laki,617,jiwa,2025,registration,total_population,3.2,18,,15–19
+53.20.02,3,Sabu Tengah,age_group,15-19,perempuan,576,jiwa,2025,registration,total_population,3.2,18,,15–19
+53.20.02,3,Sabu Tengah,age_group,15-19,,1193,jiwa,2025,registration,total_population,3.2,18,,15–19
+53.20.02,3,Sabu Tengah,age_group,20-24,laki_laki,516,jiwa,2025,registration,total_population,3.2,18,,20–24
+53.20.02,3,Sabu Tengah,age_group,20-24,perempuan,472,jiwa,2025,registration,total_population,3.2,18,,20–24
+53.20.02,3,Sabu Tengah,age_group,20-24,,988,jiwa,2025,registration,total_population,3.2,18,,20–24
+53.20.02,3,Sabu Tengah,age_group,25-29,laki_laki,408,jiwa,2025,registration,total_population,3.2,18,,25–29
+53.20.02,3,Sabu Tengah,age_group,25-29,perempuan,387,jiwa,2025,registration,total_population,3.2,18,,25–29
+53.20.02,3,Sabu Tengah,age_group,25-29,,795,jiwa,2025,registration,total_population,3.2,18,,25–29
+53.20.02,3,Sabu Tengah,age_group,30-34,laki_laki,284,jiwa,2025,registration,total_population,3.2,18,,30–34
+53.20.02,3,Sabu Tengah,age_group,30-34,perempuan,294,jiwa,2025,registration,total_population,3.2,18,,30–34
+53.20.02,3,Sabu Tengah,age_group,30-34,,578,jiwa,2025,registration,total_population,3.2,18,,30–34
+53.20.02,3,Sabu Tengah,age_group,35-39,laki_laki,267,jiwa,2025,registration,total_population,3.2,18,,35–39
+53.20.02,3,Sabu Tengah,age_group,35-39,perempuan,268,jiwa,2025,registration,total_population,3.2,18,,35–39
+53.20.02,3,Sabu Tengah,age_group,35-39,,535,jiwa,2025,registration,total_population,3.2,18,,35–39
+53.20.02,3,Sabu Tengah,age_group,40-44,laki_laki,243,jiwa,2025,registration,total_population,3.2,18,,40–44
+53.20.02,3,Sabu Tengah,age_group,40-44,perempuan,241,jiwa,2025,registration,total_population,3.2,18,,40–44
+53.20.02,3,Sabu Tengah,age_group,40-44,,484,jiwa,2025,registration,total_population,3.2,18,,40–44
+53.20.02,3,Sabu Tengah,age_group,45-49,laki_laki,222,jiwa,2025,registration,total_population,3.2,18,,45–49
+53.20.02,3,Sabu Tengah,age_group,45-49,perempuan,206,jiwa,2025,registration,total_population,3.2,18,,45–49
+53.20.02,3,Sabu Tengah,age_group,45-49,,428,jiwa,2025,registration,total_population,3.2,18,,45–49
+53.20.02,3,Sabu Tengah,age_group,50-54,laki_laki,205,jiwa,2025,registration,total_population,3.2,18,,50–54
+53.20.02,3,Sabu Tengah,age_group,50-54,perempuan,174,jiwa,2025,registration,total_population,3.2,18,,50–54
+53.20.02,3,Sabu Tengah,age_group,50-54,,379,jiwa,2025,registration,total_population,3.2,18,,50–54
+53.20.02,3,Sabu Tengah,age_group,55-59,laki_laki,169,jiwa,2025,registration,total_population,3.2,18,,55–59
+53.20.02,3,Sabu Tengah,age_group,55-59,perempuan,160,jiwa,2025,registration,total_population,3.2,18,,55–59
+53.20.02,3,Sabu Tengah,age_group,55-59,,329,jiwa,2025,registration,total_population,3.2,18,,55–59
+53.20.02,3,Sabu Tengah,age_group,60-64,laki_laki,118,jiwa,2025,registration,total_population,3.2,18,,60–64
+53.20.02,3,Sabu Tengah,age_group,60-64,perempuan,109,jiwa,2025,registration,total_population,3.2,18,,60–64
+53.20.02,3,Sabu Tengah,age_group,60-64,,227,jiwa,2025,registration,total_population,3.2,18,,60–64
+53.20.02,3,Sabu Tengah,age_group,65-69,laki_laki,122,jiwa,2025,registration,total_population,3.2,18,,65–69
+53.20.02,3,Sabu Tengah,age_group,65-69,perempuan,121,jiwa,2025,registration,total_population,3.2,18,,65–69
+53.20.02,3,Sabu Tengah,age_group,65-69,,243,jiwa,2025,registration,total_population,3.2,18,,65–69
+53.20.02,3,Sabu Tengah,age_group,70-74,laki_laki,70,jiwa,2025,registration,total_population,3.2,18,,70–74
+53.20.02,3,Sabu Tengah,age_group,70-74,perempuan,69,jiwa,2025,registration,total_population,3.2,18,,70–74
+53.20.02,3,Sabu Tengah,age_group,70-74,,139,jiwa,2025,registration,total_population,3.2,18,,70–74
+53.20.02,3,Sabu Tengah,age_group,75+,laki_laki,92,jiwa,2025,registration,total_population,3.2,18,,75+
+53.20.02,3,Sabu Tengah,age_group,75+,perempuan,115,jiwa,2025,registration,total_population,3.2,18,,75+
+53.20.02,3,Sabu Tengah,age_group,75+,,207,jiwa,2025,registration,total_population,3.2,18,,75+
+53.20.02,3,Sabu Tengah,sex,laki_laki,,4772,jiwa,2025,registration,total_population,3.2,18,,Laki-Laki
+53.20.02,3,Sabu Tengah,sex,perempuan,,4569,jiwa,2025,registration,total_population,3.2,18,,Perempuan
+53.20.02,3,Sabu Tengah,total,total,,9341,jiwa,2025,registration,total_population,3.2,18,,

@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.06.19.2001,4,KALIKE,sex,laki_laki,,535,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.19.2001,4,KALIKE,sex,perempuan,,573,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.19.2001,4,KALIKE,total,total,,1108,jiwa,2025,registration,total_population,3.1,22,,
+53.06.19.2002,4,KALIKE AIMATAN,sex,laki_laki,,552,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.19.2002,4,KALIKE AIMATAN,sex,perempuan,,569,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.19.2002,4,KALIKE AIMATAN,total,total,,1121,jiwa,2025,registration,total_population,3.1,22,,
+53.06.19.2003,4,SULENGWASENG,sex,laki_laki,,436,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.19.2003,4,SULENGWASENG,sex,perempuan,,474,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.19.2003,4,SULENGWASENG,total,total,,910,jiwa,2025,registration,total_population,3.1,22,,
+53.06.19.2004,4,KENERE,sex,laki_laki,,343,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.19.2004,4,KENERE,sex,perempuan,,395,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.19.2004,4,KENERE,total,total,,738,jiwa,2025,registration,total_population,3.1,22,,
+53.06.19.2005,4,LEMANU,sex,laki_laki,,610,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.19.2005,4,LEMANU,sex,perempuan,,652,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.19.2005,4,LEMANU,total,total,,1262,jiwa,2025,registration,total_population,3.1,22,,
+53.06.19.2006,4,LEWOGRARAN,sex,laki_laki,,485,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.19.2006,4,LEWOGRARAN,sex,perempuan,,452,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.19.2006,4,LEWOGRARAN,total,total,,937,jiwa,2025,registration,total_population,3.1,22,,
+53.06.19.2007,4,BUBUATAGAMU,sex,laki_laki,,691,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.19.2007,4,BUBUATAGAMU,sex,perempuan,,687,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.19.2007,4,BUBUATAGAMU,total,total,,1378,jiwa,2025,registration,total_population,3.1,22,,
+53.06.19,3,Kecamatan Solor Selatan,sex,laki_laki,,3652,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+53.06.19,3,Kecamatan Solor Selatan,sex,perempuan,,3802,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+53.06.19,3,Kecamatan Solor Selatan,total,total,,7454,jiwa,2025,registration,total_population,3.1,22,,
+53.06.19,3,Solor Selatan,age_group,0-4,laki_laki,183,jiwa,2025,registration,total_population,3.2,24,,00-04
+53.06.19,3,Solor Selatan,age_group,0-4,perempuan,168,jiwa,2025,registration,total_population,3.2,24,,00-04
+53.06.19,3,Solor Selatan,age_group,0-4,,351,jiwa,2025,registration,total_population,3.2,24,,00-04
+53.06.19,3,Solor Selatan,age_group,5-9,laki_laki,303,jiwa,2025,registration,total_population,3.2,24,,05-09
+53.06.19,3,Solor Selatan,age_group,5-9,perempuan,273,jiwa,2025,registration,total_population,3.2,24,,05-09
+53.06.19,3,Solor Selatan,age_group,5-9,,576,jiwa,2025,registration,total_population,3.2,24,,05-09
+53.06.19,3,Solor Selatan,age_group,10-14,laki_laki,378,jiwa,2025,registration,total_population,3.2,24,,10-14
+53.06.19,3,Solor Selatan,age_group,10-14,perempuan,314,jiwa,2025,registration,total_population,3.2,24,,10-14
+53.06.19,3,Solor Selatan,age_group,10-14,,692,jiwa,2025,registration,total_population,3.2,24,,10-14
+53.06.19,3,Solor Selatan,age_group,15-19,laki_laki,369,jiwa,2025,registration,total_population,3.2,24,,15-19
+53.06.19,3,Solor Selatan,age_group,15-19,perempuan,338,jiwa,2025,registration,total_population,3.2,24,,15-19
+53.06.19,3,Solor Selatan,age_group,15-19,,707,jiwa,2025,registration,total_population,3.2,24,,15-19
+53.06.19,3,Solor Selatan,age_group,20-24,laki_laki,338,jiwa,2025,registration,total_population,3.2,24,,20-24
+53.06.19,3,Solor Selatan,age_group,20-24,perempuan,404,jiwa,2025,registration,total_population,3.2,24,,20-24
+53.06.19,3,Solor Selatan,age_group,20-24,,742,jiwa,2025,registration,total_population,3.2,24,,20-24
+53.06.19,3,Solor Selatan,age_group,25-29,laki_laki,350,jiwa,2025,registration,total_population,3.2,24,,25-29
+53.06.19,3,Solor Selatan,age_group,25-29,perempuan,327,jiwa,2025,registration,total_population,3.2,24,,25-29
+53.06.19,3,Solor Selatan,age_group,25-29,,677,jiwa,2025,registration,total_population,3.2,24,,25-29
+53.06.19,3,Solor Selatan,age_group,30-34,laki_laki,254,jiwa,2025,registration,total_population,3.2,24,,30-34
+53.06.19,3,Solor Selatan,age_group,30-34,perempuan,226,jiwa,2025,registration,total_population,3.2,24,,30-34
+53.06.19,3,Solor Selatan,age_group,30-34,,480,jiwa,2025,registration,total_population,3.2,24,,30-34
+53.06.19,3,Solor Selatan,age_group,35-39,laki_laki,246,jiwa,2025,registration,total_population,3.2,24,,35-39
+53.06.19,3,Solor Selatan,age_group,35-39,perempuan,223,jiwa,2025,registration,total_population,3.2,24,,35-39
+53.06.19,3,Solor Selatan,age_group,35-39,,469,jiwa,2025,registration,total_population,3.2,24,,35-39
+53.06.19,3,Solor Selatan,age_group,40-44,laki_laki,200,jiwa,2025,registration,total_population,3.2,24,,40-44
+53.06.19,3,Solor Selatan,age_group,40-44,perempuan,205,jiwa,2025,registration,total_population,3.2,24,,40-44
+53.06.19,3,Solor Selatan,age_group,40-44,,405,jiwa,2025,registration,total_population,3.2,24,,40-44
+53.06.19,3,Solor Selatan,age_group,45-49,laki_laki,210,jiwa,2025,registration,total_population,3.2,24,,45-49
+53.06.19,3,Solor Selatan,age_group,45-49,perempuan,228,jiwa,2025,registration,total_population,3.2,24,,45-49
+53.06.19,3,Solor Selatan,age_group,45-49,,438,jiwa,2025,registration,total_population,3.2,24,,45-49
+53.06.19,3,Solor Selatan,age_group,50-54,laki_laki,195,jiwa,2025,registration,total_population,3.2,24,,50-54
+53.06.19,3,Solor Selatan,age_group,50-54,perempuan,248,jiwa,2025,registration,total_population,3.2,24,,50-54
+53.06.19,3,Solor Selatan,age_group,50-54,,443,jiwa,2025,registration,total_population,3.2,24,,50-54
+53.06.19,3,Solor Selatan,age_group,55-59,laki_laki,171,jiwa,2025,registration,total_population,3.2,24,,55-59
+53.06.19,3,Solor Selatan,age_group,55-59,perempuan,224,jiwa,2025,registration,total_population,3.2,24,,55-59
+53.06.19,3,Solor Selatan,age_group,55-59,,395,jiwa,2025,registration,total_population,3.2,24,,55-59
+53.06.19,3,Solor Selatan,age_group,60-64,laki_laki,149,jiwa,2025,registration,total_population,3.2,24,,60-64
+53.06.19,3,Solor Selatan,age_group,60-64,perempuan,192,jiwa,2025,registration,total_population,3.2,24,,60-64
+53.06.19,3,Solor Selatan,age_group,60-64,,341,jiwa,2025,registration,total_population,3.2,24,,60-64
+53.06.19,3,Solor Selatan,age_group,65-69,laki_laki,125,jiwa,2025,registration,total_population,3.2,24,,65-69
+53.06.19,3,Solor Selatan,age_group,65-69,perempuan,151,jiwa,2025,registration,total_population,3.2,24,,65-69
+53.06.19,3,Solor Selatan,age_group,65-69,,276,jiwa,2025,registration,total_population,3.2,24,,65-69
+53.06.19,3,Solor Selatan,age_group,70-74,laki_laki,68,jiwa,2025,registration,total_population,3.2,24,,70-74
+53.06.19,3,Solor Selatan,age_group,70-74,perempuan,113,jiwa,2025,registration,total_population,3.2,24,,70-74
+53.06.19,3,Solor Selatan,age_group,70-74,,181,jiwa,2025,registration,total_population,3.2,24,,70-74
+53.06.19,3,Solor Selatan,age_group,75+,laki_laki,113,jiwa,2025,registration,total_population,3.2,24,,>75
+53.06.19,3,Solor Selatan,age_group,75+,perempuan,168,jiwa,2025,registration,total_population,3.2,24,,>75
+53.06.19,3,Solor Selatan,age_group,75+,,281,jiwa,2025,registration,total_population,3.2,24,,>75
+53.06.19,3,Kecamatan Solor Selatan,sex,laki_laki,,3652,jiwa,2025,registration,total_population,3.2,24,,Laki-Laki
+53.06.19,3,Kecamatan Solor Selatan,sex,perempuan,,3802,jiwa,2025,registration,total_population,3.2,24,,Perempuan
+53.06.19,3,Kecamatan Solor Selatan,total,total,,7454,jiwa,2025,registration,total_population,3.2,24,,

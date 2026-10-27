@@ -1,0 +1,55 @@
+{
+  "datasetCode": "bps-5304-kecamatan-530217-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.02.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Nunkolo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Selatan",
+  "publisherDomain": "5304",
+  "publisherWebsite": "https://timortengahselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Selatan (https://timortengahselatankab.bps.go.id), publikasi \"Kecamatan Nunkolo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5304102",
+  "publicationNumber": "53040.26029",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahselatankab.bps.go.id/id/publication/2026/09/28/bd249f3941a9a91d8bd7f029/kecamatan-nunkolo-dalam-angka-2026.html",
+  "sourceFileSha256": "c3b904e22a38f49d5908320bb90e948456fe324a0d6185e5855ff844d8a764e6",
+  "sourceFileBytes": 13515531,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Timor Tengah Selatan",
+  "csvPath": "datasets/bps-5304-kecamatan-530217-dalam-angka-2026.csv",
+  "csvSha256": "5eece8f12643fb2f54ab9d8a030160a7f143480468ce263d3d47fa2ee9d046b0",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Nunkolo , 202 5",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Nunkolo , 202 5",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Hoineno\": unmatched ",
+    "table 3.1: row not stored: row \"Op 11,59%\": unmatched ",
+    "table 3.1: row not stored: row \"Saenam 8,37%\": unmatched ",
+    "table 3.1: row not stored: row \"Sahan 13,52%\": unmatched ",
+    "table 3.1: row not stored: row \"Nenoat 14,09%\": unmatched ",
+    "table 3.1: row not stored: row \"Nunkolo 9,95%\": unmatched ",
+    "table 3.1: row not stored: row \"Hoineno 14,75%\": unmatched ",
+    "table 3.1: row not stored: row \"Fat 7,09%\": unmatched ",
+    "table 3.1: row not stored: row \"Putun 11,41%\": unmatched ",
+    "table 3.1: row not stored: row \"Haumeni 9,23%\": unmatched ",
+    "table 3.1: row not stored: row \"Nunkolo 100,00%\": unmatched "
+  ]
+}

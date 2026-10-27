@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.11.17.2002,4,Waimbidi,sex,laki_laki,,324,jiwa,2026,registration,total_population,3.1,27,,Laki-Laki/Male
+53.11.17.2002,4,Waimbidi,sex,perempuan,,286,jiwa,2026,registration,total_population,3.1,27,,Perempuan/Female
+53.11.17.2002,4,Waimbidi,total,total,,610,jiwa,2026,registration,total_population,3.1,27,,
+53.11.17.2001,4,Luku Wingir,sex,laki_laki,,360,jiwa,2026,registration,total_population,3.1,27,,Laki-Laki/Male
+53.11.17.2001,4,Luku Wingir,sex,perempuan,,345,jiwa,2026,registration,total_population,3.1,27,,Perempuan/Female
+53.11.17.2001,4,Luku Wingir,total,total,,705,jiwa,2026,registration,total_population,3.1,27,,
+53.11.17.2005,4,Marada Mundi,sex,laki_laki,,486,jiwa,2026,registration,total_population,3.1,27,,Laki-Laki/Male
+53.11.17.2005,4,Marada Mundi,sex,perempuan,,429,jiwa,2026,registration,total_population,3.1,27,,Perempuan/Female
+53.11.17.2005,4,Marada Mundi,total,total,,915,jiwa,2026,registration,total_population,3.1,27,,
+53.11.17.2006,4,Maidang,sex,laki_laki,,526,jiwa,2026,registration,total_population,3.1,27,,Laki-Laki/Male
+53.11.17.2006,4,Maidang,sex,perempuan,,457,jiwa,2026,registration,total_population,3.1,27,,Perempuan/Female
+53.11.17.2006,4,Maidang,total,total,,983,jiwa,2026,registration,total_population,3.1,27,,
+53.11.17.2003,4,Laimeta,sex,laki_laki,,394,jiwa,2026,registration,total_population,3.1,27,,Laki-Laki/Male
+53.11.17.2003,4,Laimeta,sex,perempuan,,408,jiwa,2026,registration,total_population,3.1,27,,Perempuan/Female
+53.11.17.2003,4,Laimeta,total,total,,802,jiwa,2026,registration,total_population,3.1,27,,
+53.11.17.2004,4,Mahu Bokul,sex,laki_laki,,271,jiwa,2026,registration,total_population,3.1,27,,Laki-Laki/Male
+53.11.17.2004,4,Mahu Bokul,sex,perempuan,,309,jiwa,2026,registration,total_population,3.1,27,,Perempuan/Female
+53.11.17.2004,4,Mahu Bokul,total,total,,580,jiwa,2026,registration,total_population,3.1,27,,
+53.11.17,3,Kambata Mapambuhang,sex,laki_laki,,2361,jiwa,2026,registration,total_population,3.1,27,,Laki-Laki/Male
+53.11.17,3,Kambata Mapambuhang,sex,perempuan,,2234,jiwa,2026,registration,total_population,3.1,27,,Perempuan/Female
+53.11.17,3,Kambata Mapambuhang,total,total,,4595,jiwa,2026,registration,total_population,3.1,27,,
+53.11.17,3,Kambata Mapambuhang,sex,laki_laki,,2361,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+53.11.17,3,Kambata Mapambuhang,sex,perempuan,,2234,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+53.11.17,3,Kambata Mapambuhang,total,total,,4595,jiwa,2025,registration,total_population,3.2,29,,

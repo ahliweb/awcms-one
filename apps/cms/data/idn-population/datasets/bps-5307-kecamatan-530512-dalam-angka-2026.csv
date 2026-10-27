@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.05.12.2001,4,Mataru Selatan,sex,laki_laki,,499,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.12.2001,4,Mataru Selatan,sex,perempuan,,472,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.12.2001,4,Mataru Selatan,total,total,,971,jiwa,2025,registration,total_population,3.1,,,
+53.05.12.2007,4,Taman Mataru,sex,laki_laki,,449,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.12.2007,4,Taman Mataru,sex,perempuan,,438,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.12.2007,4,Taman Mataru,total,total,,887,jiwa,2025,registration,total_population,3.1,,,
+53.05.12.2004,4,Mataru Timur,sex,laki_laki,,417,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.12.2004,4,Mataru Timur,sex,perempuan,,433,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.12.2004,4,Mataru Timur,total,total,,850,jiwa,2025,registration,total_population,3.1,,,
+53.05.12.2002,4,Mataru Utara,sex,laki_laki,,738,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.12.2002,4,Mataru Utara,sex,perempuan,,719,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.12.2002,4,Mataru Utara,total,total,,1457,jiwa,2025,registration,total_population,3.1,,,
+53.05.12.2006,4,Mataru Barat,sex,laki_laki,,613,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.12.2006,4,Mataru Barat,sex,perempuan,,632,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.12.2006,4,Mataru Barat,total,total,,1245,jiwa,2025,registration,total_population,3.1,,,
+53.05.12,3,Mataru,sex,laki_laki,,3617,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.12,3,Mataru,sex,perempuan,,3658,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.12,3,Mataru,total,total,,7275,jiwa,2025,registration,total_population,3.1,,,

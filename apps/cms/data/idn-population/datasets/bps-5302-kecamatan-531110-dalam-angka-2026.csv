@@ -1,0 +1,26 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.11.10.2002,4,Kuruwaki,sex,laki_laki,,473,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.10.2002,4,Kuruwaki,sex,perempuan,,424,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.10.2002,4,Kuruwaki,total,total,,897,jiwa,2025,registration,total_population,3.1,30,,
+53.11.10.2005,4,Pamburu,total,total,,954,jiwa,2025,registration,total_population,3.1,30,,
+53.11.10.2001,4,Kaliuda,sex,laki_laki,,2533,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.10.2001,4,Kaliuda,sex,perempuan,,2538,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.10.2001,4,Kaliuda,total,total,,5071,jiwa,2025,registration,total_population,3.1,30,,
+53.11.10.2003,4,Tanamanang,sex,laki_laki,,1105,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.10.2003,4,Tanamanang,sex,perempuan,,1136,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.10.2003,4,Tanamanang,total,total,,2241,jiwa,2025,registration,total_population,3.1,30,,
+53.11.10.2007,4,Tamma,sex,laki_laki,,934,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.10.2007,4,Tamma,sex,perempuan,,927,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.10.2007,4,Tamma,total,total,,1861,jiwa,2025,registration,total_population,3.1,30,,
+53.11.10.2006,4,Lambakara,sex,laki_laki,,891,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.10.2006,4,Lambakara,sex,perempuan,,843,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.10.2006,4,Lambakara,total,total,,1734,jiwa,2025,registration,total_population,3.1,30,,
+53.11.10.2004,4,Mburukulu,sex,laki_laki,,956,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.10.2004,4,Mburukulu,sex,perempuan,,948,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.10.2004,4,Mburukulu,total,total,,1904,jiwa,2025,registration,total_population,3.1,30,,
+53.11.10.2009,4,Palanggai,sex,laki_laki,,476,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.10.2009,4,Palanggai,sex,perempuan,,504,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.10.2009,4,Palanggai,total,total,,980,jiwa,2025,registration,total_population,3.1,30,,
+53.11.10,3,Pahunga Lodu,sex,laki_laki,,7843,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.10,3,Pahunga Lodu,sex,perempuan,,7799,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.10,3,Pahunga Lodu,total,total,,15642,jiwa,2025,registration,total_population,3.1,30,,

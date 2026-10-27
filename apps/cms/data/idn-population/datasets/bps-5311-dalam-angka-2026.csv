@@ -1,0 +1,252 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.08.01,3,Nangapanda,total,total,,24516,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08.02,3,Pulau Ende,total,total,,9106,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08.11,3,Maukaro,total,total,,8225,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08.03,3,Ende,total,total,,18618,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08.04,3,Ende Selatan,total,total,,27084,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08.20,3,Ende Timur,total,total,,19910,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08.19,3,Ende Tengah,total,total,,24355,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08.18,3,Ende Utara,total,total,,18763,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08.05,3,Ndona,total,total,,14668,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08.16,3,Ndona Timur,total,total,,5151,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08.08,3,Wolowaru,total,total,,16808,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08.09,3,Wolojita,total,total,,6431,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08.12,3,Lio Timur,total,total,,8404,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08.14,3,Kelimutu,total,total,,7396,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08.17,3,Ndori,total,total,,6148,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08.10,3,Maurole,total,total,,11954,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08.13,3,Kotabaru,total,total,,10792,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08.15,3,Detukeli,total,total,,7091,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08.21,3,Lepembusu Kelisoke,total,total,,5503,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08.06,3,Detusoko,total,total,,14972,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08.07,3,Wewaria,total,total,,18270,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08,2,Kabupaten Ende,total,total,,284165,jiwa,2025,projection,total_population,3.1.1,43,,
+53.08,2,Kabupaten Ende,age_group,0-4,laki_laki,11670,jiwa,2025,projection,total_population,3.1.2,46,,0–4
+53.08,2,Kabupaten Ende,age_group,0-4,perempuan,11285,jiwa,2025,projection,total_population,3.1.2,46,,0–4
+53.08,2,Kabupaten Ende,age_group,0-4,,22955,jiwa,2025,projection,total_population,3.1.2,46,,0–4
+53.08,2,Kabupaten Ende,age_group,5-9,laki_laki,10837,jiwa,2025,projection,total_population,3.1.2,46,,5–9
+53.08,2,Kabupaten Ende,age_group,5-9,perempuan,10272,jiwa,2025,projection,total_population,3.1.2,46,,5–9
+53.08,2,Kabupaten Ende,age_group,5-9,,21109,jiwa,2025,projection,total_population,3.1.2,46,,5–9
+53.08,2,Kabupaten Ende,age_group,10-14,laki_laki,12954,jiwa,2025,projection,total_population,3.1.2,46,,10–14
+53.08,2,Kabupaten Ende,age_group,10-14,perempuan,12302,jiwa,2025,projection,total_population,3.1.2,46,,10–14
+53.08,2,Kabupaten Ende,age_group,10-14,,25256,jiwa,2025,projection,total_population,3.1.2,46,,10–14
+53.08,2,Kabupaten Ende,age_group,15-19,laki_laki,12095,jiwa,2025,projection,total_population,3.1.2,46,,15–19
+53.08,2,Kabupaten Ende,age_group,15-19,perempuan,11247,jiwa,2025,projection,total_population,3.1.2,46,,15–19
+53.08,2,Kabupaten Ende,age_group,15-19,,23342,jiwa,2025,projection,total_population,3.1.2,46,,15–19
+53.08,2,Kabupaten Ende,age_group,20-24,laki_laki,11867,jiwa,2025,projection,total_population,3.1.2,46,,20–24
+53.08,2,Kabupaten Ende,age_group,20-24,perempuan,11387,jiwa,2025,projection,total_population,3.1.2,46,,20–24
+53.08,2,Kabupaten Ende,age_group,20-24,,23254,jiwa,2025,projection,total_population,3.1.2,46,,20–24
+53.08,2,Kabupaten Ende,age_group,25-29,laki_laki,12394,jiwa,2025,projection,total_population,3.1.2,46,,25–29
+53.08,2,Kabupaten Ende,age_group,25-29,perempuan,11958,jiwa,2025,projection,total_population,3.1.2,46,,25–29
+53.08,2,Kabupaten Ende,age_group,25-29,,24352,jiwa,2025,projection,total_population,3.1.2,46,,25–29
+53.08,2,Kabupaten Ende,age_group,30-34,laki_laki,11417,jiwa,2025,projection,total_population,3.1.2,46,,30–34
+53.08,2,Kabupaten Ende,age_group,30-34,perempuan,11136,jiwa,2025,projection,total_population,3.1.2,46,,30–34
+53.08,2,Kabupaten Ende,age_group,30-34,,22553,jiwa,2025,projection,total_population,3.1.2,46,,30–34
+53.08,2,Kabupaten Ende,age_group,35-39,laki_laki,10271,jiwa,2025,projection,total_population,3.1.2,46,,35–39
+53.08,2,Kabupaten Ende,age_group,35-39,perempuan,10330,jiwa,2025,projection,total_population,3.1.2,46,,35–39
+53.08,2,Kabupaten Ende,age_group,35-39,,20601,jiwa,2025,projection,total_population,3.1.2,46,,35–39
+53.08,2,Kabupaten Ende,age_group,40-44,laki_laki,9343,jiwa,2025,projection,total_population,3.1.2,46,,40–44
+53.08,2,Kabupaten Ende,age_group,40-44,perempuan,9902,jiwa,2025,projection,total_population,3.1.2,46,,40–44
+53.08,2,Kabupaten Ende,age_group,40-44,,19245,jiwa,2025,projection,total_population,3.1.2,46,,40–44
+53.08,2,Kabupaten Ende,age_group,45-49,laki_laki,8347,jiwa,2025,projection,total_population,3.1.2,46,,45–49
+53.08,2,Kabupaten Ende,age_group,45-49,perempuan,9527,jiwa,2025,projection,total_population,3.1.2,46,,45–49
+53.08,2,Kabupaten Ende,age_group,45-49,,17874,jiwa,2025,projection,total_population,3.1.2,46,,45–49
+53.08,2,Kabupaten Ende,age_group,50-54,laki_laki,7349,jiwa,2025,projection,total_population,3.1.2,46,,50–54
+53.08,2,Kabupaten Ende,age_group,50-54,perempuan,8711,jiwa,2025,projection,total_population,3.1.2,46,,50–54
+53.08,2,Kabupaten Ende,age_group,50-54,,16060,jiwa,2025,projection,total_population,3.1.2,46,,50–54
+53.08,2,Kabupaten Ende,age_group,55-59,laki_laki,6224,jiwa,2025,projection,total_population,3.1.2,46,,55–59
+53.08,2,Kabupaten Ende,age_group,55-59,perempuan,7748,jiwa,2025,projection,total_population,3.1.2,46,,55–59
+53.08,2,Kabupaten Ende,age_group,55-59,,13972,jiwa,2025,projection,total_population,3.1.2,46,,55–59
+53.08,2,Kabupaten Ende,age_group,60-64,laki_laki,5150,jiwa,2025,projection,total_population,3.1.2,46,,60–64
+53.08,2,Kabupaten Ende,age_group,60-64,perempuan,6535,jiwa,2025,projection,total_population,3.1.2,46,,60–64
+53.08,2,Kabupaten Ende,age_group,60-64,,11685,jiwa,2025,projection,total_population,3.1.2,46,,60–64
+53.08,2,Kabupaten Ende,age_group,65-69,laki_laki,3849,jiwa,2025,projection,total_population,3.1.2,46,,65–69
+53.08,2,Kabupaten Ende,age_group,65-69,perempuan,5122,jiwa,2025,projection,total_population,3.1.2,46,,65–69
+53.08,2,Kabupaten Ende,age_group,65-69,,8971,jiwa,2025,projection,total_population,3.1.2,46,,65–69
+53.08,2,Kabupaten Ende,age_group,70-74,laki_laki,2711,jiwa,2025,projection,total_population,3.1.2,46,,70–74
+53.08,2,Kabupaten Ende,age_group,70-74,perempuan,3616,jiwa,2025,projection,total_population,3.1.2,46,,70–74
+53.08,2,Kabupaten Ende,age_group,70-74,,6327,jiwa,2025,projection,total_population,3.1.2,46,,70–74
+53.08,2,Kabupaten Ende,age_group,75+,laki_laki,2912,jiwa,2025,projection,total_population,3.1.2,46,,75+
+53.08,2,Kabupaten Ende,age_group,75+,perempuan,3697,jiwa,2025,projection,total_population,3.1.2,46,,75+
+53.08,2,Kabupaten Ende,age_group,75+,,6609,jiwa,2025,projection,total_population,3.1.2,46,,75+
+53.08,2,Kabupaten Ende,sex,laki_laki,,139390,jiwa,2025,projection,total_population,3.1.2,46,,Laki-Laki
+53.08,2,Kabupaten Ende,sex,perempuan,,144775,jiwa,2025,projection,total_population,3.1.2,46,,Perempuan
+53.08,2,Kabupaten Ende,total,total,,284165,jiwa,2025,projection,total_population,3.1.2,46,,
+53.08.01,3,Nangapanda,religion,islam,,8880,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.01,3,Nangapanda,religion,kristen,,59,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08.01,3,Nangapanda,religion,katolik,,14799,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.01,3,Nangapanda,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+53.08.01,3,Nangapanda,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Budha
+53.08.01,3,Nangapanda,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Lainnya
+53.08.02,3,Pulau Ende,religion,islam,,8836,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.02,3,Pulau Ende,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Protestan
+53.08.02,3,Pulau Ende,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.02,3,Pulau Ende,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Hindu
+53.08.02,3,Pulau Ende,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Budha
+53.08.02,3,Pulau Ende,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Lainnya
+53.08.11,3,Maukaro,religion,islam,,536,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.11,3,Maukaro,religion,kristen,,15,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08.11,3,Maukaro,religion,katolik,,7830,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.11,3,Maukaro,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Hindu
+53.08.11,3,Maukaro,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Budha
+53.08.11,3,Maukaro,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Lainnya
+53.08.03,3,Ende,religion,islam,,1027,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.03,3,Ende,religion,kristen,,53,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08.03,3,Ende,religion,katolik,,18283,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.03,3,Ende,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Hindu
+53.08.03,3,Ende,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Budha
+53.08.03,3,Ende,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Lainnya
+53.08.04,3,Ende Selatan,religion,islam,,20077,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.04,3,Ende Selatan,religion,kristen,,1709,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08.04,3,Ende Selatan,religion,katolik,,5175,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.04,3,Ende Selatan,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+53.08.04,3,Ende Selatan,religion,buddha,,9,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+53.08.04,3,Ende Selatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Lainnya
+53.08.20,3,Ende Timur,religion,islam,,5260,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.20,3,Ende Timur,religion,kristen,,1021,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08.20,3,Ende Timur,religion,katolik,,13219,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.20,3,Ende Timur,religion,hindu,,48,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+53.08.20,3,Ende Timur,religion,buddha,,6,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+53.08.20,3,Ende Timur,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+53.08.19,3,Ende Tengah,religion,islam,,5108,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.19,3,Ende Tengah,religion,kristen,,1956,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08.19,3,Ende Tengah,religion,katolik,,16661,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.19,3,Ende Tengah,religion,hindu,,58,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+53.08.19,3,Ende Tengah,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+53.08.19,3,Ende Tengah,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Lainnya
+53.08.18,3,Ende Utara,religion,islam,,9614,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.18,3,Ende Utara,religion,kristen,,425,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08.18,3,Ende Utara,religion,katolik,,8902,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.18,3,Ende Utara,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+53.08.18,3,Ende Utara,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Budha
+53.08.18,3,Ende Utara,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Lainnya
+53.08.05,3,Ndona,religion,islam,,3156,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.05,3,Ndona,religion,kristen,,213,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08.05,3,Ndona,religion,katolik,,10770,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.05,3,Ndona,religion,hindu,,9,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+53.08.05,3,Ndona,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Budha
+53.08.05,3,Ndona,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Lainnya
+53.08.16,3,Ndona Timur,religion,islam,,9,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.16,3,Ndona Timur,religion,kristen,,9,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08.16,3,Ndona Timur,religion,katolik,,5590,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.16,3,Ndona Timur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Hindu
+53.08.16,3,Ndona Timur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Budha
+53.08.16,3,Ndona Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Lainnya
+53.08.08,3,Wolowaru,religion,islam,,6590,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.08,3,Wolowaru,religion,kristen,,126,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08.08,3,Wolowaru,religion,katolik,,10321,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.08,3,Wolowaru,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+53.08.08,3,Wolowaru,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Budha
+53.08.08,3,Wolowaru,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Lainnya
+53.08.09,3,Wolojita,religion,islam,,874,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.09,3,Wolojita,religion,kristen,,12,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08.09,3,Wolojita,religion,katolik,,5361,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.09,3,Wolojita,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Hindu
+53.08.09,3,Wolojita,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Budha
+53.08.09,3,Wolojita,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Lainnya
+53.08.12,3,Lio Timur,religion,islam,,797,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.12,3,Lio Timur,religion,kristen,,24,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08.12,3,Lio Timur,religion,katolik,,7265,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.12,3,Lio Timur,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Hindu
+53.08.12,3,Lio Timur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Budha
+53.08.12,3,Lio Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Lainnya
+53.08.14,3,Kelimutu,religion,islam,,207,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.14,3,Kelimutu,religion,kristen,,27,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08.14,3,Kelimutu,religion,katolik,,7462,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.14,3,Kelimutu,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+53.08.14,3,Kelimutu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Budha
+53.08.14,3,Kelimutu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Lainnya
+53.08.17,3,Ndori,religion,islam,,3949,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.17,3,Ndori,religion,kristen,,9,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08.17,3,Ndori,religion,katolik,,1937,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.17,3,Ndori,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+53.08.17,3,Ndori,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Budha
+53.08.17,3,Ndori,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Lainnya
+53.08.10,3,Maurole,religion,islam,,1629,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.10,3,Maurole,religion,kristen,,65,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08.10,3,Maurole,religion,katolik,,11221,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.10,3,Maurole,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+53.08.10,3,Maurole,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Budha
+53.08.10,3,Maurole,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Lainnya
+53.08.13,3,Kotabaru,religion,islam,,266,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.13,3,Kotabaru,religion,kristen,,15,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08.13,3,Kotabaru,religion,katolik,,11321,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.13,3,Kotabaru,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+53.08.13,3,Kotabaru,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Budha
+53.08.13,3,Kotabaru,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Lainnya
+53.08.15,3,Detukeli,religion,islam,,4,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.15,3,Detukeli,religion,kristen,,8,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08.15,3,Detukeli,religion,katolik,,7453,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.15,3,Detukeli,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Hindu
+53.08.15,3,Detukeli,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Budha
+53.08.15,3,Detukeli,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Lainnya
+53.08.21,3,Lepembusu Kelisoke,religion,islam,,6,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.21,3,Lepembusu Kelisoke,religion,kristen,,28,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08.21,3,Lepembusu Kelisoke,religion,katolik,,6274,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.21,3,Lepembusu Kelisoke,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Hindu
+53.08.21,3,Lepembusu Kelisoke,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Budha
+53.08.21,3,Lepembusu Kelisoke,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Lainnya
+53.08.06,3,Detusoko,religion,islam,,27,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.06,3,Detusoko,religion,kristen,,50,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08.06,3,Detusoko,religion,katolik,,14715,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.06,3,Detusoko,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+53.08.06,3,Detusoko,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Budha
+53.08.06,3,Detusoko,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Lainnya
+53.08.07,3,Wewaria,religion,islam,,714,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08.07,3,Wewaria,religion,kristen,,50,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08.07,3,Wewaria,religion,katolik,,19200,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08.07,3,Wewaria,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+53.08.07,3,Wewaria,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Budha
+53.08.07,3,Wewaria,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,nil,Lainnya
+53.08,2,Kabupaten Ende,religion,islam,,77566,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+53.08,2,Kabupaten Ende,religion,kristen,,5874,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+53.08,2,Kabupaten Ende,religion,katolik,,203763,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+53.08,2,Kabupaten Ende,religion,hindu,,138,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+53.08,2,Kabupaten Ende,religion,buddha,,20,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+53.08,2,Kabupaten Ende,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/padi_padian,,149275,rupiah,2024,survey_estimate,per_capita,10.1,226,,Padi-padian
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/padi_padian,,148843,rupiah,2025,survey_estimate,per_capita,10.1,226,,Padi-padian
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/umbi_umbian,,11563,rupiah,2024,survey_estimate,per_capita,10.1,226,,Umbi-umbian
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/umbi_umbian,,10664,rupiah,2025,survey_estimate,per_capita,10.1,226,,Umbi-umbian
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,52880,rupiah,2024,survey_estimate,per_capita,10.1,226,,Ikan/udang/cumi/kerang
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,52720,rupiah,2025,survey_estimate,per_capita,10.1,226,,Ikan/udang/cumi/kerang
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/daging,,19992,rupiah,2024,survey_estimate,per_capita,10.1,226,,Daging
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/daging,,18281,rupiah,2025,survey_estimate,per_capita,10.1,226,,Daging
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/telur_dan_susu,,21226,rupiah,2024,survey_estimate,per_capita,10.1,226,,Telur dan susu
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/telur_dan_susu,,22720,rupiah,2025,survey_estimate,per_capita,10.1,226,,Telur dan susu
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/sayur_sayuran,,54958,rupiah,2024,survey_estimate,per_capita,10.1,226,,Sayur-sayuran
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/sayur_sayuran,,55885,rupiah,2025,survey_estimate,per_capita,10.1,226,,Sayur-sayuran
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/kacang_kacangan,,6014,rupiah,2024,survey_estimate,per_capita,10.1,226,,Kacang-kacangan
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/kacang_kacangan,,8771,rupiah,2025,survey_estimate,per_capita,10.1,226,,Kacang-kacangan
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/buah_buahan,,19222,rupiah,2024,survey_estimate,per_capita,10.1,226,,Buah-buahan
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/buah_buahan,,14178,rupiah,2025,survey_estimate,per_capita,10.1,226,,Buah-buahan
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/minyak_dan_kelapa,,15596,rupiah,2024,survey_estimate,per_capita,10.1,226,,Minyak dan kelapa
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16188,rupiah,2025,survey_estimate,per_capita,10.1,226,,Minyak dan kelapa
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/bahan_minuman,,20713,rupiah,2024,survey_estimate,per_capita,10.1,226,,Bahan minuman
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/bahan_minuman,,19319,rupiah,2025,survey_estimate,per_capita,10.1,226,,Bahan minuman
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/bumbu_bumbuan,,9763,rupiah,2024,survey_estimate,per_capita,10.1,226,,Bumbu-bumbuan
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/bumbu_bumbuan,,9451,rupiah,2025,survey_estimate,per_capita,10.1,226,,Bumbu-bumbuan
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/konsumsi_lainnya,,6768,rupiah,2024,survey_estimate,per_capita,10.1,226,,Konsumsi lainnya
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/konsumsi_lainnya,,9963,rupiah,2025,survey_estimate,per_capita,10.1,226,,Konsumsi lainnya
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,93765,rupiah,2024,survey_estimate,per_capita,10.1,226,,Makanan dan minuman jadi
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,98235,rupiah,2025,survey_estimate,per_capita,10.1,226,,Makanan dan minuman jadi
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/rokok,,67445,rupiah,2024,survey_estimate,per_capita,10.1,226,,Rokok
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/rokok,,53086,rupiah,2025,survey_estimate,per_capita,10.1,226,,Rokok
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/jumlah_makanan,,549180,rupiah,2024,survey_estimate,per_capita,10.1,226,,Jumlah makanan
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/jumlah_makanan,,538303,rupiah,2025,survey_estimate,per_capita,10.1,226,,Jumlah makanan
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,258994,rupiah,2024,survey_estimate,per_capita,10.1,226,,Perumahan dan fasilitas rumah tangga
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,272531,rupiah,2025,survey_estimate,per_capita,10.1,226,,Perumahan dan fasilitas rumah tangga
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,79217,rupiah,2024,survey_estimate,per_capita,10.1,226,,Aneka barang dan jasa
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,100365,rupiah,2025,survey_estimate,per_capita,10.1,226,,Aneka barang dan jasa
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,18062,rupiah,2024,survey_estimate,per_capita,10.1,226,,"Pakaian, alas kaki, dan tutup kepala"
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,21761,rupiah,2025,survey_estimate,per_capita,10.1,226,,"Pakaian, alas kaki, dan tutup kepala"
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/barang_tahan_lama,,19337,rupiah,2024,survey_estimate,per_capita,10.1,226,,Barang tahan lama
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/barang_tahan_lama,,15614,rupiah,2025,survey_estimate,per_capita,10.1,226,,Barang tahan lama
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,43031,rupiah,2024,survey_estimate,per_capita,10.1,226,,"Pajak, pungutan, dan asuransi"
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,43340,rupiah,2025,survey_estimate,per_capita,10.1,226,,"Pajak, pungutan, dan asuransi"
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,34133,rupiah,2024,survey_estimate,per_capita,10.1,226,,Keperluan pesta dan upacara/kenduri
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,14362,rupiah,2025,survey_estimate,per_capita,10.1,226,,Keperluan pesta dan upacara/kenduri
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,452773,rupiah,2024,survey_estimate,per_capita,10.1,226,,Jumlah bukan makanan
+53.08,2,Kabupaten Ende,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,467972,rupiah,2025,survey_estimate,per_capita,10.1,226,,Jumlah bukan makanan
+53.08,2,Kabupaten Ende,expenditure,total,,1001953,rupiah,2024,survey_estimate,per_capita,10.1,226,,
+53.08,2,Kabupaten Ende,expenditure,total,,1006275,rupiah,2025,survey_estimate,per_capita,10.1,226,,

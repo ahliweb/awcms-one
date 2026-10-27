@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.71.03.1001,4,Kelapa Lima,sex,laki_laki,,6876,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.03.1001,4,Kelapa Lima,sex,perempuan,,6977,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.03.1001,4,Kelapa Lima,total,total,,13853,jiwa,2025,registration,total_population,3.1,26,,
+53.71.03.1010,4,Oesapa,sex,laki_laki,,10713,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.03.1010,4,Oesapa,sex,perempuan,,10455,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.03.1010,4,Oesapa,total,total,,21168,jiwa,2025,registration,total_population,3.1,26,,
+53.71.03.1014,4,Oesapa Barat,sex,laki_laki,,5047,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.03.1014,4,Oesapa Barat,sex,perempuan,,4916,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.03.1014,4,Oesapa Barat,total,total,,9963,jiwa,2025,registration,total_population,3.1,26,,
+53.71.03.1015,4,Oesapa Selatan,sex,laki_laki,,1709,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.03.1015,4,Oesapa Selatan,sex,perempuan,,1758,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.03.1015,4,Oesapa Selatan,total,total,,3467,jiwa,2025,registration,total_population,3.1,26,,
+53.71.03.1011,4,Lasiana,sex,laki_laki,,7431,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.03.1011,4,Lasiana,sex,perempuan,,7364,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.03.1011,4,Lasiana,total,total,,14795,jiwa,2025,registration,total_population,3.1,26,,

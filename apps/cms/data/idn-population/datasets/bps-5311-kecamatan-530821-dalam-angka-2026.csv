@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.08.21.2003,4,Wologai Timur,sex,laki_laki,,221,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.21.2003,4,Wologai Timur,sex,perempuan,,255,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.21.2003,4,Wologai Timur,total,total,,476,jiwa,2025,registration,total_population,3.1,24,,
+53.08.21.2001,4,Nggumbelaka,sex,laki_laki,,202,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.21.2001,4,Nggumbelaka,sex,perempuan,,215,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.21.2001,4,Nggumbelaka,total,total,,417,jiwa,2025,registration,total_population,3.1,24,,
+53.08.21.2002,4,Mukureku,sex,laki_laki,,178,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.21.2002,4,Mukureku,sex,perempuan,,189,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.21.2002,4,Mukureku,total,total,,367,jiwa,2025,registration,total_population,3.1,24,,
+53.08.21.2004,4,Kuru,sex,laki_laki,,299,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.21.2004,4,Kuru,sex,perempuan,,341,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.21.2004,4,Kuru,total,total,,640,jiwa,2025,registration,total_population,3.1,24,,
+53.08.21.2005,4,Ndenggarongge,sex,laki_laki,,201,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.21.2005,4,Ndenggarongge,sex,perempuan,,216,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.21.2005,4,Ndenggarongge,total,total,,417,jiwa,2025,registration,total_population,3.1,24,,
+53.08.21.2008,4,Tanalangi,sex,laki_laki,,184,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.21.2008,4,Tanalangi,sex,perempuan,,198,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.21.2008,4,Tanalangi,total,total,,382,jiwa,2025,registration,total_population,3.1,24,,
+53.08.21.2007,4,Taniwoda,sex,laki_laki,,336,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.21.2007,4,Taniwoda,sex,perempuan,,350,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.21.2007,4,Taniwoda,total,total,,686,jiwa,2025,registration,total_population,3.1,24,,
+53.08.21.2009,4,Detuara,sex,laki_laki,,200,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.21.2009,4,Detuara,sex,perempuan,,194,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.21.2009,4,Detuara,total,total,,394,jiwa,2025,registration,total_population,3.1,24,,
+53.08.21.2010,4,Tiwusora,sex,laki_laki,,233,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.21.2010,4,Tiwusora,sex,perempuan,,208,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.21.2010,4,Tiwusora,total,total,,441,jiwa,2025,registration,total_population,3.1,24,,
+53.08.21.2006,4,Ndikosapu,sex,laki_laki,,241,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.21.2006,4,Ndikosapu,sex,perempuan,,249,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.21.2006,4,Ndikosapu,total,total,,490,jiwa,2025,registration,total_population,3.1,24,,
+53.08.21.2014,4,Kuru Sare,sex,laki_laki,,174,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.21.2014,4,Kuru Sare,sex,perempuan,,197,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.21.2014,4,Kuru Sare,total,total,,371,jiwa,2025,registration,total_population,3.1,24,,
+53.08.21.2013,4,Mukureku Saate,sex,laki_laki,,162,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.21.2013,4,Mukureku Saate,sex,perempuan,,158,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.21.2013,4,Mukureku Saate,total,total,,320,jiwa,2025,registration,total_population,3.1,24,,
+53.08.21.2011,4,Lise Kuru,sex,laki_laki,,291,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.21.2011,4,Lise Kuru,sex,perempuan,,292,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.21.2011,4,Lise Kuru,total,total,,583,jiwa,2025,registration,total_population,3.1,24,,
+53.08.21.2012,4,Rutu Jeja,sex,laki_laki,,155,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.21.2012,4,Rutu Jeja,sex,perempuan,,169,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.21.2012,4,Rutu Jeja,total,total,,324,jiwa,2025,registration,total_population,3.1,24,,
+53.08.21,3,Kecamatan Lepembusu Kelisoke,sex,laki_laki,,3077,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.21,3,Kecamatan Lepembusu Kelisoke,sex,perempuan,,3231,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.21,3,Kecamatan Lepembusu Kelisoke,total,total,,6308,jiwa,2025,registration,total_population,3.1,24,,
+53.08.21,3,Lepembusu Kelisoke,age_group,0-4,laki_laki,78,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.21,3,Lepembusu Kelisoke,age_group,0-4,perempuan,85,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.21,3,Lepembusu Kelisoke,age_group,0-4,,163,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.21,3,Lepembusu Kelisoke,age_group,5-9,laki_laki,300,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.21,3,Lepembusu Kelisoke,age_group,5-9,perempuan,295,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.21,3,Lepembusu Kelisoke,age_group,5-9,,595,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.21,3,Lepembusu Kelisoke,age_group,10-14,laki_laki,311,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.21,3,Lepembusu Kelisoke,age_group,10-14,perempuan,321,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.21,3,Lepembusu Kelisoke,age_group,10-14,,632,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.21,3,Lepembusu Kelisoke,age_group,15-19,laki_laki,413,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.21,3,Lepembusu Kelisoke,age_group,15-19,perempuan,383,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.21,3,Lepembusu Kelisoke,age_group,15-19,,796,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.21,3,Lepembusu Kelisoke,age_group,20-24,laki_laki,346,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.21,3,Lepembusu Kelisoke,age_group,20-24,perempuan,353,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.21,3,Lepembusu Kelisoke,age_group,20-24,,699,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.21,3,Lepembusu Kelisoke,age_group,25-29,laki_laki,340,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.21,3,Lepembusu Kelisoke,age_group,25-29,perempuan,304,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.21,3,Lepembusu Kelisoke,age_group,25-29,,644,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.21,3,Lepembusu Kelisoke,age_group,30-34,laki_laki,232,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.21,3,Lepembusu Kelisoke,age_group,30-34,perempuan,212,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.21,3,Lepembusu Kelisoke,age_group,30-34,,444,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.21,3,Lepembusu Kelisoke,age_group,35-39,laki_laki,195,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.21,3,Lepembusu Kelisoke,age_group,35-39,perempuan,180,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.21,3,Lepembusu Kelisoke,age_group,35-39,,375,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.21,3,Lepembusu Kelisoke,age_group,40-44,laki_laki,156,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.21,3,Lepembusu Kelisoke,age_group,40-44,perempuan,191,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.21,3,Lepembusu Kelisoke,age_group,40-44,,347,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.21,3,Lepembusu Kelisoke,age_group,45-49,laki_laki,138,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.21,3,Lepembusu Kelisoke,age_group,45-49,perempuan,179,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.21,3,Lepembusu Kelisoke,age_group,45-49,,317,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.21,3,Lepembusu Kelisoke,age_group,50-54,laki_laki,157,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.21,3,Lepembusu Kelisoke,age_group,50-54,perempuan,176,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.21,3,Lepembusu Kelisoke,age_group,50-54,,333,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.21,3,Lepembusu Kelisoke,age_group,55-59,laki_laki,105,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.21,3,Lepembusu Kelisoke,age_group,55-59,perempuan,173,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.21,3,Lepembusu Kelisoke,age_group,55-59,,278,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.21,3,Lepembusu Kelisoke,age_group,60-64,laki_laki,108,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.21,3,Lepembusu Kelisoke,age_group,60-64,perempuan,133,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.21,3,Lepembusu Kelisoke,age_group,60-64,,241,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.21,3,Lepembusu Kelisoke,age_group,65-69,laki_laki,73,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.21,3,Lepembusu Kelisoke,age_group,65-69,perempuan,104,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.21,3,Lepembusu Kelisoke,age_group,65-69,,177,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.21,3,Lepembusu Kelisoke,age_group,70-74,laki_laki,54,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.21,3,Lepembusu Kelisoke,age_group,70-74,perempuan,61,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.21,3,Lepembusu Kelisoke,age_group,70-74,,115,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.21,3,Lepembusu Kelisoke,age_group,75+,laki_laki,71,jiwa,2025,registration,total_population,3.2,26,,75 ke atas
+53.08.21,3,Lepembusu Kelisoke,age_group,75+,perempuan,81,jiwa,2025,registration,total_population,3.2,26,,75 ke atas
+53.08.21,3,Lepembusu Kelisoke,age_group,75+,,152,jiwa,2025,registration,total_population,3.2,26,,75 ke atas

@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-5310-kecamatan-530718-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.07.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Hewokloang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "5310",
+  "publisherWebsite": "https://sikkakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://sikkakab.bps.go.id), publikasi \"Kecamatan Hewokloang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5310051",
+  "publicationNumber": "53100.26017",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sikkakab.bps.go.id/id/publication/2026/09/28/a8dfd220ccab6ed5c2f964f2/kecamatan-hewokloang-dalam-angka-2026.html",
+  "sourceFileSha256": "78bf247d53f93d761abec97bf26f55a6bbdff3c74bed379054f83efd9b5b9f79",
+  "sourceFileBytes": 10788389,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Sikka",
+  "csvPath": "datasets/bps-5310-kecamatan-530718-dalam-angka-2026.csv",
+  "csvSha256": "f65e2effd8525daf23989910453b675e3a12479ae201d1533ebf19d69785578c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Hewokloang, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Hewokloang, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 53.07.18 are not stored: sex split vs total: parts sum 20172.0000 != 10086.0000 (diff 10086.0000); the source itself is inconsistent"
+  ]
+}

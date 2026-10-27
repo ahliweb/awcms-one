@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.05.18.2007,4,Margeta,sex,laki_laki,,272,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.18.2007,4,Margeta,sex,perempuan,,248,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.18.2007,4,Margeta,total,total,,520,jiwa,2025,registration,total_population,3.1,,,
+53.05.18.2003,4,Manatang,sex,laki_laki,,377,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.18.2003,4,Manatang,sex,perempuan,,376,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.18.2003,4,Manatang,total,total,,753,jiwa,2025,registration,total_population,3.1,,,
+53.05.18.2001,4,Tribur,sex,laki_laki,,1297,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.18.2001,4,Tribur,sex,perempuan,,1224,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.18.2001,4,Tribur,total,total,,2521,jiwa,2025,registration,total_population,3.1,,,
+53.05.18.2006,4,Kuifana,sex,laki_laki,,533,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.18.2006,4,Kuifana,sex,perempuan,,541,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.18.2006,4,Kuifana,total,total,,1074,jiwa,2025,registration,total_population,3.1,,,
+53.05.18.2002,4,Wakapsir,sex,laki_laki,,395,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.18.2002,4,Wakapsir,sex,perempuan,,373,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.18.2002,4,Wakapsir,total,total,,768,jiwa,2025,registration,total_population,3.1,,,
+53.05.18.2005,4,Wakapsir Timur,sex,laki_laki,,363,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.18.2005,4,Wakapsir Timur,sex,perempuan,,345,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.18.2005,4,Wakapsir Timur,total,total,,708,jiwa,2025,registration,total_population,3.1,,,
+53.05.18.2004,4,Orgen,sex,laki_laki,,385,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.18.2004,4,Orgen,sex,perempuan,,392,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.18.2004,4,Orgen,total,total,,777,jiwa,2025,registration,total_population,3.1,,,
+53.05.18,3,Abad Selatan,sex,laki_laki,,3622,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.18,3,Abad Selatan,sex,perempuan,,3499,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.18,3,Abad Selatan,total,total,,7121,jiwa,2025,registration,total_population,3.1,,,

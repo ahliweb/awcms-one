@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.18.10.2008,4,Omba Rade,sex,laki_laki,,1750,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.10.2008,4,Omba Rade,sex,perempuan,,1648,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.10.2008,4,Omba Rade,total,total,,3398,jiwa,2025,projection,total_population,3.1,24,,
+53.18.10.2006,4,Eka Pata,sex,laki_laki,,628,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.10.2006,4,Eka Pata,sex,perempuan,,557,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.10.2006,4,Eka Pata,total,total,,1185,jiwa,2025,projection,total_population,3.1,24,,
+53.18.10.2004,4,Wee Rame,sex,laki_laki,,1205,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.10.2004,4,Wee Rame,sex,perempuan,,1159,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.10.2004,4,Wee Rame,total,total,,2364,jiwa,2025,projection,total_population,3.1,24,,
+53.18.10.2003,4,Wee Kokora,sex,laki_laki,,1306,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.10.2003,4,Wee Kokora,sex,perempuan,,1224,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.10.2003,4,Wee Kokora,total,total,,2530,jiwa,2025,projection,total_population,3.1,24,,
+53.18.10.2009,4,Kali Ngara,sex,laki_laki,,1239,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.10.2009,4,Kali Ngara,sex,perempuan,,1205,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.10.2009,4,Kali Ngara,total,total,,2444,jiwa,2025,projection,total_population,3.1,24,,
+53.18.10.2005,4,Lombu,sex,laki_laki,,1607,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.10.2005,4,Lombu,sex,perempuan,,1533,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.10.2005,4,Lombu,total,total,,3140,jiwa,2025,projection,total_population,3.1,24,,
+53.18.10.2001,4,Kanelu,sex,laki_laki,,788,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.10.2001,4,Kanelu,sex,perempuan,,772,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.10.2001,4,Kanelu,total,total,,1560,jiwa,2025,projection,total_population,3.1,24,,
+53.18.10.2002,4,Tanggaba,sex,laki_laki,,677,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.10.2002,4,Tanggaba,sex,perempuan,,662,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.10.2002,4,Tanggaba,total,total,,1339,jiwa,2025,projection,total_population,3.1,24,,
+53.18.10.2010,4,Wee Patando,sex,laki_laki,,1518,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.10.2010,4,Wee Patando,sex,perempuan,,1509,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.10.2010,4,Wee Patando,total,total,,3027,jiwa,2025,projection,total_population,3.1,24,,
+53.18.10.2007,4,Bolora,sex,laki_laki,,737,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.10.2007,4,Bolora,sex,perempuan,,694,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.10.2007,4,Bolora,total,total,,1431,jiwa,2025,projection,total_population,3.1,24,,
+53.18.10.2015,4,Kadi Roma,sex,laki_laki,,578,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.10.2015,4,Kadi Roma,sex,perempuan,,531,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.10.2015,4,Kadi Roma,total,total,,1109,jiwa,2025,projection,total_population,3.1,24,,
+53.18.10.2016,4,Bondo Delo,sex,laki_laki,,551,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.10.2016,4,Bondo Delo,sex,perempuan,,498,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.10.2016,4,Bondo Delo,total,total,,1049,jiwa,2025,projection,total_population,3.1,24,,
+53.18.10.2020,4,Tarra Mata,sex,laki_laki,,793,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.10.2020,4,Tarra Mata,sex,perempuan,,723,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.10.2020,4,Tarra Mata,total,total,,1516,jiwa,2025,projection,total_population,3.1,24,,
+53.18.10.2012,4,Mata Wee Karoro,sex,laki_laki,,687,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.10.2012,4,Mata Wee Karoro,sex,perempuan,,662,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.10.2012,4,Mata Wee Karoro,total,total,,1349,jiwa,2025,projection,total_population,3.1,24,,
+53.18.10.2013,4,Gollu Sapi,sex,laki_laki,,1062,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.10.2013,4,Gollu Sapi,sex,perempuan,,1054,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.10.2013,4,Gollu Sapi,total,total,,2116,jiwa,2025,projection,total_population,3.1,24,,
+53.18.10.2014,4,Mata Lombu,sex,laki_laki,,968,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.10.2014,4,Mata Lombu,sex,perempuan,,949,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.10.2014,4,Mata Lombu,total,total,,1917,jiwa,2025,projection,total_population,3.1,24,,
+53.18.10.2018,4,Limbu Watu,sex,laki_laki,,752,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.10.2018,4,Limbu Watu,sex,perempuan,,699,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.10.2018,4,Limbu Watu,total,total,,1451,jiwa,2025,projection,total_population,3.1,24,,
+53.18.10.2017,4,Lete Wungana,sex,laki_laki,,626,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.10.2017,4,Lete Wungana,sex,perempuan,,601,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.10.2017,4,Lete Wungana,total,total,,1227,jiwa,2025,projection,total_population,3.1,24,,
+53.18.10.2019,4,Kiku Booko,sex,laki_laki,,451,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.10.2019,4,Kiku Booko,sex,perempuan,,447,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.10.2019,4,Kiku Booko,total,total,,898,jiwa,2025,projection,total_population,3.1,24,,
+53.18.10,3,Wewewa Tengah,sex,laki_laki,,18740,jiwa,2025,projection,total_population,3.1,24,,Laki-Laki/Male
+53.18.10,3,Wewewa Tengah,sex,perempuan,,17893,jiwa,2025,projection,total_population,3.1,24,,Perempuan/Female
+53.18.10,3,Wewewa Tengah,total,total,,36633,jiwa,2025,projection,total_population,3.1,24,,
+53.18.10,3,Wewewa Tengah,sex,laki_laki,,18740,jiwa,2025,projection,total_population,3.2,26,,Laki-Laki
+53.18.10,3,Wewewa Tengah,sex,perempuan,,17893,jiwa,2025,projection,total_population,3.2,26,,Perempuan
+53.18.10,3,Wewewa Tengah,total,total,,36633,jiwa,2025,projection,total_population,3.2,26,,

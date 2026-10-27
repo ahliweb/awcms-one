@@ -1,0 +1,175 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.14.01,3,Rote Barat Daya,total,total,,26569,jiwa,2025,projection,total_population,3.1.1,56,,
+53.14.02,3,Rote Barat Laut,total,total,,16832,jiwa,2025,projection,total_population,3.1.1,56,,
+53.14.11,3,Loaholu,total,total,,12271,jiwa,2025,projection,total_population,3.1.1,56,,
+53.14.03,3,Lobalain,total,total,,33522,jiwa,2025,projection,total_population,3.1.1,56,,
+53.14.04,3,Rote Tengah,total,total,,9383,jiwa,2025,projection,total_population,3.1.1,56,,
+53.14.08,3,Rote Selatan,total,total,,6402,jiwa,2025,projection,total_population,3.1.1,56,,
+53.14.05,3,Pantai Baru,total,total,,15476,jiwa,2025,projection,total_population,3.1.1,56,,
+53.14.06,3,Rote Timur,total,total,,15341,jiwa,2025,projection,total_population,3.1.1,56,,
+53.14.10,3,Landu Leko,total,total,,5612,jiwa,2025,projection,total_population,3.1.1,56,,
+53.14.07,3,Rote Barat,total,total,,9937,jiwa,2025,projection,total_population,3.1.1,56,,
+53.14.09,3,Ndao Nuse,total,total,,4026,jiwa,2025,projection,total_population,3.1.1,56,,
+53.14,2,Kabupaten Rote Ndao,age_group,0-4,laki_laki,8421,jiwa,2025,projection,total_population,3.1.2,59,,0–4
+53.14,2,Kabupaten Rote Ndao,age_group,0-4,perempuan,8151,jiwa,2025,projection,total_population,3.1.2,59,,0–4
+53.14,2,Kabupaten Rote Ndao,age_group,0-4,,16572,jiwa,2025,projection,total_population,3.1.2,59,,0–4
+53.14,2,Kabupaten Rote Ndao,age_group,5-9,laki_laki,8647,jiwa,2025,projection,total_population,3.1.2,59,,5–9
+53.14,2,Kabupaten Rote Ndao,age_group,5-9,perempuan,8199,jiwa,2025,projection,total_population,3.1.2,59,,5–9
+53.14,2,Kabupaten Rote Ndao,age_group,5-9,,16846,jiwa,2025,projection,total_population,3.1.2,59,,5–9
+53.14,2,Kabupaten Rote Ndao,age_group,10-14,laki_laki,7982,jiwa,2025,projection,total_population,3.1.2,59,,10–14
+53.14,2,Kabupaten Rote Ndao,age_group,10-14,perempuan,7884,jiwa,2025,projection,total_population,3.1.2,59,,10–14
+53.14,2,Kabupaten Rote Ndao,age_group,10-14,,15866,jiwa,2025,projection,total_population,3.1.2,59,,10–14
+53.14,2,Kabupaten Rote Ndao,age_group,15-19,laki_laki,6802,jiwa,2025,projection,total_population,3.1.2,59,,15–19
+53.14,2,Kabupaten Rote Ndao,age_group,15-19,perempuan,6338,jiwa,2025,projection,total_population,3.1.2,59,,15–19
+53.14,2,Kabupaten Rote Ndao,age_group,15-19,,13140,jiwa,2025,projection,total_population,3.1.2,59,,15–19
+53.14,2,Kabupaten Rote Ndao,age_group,20-24,laki_laki,6187,jiwa,2025,projection,total_population,3.1.2,59,,20–24
+53.14,2,Kabupaten Rote Ndao,age_group,20-24,perempuan,5889,jiwa,2025,projection,total_population,3.1.2,59,,20–24
+53.14,2,Kabupaten Rote Ndao,age_group,20-24,,12076,jiwa,2025,projection,total_population,3.1.2,59,,20–24
+53.14,2,Kabupaten Rote Ndao,age_group,25-29,laki_laki,5483,jiwa,2025,projection,total_population,3.1.2,59,,25–29
+53.14,2,Kabupaten Rote Ndao,age_group,25-29,perempuan,5594,jiwa,2025,projection,total_population,3.1.2,59,,25–29
+53.14,2,Kabupaten Rote Ndao,age_group,25-29,,11077,jiwa,2025,projection,total_population,3.1.2,59,,25–29
+53.14,2,Kabupaten Rote Ndao,age_group,30-34,laki_laki,5742,jiwa,2025,projection,total_population,3.1.2,59,,30–34
+53.14,2,Kabupaten Rote Ndao,age_group,30-34,perempuan,6055,jiwa,2025,projection,total_population,3.1.2,59,,30–34
+53.14,2,Kabupaten Rote Ndao,age_group,30-34,,11797,jiwa,2025,projection,total_population,3.1.2,59,,30–34
+53.14,2,Kabupaten Rote Ndao,age_group,35-39,laki_laki,5687,jiwa,2025,projection,total_population,3.1.2,59,,35–39
+53.14,2,Kabupaten Rote Ndao,age_group,35-39,perempuan,5930,jiwa,2025,projection,total_population,3.1.2,59,,35–39
+53.14,2,Kabupaten Rote Ndao,age_group,35-39,,11617,jiwa,2025,projection,total_population,3.1.2,59,,35–39
+53.14,2,Kabupaten Rote Ndao,age_group,40-44,laki_laki,5042,jiwa,2025,projection,total_population,3.1.2,59,,40–44
+53.14,2,Kabupaten Rote Ndao,age_group,40-44,perempuan,5248,jiwa,2025,projection,total_population,3.1.2,59,,40–44
+53.14,2,Kabupaten Rote Ndao,age_group,40-44,,10290,jiwa,2025,projection,total_population,3.1.2,59,,40–44
+53.14,2,Kabupaten Rote Ndao,age_group,45-49,laki_laki,4435,jiwa,2025,projection,total_population,3.1.2,59,,45–49
+53.14,2,Kabupaten Rote Ndao,age_group,45-49,perempuan,4245,jiwa,2025,projection,total_population,3.1.2,59,,45–49
+53.14,2,Kabupaten Rote Ndao,age_group,45-49,,8680,jiwa,2025,projection,total_population,3.1.2,59,,45–49
+53.14,2,Kabupaten Rote Ndao,age_group,50-54,laki_laki,3272,jiwa,2025,projection,total_population,3.1.2,59,,50–54
+53.14,2,Kabupaten Rote Ndao,age_group,50-54,perempuan,3192,jiwa,2025,projection,total_population,3.1.2,59,,50–54
+53.14,2,Kabupaten Rote Ndao,age_group,50-54,,6464,jiwa,2025,projection,total_population,3.1.2,59,,50–54
+53.14,2,Kabupaten Rote Ndao,age_group,55-59,laki_laki,2800,jiwa,2025,projection,total_population,3.1.2,59,,55–59
+53.14,2,Kabupaten Rote Ndao,age_group,55-59,perempuan,2590,jiwa,2025,projection,total_population,3.1.2,59,,55–59
+53.14,2,Kabupaten Rote Ndao,age_group,55-59,,5390,jiwa,2025,projection,total_population,3.1.2,59,,55–59
+53.14,2,Kabupaten Rote Ndao,age_group,60-64,laki_laki,2376,jiwa,2025,projection,total_population,3.1.2,59,,60–64
+53.14,2,Kabupaten Rote Ndao,age_group,60-64,perempuan,2387,jiwa,2025,projection,total_population,3.1.2,59,,60–64
+53.14,2,Kabupaten Rote Ndao,age_group,60-64,,4763,jiwa,2025,projection,total_population,3.1.2,59,,60–64
+53.14,2,Kabupaten Rote Ndao,age_group,65-69,laki_laki,1896,jiwa,2025,projection,total_population,3.1.2,59,,65–69
+53.14,2,Kabupaten Rote Ndao,age_group,65-69,perempuan,1825,jiwa,2025,projection,total_population,3.1.2,59,,65–69
+53.14,2,Kabupaten Rote Ndao,age_group,65-69,,3721,jiwa,2025,projection,total_population,3.1.2,59,,65–69
+53.14,2,Kabupaten Rote Ndao,age_group,70-74,laki_laki,1558,jiwa,2025,projection,total_population,3.1.2,59,,70–74
+53.14,2,Kabupaten Rote Ndao,age_group,70-74,perempuan,1644,jiwa,2025,projection,total_population,3.1.2,59,,70–74
+53.14,2,Kabupaten Rote Ndao,age_group,70-74,,3202,jiwa,2025,projection,total_population,3.1.2,59,,70–74
+53.14,2,Kabupaten Rote Ndao,age_group,75+,laki_laki,1842,jiwa,2025,projection,total_population,3.1.2,59,,75+
+53.14,2,Kabupaten Rote Ndao,age_group,75+,perempuan,2028,jiwa,2025,projection,total_population,3.1.2,59,,75+
+53.14,2,Kabupaten Rote Ndao,age_group,75+,,3870,jiwa,2025,projection,total_population,3.1.2,59,,75+
+53.14,2,Kabupaten Rote Ndao,sex,laki_laki,,78172,jiwa,2025,projection,total_population,3.1.2,59,,Laki-Laki
+53.14,2,Kabupaten Rote Ndao,sex,perempuan,,77199,jiwa,2025,projection,total_population,3.1.2,59,,Perempuan
+53.14,2,Kabupaten Rote Ndao,total,total,,155371,jiwa,2025,projection,total_population,3.1.2,59,,
+53.14.01,3,Rote Barat Daya,religion,islam,,496,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+53.14.01,3,Rote Barat Daya,religion,kristen,,26273,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+53.14.01,3,Rote Barat Daya,religion,katolik,,315,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+53.14.01,3,Rote Barat Daya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Hindu
+53.14.01,3,Rote Barat Daya,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,121,,Budha
+53.14.01,3,Rote Barat Daya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+53.14.02,3,Rote Barat Laut,religion,islam,,87,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+53.14.02,3,Rote Barat Laut,religion,kristen,,16538,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+53.14.02,3,Rote Barat Laut,religion,katolik,,278,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+53.14.02,3,Rote Barat Laut,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,121,,Hindu
+53.14.02,3,Rote Barat Laut,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Budha
+53.14.02,3,Rote Barat Laut,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+53.14.11,3,Loaholu,religion,islam,,834,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+53.14.11,3,Loaholu,religion,kristen,,12035,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+53.14.11,3,Loaholu,religion,katolik,,87,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+53.14.11,3,Loaholu,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,121,,Hindu
+53.14.11,3,Loaholu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Budha
+53.14.11,3,Loaholu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+53.14.03,3,Lobalain,religion,islam,,2207,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+53.14.03,3,Lobalain,religion,kristen,,28887,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+53.14.03,3,Lobalain,religion,katolik,,1162,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+53.14.03,3,Lobalain,religion,hindu,,48,jiwa,2025,registration,total_population,4.3.1,121,,Hindu
+53.14.03,3,Lobalain,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,121,,Budha
+53.14.03,3,Lobalain,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,121,,Lainnya
+53.14.04,3,Rote Tengah,religion,islam,,64,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+53.14.04,3,Rote Tengah,religion,kristen,,9369,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+53.14.04,3,Rote Tengah,religion,katolik,,212,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+53.14.04,3,Rote Tengah,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,121,,Hindu
+53.14.04,3,Rote Tengah,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Budha
+53.14.04,3,Rote Tengah,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,121,,Lainnya
+53.14.08,3,Rote Selatan,religion,islam,,32,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+53.14.08,3,Rote Selatan,religion,kristen,,6254,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+53.14.08,3,Rote Selatan,religion,katolik,,48,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+53.14.08,3,Rote Selatan,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,121,,Hindu
+53.14.08,3,Rote Selatan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Budha
+53.14.08,3,Rote Selatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+53.14.05,3,Pantai Baru,religion,islam,,607,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+53.14.05,3,Pantai Baru,religion,kristen,,14229,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+53.14.05,3,Pantai Baru,religion,katolik,,560,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+53.14.05,3,Pantai Baru,religion,hindu,,11,jiwa,2025,registration,total_population,4.3.1,121,,Hindu
+53.14.05,3,Pantai Baru,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Budha
+53.14.05,3,Pantai Baru,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,121,,Lainnya
+53.14.06,3,Rote Timur,religion,islam,,2255,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+53.14.06,3,Rote Timur,religion,kristen,,13245,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+53.14.06,3,Rote Timur,religion,katolik,,213,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+53.14.06,3,Rote Timur,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,121,,Hindu
+53.14.06,3,Rote Timur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Budha
+53.14.06,3,Rote Timur,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,121,,Lainnya
+53.14.10,3,Landu Leko,religion,islam,,22,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+53.14.10,3,Landu Leko,religion,kristen,,5733,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+53.14.10,3,Landu Leko,religion,katolik,,17,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+53.14.10,3,Landu Leko,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,121,,Hindu
+53.14.10,3,Landu Leko,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Budha
+53.14.10,3,Landu Leko,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+53.14.07,3,Rote Barat,religion,islam,,37,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+53.14.07,3,Rote Barat,religion,kristen,,10009,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+53.14.07,3,Rote Barat,religion,katolik,,91,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+53.14.07,3,Rote Barat,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,121,,Hindu
+53.14.07,3,Rote Barat,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,121,,Budha
+53.14.07,3,Rote Barat,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,121,,Lainnya
+53.14.09,3,Ndao Nuse,religion,islam,,176,jiwa,2025,registration,total_population,4.3.1,121,,Islam
+53.14.09,3,Ndao Nuse,religion,kristen,,3484,jiwa,2025,registration,total_population,4.3.1,121,,Protestan
+53.14.09,3,Ndao Nuse,religion,katolik,,48,jiwa,2025,registration,total_population,4.3.1,121,,Katolik
+53.14.09,3,Ndao Nuse,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Hindu
+53.14.09,3,Ndao Nuse,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Budha
+53.14.09,3,Ndao Nuse,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,121,nil,Lainnya
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/padi_padian,,146461,rupiah,2024,survey_estimate,per_capita,10.1,279,,Padi-padian
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/padi_padian,,115292,rupiah,2025,survey_estimate,per_capita,10.1,279,,Padi-padian
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/umbi_umbian,,945,rupiah,2024,survey_estimate,per_capita,10.1,279,,Umbi-umbian
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/umbi_umbian,,1479,rupiah,2025,survey_estimate,per_capita,10.1,279,,Umbi-umbian
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,62314,rupiah,2024,survey_estimate,per_capita,10.1,279,,Ikan/udang/cumi/kerang
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,52515,rupiah,2025,survey_estimate,per_capita,10.1,279,,Ikan/udang/cumi/kerang
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/daging,,28617,rupiah,2024,survey_estimate,per_capita,10.1,279,,Daging
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/daging,,34983,rupiah,2025,survey_estimate,per_capita,10.1,279,,Daging
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/telur_dan_susu,,15932,rupiah,2024,survey_estimate,per_capita,10.1,279,,Telur dan susu
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/telur_dan_susu,,12940,rupiah,2025,survey_estimate,per_capita,10.1,279,,Telur dan susu
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/sayur_sayuran,,46304,rupiah,2024,survey_estimate,per_capita,10.1,279,,Sayur-sayuran
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/sayur_sayuran,,43821,rupiah,2025,survey_estimate,per_capita,10.1,279,,Sayur-sayuran
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/kacang_kacangan,,6509,rupiah,2024,survey_estimate,per_capita,10.1,279,,Kacang-kacangan
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/kacang_kacangan,,8521,rupiah,2025,survey_estimate,per_capita,10.1,279,,Kacang-kacangan
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/buah_buahan,,5980,rupiah,2024,survey_estimate,per_capita,10.1,279,,Buah-buahan
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/buah_buahan,,9638,rupiah,2025,survey_estimate,per_capita,10.1,279,,Buah-buahan
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/minyak_dan_kelapa,,15567,rupiah,2024,survey_estimate,per_capita,10.1,279,,Minyak dan kelapa
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/minyak_dan_kelapa,,12438,rupiah,2025,survey_estimate,per_capita,10.1,279,,Minyak dan kelapa
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/bahan_minuman,,21525,rupiah,2024,survey_estimate,per_capita,10.1,279,,Bahan minuman
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/bahan_minuman,,23802,rupiah,2025,survey_estimate,per_capita,10.1,279,,Bahan minuman
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/bumbu_bumbuan,,8426,rupiah,2024,survey_estimate,per_capita,10.1,279,,Bumbu-bumbuan
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/bumbu_bumbuan,,7755,rupiah,2025,survey_estimate,per_capita,10.1,279,,Bumbu-bumbuan
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/konsumsi_lainnya,,5338,rupiah,2024,survey_estimate,per_capita,10.1,279,,Konsumsi lainnya
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/konsumsi_lainnya,,5905,rupiah,2025,survey_estimate,per_capita,10.1,279,,Konsumsi lainnya
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,57482,rupiah,2024,survey_estimate,per_capita,10.1,279,,Makanan dan minuman jadi
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,57881,rupiah,2025,survey_estimate,per_capita,10.1,279,,Makanan dan minuman jadi
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/rokok,,42367,rupiah,2024,survey_estimate,per_capita,10.1,279,,Rokok
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/rokok,,34088,rupiah,2025,survey_estimate,per_capita,10.1,279,,Rokok
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/jumlah_makanan,,463767,rupiah,2024,survey_estimate,per_capita,10.1,279,,Jumlah makanan
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/jumlah_makanan,,421058,rupiah,2025,survey_estimate,per_capita,10.1,279,,Jumlah makanan
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,228147,rupiah,2024,survey_estimate,per_capita,10.1,279,,Perumahan dan fasilitas rumah tangga
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,249030,rupiah,2025,survey_estimate,per_capita,10.1,279,,Perumahan dan fasilitas rumah tangga
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,84321,rupiah,2024,survey_estimate,per_capita,10.1,279,,Aneka barang dan jasa
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,80054,rupiah,2025,survey_estimate,per_capita,10.1,279,,Aneka barang dan jasa
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,15683,rupiah,2024,survey_estimate,per_capita,10.1,279,,"Pakaian, alas kaki, dan tutup kepala"
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,19747,rupiah,2025,survey_estimate,per_capita,10.1,279,,"Pakaian, alas kaki, dan tutup kepala"
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/barang_tahan_lama,,15784,rupiah,2024,survey_estimate,per_capita,10.1,279,,Barang tahan lama
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/barang_tahan_lama,,45928,rupiah,2025,survey_estimate,per_capita,10.1,279,,Barang tahan lama
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,43483,rupiah,2024,survey_estimate,per_capita,10.1,279,,"Pajak, pungutan, dan asuransi"
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,36347,rupiah,2025,survey_estimate,per_capita,10.1,279,,"Pajak, pungutan, dan asuransi"
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,5658,rupiah,2024,survey_estimate,per_capita,10.1,279,,Keperluan pesta dan upacara/kenduri
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,5476,rupiah,2025,survey_estimate,per_capita,10.1,279,,Keperluan pesta dan upacara/kenduri
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,393077,rupiah,2024,survey_estimate,per_capita,10.1,279,,Jumlah bukan makanan
+53.14,2,Kabupaten Rote Ndao,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,436583,rupiah,2025,survey_estimate,per_capita,10.1,279,,Jumlah bukan makanan
+53.14,2,Kabupaten Rote Ndao,expenditure,total,,856844,rupiah,2024,survey_estimate,per_capita,10.1,279,,
+53.14,2,Kabupaten Rote Ndao,expenditure,total,,857641,rupiah,2025,survey_estimate,per_capita,10.1,279,,

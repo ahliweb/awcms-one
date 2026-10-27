@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.05.01.2018,4,Teluk Kenari,sex,laki_laki,,534,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+53.05.01.2018,4,Teluk Kenari,sex,perempuan,,530,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+53.05.01.2018,4,Teluk Kenari,total,total,,1064,jiwa,2025,registration,total_population,3.1,43,,
+53.05.01.1001,4,Kalabahi Barat,sex,laki_laki,,1973,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+53.05.01.1001,4,Kalabahi Barat,sex,perempuan,,1970,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+53.05.01.1001,4,Kalabahi Barat,total,total,,3943,jiwa,2025,registration,total_population,3.1,43,,
+53.05.01.2019,4,Adang Buom,sex,laki_laki,,951,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+53.05.01.2019,4,Adang Buom,sex,perempuan,,988,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+53.05.01.2019,4,Adang Buom,total,total,,1939,jiwa,2025,registration,total_population,3.1,43,,
+53.05.01.1005,4,Binongko,sex,laki_laki,,1667,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+53.05.01.1005,4,Binongko,sex,perempuan,,1755,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+53.05.01.1005,4,Binongko,total,total,,3422,jiwa,2025,registration,total_population,3.1,43,,
+53.05.01.2014,4,Motongbang,sex,laki_laki,,1379,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+53.05.01.2014,4,Motongbang,sex,perempuan,,1443,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+53.05.01.2014,4,Motongbang,total,total,,2822,jiwa,2025,registration,total_population,3.1,43,,
+53.05.01.1002,4,Kalabahi Kota,sex,laki_laki,,1411,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+53.05.01.1002,4,Kalabahi Kota,sex,perempuan,,1411,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+53.05.01.1002,4,Kalabahi Kota,total,total,,2822,jiwa,2025,registration,total_population,3.1,43,,
+53.05.01.1011,4,Wetabua,sex,laki_laki,,1139,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+53.05.01.1011,4,Wetabua,sex,perempuan,,1225,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+53.05.01.1011,4,Wetabua,total,total,,2364,jiwa,2025,registration,total_population,3.1,43,,
+53.05.01.1006,4,Nusa Kenari,sex,laki_laki,,1659,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+53.05.01.1006,4,Nusa Kenari,sex,perempuan,,1720,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+53.05.01.1006,4,Nusa Kenari,total,total,,3379,jiwa,2025,registration,total_population,3.1,43,,
+53.05.01.2012,4,Lendola,sex,laki_laki,,1893,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+53.05.01.2012,4,Lendola,sex,perempuan,,2025,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+53.05.01.2012,4,Lendola,total,total,,3918,jiwa,2025,registration,total_population,3.1,43,,
+53.05.01.2015,4,Air Kenari,sex,laki_laki,,1193,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+53.05.01.2015,4,Air Kenari,sex,perempuan,,1199,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+53.05.01.2015,4,Air Kenari,total,total,,2392,jiwa,2025,registration,total_population,3.1,43,,
+53.05.01.1003,4,Kalabahi Tengah,sex,laki_laki,,3187,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+53.05.01.1003,4,Kalabahi Tengah,sex,perempuan,,3265,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+53.05.01.1003,4,Kalabahi Tengah,total,total,,6452,jiwa,2025,registration,total_population,3.1,43,,
+53.05.01.1004,4,Kalabahi Timur,sex,laki_laki,,3072,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+53.05.01.1004,4,Kalabahi Timur,sex,perempuan,,3119,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+53.05.01.1004,4,Kalabahi Timur,total,total,,6191,jiwa,2025,registration,total_population,3.1,43,,
+53.05.01.1010,4,Mutiara,sex,laki_laki,,2613,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+53.05.01.1010,4,Mutiara,sex,perempuan,,2589,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+53.05.01.1010,4,Mutiara,total,total,,5202,jiwa,2025,registration,total_population,3.1,43,,
+53.05.01.1009,4,Welai Timur,sex,laki_laki,,1549,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+53.05.01.1009,4,Welai Timur,sex,perempuan,,1615,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+53.05.01.1009,4,Welai Timur,total,total,,3164,jiwa,2025,registration,total_population,3.1,43,,
+53.05.01.1008,4,Welai Barat,sex,laki_laki,,1651,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+53.05.01.1008,4,Welai Barat,sex,perempuan,,1804,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+53.05.01.1008,4,Welai Barat,total,total,,3455,jiwa,2025,registration,total_population,3.1,43,,
+53.05.01.2013,4,Fanating,sex,laki_laki,,1013,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+53.05.01.2013,4,Fanating,sex,perempuan,,1099,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+53.05.01.2013,4,Fanating,total,total,,2112,jiwa,2025,registration,total_population,3.1,43,,
+53.05.01,3,Teluk Mutiara,sex,laki_laki,,26884,jiwa,2025,registration,total_population,3.1,43,,Laki-Laki/Male
+53.05.01,3,Teluk Mutiara,sex,perempuan,,27757,jiwa,2025,registration,total_population,3.1,43,,Perempuan/Female
+53.05.01,3,Teluk Mutiara,total,total,,54641,jiwa,2025,registration,total_population,3.1,43,,

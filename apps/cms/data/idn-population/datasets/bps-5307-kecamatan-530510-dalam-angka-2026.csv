@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.05.10.2002,4,Kopidil,sex,laki_laki,,661,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.10.2002,4,Kopidil,sex,perempuan,,610,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.10.2002,4,Kopidil,total,total,,1271,jiwa,2025,registration,total_population,3.1,,,
+53.05.10.2003,4,Pante Deere,sex,laki_laki,,407,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.10.2003,4,Pante Deere,sex,perempuan,,435,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.10.2003,4,Pante Deere,total,total,,842,jiwa,2025,registration,total_population,3.1,,,
+53.05.10.1001,4,Kabola,sex,laki_laki,,2014,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.10.1001,4,Kabola,sex,perempuan,,2062,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.10.1001,4,Kabola,total,total,,4076,jiwa,2025,registration,total_population,3.1,,,
+53.05.10.2005,4,Alila Timur,sex,laki_laki,,558,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.10.2005,4,Alila Timur,sex,perempuan,,654,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.10.2005,4,Alila Timur,total,total,,1212,jiwa,2025,registration,total_population,3.1,,,
+53.05.10.2004,4,Lawahing,sex,laki_laki,,855,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.10.2004,4,Lawahing,sex,perempuan,,833,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.10.2004,4,Lawahing,total,total,,1688,jiwa,2025,registration,total_population,3.1,,,
+53.05.10,3,Kabola,sex,laki_laki,,4495,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.10,3,Kabola,sex,perempuan,,4594,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.10,3,Kabola,total,total,,9089,jiwa,2025,registration,total_population,3.1,,,

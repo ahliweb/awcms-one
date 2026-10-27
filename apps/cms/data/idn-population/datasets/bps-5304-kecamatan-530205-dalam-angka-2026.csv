@@ -1,0 +1,74 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.02.05.2011,4,Maunum Niki Niki,sex,perempuan,,1054,jiwa,2025,registration,total_population,1.3,28,,Perempuan/Female
+53.02.05.2011,4,Maunum Niki Niki,total,total,,2065,jiwa,2025,registration,total_population,1.3,28,,
+53.02.05.2001,4,Taebesa,sex,perempuan,,523,jiwa,2025,registration,total_population,1.3,28,,Perempuan/Female
+53.02.05.2001,4,Taebesa,total,total,,1030,jiwa,2025,registration,total_population,1.3,28,,
+53.02.05.2002,4,Nakfunu,sex,perempuan,,449,jiwa,2025,registration,total_population,1.3,28,,Perempuan/Female
+53.02.05.2002,4,Nakfunu,total,total,,866,jiwa,2025,registration,total_population,1.3,28,,
+53.02.05.2003,4,OeEkam,sex,perempuan,,412,jiwa,2025,registration,total_population,1.3,28,,Perempuan/Female
+53.02.05.2003,4,OeEkam,total,total,,802,jiwa,2025,registration,total_population,1.3,28,,
+53.02.05.2004,4,Baki,sex,perempuan,,433,jiwa,2025,registration,total_population,1.3,28,,Perempuan/Female
+53.02.05.2004,4,Baki,total,total,,849,jiwa,2025,registration,total_population,1.3,28,,
+53.02.05.2005,4,Tumu,sex,perempuan,,855,jiwa,2025,registration,total_population,1.3,28,,Perempuan/Female
+53.02.05.2005,4,Tumu,total,total,,1674,jiwa,2025,registration,total_population,1.3,28,,
+53.02.05.2006,4,Noebesa,sex,perempuan,,387,jiwa,2025,registration,total_population,1.3,28,,Perempuan/Female
+53.02.05.2006,4,Noebesa,total,total,,782,jiwa,2025,registration,total_population,1.3,28,,
+53.02.05.2007,4,Nobi Nobi,sex,perempuan,,1860,jiwa,2025,registration,total_population,1.3,28,,Perempuan/Female
+53.02.05.2007,4,Nobi Nobi,total,total,,3726,jiwa,2025,registration,total_population,1.3,28,,
+53.02.05.1010,4,Niki Niki,sex,perempuan,,1644,jiwa,2025,registration,total_population,1.3,28,,Perempuan/Female
+53.02.05.1010,4,Niki Niki,total,total,,3253,jiwa,2025,registration,total_population,1.3,28,,
+53.02.05.2009,4,Bone,sex,perempuan,,590,jiwa,2025,registration,total_population,1.3,28,,Perempuan/Female
+53.02.05.2009,4,Bone,total,total,,1164,jiwa,2025,registration,total_population,1.3,28,,
+53.02.05.2008,4,Sopo,sex,perempuan,,854,jiwa,2025,registration,total_population,1.3,28,,Perempuan/Female
+53.02.05.2008,4,Sopo,total,total,,1681,jiwa,2025,registration,total_population,1.3,28,,
+53.02.05,3,Amanuban Tengah,age_group,0-4,laki_laki,451,jiwa,2025,registration,total_population,1.4,,,00-04
+53.02.05,3,Amanuban Tengah,age_group,0-4,perempuan,417,jiwa,2025,registration,total_population,1.4,,,00-04
+53.02.05,3,Amanuban Tengah,age_group,0-4,,868,jiwa,2025,registration,total_population,1.4,,,00-04
+53.02.05,3,Amanuban Tengah,age_group,5-9,laki_laki,902,jiwa,2025,registration,total_population,1.4,,,05-09
+53.02.05,3,Amanuban Tengah,age_group,5-9,perempuan,857,jiwa,2025,registration,total_population,1.4,,,05-09
+53.02.05,3,Amanuban Tengah,age_group,5-9,,1759,jiwa,2025,registration,total_population,1.4,,,05-09
+53.02.05,3,Amanuban Tengah,age_group,10-14,laki_laki,927,jiwa,2025,registration,total_population,1.4,,,10-14
+53.02.05,3,Amanuban Tengah,age_group,10-14,perempuan,870,jiwa,2025,registration,total_population,1.4,,,10-14
+53.02.05,3,Amanuban Tengah,age_group,10-14,,1797,jiwa,2025,registration,total_population,1.4,,,10-14
+53.02.05,3,Amanuban Tengah,age_group,15-19,laki_laki,823,jiwa,2025,registration,total_population,1.4,,,15-19
+53.02.05,3,Amanuban Tengah,age_group,15-19,perempuan,844,jiwa,2025,registration,total_population,1.4,,,15-19
+53.02.05,3,Amanuban Tengah,age_group,15-19,,1667,jiwa,2025,registration,total_population,1.4,,,15-19
+53.02.05,3,Amanuban Tengah,age_group,20-24,laki_laki,878,jiwa,2025,registration,total_population,1.4,,,20-24
+53.02.05,3,Amanuban Tengah,age_group,20-24,perempuan,871,jiwa,2025,registration,total_population,1.4,,,20-24
+53.02.05,3,Amanuban Tengah,age_group,20-24,,1749,jiwa,2025,registration,total_population,1.4,,,20-24
+53.02.05,3,Amanuban Tengah,age_group,25-29,laki_laki,675,jiwa,2025,registration,total_population,1.4,,,25-29
+53.02.05,3,Amanuban Tengah,age_group,25-29,perempuan,687,jiwa,2025,registration,total_population,1.4,,,25-29
+53.02.05,3,Amanuban Tengah,age_group,25-29,,1362,jiwa,2025,registration,total_population,1.4,,,25-29
+53.02.05,3,Amanuban Tengah,age_group,30-34,laki_laki,558,jiwa,2025,registration,total_population,1.4,,,30-34
+53.02.05,3,Amanuban Tengah,age_group,30-34,perempuan,596,jiwa,2025,registration,total_population,1.4,,,30-34
+53.02.05,3,Amanuban Tengah,age_group,30-34,,1154,jiwa,2025,registration,total_population,1.4,,,30-34
+53.02.05,3,Amanuban Tengah,age_group,35-39,laki_laki,552,jiwa,2025,registration,total_population,1.4,,,35-39
+53.02.05,3,Amanuban Tengah,age_group,35-39,perempuan,626,jiwa,2025,registration,total_population,1.4,,,35-39
+53.02.05,3,Amanuban Tengah,age_group,35-39,,1178,jiwa,2025,registration,total_population,1.4,,,35-39
+53.02.05,3,Amanuban Tengah,age_group,40-44,laki_laki,536,jiwa,2025,registration,total_population,1.4,,,40-44
+53.02.05,3,Amanuban Tengah,age_group,40-44,perempuan,641,jiwa,2025,registration,total_population,1.4,,,40-44
+53.02.05,3,Amanuban Tengah,age_group,40-44,,1177,jiwa,2025,registration,total_population,1.4,,,40-44
+53.02.05,3,Amanuban Tengah,age_group,45-49,laki_laki,519,jiwa,2025,registration,total_population,1.4,,,45-49
+53.02.05,3,Amanuban Tengah,age_group,45-49,perempuan,534,jiwa,2025,registration,total_population,1.4,,,45-49
+53.02.05,3,Amanuban Tengah,age_group,45-49,,1053,jiwa,2025,registration,total_population,1.4,,,45-49
+53.02.05,3,Amanuban Tengah,age_group,50-54,laki_laki,447,jiwa,2025,registration,total_population,1.4,,,50-54
+53.02.05,3,Amanuban Tengah,age_group,50-54,perempuan,485,jiwa,2025,registration,total_population,1.4,,,50-54
+53.02.05,3,Amanuban Tengah,age_group,50-54,,932,jiwa,2025,registration,total_population,1.4,,,50-54
+53.02.05,3,Amanuban Tengah,age_group,55-59,laki_laki,401,jiwa,2025,registration,total_population,1.4,,,55-59
+53.02.05,3,Amanuban Tengah,age_group,55-59,perempuan,415,jiwa,2025,registration,total_population,1.4,,,55-59
+53.02.05,3,Amanuban Tengah,age_group,55-59,,816,jiwa,2025,registration,total_population,1.4,,,55-59
+53.02.05,3,Amanuban Tengah,age_group,60-64,laki_laki,403,jiwa,2025,registration,total_population,1.4,,,60-64
+53.02.05,3,Amanuban Tengah,age_group,60-64,perempuan,406,jiwa,2025,registration,total_population,1.4,,,60-64
+53.02.05,3,Amanuban Tengah,age_group,60-64,,809,jiwa,2025,registration,total_population,1.4,,,60-64
+53.02.05,3,Amanuban Tengah,age_group,65-69,laki_laki,287,jiwa,2025,registration,total_population,1.4,,,65-69
+53.02.05,3,Amanuban Tengah,age_group,65-69,perempuan,314,jiwa,2025,registration,total_population,1.4,,,65-69
+53.02.05,3,Amanuban Tengah,age_group,65-69,,601,jiwa,2025,registration,total_population,1.4,,,65-69
+53.02.05,3,Amanuban Tengah,age_group,70-74,laki_laki,196,jiwa,2025,registration,total_population,1.4,,,70-74
+53.02.05,3,Amanuban Tengah,age_group,70-74,perempuan,171,jiwa,2025,registration,total_population,1.4,,,70-74
+53.02.05,3,Amanuban Tengah,age_group,70-74,,367,jiwa,2025,registration,total_population,1.4,,,70-74
+53.02.05,3,Amanuban Tengah,age_group,75+,laki_laki,276,jiwa,2025,registration,total_population,1.4,,,>75
+53.02.05,3,Amanuban Tengah,age_group,75+,perempuan,327,jiwa,2025,registration,total_population,1.4,,,>75
+53.02.05,3,Amanuban Tengah,age_group,75+,,603,jiwa,2025,registration,total_population,1.4,,,>75
+53.02.05,3,Amanuban Tengah,sex,laki_laki,,8831,jiwa,2025,registration,total_population,1.4,,,Laki-Laki
+53.02.05,3,Amanuban Tengah,sex,perempuan,,9061,jiwa,2025,registration,total_population,1.4,,,Perempuan
+53.02.05,3,Amanuban Tengah,total,total,,17892,jiwa,2025,registration,total_population,1.4,,,

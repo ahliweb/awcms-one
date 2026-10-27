@@ -1,0 +1,41 @@
+{
+  "datasetCode": "bps-5301-kecamatan-531204-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.12.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tana Righu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sumba Barat",
+  "publisherDomain": "5301",
+  "publisherWebsite": "https://sumbabaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sumba Barat (https://sumbabaratkab.bps.go.id), publikasi \"Kecamatan Tana Righu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5301072",
+  "publicationNumber": "53010.26007",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sumbabaratkab.bps.go.id/id/publication/2026/09/28/0946831da7ec835a55ac814c/kecamatan-tana-righu-dalam-angka-2026.html",
+  "sourceFileSha256": "f4a560e052d0cf3a61f9a447da4ec04521e2449349e43852326a1f2fec5cc317",
+  "sourceFileBytes": 15241826,
+  "sourcePages": [22, 23],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik BPS Kabupaten Sumba Barat",
+  "csvPath": "datasets/bps-5301-kecamatan-531204-dalam-angka-2026.csv",
+  "csvSha256": "2e5401ed02900d2273e951a6afeaae33b3f60277c4c3f08c2d977a8fcd067bcf",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Jumlah Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Tana Righu, 2024",
+      "printedPages": [22, 23],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"08. Kareka Nduku\": unmatched ",
+    "table 3.1: row not stored: row \"09. Wanokaza\": unmatched ",
+    "table 3.1: row not stored: row \"08. Kareka Nduku\": unmatched ",
+    "table 3.1: row not stored: row \"09. Wanokaza\": unmatched "
+  ]
+}

@@ -1,0 +1,100 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.06.06.2002,4,Tanah Lein,sex,laki_laki,,519,jiwa,2025,registration,total_population,1.1,21,,Laki-Laki/Male
+53.06.06.2002,4,Tanah Lein,sex,perempuan,,513,jiwa,2025,registration,total_population,1.1,21,,Perempuan/Female
+53.06.06.2002,4,Tanah Lein,total,total,,1032,jiwa,2025,registration,total_population,1.1,21,,
+53.06.06.2003,4,Lamaole,sex,laki_laki,,221,jiwa,2025,registration,total_population,1.1,21,,Laki-Laki/Male
+53.06.06.2003,4,Lamaole,sex,perempuan,,223,jiwa,2025,registration,total_population,1.1,21,,Perempuan/Female
+53.06.06.2003,4,Lamaole,total,total,,444,jiwa,2025,registration,total_population,1.1,21,,
+53.06.06.2017,4,Lewotanah Ole,sex,laki_laki,,198,jiwa,2025,registration,total_population,1.1,21,,Laki-Laki/Male
+53.06.06.2017,4,Lewotanah Ole,sex,perempuan,,235,jiwa,2025,registration,total_population,1.1,21,,Perempuan/Female
+53.06.06.2017,4,Lewotanah Ole,total,total,,433,jiwa,2025,registration,total_population,1.1,21,,
+53.06.06.2014,4,Lamawohong,sex,laki_laki,,227,jiwa,2025,registration,total_population,1.1,21,,Laki-Laki/Male
+53.06.06.2014,4,Lamawohong,sex,perempuan,,219,jiwa,2025,registration,total_population,1.1,21,,Perempuan/Female
+53.06.06.2014,4,Lamawohong,total,total,,446,jiwa,2025,registration,total_population,1.1,21,,
+53.06.06.2004,4,Kalelu,sex,laki_laki,,401,jiwa,2025,registration,total_population,1.1,21,,Laki-Laki/Male
+53.06.06.2004,4,Kalelu,sex,perempuan,,403,jiwa,2025,registration,total_population,1.1,21,,Perempuan/Female
+53.06.06.2004,4,Kalelu,total,total,,804,jiwa,2025,registration,total_population,1.1,21,,
+53.06.06.2013,4,Karawatung,sex,laki_laki,,406,jiwa,2025,registration,total_population,1.1,21,,Laki-Laki/Male
+53.06.06.2013,4,Karawatung,sex,perempuan,,452,jiwa,2025,registration,total_population,1.1,21,,Perempuan/Female
+53.06.06.2013,4,Karawatung,total,total,,858,jiwa,2025,registration,total_population,1.1,21,,
+53.06.06.2012,4,Ongalereng,sex,laki_laki,,656,jiwa,2025,registration,total_population,1.1,21,,Laki-Laki/Male
+53.06.06.2012,4,Ongalereng,sex,perempuan,,689,jiwa,2025,registration,total_population,1.1,21,,Perempuan/Female
+53.06.06.2012,4,Ongalereng,total,total,,1345,jiwa,2025,registration,total_population,1.1,21,,
+53.06.06.2009,4,Pamakayo,sex,laki_laki,,377,jiwa,2025,registration,total_population,1.1,21,,Laki-Laki/Male
+53.06.06.2009,4,Pamakayo,sex,perempuan,,401,jiwa,2025,registration,total_population,1.1,21,,Perempuan/Female
+53.06.06.2009,4,Pamakayo,total,total,,778,jiwa,2025,registration,total_population,1.1,21,,
+53.06.06.2008,4,Balaweling I,sex,laki_laki,,348,jiwa,2025,registration,total_population,1.1,21,,Laki-Laki/Male
+53.06.06.2008,4,Balaweling I,sex,perempuan,,381,jiwa,2025,registration,total_population,1.1,21,,Perempuan/Female
+53.06.06.2008,4,Balaweling I,total,total,,729,jiwa,2025,registration,total_population,1.1,21,,
+53.06.06.2007,4,Balaweling II,sex,laki_laki,,395,jiwa,2025,registration,total_population,1.1,21,,Laki-Laki/Male
+53.06.06.2007,4,Balaweling II,sex,perempuan,,423,jiwa,2025,registration,total_population,1.1,21,,Perempuan/Female
+53.06.06.2007,4,Balaweling II,total,total,,818,jiwa,2025,registration,total_population,1.1,21,,
+53.06.06.2015,4,Daniwato,sex,laki_laki,,396,jiwa,2025,registration,total_population,1.1,21,,Laki-Laki/Male
+53.06.06.2015,4,Daniwato,sex,perempuan,,392,jiwa,2025,registration,total_population,1.1,21,,Perempuan/Female
+53.06.06.2015,4,Daniwato,total,total,,788,jiwa,2025,registration,total_population,1.1,21,,
+53.06.06.2005,4,Nuhalolon,sex,laki_laki,,280,jiwa,2025,registration,total_population,1.1,21,,Laki-Laki/Male
+53.06.06.2005,4,Nuhalolon,sex,perempuan,,315,jiwa,2025,registration,total_population,1.1,21,,Perempuan/Female
+53.06.06.2005,4,Nuhalolon,total,total,,595,jiwa,2025,registration,total_population,1.1,21,,
+53.06.06.2019,4,Titehena,sex,laki_laki,,351,jiwa,2025,registration,total_population,1.1,21,,Laki-Laki/Male
+53.06.06.2019,4,Titehena,sex,perempuan,,369,jiwa,2025,registration,total_population,1.1,21,,Perempuan/Female
+53.06.06.2019,4,Titehena,total,total,,720,jiwa,2025,registration,total_population,1.1,21,,
+53.06.06.2020,4,Lewonama,sex,laki_laki,,240,jiwa,2025,registration,total_population,1.1,21,,Laki-Laki/Male
+53.06.06.2020,4,Lewonama,sex,perempuan,,260,jiwa,2025,registration,total_population,1.1,21,,Perempuan/Female
+53.06.06.2020,4,Lewonama,total,total,,500,jiwa,2025,registration,total_population,1.1,21,,
+53.06.06.1001,4,Ritaebang,sex,laki_laki,,736,jiwa,2025,registration,total_population,1.1,21,,Laki-Laki/Male
+53.06.06.1001,4,Ritaebang,sex,perempuan,,761,jiwa,2025,registration,total_population,1.1,21,,Perempuan/Female
+53.06.06.1001,4,Ritaebang,total,total,,1497,jiwa,2025,registration,total_population,1.1,21,,
+53.06.06,3,Kecamatan Solor Barat,sex,laki_laki,,5751,jiwa,2025,registration,total_population,1.1,21,,Laki-Laki/Male
+53.06.06,3,Kecamatan Solor Barat,sex,perempuan,,6036,jiwa,2025,registration,total_population,1.1,21,,Perempuan/Female
+53.06.06,3,Kecamatan Solor Barat,total,total,,11787,jiwa,2025,registration,total_population,1.1,21,,
+53.06.06,3,Solor Barat,age_group,0-4,laki_laki,269,jiwa,2025,registration,total_population,1.2,23,,00 - 04
+53.06.06,3,Solor Barat,age_group,0-4,perempuan,229,jiwa,2025,registration,total_population,1.2,23,,00 - 04
+53.06.06,3,Solor Barat,age_group,0-4,,498,jiwa,2025,registration,total_population,1.2,23,,00 - 04
+53.06.06,3,Solor Barat,age_group,5-9,laki_laki,424,jiwa,2025,registration,total_population,1.2,23,,05 - 09
+53.06.06,3,Solor Barat,age_group,5-9,perempuan,389,jiwa,2025,registration,total_population,1.2,23,,05 - 09
+53.06.06,3,Solor Barat,age_group,5-9,,813,jiwa,2025,registration,total_population,1.2,23,,05 - 09
+53.06.06,3,Solor Barat,age_group,10-14,laki_laki,494,jiwa,2025,registration,total_population,1.2,23,,10 - 14
+53.06.06,3,Solor Barat,age_group,10-14,perempuan,491,jiwa,2025,registration,total_population,1.2,23,,10 - 14
+53.06.06,3,Solor Barat,age_group,10-14,,985,jiwa,2025,registration,total_population,1.2,23,,10 - 14
+53.06.06,3,Solor Barat,age_group,15-19,laki_laki,615,jiwa,2025,registration,total_population,1.2,23,,15 - 19
+53.06.06,3,Solor Barat,age_group,15-19,perempuan,540,jiwa,2025,registration,total_population,1.2,23,,15 - 19
+53.06.06,3,Solor Barat,age_group,15-19,,1155,jiwa,2025,registration,total_population,1.2,23,,15 - 19
+53.06.06,3,Solor Barat,age_group,20-24,laki_laki,622,jiwa,2025,registration,total_population,1.2,23,,20 - 24
+53.06.06,3,Solor Barat,age_group,20-24,perempuan,572,jiwa,2025,registration,total_population,1.2,23,,20 - 24
+53.06.06,3,Solor Barat,age_group,20-24,,1194,jiwa,2025,registration,total_population,1.2,23,,20 - 24
+53.06.06,3,Solor Barat,age_group,25-29,laki_laki,572,jiwa,2025,registration,total_population,1.2,23,,25 - 29
+53.06.06,3,Solor Barat,age_group,25-29,perempuan,508,jiwa,2025,registration,total_population,1.2,23,,25 - 29
+53.06.06,3,Solor Barat,age_group,25-29,,1080,jiwa,2025,registration,total_population,1.2,23,,25 - 29
+53.06.06,3,Solor Barat,age_group,30-34,laki_laki,358,jiwa,2025,registration,total_population,1.2,23,,30 - 34
+53.06.06,3,Solor Barat,age_group,30-34,perempuan,374,jiwa,2025,registration,total_population,1.2,23,,30 - 34
+53.06.06,3,Solor Barat,age_group,30-34,,732,jiwa,2025,registration,total_population,1.2,23,,30 - 34
+53.06.06,3,Solor Barat,age_group,35-39,laki_laki,298,jiwa,2025,registration,total_population,1.2,23,,35 - 39
+53.06.06,3,Solor Barat,age_group,35-39,perempuan,278,jiwa,2025,registration,total_population,1.2,23,,35 - 39
+53.06.06,3,Solor Barat,age_group,35-39,,576,jiwa,2025,registration,total_population,1.2,23,,35 - 39
+53.06.06,3,Solor Barat,age_group,40-44,laki_laki,289,jiwa,2025,registration,total_population,1.2,23,,40 - 44
+53.06.06,3,Solor Barat,age_group,40-44,perempuan,307,jiwa,2025,registration,total_population,1.2,23,,40 - 44
+53.06.06,3,Solor Barat,age_group,40-44,,596,jiwa,2025,registration,total_population,1.2,23,,40 - 44
+53.06.06,3,Solor Barat,age_group,45-49,laki_laki,366,jiwa,2025,registration,total_population,1.2,23,,45 - 49
+53.06.06,3,Solor Barat,age_group,45-49,perempuan,359,jiwa,2025,registration,total_population,1.2,23,,45 - 49
+53.06.06,3,Solor Barat,age_group,45-49,,725,jiwa,2025,registration,total_population,1.2,23,,45 - 49
+53.06.06,3,Solor Barat,age_group,50-54,laki_laki,370,jiwa,2025,registration,total_population,1.2,23,,50 - 54
+53.06.06,3,Solor Barat,age_group,50-54,perempuan,449,jiwa,2025,registration,total_population,1.2,23,,50 - 54
+53.06.06,3,Solor Barat,age_group,50-54,,819,jiwa,2025,registration,total_population,1.2,23,,50 - 54
+53.06.06,3,Solor Barat,age_group,55-59,laki_laki,323,jiwa,2025,registration,total_population,1.2,23,,55 - 59
+53.06.06,3,Solor Barat,age_group,55-59,perempuan,337,jiwa,2025,registration,total_population,1.2,23,,55 - 59
+53.06.06,3,Solor Barat,age_group,55-59,,660,jiwa,2025,registration,total_population,1.2,23,,55 - 59
+53.06.06,3,Solor Barat,age_group,60-64,laki_laki,255,jiwa,2025,registration,total_population,1.2,23,,60 - 64
+53.06.06,3,Solor Barat,age_group,60-64,perempuan,330,jiwa,2025,registration,total_population,1.2,23,,60 - 64
+53.06.06,3,Solor Barat,age_group,60-64,,585,jiwa,2025,registration,total_population,1.2,23,,60 - 64
+53.06.06,3,Solor Barat,age_group,65-69,laki_laki,163,jiwa,2025,registration,total_population,1.2,23,,65 - 69
+53.06.06,3,Solor Barat,age_group,65-69,perempuan,286,jiwa,2025,registration,total_population,1.2,23,,65 - 69
+53.06.06,3,Solor Barat,age_group,65-69,,449,jiwa,2025,registration,total_population,1.2,23,,65 - 69
+53.06.06,3,Solor Barat,age_group,70-74,laki_laki,139,jiwa,2025,registration,total_population,1.2,23,,70 - 74
+53.06.06,3,Solor Barat,age_group,70-74,perempuan,231,jiwa,2025,registration,total_population,1.2,23,,70 - 74
+53.06.06,3,Solor Barat,age_group,70-74,,370,jiwa,2025,registration,total_population,1.2,23,,70 - 74
+53.06.06,3,Solor Barat,age_group,75+,laki_laki,194,jiwa,2025,registration,total_population,1.2,23,,75+
+53.06.06,3,Solor Barat,age_group,75+,perempuan,356,jiwa,2025,registration,total_population,1.2,23,,75+
+53.06.06,3,Solor Barat,age_group,75+,,550,jiwa,2025,registration,total_population,1.2,23,,75+
+53.06.06,3,Kecamatan Solor Barat,sex,laki_laki,,5751,jiwa,2025,registration,total_population,1.2,23,,Laki-Laki
+53.06.06,3,Kecamatan Solor Barat,sex,perempuan,,6036,jiwa,2025,registration,total_population,1.2,23,,Perempuan
+53.06.06,3,Kecamatan Solor Barat,total,total,,11787,jiwa,2025,registration,total_population,1.2,23,,

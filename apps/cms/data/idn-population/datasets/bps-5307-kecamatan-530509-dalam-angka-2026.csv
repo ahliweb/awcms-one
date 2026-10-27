@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.05.09.2007,4,Leer,sex,laki_laki,,700,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.09.2007,4,Leer,sex,perempuan,,730,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.09.2007,4,Leer,total,total,,1430,jiwa,2025,registration,total_population,3.1,13,,
+53.05.09.2019,4,Blang Merang,sex,laki_laki,,1031,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.09.2019,4,Blang Merang,sex,perempuan,,1041,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.09.2019,4,Blang Merang,total,total,,2072,jiwa,2025,registration,total_population,3.1,13,,
+53.05.09.2002,4,Baraler,sex,laki_laki,,459,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.09.2002,4,Baraler,sex,perempuan,,484,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.09.2002,4,Baraler,total,total,,943,jiwa,2025,registration,total_population,3.1,13,,
+53.05.09.2018,4,Baranusa,sex,laki_laki,,507,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.09.2018,4,Baranusa,sex,perempuan,,538,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.09.2018,4,Baranusa,total,total,,1045,jiwa,2025,registration,total_population,3.1,13,,
+53.05.09.2024,4,Piring Sina,sex,laki_laki,,306,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.09.2024,4,Piring Sina,sex,perempuan,,341,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.09.2024,4,Piring Sina,total,total,,647,jiwa,2025,registration,total_population,3.1,13,,
+53.05.09.2020,4,IllU,sex,laki_laki,,474,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.09.2020,4,IllU,sex,perempuan,,497,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.09.2020,4,IllU,total,total,,971,jiwa,2025,registration,total_population,3.1,13,,
+53.05.09,3,Pantar Barat,sex,laki_laki,,3959,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+53.05.09,3,Pantar Barat,sex,perempuan,,4073,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+53.05.09,3,Pantar Barat,total,total,,8032,jiwa,2025,registration,total_population,3.1,13,,

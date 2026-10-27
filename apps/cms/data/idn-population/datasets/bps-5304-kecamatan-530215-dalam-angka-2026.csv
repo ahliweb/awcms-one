@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.02.15.2006,4,Sabun,sex,laki_laki,,947,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.02.15.2006,4,Sabun,sex,perempuan,,957,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.02.15.2006,4,Sabun,total,total,,1904,jiwa,2025,registration,total_population,3.1,28,,
+53.02.15.2007,4,Nano,sex,laki_laki,,560,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.02.15.2007,4,Nano,sex,perempuan,,599,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.02.15.2007,4,Nano,total,total,,1159,jiwa,2025,registration,total_population,3.1,28,,
+53.02.15.2009,4,Boking,sex,laki_laki,,1057,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.02.15.2009,4,Boking,sex,perempuan,,1097,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.02.15.2009,4,Boking,total,total,,2154,jiwa,2025,registration,total_population,3.1,28,,
+53.02.15.2013,4,Leonmeni,sex,laki_laki,,334,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.02.15.2013,4,Leonmeni,sex,perempuan,,366,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.02.15.2013,4,Leonmeni,total,total,,700,jiwa,2025,registration,total_population,3.1,28,,
+53.02.15.2011,4,Meusin,sex,laki_laki,,776,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.02.15.2011,4,Meusin,sex,perempuan,,778,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.02.15.2011,4,Meusin,total,total,,1554,jiwa,2025,registration,total_population,3.1,28,,
+53.02.15.2010,4,Baus,sex,laki_laki,,993,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.02.15.2010,4,Baus,sex,perempuan,,1047,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.02.15.2010,4,Baus,total,total,,2040,jiwa,2025,registration,total_population,3.1,28,,
+53.02.15.2014,4,Fatu Manufui,sex,laki_laki,,779,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.02.15.2014,4,Fatu Manufui,sex,perempuan,,784,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.02.15.2014,4,Fatu Manufui,total,total,,1563,jiwa,2025,registration,total_population,3.1,28,,
+53.02.15,3,Boking,sex,laki_laki,,5446,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.02.15,3,Boking,sex,perempuan,,5628,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.02.15,3,Boking,total,total,,11074,jiwa,2025,registration,total_population,3.1,28,,

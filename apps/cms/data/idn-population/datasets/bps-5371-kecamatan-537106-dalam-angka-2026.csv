@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.71.06.1001,4,Air Mata,sex,laki_laki,,882,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.06.1001,4,Air Mata,sex,perempuan,,864,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.06.1001,4,Air Mata,total,total,,1746,jiwa,2025,registration,total_population,3.1,26,,
+53.71.06.1003,4,Bonipoi,sex,laki_laki,,892,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.06.1003,4,Bonipoi,sex,perempuan,,868,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.06.1003,4,Bonipoi,total,total,,1760,jiwa,2025,registration,total_population,3.1,26,,
+53.71.06.1006,4,Merdeka,sex,laki_laki,,824,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.06.1006,4,Merdeka,sex,perempuan,,870,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.06.1006,4,Merdeka,total,total,,1694,jiwa,2025,registration,total_population,3.1,26,,
+53.71.06.1004,4,Solor,sex,laki_laki,,1304,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.06.1004,4,Solor,sex,perempuan,,1273,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.06.1004,4,Solor,total,total,,2577,jiwa,2025,registration,total_population,3.1,26,,
+53.71.06.1005,4,Tode Kisar,sex,laki_laki,,454,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.06.1005,4,Tode Kisar,sex,perempuan,,473,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.06.1005,4,Tode Kisar,total,total,,927,jiwa,2025,registration,total_population,3.1,26,,
+53.71.06.1007,4,Oeba,sex,laki_laki,,2285,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.06.1007,4,Oeba,sex,perempuan,,2380,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.06.1007,4,Oeba,total,total,,4665,jiwa,2025,registration,total_population,3.1,26,,
+53.71.06.1008,4,Fatubesi,sex,laki_laki,,2521,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.06.1008,4,Fatubesi,sex,perempuan,,2476,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.06.1008,4,Fatubesi,total,total,,4997,jiwa,2025,registration,total_population,3.1,26,,
+53.71.06.1010,4,Nefonaek,sex,laki_laki,,2113,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.06.1010,4,Nefonaek,sex,perempuan,,2166,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.06.1010,4,Nefonaek,total,total,,4279,jiwa,2025,registration,total_population,3.1,26,,
+53.71.06.1009,4,Pasir Panjang,sex,laki_laki,,3886,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki
+53.71.06.1009,4,Pasir Panjang,sex,perempuan,,3785,jiwa,2025,registration,total_population,3.1,26,,Perempuan
+53.71.06.1009,4,Pasir Panjang,total,total,,7671,jiwa,2025,registration,total_population,3.1,26,,

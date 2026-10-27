@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-5309-kecamatan-530618-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.06.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Adonara Tengah Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Flores Timur",
+  "publisherDomain": "5309",
+  "publisherWebsite": "https://florestimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Flores Timur (https://florestimurkab.bps.go.id), publikasi \"Kecamatan Adonara Tengah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5309062",
+  "publicationNumber": "53090.26010",
+  "issn": "2581-1401",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://florestimurkab.bps.go.id/id/publication/2026/09/28/dda075a2281c763ca6b074e0/kecamatan-adonara-tengah-dalam-angka-2026.html",
+  "sourceFileSha256": "0160e06f7cb938dbd706d50a860736d25fcb242942394ae3108a11dfeae879fb",
+  "sourceFileBytes": 15287930,
+  "sourcePages": [18, 20],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Flores Timur",
+  "csvPath": "datasets/bps-5309-kecamatan-530618-dalam-angka-2026.csv",
+  "csvSha256": "f22ce36209da3b8c9b2bc7febc8087e8ef130736c40cd9012fe46e521e2f50d6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Adonara Tengah, 2025",
+      "printedPages": [18],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Adonara Tengah, 2025",
+      "printedPages": [20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "cross-table disagreement, both stored as published: 53.06.18 sex/laki_laki/ 2025: 6948 (table 3.1) vs 7885 (table 3.2)",
+    "cross-table disagreement, both stored as published: 53.06.18 sex/perempuan/ 2025: 7153 (table 3.1) vs 7819 (table 3.2)",
+    "cross-table disagreement, both stored as published: 53.06.18 total/total/ 2025: 14101 (table 3.1) vs 15704 (table 3.2)"
+  ]
+}

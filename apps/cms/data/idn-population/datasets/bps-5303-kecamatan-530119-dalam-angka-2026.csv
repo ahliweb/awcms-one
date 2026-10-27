@@ -1,0 +1,11 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.01.19.2002,4,Pakubaun,sex,perempuan,,1568,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.19.2002,4,Pakubaun,total,total,,3307,jiwa,2025,registration,total_population,3.1,26,,
+53.01.19.2001,4,Oebesi,sex,perempuan,,1294,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.19.2001,4,Oebesi,total,total,,2646,jiwa,2025,registration,total_population,3.1,26,,
+53.01.19.2003,4,Rabeka,sex,perempuan,,963,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.19.2003,4,Rabeka,total,total,,1962,jiwa,2025,registration,total_population,3.1,26,,
+53.01.19.2004,4,Enoraen,sex,perempuan,,840,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.19.2004,4,Enoraen,total,total,,1717,jiwa,2025,registration,total_population,3.1,26,,
+53.01.19,3,Amarasi Timur,sex,perempuan,,4665,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.19,3,Amarasi Timur,total,total,,9632,jiwa,2025,registration,total_population,3.1,26,,

@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.02.18.2001,4,Neke,sex,laki_laki,,831,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.02.18.2001,4,Neke,sex,perempuan,,874,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.02.18.2001,4,Neke,total,total,,1705,jiwa,2025,registration,total_population,3.1,28,,
+53.02.18.2002,4,Pene Utara,sex,laki_laki,,1283,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.02.18.2002,4,Pene Utara,sex,perempuan,,1252,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.02.18.2002,4,Pene Utara,total,total,,2535,jiwa,2025,registration,total_population,3.1,28,,
+53.02.18.2003,4,Noenoni,sex,laki_laki,,891,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.02.18.2003,4,Noenoni,sex,perempuan,,903,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.02.18.2003,4,Noenoni,total,total,,1794,jiwa,2025,registration,total_population,3.1,28,,
+53.02.18.2004,4,Hoi,sex,laki_laki,,1413,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.02.18.2004,4,Hoi,sex,perempuan,,1420,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.02.18.2004,4,Hoi,total,total,,2833,jiwa,2025,registration,total_population,3.1,28,,
+53.02.18.2005,4,Niki Niki Un,sex,laki_laki,,508,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.02.18.2005,4,Niki Niki Un,sex,perempuan,,512,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.02.18.2005,4,Niki Niki Un,total,total,,1020,jiwa,2025,registration,total_population,3.1,28,,
+53.02.18.2006,4,Oenino,sex,laki_laki,,674,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.02.18.2006,4,Oenino,sex,perempuan,,687,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.02.18.2006,4,Oenino,total,total,,1361,jiwa,2025,registration,total_population,3.1,28,,
+53.02.18.2007,4,Abi,sex,laki_laki,,633,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.02.18.2007,4,Abi,sex,perempuan,,638,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.02.18.2007,4,Abi,total,total,,1271,jiwa,2025,registration,total_population,3.1,28,,
+53.02.18,3,KECAMATAN OENINO,sex,laki_laki,,6233,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.02.18,3,KECAMATAN OENINO,sex,perempuan,,6286,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.02.18,3,KECAMATAN OENINO,total,total,,12519,jiwa,2025,registration,total_population,3.1,28,,
+53.02.18,3,Oenino,age_group,0-4,laki_laki,286,jiwa,2025,registration,total_population,3.2,30,,0 - 4
+53.02.18,3,Oenino,age_group,0-4,perempuan,277,jiwa,2025,registration,total_population,3.2,30,,0 - 4
+53.02.18,3,Oenino,age_group,0-4,,563,jiwa,2025,registration,total_population,3.2,30,,0 - 4
+53.02.18,3,Oenino,age_group,5-9,laki_laki,612,jiwa,2025,registration,total_population,3.2,30,,5 - 9
+53.02.18,3,Oenino,age_group,5-9,perempuan,558,jiwa,2025,registration,total_population,3.2,30,,5 - 9
+53.02.18,3,Oenino,age_group,5-9,,1170,jiwa,2025,registration,total_population,3.2,30,,5 - 9
+53.02.18,3,Oenino,age_group,10-14,laki_laki,732,jiwa,2025,registration,total_population,3.2,30,,10 - 14
+53.02.18,3,Oenino,age_group,10-14,perempuan,649,jiwa,2025,registration,total_population,3.2,30,,10 - 14
+53.02.18,3,Oenino,age_group,10-14,,1381,jiwa,2025,registration,total_population,3.2,30,,10 - 14
+53.02.18,3,Oenino,age_group,15-19,laki_laki,632,jiwa,2025,registration,total_population,3.2,30,,15 - 19
+53.02.18,3,Oenino,age_group,15-19,perempuan,642,jiwa,2025,registration,total_population,3.2,30,,15 - 19
+53.02.18,3,Oenino,age_group,15-19,,1274,jiwa,2025,registration,total_population,3.2,30,,15 - 19
+53.02.18,3,Oenino,age_group,20-24,laki_laki,670,jiwa,2025,registration,total_population,3.2,30,,20 - 24
+53.02.18,3,Oenino,age_group,20-24,perempuan,624,jiwa,2025,registration,total_population,3.2,30,,20 - 24
+53.02.18,3,Oenino,age_group,20-24,,1294,jiwa,2025,registration,total_population,3.2,30,,20 - 24
+53.02.18,3,Oenino,age_group,25-29,laki_laki,448,jiwa,2025,registration,total_population,3.2,30,,25 - 29
+53.02.18,3,Oenino,age_group,25-29,perempuan,416,jiwa,2025,registration,total_population,3.2,30,,25 - 29
+53.02.18,3,Oenino,age_group,25-29,,864,jiwa,2025,registration,total_population,3.2,30,,25 - 29
+53.02.18,3,Oenino,age_group,30-34,laki_laki,368,jiwa,2025,registration,total_population,3.2,30,,30 - 34
+53.02.18,3,Oenino,age_group,30-34,perempuan,415,jiwa,2025,registration,total_population,3.2,30,,30 - 34
+53.02.18,3,Oenino,age_group,30-34,,783,jiwa,2025,registration,total_population,3.2,30,,30 - 34
+53.02.18,3,Oenino,age_group,35-39,laki_laki,415,jiwa,2025,registration,total_population,3.2,30,,35 - 39
+53.02.18,3,Oenino,age_group,35-39,perempuan,409,jiwa,2025,registration,total_population,3.2,30,,35 - 39
+53.02.18,3,Oenino,age_group,35-39,,824,jiwa,2025,registration,total_population,3.2,30,,35 - 39
+53.02.18,3,Oenino,age_group,40-44,laki_laki,363,jiwa,2025,registration,total_population,3.2,30,,40 - 44
+53.02.18,3,Oenino,age_group,40-44,perempuan,434,jiwa,2025,registration,total_population,3.2,30,,40 - 44
+53.02.18,3,Oenino,age_group,40-44,,797,jiwa,2025,registration,total_population,3.2,30,,40 - 44
+53.02.18,3,Oenino,age_group,45-49,laki_laki,315,jiwa,2025,registration,total_population,3.2,30,,45 - 49
+53.02.18,3,Oenino,age_group,45-49,perempuan,361,jiwa,2025,registration,total_population,3.2,30,,45 - 49
+53.02.18,3,Oenino,age_group,45-49,,676,jiwa,2025,registration,total_population,3.2,30,,45 - 49
+53.02.18,3,Oenino,age_group,50-54,laki_laki,276,jiwa,2025,registration,total_population,3.2,30,,50 - 54
+53.02.18,3,Oenino,age_group,50-54,perempuan,317,jiwa,2025,registration,total_population,3.2,30,,50 - 54
+53.02.18,3,Oenino,age_group,50-54,,593,jiwa,2025,registration,total_population,3.2,30,,50 - 54
+53.02.18,3,Oenino,age_group,55-59,laki_laki,256,jiwa,2025,registration,total_population,3.2,30,,55 - 59
+53.02.18,3,Oenino,age_group,55-59,perempuan,287,jiwa,2025,registration,total_population,3.2,30,,55 - 59
+53.02.18,3,Oenino,age_group,55-59,,543,jiwa,2025,registration,total_population,3.2,30,,55 - 59
+53.02.18,3,Oenino,age_group,60-64,laki_laki,238,jiwa,2025,registration,total_population,3.2,30,,60 - 64
+53.02.18,3,Oenino,age_group,60-64,perempuan,265,jiwa,2025,registration,total_population,3.2,30,,60 - 64
+53.02.18,3,Oenino,age_group,60-64,,503,jiwa,2025,registration,total_population,3.2,30,,60 - 64
+53.02.18,3,Oenino,age_group,65-69,laki_laki,234,jiwa,2025,registration,total_population,3.2,30,,65 - 69
+53.02.18,3,Oenino,age_group,65-69,perempuan,250,jiwa,2025,registration,total_population,3.2,30,,65 - 69
+53.02.18,3,Oenino,age_group,65-69,,484,jiwa,2025,registration,total_population,3.2,30,,65 - 69
+53.02.18,3,Oenino,age_group,70-74,laki_laki,156,jiwa,2025,registration,total_population,3.2,30,,70 - 74
+53.02.18,3,Oenino,age_group,70-74,perempuan,169,jiwa,2025,registration,total_population,3.2,30,,70 - 74
+53.02.18,3,Oenino,age_group,70-74,,325,jiwa,2025,registration,total_population,3.2,30,,70 - 74
+53.02.18,3,Oenino,age_group,75+,laki_laki,232,jiwa,2025,registration,total_population,3.2,30,,75 +
+53.02.18,3,Oenino,age_group,75+,perempuan,213,jiwa,2025,registration,total_population,3.2,30,,75 +
+53.02.18,3,Oenino,age_group,75+,,445,jiwa,2025,registration,total_population,3.2,30,,75 +

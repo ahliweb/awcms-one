@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.15.01.2006,4,Wontong,sex,laki_laki,,794,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.01.2006,4,Wontong,sex,perempuan,,813,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.01.2006,4,Wontong,total,total,,1607,jiwa,2025,registration,total_population,3.1,23,,
+53.15.01.2005,4,Rego,sex,laki_laki,,892,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.01.2005,4,Rego,sex,perempuan,,881,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.01.2005,4,Rego,total,total,,1773,jiwa,2025,registration,total_population,3.1,23,,
+53.15.01.2004,4,Nggilat,sex,laki_laki,,620,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.01.2004,4,Nggilat,sex,perempuan,,597,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.01.2004,4,Nggilat,total,total,,1217,jiwa,2025,registration,total_population,3.1,23,,
+53.15.01.2003,4,Mbakung,sex,laki_laki,,773,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.01.2003,4,Mbakung,sex,perempuan,,775,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.01.2003,4,Mbakung,total,total,,1548,jiwa,2025,registration,total_population,3.1,23,,
+53.15.01.2001,4,Bari,sex,laki_laki,,1099,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.01.2001,4,Bari,sex,perempuan,,1090,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.01.2001,4,Bari,total,total,,2189,jiwa,2025,registration,total_population,3.1,23,,
+53.15.01.2002,4,Rokap,sex,laki_laki,,484,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.01.2002,4,Rokap,sex,perempuan,,477,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.01.2002,4,Rokap,total,total,,961,jiwa,2025,registration,total_population,3.1,23,,
+53.15.01.2007,4,Raba,sex,laki_laki,,674,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.01.2007,4,Raba,sex,perempuan,,703,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.01.2007,4,Raba,total,total,,1377,jiwa,2025,registration,total_population,3.1,23,,
+53.15.01.2008,4,Nanga Kantor,sex,laki_laki,,722,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.01.2008,4,Nanga Kantor,sex,perempuan,,720,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.01.2008,4,Nanga Kantor,total,total,,1442,jiwa,2025,registration,total_population,3.1,23,,
+53.15.01.2014,4,Watu Baru,sex,laki_laki,,715,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.01.2014,4,Watu Baru,sex,perempuan,,702,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.01.2014,4,Watu Baru,total,total,,1417,jiwa,2025,registration,total_population,3.1,23,,
+53.15.01.2015,4,Lewat,sex,laki_laki,,804,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.01.2015,4,Lewat,sex,perempuan,,828,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.01.2015,4,Lewat,total,total,,1632,jiwa,2025,registration,total_population,3.1,23,,
+53.15.01.2016,4,Watu Manggar,sex,laki_laki,,571,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.01.2016,4,Watu Manggar,sex,perempuan,,604,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.01.2016,4,Watu Manggar,total,total,,1175,jiwa,2025,registration,total_population,3.1,23,,
+53.15.01.2025,4,Sarae Naru,sex,laki_laki,,223,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.01.2025,4,Sarae Naru,sex,perempuan,,222,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.01.2025,4,Sarae Naru,total,total,,445,jiwa,2025,registration,total_population,3.1,23,,
+53.15.01.2026,4,Nanga Kantor Barat,sex,laki_laki,,872,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.01.2026,4,Nanga Kantor Barat,sex,perempuan,,851,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.01.2026,4,Nanga Kantor Barat,total,total,,1723,jiwa,2025,registration,total_population,3.1,23,,
+53.15.01,3,Kecamatan Macang Pacar,sex,laki_laki,,9243,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.01,3,Kecamatan Macang Pacar,sex,perempuan,,9263,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.01,3,Kecamatan Macang Pacar,total,total,,18506,jiwa,2025,registration,total_population,3.1,23,,

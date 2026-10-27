@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-5304-kecamatan-530221-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.02.21",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kualin Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Selatan",
+  "publisherDomain": "5304",
+  "publisherWebsite": "https://timortengahselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Selatan (https://timortengahselatankab.bps.go.id), publikasi \"Kecamatan Kualin Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5304061",
+  "publicationNumber": "53040.26037",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahselatankab.bps.go.id/id/publication/2026/09/28/eddd9fd340fde0ddf91a36f0/kecamatan-kualin-dalam-angka-2026.html",
+  "sourceFileSha256": "4daa84a5f38fc502291e81e3490a5930a06c0417ac7f02d8b30509f4fd8e2293",
+  "sourceFileBytes": 1444665,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Timor Tengah Selatan",
+  "csvPath": "datasets/bps-5304-kecamatan-530221-dalam-angka-2026.csv",
+  "csvSha256": "d6e3b05423935ea01e7b0a983fcd2fa24d68ddd3322d7d59a7c5ad0e3fadf494",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kualin, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kualin, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: 25 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: row not stored: row \"Nama Kecamatan\": unmatched "
+  ]
+}

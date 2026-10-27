@@ -1,0 +1,110 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.21.03,3,Wewiku,total,total,,19591,jiwa,2025,survey_estimate,total_population,3.1.1,48,,
+53.21.02,3,Malaka Barat,total,total,,24361,jiwa,2025,survey_estimate,total_population,3.1.1,48,,
+53.21.04,3,Weliman,total,total,,21227,jiwa,2025,survey_estimate,total_population,3.1.1,48,,
+53.21.05,3,Rinhat,total,total,,13665,jiwa,2025,survey_estimate,total_population,3.1.1,48,,
+53.21.07,3,Sasita Mean,total,total,,9448,jiwa,2025,survey_estimate,total_population,3.1.1,48,,
+53.21.01,3,Malaka Tengah,total,total,,43028,jiwa,2025,survey_estimate,total_population,3.1.1,48,,
+53.21.12,3,Botin Leobele,total,total,,5671,jiwa,2025,survey_estimate,total_population,3.1.1,48,,
+53.21.08,3,Laen Manen,total,total,,13811,jiwa,2025,survey_estimate,total_population,3.1.1,48,,
+53.21.09,3,Malaka Timur,total,total,,10523,jiwa,2025,survey_estimate,total_population,3.1.1,48,,
+53.21.11,3,Kobalima,total,total,,19327,jiwa,2025,survey_estimate,total_population,3.1.1,48,,
+53.21.10,3,Kobalima Timur,total,total,,6733,jiwa,2025,survey_estimate,total_population,3.1.1,48,,
+53.21,2,Kabupaten Malaka,total,total,,196008,jiwa,2025,survey_estimate,total_population,3.1.1,48,,
+53.21,2,Kabupaten Malaka,age_group,0-4,laki_laki,10041,jiwa,2025,survey_estimate,total_population,3.1.2,51,,0–4
+53.21,2,Kabupaten Malaka,age_group,0-4,perempuan,9711,jiwa,2025,survey_estimate,total_population,3.1.2,51,,0–4
+53.21,2,Kabupaten Malaka,age_group,0-4,,19752,jiwa,2025,survey_estimate,total_population,3.1.2,51,,0–4
+53.21,2,Kabupaten Malaka,age_group,5-9,laki_laki,8380,jiwa,2025,survey_estimate,total_population,3.1.2,51,,5–9
+53.21,2,Kabupaten Malaka,age_group,5-9,perempuan,8307,jiwa,2025,survey_estimate,total_population,3.1.2,51,,5–9
+53.21,2,Kabupaten Malaka,age_group,5-9,,16687,jiwa,2025,survey_estimate,total_population,3.1.2,51,,5–9
+53.21,2,Kabupaten Malaka,age_group,10-14,laki_laki,8496,jiwa,2025,survey_estimate,total_population,3.1.2,51,,10–14
+53.21,2,Kabupaten Malaka,age_group,10-14,perempuan,7996,jiwa,2025,survey_estimate,total_population,3.1.2,51,,10–14
+53.21,2,Kabupaten Malaka,age_group,10-14,,16492,jiwa,2025,survey_estimate,total_population,3.1.2,51,,10–14
+53.21,2,Kabupaten Malaka,age_group,15-19,laki_laki,9247,jiwa,2025,survey_estimate,total_population,3.1.2,51,,15–19
+53.21,2,Kabupaten Malaka,age_group,15-19,perempuan,9030,jiwa,2025,survey_estimate,total_population,3.1.2,51,,15–19
+53.21,2,Kabupaten Malaka,age_group,15-19,,18277,jiwa,2025,survey_estimate,total_population,3.1.2,51,,15–19
+53.21,2,Kabupaten Malaka,age_group,20-24,laki_laki,8816,jiwa,2025,survey_estimate,total_population,3.1.2,51,,20–24
+53.21,2,Kabupaten Malaka,age_group,20-24,perempuan,8431,jiwa,2025,survey_estimate,total_population,3.1.2,51,,20–24
+53.21,2,Kabupaten Malaka,age_group,20-24,,17247,jiwa,2025,survey_estimate,total_population,3.1.2,51,,20–24
+53.21,2,Kabupaten Malaka,age_group,25-29,laki_laki,8579,jiwa,2025,survey_estimate,total_population,3.1.2,51,,25–29
+53.21,2,Kabupaten Malaka,age_group,25-29,perempuan,8741,jiwa,2025,survey_estimate,total_population,3.1.2,51,,25–29
+53.21,2,Kabupaten Malaka,age_group,25-29,,17320,jiwa,2025,survey_estimate,total_population,3.1.2,51,,25–29
+53.21,2,Kabupaten Malaka,age_group,30-34,laki_laki,8269,jiwa,2025,survey_estimate,total_population,3.1.2,51,,30–34
+53.21,2,Kabupaten Malaka,age_group,30-34,perempuan,8199,jiwa,2025,survey_estimate,total_population,3.1.2,51,,30–34
+53.21,2,Kabupaten Malaka,age_group,30-34,,16468,jiwa,2025,survey_estimate,total_population,3.1.2,51,,30–34
+53.21,2,Kabupaten Malaka,age_group,35-39,laki_laki,6238,jiwa,2025,survey_estimate,total_population,3.1.2,51,,35–39
+53.21,2,Kabupaten Malaka,age_group,35-39,perempuan,6587,jiwa,2025,survey_estimate,total_population,3.1.2,51,,35–39
+53.21,2,Kabupaten Malaka,age_group,35-39,,12825,jiwa,2025,survey_estimate,total_population,3.1.2,51,,35–39
+53.21,2,Kabupaten Malaka,age_group,40-44,laki_laki,5204,jiwa,2025,survey_estimate,total_population,3.1.2,51,,40–44
+53.21,2,Kabupaten Malaka,age_group,40-44,perempuan,5905,jiwa,2025,survey_estimate,total_population,3.1.2,51,,40–44
+53.21,2,Kabupaten Malaka,age_group,40-44,,11109,jiwa,2025,survey_estimate,total_population,3.1.2,51,,40–44
+53.21,2,Kabupaten Malaka,age_group,45-49,laki_laki,4771,jiwa,2025,survey_estimate,total_population,3.1.2,51,,45–49
+53.21,2,Kabupaten Malaka,age_group,45-49,perempuan,5500,jiwa,2025,survey_estimate,total_population,3.1.2,51,,45–49
+53.21,2,Kabupaten Malaka,age_group,45-49,,10271,jiwa,2025,survey_estimate,total_population,3.1.2,51,,45–49
+53.21,2,Kabupaten Malaka,age_group,50-54,laki_laki,4348,jiwa,2025,survey_estimate,total_population,3.1.2,51,,50–54
+53.21,2,Kabupaten Malaka,age_group,50-54,perempuan,5089,jiwa,2025,survey_estimate,total_population,3.1.2,51,,50–54
+53.21,2,Kabupaten Malaka,age_group,50-54,,9437,jiwa,2025,survey_estimate,total_population,3.1.2,51,,50–54
+53.21,2,Kabupaten Malaka,age_group,55-59,laki_laki,4158,jiwa,2025,survey_estimate,total_population,3.1.2,51,,55–59
+53.21,2,Kabupaten Malaka,age_group,55-59,perempuan,4617,jiwa,2025,survey_estimate,total_population,3.1.2,51,,55–59
+53.21,2,Kabupaten Malaka,age_group,55-59,,8775,jiwa,2025,survey_estimate,total_population,3.1.2,51,,55–59
+53.21,2,Kabupaten Malaka,age_group,60-64,laki_laki,3455,jiwa,2025,survey_estimate,total_population,3.1.2,51,,60–64
+53.21,2,Kabupaten Malaka,age_group,60-64,perempuan,4062,jiwa,2025,survey_estimate,total_population,3.1.2,51,,60–64
+53.21,2,Kabupaten Malaka,age_group,60-64,,7517,jiwa,2025,survey_estimate,total_population,3.1.2,51,,60–64
+53.21,2,Kabupaten Malaka,age_group,65-69,laki_laki,2948,jiwa,2025,survey_estimate,total_population,3.1.2,51,,65–69
+53.21,2,Kabupaten Malaka,age_group,65-69,perempuan,3120,jiwa,2025,survey_estimate,total_population,3.1.2,51,,65–69
+53.21,2,Kabupaten Malaka,age_group,65-69,,6068,jiwa,2025,survey_estimate,total_population,3.1.2,51,,65–69
+53.21,2,Kabupaten Malaka,age_group,70-74,laki_laki,2282,jiwa,2025,survey_estimate,total_population,3.1.2,51,,70–74
+53.21,2,Kabupaten Malaka,age_group,70-74,perempuan,2300,jiwa,2025,survey_estimate,total_population,3.1.2,51,,70–74
+53.21,2,Kabupaten Malaka,age_group,70-74,,4582,jiwa,2025,survey_estimate,total_population,3.1.2,51,,70–74
+53.21,2,Kabupaten Malaka,age_group,75+,laki_laki,2756,jiwa,2025,survey_estimate,total_population,3.1.2,51,,75+
+53.21,2,Kabupaten Malaka,age_group,75+,perempuan,2913,jiwa,2025,survey_estimate,total_population,3.1.2,51,,75+
+53.21,2,Kabupaten Malaka,age_group,75+,,5669,jiwa,2025,survey_estimate,total_population,3.1.2,51,,75+
+53.21,2,Kabupaten Malaka,sex,laki_laki,,97988,jiwa,2025,survey_estimate,total_population,3.1.2,51,,Laki-Laki
+53.21,2,Kabupaten Malaka,sex,perempuan,,100508,jiwa,2025,survey_estimate,total_population,3.1.2,51,,Perempuan
+53.21,2,Kabupaten Malaka,total,total,,198496,jiwa,2025,survey_estimate,total_population,3.1.2,51,,
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/padi_padian,,144299,rupiah,2024,survey_estimate,per_capita,10.1,214,,Padi-padian
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/padi_padian,,111683,rupiah,2025,survey_estimate,per_capita,10.1,214,,Padi-padian
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/umbi_umbian,,5670,rupiah,2024,survey_estimate,per_capita,10.1,214,,Umbi-umbian
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/umbi_umbian,,7203,rupiah,2025,survey_estimate,per_capita,10.1,214,,Umbi-umbian
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,40360,rupiah,2024,survey_estimate,per_capita,10.1,214,,Ikan/udang/cumi/kerang
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,38004,rupiah,2025,survey_estimate,per_capita,10.1,214,,Ikan/udang/cumi/kerang
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/daging,,42291,rupiah,2024,survey_estimate,per_capita,10.1,214,,Daging
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/daging,,49202,rupiah,2025,survey_estimate,per_capita,10.1,214,,Daging
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/telur_dan_susu,,20351,rupiah,2024,survey_estimate,per_capita,10.1,214,,Telur dan susu
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/telur_dan_susu,,18057,rupiah,2025,survey_estimate,per_capita,10.1,214,,Telur dan susu
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/sayur_sayuran,,50414,rupiah,2024,survey_estimate,per_capita,10.1,214,,Sayur-sayuran
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/sayur_sayuran,,54055,rupiah,2025,survey_estimate,per_capita,10.1,214,,Sayur-sayuran
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/kacang_kacangan,,12018,rupiah,2024,survey_estimate,per_capita,10.1,214,,Kacang-kacangan
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/kacang_kacangan,,12558,rupiah,2025,survey_estimate,per_capita,10.1,214,,Kacang-kacangan
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/buah_buahan,,17934,rupiah,2024,survey_estimate,per_capita,10.1,214,,Buah-buahan
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/buah_buahan,,17992,rupiah,2025,survey_estimate,per_capita,10.1,214,,Buah-buahan
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/minyak_dan_kelapa,,12541,rupiah,2024,survey_estimate,per_capita,10.1,214,,Minyak dan kelapa
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/minyak_dan_kelapa,,11000,rupiah,2025,survey_estimate,per_capita,10.1,214,,Minyak dan kelapa
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/bahan_minuman,,17328,rupiah,2024,survey_estimate,per_capita,10.1,214,,Bahan minuman
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/bahan_minuman,,19661,rupiah,2025,survey_estimate,per_capita,10.1,214,,Bahan minuman
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/bumbu_bumbuan,,9294,rupiah,2024,survey_estimate,per_capita,10.1,214,,Bumbu-bumbuan
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/bumbu_bumbuan,,7580,rupiah,2025,survey_estimate,per_capita,10.1,214,,Bumbu-bumbuan
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/konsumsi_lainnya,,8559,rupiah,2024,survey_estimate,per_capita,10.1,214,,Konsumsi lainnya
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/konsumsi_lainnya,,8580,rupiah,2025,survey_estimate,per_capita,10.1,214,,Konsumsi lainnya
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,123652,rupiah,2024,survey_estimate,per_capita,10.1,214,,Makanan dan minuman jadi
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,103600,rupiah,2025,survey_estimate,per_capita,10.1,214,,Makanan dan minuman jadi
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/rokok,,47813,rupiah,2024,survey_estimate,per_capita,10.1,214,,Rokok
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/rokok,,48428,rupiah,2025,survey_estimate,per_capita,10.1,214,,Rokok
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/jumlah_makanan,,552525,rupiah,2024,survey_estimate,per_capita,10.1,214,,Jumlah makanan
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/jumlah_makanan,,507603,rupiah,2025,survey_estimate,per_capita,10.1,214,,Jumlah makanan
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,249151,rupiah,2024,survey_estimate,per_capita,10.1,214,,Perumahan dan fasilitas rumah tangga
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,242611,rupiah,2025,survey_estimate,per_capita,10.1,214,,Perumahan dan fasilitas rumah tangga
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,88558,rupiah,2024,survey_estimate,per_capita,10.1,214,,Aneka barang dan jasa
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,98928,rupiah,2025,survey_estimate,per_capita,10.1,214,,Aneka barang dan jasa
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,19820,rupiah,2024,survey_estimate,per_capita,10.1,214,,"Pakaian, alas kaki, dan tutup kepala"
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,18334,rupiah,2025,survey_estimate,per_capita,10.1,214,,"Pakaian, alas kaki, dan tutup kepala"
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/barang_tahan_lama,,32830,rupiah,2024,survey_estimate,per_capita,10.1,214,,Barang tahan lama
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/barang_tahan_lama,,57667,rupiah,2025,survey_estimate,per_capita,10.1,214,,Barang tahan lama
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,35699,rupiah,2024,survey_estimate,per_capita,10.1,214,,"Pajak, pungutan, dan asuransi"
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,44339,rupiah,2025,survey_estimate,per_capita,10.1,214,,"Pajak, pungutan, dan asuransi"
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,5686,rupiah,2024,survey_estimate,per_capita,10.1,214,,Keperluan pesta dan upacara/kenduri
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,5680,rupiah,2025,survey_estimate,per_capita,10.1,214,,Keperluan pesta dan upacara/kenduri
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,431744,rupiah,2024,survey_estimate,per_capita,10.1,214,,Jumlah bukan makanan
+53.21,2,Kabupaten Malaka,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,467558,rupiah,2025,survey_estimate,per_capita,10.1,214,,Jumlah bukan makanan
+53.21,2,Kabupaten Malaka,expenditure,total,,984269,rupiah,2024,survey_estimate,per_capita,10.1,214,,
+53.21,2,Kabupaten Malaka,expenditure,total,,975162,rupiah,2025,survey_estimate,per_capita,10.1,214,,

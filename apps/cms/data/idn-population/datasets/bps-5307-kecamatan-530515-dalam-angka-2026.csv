@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.05.15.2003,4,Talwai,sex,laki_laki,,372,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.15.2003,4,Talwai,sex,perempuan,,387,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.15.2003,4,Talwai,total,total,,759,jiwa,2025,registration,total_population,3.1,,,
+53.05.15.2005,4,Waimi,sex,laki_laki,,416,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.15.2005,4,Waimi,sex,perempuan,,413,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.15.2005,4,Waimi,total,total,,829,jiwa,2025,registration,total_population,3.1,,,
+53.05.15.2006,4,Tasi,sex,laki_laki,,236,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.15.2006,4,Tasi,sex,perempuan,,244,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.15.2006,4,Tasi,total,total,,480,jiwa,2025,registration,total_population,3.1,,,
+53.05.15.2004,4,Tulleng,sex,laki_laki,,390,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.15.2004,4,Tulleng,sex,perempuan,,442,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.15.2004,4,Tulleng,total,total,,832,jiwa,2025,registration,total_population,3.1,,,
+53.05.15.2001,4,Lembur Timur,sex,laki_laki,,595,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.15.2001,4,Lembur Timur,sex,perempuan,,654,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.15.2001,4,Lembur Timur,total,total,,1249,jiwa,2025,registration,total_population,3.1,,,
+53.05.15.2002,4,Luba,sex,laki_laki,,423,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.15.2002,4,Luba,sex,perempuan,,454,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.15.2002,4,Luba,total,total,,877,jiwa,2025,registration,total_population,3.1,,,
+53.05.15,3,Lembur,sex,laki_laki,,2432,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.15,3,Lembur,sex,perempuan,,2594,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.15,3,Lembur,total,total,,5026,jiwa,2025,registration,total_population,3.1,,,

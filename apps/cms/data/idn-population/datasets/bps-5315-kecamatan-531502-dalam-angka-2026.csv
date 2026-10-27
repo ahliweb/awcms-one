@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.15.02.1022,4,Golo Ruu,sex,laki_laki,,429,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.02.1022,4,Golo Ruu,sex,perempuan,,431,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.02.1022,4,Golo Ruu,total,total,,860,jiwa,2025,registration,total_population,3.1,23,,
+53.15.02.2017,4,Compang Suka,sex,laki_laki,,436,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.02.2017,4,Compang Suka,sex,perempuan,,445,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.02.2017,4,Compang Suka,total,total,,881,jiwa,2025,registration,total_population,3.1,23,,
+53.15.02.1023,4,Nantal,sex,laki_laki,,498,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.02.1023,4,Nantal,sex,perempuan,,487,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.02.1023,4,Nantal,total,total,,985,jiwa,2025,registration,total_population,3.1,23,,
+53.15.02.2002,4,Coal,sex,laki_laki,,744,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.02.2002,4,Coal,sex,perempuan,,698,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.02.2002,4,Coal,total,total,,1442,jiwa,2025,registration,total_population,3.1,23,,
+53.15.02.2021,4,Sama,sex,laki_laki,,373,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.02.2021,4,Sama,sex,perempuan,,351,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.02.2021,4,Sama,total,total,,724,jiwa,2025,registration,total_population,3.1,23,,
+53.15.02.2010,4,Lewur,sex,laki_laki,,1001,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.02.2010,4,Lewur,sex,perempuan,,947,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.02.2010,4,Lewur,total,total,,1948,jiwa,2025,registration,total_population,3.1,23,,
+53.15.02.2011,4,Lawi,sex,laki_laki,,796,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.02.2011,4,Lawi,sex,perempuan,,753,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.02.2011,4,Lawi,total,total,,1549,jiwa,2025,registration,total_population,3.1,23,,
+53.15.02.2004,4,Pangga,sex,laki_laki,,1079,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.02.2004,4,Pangga,sex,perempuan,,1089,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.02.2004,4,Pangga,total,total,,2168,jiwa,2025,registration,total_population,3.1,23,,
+53.15.02.2032,4,Golo Pua,sex,laki_laki,,381,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.02.2032,4,Golo Pua,sex,perempuan,,392,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.02.2032,4,Golo Pua,total,total,,773,jiwa,2025,registration,total_population,3.1,23,,
+53.15.02.2031,4,Suka Kiong,sex,laki_laki,,646,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.02.2031,4,Suka Kiong,sex,perempuan,,659,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.02.2031,4,Suka Kiong,total,total,,1305,jiwa,2025,registration,total_population,3.1,23,,
+53.15.02.2030,4,Bangka Lewat,sex,laki_laki,,528,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.02.2030,4,Bangka Lewat,sex,perempuan,,511,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.02.2030,4,Bangka Lewat,total,total,,1039,jiwa,2025,registration,total_population,3.1,23,,
+53.15.02,3,Kecamatan Kuwus,sex,laki_laki,,7782,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.02,3,Kecamatan Kuwus,sex,perempuan,,7676,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.02,3,Kecamatan Kuwus,total,total,,15458,jiwa,2025,registration,total_population,3.1,23,,

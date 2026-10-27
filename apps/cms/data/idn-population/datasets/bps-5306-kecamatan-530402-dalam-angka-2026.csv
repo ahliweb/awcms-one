@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.04.02.2009,4,Bauho,sex,laki_laki,,431,jiwa,2025,registration,total_population,1.3,46,,Laki-Laki/Male
+53.04.02.2009,4,Bauho,sex,perempuan,,430,jiwa,2025,registration,total_population,1.3,46,,Perempuan/Female
+53.04.02.2009,4,Bauho,total,total,,861,jiwa,2025,registration,total_population,1.3,46,,
+53.04.02.2006,4,Fatuba’a,sex,laki_laki,,840,jiwa,2025,registration,total_population,1.3,46,,Laki-Laki/Male
+53.04.02.2006,4,Fatuba’a,sex,perempuan,,849,jiwa,2025,registration,total_population,1.3,46,,Perempuan/Female
+53.04.02.2006,4,Fatuba’a,total,total,,1689,jiwa,2025,registration,total_population,1.3,46,,
+53.04.02.2019,4,Halimodok,sex,laki_laki,,762,jiwa,2025,registration,total_population,1.3,46,,Laki-Laki/Male
+53.04.02.2019,4,Halimodok,sex,perempuan,,799,jiwa,2025,registration,total_population,1.3,46,,Perempuan/Female
+53.04.02.2019,4,Halimodok,total,total,,1561,jiwa,2025,registration,total_population,1.3,46,,
+53.04.02.2005,4,Manleten,sex,laki_laki,,4637,jiwa,2025,registration,total_population,1.3,46,,Laki-Laki/Male
+53.04.02.2005,4,Manleten,sex,perempuan,,4461,jiwa,2025,registration,total_population,1.3,46,,Perempuan/Female
+53.04.02.2005,4,Manleten,total,total,,9098,jiwa,2025,registration,total_population,1.3,46,,
+53.04.02.2003,4,Sadi,sex,laki_laki,,983,jiwa,2025,registration,total_population,1.3,46,,Laki-Laki/Male
+53.04.02.2003,4,Sadi,sex,perempuan,,973,jiwa,2025,registration,total_population,1.3,46,,Perempuan/Female
+53.04.02.2003,4,Sadi,total,total,,1956,jiwa,2025,registration,total_population,1.3,46,,
+53.04.02.2010,4,Sarabau,sex,laki_laki,,455,jiwa,2025,registration,total_population,1.3,46,,Laki-Laki/Male
+53.04.02.2010,4,Sarabau,sex,perempuan,,466,jiwa,2025,registration,total_population,1.3,46,,Perempuan/Female
+53.04.02.2010,4,Sarabau,total,total,,921,jiwa,2025,registration,total_population,1.3,46,,
+53.04.02.2001,4,Silawan,sex,laki_laki,,2268,jiwa,2025,registration,total_population,1.3,46,,Laki-Laki/Male
+53.04.02.2001,4,Silawan,sex,perempuan,,2306,jiwa,2025,registration,total_population,1.3,46,,Perempuan/Female
+53.04.02.2001,4,Silawan,total,total,,4574,jiwa,2025,registration,total_population,1.3,46,,
+53.04.02.2008,4,Takirin,sex,laki_laki,,597,jiwa,2025,registration,total_population,1.3,46,,Laki-Laki/Male
+53.04.02.2008,4,Takirin,sex,perempuan,,608,jiwa,2025,registration,total_population,1.3,46,,Perempuan/Female
+53.04.02.2008,4,Takirin,total,total,,1205,jiwa,2025,registration,total_population,1.3,46,,
+53.04.02.2018,4,Tialai,sex,laki_laki,,445,jiwa,2025,registration,total_population,1.3,46,,Laki-Laki/Male
+53.04.02.2018,4,Tialai,sex,perempuan,,451,jiwa,2025,registration,total_population,1.3,46,,Perempuan/Female
+53.04.02.2018,4,Tialai,total,total,,896,jiwa,2025,registration,total_population,1.3,46,,
+53.04.02.2002,4,Tulakadi,sex,laki_laki,,678,jiwa,2025,registration,total_population,1.3,46,,Laki-Laki/Male
+53.04.02.2002,4,Tulakadi,sex,perempuan,,700,jiwa,2025,registration,total_population,1.3,46,,Perempuan/Female
+53.04.02.2002,4,Tulakadi,total,total,,1378,jiwa,2025,registration,total_population,1.3,46,,
+53.04.02.2004,4,Umaklaran,sex,laki_laki,,1062,jiwa,2025,registration,total_population,1.3,46,,Laki-Laki/Male
+53.04.02.2004,4,Umaklaran,sex,perempuan,,1095,jiwa,2025,registration,total_population,1.3,46,,Perempuan/Female
+53.04.02.2004,4,Umaklaran,total,total,,2157,jiwa,2025,registration,total_population,1.3,46,,
+53.04.02,3,Tasifeto Timur,sex,laki_laki,,14115,jiwa,2025,registration,total_population,1.3,46,,Laki-Laki/Male
+53.04.02,3,Tasifeto Timur,sex,perempuan,,14101,jiwa,2025,registration,total_population,1.3,46,,Perempuan/Female
+53.04.02,3,Tasifeto Timur,total,total,,28216,jiwa,2025,registration,total_population,1.3,46,,

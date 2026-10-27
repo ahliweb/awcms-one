@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.19.03.2002,4,Tengku Lawar,sex,laki_laki,,811,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+53.19.03.2002,4,Tengku Lawar,sex,perempuan,,800,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+53.19.03.2002,4,Tengku Lawar,total,total,,1611,jiwa,2025,registration,total_population,3.1,15,,
+53.19.03.2011,4,Compang Necak,sex,laki_laki,,877,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+53.19.03.2011,4,Compang Necak,sex,perempuan,,809,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+53.19.03.2011,4,Compang Necak,total,total,,1686,jiwa,2025,registration,total_population,3.1,15,,
+53.19.03.2013,4,Compang Mekar,sex,laki_laki,,697,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+53.19.03.2013,4,Compang Mekar,sex,perempuan,,684,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+53.19.03.2013,4,Compang Mekar,total,total,,1381,jiwa,2025,registration,total_population,3.1,15,,
+53.19.03.2001,4,Tengku Leda,sex,laki_laki,,1127,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+53.19.03.2001,4,Tengku Leda,sex,perempuan,,1140,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+53.19.03.2001,4,Tengku Leda,total,total,,2267,jiwa,2025,registration,total_population,3.1,15,,
+53.19.03.2014,4,Compang Deru,sex,laki_laki,,443,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+53.19.03.2014,4,Compang Deru,sex,perempuan,,469,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+53.19.03.2014,4,Compang Deru,total,total,,912,jiwa,2025,registration,total_population,3.1,15,,
+53.19.03.2003,4,Goreng Meni,sex,laki_laki,,655,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+53.19.03.2003,4,Goreng Meni,sex,perempuan,,668,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+53.19.03.2003,4,Goreng Meni,total,total,,1323,jiwa,2025,registration,total_population,3.1,15,,
+53.19.03.2004,4,Golo Munga,sex,laki_laki,,692,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+53.19.03.2004,4,Golo Munga,sex,perempuan,,613,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+53.19.03.2004,4,Golo Munga,total,total,,1305,jiwa,2025,registration,total_population,3.1,15,,
+53.19.03.2009,4,Golo Rentung,sex,laki_laki,,723,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+53.19.03.2009,4,Golo Rentung,sex,perempuan,,698,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+53.19.03.2009,4,Golo Rentung,total,total,,1421,jiwa,2025,registration,total_population,3.1,15,,
+53.19.03.2010,4,Golo Lembur,sex,laki_laki,,616,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+53.19.03.2010,4,Golo Lembur,sex,perempuan,,581,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+53.19.03.2010,4,Golo Lembur,total,total,,1197,jiwa,2025,registration,total_population,3.1,15,,
+53.19.03.2016,4,Golo Nimbung,sex,laki_laki,,599,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+53.19.03.2016,4,Golo Nimbung,sex,perempuan,,599,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+53.19.03.2016,4,Golo Nimbung,total,total,,1198,jiwa,2025,registration,total_population,3.1,15,,
+53.19.03.2017,4,Lamba Keli,sex,laki_laki,,983,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+53.19.03.2017,4,Lamba Keli,sex,perempuan,,965,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+53.19.03.2017,4,Lamba Keli,total,total,,1948,jiwa,2025,registration,total_population,3.1,15,,
+53.19.03.2021,4,Goreng Meni Utara,sex,laki_laki,,368,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+53.19.03.2021,4,Goreng Meni Utara,sex,perempuan,,348,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+53.19.03.2021,4,Goreng Meni Utara,total,total,,716,jiwa,2025,registration,total_population,3.1,15,,
+53.19.03.2023,4,Golo Paleng,sex,laki_laki,,386,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+53.19.03.2023,4,Golo Paleng,sex,perempuan,,369,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+53.19.03.2023,4,Golo Paleng,total,total,,755,jiwa,2025,registration,total_population,3.1,15,,
+53.19.03,3,Lamba Leda,sex,laki_laki,,8977,jiwa,2025,registration,total_population,3.1,15,,Laki-Laki/Male
+53.19.03,3,Lamba Leda,sex,perempuan,,8743,jiwa,2025,registration,total_population,3.1,15,,Perempuan/Female
+53.19.03,3,Lamba Leda,total,total,,17720,jiwa,2025,registration,total_population,3.1,15,,

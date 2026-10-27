@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5313-kecamatan-531012-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.10.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Langke Rembong Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Manggarai",
+  "publisherDomain": "5313",
+  "publisherWebsite": "https://manggaraikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Manggarai (https://manggaraikab.bps.go.id), publikasi \"Kecamatan Langke Rembong Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "53130.26008",
+  "issn": "2987-0658",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://manggaraikab.bps.go.id/id/publication/2026/09/28/0ff736f0d72af1a4eb779260/kecamatan-langke-rembong-dalam-angka-2026.html",
+  "sourceFileSha256": "8865bb76a1cea5c61d0a27af880b664b613d2f5b208ce980df6f32c15440a83c",
+  "sourceFileBytes": 4848010,
+  "sourcePages": [25, 26, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Manggarai",
+  "csvPath": "datasets/bps-5313-kecamatan-531012-dalam-angka-2026.csv",
+  "csvSha256": "7b7848cfd2781cad94c10d31ae2a9b725fdaf7ba212004404eee03cb23da0be5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan Di Kecamatan Langke Rembong, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Langke Rembong, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

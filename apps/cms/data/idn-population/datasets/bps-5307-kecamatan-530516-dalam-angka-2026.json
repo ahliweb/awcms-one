@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-5307-kecamatan-530516-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.05.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pantar Tengah Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Alor",
+  "publisherDomain": "5307",
+  "publisherWebsite": "https://alorkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Alor (https://alorkab.bps.go.id), publikasi \"Kecamatan Pantar Tengah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5307014",
+  "publicationNumber": "53070",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://alorkab.bps.go.id/id/publication/2026/09/28/bec25867dad2dccd1772581d/kecamatan-pantar-tengah-dalam-angka-2026.html",
+  "sourceFileSha256": "c49a06728cb06fb8826a3310c43014e5f18ea8fb11afca239ac166e77a2505c3",
+  "sourceFileBytes": 3661246,
+  "sourcePages": [13],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Alor",
+  "csvPath": "datasets/bps-5307-kecamatan-530516-dalam-angka-2026.csv",
+  "csvSha256": "5427df6af8331a1614bf3b2dee4d22e1405c47751c9f5eeb109bd24f0de657eb",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pantar Tengah, 2025",
+      "printedPages": [13],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Tube\": unmatched "
+  ]
+}

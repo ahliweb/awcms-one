@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.15.04.2009,4,Mata Wae,sex,laki_laki,,825,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.04.2009,4,Mata Wae,sex,perempuan,,816,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.04.2009,4,Mata Wae,total,total,,1641,jiwa,2025,registration,total_population,3.1,23,,
+53.15.04.2014,4,Wae Sano,sex,laki_laki,,655,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.04.2014,4,Wae Sano,sex,perempuan,,679,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.04.2014,4,Wae Sano,total,total,,1334,jiwa,2025,registration,total_population,3.1,23,,
+53.15.04.2018,4,Sano Nggoang,sex,laki_laki,,598,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.04.2018,4,Sano Nggoang,sex,perempuan,,577,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.04.2018,4,Sano Nggoang,total,total,,1175,jiwa,2025,registration,total_population,3.1,23,,
+53.15.04.2024,4,Golo Sengang,sex,laki_laki,,480,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.04.2024,4,Golo Sengang,sex,perempuan,,494,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.04.2024,4,Golo Sengang,total,total,,974,jiwa,2025,registration,total_population,3.1,23,,
+53.15.04.2016,4,Golo Mbu,sex,laki_laki,,729,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.04.2016,4,Golo Mbu,sex,perempuan,,731,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.04.2016,4,Golo Mbu,total,total,,1460,jiwa,2025,registration,total_population,3.1,23,,
+53.15.04.2008,4,Golo Manting,sex,laki_laki,,550,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.04.2008,4,Golo Manting,sex,perempuan,,490,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.04.2008,4,Golo Manting,total,total,,1040,jiwa,2025,registration,total_population,3.1,23,,
+53.15.04.2001,4,Golo Ndaring,sex,laki_laki,,510,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.04.2001,4,Golo Ndaring,sex,perempuan,,553,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.04.2001,4,Golo Ndaring,total,total,,1063,jiwa,2025,registration,total_population,3.1,23,,
+53.15.04.2005,4,Golo Kempo,sex,laki_laki,,320,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.04.2005,4,Golo Kempo,sex,perempuan,,311,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.04.2005,4,Golo Kempo,total,total,,631,jiwa,2025,registration,total_population,3.1,23,,
+53.15.04.2011,4,Nampar Macing,sex,laki_laki,,967,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.04.2011,4,Nampar Macing,sex,perempuan,,900,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.04.2011,4,Nampar Macing,total,total,,1867,jiwa,2025,registration,total_population,3.1,23,,
+53.15.04.2017,4,Golo Leleng,sex,laki_laki,,866,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.04.2017,4,Golo Leleng,sex,perempuan,,868,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.04.2017,4,Golo Leleng,total,total,,1734,jiwa,2025,registration,total_population,3.1,23,,
+53.15.04.2020,4,Wae Lolos,sex,laki_laki,,351,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.04.2020,4,Wae Lolos,sex,perempuan,,367,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.04.2020,4,Wae Lolos,total,total,,718,jiwa,2025,registration,total_population,3.1,23,,
+53.15.04.2028,4,Pulau Nuncung,sex,laki_laki,,356,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.04.2028,4,Pulau Nuncung,sex,perempuan,,359,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.04.2028,4,Pulau Nuncung,total,total,,715,jiwa,2025,registration,total_population,3.1,23,,
+53.15.04.2026,4,Golo Kondeng,sex,laki_laki,,307,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.04.2026,4,Golo Kondeng,sex,perempuan,,297,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.04.2026,4,Golo Kondeng,total,total,,604,jiwa,2025,registration,total_population,3.1,23,,
+53.15.04.2025,4,Watu Panggal,sex,laki_laki,,238,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.04.2025,4,Watu Panggal,sex,perempuan,,226,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.04.2025,4,Watu Panggal,total,total,,464,jiwa,2025,registration,total_population,3.1,23,,
+53.15.04.2027,4,Poco Golo Kempo,sex,laki_laki,,330,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.04.2027,4,Poco Golo Kempo,sex,perempuan,,322,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.04.2027,4,Poco Golo Kempo,total,total,,652,jiwa,2025,registration,total_population,3.1,23,,
+53.15.04,3,Kecamatan Sano Nggoang,sex,laki_laki,,8082,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.04,3,Kecamatan Sano Nggoang,sex,perempuan,,7990,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.04,3,Kecamatan Sano Nggoang,total,total,,16072,jiwa,2025,registration,total_population,3.1,23,,

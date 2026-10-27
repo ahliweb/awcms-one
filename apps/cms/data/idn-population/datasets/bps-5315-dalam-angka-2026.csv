@@ -1,0 +1,111 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.15.05,3,Komodo,total,total,,62448,jiwa,2025,projection,total_population,3.1.1,44,,
+53.15.06,3,Boleng,total,total,,20648,jiwa,2025,projection,total_population,3.1.1,44,,
+53.15.04,3,Sano Nggoang,total,total,,15126,jiwa,2025,projection,total_population,3.1.1,44,,
+53.15.10,3,Mbeliling,total,total,,15056,jiwa,2025,projection,total_population,3.1.1,44,,
+53.15.03,3,Lembor,total,total,,37018,jiwa,2025,projection,total_population,3.1.1,44,,
+53.15.07,3,Welak,total,total,,23112,jiwa,2025,projection,total_population,3.1.1,44,,
+53.15.09,3,Lembor Selatan,total,total,,25460,jiwa,2025,projection,total_population,3.1.1,44,,
+53.15.02,3,Kuwus,total,total,,14434,jiwa,2025,projection,total_population,3.1.1,44,,
+53.15.08,3,Ndoso,total,total,,21421,jiwa,2025,projection,total_population,3.1.1,44,,
+53.15.12,3,Kuwus Barat,total,total,,11722,jiwa,2025,projection,total_population,3.1.1,44,,
+53.15.01,3,Macang Pacar,total,total,,17056,jiwa,2025,projection,total_population,3.1.1,44,,
+53.15.11,3,Pacar,total,total,,18191,jiwa,2025,projection,total_population,3.1.1,44,,
+53.15,2,Manggarai Barat,total,total,,281692,jiwa,2025,projection,total_population,3.1.1,44,,
+53.15,2,Kabupaten Manggarai Barat,age_group,0-4,laki_laki,14532,jiwa,2025,projection,total_population,3.1.2,47,,0–4
+53.15,2,Kabupaten Manggarai Barat,age_group,0-4,perempuan,14091,jiwa,2025,projection,total_population,3.1.2,47,,0–4
+53.15,2,Kabupaten Manggarai Barat,age_group,0-4,,28623,jiwa,2025,projection,total_population,3.1.2,47,,0–4
+53.15,2,Kabupaten Manggarai Barat,age_group,5-9,laki_laki,16393,jiwa,2025,projection,total_population,3.1.2,47,,5–9
+53.15,2,Kabupaten Manggarai Barat,age_group,5-9,perempuan,16101,jiwa,2025,projection,total_population,3.1.2,47,,5–9
+53.15,2,Kabupaten Manggarai Barat,age_group,5-9,,32494,jiwa,2025,projection,total_population,3.1.2,47,,5–9
+53.15,2,Kabupaten Manggarai Barat,age_group,10-14,laki_laki,13396,jiwa,2025,projection,total_population,3.1.2,47,,10–14
+53.15,2,Kabupaten Manggarai Barat,age_group,10-14,perempuan,13292,jiwa,2025,projection,total_population,3.1.2,47,,10–14
+53.15,2,Kabupaten Manggarai Barat,age_group,10-14,,26688,jiwa,2025,projection,total_population,3.1.2,47,,10–14
+53.15,2,Kabupaten Manggarai Barat,age_group,15-19,laki_laki,13150,jiwa,2025,projection,total_population,3.1.2,47,,15–19
+53.15,2,Kabupaten Manggarai Barat,age_group,15-19,perempuan,12704,jiwa,2025,projection,total_population,3.1.2,47,,15–19
+53.15,2,Kabupaten Manggarai Barat,age_group,15-19,,25854,jiwa,2025,projection,total_population,3.1.2,47,,15–19
+53.15,2,Kabupaten Manggarai Barat,age_group,20-24,laki_laki,12464,jiwa,2025,projection,total_population,3.1.2,47,,20–24
+53.15,2,Kabupaten Manggarai Barat,age_group,20-24,perempuan,11814,jiwa,2025,projection,total_population,3.1.2,47,,20–24
+53.15,2,Kabupaten Manggarai Barat,age_group,20-24,,24278,jiwa,2025,projection,total_population,3.1.2,47,,20–24
+53.15,2,Kabupaten Manggarai Barat,age_group,25-29,laki_laki,12812,jiwa,2025,projection,total_population,3.1.2,47,,25–29
+53.15,2,Kabupaten Manggarai Barat,age_group,25-29,perempuan,13117,jiwa,2025,projection,total_population,3.1.2,47,,25–29
+53.15,2,Kabupaten Manggarai Barat,age_group,25-29,,25929,jiwa,2025,projection,total_population,3.1.2,47,,25–29
+53.15,2,Kabupaten Manggarai Barat,age_group,30-34,laki_laki,10816,jiwa,2025,projection,total_population,3.1.2,47,,30–34
+53.15,2,Kabupaten Manggarai Barat,age_group,30-34,perempuan,11069,jiwa,2025,projection,total_population,3.1.2,47,,30–34
+53.15,2,Kabupaten Manggarai Barat,age_group,30-34,,21885,jiwa,2025,projection,total_population,3.1.2,47,,30–34
+53.15,2,Kabupaten Manggarai Barat,age_group,35-39,laki_laki,9111,jiwa,2025,projection,total_population,3.1.2,47,,35–39
+53.15,2,Kabupaten Manggarai Barat,age_group,35-39,perempuan,9425,jiwa,2025,projection,total_population,3.1.2,47,,35–39
+53.15,2,Kabupaten Manggarai Barat,age_group,35-39,,18536,jiwa,2025,projection,total_population,3.1.2,47,,35–39
+53.15,2,Kabupaten Manggarai Barat,age_group,40-44,laki_laki,8168,jiwa,2025,projection,total_population,3.1.2,47,,40–44
+53.15,2,Kabupaten Manggarai Barat,age_group,40-44,perempuan,8332,jiwa,2025,projection,total_population,3.1.2,47,,40–44
+53.15,2,Kabupaten Manggarai Barat,age_group,40-44,,16500,jiwa,2025,projection,total_population,3.1.2,47,,40–44
+53.15,2,Kabupaten Manggarai Barat,age_group,45-49,laki_laki,7180,jiwa,2025,projection,total_population,3.1.2,47,,45–49
+53.15,2,Kabupaten Manggarai Barat,age_group,45-49,perempuan,7427,jiwa,2025,projection,total_population,3.1.2,47,,45–49
+53.15,2,Kabupaten Manggarai Barat,age_group,45-49,,14607,jiwa,2025,projection,total_population,3.1.2,47,,45–49
+53.15,2,Kabupaten Manggarai Barat,age_group,50-54,laki_laki,6421,jiwa,2025,projection,total_population,3.1.2,47,,50–54
+53.15,2,Kabupaten Manggarai Barat,age_group,50-54,perempuan,6718,jiwa,2025,projection,total_population,3.1.2,47,,50–54
+53.15,2,Kabupaten Manggarai Barat,age_group,50-54,,13139,jiwa,2025,projection,total_population,3.1.2,47,,50–54
+53.15,2,Kabupaten Manggarai Barat,age_group,55-59,laki_laki,5820,jiwa,2025,projection,total_population,3.1.2,47,,55–59
+53.15,2,Kabupaten Manggarai Barat,age_group,55-59,perempuan,5716,jiwa,2025,projection,total_population,3.1.2,47,,55–59
+53.15,2,Kabupaten Manggarai Barat,age_group,55-59,,11536,jiwa,2025,projection,total_population,3.1.2,47,,55–59
+53.15,2,Kabupaten Manggarai Barat,age_group,60-64,laki_laki,4159,jiwa,2025,projection,total_population,3.1.2,47,,60–64
+53.15,2,Kabupaten Manggarai Barat,age_group,60-64,perempuan,4069,jiwa,2025,projection,total_population,3.1.2,47,,60–64
+53.15,2,Kabupaten Manggarai Barat,age_group,60-64,,8228,jiwa,2025,projection,total_population,3.1.2,47,,60–64
+53.15,2,Kabupaten Manggarai Barat,age_group,65-69,laki_laki,2880,jiwa,2025,projection,total_population,3.1.2,47,,65–69
+53.15,2,Kabupaten Manggarai Barat,age_group,65-69,perempuan,2888,jiwa,2025,projection,total_population,3.1.2,47,,65–69
+53.15,2,Kabupaten Manggarai Barat,age_group,65-69,,5768,jiwa,2025,projection,total_population,3.1.2,47,,65–69
+53.15,2,Kabupaten Manggarai Barat,age_group,70-74,laki_laki,1995,jiwa,2025,projection,total_population,3.1.2,47,,70–74
+53.15,2,Kabupaten Manggarai Barat,age_group,70-74,perempuan,1785,jiwa,2025,projection,total_population,3.1.2,47,,70–74
+53.15,2,Kabupaten Manggarai Barat,age_group,70-74,,3780,jiwa,2025,projection,total_population,3.1.2,47,,70–74
+53.15,2,Kabupaten Manggarai Barat,age_group,75+,laki_laki,2023,jiwa,2025,projection,total_population,3.1.2,47,,75+
+53.15,2,Kabupaten Manggarai Barat,age_group,75+,perempuan,1824,jiwa,2025,projection,total_population,3.1.2,47,,75+
+53.15,2,Kabupaten Manggarai Barat,age_group,75+,,3847,jiwa,2025,projection,total_population,3.1.2,47,,75+
+53.15,2,Manggarai Barat,sex,laki_laki,,141320,jiwa,2025,projection,total_population,3.1.2,47,,Laki-Laki
+53.15,2,Manggarai Barat,sex,perempuan,,140372,jiwa,2025,projection,total_population,3.1.2,47,,Perempuan
+53.15,2,Manggarai Barat,total,total,,281692,jiwa,2025,projection,total_population,3.1.2,47,,
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/padi_padian,,139337,rupiah,2025,survey_estimate,per_capita,10.1,345,,Padi-padian
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/padi_padian,,142377,rupiah,2024,survey_estimate,per_capita,10.1,345,,Padi-padian
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/umbi_umbian,,4772,rupiah,2025,survey_estimate,per_capita,10.1,345,,Umbi-umbian
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/umbi_umbian,,3589,rupiah,2024,survey_estimate,per_capita,10.1,345,,Umbi-umbian
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,44986,rupiah,2025,survey_estimate,per_capita,10.1,345,,Ikan/udang/cumi/kerang
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,43336,rupiah,2024,survey_estimate,per_capita,10.1,345,,Ikan/udang/cumi/kerang
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/daging,,22041,rupiah,2025,survey_estimate,per_capita,10.1,345,,Daging
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/daging,,21043,rupiah,2024,survey_estimate,per_capita,10.1,345,,Daging
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/telur_dan_susu,,22948,rupiah,2025,survey_estimate,per_capita,10.1,345,,Telur dan susu
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/telur_dan_susu,,21533,rupiah,2024,survey_estimate,per_capita,10.1,345,,Telur dan susu
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/sayur_sayuran,,49550,rupiah,2025,survey_estimate,per_capita,10.1,345,,Sayur-sayuran
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/sayur_sayuran,,44624,rupiah,2024,survey_estimate,per_capita,10.1,345,,Sayur-sayuran
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/kacang_kacangan,,6602,rupiah,2025,survey_estimate,per_capita,10.1,345,,Kacang-kacangan
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/kacang_kacangan,,6513,rupiah,2024,survey_estimate,per_capita,10.1,345,,Kacang-kacangan
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/buah_buahan,,23442,rupiah,2025,survey_estimate,per_capita,10.1,345,,Buah-buahan
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/buah_buahan,,19011,rupiah,2024,survey_estimate,per_capita,10.1,345,,Buah-buahan
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,15008,rupiah,2025,survey_estimate,per_capita,10.1,345,,Minyak dan kelapa
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,12409,rupiah,2024,survey_estimate,per_capita,10.1,345,,Minyak dan kelapa
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/bahan_minuman,,29970,rupiah,2025,survey_estimate,per_capita,10.1,345,,Bahan minuman
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/bahan_minuman,,25535,rupiah,2024,survey_estimate,per_capita,10.1,345,,Bahan minuman
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/bumbu_bumbuan,,10895,rupiah,2025,survey_estimate,per_capita,10.1,345,,Bumbu-bumbuan
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/bumbu_bumbuan,,9522,rupiah,2024,survey_estimate,per_capita,10.1,345,,Bumbu-bumbuan
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/konsumsi_lainnya,,8232,rupiah,2025,survey_estimate,per_capita,10.1,345,,Konsumsi lainnya
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/konsumsi_lainnya,,7617,rupiah,2024,survey_estimate,per_capita,10.1,345,,Konsumsi lainnya
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,116492,rupiah,2025,survey_estimate,per_capita,10.1,345,,Makanan dan minuman jadi
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,108428,rupiah,2024,survey_estimate,per_capita,10.1,345,,Makanan dan minuman jadi
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/rokok,,83649,rupiah,2025,survey_estimate,per_capita,10.1,345,,Rokok
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/rokok,,90101,rupiah,2024,survey_estimate,per_capita,10.1,345,,Rokok
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/jumlah_makanan,,577923,rupiah,2025,survey_estimate,per_capita,10.1,345,,Jumlah makanan
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/jumlah_makanan,,555638,rupiah,2024,survey_estimate,per_capita,10.1,345,,Jumlah makanan
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,295750,rupiah,2025,survey_estimate,per_capita,10.1,345,,Perumahan dan fasilitas rumah tangga
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,298090,rupiah,2024,survey_estimate,per_capita,10.1,345,,Perumahan dan fasilitas rumah tangga
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,97979,rupiah,2025,survey_estimate,per_capita,10.1,345,,Aneka barang dan jasa
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,92415,rupiah,2024,survey_estimate,per_capita,10.1,345,,Aneka barang dan jasa
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,19566,rupiah,2025,survey_estimate,per_capita,10.1,345,,"Pakaian, alas kaki, dan tutup kepala"
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,15582,rupiah,2024,survey_estimate,per_capita,10.1,345,,"Pakaian, alas kaki, dan tutup kepala"
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/barang_tahan_lama,,18645,rupiah,2025,survey_estimate,per_capita,10.1,345,,Barang tahan lama
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/barang_tahan_lama,,31373,rupiah,2024,survey_estimate,per_capita,10.1,345,,Barang tahan lama
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,44277,rupiah,2025,survey_estimate,per_capita,10.1,345,,"Pajak, pungutan, dan asuransi"
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,50379,rupiah,2024,survey_estimate,per_capita,10.1,345,,"Pajak, pungutan, dan asuransi"
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,6876,rupiah,2025,survey_estimate,per_capita,10.1,345,,Keperluan pesta dan upacara/kenduri
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,10325,rupiah,2024,survey_estimate,per_capita,10.1,345,,Keperluan pesta dan upacara/kenduri
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,483092,rupiah,2025,survey_estimate,per_capita,10.1,345,,Jumlah bukan makanan
+53.15,2,Kabupaten Manggarai Barat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,498164,rupiah,2024,survey_estimate,per_capita,10.1,345,,Jumlah bukan makanan
+53.15,2,Kabupaten Manggarai Barat,expenditure,total,,1061015,rupiah,2025,survey_estimate,per_capita,10.1,345,,
+53.15,2,Kabupaten Manggarai Barat,expenditure,total,,1053802,rupiah,2024,survey_estimate,per_capita,10.1,345,,

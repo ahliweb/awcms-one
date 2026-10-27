@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.19.12.2006,4,Compang Congkar,sex,laki_laki,,668,jiwa,2025,registration,total_population,3.1,14,,Laki-Laki/Male
+53.19.12.2006,4,Compang Congkar,sex,perempuan,,664,jiwa,2025,registration,total_population,3.1,14,,Perempuan/Female
+53.19.12.2006,4,Compang Congkar,total,total,,1332,jiwa,2025,registration,total_population,3.1,14,,
+53.19.12.2005,4,Rana Mese,sex,laki_laki,,985,jiwa,2025,registration,total_population,3.1,14,,Laki-Laki/Male
+53.19.12.2005,4,Rana Mese,sex,perempuan,,936,jiwa,2025,registration,total_population,3.1,14,,Perempuan/Female
+53.19.12.2005,4,Rana Mese,total,total,,1921,jiwa,2025,registration,total_population,3.1,14,,
+53.19.12.2004,4,Satar Nawang,sex,laki_laki,,605,jiwa,2025,registration,total_population,3.1,14,,Laki-Laki/Male
+53.19.12.2004,4,Satar Nawang,sex,perempuan,,587,jiwa,2025,registration,total_population,3.1,14,,Perempuan/Female
+53.19.12.2004,4,Satar Nawang,total,total,,1192,jiwa,2025,registration,total_population,3.1,14,,
+53.19.12.2003,4,Golo Ngawan,sex,laki_laki,,764,jiwa,2025,registration,total_population,3.1,14,,Laki-Laki/Male
+53.19.12.2003,4,Golo Ngawan,sex,perempuan,,718,jiwa,2025,registration,total_population,3.1,14,,Perempuan/Female
+53.19.12.2003,4,Golo Ngawan,total,total,,1482,jiwa,2025,registration,total_population,3.1,14,,
+53.19.12.2002,4,Buti,sex,laki_laki,,759,jiwa,2025,registration,total_population,3.1,14,,Laki-Laki/Male
+53.19.12.2002,4,Buti,sex,perempuan,,687,jiwa,2025,registration,total_population,3.1,14,,Perempuan/Female
+53.19.12.2002,4,Buti,total,total,,1446,jiwa,2025,registration,total_population,3.1,14,,
+53.19.12.2008,4,Compang Lawi,sex,laki_laki,,995,jiwa,2025,registration,total_population,3.1,14,,Laki-Laki/Male
+53.19.12.2008,4,Compang Lawi,sex,perempuan,,894,jiwa,2025,registration,total_population,3.1,14,,Perempuan/Female
+53.19.12.2008,4,Compang Lawi,total,total,,1889,jiwa,2025,registration,total_population,3.1,14,,
+53.19.12.2010,4,Wea,sex,laki_laki,,534,jiwa,2025,registration,total_population,3.1,14,,Laki-Laki/Male
+53.19.12.2010,4,Wea,sex,perempuan,,523,jiwa,2025,registration,total_population,3.1,14,,Perempuan/Female
+53.19.12.2010,4,Wea,total,total,,1057,jiwa,2025,registration,total_population,3.1,14,,
+53.19.12.2009,4,Golo Pari,sex,laki_laki,,585,jiwa,2025,registration,total_population,3.1,14,,Laki-Laki/Male
+53.19.12.2009,4,Golo Pari,sex,perempuan,,546,jiwa,2025,registration,total_population,3.1,14,,Perempuan/Female
+53.19.12.2009,4,Golo Pari,total,total,,1131,jiwa,2025,registration,total_population,3.1,14,,
+53.19.12.1001,4,Golo Wangkung,sex,laki_laki,,1009,jiwa,2025,registration,total_population,3.1,14,,Laki-Laki/Male
+53.19.12.1001,4,Golo Wangkung,sex,perempuan,,1001,jiwa,2025,registration,total_population,3.1,14,,Perempuan/Female
+53.19.12.1001,4,Golo Wangkung,total,total,,2010,jiwa,2025,registration,total_population,3.1,14,,
+53.19.12.1007,4,Golo Wangkung Barat,sex,laki_laki,,457,jiwa,2025,registration,total_population,3.1,14,,Laki-Laki/Male
+53.19.12.1007,4,Golo Wangkung Barat,sex,perempuan,,416,jiwa,2025,registration,total_population,3.1,14,,Perempuan/Female
+53.19.12.1007,4,Golo Wangkung Barat,total,total,,873,jiwa,2025,registration,total_population,3.1,14,,
+53.19.12,3,Congkar,sex,laki_laki,,7361,jiwa,2025,registration,total_population,3.1,14,,Laki-Laki/Male
+53.19.12,3,Congkar,sex,perempuan,,6972,jiwa,2025,registration,total_population,3.1,14,,Perempuan/Female
+53.19.12,3,Congkar,total,total,,14333,jiwa,2025,registration,total_population,3.1,14,,

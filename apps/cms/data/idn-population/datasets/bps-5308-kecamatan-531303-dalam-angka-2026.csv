@@ -1,0 +1,4 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.13.03,3,Ile Ape,sex,laki_laki,,17961,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.13.03,3,Ile Ape,sex,perempuan,,18249,jiwa,2025,registration,total_population,3.1,20,,Perempuan/
+53.13.03,3,Ile Ape,total,total,,36210,jiwa,2025,registration,total_population,3.1,20,,

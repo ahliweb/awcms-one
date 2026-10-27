@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5303-kecamatan-530119-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.01.19",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Amarasi Timur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kupang",
+  "publisherDomain": "5303",
+  "publisherWebsite": "https://kupangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kupang (https://kupangkab.bps.go.id), publikasi \"Kecamatan Amarasi Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5303133",
+  "publicationNumber": "53030.26014",
+  "issn": "2807-503X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kupangkab.bps.go.id/id/publication/2026/09/28/a456c481a194019ab90931e9/kecamatan-amarasi-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "4f10dc5870a9da90fb9f264396784ac73ce2ed182d22d47a0f2c1b0fc6b17e66",
+  "sourceFileBytes": 1592294,
+  "sourcePages": [26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kupang.",
+  "csvPath": "datasets/bps-5303-kecamatan-530119-dalam-angka-2026.csv",
+  "csvSha256": "b698672cf764aaa86acf4cda611d34e3e289796bcd8decdc59acaf58a0da800c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Amarasi Timur, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

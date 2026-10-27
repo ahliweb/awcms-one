@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5312-kecamatan-530920-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.09.20",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Inerie Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ngada",
+  "publisherDomain": "5312",
+  "publisherWebsite": "https://ngadakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ngada (https://ngadakab.bps.go.id), publikasi \"Kecamatan Inerie Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5312012",
+  "publicationNumber": "53120.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://ngadakab.bps.go.id/id/publication/2026/09/28/ddde7cb98f2c2f6c2d6e761a/kecamatan-inerie-dalam-angka-2026.html",
+  "sourceFileSha256": "2f1d36700faaad3518735b5982d4f8dda78ee17cfab57c1454806bcba519b60f",
+  "sourceFileBytes": 13957977,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ngada",
+  "csvPath": "datasets/bps-5312-kecamatan-530920-dalam-angka-2026.csv",
+  "csvSha256": "426baf6196abe87c34c5ef081f027f1d1b6107b1d75e4c73760cfebf71b8e13c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Rasio Jen is Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Inerie , 202 5",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Inerie , 202 5",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

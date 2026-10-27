@@ -1,0 +1,47 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/padi_padian,,114199,rupiah,2024,survey_estimate,per_capita,10.1,222,,Padi-padian
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/padi_padian,,119828,rupiah,2025,survey_estimate,per_capita,10.1,222,,Padi-padian
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/umbi_umbian,,6429,rupiah,2024,survey_estimate,per_capita,10.1,222,,Umbi-umbian
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/umbi_umbian,,5940,rupiah,2025,survey_estimate,per_capita,10.1,222,,Umbi-umbian
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,42428,rupiah,2024,survey_estimate,per_capita,10.1,222,,Ikan/udang/cumi/kerang
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,31610,rupiah,2025,survey_estimate,per_capita,10.1,222,,Ikan/udang/cumi/kerang
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/daging,,55595,rupiah,2024,survey_estimate,per_capita,10.1,222,,Daging
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/daging,,47918,rupiah,2025,survey_estimate,per_capita,10.1,222,,Daging
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/telur_dan_susu,,19963,rupiah,2024,survey_estimate,per_capita,10.1,222,,Telur dan susu
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/telur_dan_susu,,19085,rupiah,2025,survey_estimate,per_capita,10.1,222,,Telur dan susu
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/sayur_sayuran,,49663,rupiah,2024,survey_estimate,per_capita,10.1,222,,Sayur-sayuran
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/sayur_sayuran,,51391,rupiah,2025,survey_estimate,per_capita,10.1,222,,Sayur-sayuran
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/kacang_kacangan,,10774,rupiah,2024,survey_estimate,per_capita,10.1,222,,Kacang-kacangan
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/kacang_kacangan,,10788,rupiah,2025,survey_estimate,per_capita,10.1,222,,Kacang-kacangan
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/buah_buahan,,13097,rupiah,2024,survey_estimate,per_capita,10.1,222,,Buah-buahan
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/buah_buahan,,15501,rupiah,2025,survey_estimate,per_capita,10.1,222,,Buah-buahan
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/minyak_dan_kelapa,,14836,rupiah,2024,survey_estimate,per_capita,10.1,222,,Minyak dan kelapa
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/minyak_dan_kelapa,,13870,rupiah,2025,survey_estimate,per_capita,10.1,222,,Minyak dan kelapa
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/bahan_minuman,,18151,rupiah,2024,survey_estimate,per_capita,10.1,222,,Bahan minuman
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/bahan_minuman,,20236,rupiah,2025,survey_estimate,per_capita,10.1,222,,Bahan minuman
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/bumbu_bumbuan,,9088,rupiah,2024,survey_estimate,per_capita,10.1,222,,Bumbu-bumbuan
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/bumbu_bumbuan,,7248,rupiah,2025,survey_estimate,per_capita,10.1,222,,Bumbu-bumbuan
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/konsumsi_lainnya,,8291,rupiah,2024,survey_estimate,per_capita,10.1,222,,Konsumsi lainnya
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/konsumsi_lainnya,,8655,rupiah,2025,survey_estimate,per_capita,10.1,222,,Konsumsi lainnya
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,82093,rupiah,2024,survey_estimate,per_capita,10.1,222,,Makanan dan minuman jadi
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,85010,rupiah,2025,survey_estimate,per_capita,10.1,222,,Makanan dan minuman jadi
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/rokok,,47699,rupiah,2024,survey_estimate,per_capita,10.1,222,,Rokok
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/rokok,,41029,rupiah,2025,survey_estimate,per_capita,10.1,222,,Rokok
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/jumlah_makanan,,492305,rupiah,2024,survey_estimate,per_capita,10.1,222,,Jumlah makanan
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/jumlah_makanan,,478110,rupiah,2025,survey_estimate,per_capita,10.1,222,,Jumlah makanan
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,229967,rupiah,2024,survey_estimate,per_capita,10.1,222,,Perumahan dan fasilitas rumah tangga
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,241492,rupiah,2025,survey_estimate,per_capita,10.1,222,,Perumahan dan fasilitas rumah tangga
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,75482,rupiah,2024,survey_estimate,per_capita,10.1,222,,Aneka barang dan jasa
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,84425,rupiah,2025,survey_estimate,per_capita,10.1,222,,Aneka barang dan jasa
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,15557,rupiah,2024,survey_estimate,per_capita,10.1,222,,"Pakaian, alas kaki, dan tutup kepala"
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,17331,rupiah,2025,survey_estimate,per_capita,10.1,222,,"Pakaian, alas kaki, dan tutup kepala"
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/barang_tahan_lama,,16544,rupiah,2024,survey_estimate,per_capita,10.1,222,,Barang tahan lama
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/barang_tahan_lama,,33526,rupiah,2025,survey_estimate,per_capita,10.1,222,,Barang tahan lama
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,44262,rupiah,2024,survey_estimate,per_capita,10.1,222,,"Pajak, pungutan, dan asuransi"
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,44318,rupiah,2025,survey_estimate,per_capita,10.1,222,,"Pajak, pungutan, dan asuransi"
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,6795,rupiah,2024,survey_estimate,per_capita,10.1,222,,Keperluan pesta dan upacara/kenduri
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,10397,rupiah,2025,survey_estimate,per_capita,10.1,222,,Keperluan pesta dan upacara/kenduri
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,388608,rupiah,2024,survey_estimate,per_capita,10.1,222,,Jumlah bukan makanan
+53.04,2,Kabupaten Belu,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,431489,rupiah,2025,survey_estimate,per_capita,10.1,222,,Jumlah bukan makanan
+53.04,2,Kabupaten Belu,expenditure,total,,880913,rupiah,2024,survey_estimate,per_capita,10.1,222,,
+53.04,2,Kabupaten Belu,expenditure,total,,909599,rupiah,2025,survey_estimate,per_capita,10.1,222,,

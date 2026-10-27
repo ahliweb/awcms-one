@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-5317-kecamatan-531809-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.18.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kota Tambolaka Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sumba Barat Daya",
+  "publisherDomain": "5317",
+  "publisherWebsite": "https://sumbabaratdayakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sumba Barat Daya (https://sumbabaratdayakab.bps.go.id), publikasi \"Kecamatan Kota Tambolaka Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5317081",
+  "publicationNumber": "53170.26015",
+  "issn": "3032-0038",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sumbabaratdayakab.bps.go.id/id/publication/2026/09/28/137234bb846faddc71171fa1/kecamatan-kota-tambolaka-dalam-angka-2026.html",
+  "sourceFileSha256": "522a3ebe2f8185b44618d766056ce0fb9424081af8590dd18d8d162e9282478d",
+  "sourceFileBytes": 11880762,
+  "sourcePages": [24, 25, 26],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sumba Barat Daya.",
+  "csvPath": "datasets/bps-5317-kecamatan-531809-dalam-angka-2026.csv",
+  "csvSha256": "b3ab8139c4a899520b689e2ef2f3cc82e8b9ea79fcc4f3dea5534a9677aa8fb3",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kota Tambolaka, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kota Tambolaka, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Wee Renna\": unmatched ",
+    "table 3.1: row not stored: row \"Wee Tobula\": unmatched ",
+    "table 3.1: row not stored: row \"Wee Renna\": unmatched ",
+    "table 3.1: row not stored: row \"Wee Tobula\": unmatched ",
+    "table 3.1: row not stored: row \"Nama Kecamatan\": unmatched "
+  ]
+}

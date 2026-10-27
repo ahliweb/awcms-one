@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.05.13.2001,4,Langkuru,sex,laki_laki,,469,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.13.2001,4,Langkuru,sex,perempuan,,469,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.13.2001,4,Langkuru,total,total,,938,jiwa,2025,registration,total_population,3.1,,,
+53.05.13.2003,4,Kailesa,sex,laki_laki,,362,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.13.2003,4,Kailesa,sex,perempuan,,362,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.13.2003,4,Kailesa,total,total,,724,jiwa,2025,registration,total_population,3.1,,,
+53.05.13.2002,4,Purnama,sex,laki_laki,,549,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.13.2002,4,Purnama,sex,perempuan,,545,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.13.2002,4,Purnama,total,total,,1094,jiwa,2025,registration,total_population,3.1,,,
+53.05.13.2004,4,Langkuru Utara,sex,laki_laki,,489,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.13.2004,4,Langkuru Utara,sex,perempuan,,515,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.13.2004,4,Langkuru Utara,total,total,,1004,jiwa,2025,registration,total_population,3.1,,,
+53.05.13,3,Pureman,sex,laki_laki,,1869,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.05.13,3,Pureman,sex,perempuan,,1891,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.05.13,3,Pureman,total,total,,3760,jiwa,2025,registration,total_population,3.1,,,

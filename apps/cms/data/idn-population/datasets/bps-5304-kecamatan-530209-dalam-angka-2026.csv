@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.02.09.2001,4,Lilo,sex,laki_laki,,940,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.02.09.2001,4,Lilo,sex,perempuan,,1040,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.02.09.2001,4,Lilo,total,total,,1980,jiwa,2025,registration,total_population,3.1,30,,
+53.02.09.2009,4,Tauanas,sex,laki_laki,,1148,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.02.09.2009,4,Tauanas,sex,perempuan,,1166,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.02.09.2009,4,Tauanas,total,total,,2314,jiwa,2025,registration,total_population,3.1,30,,
+53.02.09.2002,4,Fotilo,sex,laki_laki,,938,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.02.09.2002,4,Fotilo,sex,perempuan,,963,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.02.09.2002,4,Fotilo,total,total,,1901,jiwa,2025,registration,total_population,3.1,30,,
+53.02.09.2003,4,Nasi,sex,laki_laki,,985,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.02.09.2003,4,Nasi,sex,perempuan,,1134,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.02.09.2003,4,Nasi,total,total,,2119,jiwa,2025,registration,total_population,3.1,30,,
+53.02.09.2004,4,Snok,sex,laki_laki,,1312,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.02.09.2004,4,Snok,sex,perempuan,,1440,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.02.09.2004,4,Snok,total,total,,2752,jiwa,2025,registration,total_population,3.1,30,,
+53.02.09.2005,4,Tumu,sex,laki_laki,,935,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.02.09.2005,4,Tumu,sex,perempuan,,967,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.02.09.2005,4,Tumu,total,total,,1902,jiwa,2025,registration,total_population,3.1,30,,
+53.02.09.2006,4,Fatuoni,sex,laki_laki,,1279,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.02.09.2006,4,Fatuoni,sex,perempuan,,1420,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.02.09.2006,4,Fatuoni,total,total,,2699,jiwa,2025,registration,total_population,3.1,30,,
+53.02.09.2007,4,Sono,sex,laki_laki,,470,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.02.09.2007,4,Sono,sex,perempuan,,470,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.02.09.2007,4,Sono,total,total,,940,jiwa,2025,registration,total_population,3.1,30,,
+53.02.09.2015,4,Muna,sex,laki_laki,,615,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.02.09.2015,4,Muna,sex,perempuan,,642,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.02.09.2015,4,Muna,total,total,,1257,jiwa,2025,registration,total_population,3.1,30,,
+53.02.09,3,Amanatun Utara,sex,laki_laki,,8622,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.02.09,3,Amanatun Utara,sex,perempuan,,9242,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.02.09,3,Amanatun Utara,total,total,,17864,jiwa,2025,registration,total_population,3.1,30,,
+53.02.09,3,Amanatun Utara,age_group,0-4,laki_laki,305,jiwa,2025,registration,total_population,3.2,32,,0 - 4
+53.02.09,3,Amanatun Utara,age_group,0-4,perempuan,295,jiwa,2025,registration,total_population,3.2,32,,0 - 4
+53.02.09,3,Amanatun Utara,age_group,0-4,,600,jiwa,2025,registration,total_population,3.2,32,,0 - 4
+53.02.09,3,Amanatun Utara,age_group,5-9,laki_laki,798,jiwa,2025,registration,total_population,3.2,32,,5 - 9
+53.02.09,3,Amanatun Utara,age_group,5-9,perempuan,749,jiwa,2025,registration,total_population,3.2,32,,5 - 9
+53.02.09,3,Amanatun Utara,age_group,5-9,,1547,jiwa,2025,registration,total_population,3.2,32,,5 - 9
+53.02.09,3,Amanatun Utara,age_group,10-14,laki_laki,870,jiwa,2025,registration,total_population,3.2,32,,10 - 14
+53.02.09,3,Amanatun Utara,age_group,10-14,perempuan,915,jiwa,2025,registration,total_population,3.2,32,,10 - 14
+53.02.09,3,Amanatun Utara,age_group,10-14,,1785,jiwa,2025,registration,total_population,3.2,32,,10 - 14
+53.02.09,3,Amanatun Utara,age_group,15-19,laki_laki,874,jiwa,2025,registration,total_population,3.2,32,,15 - 19
+53.02.09,3,Amanatun Utara,age_group,15-19,perempuan,933,jiwa,2025,registration,total_population,3.2,32,,15 - 19
+53.02.09,3,Amanatun Utara,age_group,15-19,,1807,jiwa,2025,registration,total_population,3.2,32,,15 - 19
+53.02.09,3,Amanatun Utara,age_group,20-24,laki_laki,896,jiwa,2025,registration,total_population,3.2,32,,20 - 24
+53.02.09,3,Amanatun Utara,age_group,20-24,perempuan,921,jiwa,2025,registration,total_population,3.2,32,,20 - 24
+53.02.09,3,Amanatun Utara,age_group,20-24,,1817,jiwa,2025,registration,total_population,3.2,32,,20 - 24
+53.02.09,3,Amanatun Utara,age_group,25-29,laki_laki,702,jiwa,2025,registration,total_population,3.2,32,,25 - 29
+53.02.09,3,Amanatun Utara,age_group,25-29,perempuan,693,jiwa,2025,registration,total_population,3.2,32,,25 - 29
+53.02.09,3,Amanatun Utara,age_group,25-29,,1395,jiwa,2025,registration,total_population,3.2,32,,25 - 29
+53.02.09,3,Amanatun Utara,age_group,30-34,laki_laki,575,jiwa,2025,registration,total_population,3.2,32,,30 - 34
+53.02.09,3,Amanatun Utara,age_group,30-34,perempuan,647,jiwa,2025,registration,total_population,3.2,32,,30 - 34
+53.02.09,3,Amanatun Utara,age_group,30-34,,1222,jiwa,2025,registration,total_population,3.2,32,,30 - 34
+53.02.09,3,Amanatun Utara,age_group,35-39,laki_laki,575,jiwa,2025,registration,total_population,3.2,32,,35 - 39
+53.02.09,3,Amanatun Utara,age_group,35-39,perempuan,614,jiwa,2025,registration,total_population,3.2,32,,35 - 39
+53.02.09,3,Amanatun Utara,age_group,35-39,,1189,jiwa,2025,registration,total_population,3.2,32,,35 - 39
+53.02.09,3,Amanatun Utara,age_group,40-44,laki_laki,495,jiwa,2025,registration,total_population,3.2,32,,40 - 44
+53.02.09,3,Amanatun Utara,age_group,40-44,perempuan,577,jiwa,2025,registration,total_population,3.2,32,,40 - 44
+53.02.09,3,Amanatun Utara,age_group,40-44,,1072,jiwa,2025,registration,total_population,3.2,32,,40 - 44
+53.02.09,3,Amanatun Utara,age_group,45-49,laki_laki,407,jiwa,2025,registration,total_population,3.2,32,,45 - 49
+53.02.09,3,Amanatun Utara,age_group,45-49,perempuan,560,jiwa,2025,registration,total_population,3.2,32,,45 - 49
+53.02.09,3,Amanatun Utara,age_group,45-49,,967,jiwa,2025,registration,total_population,3.2,32,,45 - 49
+53.02.09,3,Amanatun Utara,age_group,50-54,laki_laki,472,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+53.02.09,3,Amanatun Utara,age_group,50-54,perempuan,539,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+53.02.09,3,Amanatun Utara,age_group,50-54,,1011,jiwa,2025,registration,total_population,3.2,32,,50 - 54
+53.02.09,3,Amanatun Utara,age_group,55-59,laki_laki,443,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+53.02.09,3,Amanatun Utara,age_group,55-59,perempuan,518,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+53.02.09,3,Amanatun Utara,age_group,55-59,,961,jiwa,2025,registration,total_population,3.2,32,,55 - 59
+53.02.09,3,Amanatun Utara,age_group,60-64,laki_laki,363,jiwa,2025,registration,total_population,3.2,32,,60 - 64
+53.02.09,3,Amanatun Utara,age_group,60-64,perempuan,373,jiwa,2025,registration,total_population,3.2,32,,60 - 64
+53.02.09,3,Amanatun Utara,age_group,60-64,,736,jiwa,2025,registration,total_population,3.2,32,,60 - 64
+53.02.09,3,Amanatun Utara,age_group,65-69,laki_laki,381,jiwa,2025,registration,total_population,3.2,32,,65 - 69
+53.02.09,3,Amanatun Utara,age_group,65-69,perempuan,394,jiwa,2025,registration,total_population,3.2,32,,65 - 69
+53.02.09,3,Amanatun Utara,age_group,65-69,,775,jiwa,2025,registration,total_population,3.2,32,,65 - 69
+53.02.09,3,Amanatun Utara,age_group,70-74,laki_laki,178,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+53.02.09,3,Amanatun Utara,age_group,70-74,perempuan,188,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+53.02.09,3,Amanatun Utara,age_group,70-74,,366,jiwa,2025,registration,total_population,3.2,32,,70 - 74
+53.02.09,3,Amanatun Utara,age_group,75+,laki_laki,288,jiwa,2025,registration,total_population,3.2,32,,75 +
+53.02.09,3,Amanatun Utara,age_group,75+,perempuan,326,jiwa,2025,registration,total_population,3.2,32,,75 +
+53.02.09,3,Amanatun Utara,age_group,75+,,614,jiwa,2025,registration,total_population,3.2,32,,75 +
+53.02.09,3,Amanatun Utara,sex,laki_laki,,8622,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+53.02.09,3,Amanatun Utara,sex,perempuan,,9242,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+53.02.09,3,Amanatun Utara,total,total,,17864,jiwa,2025,registration,total_population,3.2,32,,

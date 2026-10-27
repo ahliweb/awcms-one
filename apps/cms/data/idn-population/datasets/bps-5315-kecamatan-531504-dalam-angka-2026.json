@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5315-kecamatan-531504-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.15.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sano Nggoang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "5315",
+  "publisherWebsite": "https://manggaraibaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://manggaraibaratkab.bps.go.id), publikasi \"Kecamatan Sano Nggoang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5315020",
+  "publicationNumber": "53150.26010",
+  "issn": "2623-0984",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://manggaraibaratkab.bps.go.id/id/publication/2026/09/28/894f9ea15de1986ba0e72c16/kecamatan-sano-nggoang-dalam-angka-2026.html",
+  "sourceFileSha256": "c40ecec479b848753a87aaa6eb1160775acf58c3bc24c7c290f42708abebbf46",
+  "sourceFileBytes": 4458231,
+  "sourcePages": [23, 24],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Manggarai Barat.",
+  "csvPath": "datasets/bps-5315-kecamatan-531504-dalam-angka-2026.csv",
+  "csvSha256": "50b7939ef3ce0fab049cc16872ae293a7593a266f716d5171a0f97e21957f5fb",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Sano Nggoang, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

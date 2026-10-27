@@ -1,0 +1,21 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.01.09.2001,4,Oesena,sex,perempuan,,888,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.09.2001,4,Oesena,total,total,,1739,jiwa,2025,registration,total_population,3.1,26,,
+53.01.09.1002,4,Nonbes,sex,perempuan,,1922,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.09.1002,4,Nonbes,total,total,,3814,jiwa,2025,registration,total_population,3.1,26,,
+53.01.09.2004,4,Kotabes,sex,perempuan,,1193,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.09.2004,4,Kotabes,total,total,,2368,jiwa,2025,registration,total_population,3.1,26,,
+53.01.09.2003,4,Ponain,sex,perempuan,,1230,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.09.2003,4,Ponain,total,total,,2504,jiwa,2025,registration,total_population,3.1,26,,
+53.01.09.2005,4,Tesbatan,sex,perempuan,,979,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.09.2005,4,Tesbatan,total,total,,1942,jiwa,2025,registration,total_population,3.1,26,,
+53.01.09.2007,4,Apren,sex,perempuan,,1081,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.09.2007,4,Apren,total,total,,2170,jiwa,2025,registration,total_population,3.1,26,,
+53.01.09.2006,4,Oenoni,sex,perempuan,,980,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.09.2006,4,Oenoni,total,total,,1955,jiwa,2025,registration,total_population,3.1,26,,
+53.01.09.2009,4,Tesbatan II,sex,perempuan,,712,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.09.2009,4,Tesbatan II,total,total,,1449,jiwa,2025,registration,total_population,3.1,26,,
+53.01.09.2008,4,Oenoni II,sex,perempuan,,601,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.09.2008,4,Oenoni II,total,total,,1240,jiwa,2025,registration,total_population,3.1,26,,
+53.01.09,3,Amarasi,sex,perempuan,,9586,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+53.01.09,3,Amarasi,total,total,,19181,jiwa,2025,registration,total_population,3.1,26,,

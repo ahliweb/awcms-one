@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.06.14.2001,4,Lamika,sex,laki_laki,,373,jiwa,2025,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.14.2001,4,Lamika,sex,perempuan,,393,jiwa,2025,registration,total_population,1.3,18,,Perempuan/Female
+53.06.14.2001,4,Lamika,total,total,,766,jiwa,2025,registration,total_population,1.3,18,,
+53.06.14.2005,4,Kawalelo,sex,laki_laki,,326,jiwa,2025,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.14.2005,4,Kawalelo,sex,perempuan,,341,jiwa,2025,registration,total_population,1.3,18,,Perempuan/Female
+53.06.14.2005,4,Kawalelo,total,total,,667,jiwa,2025,registration,total_population,1.3,18,,
+53.06.14.2002,4,Watotika Ile,sex,laki_laki,,663,jiwa,2025,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.14.2002,4,Watotika Ile,sex,perempuan,,660,jiwa,2025,registration,total_population,1.3,18,,Perempuan/Female
+53.06.14.2002,4,Watotika Ile,total,total,,1323,jiwa,2025,registration,total_population,1.3,18,,
+53.06.14.2003,4,Lewokluok,sex,laki_laki,,247,jiwa,2025,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.14.2003,4,Lewokluok,sex,perempuan,,262,jiwa,2025,registration,total_population,1.3,18,,Perempuan/Female
+53.06.14.2003,4,Lewokluok,total,total,,509,jiwa,2025,registration,total_population,1.3,18,,
+53.06.14.2006,4,Bama,sex,laki_laki,,387,jiwa,2025,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.14.2006,4,Bama,sex,perempuan,,377,jiwa,2025,registration,total_population,1.3,18,,Perempuan/Female
+53.06.14.2006,4,Bama,total,total,,764,jiwa,2025,registration,total_population,1.3,18,,
+53.06.14.2007,4,Lewomuda,sex,laki_laki,,194,jiwa,2025,registration,total_population,1.3,18,,Laki-Laki/Male
+53.06.14.2007,4,Lewomuda,sex,perempuan,,189,jiwa,2025,registration,total_population,1.3,18,,Perempuan/Female
+53.06.14.2007,4,Lewomuda,total,total,,383,jiwa,2025,registration,total_population,1.3,18,,
+53.06.14,3,Demon Pagong,age_group,0-4,laki_laki,111,jiwa,2025,registration,total_population,1.4,19,,00-04
+53.06.14,3,Demon Pagong,age_group,0-4,perempuan,111,jiwa,2025,registration,total_population,1.4,19,,00-04
+53.06.14,3,Demon Pagong,age_group,0-4,,222,jiwa,2025,registration,total_population,1.4,19,,00-04
+53.06.14,3,Demon Pagong,age_group,5-9,laki_laki,200,jiwa,2025,registration,total_population,1.4,19,,05-09
+53.06.14,3,Demon Pagong,age_group,5-9,perempuan,168,jiwa,2025,registration,total_population,1.4,19,,05-09
+53.06.14,3,Demon Pagong,age_group,5-9,,368,jiwa,2025,registration,total_population,1.4,19,,05-09
+53.06.14,3,Demon Pagong,age_group,10-14,laki_laki,222,jiwa,2025,registration,total_population,1.4,19,,10-14
+53.06.14,3,Demon Pagong,age_group,10-14,perempuan,181,jiwa,2025,registration,total_population,1.4,19,,10-14
+53.06.14,3,Demon Pagong,age_group,10-14,,403,jiwa,2025,registration,total_population,1.4,19,,10-14
+53.06.14,3,Demon Pagong,age_group,15-19,laki_laki,198,jiwa,2025,registration,total_population,1.4,19,,15-19
+53.06.14,3,Demon Pagong,age_group,15-19,perempuan,216,jiwa,2025,registration,total_population,1.4,19,,15-19
+53.06.14,3,Demon Pagong,age_group,15-19,,414,jiwa,2025,registration,total_population,1.4,19,,15-19
+53.06.14,3,Demon Pagong,age_group,20-24,laki_laki,252,jiwa,2025,registration,total_population,1.4,19,,20-24
+53.06.14,3,Demon Pagong,age_group,20-24,perempuan,224,jiwa,2025,registration,total_population,1.4,19,,20-24
+53.06.14,3,Demon Pagong,age_group,20-24,,476,jiwa,2025,registration,total_population,1.4,19,,20-24
+53.06.14,3,Demon Pagong,age_group,25-29,laki_laki,257,jiwa,2025,registration,total_population,1.4,19,,25-29
+53.06.14,3,Demon Pagong,age_group,25-29,perempuan,230,jiwa,2025,registration,total_population,1.4,19,,25-29
+53.06.14,3,Demon Pagong,age_group,25-29,,487,jiwa,2025,registration,total_population,1.4,19,,25-29
+53.06.14,3,Demon Pagong,age_group,30-34,laki_laki,189,jiwa,2025,registration,total_population,1.4,19,,30-34
+53.06.14,3,Demon Pagong,age_group,30-34,perempuan,201,jiwa,2025,registration,total_population,1.4,19,,30-34
+53.06.14,3,Demon Pagong,age_group,30-34,,390,jiwa,2025,registration,total_population,1.4,19,,30-34
+53.06.14,3,Demon Pagong,age_group,35-39,laki_laki,173,jiwa,2025,registration,total_population,1.4,19,,35-39
+53.06.14,3,Demon Pagong,age_group,35-39,perempuan,175,jiwa,2025,registration,total_population,1.4,19,,35-39
+53.06.14,3,Demon Pagong,age_group,35-39,,348,jiwa,2025,registration,total_population,1.4,19,,35-39
+53.06.14,3,Demon Pagong,age_group,40-44,laki_laki,154,jiwa,2025,registration,total_population,1.4,19,,40-44
+53.06.14,3,Demon Pagong,age_group,40-44,perempuan,133,jiwa,2025,registration,total_population,1.4,19,,40-44
+53.06.14,3,Demon Pagong,age_group,40-44,,287,jiwa,2025,registration,total_population,1.4,19,,40-44
+53.06.14,3,Demon Pagong,age_group,45-49,laki_laki,136,jiwa,2025,registration,total_population,1.4,19,,45-49
+53.06.14,3,Demon Pagong,age_group,45-49,perempuan,148,jiwa,2025,registration,total_population,1.4,19,,45-49
+53.06.14,3,Demon Pagong,age_group,45-49,,284,jiwa,2025,registration,total_population,1.4,19,,45-49
+53.06.14,3,Demon Pagong,age_group,50-54,laki_laki,148,jiwa,2025,registration,total_population,1.4,19,,50-54
+53.06.14,3,Demon Pagong,age_group,50-54,perempuan,147,jiwa,2025,registration,total_population,1.4,19,,50-54
+53.06.14,3,Demon Pagong,age_group,50-54,,295,jiwa,2025,registration,total_population,1.4,19,,50-54
+53.06.14,3,Demon Pagong,age_group,55-59,laki_laki,134,jiwa,2025,registration,total_population,1.4,19,,55-59
+53.06.14,3,Demon Pagong,age_group,55-59,perempuan,142,jiwa,2025,registration,total_population,1.4,19,,55-59
+53.06.14,3,Demon Pagong,age_group,55-59,,276,jiwa,2025,registration,total_population,1.4,19,,55-59
+53.06.14,3,Demon Pagong,age_group,60-64,laki_laki,103,jiwa,2025,registration,total_population,1.4,19,,60-64
+53.06.14,3,Demon Pagong,age_group,60-64,perempuan,126,jiwa,2025,registration,total_population,1.4,19,,60-64
+53.06.14,3,Demon Pagong,age_group,60-64,,229,jiwa,2025,registration,total_population,1.4,19,,60-64
+53.06.14,3,Demon Pagong,age_group,65-69,laki_laki,113,jiwa,2025,registration,total_population,1.4,19,,65-69
+53.06.14,3,Demon Pagong,age_group,65-69,perempuan,126,jiwa,2025,registration,total_population,1.4,19,,65-69
+53.06.14,3,Demon Pagong,age_group,65-69,,239,jiwa,2025,registration,total_population,1.4,19,,65-69
+53.06.14,3,Demon Pagong,age_group,70-74,laki_laki,57,jiwa,2025,registration,total_population,1.4,19,,70-74
+53.06.14,3,Demon Pagong,age_group,70-74,perempuan,84,jiwa,2025,registration,total_population,1.4,19,,70-74
+53.06.14,3,Demon Pagong,age_group,70-74,,141,jiwa,2025,registration,total_population,1.4,19,,70-74
+53.06.14,3,Demon Pagong,age_group,75+,laki_laki,87,jiwa,2025,registration,total_population,1.4,19,,>75
+53.06.14,3,Demon Pagong,age_group,75+,perempuan,146,jiwa,2025,registration,total_population,1.4,19,,>75
+53.06.14,3,Demon Pagong,age_group,75+,,233,jiwa,2025,registration,total_population,1.4,19,,>75
+53.06.14,3,Kecamatan Demon Pagong,sex,laki_laki,,2534,jiwa,2025,registration,total_population,1.4,19,,Laki-Laki
+53.06.14,3,Kecamatan Demon Pagong,sex,perempuan,,2558,jiwa,2025,registration,total_population,1.4,19,,Perempuan
+53.06.14,3,Kecamatan Demon Pagong,total,total,,5092,jiwa,2025,registration,total_population,1.4,19,,

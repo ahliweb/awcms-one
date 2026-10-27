@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.12.15.1001,4,Wailiang,sex,laki_laki,,2549,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.15.1001,4,Wailiang,sex,perempuan,,2719,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.15.1001,4,Wailiang,total,total,,5268,jiwa,2025,registration,total_population,3.1,20,,
+53.12.15.1009,4,Maliti,sex,laki_laki,,1116,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.15.1009,4,Maliti,sex,perempuan,,1055,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.15.1009,4,Maliti,total,total,,2171,jiwa,2025,registration,total_population,3.1,20,,
+53.12.15.1002,4,Komerda,sex,laki_laki,,1207,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.15.1002,4,Komerda,sex,perempuan,,1229,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.15.1002,4,Komerda,total,total,,2436,jiwa,2025,registration,total_population,3.1,20,,
+53.12.15.1003,4,Kampung Baru,sex,laki_laki,,1241,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.15.1003,4,Kampung Baru,sex,perempuan,,1290,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.15.1003,4,Kampung Baru,total,total,,2531,jiwa,2025,registration,total_population,3.1,20,,
+53.12.15.1004,4,Kampung Sawah,sex,laki_laki,,1434,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.15.1004,4,Kampung Sawah,sex,perempuan,,1420,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.15.1004,4,Kampung Sawah,total,total,,2854,jiwa,2025,registration,total_population,3.1,20,,
+53.12.15.2005,4,Kodaka,sex,laki_laki,,893,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.15.2005,4,Kodaka,sex,perempuan,,913,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.15.2005,4,Kodaka,total,total,,1806,jiwa,2025,registration,total_population,3.1,20,,
+53.12.15.2011,4,Lapale,sex,laki_laki,,501,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.15.2011,4,Lapale,sex,perempuan,,458,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.15.2011,4,Lapale,total,total,,959,jiwa,2025,registration,total_population,3.1,20,,
+53.12.15.2006,4,Tebara,sex,laki_laki,,1355,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.15.2006,4,Tebara,sex,perempuan,,1384,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.15.2006,4,Tebara,total,total,,2739,jiwa,2025,registration,total_population,3.1,20,,
+53.12.15.2007,4,Kalembu Kuni,sex,laki_laki,,1204,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.15.2007,4,Kalembu Kuni,sex,perempuan,,1098,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.15.2007,4,Kalembu Kuni,total,total,,2302,jiwa,2025,registration,total_population,3.1,20,,
+53.12.15.2010,4,Sobarade,sex,laki_laki,,1622,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.15.2010,4,Sobarade,sex,perempuan,,1542,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.15.2010,4,Sobarade,total,total,,3164,jiwa,2025,registration,total_population,3.1,20,,
+53.12.15.1008,4,Pada Eweta,sex,laki_laki,,1013,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.15.1008,4,Pada Eweta,sex,perempuan,,1027,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.15.1008,4,Pada Eweta,total,total,,2040,jiwa,2025,registration,total_population,3.1,20,,
+53.12.15.2012,4,Modu Waimaringu,sex,laki_laki,,1467,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.15.2012,4,Modu Waimaringu,sex,perempuan,,1422,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.15.2012,4,Modu Waimaringu,total,total,,2889,jiwa,2025,registration,total_population,3.1,20,,
+53.12.15.2013,4,Puu Mawo,sex,laki_laki,,1053,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.15.2013,4,Puu Mawo,sex,perempuan,,1030,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.15.2013,4,Puu Mawo,total,total,,2083,jiwa,2025,registration,total_population,3.1,20,,
+53.12.15,3,Kota Waikabubak,sex,laki_laki,,16655,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+53.12.15,3,Kota Waikabubak,sex,perempuan,,16587,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+53.12.15,3,Kota Waikabubak,total,total,,33242,jiwa,2025,registration,total_population,3.1,20,,

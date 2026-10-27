@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.19.01.2001,4,Nanga Labang,sex,laki_laki,,1919,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.01.2001,4,Nanga Labang,sex,perempuan,,1887,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.01.2001,4,Nanga Labang,total,total,,3806,jiwa,2025,registration,total_population,3.1,16,,
+53.19.01.2017,4,Golo Kantar,sex,laki_laki,,1171,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.01.2017,4,Golo Kantar,sex,perempuan,,1123,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.01.2017,4,Golo Kantar,total,total,,2294,jiwa,2025,registration,total_population,3.1,16,,
+53.19.01.1021,4,Rana Loba,sex,laki_laki,,2440,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.01.1021,4,Rana Loba,sex,perempuan,,2417,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.01.1021,4,Rana Loba,total,total,,4857,jiwa,2025,registration,total_population,3.1,16,,
+53.19.01.1020,4,Kota Ndora,sex,laki_laki,,2938,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.01.1020,4,Kota Ndora,sex,perempuan,,3009,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.01.1020,4,Kota Ndora,total,total,,5947,jiwa,2025,registration,total_population,3.1,16,,
+53.19.01.2009,4,Rana Masak,sex,laki_laki,,961,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.01.2009,4,Rana Masak,sex,perempuan,,951,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.01.2009,4,Rana Masak,total,total,,1912,jiwa,2025,registration,total_population,3.1,16,,
+53.19.01.2006,4,Ngampang Mas,sex,laki_laki,,919,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.01.2006,4,Ngampang Mas,sex,perempuan,,896,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.01.2006,4,Ngampang Mas,total,total,,1815,jiwa,2025,registration,total_population,3.1,16,,
+53.19.01.2010,4,Benteng Raja,sex,laki_laki,,1204,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.01.2010,4,Benteng Raja,sex,perempuan,,1154,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.01.2010,4,Benteng Raja,total,total,,2358,jiwa,2025,registration,total_population,3.1,16,,
+53.19.01.2005,4,Benteng Riwu,sex,laki_laki,,1210,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.01.2005,4,Benteng Riwu,sex,perempuan,,1143,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.01.2005,4,Benteng Riwu,total,total,,2353,jiwa,2025,registration,total_population,3.1,16,,
+53.19.01.2018,4,Poco Ri’i,sex,laki_laki,,1172,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.01.2018,4,Poco Ri’i,sex,perempuan,,1100,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.01.2018,4,Poco Ri’i,total,total,,2272,jiwa,2025,registration,total_population,3.1,16,,
+53.19.01.2014,4,Golo Lalong,sex,laki_laki,,418,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.01.2014,4,Golo Lalong,sex,perempuan,,394,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.01.2014,4,Golo Lalong,total,total,,812,jiwa,2025,registration,total_population,3.1,16,,
+53.19.01.2004,4,Gurung Liwut,sex,laki_laki,,1799,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.01.2004,4,Gurung Liwut,sex,perempuan,,1703,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.01.2004,4,Gurung Liwut,total,total,,3502,jiwa,2025,registration,total_population,3.1,16,,
+53.19.01.2038,4,Compang Ndejing,sex,laki_laki,,1322,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.01.2038,4,Compang Ndejing,sex,perempuan,,1281,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.01.2038,4,Compang Ndejing,total,total,,2603,jiwa,2025,registration,total_population,3.1,16,,
+53.19.01.2035,4,Bangka Kantar,sex,laki_laki,,1361,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.01.2035,4,Bangka Kantar,sex,perempuan,,1328,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.01.2035,4,Bangka Kantar,total,total,,2689,jiwa,2025,registration,total_population,3.1,16,,
+53.19.01.1039,4,Satar Peot,sex,laki_laki,,2740,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.01.1039,4,Satar Peot,sex,perempuan,,2665,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.01.1039,4,Satar Peot,total,total,,5405,jiwa,2025,registration,total_population,3.1,16,,
+53.19.01.2025,4,Balus Permai,sex,laki_laki,,903,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.01.2025,4,Balus Permai,sex,perempuan,,938,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.01.2025,4,Balus Permai,total,total,,1841,jiwa,2025,registration,total_population,3.1,16,,
+53.19.01.2034,4,Compang Tenda,sex,laki_laki,,322,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.01.2034,4,Compang Tenda,sex,perempuan,,307,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.01.2034,4,Compang Tenda,total,total,,629,jiwa,2025,registration,total_population,3.1,16,,
+53.19.01.2031,4,Waling,sex,laki_laki,,1086,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.01.2031,4,Waling,sex,perempuan,,1043,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.01.2031,4,Waling,total,total,,2129,jiwa,2025,registration,total_population,3.1,16,,
+53.19.01.2032,4,Golo Leda,sex,laki_laki,,643,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.01.2032,4,Golo Leda,sex,perempuan,,599,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.01.2032,4,Golo Leda,total,total,,1242,jiwa,2025,registration,total_population,3.1,16,,
+53.19.01,3,Borong,sex,laki_laki,,24528,jiwa,2025,registration,total_population,3.1,16,,Laki-Laki/Male
+53.19.01,3,Borong,sex,perempuan,,23938,jiwa,2025,registration,total_population,3.1,16,,Perempuan/Female
+53.19.01,3,Borong,total,total,,48466,jiwa,2025,registration,total_population,3.1,16,,

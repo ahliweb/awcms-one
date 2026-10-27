@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.18.03.2018,4,Dikira,sex,laki_laki,,869,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.03.2018,4,Dikira,sex,perempuan,,746,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.03.2018,4,Dikira,total,total,,1615,jiwa,2025,registration,total_population,3.1,24,,
+53.18.03.2005,4,Mareda Kalada,sex,laki_laki,,1128,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.03.2005,4,Mareda Kalada,sex,perempuan,,1055,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.03.2005,4,Mareda Kalada,total,total,,2183,jiwa,2025,registration,total_population,3.1,24,,
+53.18.03.2002,4,Tema Tana,sex,laki_laki,,1252,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.03.2002,4,Tema Tana,sex,perempuan,,1163,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.03.2002,4,Tema Tana,total,total,,2415,jiwa,2025,registration,total_population,3.1,24,,
+53.18.03.2001,4,Kalembu Ndara Mane,sex,laki_laki,,1145,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.03.2001,4,Kalembu Ndara Mane,sex,perempuan,,1149,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.03.2001,4,Kalembu Ndara Mane,total,total,,2294,jiwa,2025,registration,total_population,3.1,24,,
+53.18.03.2012,4,Weelimbu,sex,laki_laki,,1151,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.03.2012,4,Weelimbu,sex,perempuan,,1213,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.03.2012,4,Weelimbu,total,total,,2364,jiwa,2025,registration,total_population,3.1,24,,
+53.18.03.2013,4,Letekamouna,sex,laki_laki,,537,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.03.2013,4,Letekamouna,sex,perempuan,,528,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.03.2013,4,Letekamouna,total,total,,1065,jiwa,2025,registration,total_population,3.1,24,,
+53.18.03.2014,4,Mata Pyawu,sex,laki_laki,,769,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.03.2014,4,Mata Pyawu,sex,perempuan,,764,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.03.2014,4,Mata Pyawu,total,total,,1533,jiwa,2025,registration,total_population,3.1,24,,
+53.18.03.2015,4,Wee Lima,sex,laki_laki,,636,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.03.2015,4,Wee Lima,sex,perempuan,,623,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.03.2015,4,Wee Lima,total,total,,1259,jiwa,2025,registration,total_population,3.1,24,,
+53.18.03.2029,4,Kadi Wone,sex,laki_laki,,914,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.03.2029,4,Kadi Wone,sex,perempuan,,889,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.03.2029,4,Kadi Wone,total,total,,1803,jiwa,2025,registration,total_population,3.1,24,,
+53.18.03.2025,4,Maliti Dari,sex,laki_laki,,677,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.03.2025,4,Maliti Dari,sex,perempuan,,620,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.03.2025,4,Maliti Dari,total,total,,1297,jiwa,2025,registration,total_population,3.1,24,,
+53.18.03.2027,4,Dede Pada,sex,laki_laki,,631,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.03.2027,4,Dede Pada,sex,perempuan,,577,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.03.2027,4,Dede Pada,total,total,,1208,jiwa,2025,registration,total_population,3.1,24,,
+53.18.03.2022,4,Kadi Wano,sex,laki_laki,,1427,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.03.2022,4,Kadi Wano,sex,perempuan,,1325,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.03.2022,4,Kadi Wano,total,total,,2752,jiwa,2025,registration,total_population,3.1,24,,
+53.18.03.2023,4,Nyura Lele,sex,laki_laki,,718,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.03.2023,4,Nyura Lele,sex,perempuan,,644,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.03.2023,4,Nyura Lele,total,total,,1362,jiwa,2025,registration,total_population,3.1,24,,
+53.18.03.2026,4,Mawo Dana,sex,laki_laki,,766,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.03.2026,4,Mawo Dana,sex,perempuan,,785,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.03.2026,4,Mawo Dana,total,total,,1551,jiwa,2025,registration,total_population,3.1,24,,
+53.18.03.2021,4,Mainda Ole,sex,laki_laki,,496,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.03.2021,4,Mainda Ole,sex,perempuan,,484,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.03.2021,4,Mainda Ole,total,total,,980,jiwa,2025,registration,total_population,3.1,24,,
+53.18.03.2024,4,Lele Maya,sex,laki_laki,,457,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.03.2024,4,Lele Maya,sex,perempuan,,483,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.03.2024,4,Lele Maya,total,total,,940,jiwa,2025,registration,total_population,3.1,24,,
+53.18.03.2028,4,Mata Wee Lima,sex,laki_laki,,611,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.03.2028,4,Mata Wee Lima,sex,perempuan,,547,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.03.2028,4,Mata Wee Lima,total,total,,1158,jiwa,2025,registration,total_population,3.1,24,,
+53.18.03,3,Wewewa Timur,sex,laki_laki,,16176,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.18.03,3,Wewewa Timur,sex,perempuan,,15510,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.18.03,3,Wewewa Timur,total,total,,31686,jiwa,2025,registration,total_population,3.1,24,,
+53.18.03,3,Wewewa Timur,sex,laki_laki,,16176,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+53.18.03,3,Wewewa Timur,sex,perempuan,,15510,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+53.18.03,3,Wewewa Timur,total,total,,31686,jiwa,2025,registration,total_population,3.2,26,,

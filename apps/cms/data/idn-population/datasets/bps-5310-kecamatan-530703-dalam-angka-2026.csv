@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.07.03.2001,4,Lela,sex,laki_laki,,1156,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.03.2001,4,Lela,sex,perempuan,,1259,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.03.2001,4,Lela,total,total,,2415,jiwa,2025,registration,total_population,3.1,27,,
+53.07.03.2002,4,Watutedang,sex,laki_laki,,422,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.03.2002,4,Watutedang,sex,perempuan,,436,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.03.2002,4,Watutedang,total,total,,858,jiwa,2025,registration,total_population,3.1,27,,
+53.07.03.2004,4,Kolidetung,sex,laki_laki,,716,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.03.2004,4,Kolidetung,sex,perempuan,,792,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.03.2004,4,Kolidetung,total,total,,1508,jiwa,2025,registration,total_population,3.1,27,,
+53.07.03.2005,4,Sikka,sex,laki_laki,,678,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.03.2005,4,Sikka,sex,perempuan,,733,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.03.2005,4,Sikka,total,total,,1411,jiwa,2025,registration,total_population,3.1,27,,
+53.07.03.2006,4,Iligai,sex,laki_laki,,701,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.03.2006,4,Iligai,sex,perempuan,,752,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.03.2006,4,Iligai,total,total,,1453,jiwa,2025,registration,total_population,3.1,27,,
+53.07.03.2007,4,Hepang,sex,laki_laki,,936,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.03.2007,4,Hepang,sex,perempuan,,992,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.03.2007,4,Hepang,total,total,,1928,jiwa,2025,registration,total_population,3.1,27,,
+53.07.03.2008,4,Bao Paat,sex,laki_laki,,383,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.03.2008,4,Bao Paat,sex,perempuan,,440,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.03.2008,4,Bao Paat,total,total,,823,jiwa,2025,registration,total_population,3.1,27,,
+53.07.03.2009,4,Du,sex,laki_laki,,267,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+53.07.03.2009,4,Du,sex,perempuan,,291,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+53.07.03.2009,4,Du,total,total,,558,jiwa,2025,registration,total_population,3.1,27,,

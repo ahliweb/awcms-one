@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.15.11.2007,4,Loha,sex,laki_laki,,773,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.11.2007,4,Loha,sex,perempuan,,754,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.11.2007,4,Loha,total,total,,1527,jiwa,2025,registration,total_population,3.1,23,,
+53.15.11.2004,4,Compang,sex,laki_laki,,1596,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.11.2004,4,Compang,sex,perempuan,,1600,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.11.2004,4,Compang,total,total,,3196,jiwa,2025,registration,total_population,3.1,23,,
+53.15.11.2006,4,Pong Kolong,sex,laki_laki,,314,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.11.2006,4,Pong Kolong,sex,perempuan,,291,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.11.2006,4,Pong Kolong,total,total,,605,jiwa,2025,registration,total_population,3.1,23,,
+53.15.11.2005,4,Waka,sex,laki_laki,,477,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.11.2005,4,Waka,sex,perempuan,,435,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.11.2005,4,Waka,total,total,,912,jiwa,2025,registration,total_population,3.1,23,,
+53.15.11.2010,4,Golo Lajang Barat,sex,laki_laki,,858,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.11.2010,4,Golo Lajang Barat,sex,perempuan,,881,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.11.2010,4,Golo Lajang Barat,total,total,,1739,jiwa,2025,registration,total_population,3.1,23,,
+53.15.11.2009,4,Golo Lajang,sex,laki_laki,,719,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.11.2009,4,Golo Lajang,sex,perempuan,,706,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.11.2009,4,Golo Lajang,total,total,,1425,jiwa,2025,registration,total_population,3.1,23,,
+53.15.11.2002,4,Manong,sex,laki_laki,,819,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.11.2002,4,Manong,sex,perempuan,,861,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.11.2002,4,Manong,total,total,,1680,jiwa,2025,registration,total_population,3.1,23,,
+53.15.11.2008,4,Benteng Ndope,sex,laki_laki,,695,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.11.2008,4,Benteng Ndope,sex,perempuan,,696,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.11.2008,4,Benteng Ndope,total,total,,1391,jiwa,2025,registration,total_population,3.1,23,,
+53.15.11.2003,4,Romang,sex,laki_laki,,386,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.11.2003,4,Romang,sex,perempuan,,381,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.11.2003,4,Romang,total,total,,767,jiwa,2025,registration,total_population,3.1,23,,
+53.15.11.2001,4,Pacar,sex,laki_laki,,1235,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.11.2001,4,Pacar,sex,perempuan,,1261,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.11.2001,4,Pacar,total,total,,2496,jiwa,2025,registration,total_population,3.1,23,,
+53.15.11.2012,4,Kombo Selatan,sex,laki_laki,,838,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.11.2012,4,Kombo Selatan,sex,perempuan,,762,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.11.2012,4,Kombo Selatan,total,total,,1600,jiwa,2025,registration,total_population,3.1,23,,
+53.15.11.2013,4,Kombo Tengah,sex,laki_laki,,439,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.11.2013,4,Kombo Tengah,sex,perempuan,,454,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.11.2013,4,Kombo Tengah,total,total,,893,jiwa,2025,registration,total_population,3.1,23,,
+53.15.11.2011,4,Kombo,sex,laki_laki,,608,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.11.2011,4,Kombo,sex,perempuan,,616,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.11.2011,4,Kombo,total,total,,1224,jiwa,2025,registration,total_population,3.1,23,,
+53.15.11,3,Kecamatan Pacar,sex,laki_laki,,9757,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.11,3,Kecamatan Pacar,sex,perempuan,,9698,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.11,3,Kecamatan Pacar,total,total,,19455,jiwa,2025,registration,total_population,3.1,23,,

@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.11.05.2005,4,Tarimbang,sex,laki_laki,,865,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.05.2005,4,Tarimbang,sex,perempuan,,820,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.05.2005,4,Tarimbang,total,total,,1685,jiwa,2025,registration,total_population,3.1,30,,
+53.11.05.2011,4,Bangga Watu,sex,laki_laki,,315,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.05.2011,4,Bangga Watu,sex,perempuan,,306,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.05.2011,4,Bangga Watu,total,total,,621,jiwa,2025,registration,total_population,3.1,30,,
+53.11.05.2004,4,Tapil,sex,laki_laki,,206,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.05.2004,4,Tapil,sex,perempuan,,195,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.05.2004,4,Tapil,total,total,,401,jiwa,2025,registration,total_population,3.1,30,,
+53.11.05.2001,4,Billa,sex,laki_laki,,799,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.05.2001,4,Billa,sex,perempuan,,740,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.05.2001,4,Billa,total,total,,1539,jiwa,2025,registration,total_population,3.1,30,,
+53.11.05.2008,4,Praing Kareha,sex,laki_laki,,796,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.05.2008,4,Praing Kareha,sex,perempuan,,757,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.05.2008,4,Praing Kareha,total,total,,1553,jiwa,2025,registration,total_population,3.1,30,,
+53.11.05.2009,4,Wudi Pandak,sex,laki_laki,,393,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.05.2009,4,Wudi Pandak,sex,perempuan,,355,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.05.2009,4,Wudi Pandak,total,total,,748,jiwa,2025,registration,total_population,3.1,30,,
+53.11.05.2006,4,Waikanabu,sex,laki_laki,,568,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.05.2006,4,Waikanabu,sex,perempuan,,553,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.05.2006,4,Waikanabu,total,total,,1121,jiwa,2025,registration,total_population,3.1,30,,
+53.11.05.2002,4,Karita,sex,laki_laki,,741,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.05.2002,4,Karita,sex,perempuan,,721,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.05.2002,4,Karita,total,total,,1462,jiwa,2025,registration,total_population,3.1,30,,
+53.11.05.2003,4,Kukitalu,sex,laki_laki,,406,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.05.2003,4,Kukitalu,sex,perempuan,,381,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.05.2003,4,Kukitalu,total,total,,787,jiwa,2025,registration,total_population,3.1,30,,
+53.11.05,3,Tabundung,sex,laki_laki,,5427,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+53.11.05,3,Tabundung,sex,perempuan,,5150,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+53.11.05,3,Tabundung,total,total,,10577,jiwa,2025,registration,total_population,3.1,30,,
+53.11.05,3,Tabundung,sex,laki_laki,,5427,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+53.11.05,3,Tabundung,sex,perempuan,,5150,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+53.11.05,3,Tabundung,total,total,,10577,jiwa,2025,registration,total_population,3.2,32,,

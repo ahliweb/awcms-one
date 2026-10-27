@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5314-kecamatan-531408-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.14.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Rote Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Rote Ndao",
+  "publisherDomain": "5314",
+  "publisherWebsite": "https://rotendaokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Rote Ndao (https://rotendaokab.bps.go.id), publikasi \"Kecamatan Rote Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "53140.26005",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://rotendaokab.bps.go.id/id/publication/2026/09/28/d562d7e85d10e77aeda7560d/kecamatan-rote-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "0accbb36b834b1481e1a6d6f22b19e8f63fc492c96c1d6c7852b39b4225b9655",
+  "sourceFileBytes": 10772997,
+  "sourcePages": [21],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Rote Ndao.",
+  "csvPath": "datasets/bps-5314-kecamatan-531408-dalam-angka-2026.csv",
+  "csvSha256": "8ee8c1c3caf535a51ccea80cd973092ccf4cc515b428da5ea0cc8119fa95a8e7",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Rote Selatan, 2025",
+      "printedPages": [21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

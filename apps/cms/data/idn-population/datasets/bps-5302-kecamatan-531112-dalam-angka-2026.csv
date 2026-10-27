@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.11.12.2001,4,Kananggar,sex,laki_laki,,808,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.12.2001,4,Kananggar,sex,perempuan,,704,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.12.2001,4,Kananggar,total,total,,1512,jiwa,2025,registration,total_population,3.1,28,,
+53.11.12.2003,4,Karera Jangga,sex,laki_laki,,703,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.12.2003,4,Karera Jangga,sex,perempuan,,591,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.12.2003,4,Karera Jangga,total,total,,1294,jiwa,2025,registration,total_population,3.1,28,,
+53.11.12.2002,4,Mehang Mata,sex,laki_laki,,588,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.12.2002,4,Mehang Mata,sex,perempuan,,535,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.12.2002,4,Mehang Mata,total,total,,1123,jiwa,2025,registration,total_population,3.1,28,,
+53.11.12.2004,4,Praimbana,sex,laki_laki,,457,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.12.2004,4,Praimbana,sex,perempuan,,377,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.12.2004,4,Praimbana,total,total,,834,jiwa,2025,registration,total_population,3.1,28,,
+53.11.12.2005,4,Pabera Manera,sex,laki_laki,,615,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.12.2005,4,Pabera Manera,sex,perempuan,,592,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.12.2005,4,Pabera Manera,total,total,,1207,jiwa,2025,registration,total_population,3.1,28,,
+53.11.12.2010,4,Winu Muru,sex,laki_laki,,319,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.12.2010,4,Winu Muru,sex,perempuan,,296,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.12.2010,4,Winu Muru,total,total,,615,jiwa,2025,registration,total_population,3.1,28,,
+53.11.12.2011,4,Lai Taku,sex,laki_laki,,314,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.12.2011,4,Lai Taku,sex,perempuan,,302,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.12.2011,4,Lai Taku,total,total,,616,jiwa,2025,registration,total_population,3.1,28,,
+53.11.12,3,Paberiwai,sex,laki_laki,,3804,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.11.12,3,Paberiwai,sex,perempuan,,3397,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.11.12,3,Paberiwai,total,total,,7201,jiwa,2025,registration,total_population,3.1,28,,
+53.11.12,3,Paberiwai,sex,laki_laki,,3804,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+53.11.12,3,Paberiwai,sex,perempuan,,3397,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+53.11.12,3,Paberiwai,total,total,,7201,jiwa,2025,registration,total_population,3.2,30,,

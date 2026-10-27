@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.08.16.2001,4,Kurulimbu,sex,laki_laki,,436,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.16.2001,4,Kurulimbu,sex,perempuan,,441,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.16.2001,4,Kurulimbu,total,total,,877,jiwa,2025,registration,total_population,3.1,24,,
+53.08.16.2002,4,Sokoria,sex,laki_laki,,575,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.16.2002,4,Sokoria,sex,perempuan,,583,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.16.2002,4,Sokoria,total,total,,1158,jiwa,2025,registration,total_population,3.1,24,,
+53.08.16.2003,4,Demulaka,sex,laki_laki,,295,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.16.2003,4,Demulaka,sex,perempuan,,313,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.16.2003,4,Demulaka,total,total,,608,jiwa,2025,registration,total_population,3.1,24,,
+53.08.16.2004,4,Roga,sex,laki_laki,,733,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.16.2004,4,Roga,sex,perempuan,,773,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.16.2004,4,Roga,total,total,,1506,jiwa,2025,registration,total_population,3.1,24,,
+53.08.16.2005,4,Kurulimbu Selatan,sex,laki_laki,,247,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.16.2005,4,Kurulimbu Selatan,sex,perempuan,,236,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.16.2005,4,Kurulimbu Selatan,total,total,,483,jiwa,2025,registration,total_population,3.1,24,,
+53.08.16.2006,4,Ngguwa,sex,laki_laki,,292,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.16.2006,4,Ngguwa,sex,perempuan,,315,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.16.2006,4,Ngguwa,total,total,,607,jiwa,2025,registration,total_population,3.1,24,,
+53.08.16.2007,4,Sokoria Selatan,sex,laki_laki,,202,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.16.2007,4,Sokoria Selatan,sex,perempuan,,167,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.16.2007,4,Sokoria Selatan,total,total,,369,jiwa,2025,registration,total_population,3.1,24,,
+53.08.16,3,Kecamatan Ndona Timur,sex,laki_laki,,2780,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.08.16,3,Kecamatan Ndona Timur,sex,perempuan,,2828,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.08.16,3,Kecamatan Ndona Timur,total,total,,5608,jiwa,2025,registration,total_population,3.1,24,,
+53.08.16,3,Ndona Timur,age_group,0-4,laki_laki,59,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.16,3,Ndona Timur,age_group,0-4,perempuan,72,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.16,3,Ndona Timur,age_group,0-4,,131,jiwa,2025,registration,total_population,3.2,26,,0-4
+53.08.16,3,Ndona Timur,age_group,5-9,laki_laki,218,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.16,3,Ndona Timur,age_group,5-9,perempuan,204,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.16,3,Ndona Timur,age_group,5-9,,422,jiwa,2025,registration,total_population,3.2,26,,5-9
+53.08.16,3,Ndona Timur,age_group,10-14,laki_laki,289,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.16,3,Ndona Timur,age_group,10-14,perempuan,268,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.16,3,Ndona Timur,age_group,10-14,,557,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.08.16,3,Ndona Timur,age_group,15-19,laki_laki,339,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.16,3,Ndona Timur,age_group,15-19,perempuan,311,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.16,3,Ndona Timur,age_group,15-19,,650,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.08.16,3,Ndona Timur,age_group,20-24,laki_laki,315,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.16,3,Ndona Timur,age_group,20-24,perempuan,256,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.16,3,Ndona Timur,age_group,20-24,,571,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.08.16,3,Ndona Timur,age_group,25-29,laki_laki,265,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.16,3,Ndona Timur,age_group,25-29,perempuan,218,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.16,3,Ndona Timur,age_group,25-29,,483,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.08.16,3,Ndona Timur,age_group,30-34,laki_laki,174,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.16,3,Ndona Timur,age_group,30-34,perempuan,165,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.16,3,Ndona Timur,age_group,30-34,,339,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.08.16,3,Ndona Timur,age_group,35-39,laki_laki,147,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.16,3,Ndona Timur,age_group,35-39,perempuan,160,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.16,3,Ndona Timur,age_group,35-39,,307,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.08.16,3,Ndona Timur,age_group,40-44,laki_laki,164,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.16,3,Ndona Timur,age_group,40-44,perempuan,173,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.16,3,Ndona Timur,age_group,40-44,,337,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.08.16,3,Ndona Timur,age_group,45-49,laki_laki,144,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.16,3,Ndona Timur,age_group,45-49,perempuan,192,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.16,3,Ndona Timur,age_group,45-49,,336,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.08.16,3,Ndona Timur,age_group,50-54,laki_laki,179,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.16,3,Ndona Timur,age_group,50-54,perempuan,180,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.16,3,Ndona Timur,age_group,50-54,,359,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.08.16,3,Ndona Timur,age_group,55-59,laki_laki,133,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.16,3,Ndona Timur,age_group,55-59,perempuan,196,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.16,3,Ndona Timur,age_group,55-59,,329,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.08.16,3,Ndona Timur,age_group,60-64,laki_laki,106,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.16,3,Ndona Timur,age_group,60-64,perempuan,134,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.16,3,Ndona Timur,age_group,60-64,,240,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.08.16,3,Ndona Timur,age_group,65-69,laki_laki,74,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.16,3,Ndona Timur,age_group,65-69,perempuan,124,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.16,3,Ndona Timur,age_group,65-69,,198,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.08.16,3,Ndona Timur,age_group,70-74,laki_laki,57,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.16,3,Ndona Timur,age_group,70-74,perempuan,67,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.16,3,Ndona Timur,age_group,70-74,,124,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.08.16,3,Ndona Timur,age_group,75+,laki_laki,117,jiwa,2025,registration,total_population,3.2,26,,75 ke atas
+53.08.16,3,Ndona Timur,age_group,75+,perempuan,108,jiwa,2025,registration,total_population,3.2,26,,75 ke atas
+53.08.16,3,Ndona Timur,age_group,75+,,225,jiwa,2025,registration,total_population,3.2,26,,75 ke atas
+53.08.16,3,Kecamatan Ndona Timur,sex,laki_laki,,2780,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+53.08.16,3,Kecamatan Ndona Timur,sex,perempuan,,2828,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+53.08.16,3,Kecamatan Ndona Timur,total,total,,5608,jiwa,2025,registration,total_population,3.2,26,,

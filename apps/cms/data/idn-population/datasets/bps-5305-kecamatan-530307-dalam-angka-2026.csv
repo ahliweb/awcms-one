@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.03.07.2003,4,Sifaniha,sex,laki_laki,,557,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.07.2003,4,Sifaniha,sex,perempuan,,584,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.07.2003,4,Sifaniha,total,total,,1141,jiwa,2025,registration,total_population,3.1,28,,
+53.03.07.2001,4,Motadik,sex,laki_laki,,1149,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.07.2001,4,Motadik,sex,perempuan,,1077,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.07.2001,4,Motadik,total,total,,2226,jiwa,2025,registration,total_population,3.1,28,,
+53.03.07.2002,4,Nonotbatan,sex,laki_laki,,853,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.07.2002,4,Nonotbatan,sex,perempuan,,777,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.07.2002,4,Nonotbatan,total,total,,1630,jiwa,2025,registration,total_population,3.1,28,,
+53.03.07.2006,4,Tuamese,sex,laki_laki,,769,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.07.2006,4,Tuamese,sex,perempuan,,709,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.07.2006,4,Tuamese,total,total,,1478,jiwa,2025,registration,total_population,3.1,28,,
+53.03.07.2004,4,Maukabatan,sex,laki_laki,,777,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.07.2004,4,Maukabatan,sex,perempuan,,752,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.07.2004,4,Maukabatan,total,total,,1529,jiwa,2025,registration,total_population,3.1,28,,
+53.03.07.2005,4,Kotafoun,sex,laki_laki,,992,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.07.2005,4,Kotafoun,sex,perempuan,,914,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.07.2005,4,Kotafoun,total,total,,1906,jiwa,2025,registration,total_population,3.1,28,,
+53.03.07.2007,4,Ponu,sex,laki_laki,,3190,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.07.2007,4,Ponu,sex,perempuan,,3135,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.07.2007,4,Ponu,total,total,,6325,jiwa,2025,registration,total_population,3.1,28,,
+53.03.07.2008,4,Oemanu,sex,laki_laki,,538,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.07.2008,4,Oemanu,sex,perempuan,,564,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.07.2008,4,Oemanu,total,total,,1102,jiwa,2025,registration,total_population,3.1,28,,
+53.03.07.2009,4,Nifutasi,sex,laki_laki,,750,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.07.2009,4,Nifutasi,sex,perempuan,,727,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.07.2009,4,Nifutasi,total,total,,1477,jiwa,2025,registration,total_population,3.1,28,,
+53.03.07,3,Biboki Anleu,sex,laki_laki,,9575,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+53.03.07,3,Biboki Anleu,sex,perempuan,,9239,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+53.03.07,3,Biboki Anleu,total,total,,18814,jiwa,2025,registration,total_population,3.1,28,,
+53.03.07,3,Biboki Anleu,age_group,0-4,laki_laki,524,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.07,3,Biboki Anleu,age_group,0-4,perempuan,482,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.07,3,Biboki Anleu,age_group,0-4,,1006,jiwa,2025,registration,total_population,3.2,30,,0–4
+53.03.07,3,Biboki Anleu,age_group,5-9,laki_laki,1051,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.07,3,Biboki Anleu,age_group,5-9,perempuan,904,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.07,3,Biboki Anleu,age_group,5-9,,1955,jiwa,2025,registration,total_population,3.2,30,,5–9
+53.03.07,3,Biboki Anleu,age_group,10-14,laki_laki,1191,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.07,3,Biboki Anleu,age_group,10-14,perempuan,1105,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.07,3,Biboki Anleu,age_group,10-14,,2296,jiwa,2025,registration,total_population,3.2,30,,10–14
+53.03.07,3,Biboki Anleu,age_group,15-19,laki_laki,1154,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.07,3,Biboki Anleu,age_group,15-19,perempuan,1028,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.07,3,Biboki Anleu,age_group,15-19,,2182,jiwa,2025,registration,total_population,3.2,30,,15–19
+53.03.07,3,Biboki Anleu,age_group,20-24,laki_laki,1055,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.07,3,Biboki Anleu,age_group,20-24,perempuan,999,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.07,3,Biboki Anleu,age_group,20-24,,2054,jiwa,2025,registration,total_population,3.2,30,,20–24
+53.03.07,3,Biboki Anleu,age_group,25-29,laki_laki,809,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.07,3,Biboki Anleu,age_group,25-29,perempuan,736,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.07,3,Biboki Anleu,age_group,25-29,,1545,jiwa,2025,registration,total_population,3.2,30,,25–29
+53.03.07,3,Biboki Anleu,age_group,30-34,laki_laki,604,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.07,3,Biboki Anleu,age_group,30-34,perempuan,617,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.07,3,Biboki Anleu,age_group,30-34,,1221,jiwa,2025,registration,total_population,3.2,30,,30–34
+53.03.07,3,Biboki Anleu,age_group,35-39,laki_laki,490,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.07,3,Biboki Anleu,age_group,35-39,perempuan,589,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.07,3,Biboki Anleu,age_group,35-39,,1079,jiwa,2025,registration,total_population,3.2,30,,35–39
+53.03.07,3,Biboki Anleu,age_group,40-44,laki_laki,546,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.07,3,Biboki Anleu,age_group,40-44,perempuan,604,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.07,3,Biboki Anleu,age_group,40-44,,1150,jiwa,2025,registration,total_population,3.2,30,,40–44
+53.03.07,3,Biboki Anleu,age_group,45-49,laki_laki,450,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.07,3,Biboki Anleu,age_group,45-49,perempuan,504,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.07,3,Biboki Anleu,age_group,45-49,,954,jiwa,2025,registration,total_population,3.2,30,,45–49
+53.03.07,3,Biboki Anleu,age_group,50-54,laki_laki,384,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.07,3,Biboki Anleu,age_group,50-54,perempuan,426,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.07,3,Biboki Anleu,age_group,50-54,,810,jiwa,2025,registration,total_population,3.2,30,,50–54
+53.03.07,3,Biboki Anleu,age_group,55-59,laki_laki,352,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.07,3,Biboki Anleu,age_group,55-59,perempuan,373,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.07,3,Biboki Anleu,age_group,55-59,,725,jiwa,2025,registration,total_population,3.2,30,,55–59
+53.03.07,3,Biboki Anleu,age_group,60-64,laki_laki,318,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.07,3,Biboki Anleu,age_group,60-64,perempuan,321,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.07,3,Biboki Anleu,age_group,60-64,,639,jiwa,2025,registration,total_population,3.2,30,,60–64
+53.03.07,3,Biboki Anleu,age_group,65-69,laki_laki,271,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.07,3,Biboki Anleu,age_group,65-69,perempuan,230,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.07,3,Biboki Anleu,age_group,65-69,,501,jiwa,2025,registration,total_population,3.2,30,,65–69
+53.03.07,3,Biboki Anleu,age_group,70-74,laki_laki,165,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.07,3,Biboki Anleu,age_group,70-74,perempuan,135,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.07,3,Biboki Anleu,age_group,70-74,,300,jiwa,2025,registration,total_population,3.2,30,,70–74
+53.03.07,3,Biboki Anleu,age_group,75+,laki_laki,211,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.07,3,Biboki Anleu,age_group,75+,perempuan,186,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.07,3,Biboki Anleu,age_group,75+,,397,jiwa,2025,registration,total_population,3.2,30,,75+
+53.03.07,3,Biboki Anleu,sex,laki_laki,,9575,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+53.03.07,3,Biboki Anleu,sex,perempuan,,9239,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+53.03.07,3,Biboki Anleu,total,total,,18814,jiwa,2025,registration,total_population,3.2,30,,

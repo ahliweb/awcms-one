@@ -1,0 +1,59 @@
+{
+  "datasetCode": "bps-5304-kecamatan-530208-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.02.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Amanatun Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Timor Tengah Selatan",
+  "publisherDomain": "5304",
+  "publisherWebsite": "https://timortengahselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Timor Tengah Selatan (https://timortengahselatankab.bps.go.id), publikasi \"Kecamatan Amanatun Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5304100",
+  "publicationNumber": "53040.26008",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://timortengahselatankab.bps.go.id/id/publication/2026/09/28/fdc5deb0c873ecdb4c0b8501/kecamatan-amanatun-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "f6ed38dc6aa5fc395cd2b3bd668781cefbb87c6aa2b2569e8d3283490648d53c",
+  "sourceFileBytes": 4009372,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Timor Tengah Selatan",
+  "csvPath": "datasets/bps-5304-kecamatan-530208-dalam-angka-2026.csv",
+  "csvSha256": "ed15d1086f26c4a332a599d08bab2746cd87a1a1fd0537d8426a087386916e2f",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Amanatun Selatan, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Amanatun Selatan, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Oinlasi 11,25%\": unmatched ",
+    "table 3.1: row not stored: row \"Kokoi 7,54%\": unmatched ",
+    "table 3.1: row not stored: row \"Fatulunu 6,68%\": unmatched ",
+    "table 3.1: row not stored: row \"Nunleu 12,76%\": unmatched ",
+    "table 3.1: row not stored: row \"Kualeu 9,84%\": unmatched ",
+    "table 3.1: row not stored: row \"Fenun 10,11%\": unmatched ",
+    "table 3.1: row not stored: row \"Anin 7,12%\": unmatched ",
+    "table 3.1: row not stored: row \"Toi 6,02%\": unmatched ",
+    "table 3.1: row not stored: row \"Sunu 7,03%\": unmatched ",
+    "table 3.1: row not stored: row \"Lanu 5,33%\": unmatched ",
+    "table 3.1: row not stored: row \"Nifuleo 5,76%\": unmatched ",
+    "table 3.1: row not stored: row \"Fae 4,87%\": unmatched ",
+    "table 3.1: row not stored: row \"Neutnana 5,67%\": unmatched ",
+    "table 3.1: row not stored: row \"Amanatun Selatan 100%\": unmatched ",
+    "table 3.2: the rows of region 53.02.08 are not stored: age_group (perempuan) vs sex value: parts sum 10192.0000 != 10249.0000 (diff 57.0000); the source itself is inconsistent"
+  ]
+}

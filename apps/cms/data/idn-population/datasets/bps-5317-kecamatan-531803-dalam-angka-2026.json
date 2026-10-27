@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-5317-kecamatan-531803-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.18.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Wewewa Timur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sumba Barat Daya",
+  "publisherDomain": "5317",
+  "publisherWebsite": "https://sumbabaratdayakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sumba Barat Daya (https://sumbabaratdayakab.bps.go.id), publikasi \"Kecamatan Wewewa Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5317060",
+  "publicationNumber": "53170.26011",
+  "issn": "3032-0038",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sumbabaratdayakab.bps.go.id/id/publication/2026/09/28/a937cf0b70420849850b6685/kecamatan-wewewa-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "c4af2ce8532e19e578184ca9a954c958a30ab693778365de43fef8e87d64700a",
+  "sourceFileBytes": 10154657,
+  "sourcePages": [24, 25, 26],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sumba Barat Daya.",
+  "csvPath": "datasets/bps-5317-kecamatan-531803-dalam-angka-2026.csv",
+  "csvSha256": "4a94cbc4c2fe6d960be6d4b3cccc78bf3135bc80dfa3093826b1156ca66b531d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Wewewa Timur, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Wewewa Timur, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Dangga Mango\": unmatched ",
+    "table 3.1: row not stored: row \"Pada Ewata\": unmatched ",
+    "table 3.1: row not stored: row \"Dangga Mango\": unmatched ",
+    "table 3.1: row not stored: row \"Pada Ewata\": unmatched "
+  ]
+}

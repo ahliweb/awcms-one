@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5303-kecamatan-530104-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.01.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Semau Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Kupang",
+  "publisherDomain": "5303",
+  "publisherWebsite": "https://kupangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Kupang (https://kupangkab.bps.go.id), publikasi \"Kecamatan Semau Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5303100",
+  "publicationNumber": "53030.26005",
+  "issn": "2797-4200",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kupangkab.bps.go.id/id/publication/2026/09/28/140988b2158c326c46efcd40/kecamatan-semau-dalam-angka-2026.html",
+  "sourceFileSha256": "799771e09e37a70c35d956db424888af53caeb8c9280089b3db42fe02482da48",
+  "sourceFileBytes": 1669683,
+  "sourcePages": [26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Kupang.",
+  "csvPath": "datasets/bps-5303-kecamatan-530104-dalam-angka-2026.csv",
+  "csvSha256": "8911175f5a98c381a5caf0fa14e369ac4134d0cac93f9da055c5405cb4112558",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Semau, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

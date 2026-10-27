@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.15.08.2006,4,Waning,sex,laki_laki,,819,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.08.2006,4,Waning,sex,perempuan,,873,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.08.2006,4,Waning,total,total,,1692,jiwa,2025,registration,total_population,3.1,23,,
+53.15.08.2005,4,Ndoso,sex,laki_laki,,875,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.08.2005,4,Ndoso,sex,perempuan,,891,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.08.2005,4,Ndoso,total,total,,1766,jiwa,2025,registration,total_population,3.1,23,,
+53.15.08.2008,4,Momol,sex,laki_laki,,618,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.08.2008,4,Momol,sex,perempuan,,620,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.08.2008,4,Momol,total,total,,1238,jiwa,2025,registration,total_population,3.1,23,,
+53.15.08.2004,4,Kasong,sex,laki_laki,,589,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.08.2004,4,Kasong,sex,perempuan,,607,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.08.2004,4,Kasong,total,total,,1196,jiwa,2025,registration,total_population,3.1,23,,
+53.15.08.2003,4,Raka,sex,laki_laki,,759,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.08.2003,4,Raka,sex,perempuan,,777,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.08.2003,4,Raka,total,total,,1536,jiwa,2025,registration,total_population,3.1,23,,
+53.15.08.2002,4,Tentang,sex,laki_laki,,1411,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.08.2002,4,Tentang,sex,perempuan,,1393,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.08.2002,4,Tentang,total,total,,2804,jiwa,2025,registration,total_population,3.1,23,,
+53.15.08.2010,4,Pong Narang,sex,laki_laki,,672,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.08.2010,4,Pong Narang,sex,perempuan,,643,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.08.2010,4,Pong Narang,total,total,,1315,jiwa,2025,registration,total_population,3.1,23,,
+53.15.08.2007,4,Wae Buka,sex,laki_laki,,548,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.08.2007,4,Wae Buka,sex,perempuan,,607,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.08.2007,4,Wae Buka,total,total,,1155,jiwa,2025,registration,total_population,3.1,23,,
+53.15.08.2009,4,Lumut,sex,laki_laki,,911,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.08.2009,4,Lumut,sex,perempuan,,838,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.08.2009,4,Lumut,total,total,,1749,jiwa,2025,registration,total_population,3.1,23,,
+53.15.08.2001,4,Golo Poleng,sex,laki_laki,,507,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.08.2001,4,Golo Poleng,sex,perempuan,,438,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.08.2001,4,Golo Poleng,total,total,,945,jiwa,2025,registration,total_population,3.1,23,,
+53.15.08.2013,4,Tehong,sex,laki_laki,,797,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.08.2013,4,Tehong,sex,perempuan,,755,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.08.2013,4,Tehong,total,total,,1552,jiwa,2025,registration,total_population,3.1,23,,
+53.15.08.2011,4,Golo Bore,sex,laki_laki,,701,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.08.2011,4,Golo Bore,sex,perempuan,,754,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.08.2011,4,Golo Bore,total,total,,1455,jiwa,2025,registration,total_population,3.1,23,,
+53.15.08.2014,4,Golo Rua,sex,laki_laki,,899,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.08.2014,4,Golo Rua,sex,perempuan,,826,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.08.2014,4,Golo Rua,total,total,,1725,jiwa,2025,registration,total_population,3.1,23,,
+53.15.08.2015,4,Golo Keli,sex,laki_laki,,814,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.08.2015,4,Golo Keli,sex,perempuan,,818,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.08.2015,4,Golo Keli,total,total,,1632,jiwa,2025,registration,total_population,3.1,23,,
+53.15.08,3,Kecamatan Ndoso,sex,laki_laki,,11339,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.15.08,3,Kecamatan Ndoso,sex,perempuan,,11300,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.15.08,3,Kecamatan Ndoso,total,total,,22639,jiwa,2025,registration,total_population,3.1,23,,

@@ -1,0 +1,40 @@
+{
+  "datasetCode": "bps-5371-kecamatan-537102-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.71.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Maulafa Dalam Angka 2026",
+  "publisherName": "BPS Kota Kupang",
+  "publisherDomain": "5371",
+  "publisherWebsite": "https://kupangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Kupang (https://kupangkota.bps.go.id), publikasi \"Kecamatan Maulafa Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5371020",
+  "publicationNumber": "53710.26006",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kupangkota.bps.go.id/id/publication/2026/09/28/80920017e78517755c905e2a/kecamatan-maulafa-dalam-angka-2026.html",
+  "sourceFileSha256": "90f639c039c5f766ec560487415409e782b1b57bb1051feb7bdde3a3a63e033c",
+  "sourceFileBytes": 2504126,
+  "sourcePages": [26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Kupang.",
+  "csvPath": "datasets/bps-5371-kecamatan-537102-dalam-angka-2026.csv",
+  "csvSha256": "b823de25e13c0f24e7c153f1e34f6c261f208565a4713e277c5879ca05a5ea79",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Maulafa, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Maulafa Maulafa District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Maulafa Maulafa District\": unmatched ",
+    "table 3.1: the rows of region 53.71.02.1009 are not stored: sex split vs total: parts sum 7814.0000 != 7784.0000 (diff 30.0000); the source itself is inconsistent"
+  ]
+}

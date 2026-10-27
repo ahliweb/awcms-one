@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.10.18.2001,4,Renda,sex,laki_laki,,864,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.10.18.2001,4,Renda,sex,perempuan,,875,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.10.18.2001,4,Renda,total,total,,1739,jiwa,2025,registration,total_population,3.1,23,,
+53.10.18.2002,4,Todo,sex,laki_laki,,752,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.10.18.2002,4,Todo,sex,perempuan,,727,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.10.18.2002,4,Todo,total,total,,1479,jiwa,2025,registration,total_population,3.1,23,,
+53.10.18.2003,4,Gulung,sex,laki_laki,,975,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.10.18.2003,4,Gulung,sex,perempuan,,952,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.10.18.2003,4,Gulung,total,total,,1927,jiwa,2025,registration,total_population,3.1,23,,
+53.10.18.2004,4,Popo,sex,laki_laki,,810,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.10.18.2004,4,Popo,sex,perempuan,,818,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.10.18.2004,4,Popo,total,total,,1628,jiwa,2025,registration,total_population,3.1,23,,
+53.10.18.2005,4,Lia,sex,laki_laki,,830,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.10.18.2005,4,Lia,sex,perempuan,,822,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.10.18.2005,4,Lia,total,total,,1652,jiwa,2025,registration,total_population,3.1,23,,
+53.10.18.2006,4,Kole,sex,laki_laki,,881,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.10.18.2006,4,Kole,sex,perempuan,,879,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.10.18.2006,4,Kole,total,total,,1760,jiwa,2025,registration,total_population,3.1,23,,
+53.10.18.2007,4,Ling,sex,laki_laki,,663,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.10.18.2007,4,Ling,sex,perempuan,,647,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.10.18.2007,4,Ling,total,total,,1310,jiwa,2025,registration,total_population,3.1,23,,
+53.10.18.2008,4,Nao,sex,laki_laki,,978,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.10.18.2008,4,Nao,sex,perempuan,,996,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.10.18.2008,4,Nao,total,total,,1974,jiwa,2025,registration,total_population,3.1,23,,
+53.10.18.2009,4,Cireng,sex,laki_laki,,886,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.10.18.2009,4,Cireng,sex,perempuan,,854,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.10.18.2009,4,Cireng,total,total,,1740,jiwa,2025,registration,total_population,3.1,23,,
+53.10.18.2010,4,Ruang,sex,laki_laki,,690,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.10.18.2010,4,Ruang,sex,perempuan,,661,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.10.18.2010,4,Ruang,total,total,,1351,jiwa,2025,registration,total_population,3.1,23,,
+53.10.18.2011,4,Mata Wae,sex,laki_laki,,731,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.10.18.2011,4,Mata Wae,sex,perempuan,,733,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.10.18.2011,4,Mata Wae,total,total,,1464,jiwa,2025,registration,total_population,3.1,23,,
+53.10.18,3,Satar Mese Utara,sex,laki_laki,,9060,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+53.10.18,3,Satar Mese Utara,sex,perempuan,,8964,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+53.10.18,3,Satar Mese Utara,total,total,,18024,jiwa,2025,registration,total_population,3.1,23,,
+53.10.18,3,Satar Mese Utara,age_group,0-4,laki_laki,610,jiwa,2025,registration,total_population,3.2,25,,0-4
+53.10.18,3,Satar Mese Utara,age_group,0-4,perempuan,575,jiwa,2025,registration,total_population,3.2,25,,0-4
+53.10.18,3,Satar Mese Utara,age_group,0-4,,1185,jiwa,2025,registration,total_population,3.2,25,,0-4
+53.10.18,3,Satar Mese Utara,age_group,5-9,laki_laki,945,jiwa,2025,registration,total_population,3.2,25,,5-9
+53.10.18,3,Satar Mese Utara,age_group,5-9,perempuan,883,jiwa,2025,registration,total_population,3.2,25,,5-9
+53.10.18,3,Satar Mese Utara,age_group,5-9,,1828,jiwa,2025,registration,total_population,3.2,25,,5-9
+53.10.18,3,Satar Mese Utara,age_group,10-14,laki_laki,936,jiwa,2025,registration,total_population,3.2,25,,10-14
+53.10.18,3,Satar Mese Utara,age_group,10-14,perempuan,900,jiwa,2025,registration,total_population,3.2,25,,10-14
+53.10.18,3,Satar Mese Utara,age_group,10-14,,1836,jiwa,2025,registration,total_population,3.2,25,,10-14
+53.10.18,3,Satar Mese Utara,age_group,15-19,laki_laki,799,jiwa,2025,registration,total_population,3.2,25,,15-19
+53.10.18,3,Satar Mese Utara,age_group,15-19,perempuan,808,jiwa,2025,registration,total_population,3.2,25,,15-19
+53.10.18,3,Satar Mese Utara,age_group,15-19,,1607,jiwa,2025,registration,total_population,3.2,25,,15-19
+53.10.18,3,Satar Mese Utara,age_group,20-24,laki_laki,969,jiwa,2025,registration,total_population,3.2,25,,20-24
+53.10.18,3,Satar Mese Utara,age_group,20-24,perempuan,936,jiwa,2025,registration,total_population,3.2,25,,20-24
+53.10.18,3,Satar Mese Utara,age_group,20-24,,1905,jiwa,2025,registration,total_population,3.2,25,,20-24
+53.10.18,3,Satar Mese Utara,age_group,25-29,laki_laki,920,jiwa,2025,registration,total_population,3.2,25,,25-29
+53.10.18,3,Satar Mese Utara,age_group,25-29,perempuan,932,jiwa,2025,registration,total_population,3.2,25,,25-29
+53.10.18,3,Satar Mese Utara,age_group,25-29,,1852,jiwa,2025,registration,total_population,3.2,25,,25-29
+53.10.18,3,Satar Mese Utara,age_group,30-34,laki_laki,731,jiwa,2025,registration,total_population,3.2,25,,30-34
+53.10.18,3,Satar Mese Utara,age_group,30-34,perempuan,725,jiwa,2025,registration,total_population,3.2,25,,30-34
+53.10.18,3,Satar Mese Utara,age_group,30-34,,1456,jiwa,2025,registration,total_population,3.2,25,,30-34
+53.10.18,3,Satar Mese Utara,age_group,35-39,laki_laki,599,jiwa,2025,registration,total_population,3.2,25,,35-39
+53.10.18,3,Satar Mese Utara,age_group,35-39,perempuan,572,jiwa,2025,registration,total_population,3.2,25,,35-39
+53.10.18,3,Satar Mese Utara,age_group,35-39,,1171,jiwa,2025,registration,total_population,3.2,25,,35-39
+53.10.18,3,Satar Mese Utara,age_group,40-44,laki_laki,499,jiwa,2025,registration,total_population,3.2,25,,40-44
+53.10.18,3,Satar Mese Utara,age_group,40-44,perempuan,464,jiwa,2025,registration,total_population,3.2,25,,40-44
+53.10.18,3,Satar Mese Utara,age_group,40-44,,963,jiwa,2025,registration,total_population,3.2,25,,40-44
+53.10.18,3,Satar Mese Utara,age_group,45-49,laki_laki,425,jiwa,2025,registration,total_population,3.2,25,,45-49
+53.10.18,3,Satar Mese Utara,age_group,45-49,perempuan,495,jiwa,2025,registration,total_population,3.2,25,,45-49
+53.10.18,3,Satar Mese Utara,age_group,45-49,,920,jiwa,2025,registration,total_population,3.2,25,,45-49
+53.10.18,3,Satar Mese Utara,age_group,50-54,laki_laki,402,jiwa,2025,registration,total_population,3.2,25,,50-54
+53.10.18,3,Satar Mese Utara,age_group,50-54,perempuan,457,jiwa,2025,registration,total_population,3.2,25,,50-54
+53.10.18,3,Satar Mese Utara,age_group,50-54,,859,jiwa,2025,registration,total_population,3.2,25,,50-54
+53.10.18,3,Satar Mese Utara,age_group,55-59,laki_laki,383,jiwa,2025,registration,total_population,3.2,25,,55-59
+53.10.18,3,Satar Mese Utara,age_group,55-59,perempuan,403,jiwa,2025,registration,total_population,3.2,25,,55-59
+53.10.18,3,Satar Mese Utara,age_group,55-59,,786,jiwa,2025,registration,total_population,3.2,25,,55-59
+53.10.18,3,Satar Mese Utara,age_group,60-64,laki_laki,305,jiwa,2025,registration,total_population,3.2,25,,60-64
+53.10.18,3,Satar Mese Utara,age_group,60-64,perempuan,303,jiwa,2025,registration,total_population,3.2,25,,60-64
+53.10.18,3,Satar Mese Utara,age_group,60-64,,608,jiwa,2025,registration,total_population,3.2,25,,60-64
+53.10.18,3,Satar Mese Utara,age_group,65-69,laki_laki,231,jiwa,2025,registration,total_population,3.2,25,,65-69
+53.10.18,3,Satar Mese Utara,age_group,65-69,perempuan,217,jiwa,2025,registration,total_population,3.2,25,,65-69
+53.10.18,3,Satar Mese Utara,age_group,65-69,,448,jiwa,2025,registration,total_population,3.2,25,,65-69
+53.10.18,3,Satar Mese Utara,age_group,70-74,laki_laki,112,jiwa,2025,registration,total_population,3.2,25,,70-74
+53.10.18,3,Satar Mese Utara,age_group,70-74,perempuan,123,jiwa,2025,registration,total_population,3.2,25,,70-74
+53.10.18,3,Satar Mese Utara,age_group,70-74,,235,jiwa,2025,registration,total_population,3.2,25,,70-74
+53.10.18,3,Satar Mese Utara,age_group,75+,laki_laki,194,jiwa,2025,registration,total_population,3.2,25,,>75
+53.10.18,3,Satar Mese Utara,age_group,75+,perempuan,171,jiwa,2025,registration,total_population,3.2,25,,>75
+53.10.18,3,Satar Mese Utara,age_group,75+,,365,jiwa,2025,registration,total_population,3.2,25,,>75
+53.10.18,3,Satar Mese Utara,sex,laki_laki,,9060,jiwa,2025,registration,total_population,3.2,25,,Laki-Laki
+53.10.18,3,Satar Mese Utara,sex,perempuan,,8964,jiwa,2025,registration,total_population,3.2,25,,Perempuan
+53.10.18,3,Satar Mese Utara,total,total,,18024,jiwa,2025,registration,total_population,3.2,25,,

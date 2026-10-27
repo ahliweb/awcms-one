@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.07.07.2002,4,Nelle Urung,sex,laki_laki,,731,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.07.07.2002,4,Nelle Urung,sex,perempuan,,839,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.07.07.2002,4,Nelle Urung,total,total,,1570,jiwa,2025,registration,total_population,3.1,,,
+53.07.07.2003,4,Nelle Wutung,sex,laki_laki,,696,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.07.07.2003,4,Nelle Wutung,sex,perempuan,,793,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.07.07.2003,4,Nelle Wutung,total,total,,1489,jiwa,2025,registration,total_population,3.1,,,
+53.07.07.2004,4,Nelle Barat,sex,laki_laki,,341,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.07.07.2004,4,Nelle Barat,sex,perempuan,,375,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.07.07.2004,4,Nelle Barat,total,total,,716,jiwa,2025,registration,total_population,3.1,,,
+53.07.07.2006,4,Manubura,sex,laki_laki,,568,jiwa,2025,registration,total_population,3.1,,,Laki-Laki/Male
+53.07.07.2006,4,Manubura,sex,perempuan,,622,jiwa,2025,registration,total_population,3.1,,,Perempuan/Female
+53.07.07.2006,4,Manubura,total,total,,1190,jiwa,2025,registration,total_population,3.1,,,

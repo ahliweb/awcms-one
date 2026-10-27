@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.04.03.2001,4,Asumanu,sex,laki_laki,,1207,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.04.03.2001,4,Asumanu,sex,perempuan,,1150,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.04.03.2001,4,Asumanu,total,total,,2357,jiwa,2025,registration,total_population,3.1,24,,
+53.04.03.2002,4,Tohe,sex,laki_laki,,3208,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.04.03.2002,4,Tohe,sex,perempuan,,3207,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.04.03.2002,4,Tohe,total,total,,6415,jiwa,2025,registration,total_population,3.1,24,,
+53.04.03.2004,4,Raifatus,sex,laki_laki,,504,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.04.03.2004,4,Raifatus,sex,perempuan,,505,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.04.03.2004,4,Raifatus,total,total,,1009,jiwa,2025,registration,total_population,3.1,24,,
+53.04.03.2005,4,Aitoun,sex,laki_laki,,893,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.04.03.2005,4,Aitoun,sex,perempuan,,959,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.04.03.2005,4,Aitoun,total,total,,1852,jiwa,2025,registration,total_population,3.1,24,,
+53.04.03.2003,4,Maumutin,sex,laki_laki,,1738,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.04.03.2003,4,Maumutin,sex,perempuan,,1735,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.04.03.2003,4,Maumutin,total,total,,3473,jiwa,2025,registration,total_population,3.1,24,,
+53.04.03.2006,4,Tohe Leten,sex,laki_laki,,451,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.04.03.2006,4,Tohe Leten,sex,perempuan,,428,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.04.03.2006,4,Tohe Leten,total,total,,879,jiwa,2025,registration,total_population,3.1,24,,
+53.04.03,3,Raihat,sex,laki_laki,,8001,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki/Male
+53.04.03,3,Raihat,sex,perempuan,,7984,jiwa,2025,registration,total_population,3.1,24,,Perempuan/Female
+53.04.03,3,Raihat,total,total,,15985,jiwa,2025,registration,total_population,3.1,24,,
+53.04.03,3,Raihat,age_group,0-4,laki_laki,1128,jiwa,2025,registration,total_population,3.2,26,,00-04
+53.04.03,3,Raihat,age_group,0-4,perempuan,1021,jiwa,2025,registration,total_population,3.2,26,,00-04
+53.04.03,3,Raihat,age_group,0-4,,2149,jiwa,2025,registration,total_population,3.2,26,,00-04
+53.04.03,3,Raihat,age_group,5-9,laki_laki,1178,jiwa,2025,registration,total_population,3.2,26,,05-09
+53.04.03,3,Raihat,age_group,5-9,perempuan,1075,jiwa,2025,registration,total_population,3.2,26,,05-09
+53.04.03,3,Raihat,age_group,5-9,,2253,jiwa,2025,registration,total_population,3.2,26,,05-09
+53.04.03,3,Raihat,age_group,10-14,laki_laki,983,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.04.03,3,Raihat,age_group,10-14,perempuan,929,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.04.03,3,Raihat,age_group,10-14,,1912,jiwa,2025,registration,total_population,3.2,26,,10-14
+53.04.03,3,Raihat,age_group,15-19,laki_laki,730,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.04.03,3,Raihat,age_group,15-19,perempuan,668,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.04.03,3,Raihat,age_group,15-19,,1398,jiwa,2025,registration,total_population,3.2,26,,15-19
+53.04.03,3,Raihat,age_group,20-24,laki_laki,467,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.04.03,3,Raihat,age_group,20-24,perempuan,556,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.04.03,3,Raihat,age_group,20-24,,1023,jiwa,2025,registration,total_population,3.2,26,,20-24
+53.04.03,3,Raihat,age_group,25-29,laki_laki,422,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.04.03,3,Raihat,age_group,25-29,perempuan,530,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.04.03,3,Raihat,age_group,25-29,,952,jiwa,2025,registration,total_population,3.2,26,,25-29
+53.04.03,3,Raihat,age_group,30-34,laki_laki,366,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.04.03,3,Raihat,age_group,30-34,perempuan,479,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.04.03,3,Raihat,age_group,30-34,,845,jiwa,2025,registration,total_population,3.2,26,,30-34
+53.04.03,3,Raihat,age_group,35-39,laki_laki,380,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.04.03,3,Raihat,age_group,35-39,perempuan,493,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.04.03,3,Raihat,age_group,35-39,,873,jiwa,2025,registration,total_population,3.2,26,,35-39
+53.04.03,3,Raihat,age_group,40-44,laki_laki,486,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.04.03,3,Raihat,age_group,40-44,perempuan,504,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.04.03,3,Raihat,age_group,40-44,,990,jiwa,2025,registration,total_population,3.2,26,,40-44
+53.04.03,3,Raihat,age_group,45-49,laki_laki,405,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.04.03,3,Raihat,age_group,45-49,perempuan,427,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.04.03,3,Raihat,age_group,45-49,,832,jiwa,2025,registration,total_population,3.2,26,,45-49
+53.04.03,3,Raihat,age_group,50-54,laki_laki,392,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.04.03,3,Raihat,age_group,50-54,perempuan,376,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.04.03,3,Raihat,age_group,50-54,,768,jiwa,2025,registration,total_population,3.2,26,,50-54
+53.04.03,3,Raihat,age_group,55-59,laki_laki,324,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.04.03,3,Raihat,age_group,55-59,perempuan,257,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.04.03,3,Raihat,age_group,55-59,,581,jiwa,2025,registration,total_population,3.2,26,,55-59
+53.04.03,3,Raihat,age_group,60-64,laki_laki,256,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.04.03,3,Raihat,age_group,60-64,perempuan,233,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.04.03,3,Raihat,age_group,60-64,,489,jiwa,2025,registration,total_population,3.2,26,,60-64
+53.04.03,3,Raihat,age_group,65-69,laki_laki,200,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.04.03,3,Raihat,age_group,65-69,perempuan,194,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.04.03,3,Raihat,age_group,65-69,,394,jiwa,2025,registration,total_population,3.2,26,,65-69
+53.04.03,3,Raihat,age_group,70-74,laki_laki,123,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.04.03,3,Raihat,age_group,70-74,perempuan,101,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.04.03,3,Raihat,age_group,70-74,,224,jiwa,2025,registration,total_population,3.2,26,,70-74
+53.04.03,3,Raihat,age_group,75+,laki_laki,161,jiwa,2025,registration,total_population,3.2,26,,75 +
+53.04.03,3,Raihat,age_group,75+,perempuan,142,jiwa,2025,registration,total_population,3.2,26,,75 +
+53.04.03,3,Raihat,age_group,75+,,303,jiwa,2025,registration,total_population,3.2,26,,75 +
+53.04.03,3,Raihat,sex,laki_laki,,8001,jiwa,2025,registration,total_population,3.2,26,,Laki-Laki
+53.04.03,3,Raihat,sex,perempuan,,7985,jiwa,2025,registration,total_population,3.2,26,,Perempuan
+53.04.03,3,Raihat,total,total,,15986,jiwa,2025,registration,total_population,3.2,26,,

@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.02.06.2001,4,Pollo,sex,laki_laki,,2487,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.02.06.2001,4,Pollo,sex,perempuan,,2628,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.02.06.2001,4,Pollo,total,total,,5115,jiwa,2025,registration,total_population,3.1,25,,
+53.02.06.2002,4,Oekiu,sex,laki_laki,,751,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.02.06.2002,4,Oekiu,sex,perempuan,,742,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.02.06.2002,4,Oekiu,total,total,,1493,jiwa,2025,registration,total_population,3.1,25,,
+53.02.06.2003,4,Oebelo,sex,laki_laki,,2068,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.02.06.2003,4,Oebelo,sex,perempuan,,2031,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.02.06.2003,4,Oebelo,total,total,,4099,jiwa,2025,registration,total_population,3.1,25,,
+53.02.06.2004,4,Noemuke,sex,laki_laki,,1364,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.02.06.2004,4,Noemuke,sex,perempuan,,1345,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.02.06.2004,4,Noemuke,total,total,,2709,jiwa,2025,registration,total_population,3.1,25,,
+53.02.06.2010,4,Kiubaat,sex,laki_laki,,925,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.02.06.2010,4,Kiubaat,sex,perempuan,,926,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.02.06.2010,4,Kiubaat,total,total,,1851,jiwa,2025,registration,total_population,3.1,25,,
+53.02.06.2011,4,Linamnutu,sex,laki_laki,,1410,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.02.06.2011,4,Linamnutu,sex,perempuan,,1398,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.02.06.2011,4,Linamnutu,total,total,,2808,jiwa,2025,registration,total_population,3.1,25,,
+53.02.06.2014,4,Mio,sex,laki_laki,,909,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.02.06.2014,4,Mio,sex,perempuan,,937,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.02.06.2014,4,Mio,total,total,,1846,jiwa,2025,registration,total_population,3.1,25,,
+53.02.06.2015,4,Batnun,sex,laki_laki,,1325,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.02.06.2015,4,Batnun,sex,perempuan,,1337,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.02.06.2015,4,Batnun,total,total,,2662,jiwa,2025,registration,total_population,3.1,25,,
+53.02.06.2018,4,Bena,sex,laki_laki,,1962,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.02.06.2018,4,Bena,sex,perempuan,,1999,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.02.06.2018,4,Bena,total,total,,3961,jiwa,2025,registration,total_population,3.1,25,,
+53.02.06.2019,4,Enoneten,sex,laki_laki,,735,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.02.06.2019,4,Enoneten,sex,perempuan,,767,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.02.06.2019,4,Enoneten,total,total,,1502,jiwa,2025,registration,total_population,3.1,25,,
+53.02.06,3,Amanuban Selatan,sex,laki_laki,,13936,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+53.02.06,3,Amanuban Selatan,sex,perempuan,,14110,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+53.02.06,3,Amanuban Selatan,total,total,,28046,jiwa,2025,registration,total_population,3.1,25,,
+53.02.06,3,Amanuban Selatan,age_group,0-4,laki_laki,643,jiwa,2025,registration,total_population,3.2,27,,0-4
+53.02.06,3,Amanuban Selatan,age_group,0-4,perempuan,647,jiwa,2025,registration,total_population,3.2,27,,0-4
+53.02.06,3,Amanuban Selatan,age_group,0-4,,1290,jiwa,2025,registration,total_population,3.2,27,,0-4
+53.02.06,3,Amanuban Selatan,age_group,5-9,laki_laki,1420,jiwa,2025,registration,total_population,3.2,27,,5-9
+53.02.06,3,Amanuban Selatan,age_group,5-9,perempuan,1382,jiwa,2025,registration,total_population,3.2,27,,5-9
+53.02.06,3,Amanuban Selatan,age_group,5-9,,2802,jiwa,2025,registration,total_population,3.2,27,,5-9
+53.02.06,3,Amanuban Selatan,age_group,10-14,laki_laki,1539,jiwa,2025,registration,total_population,3.2,27,,10-14
+53.02.06,3,Amanuban Selatan,age_group,10-14,perempuan,1457,jiwa,2025,registration,total_population,3.2,27,,10-14
+53.02.06,3,Amanuban Selatan,age_group,10-14,,2996,jiwa,2025,registration,total_population,3.2,27,,10-14
+53.02.06,3,Amanuban Selatan,age_group,15-19,laki_laki,1526,jiwa,2025,registration,total_population,3.2,27,,15-19
+53.02.06,3,Amanuban Selatan,age_group,15-19,perempuan,1528,jiwa,2025,registration,total_population,3.2,27,,15-19
+53.02.06,3,Amanuban Selatan,age_group,15-19,,3054,jiwa,2025,registration,total_population,3.2,27,,15-19
+53.02.06,3,Amanuban Selatan,age_group,20-24,laki_laki,1480,jiwa,2025,registration,total_population,3.2,27,,20-24
+53.02.06,3,Amanuban Selatan,age_group,20-24,perempuan,1473,jiwa,2025,registration,total_population,3.2,27,,20-24
+53.02.06,3,Amanuban Selatan,age_group,20-24,,2953,jiwa,2025,registration,total_population,3.2,27,,20-24
+53.02.06,3,Amanuban Selatan,age_group,25-29,laki_laki,1117,jiwa,2025,registration,total_population,3.2,27,,25-29
+53.02.06,3,Amanuban Selatan,age_group,25-29,perempuan,1138,jiwa,2025,registration,total_population,3.2,27,,25-29
+53.02.06,3,Amanuban Selatan,age_group,25-29,,2255,jiwa,2025,registration,total_population,3.2,27,,25-29
+53.02.06,3,Amanuban Selatan,age_group,30-34,laki_laki,875,jiwa,2025,registration,total_population,3.2,27,,30-34
+53.02.06,3,Amanuban Selatan,age_group,30-34,perempuan,968,jiwa,2025,registration,total_population,3.2,27,,30-34
+53.02.06,3,Amanuban Selatan,age_group,30-34,,1843,jiwa,2025,registration,total_population,3.2,27,,30-34
+53.02.06,3,Amanuban Selatan,age_group,35-39,laki_laki,807,jiwa,2025,registration,total_population,3.2,27,,35-39
+53.02.06,3,Amanuban Selatan,age_group,35-39,perempuan,898,jiwa,2025,registration,total_population,3.2,27,,35-39
+53.02.06,3,Amanuban Selatan,age_group,35-39,,1705,jiwa,2025,registration,total_population,3.2,27,,35-39
+53.02.06,3,Amanuban Selatan,age_group,40-44,laki_laki,883,jiwa,2025,registration,total_population,3.2,27,,40-44
+53.02.06,3,Amanuban Selatan,age_group,40-44,perempuan,1007,jiwa,2025,registration,total_population,3.2,27,,40-44
+53.02.06,3,Amanuban Selatan,age_group,40-44,,1890,jiwa,2025,registration,total_population,3.2,27,,40-44
+53.02.06,3,Amanuban Selatan,age_group,45-49,laki_laki,734,jiwa,2025,registration,total_population,3.2,27,,45-49
+53.02.06,3,Amanuban Selatan,age_group,45-49,perempuan,762,jiwa,2025,registration,total_population,3.2,27,,45-49
+53.02.06,3,Amanuban Selatan,age_group,45-49,,1496,jiwa,2025,registration,total_population,3.2,27,,45-49
+53.02.06,3,Amanuban Selatan,age_group,50-54,laki_laki,706,jiwa,2025,registration,total_population,3.2,27,,50-54
+53.02.06,3,Amanuban Selatan,age_group,50-54,perempuan,714,jiwa,2025,registration,total_population,3.2,27,,50-54
+53.02.06,3,Amanuban Selatan,age_group,50-54,,1420,jiwa,2025,registration,total_population,3.2,27,,50-54
+53.02.06,3,Amanuban Selatan,age_group,55-59,laki_laki,540,jiwa,2025,registration,total_population,3.2,27,,55-59
+53.02.06,3,Amanuban Selatan,age_group,55-59,perempuan,559,jiwa,2025,registration,total_population,3.2,27,,55-59
+53.02.06,3,Amanuban Selatan,age_group,55-59,,1099,jiwa,2025,registration,total_population,3.2,27,,55-59
+53.02.06,3,Amanuban Selatan,age_group,60-64,laki_laki,543,jiwa,2025,registration,total_population,3.2,27,,60-64
+53.02.06,3,Amanuban Selatan,age_group,60-64,perempuan,542,jiwa,2025,registration,total_population,3.2,27,,60-64
+53.02.06,3,Amanuban Selatan,age_group,60-64,,1085,jiwa,2025,registration,total_population,3.2,27,,60-64
+53.02.06,3,Amanuban Selatan,age_group,65-69,laki_laki,480,jiwa,2025,registration,total_population,3.2,27,,65-69
+53.02.06,3,Amanuban Selatan,age_group,65-69,perempuan,474,jiwa,2025,registration,total_population,3.2,27,,65-69
+53.02.06,3,Amanuban Selatan,age_group,65-69,,954,jiwa,2025,registration,total_population,3.2,27,,65-69
+53.02.06,3,Amanuban Selatan,age_group,70-74,laki_laki,303,jiwa,2025,registration,total_population,3.2,27,,70-74
+53.02.06,3,Amanuban Selatan,age_group,70-74,perempuan,247,jiwa,2025,registration,total_population,3.2,27,,70-74
+53.02.06,3,Amanuban Selatan,age_group,70-74,,550,jiwa,2025,registration,total_population,3.2,27,,70-74
+53.02.06,3,Amanuban Selatan,age_group,75+,laki_laki,340,jiwa,2025,registration,total_population,3.2,27,,75+
+53.02.06,3,Amanuban Selatan,age_group,75+,perempuan,314,jiwa,2025,registration,total_population,3.2,27,,75+
+53.02.06,3,Amanuban Selatan,age_group,75+,,654,jiwa,2025,registration,total_population,3.2,27,,75+
+53.02.06,3,Amanuban Selatan,sex,laki_laki,,13936,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+53.02.06,3,Amanuban Selatan,sex,perempuan,,14110,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+53.02.06,3,Amanuban Selatan,total,total,,28046,jiwa,2025,registration,total_population,3.2,27,,

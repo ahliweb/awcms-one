@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5319-kecamatan-531902-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "53.19.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lamba Leda Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Manggarai Timur",
+  "publisherDomain": "5319",
+  "publisherWebsite": "https://manggaraitimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Manggarai Timur (https://manggaraitimurkab.bps.go.id), publikasi \"Kecamatan Lamba Leda Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "53190.26013",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://manggaraitimurkab.bps.go.id/id/publication/2026/09/28/c39e608d7f7cea5cd1e9bd04/kecamatan-lamba-leda-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "fac2528bdff9be9c92819b2242213738265829a25730081fecb47e001af867f9",
+  "sourceFileBytes": 2552211,
+  "sourcePages": [23, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Manggarai Timur",
+  "csvPath": "datasets/bps-5319-kecamatan-531902-dalam-angka-2026.csv",
+  "csvSha256": "c829d7601a5879298d164c715403bc160b654f538ba696d9e65db68f8bf48828",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Lamba Leda Selatan, 2025",
+      "printedPages": [23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

@@ -1,0 +1,113 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+53.11.03,3,Lewa,total,total,,15966,jiwa,2025,projection,total_population,3.1.1,50,,
+53.11.04,3,Nggaha Oriangu,total,total,,10830,jiwa,2025,projection,total_population,3.1.1,50,,
+53.11.18,3,Lewa Tidahu,total,total,,7454,jiwa,2025,projection,total_population,3.1.1,50,,
+53.11.19,3,Katala Hamu Lingu,total,total,,4375,jiwa,2025,projection,total_population,3.1.1,50,,
+53.11.05,3,Tabundung,total,total,,9782,jiwa,2025,projection,total_population,3.1.1,50,,
+53.11.06,3,Pinupahar,total,total,,7340,jiwa,2025,projection,total_population,3.1.1,50,,
+53.11.12,3,Paberiwai,total,total,,6773,jiwa,2025,projection,total_population,3.1.1,50,,
+53.11.13,3,Karera,total,total,,8104,jiwa,2025,projection,total_population,3.1.1,50,,
+53.11.15,3,Matawai La Pawu,total,total,,6474,jiwa,2025,projection,total_population,3.1.1,50,,
+53.11.14,3,Kahaungu Eti,total,total,,9311,jiwa,2025,projection,total_population,3.1.1,50,,
+53.11.22,3,Mahu,total,total,,4372,jiwa,2025,projection,total_population,3.1.1,50,,
+53.11.21,3,Ngadu Ngala,total,total,,5367,jiwa,2025,projection,total_population,3.1.1,50,,
+53.11.10,3,Pahunga Lodu,total,total,,13974,jiwa,2025,projection,total_population,3.1.1,50,,
+53.11.09,3,Rindi,total,total,,10272,jiwa,2025,projection,total_population,3.1.1,50,,
+53.11.08,3,Umalulu,total,total,,19067,jiwa,2025,projection,total_population,3.1.1,50,,
+53.11,2,Kabupaten Sumba Timur,age_group,0-4,laki_laki,13085,jiwa,2025,projection,total_population,3.1.2,54,,0–4
+53.11,2,Kabupaten Sumba Timur,age_group,0-4,perempuan,12656,jiwa,2025,projection,total_population,3.1.2,54,,0–4
+53.11,2,Kabupaten Sumba Timur,age_group,0-4,,25741,jiwa,2025,projection,total_population,3.1.2,54,,0–4
+53.11,2,Kabupaten Sumba Timur,age_group,5-9,laki_laki,15694,jiwa,2025,projection,total_population,3.1.2,54,,5–9
+53.11,2,Kabupaten Sumba Timur,age_group,5-9,perempuan,15097,jiwa,2025,projection,total_population,3.1.2,54,,5–9
+53.11,2,Kabupaten Sumba Timur,age_group,5-9,,30791,jiwa,2025,projection,total_population,3.1.2,54,,5–9
+53.11,2,Kabupaten Sumba Timur,age_group,10-14,laki_laki,13493,jiwa,2025,projection,total_population,3.1.2,54,,10–14
+53.11,2,Kabupaten Sumba Timur,age_group,10-14,perempuan,12828,jiwa,2025,projection,total_population,3.1.2,54,,10–14
+53.11,2,Kabupaten Sumba Timur,age_group,10-14,,26321,jiwa,2025,projection,total_population,3.1.2,54,,10–14
+53.11,2,Kabupaten Sumba Timur,age_group,15-19,laki_laki,11580,jiwa,2025,projection,total_population,3.1.2,54,,15–19
+53.11,2,Kabupaten Sumba Timur,age_group,15-19,perempuan,10834,jiwa,2025,projection,total_population,3.1.2,54,,15–19
+53.11,2,Kabupaten Sumba Timur,age_group,15-19,,22414,jiwa,2025,projection,total_population,3.1.2,54,,15–19
+53.11,2,Kabupaten Sumba Timur,age_group,20-24,laki_laki,9902,jiwa,2025,projection,total_population,3.1.2,54,,20–24
+53.11,2,Kabupaten Sumba Timur,age_group,20-24,perempuan,9205,jiwa,2025,projection,total_population,3.1.2,54,,20–24
+53.11,2,Kabupaten Sumba Timur,age_group,20-24,,19107,jiwa,2025,projection,total_population,3.1.2,54,,20–24
+53.11,2,Kabupaten Sumba Timur,age_group,25-29,laki_laki,11081,jiwa,2025,projection,total_population,3.1.2,54,,25–29
+53.11,2,Kabupaten Sumba Timur,age_group,25-29,perempuan,10504,jiwa,2025,projection,total_population,3.1.2,54,,25–29
+53.11,2,Kabupaten Sumba Timur,age_group,25-29,,21585,jiwa,2025,projection,total_population,3.1.2,54,,25–29
+53.11,2,Kabupaten Sumba Timur,age_group,30-34,laki_laki,10640,jiwa,2025,projection,total_population,3.1.2,54,,30–34
+53.11,2,Kabupaten Sumba Timur,age_group,30-34,perempuan,9963,jiwa,2025,projection,total_population,3.1.2,54,,30–34
+53.11,2,Kabupaten Sumba Timur,age_group,30-34,,20603,jiwa,2025,projection,total_population,3.1.2,54,,30–34
+53.11,2,Kabupaten Sumba Timur,age_group,35-39,laki_laki,9281,jiwa,2025,projection,total_population,3.1.2,54,,35–39
+53.11,2,Kabupaten Sumba Timur,age_group,35-39,perempuan,8728,jiwa,2025,projection,total_population,3.1.2,54,,35–39
+53.11,2,Kabupaten Sumba Timur,age_group,35-39,,18009,jiwa,2025,projection,total_population,3.1.2,54,,35–39
+53.11,2,Kabupaten Sumba Timur,age_group,40-44,laki_laki,8114,jiwa,2025,projection,total_population,3.1.2,54,,40–44
+53.11,2,Kabupaten Sumba Timur,age_group,40-44,perempuan,8124,jiwa,2025,projection,total_population,3.1.2,54,,40–44
+53.11,2,Kabupaten Sumba Timur,age_group,40-44,,16238,jiwa,2025,projection,total_population,3.1.2,54,,40–44
+53.11,2,Kabupaten Sumba Timur,age_group,45-49,laki_laki,7383,jiwa,2025,projection,total_population,3.1.2,54,,45–49
+53.11,2,Kabupaten Sumba Timur,age_group,45-49,perempuan,7237,jiwa,2025,projection,total_population,3.1.2,54,,45–49
+53.11,2,Kabupaten Sumba Timur,age_group,45-49,,14620,jiwa,2025,projection,total_population,3.1.2,54,,45–49
+53.11,2,Kabupaten Sumba Timur,age_group,50-54,laki_laki,6517,jiwa,2025,projection,total_population,3.1.2,54,,50–54
+53.11,2,Kabupaten Sumba Timur,age_group,50-54,perempuan,6097,jiwa,2025,projection,total_population,3.1.2,54,,50–54
+53.11,2,Kabupaten Sumba Timur,age_group,50-54,,12614,jiwa,2025,projection,total_population,3.1.2,54,,50–54
+53.11,2,Kabupaten Sumba Timur,age_group,55-59,laki_laki,5310,jiwa,2025,projection,total_population,3.1.2,54,,55–59
+53.11,2,Kabupaten Sumba Timur,age_group,55-59,perempuan,4923,jiwa,2025,projection,total_population,3.1.2,54,,55–59
+53.11,2,Kabupaten Sumba Timur,age_group,55-59,,10233,jiwa,2025,projection,total_population,3.1.2,54,,55–59
+53.11,2,Kabupaten Sumba Timur,age_group,60-64,laki_laki,4257,jiwa,2025,projection,total_population,3.1.2,54,,60–64
+53.11,2,Kabupaten Sumba Timur,age_group,60-64,perempuan,4100,jiwa,2025,projection,total_population,3.1.2,54,,60–64
+53.11,2,Kabupaten Sumba Timur,age_group,60-64,,8357,jiwa,2025,projection,total_population,3.1.2,54,,60–64
+53.11,2,Kabupaten Sumba Timur,age_group,65-69,laki_laki,3375,jiwa,2025,projection,total_population,3.1.2,54,,65–69
+53.11,2,Kabupaten Sumba Timur,age_group,65-69,perempuan,3172,jiwa,2025,projection,total_population,3.1.2,54,,65–69
+53.11,2,Kabupaten Sumba Timur,age_group,65-69,,6547,jiwa,2025,projection,total_population,3.1.2,54,,65–69
+53.11,2,Kabupaten Sumba Timur,age_group,70-74,laki_laki,2543,jiwa,2025,projection,total_population,3.1.2,54,,70–74
+53.11,2,Kabupaten Sumba Timur,age_group,70-74,perempuan,2439,jiwa,2025,projection,total_population,3.1.2,54,,70–74
+53.11,2,Kabupaten Sumba Timur,age_group,70-74,,4982,jiwa,2025,projection,total_population,3.1.2,54,,70–74
+53.11,2,Kabupaten Sumba Timur,age_group,75+,laki_laki,2427,jiwa,2025,projection,total_population,3.1.2,54,,75+
+53.11,2,Kabupaten Sumba Timur,age_group,75+,perempuan,2386,jiwa,2025,projection,total_population,3.1.2,54,,75+
+53.11,2,Kabupaten Sumba Timur,age_group,75+,,4813,jiwa,2025,projection,total_population,3.1.2,54,,75+
+53.11,2,Sumba Timur,sex,laki_laki,,134682,jiwa,2025,projection,total_population,3.1.2,54,,Laki-Laki
+53.11,2,Sumba Timur,sex,perempuan,,128293,jiwa,2025,projection,total_population,3.1.2,54,,Perempuan
+53.11,2,Sumba Timur,total,total,,262975,jiwa,2025,projection,total_population,3.1.2,54,,
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/padi_padian,,157734,rupiah,2024,survey_estimate,per_capita,10.1,265,,Padi-padian
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/padi_padian,,172983,rupiah,2025,survey_estimate,per_capita,10.1,265,,Padi-padian
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/umbi_umbian,,4500,rupiah,2024,survey_estimate,per_capita,10.1,265,,Umbi-umbian
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/umbi_umbian,,5236,rupiah,2025,survey_estimate,per_capita,10.1,265,,Umbi-umbian
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,59429,rupiah,2024,survey_estimate,per_capita,10.1,265,,Ikan/udang/cumi/kerang
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,81601,rupiah,2025,survey_estimate,per_capita,10.1,265,,Ikan/udang/cumi/kerang
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/daging,,47802,rupiah,2024,survey_estimate,per_capita,10.1,265,,Daging
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/daging,,78737,rupiah,2025,survey_estimate,per_capita,10.1,265,,Daging
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/telur_dan_susu,,20864,rupiah,2024,survey_estimate,per_capita,10.1,265,,Telur dan susu
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/telur_dan_susu,,28717,rupiah,2025,survey_estimate,per_capita,10.1,265,,Telur dan susu
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/sayur_sayuran,,59938,rupiah,2024,survey_estimate,per_capita,10.1,265,,Sayur-sayuran
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/sayur_sayuran,,76948,rupiah,2025,survey_estimate,per_capita,10.1,265,,Sayur-sayuran
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/kacang_kacangan,,6447,rupiah,2024,survey_estimate,per_capita,10.1,265,,Kacang-kacangan
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/kacang_kacangan,,9784,rupiah,2025,survey_estimate,per_capita,10.1,265,,Kacang-kacangan
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/buah_buahan,,14596,rupiah,2024,survey_estimate,per_capita,10.1,265,,Buah-buahan
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/buah_buahan,,28041,rupiah,2025,survey_estimate,per_capita,10.1,265,,Buah-buahan
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/minyak_dan_kelapa,,12963,rupiah,2024,survey_estimate,per_capita,10.1,265,,Minyak dan kelapa
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16342,rupiah,2025,survey_estimate,per_capita,10.1,265,,Minyak dan kelapa
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/bahan_minuman,,21283,rupiah,2024,survey_estimate,per_capita,10.1,265,,Bahan minuman
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/bahan_minuman,,24857,rupiah,2025,survey_estimate,per_capita,10.1,265,,Bahan minuman
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/bumbu_bumbuan,,10644,rupiah,2024,survey_estimate,per_capita,10.1,265,,Bumbu-bumbuan
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/bumbu_bumbuan,,14568,rupiah,2025,survey_estimate,per_capita,10.1,265,,Bumbu-bumbuan
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/konsumsi_lainnya,,9277,rupiah,2024,survey_estimate,per_capita,10.1,265,,Konsumsi lainnya
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/konsumsi_lainnya,,10751,rupiah,2025,survey_estimate,per_capita,10.1,265,,Konsumsi lainnya
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,146374,rupiah,2024,survey_estimate,per_capita,10.1,265,,Makanan dan minuman jadi
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,164059,rupiah,2025,survey_estimate,per_capita,10.1,265,,Makanan dan minuman jadi
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/rokok,,70633,rupiah,2024,survey_estimate,per_capita,10.1,265,,Rokok
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/rokok,,79077,rupiah,2025,survey_estimate,per_capita,10.1,265,,Rokok
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/jumlah_makanan,,642485,rupiah,2024,survey_estimate,per_capita,10.1,265,,Jumlah makanan
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/jumlah_makanan,,791700,rupiah,2025,survey_estimate,per_capita,10.1,265,,Jumlah makanan
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,278690,rupiah,2024,survey_estimate,per_capita,10.1,265,,Perumahan dan fasilitas rumah tangga
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,356477,rupiah,2025,survey_estimate,per_capita,10.1,265,,Perumahan dan fasilitas rumah tangga
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,98938,rupiah,2024,survey_estimate,per_capita,10.1,265,,Aneka barang dan jasa
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,134460,rupiah,2025,survey_estimate,per_capita,10.1,265,,Aneka barang dan jasa
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,15725,rupiah,2024,survey_estimate,per_capita,10.1,265,,"Pakaian, alas kaki, dan tutup kepala"
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,23613,rupiah,2025,survey_estimate,per_capita,10.1,265,,"Pakaian, alas kaki, dan tutup kepala"
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/barang_tahan_lama,,23479,rupiah,2024,survey_estimate,per_capita,10.1,265,,Barang tahan lama
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/barang_tahan_lama,,40734,rupiah,2025,survey_estimate,per_capita,10.1,265,,Barang tahan lama
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,46498,rupiah,2024,survey_estimate,per_capita,10.1,265,,"Pajak, pungutan, dan asuransi"
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,55263,rupiah,2025,survey_estimate,per_capita,10.1,265,,"Pajak, pungutan, dan asuransi"
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,1881,rupiah,2024,survey_estimate,per_capita,10.1,265,,Keperluan pesta dan upacara/kenduri
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,23556,rupiah,2025,survey_estimate,per_capita,10.1,265,,Keperluan pesta dan upacara/kenduri
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,465211,rupiah,2024,survey_estimate,per_capita,10.1,265,,Jumlah bukan makanan
+53.11,2,Kabupaten Sumba Timur,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,634103,rupiah,2025,survey_estimate,per_capita,10.1,265,,Jumlah bukan makanan
+53.11,2,Kabupaten Sumba Timur,expenditure,total,,1107696,rupiah,2024,survey_estimate,per_capita,10.1,265,,
+53.11,2,Kabupaten Sumba Timur,expenditure,total,,1425803,rupiah,2025,survey_estimate,per_capita,10.1,265,,
