@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5105-kecamatan-510501-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.05.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Nusapenida Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Klungkung",
+  "publisherDomain": "5105",
+  "publisherWebsite": "https://klungkungkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Klungkung (https://klungkungkab.bps.go.id), publikasi \"Kecamatan Nusapenida Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5105010",
+  "publicationNumber": "51050.26008",
+  "issn": "2477-670X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://klungkungkab.bps.go.id/id/publication/2026/09/28/b48a1087f262f0ba04cb4982/kecamatan-nusapenida-dalam-angka-2026.html",
+  "sourceFileSha256": "4e5fa8ac49c444434001aa324eaa1ecf87a2dc1eacad9b82d92e5108b1719b4c",
+  "sourceFileBytes": 6666917,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Klungkung.",
+  "csvPath": "datasets/bps-5105-kecamatan-510501-dalam-angka-2026.csv",
+  "csvSha256": "a85d57a1c61125a0c0da9b93419c4a1d450b79a7404b23c52c36e46c57b09edf",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Nusa Penida, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Nusa Penida, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

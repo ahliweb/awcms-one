@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.03.05.2001,4,Pecatu,sex,laki_laki,,4212,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.05.2001,4,Pecatu,sex,perempuan,,4425,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.05.2001,4,Pecatu,total,total,,8637,jiwa,2025,registration,total_population,3.1,28,,
+51.03.05.2002,4,Ungasan,sex,laki_laki,,8196,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.05.2002,4,Ungasan,sex,perempuan,,8334,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.05.2002,4,Ungasan,total,total,,16530,jiwa,2025,registration,total_population,3.1,28,,
+51.03.05.2003,4,Kutuh,sex,laki_laki,,2915,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.05.2003,4,Kutuh,sex,perempuan,,2938,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.05.2003,4,Kutuh,total,total,,5853,jiwa,2025,registration,total_population,3.1,28,,
+51.03.05.1004,4,Benoa,sex,laki_laki,,21045,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.05.1004,4,Benoa,sex,perempuan,,21260,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.05.1004,4,Benoa,total,total,,42305,jiwa,2025,registration,total_population,3.1,28,,
+51.03.05.1005,4,Tanjung Benoa,sex,laki_laki,,3048,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.05.1005,4,Tanjung Benoa,sex,perempuan,,3046,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.05.1005,4,Tanjung Benoa,total,total,,6094,jiwa,2025,registration,total_population,3.1,28,,
+51.03.05.1006,4,Jimbaran,sex,laki_laki,,22558,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.05.1006,4,Jimbaran,sex,perempuan,,22962,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.05.1006,4,Jimbaran,total,total,,45520,jiwa,2025,registration,total_population,3.1,28,,
+51.03.05,3,Kuta Selatan,sex,laki_laki,,61974,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.05,3,Kuta Selatan,sex,perempuan,,62965,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.05,3,Kuta Selatan,total,total,,124939,jiwa,2025,registration,total_population,3.1,28,,
+51.03.05,3,Kuta Selatan,age_group,0-4,laki_laki,3320,jiwa,2025,registration,total_population,3.2,30,,00-04
+51.03.05,3,Kuta Selatan,age_group,0-4,perempuan,2996,jiwa,2025,registration,total_population,3.2,30,,00-04
+51.03.05,3,Kuta Selatan,age_group,0-4,,6316,jiwa,2025,registration,total_population,3.2,30,,00-04
+51.03.05,3,Kuta Selatan,age_group,5-9,laki_laki,4740,jiwa,2025,registration,total_population,3.2,30,,05-09
+51.03.05,3,Kuta Selatan,age_group,5-9,perempuan,4405,jiwa,2025,registration,total_population,3.2,30,,05-09
+51.03.05,3,Kuta Selatan,age_group,5-9,,9145,jiwa,2025,registration,total_population,3.2,30,,05-09
+51.03.05,3,Kuta Selatan,age_group,10-14,laki_laki,5224,jiwa,2025,registration,total_population,3.2,30,,10-14
+51.03.05,3,Kuta Selatan,age_group,10-14,perempuan,4660,jiwa,2025,registration,total_population,3.2,30,,10-14
+51.03.05,3,Kuta Selatan,age_group,10-14,,9884,jiwa,2025,registration,total_population,3.2,30,,10-14
+51.03.05,3,Kuta Selatan,age_group,15-19,laki_laki,5336,jiwa,2025,registration,total_population,3.2,30,,15-19
+51.03.05,3,Kuta Selatan,age_group,15-19,perempuan,4955,jiwa,2025,registration,total_population,3.2,30,,15-19
+51.03.05,3,Kuta Selatan,age_group,15-19,,10291,jiwa,2025,registration,total_population,3.2,30,,15-19
+51.03.05,3,Kuta Selatan,age_group,20-24,laki_laki,5593,jiwa,2025,registration,total_population,3.2,30,,20-24
+51.03.05,3,Kuta Selatan,age_group,20-24,perempuan,5320,jiwa,2025,registration,total_population,3.2,30,,20-24
+51.03.05,3,Kuta Selatan,age_group,20-24,,10913,jiwa,2025,registration,total_population,3.2,30,,20-24
+51.03.05,3,Kuta Selatan,age_group,25-29,laki_laki,5351,jiwa,2025,registration,total_population,3.2,30,,25-29
+51.03.05,3,Kuta Selatan,age_group,25-29,perempuan,5171,jiwa,2025,registration,total_population,3.2,30,,25-29
+51.03.05,3,Kuta Selatan,age_group,25-29,,10522,jiwa,2025,registration,total_population,3.2,30,,25-29
+51.03.05,3,Kuta Selatan,age_group,30-34,laki_laki,4291,jiwa,2025,registration,total_population,3.2,30,,30-34
+51.03.05,3,Kuta Selatan,age_group,30-34,perempuan,4457,jiwa,2025,registration,total_population,3.2,30,,30-34
+51.03.05,3,Kuta Selatan,age_group,30-34,,8748,jiwa,2025,registration,total_population,3.2,30,,30-34
+51.03.05,3,Kuta Selatan,age_group,35-39,laki_laki,3587,jiwa,2025,registration,total_population,3.2,30,,35-39
+51.03.05,3,Kuta Selatan,age_group,35-39,perempuan,4080,jiwa,2025,registration,total_population,3.2,30,,35-39
+51.03.05,3,Kuta Selatan,age_group,35-39,,7667,jiwa,2025,registration,total_population,3.2,30,,35-39
+51.03.05,3,Kuta Selatan,age_group,40-44,laki_laki,3923,jiwa,2025,registration,total_population,3.2,30,,40-44
+51.03.05,3,Kuta Selatan,age_group,40-44,perempuan,4760,jiwa,2025,registration,total_population,3.2,30,,40-44
+51.03.05,3,Kuta Selatan,age_group,40-44,,8683,jiwa,2025,registration,total_population,3.2,30,,40-44
+51.03.05,3,Kuta Selatan,age_group,45-49,laki_laki,4499,jiwa,2025,registration,total_population,3.2,30,,45-49
+51.03.05,3,Kuta Selatan,age_group,45-49,perempuan,5453,jiwa,2025,registration,total_population,3.2,30,,45-49
+51.03.05,3,Kuta Selatan,age_group,45-49,,9952,jiwa,2025,registration,total_population,3.2,30,,45-49
+51.03.05,3,Kuta Selatan,age_group,50-54,laki_laki,5090,jiwa,2025,registration,total_population,3.2,30,,50-54
+51.03.05,3,Kuta Selatan,age_group,50-54,perempuan,5665,jiwa,2025,registration,total_population,3.2,30,,50-54
+51.03.05,3,Kuta Selatan,age_group,50-54,,10755,jiwa,2025,registration,total_population,3.2,30,,50-54
+51.03.05,3,Kuta Selatan,age_group,55-59,laki_laki,4661,jiwa,2025,registration,total_population,3.2,30,,55-59
+51.03.05,3,Kuta Selatan,age_group,55-59,perempuan,4270,jiwa,2025,registration,total_population,3.2,30,,55-59
+51.03.05,3,Kuta Selatan,age_group,55-59,,8931,jiwa,2025,registration,total_population,3.2,30,,55-59
+51.03.05,3,Kuta Selatan,age_group,60-64,laki_laki,2733,jiwa,2025,registration,total_population,3.2,30,,60-64
+51.03.05,3,Kuta Selatan,age_group,60-64,perempuan,2425,jiwa,2025,registration,total_population,3.2,30,,60-64
+51.03.05,3,Kuta Selatan,age_group,60-64,,5158,jiwa,2025,registration,total_population,3.2,30,,60-64
+51.03.05,3,Kuta Selatan,age_group,65-69,laki_laki,1660,jiwa,2025,registration,total_population,3.2,30,,65-69
+51.03.05,3,Kuta Selatan,age_group,65-69,perempuan,1677,jiwa,2025,registration,total_population,3.2,30,,65-69
+51.03.05,3,Kuta Selatan,age_group,65-69,,3337,jiwa,2025,registration,total_population,3.2,30,,65-69
+51.03.05,3,Kuta Selatan,age_group,70-74,laki_laki,857,jiwa,2025,registration,total_population,3.2,30,,70-74
+51.03.05,3,Kuta Selatan,age_group,70-74,perempuan,996,jiwa,2025,registration,total_population,3.2,30,,70-74
+51.03.05,3,Kuta Selatan,age_group,70-74,,1853,jiwa,2025,registration,total_population,3.2,30,,70-74
+51.03.05,3,Kuta Selatan,age_group,75+,laki_laki,1109,jiwa,2025,registration,total_population,3.2,30,,75+
+51.03.05,3,Kuta Selatan,age_group,75+,perempuan,1675,jiwa,2025,registration,total_population,3.2,30,,75+
+51.03.05,3,Kuta Selatan,age_group,75+,,2784,jiwa,2025,registration,total_population,3.2,30,,75+
+51.03.05,3,Kuta Selatan,sex,laki_laki,,61974,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+51.03.05,3,Kuta Selatan,sex,perempuan,,62965,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+51.03.05,3,Kuta Selatan,total,total,,124939,jiwa,2025,registration,total_population,3.2,30,,

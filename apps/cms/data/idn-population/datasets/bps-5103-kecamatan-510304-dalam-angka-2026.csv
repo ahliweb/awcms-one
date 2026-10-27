@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.03.04.2001,4,Carangsari,sex,laki_laki,,2977,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.04.2001,4,Carangsari,sex,perempuan,,2893,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.04.2001,4,Carangsari,total,total,,5870,jiwa,2025,registration,total_population,3.1,28,,
+51.03.04.2005,4,Getasan,sex,laki_laki,,1100,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.04.2005,4,Getasan,sex,perempuan,,1106,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.04.2005,4,Getasan,total,total,,2206,jiwa,2025,registration,total_population,3.1,28,,
+51.03.04.2006,4,Pangsan,sex,laki_laki,,1472,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.04.2006,4,Pangsan,sex,perempuan,,1541,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.04.2006,4,Pangsan,total,total,,3013,jiwa,2025,registration,total_population,3.1,28,,
+51.03.04.2002,4,Petang,sex,laki_laki,,2281,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.04.2002,4,Petang,sex,perempuan,,2244,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.04.2002,4,Petang,total,total,,4525,jiwa,2025,registration,total_population,3.1,28,,
+51.03.04.2007,4,Sulangai,sex,laki_laki,,2430,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.04.2007,4,Sulangai,sex,perempuan,,2474,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.04.2007,4,Sulangai,total,total,,4904,jiwa,2025,registration,total_population,3.1,28,,
+51.03.04.2004,4,Pelaga,sex,laki_laki,,3563,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.04.2004,4,Pelaga,sex,perempuan,,3438,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.04.2004,4,Pelaga,total,total,,7001,jiwa,2025,registration,total_population,3.1,28,,
+51.03.04.2003,4,Belok/Sidan,sex,laki_laki,,2977,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.04.2003,4,Belok/Sidan,sex,perempuan,,2846,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.04.2003,4,Belok/Sidan,total,total,,5823,jiwa,2025,registration,total_population,3.1,28,,
+51.03.04,3,Kecamatan Petang,sex,laki_laki,,16800,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.04,3,Kecamatan Petang,sex,perempuan,,16542,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.04,3,Kecamatan Petang,total,total,,33342,jiwa,2025,registration,total_population,3.1,28,,
+51.03.04,3,Petang,age_group,0-4,laki_laki,953,jiwa,2025,registration,total_population,3.2,30,,00-04
+51.03.04,3,Petang,age_group,0-4,perempuan,828,jiwa,2025,registration,total_population,3.2,30,,00-04
+51.03.04,3,Petang,age_group,0-4,,1781,jiwa,2025,registration,total_population,3.2,30,,00-04
+51.03.04,3,Petang,age_group,5-9,laki_laki,1095,jiwa,2025,registration,total_population,3.2,30,,05-09
+51.03.04,3,Petang,age_group,5-9,perempuan,1001,jiwa,2025,registration,total_population,3.2,30,,05-09
+51.03.04,3,Petang,age_group,5-9,,2096,jiwa,2025,registration,total_population,3.2,30,,05-09
+51.03.04,3,Petang,age_group,10-14,laki_laki,1188,jiwa,2025,registration,total_population,3.2,30,,10-14
+51.03.04,3,Petang,age_group,10-14,perempuan,1087,jiwa,2025,registration,total_population,3.2,30,,10-14
+51.03.04,3,Petang,age_group,10-14,,2275,jiwa,2025,registration,total_population,3.2,30,,10-14
+51.03.04,3,Petang,age_group,15-19,laki_laki,1223,jiwa,2025,registration,total_population,3.2,30,,15-19
+51.03.04,3,Petang,age_group,15-19,perempuan,1042,jiwa,2025,registration,total_population,3.2,30,,15-19
+51.03.04,3,Petang,age_group,15-19,,2265,jiwa,2025,registration,total_population,3.2,30,,15-19
+51.03.04,3,Petang,age_group,20-24,laki_laki,1299,jiwa,2025,registration,total_population,3.2,30,,20-24
+51.03.04,3,Petang,age_group,20-24,perempuan,1322,jiwa,2025,registration,total_population,3.2,30,,20-24
+51.03.04,3,Petang,age_group,20-24,,2621,jiwa,2025,registration,total_population,3.2,30,,20-24
+51.03.04,3,Petang,age_group,25-29,laki_laki,1412,jiwa,2025,registration,total_population,3.2,30,,25-29
+51.03.04,3,Petang,age_group,25-29,perempuan,1270,jiwa,2025,registration,total_population,3.2,30,,25-29
+51.03.04,3,Petang,age_group,25-29,,2682,jiwa,2025,registration,total_population,3.2,30,,25-29
+51.03.04,3,Petang,age_group,30-34,laki_laki,1118,jiwa,2025,registration,total_population,3.2,30,,30-34
+51.03.04,3,Petang,age_group,30-34,perempuan,1103,jiwa,2025,registration,total_population,3.2,30,,30-34
+51.03.04,3,Petang,age_group,30-34,,2221,jiwa,2025,registration,total_population,3.2,30,,30-34
+51.03.04,3,Petang,age_group,35-39,laki_laki,983,jiwa,2025,registration,total_population,3.2,30,,35-39
+51.03.04,3,Petang,age_group,35-39,perempuan,936,jiwa,2025,registration,total_population,3.2,30,,35-39
+51.03.04,3,Petang,age_group,35-39,,1919,jiwa,2025,registration,total_population,3.2,30,,35-39
+51.03.04,3,Petang,age_group,40-44,laki_laki,937,jiwa,2025,registration,total_population,3.2,30,,40-44
+51.03.04,3,Petang,age_group,40-44,perempuan,1027,jiwa,2025,registration,total_population,3.2,30,,40-44
+51.03.04,3,Petang,age_group,40-44,,1964,jiwa,2025,registration,total_population,3.2,30,,40-44
+51.03.04,3,Petang,age_group,45-49,laki_laki,1247,jiwa,2025,registration,total_population,3.2,30,,45-49
+51.03.04,3,Petang,age_group,45-49,perempuan,1301,jiwa,2025,registration,total_population,3.2,30,,45-49
+51.03.04,3,Petang,age_group,45-49,,2548,jiwa,2025,registration,total_population,3.2,30,,45-49
+51.03.04,3,Petang,age_group,50-54,laki_laki,1548,jiwa,2025,registration,total_population,3.2,30,,50-54
+51.03.04,3,Petang,age_group,50-54,perempuan,1497,jiwa,2025,registration,total_population,3.2,30,,50-54
+51.03.04,3,Petang,age_group,50-54,,3045,jiwa,2025,registration,total_population,3.2,30,,50-54
+51.03.04,3,Petang,age_group,55-59,laki_laki,1177,jiwa,2025,registration,total_population,3.2,30,,55-59
+51.03.04,3,Petang,age_group,55-59,perempuan,1165,jiwa,2025,registration,total_population,3.2,30,,55-59
+51.03.04,3,Petang,age_group,55-59,,2342,jiwa,2025,registration,total_population,3.2,30,,55-59
+51.03.04,3,Petang,age_group,60-64,laki_laki,855,jiwa,2025,registration,total_population,3.2,30,,60-64
+51.03.04,3,Petang,age_group,60-64,perempuan,881,jiwa,2025,registration,total_population,3.2,30,,60-64
+51.03.04,3,Petang,age_group,60-64,,1736,jiwa,2025,registration,total_population,3.2,30,,60-64
+51.03.04,3,Petang,age_group,65-69,laki_laki,652,jiwa,2025,registration,total_population,3.2,30,,65-69
+51.03.04,3,Petang,age_group,65-69,perempuan,725,jiwa,2025,registration,total_population,3.2,30,,65-69
+51.03.04,3,Petang,age_group,65-69,,1377,jiwa,2025,registration,total_population,3.2,30,,65-69
+51.03.04,3,Petang,age_group,70-74,laki_laki,452,jiwa,2025,registration,total_population,3.2,30,,70-74
+51.03.04,3,Petang,age_group,70-74,perempuan,470,jiwa,2025,registration,total_population,3.2,30,,70-74
+51.03.04,3,Petang,age_group,70-74,,922,jiwa,2025,registration,total_population,3.2,30,,70-74
+51.03.04,3,Petang,age_group,75+,laki_laki,661,jiwa,2025,registration,total_population,3.2,30,,75+
+51.03.04,3,Petang,age_group,75+,perempuan,887,jiwa,2025,registration,total_population,3.2,30,,75+
+51.03.04,3,Petang,age_group,75+,,1548,jiwa,2025,registration,total_population,3.2,30,,75+
+51.03.04,3,Kecamatan Petang,sex,laki_laki,,16800,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+51.03.04,3,Kecamatan Petang,sex,perempuan,,16542,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+51.03.04,3,Kecamatan Petang,total,total,,33342,jiwa,2025,registration,total_population,3.2,30,,

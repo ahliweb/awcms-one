@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.02.03.2003,4,Lalang Linggah,sex,laki_laki,,1945,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.03.2003,4,Lalang Linggah,sex,perempuan,,2000,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.03.2003,4,Lalang Linggah,total,total,,3945,jiwa,2025,registration,total_population,3.1,26,,
+51.02.03.2004,4,Antosari,sex,laki_laki,,913,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.03.2004,4,Antosari,sex,perempuan,,915,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.03.2004,4,Antosari,total,total,,1828,jiwa,2025,registration,total_population,3.1,26,,
+51.02.03.2007,4,Tiying Gading,sex,laki_laki,,1113,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.03.2007,4,Tiying Gading,sex,perempuan,,1088,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.03.2007,4,Tiying Gading,total,total,,2201,jiwa,2025,registration,total_population,3.1,26,,
+51.02.03.2005,4,Lumbung,sex,laki_laki,,898,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.03.2005,4,Lumbung,sex,perempuan,,914,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.03.2005,4,Lumbung,total,total,,1812,jiwa,2025,registration,total_population,3.1,26,,
+51.02.03.2006,4,Lumbung Kauh,sex,laki_laki,,580,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.03.2006,4,Lumbung Kauh,sex,perempuan,,600,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.03.2006,4,Lumbung Kauh,total,total,,1180,jiwa,2025,registration,total_population,3.1,26,,
+51.02.03.2001,4,Mundeh,sex,laki_laki,,1418,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.03.2001,4,Mundeh,sex,perempuan,,1443,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.03.2001,4,Mundeh,total,total,,2861,jiwa,2025,registration,total_population,3.1,26,,
+51.02.03.2002,4,Mundeh Kangin,sex,laki_laki,,1058,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.03.2002,4,Mundeh Kangin,sex,perempuan,,1027,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.03.2002,4,Mundeh Kangin,total,total,,2085,jiwa,2025,registration,total_population,3.1,26,,
+51.02.03.2009,4,Angkah,sex,laki_laki,,1069,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.03.2009,4,Angkah,sex,perempuan,,1064,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.03.2009,4,Angkah,total,total,,2133,jiwa,2025,registration,total_population,3.1,26,,
+51.02.03.2008,4,Mundeh Kauh,sex,laki_laki,,735,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.03.2008,4,Mundeh Kauh,sex,perempuan,,757,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.03.2008,4,Mundeh Kauh,total,total,,1492,jiwa,2025,registration,total_population,3.1,26,,
+51.02.03.2010,4,Selabih,sex,laki_laki,,727,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.03.2010,4,Selabih,sex,perempuan,,743,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.03.2010,4,Selabih,total,total,,1470,jiwa,2025,registration,total_population,3.1,26,,
+51.02.03.2011,4,Bengkel Sari,sex,laki_laki,,611,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+51.02.03.2011,4,Bengkel Sari,sex,perempuan,,631,jiwa,2025,registration,total_population,3.1,26,,Perempuan/
+51.02.03.2011,4,Bengkel Sari,total,total,,1242,jiwa,2025,registration,total_population,3.1,26,,
+51.02.03,3,Selemadeg Barat,age_group,0-4,laki_laki,573,jiwa,2025,registration,total_population,3.2,28,,00-04
+51.02.03,3,Selemadeg Barat,age_group,0-4,perempuan,522,jiwa,2025,registration,total_population,3.2,28,,00-04
+51.02.03,3,Selemadeg Barat,age_group,0-4,,1095,jiwa,2025,registration,total_population,3.2,28,,00-04
+51.02.03,3,Selemadeg Barat,age_group,5-9,laki_laki,637,jiwa,2025,registration,total_population,3.2,28,,05-09
+51.02.03,3,Selemadeg Barat,age_group,5-9,perempuan,584,jiwa,2025,registration,total_population,3.2,28,,05-09
+51.02.03,3,Selemadeg Barat,age_group,5-9,,1221,jiwa,2025,registration,total_population,3.2,28,,05-09
+51.02.03,3,Selemadeg Barat,age_group,10-14,laki_laki,650,jiwa,2025,registration,total_population,3.2,28,,10-14
+51.02.03,3,Selemadeg Barat,age_group,10-14,perempuan,608,jiwa,2025,registration,total_population,3.2,28,,10-14
+51.02.03,3,Selemadeg Barat,age_group,10-14,,1258,jiwa,2025,registration,total_population,3.2,28,,10-14
+51.02.03,3,Selemadeg Barat,age_group,15-19,laki_laki,692,jiwa,2025,registration,total_population,3.2,28,,15-19
+51.02.03,3,Selemadeg Barat,age_group,15-19,perempuan,651,jiwa,2025,registration,total_population,3.2,28,,15-19
+51.02.03,3,Selemadeg Barat,age_group,15-19,,1343,jiwa,2025,registration,total_population,3.2,28,,15-19
+51.02.03,3,Selemadeg Barat,age_group,20-24,laki_laki,801,jiwa,2025,registration,total_population,3.2,28,,20-24
+51.02.03,3,Selemadeg Barat,age_group,20-24,perempuan,763,jiwa,2025,registration,total_population,3.2,28,,20-24
+51.02.03,3,Selemadeg Barat,age_group,20-24,,1564,jiwa,2025,registration,total_population,3.2,28,,20-24
+51.02.03,3,Selemadeg Barat,age_group,25-29,laki_laki,811,jiwa,2025,registration,total_population,3.2,28,,25-29
+51.02.03,3,Selemadeg Barat,age_group,25-29,perempuan,736,jiwa,2025,registration,total_population,3.2,28,,25-29
+51.02.03,3,Selemadeg Barat,age_group,25-29,,1547,jiwa,2025,registration,total_population,3.2,28,,25-29
+51.02.03,3,Selemadeg Barat,age_group,30-34,laki_laki,761,jiwa,2025,registration,total_population,3.2,28,,30-34
+51.02.03,3,Selemadeg Barat,age_group,30-34,perempuan,721,jiwa,2025,registration,total_population,3.2,28,,30-34
+51.02.03,3,Selemadeg Barat,age_group,30-34,,1482,jiwa,2025,registration,total_population,3.2,28,,30-34
+51.02.03,3,Selemadeg Barat,age_group,35-39,laki_laki,613,jiwa,2025,registration,total_population,3.2,28,,35-39
+51.02.03,3,Selemadeg Barat,age_group,35-39,perempuan,636,jiwa,2025,registration,total_population,3.2,28,,35-39
+51.02.03,3,Selemadeg Barat,age_group,35-39,,1249,jiwa,2025,registration,total_population,3.2,28,,35-39
+51.02.03,3,Selemadeg Barat,age_group,40-44,laki_laki,678,jiwa,2025,registration,total_population,3.2,28,,40-44
+51.02.03,3,Selemadeg Barat,age_group,40-44,perempuan,712,jiwa,2025,registration,total_population,3.2,28,,40-44
+51.02.03,3,Selemadeg Barat,age_group,40-44,,1390,jiwa,2025,registration,total_population,3.2,28,,40-44
+51.02.03,3,Selemadeg Barat,age_group,45-49,laki_laki,706,jiwa,2025,registration,total_population,3.2,28,,45-49
+51.02.03,3,Selemadeg Barat,age_group,45-49,perempuan,779,jiwa,2025,registration,total_population,3.2,28,,45-49
+51.02.03,3,Selemadeg Barat,age_group,45-49,,1485,jiwa,2025,registration,total_population,3.2,28,,45-49
+51.02.03,3,Selemadeg Barat,age_group,50-54,laki_laki,869,jiwa,2025,registration,total_population,3.2,28,,50-54
+51.02.03,3,Selemadeg Barat,age_group,50-54,perempuan,904,jiwa,2025,registration,total_population,3.2,28,,50-54
+51.02.03,3,Selemadeg Barat,age_group,50-54,,1773,jiwa,2025,registration,total_population,3.2,28,,50-54
+51.02.03,3,Selemadeg Barat,age_group,55-59,laki_laki,925,jiwa,2025,registration,total_population,3.2,28,,55-59
+51.02.03,3,Selemadeg Barat,age_group,55-59,perempuan,900,jiwa,2025,registration,total_population,3.2,28,,55-59
+51.02.03,3,Selemadeg Barat,age_group,55-59,,1825,jiwa,2025,registration,total_population,3.2,28,,55-59
+51.02.03,3,Selemadeg Barat,age_group,60-64,laki_laki,734,jiwa,2025,registration,total_population,3.2,28,,60-64
+51.02.03,3,Selemadeg Barat,age_group,60-64,perempuan,741,jiwa,2025,registration,total_population,3.2,28,,60-64
+51.02.03,3,Selemadeg Barat,age_group,60-64,,1475,jiwa,2025,registration,total_population,3.2,28,,60-64
+51.02.03,3,Selemadeg Barat,age_group,65-69,laki_laki,588,jiwa,2025,registration,total_population,3.2,28,,65-69
+51.02.03,3,Selemadeg Barat,age_group,65-69,perempuan,647,jiwa,2025,registration,total_population,3.2,28,,65-69
+51.02.03,3,Selemadeg Barat,age_group,65-69,,1235,jiwa,2025,registration,total_population,3.2,28,,65-69
+51.02.03,3,Selemadeg Barat,age_group,70-74,laki_laki,406,jiwa,2025,registration,total_population,3.2,28,,70-74
+51.02.03,3,Selemadeg Barat,age_group,70-74,perempuan,430,jiwa,2025,registration,total_population,3.2,28,,70-74
+51.02.03,3,Selemadeg Barat,age_group,70-74,,836,jiwa,2025,registration,total_population,3.2,28,,70-74
+51.02.03,3,Selemadeg Barat,age_group,75+,laki_laki,623,jiwa,2025,registration,total_population,3.2,28,,75+
+51.02.03,3,Selemadeg Barat,age_group,75+,perempuan,848,jiwa,2025,registration,total_population,3.2,28,,75+
+51.02.03,3,Selemadeg Barat,age_group,75+,,1471,jiwa,2025,registration,total_population,3.2,28,,75+
+51.02.03,3,Kecamatan Selemadeg Barat,sex,laki_laki,,11067,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+51.02.03,3,Kecamatan Selemadeg Barat,sex,perempuan,,11182,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+51.02.03,3,Kecamatan Selemadeg Barat,total,total,,22249,jiwa,2025,registration,total_population,3.2,28,,

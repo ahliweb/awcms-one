@@ -1,0 +1,101 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.07.01,3,Rendang,religion,islam,,113,jiwa,2025,registration,total_population,4.3.1,159,,Islam
+51.07.01,3,Rendang,religion,kristen,,13,jiwa,2025,registration,total_population,4.3.1,159,,Protestan
+51.07.01,3,Rendang,religion,katolik,,10,jiwa,2025,registration,total_population,4.3.1,159,,Katolik
+51.07.01,3,Rendang,religion,hindu,,44252,jiwa,2025,registration,total_population,4.3.1,159,,Hindu
+51.07.01,3,Rendang,religion,buddha,,21,jiwa,2025,registration,total_population,4.3.1,159,,Budha
+51.07.01,3,Rendang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,159,nil,Lainnya
+51.07.02,3,Sidemen,religion,islam,,1107,jiwa,2025,registration,total_population,4.3.1,159,,Islam
+51.07.02,3,Sidemen,religion,kristen,,24,jiwa,2025,registration,total_population,4.3.1,159,,Protestan
+51.07.02,3,Sidemen,religion,katolik,,6,jiwa,2025,registration,total_population,4.3.1,159,,Katolik
+51.07.02,3,Sidemen,religion,hindu,,39090,jiwa,2025,registration,total_population,4.3.1,159,,Hindu
+51.07.02,3,Sidemen,religion,buddha,,7,jiwa,2025,registration,total_population,4.3.1,159,,Budha
+51.07.02,3,Sidemen,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,159,nil,Lainnya
+51.07.03,3,Manggis,religion,islam,,521,jiwa,2025,registration,total_population,4.3.1,159,,Islam
+51.07.03,3,Manggis,religion,kristen,,56,jiwa,2025,registration,total_population,4.3.1,159,,Protestan
+51.07.03,3,Manggis,religion,katolik,,29,jiwa,2025,registration,total_population,4.3.1,159,,Katolik
+51.07.03,3,Manggis,religion,hindu,,57460,jiwa,2025,registration,total_population,4.3.1,159,,Hindu
+51.07.03,3,Manggis,religion,buddha,,79,jiwa,2025,registration,total_population,4.3.1,159,,Budha
+51.07.03,3,Manggis,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,159,nil,Lainnya
+51.07.04,3,Karangasem,religion,islam,,13684,jiwa,2025,registration,total_population,4.3.1,159,,Islam
+51.07.04,3,Karangasem,religion,kristen,,370,jiwa,2025,registration,total_population,4.3.1,159,,Protestan
+51.07.04,3,Karangasem,religion,katolik,,193,jiwa,2025,registration,total_population,4.3.1,159,,Katolik
+51.07.04,3,Karangasem,religion,hindu,,92991,jiwa,2025,registration,total_population,4.3.1,159,,Hindu
+51.07.04,3,Karangasem,religion,buddha,,336,jiwa,2025,registration,total_population,4.3.1,159,,Budha
+51.07.04,3,Karangasem,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,159,nil,Lainnya
+51.07.05,3,Abang,religion,islam,,114,jiwa,2025,registration,total_population,4.3.1,159,,Islam
+51.07.05,3,Abang,religion,kristen,,120,jiwa,2025,registration,total_population,4.3.1,159,,Protestan
+51.07.05,3,Abang,religion,katolik,,28,jiwa,2025,registration,total_population,4.3.1,159,,Katolik
+51.07.05,3,Abang,religion,hindu,,89118,jiwa,2025,registration,total_population,4.3.1,159,,Hindu
+51.07.05,3,Abang,religion,buddha,,10,jiwa,2025,registration,total_population,4.3.1,159,,Budha
+51.07.05,3,Abang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,159,nil,Lainnya
+51.07.06,3,Bebandem,religion,islam,,5728,jiwa,2025,registration,total_population,4.3.1,159,,Islam
+51.07.06,3,Bebandem,religion,kristen,,34,jiwa,2025,registration,total_population,4.3.1,159,,Protestan
+51.07.06,3,Bebandem,religion,katolik,,17,jiwa,2025,registration,total_population,4.3.1,159,,Katolik
+51.07.06,3,Bebandem,religion,hindu,,53518,jiwa,2025,registration,total_population,4.3.1,159,,Hindu
+51.07.06,3,Bebandem,religion,buddha,,23,jiwa,2025,registration,total_population,4.3.1,159,,Budha
+51.07.06,3,Bebandem,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,159,nil,Lainnya
+51.07.07,3,Selat,religion,islam,,30,jiwa,2025,registration,total_population,4.3.1,159,,Islam
+51.07.07,3,Selat,religion,kristen,,21,jiwa,2025,registration,total_population,4.3.1,159,,Protestan
+51.07.07,3,Selat,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,159,,Katolik
+51.07.07,3,Selat,religion,hindu,,47415,jiwa,2025,registration,total_population,4.3.1,159,,Hindu
+51.07.07,3,Selat,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,159,,Budha
+51.07.07,3,Selat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,159,nil,Lainnya
+51.07.08,3,Kubu,religion,islam,,179,jiwa,2025,registration,total_population,4.3.1,159,,Islam
+51.07.08,3,Kubu,religion,kristen,,90,jiwa,2025,registration,total_population,4.3.1,159,,Protestan
+51.07.08,3,Kubu,religion,katolik,,36,jiwa,2025,registration,total_population,4.3.1,159,,Katolik
+51.07.08,3,Kubu,religion,hindu,,92768,jiwa,2025,registration,total_population,4.3.1,159,,Hindu
+51.07.08,3,Kubu,religion,buddha,,12,jiwa,2025,registration,total_population,4.3.1,159,,Budha
+51.07.08,3,Kubu,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,159,,Lainnya
+51.07,2,Karangasem,religion,islam,,21476,jiwa,2025,registration,total_population,4.3.1,159,,Islam
+51.07,2,Karangasem,religion,kristen,,728,jiwa,2025,registration,total_population,4.3.1,159,,Protestan
+51.07,2,Karangasem,religion,katolik,,321,jiwa,2025,registration,total_population,4.3.1,159,,Katolik
+51.07,2,Karangasem,religion,hindu,,516612,jiwa,2025,registration,total_population,4.3.1,159,,Hindu
+51.07,2,Karangasem,religion,buddha,,491,jiwa,2025,registration,total_population,4.3.1,159,,Budha
+51.07,2,Karangasem,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,159,,Lainnya
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/padi_padian,,102179,rupiah,2024,survey_estimate,per_capita,10.1,336,,Padi-padian
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/padi_padian,,104445,rupiah,2025,survey_estimate,per_capita,10.1,336,,Padi-padian
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/umbi_umbian,,2722,rupiah,2024,survey_estimate,per_capita,10.1,336,,Umbi-umbian
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/umbi_umbian,,3012,rupiah,2025,survey_estimate,per_capita,10.1,336,,Umbi-umbian
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,21274,rupiah,2024,survey_estimate,per_capita,10.1,336,,Ikan/udang/cumi/kerang
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,24222,rupiah,2025,survey_estimate,per_capita,10.1,336,,Ikan/udang/cumi/kerang
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/daging,,36501,rupiah,2024,survey_estimate,per_capita,10.1,336,,Daging
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/daging,,28883,rupiah,2025,survey_estimate,per_capita,10.1,336,,Daging
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/telur_dan_susu,,26802,rupiah,2024,survey_estimate,per_capita,10.1,336,,Telur dan susu
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/telur_dan_susu,,22798,rupiah,2025,survey_estimate,per_capita,10.1,336,,Telur dan susu
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/sayur_sayuran,,43973,rupiah,2024,survey_estimate,per_capita,10.1,336,,Sayur-sayuran
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/sayur_sayuran,,48590,rupiah,2025,survey_estimate,per_capita,10.1,336,,Sayur-sayuran
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/kacang_kacangan,,1018,rupiah,2024,survey_estimate,per_capita,10.1,336,,Kacang-kacangan
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/kacang_kacangan,,10719,rupiah,2025,survey_estimate,per_capita,10.1,336,,Kacang-kacangan
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/buah_buahan,,34869,rupiah,2024,survey_estimate,per_capita,10.1,336,,Buah-buahan
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/buah_buahan,,33685,rupiah,2025,survey_estimate,per_capita,10.1,336,,Buah-buahan
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/minyak_dan_kelapa,,12869,rupiah,2024,survey_estimate,per_capita,10.1,336,,Minyak dan kelapa
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/minyak_dan_kelapa,,13313,rupiah,2025,survey_estimate,per_capita,10.1,336,,Minyak dan kelapa
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/bahan_minuman,,12677,rupiah,2024,survey_estimate,per_capita,10.1,336,,Bahan minuman
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/bahan_minuman,,15580,rupiah,2025,survey_estimate,per_capita,10.1,336,,Bahan minuman
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/bumbu_bumbuan,,9028,rupiah,2024,survey_estimate,per_capita,10.1,336,,Bumbu-bumbuan
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/bumbu_bumbuan,,9930,rupiah,2025,survey_estimate,per_capita,10.1,336,,Bumbu-bumbuan
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/konsumsi_lainnya,,6511,rupiah,2024,survey_estimate,per_capita,10.1,336,,Konsumsi lainnya
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/konsumsi_lainnya,,6343,rupiah,2025,survey_estimate,per_capita,10.1,336,,Konsumsi lainnya
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,126456,rupiah,2024,survey_estimate,per_capita,10.1,336,,Makanan dan minuman jadi
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,156714,rupiah,2025,survey_estimate,per_capita,10.1,336,,Makanan dan minuman jadi
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/rokok,,3978,rupiah,2024,survey_estimate,per_capita,10.1,336,,Rokok
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/rokok,,50921,rupiah,2025,survey_estimate,per_capita,10.1,336,,Rokok
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/jumlah_makanan,,485821,rupiah,2024,survey_estimate,per_capita,10.1,336,,Jumlah makanan
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/jumlah_makanan,,529157,rupiah,2025,survey_estimate,per_capita,10.1,336,,Jumlah makanan
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,257628,rupiah,2024,survey_estimate,per_capita,10.1,336,,Perumahan dan fasilitas rumah tangga
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,288348,rupiah,2025,survey_estimate,per_capita,10.1,336,,Perumahan dan fasilitas rumah tangga
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,84136,rupiah,2024,survey_estimate,per_capita,10.1,336,,Aneka barang dan jasa
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,92123,rupiah,2025,survey_estimate,per_capita,10.1,336,,Aneka barang dan jasa
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,13879,rupiah,2024,survey_estimate,per_capita,10.1,336,,"Pakaian, alas kaki, dan tutup kepala"
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,18078,rupiah,2025,survey_estimate,per_capita,10.1,336,,"Pakaian, alas kaki, dan tutup kepala"
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/barang_tahan_lama,,26629,rupiah,2024,survey_estimate,per_capita,10.1,336,,Barang tahan lama
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/barang_tahan_lama,,34381,rupiah,2025,survey_estimate,per_capita,10.1,336,,Barang tahan lama
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,4822,rupiah,2024,survey_estimate,per_capita,10.1,336,,"Pajak, pungutan, dan asuransi"
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,51959,rupiah,2025,survey_estimate,per_capita,10.1,336,,"Pajak, pungutan, dan asuransi"
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,51786,rupiah,2024,survey_estimate,per_capita,10.1,336,,Keperluan pesta dan upacara/kenduri
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,66210,rupiah,2025,survey_estimate,per_capita,10.1,336,,Keperluan pesta dan upacara/kenduri
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,482278,rupiah,2024,survey_estimate,per_capita,10.1,336,,Jumlah bukan makanan
+51.07,2,Kabupaten Karangasem,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,551100,rupiah,2025,survey_estimate,per_capita,10.1,336,,Jumlah bukan makanan
+51.07,2,Kabupaten Karangasem,expenditure,total,,968099,rupiah,2024,survey_estimate,per_capita,10.1,336,,
+51.07,2,Kabupaten Karangasem,expenditure,total,,1080257,rupiah,2025,survey_estimate,per_capita,10.1,336,,

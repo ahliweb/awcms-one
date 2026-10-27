@@ -1,0 +1,103 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.05.01.2001,4,SAKTI,sex,laki_laki,,2510,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.01.2001,4,SAKTI,sex,perempuan,,2461,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.01.2001,4,SAKTI,total,total,,4971,jiwa,2025,registration,total_population,3.1,28,,
+51.05.01.2002,4,BATUMADEG,sex,laki_laki,,1672,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.01.2002,4,BATUMADEG,sex,perempuan,,1556,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.01.2002,4,BATUMADEG,total,total,,3228,jiwa,2025,registration,total_population,3.1,28,,
+51.05.01.2003,4,KLUMPU,sex,laki_laki,,2685,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.01.2003,4,KLUMPU,sex,perempuan,,2618,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.01.2003,4,KLUMPU,total,total,,5303,jiwa,2025,registration,total_population,3.1,28,,
+51.05.01.2004,4,BATUKANDIK,sex,laki_laki,,3085,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.01.2004,4,BATUKANDIK,sex,perempuan,,2916,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.01.2004,4,BATUKANDIK,total,total,,6001,jiwa,2025,registration,total_population,3.1,28,,
+51.05.01.2005,4,SEKARTAJI,sex,laki_laki,,1112,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.01.2005,4,SEKARTAJI,sex,perempuan,,1053,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.01.2005,4,SEKARTAJI,total,total,,2165,jiwa,2025,registration,total_population,3.1,28,,
+51.05.01.2006,4,TANGLAD,sex,laki_laki,,1492,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.01.2006,4,TANGLAD,sex,perempuan,,1501,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.01.2006,4,TANGLAD,total,total,,2993,jiwa,2025,registration,total_population,3.1,28,,
+51.05.01.2007,4,SUANA,sex,laki_laki,,2241,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.01.2007,4,SUANA,sex,perempuan,,2237,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.01.2007,4,SUANA,total,total,,4478,jiwa,2025,registration,total_population,3.1,28,,
+51.05.01.2008,4,BATUNUNGGUL,sex,laki_laki,,3019,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.01.2008,4,BATUNUNGGUL,sex,perempuan,,3078,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.01.2008,4,BATUNUNGGUL,total,total,,6097,jiwa,2025,registration,total_population,3.1,28,,
+51.05.01.2009,4,KUTAMPI,sex,laki_laki,,1905,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.01.2009,4,KUTAMPI,sex,perempuan,,1866,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.01.2009,4,KUTAMPI,total,total,,3771,jiwa,2025,registration,total_population,3.1,28,,
+51.05.01.2010,4,PED,sex,laki_laki,,2822,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.01.2010,4,PED,sex,perempuan,,2796,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.01.2010,4,PED,total,total,,5618,jiwa,2025,registration,total_population,3.1,28,,
+51.05.01.2011,4,KAMPUNG TOYAPAKEH,sex,laki_laki,,436,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.01.2011,4,KAMPUNG TOYAPAKEH,sex,perempuan,,426,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.01.2011,4,KAMPUNG TOYAPAKEH,total,total,,862,jiwa,2025,registration,total_population,3.1,28,,
+51.05.01.2012,4,LEMBONGAN,sex,laki_laki,,2687,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.01.2012,4,LEMBONGAN,sex,perempuan,,2719,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.01.2012,4,LEMBONGAN,total,total,,5406,jiwa,2025,registration,total_population,3.1,28,,
+51.05.01.2013,4,JUNGUTBATU,sex,laki_laki,,2063,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.01.2013,4,JUNGUTBATU,sex,perempuan,,2009,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.01.2013,4,JUNGUTBATU,total,total,,4072,jiwa,2025,registration,total_population,3.1,28,,
+51.05.01.2014,4,PEJUKUTAN,sex,laki_laki,,1872,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.01.2014,4,PEJUKUTAN,sex,perempuan,,1933,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.01.2014,4,PEJUKUTAN,total,total,,3805,jiwa,2025,registration,total_population,3.1,28,,
+51.05.01.2015,4,KUTAMPI KALER,sex,laki_laki,,1921,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.01.2015,4,KUTAMPI KALER,sex,perempuan,,1934,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.01.2015,4,KUTAMPI KALER,total,total,,3855,jiwa,2025,registration,total_population,3.1,28,,
+51.05.01.2016,4,BUNGA MEKAR,sex,laki_laki,,2160,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.01.2016,4,BUNGA MEKAR,sex,perempuan,,2098,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.01.2016,4,BUNGA MEKAR,total,total,,4258,jiwa,2025,registration,total_population,3.1,28,,
+51.05.01,3,NUSA PENIDA,sex,laki_laki,,33682,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.05.01,3,NUSA PENIDA,sex,perempuan,,33201,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.05.01,3,NUSA PENIDA,total,total,,66883,jiwa,2025,registration,total_population,3.1,28,,
+51.05.01,3,Nusa Penida,age_group,0-4,laki_laki,2149,jiwa,2025,registration,total_population,3.2,30,,00-04
+51.05.01,3,Nusa Penida,age_group,0-4,perempuan,1941,jiwa,2025,registration,total_population,3.2,30,,00-04
+51.05.01,3,Nusa Penida,age_group,0-4,,4090,jiwa,2025,registration,total_population,3.2,30,,00-04
+51.05.01,3,Nusa Penida,age_group,5-9,laki_laki,2695,jiwa,2025,registration,total_population,3.2,30,,05-09
+51.05.01,3,Nusa Penida,age_group,5-9,perempuan,2467,jiwa,2025,registration,total_population,3.2,30,,05-09
+51.05.01,3,Nusa Penida,age_group,5-9,,5162,jiwa,2025,registration,total_population,3.2,30,,05-09
+51.05.01,3,Nusa Penida,age_group,10-14,laki_laki,2562,jiwa,2025,registration,total_population,3.2,30,,10-14
+51.05.01,3,Nusa Penida,age_group,10-14,perempuan,2357,jiwa,2025,registration,total_population,3.2,30,,10-14
+51.05.01,3,Nusa Penida,age_group,10-14,,4919,jiwa,2025,registration,total_population,3.2,30,,10-14
+51.05.01,3,Nusa Penida,age_group,15-19,laki_laki,2438,jiwa,2025,registration,total_population,3.2,30,,15-19
+51.05.01,3,Nusa Penida,age_group,15-19,perempuan,2281,jiwa,2025,registration,total_population,3.2,30,,15-19
+51.05.01,3,Nusa Penida,age_group,15-19,,4719,jiwa,2025,registration,total_population,3.2,30,,15-19
+51.05.01,3,Nusa Penida,age_group,20-24,laki_laki,2502,jiwa,2025,registration,total_population,3.2,30,,20-24
+51.05.01,3,Nusa Penida,age_group,20-24,perempuan,2388,jiwa,2025,registration,total_population,3.2,30,,20-24
+51.05.01,3,Nusa Penida,age_group,20-24,,4890,jiwa,2025,registration,total_population,3.2,30,,20-24
+51.05.01,3,Nusa Penida,age_group,25-29,laki_laki,2667,jiwa,2025,registration,total_population,3.2,30,,25-29
+51.05.01,3,Nusa Penida,age_group,25-29,perempuan,2711,jiwa,2025,registration,total_population,3.2,30,,25-29
+51.05.01,3,Nusa Penida,age_group,25-29,,5378,jiwa,2025,registration,total_population,3.2,30,,25-29
+51.05.01,3,Nusa Penida,age_group,30-34,laki_laki,2633,jiwa,2025,registration,total_population,3.2,30,,30-34
+51.05.01,3,Nusa Penida,age_group,30-34,perempuan,2537,jiwa,2025,registration,total_population,3.2,30,,30-34
+51.05.01,3,Nusa Penida,age_group,30-34,,5170,jiwa,2025,registration,total_population,3.2,30,,30-34
+51.05.01,3,Nusa Penida,age_group,35-39,laki_laki,2255,jiwa,2025,registration,total_population,3.2,30,,35-39
+51.05.01,3,Nusa Penida,age_group,35-39,perempuan,2136,jiwa,2025,registration,total_population,3.2,30,,35-39
+51.05.01,3,Nusa Penida,age_group,35-39,,4391,jiwa,2025,registration,total_population,3.2,30,,35-39
+51.05.01,3,Nusa Penida,age_group,40-44,laki_laki,2334,jiwa,2025,registration,total_population,3.2,30,,40-44
+51.05.01,3,Nusa Penida,age_group,40-44,perempuan,2212,jiwa,2025,registration,total_population,3.2,30,,40-44
+51.05.01,3,Nusa Penida,age_group,40-44,,4546,jiwa,2025,registration,total_population,3.2,30,,40-44
+51.05.01,3,Nusa Penida,age_group,45-49,laki_laki,2362,jiwa,2025,registration,total_population,3.2,30,,45-49
+51.05.01,3,Nusa Penida,age_group,45-49,perempuan,2298,jiwa,2025,registration,total_population,3.2,30,,45-49
+51.05.01,3,Nusa Penida,age_group,45-49,,4660,jiwa,2025,registration,total_population,3.2,30,,45-49
+51.05.01,3,Nusa Penida,age_group,50-54,laki_laki,2239,jiwa,2025,registration,total_population,3.2,30,,50-54
+51.05.01,3,Nusa Penida,age_group,50-54,perempuan,2191,jiwa,2025,registration,total_population,3.2,30,,50-54
+51.05.01,3,Nusa Penida,age_group,50-54,,4430,jiwa,2025,registration,total_population,3.2,30,,50-54
+51.05.01,3,Nusa Penida,age_group,55-59,laki_laki,1713,jiwa,2025,registration,total_population,3.2,30,,55-59
+51.05.01,3,Nusa Penida,age_group,55-59,perempuan,1920,jiwa,2025,registration,total_population,3.2,30,,55-59
+51.05.01,3,Nusa Penida,age_group,55-59,,3633,jiwa,2025,registration,total_population,3.2,30,,55-59
+51.05.01,3,Nusa Penida,age_group,60-64,laki_laki,1551,jiwa,2025,registration,total_population,3.2,30,,60-64
+51.05.01,3,Nusa Penida,age_group,60-64,perempuan,1641,jiwa,2025,registration,total_population,3.2,30,,60-64
+51.05.01,3,Nusa Penida,age_group,60-64,,3192,jiwa,2025,registration,total_population,3.2,30,,60-64
+51.05.01,3,Nusa Penida,age_group,65-69,laki_laki,1190,jiwa,2025,registration,total_population,3.2,30,,65-69
+51.05.01,3,Nusa Penida,age_group,65-69,perempuan,1322,jiwa,2025,registration,total_population,3.2,30,,65-69
+51.05.01,3,Nusa Penida,age_group,65-69,,2512,jiwa,2025,registration,total_population,3.2,30,,65-69
+51.05.01,3,Nusa Penida,age_group,70-74,laki_laki,832,jiwa,2025,registration,total_population,3.2,30,,70-74
+51.05.01,3,Nusa Penida,age_group,70-74,perempuan,971,jiwa,2025,registration,total_population,3.2,30,,70-74
+51.05.01,3,Nusa Penida,age_group,70-74,,1803,jiwa,2025,registration,total_population,3.2,30,,70-74
+51.05.01,3,Nusa Penida,age_group,75+,laki_laki,1560,jiwa,2025,registration,total_population,3.2,30,,75+
+51.05.01,3,Nusa Penida,age_group,75+,perempuan,1828,jiwa,2025,registration,total_population,3.2,30,,75+
+51.05.01,3,Nusa Penida,age_group,75+,,3388,jiwa,2025,registration,total_population,3.2,30,,75+
+51.05.01,3,Nusa Penida,sex,laki_laki,,33682,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+51.05.01,3,Nusa Penida,sex,perempuan,,33201,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+51.05.01,3,Nusa Penida,total,total,,66883,jiwa,2025,registration,total_population,3.2,30,,

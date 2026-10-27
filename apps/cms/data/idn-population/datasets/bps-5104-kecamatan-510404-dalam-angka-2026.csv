@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.04.04.2005,4,Pejeng Kawan,sex,laki_laki,,2017,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.04.04.2005,4,Pejeng Kawan,sex,perempuan,,2028,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.04.04.2005,4,Pejeng Kawan,total,total,,4045,jiwa,2025,registration,total_population,3.1,28,,
+51.04.04.2001,4,Pejeng,sex,laki_laki,,3019,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.04.04.2001,4,Pejeng,sex,perempuan,,3036,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.04.04.2001,4,Pejeng,total,total,,6055,jiwa,2025,registration,total_population,3.1,28,,
+51.04.04.2008,4,Pejeng Kelod,sex,laki_laki,,1578,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.04.04.2008,4,Pejeng Kelod,sex,perempuan,,1592,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.04.04.2008,4,Pejeng Kelod,total,total,,3170,jiwa,2025,registration,total_population,3.1,28,,
+51.04.04.2007,4,Pejeng Kangin,sex,laki_laki,,2729,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.04.04.2007,4,Pejeng Kangin,sex,perempuan,,2661,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.04.04.2007,4,Pejeng Kangin,total,total,,5390,jiwa,2025,registration,total_population,3.1,28,,
+51.04.04.2006,4,Pejeng Kaja,sex,laki_laki,,2889,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.04.04.2006,4,Pejeng Kaja,sex,perempuan,,2778,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.04.04.2006,4,Pejeng Kaja,total,total,,5667,jiwa,2025,registration,total_population,3.1,28,,
+51.04.04.2002,4,Sanding,sex,laki_laki,,1775,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.04.04.2002,4,Sanding,sex,perempuan,,1714,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.04.04.2002,4,Sanding,total,total,,3489,jiwa,2025,registration,total_population,3.1,28,,
+51.04.04.2003,4,Tampaksiring,sex,laki_laki,,5785,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.04.04.2003,4,Tampaksiring,sex,perempuan,,5618,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.04.04.2003,4,Tampaksiring,total,total,,11403,jiwa,2025,registration,total_population,3.1,28,,
+51.04.04.2004,4,Manukaya,sex,laki_laki,,6461,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.04.04.2004,4,Manukaya,sex,perempuan,,6112,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.04.04.2004,4,Manukaya,total,total,,12573,jiwa,2025,registration,total_population,3.1,28,,
+51.04.04,3,Kecamatan Tampaksiring,sex,laki_laki,,26253,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.04.04,3,Kecamatan Tampaksiring,sex,perempuan,,25539,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.04.04,3,Kecamatan Tampaksiring,total,total,,51792,jiwa,2025,registration,total_population,3.1,28,,

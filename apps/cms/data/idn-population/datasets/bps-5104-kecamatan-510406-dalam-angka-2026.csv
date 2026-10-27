@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.04.06.2001,4,Keliki,sex,laki_laki,,2487,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+51.04.06.2001,4,Keliki,sex,perempuan,,2462,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+51.04.06.2001,4,Keliki,total,total,,4949,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+51.04.06.2002,4,Tegallalang,sex,laki_laki,,4764,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+51.04.06.2002,4,Tegallalang,sex,perempuan,,4872,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+51.04.06.2002,4,Tegallalang,total,total,,9636,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+51.04.06.2003,4,Kenderan,sex,laki_laki,,2728,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+51.04.06.2003,4,Kenderan,sex,perempuan,,2754,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+51.04.06.2003,4,Kenderan,total,total,,5482,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+51.04.06.2004,4,Kedisan,sex,laki_laki,,2857,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+51.04.06.2004,4,Kedisan,sex,perempuan,,2846,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+51.04.06.2004,4,Kedisan,total,total,,5703,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+51.04.06.2005,4,Pupuan,sex,laki_laki,,3612,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+51.04.06.2005,4,Pupuan,sex,perempuan,,3436,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+51.04.06.2005,4,Pupuan,total,total,,7048,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+51.04.06.2006,4,Sebatu,sex,laki_laki,,4304,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+51.04.06.2006,4,Sebatu,sex,perempuan,,4418,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+51.04.06.2006,4,Sebatu,total,total,,8722,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+51.04.06.2007,4,Taro,sex,laki_laki,,5565,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+51.04.06.2007,4,Taro,sex,perempuan,,5449,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+51.04.06.2007,4,Taro,total,total,,11014,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+51.04.06,3,Kecamatan Tegallalang,sex,laki_laki,,26317,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+51.04.06,3,Kecamatan Tegallalang,sex,perempuan,,26237,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+51.04.06,3,Kecamatan Tegallalang,total,total,,52554,jiwa,2025,registration,total_population,unnumbered-p28,28,,

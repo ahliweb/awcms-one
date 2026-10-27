@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.01.05.2002,4,Perancak,sex,laki_laki,,2139,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.05.2002,4,Perancak,sex,perempuan,,2146,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.05.2002,4,Perancak,total,total,,4285,jiwa,2025,registration,total_population,3.1,40,,
+51.01.05.2007,4,Air Kuning,sex,laki_laki,,2682,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.05.2007,4,Air Kuning,sex,perempuan,,2686,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.05.2007,4,Air Kuning,total,total,,5368,jiwa,2025,registration,total_population,3.1,40,,
+51.01.05.2008,4,Yeh Kuning,sex,laki_laki,,1694,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.05.2008,4,Yeh Kuning,sex,perempuan,,1767,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.05.2008,4,Yeh Kuning,total,total,,3461,jiwa,2025,registration,total_population,3.1,40,,
+51.01.05.2006,4,Budeng,sex,laki_laki,,938,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.05.2006,4,Budeng,sex,perempuan,,936,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.05.2006,4,Budeng,total,total,,1874,jiwa,2025,registration,total_population,3.1,40,,
+51.01.05.1009,4,Sangkaragung,sex,laki_laki,,1834,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.05.1009,4,Sangkaragung,sex,perempuan,,1857,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.05.1009,4,Sangkaragung,total,total,,3691,jiwa,2025,registration,total_population,3.1,40,,
+51.01.05.1005,4,Dauhwaru,sex,laki_laki,,5238,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.05.1005,4,Dauhwaru,sex,perempuan,,5336,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.05.1005,4,Dauhwaru,total,total,,10574,jiwa,2025,registration,total_population,3.1,40,,
+51.01.05.1003,4,Loloan Timur,sex,laki_laki,,4114,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.05.1003,4,Loloan Timur,sex,perempuan,,4135,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.05.1003,4,Loloan Timur,total,total,,8249,jiwa,2025,registration,total_population,3.1,40,,
+51.01.05.1001,4,Pendem,sex,laki_laki,,6073,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.05.1001,4,Pendem,sex,perempuan,,5945,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.05.1001,4,Pendem,total,total,,12018,jiwa,2025,registration,total_population,3.1,40,,
+51.01.05.2004,4,Batuagung,sex,laki_laki,,4542,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.05.2004,4,Batuagung,sex,perempuan,,4605,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.05.2004,4,Batuagung,total,total,,9147,jiwa,2025,registration,total_population,3.1,40,,
+51.01.05.2010,4,Dangin Tukadaya,sex,laki_laki,,2778,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.05.2010,4,Dangin Tukadaya,sex,perempuan,,2889,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.05.2010,4,Dangin Tukadaya,total,total,,5667,jiwa,2025,registration,total_population,3.1,40,,
+51.01.05,3,Jembrana,sex,laki_laki,,32032,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.05,3,Jembrana,sex,perempuan,,32302,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.05,3,Jembrana,total,total,,64334,jiwa,2025,registration,total_population,3.1,40,,

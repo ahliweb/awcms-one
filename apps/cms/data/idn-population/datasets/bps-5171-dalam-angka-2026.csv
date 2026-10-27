@@ -1,0 +1,98 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.71,2,Kota Denpasar,age_group,0-4,laki_laki,26.89,ribu_jiwa,2025,projection,total_population,3.1.2,56,,0–4
+51.71,2,Kota Denpasar,age_group,0-4,perempuan,25.84,ribu_jiwa,2025,projection,total_population,3.1.2,56,,0–4
+51.71,2,Kota Denpasar,age_group,0-4,,52.73,ribu_jiwa,2025,projection,total_population,3.1.2,56,,0–4
+51.71,2,Kota Denpasar,age_group,5-9,laki_laki,25.43,ribu_jiwa,2025,projection,total_population,3.1.2,56,,5–9
+51.71,2,Kota Denpasar,age_group,5-9,perempuan,24.22,ribu_jiwa,2025,projection,total_population,3.1.2,56,,5–9
+51.71,2,Kota Denpasar,age_group,5-9,,49.65,ribu_jiwa,2025,projection,total_population,3.1.2,56,,5–9
+51.71,2,Kota Denpasar,age_group,10-14,laki_laki,26.35,ribu_jiwa,2025,projection,total_population,3.1.2,56,,10–14
+51.71,2,Kota Denpasar,age_group,10-14,perempuan,25.10,ribu_jiwa,2025,projection,total_population,3.1.2,56,,10–14
+51.71,2,Kota Denpasar,age_group,10-14,,51.45,ribu_jiwa,2025,projection,total_population,3.1.2,56,,10–14
+51.71,2,Kota Denpasar,age_group,15-19,laki_laki,29.33,ribu_jiwa,2025,projection,total_population,3.1.2,56,,15–19
+51.71,2,Kota Denpasar,age_group,15-19,perempuan,27.51,ribu_jiwa,2025,projection,total_population,3.1.2,56,,15–19
+51.71,2,Kota Denpasar,age_group,15-19,,56.84,ribu_jiwa,2025,projection,total_population,3.1.2,56,,15–19
+51.71,2,Kota Denpasar,age_group,20-24,laki_laki,29.34,ribu_jiwa,2025,projection,total_population,3.1.2,56,,20–24
+51.71,2,Kota Denpasar,age_group,20-24,perempuan,27.29,ribu_jiwa,2025,projection,total_population,3.1.2,56,,20–24
+51.71,2,Kota Denpasar,age_group,20-24,,56.63,ribu_jiwa,2025,projection,total_population,3.1.2,56,,20–24
+51.71,2,Kota Denpasar,age_group,25-29,laki_laki,30.57,ribu_jiwa,2025,projection,total_population,3.1.2,56,,25–29
+51.71,2,Kota Denpasar,age_group,25-29,perempuan,29.08,ribu_jiwa,2025,projection,total_population,3.1.2,56,,25–29
+51.71,2,Kota Denpasar,age_group,25-29,,59.65,ribu_jiwa,2025,projection,total_population,3.1.2,56,,25–29
+51.71,2,Kota Denpasar,age_group,30-34,laki_laki,29.99,ribu_jiwa,2025,projection,total_population,3.1.2,56,,30–34
+51.71,2,Kota Denpasar,age_group,30-34,perempuan,28.95,ribu_jiwa,2025,projection,total_population,3.1.2,56,,30–34
+51.71,2,Kota Denpasar,age_group,30-34,,58.94,ribu_jiwa,2025,projection,total_population,3.1.2,56,,30–34
+51.71,2,Kota Denpasar,age_group,35-39,laki_laki,28.95,ribu_jiwa,2025,projection,total_population,3.1.2,56,,35–39
+51.71,2,Kota Denpasar,age_group,35-39,perempuan,28.97,ribu_jiwa,2025,projection,total_population,3.1.2,56,,35–39
+51.71,2,Kota Denpasar,age_group,35-39,,57.92,ribu_jiwa,2025,projection,total_population,3.1.2,56,,35–39
+51.71,2,Kota Denpasar,age_group,40-44,laki_laki,28.19,ribu_jiwa,2025,projection,total_population,3.1.2,56,,40–44
+51.71,2,Kota Denpasar,age_group,40-44,perempuan,29.46,ribu_jiwa,2025,projection,total_population,3.1.2,56,,40–44
+51.71,2,Kota Denpasar,age_group,40-44,,57.64,ribu_jiwa,2025,projection,total_population,3.1.2,56,,40–44
+51.71,2,Kota Denpasar,age_group,45-49,laki_laki,29.49,ribu_jiwa,2025,projection,total_population,3.1.2,56,,45–49
+51.71,2,Kota Denpasar,age_group,45-49,perempuan,30.07,ribu_jiwa,2025,projection,total_population,3.1.2,56,,45–49
+51.71,2,Kota Denpasar,age_group,45-49,,59.57,ribu_jiwa,2025,projection,total_population,3.1.2,56,,45–49
+51.71,2,Kota Denpasar,age_group,50-54,laki_laki,27.40,ribu_jiwa,2025,projection,total_population,3.1.2,56,,50–54
+51.71,2,Kota Denpasar,age_group,50-54,perempuan,28.22,ribu_jiwa,2025,projection,total_population,3.1.2,56,,50–54
+51.71,2,Kota Denpasar,age_group,50-54,,55.61,ribu_jiwa,2025,projection,total_population,3.1.2,56,,50–54
+51.71,2,Kota Denpasar,age_group,55-59,laki_laki,25.49,ribu_jiwa,2025,projection,total_population,3.1.2,56,,55–59
+51.71,2,Kota Denpasar,age_group,55-59,perempuan,24.81,ribu_jiwa,2025,projection,total_population,3.1.2,56,,55–59
+51.71,2,Kota Denpasar,age_group,55-59,,50.29,ribu_jiwa,2025,projection,total_population,3.1.2,56,,55–59
+51.71,2,Kota Denpasar,age_group,60-64,laki_laki,19.53,ribu_jiwa,2025,projection,total_population,3.1.2,56,,60–64
+51.71,2,Kota Denpasar,age_group,60-64,perempuan,18.69,ribu_jiwa,2025,projection,total_population,3.1.2,56,,60–64
+51.71,2,Kota Denpasar,age_group,60-64,,38.22,ribu_jiwa,2025,projection,total_population,3.1.2,56,,60–64
+51.71,2,Kota Denpasar,age_group,65-69,laki_laki,12.95,ribu_jiwa,2025,projection,total_population,3.1.2,56,,65–69
+51.71,2,Kota Denpasar,age_group,65-69,perempuan,12.60,ribu_jiwa,2025,projection,total_population,3.1.2,56,,65–69
+51.71,2,Kota Denpasar,age_group,65-69,,25.56,ribu_jiwa,2025,projection,total_population,3.1.2,56,,65–69
+51.71,2,Kota Denpasar,age_group,70-74,laki_laki,8.50,ribu_jiwa,2025,projection,total_population,3.1.2,56,,70–74
+51.71,2,Kota Denpasar,age_group,70-74,perempuan,8.67,ribu_jiwa,2025,projection,total_population,3.1.2,56,,70–74
+51.71,2,Kota Denpasar,age_group,70-74,,17.17,ribu_jiwa,2025,projection,total_population,3.1.2,56,,70–74
+51.71,2,Kota Denpasar,age_group,75+,laki_laki,6.75,ribu_jiwa,2025,projection,total_population,3.1.2,56,,75+
+51.71,2,Kota Denpasar,age_group,75+,perempuan,7.88,ribu_jiwa,2025,projection,total_population,3.1.2,56,,75+
+51.71,2,Kota Denpasar,age_group,75+,,14.64,ribu_jiwa,2025,projection,total_population,3.1.2,56,,75+
+51.71,2,Denpasar,sex,laki_laki,,385.15,ribu_jiwa,2025,projection,total_population,3.1.2,56,,Laki-Laki
+51.71,2,Denpasar,sex,perempuan,,377.36,ribu_jiwa,2025,projection,total_population,3.1.2,56,,Perempuan
+51.71,2,Denpasar,total,total,,762.51,ribu_jiwa,2025,projection,total_population,3.1.2,56,,
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/padi_padian,,97876.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,Padi-padian
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/padi_padian,,91694,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,Padi-padian
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/umbi_umbian,,8569.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,Umbi-umbian
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/umbi_umbian,,5633,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,Umbi-umbian
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,58507.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,Ikan/udang/cumi/kerang
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,50027,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,Ikan/udang/cumi/kerang
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/daging,,79513.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,Daging
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/daging,,65061,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,Daging
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/telur_dan_susu,,47515.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,Telur dan susu
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/telur_dan_susu,,59520,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,Telur dan susu
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/sayur_sayuran,,69318.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,Sayur-sayuran
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/sayur_sayuran,,65727,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,Sayur-sayuran
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/kacang_kacangan,,15755.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,Kacang-kacangan
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/kacang_kacangan,,15317,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,Kacang-kacangan
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/buah_buahan,,50450.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,Buah-buahan
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/buah_buahan,,52161,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,Buah-buahan
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16267.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,Minyak dan kelapa
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/minyak_dan_kelapa,,17071,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,Minyak dan kelapa
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/bahan_minuman,,18718.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,Bahan minuman
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/bahan_minuman,,20610,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,Bahan minuman
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/bumbu_bumbuan,,17243.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,Bumbu-bumbuan
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/bumbu_bumbuan,,15684,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,Bumbu-bumbuan
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/konsumsi_lainnya,,14127.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,Konsumsi lainnya
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/konsumsi_lainnya,,13561,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,Konsumsi lainnya
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,417996.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,Makanan dan minuman jadi
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,443314,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,Makanan dan minuman jadi
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/rokok,,70042.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,Rokok
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/rokok,,77136,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,Rokok
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/jumlah_makanan,,981896.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,Jumlah makanan
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/jumlah_makanan,,992515.94,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,Jumlah makanan
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,872370.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,Perumahan dan fasilitas rumah tangga
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,853333,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,Perumahan dan fasilitas rumah tangga
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,366608.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,Aneka barang dan jasa
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,383230,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,Aneka barang dan jasa
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,36666.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,"Pakaian, alas kaki, dan tutup kepala"
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,40965,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,"Pakaian, alas kaki, dan tutup kepala"
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/barang_tahan_lama,,119945.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,Barang tahan lama
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/barang_tahan_lama,,139738,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,Barang tahan lama
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,120374.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,"Pajak, pungutan, dan asuransi"
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,110143,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,"Pajak, pungutan, dan asuransi"
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,123743.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,Keperluan pesta dan upacara/kenduri
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,128045,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,Keperluan pesta dan upacara/kenduri
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1639706.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,Jumlah bukan makanan
+51.71,2,Kota Denpasar,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1655454.58,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,Jumlah bukan makanan
+51.71,2,Kota Denpasar,expenditure,total,,2621602.00,rupiah,2024,survey_estimate,per_capita,unnumbered-p269,269,,
+51.71,2,Kota Denpasar,expenditure,total,,2647970.52,rupiah,2025,survey_estimate,per_capita,unnumbered-p269,269,,

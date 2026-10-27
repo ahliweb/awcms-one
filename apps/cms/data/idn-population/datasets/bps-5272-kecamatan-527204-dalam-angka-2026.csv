@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.72.04.1006,4,NITU,sex,laki_laki,,833,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+52.72.04.1006,4,NITU,sex,perempuan,,826,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+52.72.04.1006,4,NITU,total,total,,1659,jiwa,2025,registration,total_population,3.1,35,,
+52.72.04.1002,4,RONTU,sex,laki_laki,,1698,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+52.72.04.1002,4,RONTU,sex,perempuan,,1711,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+52.72.04.1002,4,RONTU,total,total,,3409,jiwa,2025,registration,total_population,3.1,35,,
+52.72.04.1007,4,RABANGODU SELATAN,sex,laki_laki,,2081,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+52.72.04.1007,4,RABANGODU SELATAN,sex,perempuan,,2133,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+52.72.04.1007,4,RABANGODU SELATAN,total,total,,4214,jiwa,2025,registration,total_population,3.1,35,,
+52.72.04.1011,4,RABANGODU UTARA,sex,laki_laki,,2451,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+52.72.04.1011,4,RABANGODU UTARA,sex,perempuan,,2482,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+52.72.04.1011,4,RABANGODU UTARA,total,total,,4933,jiwa,2025,registration,total_population,3.1,35,,
+52.72.04.1001,4,PENARAGA,sex,laki_laki,,2606,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+52.72.04.1001,4,PENARAGA,sex,perempuan,,2723,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+52.72.04.1001,4,PENARAGA,total,total,,5329,jiwa,2025,registration,total_population,3.1,35,,
+52.72.04.1010,4,RABADOMPU BARAT,sex,laki_laki,,2660,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+52.72.04.1010,4,RABADOMPU BARAT,sex,perempuan,,2763,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+52.72.04.1010,4,RABADOMPU BARAT,total,total,,5423,jiwa,2025,registration,total_population,3.1,35,,
+52.72.04.1008,4,RABADOMPU TIMUR,sex,laki_laki,,1865,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+52.72.04.1008,4,RABADOMPU TIMUR,sex,perempuan,,1941,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+52.72.04.1008,4,RABADOMPU TIMUR,total,total,,3806,jiwa,2025,registration,total_population,3.1,35,,
+52.72.04.1004,4,KENDO,sex,laki_laki,,841,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+52.72.04.1004,4,KENDO,sex,perempuan,,841,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+52.72.04.1004,4,KENDO,total,total,,1682,jiwa,2025,registration,total_population,3.1,35,,
+52.72.04.1003,4,PENANAE,sex,laki_laki,,2166,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+52.72.04.1003,4,PENANAE,sex,perempuan,,2173,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+52.72.04.1003,4,PENANAE,total,total,,4339,jiwa,2025,registration,total_population,3.1,35,,
+52.72.04.1009,4,RITE,sex,laki_laki,,1316,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+52.72.04.1009,4,RITE,sex,perempuan,,1240,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+52.72.04.1009,4,RITE,total,total,,2556,jiwa,2025,registration,total_population,3.1,35,,
+52.72.04.1005,4,NTOBO,sex,laki_laki,,2030,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+52.72.04.1005,4,NTOBO,sex,perempuan,,2014,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+52.72.04.1005,4,NTOBO,total,total,,4044,jiwa,2025,registration,total_population,3.1,35,,
+52.72.04,3,RABA,sex,laki_laki,,20547,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+52.72.04,3,RABA,sex,perempuan,,20847,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+52.72.04,3,RABA,total,total,,41394,jiwa,2025,registration,total_population,3.1,35,,
+52.72.04,3,Raba,age_group,0-4,laki_laki,1574,jiwa,2025,registration,total_population,3.2,37,,0-4
+52.72.04,3,Raba,age_group,0-4,perempuan,1402,jiwa,2025,registration,total_population,3.2,37,,0-4
+52.72.04,3,Raba,age_group,0-4,,2976,jiwa,2025,registration,total_population,3.2,37,,0-4
+52.72.04,3,Raba,age_group,5-9,laki_laki,1920,jiwa,2025,registration,total_population,3.2,37,,5-9
+52.72.04,3,Raba,age_group,5-9,perempuan,1763,jiwa,2025,registration,total_population,3.2,37,,5-9
+52.72.04,3,Raba,age_group,5-9,,3683,jiwa,2025,registration,total_population,3.2,37,,5-9
+52.72.04,3,Raba,age_group,10-14,laki_laki,1885,jiwa,2025,registration,total_population,3.2,37,,10-14
+52.72.04,3,Raba,age_group,10-14,perempuan,1754,jiwa,2025,registration,total_population,3.2,37,,10-14
+52.72.04,3,Raba,age_group,10-14,,3639,jiwa,2025,registration,total_population,3.2,37,,10-14
+52.72.04,3,Raba,age_group,15-19,laki_laki,1812,jiwa,2025,registration,total_population,3.2,37,,15-19
+52.72.04,3,Raba,age_group,15-19,perempuan,1627,jiwa,2025,registration,total_population,3.2,37,,15-19
+52.72.04,3,Raba,age_group,15-19,,3439,jiwa,2025,registration,total_population,3.2,37,,15-19
+52.72.04,3,Raba,age_group,20-24,laki_laki,1597,jiwa,2025,registration,total_population,3.2,37,,20-24
+52.72.04,3,Raba,age_group,20-24,perempuan,1584,jiwa,2025,registration,total_population,3.2,37,,20-24
+52.72.04,3,Raba,age_group,20-24,,3181,jiwa,2025,registration,total_population,3.2,37,,20-24
+52.72.04,3,Raba,age_group,25-29,laki_laki,1545,jiwa,2025,registration,total_population,3.2,37,,25-29
+52.72.04,3,Raba,age_group,25-29,perempuan,1603,jiwa,2025,registration,total_population,3.2,37,,25-29
+52.72.04,3,Raba,age_group,25-29,,3148,jiwa,2025,registration,total_population,3.2,37,,25-29
+52.72.04,3,Raba,age_group,30-34,laki_laki,1474,jiwa,2025,registration,total_population,3.2,37,,30-34
+52.72.04,3,Raba,age_group,30-34,perempuan,1454,jiwa,2025,registration,total_population,3.2,37,,30-34
+52.72.04,3,Raba,age_group,30-34,,2928,jiwa,2025,registration,total_population,3.2,37,,30-34
+52.72.04,3,Raba,age_group,35-39,laki_laki,1477,jiwa,2025,registration,total_population,3.2,37,,35-39
+52.72.04,3,Raba,age_group,35-39,perempuan,1486,jiwa,2025,registration,total_population,3.2,37,,35-39
+52.72.04,3,Raba,age_group,35-39,,2963,jiwa,2025,registration,total_population,3.2,37,,35-39
+52.72.04,3,Raba,age_group,40-44,laki_laki,1524,jiwa,2025,registration,total_population,3.2,37,,40-44
+52.72.04,3,Raba,age_group,40-44,perempuan,1613,jiwa,2025,registration,total_population,3.2,37,,40-44
+52.72.04,3,Raba,age_group,40-44,,3137,jiwa,2025,registration,total_population,3.2,37,,40-44
+52.72.04,3,Raba,age_group,45-49,laki_laki,1378,jiwa,2025,registration,total_population,3.2,37,,45-49
+52.72.04,3,Raba,age_group,45-49,perempuan,1516,jiwa,2025,registration,total_population,3.2,37,,45-49
+52.72.04,3,Raba,age_group,45-49,,2894,jiwa,2025,registration,total_population,3.2,37,,45-49
+52.72.04,3,Raba,age_group,50-54,laki_laki,1228,jiwa,2025,registration,total_population,3.2,37,,50-54
+52.72.04,3,Raba,age_group,50-54,perempuan,1322,jiwa,2025,registration,total_population,3.2,37,,50-54
+52.72.04,3,Raba,age_group,50-54,,2550,jiwa,2025,registration,total_population,3.2,37,,50-54
+52.72.04,3,Raba,age_group,55-59,laki_laki,988,jiwa,2025,registration,total_population,3.2,37,,55-59
+52.72.04,3,Raba,age_group,55-59,perempuan,1097,jiwa,2025,registration,total_population,3.2,37,,55-59
+52.72.04,3,Raba,age_group,55-59,,2085,jiwa,2025,registration,total_population,3.2,37,,55-59
+52.72.04,3,Raba,age_group,60-64,laki_laki,710,jiwa,2025,registration,total_population,3.2,37,,60-64
+52.72.04,3,Raba,age_group,60-64,perempuan,824,jiwa,2025,registration,total_population,3.2,37,,60-64
+52.72.04,3,Raba,age_group,60-64,,1534,jiwa,2025,registration,total_population,3.2,37,,60-64
+52.72.04,3,Raba,age_group,65-69,laki_laki,627,jiwa,2025,registration,total_population,3.2,37,,65-69
+52.72.04,3,Raba,age_group,65-69,perempuan,721,jiwa,2025,registration,total_population,3.2,37,,65-69
+52.72.04,3,Raba,age_group,65-69,,1348,jiwa,2025,registration,total_population,3.2,37,,65-69
+52.72.04,3,Raba,age_group,70-74,laki_laki,347,jiwa,2025,registration,total_population,3.2,37,,70-74
+52.72.04,3,Raba,age_group,70-74,perempuan,462,jiwa,2025,registration,total_population,3.2,37,,70-74
+52.72.04,3,Raba,age_group,70-74,,809,jiwa,2025,registration,total_population,3.2,37,,70-74
+52.72.04,3,Raba,age_group,75+,laki_laki,461,jiwa,2025,registration,total_population,3.2,37,,75+
+52.72.04,3,Raba,age_group,75+,perempuan,619,jiwa,2025,registration,total_population,3.2,37,,75+
+52.72.04,3,Raba,age_group,75+,,1080,jiwa,2025,registration,total_population,3.2,37,,75+
+52.72.04,3,Raba,sex,laki_laki,,20547,jiwa,2025,registration,total_population,3.2,37,,Laki-Laki
+52.72.04,3,Raba,sex,perempuan,,20847,jiwa,2025,registration,total_population,3.2,37,,Perempuan
+52.72.04,3,Raba,total,total,,41394,jiwa,2025,registration,total_population,3.2,37,,

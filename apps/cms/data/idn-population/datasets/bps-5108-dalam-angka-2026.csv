@@ -1,0 +1,132 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.08.01,3,Gerokgak,total,total,,103779,jiwa,2025,registration,total_population,3.1.1,43,,
+51.08.02,3,Seririt,total,total,,95239,jiwa,2025,registration,total_population,3.1.1,43,,
+51.08.03,3,Busungbiu,total,total,,52920,jiwa,2025,registration,total_population,3.1.1,43,,
+51.08.04,3,Banjar,total,total,,88307,jiwa,2025,registration,total_population,3.1.1,43,,
+51.08.05,3,Sukasada,total,total,,95982,jiwa,2025,registration,total_population,3.1.1,43,,
+51.08.06,3,Buleleng,total,total,,156261,jiwa,2025,registration,total_population,3.1.1,43,,
+51.08.07,3,Sawan,total,total,,86203,jiwa,2025,registration,total_population,3.1.1,43,,
+51.08.08,3,Kubutambahan,total,total,,74965,jiwa,2025,registration,total_population,3.1.1,43,,
+51.08.09,3,Tejakula,total,total,,78643,jiwa,2025,registration,total_population,3.1.1,43,,
+51.08,2,Kabupaten Buleleng,total,total,,832299,jiwa,2025,registration,total_population,3.1.1,43,,
+51.08,2,Kabupaten Buleleng,age_group,0-4,laki_laki,25517,jiwa,2025,registration,total_population,3.1.2,46,,0-4
+51.08,2,Kabupaten Buleleng,age_group,0-4,perempuan,23983,jiwa,2025,registration,total_population,3.1.2,46,,0-4
+51.08,2,Kabupaten Buleleng,age_group,0-4,,49500,jiwa,2025,registration,total_population,3.1.2,46,,0-4
+51.08,2,Kabupaten Buleleng,age_group,5-9,laki_laki,34393,jiwa,2025,registration,total_population,3.1.2,46,,5-9
+51.08,2,Kabupaten Buleleng,age_group,5-9,perempuan,32675,jiwa,2025,registration,total_population,3.1.2,46,,5-9
+51.08,2,Kabupaten Buleleng,age_group,5-9,,67068,jiwa,2025,registration,total_population,3.1.2,46,,5-9
+51.08,2,Kabupaten Buleleng,age_group,10-14,laki_laki,36692,jiwa,2025,registration,total_population,3.1.2,46,,10-14
+51.08,2,Kabupaten Buleleng,age_group,10-14,perempuan,34451,jiwa,2025,registration,total_population,3.1.2,46,,10-14
+51.08,2,Kabupaten Buleleng,age_group,10-14,,71143,jiwa,2025,registration,total_population,3.1.2,46,,10-14
+51.08,2,Kabupaten Buleleng,age_group,15-19,laki_laki,33678,jiwa,2025,registration,total_population,3.1.2,46,,15-19
+51.08,2,Kabupaten Buleleng,age_group,15-19,perempuan,31871,jiwa,2025,registration,total_population,3.1.2,46,,15-19
+51.08,2,Kabupaten Buleleng,age_group,15-19,,65549,jiwa,2025,registration,total_population,3.1.2,46,,15-19
+51.08,2,Kabupaten Buleleng,age_group,20-24,laki_laki,34872,jiwa,2025,registration,total_population,3.1.2,46,,20-24
+51.08,2,Kabupaten Buleleng,age_group,20-24,perempuan,32748,jiwa,2025,registration,total_population,3.1.2,46,,20-24
+51.08,2,Kabupaten Buleleng,age_group,20-24,,67620,jiwa,2025,registration,total_population,3.1.2,46,,20-24
+51.08,2,Kabupaten Buleleng,age_group,25-29,laki_laki,33093,jiwa,2025,registration,total_population,3.1.2,46,,25-29
+51.08,2,Kabupaten Buleleng,age_group,25-29,perempuan,31121,jiwa,2025,registration,total_population,3.1.2,46,,25-29
+51.08,2,Kabupaten Buleleng,age_group,25-29,,64214,jiwa,2025,registration,total_population,3.1.2,46,,25-29
+51.08,2,Kabupaten Buleleng,age_group,30-34,laki_laki,30216,jiwa,2025,registration,total_population,3.1.2,46,,30-34
+51.08,2,Kabupaten Buleleng,age_group,30-34,perempuan,28330,jiwa,2025,registration,total_population,3.1.2,46,,30-34
+51.08,2,Kabupaten Buleleng,age_group,30-34,,58546,jiwa,2025,registration,total_population,3.1.2,46,,30-34
+51.08,2,Kabupaten Buleleng,age_group,35-39,laki_laki,28002,jiwa,2025,registration,total_population,3.1.2,46,,35-39
+51.08,2,Kabupaten Buleleng,age_group,35-39,perempuan,27043,jiwa,2025,registration,total_population,3.1.2,46,,35-39
+51.08,2,Kabupaten Buleleng,age_group,35-39,,55045,jiwa,2025,registration,total_population,3.1.2,46,,35-39
+51.08,2,Kabupaten Buleleng,age_group,40-44,laki_laki,31259,jiwa,2025,registration,total_population,3.1.2,46,,40-44
+51.08,2,Kabupaten Buleleng,age_group,40-44,perempuan,29626,jiwa,2025,registration,total_population,3.1.2,46,,40-44
+51.08,2,Kabupaten Buleleng,age_group,40-44,,60885,jiwa,2025,registration,total_population,3.1.2,46,,40-44
+51.08,2,Kabupaten Buleleng,age_group,45-49,laki_laki,29759,jiwa,2025,registration,total_population,3.1.2,46,,45-49
+51.08,2,Kabupaten Buleleng,age_group,45-49,perempuan,28680,jiwa,2025,registration,total_population,3.1.2,46,,45-49
+51.08,2,Kabupaten Buleleng,age_group,45-49,,58439,jiwa,2025,registration,total_population,3.1.2,46,,45-49
+51.08,2,Kabupaten Buleleng,age_group,50-54,laki_laki,26753,jiwa,2025,registration,total_population,3.1.2,46,,50-54
+51.08,2,Kabupaten Buleleng,age_group,50-54,perempuan,26224,jiwa,2025,registration,total_population,3.1.2,46,,50-54
+51.08,2,Kabupaten Buleleng,age_group,50-54,,52977,jiwa,2025,registration,total_population,3.1.2,46,,50-54
+51.08,2,Kabupaten Buleleng,age_group,55-59,laki_laki,22612,jiwa,2025,registration,total_population,3.1.2,46,,55-59
+51.08,2,Kabupaten Buleleng,age_group,55-59,perempuan,24079,jiwa,2025,registration,total_population,3.1.2,46,,55-59
+51.08,2,Kabupaten Buleleng,age_group,55-59,,46691,jiwa,2025,registration,total_population,3.1.2,46,,55-59
+51.08,2,Kabupaten Buleleng,age_group,60-64,laki_laki,18301,jiwa,2025,registration,total_population,3.1.2,46,,60-64
+51.08,2,Kabupaten Buleleng,age_group,60-64,perempuan,19757,jiwa,2025,registration,total_population,3.1.2,46,,60-64
+51.08,2,Kabupaten Buleleng,age_group,60-64,,38058,jiwa,2025,registration,total_population,3.1.2,46,,60-64
+51.08,2,Kabupaten Buleleng,age_group,65-69,laki_laki,14175,jiwa,2025,registration,total_population,3.1.2,46,,65-69
+51.08,2,Kabupaten Buleleng,age_group,65-69,perempuan,16318,jiwa,2025,registration,total_population,3.1.2,46,,65-69
+51.08,2,Kabupaten Buleleng,age_group,65-69,,30493,jiwa,2025,registration,total_population,3.1.2,46,,65-69
+51.08,2,Kabupaten Buleleng,age_group,70-74,laki_laki,9222,jiwa,2025,registration,total_population,3.1.2,46,,70-74
+51.08,2,Kabupaten Buleleng,age_group,70-74,perempuan,10293,jiwa,2025,registration,total_population,3.1.2,46,,70-74
+51.08,2,Kabupaten Buleleng,age_group,70-74,,19515,jiwa,2025,registration,total_population,3.1.2,46,,70-74
+51.08,2,Kabupaten Buleleng,age_group,75+,laki_laki,11030,jiwa,2025,registration,total_population,3.1.2,46,,75+
+51.08,2,Kabupaten Buleleng,age_group,75+,perempuan,15526,jiwa,2025,registration,total_population,3.1.2,46,,75+
+51.08,2,Kabupaten Buleleng,age_group,75+,,26556,jiwa,2025,registration,total_population,3.1.2,46,,75+
+51.08,2,Kabupaten Buleleng,sex,laki_laki,,419574,jiwa,2025,registration,total_population,3.1.2,46,,Laki-laki
+51.08,2,Kabupaten Buleleng,sex,perempuan,,412725,jiwa,2025,registration,total_population,3.1.2,46,,Perempuan
+51.08,2,Kabupaten Buleleng,total,total,,832299,jiwa,2025,registration,total_population,3.1.2,46,,
+51.08.01,3,Gerokgak,religion,islam,,29301,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+51.08.01,3,Gerokgak,religion,kristen,,444,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+51.08.01,3,Gerokgak,religion,katolik,,76,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+51.08.01,3,Gerokgak,religion,hindu,,73865,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+51.08.01,3,Gerokgak,religion,buddha,,83,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+51.08.01,3,Gerokgak,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,103,,
+51.08.01,3,Gerokgak,religion,lainnya,,10,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+51.08.02,3,Seririt,religion,islam,,6359,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+51.08.02,3,Seririt,religion,kristen,,401,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+51.08.02,3,Seririt,religion,katolik,,67,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+51.08.02,3,Seririt,religion,hindu,,88256,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+51.08.02,3,Seririt,religion,buddha,,155,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+51.08.02,3,Seririt,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.3.1,103,,
+51.08.02,3,Seririt,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+51.08.03,3,Busungbiu,religion,islam,,274,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+51.08.03,3,Busungbiu,religion,kristen,,136,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+51.08.03,3,Busungbiu,religion,katolik,,15,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+51.08.03,3,Busungbiu,religion,hindu,,52487,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+51.08.03,3,Busungbiu,religion,buddha,,8,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+51.08.03,3,Busungbiu,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,103,,
+51.08.03,3,Busungbiu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+51.08.04,3,Banjar,religion,islam,,3072,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+51.08.04,3,Banjar,religion,kristen,,445,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+51.08.04,3,Banjar,religion,katolik,,90,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+51.08.04,3,Banjar,religion,hindu,,84304,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+51.08.04,3,Banjar,religion,buddha,,396,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+51.08.04,3,Banjar,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,103,,
+51.08.04,3,Banjar,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+51.08.05,3,Sukasada,religion,islam,,13958,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+51.08.05,3,Sukasada,religion,kristen,,830,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+51.08.05,3,Sukasada,religion,katolik,,245,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+51.08.05,3,Sukasada,religion,hindu,,80783,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+51.08.05,3,Sukasada,religion,buddha,,166,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+51.08.05,3,Sukasada,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,103,,
+51.08.05,3,Sukasada,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+51.08.06,3,Buleleng,religion,islam,,21951,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+51.08.06,3,Buleleng,religion,kristen,,2561,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+51.08.06,3,Buleleng,religion,katolik,,1107,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+51.08.06,3,Buleleng,religion,hindu,,127284,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+51.08.06,3,Buleleng,religion,buddha,,3266,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+51.08.06,3,Buleleng,religion,khonghucu,,78,jiwa,2025,registration,total_population,4.3.1,103,,
+51.08.06,3,Buleleng,religion,lainnya,,14,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+51.08.07,3,Sawan,religion,islam,,919,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+51.08.07,3,Sawan,religion,kristen,,514,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+51.08.07,3,Sawan,religion,katolik,,59,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+51.08.07,3,Sawan,religion,hindu,,84649,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+51.08.07,3,Sawan,religion,buddha,,62,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+51.08.07,3,Sawan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,103,,
+51.08.07,3,Sawan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+51.08.08,3,Kubutambahan,religion,islam,,917,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+51.08.08,3,Kubutambahan,religion,kristen,,160,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+51.08.08,3,Kubutambahan,religion,katolik,,76,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+51.08.08,3,Kubutambahan,religion,hindu,,73726,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+51.08.08,3,Kubutambahan,religion,buddha,,85,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+51.08.08,3,Kubutambahan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,103,,
+51.08.08,3,Kubutambahan,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+51.08.09,3,Tejakula,religion,islam,,1675,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+51.08.09,3,Tejakula,religion,kristen,,112,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+51.08.09,3,Tejakula,religion,katolik,,45,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+51.08.09,3,Tejakula,religion,hindu,,76797,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+51.08.09,3,Tejakula,religion,buddha,,10,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+51.08.09,3,Tejakula,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,103,,
+51.08.09,3,Tejakula,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya
+51.08,2,Kabupaten Buleleng,religion,islam,,78426,jiwa,2025,registration,total_population,4.3.1,103,,Islam
+51.08,2,Kabupaten Buleleng,religion,kristen,,5603,jiwa,2025,registration,total_population,4.3.1,103,,Protestan
+51.08,2,Kabupaten Buleleng,religion,katolik,,1780,jiwa,2025,registration,total_population,4.3.1,103,,Katolik
+51.08,2,Kabupaten Buleleng,religion,hindu,,742151,jiwa,2025,registration,total_population,4.3.1,103,,Hindu
+51.08,2,Kabupaten Buleleng,religion,buddha,,4231,jiwa,2025,registration,total_population,4.3.1,103,,Budha
+51.08,2,Kabupaten Buleleng,religion,khonghucu,,79,jiwa,2025,registration,total_population,4.3.1,103,,
+51.08,2,Kabupaten Buleleng,religion,lainnya,,29,jiwa,2025,registration,total_population,4.3.1,103,,Lainnya

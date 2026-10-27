@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-5108-kecamatan-510809-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.08.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tejakula Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Buleleng",
+  "publisherDomain": "5108",
+  "publisherWebsite": "https://bulelengkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Buleleng (https://bulelengkab.bps.go.id), publikasi \"Kecamatan Tejakula Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5108090",
+  "publicationNumber": "51080.26016",
+  "issn": "2477-7064",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bulelengkab.bps.go.id/id/publication/2026/09/28/123ebf55eb18d7eaf4831318/kecamatan-tejakula-dalam-angka-2026.html",
+  "sourceFileSha256": "2c83a6c96eba9150810551239a7e43aa07b663b594af2643456a47c3667ca708",
+  "sourceFileBytes": 4456132,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Buleleng",
+  "csvPath": "datasets/bps-5108-kecamatan-510809-dalam-angka-2026.csv",
+  "csvSha256": "c5a73254b133de83f15d3a4fae3b1421b73e152d972a0a9966b5b936ec20a657",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Tejakula, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tejakula, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Tejakula Tejakula District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Tejakula Tejakula District\": unmatched ",
+    "table 3.2: row not stored: row \"TOTAL KECAMATAN\": unmatched "
+  ]
+}

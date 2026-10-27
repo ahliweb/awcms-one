@@ -1,0 +1,140 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.72.01,3,Rasanae Barat,total,total,,31.08,ribu_jiwa,2025,registration,total_population,3.1.1,87,,
+52.72.05,3,Mpunda,total,total,,35.25,ribu_jiwa,2025,registration,total_population,3.1.1,87,,
+52.72.02,3,Rasanae Timur,total,total,,20.63,ribu_jiwa,2025,registration,total_population,3.1.1,87,,
+52.72.04,3,Raba,total,total,,41.39,ribu_jiwa,2025,registration,total_population,3.1.1,87,,
+52.72.03,3,Asakota,total,total,,38.65,ribu_jiwa,2025,registration,total_population,3.1.1,87,,
+52.72,2,Kota Bima,total,total,,166.99,ribu_jiwa,2025,registration,total_population,3.1.1,87,,
+52.72,2,Kota Bima,age_group,0-4,laki_laki,6459,jiwa,2025,registration,total_population,3.1.2,90,,0–4
+52.72,2,Kota Bima,age_group,0-4,perempuan,5751,jiwa,2025,registration,total_population,3.1.2,90,,0–4
+52.72,2,Kota Bima,age_group,0-4,,12210,jiwa,2025,registration,total_population,3.1.2,90,,0–4
+52.72,2,Kota Bima,age_group,5-9,laki_laki,8080,jiwa,2025,registration,total_population,3.1.2,90,,5–9
+52.72,2,Kota Bima,age_group,5-9,perempuan,7492,jiwa,2025,registration,total_population,3.1.2,90,,5–9
+52.72,2,Kota Bima,age_group,5-9,,15572,jiwa,2025,registration,total_population,3.1.2,90,,5–9
+52.72,2,Kota Bima,age_group,10-14,laki_laki,7895,jiwa,2025,registration,total_population,3.1.2,90,,10–14
+52.72,2,Kota Bima,age_group,10-14,perempuan,7286,jiwa,2025,registration,total_population,3.1.2,90,,10–14
+52.72,2,Kota Bima,age_group,10-14,,15181,jiwa,2025,registration,total_population,3.1.2,90,,10–14
+52.72,2,Kota Bima,age_group,15-19,laki_laki,7274,jiwa,2025,registration,total_population,3.1.2,90,,15–19
+52.72,2,Kota Bima,age_group,15-19,perempuan,6902,jiwa,2025,registration,total_population,3.1.2,90,,15–19
+52.72,2,Kota Bima,age_group,15-19,,14176,jiwa,2025,registration,total_population,3.1.2,90,,15–19
+52.72,2,Kota Bima,age_group,20-24,laki_laki,6689,jiwa,2025,registration,total_population,3.1.2,90,,20–24
+52.72,2,Kota Bima,age_group,20-24,perempuan,6710,jiwa,2025,registration,total_population,3.1.2,90,,20–24
+52.72,2,Kota Bima,age_group,20-24,,13399,jiwa,2025,registration,total_population,3.1.2,90,,20–24
+52.72,2,Kota Bima,age_group,25-29,laki_laki,6271,jiwa,2025,registration,total_population,3.1.2,90,,25–29
+52.72,2,Kota Bima,age_group,25-29,perempuan,6416,jiwa,2025,registration,total_population,3.1.2,90,,25–29
+52.72,2,Kota Bima,age_group,25-29,,12687,jiwa,2025,registration,total_population,3.1.2,90,,25–29
+52.72,2,Kota Bima,age_group,30-34,laki_laki,6273,jiwa,2025,registration,total_population,3.1.2,90,,30–34
+52.72,2,Kota Bima,age_group,30-34,perempuan,6265,jiwa,2025,registration,total_population,3.1.2,90,,30–34
+52.72,2,Kota Bima,age_group,30-34,,12538,jiwa,2025,registration,total_population,3.1.2,90,,30–34
+52.72,2,Kota Bima,age_group,35-39,laki_laki,6324,jiwa,2025,registration,total_population,3.1.2,90,,35–39
+52.72,2,Kota Bima,age_group,35-39,perempuan,6350,jiwa,2025,registration,total_population,3.1.2,90,,35–39
+52.72,2,Kota Bima,age_group,35-39,,12674,jiwa,2025,registration,total_population,3.1.2,90,,35–39
+52.72,2,Kota Bima,age_group,40-44,laki_laki,6218,jiwa,2025,registration,total_population,3.1.2,90,,40–44
+52.72,2,Kota Bima,age_group,40-44,perempuan,6637,jiwa,2025,registration,total_population,3.1.2,90,,40–44
+52.72,2,Kota Bima,age_group,40-44,,12855,jiwa,2025,registration,total_population,3.1.2,90,,40–44
+52.72,2,Kota Bima,age_group,45-49,laki_laki,5444,jiwa,2025,registration,total_population,3.1.2,90,,45–49
+52.72,2,Kota Bima,age_group,45-49,perempuan,5809,jiwa,2025,registration,total_population,3.1.2,90,,45–49
+52.72,2,Kota Bima,age_group,45-49,,11253,jiwa,2025,registration,total_population,3.1.2,90,,45–49
+52.72,2,Kota Bima,age_group,50-54,laki_laki,4692,jiwa,2025,registration,total_population,3.1.2,90,,50–54
+52.72,2,Kota Bima,age_group,50-54,perempuan,4875,jiwa,2025,registration,total_population,3.1.2,90,,50–54
+52.72,2,Kota Bima,age_group,50-54,,9567,jiwa,2025,registration,total_population,3.1.2,90,,50–54
+52.72,2,Kota Bima,age_group,55-59,laki_laki,3837,jiwa,2025,registration,total_population,3.1.2,90,,55–59
+52.72,2,Kota Bima,age_group,55-59,perempuan,4164,jiwa,2025,registration,total_population,3.1.2,90,,55–59
+52.72,2,Kota Bima,age_group,55-59,,8001,jiwa,2025,registration,total_population,3.1.2,90,,55–59
+52.72,2,Kota Bima,age_group,60-64,laki_laki,2784,jiwa,2025,registration,total_population,3.1.2,90,,60–64
+52.72,2,Kota Bima,age_group,60-64,perempuan,3084,jiwa,2025,registration,total_population,3.1.2,90,,60–64
+52.72,2,Kota Bima,age_group,60-64,,5868,jiwa,2025,registration,total_population,3.1.2,90,,60–64
+52.72,2,Kota Bima,age_group,65-69,laki_laki,2224,jiwa,2025,registration,total_population,3.1.2,90,,65–69
+52.72,2,Kota Bima,age_group,65-69,perempuan,2439,jiwa,2025,registration,total_population,3.1.2,90,,65–69
+52.72,2,Kota Bima,age_group,65-69,,4663,jiwa,2025,registration,total_population,3.1.2,90,,65–69
+52.72,2,Kota Bima,age_group,70-74,laki_laki,1265,jiwa,2025,registration,total_population,3.1.2,90,,70–74
+52.72,2,Kota Bima,age_group,70-74,perempuan,1485,jiwa,2025,registration,total_population,3.1.2,90,,70–74
+52.72,2,Kota Bima,age_group,70-74,,2750,jiwa,2025,registration,total_population,3.1.2,90,,70–74
+52.72,2,Kota Bima,age_group,75+,laki_laki,1559,jiwa,2025,registration,total_population,3.1.2,90,,75+
+52.72,2,Kota Bima,age_group,75+,perempuan,2039,jiwa,2025,registration,total_population,3.1.2,90,,75+
+52.72,2,Kota Bima,age_group,75+,,3598,jiwa,2025,registration,total_population,3.1.2,90,,75+
+52.72,2,Kota Bima,sex,laki_laki,,83288,jiwa,2025,registration,total_population,3.1.2,90,,Laki-Laki
+52.72,2,Kota Bima,sex,perempuan,,83704,jiwa,2025,registration,total_population,3.1.2,90,,Perempuan
+52.72,2,Kota Bima,total,total,,166992,jiwa,2025,registration,total_population,3.1.2,90,,
+52.72.01,3,Rasanae Barat,religion,islam,,39303,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+52.72.01,3,Rasanae Barat,religion,kristen,,630,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+52.72.01,3,Rasanae Barat,religion,katolik,,500,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+52.72.01,3,Rasanae Barat,religion,hindu,,20,jiwa,2025,registration,total_population,4.3.1,182,,Hindu
+52.72.01,3,Rasanae Barat,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Budha
+52.72.01,3,Rasanae Barat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Lainnya
+52.72.05,3,Mpunda,religion,islam,,35024,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+52.72.05,3,Mpunda,religion,kristen,,186,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+52.72.05,3,Mpunda,religion,katolik,,140,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+52.72.05,3,Mpunda,religion,hindu,,8,jiwa,2025,registration,total_population,4.3.1,182,,Hindu
+52.72.05,3,Mpunda,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Budha
+52.72.05,3,Mpunda,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Lainnya
+52.72.02,3,Rasanae Timur,religion,islam,,22258,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+52.72.02,3,Rasanae Timur,religion,kristen,,32,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+52.72.02,3,Rasanae Timur,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Katolik
+52.72.02,3,Rasanae Timur,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,182,,Hindu
+52.72.02,3,Rasanae Timur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Budha
+52.72.02,3,Rasanae Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Lainnya
+52.72.04,3,Raba,religion,islam,,42170,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+52.72.04,3,Raba,religion,kristen,,164,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+52.72.04,3,Raba,religion,katolik,,210,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+52.72.04,3,Raba,religion,hindu,,205,jiwa,2025,registration,total_population,4.3.1,182,,Hindu
+52.72.04,3,Raba,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Budha
+52.72.04,3,Raba,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Lainnya
+52.72.03,3,Asakota,religion,islam,,30225,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+52.72.03,3,Asakota,religion,kristen,,324,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+52.72.03,3,Asakota,religion,katolik,,550,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+52.72.03,3,Asakota,religion,hindu,,50,jiwa,2025,registration,total_population,4.3.1,182,,Hindu
+52.72.03,3,Asakota,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Budha
+52.72.03,3,Asakota,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Lainnya
+52.72,2,Kota Bima,religion,islam,,168980,jiwa,2025,registration,total_population,4.3.1,182,,Islam
+52.72,2,Kota Bima,religion,kristen,,1336,jiwa,2025,registration,total_population,4.3.1,182,,Protestan
+52.72,2,Kota Bima,religion,katolik,,1400,jiwa,2025,registration,total_population,4.3.1,182,,Katolik
+52.72,2,Kota Bima,religion,hindu,,284,jiwa,2025,registration,total_population,4.3.1,182,,Hindu
+52.72,2,Kota Bima,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Budha
+52.72,2,Kota Bima,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,182,nil,Lainnya
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/padi_padian,,122475,rupiah,2024,survey_estimate,per_capita,10.1,390,,Padi-padian
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/padi_padian,,114565,rupiah,2025,survey_estimate,per_capita,10.1,390,,Padi-padian
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/umbi_umbian,,3044,rupiah,2024,survey_estimate,per_capita,10.1,390,,Umbi-umbian
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/umbi_umbian,,2444,rupiah,2025,survey_estimate,per_capita,10.1,390,,Umbi-umbian
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,78831,rupiah,2024,survey_estimate,per_capita,10.1,390,,Ikan/udang/cumi/kerang
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,67921,rupiah,2025,survey_estimate,per_capita,10.1,390,,Ikan/udang/cumi/kerang
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/daging,,31570,rupiah,2024,survey_estimate,per_capita,10.1,390,,Daging
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/daging,,24936,rupiah,2025,survey_estimate,per_capita,10.1,390,,Daging
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/telur_dan_susu,,29615,rupiah,2024,survey_estimate,per_capita,10.1,390,,Telur dan susu
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/telur_dan_susu,,27997,rupiah,2025,survey_estimate,per_capita,10.1,390,,Telur dan susu
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/sayur_sayuran,,43307,rupiah,2024,survey_estimate,per_capita,10.1,390,,Sayur-sayuran
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/sayur_sayuran,,41860,rupiah,2025,survey_estimate,per_capita,10.1,390,,Sayur-sayuran
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/kacang_kacangan,,12273,rupiah,2024,survey_estimate,per_capita,10.1,390,,Kacang-kacangan
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/kacang_kacangan,,11667,rupiah,2025,survey_estimate,per_capita,10.1,390,,Kacang-kacangan
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/buah_buahan,,56596,rupiah,2024,survey_estimate,per_capita,10.1,390,,Buah-buahan
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/buah_buahan,,45002,rupiah,2025,survey_estimate,per_capita,10.1,390,,Buah-buahan
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/minyak_dan_kelapa,,12361,rupiah,2024,survey_estimate,per_capita,10.1,390,,Minyak dan kelapa
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/minyak_dan_kelapa,,12509,rupiah,2025,survey_estimate,per_capita,10.1,390,,Minyak dan kelapa
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/bahan_minuman,,12789,rupiah,2024,survey_estimate,per_capita,10.1,390,,Bahan minuman
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/bahan_minuman,,14681,rupiah,2025,survey_estimate,per_capita,10.1,390,,Bahan minuman
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/bumbu_bumbuan,,13976,rupiah,2024,survey_estimate,per_capita,10.1,390,,Bumbu-bumbuan
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/bumbu_bumbuan,,12762,rupiah,2025,survey_estimate,per_capita,10.1,390,,Bumbu-bumbuan
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/konsumsi_lainnya,,11342,rupiah,2024,survey_estimate,per_capita,10.1,390,,Konsumsi lainnya
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/konsumsi_lainnya,,10949,rupiah,2025,survey_estimate,per_capita,10.1,390,,Konsumsi lainnya
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,284386,rupiah,2024,survey_estimate,per_capita,10.1,390,,Makanan dan minuman jadi
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,262416,rupiah,2025,survey_estimate,per_capita,10.1,390,,Makanan dan minuman jadi
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/rokok,,96633,rupiah,2024,survey_estimate,per_capita,10.1,390,,Rokok
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/rokok,,84481,rupiah,2025,survey_estimate,per_capita,10.1,390,,Rokok
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/jumlah_makanan,,809199,rupiah,2024,survey_estimate,per_capita,10.1,390,,Jumlah makanan
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/jumlah_makanan,,734190,rupiah,2025,survey_estimate,per_capita,10.1,390,,Jumlah makanan
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,366186,rupiah,2024,survey_estimate,per_capita,10.1,390,,Perumahan dan fasilitas rumah tangga
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,342212,rupiah,2025,survey_estimate,per_capita,10.1,390,,Perumahan dan fasilitas rumah tangga
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,179458,rupiah,2024,survey_estimate,per_capita,10.1,390,,Aneka barang dan jasa
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,187426,rupiah,2025,survey_estimate,per_capita,10.1,390,,Aneka barang dan jasa
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,39846,rupiah,2024,survey_estimate,per_capita,10.1,390,,"Pakaian, alas kaki, dan tutup kepala"
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,37564,rupiah,2025,survey_estimate,per_capita,10.1,390,,"Pakaian, alas kaki, dan tutup kepala"
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/barang_tahan_lama,,80421,rupiah,2024,survey_estimate,per_capita,10.1,390,,Barang tahan lama
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/barang_tahan_lama,,64754,rupiah,2025,survey_estimate,per_capita,10.1,390,,Barang tahan lama
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,70493,rupiah,2024,survey_estimate,per_capita,10.1,390,,"Pajak, pungutan, dan asuransi"
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,65089,rupiah,2025,survey_estimate,per_capita,10.1,390,,"Pajak, pungutan, dan asuransi"
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,28368,rupiah,2024,survey_estimate,per_capita,10.1,390,,Keperluan pesta dan upacara/kenduri
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,38767,rupiah,2025,survey_estimate,per_capita,10.1,390,,Keperluan pesta dan upacara/kenduri
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,764772,rupiah,2024,survey_estimate,per_capita,10.1,390,,Jumlah bukan makanan
+52.72,2,Kota Bima,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,735812,rupiah,2025,survey_estimate,per_capita,10.1,390,,Jumlah bukan makanan
+52.72,2,Kota Bima,expenditure,total,,1573970,rupiah,2024,survey_estimate,per_capita,10.1,390,,
+52.72,2,Kota Bima,expenditure,total,,1470002,rupiah,2025,survey_estimate,per_capita,10.1,390,,

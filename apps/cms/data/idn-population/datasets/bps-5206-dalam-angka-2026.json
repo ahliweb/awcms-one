@@ -1,0 +1,65 @@
+{
+  "datasetCode": "bps-5206-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "52.06",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Bima Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bima",
+  "publisherDomain": "5206",
+  "publisherWebsite": "https://bimakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bima (https://bimakab.bps.go.id), publikasi \"Kabupaten Bima Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5206",
+  "publicationNumber": "52060.26002",
+  "issn": "0215-5338",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://bimakab.bps.go.id/id/publication/2026/02/27/e24deaed293c770285e8d1d7/kabupaten-bima-dalam-angka-2026.html",
+  "sourceFileSha256": "d36e6fabf43ca84a8f281d0c6b488d0275863ca40139192a6cf028ff81cef717",
+  "sourceFileBytes": 29194501,
+  "sourcePages": [55, 58, 119, 240],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bima.",
+  "csvPath": "datasets/bps-5206-dalam-angka-2026.csv",
+  "csvSha256": "217edfc7417937b4645c8b346e62112780333cff6b14a7b534d937df0bfed538",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Bima, 2025",
+      "printedPages": [55],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Bima (jiwa), 2025",
+      "printedPages": [58],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Bima, 2025",
+      "printedPages": [119],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Bima (rupiah), 2024 dan 2025",
+      "printedPages": [240],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication"
+  ]
+}

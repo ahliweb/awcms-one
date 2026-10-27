@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-5108-kecamatan-510805-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.08.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sukasada Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Buleleng",
+  "publisherDomain": "5108",
+  "publisherWebsite": "https://bulelengkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Buleleng (https://bulelengkab.bps.go.id), publikasi \"Kecamatan Sukasada Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5108050",
+  "publicationNumber": "51080.26012",
+  "issn": "2477-7021",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bulelengkab.bps.go.id/id/publication/2026/09/28/c1d713a4c3b4f0a65125a34f/kecamatan-sukasada-dalam-angka-2026.html",
+  "sourceFileSha256": "1e89af086851da3752282f956d9bd13e813843c7455340e45ee999cf2f4f5462",
+  "sourceFileBytes": 4299393,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Buleleng",
+  "csvPath": "datasets/bps-5108-kecamatan-510805-dalam-angka-2026.csv",
+  "csvSha256": "1a70962775f35d6deceff7ecd33abf2d43dabc574f0be252ddd46e827e9308e3",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Sukasada, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sukasada, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Sukasada Sukasada District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Sukasada Sukasada District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Sukasada Sukasada District\": unmatched "
+  ]
+}

@@ -1,0 +1,125 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.03,2,Kabupaten Badung,age_group,0-4,laki_laki,20.37,ribu_jiwa,2025,projection,total_population,3.1.2,57,,0–4
+51.03,2,Kabupaten Badung,age_group,0-4,perempuan,19.56,ribu_jiwa,2025,projection,total_population,3.1.2,57,,0–4
+51.03,2,Kabupaten Badung,age_group,0-4,,39.92,ribu_jiwa,2025,projection,total_population,3.1.2,57,,0–4
+51.03,2,Kabupaten Badung,age_group,5-9,laki_laki,18.71,ribu_jiwa,2025,projection,total_population,3.1.2,57,,5–9
+51.03,2,Kabupaten Badung,age_group,5-9,perempuan,17.61,ribu_jiwa,2025,projection,total_population,3.1.2,57,,5–9
+51.03,2,Kabupaten Badung,age_group,5-9,,36.32,ribu_jiwa,2025,projection,total_population,3.1.2,57,,5–9
+51.03,2,Kabupaten Badung,age_group,10-14,laki_laki,18.26,ribu_jiwa,2025,projection,total_population,3.1.2,57,,10–14
+51.03,2,Kabupaten Badung,age_group,10-14,perempuan,17.42,ribu_jiwa,2025,projection,total_population,3.1.2,57,,10–14
+51.03,2,Kabupaten Badung,age_group,10-14,,35.67,ribu_jiwa,2025,projection,total_population,3.1.2,57,,10–14
+51.03,2,Kabupaten Badung,age_group,15-19,laki_laki,21.58,ribu_jiwa,2025,projection,total_population,3.1.2,57,,15–19
+51.03,2,Kabupaten Badung,age_group,15-19,perempuan,19.96,ribu_jiwa,2025,projection,total_population,3.1.2,57,,15–19
+51.03,2,Kabupaten Badung,age_group,15-19,,41.54,ribu_jiwa,2025,projection,total_population,3.1.2,57,,15–19
+51.03,2,Kabupaten Badung,age_group,20-24,laki_laki,23.60,ribu_jiwa,2025,projection,total_population,3.1.2,57,,20–24
+51.03,2,Kabupaten Badung,age_group,20-24,perempuan,21.49,ribu_jiwa,2025,projection,total_population,3.1.2,57,,20–24
+51.03,2,Kabupaten Badung,age_group,20-24,,45.08,ribu_jiwa,2025,projection,total_population,3.1.2,57,,20–24
+51.03,2,Kabupaten Badung,age_group,25-29,laki_laki,23.92,ribu_jiwa,2025,projection,total_population,3.1.2,57,,25–29
+51.03,2,Kabupaten Badung,age_group,25-29,perempuan,22.55,ribu_jiwa,2025,projection,total_population,3.1.2,57,,25–29
+51.03,2,Kabupaten Badung,age_group,25-29,,46.47,ribu_jiwa,2025,projection,total_population,3.1.2,57,,25–29
+51.03,2,Kabupaten Badung,age_group,30-34,laki_laki,21.27,ribu_jiwa,2025,projection,total_population,3.1.2,57,,30–34
+51.03,2,Kabupaten Badung,age_group,30-34,perempuan,21.34,ribu_jiwa,2025,projection,total_population,3.1.2,57,,30–34
+51.03,2,Kabupaten Badung,age_group,30-34,,42.62,ribu_jiwa,2025,projection,total_population,3.1.2,57,,30–34
+51.03,2,Kabupaten Badung,age_group,35-39,laki_laki,19.62,ribu_jiwa,2025,projection,total_population,3.1.2,57,,35–39
+51.03,2,Kabupaten Badung,age_group,35-39,perempuan,20.03,ribu_jiwa,2025,projection,total_population,3.1.2,57,,35–39
+51.03,2,Kabupaten Badung,age_group,35-39,,39.64,ribu_jiwa,2025,projection,total_population,3.1.2,57,,35–39
+51.03,2,Kabupaten Badung,age_group,40-44,laki_laki,19.12,ribu_jiwa,2025,projection,total_population,3.1.2,57,,40–44
+51.03,2,Kabupaten Badung,age_group,40-44,perempuan,21.16,ribu_jiwa,2025,projection,total_population,3.1.2,57,,40–44
+51.03,2,Kabupaten Badung,age_group,40-44,,40.28,ribu_jiwa,2025,projection,total_population,3.1.2,57,,40–44
+51.03,2,Kabupaten Badung,age_group,45-49,laki_laki,21.45,ribu_jiwa,2025,projection,total_population,3.1.2,57,,45–49
+51.03,2,Kabupaten Badung,age_group,45-49,perempuan,22.46,ribu_jiwa,2025,projection,total_population,3.1.2,57,,45–49
+51.03,2,Kabupaten Badung,age_group,45-49,,43.91,ribu_jiwa,2025,projection,total_population,3.1.2,57,,45–49
+51.03,2,Kabupaten Badung,age_group,50-54,laki_laki,21.42,ribu_jiwa,2025,projection,total_population,3.1.2,57,,50–54
+51.03,2,Kabupaten Badung,age_group,50-54,perempuan,22.23,ribu_jiwa,2025,projection,total_population,3.1.2,57,,50–54
+51.03,2,Kabupaten Badung,age_group,50-54,,43.66,ribu_jiwa,2025,projection,total_population,3.1.2,57,,50–54
+51.03,2,Kabupaten Badung,age_group,55-59,laki_laki,19.80,ribu_jiwa,2025,projection,total_population,3.1.2,57,,55–59
+51.03,2,Kabupaten Badung,age_group,55-59,perempuan,19.26,ribu_jiwa,2025,projection,total_population,3.1.2,57,,55–59
+51.03,2,Kabupaten Badung,age_group,55-59,,39.05,ribu_jiwa,2025,projection,total_population,3.1.2,57,,55–59
+51.03,2,Kabupaten Badung,age_group,60-64,laki_laki,14.92,ribu_jiwa,2025,projection,total_population,3.1.2,57,,60–64
+51.03,2,Kabupaten Badung,age_group,60-64,perempuan,14.24,ribu_jiwa,2025,projection,total_population,3.1.2,57,,60–64
+51.03,2,Kabupaten Badung,age_group,60-64,,29.16,ribu_jiwa,2025,projection,total_population,3.1.2,57,,60–64
+51.03,2,Kabupaten Badung,age_group,65-69,laki_laki,10.02,ribu_jiwa,2025,projection,total_population,3.1.2,57,,65–69
+51.03,2,Kabupaten Badung,age_group,65-69,perempuan,10.18,ribu_jiwa,2025,projection,total_population,3.1.2,57,,65–69
+51.03,2,Kabupaten Badung,age_group,65-69,,20.20,ribu_jiwa,2025,projection,total_population,3.1.2,57,,65–69
+51.03,2,Kabupaten Badung,age_group,70-74,laki_laki,6.63,ribu_jiwa,2025,projection,total_population,3.1.2,57,,70–74
+51.03,2,Kabupaten Badung,age_group,70-74,perempuan,7.35,ribu_jiwa,2025,projection,total_population,3.1.2,57,,70–74
+51.03,2,Kabupaten Badung,age_group,70-74,,13.98,ribu_jiwa,2025,projection,total_population,3.1.2,57,,70–74
+51.03,2,Kabupaten Badung,age_group,75+,laki_laki,6.92,ribu_jiwa,2025,projection,total_population,3.1.2,57,,75+
+51.03,2,Kabupaten Badung,age_group,75+,perempuan,9.28,ribu_jiwa,2025,projection,total_population,3.1.2,57,,75+
+51.03,2,Kabupaten Badung,age_group,75+,,16.20,ribu_jiwa,2025,projection,total_population,3.1.2,57,,75+
+51.03.05,3,Kuta Selatan,religion,islam,,21101,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+51.03.05,3,Kuta Selatan,religion,kristen,,7966,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+51.03.05,3,Kuta Selatan,religion,katolik,,4609,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+51.03.05,3,Kuta Selatan,religion,hindu,,87859,jiwa,2025,registration,total_population,4.3.1,130,,Hindu
+51.03.05,3,Kuta Selatan,religion,buddha,,1958,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+51.03.01,3,Kuta,religion,islam,,19891,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+51.03.01,3,Kuta,religion,kristen,,2339,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+51.03.01,3,Kuta,religion,katolik,,1439,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+51.03.01,3,Kuta,religion,hindu,,33435,jiwa,2025,registration,total_population,4.3.1,130,,Hindu
+51.03.01,3,Kuta,religion,buddha,,949,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+51.03.06,3,Kuta Utara,religion,islam,,12613,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+51.03.06,3,Kuta Utara,religion,kristen,,6689,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+51.03.06,3,Kuta Utara,religion,katolik,,4567,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+51.03.06,3,Kuta Utara,religion,hindu,,65499,jiwa,2025,registration,total_population,4.3.1,130,,Hindu
+51.03.06,3,Kuta Utara,religion,buddha,,899,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+51.03.02,3,Mengwi,religion,islam,,3825,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+51.03.02,3,Mengwi,religion,kristen,,3672,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+51.03.02,3,Mengwi,religion,katolik,,1759,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+51.03.02,3,Mengwi,religion,hindu,,124653,jiwa,2025,registration,total_population,4.3.1,130,,Hindu
+51.03.02,3,Mengwi,religion,buddha,,283,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+51.03.03,3,Abiansemal,religion,islam,,1148,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+51.03.03,3,Abiansemal,religion,kristen,,433,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+51.03.03,3,Abiansemal,religion,katolik,,144,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+51.03.03,3,Abiansemal,religion,hindu,,98609,jiwa,2025,registration,total_population,4.3.1,130,,Hindu
+51.03.03,3,Abiansemal,religion,buddha,,73,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+51.03.04,3,Petang,religion,islam,,696,jiwa,2025,registration,total_population,4.3.1,130,,Islam
+51.03.04,3,Petang,religion,kristen,,113,jiwa,2025,registration,total_population,4.3.1,130,,Protestan
+51.03.04,3,Petang,religion,katolik,,30,jiwa,2025,registration,total_population,4.3.1,130,,Katolik
+51.03.04,3,Petang,religion,hindu,,32370,jiwa,2025,registration,total_population,4.3.1,130,,Hindu
+51.03.04,3,Petang,religion,buddha,,26,jiwa,2025,registration,total_population,4.3.1,130,,Budha
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/padi_padian,,108703,rupiah,2024,survey_estimate,per_capita,10.1,343,,Padi-padian
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/padi_padian,,105630,rupiah,2025,survey_estimate,per_capita,10.1,343,,Padi-padian
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/umbi_umbian,,9137,rupiah,2024,survey_estimate,per_capita,10.1,343,,Umbi-umbian
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/umbi_umbian,,10758,rupiah,2025,survey_estimate,per_capita,10.1,343,,Umbi-umbian
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,60744,rupiah,2024,survey_estimate,per_capita,10.1,343,,Ikan/udang/cumi/kerang
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,68143,rupiah,2025,survey_estimate,per_capita,10.1,343,,Ikan/udang/cumi/kerang
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/daging,,72833,rupiah,2024,survey_estimate,per_capita,10.1,343,,Daging
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/daging,,71013,rupiah,2025,survey_estimate,per_capita,10.1,343,,Daging
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/telur_dan_susu,,49315,rupiah,2024,survey_estimate,per_capita,10.1,343,,Telur dan susu
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/telur_dan_susu,,55370,rupiah,2025,survey_estimate,per_capita,10.1,343,,Telur dan susu
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/sayur_sayuran,,69158,rupiah,2024,survey_estimate,per_capita,10.1,343,,Sayur-sayuran
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/sayur_sayuran,,77383,rupiah,2025,survey_estimate,per_capita,10.1,343,,Sayur-sayuran
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/kacang_kacangan,,16673,rupiah,2024,survey_estimate,per_capita,10.1,343,,Kacang-kacangan
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/kacang_kacangan,,15708,rupiah,2025,survey_estimate,per_capita,10.1,343,,Kacang-kacangan
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/buah_buahan,,59192,rupiah,2024,survey_estimate,per_capita,10.1,343,,Buah-buahan
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/buah_buahan,,62239,rupiah,2025,survey_estimate,per_capita,10.1,343,,Buah-buahan
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/minyak_dan_kelapa,,15348,rupiah,2024,survey_estimate,per_capita,10.1,343,,Minyak dan kelapa
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16713,rupiah,2025,survey_estimate,per_capita,10.1,343,,Minyak dan kelapa
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/bahan_minuman,,18281,rupiah,2024,survey_estimate,per_capita,10.1,343,,Bahan minuman
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/bahan_minuman,,20222,rupiah,2025,survey_estimate,per_capita,10.1,343,,Bahan minuman
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/bumbu_bumbuan,,20054,rupiah,2024,survey_estimate,per_capita,10.1,343,,Bumbu-bumbuan
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/bumbu_bumbuan,,19622,rupiah,2025,survey_estimate,per_capita,10.1,343,,Bumbu-bumbuan
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/konsumsi_lainnya,,14868,rupiah,2024,survey_estimate,per_capita,10.1,343,,Konsumsi lainnya
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/konsumsi_lainnya,,15301,rupiah,2025,survey_estimate,per_capita,10.1,343,,Konsumsi lainnya
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,492296,rupiah,2024,survey_estimate,per_capita,10.1,343,,Makanan dan minuman jadi
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,480478,rupiah,2025,survey_estimate,per_capita,10.1,343,,Makanan dan minuman jadi
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/rokok,,75107,rupiah,2024,survey_estimate,per_capita,10.1,343,,Rokok
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/rokok,,79968,rupiah,2025,survey_estimate,per_capita,10.1,343,,Rokok
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/jumlah_makanan,,1081710,rupiah,2024,survey_estimate,per_capita,10.1,343,,Jumlah makanan
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/jumlah_makanan,,1098546,rupiah,2025,survey_estimate,per_capita,10.1,343,,Jumlah makanan
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,827715,rupiah,2024,survey_estimate,per_capita,10.1,343,,Perumahan dan fasilitas rumah tangga
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,826361,rupiah,2025,survey_estimate,per_capita,10.1,343,,Perumahan dan fasilitas rumah tangga
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,292114,rupiah,2024,survey_estimate,per_capita,10.1,343,,Aneka barang dan jasa
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,331741,rupiah,2025,survey_estimate,per_capita,10.1,343,,Aneka barang dan jasa
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,40484,rupiah,2024,survey_estimate,per_capita,10.1,343,,"Pakaian, alas kaki, dan tutup kepala"
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,49548,rupiah,2025,survey_estimate,per_capita,10.1,343,,"Pakaian, alas kaki, dan tutup kepala"
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/barang_tahan_lama,,96258,rupiah,2024,survey_estimate,per_capita,10.1,343,,Barang tahan lama
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/barang_tahan_lama,,150969,rupiah,2025,survey_estimate,per_capita,10.1,343,,Barang tahan lama
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,114797,rupiah,2024,survey_estimate,per_capita,10.1,343,,"Pajak, pungutan, dan asuransi"
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,111119,rupiah,2025,survey_estimate,per_capita,10.1,343,,"Pajak, pungutan, dan asuransi"
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,131581,rupiah,2024,survey_estimate,per_capita,10.1,343,,Keperluan pesta dan upacara/kenduri
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,141446,rupiah,2025,survey_estimate,per_capita,10.1,343,,Keperluan pesta dan upacara/kenduri
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1502949,rupiah,2024,survey_estimate,per_capita,10.1,343,,Jumlah bukan makanan
+51.03,2,Kabupaten Badung,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1611184,rupiah,2025,survey_estimate,per_capita,10.1,343,,Jumlah bukan makanan
+51.03,2,Kabupaten Badung,expenditure,total,,2584659,rupiah,2024,survey_estimate,per_capita,10.1,343,,
+51.03,2,Kabupaten Badung,expenditure,total,,2709730,rupiah,2025,survey_estimate,per_capita,10.1,343,,

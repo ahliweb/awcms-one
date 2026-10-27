@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-5205-kecamatan-520503-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "52.05.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Hu'u Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Dompu",
+  "publisherDomain": "5205",
+  "publisherWebsite": "https://dompukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Dompu (https://dompukab.bps.go.id), publikasi \"Kecamatan Hu'u Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5205010",
+  "publicationNumber": "52050.26010",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://dompukab.bps.go.id/id/publication/2026/09/28/be69f5cdad7560e8e3027078/kecamatan-hu-u-dalam-angka-2026.html",
+  "sourceFileSha256": "1fd10961c80136108e460a3c7a0c648e819c3826043979ea08d49e27d1574acb",
+  "sourceFileBytes": 6588327,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Dompu.",
+  "csvPath": "datasets/bps-5205-kecamatan-520503-dalam-angka-2026.csv",
+  "csvSha256": "a401cfa3fc0c515e2165f090d528d6f4b7c6ac4b89bb6d83ba5b3b6e95d893e3",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Huu, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Huu, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Marada\": unmatched ",
+    "table 3.1: row not stored: row \"Marada\": unmatched "
+  ]
+}

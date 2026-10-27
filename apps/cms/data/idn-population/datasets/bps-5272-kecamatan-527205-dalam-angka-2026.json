@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5272-kecamatan-527205-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "52.72.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mpunda Dalam Angka 2026",
+  "publisherName": "BPS Kota Bima",
+  "publisherDomain": "5272",
+  "publisherWebsite": "https://bimakota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bima (https://bimakota.bps.go.id), publikasi \"Kecamatan Mpunda Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5272011",
+  "publicationNumber": "52720.26011",
+  "issn": "2548-2742",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bimakota.bps.go.id/id/publication/2026/09/28/06700f4c79913c9f6433bfac/kecamatan-mpunda-dalam-angka-2026.html",
+  "sourceFileSha256": "1b26e5f2f0ab9e7a97b7894798baf6fd951e958b8858820eedb541515f98032b",
+  "sourceFileBytes": 7446310,
+  "sourcePages": [35, 36, 37],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bima.",
+  "csvPath": "datasets/bps-5272-kecamatan-527205-dalam-angka-2026.csv",
+  "csvSha256": "05136e0f21845dde105980fa82619da8c0b796c029710b00b906487606dc0b7e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Mpunda, 2025",
+      "printedPages": [35, 36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mpunda, 2025",
+      "printedPages": [37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

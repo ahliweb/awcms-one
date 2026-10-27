@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-5106-kecamatan-510602-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.06.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bangli Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bangli",
+  "publisherDomain": "5106",
+  "publisherWebsite": "https://banglikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bangli (https://banglikab.bps.go.id), publikasi \"Kecamatan Bangli Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5106020",
+  "publicationNumber": "51060.26008",
+  "issn": "2407-0211",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banglikab.bps.go.id/id/publication/2026/09/28/6ca9ec72acbf03e00c5397ea/kecamatan-bangli-dalam-angka-2026.html",
+  "sourceFileSha256": "f99133937e93e1864ba46b8cb64b0c832e2f8034836b7c50eefc2f4ff9df60b0",
+  "sourceFileBytes": 10958352,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bangli",
+  "csvPath": "datasets/bps-5106-kecamatan-510602-dalam-angka-2026.csv",
+  "csvSha256": "669b422951039ba4b8e2fa924a7da3cd37e269a2adfeeeda0d0da43ce1cfc359",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Bangli , 202 5",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bangli , 202 5",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: 1 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

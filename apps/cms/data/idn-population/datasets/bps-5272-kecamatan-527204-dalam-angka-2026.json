@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5272-kecamatan-527204-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "52.72.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Raba Dalam Angka 2026",
+  "publisherName": "BPS Kota Bima",
+  "publisherDomain": "5272",
+  "publisherWebsite": "https://bimakota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bima (https://bimakota.bps.go.id), publikasi \"Kecamatan Raba Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5272021",
+  "publicationNumber": "52720.26013",
+  "issn": "2548-2769",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bimakota.bps.go.id/id/publication/2026/09/28/cc0751ede4dbdbc0ae208343/kecamatan-raba-dalam-angka-2026.html",
+  "sourceFileSha256": "236d206bcc6c7b593d4f77b1728dc480037498ca8a9dfdcd89618911c814cca7",
+  "sourceFileBytes": 7745846,
+  "sourcePages": [35, 36, 37],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bima.",
+  "csvPath": "datasets/bps-5272-kecamatan-527204-dalam-angka-2026.csv",
+  "csvSha256": "47072b36f2e205617fe0aea9ef2f296dc9bdd1b116b23608e099ac77df999321",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Raba, 2025",
+      "printedPages": [35, 36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Raba, 2025",
+      "printedPages": [37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

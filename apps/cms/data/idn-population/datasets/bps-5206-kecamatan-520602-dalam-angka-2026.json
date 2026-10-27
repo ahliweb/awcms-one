@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5206-kecamatan-520602-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "52.06.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bolo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bima",
+  "publisherDomain": "5206",
+  "publisherWebsite": "https://bimakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bima (https://bimakab.bps.go.id), publikasi \"Kecamatan Bolo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5206020",
+  "publicationNumber": "52060.26007",
+  "issn": "2598-3423",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bimakab.bps.go.id/id/publication/2026/09/28/93df8508d341b62f57756fb3/kecamatan-bolo-dalam-angka-2026.html",
+  "sourceFileSha256": "27fd25dad4efe8ba015a66d3d847263c265c5461d3241d50793003d11174a5b0",
+  "sourceFileBytes": 4005807,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bima.",
+  "csvPath": "datasets/bps-5206-kecamatan-520602-dalam-angka-2026.csv",
+  "csvSha256": "2d4553c15b7d962b4f410dbcea9c5e34515d7bc44be9cae2561c6cf999e78890",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Bolo, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bolo, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,84 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.02.02.2008,4,Tegal Mengkeb,sex,laki_laki,,1358,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+51.02.02.2008,4,Tegal Mengkeb,sex,perempuan,,1349,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+51.02.02.2008,4,Tegal Mengkeb,total,total,,2707,jiwa,2025,registration,total_population,3.1,30,,
+51.02.02.2007,4,Beraban,sex,laki_laki,,789,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+51.02.02.2007,4,Beraban,sex,perempuan,,864,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+51.02.02.2007,4,Beraban,total,total,,1653,jiwa,2025,registration,total_population,3.1,30,,
+51.02.02.2006,4,Tangguntiti,sex,laki_laki,,1171,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+51.02.02.2006,4,Tangguntiti,sex,perempuan,,1164,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+51.02.02.2006,4,Tangguntiti,total,total,,2335,jiwa,2025,registration,total_population,3.1,30,,
+51.02.02.2004,4,Mambang,sex,perempuan,,1743,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+51.02.02.2004,4,Mambang,total,total,,3453,jiwa,2025,registration,total_population,3.1,30,,
+51.02.02.2003,4,Bantas,sex,laki_laki,,1685,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+51.02.02.2003,4,Bantas,sex,perempuan,,1709,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+51.02.02.2003,4,Bantas,total,total,,3394,jiwa,2025,registration,total_population,3.1,30,,
+51.02.02.2005,4,Megati,sex,laki_laki,,1493,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+51.02.02.2005,4,Megati,sex,perempuan,,1493,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+51.02.02.2005,4,Megati,total,total,,2986,jiwa,2025,registration,total_population,3.1,30,,
+51.02.02.2002,4,Gadungan,sex,laki_laki,,1557,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+51.02.02.2002,4,Gadungan,sex,perempuan,,1648,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+51.02.02.2002,4,Gadungan,total,total,,3205,jiwa,2025,registration,total_population,3.1,30,,
+51.02.02.2001,4,Gunung Salak,sex,laki_laki,,834,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+51.02.02.2001,4,Gunung Salak,sex,perempuan,,861,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+51.02.02.2001,4,Gunung Salak,total,total,,1695,jiwa,2025,registration,total_population,3.1,30,,
+51.02.02.2009,4,Dalang,sex,laki_laki,,1055,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+51.02.02.2009,4,Dalang,sex,perempuan,,1066,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+51.02.02.2009,4,Dalang,total,total,,2121,jiwa,2025,registration,total_population,3.1,30,,
+51.02.02.2010,4,Gadung Sari,sex,laki_laki,,547,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+51.02.02.2010,4,Gadung Sari,sex,perempuan,,572,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+51.02.02.2010,4,Gadung Sari,total,total,,1119,jiwa,2025,registration,total_population,3.1,30,,
+51.02.02,3,Kecamatan Selemadeg Timur,sex,laki_laki,,12199,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+51.02.02,3,Kecamatan Selemadeg Timur,sex,perempuan,,12469,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+51.02.02,3,Kecamatan Selemadeg Timur,total,total,,24668,jiwa,2025,registration,total_population,3.1,30,,
+51.02.02,3,Selemadeg Timur,age_group,0-4,laki_laki,587,jiwa,2025,registration,total_population,3.2,32,,00-04
+51.02.02,3,Selemadeg Timur,age_group,0-4,perempuan,554,jiwa,2025,registration,total_population,3.2,32,,00-04
+51.02.02,3,Selemadeg Timur,age_group,0-4,,1141,jiwa,2025,registration,total_population,3.2,32,,00-04
+51.02.02,3,Selemadeg Timur,age_group,5-9,laki_laki,671,jiwa,2025,registration,total_population,3.2,32,,05-09
+51.02.02,3,Selemadeg Timur,age_group,5-9,perempuan,653,jiwa,2025,registration,total_population,3.2,32,,05-09
+51.02.02,3,Selemadeg Timur,age_group,5-9,,1324,jiwa,2025,registration,total_population,3.2,32,,05-09
+51.02.02,3,Selemadeg Timur,age_group,10-14,laki_laki,749,jiwa,2025,registration,total_population,3.2,32,,10-14
+51.02.02,3,Selemadeg Timur,age_group,10-14,perempuan,628,jiwa,2025,registration,total_population,3.2,32,,10-14
+51.02.02,3,Selemadeg Timur,age_group,10-14,,1377,jiwa,2025,registration,total_population,3.2,32,,10-14
+51.02.02,3,Selemadeg Timur,age_group,15-19,laki_laki,745,jiwa,2025,registration,total_population,3.2,32,,15-19
+51.02.02,3,Selemadeg Timur,age_group,15-19,perempuan,720,jiwa,2025,registration,total_population,3.2,32,,15-19
+51.02.02,3,Selemadeg Timur,age_group,15-19,,1465,jiwa,2025,registration,total_population,3.2,32,,15-19
+51.02.02,3,Selemadeg Timur,age_group,20-24,laki_laki,828,jiwa,2025,registration,total_population,3.2,32,,20-24
+51.02.02,3,Selemadeg Timur,age_group,20-24,perempuan,739,jiwa,2025,registration,total_population,3.2,32,,20-24
+51.02.02,3,Selemadeg Timur,age_group,20-24,,1567,jiwa,2025,registration,total_population,3.2,32,,20-24
+51.02.02,3,Selemadeg Timur,age_group,25-29,laki_laki,871,jiwa,2025,registration,total_population,3.2,32,,25-29
+51.02.02,3,Selemadeg Timur,age_group,25-29,perempuan,835,jiwa,2025,registration,total_population,3.2,32,,25-29
+51.02.02,3,Selemadeg Timur,age_group,25-29,,1706,jiwa,2025,registration,total_population,3.2,32,,25-29
+51.02.02,3,Selemadeg Timur,age_group,30-34,laki_laki,734,jiwa,2025,registration,total_population,3.2,32,,30-34
+51.02.02,3,Selemadeg Timur,age_group,30-34,perempuan,757,jiwa,2025,registration,total_population,3.2,32,,30-34
+51.02.02,3,Selemadeg Timur,age_group,30-34,,1491,jiwa,2025,registration,total_population,3.2,32,,30-34
+51.02.02,3,Selemadeg Timur,age_group,35-39,laki_laki,628,jiwa,2025,registration,total_population,3.2,32,,35-39
+51.02.02,3,Selemadeg Timur,age_group,35-39,perempuan,694,jiwa,2025,registration,total_population,3.2,32,,35-39
+51.02.02,3,Selemadeg Timur,age_group,35-39,,1322,jiwa,2025,registration,total_population,3.2,32,,35-39
+51.02.02,3,Selemadeg Timur,age_group,40-44,laki_laki,786,jiwa,2025,registration,total_population,3.2,32,,40-44
+51.02.02,3,Selemadeg Timur,age_group,40-44,perempuan,723,jiwa,2025,registration,total_population,3.2,32,,40-44
+51.02.02,3,Selemadeg Timur,age_group,40-44,,1509,jiwa,2025,registration,total_population,3.2,32,,40-44
+51.02.02,3,Selemadeg Timur,age_group,45-49,laki_laki,754,jiwa,2025,registration,total_population,3.2,32,,45-49
+51.02.02,3,Selemadeg Timur,age_group,45-49,perempuan,827,jiwa,2025,registration,total_population,3.2,32,,45-49
+51.02.02,3,Selemadeg Timur,age_group,45-49,,1581,jiwa,2025,registration,total_population,3.2,32,,45-49
+51.02.02,3,Selemadeg Timur,age_group,50-54,laki_laki,947,jiwa,2025,registration,total_population,3.2,32,,50-54
+51.02.02,3,Selemadeg Timur,age_group,50-54,perempuan,1064,jiwa,2025,registration,total_population,3.2,32,,50-54
+51.02.02,3,Selemadeg Timur,age_group,50-54,,2011,jiwa,2025,registration,total_population,3.2,32,,50-54
+51.02.02,3,Selemadeg Timur,age_group,55-59,laki_laki,1066,jiwa,2025,registration,total_population,3.2,32,,55-59
+51.02.02,3,Selemadeg Timur,age_group,55-59,perempuan,1069,jiwa,2025,registration,total_population,3.2,32,,55-59
+51.02.02,3,Selemadeg Timur,age_group,55-59,,2135,jiwa,2025,registration,total_population,3.2,32,,55-59
+51.02.02,3,Selemadeg Timur,age_group,60-64,laki_laki,872,jiwa,2025,registration,total_population,3.2,32,,60-64
+51.02.02,3,Selemadeg Timur,age_group,60-64,perempuan,901,jiwa,2025,registration,total_population,3.2,32,,60-64
+51.02.02,3,Selemadeg Timur,age_group,60-64,,1773,jiwa,2025,registration,total_population,3.2,32,,60-64
+51.02.02,3,Selemadeg Timur,age_group,65-69,laki_laki,656,jiwa,2025,registration,total_population,3.2,32,,65-69
+51.02.02,3,Selemadeg Timur,age_group,65-69,perempuan,718,jiwa,2025,registration,total_population,3.2,32,,65-69
+51.02.02,3,Selemadeg Timur,age_group,65-69,,1374,jiwa,2025,registration,total_population,3.2,32,,65-69
+51.02.02,3,Selemadeg Timur,age_group,70-74,laki_laki,504,jiwa,2025,registration,total_population,3.2,32,,70-74
+51.02.02,3,Selemadeg Timur,age_group,70-74,perempuan,535,jiwa,2025,registration,total_population,3.2,32,,70-74
+51.02.02,3,Selemadeg Timur,age_group,70-74,,1039,jiwa,2025,registration,total_population,3.2,32,,70-74
+51.02.02,3,Selemadeg Timur,age_group,75+,laki_laki,801,jiwa,2025,registration,total_population,3.2,32,,75+
+51.02.02,3,Selemadeg Timur,age_group,75+,perempuan,1052,jiwa,2025,registration,total_population,3.2,32,,75+
+51.02.02,3,Selemadeg Timur,age_group,75+,,1853,jiwa,2025,registration,total_population,3.2,32,,75+
+51.02.02,3,Kecamatan Selemadeg Timur,sex,laki_laki,,12199,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+51.02.02,3,Kecamatan Selemadeg Timur,sex,perempuan,,12469,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+51.02.02,3,Kecamatan Selemadeg Timur,total,total,,24668,jiwa,2025,registration,total_population,3.2,32,,

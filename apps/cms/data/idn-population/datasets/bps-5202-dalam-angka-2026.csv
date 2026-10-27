@@ -1,0 +1,111 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.02.05,3,Praya Barat,total,total,,92691,jiwa,2025,registration,total_population,3.1.1,42,,
+52.02.11,3,Praya Barat Daya,total,total,,65881,jiwa,2025,registration,total_population,3.1.1,42,,
+52.02.04,3,Pujut,total,total,,131617,jiwa,2025,registration,total_population,3.1.1,42,,
+52.02.06,3,Praya Timur,total,total,,79033,jiwa,2025,registration,total_population,3.1.1,42,,
+52.02.07,3,Janapria,total,total,,95114,jiwa,2025,registration,total_population,3.1.1,42,,
+52.02.09,3,Kopang,total,total,,103856,jiwa,2025,registration,total_population,3.1.1,42,,
+52.02.01,3,Praya,total,total,,139015,jiwa,2025,registration,total_population,3.1.1,42,,
+52.02.10,3,Praya Tengah,total,total,,81670,jiwa,2025,registration,total_population,3.1.1,42,,
+52.02.02,3,Jonggat,total,total,,116890,jiwa,2025,registration,total_population,3.1.1,42,,
+52.02.08,3,Pringgarata,total,total,,84478,jiwa,2025,registration,total_population,3.1.1,42,,
+52.02.03,3,Batukliang,total,total,,98995,jiwa,2025,registration,total_population,3.1.1,42,,
+52.02.12,3,Batukliang Utara,total,total,,67935,jiwa,2025,registration,total_population,3.1.1,42,,
+52.02,2,Lombok Tengah,total,total,,1157175,jiwa,2025,registration,total_population,3.1.1,42,,
+52.02,2,Kabupaten Lombok Tengah,age_group,0-4,laki_laki,40886,jiwa,2025,registration,total_population,3.1.2,45,,0–4
+52.02,2,Kabupaten Lombok Tengah,age_group,0-4,perempuan,38485,jiwa,2025,registration,total_population,3.1.2,45,,0–4
+52.02,2,Kabupaten Lombok Tengah,age_group,0-4,,79371,jiwa,2025,registration,total_population,3.1.2,45,,0–4
+52.02,2,Kabupaten Lombok Tengah,age_group,5-9,laki_laki,58657,jiwa,2025,registration,total_population,3.1.2,45,,5–9
+52.02,2,Kabupaten Lombok Tengah,age_group,5-9,perempuan,54711,jiwa,2025,registration,total_population,3.1.2,45,,5–9
+52.02,2,Kabupaten Lombok Tengah,age_group,5-9,,113368,jiwa,2025,registration,total_population,3.1.2,45,,5–9
+52.02,2,Kabupaten Lombok Tengah,age_group,10-14,laki_laki,56111,jiwa,2025,registration,total_population,3.1.2,45,,10–14
+52.02,2,Kabupaten Lombok Tengah,age_group,10-14,perempuan,52836,jiwa,2025,registration,total_population,3.1.2,45,,10–14
+52.02,2,Kabupaten Lombok Tengah,age_group,10-14,,108947,jiwa,2025,registration,total_population,3.1.2,45,,10–14
+52.02,2,Kabupaten Lombok Tengah,age_group,15-19,laki_laki,44482,jiwa,2025,registration,total_population,3.1.2,45,,15–19
+52.02,2,Kabupaten Lombok Tengah,age_group,15-19,perempuan,42885,jiwa,2025,registration,total_population,3.1.2,45,,15–19
+52.02,2,Kabupaten Lombok Tengah,age_group,15-19,,87367,jiwa,2025,registration,total_population,3.1.2,45,,15–19
+52.02,2,Kabupaten Lombok Tengah,age_group,20-24,laki_laki,42094,jiwa,2025,registration,total_population,3.1.2,45,,20–24
+52.02,2,Kabupaten Lombok Tengah,age_group,20-24,perempuan,40249,jiwa,2025,registration,total_population,3.1.2,45,,20–24
+52.02,2,Kabupaten Lombok Tengah,age_group,20-24,,82343,jiwa,2025,registration,total_population,3.1.2,45,,20–24
+52.02,2,Kabupaten Lombok Tengah,age_group,25-29,laki_laki,42635,jiwa,2025,registration,total_population,3.1.2,45,,25–29
+52.02,2,Kabupaten Lombok Tengah,age_group,25-29,perempuan,43289,jiwa,2025,registration,total_population,3.1.2,45,,25–29
+52.02,2,Kabupaten Lombok Tengah,age_group,25-29,,85924,jiwa,2025,registration,total_population,3.1.2,45,,25–29
+52.02,2,Kabupaten Lombok Tengah,age_group,30-34,laki_laki,41230,jiwa,2025,registration,total_population,3.1.2,45,,30–34
+52.02,2,Kabupaten Lombok Tengah,age_group,30-34,perempuan,42266,jiwa,2025,registration,total_population,3.1.2,45,,30–34
+52.02,2,Kabupaten Lombok Tengah,age_group,30-34,,83496,jiwa,2025,registration,total_population,3.1.2,45,,30–34
+52.02,2,Kabupaten Lombok Tengah,age_group,35-39,laki_laki,44411,jiwa,2025,registration,total_population,3.1.2,45,,35–39
+52.02,2,Kabupaten Lombok Tengah,age_group,35-39,perempuan,47287,jiwa,2025,registration,total_population,3.1.2,45,,35–39
+52.02,2,Kabupaten Lombok Tengah,age_group,35-39,,91698,jiwa,2025,registration,total_population,3.1.2,45,,35–39
+52.02,2,Kabupaten Lombok Tengah,age_group,40-44,laki_laki,43967,jiwa,2025,registration,total_population,3.1.2,45,,40–44
+52.02,2,Kabupaten Lombok Tengah,age_group,40-44,perempuan,46766,jiwa,2025,registration,total_population,3.1.2,45,,40–44
+52.02,2,Kabupaten Lombok Tengah,age_group,40-44,,90733,jiwa,2025,registration,total_population,3.1.2,45,,40–44
+52.02,2,Kabupaten Lombok Tengah,age_group,45-49,laki_laki,42147,jiwa,2025,registration,total_population,3.1.2,45,,45–49
+52.02,2,Kabupaten Lombok Tengah,age_group,45-49,perempuan,45233,jiwa,2025,registration,total_population,3.1.2,45,,45–49
+52.02,2,Kabupaten Lombok Tengah,age_group,45-49,,87380,jiwa,2025,registration,total_population,3.1.2,45,,45–49
+52.02,2,Kabupaten Lombok Tengah,age_group,50-54,laki_laki,33938,jiwa,2025,registration,total_population,3.1.2,45,,50–54
+52.02,2,Kabupaten Lombok Tengah,age_group,50-54,perempuan,32923,jiwa,2025,registration,total_population,3.1.2,45,,50–54
+52.02,2,Kabupaten Lombok Tengah,age_group,50-54,,66861,jiwa,2025,registration,total_population,3.1.2,45,,50–54
+52.02,2,Kabupaten Lombok Tengah,age_group,55-59,laki_laki,28432,jiwa,2025,registration,total_population,3.1.2,45,,55–59
+52.02,2,Kabupaten Lombok Tengah,age_group,55-59,perempuan,30983,jiwa,2025,registration,total_population,3.1.2,45,,55–59
+52.02,2,Kabupaten Lombok Tengah,age_group,55-59,,59415,jiwa,2025,registration,total_population,3.1.2,45,,55–59
+52.02,2,Kabupaten Lombok Tengah,age_group,60-64,laki_laki,18230,jiwa,2025,registration,total_population,3.1.2,45,,60–64
+52.02,2,Kabupaten Lombok Tengah,age_group,60-64,perempuan,20451,jiwa,2025,registration,total_population,3.1.2,45,,60–64
+52.02,2,Kabupaten Lombok Tengah,age_group,60-64,,38681,jiwa,2025,registration,total_population,3.1.2,45,,60–64
+52.02,2,Kabupaten Lombok Tengah,age_group,65-69,laki_laki,16400,jiwa,2025,registration,total_population,3.1.2,45,,65–69
+52.02,2,Kabupaten Lombok Tengah,age_group,65-69,perempuan,19126,jiwa,2025,registration,total_population,3.1.2,45,,65–69
+52.02,2,Kabupaten Lombok Tengah,age_group,65-69,,35526,jiwa,2025,registration,total_population,3.1.2,45,,65–69
+52.02,2,Kabupaten Lombok Tengah,age_group,70-74,laki_laki,8300,jiwa,2025,registration,total_population,3.1.2,45,,70–74
+52.02,2,Kabupaten Lombok Tengah,age_group,70-74,perempuan,9536,jiwa,2025,registration,total_population,3.1.2,45,,70–74
+52.02,2,Kabupaten Lombok Tengah,age_group,70-74,,17836,jiwa,2025,registration,total_population,3.1.2,45,,70–74
+52.02,2,Kabupaten Lombok Tengah,age_group,75+,laki_laki,12771,jiwa,2025,registration,total_population,3.1.2,45,,75+
+52.02,2,Kabupaten Lombok Tengah,age_group,75+,perempuan,15458,jiwa,2025,registration,total_population,3.1.2,45,,75+
+52.02,2,Kabupaten Lombok Tengah,age_group,75+,,28229,jiwa,2025,registration,total_population,3.1.2,45,,75+
+52.02,2,Lombok Tengah,sex,laki_laki,,574691,jiwa,2025,registration,total_population,3.1.2,45,,Laki-Laki
+52.02,2,Lombok Tengah,sex,perempuan,,582484,jiwa,2025,registration,total_population,3.1.2,45,,Perempuan
+52.02,2,Lombok Tengah,total,total,,1157175,jiwa,2025,registration,total_population,3.1.2,45,,
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/padi_padian,,109647,rupiah,2024,survey_estimate,per_capita,10.1,228,,Padi-padian
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/padi_padian,,95386,rupiah,2025,survey_estimate,per_capita,10.1,228,,Padi-padian
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/umbi_umbian,,2649,rupiah,2024,survey_estimate,per_capita,10.1,228,,Umbi-umbian
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/umbi_umbian,,4330,rupiah,2025,survey_estimate,per_capita,10.1,228,,Umbi-umbian
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,45958,rupiah,2024,survey_estimate,per_capita,10.1,228,,Ikan/udang/cumi/kerang
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,54254,rupiah,2025,survey_estimate,per_capita,10.1,228,,Ikan/udang/cumi/kerang
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/daging,,29563,rupiah,2024,survey_estimate,per_capita,10.1,228,,Daging
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/daging,,36779,rupiah,2025,survey_estimate,per_capita,10.1,228,,Daging
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/telur_dan_susu,,22491,rupiah,2024,survey_estimate,per_capita,10.1,228,,Telur dan susu
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/telur_dan_susu,,27241,rupiah,2025,survey_estimate,per_capita,10.1,228,,Telur dan susu
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/sayur_sayuran,,59338,rupiah,2024,survey_estimate,per_capita,10.1,228,,Sayur-sayuran
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/sayur_sayuran,,82091,rupiah,2025,survey_estimate,per_capita,10.1,228,,Sayur-sayuran
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/kacang_kacangan,,14557,rupiah,2024,survey_estimate,per_capita,10.1,228,,Kacang-kacangan
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/kacang_kacangan,,18600,rupiah,2025,survey_estimate,per_capita,10.1,228,,Kacang-kacangan
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/buah_buahan,,36098,rupiah,2024,survey_estimate,per_capita,10.1,228,,Buah-buahan
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/buah_buahan,,42042,rupiah,2025,survey_estimate,per_capita,10.1,228,,Buah-buahan
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/minyak_dan_kelapa,,15093,rupiah,2024,survey_estimate,per_capita,10.1,228,,Minyak dan kelapa
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19286,rupiah,2025,survey_estimate,per_capita,10.1,228,,Minyak dan kelapa
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/bahan_minuman,,16546,rupiah,2024,survey_estimate,per_capita,10.1,228,,Bahan minuman
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/bahan_minuman,,19576,rupiah,2025,survey_estimate,per_capita,10.1,228,,Bahan minuman
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/bumbu_bumbuan,,13461,rupiah,2024,survey_estimate,per_capita,10.1,228,,Bumbu-bumbuan
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/bumbu_bumbuan,,15183,rupiah,2025,survey_estimate,per_capita,10.1,228,,Bumbu-bumbuan
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/konsumsi_lainnya,,10076,rupiah,2024,survey_estimate,per_capita,10.1,228,,Konsumsi lainnya
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/konsumsi_lainnya,,13048,rupiah,2025,survey_estimate,per_capita,10.1,228,,Konsumsi lainnya
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,193189,rupiah,2024,survey_estimate,per_capita,10.1,228,,Makanan dan minuman jadi
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,227405,rupiah,2025,survey_estimate,per_capita,10.1,228,,Makanan dan minuman jadi
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/rokok,,79304,rupiah,2024,survey_estimate,per_capita,10.1,228,,Rokok
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/rokok,,79061,rupiah,2025,survey_estimate,per_capita,10.1,228,,Rokok
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/jumlah_makanan,,647989,rupiah,2024,survey_estimate,per_capita,10.1,228,,Jumlah makanan
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/jumlah_makanan,,734281,rupiah,2025,survey_estimate,per_capita,10.1,228,,Jumlah makanan
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,254462,rupiah,2024,survey_estimate,per_capita,10.1,228,,Perumahan dan fasilitas rumah tangga
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,324054,rupiah,2025,survey_estimate,per_capita,10.1,228,,Perumahan dan fasilitas rumah tangga
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,87442,rupiah,2024,survey_estimate,per_capita,10.1,228,,Aneka barang dan jasa
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,119399,rupiah,2025,survey_estimate,per_capita,10.1,228,,Aneka barang dan jasa
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,28063,rupiah,2024,survey_estimate,per_capita,10.1,228,,"Pakaian, alas kaki, dan tutup kepala"
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,38288,rupiah,2025,survey_estimate,per_capita,10.1,228,,"Pakaian, alas kaki, dan tutup kepala"
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/barang_tahan_lama,,51116,rupiah,2024,survey_estimate,per_capita,10.1,228,,Barang tahan lama
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/barang_tahan_lama,,82692,rupiah,2025,survey_estimate,per_capita,10.1,228,,Barang tahan lama
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,26924,rupiah,2024,survey_estimate,per_capita,10.1,228,,"Pajak, pungutan, dan asuransi"
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,37675,rupiah,2025,survey_estimate,per_capita,10.1,228,,"Pajak, pungutan, dan asuransi"
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,15807,rupiah,2024,survey_estimate,per_capita,10.1,228,,Keperluan pesta dan upacara/kenduri
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,25459,rupiah,2025,survey_estimate,per_capita,10.1,228,,Keperluan pesta dan upacara/kenduri
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,463814,rupiah,2024,survey_estimate,per_capita,10.1,228,,Jumlah bukan makanan
+52.02,2,Kabupaten Lombok Tengah,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,627586,rupiah,2025,survey_estimate,per_capita,10.1,228,,Jumlah bukan makanan
+52.02,2,Kabupaten Lombok Tengah,expenditure,total,,1111803,rupiah,2024,survey_estimate,per_capita,10.1,228,,
+52.02,2,Kabupaten Lombok Tengah,expenditure,total,,1361849,rupiah,2025,survey_estimate,per_capita,10.1,228,,

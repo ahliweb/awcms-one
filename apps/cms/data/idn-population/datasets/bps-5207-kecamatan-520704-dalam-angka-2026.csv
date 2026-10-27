@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.07.04.2002,4,Sekongkang Bawah,sex,laki_laki,,1132,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+52.07.04.2002,4,Sekongkang Bawah,sex,perempuan,,933,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+52.07.04.2002,4,Sekongkang Bawah,total,total,,2065,jiwa,2025,registration,total_population,3.1,34,,
+52.07.04.2001,4,Sekongkang Atas,sex,laki_laki,,934,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+52.07.04.2001,4,Sekongkang Atas,sex,perempuan,,877,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+52.07.04.2001,4,Sekongkang Atas,total,total,,1811,jiwa,2025,registration,total_population,3.1,34,,
+52.07.04.2003,4,Tongo,sex,laki_laki,,1034,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+52.07.04.2003,4,Tongo,sex,perempuan,,955,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+52.07.04.2003,4,Tongo,total,total,,1989,jiwa,2025,registration,total_population,3.1,34,,
+52.07.04.2004,4,Ai Kangkung,sex,laki_laki,,925,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+52.07.04.2004,4,Ai Kangkung,sex,perempuan,,782,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+52.07.04.2004,4,Ai Kangkung,total,total,,1707,jiwa,2025,registration,total_population,3.1,34,,
+52.07.04.2005,4,Tatar,sex,laki_laki,,457,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+52.07.04.2005,4,Tatar,sex,perempuan,,415,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+52.07.04.2005,4,Tatar,total,total,,872,jiwa,2025,registration,total_population,3.1,34,,
+52.07.04.2006,4,Talonang Baru,sex,laki_laki,,1165,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+52.07.04.2006,4,Talonang Baru,sex,perempuan,,972,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+52.07.04.2006,4,Talonang Baru,total,total,,2137,jiwa,2025,registration,total_population,3.1,34,,
+52.07.04.2007,4,Kemuning,sex,laki_laki,,675,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+52.07.04.2007,4,Kemuning,sex,perempuan,,583,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+52.07.04.2007,4,Kemuning,total,total,,1258,jiwa,2025,registration,total_population,3.1,34,,
+52.07.04,3,Sekongkang,sex,laki_laki,,6322,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+52.07.04,3,Sekongkang,sex,perempuan,,5517,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+52.07.04,3,Sekongkang,total,total,,11839,jiwa,2025,registration,total_population,3.1,34,,

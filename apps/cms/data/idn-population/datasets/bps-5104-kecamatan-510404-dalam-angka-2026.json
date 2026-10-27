@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-5104-kecamatan-510404-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.04.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tampaksiring Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Gianyar",
+  "publisherDomain": "5104",
+  "publisherWebsite": "https://gianyarkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Gianyar (https://gianyarkab.bps.go.id), publikasi \"Kecamatan Tampaksiring Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "51040.26014",
+  "issn": "2502-308X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://gianyarkab.bps.go.id/id/publication/2026/09/28/826cc7d5c3f015a5e922cc44/kecamatan-tampaksiring-dalam-angka-2026.html",
+  "sourceFileSha256": "00330e483a3afbd2408657ec99b9f0cc60203859a73b794513b459d7c7546273",
+  "sourceFileBytes": 7669219,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Gianyar.",
+  "csvPath": "datasets/bps-5104-kecamatan-510404-dalam-angka-2026.csv",
+  "csvSha256": "b8bbfdcfa2829752acbd681dd2d70fb434f087d767ce3e720cc2de5872465361",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Tampaksiring, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tampaksiring, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Tampaksiring 100.00\": unmatched ",
+    "table 3.2: the rows of region 51.04.04 are not stored: age_group (perempuan) vs sex value: parts sum 21879.0000 != 25539.0000 (diff 3660.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5171-kecamatan-517101-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.71.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Denpasar Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kota Denpasar",
+  "publisherDomain": "5171",
+  "publisherWebsite": "https://denpasarkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Denpasar (https://denpasarkota.bps.go.id), publikasi \"Kecamatan Denpasar Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5171010",
+  "publicationNumber": "51710.26007",
+  "issn": "2477-7471",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://denpasarkota.bps.go.id/id/publication/2026/09/28/ea13112d61ffe10eb3518f42/kecamatan-denpasar-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "34cb624db4573c64327286f0951e4cb7d457211729bde6c1c55ad689e4114f69",
+  "sourceFileBytes": 4499209,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Denpasar",
+  "csvPath": "datasets/bps-5171-kecamatan-517101-dalam-angka-2026.csv",
+  "csvSha256": "7c5fd6e3b8bffef6d03be6877af8351e25438e35f1cd9d8d6ca545e2355ac8a8",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Denpasar Selatan, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Denpasar Selatan, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-5202-kecamatan-520208-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "52.02.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pringgarata Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN LOMBOK TENGAH",
+  "publisherDomain": "5202",
+  "publisherWebsite": "https://lomboktengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN LOMBOK TENGAH (https://lomboktengahkab.bps.go.id), publikasi \"Kecamatan Pringgarata Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5202080",
+  "publicationNumber": "5202.26016",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lomboktengahkab.bps.go.id/id/publication/2026/09/28/f179ce021d56d5710de399e4/kecamatan-pringgarata-dalam-angka-2026.html",
+  "sourceFileSha256": "a0ae2549cdeb5ed8f2e1f8a8303d576f51f2e95ffc9161e8700d5cf7ddcf4f89",
+  "sourceFileBytes": 8689274,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lombok Tengah.",
+  "csvPath": "datasets/bps-5202-kecamatan-520208-dalam-angka-2026.csv",
+  "csvSha256": "59e5f13e9d4224274a529530026d05ec1e2e441ef4ed15baf43682625763bf5e",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Bilebante, Kecamatan Pringgarata, 2026",
+      "printedPages": [28],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Bilebante 2.043\": unmatched ",
+    "table 3.1: row not stored: row \"Bagu 3.477\": unmatched ",
+    "table 3.1: row not stored: row \"Sintung 4.941\": unmatched ",
+    "table 3.1: row not stored: row \"Pringgarata 5.614\": unmatched ",
+    "table 3.1: row not stored: row \"Murbaya 3.300\": unmatched ",
+    "table 3.1: row not stored: row \"Sepakek 4.080\": unmatched ",
+    "table 3.1: row not stored: row \"Pemepek 4.692\": unmatched ",
+    "table 3.1: row not stored: row \"Menemeng 3.974\": unmatched ",
+    "table 3.1: row not stored: row \"Arjangka 3.399\": unmatched ",
+    "table 3.1: row not stored: row \"Taman Indah 2.483\": unmatched ",
+    "table 3.1: row not stored: row \"Sisik 3.564\": unmatched ",
+    "table 3.1: row not stored: row \"Pringgarata 41.567\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

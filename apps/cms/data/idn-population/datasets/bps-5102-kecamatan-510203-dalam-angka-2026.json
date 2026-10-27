@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-5102-kecamatan-510203-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.02.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Selemadeg Barat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tabanan",
+  "publisherDomain": "5102",
+  "publisherWebsite": "https://tabanankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tabanan (https://tabanankab.bps.go.id), publikasi \"Kecamatan Selemadeg Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5102012",
+  "publicationNumber": "51020.26007",
+  "issn": "2477-7110",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tabanankab.bps.go.id/id/publication/2026/09/28/ae41c16e04872c8ade758a8b/kecamatan-selemadeg-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "448c5e10912fda098b1c8d100b0771797709c1e5834885592057516e09d62617",
+  "sourceFileBytes": 12091290,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tabanan .",
+  "csvPath": "datasets/bps-5102-kecamatan-510203-dalam-angka-2026.csv",
+  "csvSha256": "33a140068c9f216e799642f790b5fa2334f2760693a127f11b57e06d22bbfd8c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Selemadeg Barat , 202 5",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Selemadeg Barat , 202 5",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Kediri\": unmatched "
+  ]
+}

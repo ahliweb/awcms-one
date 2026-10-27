@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-5202-kecamatan-520205-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "52.02.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Praya Barat Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN LOMBOK TENGAH",
+  "publisherDomain": "5202",
+  "publisherWebsite": "https://lomboktengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN LOMBOK TENGAH (https://lomboktengahkab.bps.go.id), publikasi \"Kecamatan Praya Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5202010",
+  "publicationNumber": "52020.26007",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lomboktengahkab.bps.go.id/id/publication/2026/09/28/e1d96286f2cfa870fdc98a25/kecamatan-praya-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "70e4a93a05e354d53218e1e6aedda7ec888a5527d1cb1553513f8f295d0fdb9b",
+  "sourceFileBytes": 27835482,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lombok Tengah.",
+  "csvPath": "datasets/bps-5202-kecamatan-520205-dalam-angka-2026.csv",
+  "csvSha256": "6507419df90a581fd9d839a1085ea34de2e22e01eb7d7c30bbdb60d22c8e2f96",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Desa Selong Belanak, Kecamatan Praya Barat, 2026",
+      "printedPages": [28],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Selong Belanak 2.963\": unmatched ",
+    "table 3.1: row not stored: row \"Mekar Sari 2.360\": unmatched ",
+    "table 3.1: row not stored: row \"Banyu Urip 3.484\": unmatched ",
+    "table 3.1: row not stored: row \"Kateng 4.952\": unmatched ",
+    "table 3.1: row not stored: row \"Mangkung 7.809\": unmatched ",
+    "table 3.1: row not stored: row \"Bondir 5.063\": unmatched ",
+    "table 3.1: row not stored: row \"Setanggor 2.224\": unmatched ",
+    "table 3.1: row not stored: row \"Penujak 7.272\": unmatched ",
+    "table 3.1: row not stored: row \"Batujai 9.456\": unmatched ",
+    "table 3.1: row not stored: row \"Tanak Rarang 1.050\": unmatched ",
+    "table 3.1: row not stored: row \"Praya Barat 46.633\": unmatched ",
+    "table 3.1: row not stored: row \"Bondir\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

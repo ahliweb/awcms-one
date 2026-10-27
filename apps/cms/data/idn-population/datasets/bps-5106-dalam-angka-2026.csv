@@ -1,0 +1,138 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.06.01,3,Susut,total,total,,49783,jiwa,2025,registration,total_population,3.1.1,53,,
+51.06.02,3,Bangli,total,total,,54552,jiwa,2025,registration,total_population,3.1.1,53,,
+51.06.03,3,Tembuku,total,total,,43942,jiwa,2025,registration,total_population,3.1.1,53,,
+51.06.04,3,Kintamani,total,total,,112764,jiwa,2025,registration,total_population,3.1.1,53,,
+51.06,2,Kabupaten Bangli,total,total,,261041,jiwa,2025,registration,total_population,3.1.1,53,,
+51.06,2,Kabupaten Bangli,age_group,0-4,laki_laki,6852,jiwa,2025,registration,total_population,3.1.2,56,,0–4
+51.06,2,Kabupaten Bangli,age_group,0-4,perempuan,6165,jiwa,2025,registration,total_population,3.1.2,56,,0–4
+51.06,2,Kabupaten Bangli,age_group,0-4,,13017,jiwa,2025,registration,total_population,3.1.2,56,,0–4
+51.06,2,Kabupaten Bangli,age_group,5-9,laki_laki,9676,jiwa,2025,registration,total_population,3.1.2,56,,5–9
+51.06,2,Kabupaten Bangli,age_group,5-9,perempuan,8997,jiwa,2025,registration,total_population,3.1.2,56,,5–9
+51.06,2,Kabupaten Bangli,age_group,5-9,,18673,jiwa,2025,registration,total_population,3.1.2,56,,5–9
+51.06,2,Kabupaten Bangli,age_group,10-14,laki_laki,10514,jiwa,2025,registration,total_population,3.1.2,56,,10–14
+51.06,2,Kabupaten Bangli,age_group,10-14,perempuan,9951,jiwa,2025,registration,total_population,3.1.2,56,,10–14
+51.06,2,Kabupaten Bangli,age_group,10-14,,20465,jiwa,2025,registration,total_population,3.1.2,56,,10–14
+51.06,2,Kabupaten Bangli,age_group,15-19,laki_laki,10701,jiwa,2025,registration,total_population,3.1.2,56,,15–19
+51.06,2,Kabupaten Bangli,age_group,15-19,perempuan,10001,jiwa,2025,registration,total_population,3.1.2,56,,15–19
+51.06,2,Kabupaten Bangli,age_group,15-19,,20702,jiwa,2025,registration,total_population,3.1.2,56,,15–19
+51.06,2,Kabupaten Bangli,age_group,20-24,laki_laki,10651,jiwa,2025,registration,total_population,3.1.2,56,,20–24
+51.06,2,Kabupaten Bangli,age_group,20-24,perempuan,9940,jiwa,2025,registration,total_population,3.1.2,56,,20–24
+51.06,2,Kabupaten Bangli,age_group,20-24,,20591,jiwa,2025,registration,total_population,3.1.2,56,,20–24
+51.06,2,Kabupaten Bangli,age_group,25-29,laki_laki,10224,jiwa,2025,registration,total_population,3.1.2,56,,25–29
+51.06,2,Kabupaten Bangli,age_group,25-29,perempuan,9781,jiwa,2025,registration,total_population,3.1.2,56,,25–29
+51.06,2,Kabupaten Bangli,age_group,25-29,,20005,jiwa,2025,registration,total_population,3.1.2,56,,25–29
+51.06,2,Kabupaten Bangli,age_group,30-34,laki_laki,9148,jiwa,2025,registration,total_population,3.1.2,56,,30–34
+51.06,2,Kabupaten Bangli,age_group,30-34,perempuan,8573,jiwa,2025,registration,total_population,3.1.2,56,,30–34
+51.06,2,Kabupaten Bangli,age_group,30-34,,17721,jiwa,2025,registration,total_population,3.1.2,56,,30–34
+51.06,2,Kabupaten Bangli,age_group,35-39,laki_laki,8364,jiwa,2025,registration,total_population,3.1.2,56,,35–39
+51.06,2,Kabupaten Bangli,age_group,35-39,perempuan,8164,jiwa,2025,registration,total_population,3.1.2,56,,35–39
+51.06,2,Kabupaten Bangli,age_group,35-39,,16528,jiwa,2025,registration,total_population,3.1.2,56,,35–39
+51.06,2,Kabupaten Bangli,age_group,40-44,laki_laki,9508,jiwa,2025,registration,total_population,3.1.2,56,,40–44
+51.06,2,Kabupaten Bangli,age_group,40-44,perempuan,9283,jiwa,2025,registration,total_population,3.1.2,56,,40–44
+51.06,2,Kabupaten Bangli,age_group,40-44,,18791,jiwa,2025,registration,total_population,3.1.2,56,,40–44
+51.06,2,Kabupaten Bangli,age_group,45-49,laki_laki,9754,jiwa,2025,registration,total_population,3.1.2,56,,45–49
+51.06,2,Kabupaten Bangli,age_group,45-49,perempuan,9444,jiwa,2025,registration,total_population,3.1.2,56,,45–49
+51.06,2,Kabupaten Bangli,age_group,45-49,,19198,jiwa,2025,registration,total_population,3.1.2,56,,45–49
+51.06,2,Kabupaten Bangli,age_group,50-54,laki_laki,9730,jiwa,2025,registration,total_population,3.1.2,56,,50–54
+51.06,2,Kabupaten Bangli,age_group,50-54,perempuan,9646,jiwa,2025,registration,total_population,3.1.2,56,,50–54
+51.06,2,Kabupaten Bangli,age_group,50-54,,19376,jiwa,2025,registration,total_population,3.1.2,56,,50–54
+51.06,2,Kabupaten Bangli,age_group,55-59,laki_laki,7300,jiwa,2025,registration,total_population,3.1.2,56,,55–59
+51.06,2,Kabupaten Bangli,age_group,55-59,perempuan,7507,jiwa,2025,registration,total_population,3.1.2,56,,55–59
+51.06,2,Kabupaten Bangli,age_group,55-59,,14807,jiwa,2025,registration,total_population,3.1.2,56,,55–59
+51.06,2,Kabupaten Bangli,age_group,60-64,laki_laki,5956,jiwa,2025,registration,total_population,3.1.2,56,,60–64
+51.06,2,Kabupaten Bangli,age_group,60-64,perempuan,6204,jiwa,2025,registration,total_population,3.1.2,56,,60–64
+51.06,2,Kabupaten Bangli,age_group,60-64,,12160,jiwa,2025,registration,total_population,3.1.2,56,,60–64
+51.06,2,Kabupaten Bangli,age_group,65-69,laki_laki,5128,jiwa,2025,registration,total_population,3.1.2,56,,65–69
+51.06,2,Kabupaten Bangli,age_group,65-69,perempuan,5648,jiwa,2025,registration,total_population,3.1.2,56,,65–69
+51.06,2,Kabupaten Bangli,age_group,65-69,,10776,jiwa,2025,registration,total_population,3.1.2,56,,65–69
+51.06,2,Kabupaten Bangli,age_group,70-74,laki_laki,3550,jiwa,2025,registration,total_population,3.1.2,56,,70–74
+51.06,2,Kabupaten Bangli,age_group,70-74,perempuan,3588,jiwa,2025,registration,total_population,3.1.2,56,,70–74
+51.06,2,Kabupaten Bangli,age_group,70-74,,7138,jiwa,2025,registration,total_population,3.1.2,56,,70–74
+51.06,2,Kabupaten Bangli,age_group,75+,laki_laki,5075,jiwa,2025,registration,total_population,3.1.2,56,,75+
+51.06,2,Kabupaten Bangli,age_group,75+,perempuan,6018,jiwa,2025,registration,total_population,3.1.2,56,,75+
+51.06,2,Kabupaten Bangli,age_group,75+,,11093,jiwa,2025,registration,total_population,3.1.2,56,,75+
+51.06,2,Kabupaten Bangli,sex,laki_laki,,132131,jiwa,2025,registration,total_population,3.1.2,56,,Laki-Laki
+51.06,2,Kabupaten Bangli,sex,perempuan,,128910,jiwa,2025,registration,total_population,3.1.2,56,,Perempuan
+51.06,2,Kabupaten Bangli,total,total,,261041,jiwa,2025,registration,total_population,3.1.2,56,,
+51.06.01,3,Susut,religion,islam,,108,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+51.06.01,3,Susut,religion,kristen,,21,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+51.06.01,3,Susut,religion,katolik,,6,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+51.06.01,3,Susut,religion,hindu,,49648,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+51.06.01,3,Susut,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Budha
+51.06.01,3,Susut,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,
+51.06.01,3,Susut,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Lainnya
+51.06.02,3,Bangli,religion,islam,,1375,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+51.06.02,3,Bangli,religion,kristen,,170,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+51.06.02,3,Bangli,religion,katolik,,46,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+51.06.02,3,Bangli,religion,hindu,,52953,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+51.06.02,3,Bangli,religion,buddha,,8,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+51.06.02,3,Bangli,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,
+51.06.02,3,Bangli,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Lainnya
+51.06.03,3,Tembuku,religion,islam,,53,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+51.06.03,3,Tembuku,religion,kristen,,18,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+51.06.03,3,Tembuku,religion,katolik,,7,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+51.06.03,3,Tembuku,religion,hindu,,43861,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+51.06.03,3,Tembuku,religion,buddha,,3,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+51.06.03,3,Tembuku,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,
+51.06.03,3,Tembuku,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Lainnya
+51.06.04,3,Kintamani,religion,islam,,1082,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+51.06.04,3,Kintamani,religion,kristen,,116,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+51.06.04,3,Kintamani,religion,katolik,,30,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+51.06.04,3,Kintamani,religion,hindu,,111217,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+51.06.04,3,Kintamani,religion,buddha,,273,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+51.06.04,3,Kintamani,religion,khonghucu,,46,jiwa,2025,registration,total_population,4.3.1,139,,
+51.06.04,3,Kintamani,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Lainnya
+51.06,2,Kabupaten Bangli,religion,islam,,2618,jiwa,2025,registration,total_population,4.3.1,139,,Islam
+51.06,2,Kabupaten Bangli,religion,kristen,,325,jiwa,2025,registration,total_population,4.3.1,139,,Protestan
+51.06,2,Kabupaten Bangli,religion,katolik,,89,jiwa,2025,registration,total_population,4.3.1,139,,Katolik
+51.06,2,Kabupaten Bangli,religion,hindu,,257679,jiwa,2025,registration,total_population,4.3.1,139,,Hindu
+51.06,2,Kabupaten Bangli,religion,buddha,,284,jiwa,2025,registration,total_population,4.3.1,139,,Budha
+51.06,2,Kabupaten Bangli,religion,khonghucu,,46,jiwa,2025,registration,total_population,4.3.1,139,,
+51.06,2,Kabupaten Bangli,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,139,nil,Lainnya
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/padi_padian,,107017,rupiah,2024,survey_estimate,per_capita,10.1,277,,Padi-padian
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/padi_padian,,102546,rupiah,2025,survey_estimate,per_capita,10.1,277,,Padi-padian
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/umbi_umbian,,6647,rupiah,2024,survey_estimate,per_capita,10.1,277,,Umbi-umbian
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/umbi_umbian,,10010,rupiah,2025,survey_estimate,per_capita,10.1,277,,Umbi-umbian
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,29095,rupiah,2024,survey_estimate,per_capita,10.1,277,,Ikan/udang/cumi/kerang
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,35138,rupiah,2025,survey_estimate,per_capita,10.1,277,,Ikan/udang/cumi/kerang
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/daging,,98798,rupiah,2024,survey_estimate,per_capita,10.1,277,,Daging
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/daging,,47248,rupiah,2025,survey_estimate,per_capita,10.1,277,,Daging
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/telur_dan_susu,,33831,rupiah,2024,survey_estimate,per_capita,10.1,277,,Telur dan susu
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/telur_dan_susu,,33738,rupiah,2025,survey_estimate,per_capita,10.1,277,,Telur dan susu
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/sayur_sayuran,,66112,rupiah,2024,survey_estimate,per_capita,10.1,277,,Sayur-sayuran
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/sayur_sayuran,,66159,rupiah,2025,survey_estimate,per_capita,10.1,277,,Sayur-sayuran
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/kacang_kacangan,,15154,rupiah,2024,survey_estimate,per_capita,10.1,277,,Kacang-kacangan
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/kacang_kacangan,,17604,rupiah,2025,survey_estimate,per_capita,10.1,277,,Kacang-kacangan
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/buah_buahan,,74048,rupiah,2024,survey_estimate,per_capita,10.1,277,,Buah-buahan
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/buah_buahan,,56574,rupiah,2025,survey_estimate,per_capita,10.1,277,,Buah-buahan
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16927,rupiah,2024,survey_estimate,per_capita,10.1,277,,Minyak dan kelapa
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20531,rupiah,2025,survey_estimate,per_capita,10.1,277,,Minyak dan kelapa
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/bahan_minuman,,20062,rupiah,2024,survey_estimate,per_capita,10.1,277,,Bahan minuman
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/bahan_minuman,,20036,rupiah,2025,survey_estimate,per_capita,10.1,277,,Bahan minuman
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/bumbu_bumbuan,,12845,rupiah,2024,survey_estimate,per_capita,10.1,277,,Bumbu-bumbuan
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/bumbu_bumbuan,,12862,rupiah,2025,survey_estimate,per_capita,10.1,277,,Bumbu-bumbuan
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/konsumsi_lainnya,,8669,rupiah,2024,survey_estimate,per_capita,10.1,277,,Konsumsi lainnya
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/konsumsi_lainnya,,8302,rupiah,2025,survey_estimate,per_capita,10.1,277,,Konsumsi lainnya
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,226990,rupiah,2024,survey_estimate,per_capita,10.1,277,,Makanan dan minuman jadi
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,214754,rupiah,2025,survey_estimate,per_capita,10.1,277,,Makanan dan minuman jadi
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/rokok,,69163,rupiah,2024,survey_estimate,per_capita,10.1,277,,Rokok
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/rokok,,67814,rupiah,2025,survey_estimate,per_capita,10.1,277,,Rokok
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/jumlah_makanan,,785359,rupiah,2024,survey_estimate,per_capita,10.1,277,,Jumlah makanan
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/jumlah_makanan,,713316,rupiah,2025,survey_estimate,per_capita,10.1,277,,Jumlah makanan
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,341776,rupiah,2024,survey_estimate,per_capita,10.1,277,,Perumahan dan fasilitas rumah tangga
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,321107,rupiah,2025,survey_estimate,per_capita,10.1,277,,Perumahan dan fasilitas rumah tangga
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,148801,rupiah,2024,survey_estimate,per_capita,10.1,277,,Aneka barang dan jasa
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,120803,rupiah,2025,survey_estimate,per_capita,10.1,277,,Aneka barang dan jasa
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,21695,rupiah,2024,survey_estimate,per_capita,10.1,277,,"Pakaian, alas kaki, dan tutup kepala"
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,20962,rupiah,2025,survey_estimate,per_capita,10.1,277,,"Pakaian, alas kaki, dan tutup kepala"
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/barang_tahan_lama,,79835,rupiah,2024,survey_estimate,per_capita,10.1,277,,Barang tahan lama
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/barang_tahan_lama,,55761,rupiah,2025,survey_estimate,per_capita,10.1,277,,Barang tahan lama
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,76252,rupiah,2024,survey_estimate,per_capita,10.1,277,,"Pajak, pungutan, dan asuransi"
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,59015,rupiah,2025,survey_estimate,per_capita,10.1,277,,"Pajak, pungutan, dan asuransi"
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,77639,rupiah,2024,survey_estimate,per_capita,10.1,277,,Keperluan pesta dan upacara/kenduri
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,93704,rupiah,2025,survey_estimate,per_capita,10.1,277,,Keperluan pesta dan upacara/kenduri
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,745998,rupiah,2024,survey_estimate,per_capita,10.1,277,,Jumlah bukan makanan
+51.06,2,Kabupaten Bangli,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,671354,rupiah,2025,survey_estimate,per_capita,10.1,277,,Jumlah bukan makanan
+51.06,2,Kabupaten Bangli,expenditure,total,,1531358,rupiah,2024,survey_estimate,per_capita,10.1,277,,
+51.06,2,Kabupaten Bangli,expenditure,total,,1384669,rupiah,2025,survey_estimate,per_capita,10.1,277,,

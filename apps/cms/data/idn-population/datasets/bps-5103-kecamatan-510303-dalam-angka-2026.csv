@@ -1,0 +1,109 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.03.03.2001,4,Darmasaba,sex,laki_laki,,5144,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.03.2001,4,Darmasaba,sex,perempuan,,5245,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.03.2001,4,Darmasaba,total,total,,10389,jiwa,2025,registration,total_population,3.1,28,,
+51.03.03.2003,4,Sibanggede,sex,laki_laki,,3931,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.03.2003,4,Sibanggede,sex,perempuan,,3994,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.03.2003,4,Sibanggede,total,total,,7925,jiwa,2025,registration,total_population,3.1,28,,
+51.03.03.2004,4,Jagapati,sex,laki_laki,,2038,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.03.2004,4,Jagapati,sex,perempuan,,2082,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.03.2004,4,Jagapati,total,total,,4120,jiwa,2025,registration,total_population,3.1,28,,
+51.03.03.2005,4,Angantaka,sex,laki_laki,,2253,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.03.2005,4,Angantaka,sex,perempuan,,2324,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.03.2005,4,Angantaka,total,total,,4577,jiwa,2025,registration,total_population,3.1,28,,
+51.03.03.2006,4,Sedang,sex,laki_laki,,2322,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.03.2006,4,Sedang,sex,perempuan,,2415,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.03.2006,4,Sedang,total,total,,4737,jiwa,2025,registration,total_population,3.1,28,,
+51.03.03.2002,4,Sibangkaja,sex,laki_laki,,3532,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.03.2002,4,Sibangkaja,sex,perempuan,,3632,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.03.2002,4,Sibangkaja,total,total,,7164,jiwa,2025,registration,total_population,3.1,28,,
+51.03.03.2015,4,Mekar Bhuwana,sex,laki_laki,,2634,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.03.2015,4,Mekar Bhuwana,sex,perempuan,,2687,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.03.2015,4,Mekar Bhuwana,total,total,,5321,jiwa,2025,registration,total_population,3.1,28,,
+51.03.03.2007,4,Mambal,sex,laki_laki,,2765,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.03.2007,4,Mambal,sex,perempuan,,2873,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.03.2007,4,Mambal,total,total,,5638,jiwa,2025,registration,total_population,3.1,28,,
+51.03.03.2008,4,Abiansemal,sex,laki_laki,,4133,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.03.2008,4,Abiansemal,sex,perempuan,,4145,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.03.2008,4,Abiansemal,total,total,,8278,jiwa,2025,registration,total_population,3.1,28,,
+51.03.03.2016,4,Abiansemal Dauh Yeh Cani,sex,laki_laki,,3435,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.03.2016,4,Abiansemal Dauh Yeh Cani,sex,perempuan,,3485,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.03.2016,4,Abiansemal Dauh Yeh Cani,total,total,,6920,jiwa,2025,registration,total_population,3.1,28,,
+51.03.03.2012,4,Ayunan,sex,laki_laki,,1350,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.03.2012,4,Ayunan,sex,perempuan,,1316,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.03.2012,4,Ayunan,total,total,,2666,jiwa,2025,registration,total_population,3.1,28,,
+51.03.03.2011,4,Blahkiuh,sex,laki_laki,,3172,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.03.2011,4,Blahkiuh,sex,perempuan,,3210,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.03.2011,4,Blahkiuh,total,total,,6382,jiwa,2025,registration,total_population,3.1,28,,
+51.03.03.2014,4,Punggul,sex,laki_laki,,1642,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.03.2014,4,Punggul,sex,perempuan,,1724,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.03.2014,4,Punggul,total,total,,3366,jiwa,2025,registration,total_population,3.1,28,,
+51.03.03.2009,4,Bongkasa,sex,laki_laki,,3150,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.03.2009,4,Bongkasa,sex,perempuan,,3170,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.03.2009,4,Bongkasa,total,total,,6320,jiwa,2025,registration,total_population,3.1,28,,
+51.03.03.2010,4,Taman,sex,laki_laki,,3597,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.03.2010,4,Taman,sex,perempuan,,3500,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.03.2010,4,Taman,total,total,,7097,jiwa,2025,registration,total_population,3.1,28,,
+51.03.03.2017,4,Selat,sex,laki_laki,,1219,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.03.2017,4,Selat,sex,perempuan,,1299,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.03.2017,4,Selat,total,total,,2518,jiwa,2025,registration,total_population,3.1,28,,
+51.03.03.2013,4,Sangeh,sex,laki_laki,,2360,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.03.2013,4,Sangeh,sex,perempuan,,2400,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.03.2013,4,Sangeh,total,total,,4760,jiwa,2025,registration,total_population,3.1,28,,
+51.03.03.2018,4,Bongkasa Pertiwi,sex,laki_laki,,1300,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.03.2018,4,Bongkasa Pertiwi,sex,perempuan,,1367,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.03.2018,4,Bongkasa Pertiwi,total,total,,2667,jiwa,2025,registration,total_population,3.1,28,,
+51.03.03,3,Kecamatan Abiansemal,sex,laki_laki,,49977,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+51.03.03,3,Kecamatan Abiansemal,sex,perempuan,,50868,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+51.03.03,3,Kecamatan Abiansemal,total,total,,100845,jiwa,2025,registration,total_population,3.1,28,,
+51.03.03,3,Abiansemal,age_group,0-4,laki_laki,2862,jiwa,2025,registration,total_population,3.2,30,,00-04
+51.03.03,3,Abiansemal,age_group,0-4,perempuan,2693,jiwa,2025,registration,total_population,3.2,30,,00-04
+51.03.03,3,Abiansemal,age_group,0-4,,5555,jiwa,2025,registration,total_population,3.2,30,,00-04
+51.03.03,3,Abiansemal,age_group,5-9,laki_laki,3319,jiwa,2025,registration,total_population,3.2,30,,05-09
+51.03.03,3,Abiansemal,age_group,5-9,perempuan,3175,jiwa,2025,registration,total_population,3.2,30,,05-09
+51.03.03,3,Abiansemal,age_group,5-9,,6494,jiwa,2025,registration,total_population,3.2,30,,05-09
+51.03.03,3,Abiansemal,age_group,10-14,laki_laki,3545,jiwa,2025,registration,total_population,3.2,30,,10-14
+51.03.03,3,Abiansemal,age_group,10-14,perempuan,3347,jiwa,2025,registration,total_population,3.2,30,,10-14
+51.03.03,3,Abiansemal,age_group,10-14,,6892,jiwa,2025,registration,total_population,3.2,30,,10-14
+51.03.03,3,Abiansemal,age_group,15-19,laki_laki,3887,jiwa,2025,registration,total_population,3.2,30,,15-19
+51.03.03,3,Abiansemal,age_group,15-19,perempuan,3808,jiwa,2025,registration,total_population,3.2,30,,15-19
+51.03.03,3,Abiansemal,age_group,15-19,,7695,jiwa,2025,registration,total_population,3.2,30,,15-19
+51.03.03,3,Abiansemal,age_group,20-24,laki_laki,4148,jiwa,2025,registration,total_population,3.2,30,,20-24
+51.03.03,3,Abiansemal,age_group,20-24,perempuan,4039,jiwa,2025,registration,total_population,3.2,30,,20-24
+51.03.03,3,Abiansemal,age_group,20-24,,8187,jiwa,2025,registration,total_population,3.2,30,,20-24
+51.03.03,3,Abiansemal,age_group,25-29,laki_laki,4112,jiwa,2025,registration,total_population,3.2,30,,25-29
+51.03.03,3,Abiansemal,age_group,25-29,perempuan,3911,jiwa,2025,registration,total_population,3.2,30,,25-29
+51.03.03,3,Abiansemal,age_group,25-29,,8023,jiwa,2025,registration,total_population,3.2,30,,25-29
+51.03.03,3,Abiansemal,age_group,30-34,laki_laki,3186,jiwa,2025,registration,total_population,3.2,30,,30-34
+51.03.03,3,Abiansemal,age_group,30-34,perempuan,3217,jiwa,2025,registration,total_population,3.2,30,,30-34
+51.03.03,3,Abiansemal,age_group,30-34,,6403,jiwa,2025,registration,total_population,3.2,30,,30-34
+51.03.03,3,Abiansemal,age_group,35-39,laki_laki,2626,jiwa,2025,registration,total_population,3.2,30,,35-39
+51.03.03,3,Abiansemal,age_group,35-39,perempuan,2681,jiwa,2025,registration,total_population,3.2,30,,35-39
+51.03.03,3,Abiansemal,age_group,35-39,,5307,jiwa,2025,registration,total_population,3.2,30,,35-39
+51.03.03,3,Abiansemal,age_group,40-44,laki_laki,3130,jiwa,2025,registration,total_population,3.2,30,,40-44
+51.03.03,3,Abiansemal,age_group,40-44,perempuan,3356,jiwa,2025,registration,total_population,3.2,30,,40-44
+51.03.03,3,Abiansemal,age_group,40-44,,6486,jiwa,2025,registration,total_population,3.2,30,,40-44
+51.03.03,3,Abiansemal,age_group,45-49,laki_laki,3604,jiwa,2025,registration,total_population,3.2,30,,45-49
+51.03.03,3,Abiansemal,age_group,45-49,perempuan,3863,jiwa,2025,registration,total_population,3.2,30,,45-49
+51.03.03,3,Abiansemal,age_group,45-49,,7467,jiwa,2025,registration,total_population,3.2,30,,45-49
+51.03.03,3,Abiansemal,age_group,50-54,laki_laki,4345,jiwa,2025,registration,total_population,3.2,30,,50-54
+51.03.03,3,Abiansemal,age_group,50-54,perempuan,4390,jiwa,2025,registration,total_population,3.2,30,,50-54
+51.03.03,3,Abiansemal,age_group,50-54,,8735,jiwa,2025,registration,total_population,3.2,30,,50-54
+51.03.03,3,Abiansemal,age_group,55-59,laki_laki,3464,jiwa,2025,registration,total_population,3.2,30,,55-59
+51.03.03,3,Abiansemal,age_group,55-59,perempuan,3482,jiwa,2025,registration,total_population,3.2,30,,55-59
+51.03.03,3,Abiansemal,age_group,55-59,,6946,jiwa,2025,registration,total_population,3.2,30,,55-59
+51.03.03,3,Abiansemal,age_group,60-64,laki_laki,2591,jiwa,2025,registration,total_population,3.2,30,,60-64
+51.03.03,3,Abiansemal,age_group,60-64,perempuan,2602,jiwa,2025,registration,total_population,3.2,30,,60-64
+51.03.03,3,Abiansemal,age_group,60-64,,5193,jiwa,2025,registration,total_population,3.2,30,,60-64
+51.03.03,3,Abiansemal,age_group,65-69,laki_laki,1874,jiwa,2025,registration,total_population,3.2,30,,65-69
+51.03.03,3,Abiansemal,age_group,65-69,perempuan,2273,jiwa,2025,registration,total_population,3.2,30,,65-69
+51.03.03,3,Abiansemal,age_group,65-69,,4147,jiwa,2025,registration,total_population,3.2,30,,65-69
+51.03.03,3,Abiansemal,age_group,70-74,laki_laki,1425,jiwa,2025,registration,total_population,3.2,30,,70-74
+51.03.03,3,Abiansemal,age_group,70-74,perempuan,1478,jiwa,2025,registration,total_population,3.2,30,,70-74
+51.03.03,3,Abiansemal,age_group,70-74,,2903,jiwa,2025,registration,total_population,3.2,30,,70-74
+51.03.03,3,Abiansemal,age_group,75+,laki_laki,1859,jiwa,2025,registration,total_population,3.2,30,,75+
+51.03.03,3,Abiansemal,age_group,75+,perempuan,2553,jiwa,2025,registration,total_population,3.2,30,,75+
+51.03.03,3,Abiansemal,age_group,75+,,4412,jiwa,2025,registration,total_population,3.2,30,,75+
+51.03.03,3,Kecamatan Abiansemal,sex,laki_laki,,49977,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+51.03.03,3,Kecamatan Abiansemal,sex,perempuan,,50868,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+51.03.03,3,Kecamatan Abiansemal,total,total,,100845,jiwa,2025,registration,total_population,3.2,30,,

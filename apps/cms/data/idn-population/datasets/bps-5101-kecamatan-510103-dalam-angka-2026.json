@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5101-kecamatan-510103-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.01.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pekutatan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Jembrana",
+  "publisherDomain": "5101",
+  "publisherWebsite": "https://jembranakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Jembrana (https://jembranakab.bps.go.id), publikasi \"Kecamatan Pekutatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5101040",
+  "publicationNumber": "51010.26011",
+  "issn": "2477-6807",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jembranakab.bps.go.id/id/publication/2026/09/28/e93b6fbdfaf24ddc7c8c35ee/kecamatan-pekutatan-dalam-angka-2026.html",
+  "sourceFileSha256": "f106ca830239ef2395a87c6a3a3b8146b2874b215f317b01e9947c5b3af49fca",
+  "sourceFileBytes": 10623136,
+  "sourcePages": [40, 41],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jembrana.",
+  "csvPath": "datasets/bps-5101-kecamatan-510103-dalam-angka-2026.csv",
+  "csvSha256": "3efa500f279c31ff921ebd8c2a162a5ea0888f8e09a65a5524362fa3d48e6ff8",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pekutatan, 2025",
+      "printedPages": [40, 41],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

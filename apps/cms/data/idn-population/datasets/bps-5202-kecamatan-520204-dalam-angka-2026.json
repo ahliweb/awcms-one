@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-5202-kecamatan-520204-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "52.02.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pujut Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN LOMBOK TENGAH",
+  "publisherDomain": "5202",
+  "publisherWebsite": "https://lomboktengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN LOMBOK TENGAH (https://lomboktengahkab.bps.go.id), publikasi \"Kecamatan Pujut Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "5202.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lomboktengahkab.bps.go.id/id/publication/2026/09/28/75c79142eb21b1ce91945a91/kecamatan-pujut-dalam-angka-2026.html",
+  "sourceFileSha256": "14eeeb6255e060d7c3b72dc4c06d6a262f56d60d2ca9aa3f04491b3ee9b63dce",
+  "sourceFileBytes": 29223187,
+  "sourcePages": [24, 25, 26],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lombok Tengah.",
+  "csvPath": "datasets/bps-5202-kecamatan-520204-dalam-angka-2026.csv",
+  "csvSha256": "02102083e4eaad00f5ea9f47b9f2349aac62587afdd26fb21f8c64f831c9e070",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pujut, 2026",
+      "printedPages": [24, 25],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Desa Tumpak, Kecamatan Pujut, 2026",
+      "printedPages": [26],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Segale Anyar\": unmatched ",
+    "table 3.1: row not stored: row \"Kereme Jati\": unmatched ",
+    "table 3.1: row not stored: row \"Segale Anyar\": unmatched ",
+    "table 3.1: row not stored: row \"Kereme Jati\": unmatched "
+  ]
+}

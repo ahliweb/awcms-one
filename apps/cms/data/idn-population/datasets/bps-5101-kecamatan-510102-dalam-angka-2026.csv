@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+51.01.02.2001,4,Mendoyo Dauh Tukad,sex,laki_laki,,3106,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.02.2001,4,Mendoyo Dauh Tukad,sex,perempuan,,3075,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.02.2001,4,Mendoyo Dauh Tukad,total,total,,6181,jiwa,2025,registration,total_population,3.1,40,,
+51.01.02.2003,4,Mendoyo Dangin Tukad,sex,laki_laki,,1651,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.02.2003,4,Mendoyo Dangin Tukad,sex,perempuan,,1686,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.02.2003,4,Mendoyo Dangin Tukad,total,total,,3337,jiwa,2025,registration,total_population,3.1,40,,
+51.01.02.2002,4,Pohsanten,sex,laki_laki,,3808,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.02.2002,4,Pohsanten,sex,perempuan,,3801,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.02.2002,4,Pohsanten,total,total,,7609,jiwa,2025,registration,total_population,3.1,40,,
+51.01.02.2004,4,Pergung,sex,laki_laki,,2644,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.02.2004,4,Pergung,sex,perempuan,,2635,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.02.2004,4,Pergung,total,total,,5279,jiwa,2025,registration,total_population,3.1,40,,
+51.01.02.2005,4,Delod Berawah,sex,laki_laki,,1195,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.02.2005,4,Delod Berawah,sex,perempuan,,1162,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.02.2005,4,Delod Berawah,total,total,,2357,jiwa,2025,registration,total_population,3.1,40,,
+51.01.02.1006,4,Tegalcangkring,sex,laki_laki,,4188,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.02.1006,4,Tegalcangkring,sex,perempuan,,4196,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.02.1006,4,Tegalcangkring,total,total,,8384,jiwa,2025,registration,total_population,3.1,40,,
+51.01.02.2007,4,Penyaringan,sex,laki_laki,,5132,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.02.2007,4,Penyaringan,sex,perempuan,,5112,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.02.2007,4,Penyaringan,total,total,,10244,jiwa,2025,registration,total_population,3.1,40,,
+51.01.02.2010,4,Yeh Embang Kauh,sex,laki_laki,,2808,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.02.2010,4,Yeh Embang Kauh,sex,perempuan,,2853,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.02.2010,4,Yeh Embang Kauh,total,total,,5661,jiwa,2025,registration,total_population,3.1,40,,
+51.01.02.2008,4,Yeh Embang,sex,laki_laki,,4373,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.02.2008,4,Yeh Embang,sex,perempuan,,4358,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.02.2008,4,Yeh Embang,total,total,,8731,jiwa,2025,registration,total_population,3.1,40,,
+51.01.02.2011,4,Yeh Embang Kangin,sex,laki_laki,,2239,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.02.2011,4,Yeh Embang Kangin,sex,perempuan,,2273,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.02.2011,4,Yeh Embang Kangin,total,total,,4512,jiwa,2025,registration,total_population,3.1,40,,
+51.01.02.2009,4,Yeh Sumbul,sex,laki_laki,,4129,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.02.2009,4,Yeh Sumbul,sex,perempuan,,4046,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.02.2009,4,Yeh Sumbul,total,total,,8175,jiwa,2025,registration,total_population,3.1,40,,
+51.01.02,3,Mendoyo,sex,laki_laki,,35273,jiwa,2025,registration,total_population,3.1,40,,Laki-Laki/Male
+51.01.02,3,Mendoyo,sex,perempuan,,35197,jiwa,2025,registration,total_population,3.1,40,,Perempuan/Female
+51.01.02,3,Mendoyo,total,total,,70470,jiwa,2025,registration,total_population,3.1,40,,

@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-5108-kecamatan-510808-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.08.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kubutambahan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Buleleng",
+  "publisherDomain": "5108",
+  "publisherWebsite": "https://bulelengkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Buleleng (https://bulelengkab.bps.go.id), publikasi \"Kecamatan Kubutambahan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5108080",
+  "publicationNumber": "51080.26015",
+  "issn": "2477-7056",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bulelengkab.bps.go.id/id/publication/2026/09/28/393b6d136230d1f531d84df0/kecamatan-kubutambahan-dalam-angka-2026.html",
+  "sourceFileSha256": "3fdc524c7e300df710aa038c7a032aa1ee969e86cccc3881767ec3487edf5415",
+  "sourceFileBytes": 3989626,
+  "sourcePages": [23, 24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Buleleng",
+  "csvPath": "datasets/bps-5108-kecamatan-510808-dalam-angka-2026.csv",
+  "csvSha256": "63e76e901558c13660fd92f2633ddd6764a21839445318ddb72e008e4936f8fd",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kubutambahan, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kubutambahan, 2025",
+      "printedPages": [25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Kubutambahan Kubutambahan District\": unmatched ",
+    "table 3.1: 1 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: row not stored: row \"Toatal Kecamatan\": unmatched "
+  ]
+}

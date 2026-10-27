@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5205-kecamatan-520506-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "52.05.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pekat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Dompu",
+  "publisherDomain": "5205",
+  "publisherWebsite": "https://dompukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Dompu (https://dompukab.bps.go.id), publikasi \"Kecamatan Pekat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5205060",
+  "publicationNumber": "52050.26017",
+  "issn": "0852-0615",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://dompukab.bps.go.id/id/publication/2026/09/28/063cc468106faa722e432b97/kecamatan-pekat-dalam-angka-2026.html",
+  "sourceFileSha256": "2e0e8301084ab8fc6914a61db636acdaace6ddb32f2f77df10af028ffb6c2105",
+  "sourceFileBytes": 6731156,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Dompu.",
+  "csvPath": "datasets/bps-5205-kecamatan-520506-dalam-angka-2026.csv",
+  "csvSha256": "8ea501b0e7a541c7e29d9cfbf1cd013dc13d4513ae575fea0e23e71b21a3dc6b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Pekat, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pekat, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

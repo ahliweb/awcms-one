@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+52.02.05,3,Praya Barat,age_group,0-4,laki_laki,209,jiwa,2026,registration,total_population,3.2,28,,0 - 4
+52.02.05,3,Praya Barat,age_group,0-4,perempuan,214,jiwa,2026,registration,total_population,3.2,28,,0 - 4
+52.02.05,3,Praya Barat,age_group,0-4,,423,jiwa,2026,registration,total_population,3.2,28,,0 - 4
+52.02.05,3,Praya Barat,age_group,5-9,laki_laki,344,jiwa,2026,registration,total_population,3.2,28,,5 - 9
+52.02.05,3,Praya Barat,age_group,5-9,perempuan,329,jiwa,2026,registration,total_population,3.2,28,,5 - 9
+52.02.05,3,Praya Barat,age_group,5-9,,673,jiwa,2026,registration,total_population,3.2,28,,5 - 9
+52.02.05,3,Praya Barat,age_group,10-14,laki_laki,316,jiwa,2026,registration,total_population,3.2,28,,10 - 14
+52.02.05,3,Praya Barat,age_group,10-14,perempuan,329,jiwa,2026,registration,total_population,3.2,28,,10 - 14
+52.02.05,3,Praya Barat,age_group,10-14,,645,jiwa,2026,registration,total_population,3.2,28,,10 - 14
+52.02.05,3,Praya Barat,age_group,15-19,laki_laki,266,jiwa,2026,registration,total_population,3.2,28,,15 -19
+52.02.05,3,Praya Barat,age_group,15-19,perempuan,246,jiwa,2026,registration,total_population,3.2,28,,15 -19
+52.02.05,3,Praya Barat,age_group,15-19,,512,jiwa,2026,registration,total_population,3.2,28,,15 -19
+52.02.05,3,Praya Barat,age_group,20-24,laki_laki,256,jiwa,2026,registration,total_population,3.2,28,,20 - 24
+52.02.05,3,Praya Barat,age_group,20-24,perempuan,217,jiwa,2026,registration,total_population,3.2,28,,20 - 24
+52.02.05,3,Praya Barat,age_group,20-24,,473,jiwa,2026,registration,total_population,3.2,28,,20 - 24
+52.02.05,3,Praya Barat,age_group,25-29,laki_laki,263,jiwa,2026,registration,total_population,3.2,28,,25 - 29
+52.02.05,3,Praya Barat,age_group,25-29,perempuan,291,jiwa,2026,registration,total_population,3.2,28,,25 - 29
+52.02.05,3,Praya Barat,age_group,25-29,,554,jiwa,2026,registration,total_population,3.2,28,,25 - 29
+52.02.05,3,Praya Barat,age_group,30-34,laki_laki,264,jiwa,2026,registration,total_population,3.2,28,,30 - 34
+52.02.05,3,Praya Barat,age_group,30-34,perempuan,239,jiwa,2026,registration,total_population,3.2,28,,30 - 34
+52.02.05,3,Praya Barat,age_group,30-34,,503,jiwa,2026,registration,total_population,3.2,28,,30 - 34
+52.02.05,3,Praya Barat,age_group,35-39,laki_laki,214,jiwa,2026,registration,total_population,3.2,28,,35 - 39
+52.02.05,3,Praya Barat,age_group,35-39,perempuan,258,jiwa,2026,registration,total_population,3.2,28,,35 - 39
+52.02.05,3,Praya Barat,age_group,35-39,,472,jiwa,2026,registration,total_population,3.2,28,,35 - 39
+52.02.05,3,Praya Barat,age_group,40-44,laki_laki,184,jiwa,2026,registration,total_population,3.2,28,,40 - 44
+52.02.05,3,Praya Barat,age_group,40-44,perempuan,214,jiwa,2026,registration,total_population,3.2,28,,40 - 44
+52.02.05,3,Praya Barat,age_group,40-44,,398,jiwa,2026,registration,total_population,3.2,28,,40 - 44
+52.02.05,3,Praya Barat,age_group,45-49,laki_laki,185,jiwa,2026,registration,total_population,3.2,28,,45 - 49
+52.02.05,3,Praya Barat,age_group,45-49,perempuan,233,jiwa,2026,registration,total_population,3.2,28,,45 - 49
+52.02.05,3,Praya Barat,age_group,45-49,,418,jiwa,2026,registration,total_population,3.2,28,,45 - 49
+52.02.05,3,Praya Barat,age_group,50-54,laki_laki,152,jiwa,2026,registration,total_population,3.2,28,,50 - 54
+52.02.05,3,Praya Barat,age_group,50-54,perempuan,141,jiwa,2026,registration,total_population,3.2,28,,50 - 54
+52.02.05,3,Praya Barat,age_group,50-54,,293,jiwa,2026,registration,total_population,3.2,28,,50 - 54
+52.02.05,3,Praya Barat,age_group,55-59,laki_laki,112,jiwa,2026,registration,total_population,3.2,28,,55 - 59
+52.02.05,3,Praya Barat,age_group,55-59,perempuan,125,jiwa,2026,registration,total_population,3.2,28,,55 - 59
+52.02.05,3,Praya Barat,age_group,55-59,,237,jiwa,2026,registration,total_population,3.2,28,,55 - 59
+52.02.05,3,Praya Barat,age_group,60-64,laki_laki,74,jiwa,2026,registration,total_population,3.2,28,,60 - 64
+52.02.05,3,Praya Barat,age_group,60-64,perempuan,79,jiwa,2026,registration,total_population,3.2,28,,60 - 64
+52.02.05,3,Praya Barat,age_group,60-64,,153,jiwa,2026,registration,total_population,3.2,28,,60 - 64
+52.02.05,3,Praya Barat,age_group,65+,laki_laki,124,jiwa,2026,registration,total_population,3.2,28,,≥ 65
+52.02.05,3,Praya Barat,age_group,65+,perempuan,110,jiwa,2026,registration,total_population,3.2,28,,≥ 65
+52.02.05,3,Praya Barat,age_group,65+,,234,jiwa,2026,registration,total_population,3.2,28,,≥ 65
+52.02.05.2007,4,Selong Belanak,sex,laki_laki,,2963,jiwa,2026,registration,total_population,3.2,28,,Laki-Laki
+52.02.05.2007,4,Selong Belanak,sex,perempuan,,3025,jiwa,2026,registration,total_population,3.2,28,,Perempuan
+52.02.05.2007,4,Selong Belanak,total,total,,5988,jiwa,2026,registration,total_population,3.2,28,,

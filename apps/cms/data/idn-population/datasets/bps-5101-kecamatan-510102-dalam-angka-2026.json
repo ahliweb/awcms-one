@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-5101-kecamatan-510102-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.01.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mendoyo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Jembrana",
+  "publisherDomain": "5101",
+  "publisherWebsite": "https://jembranakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Jembrana (https://jembranakab.bps.go.id), publikasi \"Kecamatan Mendoyo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5101030",
+  "publicationNumber": "51010.26008",
+  "issn": "2477-6793",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jembranakab.bps.go.id/id/publication/2026/09/28/37ba2761714532f7557e814d/kecamatan-mendoyo-dalam-angka-2026.html",
+  "sourceFileSha256": "c6044dbc54fa854425977e63ae417c638a2f7c377da996bda6802e5d80f8418b",
+  "sourceFileBytes": 11094988,
+  "sourcePages": [40, 41],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jembrana.",
+  "csvPath": "datasets/bps-5101-kecamatan-510102-dalam-angka-2026.csv",
+  "csvSha256": "81b14431beaa3098d3b035606c403ece8604eff6eb69a457d891fbd08ddf6ff7",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Mendoyo, 2025",
+      "printedPages": [40, 41],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

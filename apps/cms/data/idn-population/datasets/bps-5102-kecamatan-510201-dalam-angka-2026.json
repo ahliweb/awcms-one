@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5102-kecamatan-510201-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "51.02.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Selemadeg Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tabanan",
+  "publisherDomain": "5102",
+  "publisherWebsite": "https://tabanankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tabanan (https://tabanankab.bps.go.id), publikasi \"Kecamatan Selemadeg Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5102010",
+  "publicationNumber": "51020.26005",
+  "issn": "2477-7102",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tabanankab.bps.go.id/id/publication/2026/09/28/23febed1bae997ff87fbcf75/kecamatan-selemadeg-dalam-angka-2026.html",
+  "sourceFileSha256": "c29c461ad6a42f685e93c0091101a269755b53b3072680df18f1de590ba53819",
+  "sourceFileBytes": 11494859,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tabanan .",
+  "csvPath": "datasets/bps-5102-kecamatan-510201-dalam-angka-2026.csv",
+  "csvSha256": "0680b8e3bab2971c752b1ea08c93f5f8839677c4cffd2d43372b30f18277fbf8",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Selemadeg , 202 5",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di K ecamatan Selemadeg , 202 5",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

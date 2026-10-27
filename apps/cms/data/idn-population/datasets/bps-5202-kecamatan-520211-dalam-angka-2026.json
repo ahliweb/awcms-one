@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-5202-kecamatan-520211-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "52.02.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Praya Barat Daya Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN LOMBOK TENGAH",
+  "publisherDomain": "5202",
+  "publisherWebsite": "https://lomboktengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN LOMBOK TENGAH (https://lomboktengahkab.bps.go.id), publikasi \"Kecamatan Praya Barat Daya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.5202011",
+  "publicationNumber": "5202.26008",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lomboktengahkab.bps.go.id/id/publication/2026/09/28/826475a7ab1fd2abedb77dea/kecamatan-praya-barat-daya-dalam-angka-2026.html",
+  "sourceFileSha256": "ae6ba20bf491e6b0593d7d46f93291a064bb45e4739e1cc8e3c68dc98b003c1e",
+  "sourceFileBytes": 31098697,
+  "sourcePages": [24, 25, 26],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lombok Tengah.",
+  "csvPath": "datasets/bps-5202-kecamatan-520211-dalam-angka-2026.csv",
+  "csvSha256": "c4d6f45edaca40b3ab1111369fa6f56a89ed3cf47ef3d3a0d772e48c5225ceba",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Praya Barat Daya, 2026",
+      "printedPages": [24, 25],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Desa Montong Sapah, Kecamatan Praya Barat Daya, 2026",
+      "printedPages": [26],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}
