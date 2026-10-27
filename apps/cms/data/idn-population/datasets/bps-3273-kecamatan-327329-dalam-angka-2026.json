@@ -1,0 +1,56 @@
+{
+  "datasetCode": "bps-3273-kecamatan-327329-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.73.29",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cinambo Dalam Angka 2026",
+  "publisherName": "BPS Kota Bandung",
+  "publisherDomain": "3273",
+  "publisherWebsite": "https://bandungkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bandung (https://bandungkota.bps.go.id), publikasi \"Kecamatan Cinambo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3273121",
+  "publicationNumber": "32730.26014",
+  "issn": "2797-4723",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandungkota.bps.go.id/id/publication/2026/09/28/6e4f88d4cf12851edcb2023e/kecamatan-cinambo-dalam-angka-2026.html",
+  "sourceFileSha256": "9d629f1e5d1dd9ccec9cc886113d01aeca00169b3067c967c15b8ec9f0a9972d",
+  "sourceFileBytes": 7580548,
+  "sourcePages": [38, 39, 40, 92],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bandung.",
+  "csvPath": "datasets/bps-3273-kecamatan-327329-dalam-angka-2026.csv",
+  "csvSha256": "c5aee36a034163c70592e4e3253b3c734d09a14f28330a8a11cbe69cf93f87c5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Cinambo, 2025",
+      "printedPages": [38, 39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cinambo, 2025",
+      "printedPages": [40],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.4.5",
+      "title": "Penduduk Menurut Kelurahan dan Agama yang dianut di Kecamatan Cinambo, 2025",
+      "printedPages": [92],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1: row not stored: row \"Cinambo District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Cinambo Cinambo District\": unmatched ",
+    "table 3.2: row not stored: row \"Dependency Ratio\": unmatched ",
+    "table 3.2: row not stored: row \"Jumlah Total\": unmatched ",
+    "table 4.4.5: row not stored: row \"Kecamatan Cinambo Cinambo District\": unmatched "
+  ]
+}

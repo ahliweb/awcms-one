@@ -1,0 +1,127 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.05.10.2001,4,Blang Luah LM,sex,laki_laki,,272,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.05.10.2001,4,Blang Luah LM,sex,perempuan,,253,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.05.10.2001,4,Blang Luah LM,total,total,,525,jiwa,2025,registration,total_population,3.1,33,,
+11.05.10.2002,4,Cot Rambong,sex,laki_laki,,135,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.05.10.2002,4,Cot Rambong,sex,perempuan,,147,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.05.10.2002,4,Cot Rambong,total,total,,282,jiwa,2025,registration,total_population,3.1,33,,
+11.05.10.2003,4,Lhok Malee,sex,laki_laki,,112,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.05.10.2003,4,Lhok Malee,sex,perempuan,,126,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.05.10.2003,4,Lhok Malee,total,total,,238,jiwa,2025,registration,total_population,3.1,33,,
+11.05.10.2004,4,Pasi Malee,sex,laki_laki,,96,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.05.10.2004,4,Pasi Malee,sex,perempuan,,107,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.05.10.2004,4,Pasi Malee,total,total,,203,jiwa,2025,registration,total_population,3.1,33,,
+11.05.10.2005,4,Napai,sex,laki_laki,,209,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.05.10.2005,4,Napai,sex,perempuan,,199,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.05.10.2005,4,Napai,total,total,,408,jiwa,2025,registration,total_population,3.1,33,,
+11.05.10.2006,4,Blang Cot Mameh,sex,laki_laki,,133,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.05.10.2006,4,Blang Cot Mameh,sex,perempuan,,111,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.05.10.2006,4,Blang Cot Mameh,total,total,,244,jiwa,2025,registration,total_population,3.1,33,,
+11.05.10.2007,4,Blang Cot Rubek,sex,laki_laki,,104,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.05.10.2007,4,Blang Cot Rubek,sex,perempuan,,131,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.05.10.2007,4,Blang Cot Rubek,total,total,,235,jiwa,2025,registration,total_population,3.1,33,,
+11.05.10.2008,4,Alue Leuhob,sex,laki_laki,,98,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.05.10.2008,4,Alue Leuhob,sex,perempuan,,97,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.05.10.2008,4,Alue Leuhob,total,total,,195,jiwa,2025,registration,total_population,3.1,33,,
+11.05.10.2009,4,Leubok Pasi Ara,sex,laki_laki,,191,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.05.10.2009,4,Leubok Pasi Ara,sex,perempuan,,175,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.05.10.2009,4,Leubok Pasi Ara,total,total,,366,jiwa,2025,registration,total_population,3.1,33,,
+11.05.10.2010,4,Ulee Pasi Ara,sex,laki_laki,,105,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.05.10.2010,4,Ulee Pasi Ara,sex,perempuan,,103,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.05.10.2010,4,Ulee Pasi Ara,total,total,,208,jiwa,2025,registration,total_population,3.1,33,,
+11.05.10.2011,4,Cot Lagan LM,sex,laki_laki,,264,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.05.10.2011,4,Cot Lagan LM,sex,perempuan,,271,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.05.10.2011,4,Cot Lagan LM,total,total,,535,jiwa,2025,registration,total_population,3.1,33,,
+11.05.10.2012,4,Lueng Baro,sex,laki_laki,,181,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.05.10.2012,4,Lueng Baro,sex,perempuan,,184,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.05.10.2012,4,Lueng Baro,total,total,,365,jiwa,2025,registration,total_population,3.1,33,,
+11.05.10.2013,4,Kulam Kaju,sex,laki_laki,,129,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.05.10.2013,4,Kulam Kaju,sex,perempuan,,132,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.05.10.2013,4,Kulam Kaju,total,total,,261,jiwa,2025,registration,total_population,3.1,33,,
+11.05.10.2014,4,Alue Perman,sex,laki_laki,,192,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.05.10.2014,4,Alue Perman,sex,perempuan,,177,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.05.10.2014,4,Alue Perman,total,total,,369,jiwa,2025,registration,total_population,3.1,33,,
+11.05.10.2015,4,Peuleuk Ueng,sex,laki_laki,,104,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.05.10.2015,4,Peuleuk Ueng,sex,perempuan,,109,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.05.10.2015,4,Peuleuk Ueng,total,total,,213,jiwa,2025,registration,total_population,3.1,33,,
+11.05.10.2016,4,Pasi Jeut,sex,laki_laki,,204,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.05.10.2016,4,Pasi Jeut,sex,perempuan,,190,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.05.10.2016,4,Pasi Jeut,total,total,,394,jiwa,2025,registration,total_population,3.1,33,,
+11.05.10.2017,4,Mon Pasong,sex,laki_laki,,296,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.05.10.2017,4,Mon Pasong,sex,perempuan,,286,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.05.10.2017,4,Mon Pasong,total,total,,582,jiwa,2025,registration,total_population,3.1,33,,
+11.05.10.2018,4,Pasi Mali,sex,laki_laki,,300,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.05.10.2018,4,Pasi Mali,sex,perempuan,,339,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.05.10.2018,4,Pasi Mali,total,total,,639,jiwa,2025,registration,total_population,3.1,33,,
+11.05.10.2019,4,Karak,sex,laki_laki,,361,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+11.05.10.2019,4,Karak,sex,perempuan,,361,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+11.05.10.2019,4,Karak,total,total,,722,jiwa,2025,registration,total_population,3.1,33,,
+11.05.10.2020,4,Ie Sayang,sex,laki_laki,,127,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.05.10.2020,4,Ie Sayang,sex,perempuan,,106,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.05.10.2020,4,Ie Sayang,total,total,,233,jiwa,2025,registration,total_population,3.1,34,,
+11.05.10.2021,4,Ulee Pulo,sex,laki_laki,,132,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.05.10.2021,4,Ulee Pulo,sex,perempuan,,134,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.05.10.2021,4,Ulee Pulo,total,total,,266,jiwa,2025,registration,total_population,3.1,34,,
+11.05.10.2022,4,Pasi Panyang,sex,laki_laki,,85,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.05.10.2022,4,Pasi Panyang,sex,perempuan,,81,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.05.10.2022,4,Pasi Panyang,total,total,,166,jiwa,2025,registration,total_population,3.1,34,,
+11.05.10.2023,4,Alue Keumuning,sex,laki_laki,,248,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.05.10.2023,4,Alue Keumuning,sex,perempuan,,228,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.05.10.2023,4,Alue Keumuning,total,total,,476,jiwa,2025,registration,total_population,3.1,34,,
+11.05.10.2024,4,Simpang Teumarom,sex,laki_laki,,102,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.05.10.2024,4,Simpang Teumarom,sex,perempuan,,93,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.05.10.2024,4,Simpang Teumarom,total,total,,195,jiwa,2025,registration,total_population,3.1,34,,
+11.05.10,3,Kecamatan Woyla Barat,sex,laki_laki,,4180,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+11.05.10,3,Kecamatan Woyla Barat,sex,perempuan,,4140,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+11.05.10,3,Kecamatan Woyla Barat,total,total,,8320,jiwa,2025,registration,total_population,3.1,34,,
+11.05.10,3,Woyla Barat,age_group,0-4,laki_laki,321,jiwa,2025,registration,total_population,3.2,37,,0-4
+11.05.10,3,Woyla Barat,age_group,0-4,perempuan,308,jiwa,2025,registration,total_population,3.2,37,,0-4
+11.05.10,3,Woyla Barat,age_group,0-4,,629,jiwa,2025,registration,total_population,3.2,37,,0-4
+11.05.10,3,Woyla Barat,age_group,5-9,laki_laki,328,jiwa,2025,registration,total_population,3.2,37,,5-9
+11.05.10,3,Woyla Barat,age_group,5-9,perempuan,331,jiwa,2025,registration,total_population,3.2,37,,5-9
+11.05.10,3,Woyla Barat,age_group,5-9,,659,jiwa,2025,registration,total_population,3.2,37,,5-9
+11.05.10,3,Woyla Barat,age_group,10-14,laki_laki,352,jiwa,2025,registration,total_population,3.2,37,,10-14
+11.05.10,3,Woyla Barat,age_group,10-14,perempuan,312,jiwa,2025,registration,total_population,3.2,37,,10-14
+11.05.10,3,Woyla Barat,age_group,10-14,,664,jiwa,2025,registration,total_population,3.2,37,,10-14
+11.05.10,3,Woyla Barat,age_group,15-19,laki_laki,303,jiwa,2025,registration,total_population,3.2,37,,15-19
+11.05.10,3,Woyla Barat,age_group,15-19,perempuan,313,jiwa,2025,registration,total_population,3.2,37,,15-19
+11.05.10,3,Woyla Barat,age_group,15-19,,616,jiwa,2025,registration,total_population,3.2,37,,15-19
+11.05.10,3,Woyla Barat,age_group,20-24,laki_laki,289,jiwa,2025,registration,total_population,3.2,37,,20-24
+11.05.10,3,Woyla Barat,age_group,20-24,perempuan,286,jiwa,2025,registration,total_population,3.2,37,,20-24
+11.05.10,3,Woyla Barat,age_group,20-24,,575,jiwa,2025,registration,total_population,3.2,37,,20-24
+11.05.10,3,Woyla Barat,age_group,25-29,laki_laki,353,jiwa,2025,registration,total_population,3.2,37,,25-29
+11.05.10,3,Woyla Barat,age_group,25-29,perempuan,350,jiwa,2025,registration,total_population,3.2,37,,25-29
+11.05.10,3,Woyla Barat,age_group,25-29,,703,jiwa,2025,registration,total_population,3.2,37,,25-29
+11.05.10,3,Woyla Barat,age_group,30-34,laki_laki,348,jiwa,2025,registration,total_population,3.2,37,,30-34
+11.05.10,3,Woyla Barat,age_group,30-34,perempuan,305,jiwa,2025,registration,total_population,3.2,37,,30-34
+11.05.10,3,Woyla Barat,age_group,30-34,,653,jiwa,2025,registration,total_population,3.2,37,,30-34
+11.05.10,3,Woyla Barat,age_group,35-39,laki_laki,317,jiwa,2025,registration,total_population,3.2,37,,35-39
+11.05.10,3,Woyla Barat,age_group,35-39,perempuan,332,jiwa,2025,registration,total_population,3.2,37,,35-39
+11.05.10,3,Woyla Barat,age_group,35-39,,649,jiwa,2025,registration,total_population,3.2,37,,35-39
+11.05.10,3,Woyla Barat,age_group,40-44,laki_laki,320,jiwa,2025,registration,total_population,3.2,37,,40-44
+11.05.10,3,Woyla Barat,age_group,40-44,perempuan,309,jiwa,2025,registration,total_population,3.2,37,,40-44
+11.05.10,3,Woyla Barat,age_group,40-44,,629,jiwa,2025,registration,total_population,3.2,37,,40-44
+11.05.10,3,Woyla Barat,age_group,45-49,laki_laki,266,jiwa,2025,registration,total_population,3.2,37,,45-49
+11.05.10,3,Woyla Barat,age_group,45-49,perempuan,297,jiwa,2025,registration,total_population,3.2,37,,45-49
+11.05.10,3,Woyla Barat,age_group,45-49,,563,jiwa,2025,registration,total_population,3.2,37,,45-49
+11.05.10,3,Woyla Barat,age_group,50-54,laki_laki,257,jiwa,2025,registration,total_population,3.2,37,,50-54
+11.05.10,3,Woyla Barat,age_group,50-54,perempuan,236,jiwa,2025,registration,total_population,3.2,37,,50-54
+11.05.10,3,Woyla Barat,age_group,50-54,,493,jiwa,2025,registration,total_population,3.2,37,,50-54
+11.05.10,3,Woyla Barat,age_group,55-59,laki_laki,240,jiwa,2025,registration,total_population,3.2,37,,55-59
+11.05.10,3,Woyla Barat,age_group,55-59,perempuan,253,jiwa,2025,registration,total_population,3.2,37,,55-59
+11.05.10,3,Woyla Barat,age_group,55-59,,493,jiwa,2025,registration,total_population,3.2,37,,55-59
+11.05.10,3,Woyla Barat,age_group,60-64,laki_laki,181,jiwa,2025,registration,total_population,3.2,37,,60-64
+11.05.10,3,Woyla Barat,age_group,60-64,perempuan,165,jiwa,2025,registration,total_population,3.2,37,,60-64
+11.05.10,3,Woyla Barat,age_group,60-64,,346,jiwa,2025,registration,total_population,3.2,37,,60-64
+11.05.10,3,Woyla Barat,age_group,65-69,laki_laki,123,jiwa,2025,registration,total_population,3.2,37,,65-69
+11.05.10,3,Woyla Barat,age_group,65-69,perempuan,112,jiwa,2025,registration,total_population,3.2,37,,65-69
+11.05.10,3,Woyla Barat,age_group,65-69,,235,jiwa,2025,registration,total_population,3.2,37,,65-69
+11.05.10,3,Woyla Barat,age_group,70-74,laki_laki,67,jiwa,2025,registration,total_population,3.2,37,,70-74
+11.05.10,3,Woyla Barat,age_group,70-74,perempuan,84,jiwa,2025,registration,total_population,3.2,37,,70-74
+11.05.10,3,Woyla Barat,age_group,70-74,,151,jiwa,2025,registration,total_population,3.2,37,,70-74
+11.05.10,3,Woyla Barat,age_group,75+,laki_laki,115,jiwa,2025,registration,total_population,3.2,37,,75+
+11.05.10,3,Woyla Barat,age_group,75+,perempuan,147,jiwa,2025,registration,total_population,3.2,37,,75+
+11.05.10,3,Woyla Barat,age_group,75+,,262,jiwa,2025,registration,total_population,3.2,37,,75+
+11.05.10,3,Woyla Barat,sex,laki_laki,,4180,jiwa,2025,registration,total_population,3.2,37,,Laki-Laki
+11.05.10,3,Woyla Barat,sex,perempuan,,4140,jiwa,2025,registration,total_population,3.2,37,,Perempuan
+11.05.10,3,Woyla Barat,total,total,,8320,jiwa,2025,registration,total_population,3.2,37,,

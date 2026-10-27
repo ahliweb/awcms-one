@@ -1,0 +1,117 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.71.01,3,Ilir Barat Dua,total,total,,70278,jiwa,2025,registration,total_population,3.1.1,61,,
+16.71.12,3,Gandus,total,total,,86989,jiwa,2025,registration,total_population,3.1.1,61,,
+16.71.02,3,Seberang Ulu Satu,total,total,,97535,jiwa,2025,registration,total_population,3.1.1,61,,
+16.71.13,3,Kertapati,total,total,,100923,jiwa,2025,registration,total_population,3.1.1,61,,
+16.71.17,3,Jakabaring,total,total,,95454,jiwa,2025,registration,total_population,3.1.1,61,,
+16.71.03,3,Seberang Ulu Dua,total,total,,107801,jiwa,2025,registration,total_population,3.1.1,61,,
+16.71.14,3,Plaju,total,total,,100684,jiwa,2025,registration,total_population,3.1.1,61,,
+16.71.04,3,Ilir Barat Satu,total,total,,157560,jiwa,2025,registration,total_population,3.1.1,61,,
+16.71.11,3,Bukitkecil,total,total,,38092,jiwa,2025,registration,total_population,3.1.1,61,,
+16.71.05,3,Ilir Timur Satu,total,total,,65828,jiwa,2025,registration,total_population,3.1.1,61,,
+16.71.09,3,Kemuning,total,total,,82225,jiwa,2025,registration,total_population,3.1.1,61,,
+16.71.06,3,Ilir Timur Dua,total,total,,84509,jiwa,2025,registration,total_population,3.1.1,61,,
+16.71.10,3,Kalidoni,total,total,,135373,jiwa,2025,registration,total_population,3.1.1,61,,
+16.71.18,3,Ilir Timur Tiga,total,total,,74481,jiwa,2025,registration,total_population,3.1.1,61,,
+16.71.08,3,Sako,total,total,,119302,jiwa,2025,registration,total_population,3.1.1,61,,
+16.71.16,3,Sematangborang,total,total,,74577,jiwa,2025,registration,total_population,3.1.1,61,,
+16.71.07,3,Sukarami,total,total,,218538,jiwa,2025,registration,total_population,3.1.1,61,,
+16.71.15,3,Alang-Alang Lebar,total,total,,119596,jiwa,2025,registration,total_population,3.1.1,61,,
+16.71,2,Palembang,total,total,,1829745,jiwa,2025,registration,total_population,3.1.1,61,,
+16.71,2,Kota Palembang,age_group,0-4,laki_laki,65954,jiwa,2025,registration,total_population,3.1.2,64,,0–4
+16.71,2,Kota Palembang,age_group,0-4,perempuan,60794,jiwa,2025,registration,total_population,3.1.2,64,,0–4
+16.71,2,Kota Palembang,age_group,0-4,,126748,jiwa,2025,registration,total_population,3.1.2,64,,0–4
+16.71,2,Kota Palembang,age_group,5-9,laki_laki,84983,jiwa,2025,registration,total_population,3.1.2,64,,5–9
+16.71,2,Kota Palembang,age_group,5-9,perempuan,79135,jiwa,2025,registration,total_population,3.1.2,64,,5–9
+16.71,2,Kota Palembang,age_group,5-9,,164118,jiwa,2025,registration,total_population,3.1.2,64,,5–9
+16.71,2,Kota Palembang,age_group,10-14,laki_laki,86549,jiwa,2025,registration,total_population,3.1.2,64,,10–14
+16.71,2,Kota Palembang,age_group,10-14,perempuan,80563,jiwa,2025,registration,total_population,3.1.2,64,,10–14
+16.71,2,Kota Palembang,age_group,10-14,,167112,jiwa,2025,registration,total_population,3.1.2,64,,10–14
+16.71,2,Kota Palembang,age_group,15-19,laki_laki,75397,jiwa,2025,registration,total_population,3.1.2,64,,15–19
+16.71,2,Kota Palembang,age_group,15-19,perempuan,72062,jiwa,2025,registration,total_population,3.1.2,64,,15–19
+16.71,2,Kota Palembang,age_group,15-19,,147459,jiwa,2025,registration,total_population,3.1.2,64,,15–19
+16.71,2,Kota Palembang,age_group,20-24,laki_laki,71740,jiwa,2025,registration,total_population,3.1.2,64,,20–24
+16.71,2,Kota Palembang,age_group,20-24,perempuan,68887,jiwa,2025,registration,total_population,3.1.2,64,,20–24
+16.71,2,Kota Palembang,age_group,20-24,,140627,jiwa,2025,registration,total_population,3.1.2,64,,20–24
+16.71,2,Kota Palembang,age_group,25-29,laki_laki,71277,jiwa,2025,registration,total_population,3.1.2,64,,25–29
+16.71,2,Kota Palembang,age_group,25-29,perempuan,69831,jiwa,2025,registration,total_population,3.1.2,64,,25–29
+16.71,2,Kota Palembang,age_group,25-29,,141108,jiwa,2025,registration,total_population,3.1.2,64,,25–29
+16.71,2,Kota Palembang,age_group,30-34,laki_laki,70454,jiwa,2025,registration,total_population,3.1.2,64,,30–34
+16.71,2,Kota Palembang,age_group,30-34,perempuan,68797,jiwa,2025,registration,total_population,3.1.2,64,,30–34
+16.71,2,Kota Palembang,age_group,30-34,,139251,jiwa,2025,registration,total_population,3.1.2,64,,30–34
+16.71,2,Kota Palembang,age_group,35-39,laki_laki,71962,jiwa,2025,registration,total_population,3.1.2,64,,35–39
+16.71,2,Kota Palembang,age_group,35-39,perempuan,70317,jiwa,2025,registration,total_population,3.1.2,64,,35–39
+16.71,2,Kota Palembang,age_group,35-39,,142279,jiwa,2025,registration,total_population,3.1.2,64,,35–39
+16.71,2,Kota Palembang,age_group,40-44,laki_laki,70168,jiwa,2025,registration,total_population,3.1.2,64,,40–44
+16.71,2,Kota Palembang,age_group,40-44,perempuan,68621,jiwa,2025,registration,total_population,3.1.2,64,,40–44
+16.71,2,Kota Palembang,age_group,40-44,,138789,jiwa,2025,registration,total_population,3.1.2,64,,40–44
+16.71,2,Kota Palembang,age_group,45-49,laki_laki,60714,jiwa,2025,registration,total_population,3.1.2,64,,45–49
+16.71,2,Kota Palembang,age_group,45-49,perempuan,60658,jiwa,2025,registration,total_population,3.1.2,64,,45–49
+16.71,2,Kota Palembang,age_group,45-49,,121372,jiwa,2025,registration,total_population,3.1.2,64,,45–49
+16.71,2,Kota Palembang,age_group,50-54,laki_laki,49992,jiwa,2025,registration,total_population,3.1.2,64,,50–54
+16.71,2,Kota Palembang,age_group,50-54,perempuan,52753,jiwa,2025,registration,total_population,3.1.2,64,,50–54
+16.71,2,Kota Palembang,age_group,50-54,,102745,jiwa,2025,registration,total_population,3.1.2,64,,50–54
+16.71,2,Kota Palembang,age_group,55-59,laki_laki,41903,jiwa,2025,registration,total_population,3.1.2,64,,55–59
+16.71,2,Kota Palembang,age_group,55-59,perempuan,46614,jiwa,2025,registration,total_population,3.1.2,64,,55–59
+16.71,2,Kota Palembang,age_group,55-59,,88517,jiwa,2025,registration,total_population,3.1.2,64,,55–59
+16.71,2,Kota Palembang,age_group,60-64,laki_laki,33433,jiwa,2025,registration,total_population,3.1.2,64,,60–64
+16.71,2,Kota Palembang,age_group,60-64,perempuan,39642,jiwa,2025,registration,total_population,3.1.2,64,,60–64
+16.71,2,Kota Palembang,age_group,60-64,,73075,jiwa,2025,registration,total_population,3.1.2,64,,60–64
+16.71,2,Kota Palembang,age_group,65-69,laki_laki,27885,jiwa,2025,registration,total_population,3.1.2,64,,65–69
+16.71,2,Kota Palembang,age_group,65-69,perempuan,32555,jiwa,2025,registration,total_population,3.1.2,64,,65–69
+16.71,2,Kota Palembang,age_group,65-69,,60440,jiwa,2025,registration,total_population,3.1.2,64,,65–69
+16.71,2,Kota Palembang,age_group,70-74,laki_laki,17621,jiwa,2025,registration,total_population,3.1.2,64,,70–74
+16.71,2,Kota Palembang,age_group,70-74,perempuan,19550,jiwa,2025,registration,total_population,3.1.2,64,,70–74
+16.71,2,Kota Palembang,age_group,70-74,,37171,jiwa,2025,registration,total_population,3.1.2,64,,70–74
+16.71,2,Kota Palembang,age_group,75+,laki_laki,15920,jiwa,2025,registration,total_population,3.1.2,64,,75+
+16.71,2,Kota Palembang,age_group,75+,perempuan,23014,jiwa,2025,registration,total_population,3.1.2,64,,75+
+16.71,2,Kota Palembang,age_group,75+,,38934,jiwa,2025,registration,total_population,3.1.2,64,,75+
+16.71,2,Palembang,sex,laki_laki,,915952,jiwa,2025,registration,total_population,3.1.2,64,,Laki-Laki
+16.71,2,Palembang,sex,perempuan,,913793,jiwa,2025,registration,total_population,3.1.2,64,,Perempuan
+16.71,2,Palembang,total,total,,1829745,jiwa,2025,registration,total_population,3.1.2,64,,
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/padi_padian,,76977,rupiah,2025,survey_estimate,per_capita,10.1,337,,Padi-padian
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/padi_padian,,77228,rupiah,2024,survey_estimate,per_capita,10.1,337,,Padi-padian
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/umbi_umbian,,8166,rupiah,2025,survey_estimate,per_capita,10.1,337,,Umbi-umbian
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/umbi_umbian,,8001,rupiah,2024,survey_estimate,per_capita,10.1,337,,Umbi-umbian
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,80025,rupiah,2025,survey_estimate,per_capita,10.1,337,,Ikan/udang/cumi/kerang
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,85424,rupiah,2024,survey_estimate,per_capita,10.1,337,,Ikan/udang/cumi/kerang
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/daging,,50244,rupiah,2025,survey_estimate,per_capita,10.1,337,,Daging
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/daging,,44151,rupiah,2024,survey_estimate,per_capita,10.1,337,,Daging
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/telur_dan_susu,,55956,rupiah,2025,survey_estimate,per_capita,10.1,337,,Telur dan susu
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/telur_dan_susu,,60626,rupiah,2024,survey_estimate,per_capita,10.1,337,,Telur dan susu
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/sayur_sayuran,,64578,rupiah,2025,survey_estimate,per_capita,10.1,337,,Sayur-sayuran
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/sayur_sayuran,,63030,rupiah,2024,survey_estimate,per_capita,10.1,337,,Sayur-sayuran
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/kacang_kacangan,,13558,rupiah,2025,survey_estimate,per_capita,10.1,337,,Kacang-kacangan
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/kacang_kacangan,,13942,rupiah,2024,survey_estimate,per_capita,10.1,337,,Kacang-kacangan
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/buah_buahan,,48847,rupiah,2025,survey_estimate,per_capita,10.1,337,,Buah-buahan
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/buah_buahan,,54056,rupiah,2024,survey_estimate,per_capita,10.1,337,,Buah-buahan
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,17563,rupiah,2025,survey_estimate,per_capita,10.1,337,,Minyak dan kelapa
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,15770,rupiah,2024,survey_estimate,per_capita,10.1,337,,Minyak dan kelapa
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/bahan_minuman,,21269,rupiah,2025,survey_estimate,per_capita,10.1,337,,Bahan minuman
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/bahan_minuman,,20440,rupiah,2024,survey_estimate,per_capita,10.1,337,,Bahan minuman
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/bumbu_bumbuan,,18176,rupiah,2025,survey_estimate,per_capita,10.1,337,,Bumbu-bumbuan
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/bumbu_bumbuan,,16949,rupiah,2024,survey_estimate,per_capita,10.1,337,,Bumbu-bumbuan
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/konsumsi_lainnya,,18207,rupiah,2025,survey_estimate,per_capita,10.1,337,,Konsumsi lainnya
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/konsumsi_lainnya,,20687,rupiah,2024,survey_estimate,per_capita,10.1,337,,Konsumsi lainnya
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,258838,rupiah,2025,survey_estimate,per_capita,10.1,337,,Makanan dan minuman jadi
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,260573,rupiah,2024,survey_estimate,per_capita,10.1,337,,Makanan dan minuman jadi
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/rokok,,61810,rupiah,2025,survey_estimate,per_capita,10.1,337,,Rokok
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/rokok,,74124,rupiah,2024,survey_estimate,per_capita,10.1,337,,Rokok
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/jumlah_makanan,,794213,rupiah,2025,survey_estimate,per_capita,10.1,337,,Jumlah makanan
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/jumlah_makanan,,815001,rupiah,2024,survey_estimate,per_capita,10.1,337,,Jumlah makanan
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,531498,rupiah,2025,survey_estimate,per_capita,10.1,337,,Perumahan dan fasilitas rumah tangga
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,473745,rupiah,2024,survey_estimate,per_capita,10.1,337,,Perumahan dan fasilitas rumah tangga
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,292409,rupiah,2025,survey_estimate,per_capita,10.1,337,,Aneka barang dan jasa
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,221838,rupiah,2024,survey_estimate,per_capita,10.1,337,,Aneka barang dan jasa
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,42219,rupiah,2025,survey_estimate,per_capita,10.1,337,,"Pakaian, alas kaki, dan tutup kepala"
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,35876,rupiah,2024,survey_estimate,per_capita,10.1,337,,"Pakaian, alas kaki, dan tutup kepala"
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/barang_tahan_lama,,91608,rupiah,2025,survey_estimate,per_capita,10.1,337,,Barang tahan lama
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/barang_tahan_lama,,46727,rupiah,2024,survey_estimate,per_capita,10.1,337,,Barang tahan lama
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,82530,rupiah,2025,survey_estimate,per_capita,10.1,337,,"Pajak, pungutan, dan asuransi"
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,68992,rupiah,2024,survey_estimate,per_capita,10.1,337,,"Pajak, pungutan, dan asuransi"
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,44749,rupiah,2025,survey_estimate,per_capita,10.1,337,,Keperluan pesta dan upacara/kenduri
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,14126,rupiah,2024,survey_estimate,per_capita,10.1,337,,Keperluan pesta dan upacara/kenduri
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1085013,rupiah,2025,survey_estimate,per_capita,10.1,337,,Jumlah bukan makanan
+16.71,2,Kota Palembang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,861304,rupiah,2024,survey_estimate,per_capita,10.1,337,,Jumlah bukan makanan
+16.71,2,Kota Palembang,expenditure,total,,1879226,rupiah,2025,survey_estimate,per_capita,10.1,337,,
+16.71,2,Kota Palembang,expenditure,total,,1676305,rupiah,2024,survey_estimate,per_capita,10.1,337,,

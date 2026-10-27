@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.03.11.2008,4,Gunung Gijul,sex,laki_laki,,380,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.11.2008,4,Gunung Gijul,sex,perempuan,,372,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.11.2008,4,Gunung Gijul,total,total,,752,jiwa,2025,registration,total_population,3.1,28,,
+18.03.11.2007,4,Gunung Sadar,sex,laki_laki,,754,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.11.2007,4,Gunung Sadar,sex,perempuan,,672,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.11.2007,4,Gunung Sadar,total,total,,1426,jiwa,2025,registration,total_population,3.1,28,,
+18.03.11.2006,4,Subik,sex,laki_laki,,1987,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.11.2006,4,Subik,sex,perempuan,,1909,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.11.2006,4,Subik,total,total,,3896,jiwa,2025,registration,total_population,3.1,28,,
+18.03.11.2017,4,Pekurun Selatan,sex,laki_laki,,791,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.11.2017,4,Pekurun Selatan,sex,perempuan,,752,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.11.2017,4,Pekurun Selatan,total,total,,1543,jiwa,2025,registration,total_population,3.1,28,,
+18.03.11.2016,4,Pekurun Barat,sex,laki_laki,,1043,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.11.2016,4,Pekurun Barat,sex,perempuan,,1035,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.11.2016,4,Pekurun Barat,total,total,,2078,jiwa,2025,registration,total_population,3.1,28,,
+18.03.11.2018,4,Pekurun Utara,sex,laki_laki,,485,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.11.2018,4,Pekurun Utara,sex,perempuan,,451,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.11.2018,4,Pekurun Utara,total,total,,936,jiwa,2025,registration,total_population,3.1,28,,
+18.03.11.2004,4,Kedaton,sex,laki_laki,,677,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.11.2004,4,Kedaton,sex,perempuan,,679,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.11.2004,4,Kedaton,total,total,,1356,jiwa,2025,registration,total_population,3.1,28,,
+18.03.11.2005,4,Sri Bandung,sex,laki_laki,,676,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.11.2005,4,Sri Bandung,sex,perempuan,,702,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.11.2005,4,Sri Bandung,total,total,,1378,jiwa,2025,registration,total_population,3.1,28,,
+18.03.11.2003,4,Negla Sari,sex,laki_laki,,937,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.11.2003,4,Negla Sari,sex,perempuan,,884,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.11.2003,4,Negla Sari,total,total,,1821,jiwa,2025,registration,total_population,3.1,28,,
+18.03.11.2002,4,Kinciran,sex,laki_laki,,837,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.11.2002,4,Kinciran,sex,perempuan,,822,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.11.2002,4,Kinciran,total,total,,1659,jiwa,2025,registration,total_population,3.1,28,,
+18.03.11.2001,4,Gunung Besar,sex,laki_laki,,895,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.11.2001,4,Gunung Besar,sex,perempuan,,866,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.11.2001,4,Gunung Besar,total,total,,1761,jiwa,2025,registration,total_population,3.1,28,,
+18.03.11,3,Kecamatan Abung Tengah,sex,laki_laki,,9462,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+18.03.11,3,Kecamatan Abung Tengah,sex,perempuan,,9144,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+18.03.11,3,Kecamatan Abung Tengah,total,total,,18606,jiwa,2025,registration,total_population,3.1,28,,
+18.03.11,3,Abung Tengah,age_group,0-4,laki_laki,632,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.11,3,Abung Tengah,age_group,0-4,perempuan,544,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.11,3,Abung Tengah,age_group,0-4,,1176,jiwa,2025,registration,total_population,3.2,30,,0-4
+18.03.11,3,Abung Tengah,age_group,5-9,laki_laki,851,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.11,3,Abung Tengah,age_group,5-9,perempuan,779,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.11,3,Abung Tengah,age_group,5-9,,1630,jiwa,2025,registration,total_population,3.2,30,,5-9
+18.03.11,3,Abung Tengah,age_group,10-14,laki_laki,721,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.11,3,Abung Tengah,age_group,10-14,perempuan,732,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.11,3,Abung Tengah,age_group,10-14,,1453,jiwa,2025,registration,total_population,3.2,30,,10-14
+18.03.11,3,Abung Tengah,age_group,15-19,laki_laki,712,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.11,3,Abung Tengah,age_group,15-19,perempuan,660,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.11,3,Abung Tengah,age_group,15-19,,1372,jiwa,2025,registration,total_population,3.2,30,,15-19
+18.03.11,3,Abung Tengah,age_group,20-24,laki_laki,698,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.11,3,Abung Tengah,age_group,20-24,perempuan,636,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.11,3,Abung Tengah,age_group,20-24,,1334,jiwa,2025,registration,total_population,3.2,30,,20-24
+18.03.11,3,Abung Tengah,age_group,25-29,laki_laki,626,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.11,3,Abung Tengah,age_group,25-29,perempuan,680,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.11,3,Abung Tengah,age_group,25-29,,1306,jiwa,2025,registration,total_population,3.2,30,,25-29
+18.03.11,3,Abung Tengah,age_group,30-34,laki_laki,731,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.11,3,Abung Tengah,age_group,30-34,perempuan,714,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.11,3,Abung Tengah,age_group,30-34,,1445,jiwa,2025,registration,total_population,3.2,30,,30-34
+18.03.11,3,Abung Tengah,age_group,35-39,laki_laki,728,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.11,3,Abung Tengah,age_group,35-39,perempuan,728,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.11,3,Abung Tengah,age_group,35-39,,1456,jiwa,2025,registration,total_population,3.2,30,,35-39
+18.03.11,3,Abung Tengah,age_group,40-44,laki_laki,753,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.11,3,Abung Tengah,age_group,40-44,perempuan,684,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.11,3,Abung Tengah,age_group,40-44,,1437,jiwa,2025,registration,total_population,3.2,30,,40-44
+18.03.11,3,Abung Tengah,age_group,45-49,laki_laki,766,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.11,3,Abung Tengah,age_group,45-49,perempuan,766,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.11,3,Abung Tengah,age_group,45-49,,1532,jiwa,2025,registration,total_population,3.2,30,,45-49
+18.03.11,3,Abung Tengah,age_group,50-54,laki_laki,592,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.11,3,Abung Tengah,age_group,50-54,perempuan,546,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.11,3,Abung Tengah,age_group,50-54,,1138,jiwa,2025,registration,total_population,3.2,30,,50-54
+18.03.11,3,Abung Tengah,age_group,55-59,laki_laki,439,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.11,3,Abung Tengah,age_group,55-59,perempuan,451,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.11,3,Abung Tengah,age_group,55-59,,890,jiwa,2025,registration,total_population,3.2,30,,55-59
+18.03.11,3,Abung Tengah,age_group,60-64,laki_laki,397,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.11,3,Abung Tengah,age_group,60-64,perempuan,462,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.11,3,Abung Tengah,age_group,60-64,,859,jiwa,2025,registration,total_population,3.2,30,,60-64
+18.03.11,3,Abung Tengah,age_group,65-69,laki_laki,312,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.11,3,Abung Tengah,age_group,65-69,perempuan,332,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.11,3,Abung Tengah,age_group,65-69,,644,jiwa,2025,registration,total_population,3.2,30,,65-69
+18.03.11,3,Abung Tengah,age_group,70-75,laki_laki,215,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.11,3,Abung Tengah,age_group,70-75,perempuan,184,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.11,3,Abung Tengah,age_group,70-75,,399,jiwa,2025,registration,total_population,3.2,30,,70-75
+18.03.11,3,Abung Tengah,age_group,75+,laki_laki,289,jiwa,2025,registration,total_population,3.2,30,,75+
+18.03.11,3,Abung Tengah,age_group,75+,perempuan,246,jiwa,2025,registration,total_population,3.2,30,,75+
+18.03.11,3,Abung Tengah,age_group,75+,,535,jiwa,2025,registration,total_population,3.2,30,,75+

@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.17.05.2002,4,Partungkonaginjang,sex,laki_laki,,934,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.05.2002,4,Partungkonaginjang,sex,perempuan,,889,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.05.2002,4,Partungkonaginjang,total,total,,1823,jiwa,2025,registration,total_population,3.1,28,,
+12.17.05.2007,4,Siparmahan,sex,laki_laki,,506,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.05.2007,4,Siparmahan,sex,perempuan,,547,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.05.2007,4,Siparmahan,total,total,,1053,jiwa,2025,registration,total_population,3.1,28,,
+12.17.05.2004,4,Dolok Raja,sex,laki_laki,,296,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.05.2004,4,Dolok Raja,sex,perempuan,,291,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.05.2004,4,Dolok Raja,total,total,,587,jiwa,2025,registration,total_population,3.1,28,,
+12.17.05.2006,4,Sampur Toba,sex,laki_laki,,407,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.05.2006,4,Sampur Toba,sex,perempuan,,444,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.05.2006,4,Sampur Toba,total,total,,851,jiwa,2025,registration,total_population,3.1,28,,
+12.17.05.2003,4,Hariara Pohan,sex,laki_laki,,371,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.05.2003,4,Hariara Pohan,sex,perempuan,,392,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.05.2003,4,Hariara Pohan,total,total,,763,jiwa,2025,registration,total_population,3.1,28,,
+12.17.05.2012,4,Janji Martahan,sex,laki_laki,,250,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.05.2012,4,Janji Martahan,sex,perempuan,,225,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.05.2012,4,Janji Martahan,total,total,,475,jiwa,2025,registration,total_population,3.1,28,,
+12.17.05.2011,4,Turpuk Sihotang,sex,laki_laki,,215,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.05.2011,4,Turpuk Sihotang,sex,perempuan,,216,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.05.2011,4,Turpuk Sihotang,total,total,,431,jiwa,2025,registration,total_population,3.1,28,,
+12.17.05.2001,4,Sosor Dolok,sex,laki_laki,,248,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.05.2001,4,Sosor Dolok,sex,perempuan,,261,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.05.2001,4,Sosor Dolok,total,total,,509,jiwa,2025,registration,total_population,3.1,28,,
+12.17.05.2009,4,Turpuk Sagala,sex,laki_laki,,178,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.05.2009,4,Turpuk Sagala,sex,perempuan,,190,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.05.2009,4,Turpuk Sagala,total,total,,368,jiwa,2025,registration,total_population,3.1,28,,
+12.17.05.2010,4,Turpuk Malau,sex,laki_laki,,220,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.05.2010,4,Turpuk Malau,sex,perempuan,,259,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.05.2010,4,Turpuk Malau,total,total,,479,jiwa,2025,registration,total_population,3.1,28,,
+12.17.05.2008,4,Turpuk Limbong,sex,laki_laki,,320,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.05.2008,4,Turpuk Limbong,sex,perempuan,,286,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.05.2008,4,Turpuk Limbong,total,total,,606,jiwa,2025,registration,total_population,3.1,28,,
+12.17.05.2014,4,Hutagalung,sex,laki_laki,,542,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.05.2014,4,Hutagalung,sex,perempuan,,518,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.05.2014,4,Hutagalung,total,total,,1060,jiwa,2025,registration,total_population,3.1,28,,
+12.17.05.2015,4,Hariarapintu,sex,laki_laki,,1165,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.05.2015,4,Hariarapintu,sex,perempuan,,1115,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.05.2015,4,Hariarapintu,total,total,,2280,jiwa,2025,registration,total_population,3.1,28,,
+12.17.05,3,Kecamatan Harian,sex,laki_laki,,5652,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+12.17.05,3,Kecamatan Harian,sex,perempuan,,5633,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+12.17.05,3,Kecamatan Harian,total,total,,11285,jiwa,2025,registration,total_population,3.1,28,,
+12.17.05,3,Harian,age_group,0-4,laki_laki,403,jiwa,2025,registration,total_population,3.2,30,,0-4
+12.17.05,3,Harian,age_group,0-4,perempuan,327,jiwa,2025,registration,total_population,3.2,30,,0-4
+12.17.05,3,Harian,age_group,0-4,,730,jiwa,2025,registration,total_population,3.2,30,,0-4
+12.17.05,3,Harian,age_group,5-9,laki_laki,528,jiwa,2025,registration,total_population,3.2,30,,5-9
+12.17.05,3,Harian,age_group,5-9,perempuan,509,jiwa,2025,registration,total_population,3.2,30,,5-9
+12.17.05,3,Harian,age_group,5-9,,1037,jiwa,2025,registration,total_population,3.2,30,,5-9
+12.17.05,3,Harian,age_group,10-14,laki_laki,632,jiwa,2025,registration,total_population,3.2,30,,10-14
+12.17.05,3,Harian,age_group,10-14,perempuan,597,jiwa,2025,registration,total_population,3.2,30,,10-14
+12.17.05,3,Harian,age_group,10-14,,1229,jiwa,2025,registration,total_population,3.2,30,,10-14
+12.17.05,3,Harian,age_group,15-19,laki_laki,601,jiwa,2025,registration,total_population,3.2,30,,15-19
+12.17.05,3,Harian,age_group,15-19,perempuan,591,jiwa,2025,registration,total_population,3.2,30,,15-19
+12.17.05,3,Harian,age_group,15-19,,1192,jiwa,2025,registration,total_population,3.2,30,,15-19
+12.17.05,3,Harian,age_group,20-24,laki_laki,562,jiwa,2025,registration,total_population,3.2,30,,20-24
+12.17.05,3,Harian,age_group,20-24,perempuan,551,jiwa,2025,registration,total_population,3.2,30,,20-24
+12.17.05,3,Harian,age_group,20-24,,1113,jiwa,2025,registration,total_population,3.2,30,,20-24
+12.17.05,3,Harian,age_group,25-29,laki_laki,462,jiwa,2025,registration,total_population,3.2,30,,25-29
+12.17.05,3,Harian,age_group,25-29,perempuan,462,jiwa,2025,registration,total_population,3.2,30,,25-29
+12.17.05,3,Harian,age_group,25-29,,924,jiwa,2025,registration,total_population,3.2,30,,25-29
+12.17.05,3,Harian,age_group,30-34,laki_laki,412,jiwa,2025,registration,total_population,3.2,30,,30-34
+12.17.05,3,Harian,age_group,30-34,perempuan,356,jiwa,2025,registration,total_population,3.2,30,,30-34
+12.17.05,3,Harian,age_group,30-34,,768,jiwa,2025,registration,total_population,3.2,30,,30-34
+12.17.05,3,Harian,age_group,35-39,laki_laki,368,jiwa,2025,registration,total_population,3.2,30,,35-39
+12.17.05,3,Harian,age_group,35-39,perempuan,365,jiwa,2025,registration,total_population,3.2,30,,35-39
+12.17.05,3,Harian,age_group,35-39,,733,jiwa,2025,registration,total_population,3.2,30,,35-39
+12.17.05,3,Harian,age_group,40-44,laki_laki,383,jiwa,2025,registration,total_population,3.2,30,,40-44
+12.17.05,3,Harian,age_group,40-44,perempuan,355,jiwa,2025,registration,total_population,3.2,30,,40-44
+12.17.05,3,Harian,age_group,40-44,,738,jiwa,2025,registration,total_population,3.2,30,,40-44
+12.17.05,3,Harian,age_group,45-49,laki_laki,324,jiwa,2025,registration,total_population,3.2,30,,45-49
+12.17.05,3,Harian,age_group,45-49,perempuan,281,jiwa,2025,registration,total_population,3.2,30,,45-49
+12.17.05,3,Harian,age_group,45-49,,605,jiwa,2025,registration,total_population,3.2,30,,45-49
+12.17.05,3,Harian,age_group,50-54,laki_laki,247,jiwa,2025,registration,total_population,3.2,30,,50-54
+12.17.05,3,Harian,age_group,50-54,perempuan,263,jiwa,2025,registration,total_population,3.2,30,,50-54
+12.17.05,3,Harian,age_group,50-54,,510,jiwa,2025,registration,total_population,3.2,30,,50-54
+12.17.05,3,Harian,age_group,55-59,laki_laki,241,jiwa,2025,registration,total_population,3.2,30,,55-59
+12.17.05,3,Harian,age_group,55-59,perempuan,244,jiwa,2025,registration,total_population,3.2,30,,55-59
+12.17.05,3,Harian,age_group,55-59,,485,jiwa,2025,registration,total_population,3.2,30,,55-59
+12.17.05,3,Harian,age_group,60-64,laki_laki,180,jiwa,2025,registration,total_population,3.2,30,,60-64
+12.17.05,3,Harian,age_group,60-64,perempuan,217,jiwa,2025,registration,total_population,3.2,30,,60-64
+12.17.05,3,Harian,age_group,60-64,,397,jiwa,2025,registration,total_population,3.2,30,,60-64
+12.17.05,3,Harian,age_group,65-69,laki_laki,148,jiwa,2025,registration,total_population,3.2,30,,65-69
+12.17.05,3,Harian,age_group,65-69,perempuan,198,jiwa,2025,registration,total_population,3.2,30,,65-69
+12.17.05,3,Harian,age_group,65-69,,346,jiwa,2025,registration,total_population,3.2,30,,65-69
+12.17.05,3,Harian,age_group,70-74,laki_laki,68,jiwa,2025,registration,total_population,3.2,30,,70-74
+12.17.05,3,Harian,age_group,70-74,perempuan,130,jiwa,2025,registration,total_population,3.2,30,,70-74
+12.17.05,3,Harian,age_group,70-74,,198,jiwa,2025,registration,total_population,3.2,30,,70-74
+12.17.05,3,Harian,age_group,75+,laki_laki,93,jiwa,2025,registration,total_population,3.2,30,,75+
+12.17.05,3,Harian,age_group,75+,perempuan,187,jiwa,2025,registration,total_population,3.2,30,,75+
+12.17.05,3,Harian,age_group,75+,,280,jiwa,2025,registration,total_population,3.2,30,,75+
+12.17.05,3,Kecamatan Harian,sex,laki_laki,,5652,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+12.17.05,3,Kecamatan Harian,sex,perempuan,,5633,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+12.17.05,3,Kecamatan Harian,total,total,,11285,jiwa,2025,registration,total_population,3.2,30,,

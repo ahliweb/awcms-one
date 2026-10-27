@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.71.01.1005,4,Sukamenanti,sex,laki_laki,,2485,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.01.1005,4,Sukamenanti,sex,perempuan,,2501,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.01.1005,4,Sukamenanti,total,total,,4986,jiwa,2025,registration,total_population,3.1,26,,
+18.71.01.1006,4,Sidodadi,sex,laki_laki,,5371,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.01.1006,4,Sidodadi,sex,perempuan,,5364,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.01.1006,4,Sidodadi,total,total,,10735,jiwa,2025,registration,total_population,3.1,26,,
+18.71.01.1004,4,Surabaya,sex,laki_laki,,5400,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.01.1004,4,Surabaya,sex,perempuan,,5344,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.01.1004,4,Surabaya,total,total,,10744,jiwa,2025,registration,total_population,3.1,26,,
+18.71.01.1003,4,Kedaton,sex,laki_laki,,6417,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.01.1003,4,Kedaton,sex,perempuan,,6347,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.01.1003,4,Kedaton,total,total,,12764,jiwa,2025,registration,total_population,3.1,26,,
+18.71.01.1009,4,Sukamenanti Baru,sex,laki_laki,,2258,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.01.1009,4,Sukamenanti Baru,sex,perempuan,,2283,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.01.1009,4,Sukamenanti Baru,total,total,,4541,jiwa,2025,registration,total_population,3.1,26,,
+18.71.01.1010,4,Penengahan,sex,laki_laki,,1522,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.01.1010,4,Penengahan,sex,perempuan,,1539,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.01.1010,4,Penengahan,total,total,,3061,jiwa,2025,registration,total_population,3.1,26,,
+18.71.01.1012,4,Penengahan Raya,sex,laki_laki,,2251,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.01.1012,4,Penengahan Raya,sex,perempuan,,2180,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.01.1012,4,Penengahan Raya,total,total,,4431,jiwa,2025,registration,total_population,3.1,26,,
+18.71.01,3,Kedaton,sex,laki_laki,,25704,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.01,3,Kedaton,sex,perempuan,,25558,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.01,3,Kedaton,total,total,,51262,jiwa,2025,registration,total_population,3.1,26,,

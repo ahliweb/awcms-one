@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-3508-kecamatan-350819-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.08.19",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Klakah Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lumajang",
+  "publisherDomain": "3508",
+  "publisherWebsite": "https://lumajangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lumajang (https://lumajangkab.bps.go.id), publikasi \"Kecamatan Klakah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3508190",
+  "publicationNumber": "35080.26025",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lumajangkab.bps.go.id/id/publication/2026/09/28/f39dec073fc57b6629038eef/kecamatan-klakah-dalam-angka-2026.html",
+  "sourceFileSha256": "5ee7292fe879c7b276ec9db4e9928f103dada0879d3b46c7151329d895ecafc6",
+  "sourceFileBytes": 2830286,
+  "sourcePages": [32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lumajang",
+  "csvPath": "datasets/bps-3508-kecamatan-350819-dalam-angka-2026.csv",
+  "csvSha256": "75feed22c45b3a32b952addead84d46755da524ddcd911333369beed28710752",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Klakah, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1 (sex-by-village) could not be read reliably and is not included (figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?))",
+    "table 3.2: 48 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

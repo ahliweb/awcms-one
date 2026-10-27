@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-3524-kecamatan-352404-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.24.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ngimbang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lamongan",
+  "publisherDomain": "3524",
+  "publisherWebsite": "https://lamongankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lamongan (https://lamongankab.bps.go.id), publikasi \"Kecamatan Ngimbang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "22.3..2.3524030",
+  "publicationNumber": "35240.26008",
+  "issn": "2797-8028",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lamongankab.bps.go.id/id/publication/2026/09/28/4963dcce5a9907ef006624e4/kecamatan-ngimbang-dalam-angka-2026.html",
+  "sourceFileSha256": "aa8600e05e8987df5f29539bafe88b43943b16cf4493a0b1f3de1a5a036d5b41",
+  "sourceFileBytes": 3785350,
+  "sourcePages": [41, 43],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lamongan ht tp s: // la m on g an ka b. bp s. go .id",
+  "csvPath": "datasets/bps-3524-kecamatan-352404-dalam-angka-2026.csv",
+  "csvSha256": "aa50cfde85ecb630cbd1744947fd7d167e309fa2daaa8a433ebbbfd5a685757d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Ngimbang, 2025",
+      "printedPages": [41],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"002 Ganggantingan\": unmatched ",
+    "table 3.2: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

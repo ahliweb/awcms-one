@@ -1,0 +1,118 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.12.03.2001,4,Batu Tuhup,sex,laki_laki,,341,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.2001,4,Batu Tuhup,sex,perempuan,,330,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.2001,4,Batu Tuhup,total,total,,671,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.2002,4,Tumbang Bahan,sex,laki_laki,,160,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.2002,4,Tumbang Bahan,sex,perempuan,,139,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.2002,4,Tumbang Bahan,total,total,,299,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.1003,4,Muara Laung I,sex,laki_laki,,3280,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.1003,4,Muara Laung I,sex,perempuan,,3099,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.1003,4,Muara Laung I,total,total,,6379,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.2004,4,Muara Laung II,sex,laki_laki,,864,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.2004,4,Muara Laung II,sex,perempuan,,786,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.2004,4,Muara Laung II,total,total,,1650,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.1006,4,Muara Tuhup,sex,laki_laki,,2383,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.1006,4,Muara Tuhup,sex,perempuan,,2248,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.1006,4,Muara Tuhup,total,total,,4631,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.2011,4,Biha,sex,laki_laki,,259,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.2011,4,Biha,sex,perempuan,,208,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.2011,4,Biha,total,total,,467,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.2012,4,Dirung Pundu,sex,laki_laki,,320,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.2012,4,Dirung Pundu,sex,perempuan,,258,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.2012,4,Dirung Pundu,total,total,,578,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.2010,4,Pelaci,sex,laki_laki,,183,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.2010,4,Pelaci,sex,perempuan,,171,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.2010,4,Pelaci,total,total,,354,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.2013,4,Dirung Pinang,sex,laki_laki,,95,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.2013,4,Dirung Pinang,sex,perempuan,,89,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.2013,4,Dirung Pinang,total,total,,184,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.2014,4,Muara Tupuh,sex,laki_laki,,628,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.2014,4,Muara Tupuh,sex,perempuan,,586,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.2014,4,Muara Tupuh,total,total,,1214,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.2017,4,Lakutan,sex,laki_laki,,101,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.2017,4,Lakutan,sex,perempuan,,82,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.2017,4,Lakutan,total,total,,183,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.2016,4,Tumbang Bana,sex,laki_laki,,192,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.2016,4,Tumbang Bana,sex,perempuan,,170,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.2016,4,Tumbang Bana,total,total,,362,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.2015,4,Narui,sex,laki_laki,,181,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.2015,4,Narui,sex,perempuan,,139,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.2015,4,Narui,total,total,,320,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.2027,4,Muara Maruwei I,sex,laki_laki,,345,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.2027,4,Muara Maruwei I,sex,perempuan,,307,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.2027,4,Muara Maruwei I,total,total,,652,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.2028,4,Muara Maruwei II,sex,laki_laki,,466,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.2028,4,Muara Maruwei II,sex,perempuan,,394,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.2028,4,Muara Maruwei II,total,total,,860,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.2026,4,Penda Siron,sex,laki_laki,,216,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.2026,4,Penda Siron,sex,perempuan,,185,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.2026,4,Penda Siron,total,total,,401,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.2032,4,Batu Bua II,sex,laki_laki,,461,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.2032,4,Batu Bua II,sex,perempuan,,479,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.2032,4,Batu Bua II,total,total,,940,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.1031,4,Batu Bua I,sex,laki_laki,,658,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.1031,4,Batu Bua I,sex,perempuan,,569,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.1031,4,Batu Bua I,total,total,,1227,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.2033,4,Tahujan Laung,sex,laki_laki,,81,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.2033,4,Tahujan Laung,sex,perempuan,,65,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.2033,4,Tahujan Laung,total,total,,146,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.2029,4,Beralang,sex,laki_laki,,111,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.2029,4,Beralang,sex,perempuan,,79,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.2029,4,Beralang,total,total,,190,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.2034,4,Tumbang Bondang,sex,laki_laki,,393,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.2034,4,Tumbang Bondang,sex,perempuan,,367,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.2034,4,Tumbang Bondang,total,total,,760,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.2035,4,Tumbang Tonduk,sex,laki_laki,,66,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.2035,4,Tumbang Tonduk,sex,perempuan,,58,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.2035,4,Tumbang Tonduk,total,total,,124,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03.2037,4,Batu Karang,sex,laki_laki,,103,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03.2037,4,Batu Karang,sex,perempuan,,95,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03.2037,4,Batu Karang,total,total,,198,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03,3,Laung Tuhup,sex,laki_laki,,12378,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+62.12.03,3,Laung Tuhup,sex,perempuan,,11327,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+62.12.03,3,Laung Tuhup,total,total,,23705,jiwa,2025,registration,total_population,3.1,30,,
+62.12.03,3,Laung Tuhup,age_group,0-4,laki_laki,875,jiwa,2025,registration,total_population,3.2,32,,0–4
+62.12.03,3,Laung Tuhup,age_group,0-4,perempuan,818,jiwa,2025,registration,total_population,3.2,32,,0–4
+62.12.03,3,Laung Tuhup,age_group,0-4,,1693,jiwa,2025,registration,total_population,3.2,32,,0–4
+62.12.03,3,Laung Tuhup,age_group,5-9,laki_laki,1122,jiwa,2025,registration,total_population,3.2,32,,5–9
+62.12.03,3,Laung Tuhup,age_group,5-9,perempuan,1116,jiwa,2025,registration,total_population,3.2,32,,5–9
+62.12.03,3,Laung Tuhup,age_group,5-9,,2238,jiwa,2025,registration,total_population,3.2,32,,5–9
+62.12.03,3,Laung Tuhup,age_group,10-14,laki_laki,1242,jiwa,2025,registration,total_population,3.2,32,,10–14
+62.12.03,3,Laung Tuhup,age_group,10-14,perempuan,1147,jiwa,2025,registration,total_population,3.2,32,,10–14
+62.12.03,3,Laung Tuhup,age_group,10-14,,2389,jiwa,2025,registration,total_population,3.2,32,,10–14
+62.12.03,3,Laung Tuhup,age_group,15-19,laki_laki,1114,jiwa,2025,registration,total_population,3.2,32,,15–19
+62.12.03,3,Laung Tuhup,age_group,15-19,perempuan,1086,jiwa,2025,registration,total_population,3.2,32,,15–19
+62.12.03,3,Laung Tuhup,age_group,15-19,,2200,jiwa,2025,registration,total_population,3.2,32,,15–19
+62.12.03,3,Laung Tuhup,age_group,20-24,laki_laki,1306,jiwa,2025,registration,total_population,3.2,32,,20–24
+62.12.03,3,Laung Tuhup,age_group,20-24,perempuan,1158,jiwa,2025,registration,total_population,3.2,32,,20–24
+62.12.03,3,Laung Tuhup,age_group,20-24,,2464,jiwa,2025,registration,total_population,3.2,32,,20–24
+62.12.03,3,Laung Tuhup,age_group,25-29,laki_laki,986,jiwa,2025,registration,total_population,3.2,32,,25–29
+62.12.03,3,Laung Tuhup,age_group,25-29,perempuan,920,jiwa,2025,registration,total_population,3.2,32,,25–29
+62.12.03,3,Laung Tuhup,age_group,25-29,,1906,jiwa,2025,registration,total_population,3.2,32,,25–29
+62.12.03,3,Laung Tuhup,age_group,30-34,laki_laki,979,jiwa,2025,registration,total_population,3.2,32,,30–34
+62.12.03,3,Laung Tuhup,age_group,30-34,perempuan,871,jiwa,2025,registration,total_population,3.2,32,,30–34
+62.12.03,3,Laung Tuhup,age_group,30-34,,1850,jiwa,2025,registration,total_population,3.2,32,,30–34
+62.12.03,3,Laung Tuhup,age_group,35-39,laki_laki,948,jiwa,2025,registration,total_population,3.2,32,,35–39
+62.12.03,3,Laung Tuhup,age_group,35-39,perempuan,951,jiwa,2025,registration,total_population,3.2,32,,35–39
+62.12.03,3,Laung Tuhup,age_group,35-39,,1899,jiwa,2025,registration,total_population,3.2,32,,35–39
+62.12.03,3,Laung Tuhup,age_group,40-44,laki_laki,982,jiwa,2025,registration,total_population,3.2,32,,40–44
+62.12.03,3,Laung Tuhup,age_group,40-44,perempuan,868,jiwa,2025,registration,total_population,3.2,32,,40–44
+62.12.03,3,Laung Tuhup,age_group,40-44,,1850,jiwa,2025,registration,total_population,3.2,32,,40–44
+62.12.03,3,Laung Tuhup,age_group,45-49,laki_laki,854,jiwa,2025,registration,total_population,3.2,32,,45–49
+62.12.03,3,Laung Tuhup,age_group,45-49,perempuan,733,jiwa,2025,registration,total_population,3.2,32,,45–49
+62.12.03,3,Laung Tuhup,age_group,45-49,,1587,jiwa,2025,registration,total_population,3.2,32,,45–49
+62.12.03,3,Laung Tuhup,age_group,50-54,laki_laki,643,jiwa,2025,registration,total_population,3.2,32,,50–54
+62.12.03,3,Laung Tuhup,age_group,50-54,perempuan,526,jiwa,2025,registration,total_population,3.2,32,,50–54
+62.12.03,3,Laung Tuhup,age_group,50-54,,1169,jiwa,2025,registration,total_population,3.2,32,,50–54
+62.12.03,3,Laung Tuhup,age_group,55-59,laki_laki,488,jiwa,2025,registration,total_population,3.2,32,,55–59
+62.12.03,3,Laung Tuhup,age_group,55-59,perempuan,407,jiwa,2025,registration,total_population,3.2,32,,55–59
+62.12.03,3,Laung Tuhup,age_group,55-59,,895,jiwa,2025,registration,total_population,3.2,32,,55–59
+62.12.03,3,Laung Tuhup,age_group,60-64,laki_laki,364,jiwa,2025,registration,total_population,3.2,32,,60–64
+62.12.03,3,Laung Tuhup,age_group,60-64,perempuan,278,jiwa,2025,registration,total_population,3.2,32,,60–64
+62.12.03,3,Laung Tuhup,age_group,60-64,,642,jiwa,2025,registration,total_population,3.2,32,,60–64
+62.12.03,3,Laung Tuhup,age_group,65+,laki_laki,475,jiwa,2025,registration,total_population,3.2,32,,65+
+62.12.03,3,Laung Tuhup,age_group,65+,perempuan,448,jiwa,2025,registration,total_population,3.2,32,,65+
+62.12.03,3,Laung Tuhup,age_group,65+,,923,jiwa,2025,registration,total_population,3.2,32,,65+
+62.12.03,3,Laung Tuhup,sex,laki_laki,,12378,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+62.12.03,3,Laung Tuhup,sex,perempuan,,11327,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+62.12.03,3,Laung Tuhup,total,total,,23705,jiwa,2025,registration,total_population,3.2,32,,

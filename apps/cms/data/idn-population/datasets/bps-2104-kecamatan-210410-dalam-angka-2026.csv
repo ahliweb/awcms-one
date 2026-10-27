@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.04.10.2002,4,Posek,sex,laki_laki,,864,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.10.2002,4,Posek,sex,perempuan,,843,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.10.2002,4,Posek,total,total,,1707,jiwa,2025,registration,total_population,3.1,19,,
+21.04.10.2003,4,Suak Buaya,sex,laki_laki,,379,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.10.2003,4,Suak Buaya,sex,perempuan,,346,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.10.2003,4,Suak Buaya,total,total,,725,jiwa,2025,registration,total_population,3.1,19,,
+21.04.10.2001,4,Busung Panjang,sex,laki_laki,,400,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.10.2001,4,Busung Panjang,sex,perempuan,,396,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.10.2001,4,Busung Panjang,total,total,,796,jiwa,2025,registration,total_population,3.1,19,,
+21.04.10,3,Kecamatan Kepulauan Posek,sex,laki_laki,,1643,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki/Male
+21.04.10,3,Kecamatan Kepulauan Posek,sex,perempuan,,1585,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+21.04.10,3,Kecamatan Kepulauan Posek,total,total,,3228,jiwa,2025,registration,total_population,3.1,19,,

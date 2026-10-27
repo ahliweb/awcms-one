@@ -1,0 +1,100 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.10.07.2002,4,Bakung,sex,laki_laki,,1410,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.07.2002,4,Bakung,sex,perempuan,,1318,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.07.2002,4,Bakung,total,total,,2728,jiwa,2025,registration,total_population,3.1,27,,
+16.10.07.2003,4,Lorok,sex,laki_laki,,788,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.07.2003,4,Lorok,sex,perempuan,,806,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.07.2003,4,Lorok,total,total,,1594,jiwa,2025,registration,total_population,3.1,27,,
+16.10.07.2004,4,Parit,sex,laki_laki,,582,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.07.2004,4,Parit,sex,perempuan,,603,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.07.2004,4,Parit,total,total,,1185,jiwa,2025,registration,total_population,3.1,27,,
+16.10.07.2007,4,Purnajaya,sex,laki_laki,,666,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.07.2007,4,Purnajaya,sex,perempuan,,722,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.07.2007,4,Purnajaya,total,total,,1388,jiwa,2025,registration,total_population,3.1,27,,
+16.10.07.2005,4,Payakabung,sex,laki_laki,,1330,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.07.2005,4,Payakabung,sex,perempuan,,1319,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.07.2005,4,Payakabung,total,total,,2649,jiwa,2025,registration,total_population,3.1,27,,
+16.10.07.2009,4,Tanjung Baru,sex,laki_laki,,993,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.07.2009,4,Tanjung Baru,sex,perempuan,,902,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.07.2009,4,Tanjung Baru,total,total,,1895,jiwa,2025,registration,total_population,3.1,27,,
+16.10.07.2001,4,Tanjung Pering,sex,laki_laki,,1130,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.07.2001,4,Tanjung Pering,sex,perempuan,,1075,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.07.2001,4,Tanjung Pering,total,total,,2205,jiwa,2025,registration,total_population,3.1,27,,
+16.10.07.2006,4,Sungai Rambutan,sex,laki_laki,,1571,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.07.2006,4,Sungai Rambutan,sex,perempuan,,1432,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.07.2006,4,Sungai Rambutan,total,total,,3003,jiwa,2025,registration,total_population,3.1,27,,
+16.10.07.2008,4,Soak Batok,sex,laki_laki,,1143,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.07.2008,4,Soak Batok,sex,perempuan,,1103,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.07.2008,4,Soak Batok,total,total,,2246,jiwa,2025,registration,total_population,3.1,27,,
+16.10.07.1016,4,Kel. Timbangan,sex,laki_laki,,4755,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.07.1016,4,Kel. Timbangan,sex,perempuan,,4650,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.07.1016,4,Kel. Timbangan,total,total,,9405,jiwa,2025,registration,total_population,3.1,27,,
+16.10.07.2012,4,Suka Mulia,sex,laki_laki,,783,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.07.2012,4,Suka Mulia,sex,perempuan,,760,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.07.2012,4,Suka Mulia,total,total,,1543,jiwa,2025,registration,total_population,3.1,27,,
+16.10.07.2010,4,Tanjung Pule,sex,laki_laki,,696,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.07.2010,4,Tanjung Pule,sex,perempuan,,618,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.07.2010,4,Tanjung Pule,total,total,,1314,jiwa,2025,registration,total_population,3.1,27,,
+16.10.07.2011,4,Permata Baru,sex,laki_laki,,2428,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.07.2011,4,Permata Baru,sex,perempuan,,2370,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.07.2011,4,Permata Baru,total,total,,4798,jiwa,2025,registration,total_population,3.1,27,,
+16.10.07.2015,4,Palemraya,sex,laki_laki,,1940,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.07.2015,4,Palemraya,sex,perempuan,,1918,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.07.2015,4,Palemraya,total,total,,3858,jiwa,2025,registration,total_population,3.1,27,,
+16.10.07.2014,4,Pulau Semambu,sex,laki_laki,,1148,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.07.2014,4,Pulau Semambu,sex,perempuan,,1157,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.07.2014,4,Pulau Semambu,total,total,,2305,jiwa,2025,registration,total_population,3.1,27,,
+16.10.07,3,Indralaya Utara,sex,laki_laki,,21879,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.10.07,3,Indralaya Utara,sex,perempuan,,21228,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+16.10.07,3,Indralaya Utara,total,total,,43107,jiwa,2025,registration,total_population,3.1,27,,
+16.10.07,3,Indralaya Utara,age_group,0-4,laki_laki,1584,jiwa,2025,registration,total_population,3.2,29,,0-4
+16.10.07,3,Indralaya Utara,age_group,0-4,perempuan,1495,jiwa,2025,registration,total_population,3.2,29,,0-4
+16.10.07,3,Indralaya Utara,age_group,0-4,,3079,jiwa,2025,registration,total_population,3.2,29,,0-4
+16.10.07,3,Indralaya Utara,age_group,5-9,laki_laki,2034,jiwa,2025,registration,total_population,3.2,29,,5-9
+16.10.07,3,Indralaya Utara,age_group,5-9,perempuan,1914,jiwa,2025,registration,total_population,3.2,29,,5-9
+16.10.07,3,Indralaya Utara,age_group,5-9,,3948,jiwa,2025,registration,total_population,3.2,29,,5-9
+16.10.07,3,Indralaya Utara,age_group,10-14,laki_laki,2164,jiwa,2025,registration,total_population,3.2,29,,10-14
+16.10.07,3,Indralaya Utara,age_group,10-14,perempuan,2046,jiwa,2025,registration,total_population,3.2,29,,10-14
+16.10.07,3,Indralaya Utara,age_group,10-14,,4210,jiwa,2025,registration,total_population,3.2,29,,10-14
+16.10.07,3,Indralaya Utara,age_group,15-19,laki_laki,1797,jiwa,2025,registration,total_population,3.2,29,,15-19
+16.10.07,3,Indralaya Utara,age_group,15-19,perempuan,1775,jiwa,2025,registration,total_population,3.2,29,,15-19
+16.10.07,3,Indralaya Utara,age_group,15-19,,3572,jiwa,2025,registration,total_population,3.2,29,,15-19
+16.10.07,3,Indralaya Utara,age_group,20-24,laki_laki,1749,jiwa,2025,registration,total_population,3.2,29,,20-24
+16.10.07,3,Indralaya Utara,age_group,20-24,perempuan,1666,jiwa,2025,registration,total_population,3.2,29,,20-24
+16.10.07,3,Indralaya Utara,age_group,20-24,,3415,jiwa,2025,registration,total_population,3.2,29,,20-24
+16.10.07,3,Indralaya Utara,age_group,25-29,laki_laki,1790,jiwa,2025,registration,total_population,3.2,29,,25-29
+16.10.07,3,Indralaya Utara,age_group,25-29,perempuan,1764,jiwa,2025,registration,total_population,3.2,29,,25-29
+16.10.07,3,Indralaya Utara,age_group,25-29,,3554,jiwa,2025,registration,total_population,3.2,29,,25-29
+16.10.07,3,Indralaya Utara,age_group,30-34,laki_laki,1668,jiwa,2025,registration,total_population,3.2,29,,30-34
+16.10.07,3,Indralaya Utara,age_group,30-34,perempuan,1587,jiwa,2025,registration,total_population,3.2,29,,30-34
+16.10.07,3,Indralaya Utara,age_group,30-34,,3255,jiwa,2025,registration,total_population,3.2,29,,30-34
+16.10.07,3,Indralaya Utara,age_group,35-39,laki_laki,1649,jiwa,2025,registration,total_population,3.2,29,,35-39
+16.10.07,3,Indralaya Utara,age_group,35-39,perempuan,1686,jiwa,2025,registration,total_population,3.2,29,,35-39
+16.10.07,3,Indralaya Utara,age_group,35-39,,3335,jiwa,2025,registration,total_population,3.2,29,,35-39
+16.10.07,3,Indralaya Utara,age_group,40-44,laki_laki,1682,jiwa,2025,registration,total_population,3.2,29,,40-44
+16.10.07,3,Indralaya Utara,age_group,40-44,perempuan,1659,jiwa,2025,registration,total_population,3.2,29,,40-44
+16.10.07,3,Indralaya Utara,age_group,40-44,,3341,jiwa,2025,registration,total_population,3.2,29,,40-44
+16.10.07,3,Indralaya Utara,age_group,45-49,laki_laki,1446,jiwa,2025,registration,total_population,3.2,29,,45-49
+16.10.07,3,Indralaya Utara,age_group,45-49,perempuan,1531,jiwa,2025,registration,total_population,3.2,29,,45-49
+16.10.07,3,Indralaya Utara,age_group,45-49,,2977,jiwa,2025,registration,total_population,3.2,29,,45-49
+16.10.07,3,Indralaya Utara,age_group,50-54,laki_laki,1302,jiwa,2025,registration,total_population,3.2,29,,50-54
+16.10.07,3,Indralaya Utara,age_group,50-54,perempuan,1226,jiwa,2025,registration,total_population,3.2,29,,50-54
+16.10.07,3,Indralaya Utara,age_group,50-54,,2528,jiwa,2025,registration,total_population,3.2,29,,50-54
+16.10.07,3,Indralaya Utara,age_group,55-59,laki_laki,1004,jiwa,2025,registration,total_population,3.2,29,,55-59
+16.10.07,3,Indralaya Utara,age_group,55-59,perempuan,968,jiwa,2025,registration,total_population,3.2,29,,55-59
+16.10.07,3,Indralaya Utara,age_group,55-59,,1972,jiwa,2025,registration,total_population,3.2,29,,55-59
+16.10.07,3,Indralaya Utara,age_group,60-64,laki_laki,795,jiwa,2025,registration,total_population,3.2,29,,60-64
+16.10.07,3,Indralaya Utara,age_group,60-64,perempuan,758,jiwa,2025,registration,total_population,3.2,29,,60-64
+16.10.07,3,Indralaya Utara,age_group,60-64,,1553,jiwa,2025,registration,total_population,3.2,29,,60-64
+16.10.07,3,Indralaya Utara,age_group,65-69,laki_laki,550,jiwa,2025,registration,total_population,3.2,29,,65-69
+16.10.07,3,Indralaya Utara,age_group,65-69,perempuan,511,jiwa,2025,registration,total_population,3.2,29,,65-69
+16.10.07,3,Indralaya Utara,age_group,65-69,,1061,jiwa,2025,registration,total_population,3.2,29,,65-69
+16.10.07,3,Indralaya Utara,age_group,70-75,laki_laki,321,jiwa,2025,registration,total_population,3.2,29,,70-75
+16.10.07,3,Indralaya Utara,age_group,70-75,perempuan,289,jiwa,2025,registration,total_population,3.2,29,,70-75
+16.10.07,3,Indralaya Utara,age_group,70-75,,610,jiwa,2025,registration,total_population,3.2,29,,70-75
+16.10.07,3,Indralaya Utara,age_group,75+,laki_laki,344,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.07,3,Indralaya Utara,age_group,75+,perempuan,353,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.07,3,Indralaya Utara,age_group,75+,,697,jiwa,2025,registration,total_population,3.2,29,,>75
+16.10.07,3,Indralaya Utara,sex,laki_laki,,21879,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+16.10.07,3,Indralaya Utara,sex,perempuan,,21228,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+16.10.07,3,Indralaya Utara,total,total,,43107,jiwa,2025,registration,total_population,3.2,29,,

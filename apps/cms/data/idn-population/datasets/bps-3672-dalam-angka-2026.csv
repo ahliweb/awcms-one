@@ -1,0 +1,95 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.72,2,Kota Cilegon,age_group,0-4,laki_laki,18932,jiwa,2025,projection,total_population,3.1.2,69,,0–4
+36.72,2,Kota Cilegon,age_group,0-4,perempuan,18183,jiwa,2025,projection,total_population,3.1.2,69,,0–4
+36.72,2,Kota Cilegon,age_group,0-4,,37115,jiwa,2025,projection,total_population,3.1.2,69,,0–4
+36.72,2,Kota Cilegon,age_group,5-9,laki_laki,22610,jiwa,2025,projection,total_population,3.1.2,69,,5–9
+36.72,2,Kota Cilegon,age_group,5-9,perempuan,21738,jiwa,2025,projection,total_population,3.1.2,69,,5–9
+36.72,2,Kota Cilegon,age_group,5-9,,44348,jiwa,2025,projection,total_population,3.1.2,69,,5–9
+36.72,2,Kota Cilegon,age_group,10-14,laki_laki,19879,jiwa,2025,projection,total_population,3.1.2,69,,10–14
+36.72,2,Kota Cilegon,age_group,10-14,perempuan,18883,jiwa,2025,projection,total_population,3.1.2,69,,10–14
+36.72,2,Kota Cilegon,age_group,10-14,,38762,jiwa,2025,projection,total_population,3.1.2,69,,10–14
+36.72,2,Kota Cilegon,age_group,15-19,laki_laki,18712,jiwa,2025,projection,total_population,3.1.2,69,,15–19
+36.72,2,Kota Cilegon,age_group,15-19,perempuan,17243,jiwa,2025,projection,total_population,3.1.2,69,,15–19
+36.72,2,Kota Cilegon,age_group,15-19,,35955,jiwa,2025,projection,total_population,3.1.2,69,,15–19
+36.72,2,Kota Cilegon,age_group,20-24,laki_laki,17250,jiwa,2025,projection,total_population,3.1.2,69,,20–24
+36.72,2,Kota Cilegon,age_group,20-24,perempuan,16168,jiwa,2025,projection,total_population,3.1.2,69,,20–24
+36.72,2,Kota Cilegon,age_group,20-24,,33418,jiwa,2025,projection,total_population,3.1.2,69,,20–24
+36.72,2,Kota Cilegon,age_group,25-29,laki_laki,18639,jiwa,2025,projection,total_population,3.1.2,69,,25–29
+36.72,2,Kota Cilegon,age_group,25-29,perempuan,18707,jiwa,2025,projection,total_population,3.1.2,69,,25–29
+36.72,2,Kota Cilegon,age_group,25-29,,37346,jiwa,2025,projection,total_population,3.1.2,69,,25–29
+36.72,2,Kota Cilegon,age_group,30-34,laki_laki,18574,jiwa,2025,projection,total_population,3.1.2,69,,30–34
+36.72,2,Kota Cilegon,age_group,30-34,perempuan,18846,jiwa,2025,projection,total_population,3.1.2,69,,30–34
+36.72,2,Kota Cilegon,age_group,30-34,,37420,jiwa,2025,projection,total_population,3.1.2,69,,30–34
+36.72,2,Kota Cilegon,age_group,35-39,laki_laki,18622,jiwa,2025,projection,total_population,3.1.2,69,,35–39
+36.72,2,Kota Cilegon,age_group,35-39,perempuan,18705,jiwa,2025,projection,total_population,3.1.2,69,,35–39
+36.72,2,Kota Cilegon,age_group,35-39,,37327,jiwa,2025,projection,total_population,3.1.2,69,,35–39
+36.72,2,Kota Cilegon,age_group,40-44,laki_laki,17270,jiwa,2025,projection,total_population,3.1.2,69,,40–44
+36.72,2,Kota Cilegon,age_group,40-44,perempuan,17105,jiwa,2025,projection,total_population,3.1.2,69,,40–44
+36.72,2,Kota Cilegon,age_group,40-44,,34375,jiwa,2025,projection,total_population,3.1.2,69,,40–44
+36.72,2,Kota Cilegon,age_group,45-49,laki_laki,15805,jiwa,2025,projection,total_population,3.1.2,69,,45–49
+36.72,2,Kota Cilegon,age_group,45-49,perempuan,15427,jiwa,2025,projection,total_population,3.1.2,69,,45–49
+36.72,2,Kota Cilegon,age_group,45-49,,31232,jiwa,2025,projection,total_population,3.1.2,69,,45–49
+36.72,2,Kota Cilegon,age_group,50-54,laki_laki,14257,jiwa,2025,projection,total_population,3.1.2,69,,50–54
+36.72,2,Kota Cilegon,age_group,50-54,perempuan,13927,jiwa,2025,projection,total_population,3.1.2,69,,50–54
+36.72,2,Kota Cilegon,age_group,50-54,,28184,jiwa,2025,projection,total_population,3.1.2,69,,50–54
+36.72,2,Kota Cilegon,age_group,55-59,laki_laki,11340,jiwa,2025,projection,total_population,3.1.2,69,,55–59
+36.72,2,Kota Cilegon,age_group,55-59,perempuan,11537,jiwa,2025,projection,total_population,3.1.2,69,,55–59
+36.72,2,Kota Cilegon,age_group,55-59,,22877,jiwa,2025,projection,total_population,3.1.2,69,,55–59
+36.72,2,Kota Cilegon,age_group,60-64,laki_laki,9151,jiwa,2025,projection,total_population,3.1.2,69,,60–64
+36.72,2,Kota Cilegon,age_group,60-64,perempuan,8842,jiwa,2025,projection,total_population,3.1.2,69,,60–64
+36.72,2,Kota Cilegon,age_group,60-64,,17993,jiwa,2025,projection,total_population,3.1.2,69,,60–64
+36.72,2,Kota Cilegon,age_group,65-69,laki_laki,6158,jiwa,2025,projection,total_population,3.1.2,69,,65–69
+36.72,2,Kota Cilegon,age_group,65-69,perempuan,5837,jiwa,2025,projection,total_population,3.1.2,69,,65–69
+36.72,2,Kota Cilegon,age_group,65-69,,11995,jiwa,2025,projection,total_population,3.1.2,69,,65–69
+36.72,2,Kota Cilegon,age_group,70-74,laki_laki,3785,jiwa,2025,projection,total_population,3.1.2,69,,70–74
+36.72,2,Kota Cilegon,age_group,70-74,perempuan,3651,jiwa,2025,projection,total_population,3.1.2,69,,70–74
+36.72,2,Kota Cilegon,age_group,70-74,,7436,jiwa,2025,projection,total_population,3.1.2,69,,70–74
+36.72,2,Kota Cilegon,age_group,75+,laki_laki,2047,jiwa,2025,projection,total_population,3.1.2,69,,75+
+36.72,2,Kota Cilegon,age_group,75+,perempuan,2572,jiwa,2025,projection,total_population,3.1.2,69,,75+
+36.72,2,Kota Cilegon,age_group,75+,,4619,jiwa,2025,projection,total_population,3.1.2,69,,75+
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/padi_padian,,86393,rupiah,2024,survey_estimate,per_capita,10.1,340,,Padi-padian
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/padi_padian,,85475,rupiah,2025,survey_estimate,per_capita,10.1,340,,Padi-padian
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/umbi_umbian,,6606,rupiah,2024,survey_estimate,per_capita,10.1,340,,Umbi-umbian
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/umbi_umbian,,7830,rupiah,2025,survey_estimate,per_capita,10.1,340,,Umbi-umbian
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,71111,rupiah,2024,survey_estimate,per_capita,10.1,340,,Ikan/udang/cumi/kerang
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,64584,rupiah,2025,survey_estimate,per_capita,10.1,340,,Ikan/udang/cumi/kerang
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/daging,,34516,rupiah,2024,survey_estimate,per_capita,10.1,340,,Daging
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/daging,,37159,rupiah,2025,survey_estimate,per_capita,10.1,340,,Daging
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/telur_dan_susu,,35445,rupiah,2024,survey_estimate,per_capita,10.1,340,,Telur dan susu
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/telur_dan_susu,,47100,rupiah,2025,survey_estimate,per_capita,10.1,340,,Telur dan susu
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/sayur_sayuran,,66686,rupiah,2024,survey_estimate,per_capita,10.1,340,,Sayur-sayuran
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/sayur_sayuran,,68554,rupiah,2025,survey_estimate,per_capita,10.1,340,,Sayur-sayuran
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/kacang_kacangan,,16912,rupiah,2024,survey_estimate,per_capita,10.1,340,,Kacang-kacangan
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/kacang_kacangan,,18495,rupiah,2025,survey_estimate,per_capita,10.1,340,,Kacang-kacangan
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/buah_buahan,,59108,rupiah,2024,survey_estimate,per_capita,10.1,340,,Buah-buahan
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/buah_buahan,,59930,rupiah,2025,survey_estimate,per_capita,10.1,340,,Buah-buahan
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18524,rupiah,2024,survey_estimate,per_capita,10.1,340,,Minyak dan kelapa
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20757,rupiah,2025,survey_estimate,per_capita,10.1,340,,Minyak dan kelapa
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/bahan_minuman,,19606,rupiah,2024,survey_estimate,per_capita,10.1,340,,Bahan minuman
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/bahan_minuman,,21841,rupiah,2025,survey_estimate,per_capita,10.1,340,,Bahan minuman
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/bumbu_bumbuan,,15962,rupiah,2024,survey_estimate,per_capita,10.1,340,,Bumbu-bumbuan
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/bumbu_bumbuan,,15305,rupiah,2025,survey_estimate,per_capita,10.1,340,,Bumbu-bumbuan
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/konsumsi_lainnya,,14529,rupiah,2024,survey_estimate,per_capita,10.1,340,,Konsumsi lainnya
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/konsumsi_lainnya,,15678,rupiah,2025,survey_estimate,per_capita,10.1,340,,Konsumsi lainnya
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,333724,rupiah,2024,survey_estimate,per_capita,10.1,340,,Makanan dan minuman jadi
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,355478,rupiah,2025,survey_estimate,per_capita,10.1,340,,Makanan dan minuman jadi
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/rokok,,127789,rupiah,2024,survey_estimate,per_capita,10.1,340,,Rokok
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/rokok,,110892,rupiah,2025,survey_estimate,per_capita,10.1,340,,Rokok
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/jumlah_makanan,,906912,rupiah,2024,survey_estimate,per_capita,10.1,340,,Jumlah makanan
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/jumlah_makanan,,929076,rupiah,2025,survey_estimate,per_capita,10.1,340,,Jumlah makanan
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,465335,rupiah,2024,survey_estimate,per_capita,10.1,340,,Perumahan dan fasilitas rumah tangga
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,472790,rupiah,2025,survey_estimate,per_capita,10.1,340,,Perumahan dan fasilitas rumah tangga
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,305036,rupiah,2024,survey_estimate,per_capita,10.1,340,,Aneka barang dan jasa
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,291659,rupiah,2025,survey_estimate,per_capita,10.1,340,,Aneka barang dan jasa
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,50297,rupiah,2024,survey_estimate,per_capita,10.1,340,,"Pakaian, alas kaki, dan tutup kepala"
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,58596,rupiah,2025,survey_estimate,per_capita,10.1,340,,"Pakaian, alas kaki, dan tutup kepala"
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/barang_tahan_lama,,96079,rupiah,2024,survey_estimate,per_capita,10.1,340,,Barang tahan lama
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/barang_tahan_lama,,69254,rupiah,2025,survey_estimate,per_capita,10.1,340,,Barang tahan lama
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,135318,rupiah,2024,survey_estimate,per_capita,10.1,340,,"Pajak, pungutan, dan asuransi"
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,180082,rupiah,2025,survey_estimate,per_capita,10.1,340,,"Pajak, pungutan, dan asuransi"
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,55822,rupiah,2024,survey_estimate,per_capita,10.1,340,,Keperluan pesta dan upacara/kenduri
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,96423,rupiah,2025,survey_estimate,per_capita,10.1,340,,Keperluan pesta dan upacara/kenduri
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1107887,rupiah,2024,survey_estimate,per_capita,10.1,340,,Jumlah bukan makanan
+36.72,2,Kota Cilegon,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,1168805,rupiah,2025,survey_estimate,per_capita,10.1,340,,Jumlah bukan makanan
+36.72,2,Kota Cilegon,expenditure,total,,2014799,rupiah,2024,survey_estimate,per_capita,10.1,340,,
+36.72,2,Kota Cilegon,expenditure,total,,2097881,rupiah,2025,survey_estimate,per_capita,10.1,340,,

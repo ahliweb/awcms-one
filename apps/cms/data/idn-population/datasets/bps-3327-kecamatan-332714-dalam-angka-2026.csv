@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.27.14.2001,4,Pakembaran,sex,perempuan,,2400,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.14.2001,4,Pakembaran,total,total,,4984,jiwa,2025,registration,total_population,3.1,45,,
+33.27.14.2002,4,Warungpring,sex,perempuan,,9344,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.14.2002,4,Warungpring,total,total,,19076,jiwa,2025,registration,total_population,3.1,45,,
+33.27.14.2003,4,Karangdawa,sex,perempuan,,1086,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.14.2003,4,Karangdawa,total,total,,2200,jiwa,2025,registration,total_population,3.1,45,,
+33.27.14.2004,4,Datar,sex,perempuan,,1715,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.14.2004,4,Datar,total,total,,3486,jiwa,2025,registration,total_population,3.1,45,,
+33.27.14.2005,4,Cibuyur,sex,perempuan,,4921,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.14.2005,4,Cibuyur,total,total,,10001,jiwa,2025,registration,total_population,3.1,45,,
+33.27.14.2006,4,Mereng,sex,perempuan,,4580,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.14.2006,4,Mereng,total,total,,9399,jiwa,2025,registration,total_population,3.1,45,,
+33.27.14,3,Kecamatan Warungpring,sex,perempuan,,24046,jiwa,2025,registration,total_population,3.1,45,,Perempuan/Female
+33.27.14,3,Kecamatan Warungpring,total,total,,49146,jiwa,2025,registration,total_population,3.1,45,,
+33.27.14,3,Warungpring,age_group,0-4,perempuan,1483,jiwa,2025,registration,total_population,3.2,47,,0 – 4
+33.27.14,3,Warungpring,age_group,0-4,,3087,jiwa,2025,registration,total_population,3.2,47,,0 – 4
+33.27.14,3,Warungpring,age_group,5-9,perempuan,1884,jiwa,2025,registration,total_population,3.2,47,,5 – 9
+33.27.14,3,Warungpring,age_group,5-9,,3979,jiwa,2025,registration,total_population,3.2,47,,5 – 9
+33.27.14,3,Warungpring,age_group,10-14,perempuan,1928,jiwa,2025,registration,total_population,3.2,47,,10 – 14
+33.27.14,3,Warungpring,age_group,10-14,,4043,jiwa,2025,registration,total_population,3.2,47,,10 – 14
+33.27.14,3,Warungpring,age_group,15-19,perempuan,1854,jiwa,2025,registration,total_population,3.2,47,,15 – 19
+33.27.14,3,Warungpring,age_group,15-19,,3782,jiwa,2025,registration,total_population,3.2,47,,15 – 19
+33.27.14,3,Warungpring,age_group,20-24,perempuan,1830,jiwa,2025,registration,total_population,3.2,47,,20 – 24
+33.27.14,3,Warungpring,age_group,20-24,,3786,jiwa,2025,registration,total_population,3.2,47,,20 – 24
+33.27.14,3,Warungpring,age_group,25-29,perempuan,1909,jiwa,2025,registration,total_population,3.2,47,,25 – 29
+33.27.14,3,Warungpring,age_group,25-29,,4153,jiwa,2025,registration,total_population,3.2,47,,25 – 29
+33.27.14,3,Warungpring,age_group,30-34,perempuan,1789,jiwa,2025,registration,total_population,3.2,47,,30 – 34
+33.27.14,3,Warungpring,age_group,30-34,,3835,jiwa,2025,registration,total_population,3.2,47,,30 – 34
+33.27.14,3,Warungpring,age_group,35-39,perempuan,1589,jiwa,2025,registration,total_population,3.2,47,,35 – 39
+33.27.14,3,Warungpring,age_group,35-39,,3393,jiwa,2025,registration,total_population,3.2,47,,35 – 39
+33.27.14,3,Warungpring,age_group,40-44,perempuan,1735,jiwa,2025,registration,total_population,3.2,47,,40 – 44
+33.27.14,3,Warungpring,age_group,40-44,,3552,jiwa,2025,registration,total_population,3.2,47,,40 – 44
+33.27.14,3,Warungpring,age_group,45-49,perempuan,1548,jiwa,2025,registration,total_population,3.2,47,,45 – 49
+33.27.14,3,Warungpring,age_group,45-49,,3195,jiwa,2025,registration,total_population,3.2,47,,45 – 49
+33.27.14,3,Warungpring,age_group,50-54,perempuan,1407,jiwa,2025,registration,total_population,3.2,47,,50 – 54
+33.27.14,3,Warungpring,age_group,50-54,,2720,jiwa,2025,registration,total_population,3.2,47,,50 – 54
+33.27.14,3,Warungpring,age_group,55-59,perempuan,1293,jiwa,2025,registration,total_population,3.2,47,,55 – 59
+33.27.14,3,Warungpring,age_group,55-59,,2470,jiwa,2025,registration,total_population,3.2,47,,55 – 59
+33.27.14,3,Warungpring,age_group,60-64,perempuan,1292,jiwa,2025,registration,total_population,3.2,47,,60 – 64
+33.27.14,3,Warungpring,age_group,60-64,,2414,jiwa,2025,registration,total_population,3.2,47,,60 – 64
+33.27.14,3,Warungpring,age_group,65-69,perempuan,1037,jiwa,2025,registration,total_population,3.2,47,,65 – 69
+33.27.14,3,Warungpring,age_group,65-69,,1943,jiwa,2025,registration,total_population,3.2,47,,65 – 69
+33.27.14,3,Warungpring,age_group,70-74,perempuan,651,jiwa,2025,registration,total_population,3.2,47,,70 – 74
+33.27.14,3,Warungpring,age_group,70-74,,1245,jiwa,2025,registration,total_population,3.2,47,,70 – 74
+33.27.14,3,Warungpring,age_group,75+,perempuan,817,jiwa,2025,registration,total_population,3.2,47,,>= 75
+33.27.14,3,Warungpring,age_group,75+,,1549,jiwa,2025,registration,total_population,3.2,47,,>= 75
+33.27.14,3,Kecamatan Warungpring,sex,perempuan,,24046,jiwa,2025,registration,total_population,3.2,47,,Perempuan
+33.27.14,3,Kecamatan Warungpring,total,total,,49146,jiwa,2025,registration,total_population,3.2,47,,

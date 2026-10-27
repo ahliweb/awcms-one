@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-1505-kecamatan-150508-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.05.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sungai Gelam Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Muaro Jambi",
+  "publisherDomain": "1505",
+  "publisherWebsite": "https://muarojambikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Muaro Jambi (https://muarojambikab.bps.go.id), publikasi \"Kecamatan Sungai Gelam Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "15050.26006",
+  "issn": "2722-6824",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://muarojambikab.bps.go.id/id/publication/2026/09/28/9cca84eae60f08b79850b945/kecamatan-sungai-gelam-dalam-angka-2026.html",
+  "sourceFileSha256": "a606f68306a47bcc501be11f5e670bcaee4f78ac0c73fb504c5d511b71866ce5",
+  "sourceFileBytes": 8373290,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Muaro Jambi.",
+  "csvPath": "datasets/bps-1505-kecamatan-150508-dalam-angka-2026.csv",
+  "csvSha256": "ffba8824378e71b9f60165e221f8c7250ca2f2d861d6357ed47094e1ddf4ac91",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sungai Gelam, 2026",
+      "printedPages": [30, 31],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sungai Gelam, 2026",
+      "printedPages": [32],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kebon Sembilang\": unmatched ",
+    "table 3.1: row not stored: row \"Trimulya\": unmatched ",
+    "table 3.1: row not stored: row \"Kebon Sembilang\": unmatched ",
+    "table 3.1: row not stored: row \"Trimulya\": unmatched "
+  ]
+}

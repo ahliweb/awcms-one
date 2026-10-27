@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1609-kecamatan-160809-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.08.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Belitang II Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Ogan Komering Ulu Timur",
+  "publisherDomain": "1609",
+  "publisherWebsite": "https://okutimurkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Ogan Komering Ulu Timur (https://okutimurkab.bps.go.id), publikasi \"Kecamatan Belitang II Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1609080",
+  "publicationNumber": "16090.26008",
+  "issn": "2962-5165",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://okutimurkab.bps.go.id/id/publication/2026/09/28/2349c1705676e2dd29cf5715/kecamatan-belitang-ii-dalam-angka-2026.html",
+  "sourceFileSha256": "887dd60cf1f3a792c855bdf1e176ffeb06a3a442208b1984d9d42cdf7a4ab8b3",
+  "sourceFileBytes": 7897004,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Ogan Komering Ulu Timur.",
+  "csvPath": "datasets/bps-1609-kecamatan-160809-dalam-angka-2026.csv",
+  "csvSha256": "c2f1cca3cca60f0e4db7284ea4792007e3d55ea4e382bda92901aeda15762a72",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Belitang II, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Belitang II, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kali Rejo\": unmatched ",
+    "table 3.1: row not stored: row \"Kali Rejo\": unmatched "
+  ]
+}

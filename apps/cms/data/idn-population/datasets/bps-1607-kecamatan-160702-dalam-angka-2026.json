@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-1607-kecamatan-160702-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.07.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Banyuasin II Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Banyuasin",
+  "publisherDomain": "1607",
+  "publisherWebsite": "https://banyuasinkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Banyuasin (https://banyuasinkab.bps.go.id), publikasi \"Kecamatan Banyuasin II Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "16070.26022",
+  "issn": "3064-4992",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banyuasinkab.bps.go.id/id/publication/2026/09/28/f3768088ce8bb042a16592ae/kecamatan-banyuasin-ii-dalam-angka-2026.html",
+  "sourceFileSha256": "6b934f8c435cf696801a8a2873af2a4fecdd96d9bead9375e02da88cbc0dc157",
+  "sourceFileBytes": 10843939,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Banyuasin.",
+  "csvPath": "datasets/bps-1607-kecamatan-160702-dalam-angka-2026.csv",
+  "csvSha256": "54f3379e7344e3ffb056c38a321fd216d332935dda24779d51264b1bac9aada9",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Banyuasin II, 2026",
+      "printedPages": [36],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Teluk Payo 1.458\": unmatched ",
+    "table 3.1: row not stored: row \"Sungsang III 1.978\": unmatched ",
+    "table 3.1: row not stored: row \"Sungsang I 3.142\": unmatched ",
+    "table 3.1: row not stored: row \"Sungsang II 2.924\": unmatched ",
+    "table 3.1: row not stored: row \"Sungsang IV 2.232\": unmatched ",
+    "table 3.1: row not stored: row \"Tanah Pilih 262\": unmatched ",
+    "table 3.1: row not stored: row \"Perajen Jaya 393\": unmatched ",
+    "table 3.1: row not stored: row \"Rimau Sungsang 1.168\": unmatched ",
+    "table 3.1: row not stored: row \"Muara Sungsang 1.064\": unmatched ",
+    "table 3.1: row not stored: row \"Marga Sungsang 1.875\": unmatched ",
+    "table 3.1: row not stored: row \"Banyuasin II 16.496\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

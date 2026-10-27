@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3201-kecamatan-320137-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.01.37",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tajurhalang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bogor",
+  "publisherDomain": "3201",
+  "publisherWebsite": "https://bogorkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bogor (https://bogorkab.bps.go.id), publikasi \"Kecamatan Tajurhalang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3201221",
+  "publicationNumber": "32010.26036",
+  "issn": "2597-8187",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bogorkab.bps.go.id/id/publication/2026/09/28/8ae969d607f06fa685805ce7/kecamatan-tajurhalang-dalam-angka-2026.html",
+  "sourceFileSha256": "5c86e16ba3f277201a04b0b1ae7ccc3a86840d5341bc840e258c515a59e83a2b",
+  "sourceFileBytes": 7957459,
+  "sourcePages": [36, 38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bogor.",
+  "csvPath": "datasets/bps-3201-kecamatan-320137-dalam-angka-2026.csv",
+  "csvSha256": "1b5c32c904bfc9fb04412ca2827dc6a7d5d5d2b984713f5823c8098b87a2ce65",
+  "tablesUsed": [
+    {
+      "table": "2.5",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk menurut Desa/ Kelurahan di Kecamatan Tajurhalang, 2025",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "2.6",
+      "title": "Jumlah Penduduk menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tajurhalang, 2025",
+      "printedPages": [38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

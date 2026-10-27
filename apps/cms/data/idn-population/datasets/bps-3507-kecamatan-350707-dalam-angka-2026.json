@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3507-kecamatan-350707-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.07.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Poncokusumo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Malang",
+  "publisherDomain": "3507",
+  "publisherWebsite": "https://malangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Malang (https://malangkab.bps.go.id), publikasi \"Kecamatan Poncokusumo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3507100",
+  "publicationNumber": "35070.26016",
+  "issn": "2828-9838",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://malangkab.bps.go.id/id/publication/2026/09/28/69fc4c694cf15ea25a0c428d/kecamatan-poncokusumo-dalam-angka-2026.html",
+  "sourceFileSha256": "63d6d27a052b11fbe9a8b45d1ab61a958e069bfdf525562f998a955f403957cc",
+  "sourceFileBytes": 5690542,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Malang.",
+  "csvPath": "datasets/bps-3507-kecamatan-350707-dalam-angka-2026.csv",
+  "csvSha256": "89c058f4f72d9e2dc3ec073fbffaa7fa55dcef4f272ad9f83c475615cf94228b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Poncokusumo, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Poncokusumo, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

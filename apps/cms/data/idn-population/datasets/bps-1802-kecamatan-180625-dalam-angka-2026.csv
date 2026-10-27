@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.06.25.2001,4,Negeri Agung,sex,laki_laki,,685,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.25.2001,4,Negeri Agung,sex,perempuan,,630,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.25.2001,4,Negeri Agung,total,total,,1315,jiwa,2025,registration,total_population,3.1,27,,
+18.06.25.2002,4,Bandar Sukabumi,sex,laki_laki,,1510,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.25.2002,4,Bandar Sukabumi,sex,perempuan,,1448,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.25.2002,4,Bandar Sukabumi,total,total,,2958,jiwa,2025,registration,total_population,3.1,27,,
+18.06.25.2003,4,Sanggi,sex,laki_laki,,1915,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.25.2003,4,Sanggi,sex,perempuan,,1772,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.25.2003,4,Sanggi,total,total,,3687,jiwa,2025,registration,total_population,3.1,27,,
+18.06.25.2004,4,Raja Basa,sex,laki_laki,,553,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.25.2004,4,Raja Basa,sex,perempuan,,485,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.25.2004,4,Raja Basa,total,total,,1038,jiwa,2025,registration,total_population,3.1,27,,
+18.06.25.2006,4,Gunung Doh,sex,laki_laki,,558,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.25.2006,4,Gunung Doh,sex,perempuan,,535,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.25.2006,4,Gunung Doh,total,total,,1093,jiwa,2025,registration,total_population,3.1,27,,
+18.06.25.2005,4,Banding,sex,laki_laki,,1015,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.25.2005,4,Banding,sex,perempuan,,944,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.25.2005,4,Banding,total,total,,1959,jiwa,2025,registration,total_population,3.1,27,,
+18.06.25.2008,4,Atar Lebar,sex,laki_laki,,833,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.25.2008,4,Atar Lebar,sex,perempuan,,711,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.25.2008,4,Atar Lebar,total,total,,1544,jiwa,2025,registration,total_population,3.1,27,,
+18.06.25.2007,4,Simpang Bayur,sex,laki_laki,,370,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.25.2007,4,Simpang Bayur,sex,perempuan,,336,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.25.2007,4,Simpang Bayur,total,total,,706,jiwa,2025,registration,total_population,3.1,27,,
+18.06.25.2010,4,Sanggi Unggak,sex,laki_laki,,331,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.25.2010,4,Sanggi Unggak,sex,perempuan,,305,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.25.2010,4,Sanggi Unggak,total,total,,636,jiwa,2025,registration,total_population,3.1,27,,
+18.06.25.2009,4,Sinar Bangun,sex,laki_laki,,537,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.25.2009,4,Sinar Bangun,sex,perempuan,,481,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.25.2009,4,Sinar Bangun,total,total,,1018,jiwa,2025,registration,total_population,3.1,27,,
+18.06.25.2011,4,Tulung Sari,sex,laki_laki,,356,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki
+18.06.25.2011,4,Tulung Sari,sex,perempuan,,314,jiwa,2025,registration,total_population,3.1,27,,Perempuan
+18.06.25.2011,4,Tulung Sari,total,total,,670,jiwa,2025,registration,total_population,3.1,27,,
+18.06.25,3,Bandar Negeri Semuong,age_group,0-4,laki_laki,642,jiwa,2025,registration,total_population,3.2,29,,0-4
+18.06.25,3,Bandar Negeri Semuong,age_group,0-4,perempuan,589,jiwa,2025,registration,total_population,3.2,29,,0-4
+18.06.25,3,Bandar Negeri Semuong,age_group,0-4,,1231,jiwa,2025,registration,total_population,3.2,29,,0-4
+18.06.25,3,Bandar Negeri Semuong,age_group,5-9,laki_laki,801,jiwa,2025,registration,total_population,3.2,29,,5-9
+18.06.25,3,Bandar Negeri Semuong,age_group,5-9,perempuan,692,jiwa,2025,registration,total_population,3.2,29,,5-9
+18.06.25,3,Bandar Negeri Semuong,age_group,5-9,,1493,jiwa,2025,registration,total_population,3.2,29,,5-9
+18.06.25,3,Bandar Negeri Semuong,age_group,10-14,laki_laki,812,jiwa,2025,registration,total_population,3.2,29,,10-14
+18.06.25,3,Bandar Negeri Semuong,age_group,10-14,perempuan,713,jiwa,2025,registration,total_population,3.2,29,,10-14
+18.06.25,3,Bandar Negeri Semuong,age_group,10-14,,1525,jiwa,2025,registration,total_population,3.2,29,,10-14
+18.06.25,3,Bandar Negeri Semuong,age_group,15-19,laki_laki,679,jiwa,2025,registration,total_population,3.2,29,,15-19
+18.06.25,3,Bandar Negeri Semuong,age_group,15-19,perempuan,632,jiwa,2025,registration,total_population,3.2,29,,15-19
+18.06.25,3,Bandar Negeri Semuong,age_group,15-19,,1311,jiwa,2025,registration,total_population,3.2,29,,15-19
+18.06.25,3,Bandar Negeri Semuong,age_group,20-24,laki_laki,640,jiwa,2025,registration,total_population,3.2,29,,20-24
+18.06.25,3,Bandar Negeri Semuong,age_group,20-24,perempuan,596,jiwa,2025,registration,total_population,3.2,29,,20-24
+18.06.25,3,Bandar Negeri Semuong,age_group,20-24,,1236,jiwa,2025,registration,total_population,3.2,29,,20-24
+18.06.25,3,Bandar Negeri Semuong,age_group,25-29,laki_laki,609,jiwa,2025,registration,total_population,3.2,29,,25-29
+18.06.25,3,Bandar Negeri Semuong,age_group,25-29,perempuan,605,jiwa,2025,registration,total_population,3.2,29,,25-29
+18.06.25,3,Bandar Negeri Semuong,age_group,25-29,,1214,jiwa,2025,registration,total_population,3.2,29,,25-29
+18.06.25,3,Bandar Negeri Semuong,age_group,30-34,laki_laki,673,jiwa,2025,registration,total_population,3.2,29,,30-34
+18.06.25,3,Bandar Negeri Semuong,age_group,30-34,perempuan,626,jiwa,2025,registration,total_population,3.2,29,,30-34
+18.06.25,3,Bandar Negeri Semuong,age_group,30-34,,1299,jiwa,2025,registration,total_population,3.2,29,,30-34
+18.06.25,3,Bandar Negeri Semuong,age_group,35-39,laki_laki,743,jiwa,2025,registration,total_population,3.2,29,,35-39
+18.06.25,3,Bandar Negeri Semuong,age_group,35-39,perempuan,697,jiwa,2025,registration,total_population,3.2,29,,35-39
+18.06.25,3,Bandar Negeri Semuong,age_group,35-39,,1440,jiwa,2025,registration,total_population,3.2,29,,35-39
+18.06.25,3,Bandar Negeri Semuong,age_group,40-44,laki_laki,680,jiwa,2025,registration,total_population,3.2,29,,40-44
+18.06.25,3,Bandar Negeri Semuong,age_group,40-44,perempuan,533,jiwa,2025,registration,total_population,3.2,29,,40-44
+18.06.25,3,Bandar Negeri Semuong,age_group,40-44,,1213,jiwa,2025,registration,total_population,3.2,29,,40-44
+18.06.25,3,Bandar Negeri Semuong,age_group,45-49,laki_laki,578,jiwa,2025,registration,total_population,3.2,29,,45-49
+18.06.25,3,Bandar Negeri Semuong,age_group,45-49,perempuan,502,jiwa,2025,registration,total_population,3.2,29,,45-49
+18.06.25,3,Bandar Negeri Semuong,age_group,45-49,,1080,jiwa,2025,registration,total_population,3.2,29,,45-49
+18.06.25,3,Bandar Negeri Semuong,age_group,50-54,laki_laki,482,jiwa,2025,registration,total_population,3.2,29,,50-54
+18.06.25,3,Bandar Negeri Semuong,age_group,50-54,perempuan,451,jiwa,2025,registration,total_population,3.2,29,,50-54
+18.06.25,3,Bandar Negeri Semuong,age_group,50-54,,933,jiwa,2025,registration,total_population,3.2,29,,50-54
+18.06.25,3,Bandar Negeri Semuong,age_group,55-59,laki_laki,391,jiwa,2025,registration,total_population,3.2,29,,55-59
+18.06.25,3,Bandar Negeri Semuong,age_group,55-59,perempuan,438,jiwa,2025,registration,total_population,3.2,29,,55-59
+18.06.25,3,Bandar Negeri Semuong,age_group,55-59,,829,jiwa,2025,registration,total_population,3.2,29,,55-59
+18.06.25,3,Bandar Negeri Semuong,age_group,60-64,laki_laki,381,jiwa,2025,registration,total_population,3.2,29,,60-64
+18.06.25,3,Bandar Negeri Semuong,age_group,60-64,perempuan,349,jiwa,2025,registration,total_population,3.2,29,,60-64
+18.06.25,3,Bandar Negeri Semuong,age_group,60-64,,730,jiwa,2025,registration,total_population,3.2,29,,60-64
+18.06.25,3,Bandar Negeri Semuong,age_group,65-69,laki_laki,248,jiwa,2025,registration,total_population,3.2,29,,65-69
+18.06.25,3,Bandar Negeri Semuong,age_group,65-69,perempuan,245,jiwa,2025,registration,total_population,3.2,29,,65-69
+18.06.25,3,Bandar Negeri Semuong,age_group,65-69,,493,jiwa,2025,registration,total_population,3.2,29,,65-69
+18.06.25,3,Bandar Negeri Semuong,age_group,70-74,laki_laki,143,jiwa,2025,registration,total_population,3.2,29,,70-74
+18.06.25,3,Bandar Negeri Semuong,age_group,70-74,perempuan,125,jiwa,2025,registration,total_population,3.2,29,,70-74
+18.06.25,3,Bandar Negeri Semuong,age_group,70-74,,268,jiwa,2025,registration,total_population,3.2,29,,70-74
+18.06.25,3,Bandar Negeri Semuong,age_group,75+,laki_laki,161,jiwa,2025,registration,total_population,3.2,29,,75+
+18.06.25,3,Bandar Negeri Semuong,age_group,75+,perempuan,168,jiwa,2025,registration,total_population,3.2,29,,75+
+18.06.25,3,Bandar Negeri Semuong,age_group,75+,,329,jiwa,2025,registration,total_population,3.2,29,,75+
+18.06.25,3,Bandar Negeri Semuong,sex,laki_laki,,8663,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+18.06.25,3,Bandar Negeri Semuong,sex,perempuan,,7961,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+18.06.25,3,Bandar Negeri Semuong,total,total,,16624,jiwa,2025,registration,total_population,3.2,29,,

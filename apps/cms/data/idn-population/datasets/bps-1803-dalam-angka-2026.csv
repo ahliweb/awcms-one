@@ -1,0 +1,242 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.01.04,3,Natar,total,total,,207717,jiwa,2025,registration,total_population,3.1.1,77,,
+18.01.13,3,Jati Agung,total,total,,132897,jiwa,2025,registration,total_population,3.1.1,77,,
+18.01.05,3,Tanjung Bintang,total,total,,91447,jiwa,2025,registration,total_population,3.1.1,77,,
+18.01.22,3,Tanjung Sari,total,total,,35301,jiwa,2025,registration,total_population,3.1.1,77,,
+18.01.08,3,Katibung,total,total,,77809,jiwa,2025,registration,total_population,3.1.1,77,,
+18.01.18,3,Merbau Mataram,total,total,,61661,jiwa,2025,registration,total_population,3.1.1,77,,
+18.01.23,3,Way Sulan,total,total,,26557,jiwa,2025,registration,total_population,3.1.1,77,,
+18.01.07,3,Sidomulyo,total,total,,70789,jiwa,2025,registration,total_population,3.1.1,77,,
+18.01.17,3,Candipuro,total,total,,62170,jiwa,2025,registration,total_population,3.1.1,77,,
+18.01.24,3,Way Panji,total,total,,19392,jiwa,2025,registration,total_population,3.1.1,77,,
+18.01.06,3,Kalianda,total,total,,101919,jiwa,2025,registration,total_population,3.1.1,77,,
+18.01.16,3,Rajabasa,total,total,,26303,jiwa,2025,registration,total_population,3.1.1,77,,
+18.01.10,3,Palas,total,total,,65375,jiwa,2025,registration,total_population,3.1.1,77,,
+18.01.15,3,Sragi,total,total,,37919,jiwa,2025,registration,total_population,3.1.1,77,,
+18.01.09,3,Penengahan,total,total,,45640,jiwa,2025,registration,total_population,3.1.1,77,,
+18.01.14,3,Ketapang,total,total,,57180,jiwa,2025,registration,total_population,3.1.1,77,,
+18.01.21,3,Bakauheni,total,total,,25998,jiwa,2025,registration,total_population,3.1.1,77,,
+18.01,2,Lampung Selatan,total,total,,1146074,jiwa,2025,registration,total_population,3.1.1,77,,
+18.01,2,Kabupaten Lampung Selatan,age_group,0-4,laki_laki,39664,jiwa,2025,registration,total_population,3.1.2,80,,0–4
+18.01,2,Kabupaten Lampung Selatan,age_group,0-4,perempuan,37193,jiwa,2025,registration,total_population,3.1.2,80,,0–4
+18.01,2,Kabupaten Lampung Selatan,age_group,0-4,,76857,jiwa,2025,registration,total_population,3.1.2,80,,0–4
+18.01,2,Kabupaten Lampung Selatan,age_group,5-9,laki_laki,52003,jiwa,2025,registration,total_population,3.1.2,80,,5–9
+18.01,2,Kabupaten Lampung Selatan,age_group,5-9,perempuan,48823,jiwa,2025,registration,total_population,3.1.2,80,,5–9
+18.01,2,Kabupaten Lampung Selatan,age_group,5-9,,100826,jiwa,2025,registration,total_population,3.1.2,80,,5–9
+18.01,2,Kabupaten Lampung Selatan,age_group,10-14,laki_laki,53443,jiwa,2025,registration,total_population,3.1.2,80,,10–14
+18.01,2,Kabupaten Lampung Selatan,age_group,10-14,perempuan,50382,jiwa,2025,registration,total_population,3.1.2,80,,10–14
+18.01,2,Kabupaten Lampung Selatan,age_group,10-14,,103825,jiwa,2025,registration,total_population,3.1.2,80,,10–14
+18.01,2,Kabupaten Lampung Selatan,age_group,15-19,laki_laki,46233,jiwa,2025,registration,total_population,3.1.2,80,,15–19
+18.01,2,Kabupaten Lampung Selatan,age_group,15-19,perempuan,44450,jiwa,2025,registration,total_population,3.1.2,80,,15–19
+18.01,2,Kabupaten Lampung Selatan,age_group,15-19,,90683,jiwa,2025,registration,total_population,3.1.2,80,,15–19
+18.01,2,Kabupaten Lampung Selatan,age_group,20-24,laki_laki,45345,jiwa,2025,registration,total_population,3.1.2,80,,20–24
+18.01,2,Kabupaten Lampung Selatan,age_group,20-24,perempuan,43325,jiwa,2025,registration,total_population,3.1.2,80,,20–24
+18.01,2,Kabupaten Lampung Selatan,age_group,20-24,,88670,jiwa,2025,registration,total_population,3.1.2,80,,20–24
+18.01,2,Kabupaten Lampung Selatan,age_group,25-29,laki_laki,45977,jiwa,2025,registration,total_population,3.1.2,80,,25–29
+18.01,2,Kabupaten Lampung Selatan,age_group,25-29,perempuan,43260,jiwa,2025,registration,total_population,3.1.2,80,,25–29
+18.01,2,Kabupaten Lampung Selatan,age_group,25-29,,89237,jiwa,2025,registration,total_population,3.1.2,80,,25–29
+18.01,2,Kabupaten Lampung Selatan,age_group,30-34,laki_laki,42953,jiwa,2025,registration,total_population,3.1.2,80,,30–34
+18.01,2,Kabupaten Lampung Selatan,age_group,30-34,perempuan,40894,jiwa,2025,registration,total_population,3.1.2,80,,30–34
+18.01,2,Kabupaten Lampung Selatan,age_group,30-34,,83847,jiwa,2025,registration,total_population,3.1.2,80,,30–34
+18.01,2,Kabupaten Lampung Selatan,age_group,35-39,laki_laki,42135,jiwa,2025,registration,total_population,3.1.2,80,,35–39
+18.01,2,Kabupaten Lampung Selatan,age_group,35-39,perempuan,41499,jiwa,2025,registration,total_population,3.1.2,80,,35–39
+18.01,2,Kabupaten Lampung Selatan,age_group,35-39,,83634,jiwa,2025,registration,total_population,3.1.2,80,,35–39
+18.01,2,Kabupaten Lampung Selatan,age_group,40-44,laki_laki,44847,jiwa,2025,registration,total_population,3.1.2,80,,40–44
+18.01,2,Kabupaten Lampung Selatan,age_group,40-44,perempuan,44720,jiwa,2025,registration,total_population,3.1.2,80,,40–44
+18.01,2,Kabupaten Lampung Selatan,age_group,40-44,,89567,jiwa,2025,registration,total_population,3.1.2,80,,40–44
+18.01,2,Kabupaten Lampung Selatan,age_group,45-49,laki_laki,41995,jiwa,2025,registration,total_population,3.1.2,80,,45–49
+18.01,2,Kabupaten Lampung Selatan,age_group,45-49,perempuan,41326,jiwa,2025,registration,total_population,3.1.2,80,,45–49
+18.01,2,Kabupaten Lampung Selatan,age_group,45-49,,83321,jiwa,2025,registration,total_population,3.1.2,80,,45–49
+18.01,2,Kabupaten Lampung Selatan,age_group,50-54,laki_laki,35049,jiwa,2025,registration,total_population,3.1.2,80,,50–54
+18.01,2,Kabupaten Lampung Selatan,age_group,50-54,perempuan,34247,jiwa,2025,registration,total_population,3.1.2,80,,50–54
+18.01,2,Kabupaten Lampung Selatan,age_group,50-54,,69296,jiwa,2025,registration,total_population,3.1.2,80,,50–54
+18.01,2,Kabupaten Lampung Selatan,age_group,55-59,laki_laki,27661,jiwa,2025,registration,total_population,3.1.2,80,,55–59
+18.01,2,Kabupaten Lampung Selatan,age_group,55-59,perempuan,27173,jiwa,2025,registration,total_population,3.1.2,80,,55–59
+18.01,2,Kabupaten Lampung Selatan,age_group,55-59,,54834,jiwa,2025,registration,total_population,3.1.2,80,,55–59
+18.01,2,Kabupaten Lampung Selatan,age_group,60-64,laki_laki,22578,jiwa,2025,registration,total_population,3.1.2,80,,60–64
+18.01,2,Kabupaten Lampung Selatan,age_group,60-64,perempuan,23764,jiwa,2025,registration,total_population,3.1.2,80,,60–64
+18.01,2,Kabupaten Lampung Selatan,age_group,60-64,,46342,jiwa,2025,registration,total_population,3.1.2,80,,60–64
+18.01,2,Kabupaten Lampung Selatan,age_group,65-69,laki_laki,17238,jiwa,2025,registration,total_population,3.1.2,80,,65–69
+18.01,2,Kabupaten Lampung Selatan,age_group,65-69,perempuan,16998,jiwa,2025,registration,total_population,3.1.2,80,,65–69
+18.01,2,Kabupaten Lampung Selatan,age_group,65-69,,34236,jiwa,2025,registration,total_population,3.1.2,80,,65–69
+18.01,2,Kabupaten Lampung Selatan,age_group,70-74,laki_laki,11310,jiwa,2025,registration,total_population,3.1.2,80,,70–74
+18.01,2,Kabupaten Lampung Selatan,age_group,70-74,perempuan,10416,jiwa,2025,registration,total_population,3.1.2,80,,70–74
+18.01,2,Kabupaten Lampung Selatan,age_group,70-74,,21726,jiwa,2025,registration,total_population,3.1.2,80,,70–74
+18.01,2,Kabupaten Lampung Selatan,age_group,75+,laki_laki,13860,jiwa,2025,registration,total_population,3.1.2,80,,75+
+18.01,2,Kabupaten Lampung Selatan,age_group,75+,perempuan,15313,jiwa,2025,registration,total_population,3.1.2,80,,75+
+18.01,2,Kabupaten Lampung Selatan,age_group,75+,,29173,jiwa,2025,registration,total_population,3.1.2,80,,75+
+18.01,2,Lampung Selatan,sex,laki_laki,,582291,jiwa,2025,registration,total_population,3.1.2,80,,Laki-Laki
+18.01,2,Lampung Selatan,sex,perempuan,,563783,jiwa,2025,registration,total_population,3.1.2,80,,Perempuan
+18.01,2,Lampung Selatan,total,total,,1146074,jiwa,2025,registration,total_population,3.1.2,80,,
+18.01.04,3,Natar,religion,islam,,203392,jiwa,2025,registration,total_population,4.3.1,177,,Islam
+18.01.04,3,Natar,religion,kristen,,3264,jiwa,2025,registration,total_population,4.3.1,177,,Protestan
+18.01.04,3,Natar,religion,katolik,,775,jiwa,2025,registration,total_population,4.3.1,177,,Katolik
+18.01.04,3,Natar,religion,hindu,,154,jiwa,2025,registration,total_population,4.3.1,177,,Hindu
+18.01.04,3,Natar,religion,buddha,,125,jiwa,2025,registration,total_population,4.3.1,177,,Budha
+18.01.04,3,Natar,religion,khonghucu,,4,jiwa,2025,registration,total_population,4.3.1,177,,Konghucu
+18.01.04,3,Natar,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,177,,Lainnya
+18.01.13,3,Jati Agung,religion,islam,,128628,jiwa,2025,registration,total_population,4.3.1,177,,Islam
+18.01.13,3,Jati Agung,religion,kristen,,2123,jiwa,2025,registration,total_population,4.3.1,177,,Protestan
+18.01.13,3,Jati Agung,religion,katolik,,1948,jiwa,2025,registration,total_population,4.3.1,177,,Katolik
+18.01.13,3,Jati Agung,religion,hindu,,122,jiwa,2025,registration,total_population,4.3.1,177,,Hindu
+18.01.13,3,Jati Agung,religion,buddha,,71,jiwa,2025,registration,total_population,4.3.1,177,,Budha
+18.01.13,3,Jati Agung,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Konghucu
+18.01.13,3,Jati Agung,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,177,,Lainnya
+18.01.05,3,Tanjung Bintang,religion,islam,,89395,jiwa,2025,registration,total_population,4.3.1,177,,Islam
+18.01.05,3,Tanjung Bintang,religion,kristen,,1366,jiwa,2025,registration,total_population,4.3.1,177,,Protestan
+18.01.05,3,Tanjung Bintang,religion,katolik,,539,jiwa,2025,registration,total_population,4.3.1,177,,Katolik
+18.01.05,3,Tanjung Bintang,religion,hindu,,53,jiwa,2025,registration,total_population,4.3.1,177,,Hindu
+18.01.05,3,Tanjung Bintang,religion,buddha,,93,jiwa,2025,registration,total_population,4.3.1,177,,Budha
+18.01.05,3,Tanjung Bintang,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Konghucu
+18.01.05,3,Tanjung Bintang,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,177,,Lainnya
+18.01.22,3,Tanjung Sari,religion,islam,,34281,jiwa,2025,registration,total_population,4.3.1,177,,Islam
+18.01.22,3,Tanjung Sari,religion,kristen,,564,jiwa,2025,registration,total_population,4.3.1,177,,Protestan
+18.01.22,3,Tanjung Sari,religion,katolik,,112,jiwa,2025,registration,total_population,4.3.1,177,,Katolik
+18.01.22,3,Tanjung Sari,religion,hindu,,26,jiwa,2025,registration,total_population,4.3.1,177,,Hindu
+18.01.22,3,Tanjung Sari,religion,buddha,,315,jiwa,2025,registration,total_population,4.3.1,177,,Budha
+18.01.22,3,Tanjung Sari,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Konghucu
+18.01.22,3,Tanjung Sari,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,177,,Lainnya
+18.01.08,3,Katibung,religion,islam,,77145,jiwa,2025,registration,total_population,4.3.1,177,,Islam
+18.01.08,3,Katibung,religion,kristen,,485,jiwa,2025,registration,total_population,4.3.1,177,,Protestan
+18.01.08,3,Katibung,religion,katolik,,163,jiwa,2025,registration,total_population,4.3.1,177,,Katolik
+18.01.08,3,Katibung,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,177,,Hindu
+18.01.08,3,Katibung,religion,buddha,,9,jiwa,2025,registration,total_population,4.3.1,177,,Budha
+18.01.08,3,Katibung,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Konghucu
+18.01.08,3,Katibung,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,177,,Lainnya
+18.01.18,3,Merbau Mataram,religion,islam,,60782,jiwa,2025,registration,total_population,4.3.1,177,,Islam
+18.01.18,3,Merbau Mataram,religion,kristen,,305,jiwa,2025,registration,total_population,4.3.1,177,,Protestan
+18.01.18,3,Merbau Mataram,religion,katolik,,470,jiwa,2025,registration,total_population,4.3.1,177,,Katolik
+18.01.18,3,Merbau Mataram,religion,hindu,,21,jiwa,2025,registration,total_population,4.3.1,177,,Hindu
+18.01.18,3,Merbau Mataram,religion,buddha,,76,jiwa,2025,registration,total_population,4.3.1,177,,Budha
+18.01.18,3,Merbau Mataram,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Konghucu
+18.01.18,3,Merbau Mataram,religion,lainnya,,7,jiwa,2025,registration,total_population,4.3.1,177,,Lainnya
+18.01.23,3,Way Sulan,religion,islam,,26484,jiwa,2025,registration,total_population,4.3.1,177,,Islam
+18.01.23,3,Way Sulan,religion,kristen,,25,jiwa,2025,registration,total_population,4.3.1,177,,Protestan
+18.01.23,3,Way Sulan,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,177,,Katolik
+18.01.23,3,Way Sulan,religion,hindu,,10,jiwa,2025,registration,total_population,4.3.1,177,,Hindu
+18.01.23,3,Way Sulan,religion,buddha,,25,jiwa,2025,registration,total_population,4.3.1,177,,Budha
+18.01.23,3,Way Sulan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Konghucu
+18.01.23,3,Way Sulan,religion,lainnya,,9,jiwa,2025,registration,total_population,4.3.1,177,,Lainnya
+18.01.07,3,Sidomulyo,religion,islam,,67739,jiwa,2025,registration,total_population,4.3.1,177,,Islam
+18.01.07,3,Sidomulyo,religion,kristen,,977,jiwa,2025,registration,total_population,4.3.1,177,,Protestan
+18.01.07,3,Sidomulyo,religion,katolik,,470,jiwa,2025,registration,total_population,4.3.1,177,,Katolik
+18.01.07,3,Sidomulyo,religion,hindu,,1584,jiwa,2025,registration,total_population,4.3.1,177,,Hindu
+18.01.07,3,Sidomulyo,religion,buddha,,15,jiwa,2025,registration,total_population,4.3.1,177,,Budha
+18.01.07,3,Sidomulyo,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Konghucu
+18.01.07,3,Sidomulyo,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,177,,Lainnya
+18.01.17,3,Candipuro,religion,islam,,58895,jiwa,2025,registration,total_population,4.3.1,177,,Islam
+18.01.17,3,Candipuro,religion,kristen,,905,jiwa,2025,registration,total_population,4.3.1,177,,Protestan
+18.01.17,3,Candipuro,religion,katolik,,597,jiwa,2025,registration,total_population,4.3.1,177,,Katolik
+18.01.17,3,Candipuro,religion,hindu,,1628,jiwa,2025,registration,total_population,4.3.1,177,,Hindu
+18.01.17,3,Candipuro,religion,buddha,,73,jiwa,2025,registration,total_population,4.3.1,177,,Budha
+18.01.17,3,Candipuro,religion,khonghucu,,3,jiwa,2025,registration,total_population,4.3.1,177,,Konghucu
+18.01.17,3,Candipuro,religion,lainnya,,69,jiwa,2025,registration,total_population,4.3.1,177,,Lainnya
+18.01.24,3,Way Panji,religion,islam,,14356,jiwa,2025,registration,total_population,4.3.1,177,,Islam
+18.01.24,3,Way Panji,religion,kristen,,249,jiwa,2025,registration,total_population,4.3.1,177,,Protestan
+18.01.24,3,Way Panji,religion,katolik,,339,jiwa,2025,registration,total_population,4.3.1,177,,Katolik
+18.01.24,3,Way Panji,religion,hindu,,4445,jiwa,2025,registration,total_population,4.3.1,177,,Hindu
+18.01.24,3,Way Panji,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,177,,Budha
+18.01.24,3,Way Panji,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Konghucu
+18.01.24,3,Way Panji,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,177,,Lainnya
+18.01.06,3,Kalianda,religion,islam,,100524,jiwa,2025,registration,total_population,4.3.1,177,,Islam
+18.01.06,3,Kalianda,religion,kristen,,867,jiwa,2025,registration,total_population,4.3.1,177,,Protestan
+18.01.06,3,Kalianda,religion,katolik,,252,jiwa,2025,registration,total_population,4.3.1,177,,Katolik
+18.01.06,3,Kalianda,religion,hindu,,85,jiwa,2025,registration,total_population,4.3.1,177,,Hindu
+18.01.06,3,Kalianda,religion,buddha,,185,jiwa,2025,registration,total_population,4.3.1,177,,Budha
+18.01.06,3,Kalianda,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Konghucu
+18.01.06,3,Kalianda,religion,lainnya,,6,jiwa,2025,registration,total_population,4.3.1,177,,Lainnya
+18.01.16,3,Rajabasa,religion,islam,,26291,jiwa,2025,registration,total_population,4.3.1,177,,Islam
+18.01.16,3,Rajabasa,religion,kristen,,11,jiwa,2025,registration,total_population,4.3.1,177,,Protestan
+18.01.16,3,Rajabasa,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Katolik
+18.01.16,3,Rajabasa,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Hindu
+18.01.16,3,Rajabasa,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,177,,Budha
+18.01.16,3,Rajabasa,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Konghucu
+18.01.16,3,Rajabasa,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Lainnya
+18.01.10,3,Palas,religion,islam,,62901,jiwa,2025,registration,total_population,4.3.1,177,,Islam
+18.01.10,3,Palas,religion,kristen,,494,jiwa,2025,registration,total_population,4.3.1,177,,Protestan
+18.01.10,3,Palas,religion,katolik,,267,jiwa,2025,registration,total_population,4.3.1,177,,Katolik
+18.01.10,3,Palas,religion,hindu,,1710,jiwa,2025,registration,total_population,4.3.1,177,,Hindu
+18.01.10,3,Palas,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Budha
+18.01.10,3,Palas,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Konghucu
+18.01.10,3,Palas,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,177,,Lainnya
+18.01.15,3,Sragi,religion,islam,,37079,jiwa,2025,registration,total_population,4.3.1,177,,Islam
+18.01.15,3,Sragi,religion,kristen,,199,jiwa,2025,registration,total_population,4.3.1,177,,Protestan
+18.01.15,3,Sragi,religion,katolik,,61,jiwa,2025,registration,total_population,4.3.1,177,,Katolik
+18.01.15,3,Sragi,religion,hindu,,544,jiwa,2025,registration,total_population,4.3.1,177,,Hindu
+18.01.15,3,Sragi,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Budha
+18.01.15,3,Sragi,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Konghucu
+18.01.15,3,Sragi,religion,lainnya,,36,jiwa,2025,registration,total_population,4.3.1,177,,Lainnya
+18.01.09,3,Penengahan,religion,islam,,45118,jiwa,2025,registration,total_population,4.3.1,177,,Islam
+18.01.09,3,Penengahan,religion,kristen,,212,jiwa,2025,registration,total_population,4.3.1,177,,Protestan
+18.01.09,3,Penengahan,religion,katolik,,306,jiwa,2025,registration,total_population,4.3.1,177,,Katolik
+18.01.09,3,Penengahan,religion,hindu,,2,jiwa,2025,registration,total_population,4.3.1,177,,Hindu
+18.01.09,3,Penengahan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Budha
+18.01.09,3,Penengahan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Konghucu
+18.01.09,3,Penengahan,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,177,,Lainnya
+18.01.14,3,Ketapang,religion,islam,,50605,jiwa,2025,registration,total_population,4.3.1,177,,Islam
+18.01.14,3,Ketapang,religion,kristen,,530,jiwa,2025,registration,total_population,4.3.1,177,,Protestan
+18.01.14,3,Ketapang,religion,katolik,,197,jiwa,2025,registration,total_population,4.3.1,177,,Katolik
+18.01.14,3,Ketapang,religion,hindu,,5817,jiwa,2025,registration,total_population,4.3.1,177,,Hindu
+18.01.14,3,Ketapang,religion,buddha,,28,jiwa,2025,registration,total_population,4.3.1,177,,Budha
+18.01.14,3,Ketapang,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Konghucu
+18.01.14,3,Ketapang,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,177,,Lainnya
+18.01.21,3,Bakauheni,religion,islam,,25133,jiwa,2025,registration,total_population,4.3.1,177,,Islam
+18.01.21,3,Bakauheni,religion,kristen,,616,jiwa,2025,registration,total_population,4.3.1,177,,Protestan
+18.01.21,3,Bakauheni,religion,katolik,,149,jiwa,2025,registration,total_population,4.3.1,177,,Katolik
+18.01.21,3,Bakauheni,religion,hindu,,86,jiwa,2025,registration,total_population,4.3.1,177,,Hindu
+18.01.21,3,Bakauheni,religion,buddha,,13,jiwa,2025,registration,total_population,4.3.1,177,,Budha
+18.01.21,3,Bakauheni,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,177,nil,Konghucu
+18.01.21,3,Bakauheni,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,177,,Lainnya
+18.01,2,Lampung Selatan,religion,islam,,1108748,jiwa,2025,registration,total_population,4.3.1,177,,Islam
+18.01,2,Lampung Selatan,religion,kristen,,13192,jiwa,2025,registration,total_population,4.3.1,177,,Protestan
+18.01,2,Lampung Selatan,religion,katolik,,6649,jiwa,2025,registration,total_population,4.3.1,177,,Katolik
+18.01,2,Lampung Selatan,religion,hindu,,16292,jiwa,2025,registration,total_population,4.3.1,177,,Hindu
+18.01,2,Lampung Selatan,religion,buddha,,1030,jiwa,2025,registration,total_population,4.3.1,177,,Budha
+18.01,2,Lampung Selatan,religion,khonghucu,,7,jiwa,2025,registration,total_population,4.3.1,177,,Konghucu
+18.01,2,Lampung Selatan,religion,lainnya,,156,jiwa,2025,registration,total_population,4.3.1,177,,Lainnya
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/padi_padian,,95690,rupiah,2024,survey_estimate,per_capita,10.1,407,,Padi-padian
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/padi_padian,,84904,rupiah,2025,survey_estimate,per_capita,10.1,407,,Padi-padian
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/umbi_umbian,,4896,rupiah,2024,survey_estimate,per_capita,10.1,407,,Umbi-umbian
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/umbi_umbian,,5664,rupiah,2025,survey_estimate,per_capita,10.1,407,,Umbi-umbian
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,47764,rupiah,2024,survey_estimate,per_capita,10.1,407,,Ikan/udang/cumi/kerang
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,50314,rupiah,2025,survey_estimate,per_capita,10.1,407,,Ikan/udang/cumi/kerang
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/daging,,26381,rupiah,2024,survey_estimate,per_capita,10.1,407,,Daging
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/daging,,25767,rupiah,2025,survey_estimate,per_capita,10.1,407,,Daging
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/telur_dan_susu,,29203,rupiah,2024,survey_estimate,per_capita,10.1,407,,Telur dan susu
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/telur_dan_susu,,30129,rupiah,2025,survey_estimate,per_capita,10.1,407,,Telur dan susu
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/sayur_sayuran,,65950,rupiah,2024,survey_estimate,per_capita,10.1,407,,Sayur-sayuran
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/sayur_sayuran,,75130,rupiah,2025,survey_estimate,per_capita,10.1,407,,Sayur-sayuran
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/kacang_kacangan,,16285,rupiah,2024,survey_estimate,per_capita,10.1,407,,Kacang-kacangan
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/kacang_kacangan,,16950,rupiah,2025,survey_estimate,per_capita,10.1,407,,Kacang-kacangan
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/buah_buahan,,45742,rupiah,2024,survey_estimate,per_capita,10.1,407,,Buah-buahan
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/buah_buahan,,38738,rupiah,2025,survey_estimate,per_capita,10.1,407,,Buah-buahan
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20602,rupiah,2024,survey_estimate,per_capita,10.1,407,,Minyak dan kelapa
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,24175,rupiah,2025,survey_estimate,per_capita,10.1,407,,Minyak dan kelapa
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/bahan_minuman,,20457,rupiah,2024,survey_estimate,per_capita,10.1,407,,Bahan minuman
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/bahan_minuman,,21902,rupiah,2025,survey_estimate,per_capita,10.1,407,,Bahan minuman
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/bumbu_bumbuan,,18734,rupiah,2024,survey_estimate,per_capita,10.1,407,,Bumbu-bumbuan
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/bumbu_bumbuan,,16991,rupiah,2025,survey_estimate,per_capita,10.1,407,,Bumbu-bumbuan
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/konsumsi_lainnya,,10959,rupiah,2024,survey_estimate,per_capita,10.1,407,,Konsumsi lainnya
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/konsumsi_lainnya,,11935,rupiah,2025,survey_estimate,per_capita,10.1,407,,Konsumsi lainnya
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,146162,rupiah,2024,survey_estimate,per_capita,10.1,407,,Makanan dan minuman jadi
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,180037,rupiah,2025,survey_estimate,per_capita,10.1,407,,Makanan dan minuman jadi
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/rokok,,110659,rupiah,2024,survey_estimate,per_capita,10.1,407,,Rokok
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/rokok,,98729,rupiah,2025,survey_estimate,per_capita,10.1,407,,Rokok
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/jumlah_makanan,,659845,rupiah,2024,survey_estimate,per_capita,10.1,407,,Jumlah makanan
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/jumlah_makanan,,681365,rupiah,2025,survey_estimate,per_capita,10.1,407,,Jumlah makanan
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,249218,rupiah,2024,survey_estimate,per_capita,10.1,407,,Perumahan dan fasilitas rumah tangga
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,265519,rupiah,2025,survey_estimate,per_capita,10.1,407,,Perumahan dan fasilitas rumah tangga
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,113613,rupiah,2024,survey_estimate,per_capita,10.1,407,,Aneka barang dan jasa
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,132226,rupiah,2025,survey_estimate,per_capita,10.1,407,,Aneka barang dan jasa
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,24367,rupiah,2024,survey_estimate,per_capita,10.1,407,,"Pakaian, alas kaki, dan tutup kepala"
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,28915,rupiah,2025,survey_estimate,per_capita,10.1,407,,"Pakaian, alas kaki, dan tutup kepala"
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/barang_tahan_lama,,18975,rupiah,2024,survey_estimate,per_capita,10.1,407,,Barang tahan lama
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/barang_tahan_lama,,26432,rupiah,2025,survey_estimate,per_capita,10.1,407,,Barang tahan lama
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,42429,rupiah,2024,survey_estimate,per_capita,10.1,407,,"Pajak, pungutan, dan asuransi"
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,42191,rupiah,2025,survey_estimate,per_capita,10.1,407,,"Pajak, pungutan, dan asuransi"
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,18996,rupiah,2024,survey_estimate,per_capita,10.1,407,,Keperluan pesta dan upacara/kenduri
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,13292,rupiah,2025,survey_estimate,per_capita,10.1,407,,Keperluan pesta dan upacara/kenduri
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,467598,rupiah,2024,survey_estimate,per_capita,10.1,407,,Jumlah bukan makanan
+18.01,2,Kabupaten Lampung Selatan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,508574,rupiah,2025,survey_estimate,per_capita,10.1,407,,Jumlah bukan makanan
+18.01,2,Kabupaten Lampung Selatan,expenditure,total,,1127083,rupiah,2024,survey_estimate,per_capita,10.1,407,,
+18.01,2,Kabupaten Lampung Selatan,expenditure,total,,1189939,rupiah,2025,survey_estimate,per_capita,10.1,407,,

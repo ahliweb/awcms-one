@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.26.17,3,Siwalan,age_group,0-4,laki_laki,1766,jiwa,2025,registration,total_population,3.2,36,,0 - 4
+33.26.17,3,Siwalan,age_group,0-4,perempuan,1601,jiwa,2025,registration,total_population,3.2,36,,0 - 4
+33.26.17,3,Siwalan,age_group,0-4,,3367,jiwa,2025,registration,total_population,3.2,36,,0 - 4
+33.26.17,3,Siwalan,age_group,5-9,laki_laki,2142,jiwa,2025,registration,total_population,3.2,36,,5 - 9
+33.26.17,3,Siwalan,age_group,5-9,perempuan,1980,jiwa,2025,registration,total_population,3.2,36,,5 - 9
+33.26.17,3,Siwalan,age_group,5-9,,4122,jiwa,2025,registration,total_population,3.2,36,,5 - 9
+33.26.17,3,Siwalan,age_group,10-14,laki_laki,2117,jiwa,2025,registration,total_population,3.2,36,,10 - 14
+33.26.17,3,Siwalan,age_group,10-14,perempuan,1964,jiwa,2025,registration,total_population,3.2,36,,10 - 14
+33.26.17,3,Siwalan,age_group,10-14,,4081,jiwa,2025,registration,total_population,3.2,36,,10 - 14
+33.26.17,3,Siwalan,age_group,15-19,laki_laki,1882,jiwa,2025,registration,total_population,3.2,36,,15 - 19
+33.26.17,3,Siwalan,age_group,15-19,perempuan,1811,jiwa,2025,registration,total_population,3.2,36,,15 - 19
+33.26.17,3,Siwalan,age_group,15-19,,3693,jiwa,2025,registration,total_population,3.2,36,,15 - 19
+33.26.17,3,Siwalan,age_group,20-24,laki_laki,1864,jiwa,2025,registration,total_population,3.2,36,,20 - 24
+33.26.17,3,Siwalan,age_group,20-24,perempuan,1804,jiwa,2025,registration,total_population,3.2,36,,20 - 24
+33.26.17,3,Siwalan,age_group,20-24,,3668,jiwa,2025,registration,total_population,3.2,36,,20 - 24
+33.26.17,3,Siwalan,age_group,25-29,laki_laki,2097,jiwa,2025,registration,total_population,3.2,36,,25 - 29
+33.26.17,3,Siwalan,age_group,25-29,perempuan,1894,jiwa,2025,registration,total_population,3.2,36,,25 - 29
+33.26.17,3,Siwalan,age_group,25-29,,3991,jiwa,2025,registration,total_population,3.2,36,,25 - 29
+33.26.17,3,Siwalan,age_group,30-34,laki_laki,2034,jiwa,2025,registration,total_population,3.2,36,,30 - 34
+33.26.17,3,Siwalan,age_group,30-34,perempuan,1904,jiwa,2025,registration,total_population,3.2,36,,30 - 34
+33.26.17,3,Siwalan,age_group,30-34,,3938,jiwa,2025,registration,total_population,3.2,36,,30 - 34
+33.26.17,3,Siwalan,age_group,35-39,laki_laki,1874,jiwa,2025,registration,total_population,3.2,36,,35 - 39
+33.26.17,3,Siwalan,age_group,35-39,perempuan,1749,jiwa,2025,registration,total_population,3.2,36,,35 - 39
+33.26.17,3,Siwalan,age_group,35-39,,3623,jiwa,2025,registration,total_population,3.2,36,,35 - 39
+33.26.17,3,Siwalan,age_group,40-44,laki_laki,2054,jiwa,2025,registration,total_population,3.2,36,,40 - 44
+33.26.17,3,Siwalan,age_group,40-44,perempuan,1875,jiwa,2025,registration,total_population,3.2,36,,40 - 44
+33.26.17,3,Siwalan,age_group,40-44,,3929,jiwa,2025,registration,total_population,3.2,36,,40 - 44
+33.26.17,3,Siwalan,age_group,45-49,laki_laki,1747,jiwa,2025,registration,total_population,3.2,36,,45 - 49
+33.26.17,3,Siwalan,age_group,45-49,perempuan,1671,jiwa,2025,registration,total_population,3.2,36,,45 - 49
+33.26.17,3,Siwalan,age_group,45-49,,3418,jiwa,2025,registration,total_population,3.2,36,,45 - 49
+33.26.17,3,Siwalan,age_group,50-54,laki_laki,1457,jiwa,2025,registration,total_population,3.2,36,,50 - 54
+33.26.17,3,Siwalan,age_group,50-54,perempuan,1503,jiwa,2025,registration,total_population,3.2,36,,50 - 54
+33.26.17,3,Siwalan,age_group,50-54,,2960,jiwa,2025,registration,total_population,3.2,36,,50 - 54
+33.26.17,3,Siwalan,age_group,55-59,laki_laki,1245,jiwa,2025,registration,total_population,3.2,36,,55 - 59
+33.26.17,3,Siwalan,age_group,55-59,perempuan,1340,jiwa,2025,registration,total_population,3.2,36,,55 - 59
+33.26.17,3,Siwalan,age_group,55-59,,2585,jiwa,2025,registration,total_population,3.2,36,,55 - 59
+33.26.17,3,Siwalan,age_group,60-64,laki_laki,1096,jiwa,2025,registration,total_population,3.2,36,,60 - 64
+33.26.17,3,Siwalan,age_group,60-64,perempuan,1154,jiwa,2025,registration,total_population,3.2,36,,60 - 64
+33.26.17,3,Siwalan,age_group,60-64,,2250,jiwa,2025,registration,total_population,3.2,36,,60 - 64
+33.26.17,3,Siwalan,age_group,65-69,laki_laki,841,jiwa,2025,registration,total_population,3.2,36,,65 - 69
+33.26.17,3,Siwalan,age_group,65-69,perempuan,899,jiwa,2025,registration,total_population,3.2,36,,65 - 69
+33.26.17,3,Siwalan,age_group,65-69,,1740,jiwa,2025,registration,total_population,3.2,36,,65 - 69
+33.26.17,3,Siwalan,age_group,70-74,laki_laki,508,jiwa,2025,registration,total_population,3.2,36,,70 - 74
+33.26.17,3,Siwalan,age_group,70-74,perempuan,474,jiwa,2025,registration,total_population,3.2,36,,70 - 74
+33.26.17,3,Siwalan,age_group,70-74,,982,jiwa,2025,registration,total_population,3.2,36,,70 - 74
+33.26.17,3,Siwalan,age_group,75+,laki_laki,418,jiwa,2025,registration,total_population,3.2,36,,>75
+33.26.17,3,Siwalan,age_group,75+,perempuan,544,jiwa,2025,registration,total_population,3.2,36,,>75
+33.26.17,3,Siwalan,age_group,75+,,962,jiwa,2025,registration,total_population,3.2,36,,>75

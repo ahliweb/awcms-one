@@ -1,0 +1,209 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.06.05,3,Ipuh,total,total,,19980,jiwa,2025,projection,total_population,3.1.1,44,,
+17.06.07,3,Air Rami,total,total,,14390,jiwa,2025,projection,total_population,3.1.1,44,,
+17.06.06,3,Malin Deman,total,total,,6900,jiwa,2025,projection,total_population,3.1.1,44,,
+17.06.04,3,Pondok Suguh,total,total,,14631,jiwa,2025,projection,total_population,3.1.1,44,,
+17.06.15,3,Sungai Rumbai,total,total,,10301,jiwa,2025,projection,total_population,3.1.1,44,,
+17.06.08,3,Teramang Jaya,total,total,,13495,jiwa,2025,projection,total_population,3.1.1,44,,
+17.06.03,3,Teras Terunjam,total,total,,8335,jiwa,2025,projection,total_population,3.1.1,44,,
+17.06.10,3,Penarik,total,total,,25900,jiwa,2025,projection,total_population,3.1.1,44,,
+17.06.09,3,Selagan Raya,total,total,,11682,jiwa,2025,projection,total_population,3.1.1,44,,
+17.06.02,3,Kota Mukomuko,total,total,,20090,jiwa,2025,projection,total_population,3.1.1,44,,
+17.06.14,3,Air Dikit,total,total,,7755,jiwa,2025,projection,total_population,3.1.1,44,,
+17.06.11,3,XIV Koto,total,total,,14906,jiwa,2025,projection,total_population,3.1.1,44,,
+17.06.01,3,Lubuk Pinang,total,total,,15373,jiwa,2025,projection,total_population,3.1.1,44,,
+17.06.13,3,Air Manjunto,total,total,,12668,jiwa,2025,projection,total_population,3.1.1,44,,
+17.06.12,3,V Koto,total,total,,8154,jiwa,2025,projection,total_population,3.1.1,44,,
+17.06,2,Mukomuko,total,total,,204560,jiwa,2025,projection,total_population,3.1.1,44,,
+17.06,2,Kabupaten Mukomuko,age_group,0-4,laki_laki,9170,jiwa,2025,projection,total_population,3.1.2,47,,0–4
+17.06,2,Kabupaten Mukomuko,age_group,0-4,perempuan,8786,jiwa,2025,projection,total_population,3.1.2,47,,0–4
+17.06,2,Kabupaten Mukomuko,age_group,0-4,,17956,jiwa,2025,projection,total_population,3.1.2,47,,0–4
+17.06,2,Kabupaten Mukomuko,age_group,5-9,laki_laki,9748,jiwa,2025,projection,total_population,3.1.2,47,,5–9
+17.06,2,Kabupaten Mukomuko,age_group,5-9,perempuan,9286,jiwa,2025,projection,total_population,3.1.2,47,,5–9
+17.06,2,Kabupaten Mukomuko,age_group,5-9,,19034,jiwa,2025,projection,total_population,3.1.2,47,,5–9
+17.06,2,Kabupaten Mukomuko,age_group,10-14,laki_laki,9333,jiwa,2025,projection,total_population,3.1.2,47,,10–14
+17.06,2,Kabupaten Mukomuko,age_group,10-14,perempuan,8987,jiwa,2025,projection,total_population,3.1.2,47,,10–14
+17.06,2,Kabupaten Mukomuko,age_group,10-14,,18320,jiwa,2025,projection,total_population,3.1.2,47,,10–14
+17.06,2,Kabupaten Mukomuko,age_group,15-19,laki_laki,9193,jiwa,2025,projection,total_population,3.1.2,47,,15–19
+17.06,2,Kabupaten Mukomuko,age_group,15-19,perempuan,8332,jiwa,2025,projection,total_population,3.1.2,47,,15–19
+17.06,2,Kabupaten Mukomuko,age_group,15-19,,17525,jiwa,2025,projection,total_population,3.1.2,47,,15–19
+17.06,2,Kabupaten Mukomuko,age_group,20-24,laki_laki,8393,jiwa,2025,projection,total_population,3.1.2,47,,20–24
+17.06,2,Kabupaten Mukomuko,age_group,20-24,perempuan,7886,jiwa,2025,projection,total_population,3.1.2,47,,20–24
+17.06,2,Kabupaten Mukomuko,age_group,20-24,,16279,jiwa,2025,projection,total_population,3.1.2,47,,20–24
+17.06,2,Kabupaten Mukomuko,age_group,25-29,laki_laki,8481,jiwa,2025,projection,total_population,3.1.2,47,,25–29
+17.06,2,Kabupaten Mukomuko,age_group,25-29,perempuan,7963,jiwa,2025,projection,total_population,3.1.2,47,,25–29
+17.06,2,Kabupaten Mukomuko,age_group,25-29,,16444,jiwa,2025,projection,total_population,3.1.2,47,,25–29
+17.06,2,Kabupaten Mukomuko,age_group,30-34,laki_laki,8243,jiwa,2025,projection,total_population,3.1.2,47,,30–34
+17.06,2,Kabupaten Mukomuko,age_group,30-34,perempuan,8060,jiwa,2025,projection,total_population,3.1.2,47,,30–34
+17.06,2,Kabupaten Mukomuko,age_group,30-34,,16303,jiwa,2025,projection,total_population,3.1.2,47,,30–34
+17.06,2,Kabupaten Mukomuko,age_group,35-39,laki_laki,8418,jiwa,2025,projection,total_population,3.1.2,47,,35–39
+17.06,2,Kabupaten Mukomuko,age_group,35-39,perempuan,8057,jiwa,2025,projection,total_population,3.1.2,47,,35–39
+17.06,2,Kabupaten Mukomuko,age_group,35-39,,16475,jiwa,2025,projection,total_population,3.1.2,47,,35–39
+17.06,2,Kabupaten Mukomuko,age_group,40-44,laki_laki,8071,jiwa,2025,projection,total_population,3.1.2,47,,40–44
+17.06,2,Kabupaten Mukomuko,age_group,40-44,perempuan,7454,jiwa,2025,projection,total_population,3.1.2,47,,40–44
+17.06,2,Kabupaten Mukomuko,age_group,40-44,,15525,jiwa,2025,projection,total_population,3.1.2,47,,40–44
+17.06,2,Kabupaten Mukomuko,age_group,45-49,laki_laki,6724,jiwa,2025,projection,total_population,3.1.2,47,,45–49
+17.06,2,Kabupaten Mukomuko,age_group,45-49,perempuan,6248,jiwa,2025,projection,total_population,3.1.2,47,,45–49
+17.06,2,Kabupaten Mukomuko,age_group,45-49,,12972,jiwa,2025,projection,total_population,3.1.2,47,,45–49
+17.06,2,Kabupaten Mukomuko,age_group,50-54,laki_laki,5772,jiwa,2025,projection,total_population,3.1.2,47,,50–54
+17.06,2,Kabupaten Mukomuko,age_group,50-54,perempuan,5192,jiwa,2025,projection,total_population,3.1.2,47,,50–54
+17.06,2,Kabupaten Mukomuko,age_group,50-54,,10964,jiwa,2025,projection,total_population,3.1.2,47,,50–54
+17.06,2,Kabupaten Mukomuko,age_group,55-59,laki_laki,4742,jiwa,2025,projection,total_population,3.1.2,47,,55–59
+17.06,2,Kabupaten Mukomuko,age_group,55-59,perempuan,4194,jiwa,2025,projection,total_population,3.1.2,47,,55–59
+17.06,2,Kabupaten Mukomuko,age_group,55-59,,8936,jiwa,2025,projection,total_population,3.1.2,47,,55–59
+17.06,2,Kabupaten Mukomuko,age_group,60-64,laki_laki,3518,jiwa,2025,projection,total_population,3.1.2,47,,60–64
+17.06,2,Kabupaten Mukomuko,age_group,60-64,perempuan,3326,jiwa,2025,projection,total_population,3.1.2,47,,60–64
+17.06,2,Kabupaten Mukomuko,age_group,60-64,,6844,jiwa,2025,projection,total_population,3.1.2,47,,60–64
+17.06,2,Kabupaten Mukomuko,age_group,65-69,laki_laki,2441,jiwa,2025,projection,total_population,3.1.2,47,,65–69
+17.06,2,Kabupaten Mukomuko,age_group,65-69,perempuan,2264,jiwa,2025,projection,total_population,3.1.2,47,,65–69
+17.06,2,Kabupaten Mukomuko,age_group,65-69,,4705,jiwa,2025,projection,total_population,3.1.2,47,,65–69
+17.06,2,Kabupaten Mukomuko,age_group,70-74,laki_laki,1771,jiwa,2025,projection,total_population,3.1.2,47,,70–74
+17.06,2,Kabupaten Mukomuko,age_group,70-74,perempuan,1668,jiwa,2025,projection,total_population,3.1.2,47,,70–74
+17.06,2,Kabupaten Mukomuko,age_group,70-74,,3439,jiwa,2025,projection,total_population,3.1.2,47,,70–74
+17.06,2,Kabupaten Mukomuko,age_group,75+,laki_laki,1391,jiwa,2025,projection,total_population,3.1.2,47,,75+
+17.06,2,Kabupaten Mukomuko,age_group,75+,perempuan,1448,jiwa,2025,projection,total_population,3.1.2,47,,75+
+17.06,2,Kabupaten Mukomuko,age_group,75+,,2839,jiwa,2025,projection,total_population,3.1.2,47,,75+
+17.06,2,Mukomuko,sex,laki_laki,,105409,jiwa,2025,projection,total_population,3.1.2,47,,Laki-Laki
+17.06,2,Mukomuko,sex,perempuan,,99151,jiwa,2025,projection,total_population,3.1.2,47,,Perempuan
+17.06,2,Mukomuko,total,total,,204560,jiwa,2025,projection,total_population,3.1.2,47,,
+17.06.05,3,Ipuh,religion,islam,,19951,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.06.05,3,Ipuh,religion,kristen,,278,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.06.05,3,Ipuh,religion,katolik,,132,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.06.05,3,Ipuh,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.06.05,3,Ipuh,religion,buddha,,4,jiwa,2025,registration,total_population,4.3.1,109,,Budha
+17.06.05,3,Ipuh,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.06.07,3,Air Rami,religion,islam,,13713,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.06.07,3,Air Rami,religion,kristen,,320,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.06.07,3,Air Rami,religion,katolik,,30,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.06.07,3,Air Rami,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.06.07,3,Air Rami,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Budha
+17.06.07,3,Air Rami,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.06.06,3,Malin Deman,religion,islam,,72592,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.06.06,3,Malin Deman,religion,kristen,,213,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.06.06,3,Malin Deman,religion,katolik,,34,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.06.06,3,Malin Deman,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.06.06,3,Malin Deman,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Budha
+17.06.06,3,Malin Deman,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.06.04,3,Pondok Suguh,religion,islam,,15124,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.06.04,3,Pondok Suguh,religion,kristen,,366,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.06.04,3,Pondok Suguh,religion,katolik,,115,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.06.04,3,Pondok Suguh,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.06.04,3,Pondok Suguh,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Budha
+17.06.04,3,Pondok Suguh,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.06.15,3,Sungai Rumbai,religion,islam,,9792,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.06.15,3,Sungai Rumbai,religion,kristen,,113,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.06.15,3,Sungai Rumbai,religion,katolik,,62,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.06.15,3,Sungai Rumbai,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,109,,Hindu
+17.06.15,3,Sungai Rumbai,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Budha
+17.06.15,3,Sungai Rumbai,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.06.08,3,Teramang Jaya,religion,islam,,12840,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.06.08,3,Teramang Jaya,religion,kristen,,209,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.06.08,3,Teramang Jaya,religion,katolik,,44,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.06.08,3,Teramang Jaya,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,109,,Hindu
+17.06.08,3,Teramang Jaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Budha
+17.06.08,3,Teramang Jaya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.06.03,3,Teras Terunjam,religion,islam,,8368,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.06.03,3,Teras Terunjam,religion,kristen,,3,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.06.03,3,Teras Terunjam,religion,katolik,,377,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.06.03,3,Teras Terunjam,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.06.03,3,Teras Terunjam,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Budha
+17.06.03,3,Teras Terunjam,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.06.10,3,Penarik,religion,islam,,23662,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.06.10,3,Penarik,religion,kristen,,665,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.06.10,3,Penarik,religion,katolik,,45,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.06.10,3,Penarik,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,109,,Hindu
+17.06.10,3,Penarik,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Budha
+17.06.10,3,Penarik,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.06.09,3,Selagan Raya,religion,islam,,11259,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.06.09,3,Selagan Raya,religion,kristen,,15,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.06.09,3,Selagan Raya,religion,katolik,,98,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.06.09,3,Selagan Raya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.06.09,3,Selagan Raya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Budha
+17.06.09,3,Selagan Raya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.06.02,3,Kota Mukomuko,religion,islam,,21639,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.06.02,3,Kota Mukomuko,religion,kristen,,195,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.06.02,3,Kota Mukomuko,religion,katolik,,114,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.06.02,3,Kota Mukomuko,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.06.02,3,Kota Mukomuko,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Budha
+17.06.02,3,Kota Mukomuko,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.06.14,3,Air Dikit,religion,islam,,6954,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.06.14,3,Air Dikit,religion,kristen,,25,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.06.14,3,Air Dikit,religion,katolik,,465,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.06.14,3,Air Dikit,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.06.14,3,Air Dikit,religion,buddha,,17,jiwa,2025,registration,total_population,4.3.1,109,,Budha
+17.06.14,3,Air Dikit,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.06.11,3,XIV Koto,religion,islam,,13835,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.06.11,3,XIV Koto,religion,kristen,,24,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.06.11,3,XIV Koto,religion,katolik,,169,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.06.11,3,XIV Koto,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.06.11,3,XIV Koto,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Budha
+17.06.11,3,XIV Koto,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.06.01,3,Lubuk Pinang,religion,islam,,14869,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.06.01,3,Lubuk Pinang,religion,kristen,,465,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.06.01,3,Lubuk Pinang,religion,katolik,,64,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.06.01,3,Lubuk Pinang,religion,hindu,,97,jiwa,2025,registration,total_population,4.3.1,109,,Hindu
+17.06.01,3,Lubuk Pinang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Budha
+17.06.01,3,Lubuk Pinang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.06.13,3,Air Manjunto,religion,islam,,11803,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.06.13,3,Air Manjunto,religion,kristen,,236,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.06.13,3,Air Manjunto,religion,katolik,,68,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.06.13,3,Air Manjunto,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.06.13,3,Air Manjunto,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,109,,Budha
+17.06.13,3,Air Manjunto,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.06.12,3,V Koto,religion,islam,,7957,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.06.12,3,V Koto,religion,kristen,,35,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.06.12,3,V Koto,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Katolik
+17.06.12,3,V Koto,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Hindu
+17.06.12,3,V Koto,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Budha
+17.06.12,3,V Koto,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.06,2,Mukomuko,religion,islam,,264358,jiwa,2025,registration,total_population,4.3.1,109,,Islam
+17.06,2,Mukomuko,religion,kristen,,3162,jiwa,2025,registration,total_population,4.3.1,109,,Protestan
+17.06,2,Mukomuko,religion,katolik,,1817,jiwa,2025,registration,total_population,4.3.1,109,,Katolik
+17.06,2,Mukomuko,religion,hindu,,110,jiwa,2025,registration,total_population,4.3.1,109,,Hindu
+17.06,2,Mukomuko,religion,buddha,,26,jiwa,2025,registration,total_population,4.3.1,109,,Budha
+17.06,2,Mukomuko,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,109,nil,Lainnya
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/padi_padian,,107735,rupiah,2024,survey_estimate,per_capita,10.1,232,,Padi-padian
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/padi_padian,,90828,rupiah,2025,survey_estimate,per_capita,10.1,232,,Padi-padian
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/umbi_umbian,,6730,rupiah,2024,survey_estimate,per_capita,10.1,232,,Umbi-umbian
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/umbi_umbian,,7785,rupiah,2025,survey_estimate,per_capita,10.1,232,,Umbi-umbian
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,72244,rupiah,2024,survey_estimate,per_capita,10.1,232,,Ikan/udang/cumi/kerang
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,71614,rupiah,2025,survey_estimate,per_capita,10.1,232,,Ikan/udang/cumi/kerang
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/daging,,28743,rupiah,2024,survey_estimate,per_capita,10.1,232,,Daging
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/daging,,32855,rupiah,2025,survey_estimate,per_capita,10.1,232,,Daging
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/telur_dan_susu,,33923,rupiah,2024,survey_estimate,per_capita,10.1,232,,Telur dan susu
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/telur_dan_susu,,38928,rupiah,2025,survey_estimate,per_capita,10.1,232,,Telur dan susu
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/sayur_sayuran,,102840,rupiah,2024,survey_estimate,per_capita,10.1,232,,Sayur-sayuran
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/sayur_sayuran,,89401,rupiah,2025,survey_estimate,per_capita,10.1,232,,Sayur-sayuran
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/kacang_kacangan,,11672,rupiah,2024,survey_estimate,per_capita,10.1,232,,Kacang-kacangan
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/kacang_kacangan,,12069,rupiah,2025,survey_estimate,per_capita,10.1,232,,Kacang-kacangan
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/buah_buahan,,53665,rupiah,2024,survey_estimate,per_capita,10.1,232,,Buah-buahan
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/buah_buahan,,45358,rupiah,2025,survey_estimate,per_capita,10.1,232,,Buah-buahan
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/minyak_dan_kelapa,,26643,rupiah,2024,survey_estimate,per_capita,10.1,232,,Minyak dan kelapa
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/minyak_dan_kelapa,,28720,rupiah,2025,survey_estimate,per_capita,10.1,232,,Minyak dan kelapa
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/bahan_minuman,,20179,rupiah,2024,survey_estimate,per_capita,10.1,232,,Bahan minuman
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/bahan_minuman,,23727,rupiah,2025,survey_estimate,per_capita,10.1,232,,Bahan minuman
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/bumbu_bumbuan,,13185,rupiah,2024,survey_estimate,per_capita,10.1,232,,Bumbu-bumbuan
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/bumbu_bumbuan,,13898,rupiah,2025,survey_estimate,per_capita,10.1,232,,Bumbu-bumbuan
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/konsumsi_lainnya,,9415,rupiah,2024,survey_estimate,per_capita,10.1,232,,Konsumsi lainnya
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/konsumsi_lainnya,,11547,rupiah,2025,survey_estimate,per_capita,10.1,232,,Konsumsi lainnya
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,182766,rupiah,2024,survey_estimate,per_capita,10.1,232,,Makanan dan minuman jadi
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,170181,rupiah,2025,survey_estimate,per_capita,10.1,232,,Makanan dan minuman jadi
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/rokok,,165285,rupiah,2024,survey_estimate,per_capita,10.1,232,,Rokok
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/rokok,,142697,rupiah,2025,survey_estimate,per_capita,10.1,232,,Rokok
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/jumlah_makanan,,83025,rupiah,2024,survey_estimate,per_capita,10.1,232,,Jumlah makanan
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/jumlah_makanan,,779608,rupiah,2025,survey_estimate,per_capita,10.1,232,,Jumlah makanan
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,360486,rupiah,2024,survey_estimate,per_capita,10.1,232,,Perumahan dan fasilitas rumah tangga
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,353555,rupiah,2025,survey_estimate,per_capita,10.1,232,,Perumahan dan fasilitas rumah tangga
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,149240,rupiah,2024,survey_estimate,per_capita,10.1,232,,Aneka barang dan jasa
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,139993,rupiah,2025,survey_estimate,per_capita,10.1,232,,Aneka barang dan jasa
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,51653,rupiah,2024,survey_estimate,per_capita,10.1,232,,"Pakaian, alas kaki, dan tutup kepala"
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,49225,rupiah,2025,survey_estimate,per_capita,10.1,232,,"Pakaian, alas kaki, dan tutup kepala"
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/barang_tahan_lama,,62826,rupiah,2024,survey_estimate,per_capita,10.1,232,,Barang tahan lama
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/barang_tahan_lama,,125757,rupiah,2025,survey_estimate,per_capita,10.1,232,,Barang tahan lama
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,55140,rupiah,2024,survey_estimate,per_capita,10.1,232,,"Pajak, pungutan, dan asuransi"
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,53297,rupiah,2025,survey_estimate,per_capita,10.1,232,,"Pajak, pungutan, dan asuransi"
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,42802,rupiah,2024,survey_estimate,per_capita,10.1,232,,Keperluan pesta dan upacara/kenduri
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,722147,rupiah,2024,survey_estimate,per_capita,10.1,232,,Jumlah bukan makanan
+17.06,2,Kabupaten Mukomuko,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,783793,rupiah,2025,survey_estimate,per_capita,10.1,232,,Jumlah bukan makanan
+17.06,2,Kabupaten Mukomuko,expenditure,total,,1557171,rupiah,2024,survey_estimate,per_capita,10.1,232,,
+17.06,2,Kabupaten Mukomuko,expenditure,total,,1563401,rupiah,2025,survey_estimate,per_capita,10.1,232,,

@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1275-kecamatan-127116-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.71.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Medan Polonia Dalam Angka 2026",
+  "publisherName": "BPS Kota Medan",
+  "publisherDomain": "1275",
+  "publisherWebsite": "https://medankota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Medan (https://medankota.bps.go.id), publikasi \"Kecamatan Medan Polonia Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1275080",
+  "publicationNumber": "12750.26015",
+  "issn": "2830-2168",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://medankota.bps.go.id/id/publication/2026/09/28/edb3edb8069a3045640ee1c0/kecamatan-medan-polonia-dalam-angka-2026.html",
+  "sourceFileSha256": "c3d394da5a2d24771c674ba9b535830bbd0cd0913390e8256f061d49d6cfff96",
+  "sourceFileBytes": 13570663,
+  "sourcePages": [31, 38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Medan.",
+  "csvPath": "datasets/bps-1275-kecamatan-127116-dalam-angka-2026.csv",
+  "csvSha256": "88921727d915d5449613939c5bf6a524c44df979f757fa1b2180e4178a06d191",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Medan Polonia, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.6",
+      "title": "Jumlah Penduduk Menurut Kelurahan dan Agama di Kecamatan Medan Polonia, 2025",
+      "printedPages": [38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1 (sex-by-village) could not be read reliably and is not included (figures with three or more decimals: the separator convention of this table is unclear (',' used as a thousands mark?))",
+    "table 3.6: 14 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

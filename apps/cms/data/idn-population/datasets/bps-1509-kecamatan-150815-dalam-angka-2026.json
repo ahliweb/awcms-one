@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-1509-kecamatan-150815-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.08.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bathin II Pelayang Dalam Angka 2026",
+  "publisherName": "BPSKabupaten Bungo",
+  "publisherDomain": "1509",
+  "publisherWebsite": "https://bungokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPSKabupaten Bungo (https://bungokab.bps.go.id), publikasi \"Kecamatan Bathin II Pelayang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1509052",
+  "publicationNumber": "15090.26019",
+  "issn": "2714-5824",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bungokab.bps.go.id/id/publication/2026/09/28/2040af5f18acbb024b086b6b/kecamatan-bathin-ii-pelayang-dalam-angka-2026.html",
+  "sourceFileSha256": "67b816c47865b01609ee2153280d8fe65bad596599f1caad90051ab18372bbe4",
+  "sourceFileBytes": 13671373,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulisdari Badan Pusat StatistikKabupaten Bungo.",
+  "csvPath": "datasets/bps-1509-kecamatan-150815-dalam-angka-2026.csv",
+  "csvSha256": "886acb415be42d3ab5fe13901bc7512cbf0bbce6d5ae88c43eabf7c29d22a4a3",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Bathin II Pelayang , 202 5",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bathin II Pelayang , 202 5",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Pulau Kerakap 11,91%\": unmatched ",
+    "table 3.1: row not stored: row \"Peninjau 22,23%\": unmatched ",
+    "table 3.1: row not stored: row \"Pelayang 21,82%\": unmatched ",
+    "table 3.1: row not stored: row \"Talang Silungko 22,18%\": unmatched ",
+    "table 3.1: row not stored: row \"Seberang Jaya 21,87%\": unmatched ",
+    "table 3.1: row not stored: row \"100,00% Pelayang\": unmatched "
+  ]
+}

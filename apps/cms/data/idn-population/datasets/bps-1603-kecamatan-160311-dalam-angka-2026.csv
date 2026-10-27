@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.03.11.2004,4,Tanjung Raman,sex,laki_laki,,1183,jiwa,2025,registration,total_population,1.1,23,,Laki-Laki/Male
+16.03.11.2004,4,Tanjung Raman,sex,perempuan,,1148,jiwa,2025,registration,total_population,1.1,23,,Perempuan/Female
+16.03.11.2004,4,Tanjung Raman,total,total,,2331,jiwa,2025,registration,total_population,1.1,23,,
+16.03.11.2005,4,Muara Gula Baru,sex,laki_laki,,567,jiwa,2025,registration,total_population,1.1,23,,Laki-Laki/Male
+16.03.11.2005,4,Muara Gula Baru,sex,perempuan,,565,jiwa,2025,registration,total_population,1.1,23,,Perempuan/Female
+16.03.11.2005,4,Muara Gula Baru,total,total,,1132,jiwa,2025,registration,total_population,1.1,23,,
+16.03.11.2006,4,Muara Gula Lama,sex,laki_laki,,933,jiwa,2025,registration,total_population,1.1,23,,Laki-Laki/Male
+16.03.11.2006,4,Muara Gula Lama,sex,perempuan,,870,jiwa,2025,registration,total_population,1.1,23,,Perempuan/Female
+16.03.11.2006,4,Muara Gula Lama,total,total,,1803,jiwa,2025,registration,total_population,1.1,23,,
+16.03.11.2001,4,Pinang Belarik,sex,laki_laki,,1473,jiwa,2025,registration,total_population,1.1,23,,Laki-Laki/Male
+16.03.11.2001,4,Pinang Belarik,sex,perempuan,,1389,jiwa,2025,registration,total_population,1.1,23,,Perempuan/Female
+16.03.11.2001,4,Pinang Belarik,total,total,,2862,jiwa,2025,registration,total_population,1.1,23,,
+16.03.11.2002,4,Ujan Mas Lama,sex,laki_laki,,2165,jiwa,2025,registration,total_population,1.1,23,,Laki-Laki/Male
+16.03.11.2002,4,Ujan Mas Lama,sex,perempuan,,1954,jiwa,2025,registration,total_population,1.1,23,,Perempuan/Female
+16.03.11.2002,4,Ujan Mas Lama,total,total,,4119,jiwa,2025,registration,total_population,1.1,23,,
+16.03.11.2003,4,Ujan Mas Baru,sex,laki_laki,,3877,jiwa,2025,registration,total_population,1.1,23,,Laki-Laki/Male
+16.03.11.2003,4,Ujan Mas Baru,sex,perempuan,,3702,jiwa,2025,registration,total_population,1.1,23,,Perempuan/Female
+16.03.11.2003,4,Ujan Mas Baru,total,total,,7579,jiwa,2025,registration,total_population,1.1,23,,
+16.03.11.2007,4,Guci,sex,laki_laki,,607,jiwa,2025,registration,total_population,1.1,23,,Laki-Laki/Male
+16.03.11.2007,4,Guci,sex,perempuan,,542,jiwa,2025,registration,total_population,1.1,23,,Perempuan/Female
+16.03.11.2007,4,Guci,total,total,,1149,jiwa,2025,registration,total_population,1.1,23,,
+16.03.11.2008,4,Ulak Bandung,sex,laki_laki,,1790,jiwa,2025,registration,total_population,1.1,23,,Laki-Laki/Male
+16.03.11.2008,4,Ulak Bandung,sex,perempuan,,1655,jiwa,2025,registration,total_population,1.1,23,,Perempuan/Female
+16.03.11.2008,4,Ulak Bandung,total,total,,3445,jiwa,2025,registration,total_population,1.1,23,,
+16.03.11.2009,4,Ujan Mas Ulu,sex,laki_laki,,1667,jiwa,2025,registration,total_population,1.1,23,,Laki-Laki/Male
+16.03.11.2009,4,Ujan Mas Ulu,sex,perempuan,,1561,jiwa,2025,registration,total_population,1.1,23,,Perempuan/Female
+16.03.11.2009,4,Ujan Mas Ulu,total,total,,3228,jiwa,2025,registration,total_population,1.1,23,,
+16.03.11,3,Ujan Mas,sex,laki_laki,,14262,jiwa,2025,registration,total_population,1.1,23,,Laki-Laki/Male
+16.03.11,3,Ujan Mas,sex,perempuan,,13386,jiwa,2025,registration,total_population,1.1,23,,Perempuan/Female
+16.03.11,3,Ujan Mas,total,total,,27648,jiwa,2025,registration,total_population,1.1,23,,

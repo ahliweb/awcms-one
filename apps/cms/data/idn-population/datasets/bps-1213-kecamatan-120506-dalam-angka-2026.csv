@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.05.06.2005,4,Nambiki,sex,laki_laki,,689,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.06.2005,4,Nambiki,sex,perempuan,,730,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.06.2005,4,Nambiki,total,total,,1419,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.06.2004,4,Tanjung Merahe,sex,laki_laki,,1331,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.06.2004,4,Tanjung Merahe,sex,perempuan,,1324,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.06.2004,4,Tanjung Merahe,total,total,,2655,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.06.2003,4,Padang Brahrang,sex,laki_laki,,6945,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.06.2003,4,Padang Brahrang,sex,perempuan,,6846,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.06.2003,4,Padang Brahrang,total,total,,13791,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.06.2006,4,Lau Mulgap,sex,laki_laki,,1828,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.06.2006,4,Lau Mulgap,sex,perempuan,,1862,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.06.2006,4,Lau Mulgap,total,total,,3690,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.06.2007,4,Kuta Parit,sex,laki_laki,,1087,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.06.2007,4,Kuta Parit,sex,perempuan,,1081,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.06.2007,4,Kuta Parit,total,total,,2168,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.06.1001,4,Pekan Selesai,sex,laki_laki,,6086,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.06.1001,4,Pekan Selesai,sex,perempuan,,5993,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.06.1001,4,Pekan Selesai,total,total,,12079,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.06.2008,4,Bekulap,sex,laki_laki,,2468,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.06.2008,4,Bekulap,sex,perempuan,,2353,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.06.2008,4,Bekulap,total,total,,4821,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.06.2009,4,Perhiasan,sex,laki_laki,,1965,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.06.2009,4,Perhiasan,sex,perempuan,,2006,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.06.2009,4,Perhiasan,total,total,,3971,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.06.2010,4,Selayang,sex,laki_laki,,2535,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.06.2010,4,Selayang,sex,perempuan,,2605,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.06.2010,4,Selayang,total,total,,5140,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.06.2002,4,Sei Limbat,sex,laki_laki,,4314,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.06.2002,4,Sei Limbat,sex,perempuan,,4046,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.06.2002,4,Sei Limbat,total,total,,8360,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.06.2011,4,Mancang,sex,laki_laki,,2211,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.06.2011,4,Mancang,sex,perempuan,,2144,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.06.2011,4,Mancang,total,total,,4355,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.06.2012,4,Kwala Air Hitam,sex,laki_laki,,1605,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.06.2012,4,Kwala Air Hitam,sex,perempuan,,1636,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.06.2012,4,Kwala Air Hitam,total,total,,3241,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.06.2013,4,Padang Cermin,sex,laki_laki,,5458,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.06.2013,4,Padang Cermin,sex,perempuan,,5357,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.06.2013,4,Padang Cermin,total,total,,10815,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.06.2014,4,Selayang Baru,sex,laki_laki,,1928,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.06.2014,4,Selayang Baru,sex,perempuan,,1938,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.06.2014,4,Selayang Baru,total,total,,3866,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.06,3,Kecamatan Selesai,sex,laki_laki,,40450,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.06,3,Kecamatan Selesai,sex,perempuan,,39921,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.06,3,Kecamatan Selesai,total,total,,80371,jiwa,2025,registration,total_population,unnumbered-p39,39,,

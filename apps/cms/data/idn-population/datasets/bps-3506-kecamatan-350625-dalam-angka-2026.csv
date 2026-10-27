@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.06.25,3,Ngasem,age_group,0-4,laki_laki,1666,jiwa,2025,registration,total_population,3.1.2,31,,0 - 4
+35.06.25,3,Ngasem,age_group,0-4,perempuan,1609,jiwa,2025,registration,total_population,3.1.2,31,,0 - 4
+35.06.25,3,Ngasem,age_group,0-4,,3275,jiwa,2025,registration,total_population,3.1.2,31,,0 - 4
+35.06.25,3,Ngasem,age_group,5-9,laki_laki,2161,jiwa,2025,registration,total_population,3.1.2,31,,5 - 9
+35.06.25,3,Ngasem,age_group,5-9,perempuan,2104,jiwa,2025,registration,total_population,3.1.2,31,,5 - 9
+35.06.25,3,Ngasem,age_group,5-9,,4265,jiwa,2025,registration,total_population,3.1.2,31,,5 - 9
+35.06.25,3,Ngasem,age_group,10-14,laki_laki,2435,jiwa,2025,registration,total_population,3.1.2,31,,10 - 14
+35.06.25,3,Ngasem,age_group,10-14,perempuan,2190,jiwa,2025,registration,total_population,3.1.2,31,,10 - 14
+35.06.25,3,Ngasem,age_group,10-14,,4625,jiwa,2025,registration,total_population,3.1.2,31,,10 - 14
+35.06.25,3,Ngasem,age_group,15-19,laki_laki,2377,jiwa,2025,registration,total_population,3.1.2,31,,15 - 19
+35.06.25,3,Ngasem,age_group,15-19,perempuan,2305,jiwa,2025,registration,total_population,3.1.2,31,,15 - 19
+35.06.25,3,Ngasem,age_group,15-19,,4682,jiwa,2025,registration,total_population,3.1.2,31,,15 - 19
+35.06.25,3,Ngasem,age_group,20-24,laki_laki,2598,jiwa,2025,registration,total_population,3.1.2,31,,20 - 24
+35.06.25,3,Ngasem,age_group,20-24,perempuan,2473,jiwa,2025,registration,total_population,3.1.2,31,,20 - 24
+35.06.25,3,Ngasem,age_group,20-24,,5071,jiwa,2025,registration,total_population,3.1.2,31,,20 - 24
+35.06.25,3,Ngasem,age_group,25-29,laki_laki,2416,jiwa,2025,registration,total_population,3.1.2,31,,25 - 29
+35.06.25,3,Ngasem,age_group,25-29,perempuan,2154,jiwa,2025,registration,total_population,3.1.2,31,,25 - 29
+35.06.25,3,Ngasem,age_group,25-29,,4570,jiwa,2025,registration,total_population,3.1.2,31,,25 - 29
+35.06.25,3,Ngasem,age_group,30-34,laki_laki,2197,jiwa,2025,registration,total_population,3.1.2,31,,30 - 34
+35.06.25,3,Ngasem,age_group,30-34,perempuan,2119,jiwa,2025,registration,total_population,3.1.2,31,,30 - 34
+35.06.25,3,Ngasem,age_group,30-34,,4316,jiwa,2025,registration,total_population,3.1.2,31,,30 - 34
+35.06.25,3,Ngasem,age_group,35-39,laki_laki,2021,jiwa,2025,registration,total_population,3.1.2,31,,35 - 39
+35.06.25,3,Ngasem,age_group,35-39,perempuan,2050,jiwa,2025,registration,total_population,3.1.2,31,,35 - 39
+35.06.25,3,Ngasem,age_group,35-39,,4071,jiwa,2025,registration,total_population,3.1.2,31,,35 - 39
+35.06.25,3,Ngasem,age_group,40-44,laki_laki,2531,jiwa,2025,registration,total_population,3.1.2,31,,40 - 44
+35.06.25,3,Ngasem,age_group,40-44,perempuan,2573,jiwa,2025,registration,total_population,3.1.2,31,,40 - 44
+35.06.25,3,Ngasem,age_group,40-44,,5104,jiwa,2025,registration,total_population,3.1.2,31,,40 - 44
+35.06.25,3,Ngasem,age_group,45-49,laki_laki,2331,jiwa,2025,registration,total_population,3.1.2,31,,45 - 49
+35.06.25,3,Ngasem,age_group,45-49,perempuan,2281,jiwa,2025,registration,total_population,3.1.2,31,,45 - 49
+35.06.25,3,Ngasem,age_group,45-49,,4612,jiwa,2025,registration,total_population,3.1.2,31,,45 - 49
+35.06.25,3,Ngasem,age_group,50-54,laki_laki,2268,jiwa,2025,registration,total_population,3.1.2,31,,50 - 54
+35.06.25,3,Ngasem,age_group,50-54,perempuan,2323,jiwa,2025,registration,total_population,3.1.2,31,,50 - 54
+35.06.25,3,Ngasem,age_group,50-54,,4591,jiwa,2025,registration,total_population,3.1.2,31,,50 - 54
+35.06.25,3,Ngasem,age_group,55-59,laki_laki,2015,jiwa,2025,registration,total_population,3.1.2,31,,55 - 59
+35.06.25,3,Ngasem,age_group,55-59,perempuan,2275,jiwa,2025,registration,total_population,3.1.2,31,,55 - 59
+35.06.25,3,Ngasem,age_group,55-59,,4290,jiwa,2025,registration,total_population,3.1.2,31,,55 - 59
+35.06.25,3,Ngasem,age_group,60-64,laki_laki,1829,jiwa,2025,registration,total_population,3.1.2,31,,60 - 64
+35.06.25,3,Ngasem,age_group,60-64,perempuan,2206,jiwa,2025,registration,total_population,3.1.2,31,,60 - 64
+35.06.25,3,Ngasem,age_group,60-64,,4035,jiwa,2025,registration,total_population,3.1.2,31,,60 - 64
+35.06.25,3,Ngasem,age_group,65-69,laki_laki,1426,jiwa,2025,registration,total_population,3.1.2,31,,65 - 69
+35.06.25,3,Ngasem,age_group,65-69,perempuan,1539,jiwa,2025,registration,total_population,3.1.2,31,,65 - 69
+35.06.25,3,Ngasem,age_group,65-69,,2965,jiwa,2025,registration,total_population,3.1.2,31,,65 - 69
+35.06.25,3,Ngasem,age_group,70-74,laki_laki,801,jiwa,2025,registration,total_population,3.1.2,31,,70 - 74
+35.06.25,3,Ngasem,age_group,70-74,perempuan,850,jiwa,2025,registration,total_population,3.1.2,31,,70 - 74
+35.06.25,3,Ngasem,age_group,70-74,,1651,jiwa,2025,registration,total_population,3.1.2,31,,70 - 74
+35.06.25,3,Ngasem,age_group,75+,laki_laki,723,jiwa,2025,registration,total_population,3.1.2,31,,75+
+35.06.25,3,Ngasem,age_group,75+,perempuan,982,jiwa,2025,registration,total_population,3.1.2,31,,75+
+35.06.25,3,Ngasem,age_group,75+,,1705,jiwa,2025,registration,total_population,3.1.2,31,,75+
+35.06.25,3,Kecamatan Ngasem,sex,laki_laki,,31795,jiwa,2025,registration,total_population,3.1.2,31,,Laki-laki
+35.06.25,3,Kecamatan Ngasem,sex,perempuan,,32033,jiwa,2025,registration,total_population,3.1.2,31,,Perempuan
+35.06.25,3,Kecamatan Ngasem,total,total,,63828,jiwa,2025,registration,total_population,3.1.2,31,,

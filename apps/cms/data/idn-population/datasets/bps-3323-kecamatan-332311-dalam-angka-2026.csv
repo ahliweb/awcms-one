@@ -1,0 +1,87 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.23.11.2007,4,Campurejo,sex,laki_laki,,2649,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.11.2007,4,Campurejo,sex,perempuan,,2573,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.11.2007,4,Campurejo,total,total,,5222,jiwa,2026,registration,total_population,3.1,25,,
+33.23.11.2006,4,Tempelsari,sex,laki_laki,,1177,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.11.2006,4,Tempelsari,sex,perempuan,,1110,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.11.2006,4,Tempelsari,total,total,,2287,jiwa,2026,registration,total_population,3.1,25,,
+33.23.11.2005,4,Bonjor,sex,laki_laki,,1170,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.11.2005,4,Bonjor,sex,perempuan,,1093,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.11.2005,4,Bonjor,total,total,,2263,jiwa,2026,registration,total_population,3.1,25,,
+33.23.11.2004,4,Sigedong,sex,laki_laki,,841,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.11.2004,4,Sigedong,sex,perempuan,,824,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.11.2003,4,Nglarangan,sex,laki_laki,,584,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.11.2003,4,Nglarangan,sex,perempuan,,557,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.11.2003,4,Nglarangan,total,total,,1141,jiwa,2026,registration,total_population,3.1,25,,
+33.23.11.2002,4,Donorojo,sex,laki_laki,,650,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.11.2002,4,Donorojo,sex,perempuan,,599,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.11.2002,4,Donorojo,total,total,,1249,jiwa,2026,registration,total_population,3.1,25,,
+33.23.11.2001,4,Tretep,sex,laki_laki,,1175,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.11.2001,4,Tretep,sex,perempuan,,1118,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.11.2001,4,Tretep,total,total,,2293,jiwa,2026,registration,total_population,3.1,25,,
+33.23.11.2008,4,Bojong,sex,laki_laki,,890,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.11.2008,4,Bojong,sex,perempuan,,864,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.11.2008,4,Bojong,total,total,,1754,jiwa,2026,registration,total_population,3.1,25,,
+33.23.11.2009,4,Bendungan,sex,laki_laki,,1072,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.11.2009,4,Bendungan,sex,perempuan,,1000,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.11.2009,4,Bendungan,total,total,,2072,jiwa,2026,registration,total_population,3.1,25,,
+33.23.11.2010,4,Simpar,sex,laki_laki,,721,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.11.2010,4,Simpar,sex,perempuan,,677,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.11.2010,4,Simpar,total,total,,1398,jiwa,2026,registration,total_population,3.1,25,,
+33.23.11.2011,4,Tlogo,sex,laki_laki,,528,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.11.2011,4,Tlogo,sex,perempuan,,526,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.11.2011,4,Tlogo,total,total,,1054,jiwa,2026,registration,total_population,3.1,25,,
+33.23.11,3,Kecamatan Tretep,sex,laki_laki,,11457,jiwa,2026,registration,total_population,3.1,25,,Laki-Laki/Male
+33.23.11,3,Kecamatan Tretep,sex,perempuan,,10941,jiwa,2026,registration,total_population,3.1,25,,Perempuan/Female
+33.23.11,3,Kecamatan Tretep,total,total,,22398,jiwa,2026,registration,total_population,3.1,25,,
+33.23.11,3,Tretep,age_group,0-4,laki_laki,701,jiwa,2026,registration,total_population,3.2,27,,0 - 4
+33.23.11,3,Tretep,age_group,0-4,perempuan,656,jiwa,2026,registration,total_population,3.2,27,,0 - 4
+33.23.11,3,Tretep,age_group,0-4,,1357,jiwa,2026,registration,total_population,3.2,27,,0 - 4
+33.23.11,3,Tretep,age_group,5-9,laki_laki,809,jiwa,2026,registration,total_population,3.2,27,,5 - 9
+33.23.11,3,Tretep,age_group,5-9,perempuan,806,jiwa,2026,registration,total_population,3.2,27,,5 - 9
+33.23.11,3,Tretep,age_group,5-9,,1615,jiwa,2026,registration,total_population,3.2,27,,5 - 9
+33.23.11,3,Tretep,age_group,10-14,laki_laki,871,jiwa,2026,registration,total_population,3.2,27,,10 - 14
+33.23.11,3,Tretep,age_group,10-14,perempuan,819,jiwa,2026,registration,total_population,3.2,27,,10 - 14
+33.23.11,3,Tretep,age_group,10-14,,1690,jiwa,2026,registration,total_population,3.2,27,,10 - 14
+33.23.11,3,Tretep,age_group,15-19,laki_laki,889,jiwa,2026,registration,total_population,3.2,27,,15 - 19
+33.23.11,3,Tretep,age_group,15-19,perempuan,785,jiwa,2026,registration,total_population,3.2,27,,15 - 19
+33.23.11,3,Tretep,age_group,15-19,,1674,jiwa,2026,registration,total_population,3.2,27,,15 - 19
+33.23.11,3,Tretep,age_group,20-24,laki_laki,802,jiwa,2026,registration,total_population,3.2,27,,20 - 24
+33.23.11,3,Tretep,age_group,20-24,perempuan,739,jiwa,2026,registration,total_population,3.2,27,,20 - 24
+33.23.11,3,Tretep,age_group,20-24,,1541,jiwa,2026,registration,total_population,3.2,27,,20 - 24
+33.23.11,3,Tretep,age_group,25-29,laki_laki,821,jiwa,2026,registration,total_population,3.2,27,,25 - 29
+33.23.11,3,Tretep,age_group,25-29,perempuan,845,jiwa,2026,registration,total_population,3.2,27,,25 - 29
+33.23.11,3,Tretep,age_group,25-29,,1666,jiwa,2026,registration,total_population,3.2,27,,25 - 29
+33.23.11,3,Tretep,age_group,30-34,laki_laki,804,jiwa,2026,registration,total_population,3.2,27,,30 - 34
+33.23.11,3,Tretep,age_group,30-34,perempuan,787,jiwa,2026,registration,total_population,3.2,27,,30 - 34
+33.23.11,3,Tretep,age_group,30-34,,1591,jiwa,2026,registration,total_population,3.2,27,,30 - 34
+33.23.11,3,Tretep,age_group,35-39,laki_laki,784,jiwa,2026,registration,total_population,3.2,27,,35 - 39
+33.23.11,3,Tretep,age_group,35-39,perempuan,665,jiwa,2026,registration,total_population,3.2,27,,35 - 39
+33.23.11,3,Tretep,age_group,35-39,,1449,jiwa,2026,registration,total_population,3.2,27,,35 - 39
+33.23.11,3,Tretep,age_group,40-44,laki_laki,821,jiwa,2026,registration,total_population,3.2,27,,40 - 44
+33.23.11,3,Tretep,age_group,40-44,perempuan,823,jiwa,2026,registration,total_population,3.2,27,,40 - 44
+33.23.11,3,Tretep,age_group,40-44,,1644,jiwa,2026,registration,total_population,3.2,27,,40 - 44
+33.23.11,3,Tretep,age_group,45-49,laki_laki,885,jiwa,2026,registration,total_population,3.2,27,,45 - 49
+33.23.11,3,Tretep,age_group,45-49,perempuan,867,jiwa,2026,registration,total_population,3.2,27,,45 - 49
+33.23.11,3,Tretep,age_group,45-49,,1752,jiwa,2026,registration,total_population,3.2,27,,45 - 49
+33.23.11,3,Tretep,age_group,50-54,laki_laki,785,jiwa,2026,registration,total_population,3.2,27,,50 - 54
+33.23.11,3,Tretep,age_group,50-54,perempuan,723,jiwa,2026,registration,total_population,3.2,27,,50 - 54
+33.23.11,3,Tretep,age_group,50-54,,1508,jiwa,2026,registration,total_population,3.2,27,,50 - 54
+33.23.11,3,Tretep,age_group,55-59,laki_laki,706,jiwa,2026,registration,total_population,3.2,27,,55 - 59
+33.23.11,3,Tretep,age_group,55-59,perempuan,722,jiwa,2026,registration,total_population,3.2,27,,55 - 59
+33.23.11,3,Tretep,age_group,55-59,,1428,jiwa,2026,registration,total_population,3.2,27,,55 - 59
+33.23.11,3,Tretep,age_group,60-64,laki_laki,619,jiwa,2026,registration,total_population,3.2,27,,60 - 64
+33.23.11,3,Tretep,age_group,60-64,perempuan,555,jiwa,2026,registration,total_population,3.2,27,,60 - 64
+33.23.11,3,Tretep,age_group,60-64,,1174,jiwa,2026,registration,total_population,3.2,27,,60 - 64
+33.23.11,3,Tretep,age_group,65-69,laki_laki,463,jiwa,2026,registration,total_population,3.2,27,,65 - 69
+33.23.11,3,Tretep,age_group,65-69,perempuan,517,jiwa,2026,registration,total_population,3.2,27,,65 - 69
+33.23.11,3,Tretep,age_group,65-69,,980,jiwa,2026,registration,total_population,3.2,27,,65 - 69
+33.23.11,3,Tretep,age_group,70-74,laki_laki,361,jiwa,2026,registration,total_population,3.2,27,,70 - 74
+33.23.11,3,Tretep,age_group,70-74,perempuan,325,jiwa,2026,registration,total_population,3.2,27,,70 - 74
+33.23.11,3,Tretep,age_group,70-74,,686,jiwa,2026,registration,total_population,3.2,27,,70 - 74
+33.23.11,3,Tretep,age_group,75+,laki_laki,336,jiwa,2026,registration,total_population,3.2,27,,75+
+33.23.11,3,Tretep,age_group,75+,perempuan,307,jiwa,2026,registration,total_population,3.2,27,,75+
+33.23.11,3,Tretep,age_group,75+,,643,jiwa,2026,registration,total_population,3.2,27,,75+
+33.23.11,3,Kecamatan Tretep,sex,laki_laki,,11457,jiwa,2026,registration,total_population,3.2,27,,Laki-Laki
+33.23.11,3,Kecamatan Tretep,sex,perempuan,,10941,jiwa,2026,registration,total_population,3.2,27,,Perempuan
+33.23.11,3,Kecamatan Tretep,total,total,,22398,jiwa,2026,registration,total_population,3.2,27,,

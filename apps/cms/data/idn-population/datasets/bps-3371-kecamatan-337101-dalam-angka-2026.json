@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3371-kecamatan-337101-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.71.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Magelang Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kota Magelang",
+  "publisherDomain": "3371",
+  "publisherWebsite": "https://magelangkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Magelang (https://magelangkota.bps.go.id), publikasi \"Kecamatan Magelang Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3371010",
+  "publicationNumber": "33710.26008",
+  "issn": "2622-0202",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://magelangkota.bps.go.id/id/publication/2026/09/28/789350544c8d2001563af06c/kecamatan-magelang-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "2b19b58926ea14edd14201a39fc4cc10a72f035a2bdb1b3a243f87b0530b220e",
+  "sourceFileBytes": 10371621,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Magelang.",
+  "csvPath": "datasets/bps-3371-kecamatan-337101-dalam-angka-2026.csv",
+  "csvSha256": "0168de5b588f022d2d93282c78adb3cb038d69391ab34cfb87745106c4196c22",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Magelang Selatan, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Magelang Selatan, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1174-kecamatan-117302-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.73.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Banda Sakti Dalam Angka 2026",
+  "publisherName": "BPS Kota Lhokseumawe",
+  "publisherDomain": "1174",
+  "publisherWebsite": "https://lhokseumawekota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Lhokseumawe (https://lhokseumawekota.bps.go.id), publikasi \"Kecamatan Banda Sakti Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1174030",
+  "publicationNumber": "11740.26008",
+  "issn": "3110-4403",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lhokseumawekota.bps.go.id/id/publication/2026/09/28/10ee5081c22082fb84526b14/kecamatan-banda-sakti-dalam-angka-2026.html",
+  "sourceFileSha256": "a5b193f1d0c50256bebc36fb46917f82bc76b4b5635ff76c3ef883e11417f867",
+  "sourceFileBytes": 10767325,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Kota Lhokseumawe.",
+  "csvPath": "datasets/bps-1174-kecamatan-117302-dalam-angka-2026.csv",
+  "csvSha256": "c3943e2ee1172939b4791c88fb747e7d39a2a2da48d99619805ec89ef5492176",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Banda Sakti, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Banda Sakti, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

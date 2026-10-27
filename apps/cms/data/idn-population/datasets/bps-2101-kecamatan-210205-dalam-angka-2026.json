@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-2101-kecamatan-210205-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.02.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tebing Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Karimun",
+  "publisherDomain": "2101",
+  "publisherWebsite": "https://karimunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Karimun (https://karimunkab.bps.go.id), publikasi \"Kecamatan Tebing Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "21010.26017",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://karimunkab.bps.go.id/id/publication/2026/09/28/824d66a31dd2911cb53ef65b/kecamatan-tebing-dalam-angka-2026.html",
+  "sourceFileSha256": "47bc3820d9afc2d4a98e63c5ea106d5d8ecde2a1736bd9f933430cdfa23821d5",
+  "sourceFileBytes": 4371233,
+  "sourcePages": [32, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Karimun",
+  "csvPath": "datasets/bps-2101-kecamatan-210205-dalam-angka-2026.csv",
+  "csvSha256": "b0f0ccecc020b79b0624d8c678ac076e17809a7784609474ae593525d0a48cd4",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Tebing, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tebing, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

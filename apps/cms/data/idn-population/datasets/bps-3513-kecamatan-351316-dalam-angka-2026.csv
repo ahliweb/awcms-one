@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.13.16.2001,4,SELOGUDIG KULON,sex,laki_laki,,974,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.16.2001,4,SELOGUDIG KULON,sex,perempuan,,1021,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.16.2001,4,SELOGUDIG KULON,total,total,,1995,jiwa,2025,registration,total_population,3.1,24,,
+35.13.16.2002,4,SELOGUDIG WETAN,sex,laki_laki,,2033,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.16.2002,4,SELOGUDIG WETAN,sex,perempuan,,2063,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.16.2002,4,SELOGUDIG WETAN,total,total,,4096,jiwa,2025,registration,total_population,3.1,24,,
+35.13.16.2003,4,KETOMPEN,sex,laki_laki,,1952,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.16.2003,4,KETOMPEN,sex,perempuan,,2103,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.16.2003,4,KETOMPEN,total,total,,4055,jiwa,2025,registration,total_population,3.1,24,,
+35.13.16.2004,4,KARANGBONG,sex,laki_laki,,1560,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.16.2004,4,KARANGBONG,sex,perempuan,,1564,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.16.2004,4,KARANGBONG,total,total,,3124,jiwa,2025,registration,total_population,3.1,24,,
+35.13.16.2005,4,KARANGPRANTI,sex,laki_laki,,1318,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.16.2005,4,KARANGPRANTI,sex,perempuan,,1235,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.16.2005,4,KARANGPRANTI,total,total,,2553,jiwa,2025,registration,total_population,3.1,24,,
+35.13.16.2006,4,GEJUGAN,sex,laki_laki,,614,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.16.2006,4,GEJUGAN,sex,perempuan,,650,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.16.2006,4,GEJUGAN,total,total,,1264,jiwa,2025,registration,total_population,3.1,24,,
+35.13.16.2007,4,KARANGGEGER,sex,laki_laki,,1905,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.16.2007,4,KARANGGEGER,sex,perempuan,,1928,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.16.2007,4,KARANGGEGER,total,total,,3833,jiwa,2025,registration,total_population,3.1,24,,
+35.13.16.2008,4,TANJUNG,sex,laki_laki,,605,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.16.2008,4,TANJUNG,sex,perempuan,,592,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.16.2008,4,TANJUNG,total,total,,1197,jiwa,2025,registration,total_population,3.1,24,,
+35.13.16.2009,4,PEJARAKAN KULON,sex,laki_laki,,2465,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.16.2009,4,PEJARAKAN KULON,sex,perempuan,,2548,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.16.2009,4,PEJARAKAN KULON,total,total,,5013,jiwa,2025,registration,total_population,3.1,24,,
+35.13.16.2010,4,SUKOKERTO,sex,laki_laki,,1653,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.16.2010,4,SUKOKERTO,sex,perempuan,,1758,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.16.2010,4,SUKOKERTO,total,total,,3411,jiwa,2025,registration,total_population,3.1,24,,
+35.13.16.2011,4,SUKOMULYO,sex,laki_laki,,1486,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.16.2011,4,SUKOMULYO,sex,perempuan,,1553,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.16.2011,4,SUKOMULYO,total,total,,3039,jiwa,2025,registration,total_population,3.1,24,,
+35.13.16.2012,4,PENAMBANGAN,sex,laki_laki,,942,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.16.2012,4,PENAMBANGAN,sex,perempuan,,952,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.16.2012,4,PENAMBANGAN,total,total,,1894,jiwa,2025,registration,total_population,3.1,24,,
+35.13.16,3,KECAMATAN PAJARAKAN,sex,laki_laki,,17507,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+35.13.16,3,KECAMATAN PAJARAKAN,sex,perempuan,,17967,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+35.13.16,3,KECAMATAN PAJARAKAN,total,total,,35474,jiwa,2025,registration,total_population,3.1,24,,

@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3215-kecamatan-321504-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.15.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ciampel Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Karawang",
+  "publisherDomain": "3215",
+  "publisherWebsite": "https://karawangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Karawang (https://karawangkab.bps.go.id), publikasi \"Kecamatan Ciampel Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3215020",
+  "publicationNumber": "32150.26023",
+  "issn": "2828-7134",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://karawangkab.bps.go.id/id/publication/2026/09/28/519ed649e9c43da06bcf5709/kecamatan-ciampel-dalam-angka-2026.html",
+  "sourceFileSha256": "48d0bbc632936a7f4fb6124804ce1c99700ac7189986f7af10c57ca4b7732e51",
+  "sourceFileBytes": 4351465,
+  "sourcePages": [],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Karawang.",
+  "csvPath": "datasets/bps-3215-kecamatan-321504-dalam-angka-2026.csv",
+  "csvSha256": "0f3c2c26a7090b866f79b45745302e322694f459894f6f9fcb8f4c84baba91e0",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Ciampel , 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ciampel, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "cross-table disagreement, both stored as published: 32.15.04 sex/laki_laki/ 2025: 22185 (table 3.1) vs 25037 (table 3.2)",
+    "cross-table disagreement, both stored as published: 32.15.04 sex/perempuan/ 2025: 21272 (table 3.1) vs 24147 (table 3.2)",
+    "cross-table disagreement, both stored as published: 32.15.04 total/total/ 2025: 43457 (table 3.1) vs 49184 (table 3.2)"
+  ]
+}

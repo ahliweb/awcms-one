@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.06.06.2009,4,Kasmaran,sex,laki_laki,,2688,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.06.2009,4,Kasmaran,sex,perempuan,,2547,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.06.2009,4,Kasmaran,total,total,,5235,jiwa,2026,registration,total_population,3.1,33,,
+16.06.06.2008,4,Toman,sex,laki_laki,,3429,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.06.2008,4,Toman,sex,perempuan,,3383,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.06.2008,4,Toman,total,total,,6812,jiwa,2026,registration,total_population,3.1,33,,
+16.06.06.1038,4,Babat,sex,laki_laki,,3505,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.06.1038,4,Babat,sex,perempuan,,3455,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.06.1038,4,Babat,total,total,,6960,jiwa,2026,registration,total_population,3.1,33,,
+16.06.06.1039,4,Mangun Jaya,sex,laki_laki,,3353,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.06.1039,4,Mangun Jaya,sex,perempuan,,3265,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.06.1039,4,Mangun Jaya,total,total,,6618,jiwa,2026,registration,total_population,3.1,33,,
+16.06.06.2005,4,Muara Punjung,sex,laki_laki,,985,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.06.2005,4,Muara Punjung,sex,perempuan,,927,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.06.2005,4,Muara Punjung,total,total,,1912,jiwa,2026,registration,total_population,3.1,33,,
+16.06.06.2003,4,Sugiwaras,sex,laki_laki,,874,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.06.2003,4,Sugiwaras,sex,perempuan,,797,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.06.2003,4,Sugiwaras,total,total,,1671,jiwa,2026,registration,total_population,3.1,33,,
+16.06.06.2002,4,Sugi Raya,sex,laki_laki,,322,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.06.2002,4,Sugi Raya,sex,perempuan,,326,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.06.2002,4,Sugi Raya,total,total,,648,jiwa,2026,registration,total_population,3.1,33,,
+16.06.06.2001,4,Sereka,sex,laki_laki,,951,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.06.2001,4,Sereka,sex,perempuan,,861,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.06.2001,4,Sereka,total,total,,1812,jiwa,2026,registration,total_population,3.1,33,,
+16.06.06.2023,4,Srimulyo,sex,laki_laki,,960,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.06.2023,4,Srimulyo,sex,perempuan,,900,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.06.2023,4,Srimulyo,total,total,,1860,jiwa,2026,registration,total_population,3.1,33,,
+16.06.06.2022,4,Sungai Angit,sex,laki_laki,,1460,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.06.2022,4,Sungai Angit,sex,perempuan,,1366,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.06.2022,4,Sungai Angit,total,total,,2826,jiwa,2026,registration,total_population,3.1,33,,
+16.06.06.2007,4,Bangun Sari,sex,laki_laki,,1879,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.06.2007,4,Bangun Sari,sex,perempuan,,1748,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.06.2007,4,Bangun Sari,total,total,,3627,jiwa,2026,registration,total_population,3.1,33,,
+16.06.06.2042,4,Pangkalan Jaya,sex,laki_laki,,1038,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.06.2042,4,Pangkalan Jaya,sex,perempuan,,990,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.06.2042,4,Pangkalan Jaya,total,total,,2028,jiwa,2026,registration,total_population,3.1,33,,
+16.06.06.2043,4,Toman Baru,sex,laki_laki,,760,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.06.2043,4,Toman Baru,sex,perempuan,,736,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.06.2043,4,Toman Baru,total,total,,1496,jiwa,2026,registration,total_population,3.1,33,,
+16.06.06,3,Babat Toman,sex,laki_laki,,23235,jiwa,2026,registration,total_population,3.1,33,,Laki-Laki/Male
+16.06.06,3,Babat Toman,sex,perempuan,,22230,jiwa,2026,registration,total_population,3.1,33,,Perempuan/Female
+16.06.06,3,Babat Toman,total,total,,45465,jiwa,2026,registration,total_population,3.1,33,,
+16.06.06,3,Babat Toman,age_group,0-14,laki_laki,5818,jiwa,2026,projection,total_population,3.2,35,,0–14
+16.06.06,3,Babat Toman,age_group,0-14,perempuan,5413,jiwa,2026,projection,total_population,3.2,35,,0–14
+16.06.06,3,Babat Toman,age_group,0-14,,11231,jiwa,2026,projection,total_population,3.2,35,,0–14
+16.06.06,3,Babat Toman,age_group,15-64,laki_laki,13213,jiwa,2026,projection,total_population,3.2,35,,15–64
+16.06.06,3,Babat Toman,age_group,15-64,perempuan,12533,jiwa,2026,projection,total_population,3.2,35,,15–64
+16.06.06,3,Babat Toman,age_group,15-64,,25746,jiwa,2026,projection,total_population,3.2,35,,15–64
+16.06.06,3,Babat Toman,age_group,65+,laki_laki,1148,jiwa,2026,projection,total_population,3.2,35,,65+
+16.06.06,3,Babat Toman,age_group,65+,perempuan,1287,jiwa,2026,projection,total_population,3.2,35,,65+
+16.06.06,3,Babat Toman,age_group,65+,,2435,jiwa,2026,projection,total_population,3.2,35,,65+
+16.06.06,3,Babat Toman,sex,laki_laki,,20179,jiwa,2026,projection,total_population,3.2,35,,Laki-Laki
+16.06.06,3,Babat Toman,sex,perempuan,,19233,jiwa,2026,projection,total_population,3.2,35,,Perempuan
+16.06.06,3,Babat Toman,total,total,,39412,jiwa,2026,projection,total_population,3.2,35,,

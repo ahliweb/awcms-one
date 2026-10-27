@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.02.18.2006,4,Pematang Pauh,sex,laki_laki,,619,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.02.18.2006,4,Pematang Pauh,sex,perempuan,,583,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.02.18.2006,4,Pematang Pauh,total,total,,1202,jiwa,2025,registration,total_population,3.1,28,,
+15.02.18.2005,4,Beringin Tinggi,sex,laki_laki,,462,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.02.18.2005,4,Beringin Tinggi,sex,perempuan,,419,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.02.18.2005,4,Beringin Tinggi,total,total,,881,jiwa,2025,registration,total_population,3.1,28,,
+15.02.18.2011,4,Tanjung Benuang,sex,laki_laki,,510,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.02.18.2011,4,Tanjung Benuang,sex,perempuan,,509,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.02.18.2011,4,Tanjung Benuang,total,total,,1019,jiwa,2025,registration,total_population,3.1,28,,
+15.02.18.2008,4,Gedang,sex,laki_laki,,678,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.02.18.2008,4,Gedang,sex,perempuan,,649,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.02.18.2008,4,Gedang,total,total,,1327,jiwa,2025,registration,total_population,3.1,28,,
+15.02.18.2007,4,Rantau Suli,sex,laki_laki,,921,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.02.18.2007,4,Rantau Suli,sex,perempuan,,854,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.02.18.2007,4,Rantau Suli,total,total,,1775,jiwa,2025,registration,total_population,3.1,28,,
+15.02.18.2004,4,Talang Tembago,sex,laki_laki,,356,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.02.18.2004,4,Talang Tembago,sex,perempuan,,337,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.02.18.2004,4,Talang Tembago,total,total,,693,jiwa,2025,registration,total_population,3.1,28,,
+15.02.18.2003,4,Baru,sex,laki_laki,,404,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.02.18.2003,4,Baru,sex,perempuan,,367,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.02.18.2003,4,Baru,total,total,,771,jiwa,2025,registration,total_population,3.1,28,,
+15.02.18.2001,4,Tanjung Mudo,sex,laki_laki,,249,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.02.18.2001,4,Tanjung Mudo,sex,perempuan,,238,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.02.18.2001,4,Tanjung Mudo,total,total,,487,jiwa,2025,registration,total_population,3.1,28,,
+15.02.18.2002,4,Koto Teguh,sex,laki_laki,,349,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.02.18.2002,4,Koto Teguh,sex,perempuan,,298,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.02.18.2002,4,Koto Teguh,total,total,,647,jiwa,2025,registration,total_population,3.1,28,,
+15.02.18.2012,4,Jangkat,sex,laki_laki,,459,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.02.18.2012,4,Jangkat,sex,perempuan,,462,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.02.18.2012,4,Jangkat,total,total,,921,jiwa,2025,registration,total_population,3.1,28,,
+15.02.18.2010,4,Koto Baru,sex,laki_laki,,299,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.02.18.2010,4,Koto Baru,sex,perempuan,,271,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.02.18.2010,4,Koto Baru,total,total,,570,jiwa,2025,registration,total_population,3.1,28,,
+15.02.18.2013,4,Tanjung Alam,sex,laki_laki,,207,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.02.18.2013,4,Tanjung Alam,sex,perempuan,,203,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.02.18.2013,4,Tanjung Alam,total,total,,410,jiwa,2025,registration,total_population,3.1,28,,
+15.02.18.2014,4,Kabu,sex,laki_laki,,208,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.02.18.2014,4,Kabu,sex,perempuan,,202,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.02.18.2014,4,Kabu,total,total,,410,jiwa,2025,registration,total_population,3.1,28,,
+15.02.18.2015,4,Simpang Talang Tembago,sex,laki_laki,,237,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.02.18.2015,4,Simpang Talang Tembago,sex,perempuan,,240,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.02.18.2015,4,Simpang Talang Tembago,total,total,,477,jiwa,2025,registration,total_population,3.1,28,,
+15.02.18,3,Jangkat Timur,sex,laki_laki,,5958,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.02.18,3,Jangkat Timur,sex,perempuan,,5632,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.02.18,3,Jangkat Timur,total,total,,11590,jiwa,2025,registration,total_population,3.1,28,,
+15.02.18,3,Jangkat Timur,age_group,0-4,laki_laki,445,jiwa,2024,registration,total_population,3.2,30,,0-4
+15.02.18,3,Jangkat Timur,age_group,0-4,perempuan,424,jiwa,2024,registration,total_population,3.2,30,,0-4
+15.02.18,3,Jangkat Timur,age_group,0-4,,869,jiwa,2024,registration,total_population,3.2,30,,0-4
+15.02.18,3,Jangkat Timur,age_group,5-9,laki_laki,622,jiwa,2024,registration,total_population,3.2,30,,5-9
+15.02.18,3,Jangkat Timur,age_group,5-9,perempuan,573,jiwa,2024,registration,total_population,3.2,30,,5-9
+15.02.18,3,Jangkat Timur,age_group,5-9,,1195,jiwa,2024,registration,total_population,3.2,30,,5-9
+15.02.18,3,Jangkat Timur,age_group,10-14,laki_laki,578,jiwa,2024,registration,total_population,3.2,30,,10-14
+15.02.18,3,Jangkat Timur,age_group,10-14,perempuan,492,jiwa,2024,registration,total_population,3.2,30,,10-14
+15.02.18,3,Jangkat Timur,age_group,10-14,,1070,jiwa,2024,registration,total_population,3.2,30,,10-14
+15.02.18,3,Jangkat Timur,age_group,15-19,laki_laki,523,jiwa,2024,registration,total_population,3.2,30,,15-19
+15.02.18,3,Jangkat Timur,age_group,15-19,perempuan,520,jiwa,2024,registration,total_population,3.2,30,,15-19
+15.02.18,3,Jangkat Timur,age_group,15-19,,1043,jiwa,2024,registration,total_population,3.2,30,,15-19
+15.02.18,3,Jangkat Timur,age_group,20-24,laki_laki,506,jiwa,2024,registration,total_population,3.2,30,,20-24
+15.02.18,3,Jangkat Timur,age_group,20-24,perempuan,499,jiwa,2024,registration,total_population,3.2,30,,20-24
+15.02.18,3,Jangkat Timur,age_group,20-24,,1005,jiwa,2024,registration,total_population,3.2,30,,20-24
+15.02.18,3,Jangkat Timur,age_group,25-29,laki_laki,556,jiwa,2024,registration,total_population,3.2,30,,25-29
+15.02.18,3,Jangkat Timur,age_group,25-29,perempuan,531,jiwa,2024,registration,total_population,3.2,30,,25-29
+15.02.18,3,Jangkat Timur,age_group,25-29,,1087,jiwa,2024,registration,total_population,3.2,30,,25-29
+15.02.18,3,Jangkat Timur,age_group,30-34,laki_laki,489,jiwa,2024,registration,total_population,3.2,30,,30-34
+15.02.18,3,Jangkat Timur,age_group,30-34,perempuan,511,jiwa,2024,registration,total_population,3.2,30,,30-34
+15.02.18,3,Jangkat Timur,age_group,30-34,,1000,jiwa,2024,registration,total_population,3.2,30,,30-34
+15.02.18,3,Jangkat Timur,age_group,35-39,laki_laki,588,jiwa,2024,registration,total_population,3.2,30,,35-39
+15.02.18,3,Jangkat Timur,age_group,35-39,perempuan,520,jiwa,2024,registration,total_population,3.2,30,,35-39
+15.02.18,3,Jangkat Timur,age_group,35-39,,1108,jiwa,2024,registration,total_population,3.2,30,,35-39
+15.02.18,3,Jangkat Timur,age_group,40-44,laki_laki,404,jiwa,2024,registration,total_population,3.2,30,,40-44
+15.02.18,3,Jangkat Timur,age_group,40-44,perempuan,381,jiwa,2024,registration,total_population,3.2,30,,40-44
+15.02.18,3,Jangkat Timur,age_group,40-44,,785,jiwa,2024,registration,total_population,3.2,30,,40-44
+15.02.18,3,Jangkat Timur,age_group,45-49,laki_laki,366,jiwa,2024,registration,total_population,3.2,30,,45-49
+15.02.18,3,Jangkat Timur,age_group,45-49,perempuan,321,jiwa,2024,registration,total_population,3.2,30,,45-49
+15.02.18,3,Jangkat Timur,age_group,45-49,,687,jiwa,2024,registration,total_population,3.2,30,,45-49
+15.02.18,3,Jangkat Timur,age_group,50-54,laki_laki,284,jiwa,2024,registration,total_population,3.2,30,,50-54
+15.02.18,3,Jangkat Timur,age_group,50-54,perempuan,263,jiwa,2024,registration,total_population,3.2,30,,50-54
+15.02.18,3,Jangkat Timur,age_group,50-54,,547,jiwa,2024,registration,total_population,3.2,30,,50-54
+15.02.18,3,Jangkat Timur,age_group,55-59,laki_laki,204,jiwa,2024,registration,total_population,3.2,30,,55-59
+15.02.18,3,Jangkat Timur,age_group,55-59,perempuan,216,jiwa,2024,registration,total_population,3.2,30,,55-59
+15.02.18,3,Jangkat Timur,age_group,55-59,,420,jiwa,2024,registration,total_population,3.2,30,,55-59
+15.02.18,3,Jangkat Timur,age_group,60-64,laki_laki,155,jiwa,2024,registration,total_population,3.2,30,,60-64
+15.02.18,3,Jangkat Timur,age_group,60-64,perempuan,151,jiwa,2024,registration,total_population,3.2,30,,60-64
+15.02.18,3,Jangkat Timur,age_group,60-64,,306,jiwa,2024,registration,total_population,3.2,30,,60-64
+15.02.18,3,Jangkat Timur,age_group,65-69,laki_laki,113,jiwa,2024,registration,total_population,3.2,30,,65-69
+15.02.18,3,Jangkat Timur,age_group,65-69,perempuan,111,jiwa,2024,registration,total_population,3.2,30,,65-69
+15.02.18,3,Jangkat Timur,age_group,65-69,,224,jiwa,2024,registration,total_population,3.2,30,,65-69
+15.02.18,3,Jangkat Timur,age_group,70-74,laki_laki,56,jiwa,2024,registration,total_population,3.2,30,,70-74
+15.02.18,3,Jangkat Timur,age_group,70-74,perempuan,45,jiwa,2024,registration,total_population,3.2,30,,70-74
+15.02.18,3,Jangkat Timur,age_group,70-74,,101,jiwa,2024,registration,total_population,3.2,30,,70-74
+15.02.18,3,Jangkat Timur,age_group,75+,laki_laki,69,jiwa,2024,registration,total_population,3.2,30,,75+
+15.02.18,3,Jangkat Timur,age_group,75+,perempuan,74,jiwa,2024,registration,total_population,3.2,30,,75+
+15.02.18,3,Jangkat Timur,age_group,75+,,143,jiwa,2024,registration,total_population,3.2,30,,75+
+15.02.18,3,Jangkat Timur,sex,laki_laki,,5958,jiwa,2024,registration,total_population,3.2,30,,Laki-Laki
+15.02.18,3,Jangkat Timur,sex,perempuan,,5632,jiwa,2024,registration,total_population,3.2,30,,Perempuan
+15.02.18,3,Jangkat Timur,total,total,,11590,jiwa,2024,registration,total_population,3.2,30,,

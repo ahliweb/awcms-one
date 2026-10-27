@@ -135,6 +135,36 @@ export const idnAdminRegionsModule = defineModule({
       safeInOfflineLan: true
     },
     {
+      command: "bun run idn-population:import",
+      schedule: {
+        mode: "manual",
+        because:
+          "Runs by hand after a reviewed BPS publication (a manifest JSON plus its extracted CSV) is added under `data/idn-population/datasets/`. A timer would re-parse unchanged files forever."
+      },
+      purpose:
+        "Import a BPS population publication (`--dataset <code>` or `--all-pending`) as a new dataset (status `validated`, never auto-activated), validating every region code against the ACTIVE region dataset and the figures' arithmetic consistency first (awcms-one ADR-0051). Dry-run by default: `--commit` is what writes. A CSV that fails validation records a `rejected` dataset row with the problems and writes no statistics; a manifest whose CSV checksum disagrees is refused and records nothing.",
+      recommendedSchedule:
+        "manually, after a new publication file pair is reviewed and merged — not on a timer (the source is a repo file, not a feed)",
+      environmentNotes:
+        "Pure PostgreSQL operation as `awcms_worker` (grants in `sql/882`) — no network egress; the file pairs ship inside the image. Requires an active region dataset. Runs from the `awcms-jobs` image (`ghcr.io/ahliweb/awcms-jobs`); the `runtime` image does not carry `scripts/`. Safe in offline/LAN deployments. Writes no `awcms_audit_events` row, for the reason given for `idn-regions:activate`: that table is tenant-scoped and this action is global. The evidence is the dataset row plus this command's own output.",
+      safeInOfflineLan: true
+    },
+    {
+      command: "bun run idn-population:activate",
+      schedule: {
+        mode: "manual",
+        because:
+          "A platform operator serves a reviewed population dataset deliberately. Automatic activation would publish figures nobody read."
+      },
+      purpose:
+        "Choose which imported population dataset is SERVED for its publication series and covered region (`--dataset <code|uuid>`); supersedes only the active dataset of the same series and region. Dry-run by default; `--commit` writes. Operator job only: there is no HTTP endpoint and no permission for it (awcms-one ADR-0051, same reasoning as ADR-0052).",
+      recommendedSchedule:
+        "manually, by a platform operator, after reviewing an imported dataset — never on a timer",
+      environmentNotes:
+        "Pure PostgreSQL operation as `awcms_worker` — no network egress. Runs from the `awcms-jobs` image (`ghcr.io/ahliweb/awcms-jobs`); the `runtime` image does not carry `scripts/`. Safe in offline/LAN deployments. Writes no `awcms_audit_events` row, same caveat as `idn-regions:activate`: the evidence is `status`/`activated_at` on the dataset row plus this command's output.",
+      safeInOfflineLan: true
+    },
+    {
       command: "bun run idn-regions:rollback",
       schedule: {
         mode: "manual",
@@ -194,6 +224,32 @@ export const idnAdminRegionsModule = defineModule({
       erasure: "retain_under_obligation",
       rationale:
         "ADR-0046 — the administrative region list itself: province, regency, district and village names from a public dataset. Public geography, global, and about places rather than people."
+    },
+    {
+      key: "idn_admin_regions.idn_population_datasets",
+      tableName: "awcms_idn_population_datasets",
+      ownerModuleKey: IDN_ADMIN_REGIONS_MODULE_KEY,
+      tenantColumn: null,
+      subjectColumns: [
+        { column: "created_by", references: "tenant_user" },
+        { column: "activated_by", references: "tenant_user" }
+      ],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "awcms-one ADR-0051 — one row per imported BPS population publication, naming the platform operator who imported and activated it. Global, so no single tenant may hand over or destroy it; the provenance of statistics every tenant may be shown is not one controller's to erase."
+    },
+    {
+      key: "idn_admin_regions.idn_population_stats",
+      tableName: "awcms_idn_population_stats",
+      ownerModuleKey: IDN_ADMIN_REGIONS_MODULE_KEY,
+      tenantColumn: null,
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "awcms-one ADR-0051 — published BPS aggregate statistics (counts and averages per region). Public, global, and about populations rather than individuals; small cells are withheld by `population-privacy.ts` on any read surface."
     }
   ],
   navigation: [

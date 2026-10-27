@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.08.01.2016,4,Sri Rejeki,sex,laki_laki,,1065,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.01.2016,4,Sri Rejeki,sex,perempuan,,986,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.01.2016,4,Sri Rejeki,total,total,,2051,jiwa,2025,registration,total_population,3.1,35,,
+18.08.01.1005,4,Blambangan Umpu,sex,laki_laki,,3040,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.01.1005,4,Blambangan Umpu,sex,perempuan,,3006,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.01.1005,4,Blambangan Umpu,total,total,,6046,jiwa,2025,registration,total_population,3.1,35,,
+18.08.01.2006,4,Lembasung,sex,laki_laki,,1777,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.01.2006,4,Lembasung,sex,perempuan,,1674,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.01.2006,4,Lembasung,total,total,,3451,jiwa,2025,registration,total_population,3.1,35,,
+18.08.01.2018,4,Umpu Kencana,sex,laki_laki,,1725,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.01.2018,4,Umpu Kencana,sex,perempuan,,1529,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.01.2018,4,Umpu Kencana,total,total,,3254,jiwa,2025,registration,total_population,3.1,35,,
+18.08.01.2017,4,Karang Umpu,sex,laki_laki,,1387,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.01.2017,4,Karang Umpu,sex,perempuan,,1309,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.01.2017,4,Karang Umpu,total,total,,2696,jiwa,2025,registration,total_population,3.1,35,,
+18.08.01.2009,4,Gunung Sangkaran,sex,laki_laki,,2479,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.01.2009,4,Gunung Sangkaran,sex,perempuan,,2363,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.01.2009,4,Gunung Sangkaran,total,total,,4842,jiwa,2025,registration,total_population,3.1,35,,
+18.08.01.2013,4,Sangkaran Bhakti,sex,laki_laki,,1342,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.01.2013,4,Sangkaran Bhakti,sex,perempuan,,1261,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.01.2013,4,Sangkaran Bhakti,total,total,,2603,jiwa,2025,registration,total_population,3.1,35,,
+18.08.01.2014,4,Bumi Baru,sex,laki_laki,,2090,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.01.2014,4,Bumi Baru,sex,perempuan,,2028,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.01.2014,4,Bumi Baru,total,total,,4118,jiwa,2025,registration,total_population,3.1,35,,
+18.08.01.2015,4,Tanjung Sari,sex,laki_laki,,726,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.01.2015,4,Tanjung Sari,sex,perempuan,,693,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.01.2015,4,Tanjung Sari,total,total,,1419,jiwa,2025,registration,total_population,3.1,35,,
+18.08.01.2010,4,Tanjung Raja Giham,sex,laki_laki,,846,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.01.2010,4,Tanjung Raja Giham,sex,perempuan,,805,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.01.2010,4,Tanjung Raja Giham,total,total,,1651,jiwa,2025,registration,total_population,3.1,35,,
+18.08.01.2022,4,Tanjung Raja Sakti,sex,laki_laki,,1521,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.01.2022,4,Tanjung Raja Sakti,sex,perempuan,,1445,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.01.2022,4,Tanjung Raja Sakti,total,total,,2966,jiwa,2025,registration,total_population,3.1,35,,
+18.08.01,3,Blambangan Umpu,sex,laki_laki,,20002,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.01,3,Blambangan Umpu,sex,perempuan,,19019,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.01,3,Blambangan Umpu,total,total,,39021,jiwa,2025,registration,total_population,3.1,35,,
+18.08.01,3,Blambangan Umpu,age_group,0-4,laki_laki,1460,jiwa,2025,registration,total_population,3.2,37,,0-4
+18.08.01,3,Blambangan Umpu,age_group,0-4,perempuan,1450,jiwa,2025,registration,total_population,3.2,37,,0-4
+18.08.01,3,Blambangan Umpu,age_group,0-4,,2910,jiwa,2025,registration,total_population,3.2,37,,0-4
+18.08.01,3,Blambangan Umpu,age_group,5-9,laki_laki,1911,jiwa,2025,registration,total_population,3.2,37,,5-9
+18.08.01,3,Blambangan Umpu,age_group,5-9,perempuan,1820,jiwa,2025,registration,total_population,3.2,37,,5-9
+18.08.01,3,Blambangan Umpu,age_group,5-9,,3731,jiwa,2025,registration,total_population,3.2,37,,5-9
+18.08.01,3,Blambangan Umpu,age_group,10-14,laki_laki,2050,jiwa,2025,registration,total_population,3.2,37,,10-14
+18.08.01,3,Blambangan Umpu,age_group,10-14,perempuan,1793,jiwa,2025,registration,total_population,3.2,37,,10-14
+18.08.01,3,Blambangan Umpu,age_group,10-14,,3843,jiwa,2025,registration,total_population,3.2,37,,10-14
+18.08.01,3,Blambangan Umpu,age_group,15-19,laki_laki,1657,jiwa,2025,registration,total_population,3.2,37,,15-19
+18.08.01,3,Blambangan Umpu,age_group,15-19,perempuan,1691,jiwa,2025,registration,total_population,3.2,37,,15-19
+18.08.01,3,Blambangan Umpu,age_group,15-19,,3348,jiwa,2025,registration,total_population,3.2,37,,15-19
+18.08.01,3,Blambangan Umpu,age_group,20-24,laki_laki,1537,jiwa,2025,registration,total_population,3.2,37,,20-24
+18.08.01,3,Blambangan Umpu,age_group,20-24,perempuan,1410,jiwa,2025,registration,total_population,3.2,37,,20-24
+18.08.01,3,Blambangan Umpu,age_group,20-24,,2947,jiwa,2025,registration,total_population,3.2,37,,20-24
+18.08.01,3,Blambangan Umpu,age_group,25-29,laki_laki,1523,jiwa,2025,registration,total_population,3.2,37,,25-29
+18.08.01,3,Blambangan Umpu,age_group,25-29,perempuan,1405,jiwa,2025,registration,total_population,3.2,37,,25-29
+18.08.01,3,Blambangan Umpu,age_group,25-29,,2928,jiwa,2025,registration,total_population,3.2,37,,25-29
+18.08.01,3,Blambangan Umpu,age_group,30-34,laki_laki,1499,jiwa,2025,registration,total_population,3.2,37,,30-34
+18.08.01,3,Blambangan Umpu,age_group,30-34,perempuan,1438,jiwa,2025,registration,total_population,3.2,37,,30-34
+18.08.01,3,Blambangan Umpu,age_group,30-34,,2937,jiwa,2025,registration,total_population,3.2,37,,30-34
+18.08.01,3,Blambangan Umpu,age_group,35-39,laki_laki,1578,jiwa,2025,registration,total_population,3.2,37,,35-39
+18.08.01,3,Blambangan Umpu,age_group,35-39,perempuan,1515,jiwa,2025,registration,total_population,3.2,37,,35-39
+18.08.01,3,Blambangan Umpu,age_group,35-39,,3093,jiwa,2025,registration,total_population,3.2,37,,35-39
+18.08.01,3,Blambangan Umpu,age_group,40-44,laki_laki,1527,jiwa,2025,registration,total_population,3.2,37,,40-44
+18.08.01,3,Blambangan Umpu,age_group,40-44,perempuan,1450,jiwa,2025,registration,total_population,3.2,37,,40-44
+18.08.01,3,Blambangan Umpu,age_group,40-44,,2977,jiwa,2025,registration,total_population,3.2,37,,40-44
+18.08.01,3,Blambangan Umpu,age_group,45-49,laki_laki,1350,jiwa,2025,registration,total_population,3.2,37,,45-49
+18.08.01,3,Blambangan Umpu,age_group,45-49,perempuan,1305,jiwa,2025,registration,total_population,3.2,37,,45-49
+18.08.01,3,Blambangan Umpu,age_group,45-49,,2655,jiwa,2025,registration,total_population,3.2,37,,45-49
+18.08.01,3,Blambangan Umpu,age_group,50-54,laki_laki,1094,jiwa,2025,registration,total_population,3.2,37,,50-54
+18.08.01,3,Blambangan Umpu,age_group,50-54,perempuan,1008,jiwa,2025,registration,total_population,3.2,37,,50-54
+18.08.01,3,Blambangan Umpu,age_group,50-54,,2102,jiwa,2025,registration,total_population,3.2,37,,50-54
+18.08.01,3,Blambangan Umpu,age_group,55-59,laki_laki,816,jiwa,2025,registration,total_population,3.2,37,,55-59
+18.08.01,3,Blambangan Umpu,age_group,55-59,perempuan,809,jiwa,2025,registration,total_population,3.2,37,,55-59
+18.08.01,3,Blambangan Umpu,age_group,55-59,,1625,jiwa,2025,registration,total_population,3.2,37,,55-59
+18.08.01,3,Blambangan Umpu,age_group,60-64,laki_laki,685,jiwa,2025,registration,total_population,3.2,37,,60-64
+18.08.01,3,Blambangan Umpu,age_group,60-64,perempuan,681,jiwa,2025,registration,total_population,3.2,37,,60-64
+18.08.01,3,Blambangan Umpu,age_group,60-64,,1366,jiwa,2025,registration,total_population,3.2,37,,60-64
+18.08.01,3,Blambangan Umpu,age_group,65-69,laki_laki,576,jiwa,2025,registration,total_population,3.2,37,,65-69
+18.08.01,3,Blambangan Umpu,age_group,65-69,perempuan,511,jiwa,2025,registration,total_population,3.2,37,,65-69
+18.08.01,3,Blambangan Umpu,age_group,65-69,,1087,jiwa,2025,registration,total_population,3.2,37,,65-69
+18.08.01,3,Blambangan Umpu,age_group,70-74,laki_laki,326,jiwa,2025,registration,total_population,3.2,37,,70-74
+18.08.01,3,Blambangan Umpu,age_group,70-74,perempuan,297,jiwa,2025,registration,total_population,3.2,37,,70-74
+18.08.01,3,Blambangan Umpu,age_group,70-74,,623,jiwa,2025,registration,total_population,3.2,37,,70-74
+18.08.01,3,Blambangan Umpu,age_group,75+,laki_laki,413,jiwa,2025,registration,total_population,3.2,37,,75+
+18.08.01,3,Blambangan Umpu,age_group,75+,perempuan,436,jiwa,2025,registration,total_population,3.2,37,,75+
+18.08.01,3,Blambangan Umpu,age_group,75+,,849,jiwa,2025,registration,total_population,3.2,37,,75+
+18.08.01,3,Blambangan Umpu,sex,laki_laki,,20002,jiwa,2025,registration,total_population,3.2,37,,Laki-Laki
+18.08.01,3,Blambangan Umpu,sex,perempuan,,19019,jiwa,2025,registration,total_population,3.2,37,,Perempuan
+18.08.01,3,Blambangan Umpu,total,total,,39021,jiwa,2025,registration,total_population,3.2,37,,

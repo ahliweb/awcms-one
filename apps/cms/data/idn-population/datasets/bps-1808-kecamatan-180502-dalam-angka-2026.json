@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1808-kecamatan-180502-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.05.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Menggala Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tulang Bawang",
+  "publisherDomain": "1808",
+  "publisherWebsite": "https://tulangbawangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tulang Bawang (https://tulangbawangkab.bps.go.id), publikasi \"Kecamatan Menggala Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "18080.26012",
+  "issn": "2829-985X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tulangbawangkab.bps.go.id/id/publication/2026/09/28/24197cec4e91aa1b04ad1122/kecamatan-menggala-dalam-angka-2026.html",
+  "sourceFileSha256": "3b498bd4bfced31a86b7b30ed3a5ae3543b3ef4761ab9079856bbd54a627f94d",
+  "sourceFileBytes": 10037057,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tulang Bawang.",
+  "csvPath": "datasets/bps-1808-kecamatan-180502-dalam-angka-2026.csv",
+  "csvSha256": "b880107501627b5553b8187a8a18c1f5894b5c44841cddb485a8f69b0ba71acd",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Menggala, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Menggala, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 18.05.02 are not stored: age_group (perempuan) vs sex value: parts sum 26481.0000 != 26301.0000 (diff 180.0000); the source itself is inconsistent"
+  ]
+}

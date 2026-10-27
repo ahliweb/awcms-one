@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3171-kecamatan-317410-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "31.74.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pesanggrahan Dalam Angka 2026",
+  "publisherName": "BPS ISSN 31710.26008",
+  "publisherDomain": "3171",
+  "publisherWebsite": "https://jakselkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS ISSN 31710.26008 (https://jakselkota.bps.go.id), publikasi \"Kecamatan Pesanggrahan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3171040",
+  "publicationNumber": "31710.26008",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jakselkota.bps.go.id/id/publication/2026/09/28/88b4115b739cfb7f66bc6123/kecamatan-pesanggrahan-dalam-angka-2026.html",
+  "sourceFileSha256": "bd0a360d377a798afe6608463b21fb455b6d6ec5ec5c429694a33a1e24e04b1a",
+  "sourceFileBytes": 20637778,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik ISSN 31710.26008.",
+  "csvPath": "datasets/bps-3171-kecamatan-317410-dalam-angka-2026.csv",
+  "csvSha256": "c6ce477e1c67294422b7f7415190b81b60ba58ecd9e495441273d7918a7e2f93",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pesanggrahan, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pesanggrahan, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "cross-table disagreement, both stored as published: 31.74.10 sex/laki_laki/ 2025: 130149 (table 3.1) vs 130689 (table 3.2)",
+    "cross-table disagreement, both stored as published: 31.74.10 total/total/ 2025: 261210 (table 3.1) vs 261750 (table 3.2)"
+  ]
+}

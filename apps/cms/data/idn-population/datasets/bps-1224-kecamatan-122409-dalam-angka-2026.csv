@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.24.09.2009,4,Faekhunaa,sex,laki_laki,,726,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.09.2009,4,Faekhunaa,sex,perempuan,,699,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.09.2009,4,Faekhunaa,total,total,,1425,jiwa,2025,registration,total_population,3.1,41,,
+12.24.09.2008,4,Sifaoroasi,sex,laki_laki,,720,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.09.2008,4,Sifaoroasi,sex,perempuan,,751,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.09.2008,4,Sifaoroasi,total,total,,1471,jiwa,2025,registration,total_population,3.1,41,,
+12.24.09.2002,4,Lauru Fadoro,sex,laki_laki,,1662,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.09.2002,4,Lauru Fadoro,sex,perempuan,,1637,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.09.2002,4,Lauru Fadoro,total,total,,3299,jiwa,2025,registration,total_population,3.1,41,,
+12.24.09.2001,4,Afulu,sex,laki_laki,,867,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.09.2001,4,Afulu,sex,perempuan,,901,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.09.2001,4,Afulu,total,total,,1768,jiwa,2025,registration,total_population,3.1,41,,
+12.24.09.2006,4,Sisobahili,sex,laki_laki,,579,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.09.2006,4,Sisobahili,sex,perempuan,,597,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.09.2006,4,Sisobahili,total,total,,1176,jiwa,2025,registration,total_population,3.1,41,,
+12.24.09.2007,4,Lauru Lahewa,sex,laki_laki,,188,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.09.2007,4,Lauru Lahewa,sex,perempuan,,192,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.09.2007,4,Lauru Lahewa,total,total,,380,jiwa,2025,registration,total_population,3.1,41,,
+12.24.09.2005,4,Harewakhe,sex,laki_laki,,147,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.09.2005,4,Harewakhe,sex,perempuan,,149,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.09.2005,4,Harewakhe,total,total,,296,jiwa,2025,registration,total_population,3.1,41,,
+12.24.09.2004,4,Ombolata Afulu,sex,laki_laki,,433,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.09.2004,4,Ombolata Afulu,sex,perempuan,,443,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.09.2004,4,Ombolata Afulu,total,total,,876,jiwa,2025,registration,total_population,3.1,41,,
+12.24.09,3,Afulu,sex,laki_laki,,6046,jiwa,2025,registration,total_population,3.1,41,,Laki-Laki/Male
+12.24.09,3,Afulu,sex,perempuan,,6085,jiwa,2025,registration,total_population,3.1,41,,Perempuan/Female
+12.24.09,3,Afulu,total,total,,12131,jiwa,2025,registration,total_population,3.1,41,,
+12.24.09,3,Afulu,age_group,0-4,laki_laki,294,jiwa,2025,registration,total_population,3.2,43,,0-4
+12.24.09,3,Afulu,age_group,0-4,perempuan,279,jiwa,2025,registration,total_population,3.2,43,,0-4
+12.24.09,3,Afulu,age_group,0-4,,573,jiwa,2025,registration,total_population,3.2,43,,0-4
+12.24.09,3,Afulu,age_group,5-9,laki_laki,568,jiwa,2025,registration,total_population,3.2,43,,5-9
+12.24.09,3,Afulu,age_group,5-9,perempuan,534,jiwa,2025,registration,total_population,3.2,43,,5-9
+12.24.09,3,Afulu,age_group,5-9,,1102,jiwa,2025,registration,total_population,3.2,43,,5-9
+12.24.09,3,Afulu,age_group,10-14,laki_laki,667,jiwa,2025,registration,total_population,3.2,43,,10-14
+12.24.09,3,Afulu,age_group,10-14,perempuan,643,jiwa,2025,registration,total_population,3.2,43,,10-14
+12.24.09,3,Afulu,age_group,10-14,,1310,jiwa,2025,registration,total_population,3.2,43,,10-14
+12.24.09,3,Afulu,age_group,15-19,laki_laki,767,jiwa,2025,registration,total_population,3.2,43,,15-19
+12.24.09,3,Afulu,age_group,15-19,perempuan,667,jiwa,2025,registration,total_population,3.2,43,,15-19
+12.24.09,3,Afulu,age_group,15-19,,1434,jiwa,2025,registration,total_population,3.2,43,,15-19
+12.24.09,3,Afulu,age_group,20-24,laki_laki,708,jiwa,2025,registration,total_population,3.2,43,,20-24
+12.24.09,3,Afulu,age_group,20-24,perempuan,711,jiwa,2025,registration,total_population,3.2,43,,20-24
+12.24.09,3,Afulu,age_group,20-24,,1419,jiwa,2025,registration,total_population,3.2,43,,20-24
+12.24.09,3,Afulu,age_group,25-29,laki_laki,544,jiwa,2025,registration,total_population,3.2,43,,25-29
+12.24.09,3,Afulu,age_group,25-29,perempuan,500,jiwa,2025,registration,total_population,3.2,43,,25-29
+12.24.09,3,Afulu,age_group,25-29,,1044,jiwa,2025,registration,total_population,3.2,43,,25-29
+12.24.09,3,Afulu,age_group,30-34,laki_laki,410,jiwa,2025,registration,total_population,3.2,43,,30-34
+12.24.09,3,Afulu,age_group,30-34,perempuan,419,jiwa,2025,registration,total_population,3.2,43,,30-34
+12.24.09,3,Afulu,age_group,30-34,,829,jiwa,2025,registration,total_population,3.2,43,,30-34
+12.24.09,3,Afulu,age_group,35-39,laki_laki,450,jiwa,2025,registration,total_population,3.2,43,,35-39
+12.24.09,3,Afulu,age_group,35-39,perempuan,453,jiwa,2025,registration,total_population,3.2,43,,35-39
+12.24.09,3,Afulu,age_group,35-39,,903,jiwa,2025,registration,total_population,3.2,43,,35-39
+12.24.09,3,Afulu,age_group,40-44,laki_laki,379,jiwa,2025,registration,total_population,3.2,43,,40-44
+12.24.09,3,Afulu,age_group,40-44,perempuan,419,jiwa,2025,registration,total_population,3.2,43,,40-44
+12.24.09,3,Afulu,age_group,40-44,,798,jiwa,2025,registration,total_population,3.2,43,,40-44
+12.24.09,3,Afulu,age_group,45-49,laki_laki,338,jiwa,2025,registration,total_population,3.2,43,,45-49
+12.24.09,3,Afulu,age_group,45-49,perempuan,380,jiwa,2025,registration,total_population,3.2,43,,45-49
+12.24.09,3,Afulu,age_group,45-49,,718,jiwa,2025,registration,total_population,3.2,43,,45-49
+12.24.09,3,Afulu,age_group,50-54,laki_laki,256,jiwa,2025,registration,total_population,3.2,43,,50-54
+12.24.09,3,Afulu,age_group,50-54,perempuan,277,jiwa,2025,registration,total_population,3.2,43,,50-54
+12.24.09,3,Afulu,age_group,50-54,,533,jiwa,2025,registration,total_population,3.2,43,,50-54
+12.24.09,3,Afulu,age_group,55-59,laki_laki,194,jiwa,2025,registration,total_population,3.2,43,,55-59
+12.24.09,3,Afulu,age_group,55-59,perempuan,221,jiwa,2025,registration,total_population,3.2,43,,55-59
+12.24.09,3,Afulu,age_group,55-59,,415,jiwa,2025,registration,total_population,3.2,43,,55-59
+12.24.09,3,Afulu,age_group,60-64,laki_laki,135,jiwa,2025,registration,total_population,3.2,43,,60-64
+12.24.09,3,Afulu,age_group,60-64,perempuan,180,jiwa,2025,registration,total_population,3.2,43,,60-64
+12.24.09,3,Afulu,age_group,60-64,,315,jiwa,2025,registration,total_population,3.2,43,,60-64
+12.24.09,3,Afulu,age_group,65-69,laki_laki,141,jiwa,2025,registration,total_population,3.2,43,,65-69
+12.24.09,3,Afulu,age_group,65-69,perempuan,166,jiwa,2025,registration,total_population,3.2,43,,65-69
+12.24.09,3,Afulu,age_group,65-69,,307,jiwa,2025,registration,total_population,3.2,43,,65-69
+12.24.09,3,Afulu,age_group,70-74,laki_laki,93,jiwa,2025,registration,total_population,3.2,43,,70-74
+12.24.09,3,Afulu,age_group,70-74,perempuan,105,jiwa,2025,registration,total_population,3.2,43,,70-74
+12.24.09,3,Afulu,age_group,70-74,,198,jiwa,2025,registration,total_population,3.2,43,,70-74
+12.24.09,3,Afulu,age_group,75+,laki_laki,102,jiwa,2025,registration,total_population,3.2,43,,75+
+12.24.09,3,Afulu,age_group,75+,perempuan,120,jiwa,2025,registration,total_population,3.2,43,,75+
+12.24.09,3,Afulu,age_group,75+,,222,jiwa,2025,registration,total_population,3.2,43,,75+
+12.24.09,3,Afulu,sex,laki_laki,,6046,jiwa,2025,registration,total_population,3.2,43,,Laki-Laki
+12.24.09,3,Afulu,sex,perempuan,,6074,jiwa,2025,registration,total_population,3.2,43,,Perempuan
+12.24.09,3,Afulu,total,total,,12120,jiwa,2025,registration,total_population,3.2,43,,

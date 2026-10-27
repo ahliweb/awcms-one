@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.07.34.2001,4,Cikupa,sex,laki_laki,,525,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.34.2001,4,Cikupa,sex,perempuan,,541,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.34.2001,4,Cikupa,total,total,,1066,jiwa,2025,registration,total_population,3.1,34,,
+32.07.34.2002,4,Sukaraharja,sex,laki_laki,,589,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.34.2002,4,Sukaraharja,sex,perempuan,,626,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.34.2002,4,Sukaraharja,total,total,,1215,jiwa,2025,registration,total_population,3.1,34,,
+32.07.34.2005,4,Awiluar,sex,laki_laki,,2748,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.34.2005,4,Awiluar,sex,perempuan,,2807,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.34.2005,4,Awiluar,total,total,,5555,jiwa,2025,registration,total_population,3.1,34,,
+32.07.34.2003,4,Lumbung,sex,laki_laki,,1678,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.34.2003,4,Lumbung,sex,perempuan,,1721,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.34.2003,4,Lumbung,total,total,,3399,jiwa,2025,registration,total_population,3.1,34,,
+32.07.34.2006,4,Darmaraja,sex,laki_laki,,1744,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.34.2006,4,Darmaraja,sex,perempuan,,1741,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.34.2006,4,Darmaraja,total,total,,3485,jiwa,2025,registration,total_population,3.1,34,,
+32.07.34.2004,4,Lumbungsari,sex,laki_laki,,2880,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.34.2004,4,Lumbungsari,sex,perempuan,,2768,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.34.2004,4,Lumbungsari,total,total,,5648,jiwa,2025,registration,total_population,3.1,34,,
+32.07.34.2007,4,Rawa,sex,laki_laki,,3311,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.34.2007,4,Rawa,sex,perempuan,,3442,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.34.2007,4,Rawa,total,total,,6753,jiwa,2025,registration,total_population,3.1,34,,
+32.07.34.2008,4,Sadewata,sex,laki_laki,,2642,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.34.2008,4,Sadewata,sex,perempuan,,2595,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.34.2008,4,Sadewata,total,total,,5237,jiwa,2025,registration,total_population,3.1,34,,
+32.07.34,3,Kecamatan Lumbung,sex,laki_laki,,16117,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+32.07.34,3,Kecamatan Lumbung,sex,perempuan,,16241,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+32.07.34,3,Kecamatan Lumbung,total,total,,32358,jiwa,2025,registration,total_population,3.1,34,,

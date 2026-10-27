@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3527-kecamatan-352701-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.27.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sreseh Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sampang",
+  "publisherDomain": "3527",
+  "publisherWebsite": "https://sampangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sampang (https://sampangkab.bps.go.id), publikasi \"Kecamatan Sreseh Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3527010",
+  "publicationNumber": "35270.26006",
+  "issn": "3031-1578",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sampangkab.bps.go.id/id/publication/2026/09/28/40e3bfda4c1a204ce04e4ed3/kecamatan-sreseh-dalam-angka-2026.html",
+  "sourceFileSha256": "5d0cc189a4535fdda0b5ab06a6f95cef32d9891e944032d687c5e4b453d83489",
+  "sourceFileBytes": 5326769,
+  "sourcePages": [36, 37, 38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari BPS Kabupaten Sampang.",
+  "csvPath": "datasets/bps-3527-kecamatan-352701-dalam-angka-2026.csv",
+  "csvSha256": "7b9d4cb661b45f5ea9db70aec3e7c4cd12808eb7d63d88d06ace9a118e6dd32b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Sreseh, 2025",
+      "printedPages": [36, 37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sreseh, 2025",
+      "printedPages": [38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.7 (religion-by-region) could not be read reliably and is not included (religion column 7 header \"2025 Konghuchu\" not recognised)",
+    "cross-table disagreement, both stored as published: 35.27.01 sex/laki_laki/ 2025: 18787 (table 3.1) vs 19059 (table 3.2)",
+    "cross-table disagreement, both stored as published: 35.27.01 sex/perempuan/ 2025: 19432 (table 3.1) vs 18764 (table 3.2)",
+    "cross-table disagreement, both stored as published: 35.27.01 total/total/ 2025: 38219 (table 3.1) vs 37823 (table 3.2)"
+  ]
+}

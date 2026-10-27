@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1213-kecamatan-120508-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.05.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Wampu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Langkat",
+  "publisherDomain": "1213",
+  "publisherWebsite": "https://langkatkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Langkat (https://langkatkab.bps.go.id), publikasi \"Kecamatan Wampu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1213080",
+  "publicationNumber": "12130.26019",
+  "issn": "2579-6917",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://langkatkab.bps.go.id/id/publication/2026/09/28/bf28d0cc40ae992dcb9529b0/kecamatan-wampu-dalam-angka-2026.html",
+  "sourceFileSha256": "c390a2d3b61787e7722a30d881af95c37a5c0754deddb4e8c230e32fd9110c37",
+  "sourceFileBytes": 20068990,
+  "sourcePages": [39],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Langkat.",
+  "csvPath": "datasets/bps-1213-kecamatan-120508-dalam-angka-2026.csv",
+  "csvSha256": "e4974ca66408a5254300992483c8b5d1505f3aa18297b68488711ae065bf9fc3",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p39",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Wampu 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3508-kecamatan-350802-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.08.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pronojiwo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lumajang",
+  "publisherDomain": "3508",
+  "publisherWebsite": "https://lumajangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lumajang (https://lumajangkab.bps.go.id), publikasi \"Kecamatan Pronojiwo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3508020",
+  "publicationNumber": "35080.26007",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lumajangkab.bps.go.id/id/publication/2026/09/28/f642f61040bfb120fc9844e9/kecamatan-pronojiwo-dalam-angka-2026.html",
+  "sourceFileSha256": "71ece9ceb1f203e98f4f5201a4bace21e6bdad8fadb08447899fe942cba2a31e",
+  "sourceFileBytes": 4028040,
+  "sourcePages": [31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lumajang",
+  "csvPath": "datasets/bps-3508-kecamatan-350802-dalam-angka-2026.csv",
+  "csvSha256": "5ff0bedf0fa64cd99e873e43246f3a6abdcb0079fce8462f204162151db3c517",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Pronojiwo, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pronojiwo, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sipiturang\": unmatched "
+  ]
+}

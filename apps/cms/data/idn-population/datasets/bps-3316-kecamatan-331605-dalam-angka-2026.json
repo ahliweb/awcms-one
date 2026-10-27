@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3316-kecamatan-331605-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.16.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cepu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Blora",
+  "publisherDomain": "3316",
+  "publisherWebsite": "https://blorakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Blora (https://blorakab.bps.go.id), publikasi \"Kecamatan Cepu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3316050",
+  "publicationNumber": "33160.25018",
+  "issn": "2614-9702",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://blorakab.bps.go.id/id/publication/2026/09/28/9ee4b7409d3e43fa2a1c01c4/kecamatan-cepu-dalam-angka-2026.html",
+  "sourceFileSha256": "847f6db006fa6a80ba5fedbac20529aeeea60b804117c6e9f101460dbf486e12",
+  "sourceFileBytes": 12059268,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Blora.",
+  "csvPath": "datasets/bps-3316-kecamatan-331605-dalam-angka-2026.csv",
+  "csvSha256": "6dcbe9a93669fec358ede87fea965024fbd5dfbfc76d6380f6c67def3775cdc4",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk menurut Desa/ Kelurahan di Kecamatan Cepu, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cepu, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

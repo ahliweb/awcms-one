@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.09.17.2002,4,Tanjung Beringin,sex,laki_laki,,730,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.17.2002,4,Tanjung Beringin,sex,perempuan,,747,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.17.2002,4,Tanjung Beringin,total,total,,1477,jiwa,2025,registration,total_population,3.1,27,,
+16.09.17.2003,4,Bandar,sex,laki_laki,,725,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.17.2003,4,Bandar,sex,perempuan,,629,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.17.2003,4,Bandar,total,total,,1354,jiwa,2025,registration,total_population,3.1,27,,
+16.09.17.2004,4,Jagaraga,sex,laki_laki,,1164,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.17.2004,4,Jagaraga,sex,perempuan,,1156,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.17.2004,4,Jagaraga,total,total,,2320,jiwa,2025,registration,total_population,3.1,27,,
+16.09.17.2005,4,Damarpura,sex,laki_laki,,1479,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.17.2005,4,Damarpura,sex,perempuan,,1377,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.17.2005,4,Damarpura,total,total,,2856,jiwa,2025,registration,total_population,3.1,27,,
+16.09.17.2001,4,Tekana,sex,laki_laki,,858,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.17.2001,4,Tekana,sex,perempuan,,750,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.17.2001,4,Tekana,total,total,,1608,jiwa,2025,registration,total_population,3.1,27,,
+16.09.17.2006,4,Tunas Jaya,sex,laki_laki,,1645,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.17.2006,4,Tunas Jaya,sex,perempuan,,1389,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.17.2006,4,Tunas Jaya,total,total,,3034,jiwa,2025,registration,total_population,3.1,27,,
+16.09.17.2007,4,Sinar Danau,sex,laki_laki,,678,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.17.2007,4,Sinar Danau,sex,perempuan,,660,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.17.2007,4,Sinar Danau,total,total,,1338,jiwa,2025,registration,total_population,3.1,27,,
+16.09.17.2008,4,Gemiung,sex,laki_laki,,1588,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.17.2008,4,Gemiung,sex,perempuan,,1445,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.17.2008,4,Gemiung,total,total,,3033,jiwa,2025,registration,total_population,3.1,27,,
+16.09.17,3,Buana Pemaca,sex,laki_laki,,8867,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.17,3,Buana Pemaca,sex,perempuan,,8153,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.17,3,Buana Pemaca,total,total,,17020,jiwa,2025,registration,total_population,3.1,27,,

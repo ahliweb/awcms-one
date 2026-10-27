@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.07.18.2001,4,RAYA PAYA,sex,laki_laki,,228,jiwa,2025,registration,total_population,3.3,40,,Laki-Laki/Male
+11.07.18.2001,4,RAYA PAYA,sex,perempuan,,262,jiwa,2025,registration,total_population,3.3,40,,Perempuan/Female
+11.07.18.2001,4,RAYA PAYA,total,total,,490,jiwa,2025,registration,total_population,3.3,40,,
+11.07.18.2002,4,MESJID BUNGIE,sex,laki_laki,,151,jiwa,2025,registration,total_population,3.3,40,,Laki-Laki/Male
+11.07.18.2002,4,MESJID BUNGIE,sex,perempuan,,193,jiwa,2025,registration,total_population,3.3,40,,Perempuan/Female
+11.07.18.2002,4,MESJID BUNGIE,total,total,,344,jiwa,2025,registration,total_population,3.3,40,,
+11.07.18.2003,4,LILIEP,sex,laki_laki,,129,jiwa,2025,registration,total_population,3.3,40,,Laki-Laki/Male
+11.07.18.2003,4,LILIEP,sex,perempuan,,130,jiwa,2025,registration,total_population,3.3,40,,Perempuan/Female
+11.07.18.2003,4,LILIEP,total,total,,259,jiwa,2025,registration,total_population,3.3,40,,
+11.07.18.2004,4,UJONG BAROH,sex,laki_laki,,181,jiwa,2025,registration,total_population,3.3,40,,Laki-Laki/Male
+11.07.18.2004,4,UJONG BAROH,sex,perempuan,,202,jiwa,2025,registration,total_population,3.3,40,,Perempuan/Female
+11.07.18.2004,4,UJONG BAROH,total,total,,383,jiwa,2025,registration,total_population,3.3,40,,
+11.07.18.2034,4,PULO TU,sex,laki_laki,,145,jiwa,2025,registration,total_population,3.3,40,,Laki-Laki/Male
+11.07.18.2034,4,PULO TU,sex,perempuan,,123,jiwa,2025,registration,total_population,3.3,40,,Perempuan/Female
+11.07.18.2034,4,PULO TU,total,total,,268,jiwa,2025,registration,total_population,3.3,40,,
+11.07.18.2046,4,PALOH TOK DUE,sex,laki_laki,,157,jiwa,2025,registration,total_population,3.3,40,,Laki-Laki/Male
+11.07.18.2046,4,PALOH TOK DUE,sex,perempuan,,183,jiwa,2025,registration,total_population,3.3,40,,Perempuan/Female
+11.07.18.2046,4,PALOH TOK DUE,total,total,,340,jiwa,2025,registration,total_population,3.3,40,,
+11.07.18.2013,4,KULAM BARO,sex,laki_laki,,355,jiwa,2025,registration,total_population,3.3,40,,Laki-Laki/Male
+11.07.18.2013,4,KULAM BARO,sex,perempuan,,384,jiwa,2025,registration,total_population,3.3,40,,Perempuan/Female
+11.07.18.2013,4,KULAM BARO,total,total,,739,jiwa,2025,registration,total_population,3.3,40,,
+11.07.18.2012,4,LINGGONG SAGOE,sex,laki_laki,,392,jiwa,2025,registration,total_population,3.3,40,,Laki-Laki/Male
+11.07.18.2012,4,LINGGONG SAGOE,sex,perempuan,,420,jiwa,2025,registration,total_population,3.3,40,,Perempuan/Female
+11.07.18.2012,4,LINGGONG SAGOE,total,total,,812,jiwa,2025,registration,total_population,3.3,40,,
+11.07.18.2048,4,BLANG LEUEN,sex,laki_laki,,141,jiwa,2025,registration,total_population,3.3,40,,Laki-Laki/Male
+11.07.18.2048,4,BLANG LEUEN,sex,perempuan,,152,jiwa,2025,registration,total_population,3.3,40,,Perempuan/Female
+11.07.18.2048,4,BLANG LEUEN,total,total,,293,jiwa,2025,registration,total_population,3.3,40,,
+11.07.18.2052,4,ULEE BARAT,sex,laki_laki,,254,jiwa,2025,registration,total_population,3.3,40,,Laki-Laki/Male
+11.07.18.2052,4,ULEE BARAT,sex,perempuan,,285,jiwa,2025,registration,total_population,3.3,40,,Perempuan/Female
+11.07.18.2052,4,ULEE BARAT,total,total,,539,jiwa,2025,registration,total_population,3.3,40,,
+11.07.18.2014,4,EMPEH,sex,laki_laki,,113,jiwa,2025,registration,total_population,3.3,40,,Laki-Laki/Male
+11.07.18.2014,4,EMPEH,sex,perempuan,,142,jiwa,2025,registration,total_population,3.3,40,,Perempuan/Female
+11.07.18.2014,4,EMPEH,total,total,,255,jiwa,2025,registration,total_population,3.3,40,,
+11.07.18.2037,4,PADANG,sex,laki_laki,,325,jiwa,2025,registration,total_population,3.3,40,,Laki-Laki/Male
+11.07.18.2037,4,PADANG,sex,perempuan,,331,jiwa,2025,registration,total_population,3.3,40,,Perempuan/Female
+11.07.18.2037,4,PADANG,total,total,,656,jiwa,2025,registration,total_population,3.3,40,,
+11.07.18.2041,4,DAYAH BLANG,sex,laki_laki,,214,jiwa,2025,registration,total_population,3.3,40,,Laki-Laki/Male
+11.07.18.2041,4,DAYAH BLANG,sex,perempuan,,246,jiwa,2025,registration,total_population,3.3,40,,Perempuan/Female
+11.07.18.2041,4,DAYAH BLANG,total,total,,460,jiwa,2025,registration,total_population,3.3,40,,
+11.07.18.2040,4,TEUNGOH MANGKI,sex,laki_laki,,115,jiwa,2025,registration,total_population,3.3,40,,Laki-Laki/Male
+11.07.18.2040,4,TEUNGOH MANGKI,sex,perempuan,,108,jiwa,2025,registration,total_population,3.3,40,,Perempuan/Female
+11.07.18.2040,4,TEUNGOH MANGKI,total,total,,223,jiwa,2025,registration,total_population,3.3,40,,
+11.07.18.2039,4,DAYAH BLANG CUT,sex,laki_laki,,101,jiwa,2025,registration,total_population,3.3,40,,Laki-Laki/Male
+11.07.18.2039,4,DAYAH BLANG CUT,sex,perempuan,,115,jiwa,2025,registration,total_population,3.3,40,,Perempuan/Female
+11.07.18.2039,4,DAYAH BLANG CUT,total,total,,216,jiwa,2025,registration,total_population,3.3,40,,

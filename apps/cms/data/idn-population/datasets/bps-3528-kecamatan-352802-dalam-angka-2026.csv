@@ -1,0 +1,71 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.28.02.2006,4,Baddurih,sex,perempuan,,1108,jiwa,2025,registration,total_population,3.1,29,,Perempuan/
+35.28.02.2006,4,Baddurih,total,total,,2196,jiwa,2025,registration,total_population,3.1,29,,
+35.28.02.2004,4,Pagagan,sex,perempuan,,1281,jiwa,2025,registration,total_population,3.1,29,,Perempuan/
+35.28.02.2004,4,Pagagan,total,total,,2457,jiwa,2025,registration,total_population,3.1,29,,
+35.28.02.2002,4,Padelegan,sex,perempuan,,1881,jiwa,2025,registration,total_population,3.1,29,,Perempuan/
+35.28.02.2002,4,Padelegan,total,total,,3707,jiwa,2025,registration,total_population,3.1,29,,
+35.28.02.2001,4,Tanjung,sex,perempuan,,4019,jiwa,2025,registration,total_population,3.1,29,,Perempuan/
+35.28.02.2001,4,Tanjung,total,total,,7779,jiwa,2025,registration,total_population,3.1,29,,
+35.28.02.2012,4,Pademawu Timur,sex,perempuan,,3652,jiwa,2025,registration,total_population,3.1,29,,Perempuan/
+35.28.02.2012,4,Pademawu Timur,total,total,,7144,jiwa,2025,registration,total_population,3.1,29,,
+35.28.02.2005,4,Jarin,sex,perempuan,,2400,jiwa,2025,registration,total_population,3.1,29,,Perempuan/
+35.28.02.2005,4,Jarin,total,total,,4726,jiwa,2025,registration,total_population,3.1,29,,
+35.28.02.2009,4,Prekbun,sex,perempuan,,562,jiwa,2025,registration,total_population,3.1,29,,Perempuan/
+35.28.02.2009,4,Prekbun,total,total,,1131,jiwa,2025,registration,total_population,3.1,29,,
+35.28.02.2008,4,Sopa’ah,sex,perempuan,,610,jiwa,2025,registration,total_population,3.1,29,,Perempuan/
+35.28.02.2008,4,Sopa’ah,total,total,,1196,jiwa,2025,registration,total_population,3.1,29,,
+35.28.02.2007,4,Buddih,sex,perempuan,,665,jiwa,2025,registration,total_population,3.1,29,,Perempuan/
+35.28.02.2007,4,Buddih,total,total,,1310,jiwa,2025,registration,total_population,3.1,29,,
+35.28.02.2010,4,Durbuk,sex,perempuan,,1558,jiwa,2025,registration,total_population,3.1,29,,Perempuan/
+35.28.02.2010,4,Durbuk,total,total,,3082,jiwa,2025,registration,total_population,3.1,29,,
+35.28.02.2016,4,Sumedangan,sex,perempuan,,1851,jiwa,2025,registration,total_population,3.1,29,,Perempuan/
+35.28.02.2016,4,Sumedangan,total,total,,3645,jiwa,2025,registration,total_population,3.1,29,,
+35.28.02.2011,4,Pademawu Barat,sex,perempuan,,3565,jiwa,2025,registration,total_population,3.1,29,,Perempuan/
+35.28.02.2011,4,Pademawu Barat,total,total,,6892,jiwa,2025,registration,total_population,3.1,29,,
+35.28.02.2013,4,Bunder,sex,perempuan,,1520,jiwa,2025,registration,total_population,3.1,29,,Perempuan/
+35.28.02.2013,4,Bunder,total,total,,2946,jiwa,2025,registration,total_population,3.1,29,,
+35.28.02.2014,4,Dasok,sex,perempuan,,2428,jiwa,2025,registration,total_population,3.1,29,,Perempuan/
+35.28.02.2014,4,Dasok,total,total,,4722,jiwa,2025,registration,total_population,3.1,29,,
+35.28.02.2015,4,Murtajih,sex,perempuan,,3286,jiwa,2025,registration,total_population,3.1,29,,Perempuan/
+35.28.02.2015,4,Murtajih,total,total,,6436,jiwa,2025,registration,total_population,3.1,29,,
+35.28.02.2017,4,Lemper,sex,perempuan,,1293,jiwa,2025,registration,total_population,3.1,29,,Perempuan/
+35.28.02.2017,4,Lemper,total,total,,2562,jiwa,2025,registration,total_population,3.1,29,,
+35.28.02.1018,4,Barurambat Timur,sex,perempuan,,2964,jiwa,2025,registration,total_population,3.1,29,,Perempuan/
+35.28.02.1018,4,Barurambat Timur,total,total,,5715,jiwa,2025,registration,total_population,3.1,29,,
+35.28.02.1019,4,Lawangan Daya,sex,perempuan,,3971,jiwa,2025,registration,total_population,3.1,29,,Perempuan/
+35.28.02.1019,4,Lawangan Daya,total,total,,7832,jiwa,2025,registration,total_population,3.1,29,,
+35.28.02.2022,4,Buddagan,sex,perempuan,,2284,jiwa,2025,registration,total_population,3.1,29,,Perempuan/
+35.28.02.2022,4,Buddagan,total,total,,4528,jiwa,2025,registration,total_population,3.1,29,,
+35.28.02,3,Pademawu,age_group,0-4,perempuan,3108,jiwa,2025,registration,total_population,3.2,33,,0–4
+35.28.02,3,Pademawu,age_group,0-4,,6475,jiwa,2025,registration,total_population,3.2,33,,0–4
+35.28.02,3,Pademawu,age_group,5-9,perempuan,3398,jiwa,2025,registration,total_population,3.2,33,,5–9
+35.28.02,3,Pademawu,age_group,5-9,,6900,jiwa,2025,registration,total_population,3.2,33,,5–9
+35.28.02,3,Pademawu,age_group,10-14,perempuan,3170,jiwa,2025,registration,total_population,3.2,33,,10–14
+35.28.02,3,Pademawu,age_group,10-14,,6579,jiwa,2025,registration,total_population,3.2,33,,10–14
+35.28.02,3,Pademawu,age_group,15-19,perempuan,2749,jiwa,2025,registration,total_population,3.2,33,,15–19
+35.28.02,3,Pademawu,age_group,15-19,,5749,jiwa,2025,registration,total_population,3.2,33,,15–19
+35.28.02,3,Pademawu,age_group,20-24,perempuan,3168,jiwa,2025,registration,total_population,3.2,33,,20–24
+35.28.02,3,Pademawu,age_group,20-24,,6505,jiwa,2025,registration,total_population,3.2,33,,20–24
+35.28.02,3,Pademawu,age_group,25-29,perempuan,3332,jiwa,2025,registration,total_population,3.2,33,,25–29
+35.28.02,3,Pademawu,age_group,25-29,,6711,jiwa,2025,registration,total_population,3.2,33,,25–29
+35.28.02,3,Pademawu,age_group,30-34,perempuan,3179,jiwa,2025,registration,total_population,3.2,33,,30–34
+35.28.02,3,Pademawu,age_group,30-34,,6209,jiwa,2025,registration,total_population,3.2,33,,30–34
+35.28.02,3,Pademawu,age_group,35-39,perempuan,3075,jiwa,2025,registration,total_population,3.2,33,,35–39
+35.28.02,3,Pademawu,age_group,35-39,,5936,jiwa,2025,registration,total_population,3.2,33,,35–39
+35.28.02,3,Pademawu,age_group,40-44,perempuan,3430,jiwa,2025,registration,total_population,3.2,33,,40–44
+35.28.02,3,Pademawu,age_group,40-44,,6533,jiwa,2025,registration,total_population,3.2,33,,40–44
+35.28.02,3,Pademawu,age_group,45-49,perempuan,3421,jiwa,2025,registration,total_population,3.2,33,,45–49
+35.28.02,3,Pademawu,age_group,45-49,,6528,jiwa,2025,registration,total_population,3.2,33,,45–49
+35.28.02,3,Pademawu,age_group,50-54,perempuan,3213,jiwa,2025,registration,total_population,3.2,33,,50–54
+35.28.02,3,Pademawu,age_group,50-54,,6310,jiwa,2025,registration,total_population,3.2,33,,50–54
+35.28.02,3,Pademawu,age_group,55-59,perempuan,2743,jiwa,2025,registration,total_population,3.2,33,,55–59
+35.28.02,3,Pademawu,age_group,55-59,,5421,jiwa,2025,registration,total_population,3.2,33,,55–59
+35.28.02,3,Pademawu,age_group,60-64,perempuan,2393,jiwa,2025,registration,total_population,3.2,33,,60–64
+35.28.02,3,Pademawu,age_group,60-64,,4333,jiwa,2025,registration,total_population,3.2,33,,60–64
+35.28.02,3,Pademawu,age_group,65-69,perempuan,2071,jiwa,2025,registration,total_population,3.2,33,,65–69
+35.28.02,3,Pademawu,age_group,65-69,,3818,jiwa,2025,registration,total_population,3.2,33,,65–69
+35.28.02,3,Pademawu,age_group,70-74,perempuan,1217,jiwa,2025,registration,total_population,3.2,33,,70–74
+35.28.02,3,Pademawu,age_group,70-74,,2289,jiwa,2025,registration,total_population,3.2,33,,70–74
+35.28.02,3,Pademawu,age_group,75+,perempuan,1895,jiwa,2025,registration,total_population,3.2,33,,75+
+35.28.02,3,Pademawu,age_group,75+,,2976,jiwa,2025,registration,total_population,3.2,33,,75+

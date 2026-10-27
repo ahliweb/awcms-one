@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3329-kecamatan-332914-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.29.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bulakamba Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Brebes",
+  "publisherDomain": "3329",
+  "publisherWebsite": "https://brebeskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Brebes (https://brebeskab.bps.go.id), publikasi \"Kecamatan Bulakamba Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "33290.26006",
+  "issn": "2621-4350",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://brebeskab.bps.go.id/id/publication/2026/09/28/1872254e4b8b5a952e8aa90c/kecamatan-bulakamba-dalam-angka-2026.html",
+  "sourceFileSha256": "8db82a520a2b194919cbb6c64312c6804ac16c8c1f40a3c4e9b23b7eeedc24cd",
+  "sourceFileBytes": 12809753,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Brebes.",
+  "csvPath": "datasets/bps-3329-kecamatan-332914-dalam-angka-2026.csv",
+  "csvSha256": "3e6af12e0deffb70668c32153927db8c2521ba46c5d70b555dc396da4cdec289",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bulakamba, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bulakamba, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.2.1 (religion-by-region) could not be read reliably and is not included (religion column 7 header \"Konghuchu\" not recognised)",
+    "table 3.1: row not stored: row \"013. Kluwut 10.83\": unmatched ",
+    "table 3.1: row not stored: row \"016. Grinting 10.48\": unmatched "
+  ]
+}

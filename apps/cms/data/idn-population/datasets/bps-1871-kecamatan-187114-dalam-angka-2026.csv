@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.71.14.1001,4,Labuhan Ratu,sex,laki_laki,,4385,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.14.1001,4,Labuhan Ratu,sex,perempuan,,4479,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.14.1001,4,Labuhan Ratu,total,total,,8864,jiwa,2025,registration,total_population,3.1,26,,
+18.71.14.1007,4,Kampung Baru,sex,laki_laki,,3072,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.14.1007,4,Kampung Baru,sex,perempuan,,3044,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.14.1007,4,Kampung Baru,total,total,,6116,jiwa,2025,registration,total_population,3.1,26,,
+18.71.14.1003,4,Sepang Jaya,sex,laki_laki,,6092,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.14.1003,4,Sepang Jaya,sex,perempuan,,6112,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.14.1003,4,Sepang Jaya,total,total,,12204,jiwa,2025,registration,total_population,3.1,26,,
+18.71.14.1002,4,Labuhan Ratu Raya,sex,laki_laki,,6762,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.14.1002,4,Labuhan Ratu Raya,sex,perempuan,,6685,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.14.1002,4,Labuhan Ratu Raya,total,total,,13447,jiwa,2025,registration,total_population,3.1,26,,
+18.71.14.1004,4,Kota Sepang,sex,laki_laki,,2140,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.14.1004,4,Kota Sepang,sex,perempuan,,2225,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.14.1004,4,Kota Sepang,total,total,,4365,jiwa,2025,registration,total_population,3.1,26,,
+18.71.14.1006,4,Kampung Baru Raya,sex,laki_laki,,1426,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.14.1006,4,Kampung Baru Raya,sex,perempuan,,1369,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.14.1006,4,Kampung Baru Raya,total,total,,2795,jiwa,2025,registration,total_population,3.1,26,,
+18.71.14,3,Labuhan Ratu,sex,laki_laki,,23877,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.14,3,Labuhan Ratu,sex,perempuan,,23914,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.14,3,Labuhan Ratu,total,total,,47791,jiwa,2025,registration,total_population,3.1,26,,

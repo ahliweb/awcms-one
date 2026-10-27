@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.07.31.2013,4,Alue,sex,laki_laki,,259,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.07.31.2013,4,Alue,sex,perempuan,,231,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.07.31.2013,4,Alue,total,total,,490,jiwa,2025,registration,total_population,3.1,32,,
+11.07.31.2011,4,Blang Tho,sex,laki_laki,,106,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.07.31.2011,4,Blang Tho,sex,perempuan,,108,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.07.31.2011,4,Blang Tho,total,total,,214,jiwa,2025,registration,total_population,3.1,32,,
+11.07.31.2005,4,Pulo Raya,sex,laki_laki,,251,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.07.31.2005,4,Pulo Raya,sex,perempuan,,256,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.07.31.2005,4,Pulo Raya,total,total,,507,jiwa,2025,registration,total_population,3.1,32,,
+11.07.31.2004,4,Pante Siren,sex,laki_laki,,275,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.07.31.2004,4,Pante Siren,sex,perempuan,,294,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.07.31.2004,4,Pante Siren,total,total,,569,jiwa,2025,registration,total_population,3.1,32,,
+11.07.31.2003,4,Uke,sex,laki_laki,,303,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.07.31.2003,4,Uke,sex,perempuan,,323,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.07.31.2003,4,Uke,total,total,,626,jiwa,2025,registration,total_population,3.1,32,,
+11.07.31.2002,4,Pante Kulu,sex,laki_laki,,378,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.07.31.2002,4,Pante Kulu,sex,perempuan,,384,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.07.31.2002,4,Pante Kulu,total,total,,762,jiwa,2025,registration,total_population,3.1,32,,
+11.07.31.2006,4,Cut,sex,laki_laki,,291,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.07.31.2006,4,Cut,sex,perempuan,,294,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.07.31.2006,4,Cut,total,total,,585,jiwa,2025,registration,total_population,3.1,32,,
+11.07.31.2001,4,Lingkok,sex,laki_laki,,387,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.07.31.2001,4,Lingkok,sex,perempuan,,356,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.07.31.2001,4,Lingkok,total,total,,743,jiwa,2025,registration,total_population,3.1,32,,
+11.07.31,3,Titeue,sex,laki_laki,,3878,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+11.07.31,3,Titeue,sex,perempuan,,3914,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+11.07.31,3,Titeue,total,total,,7792,jiwa,2025,registration,total_population,3.1,32,,

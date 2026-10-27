@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3202-kecamatan-320244-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.02.44",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cidadap Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sukabumi BPS-Statistics of Sukabumi Regency Sumber Ilustrasi",
+  "publisherDomain": "3202",
+  "publisherWebsite": "https://sukabumikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sukabumi BPS-Statistics of Sukabumi Regency Sumber Ilustrasi (https://sukabumikab.bps.go.id), publikasi \"Kecamatan Cidadap Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3202081",
+  "publicationNumber": "32020.26038",
+  "issn": "2798-771X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sukabumikab.bps.go.id/id/publication/2026/09/28/556967ec89304ce19394b97d/kecamatan-cidadap-dalam-angka-2026.html",
+  "sourceFileSha256": "37b622a3d6c7a2e087f1a21431902bee33bfa5c83e68593661b12459ac3b5f4e",
+  "sourceFileBytes": 6018125,
+  "sourcePages": [24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sukabumi.",
+  "csvPath": "datasets/bps-3202-kecamatan-320244-dalam-angka-2026.csv",
+  "csvSha256": "8320a6870758c75b6b4edf4071bc1f5fa0c4c2b533f5516d8a385e72781e347e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Jumlah Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Cidadap, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

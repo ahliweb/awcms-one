@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.07.19.2001,4,Permanu,sex,laki_laki,,2857,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.19.2001,4,Permanu,sex,perempuan,,2823,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.19.2001,4,Permanu,total,total,,5680,jiwa,2025,registration,total_population,3.1,27,,
+35.07.19.2002,4,Karangpandan,sex,laki_laki,,2921,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.19.2002,4,Karangpandan,sex,perempuan,,2987,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.19.2002,4,Karangpandan,total,total,,5908,jiwa,2025,registration,total_population,3.1,27,,
+35.07.19.2003,4,Glanggang,sex,laki_laki,,2483,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.19.2003,4,Glanggang,sex,perempuan,,2391,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.19.2003,4,Glanggang,total,total,,4874,jiwa,2025,registration,total_population,3.1,27,,
+35.07.19.2006,4,Sutojayan,sex,laki_laki,,2974,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.19.2006,4,Sutojayan,sex,perempuan,,2794,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.19.2006,4,Sutojayan,total,total,,5768,jiwa,2025,registration,total_population,3.1,27,,
+35.07.19.2004,4,Wonokerso,sex,laki_laki,,2652,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.19.2004,4,Wonokerso,sex,perempuan,,2624,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.19.2004,4,Wonokerso,total,total,,5276,jiwa,2025,registration,total_population,3.1,27,,
+35.07.19.2005,4,Karangduren,sex,laki_laki,,4919,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.19.2005,4,Karangduren,sex,perempuan,,4888,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.19.2005,4,Karangduren,total,total,,9807,jiwa,2025,registration,total_population,3.1,27,,
+35.07.19.2007,4,Pakisaji,sex,laki_laki,,4122,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.19.2007,4,Pakisaji,sex,perempuan,,4210,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.19.2007,4,Pakisaji,total,total,,8332,jiwa,2025,registration,total_population,3.1,27,,
+35.07.19.2008,4,Jatisari,sex,laki_laki,,3310,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.19.2008,4,Jatisari,sex,perempuan,,3115,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.19.2008,4,Jatisari,total,total,,6425,jiwa,2025,registration,total_population,3.1,27,,
+35.07.19.2009,4,Wadung,sex,laki_laki,,3585,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.19.2009,4,Wadung,sex,perempuan,,3409,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.19.2009,4,Wadung,total,total,,6994,jiwa,2025,registration,total_population,3.1,27,,
+35.07.19.2010,4,Genengan,sex,laki_laki,,4927,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.19.2010,4,Genengan,sex,perempuan,,4861,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.19.2010,4,Genengan,total,total,,9788,jiwa,2025,registration,total_population,3.1,27,,
+35.07.19.2012,4,Kebonagung,sex,laki_laki,,7758,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.19.2012,4,Kebonagung,sex,perempuan,,7682,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.19.2012,4,Kebonagung,total,total,,15440,jiwa,2025,registration,total_population,3.1,27,,
+35.07.19.2011,4,Kendalpayak,sex,laki_laki,,5070,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.19.2011,4,Kendalpayak,sex,perempuan,,5080,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.19.2011,4,Kendalpayak,total,total,,10150,jiwa,2025,registration,total_population,3.1,27,,
+35.07.19,3,Kecamatan Pakisaji,sex,laki_laki,,47578,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+35.07.19,3,Kecamatan Pakisaji,sex,perempuan,,46864,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+35.07.19,3,Kecamatan Pakisaji,total,total,,94442,jiwa,2025,registration,total_population,3.1,27,,
+35.07.19,3,Pakisaji,age_group,0-4,laki_laki,2616,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+35.07.19,3,Pakisaji,age_group,0-4,perempuan,2445,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+35.07.19,3,Pakisaji,age_group,0-4,,5061,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+35.07.19,3,Pakisaji,age_group,5-9,laki_laki,3686,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+35.07.19,3,Pakisaji,age_group,5-9,perempuan,3458,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+35.07.19,3,Pakisaji,age_group,5-9,,7144,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+35.07.19,3,Pakisaji,age_group,10-14,laki_laki,3871,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+35.07.19,3,Pakisaji,age_group,10-14,perempuan,3627,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+35.07.19,3,Pakisaji,age_group,10-14,,7498,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+35.07.19,3,Pakisaji,age_group,15-19,laki_laki,3685,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+35.07.19,3,Pakisaji,age_group,15-19,perempuan,3362,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+35.07.19,3,Pakisaji,age_group,15-19,,7047,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+35.07.19,3,Pakisaji,age_group,20-24,laki_laki,3654,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+35.07.19,3,Pakisaji,age_group,20-24,perempuan,3513,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+35.07.19,3,Pakisaji,age_group,20-24,,7167,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+35.07.19,3,Pakisaji,age_group,25-29,laki_laki,3593,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+35.07.19,3,Pakisaji,age_group,25-29,perempuan,3373,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+35.07.19,3,Pakisaji,age_group,25-29,,6966,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+35.07.19,3,Pakisaji,age_group,30-34,laki_laki,3508,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+35.07.19,3,Pakisaji,age_group,30-34,perempuan,3295,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+35.07.19,3,Pakisaji,age_group,30-34,,6803,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+35.07.19,3,Pakisaji,age_group,35-39,laki_laki,3375,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+35.07.19,3,Pakisaji,age_group,35-39,perempuan,3356,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+35.07.19,3,Pakisaji,age_group,35-39,,6731,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+35.07.19,3,Pakisaji,age_group,40-44,laki_laki,3811,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+35.07.19,3,Pakisaji,age_group,40-44,perempuan,3825,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+35.07.19,3,Pakisaji,age_group,40-44,,7636,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+35.07.19,3,Pakisaji,age_group,45-49,laki_laki,3669,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+35.07.19,3,Pakisaji,age_group,45-49,perempuan,3519,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+35.07.19,3,Pakisaji,age_group,45-49,,7188,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+35.07.19,3,Pakisaji,age_group,50-54,laki_laki,3110,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+35.07.19,3,Pakisaji,age_group,50-54,perempuan,3245,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+35.07.19,3,Pakisaji,age_group,50-54,,6355,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+35.07.19,3,Pakisaji,age_group,55-59,laki_laki,2750,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+35.07.19,3,Pakisaji,age_group,55-59,perempuan,3003,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+35.07.19,3,Pakisaji,age_group,55-59,,5753,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+35.07.19,3,Pakisaji,age_group,60-64,laki_laki,2270,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+35.07.19,3,Pakisaji,age_group,60-64,perempuan,2542,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+35.07.19,3,Pakisaji,age_group,60-64,,4812,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+35.07.19,3,Pakisaji,age_group,65+,laki_laki,3980,jiwa,2025,registration,total_population,3.2,29,,>= 65
+35.07.19,3,Pakisaji,age_group,65+,perempuan,4301,jiwa,2025,registration,total_population,3.2,29,,>= 65
+35.07.19,3,Pakisaji,age_group,65+,,8281,jiwa,2025,registration,total_population,3.2,29,,>= 65
+35.07.19,3,Kecamatan Pakisaji,sex,laki_laki,,47578,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+35.07.19,3,Kecamatan Pakisaji,sex,perempuan,,46864,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+35.07.19,3,Kecamatan Pakisaji,total,total,,94442,jiwa,2025,registration,total_population,3.2,29,,

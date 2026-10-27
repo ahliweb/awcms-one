@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.77.06.2007,4,Simatohir,sex,laki_laki,,446,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.06.2007,4,Simatohir,sex,perempuan,,429,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.06.2007,4,Simatohir,total,total,,875,jiwa,2025,registration,total_population,3.1,25,,
+12.77.06.2006,4,Rimba Soping,sex,laki_laki,,991,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.06.2006,4,Rimba Soping,sex,perempuan,,991,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.06.2006,4,Rimba Soping,total,total,,1982,jiwa,2025,registration,total_population,3.1,25,,
+12.77.06.2005,4,Mompang,sex,laki_laki,,735,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.06.2005,4,Mompang,sex,perempuan,,717,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.06.2005,4,Mompang,total,total,,1452,jiwa,2025,registration,total_population,3.1,25,,
+12.77.06.2002,4,Batu Layan,sex,laki_laki,,393,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.06.2002,4,Batu Layan,sex,perempuan,,405,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.06.2002,4,Batu Layan,total,total,,798,jiwa,2025,registration,total_population,3.1,25,,
+12.77.06.2001,4,Joring Lombang,sex,laki_laki,,572,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.06.2001,4,Joring Lombang,sex,perempuan,,582,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.06.2001,4,Joring Lombang,total,total,,1154,jiwa,2025,registration,total_population,3.1,25,,
+12.77.06.2008,4,Joring Natobang,sex,laki_laki,,599,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.06.2008,4,Joring Natobang,sex,perempuan,,583,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.06.2008,4,Joring Natobang,total,total,,1182,jiwa,2025,registration,total_population,3.1,25,,
+12.77.06.2003,4,Simasom,sex,laki_laki,,505,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.06.2003,4,Simasom,sex,perempuan,,499,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.06.2003,4,Simasom,total,total,,1004,jiwa,2025,registration,total_population,3.1,25,,
+12.77.06.2004,4,Pintu Langit Jae,sex,laki_laki,,788,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.06.2004,4,Pintu Langit Jae,sex,perempuan,,794,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.06.2004,4,Pintu Langit Jae,total,total,,1582,jiwa,2025,registration,total_population,3.1,25,,
+12.77.06,3,Padangsidimpuan Angkola Julu,sex,laki_laki,,5029,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+12.77.06,3,Padangsidimpuan Angkola Julu,sex,perempuan,,5000,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+12.77.06,3,Padangsidimpuan Angkola Julu,total,total,,10029,jiwa,2025,registration,total_population,3.1,25,,
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,0-4,laki_laki,314,jiwa,2025,registration,total_population,3.2,27,,0-4
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,0-4,perempuan,327,jiwa,2025,registration,total_population,3.2,27,,0-4
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,0-4,,641,jiwa,2025,registration,total_population,3.2,27,,0-4
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,5-9,laki_laki,476,jiwa,2025,registration,total_population,3.2,27,,05-09
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,5-9,perempuan,448,jiwa,2025,registration,total_population,3.2,27,,05-09
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,5-9,,924,jiwa,2025,registration,total_population,3.2,27,,05-09
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,10-14,laki_laki,493,jiwa,2025,registration,total_population,3.2,27,,10-14
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,10-14,perempuan,473,jiwa,2025,registration,total_population,3.2,27,,10-14
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,10-14,,966,jiwa,2025,registration,total_population,3.2,27,,10-14
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,15-19,laki_laki,504,jiwa,2025,registration,total_population,3.2,27,,15-19
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,15-19,perempuan,474,jiwa,2025,registration,total_population,3.2,27,,15-19
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,15-19,,978,jiwa,2025,registration,total_population,3.2,27,,15-19
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,20-24,laki_laki,465,jiwa,2025,registration,total_population,3.2,27,,20-24
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,20-24,perempuan,444,jiwa,2025,registration,total_population,3.2,27,,20-24
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,20-24,,909,jiwa,2025,registration,total_population,3.2,27,,20-24
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,25-29,laki_laki,418,jiwa,2025,registration,total_population,3.2,27,,25-29
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,25-29,perempuan,393,jiwa,2025,registration,total_population,3.2,27,,25-29
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,25-29,,811,jiwa,2025,registration,total_population,3.2,27,,25-29
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,30-34,laki_laki,414,jiwa,2025,registration,total_population,3.2,27,,30-34
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,30-34,perempuan,356,jiwa,2025,registration,total_population,3.2,27,,30-34
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,30-34,,770,jiwa,2025,registration,total_population,3.2,27,,30-34
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,35-39,laki_laki,434,jiwa,2025,registration,total_population,3.2,27,,35-39
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,35-39,perempuan,359,jiwa,2025,registration,total_population,3.2,27,,35-39
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,35-39,,793,jiwa,2025,registration,total_population,3.2,27,,35-39
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,40-44,laki_laki,392,jiwa,2025,registration,total_population,3.2,27,,40-44
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,40-44,perempuan,348,jiwa,2025,registration,total_population,3.2,27,,40-44
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,40-44,,740,jiwa,2025,registration,total_population,3.2,27,,40-44
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,45-49,laki_laki,288,jiwa,2025,registration,total_population,3.2,27,,45-49
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,45-49,perempuan,280,jiwa,2025,registration,total_population,3.2,27,,45-49
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,45-49,,568,jiwa,2025,registration,total_population,3.2,27,,45-49
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,50-54,laki_laki,228,jiwa,2025,registration,total_population,3.2,27,,50-54
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,50-54,perempuan,236,jiwa,2025,registration,total_population,3.2,27,,50-54
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,50-54,,464,jiwa,2025,registration,total_population,3.2,27,,50-54
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,55-59,laki_laki,204,jiwa,2025,registration,total_population,3.2,27,,55-59
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,55-59,perempuan,227,jiwa,2025,registration,total_population,3.2,27,,55-59
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,55-59,,431,jiwa,2025,registration,total_population,3.2,27,,55-59
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,60-64,laki_laki,152,jiwa,2025,registration,total_population,3.2,27,,60-64
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,60-64,perempuan,243,jiwa,2025,registration,total_population,3.2,27,,60-64
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,60-64,,395,jiwa,2025,registration,total_population,3.2,27,,60-64
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,65-69,laki_laki,133,jiwa,2025,registration,total_population,3.2,27,,65-69
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,65-69,perempuan,170,jiwa,2025,registration,total_population,3.2,27,,65-69
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,65-69,,303,jiwa,2025,registration,total_population,3.2,27,,65-69
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,70-74,laki_laki,68,jiwa,2025,registration,total_population,3.2,27,,70-74
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,70-74,perempuan,103,jiwa,2025,registration,total_population,3.2,27,,70-74
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,70-74,,171,jiwa,2025,registration,total_population,3.2,27,,70-74
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,75+,laki_laki,46,jiwa,2025,registration,total_population,3.2,27,,75+
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,75+,perempuan,119,jiwa,2025,registration,total_population,3.2,27,,75+
+12.77.06,3,Padangsidimpuan Angkola Julu,age_group,75+,,165,jiwa,2025,registration,total_population,3.2,27,,75+
+12.77.06,3,Padangsidimpuan Angkola Julu,sex,laki_laki,,5029,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+12.77.06,3,Padangsidimpuan Angkola Julu,sex,perempuan,,5000,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+12.77.06,3,Padangsidimpuan Angkola Julu,total,total,,10029,jiwa,2025,registration,total_population,3.2,27,,

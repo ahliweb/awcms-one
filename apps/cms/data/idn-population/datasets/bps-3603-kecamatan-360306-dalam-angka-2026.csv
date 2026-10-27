@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.03.06.2013,4,Koper,sex,laki_laki,,2620,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.06.2013,4,Koper,sex,perempuan,,2526,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.06.2013,4,Koper,total,total,,5146,jiwa,2025,registration,total_population,3.1,25,,
+36.03.06.2001,4,Pasir Ampo,sex,laki_laki,,3543,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.06.2001,4,Pasir Ampo,sex,perempuan,,3312,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.06.2001,4,Pasir Ampo,total,total,,6855,jiwa,2025,registration,total_population,3.1,25,,
+36.03.06.2015,4,Patra Sana,sex,laki_laki,,4590,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.06.2015,4,Patra Sana,sex,perempuan,,4461,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.06.2015,4,Patra Sana,total,total,,9051,jiwa,2025,registration,total_population,3.1,25,,
+36.03.06.2009,4,Renged,sex,laki_laki,,4743,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.06.2009,4,Renged,sex,perempuan,,4474,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.06.2009,4,Renged,total,total,,9217,jiwa,2025,registration,total_population,3.1,25,,
+36.03.06.2011,4,Talok,sex,laki_laki,,4067,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.06.2011,4,Talok,sex,perempuan,,3845,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.06.2011,4,Talok,total,total,,7912,jiwa,2025,registration,total_population,3.1,25,,
+36.03.06.2014,4,Jengkol,sex,laki_laki,,3825,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.06.2014,4,Jengkol,sex,perempuan,,3703,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.06.2014,4,Jengkol,total,total,,7528,jiwa,2025,registration,total_population,3.1,25,,
+36.03.06.2007,4,Kemuning,sex,laki_laki,,5646,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.06.2007,4,Kemuning,sex,perempuan,,5542,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.06.2007,4,Kemuning,total,total,,11188,jiwa,2025,registration,total_population,3.1,25,,
+36.03.06.2003,4,Ranca Ilat,sex,laki_laki,,4214,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.06.2003,4,Ranca Ilat,sex,perempuan,,4091,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.06.2003,4,Ranca Ilat,total,total,,8305,jiwa,2025,registration,total_population,3.1,25,,
+36.03.06.2018,4,Kresek,sex,laki_laki,,5791,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.06.2018,4,Kresek,sex,perempuan,,5666,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.06.2018,4,Kresek,total,total,,11457,jiwa,2025,registration,total_population,3.1,25,,
+36.03.06,3,Kresek,age_group,0-4,laki_laki,2891,jiwa,2025,registration,total_population,3.2,27,,00–04
+36.03.06,3,Kresek,age_group,0-4,perempuan,2556,jiwa,2025,registration,total_population,3.2,27,,00–04
+36.03.06,3,Kresek,age_group,0-4,,5447,jiwa,2025,registration,total_population,3.2,27,,00–04
+36.03.06,3,Kresek,age_group,5-9,laki_laki,3595,jiwa,2025,registration,total_population,3.2,27,,05–09
+36.03.06,3,Kresek,age_group,5-9,perempuan,3379,jiwa,2025,registration,total_population,3.2,27,,05–09
+36.03.06,3,Kresek,age_group,5-9,,6974,jiwa,2025,registration,total_population,3.2,27,,05–09
+36.03.06,3,Kresek,age_group,10-14,laki_laki,3525,jiwa,2025,registration,total_population,3.2,27,,10–14
+36.03.06,3,Kresek,age_group,10-14,perempuan,3297,jiwa,2025,registration,total_population,3.2,27,,10–14
+36.03.06,3,Kresek,age_group,10-14,,6822,jiwa,2025,registration,total_population,3.2,27,,10–14
+36.03.06,3,Kresek,age_group,15-19,laki_laki,2892,jiwa,2025,registration,total_population,3.2,27,,15–19
+36.03.06,3,Kresek,age_group,15-19,perempuan,2766,jiwa,2025,registration,total_population,3.2,27,,15–19
+36.03.06,3,Kresek,age_group,15-19,,5568,jiwa,2025,registration,total_population,3.2,27,,15–19
+36.03.06,3,Kresek,age_group,20-24,laki_laki,2970,jiwa,2025,registration,total_population,3.2,27,,20–24
+36.03.06,3,Kresek,age_group,20-24,perempuan,2760,jiwa,2025,registration,total_population,3.2,27,,20–24
+36.03.06,3,Kresek,age_group,20-24,,5730,jiwa,2025,registration,total_population,3.2,27,,20–24
+36.03.06,3,Kresek,age_group,25-29,laki_laki,3222,jiwa,2025,registration,total_population,3.2,27,,25–29
+36.03.06,3,Kresek,age_group,25-29,perempuan,2969,jiwa,2025,registration,total_population,3.2,27,,25–29
+36.03.06,3,Kresek,age_group,25-29,,6191,jiwa,2025,registration,total_population,3.2,27,,25–29
+36.03.06,3,Kresek,age_group,30-34,laki_laki,3412,jiwa,2025,registration,total_population,3.2,27,,30–34
+36.03.06,3,Kresek,age_group,30-34,perempuan,3136,jiwa,2025,registration,total_population,3.2,27,,30–34
+36.03.06,3,Kresek,age_group,30-34,,6548,jiwa,2025,registration,total_population,3.2,27,,30–34
+36.03.06,3,Kresek,age_group,35-39,laki_laki,3537,jiwa,2025,registration,total_population,3.2,27,,35–39
+36.03.06,3,Kresek,age_group,35-39,perempuan,3323,jiwa,2025,registration,total_population,3.2,27,,35–39
+36.03.06,3,Kresek,age_group,35-39,,6860,jiwa,2025,registration,total_population,3.2,27,,35–39
+36.03.06,3,Kresek,age_group,40-44,laki_laki,3082,jiwa,2025,registration,total_population,3.2,27,,40–44
+36.03.06,3,Kresek,age_group,40-44,perempuan,2961,jiwa,2025,registration,total_population,3.2,27,,40–44
+36.03.06,3,Kresek,age_group,40-44,,6043,jiwa,2025,registration,total_population,3.2,27,,40–44
+36.03.06,3,Kresek,age_group,45-49,laki_laki,2596,jiwa,2025,registration,total_population,3.2,27,,45–49
+36.03.06,3,Kresek,age_group,45-49,perempuan,2763,jiwa,2025,registration,total_population,3.2,27,,45–49
+36.03.06,3,Kresek,age_group,45-49,,5359,jiwa,2025,registration,total_population,3.2,27,,45–49
+36.03.06,3,Kresek,age_group,50-54,laki_laki,2115,jiwa,2025,registration,total_population,3.2,27,,50–54
+36.03.06,3,Kresek,age_group,50-54,perempuan,2151,jiwa,2025,registration,total_population,3.2,27,,50–54
+36.03.06,3,Kresek,age_group,50-54,,4266,jiwa,2025,registration,total_population,3.2,27,,50–54
+36.03.06,3,Kresek,age_group,55-59,laki_laki,1786,jiwa,2025,registration,total_population,3.2,27,,55–59
+36.03.06,3,Kresek,age_group,55-59,perempuan,1778,jiwa,2025,registration,total_population,3.2,27,,55–59
+36.03.06,3,Kresek,age_group,55-59,,3564,jiwa,2025,registration,total_population,3.2,27,,55–59
+36.03.06,3,Kresek,age_group,60-64,laki_laki,1252,jiwa,2025,registration,total_population,3.2,27,,60–64
+36.03.06,3,Kresek,age_group,60-64,perempuan,1342,jiwa,2025,registration,total_population,3.2,27,,60–64
+36.03.06,3,Kresek,age_group,60-64,,2594,jiwa,2025,registration,total_population,3.2,27,,60–64
+36.03.06,3,Kresek,age_group,65-69,laki_laki,968,jiwa,2025,registration,total_population,3.2,27,,65–69
+36.03.06,3,Kresek,age_group,65-69,perempuan,1067,jiwa,2025,registration,total_population,3.2,27,,65–69
+36.03.06,3,Kresek,age_group,65-69,,2035,jiwa,2025,registration,total_population,3.2,27,,65–69
+36.03.06,3,Kresek,age_group,70-74,laki_laki,607,jiwa,2025,registration,total_population,3.2,27,,70–74
+36.03.06,3,Kresek,age_group,70-74,perempuan,584,jiwa,2025,registration,total_population,3.2,27,,70–74
+36.03.06,3,Kresek,age_group,70-74,,1191,jiwa,2025,registration,total_population,3.2,27,,70–74
+36.03.06,3,Kresek,age_group,75+,laki_laki,589,jiwa,2025,registration,total_population,3.2,27,,>75
+36.03.06,3,Kresek,age_group,75+,perempuan,788,jiwa,2025,registration,total_population,3.2,27,,>75
+36.03.06,3,Kresek,age_group,75+,,1377,jiwa,2025,registration,total_population,3.2,27,,>75

@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3504-kecamatan-350415-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.04.15",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Besuki Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tulungagung",
+  "publisherDomain": "3504",
+  "publisherWebsite": "https://tulungagungkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tulungagung (https://tulungagungkab.bps.go.id), publikasi \"Kecamatan Besuki Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "35040",
+  "issn": "2776-6675",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tulungagungkab.bps.go.id/id/publication/2026/09/28/1a9c3ac39ba460aba0972d14/kecamatan-besuki-dalam-angka-2026.html",
+  "sourceFileSha256": "ddcc46291c8006002f2a60cfe1353c9d7b4dc63b7bfbcea236c0fc90c6f901f3",
+  "sourceFileBytes": 9108529,
+  "sourcePages": [31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tulungagung.",
+  "csvPath": "datasets/bps-3504-kecamatan-350415-dalam-angka-2026.csv",
+  "csvSha256": "eab344dd5184d89a2c2bb450da89a7841f59cd8b620080d2e03424c555bb3d3c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Besuki, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Besuki, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: 26 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: row not stored: row \"+ 75\": unmatched ",
+    "table 3.2: 40 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

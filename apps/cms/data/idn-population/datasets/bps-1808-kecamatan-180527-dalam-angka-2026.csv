@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.05.27.2005,4,Batu Ampar,sex,laki_laki,,1501,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.27.2005,4,Batu Ampar,sex,perempuan,,1357,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.27.2005,4,Batu Ampar,total,total,,2858,jiwa,2025,registration,total_population,3.1,30,,
+18.05.27.2004,4,Suka Bhakti,sex,laki_laki,,3303,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.27.2004,4,Suka Bhakti,sex,perempuan,,3001,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.27.2004,4,Suka Bhakti,total,total,,6304,jiwa,2025,registration,total_population,3.1,30,,
+18.05.27.2001,4,Sido Mukti,sex,laki_laki,,2203,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.27.2001,4,Sido Mukti,sex,perempuan,,1978,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.27.2001,4,Sido Mukti,total,total,,4181,jiwa,2025,registration,total_population,3.1,30,,
+18.05.27.2003,4,Makarti Tama,sex,laki_laki,,3235,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.27.2003,4,Makarti Tama,sex,perempuan,,2948,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.27.2003,4,Makarti Tama,total,total,,6183,jiwa,2025,registration,total_population,3.1,30,,
+18.05.27.2006,4,Setia Tama,sex,laki_laki,,978,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.27.2006,4,Setia Tama,sex,perempuan,,882,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.27.2006,4,Setia Tama,total,total,,1860,jiwa,2025,registration,total_population,3.1,30,,
+18.05.27.2002,4,Mesir Dwi Jaya,sex,laki_laki,,312,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.27.2002,4,Mesir Dwi Jaya,sex,perempuan,,260,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.27.2002,4,Mesir Dwi Jaya,total,total,,572,jiwa,2025,registration,total_population,3.1,30,,
+18.05.27.2007,4,Sumber Jaya,sex,laki_laki,,933,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.27.2007,4,Sumber Jaya,sex,perempuan,,929,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.27.2007,4,Sumber Jaya,total,total,,1862,jiwa,2025,registration,total_population,3.1,30,,
+18.05.27.2008,4,Mekar Asri,sex,laki_laki,,226,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.27.2008,4,Mekar Asri,sex,perempuan,,205,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.27.2008,4,Mekar Asri,total,total,,431,jiwa,2025,registration,total_population,3.1,30,,
+18.05.27.2009,4,Sidomekar,sex,laki_laki,,1239,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.27.2009,4,Sidomekar,sex,perempuan,,1174,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.27.2009,4,Sidomekar,total,total,,2413,jiwa,2025,registration,total_population,3.1,30,,
+18.05.27,3,Gedung Aji Baru,sex,laki_laki,,13930,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+18.05.27,3,Gedung Aji Baru,sex,perempuan,,12734,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.05.27,3,Gedung Aji Baru,total,total,,26664,jiwa,2025,registration,total_population,3.1,30,,
+18.05.27,3,Gedung Aji Baru,age_group,0-4,laki_laki,851,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+18.05.27,3,Gedung Aji Baru,age_group,0-4,perempuan,738,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+18.05.27,3,Gedung Aji Baru,age_group,0-4,,1589,jiwa,2025,registration,total_population,3.2,32,,0 – 4
+18.05.27,3,Gedung Aji Baru,age_group,5-9,laki_laki,1122,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+18.05.27,3,Gedung Aji Baru,age_group,5-9,perempuan,1059,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+18.05.27,3,Gedung Aji Baru,age_group,5-9,,2181,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+18.05.27,3,Gedung Aji Baru,age_group,10-14,laki_laki,1265,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+18.05.27,3,Gedung Aji Baru,age_group,10-14,perempuan,1104,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+18.05.27,3,Gedung Aji Baru,age_group,10-14,,2369,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+18.05.27,3,Gedung Aji Baru,age_group,15-19,laki_laki,1167,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+18.05.27,3,Gedung Aji Baru,age_group,15-19,perempuan,991,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+18.05.27,3,Gedung Aji Baru,age_group,15-19,,2158,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+18.05.27,3,Gedung Aji Baru,age_group,20-24,laki_laki,939,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+18.05.27,3,Gedung Aji Baru,age_group,20-24,perempuan,914,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+18.05.27,3,Gedung Aji Baru,age_group,20-24,,1853,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+18.05.27,3,Gedung Aji Baru,age_group,25-29,laki_laki,1039,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+18.05.27,3,Gedung Aji Baru,age_group,25-29,perempuan,1022,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+18.05.27,3,Gedung Aji Baru,age_group,25-29,,2061,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+18.05.27,3,Gedung Aji Baru,age_group,30-34,laki_laki,1118,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+18.05.27,3,Gedung Aji Baru,age_group,30-34,perempuan,1014,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+18.05.27,3,Gedung Aji Baru,age_group,30-34,,2132,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+18.05.27,3,Gedung Aji Baru,age_group,35-39,laki_laki,1079,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+18.05.27,3,Gedung Aji Baru,age_group,35-39,perempuan,972,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+18.05.27,3,Gedung Aji Baru,age_group,35-39,,2051,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+18.05.27,3,Gedung Aji Baru,age_group,40-44,laki_laki,987,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+18.05.27,3,Gedung Aji Baru,age_group,40-44,perempuan,1000,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+18.05.27,3,Gedung Aji Baru,age_group,40-44,,1987,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+18.05.27,3,Gedung Aji Baru,age_group,45-49,laki_laki,916,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+18.05.27,3,Gedung Aji Baru,age_group,45-49,perempuan,907,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+18.05.27,3,Gedung Aji Baru,age_group,45-49,,1823,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+18.05.27,3,Gedung Aji Baru,age_group,50-54,laki_laki,896,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+18.05.27,3,Gedung Aji Baru,age_group,50-54,perempuan,870,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+18.05.27,3,Gedung Aji Baru,age_group,50-54,,1766,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+18.05.27,3,Gedung Aji Baru,age_group,55-59,laki_laki,696,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+18.05.27,3,Gedung Aji Baru,age_group,55-59,perempuan,620,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+18.05.27,3,Gedung Aji Baru,age_group,55-59,,1316,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+18.05.27,3,Gedung Aji Baru,age_group,60-64,laki_laki,596,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+18.05.27,3,Gedung Aji Baru,age_group,60-64,perempuan,542,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+18.05.27,3,Gedung Aji Baru,age_group,60-64,,1138,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+18.05.27,3,Gedung Aji Baru,age_group,65-69,laki_laki,449,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+18.05.27,3,Gedung Aji Baru,age_group,65-69,perempuan,366,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+18.05.27,3,Gedung Aji Baru,age_group,65-69,,815,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+18.05.27,3,Gedung Aji Baru,age_group,70-74,laki_laki,326,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+18.05.27,3,Gedung Aji Baru,age_group,70-74,perempuan,268,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+18.05.27,3,Gedung Aji Baru,age_group,70-74,,594,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+18.05.27,3,Gedung Aji Baru,age_group,75+,laki_laki,484,jiwa,2025,registration,total_population,3.2,32,,>75
+18.05.27,3,Gedung Aji Baru,age_group,75+,perempuan,347,jiwa,2025,registration,total_population,3.2,32,,>75
+18.05.27,3,Gedung Aji Baru,age_group,75+,,831,jiwa,2025,registration,total_population,3.2,32,,>75
+18.05.27,3,Gedung Aji Baru,sex,laki_laki,,13930,jiwa,2025,registration,total_population,3.2,32,,Laki-Laki
+18.05.27,3,Gedung Aji Baru,sex,perempuan,,12734,jiwa,2025,registration,total_population,3.2,32,,Perempuan
+18.05.27,3,Gedung Aji Baru,total,total,,26664,jiwa,2025,registration,total_population,3.2,32,,

@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.14.2001,4,Sampiran,sex,laki_laki,,6448,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.14.2001,4,Sampiran,sex,perempuan,,6091,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.14.2001,4,Sampiran,total,total,,12539,jiwa,2025,registration,total_population,3.1,52,,
+32.09.14.2002,4,Ciperna,sex,laki_laki,,3646,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.14.2002,4,Ciperna,sex,perempuan,,3480,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.14.2002,4,Ciperna,total,total,,7126,jiwa,2025,registration,total_population,3.1,52,,
+32.09.14.2003,4,Kecomberan,sex,laki_laki,,4041,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.14.2003,4,Kecomberan,sex,perempuan,,3824,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.14.2003,4,Kecomberan,total,total,,7865,jiwa,2025,registration,total_population,3.1,52,,
+32.09.14.2004,4,Cirebon Girang,sex,laki_laki,,5887,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.14.2004,4,Cirebon Girang,sex,perempuan,,5770,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.14.2004,4,Cirebon Girang,total,total,,11657,jiwa,2025,registration,total_population,3.1,52,,
+32.09.14.2005,4,Kerandon,sex,laki_laki,,2031,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.14.2005,4,Kerandon,sex,perempuan,,1899,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.14.2005,4,Kerandon,total,total,,3930,jiwa,2025,registration,total_population,3.1,52,,
+32.09.14.2006,4,Wanasaba Kidul,sex,laki_laki,,3996,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.14.2006,4,Wanasaba Kidul,sex,perempuan,,3876,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.14.2006,4,Wanasaba Kidul,total,total,,7872,jiwa,2025,registration,total_population,3.1,52,,
+32.09.14.2007,4,Wanasaba Lor,sex,laki_laki,,2429,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.14.2007,4,Wanasaba Lor,sex,perempuan,,2484,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.14.2007,4,Wanasaba Lor,total,total,,4913,jiwa,2025,registration,total_population,3.1,52,,
+32.09.14.2008,4,Cempaka,sex,laki_laki,,4143,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.14.2008,4,Cempaka,sex,perempuan,,3975,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.14.2008,4,Cempaka,total,total,,8118,jiwa,2025,registration,total_population,3.1,52,,
+32.09.14.2009,4,Kepongpongan,sex,laki_laki,,3665,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.14.2009,4,Kepongpongan,sex,perempuan,,3615,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.14.2009,4,Kepongpongan,total,total,,7280,jiwa,2025,registration,total_population,3.1,52,,
+32.09.14.2011,4,Kubang,sex,laki_laki,,1543,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.14.2011,4,Kubang,sex,perempuan,,1547,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.14.2011,4,Kubang,total,total,,3090,jiwa,2025,registration,total_population,3.1,52,,
+32.09.14.2010,4,Sarwadadi,sex,laki_laki,,1404,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.14.2010,4,Sarwadadi,sex,perempuan,,1278,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.14.2010,4,Sarwadadi,total,total,,2682,jiwa,2025,registration,total_population,3.1,52,,
+32.09.14,3,Kecamatan Talun,sex,laki_laki,,39233,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.14,3,Kecamatan Talun,sex,perempuan,,37839,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.14,3,Kecamatan Talun,total,total,,77072,jiwa,2025,registration,total_population,3.1,52,,
+32.09.14,3,Talun,age_group,0-4,laki_laki,2827,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.14,3,Talun,age_group,0-4,perempuan,2645,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.14,3,Talun,age_group,0-4,,5472,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.14,3,Talun,age_group,5-9,laki_laki,3403,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.14,3,Talun,age_group,5-9,perempuan,3291,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.14,3,Talun,age_group,5-9,,6694,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.14,3,Talun,age_group,10-14,laki_laki,3414,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.14,3,Talun,age_group,10-14,perempuan,3072,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.14,3,Talun,age_group,10-14,,6486,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.14,3,Talun,age_group,15-19,laki_laki,3035,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.14,3,Talun,age_group,15-19,perempuan,2910,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.14,3,Talun,age_group,15-19,,5945,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.14,3,Talun,age_group,20-24,laki_laki,3305,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.14,3,Talun,age_group,20-24,perempuan,3169,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.14,3,Talun,age_group,20-24,,6474,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.14,3,Talun,age_group,25-29,laki_laki,3406,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.14,3,Talun,age_group,25-29,perempuan,3190,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.14,3,Talun,age_group,25-29,,6596,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.14,3,Talun,age_group,30-34,laki_laki,3214,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.14,3,Talun,age_group,30-34,perempuan,3112,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.14,3,Talun,age_group,30-34,,6326,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.14,3,Talun,age_group,35-39,laki_laki,3066,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.14,3,Talun,age_group,35-39,perempuan,2844,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.14,3,Talun,age_group,35-39,,5910,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.14,3,Talun,age_group,40-44,laki_laki,3071,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.14,3,Talun,age_group,40-44,perempuan,2940,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.14,3,Talun,age_group,40-44,,6011,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.14,3,Talun,age_group,45-49,laki_laki,2740,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.14,3,Talun,age_group,45-49,perempuan,2751,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.14,3,Talun,age_group,45-49,,5491,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.14,3,Talun,age_group,50-54,laki_laki,2467,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.14,3,Talun,age_group,50-54,perempuan,2366,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.14,3,Talun,age_group,50-54,,4833,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.14,3,Talun,age_group,55-59,laki_laki,1952,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.14,3,Talun,age_group,55-59,perempuan,1890,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.14,3,Talun,age_group,55-59,,3842,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.14,3,Talun,age_group,60-64,laki_laki,1314,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.14,3,Talun,age_group,60-64,perempuan,1333,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.14,3,Talun,age_group,60-64,,2647,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.14,3,Talun,age_group,65-69,laki_laki,898,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.14,3,Talun,age_group,65-69,perempuan,1005,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.14,3,Talun,age_group,65-69,,1903,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.14,3,Talun,age_group,70-74,laki_laki,591,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.14,3,Talun,age_group,70-74,perempuan,591,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.14,3,Talun,age_group,70-74,,1182,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.14,3,Talun,age_group,75+,laki_laki,530,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.14,3,Talun,age_group,75+,perempuan,730,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.14,3,Talun,age_group,75+,,1260,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.14,3,Kecamatan Talun,sex,laki_laki,,39233,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.14,3,Kecamatan Talun,sex,perempuan,,37839,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.14,3,Kecamatan Talun,total,total,,77072,jiwa,2025,registration,total_population,3.2,54,,

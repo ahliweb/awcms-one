@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3304-kecamatan-330406-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.04.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Banjarnegara Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Banjarnegara",
+  "publisherDomain": "3304",
+  "publisherWebsite": "https://banjarnegarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Banjarnegara (https://banjarnegarakab.bps.go.id), publikasi \"Kecamatan Banjarnegara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3304060",
+  "publicationNumber": "33040.26022",
+  "issn": "2598-5345",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banjarnegarakab.bps.go.id/id/publication/2026/09/28/4c1f98515d44bc51f5499280/kecamatan-banjarnegara-dalam-angka-2026.html",
+  "sourceFileSha256": "ac7ed5e67786c4b89d3739c487fcf8ddec65ba0bc8b474c1c21d3f61c62ccd00",
+  "sourceFileBytes": 12808050,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Banjarnegara.",
+  "csvPath": "datasets/bps-3304-kecamatan-330406-dalam-angka-2026.csv",
+  "csvSha256": "89d0b6e67dfacec52096f1ec2862263bf3ee7179fdf73e2b48bff70626891736",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Banjarnegara, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Banjarnegara, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"Jumlah Total\": unmatched "
+  ]
+}

@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.01.08.2009,4,Suka Bandung,sex,laki_laki,,193,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.08.2009,4,Suka Bandung,sex,perempuan,,159,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.08.2009,4,Suka Bandung,total,total,,352,jiwa,2025,registration,total_population,3.1,26,,
+17.01.08.2008,4,Penandingan,sex,laki_laki,,274,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.08.2008,4,Penandingan,sex,perempuan,,269,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.08.2008,4,Penandingan,total,total,,543,jiwa,2025,registration,total_population,3.1,26,,
+17.01.08.2010,4,Maras,sex,laki_laki,,656,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.08.2010,4,Maras,sex,perempuan,,630,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.08.2010,4,Maras,total,total,,1286,jiwa,2025,registration,total_population,3.1,26,,
+17.01.08.2001,4,Keban Jati,sex,laki_laki,,237,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.08.2001,4,Keban Jati,sex,perempuan,,240,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.08.2001,4,Keban Jati,total,total,,477,jiwa,2025,registration,total_population,3.1,26,,
+17.01.08.2002,4,Tanjung Beringin,sex,laki_laki,,625,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.08.2002,4,Tanjung Beringin,sex,perempuan,,589,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.08.2002,4,Tanjung Beringin,total,total,,1214,jiwa,2025,registration,total_population,3.1,26,,
+17.01.08.2005,4,Palak Bengkerung,sex,laki_laki,,1081,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.08.2005,4,Palak Bengkerung,sex,perempuan,,1071,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.08.2005,4,Palak Bengkerung,total,total,,2152,jiwa,2025,registration,total_population,3.1,26,,
+17.01.08.2003,4,Suka Negeri,sex,laki_laki,,1245,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.08.2003,4,Suka Negeri,sex,perempuan,,1203,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.08.2003,4,Suka Negeri,total,total,,2448,jiwa,2025,registration,total_population,3.1,26,,
+17.01.08.2007,4,Pino Baru,sex,laki_laki,,729,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.08.2007,4,Pino Baru,sex,perempuan,,718,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.08.2007,4,Pino Baru,total,total,,1447,jiwa,2025,registration,total_population,3.1,26,,
+17.01.08.2006,4,Suka Maju,sex,laki_laki,,891,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.08.2006,4,Suka Maju,sex,perempuan,,834,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.08.2006,4,Suka Maju,total,total,,1725,jiwa,2025,registration,total_population,3.1,26,,
+17.01.08.2004,4,Sukarami,sex,laki_laki,,1060,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.08.2004,4,Sukarami,sex,perempuan,,979,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.08.2004,4,Sukarami,total,total,,2039,jiwa,2025,registration,total_population,3.1,26,,
+17.01.08,3,Kecamatan Air Nipis,sex,laki_laki,,6991,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+17.01.08,3,Kecamatan Air Nipis,sex,perempuan,,6692,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+17.01.08,3,Kecamatan Air Nipis,total,total,,13683,jiwa,2025,registration,total_population,3.1,26,,

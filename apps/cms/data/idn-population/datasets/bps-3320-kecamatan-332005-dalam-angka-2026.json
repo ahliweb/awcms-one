@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-3320-kecamatan-332005-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.20.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Batealit Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Jepara",
+  "publisherDomain": "3320",
+  "publisherWebsite": "https://jeparakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Jepara (https://jeparakab.bps.go.id), publikasi \"Kecamatan Batealit Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3320060",
+  "publicationNumber": "33200.26013",
+  "issn": "2614-9036",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jeparakab.bps.go.id/id/publication/2026/09/28/37993a5fb5c5afc025b1ce63/kecamatan-batealit-dalam-angka-2026.html",
+  "sourceFileSha256": "cec8a8347fe4eba61cda7a16df42ffe5277d5bb7b490e299f405074db301ba85",
+  "sourceFileBytes": 12741638,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jepara.",
+  "csvPath": "datasets/bps-3320-kecamatan-332005-dalam-angka-2026.csv",
+  "csvSha256": "4288bae6bdfe246ee129a980ae0b0e0fbc61e1b0531def8898d46c2aeb088ce3",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Batealit, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"001 Ngasem 5.772\": unmatched ",
+    "table 3.1: row not stored: row \"002 Geneng 2.896\": unmatched ",
+    "table 3.1: row not stored: row \"003 Raguklampitan 5.119\": unmatched ",
+    "table 3.1: row not stored: row \"004 Mindahan Kidul 3.807\": unmatched ",
+    "table 3.1: row not stored: row \"005 Mindahan 4.554\": unmatched ",
+    "table 3.1: row not stored: row \"006 Somosari 2.672\": unmatched ",
+    "table 3.1: row not stored: row \"007 Batealit 2.598\": unmatched ",
+    "table 3.1: row not stored: row \"008 Bringin 3.654\": unmatched ",
+    "table 3.1: row not stored: row \"009 Bantrung 3.386\": unmatched ",
+    "table 3.1: row not stored: row \"010 Bawu 8.286\": unmatched ",
+    "table 3.1: row not stored: row \"011 Pekalongan 4.326\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Batealit 47.070\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

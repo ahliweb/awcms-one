@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.06.15.2001,4,Kalinongko,sex,perempuan,,1105,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2001,4,Kalinongko,total,total,,2238,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15.2002,4,Trirejo,sex,perempuan,,1400,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2002,4,Trirejo,total,total,,2798,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15.2003,4,Karangrejo,sex,perempuan,,799,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2003,4,Karangrejo,total,total,,1594,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15.2004,4,Kalikalong,sex,perempuan,,487,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2004,4,Kalikalong,total,total,,993,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15.2005,4,Rimun,sex,perempuan,,525,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2005,4,Rimun,total,total,,1030,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15.2006,4,Tepansari,sex,perempuan,,856,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2006,4,Tepansari,total,total,,1783,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15.2007,4,Kali Glagah,sex,perempuan,,412,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2007,4,Kali Glagah,total,total,,859,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15.2008,4,Tridadi,sex,perempuan,,522,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2008,4,Tridadi,total,total,,1046,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15.2009,4,Banyuasin Separe,sex,perempuan,,1045,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2009,4,Banyuasin Separe,total,total,,2112,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15.2010,4,Guyangan,sex,perempuan,,442,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2010,4,Guyangan,total,total,,919,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15.2011,4,Kalisemo,sex,perempuan,,1009,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2011,4,Kalisemo,total,total,,2032,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15.2012,4,Loano,sex,perempuan,,1967,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2012,4,Loano,total,total,,3817,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15.2013,4,Jetis,sex,perempuan,,1341,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2013,4,Jetis,total,total,,2674,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15.2015,4,Maron,sex,perempuan,,1325,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2015,4,Maron,total,total,,2691,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15.2014,4,Kedungpoh,sex,perempuan,,1104,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2014,4,Kedungpoh,total,total,,2260,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15.2016,4,Kebongunung,sex,perempuan,,1062,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2016,4,Kebongunung,total,total,,2101,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15.2017,4,Mudalrejo,sex,perempuan,,1267,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2017,4,Mudalrejo,total,total,,2576,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15.2018,4,Kemejing,sex,perempuan,,663,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2018,4,Kemejing,total,total,,1379,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15.2019,4,Banyuasin Kembaran,sex,perempuan,,987,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2019,4,Banyuasin Kembaran,total,total,,2009,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15.2020,4,Sedayu,sex,perempuan,,870,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2020,4,Sedayu,total,total,,1748,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15.2021,4,Ngargosari,sex,perempuan,,547,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15.2021,4,Ngargosari,total,total,,1139,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15,3,Kecamatan Loano,sex,perempuan,,19735,jiwa,2025,registration,total_population,3.1,19,,Perempuan/Female
+33.06.15,3,Kecamatan Loano,total,total,,39798,jiwa,2025,registration,total_population,3.1,19,,
+33.06.15,3,Loano,age_group,0-4,perempuan,1083,jiwa,2025,registration,total_population,3.2,21,,0–4
+33.06.15,3,Loano,age_group,0-4,,2286,jiwa,2025,registration,total_population,3.2,21,,0–4
+33.06.15,3,Loano,age_group,5-9,perempuan,1348,jiwa,2025,registration,total_population,3.2,21,,5–9
+33.06.15,3,Loano,age_group,5-9,,2731,jiwa,2025,registration,total_population,3.2,21,,5–9
+33.06.15,3,Loano,age_group,10-14,perempuan,1430,jiwa,2025,registration,total_population,3.2,21,,10–14
+33.06.15,3,Loano,age_group,10-14,,2928,jiwa,2025,registration,total_population,3.2,21,,10–14
+33.06.15,3,Loano,age_group,15-19,perempuan,1434,jiwa,2025,registration,total_population,3.2,21,,15–19
+33.06.15,3,Loano,age_group,15-19,,2969,jiwa,2025,registration,total_population,3.2,21,,15–19
+33.06.15,3,Loano,age_group,20-24,perempuan,1487,jiwa,2025,registration,total_population,3.2,21,,20–24
+33.06.15,3,Loano,age_group,20-24,,3043,jiwa,2025,registration,total_population,3.2,21,,20–24
+33.06.15,3,Loano,age_group,25-29,perempuan,1442,jiwa,2025,registration,total_population,3.2,21,,25–29
+33.06.15,3,Loano,age_group,25-29,,2949,jiwa,2025,registration,total_population,3.2,21,,25–29
+33.06.15,3,Loano,age_group,30-34,perempuan,1290,jiwa,2025,registration,total_population,3.2,21,,30–34
+33.06.15,3,Loano,age_group,30-34,,2690,jiwa,2025,registration,total_population,3.2,21,,30–34
+33.06.15,3,Loano,age_group,35-39,perempuan,1352,jiwa,2025,registration,total_population,3.2,21,,35–39
+33.06.15,3,Loano,age_group,35-39,,2679,jiwa,2025,registration,total_population,3.2,21,,35–39
+33.06.15,3,Loano,age_group,40-44,perempuan,1327,jiwa,2025,registration,total_population,3.2,21,,40–44
+33.06.15,3,Loano,age_group,40-44,,2791,jiwa,2025,registration,total_population,3.2,21,,40–44
+33.06.15,3,Loano,age_group,45-49,perempuan,1321,jiwa,2025,registration,total_population,3.2,21,,45–49
+33.06.15,3,Loano,age_group,45-49,,2635,jiwa,2025,registration,total_population,3.2,21,,45–49
+33.06.15,3,Loano,age_group,50-54,perempuan,1239,jiwa,2025,registration,total_population,3.2,21,,50–54
+33.06.15,3,Loano,age_group,50-54,,2408,jiwa,2025,registration,total_population,3.2,21,,50–54
+33.06.15,3,Loano,age_group,55-59,perempuan,1344,jiwa,2025,registration,total_population,3.2,21,,55–59
+33.06.15,3,Loano,age_group,55-59,,2583,jiwa,2025,registration,total_population,3.2,21,,55–59
+33.06.15,3,Loano,age_group,60-64,perempuan,1200,jiwa,2025,registration,total_population,3.2,21,,60–64
+33.06.15,3,Loano,age_group,60-64,,2350,jiwa,2025,registration,total_population,3.2,21,,60–64
+33.06.15,3,Loano,age_group,65-69,perempuan,1052,jiwa,2025,registration,total_population,3.2,21,,65–69
+33.06.15,3,Loano,age_group,65-69,,2112,jiwa,2025,registration,total_population,3.2,21,,65–69
+33.06.15,3,Loano,age_group,70-74,perempuan,610,jiwa,2025,registration,total_population,3.2,21,,70–74
+33.06.15,3,Loano,age_group,70-74,,1264,jiwa,2025,registration,total_population,3.2,21,,70–74
+33.06.15,3,Loano,age_group,75+,perempuan,776,jiwa,2025,registration,total_population,3.2,21,,75+
+33.06.15,3,Loano,age_group,75+,,1380,jiwa,2025,registration,total_population,3.2,21,,75+
+33.06.15,3,Kecamatan Loano,sex,perempuan,,19735,jiwa,2025,registration,total_population,3.2,21,,Perempuan
+33.06.15,3,Kecamatan Loano,total,total,,39798,jiwa,2025,registration,total_population,3.2,21,,

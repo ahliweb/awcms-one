@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.02.02.2009,4,Pulau Seliu,sex,laki_laki,,573,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.02.2009,4,Pulau Seliu,sex,perempuan,,502,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.02.2009,4,Pulau Seliu,total,total,,1075,jiwa,2025,registration,total_population,3.1,27,,
+19.02.02.2001,4,Membalong,sex,laki_laki,,2611,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.02.2001,4,Membalong,sex,perempuan,,2504,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.02.2001,4,Membalong,total,total,,5115,jiwa,2025,registration,total_population,3.1,27,,
+19.02.02.2008,4,Mentigi,sex,laki_laki,,731,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.02.2008,4,Mentigi,sex,perempuan,,719,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.02.2008,4,Mentigi,total,total,,1450,jiwa,2025,registration,total_population,3.1,27,,
+19.02.02.2007,4,Tanjung Rusa,sex,laki_laki,,1102,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.02.2007,4,Tanjung Rusa,sex,perempuan,,1079,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.02.2007,4,Tanjung Rusa,total,total,,2181,jiwa,2025,registration,total_population,3.1,27,,
+19.02.02.2005,4,Kembiri,sex,laki_laki,,1543,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.02.2005,4,Kembiri,sex,perempuan,,1457,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.02.2005,4,Kembiri,total,total,,3000,jiwa,2025,registration,total_population,3.1,27,,
+19.02.02.2002,4,Perpat,sex,laki_laki,,1012,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.02.2002,4,Perpat,sex,perempuan,,953,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.02.2002,4,Perpat,total,total,,1965,jiwa,2025,registration,total_population,3.1,27,,
+19.02.02.2003,4,Lassar,sex,laki_laki,,1830,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.02.2003,4,Lassar,sex,perempuan,,1660,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.02.2003,4,Lassar,total,total,,3490,jiwa,2025,registration,total_population,3.1,27,,
+19.02.02.2004,4,Simpang Rusa,sex,laki_laki,,1640,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.02.2004,4,Simpang Rusa,sex,perempuan,,1491,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.02.2004,4,Simpang Rusa,total,total,,3131,jiwa,2025,registration,total_population,3.1,27,,
+19.02.02.2006,4,Bantan,sex,laki_laki,,1501,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.02.2006,4,Bantan,sex,perempuan,,1424,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.02.2006,4,Bantan,total,total,,2925,jiwa,2025,registration,total_population,3.1,27,,
+19.02.02.2010,4,Pulau Sumedang,sex,laki_laki,,267,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.02.2010,4,Pulau Sumedang,sex,perempuan,,289,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.02.2010,4,Pulau Sumedang,total,total,,556,jiwa,2025,registration,total_population,3.1,27,,
+19.02.02.2011,4,Gunung Riting,sex,laki_laki,,721,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.02.2011,4,Gunung Riting,sex,perempuan,,678,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.02.2011,4,Gunung Riting,total,total,,1399,jiwa,2025,registration,total_population,3.1,27,,
+19.02.02.2012,4,Padang Kandis,sex,laki_laki,,679,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.02.2012,4,Padang Kandis,sex,perempuan,,649,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.02.2012,4,Padang Kandis,total,total,,1328,jiwa,2025,registration,total_population,3.1,27,,
+19.02.02,3,Kecamatan Membalong,sex,laki_laki,,14210,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+19.02.02,3,Kecamatan Membalong,sex,perempuan,,13405,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+19.02.02,3,Kecamatan Membalong,total,total,,27615,jiwa,2025,registration,total_population,3.1,27,,
+19.02.02,3,Membalong,age_group,0-4,laki_laki,891,jiwa,2025,registration,total_population,3.2,29,,0–4
+19.02.02,3,Membalong,age_group,0-4,perempuan,790,jiwa,2025,registration,total_population,3.2,29,,0–4
+19.02.02,3,Membalong,age_group,0-4,,1681,jiwa,2025,registration,total_population,3.2,29,,0–4
+19.02.02,3,Membalong,age_group,5-9,laki_laki,1019,jiwa,2025,registration,total_population,3.2,29,,5–9
+19.02.02,3,Membalong,age_group,5-9,perempuan,968,jiwa,2025,registration,total_population,3.2,29,,5–9
+19.02.02,3,Membalong,age_group,5-9,,1987,jiwa,2025,registration,total_population,3.2,29,,5–9
+19.02.02,3,Membalong,age_group,10-14,laki_laki,1072,jiwa,2025,registration,total_population,3.2,29,,10–14
+19.02.02,3,Membalong,age_group,10-14,perempuan,1083,jiwa,2025,registration,total_population,3.2,29,,10–14
+19.02.02,3,Membalong,age_group,10-14,,2155,jiwa,2025,registration,total_population,3.2,29,,10–14
+19.02.02,3,Membalong,age_group,15-19,laki_laki,1087,jiwa,2025,registration,total_population,3.2,29,,15–19
+19.02.02,3,Membalong,age_group,15-19,perempuan,1062,jiwa,2025,registration,total_population,3.2,29,,15–19
+19.02.02,3,Membalong,age_group,15-19,,2149,jiwa,2025,registration,total_population,3.2,29,,15–19
+19.02.02,3,Membalong,age_group,20-24,laki_laki,1117,jiwa,2025,registration,total_population,3.2,29,,20–24
+19.02.02,3,Membalong,age_group,20-24,perempuan,1036,jiwa,2025,registration,total_population,3.2,29,,20–24
+19.02.02,3,Membalong,age_group,20-24,,2153,jiwa,2025,registration,total_population,3.2,29,,20–24
+19.02.02,3,Membalong,age_group,25-29,laki_laki,1146,jiwa,2025,registration,total_population,3.2,29,,25–29
+19.02.02,3,Membalong,age_group,25-29,perempuan,1103,jiwa,2025,registration,total_population,3.2,29,,25–29
+19.02.02,3,Membalong,age_group,25-29,,2249,jiwa,2025,registration,total_population,3.2,29,,25–29
+19.02.02,3,Membalong,age_group,30-34,laki_laki,1157,jiwa,2025,registration,total_population,3.2,29,,30–34
+19.02.02,3,Membalong,age_group,30-34,perempuan,988,jiwa,2025,registration,total_population,3.2,29,,30–34
+19.02.02,3,Membalong,age_group,30-34,,2145,jiwa,2025,registration,total_population,3.2,29,,30–34
+19.02.02,3,Membalong,age_group,35-39,laki_laki,1110,jiwa,2025,registration,total_population,3.2,29,,35–39
+19.02.02,3,Membalong,age_group,35-39,perempuan,981,jiwa,2025,registration,total_population,3.2,29,,35–39
+19.02.02,3,Membalong,age_group,35-39,,2091,jiwa,2025,registration,total_population,3.2,29,,35–39
+19.02.02,3,Membalong,age_group,40-44,laki_laki,1268,jiwa,2025,registration,total_population,3.2,29,,40–44
+19.02.02,3,Membalong,age_group,40-44,perempuan,1207,jiwa,2025,registration,total_population,3.2,29,,40–44
+19.02.02,3,Membalong,age_group,40-44,,2475,jiwa,2025,registration,total_population,3.2,29,,40–44
+19.02.02,3,Membalong,age_group,45-49,laki_laki,1202,jiwa,2025,registration,total_population,3.2,29,,45–49
+19.02.02,3,Membalong,age_group,45-49,perempuan,1089,jiwa,2025,registration,total_population,3.2,29,,45–49
+19.02.02,3,Membalong,age_group,45-49,,2291,jiwa,2025,registration,total_population,3.2,29,,45–49
+19.02.02,3,Membalong,age_group,50-54,laki_laki,942,jiwa,2025,registration,total_population,3.2,29,,50–54
+19.02.02,3,Membalong,age_group,50-54,perempuan,827,jiwa,2025,registration,total_population,3.2,29,,50–54
+19.02.02,3,Membalong,age_group,50-54,,1769,jiwa,2025,registration,total_population,3.2,29,,50–54
+19.02.02,3,Membalong,age_group,55-59,laki_laki,723,jiwa,2025,registration,total_population,3.2,29,,55–59
+19.02.02,3,Membalong,age_group,55-59,perempuan,640,jiwa,2025,registration,total_population,3.2,29,,55–59
+19.02.02,3,Membalong,age_group,55-59,,1363,jiwa,2025,registration,total_population,3.2,29,,55–59
+19.02.02,3,Membalong,age_group,60-64,laki_laki,583,jiwa,2025,registration,total_population,3.2,29,,60–64
+19.02.02,3,Membalong,age_group,60-64,perempuan,535,jiwa,2025,registration,total_population,3.2,29,,60–64
+19.02.02,3,Membalong,age_group,60-64,,1118,jiwa,2025,registration,total_population,3.2,29,,60–64
+19.02.02,3,Membalong,age_group,65-69,laki_laki,427,jiwa,2025,registration,total_population,3.2,29,,65–69
+19.02.02,3,Membalong,age_group,65-69,perempuan,439,jiwa,2025,registration,total_population,3.2,29,,65–69
+19.02.02,3,Membalong,age_group,65-69,,866,jiwa,2025,registration,total_population,3.2,29,,65–69
+19.02.02,3,Membalong,age_group,70-74,laki_laki,241,jiwa,2025,registration,total_population,3.2,29,,70–74
+19.02.02,3,Membalong,age_group,70-74,perempuan,302,jiwa,2025,registration,total_population,3.2,29,,70–74
+19.02.02,3,Membalong,age_group,70-74,,543,jiwa,2025,registration,total_population,3.2,29,,70–74
+19.02.02,3,Membalong,age_group,75+,laki_laki,225,jiwa,2025,registration,total_population,3.2,29,,75+
+19.02.02,3,Membalong,age_group,75+,perempuan,355,jiwa,2025,registration,total_population,3.2,29,,75+
+19.02.02,3,Membalong,age_group,75+,,580,jiwa,2025,registration,total_population,3.2,29,,75+
+19.02.02,3,Kecamatan Membalong,sex,laki_laki,,14210,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+19.02.02,3,Kecamatan Membalong,sex,perempuan,,13405,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+19.02.02,3,Kecamatan Membalong,total,total,,27615,jiwa,2025,registration,total_population,3.2,29,,

@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.07.08.2003,4,Teluk Majelis,sex,perempuan,,1251,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+15.07.08.2003,4,Teluk Majelis,total,total,,2571,jiwa,2025,registration,total_population,3.1,27,,
+15.07.08.2004,4,Kuala Lagan,sex,perempuan,,459,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+15.07.08.2004,4,Kuala Lagan,total,total,,932,jiwa,2025,registration,total_population,3.1,27,,
+15.07.08.2005,4,Majelis Hidayah,sex,perempuan,,1103,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+15.07.08.2005,4,Majelis Hidayah,total,total,,2354,jiwa,2025,registration,total_population,3.1,27,,
+15.07.08.2006,4,Manunggal Makmur,sex,perempuan,,262,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+15.07.08.2006,4,Manunggal Makmur,total,total,,550,jiwa,2025,registration,total_population,3.1,27,,
+15.07.08.1001,4,Kampung Laut,sex,perempuan,,2102,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+15.07.08.1001,4,Kampung Laut,total,total,,4356,jiwa,2025,registration,total_population,3.1,27,,
+15.07.08.1002,4,Tanjung Solok,sex,perempuan,,2058,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+15.07.08.1002,4,Tanjung Solok,total,total,,4283,jiwa,2025,registration,total_population,3.1,27,,

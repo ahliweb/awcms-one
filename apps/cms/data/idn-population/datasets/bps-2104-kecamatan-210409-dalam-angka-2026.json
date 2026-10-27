@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-2104-kecamatan-210409-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.04.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Singkep Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lingga",
+  "publisherDomain": "2104",
+  "publisherWebsite": "https://linggakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lingga (https://linggakab.bps.go.id), publikasi \"Kecamatan Singkep Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2104021",
+  "publicationNumber": "21040.26009",
+  "issn": "2656-2642",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://linggakab.bps.go.id/id/publication/2026/09/28/4ab5e16310aa0cd742afd1f9/kecamatan-singkep-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "49c41f17b4d97d1997b0b453e93d92703ac9ec27da909c906ffb0034afad7d9e",
+  "sourceFileBytes": 11248725,
+  "sourcePages": [19, 20],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lingga.",
+  "csvPath": "datasets/bps-2104-kecamatan-210409-dalam-angka-2026.csv",
+  "csvSha256": "8874674af1dc59ff2b8772a842e5499a12bea01ecc92d284bc82880449c66e0a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Singkep Selatan, 2025",
+      "printedPages": [19, 20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,245 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.08.01,3,Martapura,total,total,,61247,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08.11,3,Bunga Mayang,total,total,,19295,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08.16,3,Jaya Pura,total,total,,17469,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08.05,3,Buay Pemuka Peliung,total,total,,36991,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08.02,3,Buay Madang,total,total,,39853,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08.12,3,Buay Madang Timur,total,total,,60085,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08.20,3,Buay Pemuka Bangsa Raja,total,total,,13079,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08.06,3,Madang Suku II,total,total,,32885,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08.13,3,Madang Suku III,total,total,,25880,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08.07,3,Madang Suku I,total,total,,39552,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08.18,3,Belitang Madang Raya,total,total,,48689,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08.03,3,Belitang,total,total,,55014,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08.17,3,Belitang Jaya,total,total,,21987,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08.10,3,Belitang III,total,total,,37799,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08.09,3,Belitang II,total,total,,45254,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08.19,3,Belitang Mulya,total,total,,22178,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08.08,3,Semendawai Suku III,total,total,,42546,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08.15,3,Semendawai Timur,total,total,,36843,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08.04,3,Cempaka,total,total,,26981,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08.14,3,Semendawai Barat,total,total,,22707,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08,2,Ogan Komering Ulu Timur,total,total,,706334,jiwa,2025,registration,total_population,3.1.1,44,,
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,0-4,laki_laki,22249,jiwa,2025,registration,total_population,3.1.2,47,,0–4
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,0-4,perempuan,20916,jiwa,2025,registration,total_population,3.1.2,47,,0–4
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,0-4,,43165,jiwa,2025,registration,total_population,3.1.2,47,,0–4
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,5-9,laki_laki,30463,jiwa,2025,registration,total_population,3.1.2,47,,5–9
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,5-9,perempuan,28340,jiwa,2025,registration,total_population,3.1.2,47,,5–9
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,5-9,,58803,jiwa,2025,registration,total_population,3.1.2,47,,5–9
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,10-14,laki_laki,32403,jiwa,2025,registration,total_population,3.1.2,47,,10–14
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,10-14,perempuan,30589,jiwa,2025,registration,total_population,3.1.2,47,,10–14
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,10-14,,62992,jiwa,2025,registration,total_population,3.1.2,47,,10–14
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,15-19,laki_laki,28660,jiwa,2025,registration,total_population,3.1.2,47,,15–19
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,15-19,perempuan,27420,jiwa,2025,registration,total_population,3.1.2,47,,15–19
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,15-19,,56080,jiwa,2025,registration,total_population,3.1.2,47,,15–19
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,20-24,laki_laki,27599,jiwa,2025,registration,total_population,3.1.2,47,,20–24
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,20-24,perempuan,26646,jiwa,2025,registration,total_population,3.1.2,47,,20–24
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,20-24,,54245,jiwa,2025,registration,total_population,3.1.2,47,,20–24
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,25-29,laki_laki,26538,jiwa,2025,registration,total_population,3.1.2,47,,25–29
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,25-29,perempuan,25484,jiwa,2025,registration,total_population,3.1.2,47,,25–29
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,25-29,,52022,jiwa,2025,registration,total_population,3.1.2,47,,25–29
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,30-34,laki_laki,25050,jiwa,2025,registration,total_population,3.1.2,47,,30–34
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,30-34,perempuan,24355,jiwa,2025,registration,total_population,3.1.2,47,,30–34
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,30-34,,49405,jiwa,2025,registration,total_population,3.1.2,47,,30–34
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,35-39,laki_laki,26889,jiwa,2025,registration,total_population,3.1.2,47,,35–39
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,35-39,perempuan,26508,jiwa,2025,registration,total_population,3.1.2,47,,35–39
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,35-39,,53397,jiwa,2025,registration,total_population,3.1.2,47,,35–39
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,40-44,laki_laki,28191,jiwa,2025,registration,total_population,3.1.2,47,,40–44
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,40-44,perempuan,27254,jiwa,2025,registration,total_population,3.1.2,47,,40–44
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,40-44,,55445,jiwa,2025,registration,total_population,3.1.2,47,,40–44
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,45-49,laki_laki,27115,jiwa,2025,registration,total_population,3.1.2,47,,45–49
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,45-49,perempuan,25669,jiwa,2025,registration,total_population,3.1.2,47,,45–49
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,45-49,,52784,jiwa,2025,registration,total_population,3.1.2,47,,45–49
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,50-54,laki_laki,22596,jiwa,2025,registration,total_population,3.1.2,47,,50–54
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,50-54,perempuan,21701,jiwa,2025,registration,total_population,3.1.2,47,,50–54
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,50-54,,44297,jiwa,2025,registration,total_population,3.1.2,47,,50–54
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,55-59,laki_laki,18126,jiwa,2025,registration,total_population,3.1.2,47,,55–59
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,55-59,perempuan,17358,jiwa,2025,registration,total_population,3.1.2,47,,55–59
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,55-59,,35484,jiwa,2025,registration,total_population,3.1.2,47,,55–59
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,60-64,laki_laki,15328,jiwa,2025,registration,total_population,3.1.2,47,,60–64
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,60-64,perempuan,14813,jiwa,2025,registration,total_population,3.1.2,47,,60–64
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,60-64,,30141,jiwa,2025,registration,total_population,3.1.2,47,,60–64
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,65-69,laki_laki,11572,jiwa,2025,registration,total_population,3.1.2,47,,65–69
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,65-69,perempuan,11079,jiwa,2025,registration,total_population,3.1.2,47,,65–69
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,65-69,,22651,jiwa,2025,registration,total_population,3.1.2,47,,65–69
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,70-74,laki_laki,7848,jiwa,2025,registration,total_population,3.1.2,47,,70–74
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,70-74,perempuan,7087,jiwa,2025,registration,total_population,3.1.2,47,,70–74
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,70-74,,14935,jiwa,2025,registration,total_population,3.1.2,47,,70–74
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,75+,laki_laki,10088,jiwa,2025,registration,total_population,3.1.2,47,,75+
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,75+,perempuan,10400,jiwa,2025,registration,total_population,3.1.2,47,,75+
+16.08,2,Kabupaten Ogan Komering Ulu Timur,age_group,75+,,20488,jiwa,2025,registration,total_population,3.1.2,47,,75+
+16.08,2,Ogan Komering Ulu Timur,sex,laki_laki,,360715,jiwa,2025,registration,total_population,3.1.2,47,,Laki-Laki
+16.08,2,Ogan Komering Ulu Timur,sex,perempuan,,345619,jiwa,2025,registration,total_population,3.1.2,47,,Perempuan
+16.08,2,Ogan Komering Ulu Timur,total,total,,706334,jiwa,2025,registration,total_population,3.1.2,47,,
+16.08.01,3,Martapura,religion,islam,,60535,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08.01,3,Martapura,religion,kristen,,431,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08.01,3,Martapura,religion,katolik,,242,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08.01,3,Martapura,religion,hindu,,29,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08.01,3,Martapura,religion,buddha,,10,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+16.08.01,3,Martapura,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+16.08.11,3,Bunga Mayang,religion,islam,,18242,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08.11,3,Bunga Mayang,religion,kristen,,667,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08.11,3,Bunga Mayang,religion,katolik,,50,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08.11,3,Bunga Mayang,religion,hindu,,334,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08.11,3,Bunga Mayang,religion,buddha,,2,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+16.08.11,3,Bunga Mayang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+16.08.16,3,Jaya Pura,religion,islam,,16949,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08.16,3,Jaya Pura,religion,kristen,,198,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08.16,3,Jaya Pura,religion,katolik,,34,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08.16,3,Jaya Pura,religion,hindu,,283,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08.16,3,Jaya Pura,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+16.08.16,3,Jaya Pura,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+16.08.05,3,Buay Pemuka Peliung,religion,islam,,35518,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08.05,3,Buay Pemuka Peliung,religion,kristen,,126,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08.05,3,Buay Pemuka Peliung,religion,katolik,,820,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08.05,3,Buay Pemuka Peliung,religion,hindu,,527,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08.05,3,Buay Pemuka Peliung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Budha
+16.08.05,3,Buay Pemuka Peliung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+16.08.02,3,Buay Madang,religion,islam,,38595,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08.02,3,Buay Madang,religion,kristen,,599,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08.02,3,Buay Madang,religion,katolik,,585,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08.02,3,Buay Madang,religion,hindu,,62,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08.02,3,Buay Madang,religion,buddha,,12,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+16.08.02,3,Buay Madang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+16.08.12,3,Buay Madang Timur,religion,islam,,57020,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08.12,3,Buay Madang Timur,religion,kristen,,480,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08.12,3,Buay Madang Timur,religion,katolik,,981,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08.12,3,Buay Madang Timur,religion,hindu,,1599,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08.12,3,Buay Madang Timur,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+16.08.12,3,Buay Madang Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+16.08.20,3,Buay Pemuka Bangsa Raja,religion,islam,,12865,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08.20,3,Buay Pemuka Bangsa Raja,religion,kristen,,82,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08.20,3,Buay Pemuka Bangsa Raja,religion,katolik,,4,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08.20,3,Buay Pemuka Bangsa Raja,religion,hindu,,128,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08.20,3,Buay Pemuka Bangsa Raja,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Budha
+16.08.20,3,Buay Pemuka Bangsa Raja,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+16.08.06,3,Madang Suku II,religion,islam,,32596,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08.06,3,Madang Suku II,religion,kristen,,143,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08.06,3,Madang Suku II,religion,katolik,,129,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08.06,3,Madang Suku II,religion,hindu,,17,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08.06,3,Madang Suku II,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Budha
+16.08.06,3,Madang Suku II,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+16.08.13,3,Madang Suku III,religion,islam,,22652,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08.13,3,Madang Suku III,religion,kristen,,804,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08.13,3,Madang Suku III,religion,katolik,,71,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08.13,3,Madang Suku III,religion,hindu,,2352,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08.13,3,Madang Suku III,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+16.08.13,3,Madang Suku III,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+16.08.07,3,Madang Suku I,religion,islam,,39066,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08.07,3,Madang Suku I,religion,kristen,,298,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08.07,3,Madang Suku I,religion,katolik,,187,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08.07,3,Madang Suku I,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08.07,3,Madang Suku I,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Budha
+16.08.07,3,Madang Suku I,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+16.08.18,3,Belitang Madang Raya,religion,islam,,47465,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08.18,3,Belitang Madang Raya,religion,kristen,,212,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08.18,3,Belitang Madang Raya,religion,katolik,,943,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08.18,3,Belitang Madang Raya,religion,hindu,,15,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08.18,3,Belitang Madang Raya,religion,buddha,,54,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+16.08.18,3,Belitang Madang Raya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+16.08.03,3,Belitang,religion,islam,,52720,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08.03,3,Belitang,religion,kristen,,584,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08.03,3,Belitang,religion,katolik,,1649,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08.03,3,Belitang,religion,hindu,,17,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08.03,3,Belitang,religion,buddha,,43,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+16.08.03,3,Belitang,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,104,,Lainnya
+16.08.17,3,Belitang Jaya,religion,islam,,21217,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08.17,3,Belitang Jaya,religion,kristen,,414,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08.17,3,Belitang Jaya,religion,katolik,,351,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08.17,3,Belitang Jaya,religion,hindu,,5,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08.17,3,Belitang Jaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Budha
+16.08.17,3,Belitang Jaya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+16.08.10,3,Belitang III,religion,islam,,33409,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08.10,3,Belitang III,religion,kristen,,296,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08.10,3,Belitang III,religion,katolik,,1551,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08.10,3,Belitang III,religion,hindu,,2378,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08.10,3,Belitang III,religion,buddha,,165,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+16.08.10,3,Belitang III,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+16.08.09,3,Belitang II,religion,islam,,39388,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08.09,3,Belitang II,religion,kristen,,1163,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08.09,3,Belitang II,religion,katolik,,1031,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08.09,3,Belitang II,religion,hindu,,3494,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08.09,3,Belitang II,religion,buddha,,178,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+16.08.09,3,Belitang II,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+16.08.19,3,Belitang Mulya,religion,islam,,21395,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08.19,3,Belitang Mulya,religion,kristen,,128,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08.19,3,Belitang Mulya,religion,katolik,,613,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08.19,3,Belitang Mulya,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08.19,3,Belitang Mulya,religion,buddha,,39,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+16.08.19,3,Belitang Mulya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+16.08.08,3,Semendawai Suku III,religion,islam,,41494,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08.08,3,Semendawai Suku III,religion,kristen,,65,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08.08,3,Semendawai Suku III,religion,katolik,,877,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08.08,3,Semendawai Suku III,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08.08,3,Semendawai Suku III,religion,buddha,,104,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+16.08.08,3,Semendawai Suku III,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+16.08.15,3,Semendawai Timur,religion,islam,,30219,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08.15,3,Semendawai Timur,religion,kristen,,395,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08.15,3,Semendawai Timur,religion,katolik,,408,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08.15,3,Semendawai Timur,religion,hindu,,5821,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08.15,3,Semendawai Timur,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Budha
+16.08.15,3,Semendawai Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+16.08.04,3,Cempaka,religion,islam,,26740,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08.04,3,Cempaka,religion,kristen,,43,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08.04,3,Cempaka,religion,katolik,,60,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08.04,3,Cempaka,religion,hindu,,137,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08.04,3,Cempaka,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+16.08.04,3,Cempaka,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+16.08.14,3,Semendawai Barat,religion,islam,,22581,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08.14,3,Semendawai Barat,religion,kristen,,61,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08.14,3,Semendawai Barat,religion,katolik,,25,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08.14,3,Semendawai Barat,religion,hindu,,39,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08.14,3,Semendawai Barat,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+16.08.14,3,Semendawai Barat,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+16.08,2,Ogan Komering Ulu Timur,religion,islam,,670666,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+16.08,2,Ogan Komering Ulu Timur,religion,kristen,,7189,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+16.08,2,Ogan Komering Ulu Timur,religion,katolik,,10611,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+16.08,2,Ogan Komering Ulu Timur,religion,hindu,,17247,jiwa,2025,registration,total_population,4.3.1,104,,Hindu
+16.08,2,Ogan Komering Ulu Timur,religion,buddha,,620,jiwa,2025,registration,total_population,4.3.1,104,,Budha
+16.08,2,Ogan Komering Ulu Timur,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,104,,Lainnya
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/padi_padian,,83953,rupiah,2025,survey_estimate,per_capita,10.1,228,,Padi-padian
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/padi_padian,,93049,rupiah,2024,survey_estimate,per_capita,10.1,228,,Padi-padian
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/umbi_umbian,,6989,rupiah,2025,survey_estimate,per_capita,10.1,228,,Umbi-umbian
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/umbi_umbian,,7104,rupiah,2024,survey_estimate,per_capita,10.1,228,,Umbi-umbian
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,62243,rupiah,2025,survey_estimate,per_capita,10.1,228,,Ikan/udang/cumi/kerang
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,64144,rupiah,2024,survey_estimate,per_capita,10.1,228,,Ikan/udang/cumi/kerang
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/daging,,33900,rupiah,2025,survey_estimate,per_capita,10.1,228,,Daging
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/daging,,32481,rupiah,2024,survey_estimate,per_capita,10.1,228,,Daging
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/telur_dan_susu,,39224,rupiah,2025,survey_estimate,per_capita,10.1,228,,Telur dan susu
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/telur_dan_susu,,40611,rupiah,2024,survey_estimate,per_capita,10.1,228,,Telur dan susu
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/sayur_sayuran,,66205,rupiah,2025,survey_estimate,per_capita,10.1,228,,Sayur-sayuran
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/sayur_sayuran,,65577,rupiah,2024,survey_estimate,per_capita,10.1,228,,Sayur-sayuran
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/kacang_kacangan,,12036,rupiah,2025,survey_estimate,per_capita,10.1,228,,Kacang-kacangan
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/kacang_kacangan,,12385,rupiah,2024,survey_estimate,per_capita,10.1,228,,Kacang-kacangan
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/buah_buahan,,41434,rupiah,2025,survey_estimate,per_capita,10.1,228,,Buah-buahan
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/buah_buahan,,46320,rupiah,2024,survey_estimate,per_capita,10.1,228,,Buah-buahan
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18689,rupiah,2025,survey_estimate,per_capita,10.1,228,,Minyak dan kelapa
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/minyak_dan_kelapa,,17252,rupiah,2024,survey_estimate,per_capita,10.1,228,,Minyak dan kelapa
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/bahan_minuman,,23939,rupiah,2025,survey_estimate,per_capita,10.1,228,,Bahan minuman
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/bahan_minuman,,22637,rupiah,2024,survey_estimate,per_capita,10.1,228,,Bahan minuman
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/bumbu_bumbuan,,17464,rupiah,2025,survey_estimate,per_capita,10.1,228,,Bumbu-bumbuan
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/bumbu_bumbuan,,17380,rupiah,2024,survey_estimate,per_capita,10.1,228,,Bumbu-bumbuan
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/konsumsi_lainnya,,16187,rupiah,2025,survey_estimate,per_capita,10.1,228,,Konsumsi lainnya
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/konsumsi_lainnya,,17237,rupiah,2024,survey_estimate,per_capita,10.1,228,,Konsumsi lainnya
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,183595,rupiah,2025,survey_estimate,per_capita,10.1,228,,Makanan dan minuman jadi
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,184112,rupiah,2024,survey_estimate,per_capita,10.1,228,,Makanan dan minuman jadi
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/rokok,,85397,rupiah,2025,survey_estimate,per_capita,10.1,228,,Rokok
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/rokok,,91223,rupiah,2024,survey_estimate,per_capita,10.1,228,,Rokok
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/jumlah_makanan,,691256,rupiah,2025,survey_estimate,per_capita,10.1,228,,Jumlah makanan
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/jumlah_makanan,,711510,rupiah,2024,survey_estimate,per_capita,10.1,228,,Jumlah makanan
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,309177,rupiah,2025,survey_estimate,per_capita,10.1,228,,Perumahan dan fasilitas rumah tangga
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,318298,rupiah,2024,survey_estimate,per_capita,10.1,228,,Perumahan dan fasilitas rumah tangga
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,143333,rupiah,2025,survey_estimate,per_capita,10.1,228,,Aneka barang dan jasa
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,126085,rupiah,2024,survey_estimate,per_capita,10.1,228,,Aneka barang dan jasa
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,30093,rupiah,2025,survey_estimate,per_capita,10.1,228,,"Pakaian, alas kaki, dan tutup kepala"
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,28935,rupiah,2024,survey_estimate,per_capita,10.1,228,,"Pakaian, alas kaki, dan tutup kepala"
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/barang_tahan_lama,,42753,rupiah,2025,survey_estimate,per_capita,10.1,228,,Barang tahan lama
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/barang_tahan_lama,,41862,rupiah,2024,survey_estimate,per_capita,10.1,228,,Barang tahan lama
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,46252,rupiah,2025,survey_estimate,per_capita,10.1,228,,"Pajak, pungutan, dan asuransi"
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,44257,rupiah,2024,survey_estimate,per_capita,10.1,228,,"Pajak, pungutan, dan asuransi"
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,20675,rupiah,2025,survey_estimate,per_capita,10.1,228,,Keperluan pesta dan upacara/kenduri
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,18054,rupiah,2024,survey_estimate,per_capita,10.1,228,,Keperluan pesta dan upacara/kenduri
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,592283,rupiah,2025,survey_estimate,per_capita,10.1,228,,Jumlah bukan makanan
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,577490,rupiah,2024,survey_estimate,per_capita,10.1,228,,Jumlah bukan makanan
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,total,,1283538,rupiah,2025,survey_estimate,per_capita,10.1,228,,
+16.08,2,Kabupaten Ogan Komering Ulu Timur,expenditure,total,,1289001,rupiah,2024,survey_estimate,per_capita,10.1,228,,

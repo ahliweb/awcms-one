@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3508-kecamatan-350812-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.08.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Senduro Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lumajang",
+  "publisherDomain": "3508",
+  "publisherWebsite": "https://lumajangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lumajang (https://lumajangkab.bps.go.id), publikasi \"Kecamatan Senduro Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3508160",
+  "publicationNumber": "35080.26022",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lumajangkab.bps.go.id/id/publication/2026/09/28/ca3791bf41e7aa295127bd6b/kecamatan-senduro-dalam-angka-2026.html",
+  "sourceFileSha256": "edbaf201a84bbb0d146160e63a61bfc77201f21eda00e5a8d1ef6cef4640ed35",
+  "sourceFileBytes": 2750898,
+  "sourcePages": [31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lumajang",
+  "csvPath": "datasets/bps-3508-kecamatan-350812-dalam-angka-2026.csv",
+  "csvSha256": "8d11658fc228b5fbe961035757b056ba4ca7962368d97618848a5ef4306735a3",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Senduro, 2025",
+      "printedPages": [31, 32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Senduro, 2025",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: 35 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: 46 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: the rows of region 35.08.12 are not stored: age_group (perempuan) vs sex value: parts sum 25527.0000 != 18392.0000 (diff 7135.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1107-kecamatan-110506-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.05.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bubon Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Barat",
+  "publisherDomain": "1107",
+  "publisherWebsite": "https://acehbaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Barat (https://acehbaratkab.bps.go.id), publikasi \"Kecamatan Bubon Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1107061",
+  "publicationNumber": "11070.26007",
+  "issn": "2580-1600",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehbaratkab.bps.go.id/id/publication/2026/09/28/3992ca127499286ad2dec978/kecamatan-bubon-dalam-angka-2026.html",
+  "sourceFileSha256": "2c54714675007f7f98132ffa9850907e3e708b20ce2facc30952caaf5c27c1f0",
+  "sourceFileBytes": 25548168,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Barat.",
+  "csvPath": "datasets/bps-1107-kecamatan-110506-dalam-angka-2026.csv",
+  "csvSha256": "1cbe418cc39b570d13a56cb9f5ad1010554c4bd6084e01b0a1a36a77cc947aa9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Gampong di Kecamatan Bubon, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bubon, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

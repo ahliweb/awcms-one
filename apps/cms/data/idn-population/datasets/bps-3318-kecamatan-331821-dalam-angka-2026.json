@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3318-kecamatan-331821-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.18.21",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Trangkil Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pati",
+  "publisherDomain": "3318",
+  "publisherWebsite": "https://patikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pati (https://patikab.bps.go.id), publikasi \"Kecamatan Trangkil Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3318160",
+  "publicationNumber": "33180.26024",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://patikab.bps.go.id/id/publication/2026/09/28/8e0467f5ec2d54f3c570309f/kecamatan-trangkil-dalam-angka-2026.html",
+  "sourceFileSha256": "5134f49203c6d475112972d3727676ceb2f01a1ae85c3fc74e383c6527cf7691",
+  "sourceFileBytes": 7778881,
+  "sourcePages": [22, 23, 24],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statsistik Kabupaten Pati",
+  "csvPath": "datasets/bps-3318-kecamatan-331821-dalam-angka-2026.csv",
+  "csvSha256": "b899859559a9f18ea95108f2e90358d5acdcd7d2a61a2e31379959b23f52aebb",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Trangkil, 2025",
+      "printedPages": [22, 23],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Trangkil, 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 33.18.21 are not stored: age_group (perempuan) vs sex value: parts sum 33027.0000 != 32880.0000 (diff 147.0000); the source itself is inconsistent"
+  ]
+}

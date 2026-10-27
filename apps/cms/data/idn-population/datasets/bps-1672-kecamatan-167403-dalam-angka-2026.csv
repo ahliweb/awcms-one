@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.74.03.1005,4,Sungai Medang,sex,laki_laki,,3130,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.74.03.1005,4,Sungai Medang,sex,perempuan,,2956,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.74.03.1005,4,Sungai Medang,total,total,,6086,jiwa,2025,registration,total_population,3.1,30,,
+16.74.03.2004,4,Muara Sungai,sex,laki_laki,,1318,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.74.03.2004,4,Muara Sungai,sex,perempuan,,1355,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.74.03.2004,4,Muara Sungai,total,total,,2673,jiwa,2025,registration,total_population,3.1,30,,
+16.74.03.1001,4,Cambai,sex,laki_laki,,2945,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.74.03.1001,4,Cambai,sex,perempuan,,2908,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.74.03.1001,4,Cambai,total,total,,5853,jiwa,2025,registration,total_population,3.1,30,,
+16.74.03.1002,4,Sindur,sex,laki_laki,,1463,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.74.03.1002,4,Sindur,sex,perempuan,,1469,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.74.03.1002,4,Sindur,total,total,,2932,jiwa,2025,registration,total_population,3.1,30,,
+16.74.03.2003,4,Pangkul,sex,laki_laki,,2307,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.74.03.2003,4,Pangkul,sex,perempuan,,2310,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.74.03.2003,4,Pangkul,total,total,,4617,jiwa,2025,registration,total_population,3.1,30,,
+16.74.03,3,Cambai,sex,laki_laki,,11163,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+16.74.03,3,Cambai,sex,perempuan,,10998,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+16.74.03,3,Cambai,total,total,,22161,jiwa,2025,registration,total_population,3.1,30,,

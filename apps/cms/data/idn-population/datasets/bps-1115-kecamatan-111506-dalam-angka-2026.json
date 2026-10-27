@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1115-kecamatan-111506-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.15.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Suka Makmue Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Nagan Raya",
+  "publisherDomain": "1115",
+  "publisherWebsite": "https://naganrayakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Nagan Raya (https://naganrayakab.bps.go.id), publikasi \"Kecamatan Suka Makmue Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "11020001.1115041",
+  "publicationNumber": "11150.26012",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://naganrayakab.bps.go.id/id/publication/2026/09/28/c6394b073d11dc18b441a362/kecamatan-suka-makmue-dalam-angka-2026.html",
+  "sourceFileSha256": "e495c5a00a2c5310ee5673215d662c0daebc0981be7798bf5cedeb30cdbdcfcc",
+  "sourceFileBytes": 11930812,
+  "sourcePages": [31, 32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Nagan Raya",
+  "csvPath": "datasets/bps-1115-kecamatan-111506-dalam-angka-2026.csv",
+  "csvSha256": "870b96f0b0d8a260e2d6a2e155eab9a1f4fbcfae78ea2f14274b292dfdeb4586",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Suka Makmue , 202 6",
+      "printedPages": [31, 32],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Suka Makmue , 202 6",
+      "printedPages": [33],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"65+ Tahun\": unmatched ",
+    "table 3.2: the rows of region 11.15.06 are not stored: age_group (perempuan) vs sex value: parts sum 4975.0000 != 5430.0000 (diff 455.0000); the source itself is inconsistent"
+  ]
+}

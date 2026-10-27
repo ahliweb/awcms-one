@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3328-kecamatan-332814-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.28.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tarub Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tegal",
+  "publisherDomain": "3328",
+  "publisherWebsite": "https://tegalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tegal (https://tegalkab.bps.go.id), publikasi \"Kecamatan Tarub Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3328150",
+  "publicationNumber": "33280.24020",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tegalkab.bps.go.id/id/publication/2026/09/28/316489bc286389548822e685/kecamatan-tarub-dalam-angka-2026.html",
+  "sourceFileSha256": "9c96d96db6aeb79098de3e2d0f3ca7f1c2d08cf06dfadf362a259f596a2bdeb2",
+  "sourceFileBytes": 7100610,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tegal.",
+  "csvPath": "datasets/bps-3328-kecamatan-332814-dalam-angka-2026.csv",
+  "csvSha256": "f2633ac4f4217295acce8891b1f293e8efe19250af186ddd3f4c49e27a42adf7",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Tarub, 2026",
+      "printedPages": [34, 35],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tarub, 2026",
+      "printedPages": [36],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Jumlah\": unmatched ",
+    "table 3.1: row not stored: row \"Jumlah\": unmatched ",
+    "table 3.2: the rows of region 33.28.14 are not stored: age_group (perempuan) vs sex value: parts sum 45109.0000 != 43624.0000 (diff 1485.0000); the source itself is inconsistent"
+  ]
+}

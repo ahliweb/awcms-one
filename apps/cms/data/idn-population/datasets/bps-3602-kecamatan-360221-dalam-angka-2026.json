@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-3602-kecamatan-360221-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.02.21",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Wanasalam Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lebak",
+  "publisherDomain": "3602",
+  "publisherWebsite": "https://lebakkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lebak (https://lebakkab.bps.go.id), publikasi \"Kecamatan Wanasalam Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3602011",
+  "publicationNumber": "36020.26017",
+  "issn": "3031-6154",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lebakkab.bps.go.id/id/publication/2026/09/28/6ed1c7b42dfa52b8fc7452f7/kecamatan-wanasalam-dalam-angka-2026.html",
+  "sourceFileSha256": "9e0675e0e139567a1c1f77b3132b8ac4cdf1f9c24d970ad7273bb67efa776d56",
+  "sourceFileBytes": 8021429,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lebak.",
+  "csvPath": "datasets/bps-3602-kecamatan-360221-dalam-angka-2026.csv",
+  "csvSha256": "99a3f68a4e9d2c1fa97133a351b759a03212df182e72add62577e8bdaf8cdf1c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Wanasalam, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Wanasalam, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Ketapang\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Wanasalam Wanasalam District\": unmatched ",
+    "table 3.1: row not stored: row \"Ketapang\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Wanasalam Wanasalam District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Wanasalam Wanasalam District\": unmatched "
+  ]
+}

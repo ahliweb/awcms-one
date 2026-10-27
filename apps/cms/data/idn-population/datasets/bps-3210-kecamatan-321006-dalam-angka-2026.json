@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3210-kecamatan-321006-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.10.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Maja Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Majalengka",
+  "publisherDomain": "3210",
+  "publisherWebsite": "https://majalengkakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Majalengka (https://majalengkakab.bps.go.id), publikasi \"Kecamatan Maja Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3210060",
+  "publicationNumber": "32100.26013",
+  "issn": "2747-1012",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://majalengkakab.bps.go.id/id/publication/2026/09/28/2f0e2e601bda0f465e8d4cc9/kecamatan-maja-dalam-angka-2026.html",
+  "sourceFileSha256": "04135de86e6afd10235c9679f6b9b2ed5e21c2d69e655ac2d3d33443f234dff3",
+  "sourceFileBytes": 22055549,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Majalengka.",
+  "csvPath": "datasets/bps-3210-kecamatan-321006-dalam-angka-2026.csv",
+  "csvSha256": "b2f54bbf95141696f0ba509442efa606b25ad10b0b4d75e72a03c10f0db2a1a3",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Maja, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Maja, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "cross-table disagreement, both stored as published: 32.10.06 sex/laki_laki/ 2025: 27638 (table 3.1) vs 27505 (table 3.2)",
+    "cross-table disagreement, both stored as published: 32.10.06 sex/perempuan/ 2025: 27375 (table 3.1) vs 27247 (table 3.2)",
+    "cross-table disagreement, both stored as published: 32.10.06 total/total/ 2025: 55013 (table 3.1) vs 54752 (table 3.2)"
+  ]
+}

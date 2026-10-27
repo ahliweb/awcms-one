@@ -1,0 +1,97 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.04.01.2014,4,Karang Agung,sex,laki_laki,,497,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.01.2014,4,Karang Agung,sex,perempuan,,502,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.01.2014,4,Karang Agung,total,total,,999,jiwa,2025,registration,total_population,3.1,28,,
+16.04.01.2012,4,Gunung Raya,sex,laki_laki,,508,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.01.2012,4,Gunung Raya,sex,perempuan,,477,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.01.2012,4,Gunung Raya,total,total,,985,jiwa,2025,registration,total_population,3.1,28,,
+16.04.01.2013,4,Talang Tinggi,sex,laki_laki,,326,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.01.2013,4,Talang Tinggi,sex,perempuan,,287,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.01.2013,4,Talang Tinggi,total,total,,613,jiwa,2025,registration,total_population,3.1,28,,
+16.04.01.2011,4,Simpang III PUMU,sex,laki_laki,,892,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.01.2011,4,Simpang III PUMU,sex,perempuan,,878,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.01.2011,4,Simpang III PUMU,total,total,,1770,jiwa,2025,registration,total_population,3.1,28,,
+16.04.01.2010,4,Kepala Siring,sex,laki_laki,,432,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.01.2010,4,Kepala Siring,sex,perempuan,,419,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.01.2010,4,Kepala Siring,total,total,,851,jiwa,2025,registration,total_population,3.1,28,,
+16.04.01.2006,4,Genting,sex,laki_laki,,447,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.01.2006,4,Genting,sex,perempuan,,422,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.01.2006,4,Genting,total,total,,869,jiwa,2025,registration,total_population,3.1,28,,
+16.04.01.2005,4,Suban,sex,laki_laki,,598,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.01.2005,4,Suban,sex,perempuan,,543,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.01.2005,4,Suban,total,total,,1141,jiwa,2025,registration,total_population,3.1,28,,
+16.04.01.2009,4,Muara Cawang,sex,laki_laki,,464,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.01.2009,4,Muara Cawang,sex,perempuan,,473,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.01.2009,4,Muara Cawang,total,total,,937,jiwa,2025,registration,total_population,3.1,28,,
+16.04.01.2007,4,Gunung Ayu,sex,laki_laki,,475,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.01.2007,4,Gunung Ayu,sex,perempuan,,447,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.01.2007,4,Gunung Ayu,total,total,,922,jiwa,2025,registration,total_population,3.1,28,,
+16.04.01.2008,4,Ujung Pulau,sex,laki_laki,,647,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.01.2008,4,Ujung Pulau,sex,perempuan,,609,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.01.2008,4,Ujung Pulau,total,total,,1256,jiwa,2025,registration,total_population,3.1,28,,
+16.04.01.2003,4,Tanjung Alam,sex,laki_laki,,824,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.01.2003,4,Tanjung Alam,sex,perempuan,,715,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.01.2003,4,Tanjung Alam,total,total,,1539,jiwa,2025,registration,total_population,3.1,28,,
+16.04.01.2004,4,Batu Rancing,sex,laki_laki,,370,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.01.2004,4,Batu Rancing,sex,perempuan,,331,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.01.2004,4,Batu Rancing,total,total,,701,jiwa,2025,registration,total_population,3.1,28,,
+16.04.01.2002,4,Gunung Meraksa,sex,laki_laki,,827,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.01.2002,4,Gunung Meraksa,sex,perempuan,,732,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.01.2002,4,Gunung Meraksa,total,total,,1559,jiwa,2025,registration,total_population,3.1,28,,
+16.04.01.2001,4,Kembang Ayun,sex,laki_laki,,361,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.01.2001,4,Kembang Ayun,sex,perempuan,,316,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.01.2001,4,Kembang Ayun,total,total,,677,jiwa,2025,registration,total_population,3.1,28,,
+16.04.01,3,Tanjung Sakti PUMU,sex,laki_laki,,7668,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.04.01,3,Tanjung Sakti PUMU,sex,perempuan,,7151,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.04.01,3,Tanjung Sakti PUMU,total,total,,14819,jiwa,2025,registration,total_population,3.1,28,,
+16.04.01,3,Tanjungsakti Pumu,age_group,0-4,laki_laki,382,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.04.01,3,Tanjungsakti Pumu,age_group,0-4,perempuan,373,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.04.01,3,Tanjungsakti Pumu,age_group,0-4,,755,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.04.01,3,Tanjungsakti Pumu,age_group,5-9,laki_laki,638,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.04.01,3,Tanjungsakti Pumu,age_group,5-9,perempuan,576,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.04.01,3,Tanjungsakti Pumu,age_group,5-9,,1214,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.04.01,3,Tanjungsakti Pumu,age_group,10-14,laki_laki,625,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.04.01,3,Tanjungsakti Pumu,age_group,10-14,perempuan,634,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.04.01,3,Tanjungsakti Pumu,age_group,10-14,,1259,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.04.01,3,Tanjungsakti Pumu,age_group,15-19,laki_laki,581,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.04.01,3,Tanjungsakti Pumu,age_group,15-19,perempuan,671,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.04.01,3,Tanjungsakti Pumu,age_group,15-19,,1252,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.04.01,3,Tanjungsakti Pumu,age_group,20-24,laki_laki,667,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.04.01,3,Tanjungsakti Pumu,age_group,20-24,perempuan,589,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.04.01,3,Tanjungsakti Pumu,age_group,20-24,,1256,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.04.01,3,Tanjungsakti Pumu,age_group,25-29,laki_laki,588,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.04.01,3,Tanjungsakti Pumu,age_group,25-29,perempuan,469,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.04.01,3,Tanjungsakti Pumu,age_group,25-29,,1057,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.04.01,3,Tanjungsakti Pumu,age_group,30-34,laki_laki,487,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.04.01,3,Tanjungsakti Pumu,age_group,30-34,perempuan,407,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.04.01,3,Tanjungsakti Pumu,age_group,30-34,,894,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.04.01,3,Tanjungsakti Pumu,age_group,35-39,laki_laki,590,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.04.01,3,Tanjungsakti Pumu,age_group,35-39,perempuan,495,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.04.01,3,Tanjungsakti Pumu,age_group,35-39,,1085,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.04.01,3,Tanjungsakti Pumu,age_group,40-44,laki_laki,671,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.04.01,3,Tanjungsakti Pumu,age_group,40-44,perempuan,549,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.04.01,3,Tanjungsakti Pumu,age_group,40-44,,1220,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.04.01,3,Tanjungsakti Pumu,age_group,45-49,laki_laki,625,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.04.01,3,Tanjungsakti Pumu,age_group,45-49,perempuan,531,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.04.01,3,Tanjungsakti Pumu,age_group,45-49,,1156,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.04.01,3,Tanjungsakti Pumu,age_group,50-54,laki_laki,530,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.04.01,3,Tanjungsakti Pumu,age_group,50-54,perempuan,460,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.04.01,3,Tanjungsakti Pumu,age_group,50-54,,990,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.04.01,3,Tanjungsakti Pumu,age_group,55-59,laki_laki,395,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.04.01,3,Tanjungsakti Pumu,age_group,55-59,perempuan,362,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.04.01,3,Tanjungsakti Pumu,age_group,55-59,,757,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.04.01,3,Tanjungsakti Pumu,age_group,60-64,laki_laki,305,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.04.01,3,Tanjungsakti Pumu,age_group,60-64,perempuan,325,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.04.01,3,Tanjungsakti Pumu,age_group,60-64,,630,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.04.01,3,Tanjungsakti Pumu,age_group,65-69,laki_laki,263,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.04.01,3,Tanjungsakti Pumu,age_group,65-69,perempuan,280,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.04.01,3,Tanjungsakti Pumu,age_group,65-69,,543,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.04.01,3,Tanjungsakti Pumu,age_group,70-74,laki_laki,131,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.04.01,3,Tanjungsakti Pumu,age_group,70-74,perempuan,148,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.04.01,3,Tanjungsakti Pumu,age_group,70-74,,279,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.04.01,3,Tanjungsakti Pumu,age_group,75+,laki_laki,190,jiwa,2025,registration,total_population,3.2,30,,75 +
+16.04.01,3,Tanjungsakti Pumu,age_group,75+,perempuan,282,jiwa,2025,registration,total_population,3.2,30,,75 +
+16.04.01,3,Tanjungsakti Pumu,age_group,75+,,472,jiwa,2025,registration,total_population,3.2,30,,75 +
+16.04.01,3,Tanjung Sakti PUMU,sex,laki_laki,,7668,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+16.04.01,3,Tanjung Sakti PUMU,sex,perempuan,,7151,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+16.04.01,3,Tanjung Sakti PUMU,total,total,,14819,jiwa,2025,registration,total_population,3.2,30,,

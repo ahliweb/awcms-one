@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-1218-kecamatan-121814-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.18.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pegajahan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Serdang Bedagai",
+  "publisherDomain": "1218",
+  "publisherWebsite": "https://serdangbedagaikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Serdang Bedagai (https://serdangbedagaikab.bps.go.id), publikasi \"Kecamatan Pegajahan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1218101",
+  "publicationNumber": "12180.26006",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://serdangbedagaikab.bps.go.id/id/publication/2026/09/28/da4a1ca1012e5517c177f9ff/kecamatan-pegajahan-dalam-angka-2026.html",
+  "sourceFileSha256": "24dbed3f6e5ce2567aff8cbeaabb45244d1d4cccffcff4a01bb2b1c67a1cd500",
+  "sourceFileBytes": 4064779,
+  "sourcePages": [27, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau mengandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik kabupaten Serdang Bedagai.",
+  "csvPath": "datasets/bps-1218-kecamatan-121814-dalam-angka-2026.csv",
+  "csvSha256": "f4d450fd7ad533a27472d17c9d9f5a1e7d282a75a46e0c35a4532ef63f9a5175",
+  "tablesUsed": [
+    {
+      "table": "3.3",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pegajahan, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.4",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pegajahan, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "cross-table disagreement, both stored as published: 12.18.14 sex/laki_laki/ 2025: 16778 (table 3.3) vs 16488 (table 3.4)",
+    "cross-table disagreement, both stored as published: 12.18.14 sex/perempuan/ 2025: 16504 (table 3.3) vs 16199 (table 3.4)",
+    "cross-table disagreement, both stored as published: 12.18.14 total/total/ 2025: 33282 (table 3.3) vs 32687 (table 3.4)"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-3273-kecamatan-327319-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.73.19",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sumur Bandung Dalam Angka 2026",
+  "publisherName": "BPS Kota Bandung",
+  "publisherDomain": "3273",
+  "publisherWebsite": "https://bandungkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bandung (https://bandungkota.bps.go.id), publikasi \"Kecamatan Sumur Bandung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3273170",
+  "publicationNumber": "32730.26021",
+  "issn": "2797-4782",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bandungkota.bps.go.id/id/publication/2026/09/28/629ca3859a9eed5ee0f5347a/kecamatan-sumur-bandung-dalam-angka-2026.html",
+  "sourceFileSha256": "9b74f061bc06965f7aa9d3a008938d01003b9aec17df451b814d6aba5a68c4a8",
+  "sourceFileBytes": 8853941,
+  "sourcePages": [37, 38, 39],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bandung.",
+  "csvPath": "datasets/bps-3273-kecamatan-327319-dalam-angka-2026.csv",
+  "csvSha256": "0c70b9c230403bde3103049c87afda74ed8e5f35f40f1b79c2dd7b03f557ace5",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Sumur Bandung, 2025",
+      "printedPages": [37, 38],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sumur Bandung, 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 4.4.5 (religion-by-region) could not be read reliably and is not included (religion column 7 header \"Khongkucu Khongkucu\" not recognised)",
+    "table 3.1: row not stored: row \"Sumur Bandung District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Sumur Bandung Sumur Bandung District\": unmatched ",
+    "table 3.2: row not stored: row \"Dependency Ratio\": unmatched ",
+    "table 3.2: row not stored: row \"Jumlah Total\": unmatched "
+  ]
+}

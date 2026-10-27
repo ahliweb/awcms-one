@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3517-kecamatan-351719-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.17.19",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jogo Roto Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Jombang",
+  "publisherDomain": "3517",
+  "publisherWebsite": "https://jombangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Jombang (https://jombangkab.bps.go.id), publikasi \"Kecamatan Jogo Roto Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3517110",
+  "publicationNumber": "35170.26023",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jombangkab.bps.go.id/id/publication/2026/09/28/ad1de5419d8a720259588c37/kecamatan-jogo-roto-dalam-angka-2026.html",
+  "sourceFileSha256": "9efbd55444434df96d1ac1aa27deca55f0bf9cd78f4aa1f6ed780b0ca51d9f9f",
+  "sourceFileBytes": 12572182,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Jombang.",
+  "csvPath": "datasets/bps-3517-kecamatan-351719-dalam-angka-2026.csv",
+  "csvSha256": "045229f6e3b4d58caf59bfaaf6642365ca4e5b5bac1e37b5b0ffa7d60c0ed773",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Jogo Roto, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Jogo Roto, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1 is not included: its published figures do not add up (sex/perempuan/- 2025: parts sum 37058.0000 != 38280.0000 (diff 1222.0000)); the source itself is inconsistent"
+  ]
+}

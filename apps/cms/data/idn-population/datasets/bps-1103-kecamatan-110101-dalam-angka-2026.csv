@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.01.01.2002,4,Ujong Mangki,sex,laki_laki,,401,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.01.2002,4,Ujong Mangki,sex,perempuan,,376,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.01.2002,4,Ujong Mangki,total,total,,777,jiwa,2025,registration,total_population,3.1,20,,
+11.01.01.2017,4,Gampong Baro,sex,laki_laki,,216,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.01.2017,4,Gampong Baro,sex,perempuan,,170,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.01.2017,4,Gampong Baro,total,total,,386,jiwa,2025,registration,total_population,3.1,20,,
+11.01.01.2004,4,Gampong Drien,sex,laki_laki,,260,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.01.2004,4,Gampong Drien,sex,perempuan,,246,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.01.2004,4,Gampong Drien,total,total,,506,jiwa,2025,registration,total_population,3.1,20,,
+11.01.01.2016,4,Padang Beurahan,sex,laki_laki,,495,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.01.2016,4,Padang Beurahan,sex,perempuan,,504,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.01.2016,4,Padang Beurahan,total,total,,999,jiwa,2025,registration,total_population,3.1,20,,
+11.01.01.2001,4,Keude Bakongan,sex,laki_laki,,558,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.01.2001,4,Keude Bakongan,sex,perempuan,,599,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.01.2001,4,Keude Bakongan,total,total,,1157,jiwa,2025,registration,total_population,3.1,20,,
+11.01.01.2015,4,Darul Ikhsan,sex,laki_laki,,577,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.01.2015,4,Darul Ikhsan,sex,perempuan,,621,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.01.2015,4,Darul Ikhsan,total,total,,1198,jiwa,2025,registration,total_population,3.1,20,,
+11.01.01,3,Bakongan,sex,laki_laki,,2847,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+11.01.01,3,Bakongan,sex,perempuan,,2839,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Female
+11.01.01,3,Bakongan,total,total,,5686,jiwa,2025,registration,total_population,3.1,20,,
+11.01.01,3,Bakongan,age_group,0-4,laki_laki,243,jiwa,2025,registration,total_population,3.2,22,,0-4
+11.01.01,3,Bakongan,age_group,0-4,perempuan,220,jiwa,2025,registration,total_population,3.2,22,,0-4
+11.01.01,3,Bakongan,age_group,0-4,,463,jiwa,2025,registration,total_population,3.2,22,,0-4
+11.01.01,3,Bakongan,age_group,5-9,laki_laki,267,jiwa,2025,registration,total_population,3.2,22,,5-9
+11.01.01,3,Bakongan,age_group,5-9,perempuan,218,jiwa,2025,registration,total_population,3.2,22,,5-9
+11.01.01,3,Bakongan,age_group,5-9,,485,jiwa,2025,registration,total_population,3.2,22,,5-9
+11.01.01,3,Bakongan,age_group,10-14,laki_laki,285,jiwa,2025,registration,total_population,3.2,22,,10-14
+11.01.01,3,Bakongan,age_group,10-14,perempuan,225,jiwa,2025,registration,total_population,3.2,22,,10-14
+11.01.01,3,Bakongan,age_group,10-14,,510,jiwa,2025,registration,total_population,3.2,22,,10-14
+11.01.01,3,Bakongan,age_group,15-19,laki_laki,233,jiwa,2025,registration,total_population,3.2,22,,15-19
+11.01.01,3,Bakongan,age_group,15-19,perempuan,246,jiwa,2025,registration,total_population,3.2,22,,15-19
+11.01.01,3,Bakongan,age_group,15-19,,479,jiwa,2025,registration,total_population,3.2,22,,15-19
+11.01.01,3,Bakongan,age_group,20-24,laki_laki,300,jiwa,2025,registration,total_population,3.2,22,,20-24
+11.01.01,3,Bakongan,age_group,20-24,perempuan,240,jiwa,2025,registration,total_population,3.2,22,,20-24
+11.01.01,3,Bakongan,age_group,20-24,,540,jiwa,2025,registration,total_population,3.2,22,,20-24
+11.01.01,3,Bakongan,age_group,25-29,laki_laki,256,jiwa,2025,registration,total_population,3.2,22,,25-29
+11.01.01,3,Bakongan,age_group,25-29,perempuan,242,jiwa,2025,registration,total_population,3.2,22,,25-29
+11.01.01,3,Bakongan,age_group,25-29,,498,jiwa,2025,registration,total_population,3.2,22,,25-29
+11.01.01,3,Bakongan,age_group,30-34,laki_laki,202,jiwa,2025,registration,total_population,3.2,22,,30-34
+11.01.01,3,Bakongan,age_group,30-34,perempuan,182,jiwa,2025,registration,total_population,3.2,22,,30-34
+11.01.01,3,Bakongan,age_group,30-34,,384,jiwa,2025,registration,total_population,3.2,22,,30-34
+11.01.01,3,Bakongan,age_group,35-39,laki_laki,166,jiwa,2025,registration,total_population,3.2,22,,35-39
+11.01.01,3,Bakongan,age_group,35-39,perempuan,209,jiwa,2025,registration,total_population,3.2,22,,35-39
+11.01.01,3,Bakongan,age_group,35-39,,375,jiwa,2025,registration,total_population,3.2,22,,35-39
+11.01.01,3,Bakongan,age_group,40-44,laki_laki,214,jiwa,2025,registration,total_population,3.2,22,,40-44
+11.01.01,3,Bakongan,age_group,40-44,perempuan,231,jiwa,2025,registration,total_population,3.2,22,,40-44
+11.01.01,3,Bakongan,age_group,40-44,,445,jiwa,2025,registration,total_population,3.2,22,,40-44
+11.01.01,3,Bakongan,age_group,45-49,laki_laki,198,jiwa,2025,registration,total_population,3.2,22,,45-49
+11.01.01,3,Bakongan,age_group,45-49,perempuan,194,jiwa,2025,registration,total_population,3.2,22,,45-49
+11.01.01,3,Bakongan,age_group,45-49,,392,jiwa,2025,registration,total_population,3.2,22,,45-49
+11.01.01,3,Bakongan,age_group,50-54,laki_laki,148,jiwa,2025,registration,total_population,3.2,22,,50-54
+11.01.01,3,Bakongan,age_group,50-54,perempuan,164,jiwa,2025,registration,total_population,3.2,22,,50-54
+11.01.01,3,Bakongan,age_group,50-54,,312,jiwa,2025,registration,total_population,3.2,22,,50-54
+11.01.01,3,Bakongan,age_group,55-59,laki_laki,126,jiwa,2025,registration,total_population,3.2,22,,55-59
+11.01.01,3,Bakongan,age_group,55-59,perempuan,116,jiwa,2025,registration,total_population,3.2,22,,55-59
+11.01.01,3,Bakongan,age_group,55-59,,242,jiwa,2025,registration,total_population,3.2,22,,55-59
+11.01.01,3,Bakongan,age_group,60-64,laki_laki,95,jiwa,2025,registration,total_population,3.2,22,,60-64
+11.01.01,3,Bakongan,age_group,60-64,perempuan,119,jiwa,2025,registration,total_population,3.2,22,,60-64
+11.01.01,3,Bakongan,age_group,60-64,,214,jiwa,2025,registration,total_population,3.2,22,,60-64
+11.01.01,3,Bakongan,age_group,65-69,laki_laki,54,jiwa,2025,registration,total_population,3.2,22,,65-69
+11.01.01,3,Bakongan,age_group,65-69,perempuan,85,jiwa,2025,registration,total_population,3.2,22,,65-69
+11.01.01,3,Bakongan,age_group,65-69,,139,jiwa,2025,registration,total_population,3.2,22,,65-69
+11.01.01,3,Bakongan,age_group,70-74,laki_laki,30,jiwa,2025,registration,total_population,3.2,22,,70-74
+11.01.01,3,Bakongan,age_group,70-74,perempuan,51,jiwa,2025,registration,total_population,3.2,22,,70-74
+11.01.01,3,Bakongan,age_group,70-74,,81,jiwa,2025,registration,total_population,3.2,22,,70-74
+11.01.01,3,Bakongan,age_group,75+,laki_laki,30,jiwa,2025,registration,total_population,3.2,22,,75+
+11.01.01,3,Bakongan,age_group,75+,perempuan,43,jiwa,2025,registration,total_population,3.2,22,,75+
+11.01.01,3,Bakongan,age_group,75+,,73,jiwa,2025,registration,total_population,3.2,22,,75+

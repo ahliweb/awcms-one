@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.06.04.2002,4,Tambusai Barat,sex,laki_laki,,2968,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.04.2002,4,Tambusai Barat,sex,perempuan,,2930,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.04.2002,4,Tambusai Barat,total,total,,5898,jiwa,2025,registration,total_population,3.1,30,,
+14.06.04.2007,4,Sungai Kumango,sex,laki_laki,,3002,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.04.2007,4,Sungai Kumango,sex,perempuan,,3011,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.04.2007,4,Sungai Kumango,total,total,,6013,jiwa,2025,registration,total_population,3.1,30,,
+14.06.04.2004,4,Batas,sex,laki_laki,,1542,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.04.2004,4,Batas,sex,perempuan,,1549,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.04.2004,4,Batas,total,total,,3091,jiwa,2025,registration,total_population,3.1,30,,
+14.06.04.2005,4,Tali Kumain,sex,laki_laki,,1160,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.04.2005,4,Tali Kumain,sex,perempuan,,1148,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.04.2005,4,Tali Kumain,total,total,,2308,jiwa,2025,registration,total_population,3.1,30,,
+14.06.04.1001,4,Tambusai Tengah,sex,laki_laki,,3705,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.04.1001,4,Tambusai Tengah,sex,perempuan,,3739,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.04.1001,4,Tambusai Tengah,total,total,,7444,jiwa,2025,registration,total_population,3.1,30,,
+14.06.04.2006,4,Rantau Panjang,sex,laki_laki,,1450,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.04.2006,4,Rantau Panjang,sex,perempuan,,1405,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.04.2006,4,Rantau Panjang,total,total,,2855,jiwa,2025,registration,total_population,3.1,30,,
+14.06.04.2009,4,Sialang Rindang,sex,laki_laki,,1699,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.04.2009,4,Sialang Rindang,sex,perempuan,,1620,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.04.2009,4,Sialang Rindang,total,total,,3319,jiwa,2025,registration,total_population,3.1,30,,
+14.06.04.2003,4,Tambusai Timur,sex,laki_laki,,2568,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.04.2003,4,Tambusai Timur,sex,perempuan,,2525,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.04.2003,4,Tambusai Timur,total,total,,5093,jiwa,2025,registration,total_population,3.1,30,,
+14.06.04.2010,4,Sukamaju,sex,laki_laki,,2901,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.04.2010,4,Sukamaju,sex,perempuan,,2853,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.04.2010,4,Sukamaju,total,total,,5754,jiwa,2025,registration,total_population,3.1,30,,
+14.06.04.2008,4,Batang Kumu,sex,laki_laki,,7146,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.04.2008,4,Batang Kumu,sex,perempuan,,6757,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.04.2008,4,Batang Kumu,total,total,,13903,jiwa,2025,registration,total_population,3.1,30,,
+14.06.04.2012,4,Tingkok,sex,laki_laki,,1671,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.04.2012,4,Tingkok,sex,perempuan,,1622,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.04.2012,4,Tingkok,total,total,,3293,jiwa,2025,registration,total_population,3.1,30,,
+14.06.04.2011,4,Lubuk Soting,sex,laki_laki,,1471,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.04.2011,4,Lubuk Soting,sex,perempuan,,1485,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.04.2011,4,Lubuk Soting,total,total,,2956,jiwa,2025,registration,total_population,3.1,30,,
+14.06.04,3,Tambusai,sex,laki_laki,,31283,jiwa,2025,registration,total_population,3.1,30,,Laki-Laki/Male
+14.06.04,3,Tambusai,sex,perempuan,,30644,jiwa,2025,registration,total_population,3.1,30,,Perempuan/
+14.06.04,3,Tambusai,total,total,,61927,jiwa,2025,registration,total_population,3.1,30,,

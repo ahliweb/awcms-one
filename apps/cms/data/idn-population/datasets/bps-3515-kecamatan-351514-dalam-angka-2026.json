@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3515-kecamatan-351514-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.15.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sukodono Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sidoarjo",
+  "publisherDomain": "3515",
+  "publisherWebsite": "https://sidoarjokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sidoarjo (https://sidoarjokab.bps.go.id), publikasi \"Kecamatan Sukodono Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3515100",
+  "publicationNumber": "35150.26014",
+  "issn": "2620-7621",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sidoarjokab.bps.go.id/id/publication/2026/09/28/8053fdfacbc6bb814b7ce0ef/kecamatan-sukodono-dalam-angka-2026.html",
+  "sourceFileSha256": "b1c7af4156729b840b60d1397fb763e187af55e98616c15af0a521ebeaaa763b",
+  "sourceFileBytes": 23010590,
+  "sourcePages": [38, 39, 40],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sidoarjo.",
+  "csvPath": "datasets/bps-3515-kecamatan-351514-dalam-angka-2026.csv",
+  "csvSha256": "734fafc7cad73ed72efff286d2dda1df83d5f7652c4ad6ab6c3d6106b2c8570e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sukodono, 2025",
+      "printedPages": [38, 39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sukodono, 2025",
+      "printedPages": [40],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Keloposepuluh\": unmatched ",
+    "table 3.1: row not stored: row \"Keloposepuluh\": unmatched "
+  ]
+}

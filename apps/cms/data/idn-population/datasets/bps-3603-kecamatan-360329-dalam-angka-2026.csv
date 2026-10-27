@@ -1,0 +1,17 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.03.29.2002,4,Wanakerta,sex,perempuan,,11610,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.29.2002,4,Wanakerta,total,total,,23361,jiwa,2025,registration,total_population,3.1,25,,
+36.03.29.2003,4,Sukaharja,sex,perempuan,,8635,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.29.2003,4,Sukaharja,total,total,,17483,jiwa,2025,registration,total_population,3.1,25,,
+36.03.29.2005,4,Sindang Panon,sex,perempuan,,8746,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.29.2005,4,Sindang Panon,total,total,,17769,jiwa,2025,registration,total_population,3.1,25,,
+36.03.29.2001,4,Sindang Jaya,sex,perempuan,,5260,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.29.2001,4,Sindang Jaya,total,total,,10790,jiwa,2025,registration,total_population,3.1,25,,
+36.03.29.2004,4,Sindang Asih,sex,perempuan,,6146,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.29.2004,4,Sindang Asih,total,total,,12591,jiwa,2025,registration,total_population,3.1,25,,
+36.03.29.2006,4,Sindang Sono,sex,perempuan,,7040,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.29.2006,4,Sindang Sono,total,total,,14488,jiwa,2025,registration,total_population,3.1,25,,
+36.03.29.2007,4,Badak Anom,sex,perempuan,,3803,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.29.2007,4,Badak Anom,total,total,,7772,jiwa,2025,registration,total_population,3.1,25,,
+36.03.29,3,Sindang Jaya,age_group,75+,perempuan,743,jiwa,2025,registration,total_population,3.2,27,,>75
+36.03.29,3,Sindang Jaya,age_group,75+,,1316,jiwa,2025,registration,total_population,3.2,27,,>75

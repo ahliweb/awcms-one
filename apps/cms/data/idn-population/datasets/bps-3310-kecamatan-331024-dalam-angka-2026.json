@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3310-kecamatan-331024-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.10.24",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Klaten Utara Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Klaten",
+  "publisherDomain": "3310",
+  "publisherWebsite": "https://klatenkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Klaten (https://klatenkab.bps.go.id), publikasi \"Kecamatan Klaten Utara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "33100.25030",
+  "issn": "2828-7827",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://klatenkab.bps.go.id/id/publication/2026/09/28/745833c86806bad345479f65/kecamatan-klaten-utara-dalam-angka-2026.html",
+  "sourceFileSha256": "b734b81168212b2f7673e36e4a726da107635fead752c28be607a3dd23020169",
+  "sourceFileBytes": 9646835,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Klaten.",
+  "csvPath": "datasets/bps-3310-kecamatan-331024-dalam-angka-2026.csv",
+  "csvSha256": "ff212c2baa61c230ba03b99f4efdf02248215d79552e6d056640ba0072fe86a9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Klaten Utara, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Klaten Utara, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

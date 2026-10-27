@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3503-kecamatan-350305-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.03.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tugu Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Trenggalek",
+  "publisherDomain": "3503",
+  "publisherWebsite": "https://trenggalekkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Trenggalek (https://trenggalekkab.bps.go.id), publikasi \"Kecamatan Tugu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3503120",
+  "publicationNumber": "35030.25013",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://trenggalekkab.bps.go.id/id/publication/2026/09/28/40597b54b2b14534212f49fa/kecamatan-tugu-dalam-angka-2026.html",
+  "sourceFileSha256": "eff609e16aca4687b9d9999b3880fb564dd7345bf9bf8eba24e5b80bb182bba1",
+  "sourceFileBytes": 6529197,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Trenggalek.",
+  "csvPath": "datasets/bps-3503-kecamatan-350305-dalam-angka-2026.csv",
+  "csvSha256": "8608ae2a15f49baf5233d8bb1552358352e973c2458c729f2e297c5fabb296e4",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Tugu, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tugu, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

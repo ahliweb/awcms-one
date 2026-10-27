@@ -1,0 +1,47 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/padi_padian,,98764,rupiah,2024,survey_estimate,per_capita,10.1,389,,Padi-padian
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/padi_padian,,96310,rupiah,2025,survey_estimate,per_capita,10.1,389,,Padi-padian
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/umbi_umbian,,8138,rupiah,2024,survey_estimate,per_capita,10.1,389,,Umbi-umbian
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/umbi_umbian,,8631,rupiah,2025,survey_estimate,per_capita,10.1,389,,Umbi-umbian
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,66137,rupiah,2024,survey_estimate,per_capita,10.1,389,,Ikan/udang/cumi/kerang
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,63464,rupiah,2025,survey_estimate,per_capita,10.1,389,,Ikan/udang/cumi/kerang
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/daging,,31715,rupiah,2024,survey_estimate,per_capita,10.1,389,,Daging
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/daging,,31576,rupiah,2025,survey_estimate,per_capita,10.1,389,,Daging
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/telur_dan_susu,,24244,rupiah,2024,survey_estimate,per_capita,10.1,389,,Telur dan susu
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/telur_dan_susu,,32819,rupiah,2025,survey_estimate,per_capita,10.1,389,,Telur dan susu
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/sayur_sayuran,,93090,rupiah,2024,survey_estimate,per_capita,10.1,389,,Sayur-sayuran
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/sayur_sayuran,,104317,rupiah,2025,survey_estimate,per_capita,10.1,389,,Sayur-sayuran
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/kacang_kacangan,,8655,rupiah,2024,survey_estimate,per_capita,10.1,389,,Kacang-kacangan
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/kacang_kacangan,,11459,rupiah,2025,survey_estimate,per_capita,10.1,389,,Kacang-kacangan
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/buah_buahan,,73002,rupiah,2024,survey_estimate,per_capita,10.1,389,,Buah-buahan
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/buah_buahan,,35056,rupiah,2025,survey_estimate,per_capita,10.1,389,,Buah-buahan
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23111,rupiah,2024,survey_estimate,per_capita,10.1,389,,Minyak dan kelapa
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/minyak_dan_kelapa,,28010,rupiah,2025,survey_estimate,per_capita,10.1,389,,Minyak dan kelapa
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/bahan_minuman,,15749,rupiah,2024,survey_estimate,per_capita,10.1,389,,Bahan minuman
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/bahan_minuman,,17385,rupiah,2025,survey_estimate,per_capita,10.1,389,,Bahan minuman
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/bumbu_bumbuan,,8238,rupiah,2024,survey_estimate,per_capita,10.1,389,,Bumbu-bumbuan
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/bumbu_bumbuan,,10368,rupiah,2025,survey_estimate,per_capita,10.1,389,,Bumbu-bumbuan
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/konsumsi_lainnya,,8949,rupiah,2024,survey_estimate,per_capita,10.1,389,,Konsumsi lainnya
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/konsumsi_lainnya,,9027,rupiah,2025,survey_estimate,per_capita,10.1,389,,Konsumsi lainnya
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,148721,rupiah,2024,survey_estimate,per_capita,10.1,389,,Makanan dan minuman jadi
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,164304,rupiah,2025,survey_estimate,per_capita,10.1,389,,Makanan dan minuman jadi
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/rokok,,119319,rupiah,2024,survey_estimate,per_capita,10.1,389,,Rokok
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/rokok,,121144,rupiah,2025,survey_estimate,per_capita,10.1,389,,Rokok
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/jumlah_makanan,,727830,rupiah,2024,survey_estimate,per_capita,10.1,389,,Jumlah makanan
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/jumlah_makanan,,733872,rupiah,2025,survey_estimate,per_capita,10.1,389,,Jumlah makanan
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,275681,rupiah,2024,survey_estimate,per_capita,10.1,389,,Perumahan dan fasilitas rumah tangga
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,303565,rupiah,2025,survey_estimate,per_capita,10.1,389,,Perumahan dan fasilitas rumah tangga
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,111580,rupiah,2024,survey_estimate,per_capita,10.1,389,,Aneka barang dan jasa
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,139082,rupiah,2025,survey_estimate,per_capita,10.1,389,,Aneka barang dan jasa
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,41217,rupiah,2024,survey_estimate,per_capita,10.1,389,,"Pakaian, alas kaki, dan tutup kepala"
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,40056,rupiah,2025,survey_estimate,per_capita,10.1,389,,"Pakaian, alas kaki, dan tutup kepala"
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/barang_tahan_lama,,28256,rupiah,2024,survey_estimate,per_capita,10.1,389,,Barang tahan lama
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/barang_tahan_lama,,46005,rupiah,2025,survey_estimate,per_capita,10.1,389,,Barang tahan lama
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,41459,rupiah,2024,survey_estimate,per_capita,10.1,389,,"Pajak, pungutan, dan asuransi"
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,43674,rupiah,2025,survey_estimate,per_capita,10.1,389,,"Pajak, pungutan, dan asuransi"
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,14113,rupiah,2024,survey_estimate,per_capita,10.1,389,,Keperluan pesta dan upacara/kenduri
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,29381,rupiah,2025,survey_estimate,per_capita,10.1,389,,Keperluan pesta dan upacara/kenduri
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,512307,rupiah,2024,survey_estimate,per_capita,10.1,389,,Jumlah bukan makanan
+15.02,2,Kabupaten Merangin,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,601763,rupiah,2025,survey_estimate,per_capita,10.1,389,,Jumlah bukan makanan
+15.02,2,Kabupaten Merangin,expenditure,total,,1240137,rupiah,2024,survey_estimate,per_capita,10.1,389,,
+15.02,2,Kabupaten Merangin,expenditure,total,,1335635,rupiah,2025,survey_estimate,per_capita,10.1,389,,

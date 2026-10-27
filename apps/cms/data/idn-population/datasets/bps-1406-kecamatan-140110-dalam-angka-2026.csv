@@ -1,0 +1,53 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.01.10.2001,4,Petapahan,sex,perempuan,,8863,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2001,4,Petapahan,total,total,,18282,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2019,4,Sungai Lambu Makmur,sex,perempuan,,767,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2019,4,Sungai Lambu Makmur,total,total,,1582,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2020,4,Muara Mahat Baru,sex,perempuan,,1287,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2020,4,Muara Mahat Baru,total,total,,2636,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2017,4,Kenantan,sex,perempuan,,1350,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2017,4,Kenantan,total,total,,2777,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2015,4,Sibuak,sex,perempuan,,1224,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2015,4,Sibuak,total,total,,2484,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2002,4,Pantai Cermin,sex,perempuan,,4982,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2002,4,Pantai Cermin,total,total,,10211,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2005,4,Sungai Putih,sex,perempuan,,1479,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2005,4,Sungai Putih,total,total,,2971,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2014,4,Pagaruyung,sex,perempuan,,705,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2014,4,Pagaruyung,total,total,,1426,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2012,4,Air Terbit,sex,perempuan,,785,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2012,4,Air Terbit,total,total,,1642,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2009,4,Pancuran Gading,sex,perempuan,,1593,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2009,4,Pancuran Gading,total,total,,3307,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2010,4,Sari Galuh,sex,perempuan,,1922,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2010,4,Sari Galuh,total,total,,3939,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2011,4,Tri Manunggal,sex,perempuan,,1917,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2011,4,Tri Manunggal,total,total,,3896,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2004,4,Mukti Sari,sex,perempuan,,1300,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2004,4,Mukti Sari,total,total,,2671,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2018,4,Indrapuri,sex,perempuan,,2633,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2018,4,Indrapuri,total,total,,5411,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2007,4,Gading Sari,sex,perempuan,,1835,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2007,4,Gading Sari,total,total,,3708,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2013,4,Tanjung Sawit,sex,perempuan,,3220,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2013,4,Tanjung Sawit,total,total,,6526,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2008,4,Sumber Makmur,sex,perempuan,,2491,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2008,4,Sumber Makmur,total,total,,5064,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2003,4,Petapahan Jaya,sex,perempuan,,2302,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2003,4,Petapahan Jaya,total,total,,4691,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2016,4,Pelambaian,sex,perempuan,,941,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2016,4,Pelambaian,total,total,,1904,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2006,4,Indra Sakti,sex,perempuan,,1354,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2006,4,Indra Sakti,total,total,,2784,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2023,4,Sungai Agung,sex,perempuan,,1395,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2023,4,Sungai Agung,total,total,,2897,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2021,4,Karya Indah,sex,perempuan,,8294,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2021,4,Karya Indah,total,total,,17079,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2022,4,Kijang Rejo,sex,perempuan,,2075,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2022,4,Kijang Rejo,total,total,,4219,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2024,4,Bencah Kelubi,sex,perempuan,,1962,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2024,4,Bencah Kelubi,total,total,,3982,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10.2025,4,Batu Gajah,sex,perempuan,,638,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10.2025,4,Batu Gajah,total,total,,1310,jiwa,2025,registration,total_population,3.1,11,,
+14.01.10,3,Kecamatan Tapung,sex,perempuan,,57314,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.10,3,Kecamatan Tapung,total,total,,117399,jiwa,2025,registration,total_population,3.1,11,,

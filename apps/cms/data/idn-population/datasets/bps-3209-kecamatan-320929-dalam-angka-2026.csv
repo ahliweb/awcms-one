@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.29.2001,4,Kalideres,sex,laki_laki,,2056,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.29.2001,4,Kalideres,sex,perempuan,,1985,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.29.2001,4,Kalideres,total,total,,4041,jiwa,2025,registration,total_population,3.1,52,,
+32.09.29.2003,4,Prajawinangun Wetan,sex,laki_laki,,2281,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.29.2003,4,Prajawinangun Wetan,sex,perempuan,,2344,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.29.2003,4,Prajawinangun Wetan,total,total,,4625,jiwa,2025,registration,total_population,3.1,52,,
+32.09.29.2002,4,Prajawinangun Kulon,sex,laki_laki,,1719,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.29.2002,4,Prajawinangun Kulon,sex,perempuan,,1698,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.29.2002,4,Prajawinangun Kulon,total,total,,3417,jiwa,2025,registration,total_population,3.1,52,,
+32.09.29.2007,4,Kaliwedi Kidul,sex,laki_laki,,2529,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.29.2007,4,Kaliwedi Kidul,sex,perempuan,,2412,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.29.2007,4,Kaliwedi Kidul,total,total,,4941,jiwa,2025,registration,total_population,3.1,52,,
+32.09.29.2006,4,Kaliwedi Lor,sex,laki_laki,,2578,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.29.2006,4,Kaliwedi Lor,sex,perempuan,,2521,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.29.2006,4,Kaliwedi Lor,total,total,,5099,jiwa,2025,registration,total_population,3.1,52,,
+32.09.29.2004,4,Ujungsemi,sex,laki_laki,,3255,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.29.2004,4,Ujungsemi,sex,perempuan,,3171,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.29.2004,4,Ujungsemi,total,total,,6426,jiwa,2025,registration,total_population,3.1,52,,
+32.09.29.2005,4,Wargabinangun,sex,laki_laki,,2462,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.29.2005,4,Wargabinangun,sex,perempuan,,2333,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.29.2005,4,Wargabinangun,total,total,,4795,jiwa,2025,registration,total_population,3.1,52,,
+32.09.29.2008,4,Guwa Kidul,sex,laki_laki,,3102,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.29.2008,4,Guwa Kidul,sex,perempuan,,3005,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.29.2008,4,Guwa Kidul,total,total,,6107,jiwa,2025,registration,total_population,3.1,52,,
+32.09.29.2009,4,Guwa Lor,sex,laki_laki,,3467,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.29.2009,4,Guwa Lor,sex,perempuan,,3410,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.29.2009,4,Guwa Lor,total,total,,6877,jiwa,2025,registration,total_population,3.1,52,,
+32.09.29,3,Kecamatan Kaliwedi,sex,laki_laki,,23449,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.29,3,Kecamatan Kaliwedi,sex,perempuan,,22879,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.29,3,Kecamatan Kaliwedi,total,total,,46328,jiwa,2025,registration,total_population,3.1,52,,
+32.09.29,3,Kaliwedi,age_group,0-4,laki_laki,1714,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.29,3,Kaliwedi,age_group,0-4,perempuan,1506,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.29,3,Kaliwedi,age_group,0-4,,3220,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.29,3,Kaliwedi,age_group,5-9,laki_laki,2102,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.29,3,Kaliwedi,age_group,5-9,perempuan,1874,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.29,3,Kaliwedi,age_group,5-9,,3976,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.29,3,Kaliwedi,age_group,10-14,laki_laki,2100,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.29,3,Kaliwedi,age_group,10-14,perempuan,1970,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.29,3,Kaliwedi,age_group,10-14,,4070,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.29,3,Kaliwedi,age_group,15-19,laki_laki,1512,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.29,3,Kaliwedi,age_group,15-19,perempuan,1516,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.29,3,Kaliwedi,age_group,15-19,,3028,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.29,3,Kaliwedi,age_group,20-24,laki_laki,1578,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.29,3,Kaliwedi,age_group,20-24,perempuan,1530,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.29,3,Kaliwedi,age_group,20-24,,3108,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.29,3,Kaliwedi,age_group,25-29,laki_laki,1899,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.29,3,Kaliwedi,age_group,25-29,perempuan,1778,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.29,3,Kaliwedi,age_group,25-29,,3677,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.29,3,Kaliwedi,age_group,30-34,laki_laki,1915,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.29,3,Kaliwedi,age_group,30-34,perempuan,1760,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.29,3,Kaliwedi,age_group,30-34,,3675,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.29,3,Kaliwedi,age_group,35-39,laki_laki,1980,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.29,3,Kaliwedi,age_group,35-39,perempuan,1781,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.29,3,Kaliwedi,age_group,35-39,,3761,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.29,3,Kaliwedi,age_group,40-44,laki_laki,2038,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.29,3,Kaliwedi,age_group,40-44,perempuan,2176,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.29,3,Kaliwedi,age_group,40-44,,4214,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.29,3,Kaliwedi,age_group,45-49,laki_laki,1687,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.29,3,Kaliwedi,age_group,45-49,perempuan,1809,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.29,3,Kaliwedi,age_group,45-49,,3496,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.29,3,Kaliwedi,age_group,50-54,laki_laki,1389,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.29,3,Kaliwedi,age_group,50-54,perempuan,1535,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.29,3,Kaliwedi,age_group,50-54,,2924,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.29,3,Kaliwedi,age_group,55-59,laki_laki,1130,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.29,3,Kaliwedi,age_group,55-59,perempuan,1128,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.29,3,Kaliwedi,age_group,55-59,,2258,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.29,3,Kaliwedi,age_group,60-64,laki_laki,783,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.29,3,Kaliwedi,age_group,60-64,perempuan,794,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.29,3,Kaliwedi,age_group,60-64,,1577,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.29,3,Kaliwedi,age_group,65-69,laki_laki,643,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.29,3,Kaliwedi,age_group,65-69,perempuan,641,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.29,3,Kaliwedi,age_group,65-69,,1284,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.29,3,Kaliwedi,age_group,70-74,laki_laki,438,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.29,3,Kaliwedi,age_group,70-74,perempuan,467,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.29,3,Kaliwedi,age_group,70-74,,905,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.29,3,Kaliwedi,age_group,75+,laki_laki,541,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.29,3,Kaliwedi,age_group,75+,perempuan,614,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.29,3,Kaliwedi,age_group,75+,,1155,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.29,3,Kecamatan Kaliwedi,sex,laki_laki,,23449,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.29,3,Kecamatan Kaliwedi,sex,perempuan,,22879,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.29,3,Kecamatan Kaliwedi,total,total,,46328,jiwa,2025,registration,total_population,3.2,54,,

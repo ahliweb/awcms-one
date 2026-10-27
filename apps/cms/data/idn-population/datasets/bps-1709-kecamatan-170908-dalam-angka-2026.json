@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-1709-kecamatan-170908-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "17.09.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Merigi Sakti Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bengkulu Tengah",
+  "publisherDomain": "1709",
+  "publisherWebsite": "https://bengkulutengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bengkulu Tengah (https://bengkulutengahkab.bps.go.id), publikasi \"Kecamatan Merigi Sakti Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1709041",
+  "publicationNumber": "17090.26014",
+  "issn": "2615-2460",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bengkulutengahkab.bps.go.id/id/publication/2026/09/28/98e23bc887f8a3b8e7077a3f/kecamatan-merigi-sakti-dalam-angka-2026.html",
+  "sourceFileSha256": "e3ae7ea561f273256e54d6269709753cefb17802200c13062b6ea97b3ed70631",
+  "sourceFileBytes": 5426249,
+  "sourcePages": [35, 36, 37],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bengkulu Tengah.",
+  "csvPath": "datasets/bps-1709-kecamatan-170908-dalam-angka-2026.csv",
+  "csvSha256": "242f1c38889af33d2720b80dffd8b1562551249f4392d0f0b4c01795577c77ae",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Merigi Sakti, 2025",
+      "printedPages": [35, 36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Merigi Sakti, 2025",
+      "printedPages": [37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Bajak III\": unmatched ",
+    "table 3.1: row not stored: row \"Taba Gematung\": unmatched ",
+    "table 3.1: row not stored: row \"Bajak III\": unmatched ",
+    "table 3.1: row not stored: row \"Taba Gematung\": unmatched "
+  ]
+}

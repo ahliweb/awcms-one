@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-6205-kecamatan-620506-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.05.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lahei Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "6205",
+  "publisherWebsite": "https://barutkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://barutkab.bps.go.id), publikasi \"Kecamatan Lahei Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.6205060",
+  "publicationNumber": "62050.26021",
+  "issn": "2622-1403",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://barutkab.bps.go.id/id/publication/2026/09/28/4604f3f0104540c8a4a1aa16/kecamatan-lahei-dalam-angka-2026.html",
+  "sourceFileSha256": "24de5bbffd4b577972b63cea8f69888985f2df1f2d2eceb7fd6c552933e0d26f",
+  "sourceFileBytes": 5176300,
+  "sourcePages": [41, 43],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Barito Utara",
+  "csvPath": "datasets/bps-6205-kecamatan-620506-dalam-angka-2026.csv",
+  "csvSha256": "9f2666ef65c16831f508dac01bf1dad8e8810fd85321ab374725dac3633b18bb",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p41",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Lahei, 2025",
+      "printedPages": [41],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "unnumbered-p43",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lahei, 2025",
+      "printedPages": [43],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

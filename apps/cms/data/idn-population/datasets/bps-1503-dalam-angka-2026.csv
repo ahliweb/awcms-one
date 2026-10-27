@@ -1,0 +1,110 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.03.01,3,Batang Asai,total,total,,19929,jiwa,2025,projection,total_population,3.1.1,92,,
+15.03.02,3,Limun,total,total,,19419,jiwa,2025,projection,total_population,3.1.1,92,,
+15.03.10,3,Cermin Nan Gedang,total,total,,14792,jiwa,2025,projection,total_population,3.1.1,92,,
+15.03.05,3,Pelawan,total,total,,37210,jiwa,2025,projection,total_population,3.1.1,92,,
+15.03.09,3,Singkut,total,total,,41830,jiwa,2025,projection,total_population,3.1.1,92,,
+15.03.03,3,Sarolangun,total,total,,62307,jiwa,2025,projection,total_population,3.1.1,92,,
+15.03.08,3,Bathin VIII,total,total,,22603,jiwa,2025,projection,total_population,3.1.1,92,,
+15.03.04,3,Pauh,total,total,,25785,jiwa,2025,projection,total_population,3.1.1,92,,
+15.03.07,3,Air Hitam,total,total,,26877,jiwa,2025,projection,total_population,3.1.1,92,,
+15.03.06,3,Mandiangin,total,total,,25737,jiwa,2025,projection,total_population,3.1.1,92,,
+15.03.11,3,Mandiangin Timur,total,total,,14190,jiwa,2025,projection,total_population,3.1.1,92,,
+15.03,2,Sarolangun,total,total,,310679,jiwa,2025,projection,total_population,3.1.1,92,,
+15.03,2,Kabupaten Sarolangun,age_group,0-4,laki_laki,15548,jiwa,2025,projection,total_population,3.1.2,95,,0–4
+15.03,2,Kabupaten Sarolangun,age_group,0-4,perempuan,15050,jiwa,2025,projection,total_population,3.1.2,95,,0–4
+15.03,2,Kabupaten Sarolangun,age_group,0-4,,30598,jiwa,2025,projection,total_population,3.1.2,95,,0–4
+15.03,2,Kabupaten Sarolangun,age_group,5-9,laki_laki,14976,jiwa,2025,projection,total_population,3.1.2,95,,5–9
+15.03,2,Kabupaten Sarolangun,age_group,5-9,perempuan,14280,jiwa,2025,projection,total_population,3.1.2,95,,5–9
+15.03,2,Kabupaten Sarolangun,age_group,5-9,,29256,jiwa,2025,projection,total_population,3.1.2,95,,5–9
+15.03,2,Kabupaten Sarolangun,age_group,10-14,laki_laki,14423,jiwa,2025,projection,total_population,3.1.2,95,,10–14
+15.03,2,Kabupaten Sarolangun,age_group,10-14,perempuan,13610,jiwa,2025,projection,total_population,3.1.2,95,,10–14
+15.03,2,Kabupaten Sarolangun,age_group,10-14,,28033,jiwa,2025,projection,total_population,3.1.2,95,,10–14
+15.03,2,Kabupaten Sarolangun,age_group,15-19,laki_laki,13151,jiwa,2025,projection,total_population,3.1.2,95,,15–19
+15.03,2,Kabupaten Sarolangun,age_group,15-19,perempuan,12370,jiwa,2025,projection,total_population,3.1.2,95,,15–19
+15.03,2,Kabupaten Sarolangun,age_group,15-19,,25521,jiwa,2025,projection,total_population,3.1.2,95,,15–19
+15.03,2,Kabupaten Sarolangun,age_group,20-24,laki_laki,12564,jiwa,2025,projection,total_population,3.1.2,95,,20–24
+15.03,2,Kabupaten Sarolangun,age_group,20-24,perempuan,12142,jiwa,2025,projection,total_population,3.1.2,95,,20–24
+15.03,2,Kabupaten Sarolangun,age_group,20-24,,24706,jiwa,2025,projection,total_population,3.1.2,95,,20–24
+15.03,2,Kabupaten Sarolangun,age_group,25-29,laki_laki,12464,jiwa,2025,projection,total_population,3.1.2,95,,25–29
+15.03,2,Kabupaten Sarolangun,age_group,25-29,perempuan,12373,jiwa,2025,projection,total_population,3.1.2,95,,25–29
+15.03,2,Kabupaten Sarolangun,age_group,25-29,,24837,jiwa,2025,projection,total_population,3.1.2,95,,25–29
+15.03,2,Kabupaten Sarolangun,age_group,30-34,laki_laki,12031,jiwa,2025,projection,total_population,3.1.2,95,,30–34
+15.03,2,Kabupaten Sarolangun,age_group,30-34,perempuan,12027,jiwa,2025,projection,total_population,3.1.2,95,,30–34
+15.03,2,Kabupaten Sarolangun,age_group,30-34,,24058,jiwa,2025,projection,total_population,3.1.2,95,,30–34
+15.03,2,Kabupaten Sarolangun,age_group,35-39,laki_laki,11785,jiwa,2025,projection,total_population,3.1.2,95,,35–39
+15.03,2,Kabupaten Sarolangun,age_group,35-39,perempuan,11730,jiwa,2025,projection,total_population,3.1.2,95,,35–39
+15.03,2,Kabupaten Sarolangun,age_group,35-39,,23515,jiwa,2025,projection,total_population,3.1.2,95,,35–39
+15.03,2,Kabupaten Sarolangun,age_group,40-44,laki_laki,11109,jiwa,2025,projection,total_population,3.1.2,95,,40–44
+15.03,2,Kabupaten Sarolangun,age_group,40-44,perempuan,10923,jiwa,2025,projection,total_population,3.1.2,95,,40–44
+15.03,2,Kabupaten Sarolangun,age_group,40-44,,22032,jiwa,2025,projection,total_population,3.1.2,95,,40–44
+15.03,2,Kabupaten Sarolangun,age_group,45-49,laki_laki,10304,jiwa,2025,projection,total_population,3.1.2,95,,45–49
+15.03,2,Kabupaten Sarolangun,age_group,45-49,perempuan,10011,jiwa,2025,projection,total_population,3.1.2,95,,45–49
+15.03,2,Kabupaten Sarolangun,age_group,45-49,,20315,jiwa,2025,projection,total_population,3.1.2,95,,45–49
+15.03,2,Kabupaten Sarolangun,age_group,50-54,laki_laki,8986,jiwa,2025,projection,total_population,3.1.2,95,,50–54
+15.03,2,Kabupaten Sarolangun,age_group,50-54,perempuan,8552,jiwa,2025,projection,total_population,3.1.2,95,,50–54
+15.03,2,Kabupaten Sarolangun,age_group,50-54,,17538,jiwa,2025,projection,total_population,3.1.2,95,,50–54
+15.03,2,Kabupaten Sarolangun,age_group,55-59,laki_laki,7286,jiwa,2025,projection,total_population,3.1.2,95,,55–59
+15.03,2,Kabupaten Sarolangun,age_group,55-59,perempuan,6714,jiwa,2025,projection,total_population,3.1.2,95,,55–59
+15.03,2,Kabupaten Sarolangun,age_group,55-59,,14000,jiwa,2025,projection,total_population,3.1.2,95,,55–59
+15.03,2,Kabupaten Sarolangun,age_group,60-64,laki_laki,5550,jiwa,2025,projection,total_population,3.1.2,95,,60–64
+15.03,2,Kabupaten Sarolangun,age_group,60-64,perempuan,5170,jiwa,2025,projection,total_population,3.1.2,95,,60–64
+15.03,2,Kabupaten Sarolangun,age_group,60-64,,10720,jiwa,2025,projection,total_population,3.1.2,95,,60–64
+15.03,2,Kabupaten Sarolangun,age_group,65-69,laki_laki,3847,jiwa,2025,projection,total_population,3.1.2,95,,65–69
+15.03,2,Kabupaten Sarolangun,age_group,65-69,perempuan,3609,jiwa,2025,projection,total_population,3.1.2,95,,65–69
+15.03,2,Kabupaten Sarolangun,age_group,65-69,,7456,jiwa,2025,projection,total_population,3.1.2,95,,65–69
+15.03,2,Kabupaten Sarolangun,age_group,70-74,laki_laki,2437,jiwa,2025,projection,total_population,3.1.2,95,,70–74
+15.03,2,Kabupaten Sarolangun,age_group,70-74,perempuan,2329,jiwa,2025,projection,total_population,3.1.2,95,,70–74
+15.03,2,Kabupaten Sarolangun,age_group,70-74,,4766,jiwa,2025,projection,total_population,3.1.2,95,,70–74
+15.03,2,Kabupaten Sarolangun,age_group,75+,laki_laki,1565,jiwa,2025,projection,total_population,3.1.2,95,,75+
+15.03,2,Kabupaten Sarolangun,age_group,75+,perempuan,1763,jiwa,2025,projection,total_population,3.1.2,95,,75+
+15.03,2,Kabupaten Sarolangun,age_group,75+,,3328,jiwa,2025,projection,total_population,3.1.2,95,,75+
+15.03,2,Kabupaten Sarolangun,sex,laki_laki,,158026,jiwa,2025,projection,total_population,3.1.2,95,,Laki-Laki
+15.03,2,Kabupaten Sarolangun,sex,perempuan,,152653,jiwa,2025,projection,total_population,3.1.2,95,,Perempuan
+15.03,2,Kabupaten Sarolangun,total,total,,310679,jiwa,2025,projection,total_population,3.1.2,95,,
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/padi_padian,,97850,rupiah,2024,survey_estimate,per_capita,10.1,368,,Padi-padian
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/padi_padian,,93374,rupiah,2025,survey_estimate,per_capita,10.1,368,,Padi-padian
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/umbi_umbian,,6407,rupiah,2024,survey_estimate,per_capita,10.1,368,,Umbi-umbian
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/umbi_umbian,,7498,rupiah,2025,survey_estimate,per_capita,10.1,368,,Umbi-umbian
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,62244,rupiah,2024,survey_estimate,per_capita,10.1,368,,Ikan/udang/cumi/kerang
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,72410,rupiah,2025,survey_estimate,per_capita,10.1,368,,Ikan/udang/cumi/kerang
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/daging,,34358,rupiah,2024,survey_estimate,per_capita,10.1,368,,Daging
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/daging,,35307,rupiah,2025,survey_estimate,per_capita,10.1,368,,Daging
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/telur_dan_susu,,29813,rupiah,2024,survey_estimate,per_capita,10.1,368,,Telur dan susu
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/telur_dan_susu,,27549,rupiah,2025,survey_estimate,per_capita,10.1,368,,Telur dan susu
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/sayur_sayuran,,80190,rupiah,2024,survey_estimate,per_capita,10.1,368,,Sayur-sayuran
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/sayur_sayuran,,85329,rupiah,2025,survey_estimate,per_capita,10.1,368,,Sayur-sayuran
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/kacang_kacangan,,10225,rupiah,2024,survey_estimate,per_capita,10.1,368,,Kacang-kacangan
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/kacang_kacangan,,11398,rupiah,2025,survey_estimate,per_capita,10.1,368,,Kacang-kacangan
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/buah_buahan,,59831,rupiah,2024,survey_estimate,per_capita,10.1,368,,Buah-buahan
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/buah_buahan,,34729,rupiah,2025,survey_estimate,per_capita,10.1,368,,Buah-buahan
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/minyak_dan_kelapa,,21174,rupiah,2024,survey_estimate,per_capita,10.1,368,,Minyak dan kelapa
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23869,rupiah,2025,survey_estimate,per_capita,10.1,368,,Minyak dan kelapa
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/bahan_minuman,,16381,rupiah,2024,survey_estimate,per_capita,10.1,368,,Bahan minuman
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/bahan_minuman,,20608,rupiah,2025,survey_estimate,per_capita,10.1,368,,Bahan minuman
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/bumbu_bumbuan,,10739,rupiah,2024,survey_estimate,per_capita,10.1,368,,Bumbu-bumbuan
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/bumbu_bumbuan,,10462,rupiah,2025,survey_estimate,per_capita,10.1,368,,Bumbu-bumbuan
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/konsumsi_lainnya,,13193,rupiah,2024,survey_estimate,per_capita,10.1,368,,Konsumsi lainnya
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/konsumsi_lainnya,,13001,rupiah,2025,survey_estimate,per_capita,10.1,368,,Konsumsi lainnya
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,128356,rupiah,2024,survey_estimate,per_capita,10.1,368,,Makanan dan minuman jadi
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,151708,rupiah,2025,survey_estimate,per_capita,10.1,368,,Makanan dan minuman jadi
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/rokok,,122333,rupiah,2024,survey_estimate,per_capita,10.1,368,,Rokok
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/rokok,,130021,rupiah,2025,survey_estimate,per_capita,10.1,368,,Rokok
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/jumlah_makanan,,693094,rupiah,2024,survey_estimate,per_capita,10.1,368,,Jumlah makanan
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/jumlah_makanan,,717264,rupiah,2025,survey_estimate,per_capita,10.1,368,,Jumlah makanan
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,306296,rupiah,2024,survey_estimate,per_capita,10.1,368,,Perumahan dan fasilitas rumah tangga
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,317688,rupiah,2025,survey_estimate,per_capita,10.1,368,,Perumahan dan fasilitas rumah tangga
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,120665,rupiah,2024,survey_estimate,per_capita,10.1,368,,Aneka komoditas dan jasa
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,112621,rupiah,2025,survey_estimate,per_capita,10.1,368,,Aneka komoditas dan jasa
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,51287,rupiah,2024,survey_estimate,per_capita,10.1,368,,Pakaian alas kaki dan tutup kepala
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,46430,rupiah,2025,survey_estimate,per_capita,10.1,368,,Pakaian alas kaki dan tutup kepala
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/komoditas_tahan_lama,,56420,rupiah,2024,survey_estimate,per_capita,10.1,368,,Komoditas tahan lama
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/komoditas_tahan_lama,,68949,rupiah,2025,survey_estimate,per_capita,10.1,368,,Komoditas tahan lama
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,45621,rupiah,2024,survey_estimate,per_capita,10.1,368,,"Pajak, pungutan, dan asuransi"
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,51158,rupiah,2025,survey_estimate,per_capita,10.1,368,,"Pajak, pungutan, dan asuransi"
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,7714,rupiah,2024,survey_estimate,per_capita,10.1,368,,Keperluan pesta dan upacara/kenduri
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,15252,rupiah,2025,survey_estimate,per_capita,10.1,368,,Keperluan pesta dan upacara/kenduri
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,588003,rupiah,2024,survey_estimate,per_capita,10.1,368,,Jumlah bukan makanan
+15.03,2,Kabupaten Sarolangun,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,612098,rupiah,2025,survey_estimate,per_capita,10.1,368,,Jumlah bukan makanan
+15.03,2,Kabupaten Sarolangun,expenditure,total,,1281097,rupiah,2024,survey_estimate,per_capita,10.1,368,,
+15.03,2,Kabupaten Sarolangun,expenditure,total,,1329361,rupiah,2025,survey_estimate,per_capita,10.1,368,,

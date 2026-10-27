@@ -1,0 +1,684 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.01,2,Kotawaringin Barat,total,total,,270.39,ribu_jiwa,2020,census,total_population,3.1.1,134,,
+62.01,2,Kotawaringin Barat,total,total,,285.74,ribu_jiwa,2025,projection,total_population,3.1.1,134,,
+62.01,2,Kotawaringin Barat,total,total,,288.56,ribu_jiwa,2026,projection,total_population,3.1.1,134,,
+62.02,2,Kotawaringin Timur,total,total,,428.90,ribu_jiwa,2020,census,total_population,3.1.1,134,,
+62.02,2,Kotawaringin Timur,total,total,,452.87,ribu_jiwa,2025,projection,total_population,3.1.1,134,,
+62.02,2,Kotawaringin Timur,total,total,,457.42,ribu_jiwa,2026,projection,total_population,3.1.1,134,,
+62.03,2,Kapuas,total,total,,410.45,ribu_jiwa,2020,census,total_population,3.1.1,134,,
+62.03,2,Kapuas,total,total,,435.07,ribu_jiwa,2025,projection,total_population,3.1.1,134,,
+62.03,2,Kapuas,total,total,,439.80,ribu_jiwa,2026,projection,total_population,3.1.1,134,,
+62.04,2,Barito Selatan,total,total,,131.14,ribu_jiwa,2020,census,total_population,3.1.1,134,,
+62.04,2,Barito Selatan,total,total,,137.06,ribu_jiwa,2025,projection,total_population,3.1.1,134,,
+62.04,2,Barito Selatan,total,total,,138.16,ribu_jiwa,2026,projection,total_population,3.1.1,134,,
+62.05,2,Barito Utara,total,total,,154.81,ribu_jiwa,2020,census,total_population,3.1.1,134,,
+62.05,2,Barito Utara,total,total,,164.62,ribu_jiwa,2025,projection,total_population,3.1.1,134,,
+62.05,2,Barito Utara,total,total,,166.58,ribu_jiwa,2026,projection,total_population,3.1.1,134,,
+62.08,2,Sukamara,total,total,,63.46,ribu_jiwa,2020,census,total_population,3.1.1,134,,
+62.08,2,Sukamara,total,total,,68.98,ribu_jiwa,2025,projection,total_population,3.1.1,134,,
+62.08,2,Sukamara,total,total,,70.14,ribu_jiwa,2026,projection,total_population,3.1.1,134,,
+62.09,2,Lamandau,total,total,,97.61,ribu_jiwa,2020,census,total_population,3.1.1,134,,
+62.09,2,Lamandau,total,total,,105.21,ribu_jiwa,2025,projection,total_population,3.1.1,134,,
+62.09,2,Lamandau,total,total,,106.70,ribu_jiwa,2026,projection,total_population,3.1.1,134,,
+62.07,2,Seruyan,total,total,,162.91,ribu_jiwa,2020,census,total_population,3.1.1,134,,
+62.07,2,Seruyan,total,total,,177.32,ribu_jiwa,2025,projection,total_population,3.1.1,134,,
+62.07,2,Seruyan,total,total,,180.31,ribu_jiwa,2026,projection,total_population,3.1.1,134,,
+62.06,2,Katingan,total,total,,162.22,ribu_jiwa,2020,census,total_population,3.1.1,134,,
+62.06,2,Katingan,total,total,,174.34,ribu_jiwa,2025,projection,total_population,3.1.1,134,,
+62.06,2,Katingan,total,total,,176.76,ribu_jiwa,2026,projection,total_population,3.1.1,134,,
+62.11,2,Pulang Pisau,total,total,,134.50,ribu_jiwa,2020,census,total_population,3.1.1,134,,
+62.11,2,Pulang Pisau,total,total,,140.78,ribu_jiwa,2025,projection,total_population,3.1.1,134,,
+62.11,2,Pulang Pisau,total,total,,142.03,ribu_jiwa,2026,projection,total_population,3.1.1,134,,
+62.10,2,Gunung Mas,total,total,,135.37,ribu_jiwa,2020,census,total_population,3.1.1,134,,
+62.10,2,Gunung Mas,total,total,,148.23,ribu_jiwa,2025,projection,total_population,3.1.1,134,,
+62.10,2,Gunung Mas,total,total,,150.92,ribu_jiwa,2026,projection,total_population,3.1.1,134,,
+62.13,2,Barito Timur,total,total,,113.23,ribu_jiwa,2020,census,total_population,3.1.1,134,,
+62.13,2,Barito Timur,total,total,,120.20,ribu_jiwa,2025,projection,total_population,3.1.1,134,,
+62.13,2,Barito Timur,total,total,,121.62,ribu_jiwa,2026,projection,total_population,3.1.1,134,,
+62.12,2,Murung Raya,total,total,,111.53,ribu_jiwa,2020,census,total_population,3.1.1,134,,
+62.12,2,Murung Raya,total,total,,120.22,ribu_jiwa,2025,projection,total_population,3.1.1,134,,
+62.12,2,Murung Raya,total,total,,122.00,ribu_jiwa,2026,projection,total_population,3.1.1,134,,
+62.71,2,Palangka Raya,total,total,,293.46,ribu_jiwa,2020,census,total_population,3.1.1,134,,
+62.71,2,Palangka Raya,total,total,,314.37,ribu_jiwa,2025,projection,total_population,3.1.1,134,,
+62.71,2,Palangka Raya,total,total,,318.54,ribu_jiwa,2026,projection,total_population,3.1.1,134,,
+62,1,Kalimantan Tengah,total,total,,2669.97,ribu_jiwa,2020,census,total_population,3.1.1,134,,
+62,1,Kalimantan Tengah,total,total,,2844.99,ribu_jiwa,2025,projection,total_population,3.1.1,134,,
+62,1,Kalimantan Tengah,total,total,,2879.54,ribu_jiwa,2026,projection,total_population,3.1.1,134,,
+62,1,Kalimantan Tengah,age_group,0-4,laki_laki,129.44,ribu_jiwa,2025,projection,total_population,3.1.2,139,,0–4
+62,1,Kalimantan Tengah,age_group,0-4,laki_laki,129.17,ribu_jiwa,2026,projection,total_population,3.1.2,139,,0–4
+62,1,Kalimantan Tengah,age_group,0-4,perempuan,124.10,ribu_jiwa,2025,projection,total_population,3.1.2,139,,0–4
+62,1,Kalimantan Tengah,age_group,0-4,perempuan,123.87,ribu_jiwa,2026,projection,total_population,3.1.2,139,,0–4
+62,1,Kalimantan Tengah,age_group,0-4,,253.54,ribu_jiwa,2025,projection,total_population,3.1.2,139,,0–4
+62,1,Kalimantan Tengah,age_group,0-4,,253.04,ribu_jiwa,2026,projection,total_population,3.1.2,139,,0–4
+62,1,Kalimantan Tengah,age_group,5-9,laki_laki,111.92,ribu_jiwa,2025,projection,total_population,3.1.2,139,,5–9
+62,1,Kalimantan Tengah,age_group,5-9,laki_laki,115.52,ribu_jiwa,2026,projection,total_population,3.1.2,139,,5–9
+62,1,Kalimantan Tengah,age_group,5-9,perempuan,107.05,ribu_jiwa,2025,projection,total_population,3.1.2,139,,5–9
+62,1,Kalimantan Tengah,age_group,5-9,perempuan,110.53,ribu_jiwa,2026,projection,total_population,3.1.2,139,,5–9
+62,1,Kalimantan Tengah,age_group,5-9,,218.97,ribu_jiwa,2025,projection,total_population,3.1.2,139,,5–9
+62,1,Kalimantan Tengah,age_group,5-9,,226.04,ribu_jiwa,2026,projection,total_population,3.1.2,139,,5–9
+62,1,Kalimantan Tengah,age_group,10-14,laki_laki,112.23,ribu_jiwa,2025,projection,total_population,3.1.2,139,,10–14
+62,1,Kalimantan Tengah,age_group,10-14,laki_laki,111.29,ribu_jiwa,2026,projection,total_population,3.1.2,139,,10–14
+62,1,Kalimantan Tengah,age_group,10-14,perempuan,107.17,ribu_jiwa,2025,projection,total_population,3.1.2,139,,10–14
+62,1,Kalimantan Tengah,age_group,10-14,perempuan,106.55,ribu_jiwa,2026,projection,total_population,3.1.2,139,,10–14
+62,1,Kalimantan Tengah,age_group,10-14,,219.40,ribu_jiwa,2025,projection,total_population,3.1.2,139,,10–14
+62,1,Kalimantan Tengah,age_group,10-14,,217.84,ribu_jiwa,2026,projection,total_population,3.1.2,139,,10–14
+62,1,Kalimantan Tengah,age_group,15-19,laki_laki,120.01,ribu_jiwa,2025,projection,total_population,3.1.2,139,,15–19
+62,1,Kalimantan Tengah,age_group,15-19,laki_laki,118.53,ribu_jiwa,2026,projection,total_population,3.1.2,139,,15–19
+62,1,Kalimantan Tengah,age_group,15-19,perempuan,111.90,ribu_jiwa,2025,projection,total_population,3.1.2,139,,15–19
+62,1,Kalimantan Tengah,age_group,15-19,perempuan,110.80,ribu_jiwa,2026,projection,total_population,3.1.2,139,,15–19
+62,1,Kalimantan Tengah,age_group,15-19,,231.90,ribu_jiwa,2025,projection,total_population,3.1.2,139,,15–19
+62,1,Kalimantan Tengah,age_group,15-19,,229.33,ribu_jiwa,2026,projection,total_population,3.1.2,139,,15–19
+62,1,Kalimantan Tengah,age_group,20-24,laki_laki,122.40,ribu_jiwa,2025,projection,total_population,3.1.2,139,,20–24
+62,1,Kalimantan Tengah,age_group,20-24,laki_laki,122.05,ribu_jiwa,2026,projection,total_population,3.1.2,139,,20–24
+62,1,Kalimantan Tengah,age_group,20-24,perempuan,115.17,ribu_jiwa,2025,projection,total_population,3.1.2,139,,20–24
+62,1,Kalimantan Tengah,age_group,20-24,perempuan,114.67,ribu_jiwa,2026,projection,total_population,3.1.2,139,,20–24
+62,1,Kalimantan Tengah,age_group,20-24,,237.57,ribu_jiwa,2025,projection,total_population,3.1.2,139,,20–24
+62,1,Kalimantan Tengah,age_group,20-24,,236.72,ribu_jiwa,2026,projection,total_population,3.1.2,139,,20–24
+62,1,Kalimantan Tengah,age_group,25-29,laki_laki,124.36,ribu_jiwa,2025,projection,total_population,3.1.2,139,,25–29
+62,1,Kalimantan Tengah,age_group,25-29,laki_laki,124.47,ribu_jiwa,2026,projection,total_population,3.1.2,139,,25–29
+62,1,Kalimantan Tengah,age_group,25-29,perempuan,118.20,ribu_jiwa,2025,projection,total_population,3.1.2,139,,25–29
+62,1,Kalimantan Tengah,age_group,25-29,perempuan,118.52,ribu_jiwa,2026,projection,total_population,3.1.2,139,,25–29
+62,1,Kalimantan Tengah,age_group,25-29,,242.56,ribu_jiwa,2025,projection,total_population,3.1.2,139,,25–29
+62,1,Kalimantan Tengah,age_group,25-29,,242.99,ribu_jiwa,2026,projection,total_population,3.1.2,139,,25–29
+62,1,Kalimantan Tengah,age_group,30-34,laki_laki,121.56,ribu_jiwa,2025,projection,total_population,3.1.2,139,,30–34
+62,1,Kalimantan Tengah,age_group,30-34,laki_laki,122.19,ribu_jiwa,2026,projection,total_population,3.1.2,139,,30–34
+62,1,Kalimantan Tengah,age_group,30-34,perempuan,114.45,ribu_jiwa,2025,projection,total_population,3.1.2,139,,30–34
+62,1,Kalimantan Tengah,age_group,30-34,perempuan,115.22,ribu_jiwa,2026,projection,total_population,3.1.2,139,,30–34
+62,1,Kalimantan Tengah,age_group,30-34,,236.01,ribu_jiwa,2025,projection,total_population,3.1.2,139,,30–34
+62,1,Kalimantan Tengah,age_group,30-34,,237.41,ribu_jiwa,2026,projection,total_population,3.1.2,139,,30–34
+62,1,Kalimantan Tengah,age_group,35-39,laki_laki,118.01,ribu_jiwa,2025,projection,total_population,3.1.2,139,,35–39
+62,1,Kalimantan Tengah,age_group,35-39,laki_laki,118.55,ribu_jiwa,2026,projection,total_population,3.1.2,139,,35–39
+62,1,Kalimantan Tengah,age_group,35-39,perempuan,110.97,ribu_jiwa,2025,projection,total_population,3.1.2,139,,35–39
+62,1,Kalimantan Tengah,age_group,35-39,perempuan,111.61,ribu_jiwa,2026,projection,total_population,3.1.2,139,,35–39
+62,1,Kalimantan Tengah,age_group,35-39,,228.98,ribu_jiwa,2025,projection,total_population,3.1.2,139,,35–39
+62,1,Kalimantan Tengah,age_group,35-39,,230.16,ribu_jiwa,2026,projection,total_population,3.1.2,139,,35–39
+62,1,Kalimantan Tengah,age_group,40-44,laki_laki,110.57,ribu_jiwa,2025,projection,total_population,3.1.2,139,,40–44
+62,1,Kalimantan Tengah,age_group,40-44,laki_laki,111.59,ribu_jiwa,2026,projection,total_population,3.1.2,139,,40–44
+62,1,Kalimantan Tengah,age_group,40-44,perempuan,103.44,ribu_jiwa,2025,projection,total_population,3.1.2,139,,40–44
+62,1,Kalimantan Tengah,age_group,40-44,perempuan,104.86,ribu_jiwa,2026,projection,total_population,3.1.2,139,,40–44
+62,1,Kalimantan Tengah,age_group,40-44,,214.01,ribu_jiwa,2025,projection,total_population,3.1.2,139,,40–44
+62,1,Kalimantan Tengah,age_group,40-44,,216.45,ribu_jiwa,2026,projection,total_population,3.1.2,139,,40–44
+62,1,Kalimantan Tengah,age_group,45-49,laki_laki,102.70,ribu_jiwa,2025,projection,total_population,3.1.2,139,,45–49
+62,1,Kalimantan Tengah,age_group,45-49,laki_laki,103.99,ribu_jiwa,2026,projection,total_population,3.1.2,139,,45–49
+62,1,Kalimantan Tengah,age_group,45-49,perempuan,94.47,ribu_jiwa,2025,projection,total_population,3.1.2,139,,45–49
+62,1,Kalimantan Tengah,age_group,45-49,perempuan,96.23,ribu_jiwa,2026,projection,total_population,3.1.2,139,,45–49
+62,1,Kalimantan Tengah,age_group,45-49,,197.17,ribu_jiwa,2025,projection,total_population,3.1.2,139,,45–49
+62,1,Kalimantan Tengah,age_group,45-49,,200.22,ribu_jiwa,2026,projection,total_population,3.1.2,139,,45–49
+62,1,Kalimantan Tengah,age_group,50-54,laki_laki,88.44,ribu_jiwa,2025,projection,total_population,3.1.2,139,,50–54
+62,1,Kalimantan Tengah,age_group,50-54,laki_laki,90.79,ribu_jiwa,2026,projection,total_population,3.1.2,139,,50–54
+62,1,Kalimantan Tengah,age_group,50-54,perempuan,80.57,ribu_jiwa,2025,projection,total_population,3.1.2,139,,50–54
+62,1,Kalimantan Tengah,age_group,50-54,perempuan,83.19,ribu_jiwa,2026,projection,total_population,3.1.2,139,,50–54
+62,1,Kalimantan Tengah,age_group,50-54,,169.01,ribu_jiwa,2025,projection,total_population,3.1.2,139,,50–54
+62,1,Kalimantan Tengah,age_group,50-54,,173.98,ribu_jiwa,2026,projection,total_population,3.1.2,139,,50–54
+62,1,Kalimantan Tengah,age_group,55-59,laki_laki,70.68,ribu_jiwa,2025,projection,total_population,3.1.2,139,,55–59
+62,1,Kalimantan Tengah,age_group,55-59,laki_laki,73.19,ribu_jiwa,2026,projection,total_population,3.1.2,139,,55–59
+62,1,Kalimantan Tengah,age_group,55-59,perempuan,63.73,ribu_jiwa,2025,projection,total_population,3.1.2,139,,55–59
+62,1,Kalimantan Tengah,age_group,55-59,perempuan,66.49,ribu_jiwa,2026,projection,total_population,3.1.2,139,,55–59
+62,1,Kalimantan Tengah,age_group,55-59,,134.41,ribu_jiwa,2025,projection,total_population,3.1.2,139,,55–59
+62,1,Kalimantan Tengah,age_group,55-59,,139.67,ribu_jiwa,2026,projection,total_population,3.1.2,139,,55–59
+62,1,Kalimantan Tengah,age_group,60-64,laki_laki,54.22,ribu_jiwa,2025,projection,total_population,3.1.2,139,,60–64
+62,1,Kalimantan Tengah,age_group,60-64,laki_laki,56.43,ribu_jiwa,2026,projection,total_population,3.1.2,139,,60–64
+62,1,Kalimantan Tengah,age_group,60-64,perempuan,49.11,ribu_jiwa,2025,projection,total_population,3.1.2,139,,60–64
+62,1,Kalimantan Tengah,age_group,60-64,perempuan,51.47,ribu_jiwa,2026,projection,total_population,3.1.2,139,,60–64
+62,1,Kalimantan Tengah,age_group,60-64,,103.34,ribu_jiwa,2025,projection,total_population,3.1.2,139,,60–64
+62,1,Kalimantan Tengah,age_group,60-64,,107.90,ribu_jiwa,2026,projection,total_population,3.1.2,139,,60–64
+62,1,Kalimantan Tengah,age_group,65-69,laki_laki,36.83,ribu_jiwa,2025,projection,total_population,3.1.2,139,,65–69
+62,1,Kalimantan Tengah,age_group,65-69,laki_laki,38.99,ribu_jiwa,2026,projection,total_population,3.1.2,139,,65–69
+62,1,Kalimantan Tengah,age_group,65-69,perempuan,33.85,ribu_jiwa,2025,projection,total_population,3.1.2,139,,65–69
+62,1,Kalimantan Tengah,age_group,65-69,perempuan,36.07,ribu_jiwa,2026,projection,total_population,3.1.2,139,,65–69
+62,1,Kalimantan Tengah,age_group,65-69,,70.68,ribu_jiwa,2025,projection,total_population,3.1.2,139,,65–69
+62,1,Kalimantan Tengah,age_group,65-69,,75.06,ribu_jiwa,2026,projection,total_population,3.1.2,139,,65–69
+62,1,Kalimantan Tengah,age_group,70-74,laki_laki,23.00,ribu_jiwa,2025,projection,total_population,3.1.2,139,,70–74
+62,1,Kalimantan Tengah,age_group,70-74,laki_laki,24.28,ribu_jiwa,2026,projection,total_population,3.1.2,139,,70–74
+62,1,Kalimantan Tengah,age_group,70-74,perempuan,21.89,ribu_jiwa,2025,projection,total_population,3.1.2,139,,70–74
+62,1,Kalimantan Tengah,age_group,70-74,perempuan,23.26,ribu_jiwa,2026,projection,total_population,3.1.2,139,,70–74
+62,1,Kalimantan Tengah,age_group,70-74,,44.89,ribu_jiwa,2025,projection,total_population,3.1.2,139,,70–74
+62,1,Kalimantan Tengah,age_group,70-74,,47.54,ribu_jiwa,2026,projection,total_population,3.1.2,139,,70–74
+62,1,Kalimantan Tengah,age_group,75+,laki_laki,20.76,ribu_jiwa,2025,projection,total_population,3.1.2,139,,75+
+62,1,Kalimantan Tengah,age_group,75+,laki_laki,21.97,ribu_jiwa,2026,projection,total_population,3.1.2,139,,75+
+62,1,Kalimantan Tengah,age_group,75+,perempuan,21.79,ribu_jiwa,2025,projection,total_population,3.1.2,139,,75+
+62,1,Kalimantan Tengah,age_group,75+,perempuan,23.21,ribu_jiwa,2026,projection,total_population,3.1.2,139,,75+
+62,1,Kalimantan Tengah,age_group,75+,,42.55,ribu_jiwa,2025,projection,total_population,3.1.2,139,,75+
+62,1,Kalimantan Tengah,age_group,75+,,45.18,ribu_jiwa,2026,projection,total_population,3.1.2,139,,75+
+62,1,Kalimantan Tengah,sex,laki_laki,,1467.14,ribu_jiwa,2025,projection,total_population,3.1.2,139,,Laki-Laki
+62,1,Kalimantan Tengah,sex,laki_laki,,1483.00,ribu_jiwa,2026,projection,total_population,3.1.2,139,,Laki-Laki
+62,1,Kalimantan Tengah,sex,perempuan,,1377.85,ribu_jiwa,2025,projection,total_population,3.1.2,139,,Perempuan
+62,1,Kalimantan Tengah,sex,perempuan,,1396.55,ribu_jiwa,2026,projection,total_population,3.1.2,139,,Perempuan
+62,1,Kalimantan Tengah,total,total,,2844.99,ribu_jiwa,2025,projection,total_population,3.1.2,139,,
+62,1,Kalimantan Tengah,total,total,,2879.54,ribu_jiwa,2026,projection,total_population,3.1.2,139,,
+62.01,2,Kotawaringin Barat,sex,laki_laki,,147.43,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Laki-Laki
+62.01,2,Kotawaringin Barat,sex,perempuan,,138.31,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Perempuan
+62.01,2,Kotawaringin Barat,total,total,,285.74,ribu_jiwa,2025,projection,total_population,3.1.3,140,,
+62.02,2,Kotawaringin Timur,sex,laki_laki,,233.50,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Laki-Laki
+62.02,2,Kotawaringin Timur,sex,perempuan,,219.37,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Perempuan
+62.02,2,Kotawaringin Timur,total,total,,452.87,ribu_jiwa,2025,projection,total_population,3.1.3,140,,
+62.03,2,Kapuas,sex,laki_laki,,223.72,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Laki-Laki
+62.03,2,Kapuas,sex,perempuan,,211.35,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Perempuan
+62.03,2,Kapuas,total,total,,435.07,ribu_jiwa,2025,projection,total_population,3.1.3,140,,
+62.04,2,Barito Selatan,sex,laki_laki,,69.94,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Laki-Laki
+62.04,2,Barito Selatan,sex,perempuan,,67.11,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Perempuan
+62.04,2,Barito Selatan,total,total,,137.06,ribu_jiwa,2025,projection,total_population,3.1.3,140,,
+62.05,2,Barito Utara,sex,laki_laki,,85.12,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Laki-Laki
+62.05,2,Barito Utara,sex,perempuan,,79.50,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Perempuan
+62.05,2,Barito Utara,total,total,,164.62,ribu_jiwa,2025,projection,total_population,3.1.3,140,,
+62.08,2,Sukamara,sex,laki_laki,,35.97,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Laki-Laki
+62.08,2,Sukamara,sex,perempuan,,33.01,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Perempuan
+62.08,2,Sukamara,total,total,,68.98,ribu_jiwa,2025,projection,total_population,3.1.3,140,,
+62.09,2,Lamandau,sex,laki_laki,,56.01,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Laki-Laki
+62.09,2,Lamandau,sex,perempuan,,49.20,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Perempuan
+62.09,2,Lamandau,total,total,,105.21,ribu_jiwa,2025,projection,total_population,3.1.3,140,,
+62.07,2,Seruyan,sex,laki_laki,,93.57,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Laki-Laki
+62.07,2,Seruyan,sex,perempuan,,83.75,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Perempuan
+62.07,2,Seruyan,total,total,,177.32,ribu_jiwa,2025,projection,total_population,3.1.3,140,,
+62.06,2,Katingan,sex,laki_laki,,90.12,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Laki-Laki
+62.06,2,Katingan,sex,perempuan,,84.22,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Perempuan
+62.06,2,Katingan,total,total,,174.34,ribu_jiwa,2025,projection,total_population,3.1.3,140,,
+62.11,2,Pulang Pisau,sex,laki_laki,,72.92,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Laki-Laki
+62.11,2,Pulang Pisau,sex,perempuan,,67.86,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Perempuan
+62.11,2,Pulang Pisau,total,total,,140.78,ribu_jiwa,2025,projection,total_population,3.1.3,140,,
+62.10,2,Gunung Mas,sex,laki_laki,,77.73,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Laki-Laki
+62.10,2,Gunung Mas,sex,perempuan,,70.51,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Perempuan
+62.10,2,Gunung Mas,total,total,,148.23,ribu_jiwa,2025,projection,total_population,3.1.3,140,,
+62.13,2,Barito Timur,sex,laki_laki,,61.39,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Laki-Laki
+62.13,2,Barito Timur,sex,perempuan,,58.82,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Perempuan
+62.13,2,Barito Timur,total,total,,120.20,ribu_jiwa,2025,projection,total_population,3.1.3,140,,
+62.12,2,Murung Raya,sex,laki_laki,,62.17,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Laki-Laki
+62.12,2,Murung Raya,sex,perempuan,,58.06,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Perempuan
+62.12,2,Murung Raya,total,total,,120.22,ribu_jiwa,2025,projection,total_population,3.1.3,140,,
+62.71,2,Palangka Raya,sex,laki_laki,,157.56,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Laki-Laki
+62.71,2,Palangka Raya,sex,perempuan,,156.80,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Perempuan
+62.71,2,Palangka Raya,total,total,,314.37,ribu_jiwa,2025,projection,total_population,3.1.3,140,,
+62,1,Kalimantan Tengah,sex,laki_laki,,1467.14,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Laki-Laki
+62,1,Kalimantan Tengah,sex,perempuan,,1377.85,ribu_jiwa,2025,projection,total_population,3.1.3,140,,Perempuan
+62,1,Kalimantan Tengah,total,total,,2844.99,ribu_jiwa,2025,projection,total_population,3.1.3,140,,
+62.01,2,Kotawaringin Barat,age_group,0-4,,24.34,ribu_jiwa,2025,projection,total_population,3.1.4,141,,0–4
+62.02,2,Kotawaringin Timur,age_group,0-4,,39.81,ribu_jiwa,2025,projection,total_population,3.1.4,141,,0–4
+62.03,2,Kapuas,age_group,0-4,,41.21,ribu_jiwa,2025,projection,total_population,3.1.4,141,,0–4
+62.04,2,Barito Selatan,age_group,0-4,,11.44,ribu_jiwa,2025,projection,total_population,3.1.4,141,,0–4
+62.05,2,Barito Utara,age_group,0-4,,14.56,ribu_jiwa,2025,projection,total_population,3.1.4,141,,0–4
+62.01,2,Kotawaringin Barat,age_group,5-9,,25.00,ribu_jiwa,2025,projection,total_population,3.1.4,141,,5–9
+62.02,2,Kotawaringin Timur,age_group,5-9,,32.59,ribu_jiwa,2025,projection,total_population,3.1.4,141,,5–9
+62.03,2,Kapuas,age_group,5-9,,27.72,ribu_jiwa,2025,projection,total_population,3.1.4,141,,5–9
+62.04,2,Barito Selatan,age_group,5-9,,10.59,ribu_jiwa,2025,projection,total_population,3.1.4,141,,5–9
+62.05,2,Barito Utara,age_group,5-9,,12.49,ribu_jiwa,2025,projection,total_population,3.1.4,141,,5–9
+62.01,2,Kotawaringin Barat,age_group,10-14,,22.51,ribu_jiwa,2025,projection,total_population,3.1.4,141,,10–14
+62.02,2,Kotawaringin Timur,age_group,10-14,,35.01,ribu_jiwa,2025,projection,total_population,3.1.4,141,,10–14
+62.03,2,Kapuas,age_group,10-14,,31.50,ribu_jiwa,2025,projection,total_population,3.1.4,141,,10–14
+62.04,2,Barito Selatan,age_group,10-14,,9.75,ribu_jiwa,2025,projection,total_population,3.1.4,141,,10–14
+62.05,2,Barito Utara,age_group,10-14,,11.82,ribu_jiwa,2025,projection,total_population,3.1.4,141,,10–14
+62.01,2,Kotawaringin Barat,age_group,15-19,,22.39,ribu_jiwa,2025,projection,total_population,3.1.4,141,,15–19
+62.02,2,Kotawaringin Timur,age_group,15-19,,38.32,ribu_jiwa,2025,projection,total_population,3.1.4,141,,15–19
+62.03,2,Kapuas,age_group,15-19,,34.93,ribu_jiwa,2025,projection,total_population,3.1.4,141,,15–19
+62.04,2,Barito Selatan,age_group,15-19,,10.88,ribu_jiwa,2025,projection,total_population,3.1.4,141,,15–19
+62.05,2,Barito Utara,age_group,15-19,,12.81,ribu_jiwa,2025,projection,total_population,3.1.4,141,,15–19
+62.01,2,Kotawaringin Barat,age_group,20-24,,20.84,ribu_jiwa,2025,projection,total_population,3.1.4,141,,20–24
+62.02,2,Kotawaringin Timur,age_group,20-24,,38.70,ribu_jiwa,2025,projection,total_population,3.1.4,141,,20–24
+62.03,2,Kapuas,age_group,20-24,,37.76,ribu_jiwa,2025,projection,total_population,3.1.4,141,,20–24
+62.04,2,Barito Selatan,age_group,20-24,,11.75,ribu_jiwa,2025,projection,total_population,3.1.4,141,,20–24
+62.05,2,Barito Utara,age_group,20-24,,14.79,ribu_jiwa,2025,projection,total_population,3.1.4,141,,20–24
+62.01,2,Kotawaringin Barat,age_group,25-29,,22.96,ribu_jiwa,2025,projection,total_population,3.1.4,141,,25–29
+62.02,2,Kotawaringin Timur,age_group,25-29,,38.16,ribu_jiwa,2025,projection,total_population,3.1.4,141,,25–29
+62.03,2,Kapuas,age_group,25-29,,38.07,ribu_jiwa,2025,projection,total_population,3.1.4,141,,25–29
+62.04,2,Barito Selatan,age_group,25-29,,11.21,ribu_jiwa,2025,projection,total_population,3.1.4,141,,25–29
+62.05,2,Barito Utara,age_group,25-29,,15.01,ribu_jiwa,2025,projection,total_population,3.1.4,141,,25–29
+62.01,2,Kotawaringin Barat,age_group,30-34,,22.50,ribu_jiwa,2025,projection,total_population,3.1.4,141,,30–34
+62.02,2,Kotawaringin Timur,age_group,30-34,,37.70,ribu_jiwa,2025,projection,total_population,3.1.4,141,,30–34
+62.03,2,Kapuas,age_group,30-34,,36.08,ribu_jiwa,2025,projection,total_population,3.1.4,141,,30–34
+62.04,2,Barito Selatan,age_group,30-34,,10.26,ribu_jiwa,2025,projection,total_population,3.1.4,141,,30–34
+62.05,2,Barito Utara,age_group,30-34,,13.93,ribu_jiwa,2025,projection,total_population,3.1.4,141,,30–34
+62.01,2,Kotawaringin Barat,age_group,35-39,,21.99,ribu_jiwa,2025,projection,total_population,3.1.4,141,,35–39
+62.02,2,Kotawaringin Timur,age_group,35-39,,37.05,ribu_jiwa,2025,projection,total_population,3.1.4,141,,35–39
+62.03,2,Kapuas,age_group,35-39,,34.69,ribu_jiwa,2025,projection,total_population,3.1.4,141,,35–39
+62.04,2,Barito Selatan,age_group,35-39,,10.24,ribu_jiwa,2025,projection,total_population,3.1.4,141,,35–39
+62.05,2,Barito Utara,age_group,35-39,,12.96,ribu_jiwa,2025,projection,total_population,3.1.4,141,,35–39
+62.01,2,Kotawaringin Barat,age_group,40-44,,22.29,ribu_jiwa,2025,projection,total_population,3.1.4,141,,40–44
+62.02,2,Kotawaringin Timur,age_group,40-44,,34.77,ribu_jiwa,2025,projection,total_population,3.1.4,141,,40–44
+62.03,2,Kapuas,age_group,40-44,,31.39,ribu_jiwa,2025,projection,total_population,3.1.4,141,,40–44
+62.04,2,Barito Selatan,age_group,40-44,,10.07,ribu_jiwa,2025,projection,total_population,3.1.4,141,,40–44
+62.05,2,Barito Utara,age_group,40-44,,12.13,ribu_jiwa,2025,projection,total_population,3.1.4,141,,40–44
+62.01,2,Kotawaringin Barat,age_group,45-49,,21.27,ribu_jiwa,2025,projection,total_population,3.1.4,141,,45–49
+62.02,2,Kotawaringin Timur,age_group,45-49,,32.31,ribu_jiwa,2025,projection,total_population,3.1.4,141,,45–49
+62.03,2,Kapuas,age_group,45-49,,29.32,ribu_jiwa,2025,projection,total_population,3.1.4,141,,45–49
+62.04,2,Barito Selatan,age_group,45-49,,9.85,ribu_jiwa,2025,projection,total_population,3.1.4,141,,45–49
+62.05,2,Barito Utara,age_group,45-49,,11.01,ribu_jiwa,2025,projection,total_population,3.1.4,141,,45–49
+62.01,2,Kotawaringin Barat,age_group,50-54,,18.35,ribu_jiwa,2025,projection,total_population,3.1.4,141,,50–54
+62.02,2,Kotawaringin Timur,age_group,50-54,,27.11,ribu_jiwa,2025,projection,total_population,3.1.4,141,,50–54
+62.03,2,Kapuas,age_group,50-54,,26.05,ribu_jiwa,2025,projection,total_population,3.1.4,141,,50–54
+62.04,2,Barito Selatan,age_group,50-54,,8.89,ribu_jiwa,2025,projection,total_population,3.1.4,141,,50–54
+62.05,2,Barito Utara,age_group,50-54,,9.66,ribu_jiwa,2025,projection,total_population,3.1.4,141,,50–54
+62.01,2,Kotawaringin Barat,age_group,55-59,,14.49,ribu_jiwa,2025,projection,total_population,3.1.4,141,,55–59
+62.02,2,Kotawaringin Timur,age_group,55-59,,21.42,ribu_jiwa,2025,projection,total_population,3.1.4,141,,55–59
+62.03,2,Kapuas,age_group,55-59,,22.00,ribu_jiwa,2025,projection,total_population,3.1.4,141,,55–59
+62.04,2,Barito Selatan,age_group,55-59,,7.26,ribu_jiwa,2025,projection,total_population,3.1.4,141,,55–59
+62.05,2,Barito Utara,age_group,55-59,,7.96,ribu_jiwa,2025,projection,total_population,3.1.4,141,,55–59
+62.01,2,Kotawaringin Barat,age_group,60-64,,11.17,ribu_jiwa,2025,projection,total_population,3.1.4,141,,60–64
+62.02,2,Kotawaringin Timur,age_group,60-64,,16.22,ribu_jiwa,2025,projection,total_population,3.1.4,141,,60–64
+62.03,2,Kapuas,age_group,60-64,,16.83,ribu_jiwa,2025,projection,total_population,3.1.4,141,,60–64
+62.04,2,Barito Selatan,age_group,60-64,,5.73,ribu_jiwa,2025,projection,total_population,3.1.4,141,,60–64
+62.05,2,Barito Utara,age_group,60-64,,6.23,ribu_jiwa,2025,projection,total_population,3.1.4,141,,60–64
+62.01,2,Kotawaringin Barat,age_group,65-69,,7.24,ribu_jiwa,2025,projection,total_population,3.1.4,141,,65–69
+62.02,2,Kotawaringin Timur,age_group,65-69,,10.91,ribu_jiwa,2025,projection,total_population,3.1.4,141,,65–69
+62.03,2,Kapuas,age_group,65-69,,12.07,ribu_jiwa,2025,projection,total_population,3.1.4,141,,65–69
+62.04,2,Barito Selatan,age_group,65-69,,4.17,ribu_jiwa,2025,projection,total_population,3.1.4,141,,65–69
+62.05,2,Barito Utara,age_group,65-69,,4.19,ribu_jiwa,2025,projection,total_population,3.1.4,141,,65–69
+62.01,2,Kotawaringin Barat,age_group,70-74,,4.52,ribu_jiwa,2025,projection,total_population,3.1.4,141,,70–74
+62.02,2,Kotawaringin Timur,age_group,70-74,,6.69,ribu_jiwa,2025,projection,total_population,3.1.4,141,,70–74
+62.03,2,Kapuas,age_group,70-74,,7.57,ribu_jiwa,2025,projection,total_population,3.1.4,141,,70–74
+62.04,2,Barito Selatan,age_group,70-74,,2.58,ribu_jiwa,2025,projection,total_population,3.1.4,141,,70–74
+62.05,2,Barito Utara,age_group,70-74,,2.65,ribu_jiwa,2025,projection,total_population,3.1.4,141,,70–74
+62.01,2,Kotawaringin Barat,age_group,75+,,3.88,ribu_jiwa,2025,projection,total_population,3.1.4,141,,75+
+62.02,2,Kotawaringin Timur,age_group,75+,,6.12,ribu_jiwa,2025,projection,total_population,3.1.4,141,,75+
+62.03,2,Kapuas,age_group,75+,,7.87,ribu_jiwa,2025,projection,total_population,3.1.4,141,,75+
+62.04,2,Barito Selatan,age_group,75+,,2.40,ribu_jiwa,2025,projection,total_population,3.1.4,141,,75+
+62.05,2,Barito Utara,age_group,75+,,2.43,ribu_jiwa,2025,projection,total_population,3.1.4,141,,75+
+62.01,2,Kotawaringin Barat,total,total,,285.74,ribu_jiwa,2025,projection,total_population,3.1.4,141,,
+62.02,2,Kotawaringin Timur,total,total,,452.87,ribu_jiwa,2025,projection,total_population,3.1.4,141,,
+62.03,2,Kapuas,total,total,,435.07,ribu_jiwa,2025,projection,total_population,3.1.4,141,,
+62.04,2,Barito Selatan,total,total,,137.06,ribu_jiwa,2025,projection,total_population,3.1.4,141,,
+62.05,2,Barito Utara,total,total,,164.62,ribu_jiwa,2025,projection,total_population,3.1.4,141,,
+62.08,2,Sukamara,age_group,0-4,,5.96,ribu_jiwa,2025,projection,total_population,3.1.4,142,,0–4
+62.09,2,Lamandau,age_group,0-4,,8.95,ribu_jiwa,2025,projection,total_population,3.1.4,142,,0–4
+62.07,2,Seruyan,age_group,0-4,,15.04,ribu_jiwa,2025,projection,total_population,3.1.4,142,,0–4
+62.06,2,Katingan,age_group,0-4,,16.19,ribu_jiwa,2025,projection,total_population,3.1.4,142,,0–4
+62.11,2,Pulang Pisau,age_group,0-4,,11.55,ribu_jiwa,2025,projection,total_population,3.1.4,142,,0–4
+62.08,2,Sukamara,age_group,5-9,,5.71,ribu_jiwa,2025,projection,total_population,3.1.4,142,,5–9
+62.09,2,Lamandau,age_group,5-9,,8.71,ribu_jiwa,2025,projection,total_population,3.1.4,142,,5–9
+62.07,2,Seruyan,age_group,5-9,,14.64,ribu_jiwa,2025,projection,total_population,3.1.4,142,,5–9
+62.06,2,Katingan,age_group,5-9,,14.50,ribu_jiwa,2025,projection,total_population,3.1.4,142,,5–9
+62.11,2,Pulang Pisau,age_group,5-9,,11.59,ribu_jiwa,2025,projection,total_population,3.1.4,142,,5–9
+62.08,2,Sukamara,age_group,10-14,,5.22,ribu_jiwa,2025,projection,total_population,3.1.4,142,,10–14
+62.09,2,Lamandau,age_group,10-14,,7.96,ribu_jiwa,2025,projection,total_population,3.1.4,142,,10–14
+62.07,2,Seruyan,age_group,10-14,,14.37,ribu_jiwa,2025,projection,total_population,3.1.4,142,,10–14
+62.06,2,Katingan,age_group,10-14,,14.93,ribu_jiwa,2025,projection,total_population,3.1.4,142,,10–14
+62.11,2,Pulang Pisau,age_group,10-14,,11.34,ribu_jiwa,2025,projection,total_population,3.1.4,142,,10–14
+62.08,2,Sukamara,age_group,15-19,,5.40,ribu_jiwa,2025,projection,total_population,3.1.4,142,,15–19
+62.09,2,Lamandau,age_group,15-19,,7.37,ribu_jiwa,2025,projection,total_population,3.1.4,142,,15–19
+62.07,2,Seruyan,age_group,15-19,,14.67,ribu_jiwa,2025,projection,total_population,3.1.4,142,,15–19
+62.06,2,Katingan,age_group,15-19,,15.60,ribu_jiwa,2025,projection,total_population,3.1.4,142,,15–19
+62.11,2,Pulang Pisau,age_group,15-19,,11.37,ribu_jiwa,2025,projection,total_population,3.1.4,142,,15–19
+62.08,2,Sukamara,age_group,20-24,,5.77,ribu_jiwa,2025,projection,total_population,3.1.4,142,,20–24
+62.09,2,Lamandau,age_group,20-24,,7.56,ribu_jiwa,2025,projection,total_population,3.1.4,142,,20–24
+62.07,2,Seruyan,age_group,20-24,,14.54,ribu_jiwa,2025,projection,total_population,3.1.4,142,,20–24
+62.06,2,Katingan,age_group,20-24,,14.78,ribu_jiwa,2025,projection,total_population,3.1.4,142,,20–24
+62.11,2,Pulang Pisau,age_group,20-24,,11.02,ribu_jiwa,2025,projection,total_population,3.1.4,142,,20–24
+62.08,2,Sukamara,age_group,25-29,,6.01,ribu_jiwa,2025,projection,total_population,3.1.4,142,,25–29
+62.09,2,Lamandau,age_group,25-29,,9.15,ribu_jiwa,2025,projection,total_population,3.1.4,142,,25–29
+62.07,2,Seruyan,age_group,25-29,,14.49,ribu_jiwa,2025,projection,total_population,3.1.4,142,,25–29
+62.06,2,Katingan,age_group,25-29,,13.48,ribu_jiwa,2025,projection,total_population,3.1.4,142,,25–29
+62.11,2,Pulang Pisau,age_group,25-29,,11.81,ribu_jiwa,2025,projection,total_population,3.1.4,142,,25–29
+62.08,2,Sukamara,age_group,30-34,,5.89,ribu_jiwa,2025,projection,total_population,3.1.4,142,,30–34
+62.09,2,Lamandau,age_group,30-34,,9.62,ribu_jiwa,2025,projection,total_population,3.1.4,142,,30–34
+62.07,2,Seruyan,age_group,30-34,,14.96,ribu_jiwa,2025,projection,total_population,3.1.4,142,,30–34
+62.06,2,Katingan,age_group,30-34,,13.79,ribu_jiwa,2025,projection,total_population,3.1.4,142,,30–34
+62.11,2,Pulang Pisau,age_group,30-34,,11.32,ribu_jiwa,2025,projection,total_population,3.1.4,142,,30–34
+62.08,2,Sukamara,age_group,35-39,,6.04,ribu_jiwa,2025,projection,total_population,3.1.4,142,,35–39
+62.09,2,Lamandau,age_group,35-39,,9.50,ribu_jiwa,2025,projection,total_population,3.1.4,142,,35–39
+62.07,2,Seruyan,age_group,35-39,,15.90,ribu_jiwa,2025,projection,total_population,3.1.4,142,,35–39
+62.06,2,Katingan,age_group,35-39,,13.66,ribu_jiwa,2025,projection,total_population,3.1.4,142,,35–39
+62.11,2,Pulang Pisau,age_group,35-39,,10.47,ribu_jiwa,2025,projection,total_population,3.1.4,142,,35–39
+62.08,2,Sukamara,age_group,40-44,,5.73,ribu_jiwa,2025,projection,total_population,3.1.4,142,,40–44
+62.09,2,Lamandau,age_group,40-44,,8.92,ribu_jiwa,2025,projection,total_population,3.1.4,142,,40–44
+62.07,2,Seruyan,age_group,40-44,,14.81,ribu_jiwa,2025,projection,total_population,3.1.4,142,,40–44
+62.06,2,Katingan,age_group,40-44,,12.68,ribu_jiwa,2025,projection,total_population,3.1.4,142,,40–44
+62.11,2,Pulang Pisau,age_group,40-44,,10.11,ribu_jiwa,2025,projection,total_population,3.1.4,142,,40–44
+62.08,2,Sukamara,age_group,45-49,,4.94,ribu_jiwa,2025,projection,total_population,3.1.4,142,,45–49
+62.09,2,Lamandau,age_group,45-49,,7.87,ribu_jiwa,2025,projection,total_population,3.1.4,142,,45–49
+62.07,2,Seruyan,age_group,45-49,,13.19,ribu_jiwa,2025,projection,total_population,3.1.4,142,,45–49
+62.06,2,Katingan,age_group,45-49,,11.73,ribu_jiwa,2025,projection,total_population,3.1.4,142,,45–49
+62.11,2,Pulang Pisau,age_group,45-49,,9.29,ribu_jiwa,2025,projection,total_population,3.1.4,142,,45–49
+62.08,2,Sukamara,age_group,50-54,,4.07,ribu_jiwa,2025,projection,total_population,3.1.4,142,,50–54
+62.09,2,Lamandau,age_group,50-54,,6.08,ribu_jiwa,2025,projection,total_population,3.1.4,142,,50–54
+62.07,2,Seruyan,age_group,50-54,,10.71,ribu_jiwa,2025,projection,total_population,3.1.4,142,,50–54
+62.06,2,Katingan,age_group,50-54,,10.09,ribu_jiwa,2025,projection,total_population,3.1.4,142,,50–54
+62.11,2,Pulang Pisau,age_group,50-54,,8.26,ribu_jiwa,2025,projection,total_population,3.1.4,142,,50–54
+62.08,2,Sukamara,age_group,55-59,,3.07,ribu_jiwa,2025,projection,total_population,3.1.4,142,,55–59
+62.09,2,Lamandau,age_group,55-59,,4.69,ribu_jiwa,2025,projection,total_population,3.1.4,142,,55–59
+62.07,2,Seruyan,age_group,55-59,,7.58,ribu_jiwa,2025,projection,total_population,3.1.4,142,,55–59
+62.06,2,Katingan,age_group,55-59,,7.99,ribu_jiwa,2025,projection,total_population,3.1.4,142,,55–59
+62.11,2,Pulang Pisau,age_group,55-59,,6.68,ribu_jiwa,2025,projection,total_population,3.1.4,142,,55–59
+62.08,2,Sukamara,age_group,60-64,,2.20,ribu_jiwa,2025,projection,total_population,3.1.4,142,,60–64
+62.09,2,Lamandau,age_group,60-64,,3.48,ribu_jiwa,2025,projection,total_population,3.1.4,142,,60–64
+62.07,2,Seruyan,age_group,60-64,,5.28,ribu_jiwa,2025,projection,total_population,3.1.4,142,,60–64
+62.06,2,Katingan,age_group,60-64,,6.09,ribu_jiwa,2025,projection,total_population,3.1.4,142,,60–64
+62.11,2,Pulang Pisau,age_group,60-64,,5.63,ribu_jiwa,2025,projection,total_population,3.1.4,142,,60–64
+62.08,2,Sukamara,age_group,65-69,,1.40,ribu_jiwa,2025,projection,total_population,3.1.4,142,,65–69
+62.09,2,Lamandau,age_group,65-69,,2.34,ribu_jiwa,2025,projection,total_population,3.1.4,142,,65–69
+62.07,2,Seruyan,age_group,65-69,,3.39,ribu_jiwa,2025,projection,total_population,3.1.4,142,,65–69
+62.06,2,Katingan,age_group,65-69,,3.88,ribu_jiwa,2025,projection,total_population,3.1.4,142,,65–69
+62.11,2,Pulang Pisau,age_group,65-69,,4.18,ribu_jiwa,2025,projection,total_population,3.1.4,142,,65–69
+62.08,2,Sukamara,age_group,70-74,,0.83,ribu_jiwa,2025,projection,total_population,3.1.4,142,,70–74
+62.09,2,Lamandau,age_group,70-74,,1.53,ribu_jiwa,2025,projection,total_population,3.1.4,142,,70–74
+62.07,2,Seruyan,age_group,70-74,,1.97,ribu_jiwa,2025,projection,total_population,3.1.4,142,,70–74
+62.06,2,Katingan,age_group,70-74,,2.54,ribu_jiwa,2025,projection,total_population,3.1.4,142,,70–74
+62.11,2,Pulang Pisau,age_group,70-74,,3.01,ribu_jiwa,2025,projection,total_population,3.1.4,142,,70–74
+62.08,2,Sukamara,age_group,75+,,0.75,ribu_jiwa,2025,projection,total_population,3.1.4,142,,75+
+62.09,2,Lamandau,age_group,75+,,1.49,ribu_jiwa,2025,projection,total_population,3.1.4,142,,75+
+62.07,2,Seruyan,age_group,75+,,1.77,ribu_jiwa,2025,projection,total_population,3.1.4,142,,75+
+62.06,2,Katingan,age_group,75+,,2.44,ribu_jiwa,2025,projection,total_population,3.1.4,142,,75+
+62.11,2,Pulang Pisau,age_group,75+,,3.16,ribu_jiwa,2025,projection,total_population,3.1.4,142,,75+
+62.08,2,Sukamara,total,total,,68.98,ribu_jiwa,2025,projection,total_population,3.1.4,142,,
+62.09,2,Lamandau,total,total,,105.21,ribu_jiwa,2025,projection,total_population,3.1.4,142,,
+62.07,2,Seruyan,total,total,,177.32,ribu_jiwa,2025,projection,total_population,3.1.4,142,,
+62.06,2,Katingan,total,total,,174.34,ribu_jiwa,2025,projection,total_population,3.1.4,142,,
+62.11,2,Pulang Pisau,total,total,,140.78,ribu_jiwa,2025,projection,total_population,3.1.4,142,,
+62.10,2,Gunung Mas,age_group,0-4,,14.33,ribu_jiwa,2025,projection,total_population,3.1.4,143,,0–4
+62.13,2,Barito Timur,age_group,0-4,,10.07,ribu_jiwa,2025,projection,total_population,3.1.4,143,,0–4
+62.12,2,Murung Raya,age_group,0-4,,11.90,ribu_jiwa,2025,projection,total_population,3.1.4,143,,0–4
+62.71,2,Palangka Raya,age_group,0-4,,28.19,ribu_jiwa,2025,projection,total_population,3.1.4,143,,0–4
+62,1,Kalimantan Tengah,age_group,0-4,,253.54,ribu_jiwa,2025,projection,total_population,3.1.4,143,,0–4
+62.10,2,Gunung Mas,age_group,5-9,,12.07,ribu_jiwa,2025,projection,total_population,3.1.4,143,,5–9
+62.13,2,Barito Timur,age_group,5-9,,8.56,ribu_jiwa,2025,projection,total_population,3.1.4,143,,5–9
+62.12,2,Murung Raya,age_group,5-9,,9.67,ribu_jiwa,2025,projection,total_population,3.1.4,143,,5–9
+62.71,2,Palangka Raya,age_group,5-9,,25.14,ribu_jiwa,2025,projection,total_population,3.1.4,143,,5–9
+62,1,Kalimantan Tengah,age_group,5-9,,218.97,ribu_jiwa,2025,projection,total_population,3.1.4,143,,5–9
+62.10,2,Gunung Mas,age_group,10-14,,12.10,ribu_jiwa,2025,projection,total_population,3.1.4,143,,10–14
+62.13,2,Barito Timur,age_group,10-14,,8.63,ribu_jiwa,2025,projection,total_population,3.1.4,143,,10–14
+62.12,2,Murung Raya,age_group,10-14,,10.21,ribu_jiwa,2025,projection,total_population,3.1.4,143,,10–14
+62.71,2,Palangka Raya,age_group,10-14,,24.07,ribu_jiwa,2025,projection,total_population,3.1.4,143,,10–14
+62,1,Kalimantan Tengah,age_group,10-14,,219.40,ribu_jiwa,2025,projection,total_population,3.1.4,143,,10–14
+62.10,2,Gunung Mas,age_group,15-19,,12.15,ribu_jiwa,2025,projection,total_population,3.1.4,143,,15–19
+62.13,2,Barito Timur,age_group,15-19,,9.47,ribu_jiwa,2025,projection,total_population,3.1.4,143,,15–19
+62.12,2,Murung Raya,age_group,15-19,,11.18,ribu_jiwa,2025,projection,total_population,3.1.4,143,,15–19
+62.71,2,Palangka Raya,age_group,15-19,,25.36,ribu_jiwa,2025,projection,total_population,3.1.4,143,,15–19
+62,1,Kalimantan Tengah,age_group,15-19,,231.90,ribu_jiwa,2025,projection,total_population,3.1.4,143,,15–19
+62.10,2,Gunung Mas,age_group,20-24,,13.75,ribu_jiwa,2025,projection,total_population,3.1.4,143,,20–24
+62.13,2,Barito Timur,age_group,20-24,,10.18,ribu_jiwa,2025,projection,total_population,3.1.4,143,,20–24
+62.12,2,Murung Raya,age_group,20-24,,11.48,ribu_jiwa,2025,projection,total_population,3.1.4,143,,20–24
+62.71,2,Palangka Raya,age_group,20-24,,24.65,ribu_jiwa,2025,projection,total_population,3.1.4,143,,20–24
+62,1,Kalimantan Tengah,age_group,20-24,,237.57,ribu_jiwa,2025,projection,total_population,3.1.4,143,,20–24
+62.10,2,Gunung Mas,age_group,25-29,,13.09,ribu_jiwa,2025,projection,total_population,3.1.4,143,,25–29
+62.13,2,Barito Timur,age_group,25-29,,10.18,ribu_jiwa,2025,projection,total_population,3.1.4,143,,25–29
+62.12,2,Murung Raya,age_group,25-29,,10.85,ribu_jiwa,2025,projection,total_population,3.1.4,143,,25–29
+62.71,2,Palangka Raya,age_group,25-29,,28.10,ribu_jiwa,2025,projection,total_population,3.1.4,143,,25–29
+62,1,Kalimantan Tengah,age_group,25-29,,242.56,ribu_jiwa,2025,projection,total_population,3.1.4,143,,25–29
+62.10,2,Gunung Mas,age_group,30-34,,14.00,ribu_jiwa,2025,projection,total_population,3.1.4,143,,30–34
+62.13,2,Barito Timur,age_group,30-34,,9.35,ribu_jiwa,2025,projection,total_population,3.1.4,143,,30–34
+62.12,2,Murung Raya,age_group,30-34,,9.50,ribu_jiwa,2025,projection,total_population,3.1.4,143,,30–34
+62.71,2,Palangka Raya,age_group,30-34,,27.15,ribu_jiwa,2025,projection,total_population,3.1.4,143,,30–34
+62,1,Kalimantan Tengah,age_group,30-34,,236.01,ribu_jiwa,2025,projection,total_population,3.1.4,143,,30–34
+62.10,2,Gunung Mas,age_group,35-39,,12.72,ribu_jiwa,2025,projection,total_population,3.1.4,143,,35–39
+62.13,2,Barito Timur,age_group,35-39,,9.19,ribu_jiwa,2025,projection,total_population,3.1.4,143,,35–39
+62.12,2,Murung Raya,age_group,35-39,,9.50,ribu_jiwa,2025,projection,total_population,3.1.4,143,,35–39
+62.71,2,Palangka Raya,age_group,35-39,,25.08,ribu_jiwa,2025,projection,total_population,3.1.4,143,,35–39
+62,1,Kalimantan Tengah,age_group,35-39,,228.98,ribu_jiwa,2025,projection,total_population,3.1.4,143,,35–39
+62.10,2,Gunung Mas,age_group,40-44,,10.94,ribu_jiwa,2025,projection,total_population,3.1.4,143,,40–44
+62.13,2,Barito Timur,age_group,40-44,,9.12,ribu_jiwa,2025,projection,total_population,3.1.4,143,,40–44
+62.12,2,Murung Raya,age_group,40-44,,8.75,ribu_jiwa,2025,projection,total_population,3.1.4,143,,40–44
+62.71,2,Palangka Raya,age_group,40-44,,22.30,ribu_jiwa,2025,projection,total_population,3.1.4,143,,40–44
+62,1,Kalimantan Tengah,age_group,40-44,,214.01,ribu_jiwa,2025,projection,total_population,3.1.4,143,,40–44
+62.10,2,Gunung Mas,age_group,45-49,,9.04,ribu_jiwa,2025,projection,total_population,3.1.4,143,,45–49
+62.13,2,Barito Timur,age_group,45-49,,8.70,ribu_jiwa,2025,projection,total_population,3.1.4,143,,45–49
+62.12,2,Murung Raya,age_group,45-49,,7.64,ribu_jiwa,2025,projection,total_population,3.1.4,143,,45–49
+62.71,2,Palangka Raya,age_group,45-49,,21.02,ribu_jiwa,2025,projection,total_population,3.1.4,143,,45–49
+62,1,Kalimantan Tengah,age_group,45-49,,197.17,ribu_jiwa,2025,projection,total_population,3.1.4,143,,45–49
+62.10,2,Gunung Mas,age_group,50-54,,7.36,ribu_jiwa,2025,projection,total_population,3.1.4,143,,50–54
+62.13,2,Barito Timur,age_group,50-54,,7.85,ribu_jiwa,2025,projection,total_population,3.1.4,143,,50–54
+62.12,2,Murung Raya,age_group,50-54,,6.20,ribu_jiwa,2025,projection,total_population,3.1.4,143,,50–54
+62.71,2,Palangka Raya,age_group,50-54,,18.35,ribu_jiwa,2025,projection,total_population,3.1.4,143,,50–54
+62,1,Kalimantan Tengah,age_group,50-54,,169.01,ribu_jiwa,2025,projection,total_population,3.1.4,143,,50–54
+62.10,2,Gunung Mas,age_group,55-59,,5.62,ribu_jiwa,2025,projection,total_population,3.1.4,143,,55–59
+62.13,2,Barito Timur,age_group,55-59,,6.39,ribu_jiwa,2025,projection,total_population,3.1.4,143,,55–59
+62.12,2,Murung Raya,age_group,55-59,,4.63,ribu_jiwa,2025,projection,total_population,3.1.4,143,,55–59
+62.71,2,Palangka Raya,age_group,55-59,,14.64,ribu_jiwa,2025,projection,total_population,3.1.4,143,,55–59
+62,1,Kalimantan Tengah,age_group,55-59,,134.41,ribu_jiwa,2025,projection,total_population,3.1.4,143,,55–59
+62.10,2,Gunung Mas,age_group,60-64,,4.16,ribu_jiwa,2025,projection,total_population,3.1.4,143,,60–64
+62.13,2,Barito Timur,age_group,60-64,,4.83,ribu_jiwa,2025,projection,total_population,3.1.4,143,,60–64
+62.12,2,Murung Raya,age_group,60-64,,3.52,ribu_jiwa,2025,projection,total_population,3.1.4,143,,60–64
+62.71,2,Palangka Raya,age_group,60-64,,11.96,ribu_jiwa,2025,projection,total_population,3.1.4,143,,60–64
+62,1,Kalimantan Tengah,age_group,60-64,,103.34,ribu_jiwa,2025,projection,total_population,3.1.4,143,,60–64
+62.10,2,Gunung Mas,age_group,65-69,,2.92,ribu_jiwa,2025,projection,total_population,3.1.4,143,,65–69
+62.13,2,Barito Timur,age_group,65-69,,3.38,ribu_jiwa,2025,projection,total_population,3.1.4,143,,65–69
+62.12,2,Murung Raya,age_group,65-69,,2.44,ribu_jiwa,2025,projection,total_population,3.1.4,143,,65–69
+62.71,2,Palangka Raya,age_group,65-69,,8.17,ribu_jiwa,2025,projection,total_population,3.1.4,143,,65–69
+62,1,Kalimantan Tengah,age_group,65-69,,70.68,ribu_jiwa,2025,projection,total_population,3.1.4,143,,65–69
+62.10,2,Gunung Mas,age_group,70-74,,1.94,ribu_jiwa,2025,projection,total_population,3.1.4,143,,70–74
+62.13,2,Barito Timur,age_group,70-74,,2.22,ribu_jiwa,2025,projection,total_population,3.1.4,143,,70–74
+62.12,2,Murung Raya,age_group,70-74,,1.40,ribu_jiwa,2025,projection,total_population,3.1.4,143,,70–74
+62.71,2,Palangka Raya,age_group,70-74,,5.45,ribu_jiwa,2025,projection,total_population,3.1.4,143,,70–74
+62,1,Kalimantan Tengah,age_group,70-74,,44.89,ribu_jiwa,2025,projection,total_population,3.1.4,143,,70–74
+62.10,2,Gunung Mas,age_group,75+,,2.04,ribu_jiwa,2025,projection,total_population,3.1.4,143,,75+
+62.13,2,Barito Timur,age_group,75+,,2.08,ribu_jiwa,2025,projection,total_population,3.1.4,143,,75+
+62.12,2,Murung Raya,age_group,75+,,1.36,ribu_jiwa,2025,projection,total_population,3.1.4,143,,75+
+62.71,2,Palangka Raya,age_group,75+,,4.76,ribu_jiwa,2025,projection,total_population,3.1.4,143,,75+
+62,1,Kalimantan Tengah,age_group,75+,,42.55,ribu_jiwa,2025,projection,total_population,3.1.4,143,,75+
+62.10,2,Gunung Mas,total,total,,148.23,ribu_jiwa,2025,projection,total_population,3.1.4,143,,
+62.13,2,Barito Timur,total,total,,120.20,ribu_jiwa,2025,projection,total_population,3.1.4,143,,
+62.12,2,Murung Raya,total,total,,120.22,ribu_jiwa,2025,projection,total_population,3.1.4,143,,
+62.71,2,Palangka Raya,total,total,,314.37,ribu_jiwa,2025,projection,total_population,3.1.4,143,,
+62,1,Kalimantan Tengah,total,total,,2844.99,ribu_jiwa,2025,projection,total_population,3.1.4,143,,
+62.01,2,Kotawaringin Barat,religion,islam,,272874,jiwa,2025,registration,total_population,4.5.4,432,,Islam
+62.01,2,Kotawaringin Barat,religion,kristen,,13702,jiwa,2025,registration,total_population,4.5.4,432,,Protestan
+62.01,2,Kotawaringin Barat,religion,katolik,,6548,jiwa,2025,registration,total_population,4.5.4,432,,Katolik
+62.01,2,Kotawaringin Barat,religion,hindu,,3253,jiwa,2025,registration,total_population,4.5.4,432,,Hindu
+62.02,2,Kotawaringin Timur,religion,islam,,397760,jiwa,2025,registration,total_population,4.5.4,432,,Islam
+62.02,2,Kotawaringin Timur,religion,kristen,,27849,jiwa,2025,registration,total_population,4.5.4,432,,Protestan
+62.02,2,Kotawaringin Timur,religion,katolik,,10698,jiwa,2025,registration,total_population,4.5.4,432,,Katolik
+62.02,2,Kotawaringin Timur,religion,hindu,,22374,jiwa,2025,registration,total_population,4.5.4,432,,Hindu
+62.03,2,Kapuas,religion,islam,,344506,jiwa,2025,registration,total_population,4.5.4,432,,Islam
+62.03,2,Kapuas,religion,kristen,,48926,jiwa,2025,registration,total_population,4.5.4,432,,Protestan
+62.03,2,Kapuas,religion,katolik,,2019,jiwa,2025,registration,total_population,4.5.4,432,,Katolik
+62.03,2,Kapuas,religion,hindu,,23234,jiwa,2025,registration,total_population,4.5.4,432,,Hindu
+62.04,2,Barito Selatan,religion,islam,,98901,jiwa,2025,registration,total_population,4.5.4,432,,Islam
+62.04,2,Barito Selatan,religion,kristen,,25529,jiwa,2025,registration,total_population,4.5.4,432,,Protestan
+62.04,2,Barito Selatan,religion,katolik,,9547,jiwa,2025,registration,total_population,4.5.4,432,,Katolik
+62.04,2,Barito Selatan,religion,hindu,,4302,jiwa,2025,registration,total_population,4.5.4,432,,Hindu
+62.05,2,Barito Utara,religion,islam,,118071,jiwa,2025,registration,total_population,4.5.4,432,,Islam
+62.05,2,Barito Utara,religion,kristen,,16822,jiwa,2025,registration,total_population,4.5.4,432,,Protestan
+62.05,2,Barito Utara,religion,katolik,,8729,jiwa,2025,registration,total_population,4.5.4,432,,Katolik
+62.05,2,Barito Utara,religion,hindu,,16450,jiwa,2025,registration,total_population,4.5.4,432,,Hindu
+62.08,2,Sukamara,religion,islam,,55130,jiwa,2025,registration,total_population,4.5.4,432,,Islam
+62.08,2,Sukamara,religion,kristen,,6018,jiwa,2025,registration,total_population,4.5.4,432,,Protestan
+62.08,2,Sukamara,religion,katolik,,2979,jiwa,2025,registration,total_population,4.5.4,432,,Katolik
+62.08,2,Sukamara,religion,hindu,,3188,jiwa,2025,registration,total_population,4.5.4,432,,Hindu
+62.09,2,Lamandau,religion,islam,,68281,jiwa,2025,registration,total_population,4.5.4,432,,Islam
+62.09,2,Lamandau,religion,kristen,,26186,jiwa,2025,registration,total_population,4.5.4,432,,Protestan
+62.09,2,Lamandau,religion,katolik,,17963,jiwa,2025,registration,total_population,4.5.4,432,,Katolik
+62.09,2,Lamandau,religion,hindu,,3223,jiwa,2025,registration,total_population,4.5.4,432,,Hindu
+62.07,2,Seruyan,religion,islam,,138228,jiwa,2025,registration,total_population,4.5.4,432,,Islam
+62.07,2,Seruyan,religion,kristen,,9485,jiwa,2025,registration,total_population,4.5.4,432,,Protestan
+62.07,2,Seruyan,religion,katolik,,6113,jiwa,2025,registration,total_population,4.5.4,432,,Katolik
+62.07,2,Seruyan,religion,hindu,,7061,jiwa,2025,registration,total_population,4.5.4,432,,Hindu
+62.06,2,Katingan,religion,islam,,114798,jiwa,2025,registration,total_population,4.5.4,432,,Islam
+62.06,2,Katingan,religion,kristen,,34978,jiwa,2025,registration,total_population,4.5.4,432,,Protestan
+62.06,2,Katingan,religion,katolik,,3722,jiwa,2025,registration,total_population,4.5.4,432,,Katolik
+62.06,2,Katingan,religion,hindu,,30035,jiwa,2025,registration,total_population,4.5.4,432,,Hindu
+62.11,2,Pulang Pisau,religion,islam,,112895,jiwa,2025,registration,total_population,4.5.4,432,,Islam
+62.11,2,Pulang Pisau,religion,kristen,,28232,jiwa,2025,registration,total_population,4.5.4,432,,Protestan
+62.11,2,Pulang Pisau,religion,katolik,,1766,jiwa,2025,registration,total_population,4.5.4,432,,Katolik
+62.11,2,Pulang Pisau,religion,hindu,,2575,jiwa,2025,registration,total_population,4.5.4,432,,Hindu
+62.10,2,Gunung Mas,religion,islam,,27557,jiwa,2025,registration,total_population,4.5.4,432,,Islam
+62.10,2,Gunung Mas,religion,kristen,,89201,jiwa,2025,registration,total_population,4.5.4,432,,Protestan
+62.10,2,Gunung Mas,religion,katolik,,3250,jiwa,2025,registration,total_population,4.5.4,432,,Katolik
+62.10,2,Gunung Mas,religion,hindu,,15643,jiwa,2025,registration,total_population,4.5.4,432,,Hindu
+62.13,2,Barito Timur,religion,islam,,61510,jiwa,2025,registration,total_population,4.5.4,432,,Islam
+62.13,2,Barito Timur,religion,kristen,,42853,jiwa,2025,registration,total_population,4.5.4,432,,Protestan
+62.13,2,Barito Timur,religion,katolik,,10274,jiwa,2025,registration,total_population,4.5.4,432,,Katolik
+62.13,2,Barito Timur,religion,hindu,,4229,jiwa,2025,registration,total_population,4.5.4,432,,Hindu
+62.12,2,Murung Raya,religion,islam,,83101,jiwa,2025,registration,total_population,4.5.4,432,,Islam
+62.12,2,Murung Raya,religion,kristen,,22166,jiwa,2025,registration,total_population,4.5.4,432,,Protestan
+62.12,2,Murung Raya,religion,katolik,,7095,jiwa,2025,registration,total_population,4.5.4,432,,Katolik
+62.12,2,Murung Raya,religion,hindu,,13497,jiwa,2025,registration,total_population,4.5.4,432,,Hindu
+62.71,2,Palangka Raya,religion,islam,,226406,jiwa,2025,registration,total_population,4.5.4,432,,Islam
+62.71,2,Palangka Raya,religion,kristen,,81182,jiwa,2025,registration,total_population,4.5.4,432,,Protestan
+62.71,2,Palangka Raya,religion,katolik,,6389,jiwa,2025,registration,total_population,4.5.4,432,,Katolik
+62.71,2,Palangka Raya,religion,hindu,,3701,jiwa,2025,registration,total_population,4.5.4,432,,Hindu
+62,1,Kalimantan Tengah,religion,islam,,2120018,jiwa,2025,registration,total_population,4.5.4,432,,Islam
+62,1,Kalimantan Tengah,religion,kristen,,473129,jiwa,2025,registration,total_population,4.5.4,432,,Protestan
+62,1,Kalimantan Tengah,religion,katolik,,97092,jiwa,2025,registration,total_population,4.5.4,432,,Katolik
+62,1,Kalimantan Tengah,religion,hindu,,152765,jiwa,2025,registration,total_population,4.5.4,432,,Hindu
+62.01,2,Kotawaringin Barat,religion,buddha,,802,jiwa,2025,registration,total_population,4.5.4,433,,Budha
+62.01,2,Kotawaringin Barat,religion,khonghucu,,54,jiwa,2025,registration,total_population,4.5.4,433,,Konghucu
+62.01,2,Kotawaringin Barat,religion,lainnya,,7,jiwa,2025,registration,total_population,4.5.4,433,,Lainnya
+62.02,2,Kotawaringin Timur,religion,buddha,,1289,jiwa,2025,registration,total_population,4.5.4,433,,Budha
+62.02,2,Kotawaringin Timur,religion,khonghucu,,94,jiwa,2025,registration,total_population,4.5.4,433,,Konghucu
+62.02,2,Kotawaringin Timur,religion,lainnya,,0,jiwa,2025,registration,total_population,4.5.4,433,nil,Lainnya
+62.03,2,Kapuas,religion,buddha,,38,jiwa,2025,registration,total_population,4.5.4,433,,Budha
+62.03,2,Kapuas,religion,khonghucu,,3,jiwa,2025,registration,total_population,4.5.4,433,,Konghucu
+62.03,2,Kapuas,religion,lainnya,,537,jiwa,2025,registration,total_population,4.5.4,433,,Lainnya
+62.04,2,Barito Selatan,religion,buddha,,1,jiwa,2025,registration,total_population,4.5.4,433,,Budha
+62.04,2,Barito Selatan,religion,khonghucu,,4,jiwa,2025,registration,total_population,4.5.4,433,,Konghucu
+62.04,2,Barito Selatan,religion,lainnya,,1,jiwa,2025,registration,total_population,4.5.4,433,,Lainnya
+62.05,2,Barito Utara,religion,buddha,,42,jiwa,2025,registration,total_population,4.5.4,433,,Budha
+62.05,2,Barito Utara,religion,khonghucu,,4,jiwa,2025,registration,total_population,4.5.4,433,,Konghucu
+62.05,2,Barito Utara,religion,lainnya,,35,jiwa,2025,registration,total_population,4.5.4,433,,Lainnya
+62.08,2,Sukamara,religion,buddha,,117,jiwa,2025,registration,total_population,4.5.4,433,,Budha
+62.08,2,Sukamara,religion,khonghucu,,30,jiwa,2025,registration,total_population,4.5.4,433,,Konghucu
+62.08,2,Sukamara,religion,lainnya,,1,jiwa,2025,registration,total_population,4.5.4,433,,Lainnya
+62.09,2,Lamandau,religion,buddha,,79,jiwa,2025,registration,total_population,4.5.4,433,,Budha
+62.09,2,Lamandau,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.4,433,nil,Konghucu
+62.09,2,Lamandau,religion,lainnya,,5,jiwa,2025,registration,total_population,4.5.4,433,,Lainnya
+62.07,2,Seruyan,religion,buddha,,46,jiwa,2025,registration,total_population,4.5.4,433,,Budha
+62.07,2,Seruyan,religion,khonghucu,,5,jiwa,2025,registration,total_population,4.5.4,433,,Konghucu
+62.07,2,Seruyan,religion,lainnya,,1,jiwa,2025,registration,total_population,4.5.4,433,,Lainnya
+62.06,2,Katingan,religion,buddha,,18,jiwa,2025,registration,total_population,4.5.4,433,,Budha
+62.06,2,Katingan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.4,433,nil,Konghucu
+62.06,2,Katingan,religion,lainnya,,1,jiwa,2025,registration,total_population,4.5.4,433,,Lainnya
+62.11,2,Pulang Pisau,religion,buddha,,7,jiwa,2025,registration,total_population,4.5.4,433,,Budha
+62.11,2,Pulang Pisau,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.5.4,433,,Konghucu
+62.11,2,Pulang Pisau,religion,lainnya,,7,jiwa,2025,registration,total_population,4.5.4,433,,Lainnya
+62.10,2,Gunung Mas,religion,buddha,,5,jiwa,2025,registration,total_population,4.5.4,433,,Budha
+62.10,2,Gunung Mas,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.5.4,433,nil,Konghucu
+62.10,2,Gunung Mas,religion,lainnya,,28,jiwa,2025,registration,total_population,4.5.4,433,,Lainnya
+62.13,2,Barito Timur,religion,buddha,,28,jiwa,2025,registration,total_population,4.5.4,433,,Budha
+62.13,2,Barito Timur,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.5.4,433,,Konghucu
+62.13,2,Barito Timur,religion,lainnya,,4,jiwa,2025,registration,total_population,4.5.4,433,,Lainnya
+62.12,2,Murung Raya,religion,buddha,,8,jiwa,2025,registration,total_population,4.5.4,433,,Budha
+62.12,2,Murung Raya,religion,khonghucu,,1,jiwa,2025,registration,total_population,4.5.4,433,,Konghucu
+62.12,2,Murung Raya,religion,lainnya,,2,jiwa,2025,registration,total_population,4.5.4,433,,Lainnya
+62.71,2,Palangka Raya,religion,buddha,,522,jiwa,2025,registration,total_population,4.5.4,433,,Budha
+62.71,2,Palangka Raya,religion,khonghucu,,11,jiwa,2025,registration,total_population,4.5.4,433,,Konghucu
+62.71,2,Palangka Raya,religion,lainnya,,36,jiwa,2025,registration,total_population,4.5.4,433,,Lainnya
+62,1,Kalimantan Tengah,religion,buddha,,3002,jiwa,2025,registration,total_population,4.5.4,433,,Budha
+62,1,Kalimantan Tengah,religion,khonghucu,,208,jiwa,2025,registration,total_population,4.5.4,433,,Konghucu
+62,1,Kalimantan Tengah,religion,lainnya,,665,jiwa,2025,registration,total_population,4.5.4,433,,Lainnya
+62.01,2,Kotawaringin Barat,occupation,pertanian_kehutanan_dan_perikanan,,49764,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertanian, Kehutanan dan Perikanan"
+62.01,2,Kotawaringin Barat,occupation,pertambangan_dan_penggalian_industri,,23728,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.01,2,Kotawaringin Barat,occupation,perdagangan_besar_dan_eceran,,69145,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.01,2,Kotawaringin Barat,total,total,,142637,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,
+62.02,2,Kotawaringin Timur,occupation,pertanian_kehutanan_dan_perikanan,,83488,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertanian, Kehutanan dan Perikanan"
+62.02,2,Kotawaringin Timur,occupation,pertambangan_dan_penggalian_industri,,31941,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.02,2,Kotawaringin Timur,occupation,perdagangan_besar_dan_eceran,,96233,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.02,2,Kotawaringin Timur,total,total,,211662,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,
+62.03,2,Kapuas,occupation,pertanian_kehutanan_dan_perikanan,,67564,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertanian, Kehutanan dan Perikanan"
+62.03,2,Kapuas,occupation,pertambangan_dan_penggalian_industri,,52238,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.03,2,Kapuas,occupation,perdagangan_besar_dan_eceran,,100035,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.03,2,Kapuas,total,total,,219837,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,
+62.04,2,Barito Selatan,occupation,pertanian_kehutanan_dan_perikanan,,24118,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertanian, Kehutanan dan Perikanan"
+62.04,2,Barito Selatan,occupation,pertambangan_dan_penggalian_industri,,12351,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.04,2,Barito Selatan,occupation,perdagangan_besar_dan_eceran,,29648,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.04,2,Barito Selatan,total,total,,66117,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,
+62.05,2,Barito Utara,occupation,pertanian_kehutanan_dan_perikanan,,24521,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertanian, Kehutanan dan Perikanan"
+62.05,2,Barito Utara,occupation,pertambangan_dan_penggalian_industri,,19691,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.05,2,Barito Utara,occupation,perdagangan_besar_dan_eceran,,44283,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.05,2,Barito Utara,total,total,,88495,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,
+62.08,2,Sukamara,occupation,pertanian_kehutanan_dan_perikanan,,16449,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertanian, Kehutanan dan Perikanan"
+62.08,2,Sukamara,occupation,pertambangan_dan_penggalian_industri,,4091,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.08,2,Sukamara,occupation,perdagangan_besar_dan_eceran,,14481,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.08,2,Sukamara,total,total,,35021,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,
+62.09,2,Lamandau,occupation,pertanian_kehutanan_dan_perikanan,,28674,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertanian, Kehutanan dan Perikanan"
+62.09,2,Lamandau,occupation,pertambangan_dan_penggalian_industri,,4871,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.09,2,Lamandau,occupation,perdagangan_besar_dan_eceran,,22308,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.09,2,Lamandau,total,total,,55853,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,
+62.07,2,Seruyan,occupation,pertanian_kehutanan_dan_perikanan,,51399,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertanian, Kehutanan dan Perikanan"
+62.07,2,Seruyan,occupation,pertambangan_dan_penggalian_industri,,9579,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.07,2,Seruyan,occupation,perdagangan_besar_dan_eceran,,28315,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.07,2,Seruyan,total,total,,89293,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,
+62.06,2,Katingan,occupation,pertanian_kehutanan_dan_perikanan,,19612,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertanian, Kehutanan dan Perikanan"
+62.06,2,Katingan,occupation,pertambangan_dan_penggalian_industri,,31197,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.06,2,Katingan,occupation,perdagangan_besar_dan_eceran,,33060,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.06,2,Katingan,total,total,,83869,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,
+62.11,2,Pulang Pisau,occupation,pertanian_kehutanan_dan_perikanan,,32097,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertanian, Kehutanan dan Perikanan"
+62.11,2,Pulang Pisau,occupation,pertambangan_dan_penggalian_industri,,18709,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.11,2,Pulang Pisau,occupation,perdagangan_besar_dan_eceran,,26284,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.11,2,Pulang Pisau,total,total,,77090,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,
+62.10,2,Gunung Mas,occupation,pertanian_kehutanan_dan_perikanan,,11705,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertanian, Kehutanan dan Perikanan"
+62.10,2,Gunung Mas,occupation,pertambangan_dan_penggalian_industri,,35369,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.10,2,Gunung Mas,occupation,perdagangan_besar_dan_eceran,,24832,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.10,2,Gunung Mas,total,total,,71906,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,
+62.13,2,Barito Timur,occupation,pertanian_kehutanan_dan_perikanan,,30843,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertanian, Kehutanan dan Perikanan"
+62.13,2,Barito Timur,occupation,pertambangan_dan_penggalian_industri,,11289,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.13,2,Barito Timur,occupation,perdagangan_besar_dan_eceran,,27579,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.13,2,Barito Timur,total,total,,69711,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,
+62.12,2,Murung Raya,occupation,pertanian_kehutanan_dan_perikanan,,16014,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertanian, Kehutanan dan Perikanan"
+62.12,2,Murung Raya,occupation,pertambangan_dan_penggalian_industri,,22295,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.12,2,Murung Raya,occupation,perdagangan_besar_dan_eceran,,19734,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.12,2,Murung Raya,total,total,,58043,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,
+62.71,2,Palangka Raya,occupation,pertanian_kehutanan_dan_perikanan,,11940,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertanian, Kehutanan dan Perikanan"
+62.71,2,Palangka Raya,occupation,pertambangan_dan_penggalian_industri,,27437,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.71,2,Palangka Raya,occupation,perdagangan_besar_dan_eceran,,108772,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.71,2,Palangka Raya,total,total,,148149,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,
+62,1,Kalimantan Tengah,occupation,pertanian_kehutanan_dan_perikanan,,468188,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertanian, Kehutanan dan Perikanan"
+62,1,Kalimantan Tengah,occupation,pertambangan_dan_penggalian_industri,,304786,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62,1,Kalimantan Tengah,occupation,perdagangan_besar_dan_eceran,,644709,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62,1,Kalimantan Tengah,total,total,,1417683,jiwa,2025,survey_estimate,employed_15_plus,3.2.14,166,,
+62.01,2,Kotawaringin Barat,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,3294218,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertanian, Kehutanan dan Perikanan"
+62.01,2,Kotawaringin Barat,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,3587843,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.01,2,Kotawaringin Barat,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,3155544,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.01,2,Kotawaringin Barat,income,total,,3283595,rupiah,2025,survey_estimate,employees,3.2.30,185,,
+62.02,2,Kotawaringin Timur,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,3194304,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertanian, Kehutanan dan Perikanan"
+62.02,2,Kotawaringin Timur,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,3427322,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.02,2,Kotawaringin Timur,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,3039815,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.02,2,Kotawaringin Timur,income,total,,3169487,rupiah,2025,survey_estimate,employees,3.2.30,185,,
+62.03,2,Kapuas,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,3082575,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertanian, Kehutanan dan Perikanan"
+62.03,2,Kapuas,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,3660033,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.03,2,Kapuas,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2756734,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.03,2,Kapuas,income,total,,3081607,rupiah,2025,survey_estimate,employees,3.2.30,185,,
+62.04,2,Barito Selatan,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2314713,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertanian, Kehutanan dan Perikanan"
+62.04,2,Barito Selatan,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,3516070,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.04,2,Barito Selatan,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2965168,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.04,2,Barito Selatan,income,total,,3068942,rupiah,2025,survey_estimate,employees,3.2.30,185,,
+62.05,2,Barito Utara,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,3065983,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertanian, Kehutanan dan Perikanan"
+62.05,2,Barito Utara,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,5224277,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.05,2,Barito Utara,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,3079369,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.05,2,Barito Utara,income,total,,3812873,rupiah,2025,survey_estimate,employees,3.2.30,185,,
+62.08,2,Sukamara,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,3884853,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertanian, Kehutanan dan Perikanan"
+62.08,2,Sukamara,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,3276699,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.08,2,Sukamara,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,3464625,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.08,2,Sukamara,income,total,,3620633,rupiah,2025,survey_estimate,employees,3.2.30,185,,
+62.09,2,Lamandau,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,3758479,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertanian, Kehutanan dan Perikanan"
+62.09,2,Lamandau,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,3543767,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.09,2,Lamandau,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,3675520,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.09,2,Lamandau,income,total,,3693317,rupiah,2025,survey_estimate,employees,3.2.30,185,,
+62.07,2,Seruyan,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,3543993,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertanian, Kehutanan dan Perikanan"
+62.07,2,Seruyan,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,1958146,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.07,2,Seruyan,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2733705,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.07,2,Seruyan,income,total,,3030133,rupiah,2025,survey_estimate,employees,3.2.30,185,,
+62.06,2,Katingan,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,3019121,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertanian, Kehutanan dan Perikanan"
+62.06,2,Katingan,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,3776794,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.06,2,Katingan,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,3315286,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.06,2,Katingan,income,total,,3511150,rupiah,2025,survey_estimate,employees,3.2.30,185,,
+62.11,2,Pulang Pisau,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2621342,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertanian, Kehutanan dan Perikanan"
+62.11,2,Pulang Pisau,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,3731605,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.11,2,Pulang Pisau,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,3017709,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.11,2,Pulang Pisau,income,total,,3149240,rupiah,2025,survey_estimate,employees,3.2.30,185,,
+62.10,2,Gunung Mas,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,3252015,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertanian, Kehutanan dan Perikanan"
+62.10,2,Gunung Mas,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,3528665,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.10,2,Gunung Mas,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,3918799,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.10,2,Gunung Mas,income,total,,3616348,rupiah,2025,survey_estimate,employees,3.2.30,185,,
+62.13,2,Barito Timur,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,2966437,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertanian, Kehutanan dan Perikanan"
+62.13,2,Barito Timur,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,4329598,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.13,2,Barito Timur,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,3210749,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.13,2,Barito Timur,income,total,,3413110,rupiah,2025,survey_estimate,employees,3.2.30,185,,
+62.12,2,Murung Raya,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,3458946,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertanian, Kehutanan dan Perikanan"
+62.12,2,Murung Raya,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,4396994,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.12,2,Murung Raya,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,2701623,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.12,2,Murung Raya,income,total,,3605744,rupiah,2025,survey_estimate,employees,3.2.30,185,,
+62.71,2,Palangka Raya,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,3651156,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertanian, Kehutanan dan Perikanan"
+62.71,2,Palangka Raya,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,3881088,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62.71,2,Palangka Raya,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,3870638,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62.71,2,Palangka Raya,income,total,,3868338,rupiah,2025,survey_estimate,employees,3.2.30,185,,
+62,1,Kalimantan Tengah,income,lapangan_pekerjaan_utama/pertanian_kehutanan_dan_perikanan,,3251951,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertanian, Kehutanan dan Perikanan"
+62,1,Kalimantan Tengah,income,lapangan_pekerjaan_utama/pertambangan_dan_penggalian_industri,,3787115,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Pertambangan dan Penggalian; Industri Pengolahan; Pengadaan Listrik dan Gas; Pengadaan Air; Pengelolaan Sampah, Limbah, dan Daur Ulang; Konstruksi"
+62,1,Kalimantan Tengah,income,lapangan_pekerjaan_utama/perdagangan_besar_dan_eceran,,3225387,rupiah,2025,survey_estimate,employees,3.2.30,185,,"Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor; Transportasi dan Pergudangan; Penyediaan Akomodasi dan Makan Minum; Informasi dan Komunikasi; Jasa Keuangan dan Asuransi; Real Estat; Jasa Perusahaan; Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib; Jasa Pendidikan; Jasa Kesehatan dan Kegiatan Sosial; Jasa Lainnya"
+62,1,Kalimantan Tengah,income,total,,3378884,rupiah,2025,survey_estimate,employees,3.2.30,185,,
+62,1,Kalimantan Tengah,income,kelompok_umur/15-19,,2111812,rupiah,2025,survey_estimate,employees,3.2.31,186,,15–19
+62,1,Kalimantan Tengah,income,kelompok_umur/20-24,,2825651,rupiah,2025,survey_estimate,employees,3.2.31,186,,20–24
+62,1,Kalimantan Tengah,income,kelompok_umur/25-29,,3167228,rupiah,2025,survey_estimate,employees,3.2.31,186,,25–29
+62,1,Kalimantan Tengah,income,kelompok_umur/30-34,,3506711,rupiah,2025,survey_estimate,employees,3.2.31,186,,30–34
+62,1,Kalimantan Tengah,income,kelompok_umur/35-39,,3621446,rupiah,2025,survey_estimate,employees,3.2.31,186,,35–39
+62,1,Kalimantan Tengah,income,kelompok_umur/40-44,,3513662,rupiah,2025,survey_estimate,employees,3.2.31,186,,40–44
+62,1,Kalimantan Tengah,income,kelompok_umur/45-49,,3940489,rupiah,2025,survey_estimate,employees,3.2.31,186,,45–49
+62,1,Kalimantan Tengah,income,kelompok_umur/50-54,,3771200,rupiah,2025,survey_estimate,employees,3.2.31,186,,50–54
+62,1,Kalimantan Tengah,income,kelompok_umur/55-59,,3974450,rupiah,2025,survey_estimate,employees,3.2.31,186,,55–59
+62,1,Kalimantan Tengah,income,kelompok_umur/60+,,2643517,rupiah,2025,survey_estimate,employees,3.2.31,186,,60+
+62,1,Kalimantan Tengah,income,total,,3378884,rupiah,2025,survey_estimate,employees,3.2.31,186,,

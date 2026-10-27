@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1612-kecamatan-161203-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.12.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Penukal Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Penukal Abab Lematang Ilir BPS-Statistics Penukal Abab Lematang Ilir Regency Sumber Ilustrasi",
+  "publisherDomain": "1612",
+  "publisherWebsite": "https://palikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Penukal Abab Lematang Ilir BPS-Statistics Penukal Abab Lematang Ilir Regency Sumber Ilustrasi (https://palikab.bps.go.id), publikasi \"Kecamatan Penukal Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1612040",
+  "publicationNumber": "16120",
+  "issn": "2745-3081",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://palikab.bps.go.id/id/publication/2026/09/28/764eb6251d18db95a0c2e45f/kecamatan-penukal-dalam-angka-2026.html",
+  "sourceFileSha256": "21ef31906b8e3cd21504b5c4cd517c31e7ce0a97c72f40dcbbd279d80f6742d3",
+  "sourceFileBytes": 3908302,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Penukal Abab Lematang Ilir.",
+  "csvPath": "datasets/bps-1612-kecamatan-161203-dalam-angka-2026.csv",
+  "csvSha256": "42566e63830fbf3c792ea1c9956d705e31a719205d5fa227b0d4e70cc18e2b86",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Penukal, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Penukal, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sepantan Jaya\": unmatched ",
+    "table 3.1: row not stored: row \"Sepantan Jaya\": unmatched "
+  ]
+}

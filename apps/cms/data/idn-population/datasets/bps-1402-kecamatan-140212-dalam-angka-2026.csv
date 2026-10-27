@@ -1,0 +1,41 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.02.12.2002,4,Pondok Gelugur,religion,islam,,749,jiwa,2025,registration,total_population,4.4.1,61,,Islam
+14.02.12.2002,4,Pondok Gelugur,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.1,61,nil,Katolik
+14.02.12.2002,4,Pondok Gelugur,religion,kristen,,4,jiwa,2025,registration,total_population,4.4.1,61,,Protestan
+14.02.12.2002,4,Pondok Gelugur,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,61,nil,Hindu
+14.02.12.2002,4,Pondok Gelugur,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,61,nil,Budha
+14.02.12.2001,4,Rimpian,religion,islam,,2627,jiwa,2025,registration,total_population,4.4.1,61,,Islam
+14.02.12.2001,4,Rimpian,religion,katolik,,18,jiwa,2025,registration,total_population,4.4.1,61,,Katolik
+14.02.12.2001,4,Rimpian,religion,kristen,,92,jiwa,2025,registration,total_population,4.4.1,61,,Protestan
+14.02.12.2001,4,Rimpian,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,61,nil,Hindu
+14.02.12.2001,4,Rimpian,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,61,nil,Budha
+14.02.12.2003,4,Lubuk Batu Tinggal,religion,islam,,1798,jiwa,2025,registration,total_population,4.4.1,61,,Islam
+14.02.12.2003,4,Lubuk Batu Tinggal,religion,katolik,,17,jiwa,2025,registration,total_population,4.4.1,61,,Katolik
+14.02.12.2003,4,Lubuk Batu Tinggal,religion,kristen,,275,jiwa,2025,registration,total_population,4.4.1,61,,Protestan
+14.02.12.2003,4,Lubuk Batu Tinggal,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,61,nil,Hindu
+14.02.12.2003,4,Lubuk Batu Tinggal,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,61,nil,Budha
+14.02.12.2005,4,Kulim Jaya,religion,islam,,4249,jiwa,2025,registration,total_population,4.4.1,61,,Islam
+14.02.12.2005,4,Kulim Jaya,religion,katolik,,64,jiwa,2025,registration,total_population,4.4.1,61,,Katolik
+14.02.12.2005,4,Kulim Jaya,religion,kristen,,219,jiwa,2025,registration,total_population,4.4.1,61,,Protestan
+14.02.12.2005,4,Kulim Jaya,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,61,nil,Hindu
+14.02.12.2005,4,Kulim Jaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,61,nil,Budha
+14.02.12.2007,4,Tasik Juang,religion,islam,,1579,jiwa,2025,registration,total_population,4.4.1,61,,Islam
+14.02.12.2007,4,Tasik Juang,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.1,61,nil,Katolik
+14.02.12.2007,4,Tasik Juang,religion,kristen,,7,jiwa,2025,registration,total_population,4.4.1,61,,Protestan
+14.02.12.2007,4,Tasik Juang,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,61,nil,Hindu
+14.02.12.2007,4,Tasik Juang,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,61,nil,Budha
+14.02.12.2008,4,Pontian Mekar,religion,islam,,2869,jiwa,2025,registration,total_population,4.4.1,61,,Islam
+14.02.12.2008,4,Pontian Mekar,religion,katolik,,25,jiwa,2025,registration,total_population,4.4.1,61,,Katolik
+14.02.12.2008,4,Pontian Mekar,religion,kristen,,164,jiwa,2025,registration,total_population,4.4.1,61,,Protestan
+14.02.12.2008,4,Pontian Mekar,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,61,nil,Hindu
+14.02.12.2008,4,Pontian Mekar,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,61,nil,Budha
+14.02.12.2009,4,Air Putih,religion,islam,,4349,jiwa,2025,registration,total_population,4.4.1,61,,Islam
+14.02.12.2009,4,Air Putih,religion,katolik,,56,jiwa,2025,registration,total_population,4.4.1,61,,Katolik
+14.02.12.2009,4,Air Putih,religion,kristen,,663,jiwa,2025,registration,total_population,4.4.1,61,,Protestan
+14.02.12.2009,4,Air Putih,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,61,nil,Hindu
+14.02.12.2009,4,Air Putih,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,61,nil,Budha
+14.02.12,3,Lubuk Batu Jaya,religion,islam,,22288,jiwa,2025,registration,total_population,4.4.1,61,,Islam
+14.02.12,3,Lubuk Batu Jaya,religion,katolik,,187,jiwa,2025,registration,total_population,4.4.1,61,,Katolik
+14.02.12,3,Lubuk Batu Jaya,religion,kristen,,1563,jiwa,2025,registration,total_population,4.4.1,61,,Protestan
+14.02.12,3,Lubuk Batu Jaya,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.1,61,nil,Hindu
+14.02.12,3,Lubuk Batu Jaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.1,61,nil,Budha

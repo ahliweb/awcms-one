@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.75.06.1001,4,Jatinegara,sex,laki_laki,,51974,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.75.06.1001,4,Jatinegara,sex,perempuan,,49578,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.75.06.1001,4,Jatinegara,total,total,,101552,jiwa,2025,registration,total_population,3.1,28,,
+31.75.06.1003,4,Penggilingan,sex,laki_laki,,65473,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.75.06.1003,4,Penggilingan,sex,perempuan,,63900,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.75.06.1003,4,Penggilingan,total,total,,129373,jiwa,2025,registration,total_population,3.1,28,,
+31.75.06.1005,4,Pulo Gebang,sex,laki_laki,,64227,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.75.06.1005,4,Pulo Gebang,sex,perempuan,,63240,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.75.06.1005,4,Pulo Gebang,total,total,,127467,jiwa,2025,registration,total_population,3.1,28,,
+31.75.06.1006,4,Ujung Menteng,sex,laki_laki,,19563,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.75.06.1006,4,Ujung Menteng,sex,perempuan,,19484,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.75.06.1006,4,Ujung Menteng,total,total,,39047,jiwa,2025,registration,total_population,3.1,28,,
+31.75.06.1004,4,Cakung Timur,sex,laki_laki,,39101,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.75.06.1004,4,Cakung Timur,sex,perempuan,,38082,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.75.06.1004,4,Cakung Timur,total,total,,77183,jiwa,2025,registration,total_population,3.1,28,,
+31.75.06.1007,4,Cakung Barat,sex,laki_laki,,36746,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.75.06.1007,4,Cakung Barat,sex,perempuan,,35511,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.75.06.1007,4,Cakung Barat,total,total,,72257,jiwa,2025,registration,total_population,3.1,28,,
+31.75.06.1002,4,Rawa Terate,sex,laki_laki,,14757,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.75.06.1002,4,Rawa Terate,sex,perempuan,,13664,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.75.06.1002,4,Rawa Terate,total,total,,28421,jiwa,2025,registration,total_population,3.1,28,,
+31.75.06,3,Kecamatan Cakung,sex,laki_laki,,291841,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+31.75.06,3,Kecamatan Cakung,sex,perempuan,,283459,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+31.75.06,3,Kecamatan Cakung,total,total,,575300,jiwa,2025,registration,total_population,3.1,28,,
+31.75.06,3,Cakung,age_group,0-4,laki_laki,20109,jiwa,2025,registration,total_population,3.2,30,,0-4
+31.75.06,3,Cakung,age_group,0-4,perempuan,18696,jiwa,2025,registration,total_population,3.2,30,,0-4
+31.75.06,3,Cakung,age_group,0-4,,38805,jiwa,2025,registration,total_population,3.2,30,,0-4
+31.75.06,3,Cakung,age_group,5-9,laki_laki,26542,jiwa,2025,registration,total_population,3.2,30,,5-9
+31.75.06,3,Cakung,age_group,5-9,perempuan,24412,jiwa,2025,registration,total_population,3.2,30,,5-9
+31.75.06,3,Cakung,age_group,5-9,,50954,jiwa,2025,registration,total_population,3.2,30,,5-9
+31.75.06,3,Cakung,age_group,10-14,laki_laki,26617,jiwa,2025,registration,total_population,3.2,30,,10-14
+31.75.06,3,Cakung,age_group,10-14,perempuan,24521,jiwa,2025,registration,total_population,3.2,30,,10-14
+31.75.06,3,Cakung,age_group,10-14,,51138,jiwa,2025,registration,total_population,3.2,30,,10-14
+31.75.06,3,Cakung,age_group,15-19,laki_laki,23499,jiwa,2025,registration,total_population,3.2,30,,15-19
+31.75.06,3,Cakung,age_group,15-19,perempuan,22169,jiwa,2025,registration,total_population,3.2,30,,15-19
+31.75.06,3,Cakung,age_group,15-19,,45668,jiwa,2025,registration,total_population,3.2,30,,15-19
+31.75.06,3,Cakung,age_group,20-24,laki_laki,23464,jiwa,2025,registration,total_population,3.2,30,,20-24
+31.75.06,3,Cakung,age_group,20-24,perempuan,22164,jiwa,2025,registration,total_population,3.2,30,,20-24
+31.75.06,3,Cakung,age_group,20-24,,45628,jiwa,2025,registration,total_population,3.2,30,,20-24
+31.75.06,3,Cakung,age_group,25-29,laki_laki,22586,jiwa,2025,registration,total_population,3.2,30,,25-29
+31.75.06,3,Cakung,age_group,25-29,perempuan,21725,jiwa,2025,registration,total_population,3.2,30,,25-29
+31.75.06,3,Cakung,age_group,25-29,,44311,jiwa,2025,registration,total_population,3.2,30,,25-29
+31.75.06,3,Cakung,age_group,30-34,laki_laki,22345,jiwa,2025,registration,total_population,3.2,30,,30-34
+31.75.06,3,Cakung,age_group,30-34,perempuan,22724,jiwa,2025,registration,total_population,3.2,30,,30-34
+31.75.06,3,Cakung,age_group,30-34,,45069,jiwa,2025,registration,total_population,3.2,30,,30-34
+31.75.06,3,Cakung,age_group,35-39,laki_laki,22569,jiwa,2025,registration,total_population,3.2,30,,35-39
+31.75.06,3,Cakung,age_group,35-39,perempuan,22311,jiwa,2025,registration,total_population,3.2,30,,35-39
+31.75.06,3,Cakung,age_group,35-39,,44880,jiwa,2025,registration,total_population,3.2,30,,35-39
+31.75.06,3,Cakung,age_group,40-44,laki_laki,25379,jiwa,2025,registration,total_population,3.2,30,,40-44
+31.75.06,3,Cakung,age_group,40-44,perempuan,25154,jiwa,2025,registration,total_population,3.2,30,,40-44
+31.75.06,3,Cakung,age_group,40-44,,50533,jiwa,2025,registration,total_population,3.2,30,,40-44
+31.75.06,3,Cakung,age_group,45-49,laki_laki,22238,jiwa,2025,registration,total_population,3.2,30,,45-49
+31.75.06,3,Cakung,age_group,45-49,perempuan,23016,jiwa,2025,registration,total_population,3.2,30,,45-49
+31.75.06,3,Cakung,age_group,45-49,,45254,jiwa,2025,registration,total_population,3.2,30,,45-49
+31.75.06,3,Cakung,age_group,50-54,laki_laki,18815,jiwa,2025,registration,total_population,3.2,30,,50-54
+31.75.06,3,Cakung,age_group,50-54,perempuan,18650,jiwa,2025,registration,total_population,3.2,30,,50-54
+31.75.06,3,Cakung,age_group,50-54,,37465,jiwa,2025,registration,total_population,3.2,30,,50-54
+31.75.06,3,Cakung,age_group,55-59,laki_laki,14919,jiwa,2025,registration,total_population,3.2,30,,55-59
+31.75.06,3,Cakung,age_group,55-59,perempuan,13979,jiwa,2025,registration,total_population,3.2,30,,55-59
+31.75.06,3,Cakung,age_group,55-59,,28898,jiwa,2025,registration,total_population,3.2,30,,55-59
+31.75.06,3,Cakung,age_group,60-64,laki_laki,9796,jiwa,2025,registration,total_population,3.2,30,,60-64
+31.75.06,3,Cakung,age_group,60-64,perempuan,10283,jiwa,2025,registration,total_population,3.2,30,,60-64
+31.75.06,3,Cakung,age_group,60-64,,20079,jiwa,2025,registration,total_population,3.2,30,,60-64
+31.75.06,3,Cakung,age_group,65-69,laki_laki,6554,jiwa,2025,registration,total_population,3.2,30,,65-69
+31.75.06,3,Cakung,age_group,65-69,perempuan,7222,jiwa,2025,registration,total_population,3.2,30,,65-69
+31.75.06,3,Cakung,age_group,65-69,,13776,jiwa,2025,registration,total_population,3.2,30,,65-69
+31.75.06,3,Cakung,age_group,70-75,laki_laki,3978,jiwa,2025,registration,total_population,3.2,30,,70-75
+31.75.06,3,Cakung,age_group,70-75,perempuan,3716,jiwa,2025,registration,total_population,3.2,30,,70-75
+31.75.06,3,Cakung,age_group,70-75,,7694,jiwa,2025,registration,total_population,3.2,30,,70-75
+31.75.06,3,Cakung,age_group,75+,laki_laki,2431,jiwa,2025,registration,total_population,3.2,30,,75+
+31.75.06,3,Cakung,age_group,75+,perempuan,2717,jiwa,2025,registration,total_population,3.2,30,,75+
+31.75.06,3,Cakung,age_group,75+,,5148,jiwa,2025,registration,total_population,3.2,30,,75+
+31.75.06,3,Kecamatan Cakung,sex,laki_laki,,291841,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+31.75.06,3,Kecamatan Cakung,sex,perempuan,,283459,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+31.75.06,3,Kecamatan Cakung,total,total,,575300,jiwa,2025,registration,total_population,3.2,30,,

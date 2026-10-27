@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1272-kecamatan-127404-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.74.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Teluk Nibung Dalam Angka 2026",
+  "publisherName": "BPS Kota Tanjung Balai",
+  "publisherDomain": "1272",
+  "publisherWebsite": "https://tanjungbalaikota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Tanjung Balai (https://tanjungbalaikota.bps.go.id), publikasi \"Kecamatan Teluk Nibung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1272050",
+  "publicationNumber": "12720.26012",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tanjungbalaikota.bps.go.id/id/publication/2026/09/28/1fecde22ed8323a3099dcdc4/kecamatan-teluk-nibung-dalam-angka-2026.html",
+  "sourceFileSha256": "bb1beb06b351e06137bcb88730109ea877ae23e14bd99173dc0f0f7c00867bd1",
+  "sourceFileBytes": 5319689,
+  "sourcePages": [29, 30, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Tanjung Balai TIM PENYUSUN Kecamatan Teluk Nibung Dalam Angka 2026 Volume 45, 2026 ot a. b ps .g Penanggung Jawab Nizaruddin o. id Pengarah Nizaruddin un gb al ai k Penyunting Andi Luhut Prabowo Panggabean ht tp s: // ta nj Pengolah Data dan Penulis Naskah M. Syahrial Nasution Penata Letak Andi Luhut Prabowo Panggabean Pembuat Infografis M. Syahrial Nasution tp ht nj ta s: // al gb un o. ps .g a. b ot ai k id KONTRIBUTOR DATA 1. Kementerian Agama 2. Kementerian Pendidikan, dan Kebudayaan 3. Badan Pusat Statistik 4. Direktorat Jenderal Kependudukan dan Pencatatan Sipil Kementerian Dalam Negeri Sekretariat Daerah Kota Tanjung Balai 6. Badan Kepegawaian dan Pengembangan SDM Kota Tanjung Balai 7. Dinas Perhubungan Kota Tanjung Balai 8. Dinas Pekerjaan Umum dan Tata Ruang Kota Tanjung Balai 9. Dinas Pengendalian Penduduk dan Keluarga Berencana Kota Tanjung Balai a. b 10. Dinas Perikanan Kota Tanjung Balai ps .g o. id 5. ot 11. Dinas Pangan dan Pertanian Kota Tanjung Balai ai k 12. Dinas Kependudukan dan Pencatatan Sipil Kota Tanjung Balai al 13. Pemerintah Kecamatan Teluk Nibung ht tp s: // ta nj un gb 14. Kantor Urusan Agama Kecamatan Teluk Nibung tp ht nj ta s: // al gb un o. ps .g a. b ot ai k id KATA PENGANTAR Puji Syukur kepada Tuhan Yang Maha Esa karena berkat rahmat-Nya, buku Kecamatan Teluk Nibung dalam Angka ini dapat diterbitkan. Publikasi Kecamatan Teluk Nibung Dalam Angka Tahun 2025 yang berisi data kerjasama antara Statistisi ps .g o. atas id tahun 2025 ini merupakan lanjutan yang a. b Kecamatan menanggungjawabi Teluk dan Nibung dengan Instansi yang ot Dinas/Jawatan Fungsional ai k berada di wilayah Teluk Nibung. al Kami ucapkan terima kasih kepada Camat Teluk Nibung dan gb Fungsional Statistisi penyusun publikasi Kecamatan Teluk Nibung dalam un Angka beserta segenap Dinas/Jawatan dan para Lurah se Kecamatan ta nj Teluk Nibung yang telah turut membantu terwujudnya publikasi ini. s: // Penyajian data dalam Publikasi ini masih banyak kekurangannya tp untuk itu kami sangat mengharapkan saran dan kritik pemakai data untuk ht kesempurnaan dan perbaikan publikasi selanjutnya. Kiranya publikasi ini dapat bermanfaat bagi kita semua. Tanjungbalai, September 2026 Kepala Badan Pusat Statistik Kota Tanjung Balai Nizaruddin vii viii tp ht nj ta s: // al gb un o. ps .g a. b ot ai k id",
+  "csvPath": "datasets/bps-1272-kecamatan-127404-dalam-angka-2026.csv",
+  "csvSha256": "cbb99fd8048078833cc71007b503ce62af35334180de4f665d440ee6b3d815e4",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Teluk Nibung, 2025 Penduduk Kelurahan Laki-Laki Perempuan Jumlah",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.4",
+      "title": "Jumlah Penduduk Menurut Kelurahan dan Agama yang Dianut di Kecamatan Teluk Nibung, 2025 Agama Kelurahan Islam Protestan Katolik Hindu Budha Konghucu",
+      "printedPages": [33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication"
+  ]
+}

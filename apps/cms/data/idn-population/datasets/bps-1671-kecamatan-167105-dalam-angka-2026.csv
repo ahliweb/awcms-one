@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.71.05.1001,4,Delapan–Belas Ilir,sex,perempuan,,1123,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.05.1001,4,Delapan–Belas Ilir,total,total,,2231,jiwa,2025,registration,total_population,3.1,32,,
+16.71.05.1002,4,Enam–Belas Ilir,sex,perempuan,,655,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.05.1002,4,Enam–Belas Ilir,total,total,,1272,jiwa,2025,registration,total_population,3.1,32,,
+16.71.05.1003,4,Tiga–Belas Ilir,sex,perempuan,,1720,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.05.1003,4,Tiga–Belas Ilir,total,total,,3548,jiwa,2025,registration,total_population,3.1,32,,
+16.71.05.1004,4,Empat–Belas Ilir,sex,perempuan,,1822,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.05.1004,4,Empat–Belas Ilir,total,total,,3683,jiwa,2025,registration,total_population,3.1,32,,
+16.71.05.1005,4,Lima–Belas Ilir,sex,perempuan,,2562,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.05.1005,4,Lima–Belas Ilir,total,total,,4912,jiwa,2025,registration,total_population,3.1,32,,
+16.71.05.1006,4,Tujuh–Belas Ilir,sex,perempuan,,1786,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.05.1006,4,Tujuh–Belas Ilir,total,total,,3409,jiwa,2025,registration,total_population,3.1,32,,
+16.71.05.1011,4,Kepandean–Baru,sex,perempuan,,893,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.05.1011,4,Kepandean–Baru,total,total,,1703,jiwa,2025,registration,total_population,3.1,32,,
+16.71.05.1009,4,Dua–Puluh Ilir Satu,sex,perempuan,,5530,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.05.1009,4,Dua–Puluh Ilir Satu,total,total,,10718,jiwa,2025,registration,total_population,3.1,32,,
+16.71.05.1010,4,Sungaipangeran,sex,perempuan,,5188,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.05.1010,4,Sungaipangeran,total,total,,9935,jiwa,2025,registration,total_population,3.1,32,,
+16.71.05.1007,4,Dua–Puluh Ilir Tiga,sex,perempuan,,5008,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.05.1007,4,Dua–Puluh Ilir Tiga,total,total,,9758,jiwa,2025,registration,total_population,3.1,32,,
+16.71.05.1008,4,Dua–Puluh Ilir Empat,sex,perempuan,,7489,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.05.1008,4,Dua–Puluh Ilir Empat,total,total,,14659,jiwa,2025,registration,total_population,3.1,32,,
+16.71.05,3,Ilir Timur Satu,sex,perempuan,,33776,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.05,3,Ilir Timur Satu,total,total,,65828,jiwa,2025,registration,total_population,3.1,32,,

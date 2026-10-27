@@ -1,0 +1,101 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.18.01,3,Meureudu,religion,islam,,23633,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+11.18.01,3,Meureudu,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Protestan
+11.18.01,3,Meureudu,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Katolik
+11.18.01,3,Meureudu,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Hindu
+11.18.01,3,Meureudu,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Budha
+11.18.01,3,Meureudu,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+11.18.05,3,Meurah Dua,religion,islam,,13270,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+11.18.05,3,Meurah Dua,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+11.18.05,3,Meurah Dua,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Katolik
+11.18.05,3,Meurah Dua,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Hindu
+11.18.05,3,Meurah Dua,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Budha
+11.18.05,3,Meurah Dua,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+11.18.04,3,Bandar Dua,religion,islam,,29452,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+11.18.04,3,Bandar Dua,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Protestan
+11.18.04,3,Bandar Dua,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Katolik
+11.18.04,3,Bandar Dua,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Hindu
+11.18.04,3,Bandar Dua,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Budha
+11.18.04,3,Bandar Dua,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+11.18.03,3,Jangka Buya,religion,islam,,11125,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+11.18.03,3,Jangka Buya,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Protestan
+11.18.03,3,Jangka Buya,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Katolik
+11.18.03,3,Jangka Buya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Hindu
+11.18.03,3,Jangka Buya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Budha
+11.18.03,3,Jangka Buya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+11.18.02,3,Ulim,religion,islam,,17178,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+11.18.02,3,Ulim,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Protestan
+11.18.02,3,Ulim,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Katolik
+11.18.02,3,Ulim,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Hindu
+11.18.02,3,Ulim,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Budha
+11.18.02,3,Ulim,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+11.18.08,3,Trienggadeng,religion,islam,,24798,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+11.18.08,3,Trienggadeng,religion,kristen,,2,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+11.18.08,3,Trienggadeng,religion,katolik,,5,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+11.18.08,3,Trienggadeng,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Hindu
+11.18.08,3,Trienggadeng,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Budha
+11.18.08,3,Trienggadeng,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+11.18.07,3,Panteraja,religion,islam,,9462,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+11.18.07,3,Panteraja,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Protestan
+11.18.07,3,Panteraja,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+11.18.07,3,Panteraja,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Hindu
+11.18.07,3,Panteraja,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Budha
+11.18.07,3,Panteraja,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+11.18.06,3,Bandar Baru,religion,islam,,38418,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+11.18.06,3,Bandar Baru,religion,kristen,,8,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+11.18.06,3,Bandar Baru,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+11.18.06,3,Bandar Baru,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Hindu
+11.18.06,3,Bandar Baru,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Budha
+11.18.06,3,Bandar Baru,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+11.18,2,Pidie Jaya,religion,islam,,167336,jiwa,2025,registration,total_population,4.3.1,104,,Islam
+11.18,2,Pidie Jaya,religion,kristen,,11,jiwa,2025,registration,total_population,4.3.1,104,,Protestan
+11.18,2,Pidie Jaya,religion,katolik,,7,jiwa,2025,registration,total_population,4.3.1,104,,Katolik
+11.18,2,Pidie Jaya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Hindu
+11.18,2,Pidie Jaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Budha
+11.18,2,Pidie Jaya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,104,nil,Lainnya
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/padi_padian,,111101,rupiah,2024,survey_estimate,per_capita,10.1,207,,Padi-padian
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/padi_padian,,97947,rupiah,2025,survey_estimate,per_capita,10.1,207,,Padi-padian
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/umbi_umbian,,4851,rupiah,2024,survey_estimate,per_capita,10.1,207,,Umbi-umbian
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/umbi_umbian,,4434,rupiah,2025,survey_estimate,per_capita,10.1,207,,Umbi-umbian
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,92393,rupiah,2024,survey_estimate,per_capita,10.1,207,,Ikan/udang/cumi/kerang
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,92628,rupiah,2025,survey_estimate,per_capita,10.1,207,,Ikan/udang/cumi/kerang
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/daging,,14727,rupiah,2024,survey_estimate,per_capita,10.1,207,,Daging
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/daging,,14339,rupiah,2025,survey_estimate,per_capita,10.1,207,,Daging
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/telur_dan_susu,,20283,rupiah,2024,survey_estimate,per_capita,10.1,207,,Telur dan susu
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/telur_dan_susu,,19967,rupiah,2025,survey_estimate,per_capita,10.1,207,,Telur dan susu
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/sayur_sayuran,,57312,rupiah,2024,survey_estimate,per_capita,10.1,207,,Sayur-sayuran
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/sayur_sayuran,,57994,rupiah,2025,survey_estimate,per_capita,10.1,207,,Sayur-sayuran
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/kacang_kacangan,,7254,rupiah,2024,survey_estimate,per_capita,10.1,207,,Kacang-kacangan
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/kacang_kacangan,,7509,rupiah,2025,survey_estimate,per_capita,10.1,207,,Kacang-kacangan
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/buah_buahan,,32391,rupiah,2024,survey_estimate,per_capita,10.1,207,,Buah-buahan
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/buah_buahan,,34332,rupiah,2025,survey_estimate,per_capita,10.1,207,,Buah-buahan
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16502,rupiah,2024,survey_estimate,per_capita,10.1,207,,Minyak dan kelapa
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18712,rupiah,2025,survey_estimate,per_capita,10.1,207,,Minyak dan kelapa
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/bahan_minuman,,14211,rupiah,2024,survey_estimate,per_capita,10.1,207,,Bahan minuman
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/bahan_minuman,,14413,rupiah,2025,survey_estimate,per_capita,10.1,207,,Bahan minuman
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/bumbu_bumbuan,,17003,rupiah,2024,survey_estimate,per_capita,10.1,207,,Bumbu-bumbuan
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/bumbu_bumbuan,,16138,rupiah,2025,survey_estimate,per_capita,10.1,207,,Bumbu-bumbuan
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/konsumsi_lainnya,,6934,rupiah,2024,survey_estimate,per_capita,10.1,207,,Konsumsi lainnya
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/konsumsi_lainnya,,8692,rupiah,2025,survey_estimate,per_capita,10.1,207,,Konsumsi lainnya
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,214655,rupiah,2024,survey_estimate,per_capita,10.1,207,,Makanan dan minuman jadi
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,242863,rupiah,2025,survey_estimate,per_capita,10.1,207,,Makanan dan minuman jadi
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/rokok,,102349,rupiah,2024,survey_estimate,per_capita,10.1,207,,Rokok
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/rokok,,68210,rupiah,2025,survey_estimate,per_capita,10.1,207,,Rokok
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/jumlah_makanan,,711967,rupiah,2024,survey_estimate,per_capita,10.1,207,,Jumlah makanan
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/jumlah_makanan,,698178,rupiah,2025,survey_estimate,per_capita,10.1,207,,Jumlah makanan
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,189473,rupiah,2024,survey_estimate,per_capita,10.1,207,,Perumahan dan fasilitas rumah tangga
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,183138,rupiah,2025,survey_estimate,per_capita,10.1,207,,Perumahan dan fasilitas rumah tangga
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,92825,rupiah,2024,survey_estimate,per_capita,10.1,207,,Aneka barang dan jasa
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,91260,rupiah,2025,survey_estimate,per_capita,10.1,207,,Aneka barang dan jasa
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,43882,rupiah,2024,survey_estimate,per_capita,10.1,207,,"Pakaian, alas kaki, dan tutup kepala"
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,43615,rupiah,2025,survey_estimate,per_capita,10.1,207,,"Pakaian, alas kaki, dan tutup kepala"
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/barang_tahan_lama,,14012,rupiah,2024,survey_estimate,per_capita,10.1,207,,Barang tahan lama
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/barang_tahan_lama,,11590,rupiah,2025,survey_estimate,per_capita,10.1,207,,Barang tahan lama
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,48225,rupiah,2024,survey_estimate,per_capita,10.1,207,,"Pajak, pungutan, dan asuransi"
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,46893,rupiah,2025,survey_estimate,per_capita,10.1,207,,"Pajak, pungutan, dan asuransi"
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,9363,rupiah,2024,survey_estimate,per_capita,10.1,207,,Keperluan pesta dan upacara/kenduri
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,9765,rupiah,2025,survey_estimate,per_capita,10.1,207,,Keperluan pesta dan upacara/kenduri
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,397781,rupiah,2024,survey_estimate,per_capita,10.1,207,,Jumlah bukan makanan
+11.18,2,Kabupaten Pidie Jaya,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,386261,rupiah,2025,survey_estimate,per_capita,10.1,207,,Jumlah bukan makanan
+11.18,2,Kabupaten Pidie Jaya,expenditure,total,,1109748,rupiah,2024,survey_estimate,per_capita,10.1,207,,
+11.18,2,Kabupaten Pidie Jaya,expenditure,total,,1084439,rupiah,2025,survey_estimate,per_capita,10.1,207,,

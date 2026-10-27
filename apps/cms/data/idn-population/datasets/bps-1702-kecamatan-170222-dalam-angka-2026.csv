@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+17.02.22.2003,4,Bengko,sex,laki_laki,,1243,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.22.2003,4,Bengko,sex,perempuan,,1102,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.22.2003,4,Bengko,total,total,,2345,jiwa,2025,registration,total_population,3.1,22,,
+17.02.22.2004,4,Sinar Gunung,sex,laki_laki,,887,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.22.2004,4,Sinar Gunung,sex,perempuan,,789,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.22.2004,4,Sinar Gunung,total,total,,1676,jiwa,2025,registration,total_population,3.1,22,,
+17.02.22.2002,4,Air Rusa,sex,laki_laki,,855,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.22.2002,4,Air Rusa,sex,perempuan,,788,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.22.2002,4,Air Rusa,total,total,,1643,jiwa,2025,registration,total_population,3.1,22,,
+17.02.22.2006,4,Talang Belitar,sex,laki_laki,,754,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.22.2006,4,Talang Belitar,sex,perempuan,,718,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.22.2006,4,Talang Belitar,total,total,,1472,jiwa,2025,registration,total_population,3.1,22,,
+17.02.22.2005,4,Warung Pojok,sex,laki_laki,,369,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.22.2005,4,Warung Pojok,sex,perempuan,,314,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.22.2005,4,Warung Pojok,total,total,,683,jiwa,2025,registration,total_population,3.1,22,,
+17.02.22,3,Sindang Dataran,sex,laki_laki,,5732,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki
+17.02.22,3,Sindang Dataran,sex,perempuan,,5257,jiwa,2025,registration,total_population,3.1,22,,Perempuan
+17.02.22,3,Sindang Dataran,total,total,,10989,jiwa,2025,registration,total_population,3.1,22,,

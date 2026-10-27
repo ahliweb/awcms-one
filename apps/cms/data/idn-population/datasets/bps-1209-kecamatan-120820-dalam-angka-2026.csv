@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.08.20,3,Dolok Pardamean,age_group,0-4,laki_laki,274,jiwa,2025,registration,total_population,3.2,32,,0 –4
+12.08.20,3,Dolok Pardamean,age_group,0-4,perempuan,237,jiwa,2025,registration,total_population,3.2,32,,0 –4
+12.08.20,3,Dolok Pardamean,age_group,0-4,,511,jiwa,2025,registration,total_population,3.2,32,,0 –4
+12.08.20,3,Dolok Pardamean,age_group,5-9,laki_laki,524,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+12.08.20,3,Dolok Pardamean,age_group,5-9,perempuan,507,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+12.08.20,3,Dolok Pardamean,age_group,5-9,,1031,jiwa,2025,registration,total_population,3.2,32,,5 – 9
+12.08.20,3,Dolok Pardamean,age_group,10-14,laki_laki,807,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+12.08.20,3,Dolok Pardamean,age_group,10-14,perempuan,691,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+12.08.20,3,Dolok Pardamean,age_group,10-14,,1498,jiwa,2025,registration,total_population,3.2,32,,10 – 14
+12.08.20,3,Dolok Pardamean,age_group,15-19,laki_laki,909,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+12.08.20,3,Dolok Pardamean,age_group,15-19,perempuan,838,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+12.08.20,3,Dolok Pardamean,age_group,15-19,,1747,jiwa,2025,registration,total_population,3.2,32,,15 – 19
+12.08.20,3,Dolok Pardamean,age_group,20-24,laki_laki,798,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+12.08.20,3,Dolok Pardamean,age_group,20-24,perempuan,748,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+12.08.20,3,Dolok Pardamean,age_group,20-24,,1546,jiwa,2025,registration,total_population,3.2,32,,20 – 24
+12.08.20,3,Dolok Pardamean,age_group,25-29,laki_laki,640,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+12.08.20,3,Dolok Pardamean,age_group,25-29,perempuan,536,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+12.08.20,3,Dolok Pardamean,age_group,25-29,,1176,jiwa,2025,registration,total_population,3.2,32,,25 – 29
+12.08.20,3,Dolok Pardamean,age_group,30-34,laki_laki,496,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+12.08.20,3,Dolok Pardamean,age_group,30-34,perempuan,458,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+12.08.20,3,Dolok Pardamean,age_group,30-34,,954,jiwa,2025,registration,total_population,3.2,32,,30 – 34
+12.08.20,3,Dolok Pardamean,age_group,35-39,laki_laki,497,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+12.08.20,3,Dolok Pardamean,age_group,35-39,perempuan,468,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+12.08.20,3,Dolok Pardamean,age_group,35-39,,965,jiwa,2025,registration,total_population,3.2,32,,35 – 39
+12.08.20,3,Dolok Pardamean,age_group,40-44,laki_laki,519,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+12.08.20,3,Dolok Pardamean,age_group,40-44,perempuan,488,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+12.08.20,3,Dolok Pardamean,age_group,40-44,,1007,jiwa,2025,registration,total_population,3.2,32,,40 – 44
+12.08.20,3,Dolok Pardamean,age_group,45-49,laki_laki,499,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+12.08.20,3,Dolok Pardamean,age_group,45-49,perempuan,487,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+12.08.20,3,Dolok Pardamean,age_group,45-49,,986,jiwa,2025,registration,total_population,3.2,32,,45 – 49
+12.08.20,3,Dolok Pardamean,age_group,50-54,laki_laki,436,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+12.08.20,3,Dolok Pardamean,age_group,50-54,perempuan,452,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+12.08.20,3,Dolok Pardamean,age_group,50-54,,888,jiwa,2025,registration,total_population,3.2,32,,50 – 54
+12.08.20,3,Dolok Pardamean,age_group,55-59,laki_laki,380,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+12.08.20,3,Dolok Pardamean,age_group,55-59,perempuan,405,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+12.08.20,3,Dolok Pardamean,age_group,55-59,,785,jiwa,2025,registration,total_population,3.2,32,,55 – 59
+12.08.20,3,Dolok Pardamean,age_group,60-64,laki_laki,239,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+12.08.20,3,Dolok Pardamean,age_group,60-64,perempuan,309,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+12.08.20,3,Dolok Pardamean,age_group,60-64,,548,jiwa,2025,registration,total_population,3.2,32,,60 – 64
+12.08.20,3,Dolok Pardamean,age_group,65-69,laki_laki,201,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+12.08.20,3,Dolok Pardamean,age_group,65-69,perempuan,310,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+12.08.20,3,Dolok Pardamean,age_group,65-69,,511,jiwa,2025,registration,total_population,3.2,32,,65 – 69
+12.08.20,3,Dolok Pardamean,age_group,70-74,laki_laki,128,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+12.08.20,3,Dolok Pardamean,age_group,70-74,perempuan,214,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+12.08.20,3,Dolok Pardamean,age_group,70-74,,342,jiwa,2025,registration,total_population,3.2,32,,70 – 74
+12.08.20,3,Dolok Pardamean,age_group,75+,laki_laki,131,jiwa,2025,registration,total_population,3.2,32,,75 +
+12.08.20,3,Dolok Pardamean,age_group,75+,perempuan,252,jiwa,2025,registration,total_population,3.2,32,,75 +
+12.08.20,3,Dolok Pardamean,age_group,75+,,383,jiwa,2025,registration,total_population,3.2,32,,75 +

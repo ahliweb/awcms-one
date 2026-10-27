@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3501-kecamatan-350105-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.01.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kebonagung Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pacitan",
+  "publisherDomain": "3501",
+  "publisherWebsite": "https://pacitankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pacitan (https://pacitankab.bps.go.id), publikasi \"Kecamatan Kebonagung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3501050",
+  "publicationNumber": "35010.26009",
+  "issn": "3110-4541",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pacitankab.bps.go.id/id/publication/2026/09/28/a0a222a823559b9f2669a8ed/kecamatan-kebonagung-dalam-angka-2026.html",
+  "sourceFileSha256": "ff6e846efa6be5421f5fde40d0022cc8449ff5fc6db5cafcad2e168d27188da3",
+  "sourceFileBytes": 3085689,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pacitan.",
+  "csvPath": "datasets/bps-3501-kecamatan-350105-dalam-angka-2026.csv",
+  "csvSha256": "e26bd206910fa05c2eaa60dab5fee90bcbdda3861c61088a072a0a7ace36365a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kebonagung, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kebonagung, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

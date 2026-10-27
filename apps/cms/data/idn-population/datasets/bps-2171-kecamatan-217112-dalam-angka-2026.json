@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-2171-kecamatan-217112-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.71.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Batu Aji Dalam Angka 2026",
+  "publisherName": "BPS Kota Batam",
+  "publisherDomain": "2171",
+  "publisherWebsite": "https://batamkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Batam (https://batamkota.bps.go.id), publikasi \"Kecamatan Batu Aji Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2171061",
+  "publicationNumber": "21710.26015",
+  "issn": "2987-1182",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://batamkota.bps.go.id/id/publication/2026/09/28/fcb6d5bbd6d11614e30c6644/kecamatan-batu-aji-dalam-angka-2026.html",
+  "sourceFileSha256": "2ed5458834aeed610055fd585bb8e5409a39eb7c4aba45ecada9073b2651445d",
+  "sourceFileBytes": 12694543,
+  "sourcePages": [21],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Batam.",
+  "csvPath": "datasets/bps-2171-kecamatan-217112-dalam-angka-2026.csv",
+  "csvSha256": "11a2acc8423ce0b7e040137779879cd27c18e442a6305cc95f33f2d9eab98476",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p21",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Batu Aji, 2025",
+      "printedPages": [21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p21: row not stored: row \"Kecamatan Batu Aji Batu Aji District\": unmatched "
+  ]
+}

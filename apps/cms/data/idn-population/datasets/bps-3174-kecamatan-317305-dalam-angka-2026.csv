@@ -1,0 +1,17 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+31.73.05.1003,4,Sukabumi Selatan,sex,perempuan,,23063,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.73.05.1003,4,Sukabumi Selatan,total,total,,46549,jiwa,2025,registration,total_population,3.1,26,,
+31.73.05.1002,4,Sukabumi Utara,sex,perempuan,,24295,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.73.05.1002,4,Sukabumi Utara,total,total,,48553,jiwa,2025,registration,total_population,3.1,26,,
+31.73.05.1004,4,Kelapa Dua,sex,perempuan,,14772,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.73.05.1004,4,Kelapa Dua,total,total,,29499,jiwa,2025,registration,total_population,3.1,26,,
+31.73.05.1001,4,Kebon Jeruk,sex,perempuan,,34651,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.73.05.1001,4,Kebon Jeruk,total,total,,69332,jiwa,2025,registration,total_population,3.1,26,,
+31.73.05.1005,4,Duri Kepa,sex,perempuan,,36557,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.73.05.1005,4,Duri Kepa,total,total,,72472,jiwa,2025,registration,total_population,3.1,26,,
+31.73.05.1007,4,Kedoya Selatan,sex,perempuan,,19806,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.73.05.1007,4,Kedoya Selatan,total,total,,39666,jiwa,2025,registration,total_population,3.1,26,,
+31.73.05.1006,4,Kedoya Utara,sex,perempuan,,28338,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.73.05.1006,4,Kedoya Utara,total,total,,56785,jiwa,2025,registration,total_population,3.1,26,,
+31.73.05,3,Kebon Jeruk,sex,perempuan,,181482,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+31.73.05,3,Kebon Jeruk,total,total,,362856,jiwa,2025,registration,total_population,3.1,26,,

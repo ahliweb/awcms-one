@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.10.07.2007,4,KEPAU BARU,sex,laki_laki,,871,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.07.2007,4,KEPAU BARU,sex,perempuan,,765,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.07.2007,4,KEPAU BARU,total,total,,1636,jiwa,2025,registration,total_population,3.1,28,,
+14.10.07.2005,4,TANJUNG GADAI,sex,laki_laki,,1143,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.07.2005,4,TANJUNG GADAI,sex,perempuan,,1048,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.07.2005,4,TANJUNG GADAI,total,total,,2191,jiwa,2025,registration,total_population,3.1,28,,
+14.10.07.2003,4,NIPAH SENDANU,sex,laki_laki,,554,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.07.2003,4,NIPAH SENDANU,sex,perempuan,,617,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.07.2003,4,NIPAH SENDANU,total,total,,1171,jiwa,2025,registration,total_population,3.1,28,,
+14.10.07.2002,4,SUNGAI TOHOR,sex,laki_laki,,677,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.07.2002,4,SUNGAI TOHOR,sex,perempuan,,717,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.07.2002,4,SUNGAI TOHOR,total,total,,1394,jiwa,2025,registration,total_population,3.1,28,,
+14.10.07.2001,4,LUKUN,sex,laki_laki,,1045,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.07.2001,4,LUKUN,sex,perempuan,,902,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.07.2001,4,LUKUN,total,total,,1947,jiwa,2025,registration,total_population,3.1,28,,
+14.10.07.2008,4,SUNGAI TOHOR BARAT,sex,laki_laki,,638,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+14.10.07.2008,4,SUNGAI TOHOR BARAT,sex,perempuan,,527,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+14.10.07.2008,4,SUNGAI TOHOR BARAT,total,total,,1165,jiwa,2025,registration,total_population,3.1,28,,

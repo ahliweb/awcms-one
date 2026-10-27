@@ -1,0 +1,66 @@
+{
+  "datasetCode": "bps-2104-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "21.04",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Lingga Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lingga",
+  "publisherDomain": "2104",
+  "publisherWebsite": "https://linggakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lingga (https://linggakab.bps.go.id), publikasi \"Kabupaten Lingga Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.2104",
+  "publicationNumber": "21040.26002",
+  "issn": "2442-6067",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://linggakab.bps.go.id/id/publication/2026/02/27/dcea41bfb5e33c554488696f/kabupaten-lingga-dalam-angka-2026.html",
+  "sourceFileSha256": "f861a4511a087e70d0e29683213949cce87dfe60b641047c9d7991124efb2fd3",
+  "sourceFileBytes": 35223619,
+  "sourcePages": [64, 67, 131, 240],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lingga.",
+  "csvPath": "datasets/bps-2104-dalam-angka-2026.csv",
+  "csvSha256": "7c09255e0f2d06a1052f1efb0bdb780233ad11248a3d3946005b29aa99e19091",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kecamatan di Kabupaten Lingga, 2025",
+      "printedPages": [64],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Lingga (jiwa), 2025",
+      "printedPages": [67],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kabupaten Lingga, 2025",
+      "printedPages": [131],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-Rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Lingga (rupiah), 2024 dan 2025",
+      "printedPages": [240],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 3.1.2: the heading states 'jiwa' but almost every figure carries decimals (whole persons cannot); stored as ribu_jiwa with the digits unchanged"
+  ]
+}

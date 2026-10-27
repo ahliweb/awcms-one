@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3209-kecamatan-320910-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.09.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Astanajapura Dalam Angka 2026",
+  "publisherName": "BPS BPS Kabupaten Cirebon",
+  "publisherDomain": "3209",
+  "publisherWebsite": "https://cirebonkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS BPS Kabupaten Cirebon (https://cirebonkab.bps.go.id), publikasi \"Kecamatan Astanajapura Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3209080",
+  "publicationNumber": "32090.26018",
+  "issn": "2656-2081",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cirebonkab.bps.go.id/id/publication/2026/09/28/067ce0f6d8c4922c3544b9bd/kecamatan-astanajapura-dalam-angka-2026.html",
+  "sourceFileSha256": "d2e551f5623ea23e549a8a6912b3b6b79853441bfe9401852d23d3ad0a8b4621",
+  "sourceFileBytes": 9177942,
+  "sourcePages": [52, 53, 54],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Cirebon.",
+  "csvPath": "datasets/bps-3209-kecamatan-320910-dalam-angka-2026.csv",
+  "csvSha256": "08f74c3589938ab879a82723d583722d07d3455b97c18188ed33637f0ed8d012",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Astanajapura, 2025",
+      "printedPages": [52, 53],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Astanajapura, 2025",
+      "printedPages": [54],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

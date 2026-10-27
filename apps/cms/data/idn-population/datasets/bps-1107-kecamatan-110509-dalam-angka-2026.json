@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-1107-kecamatan-110509-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.05.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Meureubo Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Barat",
+  "publisherDomain": "1107",
+  "publisherWebsite": "https://acehbaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Barat (https://acehbaratkab.bps.go.id), publikasi \"Kecamatan Meureubo Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1107081",
+  "publicationNumber": "11070.26013",
+  "issn": "2580-1546",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehbaratkab.bps.go.id/id/publication/2026/09/28/158616ceb4398c010f3d7b68/kecamatan-meureubo-dalam-angka-2026.html",
+  "sourceFileSha256": "a33804353f011d5f0dd26d6e989d6d349aa569ba7e665a91595f2c746d14b3be",
+  "sourceFileBytes": 22370322,
+  "sourcePages": [36, 37, 38, 39, 40],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Barat.",
+  "csvPath": "datasets/bps-1107-kecamatan-110509-dalam-angka-2026.csv",
+  "csvSha256": "e80868d64934cbcd2fb2ea74df61cdf29d38e5f08501faa5940266b0052c7e2d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Gampong di Kecamatan Meureubo, 2025",
+      "printedPages": [36, 37, 38, 39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Meureubo, 2025",
+      "printedPages": [40],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"KRANTO PANYANG TIMUR\": unmatched ",
+    "table 3.1: row not stored: row \"PULO TEUNGOH RANTO\": unmatched ",
+    "table 3.1: row not stored: row \"PAYA BARO RANTO PANJANG\": unmatched ",
+    "table 3.1: row not stored: row \"KRANTO PANYANG TIMUR\": unmatched ",
+    "table 3.1: row not stored: row \"PULO TEUNGOH RANTO\": unmatched "
+  ]
+}

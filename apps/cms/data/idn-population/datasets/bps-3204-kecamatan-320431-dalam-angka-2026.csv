@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.31.2005,4,Neglawangi,sex,laki_laki,,2559,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.31.2005,4,Neglawangi,sex,perempuan,,2456,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.31.2005,4,Neglawangi,total,total,,5015,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.31.2003,4,Santosa,sex,laki_laki,,2538,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.31.2003,4,Santosa,sex,perempuan,,2444,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.31.2003,4,Santosa,total,total,,4982,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.31.2004,4,Tarumajaya,sex,laki_laki,,8348,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.31.2004,4,Tarumajaya,sex,perempuan,,8194,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.31.2004,4,Tarumajaya,total,total,,16542,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.31.2007,4,Cikembang,sex,laki_laki,,3905,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.31.2007,4,Cikembang,sex,perempuan,,3843,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.31.2007,4,Cikembang,total,total,,7748,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.31.2002,4,Cibeureum,sex,laki_laki,,9963,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.31.2002,4,Cibeureum,sex,perempuan,,9388,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.31.2002,4,Cibeureum,total,total,,19351,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.31.2006,4,Cihawuk,sex,laki_laki,,3693,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.31.2006,4,Cihawuk,sex,perempuan,,3475,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.31.2006,4,Cihawuk,total,total,,7168,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.31.2001,4,Sukapura,sex,laki_laki,,5003,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.31.2001,4,Sukapura,sex,perempuan,,4751,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.31.2001,4,Sukapura,total,total,,9754,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.31.2008,4,Resmi Tingal,sex,laki_laki,,3253,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.31.2008,4,Resmi Tingal,sex,perempuan,,3093,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.31.2008,4,Resmi Tingal,total,total,,6346,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.31,3,Kecamatan Kertasari,sex,laki_laki,,39262,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.31,3,Kecamatan Kertasari,sex,perempuan,,37644,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.31,3,Kecamatan Kertasari,total,total,,76906,jiwa,2025,registration,total_population,unnumbered-p28,28,,

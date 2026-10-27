@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.07.05.2003,4,Bahtera Makmur,sex,laki_laki,,2987,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.05.2003,4,Bahtera Makmur,sex,perempuan,,3014,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.05.2003,4,Bahtera Makmur,total,total,,6001,jiwa,2025,registration,total_population,3.1,18,,
+14.07.05.2008,4,Gelora,sex,laki_laki,,1349,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.05.2008,4,Gelora,sex,perempuan,,1319,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.05.2008,4,Gelora,total,total,,2668,jiwa,2025,registration,total_population,3.1,18,,
+14.07.05.2007,4,Pelita,sex,laki_laki,,1027,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.05.2007,4,Pelita,sex,perempuan,,1014,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.05.2007,4,Pelita,total,total,,2041,jiwa,2025,registration,total_population,3.1,18,,
+14.07.05.2002,4,Bagan Batu,sex,laki_laki,,11655,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.05.2002,4,Bagan Batu,sex,perempuan,,11503,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.05.2002,4,Bagan Batu,total,total,,23158,jiwa,2025,registration,total_population,3.1,18,,
+14.07.05.2015,4,Suka Maju,sex,laki_laki,,594,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.05.2015,4,Suka Maju,sex,perempuan,,595,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.05.2015,4,Suka Maju,total,total,,1189,jiwa,2025,registration,total_population,3.1,18,,
+14.07.05.2016,4,Bagan Manunggal,sex,laki_laki,,1404,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.05.2016,4,Bagan Manunggal,sex,perempuan,,1408,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.05.2016,4,Bagan Manunggal,total,total,,2812,jiwa,2025,registration,total_population,3.1,18,,
+14.07.05.2017,4,Bagan Sapta Permai,sex,laki_laki,,991,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.05.2017,4,Bagan Sapta Permai,sex,perempuan,,949,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.05.2017,4,Bagan Sapta Permai,total,total,,1940,jiwa,2025,registration,total_population,3.1,18,,
+14.07.05.2025,4,Bakti Makmur,sex,laki_laki,,4477,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.05.2025,4,Bakti Makmur,sex,perempuan,,4273,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.05.2025,4,Bakti Makmur,total,total,,8750,jiwa,2025,registration,total_population,3.1,18,,
+14.07.05.2028,4,Jaya Agung,sex,laki_laki,,950,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.05.2028,4,Jaya Agung,sex,perempuan,,1020,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.05.2028,4,Jaya Agung,total,total,,1970,jiwa,2025,registration,total_population,3.1,18,,
+14.07.05.2030,4,Meranti Makmur,sex,laki_laki,,856,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.05.2030,4,Meranti Makmur,sex,perempuan,,806,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.05.2030,4,Meranti Makmur,total,total,,1662,jiwa,2025,registration,total_population,3.1,18,,
+14.07.05.1019,4,Bahtera Makmur Kota,sex,laki_laki,,2831,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.05.1019,4,Bahtera Makmur Kota,sex,perempuan,,2699,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.05.1019,4,Bahtera Makmur Kota,total,total,,5530,jiwa,2025,registration,total_population,3.1,18,,
+14.07.05.1018,4,Bagan Batu Kota,sex,laki_laki,,6597,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.05.1018,4,Bagan Batu Kota,sex,perempuan,,6487,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.05.1018,4,Bagan Batu Kota,total,total,,13084,jiwa,2025,registration,total_population,3.1,18,,
+14.07.05,3,Bagan Sinembah,sex,laki_laki,,36255,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.05,3,Bagan Sinembah,sex,perempuan,,35590,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.05,3,Bagan Sinembah,total,total,,71845,jiwa,2025,registration,total_population,3.1,18,,
+14.07.05,3,Bagansinembah,age_group,0-4,laki_laki,1971,jiwa,2025,registration,total_population,3.2,20,,0 - 4
+14.07.05,3,Bagansinembah,age_group,0-4,perempuan,1849,jiwa,2025,registration,total_population,3.2,20,,0 - 4
+14.07.05,3,Bagansinembah,age_group,0-4,,3820,jiwa,2025,registration,total_population,3.2,20,,0 - 4
+14.07.05,3,Bagansinembah,age_group,5-9,laki_laki,3403,jiwa,2025,registration,total_population,3.2,20,,5 - 9
+14.07.05,3,Bagansinembah,age_group,5-9,perempuan,3264,jiwa,2025,registration,total_population,3.2,20,,5 - 9
+14.07.05,3,Bagansinembah,age_group,5-9,,6667,jiwa,2025,registration,total_population,3.2,20,,5 - 9
+14.07.05,3,Bagansinembah,age_group,10-14,laki_laki,3886,jiwa,2025,registration,total_population,3.2,20,,10 - 14
+14.07.05,3,Bagansinembah,age_group,10-14,perempuan,3547,jiwa,2025,registration,total_population,3.2,20,,10 - 14
+14.07.05,3,Bagansinembah,age_group,10-14,,7433,jiwa,2025,registration,total_population,3.2,20,,10 - 14
+14.07.05,3,Bagansinembah,age_group,15-19,laki_laki,3433,jiwa,2025,registration,total_population,3.2,20,,15 - 19
+14.07.05,3,Bagansinembah,age_group,15-19,perempuan,3348,jiwa,2025,registration,total_population,3.2,20,,15 - 19
+14.07.05,3,Bagansinembah,age_group,15-19,,6781,jiwa,2025,registration,total_population,3.2,20,,15 - 19
+14.07.05,3,Bagansinembah,age_group,20-24,laki_laki,3436,jiwa,2025,registration,total_population,3.2,20,,20 - 24
+14.07.05,3,Bagansinembah,age_group,20-24,perempuan,3352,jiwa,2025,registration,total_population,3.2,20,,20 - 24
+14.07.05,3,Bagansinembah,age_group,20-24,,6788,jiwa,2025,registration,total_population,3.2,20,,20 - 24
+14.07.05,3,Bagansinembah,age_group,25-29,laki_laki,3115,jiwa,2025,registration,total_population,3.2,20,,25 - 29
+14.07.05,3,Bagansinembah,age_group,25-29,perempuan,3015,jiwa,2025,registration,total_population,3.2,20,,25 - 29
+14.07.05,3,Bagansinembah,age_group,25-29,,6130,jiwa,2025,registration,total_population,3.2,20,,25 - 29
+14.07.05,3,Bagansinembah,age_group,30-34,laki_laki,2755,jiwa,2025,registration,total_population,3.2,20,,30 - 34
+14.07.05,3,Bagansinembah,age_group,30-34,perempuan,2718,jiwa,2025,registration,total_population,3.2,20,,30 - 34
+14.07.05,3,Bagansinembah,age_group,30-34,,5473,jiwa,2025,registration,total_population,3.2,20,,30 - 34
+14.07.05,3,Bagansinembah,age_group,35-39,laki_laki,2551,jiwa,2025,registration,total_population,3.2,20,,35 - 39
+14.07.05,3,Bagansinembah,age_group,35-39,perempuan,2566,jiwa,2025,registration,total_population,3.2,20,,35 - 39
+14.07.05,3,Bagansinembah,age_group,35-39,,5117,jiwa,2025,registration,total_population,3.2,20,,35 - 39
+14.07.05,3,Bagansinembah,age_group,40-44,laki_laki,2655,jiwa,2025,registration,total_population,3.2,20,,40 - 44
+14.07.05,3,Bagansinembah,age_group,40-44,perempuan,2677,jiwa,2025,registration,total_population,3.2,20,,40 - 44
+14.07.05,3,Bagansinembah,age_group,40-44,,5332,jiwa,2025,registration,total_population,3.2,20,,40 - 44
+14.07.05,3,Bagansinembah,age_group,45-49,laki_laki,2384,jiwa,2025,registration,total_population,3.2,20,,45 - 49
+14.07.05,3,Bagansinembah,age_group,45-49,perempuan,2383,jiwa,2025,registration,total_population,3.2,20,,45 - 49
+14.07.05,3,Bagansinembah,age_group,45-49,,4767,jiwa,2025,registration,total_population,3.2,20,,45 - 49
+14.07.05,3,Bagansinembah,age_group,50-54,laki_laki,1927,jiwa,2025,registration,total_population,3.2,20,,50 - 54
+14.07.05,3,Bagansinembah,age_group,50-54,perempuan,1942,jiwa,2025,registration,total_population,3.2,20,,50 - 54
+14.07.05,3,Bagansinembah,age_group,50-54,,3869,jiwa,2025,registration,total_population,3.2,20,,50 - 54
+14.07.05,3,Bagansinembah,age_group,55-59,laki_laki,1647,jiwa,2025,registration,total_population,3.2,20,,55 - 59
+14.07.05,3,Bagansinembah,age_group,55-59,perempuan,1729,jiwa,2025,registration,total_population,3.2,20,,55 - 59
+14.07.05,3,Bagansinembah,age_group,55-59,,3376,jiwa,2025,registration,total_population,3.2,20,,55 - 59
+14.07.05,3,Bagansinembah,age_group,60-64,laki_laki,1281,jiwa,2025,registration,total_population,3.2,20,,60 - 64
+14.07.05,3,Bagansinembah,age_group,60-64,perempuan,1378,jiwa,2025,registration,total_population,3.2,20,,60 - 64
+14.07.05,3,Bagansinembah,age_group,60-64,,2659,jiwa,2025,registration,total_population,3.2,20,,60 - 64
+14.07.05,3,Bagansinembah,age_group,65-69,laki_laki,942,jiwa,2025,registration,total_population,3.2,20,,65 - 69
+14.07.05,3,Bagansinembah,age_group,65-69,perempuan,984,jiwa,2025,registration,total_population,3.2,20,,65 - 69
+14.07.05,3,Bagansinembah,age_group,65-69,,1926,jiwa,2025,registration,total_population,3.2,20,,65 - 69
+14.07.05,3,Bagansinembah,age_group,70-74,laki_laki,470,jiwa,2025,registration,total_population,3.2,20,,70 - 74
+14.07.05,3,Bagansinembah,age_group,70-74,perempuan,433,jiwa,2025,registration,total_population,3.2,20,,70 - 74
+14.07.05,3,Bagansinembah,age_group,70-74,,903,jiwa,2025,registration,total_population,3.2,20,,70 - 74
+14.07.05,3,Bagansinembah,age_group,75+,laki_laki,399,jiwa,2025,registration,total_population,3.2,20,,75 +
+14.07.05,3,Bagansinembah,age_group,75+,perempuan,405,jiwa,2025,registration,total_population,3.2,20,,75 +
+14.07.05,3,Bagansinembah,age_group,75+,,804,jiwa,2025,registration,total_population,3.2,20,,75 +
+14.07.05,3,Bagan Sinembah,sex,laki_laki,,36255,jiwa,2025,registration,total_population,3.2,20,,Laki-Laki
+14.07.05,3,Bagan Sinembah,sex,perempuan,,35590,jiwa,2025,registration,total_population,3.2,20,,Perempuan
+14.07.05,3,Bagan Sinembah,total,total,,71845,jiwa,2025,registration,total_population,3.2,20,,

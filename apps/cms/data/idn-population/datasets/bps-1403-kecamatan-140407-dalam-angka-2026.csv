@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.04.07.2001,4,Pulau Cawan,sex,laki_laki,,242,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.07.2001,4,Pulau Cawan,sex,perempuan,,210,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.07.2001,4,Pulau Cawan,total,total,,452,jiwa,2026,registration,total_population,3.1,29,,
+14.04.07.2008,4,Batang Tumu,sex,laki_laki,,1588,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.07.2008,4,Batang Tumu,sex,perempuan,,1523,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.07.2008,4,Batang Tumu,total,total,,3111,jiwa,2026,registration,total_population,3.1,29,,
+14.04.07.2007,4,Bakau Aceh,sex,laki_laki,,929,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.07.2007,4,Bakau Aceh,sex,perempuan,,853,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.07.2007,4,Bakau Aceh,total,total,,1782,jiwa,2026,registration,total_population,3.1,29,,
+14.04.07.2006,4,Pelanduk,sex,laki_laki,,1387,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.07.2006,4,Pelanduk,sex,perempuan,,1372,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.07.2006,4,Pelanduk,total,total,,2759,jiwa,2026,registration,total_population,3.1,29,,
+14.04.07.2005,4,Igal,sex,laki_laki,,2316,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.07.2005,4,Igal,sex,perempuan,,2119,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.07.2005,4,Igal,total,total,,4435,jiwa,2026,registration,total_population,3.1,29,,
+14.04.07.1004,4,Khairiah Mandah,sex,laki_laki,,2193,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.07.1004,4,Khairiah Mandah,sex,perempuan,,2086,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.07.1004,4,Khairiah Mandah,total,total,,4279,jiwa,2026,registration,total_population,3.1,29,,
+14.04.07.2003,4,Bente,sex,laki_laki,,2816,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.07.2003,4,Bente,sex,perempuan,,2647,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.07.2003,4,Bente,total,total,,5463,jiwa,2026,registration,total_population,3.1,29,,
+14.04.07.2002,4,Belaras,sex,laki_laki,,1348,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.07.2002,4,Belaras,sex,perempuan,,1274,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.07.2002,4,Belaras,total,total,,2622,jiwa,2026,registration,total_population,3.1,29,,
+14.04.07.2009,4,Bekawan,sex,laki_laki,,1255,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.07.2009,4,Bekawan,sex,perempuan,,1152,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.07.2009,4,Bekawan,total,total,,2407,jiwa,2026,registration,total_population,3.1,29,,
+14.04.07.2010,4,Bantayan,sex,laki_laki,,1154,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.07.2010,4,Bantayan,sex,perempuan,,1038,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.07.2010,4,Bantayan,total,total,,2192,jiwa,2026,registration,total_population,3.1,29,,
+14.04.07.2012,4,Bolak Raya,sex,laki_laki,,566,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.07.2012,4,Bolak Raya,sex,perempuan,,500,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.07.2012,4,Bolak Raya,total,total,,1066,jiwa,2026,registration,total_population,3.1,29,,
+14.04.07.2011,4,Batang Sari,sex,laki_laki,,602,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.07.2011,4,Batang Sari,sex,perempuan,,565,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.07.2011,4,Batang Sari,total,total,,1167,jiwa,2026,registration,total_population,3.1,29,,
+14.04.07.2015,4,Sepakat Jaya,sex,laki_laki,,860,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.07.2015,4,Sepakat Jaya,sex,perempuan,,785,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.07.2015,4,Sepakat Jaya,total,total,,1645,jiwa,2026,registration,total_population,3.1,29,,
+14.04.07.2013,4,Cahaya Baru,sex,laki_laki,,1544,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.07.2013,4,Cahaya Baru,sex,perempuan,,1405,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.07.2013,4,Cahaya Baru,total,total,,2949,jiwa,2026,registration,total_population,3.1,29,,
+14.04.07.2014,4,Belaras Barat,sex,laki_laki,,1065,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.07.2014,4,Belaras Barat,sex,perempuan,,1056,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.07.2014,4,Belaras Barat,total,total,,2121,jiwa,2026,registration,total_population,3.1,29,,
+14.04.07.2017,4,Bidari Tanjung Datuk,sex,laki_laki,,743,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.07.2017,4,Bidari Tanjung Datuk,sex,perempuan,,639,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.07.2017,4,Bidari Tanjung Datuk,total,total,,1382,jiwa,2026,registration,total_population,3.1,29,,
+14.04.07,3,Mandah,sex,laki_laki,,21204,jiwa,2026,registration,total_population,3.1,29,,Laki-Laki/Male
+14.04.07,3,Mandah,sex,perempuan,,19817,jiwa,2026,registration,total_population,3.1,29,,Perempuan/Female
+14.04.07,3,Mandah,total,total,,41021,jiwa,2026,registration,total_population,3.1,29,,

@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-1606-kecamatan-160609-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.06.09",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bayung Lencir Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Musi Banyuasin",
+  "publisherDomain": "1606",
+  "publisherWebsite": "https://musibanyuasinkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Musi Banyuasin (https://musibanyuasinkab.bps.go.id), publikasi \"Kecamatan Bayung Lencir Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1606100",
+  "publicationNumber": "16060.26017",
+  "issn": "2745-3340",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://musibanyuasinkab.bps.go.id/id/publication/2026/09/28/bf2997d11844bcf201b0f469/kecamatan-bayung-lencir-dalam-angka-2026.html",
+  "sourceFileSha256": "2b6783391054a03808611273bd79c54ecc6d0349da037e4dc27483ac12c3318d",
+  "sourceFileBytes": 19713434,
+  "sourcePages": [44, 45, 46],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Musi Banyuasin.",
+  "csvPath": "datasets/bps-1606-kecamatan-160609-dalam-angka-2026.csv",
+  "csvSha256": "a46639c10c7392463e4690341590867ef7b0e08dbee8027f7d37bb20cb61848d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bayung Lencir, 2026",
+      "printedPages": [44, 45],
+      "referenceYears": [2026],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bayung Lencir, 2026",
+      "printedPages": [46],
+      "referenceYears": [2026],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "cross-table disagreement, both stored as published: 16.06.09 sex/laki_laki/ 2026: 56168 (table 3.1) vs 41981 (table 3.2)",
+    "cross-table disagreement, both stored as published: 16.06.09 sex/perempuan/ 2026: 51542 (table 3.1) vs 38708 (table 3.2)",
+    "cross-table disagreement, both stored as published: 16.06.09 total/total/ 2026: 107710 (table 3.1) vs 80689 (table 3.2)"
+  ]
+}

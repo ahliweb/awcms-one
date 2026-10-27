@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.04.10.2007,4,Canggu,sex,laki_laki,,671,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.10.2007,4,Canggu,sex,perempuan,,616,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.10.2007,4,Canggu,total,total,,1287,jiwa,2025,registration,total_population,3.1,31,,
+18.04.10.2004,4,Gunung Sugih,sex,laki_laki,,330,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.10.2004,4,Gunung Sugih,sex,perempuan,,302,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.10.2004,4,Gunung Sugih,total,total,,632,jiwa,2025,registration,total_population,3.1,31,,
+18.04.10.2003,4,Kegeringan,sex,laki_laki,,853,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.10.2003,4,Kegeringan,sex,perempuan,,767,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.10.2003,4,Kegeringan,total,total,,1620,jiwa,2025,registration,total_population,3.1,31,,
+18.04.10.2001,4,Kembahang,sex,laki_laki,,1463,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.10.2001,4,Kembahang,sex,perempuan,,1413,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.10.2001,4,Kembahang,total,total,,2876,jiwa,2025,registration,total_population,3.1,31,,
+18.04.10.2010,4,Kerang,sex,laki_laki,,353,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.10.2010,4,Kerang,sex,perempuan,,346,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.10.2010,4,Kerang,total,total,,699,jiwa,2025,registration,total_population,3.1,31,,
+18.04.10.2008,4,Kota Besi,sex,laki_laki,,1608,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.10.2008,4,Kota Besi,sex,perempuan,,1485,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.10.2008,4,Kota Besi,total,total,,3093,jiwa,2025,registration,total_population,3.1,31,,
+18.04.10.2002,4,Negeri Ratu,sex,laki_laki,,497,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.10.2002,4,Negeri Ratu,sex,perempuan,,433,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.10.2002,4,Negeri Ratu,total,total,,930,jiwa,2025,registration,total_population,3.1,31,,
+18.04.10.2005,4,Pekon Balak,sex,laki_laki,,668,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.10.2005,4,Pekon Balak,sex,perempuan,,661,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.10.2005,4,Pekon Balak,total,total,,1329,jiwa,2025,registration,total_population,3.1,31,,
+18.04.10.2006,4,Suka Bumi,sex,laki_laki,,1018,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.10.2006,4,Suka Bumi,sex,perempuan,,964,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.10.2006,4,Suka Bumi,total,total,,1982,jiwa,2025,registration,total_population,3.1,31,,
+18.04.10.2009,4,Sukaraja,sex,laki_laki,,321,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.10.2009,4,Sukaraja,sex,perempuan,,296,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.10.2009,4,Sukaraja,total,total,,617,jiwa,2025,registration,total_population,3.1,31,,
+18.04.10,3,Kecamatan Batu Brak,sex,laki_laki,,8133,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+18.04.10,3,Kecamatan Batu Brak,sex,perempuan,,7561,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+18.04.10,3,Kecamatan Batu Brak,total,total,,15694,jiwa,2025,registration,total_population,3.1,31,,
+18.04.10,3,Batu Brak,age_group,0-4,laki_laki,519,jiwa,2025,registration,total_population,3.2,33,,0 – 4
+18.04.10,3,Batu Brak,age_group,0-4,perempuan,487,jiwa,2025,registration,total_population,3.2,33,,0 – 4
+18.04.10,3,Batu Brak,age_group,0-4,,1006,jiwa,2025,registration,total_population,3.2,33,,0 – 4
+18.04.10,3,Batu Brak,age_group,5-9,laki_laki,705,jiwa,2025,registration,total_population,3.2,33,,5 – 9
+18.04.10,3,Batu Brak,age_group,5-9,perempuan,664,jiwa,2025,registration,total_population,3.2,33,,5 – 9
+18.04.10,3,Batu Brak,age_group,5-9,,1369,jiwa,2025,registration,total_population,3.2,33,,5 – 9
+18.04.10,3,Batu Brak,age_group,10-14,laki_laki,729,jiwa,2025,registration,total_population,3.2,33,,10 – 14
+18.04.10,3,Batu Brak,age_group,10-14,perempuan,621,jiwa,2025,registration,total_population,3.2,33,,10 – 14
+18.04.10,3,Batu Brak,age_group,10-14,,1350,jiwa,2025,registration,total_population,3.2,33,,10 – 14
+18.04.10,3,Batu Brak,age_group,15-19,laki_laki,697,jiwa,2025,registration,total_population,3.2,33,,15 – 19
+18.04.10,3,Batu Brak,age_group,15-19,perempuan,634,jiwa,2025,registration,total_population,3.2,33,,15 – 19
+18.04.10,3,Batu Brak,age_group,15-19,,1331,jiwa,2025,registration,total_population,3.2,33,,15 – 19
+18.04.10,3,Batu Brak,age_group,20-24,laki_laki,621,jiwa,2025,registration,total_population,3.2,33,,20 – 24
+18.04.10,3,Batu Brak,age_group,20-24,perempuan,620,jiwa,2025,registration,total_population,3.2,33,,20 – 24
+18.04.10,3,Batu Brak,age_group,20-24,,1241,jiwa,2025,registration,total_population,3.2,33,,20 – 24
+18.04.10,3,Batu Brak,age_group,25-29,laki_laki,594,jiwa,2025,registration,total_population,3.2,33,,25 – 29
+18.04.10,3,Batu Brak,age_group,25-29,perempuan,557,jiwa,2025,registration,total_population,3.2,33,,25 – 29
+18.04.10,3,Batu Brak,age_group,25-29,,1151,jiwa,2025,registration,total_population,3.2,33,,25 – 29
+18.04.10,3,Batu Brak,age_group,30-34,laki_laki,560,jiwa,2025,registration,total_population,3.2,33,,30 – 34
+18.04.10,3,Batu Brak,age_group,30-34,perempuan,550,jiwa,2025,registration,total_population,3.2,33,,30 – 34
+18.04.10,3,Batu Brak,age_group,30-34,,1110,jiwa,2025,registration,total_population,3.2,33,,30 – 34
+18.04.10,3,Batu Brak,age_group,35-39,laki_laki,606,jiwa,2025,registration,total_population,3.2,33,,35 – 39
+18.04.10,3,Batu Brak,age_group,35-39,perempuan,601,jiwa,2025,registration,total_population,3.2,33,,35 – 39
+18.04.10,3,Batu Brak,age_group,35-39,,1207,jiwa,2025,registration,total_population,3.2,33,,35 – 39
+18.04.10,3,Batu Brak,age_group,40-44,laki_laki,640,jiwa,2025,registration,total_population,3.2,33,,40 – 44
+18.04.10,3,Batu Brak,age_group,40-44,perempuan,571,jiwa,2025,registration,total_population,3.2,33,,40 – 44
+18.04.10,3,Batu Brak,age_group,40-44,,1211,jiwa,2025,registration,total_population,3.2,33,,40 – 44
+18.04.10,3,Batu Brak,age_group,45-49,laki_laki,559,jiwa,2025,registration,total_population,3.2,33,,45 – 49
+18.04.10,3,Batu Brak,age_group,45-49,perempuan,509,jiwa,2025,registration,total_population,3.2,33,,45 – 49
+18.04.10,3,Batu Brak,age_group,45-49,,1068,jiwa,2025,registration,total_population,3.2,33,,45 – 49
+18.04.10,3,Batu Brak,age_group,50-54,laki_laki,509,jiwa,2025,registration,total_population,3.2,33,,50 - 54
+18.04.10,3,Batu Brak,age_group,50-54,perempuan,447,jiwa,2025,registration,total_population,3.2,33,,50 - 54
+18.04.10,3,Batu Brak,age_group,50-54,,956,jiwa,2025,registration,total_population,3.2,33,,50 - 54
+18.04.10,3,Batu Brak,age_group,55-59,laki_laki,436,jiwa,2025,registration,total_population,3.2,33,,55 - 59
+18.04.10,3,Batu Brak,age_group,55-59,perempuan,418,jiwa,2025,registration,total_population,3.2,33,,55 - 59
+18.04.10,3,Batu Brak,age_group,55-59,,854,jiwa,2025,registration,total_population,3.2,33,,55 - 59
+18.04.10,3,Batu Brak,age_group,60-64,laki_laki,362,jiwa,2025,registration,total_population,3.2,33,,60 – 64
+18.04.10,3,Batu Brak,age_group,60-64,perempuan,316,jiwa,2025,registration,total_population,3.2,33,,60 – 64
+18.04.10,3,Batu Brak,age_group,60-64,,678,jiwa,2025,registration,total_population,3.2,33,,60 – 64
+18.04.10,3,Batu Brak,age_group,65-69,laki_laki,258,jiwa,2025,registration,total_population,3.2,33,,65 – 69
+18.04.10,3,Batu Brak,age_group,65-69,perempuan,245,jiwa,2025,registration,total_population,3.2,33,,65 – 69
+18.04.10,3,Batu Brak,age_group,65-69,,503,jiwa,2025,registration,total_population,3.2,33,,65 – 69
+18.04.10,3,Batu Brak,age_group,70-74,laki_laki,144,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+18.04.10,3,Batu Brak,age_group,70-74,perempuan,113,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+18.04.10,3,Batu Brak,age_group,70-74,,257,jiwa,2025,registration,total_population,3.2,33,,70 - 74
+18.04.10,3,Batu Brak,age_group,75+,laki_laki,194,jiwa,2025,registration,total_population,3.2,33,,75+
+18.04.10,3,Batu Brak,age_group,75+,perempuan,208,jiwa,2025,registration,total_population,3.2,33,,75+
+18.04.10,3,Batu Brak,age_group,75+,,402,jiwa,2025,registration,total_population,3.2,33,,75+
+18.04.10,3,Batu Brak,sex,laki_laki,,8133,jiwa,2025,registration,total_population,3.2,33,,Laki-Laki
+18.04.10,3,Batu Brak,sex,perempuan,,7561,jiwa,2025,registration,total_population,3.2,33,,Perempuan
+18.04.10,3,Batu Brak,total,total,,15694,jiwa,2025,registration,total_population,3.2,33,,

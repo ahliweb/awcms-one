@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.06.02.2003,4,Tungkal I,sex,laki_laki,,1528,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+15.06.02.2003,4,Tungkal I,sex,perempuan,,1519,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Fem
+15.06.02.2003,4,Tungkal I,total,total,,3047,jiwa,2025,registration,total_population,3.1,20,,
+15.06.02.2014,4,Teluk Sialang,sex,laki_laki,,1274,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+15.06.02.2014,4,Teluk Sialang,sex,perempuan,,1233,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Fem
+15.06.02.2014,4,Teluk Sialang,total,total,,2507,jiwa,2025,registration,total_population,3.1,20,,
+15.06.02.1006,4,Tungkal Harapan,sex,laki_laki,,5357,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+15.06.02.1006,4,Tungkal Harapan,sex,perempuan,,4919,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Fem
+15.06.02.1006,4,Tungkal Harapan,total,total,,10276,jiwa,2025,registration,total_population,3.1,20,,
+15.06.02.1005,4,Tungkal III,sex,laki_laki,,4262,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+15.06.02.1005,4,Tungkal III,sex,perempuan,,4249,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Fem
+15.06.02.1005,4,Tungkal III,total,total,,8511,jiwa,2025,registration,total_population,3.1,20,,
+15.06.02.1007,4,Tungkal II,sex,laki_laki,,7092,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+15.06.02.1007,4,Tungkal II,sex,perempuan,,6886,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Fem
+15.06.02.1007,4,Tungkal II,total,total,,13978,jiwa,2025,registration,total_population,3.1,20,,
+15.06.02.1018,4,Sungai Nibung,sex,laki_laki,,2225,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+15.06.02.1018,4,Sungai Nibung,sex,perempuan,,2097,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Fem
+15.06.02.1018,4,Sungai Nibung,total,total,,4322,jiwa,2025,registration,total_population,3.1,20,,
+15.06.02.1017,4,Sriwijaya,sex,laki_laki,,3088,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+15.06.02.1017,4,Sriwijaya,sex,perempuan,,3062,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Fem
+15.06.02.1017,4,Sriwijaya,total,total,,6150,jiwa,2025,registration,total_population,3.1,20,,
+15.06.02.1016,4,Patunas,sex,laki_laki,,5943,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+15.06.02.1016,4,Patunas,sex,perempuan,,5805,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Fem
+15.06.02.1016,4,Patunas,total,total,,11748,jiwa,2025,registration,total_population,3.1,20,,
+15.06.02.1015,4,Kampung Nelayan,sex,laki_laki,,5285,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+15.06.02.1015,4,Kampung Nelayan,sex,perempuan,,5064,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Fem
+15.06.02.1015,4,Kampung Nelayan,total,total,,10349,jiwa,2025,registration,total_population,3.1,20,,
+15.06.02,3,Tungkal Ilir,sex,laki_laki,,38479,jiwa,2025,registration,total_population,3.1,20,,Laki-Laki/Male
+15.06.02,3,Tungkal Ilir,sex,perempuan,,37089,jiwa,2025,registration,total_population,3.1,20,,Perempuan/Fem
+15.06.02,3,Tungkal Ilir,total,total,,75568,jiwa,2025,registration,total_population,3.1,20,,
+15.06.02,3,Tungkal Ilir,age_group,0-4,laki_laki,2589,jiwa,2025,registration,total_population,3.2,22,,0-4
+15.06.02,3,Tungkal Ilir,age_group,0-4,perempuan,2431,jiwa,2025,registration,total_population,3.2,22,,0-4
+15.06.02,3,Tungkal Ilir,age_group,0-4,,5020,jiwa,2025,registration,total_population,3.2,22,,0-4
+15.06.02,3,Tungkal Ilir,age_group,5-9,laki_laki,3414,jiwa,2025,registration,total_population,3.2,22,,5-9
+15.06.02,3,Tungkal Ilir,age_group,5-9,perempuan,3175,jiwa,2025,registration,total_population,3.2,22,,5-9
+15.06.02,3,Tungkal Ilir,age_group,5-9,,6589,jiwa,2025,registration,total_population,3.2,22,,5-9
+15.06.02,3,Tungkal Ilir,age_group,10-14,laki_laki,3379,jiwa,2025,registration,total_population,3.2,22,,10-14
+15.06.02,3,Tungkal Ilir,age_group,10-14,perempuan,3242,jiwa,2025,registration,total_population,3.2,22,,10-14
+15.06.02,3,Tungkal Ilir,age_group,10-14,,6621,jiwa,2025,registration,total_population,3.2,22,,10-14
+15.06.02,3,Tungkal Ilir,age_group,15-19,laki_laki,3268,jiwa,2025,registration,total_population,3.2,22,,15-19
+15.06.02,3,Tungkal Ilir,age_group,15-19,perempuan,3290,jiwa,2025,registration,total_population,3.2,22,,15-19
+15.06.02,3,Tungkal Ilir,age_group,15-19,,6558,jiwa,2025,registration,total_population,3.2,22,,15-19
+15.06.02,3,Tungkal Ilir,age_group,20-24,laki_laki,3429,jiwa,2025,registration,total_population,3.2,22,,20-24
+15.06.02,3,Tungkal Ilir,age_group,20-24,perempuan,3296,jiwa,2025,registration,total_population,3.2,22,,20-24
+15.06.02,3,Tungkal Ilir,age_group,20-24,,6725,jiwa,2025,registration,total_population,3.2,22,,20-24
+15.06.02,3,Tungkal Ilir,age_group,25-29,laki_laki,3349,jiwa,2025,registration,total_population,3.2,22,,25-29
+15.06.02,3,Tungkal Ilir,age_group,25-29,perempuan,2921,jiwa,2025,registration,total_population,3.2,22,,25-29
+15.06.02,3,Tungkal Ilir,age_group,25-29,,6270,jiwa,2025,registration,total_population,3.2,22,,25-29
+15.06.02,3,Tungkal Ilir,age_group,30-34,laki_laki,2834,jiwa,2025,registration,total_population,3.2,22,,30-34
+15.06.02,3,Tungkal Ilir,age_group,30-34,perempuan,2655,jiwa,2025,registration,total_population,3.2,22,,30-34
+15.06.02,3,Tungkal Ilir,age_group,30-34,,5489,jiwa,2025,registration,total_population,3.2,22,,30-34
+15.06.02,3,Tungkal Ilir,age_group,35-39,laki_laki,2723,jiwa,2025,registration,total_population,3.2,22,,35-39
+15.06.02,3,Tungkal Ilir,age_group,35-39,perempuan,2647,jiwa,2025,registration,total_population,3.2,22,,35-39
+15.06.02,3,Tungkal Ilir,age_group,35-39,,5370,jiwa,2025,registration,total_population,3.2,22,,35-39
+15.06.02,3,Tungkal Ilir,age_group,40-44,laki_laki,3054,jiwa,2025,registration,total_population,3.2,22,,40-44
+15.06.02,3,Tungkal Ilir,age_group,40-44,perempuan,3078,jiwa,2025,registration,total_population,3.2,22,,40-44
+15.06.02,3,Tungkal Ilir,age_group,40-44,,6132,jiwa,2025,registration,total_population,3.2,22,,40-44
+15.06.02,3,Tungkal Ilir,age_group,45-49,laki_laki,2821,jiwa,2025,registration,total_population,3.2,22,,45-49
+15.06.02,3,Tungkal Ilir,age_group,45-49,perempuan,2773,jiwa,2025,registration,total_population,3.2,22,,45-49
+15.06.02,3,Tungkal Ilir,age_group,45-49,,5594,jiwa,2025,registration,total_population,3.2,22,,45-49
+15.06.02,3,Tungkal Ilir,age_group,50-54,laki_laki,2395,jiwa,2025,registration,total_population,3.2,22,,50-54
+15.06.02,3,Tungkal Ilir,age_group,50-54,perempuan,2321,jiwa,2025,registration,total_population,3.2,22,,50-54
+15.06.02,3,Tungkal Ilir,age_group,50-54,,4716,jiwa,2025,registration,total_population,3.2,22,,50-54
+15.06.02,3,Tungkal Ilir,age_group,55-59,laki_laki,1950,jiwa,2025,registration,total_population,3.2,22,,55-59
+15.06.02,3,Tungkal Ilir,age_group,55-59,perempuan,1921,jiwa,2025,registration,total_population,3.2,22,,55-59
+15.06.02,3,Tungkal Ilir,age_group,55-59,,3871,jiwa,2025,registration,total_population,3.2,22,,55-59
+15.06.02,3,Tungkal Ilir,age_group,60-64,laki_laki,1455,jiwa,2025,registration,total_population,3.2,22,,60-64
+15.06.02,3,Tungkal Ilir,age_group,60-64,perempuan,1419,jiwa,2025,registration,total_population,3.2,22,,60-64
+15.06.02,3,Tungkal Ilir,age_group,60-64,,2874,jiwa,2025,registration,total_population,3.2,22,,60-64
+15.06.02,3,Tungkal Ilir,age_group,65-69,laki_laki,1090,jiwa,2025,registration,total_population,3.2,22,,65-69
+15.06.02,3,Tungkal Ilir,age_group,65-69,perempuan,1062,jiwa,2025,registration,total_population,3.2,22,,65-69
+15.06.02,3,Tungkal Ilir,age_group,65-69,,2152,jiwa,2025,registration,total_population,3.2,22,,65-69
+15.06.02,3,Tungkal Ilir,age_group,70-74,laki_laki,622,jiwa,2025,registration,total_population,3.2,22,,70-74
+15.06.02,3,Tungkal Ilir,age_group,70-74,perempuan,618,jiwa,2025,registration,total_population,3.2,22,,70-74
+15.06.02,3,Tungkal Ilir,age_group,70-74,,1240,jiwa,2025,registration,total_population,3.2,22,,70-74
+15.06.02,3,Tungkal Ilir,age_group,75+,laki_laki,538,jiwa,2025,registration,total_population,3.2,22,,75+
+15.06.02,3,Tungkal Ilir,age_group,75+,perempuan,771,jiwa,2025,registration,total_population,3.2,22,,75+
+15.06.02,3,Tungkal Ilir,age_group,75+,,1309,jiwa,2025,registration,total_population,3.2,22,,75+
+15.06.02,3,Tungkal Ilir,sex,laki_laki,,38910,jiwa,2025,registration,total_population,3.2,22,,Laki-Laki
+15.06.02,3,Tungkal Ilir,sex,perempuan,,37620,jiwa,2025,registration,total_population,3.2,22,,Perempuan
+15.06.02,3,Tungkal Ilir,total,total,,76530,jiwa,2025,registration,total_population,3.2,22,,

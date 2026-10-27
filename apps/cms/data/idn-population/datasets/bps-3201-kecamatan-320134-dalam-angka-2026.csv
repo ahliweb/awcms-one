@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.01.34.2005,4,Mekarsari,sex,laki_laki,,4481,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.34.2005,4,Mekarsari,sex,perempuan,,4215,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.34.2005,4,Mekarsari,total,total,,8696,jiwa,2025,registration,total_population,3.1,36,,
+32.01.34.2004,4,Rancabungur,sex,laki_laki,,6707,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.34.2004,4,Rancabungur,sex,perempuan,,6420,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.34.2004,4,Rancabungur,total,total,,13127,jiwa,2025,registration,total_population,3.1,36,,
+32.01.34.2003,4,Pasir Gaok,sex,laki_laki,,5629,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.34.2003,4,Pasir Gaok,sex,perempuan,,5291,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.34.2003,4,Pasir Gaok,total,total,,10920,jiwa,2025,registration,total_population,3.1,36,,
+32.01.34.2001,4,Bantarjaya,sex,laki_laki,,6515,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.34.2001,4,Bantarjaya,sex,perempuan,,6352,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.34.2001,4,Bantarjaya,total,total,,12867,jiwa,2025,registration,total_population,3.1,36,,
+32.01.34.2002,4,Bantarsari,sex,laki_laki,,4186,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.34.2002,4,Bantarsari,sex,perempuan,,4028,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.34.2002,4,Bantarsari,total,total,,8214,jiwa,2025,registration,total_population,3.1,36,,
+32.01.34.2006,4,Candali,sex,laki_laki,,3421,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.34.2006,4,Candali,sex,perempuan,,3292,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.34.2006,4,Candali,total,total,,6713,jiwa,2025,registration,total_population,3.1,36,,
+32.01.34.2007,4,Cimulang,sex,laki_laki,,3855,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.34.2007,4,Cimulang,sex,perempuan,,3662,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.34.2007,4,Cimulang,total,total,,7517,jiwa,2025,registration,total_population,3.1,36,,
+32.01.34,3,Kecamatan Rancabungur,sex,laki_laki,,34794,jiwa,2025,registration,total_population,3.1,36,,Laki-Laki/Male
+32.01.34,3,Kecamatan Rancabungur,sex,perempuan,,33260,jiwa,2025,registration,total_population,3.1,36,,Perempuan/Female
+32.01.34,3,Kecamatan Rancabungur,total,total,,68054,jiwa,2025,registration,total_population,3.1,36,,
+32.01.34,3,Rancabungur,age_group,0-4,laki_laki,2609,jiwa,2025,registration,total_population,3.2,38,,0-4
+32.01.34,3,Rancabungur,age_group,0-4,perempuan,2361,jiwa,2025,registration,total_population,3.2,38,,0-4
+32.01.34,3,Rancabungur,age_group,0-4,,4970,jiwa,2025,registration,total_population,3.2,38,,0-4
+32.01.34,3,Rancabungur,age_group,5-9,laki_laki,3213,jiwa,2025,registration,total_population,3.2,38,,5-9
+32.01.34,3,Rancabungur,age_group,5-9,perempuan,3054,jiwa,2025,registration,total_population,3.2,38,,5-9
+32.01.34,3,Rancabungur,age_group,5-9,,6267,jiwa,2025,registration,total_population,3.2,38,,5-9
+32.01.34,3,Rancabungur,age_group,10-14,laki_laki,3165,jiwa,2025,registration,total_population,3.2,38,,10-14
+32.01.34,3,Rancabungur,age_group,10-14,perempuan,3049,jiwa,2025,registration,total_population,3.2,38,,10-14
+32.01.34,3,Rancabungur,age_group,10-14,,6214,jiwa,2025,registration,total_population,3.2,38,,10-14
+32.01.34,3,Rancabungur,age_group,15-19,laki_laki,2874,jiwa,2025,registration,total_population,3.2,38,,15-19
+32.01.34,3,Rancabungur,age_group,15-19,perempuan,2757,jiwa,2025,registration,total_population,3.2,38,,15-19
+32.01.34,3,Rancabungur,age_group,15-19,,5631,jiwa,2025,registration,total_population,3.2,38,,15-19
+32.01.34,3,Rancabungur,age_group,20-24,laki_laki,2875,jiwa,2025,registration,total_population,3.2,38,,20-24
+32.01.34,3,Rancabungur,age_group,20-24,perempuan,2865,jiwa,2025,registration,total_population,3.2,38,,20-24
+32.01.34,3,Rancabungur,age_group,20-24,,5740,jiwa,2025,registration,total_population,3.2,38,,20-24
+32.01.34,3,Rancabungur,age_group,25-29,laki_laki,2937,jiwa,2025,registration,total_population,3.2,38,,25-29
+32.01.34,3,Rancabungur,age_group,25-29,perempuan,2713,jiwa,2025,registration,total_population,3.2,38,,25-29
+32.01.34,3,Rancabungur,age_group,25-29,,5650,jiwa,2025,registration,total_population,3.2,38,,25-29
+32.01.34,3,Rancabungur,age_group,30-34,laki_laki,2761,jiwa,2025,registration,total_population,3.2,38,,30-34
+32.01.34,3,Rancabungur,age_group,30-34,perempuan,2591,jiwa,2025,registration,total_population,3.2,38,,30-34
+32.01.34,3,Rancabungur,age_group,30-34,,5352,jiwa,2025,registration,total_population,3.2,38,,30-34
+32.01.34,3,Rancabungur,age_group,35-39,laki_laki,2498,jiwa,2025,registration,total_population,3.2,38,,35-39
+32.01.34,3,Rancabungur,age_group,35-39,perempuan,2476,jiwa,2025,registration,total_population,3.2,38,,35-39
+32.01.34,3,Rancabungur,age_group,35-39,,4974,jiwa,2025,registration,total_population,3.2,38,,35-39
+32.01.34,3,Rancabungur,age_group,40-44,laki_laki,2676,jiwa,2025,registration,total_population,3.2,38,,40-44
+32.01.34,3,Rancabungur,age_group,40-44,perempuan,2501,jiwa,2025,registration,total_population,3.2,38,,40-44
+32.01.34,3,Rancabungur,age_group,40-44,,5177,jiwa,2025,registration,total_population,3.2,38,,40-44
+32.01.34,3,Rancabungur,age_group,45-49,laki_laki,2386,jiwa,2025,registration,total_population,3.2,38,,45-49
+32.01.34,3,Rancabungur,age_group,45-49,perempuan,2252,jiwa,2025,registration,total_population,3.2,38,,45-49
+32.01.34,3,Rancabungur,age_group,45-49,,4638,jiwa,2025,registration,total_population,3.2,38,,45-49
+32.01.34,3,Rancabungur,age_group,50-54,laki_laki,1990,jiwa,2025,registration,total_population,3.2,38,,50-54
+32.01.34,3,Rancabungur,age_group,50-54,perempuan,1859,jiwa,2025,registration,total_population,3.2,38,,50-54
+32.01.34,3,Rancabungur,age_group,50-54,,3849,jiwa,2025,registration,total_population,3.2,38,,50-54
+32.01.34,3,Rancabungur,age_group,55-59,laki_laki,1596,jiwa,2025,registration,total_population,3.2,38,,55-59
+32.01.34,3,Rancabungur,age_group,55-59,perempuan,1490,jiwa,2025,registration,total_population,3.2,38,,55-59
+32.01.34,3,Rancabungur,age_group,55-59,,3086,jiwa,2025,registration,total_population,3.2,38,,55-59
+32.01.34,3,Rancabungur,age_group,60-64,laki_laki,1173,jiwa,2025,registration,total_population,3.2,38,,60-64
+32.01.34,3,Rancabungur,age_group,60-64,perempuan,1201,jiwa,2025,registration,total_population,3.2,38,,60-64
+32.01.34,3,Rancabungur,age_group,60-64,,2374,jiwa,2025,registration,total_population,3.2,38,,60-64
+32.01.34,3,Rancabungur,age_group,65-69,laki_laki,898,jiwa,2025,registration,total_population,3.2,38,,65-69
+32.01.34,3,Rancabungur,age_group,65-69,perempuan,915,jiwa,2025,registration,total_population,3.2,38,,65-69
+32.01.34,3,Rancabungur,age_group,65-69,,1813,jiwa,2025,registration,total_population,3.2,38,,65-69
+32.01.34,3,Rancabungur,age_group,70-74,laki_laki,584,jiwa,2025,registration,total_population,3.2,38,,70-74
+32.01.34,3,Rancabungur,age_group,70-74,perempuan,513,jiwa,2025,registration,total_population,3.2,38,,70-74
+32.01.34,3,Rancabungur,age_group,70-74,,1097,jiwa,2025,registration,total_population,3.2,38,,70-74
+32.01.34,3,Rancabungur,age_group,75+,laki_laki,559,jiwa,2025,registration,total_population,3.2,38,,75+
+32.01.34,3,Rancabungur,age_group,75+,perempuan,663,jiwa,2025,registration,total_population,3.2,38,,75+
+32.01.34,3,Rancabungur,age_group,75+,,1222,jiwa,2025,registration,total_population,3.2,38,,75+
+32.01.34,3,Kecamatan Rancabungur,sex,laki_laki,,34794,jiwa,2025,registration,total_population,3.2,38,,Laki-Laki
+32.01.34,3,Kecamatan Rancabungur,sex,perempuan,,33260,jiwa,2025,registration,total_population,3.2,38,,Perempuan
+32.01.34,3,Kecamatan Rancabungur,total,total,,68054,jiwa,2025,registration,total_population,3.2,38,,

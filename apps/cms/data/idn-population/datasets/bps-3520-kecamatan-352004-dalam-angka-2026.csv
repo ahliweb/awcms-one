@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.20.04.2009,4,Kiringan,sex,perempuan,,1855,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.04.2009,4,Kiringan,total,total,,3674,jiwa,2025,registration,total_population,3.1,29,,
+35.20.04.2010,4,Duyung,sex,perempuan,,1413,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.04.2010,4,Duyung,total,total,,2776,jiwa,2025,registration,total_population,3.1,29,,
+35.20.04.2011,4,Tawangrejo,sex,perempuan,,1314,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.04.2011,4,Tawangrejo,total,total,,2627,jiwa,2025,registration,total_population,3.1,29,,
+35.20.04.2012,4,Sawojajar,sex,perempuan,,1315,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.04.2012,4,Sawojajar,total,total,,2559,jiwa,2025,registration,total_population,3.1,29,,
+35.20.04.1013,4,Takeran,sex,perempuan,,2181,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.04.1013,4,Takeran,total,total,,4228,jiwa,2025,registration,total_population,3.1,29,,
+35.20.04.2014,4,Kuwonharjo,sex,perempuan,,2392,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.04.2014,4,Kuwonharjo,total,total,,4718,jiwa,2025,registration,total_population,3.1,29,,
+35.20.04.2015,4,Kepuhrejo,sex,perempuan,,2029,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.04.2015,4,Kepuhrejo,total,total,,4015,jiwa,2025,registration,total_population,3.1,29,,
+35.20.04.2016,4,Kerik,sex,perempuan,,1666,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.04.2016,4,Kerik,total,total,,3249,jiwa,2025,registration,total_population,3.1,29,,
+35.20.04.2017,4,Waduk,sex,perempuan,,1594,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.04.2017,4,Waduk,total,total,,3181,jiwa,2025,registration,total_population,3.1,29,,
+35.20.04.2018,4,Jomblang,sex,perempuan,,923,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.04.2018,4,Jomblang,total,total,,1803,jiwa,2025,registration,total_population,3.1,29,,
+35.20.04.2019,4,Kerang,sex,perempuan,,899,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.04.2019,4,Kerang,total,total,,1753,jiwa,2025,registration,total_population,3.1,29,,
+35.20.04.2020,4,Madigondo,sex,perempuan,,2375,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.04.2020,4,Madigondo,total,total,,4698,jiwa,2025,registration,total_population,3.1,29,,
+35.20.04,3,Kecamatan Takeran,sex,perempuan,,19956,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.04,3,Kecamatan Takeran,total,total,,39281,jiwa,2025,registration,total_population,3.1,29,,
+35.20.04,3,Takeran,age_group,0-4,perempuan,827,jiwa,2025,registration,total_population,3.3,32,,0 – 4
+35.20.04,3,Takeran,age_group,0-4,,1765,jiwa,2025,registration,total_population,3.3,32,,0 – 4
+35.20.04,3,Takeran,age_group,5-9,perempuan,1186,jiwa,2025,registration,total_population,3.3,32,,5–9
+35.20.04,3,Takeran,age_group,5-9,,2462,jiwa,2025,registration,total_population,3.3,32,,5–9
+35.20.04,3,Takeran,age_group,10-14,perempuan,1329,jiwa,2025,registration,total_population,3.3,32,,10–14
+35.20.04,3,Takeran,age_group,10-14,,2768,jiwa,2025,registration,total_population,3.3,32,,10–14
+35.20.04,3,Takeran,age_group,15-19,perempuan,1373,jiwa,2025,registration,total_population,3.3,32,,15–19
+35.20.04,3,Takeran,age_group,15-19,,2868,jiwa,2025,registration,total_population,3.3,32,,15–19
+35.20.04,3,Takeran,age_group,20-24,perempuan,1291,jiwa,2025,registration,total_population,3.3,32,,20–24
+35.20.04,3,Takeran,age_group,20-24,,2706,jiwa,2025,registration,total_population,3.3,32,,20–24
+35.20.04,3,Takeran,age_group,25-29,perempuan,1175,jiwa,2025,registration,total_population,3.3,32,,25–29
+35.20.04,3,Takeran,age_group,25-29,,2416,jiwa,2025,registration,total_population,3.3,32,,25–29
+35.20.04,3,Takeran,age_group,30-34,perempuan,1059,jiwa,2025,registration,total_population,3.3,32,,30–34
+35.20.04,3,Takeran,age_group,30-34,,2184,jiwa,2025,registration,total_population,3.3,32,,30–34
+35.20.04,3,Takeran,age_group,35-39,perempuan,1149,jiwa,2025,registration,total_population,3.3,32,,35–39
+35.20.04,3,Takeran,age_group,35-39,,2248,jiwa,2025,registration,total_population,3.3,32,,35–39
+35.20.04,3,Takeran,age_group,40-44,perempuan,1635,jiwa,2025,registration,total_population,3.3,32,,40–44
+35.20.04,3,Takeran,age_group,40-44,,3194,jiwa,2025,registration,total_population,3.3,32,,40–44
+35.20.04,3,Takeran,age_group,45-49,perempuan,1593,jiwa,2025,registration,total_population,3.3,32,,45–49
+35.20.04,3,Takeran,age_group,45-49,,3140,jiwa,2025,registration,total_population,3.3,32,,45–49
+35.20.04,3,Takeran,age_group,50-54,perempuan,1437,jiwa,2025,registration,total_population,3.3,32,,50–54
+35.20.04,3,Takeran,age_group,50-54,,2794,jiwa,2025,registration,total_population,3.3,32,,50–54
+35.20.04,3,Takeran,age_group,55-59,perempuan,1264,jiwa,2025,registration,total_population,3.3,32,,55–59
+35.20.04,3,Takeran,age_group,55-59,,2491,jiwa,2025,registration,total_population,3.3,32,,55–59
+35.20.04,3,Takeran,age_group,60-64,perempuan,1244,jiwa,2025,registration,total_population,3.3,32,,60–64
+35.20.04,3,Takeran,age_group,60-64,,2236,jiwa,2025,registration,total_population,3.3,32,,60–64
+35.20.04,3,Takeran,age_group,65-69,perempuan,1163,jiwa,2025,registration,total_population,3.3,32,,65–69
+35.20.04,3,Takeran,age_group,65-69,,2163,jiwa,2025,registration,total_population,3.3,32,,65–69
+35.20.04,3,Takeran,age_group,70-74,perempuan,824,jiwa,2025,registration,total_population,3.3,32,,70–74
+35.20.04,3,Takeran,age_group,70-74,,1531,jiwa,2025,registration,total_population,3.3,32,,70–74
+35.20.04,3,Takeran,age_group,75+,perempuan,1407,jiwa,2025,registration,total_population,3.3,32,,75 +
+35.20.04,3,Takeran,age_group,75+,,2315,jiwa,2025,registration,total_population,3.3,32,,75 +
+35.20.04,3,Kecamatan Takeran,sex,perempuan,,19956,jiwa,2025,registration,total_population,3.3,32,,Perempuan
+35.20.04,3,Kecamatan Takeran,total,total,,39281,jiwa,2025,registration,total_population,3.3,32,,

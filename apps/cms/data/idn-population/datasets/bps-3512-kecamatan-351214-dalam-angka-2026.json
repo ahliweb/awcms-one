@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3512-kecamatan-351214-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.12.14",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Banyuputih Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Situbondo",
+  "publisherDomain": "3512",
+  "publisherWebsite": "https://situbondokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Situbondo (https://situbondokab.bps.go.id), publikasi \"Kecamatan Banyuputih Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3512170",
+  "publicationNumber": "35120.26020",
+  "issn": "2808-621X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://situbondokab.bps.go.id/id/publication/2026/09/28/1b4cb79c738eb1d6123c1f04/kecamatan-banyuputih-dalam-angka-2026.html",
+  "sourceFileSha256": "48c9b88535fa550d61f5114a06c201bb4a267f2e4ad324708fc416b868ed2dc8",
+  "sourceFileBytes": 5778267,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Situbondo.",
+  "csvPath": "datasets/bps-3512-kecamatan-351214-dalam-angka-2026.csv",
+  "csvSha256": "52cc09a6c9255c9aa93978ffbbd4abc2d3905bda3e196a94357b6fe78fb5940e",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Banyuputih, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Banyuputih, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.3 (religion-by-region) could not be read reliably and is not included (religion column 7 header \"Konghuchu Confucian\" not recognised)"
+  ]
+}

@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.05.09.2001,4,Pedang,sex,laki_laki,,1407.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.05.09.2001,4,Pedang,sex,perempuan,,1394.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.05.09.2001,4,Pedang,total,total,,2801.00,ribu_jiwa,2025,registration,total_population,3.1,22,,
+16.05.09.2002,4,Muara Beliti Baru,sex,laki_laki,,1316.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.05.09.2002,4,Muara Beliti Baru,sex,perempuan,,1321.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.05.09.2002,4,Muara Beliti Baru,total,total,,2637.00,ribu_jiwa,2025,registration,total_population,3.1,22,,
+16.05.09.1003,4,Pasar Muara Beliti,sex,laki_laki,,2913.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.05.09.1003,4,Pasar Muara Beliti,sex,perempuan,,2856.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.05.09.1003,4,Pasar Muara Beliti,total,total,,5769.00,ribu_jiwa,2025,registration,total_population,3.1,22,,
+16.05.09.2014,4,Suro,sex,laki_laki,,1952.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.05.09.2014,4,Suro,sex,perempuan,,1932.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.05.09.2014,4,Suro,total,total,,3884.00,ribu_jiwa,2025,registration,total_population,3.1,22,,
+16.05.09.2005,4,Bumi Agung,sex,laki_laki,,569.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.05.09.2005,4,Bumi Agung,sex,perempuan,,564.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.05.09.2005,4,Bumi Agung,total,total,,1133.00,ribu_jiwa,2025,registration,total_population,3.1,22,,
+16.05.09.2004,4,Mana Resmi,sex,laki_laki,,764.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.05.09.2004,4,Mana Resmi,sex,perempuan,,699.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.05.09.2004,4,Mana Resmi,total,total,,1463.00,ribu_jiwa,2025,registration,total_population,3.1,22,,
+16.05.09.2016,4,Ketuan Jaya,sex,laki_laki,,1320.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.05.09.2016,4,Ketuan Jaya,sex,perempuan,,1287.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.05.09.2016,4,Ketuan Jaya,total,total,,2607.00,ribu_jiwa,2025,registration,total_population,3.1,22,,
+16.05.09.2017,4,Air Satan,sex,laki_laki,,994.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.05.09.2017,4,Air Satan,sex,perempuan,,977.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.05.09.2017,4,Air Satan,total,total,,1971.00,ribu_jiwa,2025,registration,total_population,3.1,22,,
+16.05.09.2018,4,Durian Remuk,sex,laki_laki,,1030.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.05.09.2018,4,Durian Remuk,sex,perempuan,,993.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.05.09.2018,4,Durian Remuk,total,total,,2023.00,ribu_jiwa,2025,registration,total_population,3.1,22,,
+16.05.09.2019,4,Satan Indah Jaya,sex,laki_laki,,674.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.05.09.2019,4,Satan Indah Jaya,sex,perempuan,,632.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.05.09.2019,4,Satan Indah Jaya,total,total,,1306.00,ribu_jiwa,2025,registration,total_population,3.1,22,,
+16.05.09.2020,4,Air Lesing,sex,laki_laki,,759.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.05.09.2020,4,Air Lesing,sex,perempuan,,698.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.05.09.2020,4,Air Lesing,total,total,,1457.00,ribu_jiwa,2025,registration,total_population,3.1,22,,
+16.05.09,3,Muara Beliti,sex,laki_laki,,14874.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+16.05.09,3,Muara Beliti,sex,perempuan,,14514.00,ribu_jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+16.05.09,3,Muara Beliti,total,total,,29388.00,ribu_jiwa,2025,registration,total_population,3.1,22,,

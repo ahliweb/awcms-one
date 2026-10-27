@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.71.03.1003,4,Rejowinangun Utara,sex,laki_laki,,5964,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.71.03.1003,4,Rejowinangun Utara,sex,perempuan,,5954,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.71.03.1003,4,Rejowinangun Utara,total,total,,11918,jiwa,2025,registration,total_population,3.1,26,,
+33.71.03.1001,4,Kemirirejo,sex,laki_laki,,2828,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.71.03.1001,4,Kemirirejo,sex,perempuan,,2905,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.71.03.1001,4,Kemirirejo,total,total,,5733,jiwa,2025,registration,total_population,3.1,26,,
+33.71.03.1002,4,Cacaban,sex,laki_laki,,4064,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.71.03.1002,4,Cacaban,sex,perempuan,,4156,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.71.03.1002,4,Cacaban,total,total,,8220,jiwa,2025,registration,total_population,3.1,26,,
+33.71.03.1004,4,Magelang,sex,laki_laki,,3836,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.71.03.1004,4,Magelang,sex,perempuan,,4078,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.71.03.1004,4,Magelang,total,total,,7914,jiwa,2025,registration,total_population,3.1,26,,
+33.71.03.1005,4,Panjang,sex,laki_laki,,3083,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.71.03.1005,4,Panjang,sex,perempuan,,3245,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.71.03.1005,4,Panjang,total,total,,6328,jiwa,2025,registration,total_population,3.1,26,,
+33.71.03.1006,4,Gelangan,sex,laki_laki,,4353,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.71.03.1006,4,Gelangan,sex,perempuan,,4234,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.71.03.1006,4,Gelangan,total,total,,8587,jiwa,2025,registration,total_population,3.1,26,,
+33.71.03,3,Magelang Tengah,sex,laki_laki,,24128,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+33.71.03,3,Magelang Tengah,sex,perempuan,,24572,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+33.71.03,3,Magelang Tengah,total,total,,48700,jiwa,2025,registration,total_population,3.1,26,,
+33.71.03,3,Magelang Tengah,age_group,0-4,laki_laki,1278,jiwa,2025,registration,total_population,3.2,28,,0-4
+33.71.03,3,Magelang Tengah,age_group,0-4,perempuan,1196,jiwa,2025,registration,total_population,3.2,28,,0-4
+33.71.03,3,Magelang Tengah,age_group,0-4,,2474,jiwa,2025,registration,total_population,3.2,28,,0-4
+33.71.03,3,Magelang Tengah,age_group,5-9,laki_laki,1626,jiwa,2025,registration,total_population,3.2,28,,5-9
+33.71.03,3,Magelang Tengah,age_group,5-9,perempuan,1581,jiwa,2025,registration,total_population,3.2,28,,5-9
+33.71.03,3,Magelang Tengah,age_group,5-9,,3207,jiwa,2025,registration,total_population,3.2,28,,5-9
+33.71.03,3,Magelang Tengah,age_group,10-14,laki_laki,1854,jiwa,2025,registration,total_population,3.2,28,,10-14
+33.71.03,3,Magelang Tengah,age_group,10-14,perempuan,1713,jiwa,2025,registration,total_population,3.2,28,,10-14
+33.71.03,3,Magelang Tengah,age_group,10-14,,3567,jiwa,2025,registration,total_population,3.2,28,,10-14
+33.71.03,3,Magelang Tengah,age_group,15-19,laki_laki,1949,jiwa,2025,registration,total_population,3.2,28,,15-19
+33.71.03,3,Magelang Tengah,age_group,15-19,perempuan,1899,jiwa,2025,registration,total_population,3.2,28,,15-19
+33.71.03,3,Magelang Tengah,age_group,15-19,,3848,jiwa,2025,registration,total_population,3.2,28,,15-19
+33.71.03,3,Magelang Tengah,age_group,20-24,laki_laki,1909,jiwa,2025,registration,total_population,3.2,28,,20-24
+33.71.03,3,Magelang Tengah,age_group,20-24,perempuan,1787,jiwa,2025,registration,total_population,3.2,28,,20-24
+33.71.03,3,Magelang Tengah,age_group,20-24,,3696,jiwa,2025,registration,total_population,3.2,28,,20-24
+33.71.03,3,Magelang Tengah,age_group,25-29,laki_laki,1957,jiwa,2025,registration,total_population,3.2,28,,25-29
+33.71.03,3,Magelang Tengah,age_group,25-29,perempuan,1766,jiwa,2025,registration,total_population,3.2,28,,25-29
+33.71.03,3,Magelang Tengah,age_group,25-29,,3723,jiwa,2025,registration,total_population,3.2,28,,25-29
+33.71.03,3,Magelang Tengah,age_group,30-34,laki_laki,1868,jiwa,2025,registration,total_population,3.2,28,,30-34
+33.71.03,3,Magelang Tengah,age_group,30-34,perempuan,1744,jiwa,2025,registration,total_population,3.2,28,,30-34
+33.71.03,3,Magelang Tengah,age_group,30-34,,3612,jiwa,2025,registration,total_population,3.2,28,,30-34
+33.71.03,3,Magelang Tengah,age_group,35-39,laki_laki,1633,jiwa,2025,registration,total_population,3.2,28,,35-39
+33.71.03,3,Magelang Tengah,age_group,35-39,perempuan,1564,jiwa,2025,registration,total_population,3.2,28,,35-39
+33.71.03,3,Magelang Tengah,age_group,35-39,,3197,jiwa,2025,registration,total_population,3.2,28,,35-39
+33.71.03,3,Magelang Tengah,age_group,40-44,laki_laki,1855,jiwa,2025,registration,total_population,3.2,28,,40-44
+33.71.03,3,Magelang Tengah,age_group,40-44,perempuan,1819,jiwa,2025,registration,total_population,3.2,28,,40-44
+33.71.03,3,Magelang Tengah,age_group,40-44,,3674,jiwa,2025,registration,total_population,3.2,28,,40-44
+33.71.03,3,Magelang Tengah,age_group,45-49,laki_laki,1735,jiwa,2025,registration,total_population,3.2,28,,45-49
+33.71.03,3,Magelang Tengah,age_group,45-49,perempuan,1646,jiwa,2025,registration,total_population,3.2,28,,45-49
+33.71.03,3,Magelang Tengah,age_group,45-49,,3381,jiwa,2025,registration,total_population,3.2,28,,45-49
+33.71.03,3,Magelang Tengah,age_group,50-54,laki_laki,1525,jiwa,2025,registration,total_population,3.2,28,,50-54
+33.71.03,3,Magelang Tengah,age_group,50-54,perempuan,1624,jiwa,2025,registration,total_population,3.2,28,,50-54
+33.71.03,3,Magelang Tengah,age_group,50-54,,3149,jiwa,2025,registration,total_population,3.2,28,,50-54
+33.71.03,3,Magelang Tengah,age_group,55-59,laki_laki,1466,jiwa,2025,registration,total_population,3.2,28,,55-59
+33.71.03,3,Magelang Tengah,age_group,55-59,perempuan,1633,jiwa,2025,registration,total_population,3.2,28,,55-59
+33.71.03,3,Magelang Tengah,age_group,55-59,,3099,jiwa,2025,registration,total_population,3.2,28,,55-59
+33.71.03,3,Magelang Tengah,age_group,60-64,laki_laki,1221,jiwa,2025,registration,total_population,3.2,28,,60-64
+33.71.03,3,Magelang Tengah,age_group,60-64,perempuan,1588,jiwa,2025,registration,total_population,3.2,28,,60-64
+33.71.03,3,Magelang Tengah,age_group,60-64,,2809,jiwa,2025,registration,total_population,3.2,28,,60-64
+33.71.03,3,Magelang Tengah,age_group,65-69,laki_laki,1008,jiwa,2025,registration,total_population,3.2,28,,65-69
+33.71.03,3,Magelang Tengah,age_group,65-69,perempuan,1229,jiwa,2025,registration,total_population,3.2,28,,65-69
+33.71.03,3,Magelang Tengah,age_group,65-69,,2237,jiwa,2025,registration,total_population,3.2,28,,65-69
+33.71.03,3,Magelang Tengah,age_group,70-74,laki_laki,699,jiwa,2025,registration,total_population,3.2,28,,70-74
+33.71.03,3,Magelang Tengah,age_group,70-74,perempuan,830,jiwa,2025,registration,total_population,3.2,28,,70-74
+33.71.03,3,Magelang Tengah,age_group,70-74,,1529,jiwa,2025,registration,total_population,3.2,28,,70-74
+33.71.03,3,Magelang Tengah,age_group,75+,laki_laki,545,jiwa,2025,registration,total_population,3.2,28,,75+
+33.71.03,3,Magelang Tengah,age_group,75+,perempuan,953,jiwa,2025,registration,total_population,3.2,28,,75+
+33.71.03,3,Magelang Tengah,age_group,75+,,1498,jiwa,2025,registration,total_population,3.2,28,,75+
+33.71.03,3,Magelang Tengah,sex,laki_laki,,24128,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+33.71.03,3,Magelang Tengah,sex,perempuan,,24572,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+33.71.03,3,Magelang Tengah,total,total,,48700,jiwa,2025,registration,total_population,3.2,28,,

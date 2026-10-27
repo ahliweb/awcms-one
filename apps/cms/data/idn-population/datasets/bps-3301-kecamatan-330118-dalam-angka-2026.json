@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3301-kecamatan-330118-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.01.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cipari Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN CILACAP",
+  "publisherDomain": "3301",
+  "publisherWebsite": "https://cilacapkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN CILACAP (https://cilacapkab.bps.go.id), publikasi \"Kecamatan Cipari Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3301060",
+  "publicationNumber": "33010.25014",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://cilacapkab.bps.go.id/id/publication/2026/09/28/76c217693b59f3f71d07cdf1/kecamatan-cipari-dalam-angka-2026.html",
+  "sourceFileSha256": "c6b4247be47a780a27329d805bb5eb4a01d00156d550b9e4bd9bbfcb1c31d498",
+  "sourceFileBytes": 6253585,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Cilacap.",
+  "csvPath": "datasets/bps-3301-kecamatan-330118-dalam-angka-2026.csv",
+  "csvSha256": "107aab334c439cd5fa64fb72ba36866dca48f361fc4b976b474930d0e9fdc2f1",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Cipari, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cipari, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

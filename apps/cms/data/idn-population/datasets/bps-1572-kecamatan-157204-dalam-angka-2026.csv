@@ -1,0 +1,88 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.72.04.2002,4,Pendung Hiang,sex,laki_laki,,652,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+15.72.04.2002,4,Pendung Hiang,sex,perempuan,,637,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+15.72.04.2002,4,Pendung Hiang,total,total,,1289,jiwa,2025,registration,total_population,3.1,34,,
+15.72.04.2010,4,Koto Padang,sex,laki_laki,,782,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+15.72.04.2010,4,Koto Padang,sex,perempuan,,735,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+15.72.04.2010,4,Koto Padang,total,total,,1517,jiwa,2025,registration,total_population,3.1,34,,
+15.72.04.2013,4,Mekar Jaya,sex,laki_laki,,430,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+15.72.04.2013,4,Mekar Jaya,sex,perempuan,,425,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+15.72.04.2013,4,Mekar Jaya,total,total,,855,jiwa,2025,registration,total_population,3.1,34,,
+15.72.04.2004,4,Koto Dumo,sex,laki_laki,,573,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+15.72.04.2004,4,Koto Dumo,sex,perempuan,,558,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+15.72.04.2004,4,Koto Dumo,total,total,,1131,jiwa,2025,registration,total_population,3.1,34,,
+15.72.04.2005,4,Sembilan,sex,laki_laki,,433,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+15.72.04.2005,4,Sembilan,sex,perempuan,,408,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+15.72.04.2005,4,Sembilan,total,total,,841,jiwa,2025,registration,total_population,3.1,34,,
+15.72.04.2011,4,Tanjung Karang,sex,laki_laki,,243,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+15.72.04.2011,4,Tanjung Karang,sex,perempuan,,230,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+15.72.04.2011,4,Tanjung Karang,total,total,,473,jiwa,2025,registration,total_population,3.1,34,,
+15.72.04.2007,4,Koto Panap,sex,laki_laki,,356,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+15.72.04.2007,4,Koto Panap,sex,perempuan,,349,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+15.72.04.2007,4,Koto Panap,total,total,,705,jiwa,2025,registration,total_population,3.1,34,,
+15.72.04.2003,4,Koto Pudung,sex,laki_laki,,419,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+15.72.04.2003,4,Koto Pudung,sex,perempuan,,438,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+15.72.04.2003,4,Koto Pudung,total,total,,857,jiwa,2025,registration,total_population,3.1,34,,
+15.72.04.2008,4,Koto Tengah,sex,laki_laki,,281,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+15.72.04.2008,4,Koto Tengah,sex,perempuan,,277,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+15.72.04.2008,4,Koto Tengah,total,total,,558,jiwa,2025,registration,total_population,3.1,34,,
+15.72.04.2006,4,Koto Tuo,sex,laki_laki,,400,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+15.72.04.2006,4,Koto Tuo,sex,perempuan,,408,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+15.72.04.2006,4,Koto Tuo,total,total,,808,jiwa,2025,registration,total_population,3.1,34,,
+15.72.04.2009,4,Tanjung Bunga,sex,laki_laki,,404,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+15.72.04.2009,4,Tanjung Bunga,sex,perempuan,,387,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+15.72.04.2009,4,Tanjung Bunga,total,total,,791,jiwa,2025,registration,total_population,3.1,34,,
+15.72.04,3,Kecamatan Tanah Kampung,sex,laki_laki,,5675,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+15.72.04,3,Kecamatan Tanah Kampung,sex,perempuan,,5582,jiwa,2025,registration,total_population,3.1,34,,Perempuan/
+15.72.04,3,Kecamatan Tanah Kampung,total,total,,11257,jiwa,2025,registration,total_population,3.1,34,,
+15.72.04,3,Tanah Kampung,age_group,0-4,laki_laki,283,jiwa,2025,registration,total_population,3.3,36,,0 – 4
+15.72.04,3,Tanah Kampung,age_group,0-4,perempuan,247,jiwa,2025,registration,total_population,3.3,36,,0 – 4
+15.72.04,3,Tanah Kampung,age_group,0-4,,530,jiwa,2025,registration,total_population,3.3,36,,0 – 4
+15.72.04,3,Tanah Kampung,age_group,5-9,laki_laki,387,jiwa,2025,registration,total_population,3.3,36,,5 – 9
+15.72.04,3,Tanah Kampung,age_group,5-9,perempuan,353,jiwa,2025,registration,total_population,3.3,36,,5 – 9
+15.72.04,3,Tanah Kampung,age_group,5-9,,740,jiwa,2025,registration,total_population,3.3,36,,5 – 9
+15.72.04,3,Tanah Kampung,age_group,10-14,laki_laki,411,jiwa,2025,registration,total_population,3.3,36,,10 – 14
+15.72.04,3,Tanah Kampung,age_group,10-14,perempuan,351,jiwa,2025,registration,total_population,3.3,36,,10 – 14
+15.72.04,3,Tanah Kampung,age_group,10-14,,762,jiwa,2025,registration,total_population,3.3,36,,10 – 14
+15.72.04,3,Tanah Kampung,age_group,15-19,laki_laki,422,jiwa,2025,registration,total_population,3.3,36,,15 – 19
+15.72.04,3,Tanah Kampung,age_group,15-19,perempuan,360,jiwa,2025,registration,total_population,3.3,36,,15 – 19
+15.72.04,3,Tanah Kampung,age_group,15-19,,782,jiwa,2025,registration,total_population,3.3,36,,15 – 19
+15.72.04,3,Tanah Kampung,age_group,20-24,laki_laki,437,jiwa,2025,registration,total_population,3.3,36,,20 – 24
+15.72.04,3,Tanah Kampung,age_group,20-24,perempuan,392,jiwa,2025,registration,total_population,3.3,36,,20 – 24
+15.72.04,3,Tanah Kampung,age_group,20-24,,829,jiwa,2025,registration,total_population,3.3,36,,20 – 24
+15.72.04,3,Tanah Kampung,age_group,25-29,laki_laki,436,jiwa,2025,registration,total_population,3.3,36,,25 – 29
+15.72.04,3,Tanah Kampung,age_group,25-29,perempuan,384,jiwa,2025,registration,total_population,3.3,36,,25 – 29
+15.72.04,3,Tanah Kampung,age_group,25-29,,820,jiwa,2025,registration,total_population,3.3,36,,25 – 29
+15.72.04,3,Tanah Kampung,age_group,30-34,laki_laki,385,jiwa,2025,registration,total_population,3.3,36,,30 – 34
+15.72.04,3,Tanah Kampung,age_group,30-34,perempuan,369,jiwa,2025,registration,total_population,3.3,36,,30 – 34
+15.72.04,3,Tanah Kampung,age_group,30-34,,754,jiwa,2025,registration,total_population,3.3,36,,30 – 34
+15.72.04,3,Tanah Kampung,age_group,35-39,laki_laki,364,jiwa,2025,registration,total_population,3.3,36,,35 – 39
+15.72.04,3,Tanah Kampung,age_group,35-39,perempuan,347,jiwa,2025,registration,total_population,3.3,36,,35 – 39
+15.72.04,3,Tanah Kampung,age_group,35-39,,711,jiwa,2025,registration,total_population,3.3,36,,35 – 39
+15.72.04,3,Tanah Kampung,age_group,40-44,laki_laki,423,jiwa,2025,registration,total_population,3.3,36,,40 – 44
+15.72.04,3,Tanah Kampung,age_group,40-44,perempuan,439,jiwa,2025,registration,total_population,3.3,36,,40 – 44
+15.72.04,3,Tanah Kampung,age_group,40-44,,862,jiwa,2025,registration,total_population,3.3,36,,40 – 44
+15.72.04,3,Tanah Kampung,age_group,45-49,laki_laki,464,jiwa,2025,registration,total_population,3.3,36,,45 – 49
+15.72.04,3,Tanah Kampung,age_group,45-49,perempuan,483,jiwa,2025,registration,total_population,3.3,36,,45 – 49
+15.72.04,3,Tanah Kampung,age_group,45-49,,947,jiwa,2025,registration,total_population,3.3,36,,45 – 49
+15.72.04,3,Tanah Kampung,age_group,50-54,laki_laki,400,jiwa,2025,registration,total_population,3.3,36,,50 – 54
+15.72.04,3,Tanah Kampung,age_group,50-54,perempuan,388,jiwa,2025,registration,total_population,3.3,36,,50 – 54
+15.72.04,3,Tanah Kampung,age_group,50-54,,788,jiwa,2025,registration,total_population,3.3,36,,50 – 54
+15.72.04,3,Tanah Kampung,age_group,55-59,laki_laki,328,jiwa,2025,registration,total_population,3.3,36,,55 – 59
+15.72.04,3,Tanah Kampung,age_group,55-59,perempuan,307,jiwa,2025,registration,total_population,3.3,36,,55 – 59
+15.72.04,3,Tanah Kampung,age_group,55-59,,635,jiwa,2025,registration,total_population,3.3,36,,55 – 59
+15.72.04,3,Tanah Kampung,age_group,60-64,laki_laki,280,jiwa,2025,registration,total_population,3.3,36,,60 – 64
+15.72.04,3,Tanah Kampung,age_group,60-64,perempuan,271,jiwa,2025,registration,total_population,3.3,36,,60 – 64
+15.72.04,3,Tanah Kampung,age_group,60-64,,551,jiwa,2025,registration,total_population,3.3,36,,60 – 64
+15.72.04,3,Tanah Kampung,age_group,65-69,laki_laki,189,jiwa,2025,registration,total_population,3.3,36,,65 – 69
+15.72.04,3,Tanah Kampung,age_group,65-69,perempuan,276,jiwa,2025,registration,total_population,3.3,36,,65 – 69
+15.72.04,3,Tanah Kampung,age_group,65-69,,465,jiwa,2025,registration,total_population,3.3,36,,65 – 69
+15.72.04,3,Tanah Kampung,age_group,70-74,laki_laki,183,jiwa,2025,registration,total_population,3.3,36,,70 - 74
+15.72.04,3,Tanah Kampung,age_group,70-74,perempuan,219,jiwa,2025,registration,total_population,3.3,36,,70 - 74
+15.72.04,3,Tanah Kampung,age_group,70-74,,402,jiwa,2025,registration,total_population,3.3,36,,70 - 74
+15.72.04,3,Tanah Kampung,age_group,75+,laki_laki,283,jiwa,2025,registration,total_population,3.3,36,,75+
+15.72.04,3,Tanah Kampung,age_group,75+,perempuan,396,jiwa,2025,registration,total_population,3.3,36,,75+
+15.72.04,3,Tanah Kampung,age_group,75+,,679,jiwa,2025,registration,total_population,3.3,36,,75+
+15.72.04,3,Kecamatan Tanah Kampung,sex,laki_laki,,5675,jiwa,2025,registration,total_population,3.3,36,,Laki-Laki
+15.72.04,3,Kecamatan Tanah Kampung,sex,perempuan,,5582,jiwa,2025,registration,total_population,3.3,36,,Perempuan
+15.72.04,3,Kecamatan Tanah Kampung,total,total,,11257,jiwa,2025,registration,total_population,3.3,36,,

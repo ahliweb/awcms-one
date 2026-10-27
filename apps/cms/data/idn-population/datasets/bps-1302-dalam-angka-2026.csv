@@ -1,0 +1,176 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.01,2,Kabupaten Pesisir Selatan,age_group,0-4,laki_laki,18811,jiwa,2025,registration,total_population,3.1.2,125,,0–4
+13.01,2,Kabupaten Pesisir Selatan,age_group,0-4,perempuan,17422,jiwa,2025,registration,total_population,3.1.2,125,,0–4
+13.01,2,Kabupaten Pesisir Selatan,age_group,0-4,,36233,jiwa,2025,registration,total_population,3.1.2,125,,0–4
+13.01,2,Kabupaten Pesisir Selatan,age_group,5-9,laki_laki,24367,jiwa,2025,registration,total_population,3.1.2,125,,5–9
+13.01,2,Kabupaten Pesisir Selatan,age_group,5-9,perempuan,22563,jiwa,2025,registration,total_population,3.1.2,125,,5–9
+13.01,2,Kabupaten Pesisir Selatan,age_group,5-9,,46930,jiwa,2025,registration,total_population,3.1.2,125,,5–9
+13.01,2,Kabupaten Pesisir Selatan,age_group,10-14,laki_laki,25405,jiwa,2025,registration,total_population,3.1.2,125,,10–14
+13.01,2,Kabupaten Pesisir Selatan,age_group,10-14,perempuan,23467,jiwa,2025,registration,total_population,3.1.2,125,,10–14
+13.01,2,Kabupaten Pesisir Selatan,age_group,10-14,,48872,jiwa,2025,registration,total_population,3.1.2,125,,10–14
+13.01,2,Kabupaten Pesisir Selatan,age_group,15-19,laki_laki,22665,jiwa,2025,registration,total_population,3.1.2,125,,15–19
+13.01,2,Kabupaten Pesisir Selatan,age_group,15-19,perempuan,22469,jiwa,2025,registration,total_population,3.1.2,125,,15–19
+13.01,2,Kabupaten Pesisir Selatan,age_group,15-19,,45134,jiwa,2025,registration,total_population,3.1.2,125,,15–19
+13.01,2,Kabupaten Pesisir Selatan,age_group,20-24,laki_laki,24231,jiwa,2025,registration,total_population,3.1.2,125,,20–24
+13.01,2,Kabupaten Pesisir Selatan,age_group,20-24,perempuan,22993,jiwa,2025,registration,total_population,3.1.2,125,,20–24
+13.01,2,Kabupaten Pesisir Selatan,age_group,20-24,,47224,jiwa,2025,registration,total_population,3.1.2,125,,20–24
+13.01,2,Kabupaten Pesisir Selatan,age_group,25-29,laki_laki,22671,jiwa,2025,registration,total_population,3.1.2,125,,25–29
+13.01,2,Kabupaten Pesisir Selatan,age_group,25-29,perempuan,20589,jiwa,2025,registration,total_population,3.1.2,125,,25–29
+13.01,2,Kabupaten Pesisir Selatan,age_group,25-29,,43260,jiwa,2025,registration,total_population,3.1.2,125,,25–29
+13.01,2,Kabupaten Pesisir Selatan,age_group,30-34,laki_laki,17910,jiwa,2025,registration,total_population,3.1.2,125,,30–34
+13.01,2,Kabupaten Pesisir Selatan,age_group,30-34,perempuan,16636,jiwa,2025,registration,total_population,3.1.2,125,,30–34
+13.01,2,Kabupaten Pesisir Selatan,age_group,30-34,,34546,jiwa,2025,registration,total_population,3.1.2,125,,30–34
+13.01,2,Kabupaten Pesisir Selatan,age_group,35-39,laki_laki,17911,jiwa,2025,registration,total_population,3.1.2,125,,35–39
+13.01,2,Kabupaten Pesisir Selatan,age_group,35-39,perempuan,17235,jiwa,2025,registration,total_population,3.1.2,125,,35–39
+13.01,2,Kabupaten Pesisir Selatan,age_group,35-39,,35146,jiwa,2025,registration,total_population,3.1.2,125,,35–39
+13.01,2,Kabupaten Pesisir Selatan,age_group,40-44,laki_laki,19125,jiwa,2025,registration,total_population,3.1.2,125,,40–44
+13.01,2,Kabupaten Pesisir Selatan,age_group,40-44,perempuan,18991,jiwa,2025,registration,total_population,3.1.2,125,,40–44
+13.01,2,Kabupaten Pesisir Selatan,age_group,40-44,,38116,jiwa,2025,registration,total_population,3.1.2,125,,40–44
+13.01,2,Kabupaten Pesisir Selatan,age_group,45-49,laki_laki,18554,jiwa,2025,registration,total_population,3.1.2,125,,45–49
+13.01,2,Kabupaten Pesisir Selatan,age_group,45-49,perempuan,18381,jiwa,2025,registration,total_population,3.1.2,125,,45–49
+13.01,2,Kabupaten Pesisir Selatan,age_group,45-49,,36935,jiwa,2025,registration,total_population,3.1.2,125,,45–49
+13.01,2,Kabupaten Pesisir Selatan,age_group,50-54,laki_laki,15288,jiwa,2025,registration,total_population,3.1.2,125,,50–54
+13.01,2,Kabupaten Pesisir Selatan,age_group,50-54,perempuan,15793,jiwa,2025,registration,total_population,3.1.2,125,,50–54
+13.01,2,Kabupaten Pesisir Selatan,age_group,50-54,,31081,jiwa,2025,registration,total_population,3.1.2,125,,50–54
+13.01,2,Kabupaten Pesisir Selatan,age_group,55-59,laki_laki,13312,jiwa,2025,registration,total_population,3.1.2,125,,55–59
+13.01,2,Kabupaten Pesisir Selatan,age_group,55-59,perempuan,13918,jiwa,2025,registration,total_population,3.1.2,125,,55–59
+13.01,2,Kabupaten Pesisir Selatan,age_group,55-59,,27230,jiwa,2025,registration,total_population,3.1.2,125,,55–59
+13.01,2,Kabupaten Pesisir Selatan,age_group,60-64,laki_laki,10029,jiwa,2025,registration,total_population,3.1.2,125,,60–64
+13.01,2,Kabupaten Pesisir Selatan,age_group,60-64,perempuan,11803,jiwa,2025,registration,total_population,3.1.2,125,,60–64
+13.01,2,Kabupaten Pesisir Selatan,age_group,60-64,,21832,jiwa,2025,registration,total_population,3.1.2,125,,60–64
+13.01,2,Kabupaten Pesisir Selatan,age_group,65-69,laki_laki,9289,jiwa,2025,registration,total_population,3.1.2,125,,65–69
+13.01,2,Kabupaten Pesisir Selatan,age_group,65-69,perempuan,11522,jiwa,2025,registration,total_population,3.1.2,125,,65–69
+13.01,2,Kabupaten Pesisir Selatan,age_group,65-69,,20811,jiwa,2025,registration,total_population,3.1.2,125,,65–69
+13.01,2,Kabupaten Pesisir Selatan,age_group,70-74,laki_laki,6669,jiwa,2025,registration,total_population,3.1.2,125,,70–74
+13.01,2,Kabupaten Pesisir Selatan,age_group,70-74,perempuan,7478,jiwa,2025,registration,total_population,3.1.2,125,,70–74
+13.01,2,Kabupaten Pesisir Selatan,age_group,70-74,,14147,jiwa,2025,registration,total_population,3.1.2,125,,70–74
+13.01,2,Kabupaten Pesisir Selatan,age_group,75+,laki_laki,6402,jiwa,2025,registration,total_population,3.1.2,125,,75+
+13.01,2,Kabupaten Pesisir Selatan,age_group,75+,perempuan,9441,jiwa,2025,registration,total_population,3.1.2,125,,75+
+13.01,2,Kabupaten Pesisir Selatan,age_group,75+,,15843,jiwa,2025,registration,total_population,3.1.2,125,,75+
+13.01,2,Pesisir Selatan,sex,laki_laki,,272639,jiwa,2025,registration,total_population,3.1.2,125,,Laki-Laki
+13.01,2,Pesisir Selatan,sex,perempuan,,270701,jiwa,2025,registration,total_population,3.1.2,125,,Perempuan
+13.01,2,Pesisir Selatan,total,total,,543340,jiwa,2025,registration,total_population,3.1.2,125,,
+13.01.15,3,Silaut,religion,islam,,28628,jiwa,2025,registration,total_population,4.3.1,242,,Islam
+13.01.15,3,Silaut,religion,kristen,,190,jiwa,2025,registration,total_population,4.3.1,242,,Protestan
+13.01.15,3,Silaut,religion,katolik,,23,jiwa,2025,registration,total_population,4.3.1,242,,Katolik
+13.01.15,3,Silaut,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Hindu
+13.01.15,3,Silaut,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Budha
+13.01.15,3,Silaut,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Lainnya
+13.01.10,3,Lunang,religion,islam,,35733,jiwa,2025,registration,total_population,4.3.1,242,,Islam
+13.01.10,3,Lunang,religion,kristen,,52,jiwa,2025,registration,total_population,4.3.1,242,,Protestan
+13.01.10,3,Lunang,religion,katolik,,15,jiwa,2025,registration,total_population,4.3.1,242,,Katolik
+13.01.10,3,Lunang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Hindu
+13.01.10,3,Lunang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Budha
+13.01.10,3,Lunang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Lainnya
+13.01.11,3,Basa Ampek Balai Tapan,religion,islam,,64674,jiwa,2025,registration,total_population,4.3.1,242,,Islam
+13.01.11,3,Basa Ampek Balai Tapan,religion,kristen,,6,jiwa,2025,registration,total_population,4.3.1,242,,Protestan
+13.01.11,3,Basa Ampek Balai Tapan,religion,katolik,,8,jiwa,2025,registration,total_population,4.3.1,242,,Katolik
+13.01.11,3,Basa Ampek Balai Tapan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Hindu
+13.01.11,3,Basa Ampek Balai Tapan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Budha
+13.01.11,3,Basa Ampek Balai Tapan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Lainnya
+13.01.14,3,Ranah Ampek Hulu Tapan,religion,islam,,38528,jiwa,2025,registration,total_population,4.3.1,242,,Islam
+13.01.14,3,Ranah Ampek Hulu Tapan,religion,kristen,,13,jiwa,2025,registration,total_population,4.3.1,242,,Protestan
+13.01.14,3,Ranah Ampek Hulu Tapan,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,242,,Katolik
+13.01.14,3,Ranah Ampek Hulu Tapan,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Hindu
+13.01.14,3,Ranah Ampek Hulu Tapan,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Budha
+13.01.14,3,Ranah Ampek Hulu Tapan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Lainnya
+13.01.01,3,Pancung Soal,religion,islam,,54237,jiwa,2025,registration,total_population,4.3.1,242,,Islam
+13.01.01,3,Pancung Soal,religion,kristen,,132,jiwa,2025,registration,total_population,4.3.1,242,,Protestan
+13.01.01,3,Pancung Soal,religion,katolik,,27,jiwa,2025,registration,total_population,4.3.1,242,,Katolik
+13.01.01,3,Pancung Soal,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,242,,Hindu
+13.01.01,3,Pancung Soal,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Budha
+13.01.01,3,Pancung Soal,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Lainnya
+13.01.13,3,Airpura,religion,islam,,45375,jiwa,2025,registration,total_population,4.3.1,242,,Islam
+13.01.13,3,Airpura,religion,kristen,,9,jiwa,2025,registration,total_population,4.3.1,242,,Protestan
+13.01.13,3,Airpura,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,242,,Katolik
+13.01.13,3,Airpura,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Hindu
+13.01.13,3,Airpura,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Budha
+13.01.13,3,Airpura,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Lainnya
+13.01.09,3,Linggo Sari Baganti,religion,islam,,56253,jiwa,2025,registration,total_population,4.3.1,242,,Islam
+13.01.09,3,Linggo Sari Baganti,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Protestan
+13.01.09,3,Linggo Sari Baganti,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Katolik
+13.01.09,3,Linggo Sari Baganti,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,242,,Hindu
+13.01.09,3,Linggo Sari Baganti,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,242,,Budha
+13.01.09,3,Linggo Sari Baganti,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Lainnya
+13.01.02,3,Ranah Pesisir,religion,islam,,61753,jiwa,2025,registration,total_population,4.3.1,242,,Islam
+13.01.02,3,Ranah Pesisir,religion,kristen,,2,jiwa,2025,registration,total_population,4.3.1,242,,Protestan
+13.01.02,3,Ranah Pesisir,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Katolik
+13.01.02,3,Ranah Pesisir,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Hindu
+13.01.02,3,Ranah Pesisir,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Budha
+13.01.02,3,Ranah Pesisir,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Lainnya
+13.01.03,3,Lengayang,religion,islam,,53485,jiwa,2025,registration,total_population,4.3.1,242,,Islam
+13.01.03,3,Lengayang,religion,kristen,,20,jiwa,2025,registration,total_population,4.3.1,242,,Protestan
+13.01.03,3,Lengayang,religion,katolik,,22,jiwa,2025,registration,total_population,4.3.1,242,,Katolik
+13.01.03,3,Lengayang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Hindu
+13.01.03,3,Lengayang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Budha
+13.01.03,3,Lengayang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Lainnya
+13.01.08,3,Sutera,religion,islam,,23623,jiwa,2025,registration,total_population,4.3.1,242,,Islam
+13.01.08,3,Sutera,religion,kristen,,280,jiwa,2025,registration,total_population,4.3.1,242,,Protestan
+13.01.08,3,Sutera,religion,katolik,,39,jiwa,2025,registration,total_population,4.3.1,242,,Katolik
+13.01.08,3,Sutera,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Hindu
+13.01.08,3,Sutera,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Budha
+13.01.08,3,Sutera,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Lainnya
+13.01.04,3,Batang Kapas,religion,islam,,17145,jiwa,2025,registration,total_population,4.3.1,242,,Islam
+13.01.04,3,Batang Kapas,religion,kristen,,13,jiwa,2025,registration,total_population,4.3.1,242,,Protestan
+13.01.04,3,Batang Kapas,religion,katolik,,2,jiwa,2025,registration,total_population,4.3.1,242,,Katolik
+13.01.04,3,Batang Kapas,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Hindu
+13.01.04,3,Batang Kapas,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Budha
+13.01.04,3,Batang Kapas,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Lainnya
+13.01.06,3,Bayang,religion,islam,,20870,jiwa,2025,registration,total_population,4.3.1,242,,Islam
+13.01.06,3,Bayang,religion,kristen,,77,jiwa,2025,registration,total_population,4.3.1,242,,Protestan
+13.01.06,3,Bayang,religion,katolik,,7,jiwa,2025,registration,total_population,4.3.1,242,,Katolik
+13.01.06,3,Bayang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Hindu
+13.01.06,3,Bayang,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Budha
+13.01.06,3,Bayang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Lainnya
+13.01,2,Pesisir Selatan,religion,islam,,542090,jiwa,2025,registration,total_population,4.3.1,242,,Islam
+13.01,2,Pesisir Selatan,religion,kristen,,1036,jiwa,2025,registration,total_population,4.3.1,242,,Protestan
+13.01,2,Pesisir Selatan,religion,katolik,,209,jiwa,2025,registration,total_population,4.3.1,242,,Katolik
+13.01,2,Pesisir Selatan,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,242,,Hindu
+13.01,2,Pesisir Selatan,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,242,,Budha
+13.01,2,Pesisir Selatan,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,242,nil,Lainnya
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/padi_padian,,109866,rupiah,2024,survey_estimate,per_capita,10.1,477,,Padi-padian
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/padi_padian,,111230,rupiah,2025,survey_estimate,per_capita,10.1,477,,Padi-padian
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/umbi_umbian,,9094,rupiah,2024,survey_estimate,per_capita,10.1,477,,Umbi-umbian
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/umbi_umbian,,9429,rupiah,2025,survey_estimate,per_capita,10.1,477,,Umbi-umbian
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,69513,rupiah,2024,survey_estimate,per_capita,10.1,477,,Ikan/udang/cumi/kerang
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,72271,rupiah,2025,survey_estimate,per_capita,10.1,477,,Ikan/udang/cumi/kerang
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/daging,,17972,rupiah,2024,survey_estimate,per_capita,10.1,477,,Daging
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/daging,,23144,rupiah,2025,survey_estimate,per_capita,10.1,477,,Daging
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/telur_dan_susu,,24076,rupiah,2024,survey_estimate,per_capita,10.1,477,,Telur dan susu
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/telur_dan_susu,,29599,rupiah,2025,survey_estimate,per_capita,10.1,477,,Telur dan susu
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/sayur_sayuran,,90718,rupiah,2024,survey_estimate,per_capita,10.1,477,,Sayur-sayuran
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/sayur_sayuran,,80218,rupiah,2025,survey_estimate,per_capita,10.1,477,,Sayur-sayuran
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/kacang_kacangan,,8076,rupiah,2024,survey_estimate,per_capita,10.1,477,,Kacang-kacangan
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/kacang_kacangan,,8436,rupiah,2025,survey_estimate,per_capita,10.1,477,,Kacang-kacangan
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/buah_buahan,,27308,rupiah,2024,survey_estimate,per_capita,10.1,477,,Buah-buahan
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/buah_buahan,,28682,rupiah,2025,survey_estimate,per_capita,10.1,477,,Buah-buahan
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,29455,rupiah,2024,survey_estimate,per_capita,10.1,477,,Minyak dan kelapa
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/minyak_dan_kelapa,,32893,rupiah,2025,survey_estimate,per_capita,10.1,477,,Minyak dan kelapa
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/bahan_minuman,,19444,rupiah,2024,survey_estimate,per_capita,10.1,477,,Bahan minuman
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/bahan_minuman,,19674,rupiah,2025,survey_estimate,per_capita,10.1,477,,Bahan minuman
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/bumbu_bumbuan,,8113,rupiah,2024,survey_estimate,per_capita,10.1,477,,Bumbu-bumbuan
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/bumbu_bumbuan,,10068,rupiah,2025,survey_estimate,per_capita,10.1,477,,Bumbu-bumbuan
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/konsumsi_lainnya,,6770,rupiah,2024,survey_estimate,per_capita,10.1,477,,Konsumsi lainnya
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/konsumsi_lainnya,,8557,rupiah,2025,survey_estimate,per_capita,10.1,477,,Konsumsi lainnya
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,173010,rupiah,2024,survey_estimate,per_capita,10.1,477,,Makanan dan minuman jadi
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,201370,rupiah,2025,survey_estimate,per_capita,10.1,477,,Makanan dan minuman jadi
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/rokok,,115655,rupiah,2024,survey_estimate,per_capita,10.1,477,,Rokok
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/rokok,,112605,rupiah,2025,survey_estimate,per_capita,10.1,477,,Rokok
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/jumlah_makanan,,709070,rupiah,2024,survey_estimate,per_capita,10.1,477,,Jumlah makanan
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/jumlah_makanan,,748174,rupiah,2025,survey_estimate,per_capita,10.1,477,,Jumlah makanan
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,253345,rupiah,2024,survey_estimate,per_capita,10.1,477,,Perumahan dan fasilitas rumah tangga
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,244636,rupiah,2025,survey_estimate,per_capita,10.1,477,,Perumahan dan fasilitas rumah tangga
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,100823,rupiah,2024,survey_estimate,per_capita,10.1,477,,Aneka barang dan jasa
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,104044,rupiah,2025,survey_estimate,per_capita,10.1,477,,Aneka barang dan jasa
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,38191,rupiah,2024,survey_estimate,per_capita,10.1,477,,"Pakaian, alas kaki, dan tutup kepala"
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,41949,rupiah,2025,survey_estimate,per_capita,10.1,477,,"Pakaian, alas kaki, dan tutup kepala"
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/barang_tahan_lama,,34511,rupiah,2024,survey_estimate,per_capita,10.1,477,,Barang tahan lama
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/barang_tahan_lama,,67986,rupiah,2025,survey_estimate,per_capita,10.1,477,,Barang tahan lama
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,39884,rupiah,2024,survey_estimate,per_capita,10.1,477,,"Pajak, pungutan, dan asuransi"
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,41644,rupiah,2025,survey_estimate,per_capita,10.1,477,,"Pajak, pungutan, dan asuransi"
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,19319,rupiah,2024,survey_estimate,per_capita,10.1,477,,Keperluan pesta dan upacara/kenduri
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,21867,rupiah,2025,survey_estimate,per_capita,10.1,477,,Keperluan pesta dan upacara/kenduri
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,486073,rupiah,2024,survey_estimate,per_capita,10.1,477,,Jumlah bukan makanan
+13.01,2,Kabupaten Pesisir Selatan,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,522126,rupiah,2025,survey_estimate,per_capita,10.1,477,,Jumlah bukan makanan
+13.01,2,Kabupaten Pesisir Selatan,expenditure,total,,1195143,rupiah,2024,survey_estimate,per_capita,10.1,477,,
+13.01,2,Kabupaten Pesisir Selatan,expenditure,total,,1270299,rupiah,2025,survey_estimate,per_capita,10.1,477,,

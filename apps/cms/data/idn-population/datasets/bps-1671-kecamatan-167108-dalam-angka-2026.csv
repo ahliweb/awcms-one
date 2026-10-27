@@ -1,0 +1,16 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.71.08.1001,4,Sukamaju,sex,laki_laki,,16155,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.08.1001,4,Sukamaju,sex,perempuan,,16165,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.08.1001,4,Sukamaju,total,total,,32320,jiwa,2025,registration,total_population,3.1,32,,
+16.71.08.1006,4,Sialang,sex,laki_laki,,10161,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.08.1006,4,Sialang,sex,perempuan,,10643,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.08.1006,4,Sialang,total,total,,20804,jiwa,2025,registration,total_population,3.1,32,,
+16.71.08.1002,4,Sako,sex,laki_laki,,24595,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.08.1002,4,Sako,sex,perempuan,,24773,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.08.1002,4,Sako,total,total,,49368,jiwa,2025,registration,total_population,3.1,32,,
+16.71.08.1007,4,Sako Baru,sex,laki_laki,,7540,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.08.1007,4,Sako Baru,sex,perempuan,,7541,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.08.1007,4,Sako Baru,total,total,,15081,jiwa,2025,registration,total_population,3.1,32,,
+16.71.08,3,Sako,sex,laki_laki,,58451,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+16.71.08,3,Sako,sex,perempuan,,59122,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.08,3,Sako,total,total,,117573,jiwa,2025,registration,total_population,3.1,32,,

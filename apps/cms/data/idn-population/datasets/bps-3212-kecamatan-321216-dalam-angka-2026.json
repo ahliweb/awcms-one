@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3212-kecamatan-321216-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.12.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sindang Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN INDRAMAYU",
+  "publisherDomain": "3212",
+  "publisherWebsite": "https://indramayukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN INDRAMAYU (https://indramayukab.bps.go.id), publikasi \"Kecamatan Sindang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3212160",
+  "publicationNumber": "32120.25024",
+  "issn": "2807-4505",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://indramayukab.bps.go.id/id/publication/2026/09/28/8b9698e5cdbc493cd5c4ab66/kecamatan-sindang-dalam-angka-2026.html",
+  "sourceFileSha256": "4387ad31f3b9a17c6fb8d4841d25e70425e41e7b5a4bc7b09c481d0fe81de479",
+  "sourceFileBytes": 21354383,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Indramayu.",
+  "csvPath": "datasets/bps-3212-kecamatan-321216-dalam-angka-2026.csv",
+  "csvSha256": "13f16cf1ac2ef4578b598c4ecee0f01380c3f57bcea6f72ebc28f24d4742c3c4",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sindang, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sindang, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"Nama Kecamatan\": unmatched "
+  ]
+}

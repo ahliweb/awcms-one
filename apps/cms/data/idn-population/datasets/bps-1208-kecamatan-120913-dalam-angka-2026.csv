@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.09.13.2003,4,Pinanggiripan,sex,laki_laki,,1192,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.09.13.2003,4,Pinanggiripan,sex,perempuan,,1168,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.09.13.2003,4,Pinanggiripan,total,total,,2360,jiwa,2025,registration,total_population,3.1,26,,
+12.09.13.2006,4,Perkebunan Pulahan,sex,laki_laki,,655,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.09.13.2006,4,Perkebunan Pulahan,sex,perempuan,,656,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.09.13.2006,4,Perkebunan Pulahan,total,total,,1311,jiwa,2025,registration,total_population,3.1,26,,
+12.09.13.2007,4,Hessa Perlompongan,sex,laki_laki,,2803,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.09.13.2007,4,Hessa Perlompongan,sex,perempuan,,2654,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.09.13.2007,4,Hessa Perlompongan,total,total,,5457,jiwa,2025,registration,total_population,3.1,26,,
+12.09.13.2008,4,Perkebunan Air Batu I/II,sex,laki_laki,,903,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.09.13.2008,4,Perkebunan Air Batu I/II,sex,perempuan,,927,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.09.13.2008,4,Perkebunan Air Batu I/II,total,total,,1830,jiwa,2025,registration,total_population,3.1,26,,
+12.09.13.2009,4,Perkebunan Air Batu III/IX,sex,laki_laki,,518,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.09.13.2009,4,Perkebunan Air Batu III/IX,sex,perempuan,,493,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.09.13.2009,4,Perkebunan Air Batu III/IX,total,total,,1011,jiwa,2025,registration,total_population,3.1,26,,
+12.09.13.2010,4,Danau Sijabut,sex,laki_laki,,3475,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.09.13.2010,4,Danau Sijabut,sex,perempuan,,3403,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.09.13.2010,4,Danau Sijabut,total,total,,6878,jiwa,2025,registration,total_population,3.1,26,,
+12.09.13.2012,4,Air Teluk Hessa,sex,laki_laki,,1527,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.09.13.2012,4,Air Teluk Hessa,sex,perempuan,,1456,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.09.13.2012,4,Air Teluk Hessa,total,total,,2983,jiwa,2025,registration,total_population,3.1,26,,
+12.09.13.2013,4,Air Genting,sex,laki_laki,,3765,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.09.13.2013,4,Air Genting,sex,perempuan,,3659,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.09.13.2013,4,Air Genting,total,total,,7424,jiwa,2025,registration,total_population,3.1,26,,
+12.09.13.2014,4,Hessa Air Genting,sex,laki_laki,,3883,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.09.13.2014,4,Hessa Air Genting,sex,perempuan,,3754,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.09.13.2014,4,Hessa Air Genting,total,total,,7637,jiwa,2025,registration,total_population,3.1,26,,
+12.09.13.2018,4,Sijabut Teratai,sex,laki_laki,,1535,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.09.13.2018,4,Sijabut Teratai,sex,perempuan,,1484,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.09.13.2018,4,Sijabut Teratai,total,total,,3019,jiwa,2025,registration,total_population,3.1,26,,
+12.09.13.2019,4,Pulau Pule,sex,laki_laki,,1078,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.09.13.2019,4,Pulau Pule,sex,perempuan,,1031,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.09.13.2019,4,Pulau Pule,total,total,,2109,jiwa,2025,registration,total_population,3.1,26,,
+12.09.13,3,Air Batu,sex,laki_laki,,24325,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.09.13,3,Air Batu,sex,perempuan,,23743,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.09.13,3,Air Batu,total,total,,48068,jiwa,2025,registration,total_population,3.1,26,,

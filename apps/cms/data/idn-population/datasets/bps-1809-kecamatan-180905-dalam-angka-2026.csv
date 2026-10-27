@@ -1,0 +1,184 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.09.05.2012,4,Sanggi,sex,laki_laki,,1830,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.05.2012,4,Sanggi,sex,perempuan,,1708,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.05.2012,4,Sanggi,total,total,,3538,jiwa,2025,registration,total_population,3.1,30,,
+18.09.05.2004,4,Durian,sex,laki_laki,,995,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.05.2004,4,Durian,sex,perempuan,,978,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.05.2004,4,Durian,total,total,,1973,jiwa,2025,registration,total_population,3.1,30,,
+18.09.05.2001,4,Banjaran,sex,laki_laki,,2092,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.05.2001,4,Banjaran,sex,perempuan,,1974,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.05.2001,4,Banjaran,total,total,,4066,jiwa,2025,registration,total_population,3.1,30,,
+18.09.05.2017,4,Way Urang,sex,laki_laki,,751,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.05.2017,4,Way Urang,sex,perempuan,,698,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.05.2017,4,Way Urang,total,total,,1449,jiwa,2025,registration,total_population,3.1,30,,
+18.09.05.2010,4,Paya,sex,laki_laki,,625,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.05.2010,4,Paya,sex,perempuan,,646,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.05.2010,4,Paya,total,total,,1271,jiwa,2025,registration,total_population,3.1,30,,
+18.09.05.2016,4,Tambangan,sex,laki_laki,,563,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.05.2016,4,Tambangan,sex,perempuan,,514,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.05.2016,4,Tambangan,total,total,,1077,jiwa,2025,registration,total_population,3.1,30,,
+18.09.05.2009,4,Hanau Berak,sex,laki_laki,,1159,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.05.2009,4,Hanau Berak,sex,perempuan,,1059,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.05.2009,4,Hanau Berak,total,total,,2218,jiwa,2025,registration,total_population,3.1,30,,
+18.09.05.2011,4,Padang Cermin,sex,laki_laki,,4177,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.05.2011,4,Padang Cermin,sex,perempuan,,3916,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.05.2011,4,Padang Cermin,total,total,,8093,jiwa,2025,registration,total_population,3.1,30,,
+18.09.05.2031,4,Gayau,sex,laki_laki,,911,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.05.2031,4,Gayau,sex,perempuan,,907,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.05.2031,4,Gayau,total,total,,1818,jiwa,2025,registration,total_population,3.1,30,,
+18.09.05.2026,4,Trimulyo,sex,laki_laki,,541,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.05.2026,4,Trimulyo,sex,perempuan,,471,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.05.2026,4,Trimulyo,total,total,,1012,jiwa,2025,registration,total_population,3.1,30,,
+18.09.05.2025,4,Khepong Jaya,sex,laki_laki,,630,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.05.2025,4,Khepong Jaya,sex,perempuan,,621,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.05.2025,4,Khepong Jaya,total,total,,1251,jiwa,2025,registration,total_population,3.1,30,,
+18.09.05.2032,4,Dantar,sex,laki_laki,,1559,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.05.2032,4,Dantar,sex,perempuan,,1420,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.05.2032,4,Dantar,total,total,,2979,jiwa,2025,registration,total_population,3.1,30,,
+18.09.05,3,Padang Cermin,sex,laki_laki,,15833,jiwa,2025,registration,total_population,3.1,30,,Laki-laki/Male
+18.09.05,3,Padang Cermin,sex,perempuan,,14912,jiwa,2025,registration,total_population,3.1,30,,Perempuan/Female
+18.09.05,3,Padang Cermin,total,total,,30745,jiwa,2025,registration,total_population,3.1,30,,
+18.09.05,3,Padang Cermin,age_group,0-5,laki_laki,1160,jiwa,2025,registration,total_population,3.2,32,,0-5
+18.09.05,3,Padang Cermin,age_group,0-5,perempuan,1118,jiwa,2025,registration,total_population,3.2,32,,0-5
+18.09.05,3,Padang Cermin,age_group,0-5,,2278,jiwa,2025,registration,total_population,3.2,32,,0-5
+18.09.05,3,Padang Cermin,age_group,6-10,laki_laki,1352,jiwa,2025,registration,total_population,3.2,32,,6-10
+18.09.05,3,Padang Cermin,age_group,6-10,perempuan,1300,jiwa,2025,registration,total_population,3.2,32,,6-10
+18.09.05,3,Padang Cermin,age_group,6-10,,2652,jiwa,2025,registration,total_population,3.2,32,,6-10
+18.09.05,3,Padang Cermin,age_group,11-17,laki_laki,2058,jiwa,2025,registration,total_population,3.2,32,,11-17
+18.09.05,3,Padang Cermin,age_group,11-17,perempuan,1879,jiwa,2025,registration,total_population,3.2,32,,11-17
+18.09.05,3,Padang Cermin,age_group,11-17,,3937,jiwa,2025,registration,total_population,3.2,32,,11-17
+18.09.05,3,Padang Cermin,age_group,18-22,laki_laki,1120,jiwa,2025,registration,total_population,3.2,32,,18-22
+18.09.05,3,Padang Cermin,age_group,18-22,perempuan,1089,jiwa,2025,registration,total_population,3.2,32,,18-22
+18.09.05,3,Padang Cermin,age_group,18-22,,2209,jiwa,2025,registration,total_population,3.2,32,,18-22
+18.09.05,3,Padang Cermin,age_group,23-27,laki_laki,1223,jiwa,2025,registration,total_population,3.2,32,,23-27
+18.09.05,3,Padang Cermin,age_group,23-27,perempuan,1083,jiwa,2025,registration,total_population,3.2,32,,23-27
+18.09.05,3,Padang Cermin,age_group,23-27,,2306,jiwa,2025,registration,total_population,3.2,32,,23-27
+18.09.05,3,Padang Cermin,age_group,28-32,laki_laki,1073,jiwa,2025,registration,total_population,3.2,32,,28-32
+18.09.05,3,Padang Cermin,age_group,28-32,perempuan,943,jiwa,2025,registration,total_population,3.2,32,,28-32
+18.09.05,3,Padang Cermin,age_group,28-32,,2016,jiwa,2025,registration,total_population,3.2,32,,28-32
+18.09.05,3,Padang Cermin,age_group,33-38,laki_laki,1222,jiwa,2025,registration,total_population,3.2,32,,33-38
+18.09.05,3,Padang Cermin,age_group,33-38,perempuan,1258,jiwa,2025,registration,total_population,3.2,32,,33-38
+18.09.05,3,Padang Cermin,age_group,33-38,,2480,jiwa,2025,registration,total_population,3.2,32,,33-38
+18.09.05,3,Padang Cermin,age_group,39-43,laki_laki,1327,jiwa,2025,registration,total_population,3.2,32,,39-43
+18.09.05,3,Padang Cermin,age_group,39-43,perempuan,1288,jiwa,2025,registration,total_population,3.2,32,,39-43
+18.09.05,3,Padang Cermin,age_group,39-43,,2615,jiwa,2025,registration,total_population,3.2,32,,39-43
+18.09.05,3,Padang Cermin,age_group,44-48,laki_laki,1193,jiwa,2025,registration,total_population,3.2,32,,44-48
+18.09.05,3,Padang Cermin,age_group,44-48,perempuan,1076,jiwa,2025,registration,total_population,3.2,32,,44-48
+18.09.05,3,Padang Cermin,age_group,44-48,,2269,jiwa,2025,registration,total_population,3.2,32,,44-48
+18.09.05,3,Padang Cermin,age_group,49-53,laki_laki,1042,jiwa,2025,registration,total_population,3.2,32,,49-53
+18.09.05,3,Padang Cermin,age_group,49-53,perempuan,959,jiwa,2025,registration,total_population,3.2,32,,49-53
+18.09.05,3,Padang Cermin,age_group,49-53,,2001,jiwa,2025,registration,total_population,3.2,32,,49-53
+18.09.05,3,Padang Cermin,age_group,54-58,laki_laki,745,jiwa,2025,registration,total_population,3.2,32,,54-58
+18.09.05,3,Padang Cermin,age_group,54-58,perempuan,745,jiwa,2025,registration,total_population,3.2,32,,54-58
+18.09.05,3,Padang Cermin,age_group,54-58,,1490,jiwa,2025,registration,total_population,3.2,32,,54-58
+18.09.05,3,Padang Cermin,age_group,59-63,laki_laki,683,jiwa,2025,registration,total_population,3.2,32,,59-63
+18.09.05,3,Padang Cermin,age_group,59-63,perempuan,665,jiwa,2025,registration,total_population,3.2,32,,59-63
+18.09.05,3,Padang Cermin,age_group,59-63,,1348,jiwa,2025,registration,total_population,3.2,32,,59-63
+18.09.05,3,Padang Cermin,age_group,64-68,laki_laki,597,jiwa,2025,registration,total_population,3.2,32,,64-68
+18.09.05,3,Padang Cermin,age_group,64-68,perempuan,537,jiwa,2025,registration,total_population,3.2,32,,64-68
+18.09.05,3,Padang Cermin,age_group,64-68,,1134,jiwa,2025,registration,total_population,3.2,32,,64-68
+18.09.05,3,Padang Cermin,age_group,69-73,laki_laki,369,jiwa,2025,registration,total_population,3.2,32,,69-73
+18.09.05,3,Padang Cermin,age_group,69-73,perempuan,374,jiwa,2025,registration,total_population,3.2,32,,69-73
+18.09.05,3,Padang Cermin,age_group,69-73,,743,jiwa,2025,registration,total_population,3.2,32,,69-73
+18.09.05,3,Padang Cermin,age_group,74+,laki_laki,669,jiwa,2025,registration,total_population,3.2,32,,>74
+18.09.05,3,Padang Cermin,age_group,74+,perempuan,598,jiwa,2025,registration,total_population,3.2,32,,>74
+18.09.05,3,Padang Cermin,age_group,74+,,1267,jiwa,2025,registration,total_population,3.2,32,,>74
+18.09.05,3,Padang Cermin,sex,laki_laki,,15833,jiwa,2025,registration,total_population,3.2,32,,Laki-laki/Male
+18.09.05,3,Padang Cermin,sex,perempuan,,14912,jiwa,2025,registration,total_population,3.2,32,,Perempuan/Female
+18.09.05,3,Padang Cermin,total,total,,30745,jiwa,2025,registration,total_population,3.2,32,,
+18.09.05.2012,4,Sanggi,religion,islam,,3525,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.05.2012,4,Sanggi,religion,kristen,,11,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.05.2012,4,Sanggi,religion,katolik,,2,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.05.2012,4,Sanggi,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.05.2004,4,Durian,religion,islam,,1969,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.05.2004,4,Durian,religion,kristen,,3,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.05.2004,4,Durian,religion,katolik,,1,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.05.2004,4,Durian,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.05.2001,4,Banjaran,religion,islam,,3940,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.05.2001,4,Banjaran,religion,kristen,,118,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.05.2001,4,Banjaran,religion,katolik,,8,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.05.2001,4,Banjaran,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.05.2017,4,Way Urang,religion,islam,,1402,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.05.2017,4,Way Urang,religion,kristen,,47,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.05.2017,4,Way Urang,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.05.2017,4,Way Urang,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.05.2010,4,Paya,religion,islam,,1191,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.05.2010,4,Paya,religion,kristen,,80,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.05.2010,4,Paya,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.05.2010,4,Paya,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.05.2016,4,Tambangan,religion,islam,,1077,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.05.2016,4,Tambangan,religion,kristen,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Kristen/
+18.09.05.2016,4,Tambangan,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.05.2016,4,Tambangan,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.05.2009,4,Hanau Berak,religion,islam,,2202,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.05.2009,4,Hanau Berak,religion,kristen,,13,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.05.2009,4,Hanau Berak,religion,katolik,,3,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.05.2009,4,Hanau Berak,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.05.2011,4,Padang Cermin,religion,islam,,8082,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.05.2011,4,Padang Cermin,religion,kristen,,6,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.05.2011,4,Padang Cermin,religion,katolik,,3,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.05.2011,4,Padang Cermin,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.05.2031,4,Gayau,religion,islam,,1802,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.05.2031,4,Gayau,religion,kristen,,4,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.05.2031,4,Gayau,religion,katolik,,12,jiwa,2025,registration,total_population,4.4.3,56,,Catholic
+18.09.05.2031,4,Gayau,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.05.2026,4,Trimulyo,religion,islam,,992,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.05.2026,4,Trimulyo,religion,kristen,,20,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.05.2026,4,Trimulyo,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.05.2026,4,Trimulyo,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.05.2025,4,Khepong Jaya,religion,islam,,1245,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.05.2025,4,Khepong Jaya,religion,kristen,,6,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.05.2025,4,Khepong Jaya,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.05.2025,4,Khepong Jaya,religion,hindu,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Hindu/
+18.09.05.2032,4,Dantar,religion,islam,,2972,jiwa,2025,registration,total_population,4.4.3,56,,Islam/
+18.09.05.2032,4,Dantar,religion,kristen,,4,jiwa,2025,registration,total_population,4.4.3,56,,Kristen/
+18.09.05.2032,4,Dantar,religion,katolik,,0,jiwa,2025,registration,total_population,4.4.3,56,nil,Catholic
+18.09.05.2032,4,Dantar,religion,hindu,,3,jiwa,2025,registration,total_population,4.4.3,56,,Hindu/
+18.09.05.2012,4,Sanggi,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.05.2012,4,Sanggi,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.05.2012,4,Sanggi,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.05.2012,4,Sanggi,total,total,,3538,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.05.2004,4,Durian,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.05.2004,4,Durian,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.05.2004,4,Durian,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.05.2004,4,Durian,total,total,,1973,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.05.2001,4,Banjaran,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.05.2001,4,Banjaran,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.05.2001,4,Banjaran,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.05.2001,4,Banjaran,total,total,,4066,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.05.2017,4,Way Urang,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.05.2017,4,Way Urang,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.05.2017,4,Way Urang,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.05.2017,4,Way Urang,total,total,,1449,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.05.2010,4,Paya,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.05.2010,4,Paya,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.05.2010,4,Paya,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.05.2010,4,Paya,total,total,,1271,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.05.2016,4,Tambangan,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.05.2016,4,Tambangan,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.05.2016,4,Tambangan,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.05.2016,4,Tambangan,total,total,,1077,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.05.2009,4,Hanau Berak,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.05.2009,4,Hanau Berak,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.05.2009,4,Hanau Berak,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.05.2009,4,Hanau Berak,total,total,,2218,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.05.2011,4,Padang Cermin,religion,buddha,,1,jiwa,2025,registration,total_population,4.4.3,57,,Budha/
+18.09.05.2011,4,Padang Cermin,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.05.2011,4,Padang Cermin,religion,kepercayaan,,1,jiwa,2025,registration,total_population,4.4.3,57,,Kepercayaan/
+18.09.05.2011,4,Padang Cermin,total,total,,8093,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.05.2031,4,Gayau,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.05.2031,4,Gayau,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.05.2031,4,Gayau,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.05.2031,4,Gayau,total,total,,1818,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.05.2026,4,Trimulyo,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.05.2026,4,Trimulyo,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.05.2026,4,Trimulyo,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.05.2026,4,Trimulyo,total,total,,1012,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.05.2025,4,Khepong Jaya,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.05.2025,4,Khepong Jaya,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.05.2025,4,Khepong Jaya,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.05.2025,4,Khepong Jaya,total,total,,1251,jiwa,2025,registration,total_population,4.4.3,57,,
+18.09.05.2032,4,Dantar,religion,buddha,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Budha/
+18.09.05.2032,4,Dantar,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Khonghucu/
+18.09.05.2032,4,Dantar,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.4.3,57,nil,Kepercayaan/
+18.09.05.2032,4,Dantar,total,total,,2979,jiwa,2025,registration,total_population,4.4.3,57,,

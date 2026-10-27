@@ -1,0 +1,31 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.18.05.2003,4,Seunong,sex,laki_laki,,393,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.18.05.2003,4,Seunong,sex,perempuan,,401,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.18.05.2003,4,Seunong,total,total,,794,jiwa,2025,registration,total_population,3.1,25,,
+11.18.05.2001,4,Lhok Sandeng,sex,laki_laki,,97,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.18.05.2001,4,Lhok Sandeng,sex,perempuan,,98,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.18.05.2001,4,Lhok Sandeng,total,total,,195,jiwa,2025,registration,total_population,3.1,25,,
+11.18.05.2002,4,Sarah Mane,sex,laki_laki,,175,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.18.05.2002,4,Sarah Mane,sex,perempuan,,189,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.18.05.2002,4,Sarah Mane,total,total,,364,jiwa,2025,registration,total_population,3.1,25,,
+11.18.05.2004,4,Lancok,sex,laki_laki,,329,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.18.05.2004,4,Lancok,sex,perempuan,,324,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.18.05.2004,4,Lancok,total,total,,653,jiwa,2025,registration,total_population,3.1,25,,
+11.18.05.2010,4,Gampong Blang,sex,laki_laki,,49,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.18.05.2010,4,Gampong Blang,sex,perempuan,,56,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.18.05.2010,4,Gampong Blang,total,total,,105,jiwa,2025,registration,total_population,3.1,25,,
+11.18.05.2011,4,Blang Cut,sex,laki_laki,,242,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.18.05.2011,4,Blang Cut,sex,perempuan,,235,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.18.05.2011,4,Blang Cut,total,total,,477,jiwa,2025,registration,total_population,3.1,25,,
+11.18.05.2012,4,Dayah Kruet,sex,laki_laki,,395,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.18.05.2012,4,Dayah Kruet,sex,perempuan,,383,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.18.05.2012,4,Dayah Kruet,total,total,,778,jiwa,2025,registration,total_population,3.1,25,,
+11.18.05.2016,4,Beuringen,sex,laki_laki,,450,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.18.05.2016,4,Beuringen,sex,perempuan,,563,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.18.05.2016,4,Beuringen,total,total,,1013,jiwa,2025,registration,total_population,3.1,25,,
+11.18.05.2019,4,Pante Beureune,sex,laki_laki,,241,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.18.05.2019,4,Pante Beureune,sex,perempuan,,269,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.18.05.2019,4,Pante Beureune,total,total,,510,jiwa,2025,registration,total_population,3.1,25,,
+11.18.05.2017,4,Buangan,sex,laki_laki,,365,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+11.18.05.2017,4,Buangan,sex,perempuan,,383,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+11.18.05.2017,4,Buangan,total,total,,748,jiwa,2025,registration,total_population,3.1,25,,

@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.71.12.1005,4,Pulokerto,sex,perempuan,,7274,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.12.1005,4,Pulokerto,total,total,,14844,jiwa,2025,registration,total_population,3.1,32,,
+16.71.12.1001,4,Gandus,sex,perempuan,,13951,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.12.1001,4,Gandus,total,total,,28474,jiwa,2025,registration,total_population,3.1,32,,
+16.71.12.1004,4,Karang Jaya,sex,perempuan,,6221,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.12.1004,4,Karang Jaya,total,total,,12482,jiwa,2025,registration,total_population,3.1,32,,
+16.71.12.1002,4,Karang Anyar,sex,perempuan,,7741,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.12.1002,4,Karang Anyar,total,total,,15615,jiwa,2025,registration,total_population,3.1,32,,
+16.71.12.1003,4,Tiga–Puluh–Enam Ilir,sex,perempuan,,6211,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.12.1003,4,Tiga–Puluh–Enam Ilir,total,total,,12467,jiwa,2025,registration,total_population,3.1,32,,
+16.71.12,3,Gandus,sex,perempuan,,41398,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+16.71.12,3,Gandus,total,total,,83882,jiwa,2025,registration,total_population,3.1,32,,

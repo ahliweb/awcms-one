@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1225-kecamatan-122501-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.25.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lahomi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Nias Barat",
+  "publisherDomain": "1225",
+  "publisherWebsite": "https://niasbaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Nias Barat (https://niasbaratkab.bps.go.id), publikasi \"Kecamatan Lahomi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1225020",
+  "publicationNumber": "12250.26005",
+  "issn": "3109-4597",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://niasbaratkab.bps.go.id/id/publication/2026/09/28/074a064412dc1b4dec71f2a0/kecamatan-lahomi-dalam-angka-2026.html",
+  "sourceFileSha256": "e7708de687e0126d862b9fb0946eaa9c9387482d9aa7deecdff0a4f66162e9f2",
+  "sourceFileBytes": 4284777,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Nias Barat.",
+  "csvPath": "datasets/bps-1225-kecamatan-122501-dalam-angka-2026.csv",
+  "csvSha256": "b66c0f04099699369934f28a18de2b1ccc7bce1d10a016fecb8bbd9fe6f6e803",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Lahomi, 2025",
+      "printedPages": [34, 35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lahomi, 2025",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"008 Hiliadulo\": unmatched ",
+    "table 3.1: row not stored: row \"008 Hiliadulo\": unmatched "
+  ]
+}

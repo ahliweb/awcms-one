@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1224-kecamatan-122411-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.24.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lahewa Timur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Nias Utara",
+  "publisherDomain": "1224",
+  "publisherWebsite": "https://niasutarakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Nias Utara (https://niasutarakab.bps.go.id), publikasi \"Kecamatan Lahewa Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1224090",
+  "publicationNumber": "12240.26014",
+  "issn": "2548-2912",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://niasutarakab.bps.go.id/id/publication/2026/09/28/d4e8e9bef9e31226f2671777/kecamatan-lahewa-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "439fa80170b72b5fd5876c82dd263ba37638d00b373cdba5d8914a2dc09836af",
+  "sourceFileBytes": 5683624,
+  "sourcePages": [41, 42, 43],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Nias Utara.",
+  "csvPath": "datasets/bps-1224-kecamatan-122411-dalam-angka-2026.csv",
+  "csvSha256": "9e95dac29fa97f1123696180ea9211eaa3eb4e3bfe548795f90dda8beac8d8bc",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Lahewa Timur, 2025",
+      "printedPages": [41, 42],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lahewa Timur, 2025",
+      "printedPages": [43],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

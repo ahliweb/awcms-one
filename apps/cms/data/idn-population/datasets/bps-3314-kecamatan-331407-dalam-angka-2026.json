@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-3314-kecamatan-331407-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.14.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sambungmacan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sragen",
+  "publisherDomain": "3314",
+  "publisherWebsite": "https://sragenkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sragen (https://sragenkab.bps.go.id), publikasi \"Kecamatan Sambungmacan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3314070",
+  "publicationNumber": "3314026013",
+  "issn": "0853-5027",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sragenkab.bps.go.id/id/publication/2026/09/28/c696031e317cd85892e80b9c/kecamatan-sambungmacan-dalam-angka-2026.html",
+  "sourceFileSha256": "76cc05a96ce8434b682fd6d2ff2ce0e26bc538b49e320b214403ab6106b25811",
+  "sourceFileBytes": 17521992,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sragen.",
+  "csvPath": "datasets/bps-3314-kecamatan-331407-dalam-angka-2026.csv",
+  "csvSha256": "823a5e3f71f8081079810a66b515f88336e1a4570a86a901a87102370c808682",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sambungmacan, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sambungmacan, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"003 Banyuurip\": unmatched ",
+    "table 3.1: row not stored: row \"003 Banyuurip\": unmatched "
+  ]
+}

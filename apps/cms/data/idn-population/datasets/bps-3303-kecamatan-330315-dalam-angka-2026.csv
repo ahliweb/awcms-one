@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.03.15.2001,4,Karangpule,sex,laki_laki,,823,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.15.2001,4,Karangpule,sex,perempuan,,778,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.15.2001,4,Karangpule,total,total,,1601,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.15.2011,4,Kalitinggar,sex,laki_laki,,1375,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.15.2011,4,Kalitinggar,sex,perempuan,,1360,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.15.2011,4,Kalitinggar,total,total,,2735,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.15.2002,4,Sokawera,sex,laki_laki,,1356,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.15.2002,4,Sokawera,sex,perempuan,,1343,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.15.2002,4,Sokawera,total,total,,2699,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.15.2009,4,Padamara,sex,laki_laki,,1482,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.15.2009,4,Padamara,sex,perempuan,,1533,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.15.2009,4,Padamara,total,total,,3015,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.15.2003,4,Karangjambe,sex,laki_laki,,2123,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.15.2003,4,Karangjambe,sex,perempuan,,2084,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.15.2003,4,Karangjambe,total,total,,4207,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.15.2005,4,Bojanegara,sex,laki_laki,,3310,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.15.2005,4,Bojanegara,sex,perempuan,,3352,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.15.2005,4,Bojanegara,total,total,,6662,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.15.1004,4,Karangsentul,sex,laki_laki,,1403,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.15.1004,4,Karangsentul,sex,perempuan,,1432,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.15.1004,4,Karangsentul,total,total,,2835,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.15.2006,4,Gemuruh,sex,laki_laki,,2320,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.15.2006,4,Gemuruh,sex,perempuan,,2241,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.15.2006,4,Gemuruh,total,total,,4561,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.15.2007,4,Dawuhan,sex,laki_laki,,2199,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.15.2007,4,Dawuhan,sex,perempuan,,2147,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.15.2007,4,Dawuhan,total,total,,4346,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.15.2008,4,Prigi,sex,laki_laki,,1646,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.15.2008,4,Prigi,sex,perempuan,,1612,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.15.2008,4,Prigi,total,total,,3258,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.15.2010,4,Purbayasa,sex,laki_laki,,1180,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.15.2010,4,Purbayasa,sex,perempuan,,1196,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.15.2010,4,Purbayasa,total,total,,2376,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.15.2013,4,Karanggambas,sex,laki_laki,,2298,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.15.2013,4,Karanggambas,sex,perempuan,,2288,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.15.2013,4,Karanggambas,total,total,,4586,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.15.2012,4,Mipiran,sex,laki_laki,,1787,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.15.2012,4,Mipiran,sex,perempuan,,1748,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.15.2012,4,Mipiran,total,total,,3535,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.15.2014,4,Kalitinggar Kidul,sex,laki_laki,,919,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.15.2014,4,Kalitinggar Kidul,sex,perempuan,,912,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.15.2014,4,Kalitinggar Kidul,total,total,,1831,jiwa,2025,registration,total_population,3.1.1,19,,
+33.03.15,3,Kecamatan Padamara,sex,laki_laki,,24221,jiwa,2025,registration,total_population,3.1.1,19,,Laki-Laki
+33.03.15,3,Kecamatan Padamara,sex,perempuan,,24026,jiwa,2025,registration,total_population,3.1.1,19,,Perempuan
+33.03.15,3,Kecamatan Padamara,total,total,,48247,jiwa,2025,registration,total_population,3.1.1,19,,

@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3512-kecamatan-351204-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.12.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mlandingan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Situbondo",
+  "publisherDomain": "3512",
+  "publisherWebsite": "https://situbondokab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Situbondo (https://situbondokab.bps.go.id), publikasi \"Kecamatan Mlandingan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3512060",
+  "publicationNumber": "35120.26016",
+  "issn": "2808-6925",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://situbondokab.bps.go.id/id/publication/2026/09/28/5eddb00808cc29098bbbc033/kecamatan-mlandingan-dalam-angka-2026.html",
+  "sourceFileSha256": "b63d62dd4d3de3422f48327338604f9d25c707309ba3c68500b71efa0038122d",
+  "sourceFileBytes": 4915253,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Situbondo.",
+  "csvPath": "datasets/bps-3512-kecamatan-351204-dalam-angka-2026.csv",
+  "csvSha256": "6f15c2fc095f8c78d7f10f89396657c779def8eccc51e8384448f00c995d0c14",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Mlandingan, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mlandingan, 2025",
+      "printedPages": [35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.3 (religion-by-region) could not be read reliably and is not included (religion column 7 header \"Konghuchu Confucian\" not recognised)",
+    "table 3.1: the rows of region 35.12.04.2002 are not stored: sex split vs total: parts sum 3287.0000 != 3145.0000 (diff 142.0000); the source itself is inconsistent"
+  ]
+}

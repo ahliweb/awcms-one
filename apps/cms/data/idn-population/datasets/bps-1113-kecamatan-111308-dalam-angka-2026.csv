@@ -1,0 +1,55 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.13.08.2004,4,Sangir,sex,perempuan,,450,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.08.2004,4,Sangir,total,total,,884,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.08.2005,4,Panglima Linting,sex,perempuan,,945,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.08.2005,4,Panglima Linting,total,total,,1926,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.08.2001,4,Pangur,sex,perempuan,,206,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.08.2001,4,Pangur,total,total,,407,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.08.2002,4,Badak,sex,perempuan,,808,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.08.2002,4,Badak,total,total,,1568,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.08.2006,4,Blangtemung,sex,perempuan,,369,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.08.2006,4,Blangtemung,total,total,,750,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.08.2003,4,Kendawi,sex,perempuan,,296,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.08.2003,4,Kendawi,total,total,,584,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.08.2009,4,Uning Sepakat,sex,perempuan,,202,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.08.2009,4,Uning Sepakat,total,total,,382,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.08.2008,4,Uning Gelung,sex,perempuan,,264,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.08.2008,4,Uning Gelung,total,total,,532,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.08.2007,4,Rerebe,sex,perempuan,,306,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.08.2007,4,Rerebe,total,total,,605,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.08,3,Dabun Gelang,sex,perempuan,,3846,jiwa,2025,registration,total_population,unnumbered-p29,29,,Perempuan/
+11.13.08,3,Dabun Gelang,total,total,,7638,jiwa,2025,registration,total_population,unnumbered-p29,29,,
+11.13.08,3,Dabun Gelang,age_group,0-4,perempuan,369,jiwa,2025,registration,total_population,unnumbered-p31,31,,0-4
+11.13.08,3,Dabun Gelang,age_group,0-4,,753,jiwa,2025,registration,total_population,unnumbered-p31,31,,0-4
+11.13.08,3,Dabun Gelang,age_group,5-9,perempuan,428,jiwa,2025,registration,total_population,unnumbered-p31,31,,5-9
+11.13.08,3,Dabun Gelang,age_group,5-9,,851,jiwa,2025,registration,total_population,unnumbered-p31,31,,5-9
+11.13.08,3,Dabun Gelang,age_group,10-14,perempuan,406,jiwa,2025,registration,total_population,unnumbered-p31,31,,10-14
+11.13.08,3,Dabun Gelang,age_group,10-14,,797,jiwa,2025,registration,total_population,unnumbered-p31,31,,10-14
+11.13.08,3,Dabun Gelang,age_group,15-19,perempuan,343,jiwa,2025,registration,total_population,unnumbered-p31,31,,15-19
+11.13.08,3,Dabun Gelang,age_group,15-19,,697,jiwa,2025,registration,total_population,unnumbered-p31,31,,15-19
+11.13.08,3,Dabun Gelang,age_group,20-24,perempuan,294,jiwa,2025,registration,total_population,unnumbered-p31,31,,20-24
+11.13.08,3,Dabun Gelang,age_group,20-24,,584,jiwa,2025,registration,total_population,unnumbered-p31,31,,20-24
+11.13.08,3,Dabun Gelang,age_group,25-29,perempuan,358,jiwa,2025,registration,total_population,unnumbered-p31,31,,25-29
+11.13.08,3,Dabun Gelang,age_group,25-29,,724,jiwa,2025,registration,total_population,unnumbered-p31,31,,25-29
+11.13.08,3,Dabun Gelang,age_group,30-34,perempuan,300,jiwa,2025,registration,total_population,unnumbered-p31,31,,30-34
+11.13.08,3,Dabun Gelang,age_group,30-34,,604,jiwa,2025,registration,total_population,unnumbered-p31,31,,30-34
+11.13.08,3,Dabun Gelang,age_group,35-39,perempuan,288,jiwa,2025,registration,total_population,unnumbered-p31,31,,35-39
+11.13.08,3,Dabun Gelang,age_group,35-39,,548,jiwa,2025,registration,total_population,unnumbered-p31,31,,35-39
+11.13.08,3,Dabun Gelang,age_group,40-44,perempuan,241,jiwa,2025,registration,total_population,unnumbered-p31,31,,40-44
+11.13.08,3,Dabun Gelang,age_group,40-44,,522,jiwa,2025,registration,total_population,unnumbered-p31,31,,40-44
+11.13.08,3,Dabun Gelang,age_group,45-49,perempuan,218,jiwa,2025,registration,total_population,unnumbered-p31,31,,45-49
+11.13.08,3,Dabun Gelang,age_group,45-49,,441,jiwa,2025,registration,total_population,unnumbered-p31,31,,45-49
+11.13.08,3,Dabun Gelang,age_group,50-54,perempuan,157,jiwa,2025,registration,total_population,unnumbered-p31,31,,50-54
+11.13.08,3,Dabun Gelang,age_group,50-54,,329,jiwa,2025,registration,total_population,unnumbered-p31,31,,50-54
+11.13.08,3,Dabun Gelang,age_group,55-59,perempuan,152,jiwa,2025,registration,total_population,unnumbered-p31,31,,55-59
+11.13.08,3,Dabun Gelang,age_group,55-59,,287,jiwa,2025,registration,total_population,unnumbered-p31,31,,55-59
+11.13.08,3,Dabun Gelang,age_group,60-64,perempuan,82,jiwa,2025,registration,total_population,unnumbered-p31,31,,60-64
+11.13.08,3,Dabun Gelang,age_group,60-64,,170,jiwa,2025,registration,total_population,unnumbered-p31,31,,60-64
+11.13.08,3,Dabun Gelang,age_group,65-69,perempuan,74,jiwa,2025,registration,total_population,unnumbered-p31,31,,65-69
+11.13.08,3,Dabun Gelang,age_group,65-69,,137,jiwa,2025,registration,total_population,unnumbered-p31,31,,65-69
+11.13.08,3,Dabun Gelang,age_group,70-74,perempuan,49,jiwa,2025,registration,total_population,unnumbered-p31,31,,70-74
+11.13.08,3,Dabun Gelang,age_group,70-74,,77,jiwa,2025,registration,total_population,unnumbered-p31,31,,70-74
+11.13.08,3,Dabun Gelang,age_group,75+,perempuan,87,jiwa,2025,registration,total_population,unnumbered-p31,31,,75
+11.13.08,3,Dabun Gelang,age_group,75+,,117,jiwa,2025,registration,total_population,unnumbered-p31,31,,75
+11.13.08,3,Dabun Gelang,sex,perempuan,,3846,jiwa,2025,registration,total_population,unnumbered-p31,31,,Perempuan
+11.13.08,3,Dabun Gelang,total,total,,7638,jiwa,2025,registration,total_population,unnumbered-p31,31,,

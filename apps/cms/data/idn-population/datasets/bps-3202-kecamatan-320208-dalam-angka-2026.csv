@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.02.08.2003,4,Bantarpanjang,sex,laki_laki,,1774,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.08.2003,4,Bantarpanjang,sex,perempuan,,1786,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.08.2003,4,Bantarpanjang,total,total,,3560,jiwa,2025,registration,total_population,3.1,24,,
+32.02.08.2011,4,Bojongtipar,sex,laki_laki,,3725,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.08.2011,4,Bojongtipar,sex,perempuan,,3512,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.08.2011,4,Bojongtipar,total,total,,7237,jiwa,2025,registration,total_population,3.1,24,,
+32.02.08.2009,4,Cijulang,sex,laki_laki,,5522,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.08.2009,4,Cijulang,sex,perempuan,,5483,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.08.2009,4,Cijulang,total,total,,11005,jiwa,2025,registration,total_population,3.1,24,,
+32.02.08.2005,4,Nangerang,sex,laki_laki,,3048,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.08.2005,4,Nangerang,sex,perempuan,,2895,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.08.2005,4,Nangerang,total,total,,5943,jiwa,2025,registration,total_population,3.1,24,,
+32.02.08.2004,4,Bojong Jengkol,sex,laki_laki,,3784,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.08.2004,4,Bojong Jengkol,sex,perempuan,,3762,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.08.2004,4,Bojong Jengkol,total,total,,7546,jiwa,2025,registration,total_population,3.1,24,,
+32.02.08.2010,4,Bantar Agung,sex,laki_laki,,2800,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.08.2010,4,Bantar Agung,sex,perempuan,,2676,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.08.2010,4,Bantar Agung,total,total,,5476,jiwa,2025,registration,total_population,3.1,24,,
+32.02.08.2001,4,Jampang Tengah,sex,laki_laki,,3067,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.08.2001,4,Jampang Tengah,sex,perempuan,,2993,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.08.2001,4,Jampang Tengah,total,total,,6060,jiwa,2025,registration,total_population,3.1,24,,
+32.02.08.2008,4,Panumbangan,sex,laki_laki,,3017,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.08.2008,4,Panumbangan,sex,perempuan,,2899,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.08.2008,4,Panumbangan,total,total,,5916,jiwa,2025,registration,total_population,3.1,24,,
+32.02.08.2007,4,Sindangresmi,sex,laki_laki,,3843,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.08.2007,4,Sindangresmi,sex,perempuan,,3705,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.08.2007,4,Sindangresmi,total,total,,7548,jiwa,2025,registration,total_population,3.1,24,,
+32.02.08.2006,4,Tanjungsari,sex,laki_laki,,3598,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.08.2006,4,Tanjungsari,sex,perempuan,,3659,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.08.2006,4,Tanjungsari,total,total,,7257,jiwa,2025,registration,total_population,3.1,24,,
+32.02.08.2002,4,Padabeunghar,sex,laki_laki,,3790,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.08.2002,4,Padabeunghar,sex,perempuan,,3755,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.08.2002,4,Padabeunghar,total,total,,7545,jiwa,2025,registration,total_population,3.1,24,,
+32.02.08,3,Jampang Tengah,sex,laki_laki,,37968,jiwa,2025,registration,total_population,3.1,24,,Laki-Laki
+32.02.08,3,Jampang Tengah,sex,perempuan,,37125,jiwa,2025,registration,total_population,3.1,24,,Perempuan
+32.02.08,3,Jampang Tengah,total,total,,75093,jiwa,2025,registration,total_population,3.1,24,,

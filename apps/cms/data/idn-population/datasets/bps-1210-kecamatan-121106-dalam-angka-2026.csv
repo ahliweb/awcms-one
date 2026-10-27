@@ -1,0 +1,61 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.11.06.2011,4,Renun,sex,laki_laki,,398,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.06.2011,4,Renun,sex,perempuan,,474,jiwa,2026,registration,total_population,3.1,24,,Perempuan/
+12.11.06.2011,4,Renun,total,total,,872,jiwa,2026,registration,total_population,3.1,24,,
+12.11.06.2010,4,Pasir Tengah,sex,laki_laki,,818,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.06.2010,4,Pasir Tengah,sex,perempuan,,801,jiwa,2026,registration,total_population,3.1,24,,Perempuan/
+12.11.06.2010,4,Pasir Tengah,total,total,,1619,jiwa,2026,registration,total_population,3.1,24,,
+12.11.06.2008,4,Pamah,sex,laki_laki,,1200,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.06.2008,4,Pamah,sex,perempuan,,1219,jiwa,2026,registration,total_population,3.1,24,,Perempuan/
+12.11.06.2008,4,Pamah,total,total,,2419,jiwa,2026,registration,total_population,3.1,24,,
+12.11.06.2009,4,Kuta Buluh,sex,laki_laki,,1025,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.06.2009,4,Kuta Buluh,sex,perempuan,,1030,jiwa,2026,registration,total_population,3.1,24,,Perempuan/
+12.11.06.2009,4,Kuta Buluh,total,total,,2055,jiwa,2026,registration,total_population,3.1,24,,
+12.11.06.2007,4,Tanah Pinem,sex,laki_laki,,847,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.06.2007,4,Tanah Pinem,sex,perempuan,,849,jiwa,2026,registration,total_population,3.1,24,,Perempuan/
+12.11.06.2007,4,Tanah Pinem,total,total,,1696,jiwa,2026,registration,total_population,3.1,24,,
+12.11.06.2006,4,Kempawa,sex,laki_laki,,490,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.06.2006,4,Kempawa,sex,perempuan,,519,jiwa,2026,registration,total_population,3.1,24,,Perempuan/
+12.11.06.2006,4,Kempawa,total,total,,1009,jiwa,2026,registration,total_population,3.1,24,,
+12.11.06.2005,4,Kuta Gamber,sex,laki_laki,,456,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.06.2005,4,Kuta Gamber,sex,perempuan,,462,jiwa,2026,registration,total_population,3.1,24,,Perempuan/
+12.11.06.2005,4,Kuta Gamber,total,total,,918,jiwa,2026,registration,total_population,3.1,24,,
+12.11.06.2004,4,Lau Primbon,sex,laki_laki,,704,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.06.2004,4,Lau Primbon,sex,perempuan,,758,jiwa,2026,registration,total_population,3.1,24,,Perempuan/
+12.11.06.2004,4,Lau Primbon,total,total,,1462,jiwa,2026,registration,total_population,3.1,24,,
+12.11.06.2003,4,Harapan,sex,laki_laki,,1053,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.06.2003,4,Harapan,sex,perempuan,,1061,jiwa,2026,registration,total_population,3.1,24,,Perempuan/
+12.11.06.2003,4,Harapan,total,total,,2114,jiwa,2026,registration,total_population,3.1,24,,
+12.11.06.2002,4,Gunung Tua,sex,laki_laki,,299,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.06.2002,4,Gunung Tua,sex,perempuan,,282,jiwa,2026,registration,total_population,3.1,24,,Perempuan/
+12.11.06.2002,4,Gunung Tua,total,total,,581,jiwa,2026,registration,total_population,3.1,24,,
+12.11.06.2001,4,Sukadame,sex,laki_laki,,793,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.06.2001,4,Sukadame,sex,perempuan,,705,jiwa,2026,registration,total_population,3.1,24,,Perempuan/
+12.11.06.2001,4,Sukadame,total,total,,1498,jiwa,2026,registration,total_population,3.1,24,,
+12.11.06.2012,4,Lau Tawar,sex,laki_laki,,724,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.06.2012,4,Lau Tawar,sex,perempuan,,709,jiwa,2026,registration,total_population,3.1,24,,Perempuan/
+12.11.06.2012,4,Lau Tawar,total,total,,1433,jiwa,2026,registration,total_population,3.1,24,,
+12.11.06.2014,4,Mangan Molih,sex,laki_laki,,432,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.06.2014,4,Mangan Molih,sex,perempuan,,447,jiwa,2026,registration,total_population,3.1,24,,Perempuan/
+12.11.06.2014,4,Mangan Molih,total,total,,879,jiwa,2026,registration,total_population,3.1,24,,
+12.11.06.2017,4,Lau Njuhar I,sex,laki_laki,,888,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.06.2017,4,Lau Njuhar I,sex,perempuan,,842,jiwa,2026,registration,total_population,3.1,24,,Perempuan/
+12.11.06.2017,4,Lau Njuhar I,total,total,,1730,jiwa,2026,registration,total_population,3.1,24,,
+12.11.06.2015,4,Liang Jering,sex,laki_laki,,554,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.06.2015,4,Liang Jering,sex,perempuan,,532,jiwa,2026,registration,total_population,3.1,24,,Perempuan/
+12.11.06.2015,4,Liang Jering,total,total,,1086,jiwa,2026,registration,total_population,3.1,24,,
+12.11.06.2016,4,Alur Subur,sex,laki_laki,,377,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.06.2016,4,Alur Subur,sex,perempuan,,326,jiwa,2026,registration,total_population,3.1,24,,Perempuan/
+12.11.06.2016,4,Alur Subur,total,total,,703,jiwa,2026,registration,total_population,3.1,24,,
+12.11.06.2013,4,Balandua,sex,laki_laki,,462,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.06.2013,4,Balandua,sex,perempuan,,463,jiwa,2026,registration,total_population,3.1,24,,Perempuan/
+12.11.06.2013,4,Balandua,total,total,,925,jiwa,2026,registration,total_population,3.1,24,,
+12.11.06.2018,4,Pasir Mbelang,sex,laki_laki,,523,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.06.2018,4,Pasir Mbelang,sex,perempuan,,523,jiwa,2026,registration,total_population,3.1,24,,Perempuan/
+12.11.06.2018,4,Pasir Mbelang,total,total,,1046,jiwa,2026,registration,total_population,3.1,24,,
+12.11.06.2019,4,Sinar Pagi,sex,laki_laki,,259,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.06.2019,4,Sinar Pagi,sex,perempuan,,220,jiwa,2026,registration,total_population,3.1,24,,Perempuan/
+12.11.06.2019,4,Sinar Pagi,total,total,,479,jiwa,2026,registration,total_population,3.1,24,,
+12.11.06,3,Tanah Pinem,sex,laki_laki,,12302,jiwa,2026,registration,total_population,3.1,24,,Laki-Laki/Male
+12.11.06,3,Tanah Pinem,sex,perempuan,,12222,jiwa,2026,registration,total_population,3.1,24,,Perempuan/
+12.11.06,3,Tanah Pinem,total,total,,24524,jiwa,2026,registration,total_population,3.1,24,,

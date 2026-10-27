@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3508-kecamatan-350816-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.08.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kedungjajang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lumajang",
+  "publisherDomain": "3508",
+  "publisherWebsite": "https://lumajangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lumajang (https://lumajangkab.bps.go.id), publikasi \"Kecamatan Kedungjajang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3508180",
+  "publicationNumber": "35080.26024",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lumajangkab.bps.go.id/id/publication/2026/09/28/5bf0a1a521c24c8408200a1d/kecamatan-kedungjajang-dalam-angka-2026.html",
+  "sourceFileSha256": "24234a39d888ec7ff5bdf55c51e0081ac403f1be74709e5c81141941d8f0716b",
+  "sourceFileBytes": 2605892,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lumajang",
+  "csvPath": "datasets/bps-3508-kecamatan-350816-dalam-angka-2026.csv",
+  "csvSha256": "5880ffcb0d1edfe3f9639b8505667b2b21fc9b9e4d29a2c50b00606659ac9fc4",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kedungjajang, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kedungjajang, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: 36 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

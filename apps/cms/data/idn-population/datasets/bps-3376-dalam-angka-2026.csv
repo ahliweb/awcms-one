@@ -1,0 +1,96 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.76.03,3,Tegal Selatan,total,total,,36088,jiwa,2025,registration,total_population,3.1.1,75,,
+33.76.02,3,Tegal Timur,total,total,,44162,jiwa,2025,registration,total_population,3.1.1,75,,
+33.76.01,3,Tegal Barat,total,total,,35345,jiwa,2025,registration,total_population,3.1.1,75,,
+33.76.04,3,Margadana,total,total,,31621,jiwa,2025,registration,total_population,3.1.1,75,,
+33.76,2,Kota Tegal,age_group,0-4,laki_laki,9818,jiwa,2025,registration,total_population,3.1.2,77,,0–4
+33.76,2,Kota Tegal,age_group,0-4,perempuan,9122,jiwa,2025,registration,total_population,3.1.2,77,,0–4
+33.76,2,Kota Tegal,age_group,0-4,,18940,jiwa,2025,registration,total_population,3.1.2,77,,0–4
+33.76,2,Kota Tegal,age_group,5-9,laki_laki,12449,jiwa,2025,registration,total_population,3.1.2,77,,5–9
+33.76,2,Kota Tegal,age_group,5-9,perempuan,11496,jiwa,2025,registration,total_population,3.1.2,77,,5–9
+33.76,2,Kota Tegal,age_group,5-9,,23945,jiwa,2025,registration,total_population,3.1.2,77,,5–9
+33.76,2,Kota Tegal,age_group,10-14,laki_laki,12323,jiwa,2025,registration,total_population,3.1.2,77,,10–14
+33.76,2,Kota Tegal,age_group,10-14,perempuan,11634,jiwa,2025,registration,total_population,3.1.2,77,,10–14
+33.76,2,Kota Tegal,age_group,10-14,,23957,jiwa,2025,registration,total_population,3.1.2,77,,10–14
+33.76,2,Kota Tegal,age_group,15-19,laki_laki,12208,jiwa,2025,registration,total_population,3.1.2,77,,15–19
+33.76,2,Kota Tegal,age_group,15-19,perempuan,11525,jiwa,2025,registration,total_population,3.1.2,77,,15–19
+33.76,2,Kota Tegal,age_group,15-19,,23733,jiwa,2025,registration,total_population,3.1.2,77,,15–19
+33.76,2,Kota Tegal,age_group,20-24,laki_laki,11458,jiwa,2025,registration,total_population,3.1.2,77,,20–24
+33.76,2,Kota Tegal,age_group,20-24,perempuan,11045,jiwa,2025,registration,total_population,3.1.2,77,,20–24
+33.76,2,Kota Tegal,age_group,20-24,,22503,jiwa,2025,registration,total_population,3.1.2,77,,20–24
+33.76,2,Kota Tegal,age_group,25-29,laki_laki,11889,jiwa,2025,registration,total_population,3.1.2,77,,25–29
+33.76,2,Kota Tegal,age_group,25-29,perempuan,11344,jiwa,2025,registration,total_population,3.1.2,77,,25–29
+33.76,2,Kota Tegal,age_group,25-29,,23233,jiwa,2025,registration,total_population,3.1.2,77,,25–29
+33.76,2,Kota Tegal,age_group,30-34,laki_laki,11925,jiwa,2025,registration,total_population,3.1.2,77,,30–34
+33.76,2,Kota Tegal,age_group,30-34,perempuan,11066,jiwa,2025,registration,total_population,3.1.2,77,,30–34
+33.76,2,Kota Tegal,age_group,30-34,,22991,jiwa,2025,registration,total_population,3.1.2,77,,30–34
+33.76,2,Kota Tegal,age_group,35-39,laki_laki,11205,jiwa,2025,registration,total_population,3.1.2,77,,35–39
+33.76,2,Kota Tegal,age_group,35-39,perempuan,10507,jiwa,2025,registration,total_population,3.1.2,77,,35–39
+33.76,2,Kota Tegal,age_group,35-39,,21712,jiwa,2025,registration,total_population,3.1.2,77,,35–39
+33.76,2,Kota Tegal,age_group,40-44,laki_laki,12643,jiwa,2025,registration,total_population,3.1.2,77,,40–44
+33.76,2,Kota Tegal,age_group,40-44,perempuan,12044,jiwa,2025,registration,total_population,3.1.2,77,,40–44
+33.76,2,Kota Tegal,age_group,40-44,,24687,jiwa,2025,registration,total_population,3.1.2,77,,40–44
+33.76,2,Kota Tegal,age_group,45-49,laki_laki,12300,jiwa,2025,registration,total_population,3.1.2,77,,45–49
+33.76,2,Kota Tegal,age_group,45-49,perempuan,11552,jiwa,2025,registration,total_population,3.1.2,77,,45–49
+33.76,2,Kota Tegal,age_group,45-49,,23852,jiwa,2025,registration,total_population,3.1.2,77,,45–49
+33.76,2,Kota Tegal,age_group,50-54,laki_laki,9603,jiwa,2025,registration,total_population,3.1.2,77,,50–54
+33.76,2,Kota Tegal,age_group,50-54,perempuan,9533,jiwa,2025,registration,total_population,3.1.2,77,,50–54
+33.76,2,Kota Tegal,age_group,50-54,,19136,jiwa,2025,registration,total_population,3.1.2,77,,50–54
+33.76,2,Kota Tegal,age_group,55-59,laki_laki,7380,jiwa,2025,registration,total_population,3.1.2,77,,55–59
+33.76,2,Kota Tegal,age_group,55-59,perempuan,7839,jiwa,2025,registration,total_population,3.1.2,77,,55–59
+33.76,2,Kota Tegal,age_group,55-59,,15219,jiwa,2025,registration,total_population,3.1.2,77,,55–59
+33.76,2,Kota Tegal,age_group,60-64,laki_laki,5490,jiwa,2025,registration,total_population,3.1.2,77,,60–64
+33.76,2,Kota Tegal,age_group,60-64,perempuan,6456,jiwa,2025,registration,total_population,3.1.2,77,,60–64
+33.76,2,Kota Tegal,age_group,60-64,,11946,jiwa,2025,registration,total_population,3.1.2,77,,60–64
+33.76,2,Kota Tegal,age_group,65-69,laki_laki,4315,jiwa,2025,registration,total_population,3.1.2,77,,65–69
+33.76,2,Kota Tegal,age_group,65-69,perempuan,5228,jiwa,2025,registration,total_population,3.1.2,77,,65–69
+33.76,2,Kota Tegal,age_group,65-69,,9543,jiwa,2025,registration,total_population,3.1.2,77,,65–69
+33.76,2,Kota Tegal,age_group,70-74,laki_laki,2768,jiwa,2025,registration,total_population,3.1.2,77,,70–74
+33.76,2,Kota Tegal,age_group,70-74,perempuan,3309,jiwa,2025,registration,total_population,3.1.2,77,,70–74
+33.76,2,Kota Tegal,age_group,70-74,,6077,jiwa,2025,registration,total_population,3.1.2,77,,70–74
+33.76,2,Kota Tegal,age_group,75+,laki_laki,2183,jiwa,2025,registration,total_population,3.1.2,77,,75+
+33.76,2,Kota Tegal,age_group,75+,perempuan,3516,jiwa,2025,registration,total_population,3.1.2,77,,75+
+33.76,2,Kota Tegal,age_group,75+,,5699,jiwa,2025,registration,total_population,3.1.2,77,,75+
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/padi_padian,,78503,rupiah,2024,survey_estimate,per_capita,10.2,312,,Padi-padian
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/padi_padian,,69124,rupiah,2025,survey_estimate,per_capita,10.2,312,,Padi-padian
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/umbi_umbian,,3240,rupiah,2024,survey_estimate,per_capita,10.2,312,,Umbi-umbian
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/umbi_umbian,,3967,rupiah,2025,survey_estimate,per_capita,10.2,312,,Umbi-umbian
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/ikan,,31558,rupiah,2024,survey_estimate,per_capita,10.2,312,,Ikan
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/ikan,,32355,rupiah,2025,survey_estimate,per_capita,10.2,312,,Ikan
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/daging,,24907,rupiah,2024,survey_estimate,per_capita,10.2,312,,Daging
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/daging,,24499,rupiah,2025,survey_estimate,per_capita,10.2,312,,Daging
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/telur_dan_susu,,39777,rupiah,2024,survey_estimate,per_capita,10.2,312,,Telur dan Susu
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/telur_dan_susu,,36832,rupiah,2025,survey_estimate,per_capita,10.2,312,,Telur dan Susu
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/sayur_sayuran,,42492,rupiah,2024,survey_estimate,per_capita,10.2,312,,Sayur-sayuran
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/sayur_sayuran,,45092,rupiah,2025,survey_estimate,per_capita,10.2,312,,Sayur-sayuran
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/kacang_kacangan,,15968,rupiah,2024,survey_estimate,per_capita,10.2,312,,Kacang-kacangan
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/kacang_kacangan,,17157,rupiah,2025,survey_estimate,per_capita,10.2,312,,Kacang-kacangan
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/buah_buahan,,31566,rupiah,2024,survey_estimate,per_capita,10.2,312,,Buah-buahan
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/buah_buahan,,32366,rupiah,2025,survey_estimate,per_capita,10.2,312,,Buah-buahan
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/minyak_dan_kelapa,,12570,rupiah,2024,survey_estimate,per_capita,10.2,312,,Minyak dan Kelapa
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/minyak_dan_kelapa,,13998,rupiah,2025,survey_estimate,per_capita,10.2,312,,Minyak dan Kelapa
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/bahan_minuman,,20606,rupiah,2024,survey_estimate,per_capita,10.2,312,,Bahan Minuman
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/bahan_minuman,,22944,rupiah,2025,survey_estimate,per_capita,10.2,312,,Bahan Minuman
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/bumbu_bumbuan,,13097,rupiah,2024,survey_estimate,per_capita,10.2,312,,Bumbu-bumbuan
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/bumbu_bumbuan,,13741,rupiah,2025,survey_estimate,per_capita,10.2,312,,Bumbu-bumbuan
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/konsumsi_lainnya,,11639,rupiah,2024,survey_estimate,per_capita,10.2,312,,Konsumsi Lainnya
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,350108,rupiah,2024,survey_estimate,per_capita,10.2,312,,Makanan dan Minuman Jadi
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,349673,rupiah,2025,survey_estimate,per_capita,10.2,312,,Makanan dan Minuman Jadi
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/rokok,,73485,rupiah,2024,survey_estimate,per_capita,10.2,312,,Rokok
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/jumlah_makanan,,749515,rupiah,2024,survey_estimate,per_capita,10.2,312,,Jumlah Makanan
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/jumlah_makanan,,755188,rupiah,2025,survey_estimate,per_capita,10.2,312,,Jumlah Makanan
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,407124,rupiah,2024,survey_estimate,per_capita,10.2,312,,Perumahan dan Fasilitas Rumah Tangga
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,382732,rupiah,2025,survey_estimate,per_capita,10.2,312,,Perumahan dan Fasilitas Rumah Tangga
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,182704,rupiah,2024,survey_estimate,per_capita,10.2,312,,Aneka Barang dan Jasa
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,182385,rupiah,2025,survey_estimate,per_capita,10.2,312,,Aneka Barang dan Jasa
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,32168,rupiah,2024,survey_estimate,per_capita,10.2,312,,Pakaian Alas Kaki dan Tutup Kepala
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,29613,rupiah,2025,survey_estimate,per_capita,10.2,312,,Pakaian Alas Kaki dan Tutup Kepala
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/barang_tahan_lama,,26807,rupiah,2024,survey_estimate,per_capita,10.2,312,,Barang Tahan Lama
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,65354,rupiah,2024,survey_estimate,per_capita,10.2,312,,Pajak Pungutan dan Asuransi
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,55834,rupiah,2025,survey_estimate,per_capita,10.2,312,,Pajak Pungutan dan Asuransi
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara,,25998,rupiah,2024,survey_estimate,per_capita,10.2,312,,Keperluan Pesta dan Upacara
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara,,22084,rupiah,2025,survey_estimate,per_capita,10.2,312,,Keperluan Pesta dan Upacara
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/jumlah_non_makanan,,740155,rupiah,2024,survey_estimate,per_capita,10.2,312,,Jumlah Non Makanan
+33.76,2,Kota Tegal,expenditure,kelompok_komoditas/jumlah_non_makanan,,707108,rupiah,2025,survey_estimate,per_capita,10.2,312,,Jumlah Non Makanan
+33.76,2,Kota Tegal,expenditure,total,,1489670,rupiah,2024,survey_estimate,per_capita,10.2,312,,
+33.76,2,Kota Tegal,expenditure,total,,1462296,rupiah,2025,survey_estimate,per_capita,10.2,312,,

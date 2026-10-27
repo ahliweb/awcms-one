@@ -1,0 +1,65 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.05.08.2001,4,Trahean,sex,laki_laki,,709,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-laki
+62.05.08.2001,4,Trahean,sex,perempuan,,591,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan
+62.05.08.2001,4,Trahean,total,total,,1300,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+62.05.08.2002,4,Trinsing,sex,laki_laki,,849,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-laki
+62.05.08.2002,4,Trinsing,sex,perempuan,,770,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan
+62.05.08.2002,4,Trinsing,total,total,,1619,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+62.05.08.2003,4,Bintang Ninggi I,sex,laki_laki,,953,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-laki
+62.05.08.2003,4,Bintang Ninggi I,sex,perempuan,,891,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan
+62.05.08.2003,4,Bintang Ninggi I,total,total,,1844,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+62.05.08.2005,4,Butong,sex,laki_laki,,589,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-laki
+62.05.08.2005,4,Butong,sex,perempuan,,525,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan
+62.05.08.2005,4,Butong,total,total,,1114,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+62.05.08.2006,4,Buntok Baru,sex,laki_laki,,512,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-laki
+62.05.08.2006,4,Buntok Baru,sex,perempuan,,427,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan
+62.05.08.2006,4,Buntok Baru,total,total,,939,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+62.05.08.2007,4,Bukit Sawit,sex,laki_laki,,2160,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-laki
+62.05.08.2007,4,Bukit Sawit,sex,perempuan,,1879,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan
+62.05.08.2007,4,Bukit Sawit,total,total,,4039,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+62.05.08.2008,4,Tawan Jaya,sex,laki_laki,,758,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-laki
+62.05.08.2008,4,Tawan Jaya,sex,perempuan,,658,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan
+62.05.08.2008,4,Tawan Jaya,total,total,,1416,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+62.05.08.2009,4,Pandran Raya,sex,laki_laki,,453,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-laki
+62.05.08.2009,4,Pandran Raya,sex,perempuan,,373,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan
+62.05.08.2009,4,Pandran Raya,total,total,,826,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+62.05.08.2010,4,Pandran Permai,sex,laki_laki,,603,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-laki
+62.05.08.2010,4,Pandran Permai,sex,perempuan,,484,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan
+62.05.08.2010,4,Pandran Permai,total,total,,1087,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+62.05.08,3,Teweh Selatan,sex,laki_laki,,8353,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-laki
+62.05.08,3,Teweh Selatan,sex,perempuan,,7323,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan
+62.05.08,3,Teweh Selatan,total,total,,15676,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+62.05.08,3,Teweh Selatan,age_group,0-4,laki_laki,531,jiwa,2025,registration,total_population,unnumbered-p41,41,,0–4
+62.05.08,3,Teweh Selatan,age_group,0-4,perempuan,506,jiwa,2025,registration,total_population,unnumbered-p41,41,,0–4
+62.05.08,3,Teweh Selatan,age_group,5-9,laki_laki,682,jiwa,2025,registration,total_population,unnumbered-p41,41,,5–9
+62.05.08,3,Teweh Selatan,age_group,5-9,perempuan,638,jiwa,2025,registration,total_population,unnumbered-p41,41,,5–9
+62.05.08,3,Teweh Selatan,age_group,10-14,laki_laki,755,jiwa,2025,registration,total_population,unnumbered-p41,41,,10–14
+62.05.08,3,Teweh Selatan,age_group,10-14,perempuan,665,jiwa,2025,registration,total_population,unnumbered-p41,41,,10–14
+62.05.08,3,Teweh Selatan,age_group,15-19,laki_laki,718,jiwa,2025,registration,total_population,unnumbered-p41,41,,15–19
+62.05.08,3,Teweh Selatan,age_group,15-19,perempuan,622,jiwa,2025,registration,total_population,unnumbered-p41,41,,15–19
+62.05.08,3,Teweh Selatan,age_group,20-24,laki_laki,864,jiwa,2025,registration,total_population,unnumbered-p41,41,,20–24
+62.05.08,3,Teweh Selatan,age_group,20-24,perempuan,725,jiwa,2025,registration,total_population,unnumbered-p41,41,,20–24
+62.05.08,3,Teweh Selatan,age_group,25-29,laki_laki,673,jiwa,2025,registration,total_population,unnumbered-p41,41,,25–29
+62.05.08,3,Teweh Selatan,age_group,25-29,perempuan,605,jiwa,2025,registration,total_population,unnumbered-p41,41,,25–29
+62.05.08,3,Teweh Selatan,age_group,30-34,laki_laki,647,jiwa,2025,registration,total_population,unnumbered-p41,41,,30–34
+62.05.08,3,Teweh Selatan,age_group,30-34,perempuan,616,jiwa,2025,registration,total_population,unnumbered-p41,41,,30–34
+62.05.08,3,Teweh Selatan,age_group,35-39,laki_laki,652,jiwa,2025,registration,total_population,unnumbered-p41,41,,35–39
+62.05.08,3,Teweh Selatan,age_group,35-39,perempuan,602,jiwa,2025,registration,total_population,unnumbered-p41,41,,35–39
+62.05.08,3,Teweh Selatan,age_group,40-44,laki_laki,677,jiwa,2025,registration,total_population,unnumbered-p41,41,,40–44
+62.05.08,3,Teweh Selatan,age_group,40-44,perempuan,609,jiwa,2025,registration,total_population,unnumbered-p41,41,,40–44
+62.05.08,3,Teweh Selatan,age_group,45-49,laki_laki,603,jiwa,2025,registration,total_population,unnumbered-p41,41,,45–49
+62.05.08,3,Teweh Selatan,age_group,45-49,perempuan,493,jiwa,2025,registration,total_population,unnumbered-p41,41,,45–49
+62.05.08,3,Teweh Selatan,age_group,50-54,laki_laki,487,jiwa,2025,registration,total_population,unnumbered-p41,41,,50–54
+62.05.08,3,Teweh Selatan,age_group,50-54,perempuan,408,jiwa,2025,registration,total_population,unnumbered-p41,41,,50–54
+62.05.08,3,Teweh Selatan,age_group,55-59,laki_laki,380,jiwa,2025,registration,total_population,unnumbered-p41,41,,55–59
+62.05.08,3,Teweh Selatan,age_group,55-59,perempuan,314,jiwa,2025,registration,total_population,unnumbered-p41,41,,55–59
+62.05.08,3,Teweh Selatan,age_group,60-64,laki_laki,312,jiwa,2025,registration,total_population,unnumbered-p41,41,,60–64
+62.05.08,3,Teweh Selatan,age_group,60-64,perempuan,227,jiwa,2025,registration,total_population,unnumbered-p41,41,,60–64
+62.05.08,3,Teweh Selatan,age_group,65-69,laki_laki,190,jiwa,2025,registration,total_population,unnumbered-p41,41,,65–69
+62.05.08,3,Teweh Selatan,age_group,65-69,perempuan,126,jiwa,2025,registration,total_population,unnumbered-p41,41,,65–69
+62.05.08,3,Teweh Selatan,age_group,70-74,laki_laki,97,jiwa,2025,registration,total_population,unnumbered-p41,41,,70–74
+62.05.08,3,Teweh Selatan,age_group,70-74,perempuan,64,jiwa,2025,registration,total_population,unnumbered-p41,41,,70–74
+62.05.08,3,Teweh Selatan,age_group,75+,laki_laki,85,jiwa,2025,registration,total_population,unnumbered-p41,41,,75+
+62.05.08,3,Teweh Selatan,age_group,75+,perempuan,103,jiwa,2025,registration,total_population,unnumbered-p41,41,,75+
+62.05.08,3,Teweh Selatan,sex,laki_laki,,8353,jiwa,2025,registration,total_population,unnumbered-p41,41,,Laki-laki
+62.05.08,3,Teweh Selatan,sex,perempuan,,7323,jiwa,2025,registration,total_population,unnumbered-p41,41,,Perempuan

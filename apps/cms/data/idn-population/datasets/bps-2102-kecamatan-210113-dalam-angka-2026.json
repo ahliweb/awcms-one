@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-2102-kecamatan-210113-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.01.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mantang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Bintan",
+  "publisherDomain": "2102",
+  "publisherWebsite": "https://bintankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Bintan (https://bintankab.bps.go.id), publikasi \"Kecamatan Mantang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "21020.25007",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bintankab.bps.go.id/id/publication/2026/09/28/aa01b59e3a06f000d7148bb6/kecamatan-mantang-dalam-angka-2026.html",
+  "sourceFileSha256": "e85563aae252b275a4ee5b371b5ac0ae69e64da5951109dfb8d42d6d0f40271b",
+  "sourceFileBytes": 3404553,
+  "sourcePages": [23, 24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Bintan.",
+  "csvPath": "datasets/bps-2102-kecamatan-210113-dalam-angka-2026.csv",
+  "csvSha256": "60a024a7f2ea5a1c505417c752bb2cd988cf3fb7a72cb492dac6e3507b40e7a4",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Mantang, 2025",
+      "printedPages": [23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mantang, 2025",
+      "printedPages": [25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

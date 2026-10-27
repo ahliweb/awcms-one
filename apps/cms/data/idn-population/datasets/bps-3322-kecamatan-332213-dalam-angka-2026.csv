@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.22.13.2008,4,Munding,sex,laki_laki,,1755,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.13.2008,4,Munding,sex,perempuan,,1736,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.13.2008,4,Munding,total,total,,3491,jiwa,2025,registration,total_population,3.1,22,,
+33.22.13.2007,4,Pagersari,sex,laki_laki,,2586,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.13.2007,4,Pagersari,sex,perempuan,,2582,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.13.2007,4,Pagersari,total,total,,5168,jiwa,2025,registration,total_population,3.1,22,,
+33.22.13.2006,4,Gebugan,sex,laki_laki,,3065,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.13.2006,4,Gebugan,sex,perempuan,,3108,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.13.2006,4,Gebugan,total,total,,6173,jiwa,2025,registration,total_population,3.1,22,,
+33.22.13.1005,4,Wujil,sex,laki_laki,,2943,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.13.1005,4,Wujil,sex,perempuan,,2995,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.13.1005,4,Wujil,total,total,,5938,jiwa,2025,registration,total_population,3.1,22,,
+33.22.13.1009,4,Bergas Lor,sex,laki_laki,,3576,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.13.1009,4,Bergas Lor,sex,perempuan,,3613,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.13.1009,4,Bergas Lor,total,total,,7189,jiwa,2025,registration,total_population,3.1,22,,
+33.22.13.2010,4,Bergas Kidul,sex,laki_laki,,3651,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.13.2010,4,Bergas Kidul,sex,perempuan,,3679,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.13.2010,4,Bergas Kidul,total,total,,7330,jiwa,2025,registration,total_population,3.1,22,,
+33.22.13.2011,4,Randugunting,sex,laki_laki,,1319,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.13.2011,4,Randugunting,sex,perempuan,,1287,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.13.2011,4,Randugunting,total,total,,2606,jiwa,2025,registration,total_population,3.1,22,,
+33.22.13.2012,4,Jatijajar,sex,laki_laki,,2514,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.13.2012,4,Jatijajar,sex,perempuan,,2445,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.13.2012,4,Jatijajar,total,total,,4959,jiwa,2025,registration,total_population,3.1,22,,
+33.22.13.2013,4,Diwak,sex,laki_laki,,609,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.13.2013,4,Diwak,sex,perempuan,,590,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.13.2013,4,Diwak,total,total,,1199,jiwa,2025,registration,total_population,3.1,22,,
+33.22.13.1001,4,Ngempon,sex,laki_laki,,2778,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.13.1001,4,Ngempon,sex,perempuan,,2788,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.13.1001,4,Ngempon,total,total,,5566,jiwa,2025,registration,total_population,3.1,22,,
+33.22.13.1002,4,Karangjati,sex,laki_laki,,5044,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.13.1002,4,Karangjati,sex,perempuan,,5026,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.13.1002,4,Karangjati,total,total,,10070,jiwa,2025,registration,total_population,3.1,22,,
+33.22.13.2003,4,Wringin Putih,sex,laki_laki,,3289,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.13.2003,4,Wringin Putih,sex,perempuan,,3231,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.13.2003,4,Wringin Putih,total,total,,6520,jiwa,2025,registration,total_population,3.1,22,,
+33.22.13.2004,4,Gondoriyo,sex,laki_laki,,3781,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+33.22.13.2004,4,Gondoriyo,sex,perempuan,,3805,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.22.13.2004,4,Gondoriyo,total,total,,7586,jiwa,2025,registration,total_population,3.1,22,,

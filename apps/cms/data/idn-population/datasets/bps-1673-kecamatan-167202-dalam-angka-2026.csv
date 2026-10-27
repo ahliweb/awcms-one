@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.72.02.1021,4,Tanjung Agung,sex,laki_laki,,1478,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.02.1021,4,Tanjung Agung,sex,perempuan,,1473,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.02.1021,4,Tanjung Agung,total,total,,2951,jiwa,2025,registration,total_population,3.1,28,,
+16.72.02.1020,4,Ulu Rurah,sex,laki_laki,,2971,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.02.1020,4,Ulu Rurah,sex,perempuan,,2918,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.02.1020,4,Ulu Rurah,total,total,,5889,jiwa,2025,registration,total_population,3.1,28,,
+16.72.02.1019,4,Tumbak Ulas,sex,laki_laki,,4478,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.02.1019,4,Tumbak Ulas,sex,perempuan,,4351,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.02.1019,4,Tumbak Ulas,total,total,,8829,jiwa,2025,registration,total_population,3.1,28,,
+16.72.02.1022,4,Besemah Serasan,sex,laki_laki,,3718,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.02.1022,4,Besemah Serasan,sex,perempuan,,3675,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.02.1022,4,Besemah Serasan,total,total,,7393,jiwa,2025,registration,total_population,3.1,28,,
+16.72.02.1018,4,Tebat Giri Indah,sex,laki_laki,,3589,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.02.1018,4,Tebat Giri Indah,sex,perempuan,,3448,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.02.1018,4,Tebat Giri Indah,total,total,,7037,jiwa,2025,registration,total_population,3.1,28,,
+16.72.02.1003,4,Sidorejo,sex,laki_laki,,3833,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.02.1003,4,Sidorejo,sex,perempuan,,3645,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.02.1003,4,Sidorejo,total,total,,7478,jiwa,2025,registration,total_population,3.1,28,,
+16.72.02.1004,4,Nendagung,sex,laki_laki,,5608,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.02.1004,4,Nendagung,sex,perempuan,,5475,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.02.1004,4,Nendagung,total,total,,11083,jiwa,2025,registration,total_population,3.1,28,,
+16.72.02.1005,4,Gunung Dempo,sex,laki_laki,,986,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.02.1005,4,Gunung Dempo,sex,perempuan,,887,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.02.1005,4,Gunung Dempo,total,total,,1873,jiwa,2025,registration,total_population,3.1,28,,
+16.72.02,3,Pagar Alam Selatan,sex,laki_laki,,26661,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.02,3,Pagar Alam Selatan,sex,perempuan,,25872,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.02,3,Pagar Alam Selatan,total,total,,52533,jiwa,2025,registration,total_population,3.1,28,,

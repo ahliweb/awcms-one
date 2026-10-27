@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.07.04.2007,4,Sitiarjo,sex,laki_laki,,3990,jiwa,2024,registration,total_population,3.1,23,,Laki-Laki/Male
+35.07.04.2007,4,Sitiarjo,sex,perempuan,,4021,jiwa,2024,registration,total_population,3.1,23,,Perempuan/Female
+35.07.04.2007,4,Sitiarjo,total,total,,8011,jiwa,2024,registration,total_population,3.1,23,,
+35.07.04.2014,4,Tambakrejo,sex,laki_laki,,3956,jiwa,2024,registration,total_population,3.1,23,,Laki-Laki/Male
+35.07.04.2014,4,Tambakrejo,sex,perempuan,,3911,jiwa,2024,registration,total_population,3.1,23,,Perempuan/Female
+35.07.04.2014,4,Tambakrejo,total,total,,7867,jiwa,2024,registration,total_population,3.1,23,,
+35.07.04.2006,4,Kedungbanteng,sex,laki_laki,,3889,jiwa,2024,registration,total_population,3.1,23,,Laki-Laki/Male
+35.07.04.2006,4,Kedungbanteng,sex,perempuan,,3879,jiwa,2024,registration,total_population,3.1,23,,Perempuan/Female
+35.07.04.2006,4,Kedungbanteng,total,total,,7768,jiwa,2024,registration,total_population,3.1,23,,
+35.07.04.2001,4,Tambakasri,sex,laki_laki,,4869,jiwa,2024,registration,total_population,3.1,23,,Laki-Laki/Male
+35.07.04.2001,4,Tambakasri,sex,perempuan,,4612,jiwa,2024,registration,total_population,3.1,23,,Perempuan/Female
+35.07.04.2001,4,Tambakasri,total,total,,9481,jiwa,2024,registration,total_population,3.1,23,,
+35.07.04.2002,4,Tegalrejo,sex,laki_laki,,1446,jiwa,2024,registration,total_population,3.1,23,,Laki-Laki/Male
+35.07.04.2002,4,Tegalrejo,sex,perempuan,,1361,jiwa,2024,registration,total_population,3.1,23,,Perempuan/Female
+35.07.04.2002,4,Tegalrejo,total,total,,2807,jiwa,2024,registration,total_population,3.1,23,,
+35.07.04.2005,4,Ringinkembar,sex,laki_laki,,2650,jiwa,2024,registration,total_population,3.1,23,,Laki-Laki/Male
+35.07.04.2005,4,Ringinkembar,sex,perempuan,,2594,jiwa,2024,registration,total_population,3.1,23,,Perempuan/Female
+35.07.04.2005,4,Ringinkembar,total,total,,5244,jiwa,2024,registration,total_population,3.1,23,,
+35.07.04.2008,4,Sumberagung,sex,laki_laki,,3274,jiwa,2024,registration,total_population,3.1,23,,Laki-Laki/Male
+35.07.04.2008,4,Sumberagung,sex,perempuan,,3136,jiwa,2024,registration,total_population,3.1,23,,Perempuan/Female
+35.07.04.2008,4,Sumberagung,total,total,,6410,jiwa,2024,registration,total_population,3.1,23,,
+35.07.04.2010,4,Harjokuncaran,sex,laki_laki,,5364,jiwa,2024,registration,total_population,3.1,23,,Laki-Laki/Male
+35.07.04.2010,4,Harjokuncaran,sex,perempuan,,5329,jiwa,2024,registration,total_population,3.1,23,,Perempuan/Female
+35.07.04.2010,4,Harjokuncaran,total,total,,10693,jiwa,2024,registration,total_population,3.1,23,,
+35.07.04.2009,4,Argotirto,sex,laki_laki,,4094,jiwa,2024,registration,total_population,3.1,23,,Laki-Laki/Male
+35.07.04.2009,4,Argotirto,sex,perempuan,,4021,jiwa,2024,registration,total_population,3.1,23,,Perempuan/Female
+35.07.04.2009,4,Argotirto,total,total,,8115,jiwa,2024,registration,total_population,3.1,23,,
+35.07.04.2012,4,Ringinsari,sex,laki_laki,,2619,jiwa,2024,registration,total_population,3.1,23,,Laki-Laki/Male
+35.07.04.2012,4,Ringinsari,sex,perempuan,,2611,jiwa,2024,registration,total_population,3.1,23,,Perempuan/Female
+35.07.04.2012,4,Ringinsari,total,total,,5230,jiwa,2024,registration,total_population,3.1,23,,
+35.07.04.2013,4,Druju,sex,laki_laki,,6167,jiwa,2024,registration,total_population,3.1,23,,Laki-Laki/Male
+35.07.04.2013,4,Druju,sex,perempuan,,6026,jiwa,2024,registration,total_population,3.1,23,,Perempuan/Female
+35.07.04.2013,4,Druju,total,total,,12193,jiwa,2024,registration,total_population,3.1,23,,
+35.07.04.2011,4,Sumbermanjing Wetan,sex,laki_laki,,2067,jiwa,2024,registration,total_population,3.1,23,,Laki-Laki/Male
+35.07.04.2011,4,Sumbermanjing Wetan,sex,perempuan,,2094,jiwa,2024,registration,total_population,3.1,23,,Perempuan/Female
+35.07.04.2011,4,Sumbermanjing Wetan,total,total,,4161,jiwa,2024,registration,total_population,3.1,23,,
+35.07.04.2004,4,Klepu,sex,laki_laki,,4482,jiwa,2024,registration,total_population,3.1,23,,Laki-Laki/Male
+35.07.04.2004,4,Klepu,sex,perempuan,,4360,jiwa,2024,registration,total_population,3.1,23,,Perempuan/Female
+35.07.04.2004,4,Klepu,total,total,,8842,jiwa,2024,registration,total_population,3.1,23,,
+35.07.04.2003,4,Sekarbanyu,sex,laki_laki,,1435,jiwa,2024,registration,total_population,3.1,23,,Laki-Laki/Male
+35.07.04.2003,4,Sekarbanyu,sex,perempuan,,1503,jiwa,2024,registration,total_population,3.1,23,,Perempuan/Female
+35.07.04.2003,4,Sekarbanyu,total,total,,2938,jiwa,2024,registration,total_population,3.1,23,,
+35.07.04.2015,4,Sidoasri,sex,laki_laki,,2528,jiwa,2024,registration,total_population,3.1,23,,Laki-Laki/Male
+35.07.04.2015,4,Sidoasri,sex,perempuan,,2450,jiwa,2024,registration,total_population,3.1,23,,Perempuan/Female
+35.07.04.2015,4,Sidoasri,total,total,,4978,jiwa,2024,registration,total_population,3.1,23,,
+35.07.04,3,Kecamatan Sumbermanjing Wetan,sex,laki_laki,,52830,jiwa,2024,registration,total_population,3.1,23,,Laki-Laki/Male
+35.07.04,3,Kecamatan Sumbermanjing Wetan,sex,perempuan,,51908,jiwa,2024,registration,total_population,3.1,23,,Perempuan/Female
+35.07.04,3,Kecamatan Sumbermanjing Wetan,total,total,,104738,jiwa,2024,registration,total_population,3.1,23,,
+35.07.04,3,Sumbermanjing Wetan,age_group,0-4,laki_laki,2569,jiwa,2024,registration,total_population,3.2,25,,0 – 4
+35.07.04,3,Sumbermanjing Wetan,age_group,0-4,perempuan,2598,jiwa,2024,registration,total_population,3.2,25,,0 – 4
+35.07.04,3,Sumbermanjing Wetan,age_group,0-4,,5167,jiwa,2024,registration,total_population,3.2,25,,0 – 4
+35.07.04,3,Sumbermanjing Wetan,age_group,5-9,laki_laki,4058,jiwa,2024,registration,total_population,3.2,25,,5 – 9
+35.07.04,3,Sumbermanjing Wetan,age_group,5-9,perempuan,3815,jiwa,2024,registration,total_population,3.2,25,,5 – 9
+35.07.04,3,Sumbermanjing Wetan,age_group,5-9,,7873,jiwa,2024,registration,total_population,3.2,25,,5 – 9
+35.07.04,3,Sumbermanjing Wetan,age_group,10-14,laki_laki,4289,jiwa,2024,registration,total_population,3.2,25,,10 – 14
+35.07.04,3,Sumbermanjing Wetan,age_group,10-14,perempuan,3918,jiwa,2024,registration,total_population,3.2,25,,10 – 14
+35.07.04,3,Sumbermanjing Wetan,age_group,10-14,,8207,jiwa,2024,registration,total_population,3.2,25,,10 – 14
+35.07.04,3,Sumbermanjing Wetan,age_group,15-19,laki_laki,3387,jiwa,2024,registration,total_population,3.2,25,,15 – 19
+35.07.04,3,Sumbermanjing Wetan,age_group,15-19,perempuan,3181,jiwa,2024,registration,total_population,3.2,25,,15 – 19
+35.07.04,3,Sumbermanjing Wetan,age_group,15-19,,6568,jiwa,2024,registration,total_population,3.2,25,,15 – 19
+35.07.04,3,Sumbermanjing Wetan,age_group,20-24,laki_laki,3988,jiwa,2024,registration,total_population,3.2,25,,20 – 24
+35.07.04,3,Sumbermanjing Wetan,age_group,20-24,perempuan,3739,jiwa,2024,registration,total_population,3.2,25,,20 – 24
+35.07.04,3,Sumbermanjing Wetan,age_group,20-24,,7727,jiwa,2024,registration,total_population,3.2,25,,20 – 24
+35.07.04,3,Sumbermanjing Wetan,age_group,25-29,laki_laki,3724,jiwa,2024,registration,total_population,3.2,25,,25 – 29
+35.07.04,3,Sumbermanjing Wetan,age_group,25-29,perempuan,3442,jiwa,2024,registration,total_population,3.2,25,,25 – 29
+35.07.04,3,Sumbermanjing Wetan,age_group,25-29,,7166,jiwa,2024,registration,total_population,3.2,25,,25 – 29
+35.07.04,3,Sumbermanjing Wetan,age_group,30-34,laki_laki,3570,jiwa,2024,registration,total_population,3.2,25,,30 – 34
+35.07.04,3,Sumbermanjing Wetan,age_group,30-34,perempuan,3362,jiwa,2024,registration,total_population,3.2,25,,30 – 34
+35.07.04,3,Sumbermanjing Wetan,age_group,30-34,,6932,jiwa,2024,registration,total_population,3.2,25,,30 – 34
+35.07.04,3,Sumbermanjing Wetan,age_group,35-39,laki_laki,3712,jiwa,2024,registration,total_population,3.2,25,,35 – 39
+35.07.04,3,Sumbermanjing Wetan,age_group,35-39,perempuan,3499,jiwa,2024,registration,total_population,3.2,25,,35 – 39
+35.07.04,3,Sumbermanjing Wetan,age_group,35-39,,7211,jiwa,2024,registration,total_population,3.2,25,,35 – 39
+35.07.04,3,Sumbermanjing Wetan,age_group,40-44,laki_laki,4182,jiwa,2024,registration,total_population,3.2,25,,40 – 44
+35.07.04,3,Sumbermanjing Wetan,age_group,40-44,perempuan,4198,jiwa,2024,registration,total_population,3.2,25,,40 – 44
+35.07.04,3,Sumbermanjing Wetan,age_group,40-44,,8380,jiwa,2024,registration,total_population,3.2,25,,40 – 44
+35.07.04,3,Sumbermanjing Wetan,age_group,45-49,laki_laki,3898,jiwa,2024,registration,total_population,3.2,25,,45 – 49
+35.07.04,3,Sumbermanjing Wetan,age_group,45-49,perempuan,3956,jiwa,2024,registration,total_population,3.2,25,,45 – 49
+35.07.04,3,Sumbermanjing Wetan,age_group,45-49,,7854,jiwa,2024,registration,total_population,3.2,25,,45 – 49
+35.07.04,3,Sumbermanjing Wetan,age_group,50-54,laki_laki,3467,jiwa,2024,registration,total_population,3.2,25,,50 – 54
+35.07.04,3,Sumbermanjing Wetan,age_group,50-54,perempuan,3867,jiwa,2024,registration,total_population,3.2,25,,50 – 54
+35.07.04,3,Sumbermanjing Wetan,age_group,50-54,,7334,jiwa,2024,registration,total_population,3.2,25,,50 – 54
+35.07.04,3,Sumbermanjing Wetan,age_group,55-59,laki_laki,3425,jiwa,2024,registration,total_population,3.2,25,,55 – 59
+35.07.04,3,Sumbermanjing Wetan,age_group,55-59,perempuan,3557,jiwa,2024,registration,total_population,3.2,25,,55 – 59
+35.07.04,3,Sumbermanjing Wetan,age_group,55-59,,6982,jiwa,2024,registration,total_population,3.2,25,,55 – 59
+35.07.04,3,Sumbermanjing Wetan,age_group,60-64,laki_laki,2758,jiwa,2024,registration,total_population,3.2,25,,60 – 64
+35.07.04,3,Sumbermanjing Wetan,age_group,60-64,perempuan,3040,jiwa,2024,registration,total_population,3.2,25,,60 – 64
+35.07.04,3,Sumbermanjing Wetan,age_group,60-64,,5798,jiwa,2024,registration,total_population,3.2,25,,60 – 64
+35.07.04,3,Sumbermanjing Wetan,age_group,65+,laki_laki,5803,jiwa,2024,registration,total_population,3.2,25,,>= 65
+35.07.04,3,Sumbermanjing Wetan,age_group,65+,perempuan,5736,jiwa,2024,registration,total_population,3.2,25,,>= 65
+35.07.04,3,Sumbermanjing Wetan,age_group,65+,,11539,jiwa,2024,registration,total_population,3.2,25,,>= 65
+35.07.04,3,Kecamatan Sumbermanjing Wetan,sex,laki_laki,,52830,jiwa,2024,registration,total_population,3.2,25,,Laki-Laki
+35.07.04,3,Kecamatan Sumbermanjing Wetan,sex,perempuan,,51908,jiwa,2024,registration,total_population,3.2,25,,Perempuan
+35.07.04,3,Kecamatan Sumbermanjing Wetan,total,total,,104738,jiwa,2024,registration,total_population,3.2,25,,

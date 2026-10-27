@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-1506-kecamatan-150707-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "15.07.07",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Muara Sabak Barat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tanjung Jabung Timur",
+  "publisherDomain": "1506",
+  "publisherWebsite": "https://tanjabtimkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tanjung Jabung Timur (https://tanjabtimkab.bps.go.id), publikasi \"Kecamatan Muara Sabak Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1506031",
+  "publicationNumber": "15060.26014",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tanjabtimkab.bps.go.id/id/publication/2026/09/28/89ca417cb5a786ba1dd03973/kecamatan-muara-sabak-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "f5b5e2ade4a61aae60fe5d8b5a69d00379402c0141df914b57c5b89b4e2a5bce",
+  "sourceFileBytes": 1457861,
+  "sourcePages": [24, 26],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Tanjung Jabung Timur",
+  "csvPath": "datasets/bps-1506-kecamatan-150707-dalam-angka-2026.csv",
+  "csvSha256": "bd1e13f62051c846e786cbf5187a09b29794571246aad0180cc182d174653fa7",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Muara Sabak Barat, 2025",
+      "printedPages": [24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Muara Sabak Barat, 2025",
+      "printedPages": [26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 15.07.07 are not stored: age_group (perempuan) vs sex value: parts sum 10972.0000 != 12182.0000 (diff 1210.0000); the source itself is inconsistent"
+  ]
+}

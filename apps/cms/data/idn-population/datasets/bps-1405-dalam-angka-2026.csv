@@ -1,0 +1,171 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.08,2,Kabupaten Siak,age_group,0-4,perempuan,17349,jiwa,2025,registration,total_population,3.1.2,78,,0–4
+14.08,2,Kabupaten Siak,age_group,0-4,,35847,jiwa,2025,registration,total_population,3.1.2,78,,0–4
+14.08,2,Kabupaten Siak,age_group,5-9,perempuan,23083,jiwa,2025,registration,total_population,3.1.2,78,,5–9
+14.08,2,Kabupaten Siak,age_group,5-9,,47616,jiwa,2025,registration,total_population,3.1.2,78,,5–9
+14.08,2,Kabupaten Siak,age_group,10-14,perempuan,24965,jiwa,2025,registration,total_population,3.1.2,78,,10–14
+14.08,2,Kabupaten Siak,age_group,10-14,,51788,jiwa,2025,registration,total_population,3.1.2,78,,10–14
+14.08,2,Kabupaten Siak,age_group,15-19,perempuan,22921,jiwa,2025,registration,total_population,3.1.2,78,,15–19
+14.08,2,Kabupaten Siak,age_group,15-19,,47714,jiwa,2025,registration,total_population,3.1.2,78,,15–19
+14.08,2,Kabupaten Siak,age_group,20-24,perempuan,22976,jiwa,2025,registration,total_population,3.1.2,78,,20–24
+14.08,2,Kabupaten Siak,age_group,20-24,,47665,jiwa,2025,registration,total_population,3.1.2,78,,20–24
+14.08,2,Kabupaten Siak,age_group,25-29,perempuan,20767,jiwa,2025,registration,total_population,3.1.2,78,,25–29
+14.08,2,Kabupaten Siak,age_group,25-29,,42451,jiwa,2025,registration,total_population,3.1.2,78,,25–29
+14.08,2,Kabupaten Siak,age_group,30-34,perempuan,18499,jiwa,2025,registration,total_population,3.1.2,78,,30–34
+14.08,2,Kabupaten Siak,age_group,30-34,,37409,jiwa,2025,registration,total_population,3.1.2,78,,30–34
+14.08,2,Kabupaten Siak,age_group,35-39,perempuan,18898,jiwa,2025,registration,total_population,3.1.2,78,,35–39
+14.08,2,Kabupaten Siak,age_group,35-39,,37257,jiwa,2025,registration,total_population,3.1.2,78,,35–39
+14.08,2,Kabupaten Siak,age_group,40-44,perempuan,18770,jiwa,2025,registration,total_population,3.1.2,78,,40–44
+14.08,2,Kabupaten Siak,age_group,40-44,,37560,jiwa,2025,registration,total_population,3.1.2,78,,40–44
+14.08,2,Kabupaten Siak,age_group,45-49,perempuan,17671,jiwa,2025,registration,total_population,3.1.2,78,,45–49
+14.08,2,Kabupaten Siak,age_group,45-49,,35595,jiwa,2025,registration,total_population,3.1.2,78,,45–49
+14.08,2,Kabupaten Siak,age_group,50-54,perempuan,14620,jiwa,2025,registration,total_population,3.1.2,78,,50–54
+14.08,2,Kabupaten Siak,age_group,50-54,,30249,jiwa,2025,registration,total_population,3.1.2,78,,50–54
+14.08,2,Kabupaten Siak,age_group,55-59,perempuan,10815,jiwa,2025,registration,total_population,3.1.2,78,,55–59
+14.08,2,Kabupaten Siak,age_group,55-59,,23300,jiwa,2025,registration,total_population,3.1.2,78,,55–59
+14.08,2,Kabupaten Siak,age_group,60-64,perempuan,6746,jiwa,2025,registration,total_population,3.1.2,78,,60–64
+14.08,2,Kabupaten Siak,age_group,60-64,,14480,jiwa,2025,registration,total_population,3.1.2,78,,60–64
+14.08,2,Kabupaten Siak,age_group,65-69,perempuan,4315,jiwa,2025,registration,total_population,3.1.2,78,,65–69
+14.08,2,Kabupaten Siak,age_group,65-69,,9064,jiwa,2025,registration,total_population,3.1.2,78,,65–69
+14.08,2,Kabupaten Siak,age_group,70-74,perempuan,2353,jiwa,2025,registration,total_population,3.1.2,78,,70–74
+14.08,2,Kabupaten Siak,age_group,70-74,,4985,jiwa,2025,registration,total_population,3.1.2,78,,70–74
+14.08,2,Kabupaten Siak,age_group,75+,perempuan,2410,jiwa,2025,registration,total_population,3.1.2,78,,75+
+14.08,2,Kabupaten Siak,age_group,75+,,4749,jiwa,2025,registration,total_population,3.1.2,78,,75+
+14.08,2,Kabupaten Siak,sex,perempuan,,247158,jiwa,2025,registration,total_population,3.1.2,78,,Perempuan
+14.08,2,Kabupaten Siak,total,total,,507729,jiwa,2025,registration,total_population,3.1.2,78,,
+14.08.03,3,Minas,religion,islam,,22531,jiwa,2024,registration,total_population,4.3.1,183,,Islam
+14.08.03,3,Minas,religion,kristen,,9310,jiwa,2024,registration,total_population,4.3.1,183,,Protestan
+14.08.03,3,Minas,religion,katolik,,723,jiwa,2024,registration,total_population,4.3.1,183,,Katolik
+14.08.03,3,Minas,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Hindu
+14.08.03,3,Minas,religion,buddha,,6,jiwa,2024,registration,total_population,4.3.1,183,,Budha
+14.08.03,3,Minas,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Lainnya
+14.08.05,3,Sungai Mandau,religion,islam,,10260,jiwa,2024,registration,total_population,4.3.1,183,,Islam
+14.08.05,3,Sungai Mandau,religion,kristen,,697,jiwa,2024,registration,total_population,4.3.1,183,,Protestan
+14.08.05,3,Sungai Mandau,religion,katolik,,87,jiwa,2024,registration,total_population,4.3.1,183,,Katolik
+14.08.05,3,Sungai Mandau,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Hindu
+14.08.05,3,Sungai Mandau,religion,buddha,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Budha
+14.08.05,3,Sungai Mandau,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Lainnya
+14.08.10,3,Kandis,religion,islam,,53053,jiwa,2024,registration,total_population,4.3.1,183,,Islam
+14.08.10,3,Kandis,religion,kristen,,23320,jiwa,2024,registration,total_population,4.3.1,183,,Protestan
+14.08.10,3,Kandis,religion,katolik,,2266,jiwa,2024,registration,total_population,4.3.1,183,,Katolik
+14.08.10,3,Kandis,religion,hindu,,162,jiwa,2024,registration,total_population,4.3.1,183,,Hindu
+14.08.10,3,Kandis,religion,buddha,,156,jiwa,2024,registration,total_population,4.3.1,183,,Budha
+14.08.10,3,Kandis,religion,lainnya,,14,jiwa,2024,registration,total_population,4.3.1,183,,Lainnya
+14.08.01,3,Siak,religion,islam,,31204,jiwa,2024,registration,total_population,4.3.1,183,,Islam
+14.08.01,3,Siak,religion,kristen,,1600,jiwa,2024,registration,total_population,4.3.1,183,,Protestan
+14.08.01,3,Siak,religion,katolik,,126,jiwa,2024,registration,total_population,4.3.1,183,,Katolik
+14.08.01,3,Siak,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Hindu
+14.08.01,3,Siak,religion,buddha,,1067,jiwa,2024,registration,total_population,4.3.1,183,,Budha
+14.08.01,3,Siak,religion,lainnya,,5,jiwa,2024,registration,total_population,4.3.1,183,,Lainnya
+14.08.07,3,Kerinci Kanan,religion,islam,,22306,jiwa,2024,registration,total_population,4.3.1,183,,Islam
+14.08.07,3,Kerinci Kanan,religion,kristen,,1602,jiwa,2024,registration,total_population,4.3.1,183,,Protestan
+14.08.07,3,Kerinci Kanan,religion,katolik,,232,jiwa,2024,registration,total_population,4.3.1,183,,Katolik
+14.08.07,3,Kerinci Kanan,religion,hindu,,10,jiwa,2024,registration,total_population,4.3.1,183,,Hindu
+14.08.07,3,Kerinci Kanan,religion,buddha,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Budha
+14.08.07,3,Kerinci Kanan,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Lainnya
+14.08.04,3,Tualang,religion,islam,,94260,jiwa,2024,registration,total_population,4.3.1,183,,Islam
+14.08.04,3,Tualang,religion,kristen,,24868,jiwa,2024,registration,total_population,4.3.1,183,,Protestan
+14.08.04,3,Tualang,religion,katolik,,2731,jiwa,2024,registration,total_population,4.3.1,183,,Katolik
+14.08.04,3,Tualang,religion,hindu,,10,jiwa,2024,registration,total_population,4.3.1,183,,Hindu
+14.08.04,3,Tualang,religion,buddha,,1236,jiwa,2024,registration,total_population,4.3.1,183,,Budha
+14.08.04,3,Tualang,religion,lainnya,,49,jiwa,2024,registration,total_population,4.3.1,183,,Lainnya
+14.08.06,3,Dayun,religion,islam,,27622,jiwa,2024,registration,total_population,4.3.1,183,,Islam
+14.08.06,3,Dayun,religion,kristen,,5663,jiwa,2024,registration,total_population,4.3.1,183,,Protestan
+14.08.06,3,Dayun,religion,katolik,,531,jiwa,2024,registration,total_population,4.3.1,183,,Katolik
+14.08.06,3,Dayun,religion,hindu,,5,jiwa,2024,registration,total_population,4.3.1,183,,Hindu
+14.08.06,3,Dayun,religion,buddha,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Budha
+14.08.06,3,Dayun,religion,lainnya,,15,jiwa,2024,registration,total_population,4.3.1,183,,Lainnya
+14.08.11,3,Lubuk Dalam,religion,islam,,17162,jiwa,2024,registration,total_population,4.3.1,183,,Islam
+14.08.11,3,Lubuk Dalam,religion,kristen,,3516,jiwa,2024,registration,total_population,4.3.1,183,,Protestan
+14.08.11,3,Lubuk Dalam,religion,katolik,,503,jiwa,2024,registration,total_population,4.3.1,183,,Katolik
+14.08.11,3,Lubuk Dalam,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Hindu
+14.08.11,3,Lubuk Dalam,religion,buddha,,5,jiwa,2024,registration,total_population,4.3.1,183,,Budha
+14.08.11,3,Lubuk Dalam,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Lainnya
+14.08.09,3,Koto Gasib,religion,islam,,22509,jiwa,2024,registration,total_population,4.3.1,183,,Islam
+14.08.09,3,Koto Gasib,religion,kristen,,2541,jiwa,2024,registration,total_population,4.3.1,183,,Protestan
+14.08.09,3,Koto Gasib,religion,katolik,,225,jiwa,2024,registration,total_population,4.3.1,183,,Katolik
+14.08.09,3,Koto Gasib,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Hindu
+14.08.09,3,Koto Gasib,religion,buddha,,36,jiwa,2024,registration,total_population,4.3.1,183,,Budha
+14.08.09,3,Koto Gasib,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Lainnya
+14.08.13,3,Mempura,religion,islam,,17550,jiwa,2024,registration,total_population,4.3.1,183,,Islam
+14.08.13,3,Mempura,religion,kristen,,601,jiwa,2024,registration,total_population,4.3.1,183,,Protestan
+14.08.13,3,Mempura,religion,katolik,,49,jiwa,2024,registration,total_population,4.3.1,183,,Katolik
+14.08.13,3,Mempura,religion,hindu,,4,jiwa,2024,registration,total_population,4.3.1,183,,Hindu
+14.08.13,3,Mempura,religion,buddha,,25,jiwa,2024,registration,total_population,4.3.1,183,,Budha
+14.08.13,3,Mempura,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Lainnya
+14.08.02,3,Sungai Apit,religion,islam,,30428,jiwa,2024,registration,total_population,4.3.1,183,,Islam
+14.08.02,3,Sungai Apit,religion,kristen,,1084,jiwa,2024,registration,total_population,4.3.1,183,,Protestan
+14.08.02,3,Sungai Apit,religion,katolik,,53,jiwa,2024,registration,total_population,4.3.1,183,,Katolik
+14.08.02,3,Sungai Apit,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Hindu
+14.08.02,3,Sungai Apit,religion,buddha,,1462,jiwa,2024,registration,total_population,4.3.1,183,,Budha
+14.08.02,3,Sungai Apit,religion,lainnya,,155,jiwa,2024,registration,total_population,4.3.1,183,,Lainnya
+14.08.08,3,Bunga Raya,religion,islam,,28301,jiwa,2024,registration,total_population,4.3.1,183,,Islam
+14.08.08,3,Bunga Raya,religion,kristen,,981,jiwa,2024,registration,total_population,4.3.1,183,,Protestan
+14.08.08,3,Bunga Raya,religion,katolik,,115,jiwa,2024,registration,total_population,4.3.1,183,,Katolik
+14.08.08,3,Bunga Raya,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Hindu
+14.08.08,3,Bunga Raya,religion,buddha,,37,jiwa,2024,registration,total_population,4.3.1,183,,Budha
+14.08.08,3,Bunga Raya,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Lainnya
+14.08.12,3,Sabak Auh,religion,islam,,13526,jiwa,2024,registration,total_population,4.3.1,183,,Islam
+14.08.12,3,Sabak Auh,religion,kristen,,119,jiwa,2024,registration,total_population,4.3.1,183,,Protestan
+14.08.12,3,Sabak Auh,religion,katolik,,22,jiwa,2024,registration,total_population,4.3.1,183,,Katolik
+14.08.12,3,Sabak Auh,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Hindu
+14.08.12,3,Sabak Auh,religion,buddha,,269,jiwa,2024,registration,total_population,4.3.1,183,,Budha
+14.08.12,3,Sabak Auh,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Lainnya
+14.08.14,3,Pusako,religion,islam,,8203,jiwa,2024,registration,total_population,4.3.1,183,,Islam
+14.08.14,3,Pusako,religion,kristen,,172,jiwa,2024,registration,total_population,4.3.1,183,,Protestan
+14.08.14,3,Pusako,religion,katolik,,53,jiwa,2024,registration,total_population,4.3.1,183,,Katolik
+14.08.14,3,Pusako,religion,hindu,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Hindu
+14.08.14,3,Pusako,religion,buddha,,21,jiwa,2024,registration,total_population,4.3.1,183,,Budha
+14.08.14,3,Pusako,religion,lainnya,,0,jiwa,2024,registration,total_population,4.3.1,183,nil,Lainnya
+14.08,2,Kabupaten Siak,religion,islam,,398915,jiwa,2024,registration,total_population,4.3.1,183,,Islam
+14.08,2,Kabupaten Siak,religion,kristen,,76074,jiwa,2024,registration,total_population,4.3.1,183,,Protestan
+14.08,2,Kabupaten Siak,religion,katolik,,7716,jiwa,2024,registration,total_population,4.3.1,183,,Katolik
+14.08,2,Kabupaten Siak,religion,hindu,,191,jiwa,2024,registration,total_population,4.3.1,183,,Hindu
+14.08,2,Kabupaten Siak,religion,buddha,,4320,jiwa,2024,registration,total_population,4.3.1,183,,Budha
+14.08,2,Kabupaten Siak,religion,lainnya,,238,jiwa,2024,registration,total_population,4.3.1,183,,Lainnya
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/padi_padian,,94332,rupiah,2024,registration,per_capita,10.1,443,,Padi–padian
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/padi_padian,,97051,rupiah,2025,registration,per_capita,10.1,443,,Padi–padian
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/umbi_umbian,,10604,rupiah,2024,registration,per_capita,10.1,443,,Umbi–umbian
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/umbi_umbian,,9524,rupiah,2025,registration,per_capita,10.1,443,,Umbi–umbian
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,84399,rupiah,2024,registration,per_capita,10.1,443,,Ikan/udang/cumi/kerang
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,93176,rupiah,2025,registration,per_capita,10.1,443,,Ikan/udang/cumi/kerang
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/daging,,40102,rupiah,2024,registration,per_capita,10.1,443,,Daging
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/daging,,41705,rupiah,2025,registration,per_capita,10.1,443,,Daging
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/telur_dan_susu,,44300,rupiah,2024,registration,per_capita,10.1,443,,Telur dan susu
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/telur_dan_susu,,42334,rupiah,2025,registration,per_capita,10.1,443,,Telur dan susu
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/sayur_sayuran,,94527,rupiah,2024,registration,per_capita,10.1,443,,Sayur–sayuran
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/sayur_sayuran,,98755,rupiah,2025,registration,per_capita,10.1,443,,Sayur–sayuran
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/kacang_kacangan,,13671,rupiah,2024,registration,per_capita,10.1,443,,Kacang–kacangan
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/kacang_kacangan,,13837,rupiah,2025,registration,per_capita,10.1,443,,Kacang–kacangan
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/buah_buahan,,35584,rupiah,2024,registration,per_capita,10.1,443,,Buah–buahan
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/buah_buahan,,47079,rupiah,2025,registration,per_capita,10.1,443,,Buah–buahan
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/minyak_dan_kelapa,,26909,rupiah,2024,registration,per_capita,10.1,443,,Minyak dan kelapa
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/minyak_dan_kelapa,,29951,rupiah,2025,registration,per_capita,10.1,443,,Minyak dan kelapa
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/bahan_minuman,,22740,rupiah,2024,registration,per_capita,10.1,443,,Bahan minuman
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/bahan_minuman,,22506,rupiah,2025,registration,per_capita,10.1,443,,Bahan minuman
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/bumbu_bumbuan,,19000,rupiah,2024,registration,per_capita,10.1,443,,Bumbu–bumbuan
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/bumbu_bumbuan,,17756,rupiah,2025,registration,per_capita,10.1,443,,Bumbu–bumbuan
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/konsumsi_lainnya,,15894,rupiah,2024,registration,per_capita,10.1,443,,Konsumsi lainnya
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/konsumsi_lainnya,,15004,rupiah,2025,registration,per_capita,10.1,443,,Konsumsi lainnya
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,206466,rupiah,2024,registration,per_capita,10.1,443,,Makanan dan minuman jadi
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,183367,rupiah,2025,registration,per_capita,10.1,443,,Makanan dan minuman jadi
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/rokok,,114186,rupiah,2024,registration,per_capita,10.1,443,,Rokok
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/rokok,,119127,rupiah,2025,registration,per_capita,10.1,443,,Rokok
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/jumlah_makanan,,822713,rupiah,2024,registration,per_capita,10.1,443,,Jumlah makanan
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/jumlah_makanan,,831172,rupiah,2025,registration,per_capita,10.1,443,,Jumlah makanan
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,400981,rupiah,2024,registration,per_capita,10.1,443,,Perumahan dan fasilitas rumah tangga
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,413309,rupiah,2025,registration,per_capita,10.1,443,,Perumahan dan fasilitas rumah tangga
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,150362,rupiah,2024,registration,per_capita,10.1,443,,Aneka barang dan jasa
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,180673,rupiah,2025,registration,per_capita,10.1,443,,Aneka barang dan jasa
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,50209,rupiah,2024,registration,per_capita,10.1,443,,Pakaian. alas kaki. dan tutup kepala
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,52084,rupiah,2025,registration,per_capita,10.1,443,,Pakaian. alas kaki. dan tutup kepala
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/barang_tahan_lama,,56887,rupiah,2024,registration,per_capita,10.1,443,,Barang tahan lama
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/barang_tahan_lama,,109776,rupiah,2025,registration,per_capita,10.1,443,,Barang tahan lama
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,53932,rupiah,2024,registration,per_capita,10.1,443,,Pajak. pungutan. dan asuransi
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,71769,rupiah,2025,registration,per_capita,10.1,443,,Pajak. pungutan. dan asuransi
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,25293,rupiah,2024,registration,per_capita,10.1,443,,Keperluan pesta dan upacara/kenduri
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,8886,rupiah,2025,registration,per_capita,10.1,443,,Keperluan pesta dan upacara/kenduri
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,737664,rupiah,2024,registration,per_capita,10.1,443,,Jumlah bukan makanan
+14.08,2,Kabupaten Siak,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,836497,rupiah,2025,registration,per_capita,10.1,443,,Jumlah bukan makanan
+14.08,2,Kabupaten Siak,expenditure,total,,1560377,rupiah,2024,registration,per_capita,10.1,443,,
+14.08,2,Kabupaten Siak,expenditure,total,,1667669,rupiah,2025,registration,per_capita,10.1,443,,

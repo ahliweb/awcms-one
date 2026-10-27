@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.71.16.1005,4,Bilabong Jaya,sex,laki_laki,,1599,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.16.1005,4,Bilabong Jaya,sex,perempuan,,1596,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.16.1005,4,Bilabong Jaya,total,total,,3195,jiwa,2025,registration,total_population,3.1,26,,
+18.71.16.1001,4,Langkapura,sex,laki_laki,,5776,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.16.1001,4,Langkapura,sex,perempuan,,5784,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.16.1001,4,Langkapura,total,total,,11560,jiwa,2025,registration,total_population,3.1,26,,
+18.71.16.1002,4,Langkapura Baru,sex,laki_laki,,3654,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.16.1002,4,Langkapura Baru,sex,perempuan,,3635,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.16.1002,4,Langkapura Baru,total,total,,7289,jiwa,2025,registration,total_population,3.1,26,,
+18.71.16.1003,4,Gunung Terang,sex,laki_laki,,6827,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.16.1003,4,Gunung Terang,sex,perempuan,,6725,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.16.1003,4,Gunung Terang,total,total,,13552,jiwa,2025,registration,total_population,3.1,26,,
+18.71.16.1006,4,Gunung Agung,sex,laki_laki,,4220,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.16.1006,4,Gunung Agung,sex,perempuan,,4120,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.16.1006,4,Gunung Agung,total,total,,8340,jiwa,2025,registration,total_population,3.1,26,,
+18.71.16,3,Langkapura,sex,laki_laki,,22076,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.16,3,Langkapura,sex,perempuan,,21860,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.16,3,Langkapura,total,total,,43936,jiwa,2025,registration,total_population,3.1,26,,

@@ -1,0 +1,64 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+13.10.03.2003,4,Sungai Rumbai,sex,laki_laki,,3139,jiwa,2025,registration,total_population,3.3.1,22,,Laki-Laki
+13.10.03.2003,4,Sungai Rumbai,sex,perempuan,,3008,jiwa,2025,registration,total_population,3.3.1,22,,Perempuan
+13.10.03.2003,4,Sungai Rumbai,total,total,,6147,jiwa,2025,registration,total_population,3.3.1,22,,
+13.10.03.2004,4,Kurnia Koto Salak,sex,laki_laki,,2617,jiwa,2025,registration,total_population,3.3.1,22,,Laki-Laki
+13.10.03.2004,4,Kurnia Koto Salak,sex,perempuan,,2578,jiwa,2025,registration,total_population,3.3.1,22,,Perempuan
+13.10.03.2004,4,Kurnia Koto Salak,total,total,,5195,jiwa,2025,registration,total_population,3.3.1,22,,
+13.10.03.2007,4,Sungai Rumbai Timur,sex,laki_laki,,2254,jiwa,2025,registration,total_population,3.3.1,22,,Laki-Laki
+13.10.03.2007,4,Sungai Rumbai Timur,sex,perempuan,,2262,jiwa,2025,registration,total_population,3.3.1,22,,Perempuan
+13.10.03.2007,4,Sungai Rumbai Timur,total,total,,4516,jiwa,2025,registration,total_population,3.3.1,22,,
+13.10.03.2008,4,Kurnia Selatan,sex,laki_laki,,4385,jiwa,2025,registration,total_population,3.3.1,22,,Laki-Laki
+13.10.03.2008,4,Kurnia Selatan,sex,perempuan,,4105,jiwa,2025,registration,total_population,3.3.1,22,,Perempuan
+13.10.03.2008,4,Kurnia Selatan,total,total,,8490,jiwa,2025,registration,total_population,3.3.1,22,,
+13.10.03,3,Kecamatan Sungai Rumbai,sex,laki_laki,,12395,jiwa,2025,registration,total_population,3.3.1,22,,Laki-Laki
+13.10.03,3,Kecamatan Sungai Rumbai,sex,perempuan,,11953,jiwa,2025,registration,total_population,3.3.1,22,,Perempuan
+13.10.03,3,Kecamatan Sungai Rumbai,total,total,,24348,jiwa,2025,registration,total_population,3.3.1,22,,
+13.10.03,3,Sungai Rumbai,age_group,0-4,laki_laki,836,jiwa,2025,registration,total_population,3.3.2,24,,0-4
+13.10.03,3,Sungai Rumbai,age_group,0-4,perempuan,756,jiwa,2025,registration,total_population,3.3.2,24,,0-4
+13.10.03,3,Sungai Rumbai,age_group,0-4,,1592,jiwa,2025,registration,total_population,3.3.2,24,,0-4
+13.10.03,3,Sungai Rumbai,age_group,5-9,laki_laki,1146,jiwa,2025,registration,total_population,3.3.2,24,,5-9
+13.10.03,3,Sungai Rumbai,age_group,5-9,perempuan,1074,jiwa,2025,registration,total_population,3.3.2,24,,5-9
+13.10.03,3,Sungai Rumbai,age_group,5-9,,2220,jiwa,2025,registration,total_population,3.3.2,24,,5-9
+13.10.03,3,Sungai Rumbai,age_group,10-14,laki_laki,1178,jiwa,2025,registration,total_population,3.3.2,24,,10-14
+13.10.03,3,Sungai Rumbai,age_group,10-14,perempuan,1197,jiwa,2025,registration,total_population,3.3.2,24,,10-14
+13.10.03,3,Sungai Rumbai,age_group,10-14,,2375,jiwa,2025,registration,total_population,3.3.2,24,,10-14
+13.10.03,3,Sungai Rumbai,age_group,15-19,laki_laki,1163,jiwa,2025,registration,total_population,3.3.2,24,,15-19
+13.10.03,3,Sungai Rumbai,age_group,15-19,perempuan,1042,jiwa,2025,registration,total_population,3.3.2,24,,15-19
+13.10.03,3,Sungai Rumbai,age_group,15-19,,2205,jiwa,2025,registration,total_population,3.3.2,24,,15-19
+13.10.03,3,Sungai Rumbai,age_group,20-24,laki_laki,1077,jiwa,2025,registration,total_population,3.3.2,24,,20-24
+13.10.03,3,Sungai Rumbai,age_group,20-24,perempuan,1042,jiwa,2025,registration,total_population,3.3.2,24,,20-24
+13.10.03,3,Sungai Rumbai,age_group,20-24,,2119,jiwa,2025,registration,total_population,3.3.2,24,,20-24
+13.10.03,3,Sungai Rumbai,age_group,25-29,laki_laki,918,jiwa,2025,registration,total_population,3.3.2,24,,25-29
+13.10.03,3,Sungai Rumbai,age_group,25-29,perempuan,922,jiwa,2025,registration,total_population,3.3.2,24,,25-29
+13.10.03,3,Sungai Rumbai,age_group,25-29,,1840,jiwa,2025,registration,total_population,3.3.2,24,,25-29
+13.10.03,3,Sungai Rumbai,age_group,30-34,laki_laki,905,jiwa,2025,registration,total_population,3.3.2,24,,30-34
+13.10.03,3,Sungai Rumbai,age_group,30-34,perempuan,878,jiwa,2025,registration,total_population,3.3.2,24,,30-34
+13.10.03,3,Sungai Rumbai,age_group,30-34,,1783,jiwa,2025,registration,total_population,3.3.2,24,,30-34
+13.10.03,3,Sungai Rumbai,age_group,35-39,laki_laki,867,jiwa,2025,registration,total_population,3.3.2,24,,35-39
+13.10.03,3,Sungai Rumbai,age_group,35-39,perempuan,919,jiwa,2025,registration,total_population,3.3.2,24,,35-39
+13.10.03,3,Sungai Rumbai,age_group,35-39,,1786,jiwa,2025,registration,total_population,3.3.2,24,,35-39
+13.10.03,3,Sungai Rumbai,age_group,40-44,laki_laki,990,jiwa,2025,registration,total_population,3.3.2,24,,40-44
+13.10.03,3,Sungai Rumbai,age_group,40-44,perempuan,1044,jiwa,2025,registration,total_population,3.3.2,24,,40-44
+13.10.03,3,Sungai Rumbai,age_group,40-44,,2034,jiwa,2025,registration,total_population,3.3.2,24,,40-44
+13.10.03,3,Sungai Rumbai,age_group,45-49,laki_laki,932,jiwa,2025,registration,total_population,3.3.2,24,,45-49
+13.10.03,3,Sungai Rumbai,age_group,45-49,perempuan,913,jiwa,2025,registration,total_population,3.3.2,24,,45-49
+13.10.03,3,Sungai Rumbai,age_group,45-49,,1845,jiwa,2025,registration,total_population,3.3.2,24,,45-49
+13.10.03,3,Sungai Rumbai,age_group,50-54,laki_laki,765,jiwa,2025,registration,total_population,3.3.2,24,,50-54
+13.10.03,3,Sungai Rumbai,age_group,50-54,perempuan,680,jiwa,2025,registration,total_population,3.3.2,24,,50-54
+13.10.03,3,Sungai Rumbai,age_group,50-54,,1445,jiwa,2025,registration,total_population,3.3.2,24,,50-54
+13.10.03,3,Sungai Rumbai,age_group,55-59,laki_laki,583,jiwa,2025,registration,total_population,3.3.2,24,,55-59
+13.10.03,3,Sungai Rumbai,age_group,55-59,perempuan,493,jiwa,2025,registration,total_population,3.3.2,24,,55-59
+13.10.03,3,Sungai Rumbai,age_group,55-59,,1076,jiwa,2025,registration,total_population,3.3.2,24,,55-59
+13.10.03,3,Sungai Rumbai,age_group,60-64,laki_laki,416,jiwa,2025,registration,total_population,3.3.2,24,,60-64
+13.10.03,3,Sungai Rumbai,age_group,60-64,perempuan,347,jiwa,2025,registration,total_population,3.3.2,24,,60-64
+13.10.03,3,Sungai Rumbai,age_group,60-64,,763,jiwa,2025,registration,total_population,3.3.2,24,,60-64
+13.10.03,3,Sungai Rumbai,age_group,65-69,laki_laki,285,jiwa,2025,registration,total_population,3.3.2,24,,65-69
+13.10.03,3,Sungai Rumbai,age_group,65-69,perempuan,273,jiwa,2025,registration,total_population,3.3.2,24,,65-69
+13.10.03,3,Sungai Rumbai,age_group,65-69,,558,jiwa,2025,registration,total_population,3.3.2,24,,65-69
+13.10.03,3,Sungai Rumbai,age_group,70+,laki_laki,334,jiwa,2025,registration,total_population,3.3.2,24,,70+
+13.10.03,3,Sungai Rumbai,age_group,70+,perempuan,373,jiwa,2025,registration,total_population,3.3.2,24,,70+
+13.10.03,3,Sungai Rumbai,age_group,70+,,707,jiwa,2025,registration,total_population,3.3.2,24,,70+
+13.10.03,3,Kecamatan Sungai Rumbai,sex,laki_laki,,12395,jiwa,2025,registration,total_population,3.3.2,24,,Laki-Laki
+13.10.03,3,Kecamatan Sungai Rumbai,sex,perempuan,,11953,jiwa,2025,registration,total_population,3.3.2,24,,Perempuan
+13.10.03,3,Kecamatan Sungai Rumbai,total,total,,24348,jiwa,2025,registration,total_population,3.3.2,24,,

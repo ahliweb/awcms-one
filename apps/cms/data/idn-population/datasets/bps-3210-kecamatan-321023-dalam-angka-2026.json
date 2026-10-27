@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-3210-kecamatan-321023-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.10.23",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cingambul Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Majalengka",
+  "publisherDomain": "3210",
+  "publisherWebsite": "https://majalengkakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Majalengka (https://majalengkakab.bps.go.id), publikasi \"Kecamatan Cingambul Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3210010",
+  "publicationNumber": "32100.26024",
+  "issn": "2747-1098",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://majalengkakab.bps.go.id/id/publication/2026/09/28/f523cfccbc6c3fabd5bca7fa/kecamatan-cingambul-dalam-angka-2026.html",
+  "sourceFileSha256": "bb23797c24fd0847e1a75bdaa10d3bd89af49e92c0dd300f6a9d5cedece60c02",
+  "sourceFileBytes": 21685043,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Majalengka.",
+  "csvPath": "datasets/bps-3210-kecamatan-321023-dalam-angka-2026.csv",
+  "csvSha256": "3b58c90e4523c36b8237949fae006122def3dce3901f03af429cdac7324d833f",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Cingambul, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cingambul, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"001 Sedaraja\": unmatched ",
+    "table 3.1: row not stored: row \"001 Sedaraja\": unmatched ",
+    "cross-table disagreement, both stored as published: 32.10.23 sex/laki_laki/ 2025: 23475 (table 3.1) vs 34818 (table 3.2)",
+    "cross-table disagreement, both stored as published: 32.10.23 sex/perempuan/ 2025: 23035 (table 3.1) vs 33769 (table 3.2)",
+    "cross-table disagreement, both stored as published: 32.10.23 total/total/ 2025: 46510 (table 3.1) vs 68587 (table 3.2)"
+  ]
+}

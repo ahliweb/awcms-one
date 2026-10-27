@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-6213-kecamatan-621203-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "62.12.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Laung Tuhup Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Murung Raya",
+  "publisherDomain": "6213",
+  "publisherWebsite": "https://murakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Murung Raya (https://murakab.bps.go.id), publikasi \"Kecamatan Laung Tuhup Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.62130",
+  "publicationNumber": "62130.26009",
+  "issn": "2302-7231",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://murakab.bps.go.id/id/publication/2026/09/28/7d08fe8c39afb2bd1ea63989/kecamatan-laung-tuhup-dalam-angka-2026.html",
+  "sourceFileSha256": "bb7e9d13032dd8320ec04511c3ce20a70309de9464639a95ed9af8667edd0e49",
+  "sourceFileBytes": 8520490,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Murung Raya.",
+  "csvPath": "datasets/bps-6213-kecamatan-621203-dalam-angka-2026.csv",
+  "csvSha256": "876a340c0fa9887c45363fde70718e6e6ad1cb7d04ae935d6782d18d2f0e9c81",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa1/ Kelurahan di Kecamatan Laung Tuhup, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Laung Tuhup, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Beras Belange\": unmatched ",
+    "table 3.1: row not stored: row \"Tewai Haui\": unmatched ",
+    "table 3.1: row not stored: row \"Kalang Duhung\": unmatched ",
+    "table 3.1: row not stored: row \"Beras Belange\": unmatched ",
+    "table 3.1: row not stored: row \"Tewai Haui\": unmatched ",
+    "table 3.1: row not stored: row \"Kalang Duhung\": unmatched "
+  ]
+}

@@ -1,0 +1,13 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.01.25.1001,4,Kadumerak,sex,laki_laki,,4758,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+36.01.25.1001,4,Kadumerak,sex,perempuan,,4361,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+36.01.25.1001,4,Kadumerak,total,total,,9119,jiwa,2025,registration,total_population,3.1,32,,
+36.01.25.1003,4,Pagadungan,sex,laki_laki,,4714,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+36.01.25.1003,4,Pagadungan,sex,perempuan,,4472,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+36.01.25.1003,4,Pagadungan,total,total,,9186,jiwa,2025,registration,total_population,3.1,32,,
+36.01.25.1002,4,Cigadung,sex,laki_laki,,7435,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+36.01.25.1002,4,Cigadung,sex,perempuan,,7073,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+36.01.25.1002,4,Cigadung,total,total,,14508,jiwa,2025,registration,total_population,3.1,32,,
+36.01.25.1014,4,Juhut,sex,laki_laki,,4656,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+36.01.25.1014,4,Juhut,sex,perempuan,,4353,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+36.01.25.1014,4,Juhut,total,total,,9009,jiwa,2025,registration,total_population,3.1,32,,

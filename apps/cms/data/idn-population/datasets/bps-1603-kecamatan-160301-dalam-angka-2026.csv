@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.03.01.2015,4,Pandan Enim,sex,laki_laki,,1248,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.01.2015,4,Pandan Enim,sex,perempuan,,1188,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.01.2015,4,Pandan Enim,total,total,,2436,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.01.2016,4,Paduraksa,sex,laki_laki,,1109,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.01.2016,4,Paduraksa,sex,perempuan,,1038,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.01.2016,4,Paduraksa,total,total,,2147,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.01.2011,4,Embawang,sex,laki_laki,,611,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.01.2011,4,Embawang,sex,perempuan,,631,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.01.2011,4,Embawang,total,total,,1242,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.01.2012,4,Pagar Dewa,sex,laki_laki,,897,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.01.2012,4,Pagar Dewa,sex,perempuan,,811,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.01.2012,4,Pagar Dewa,total,total,,1708,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.01.2013,4,Tanjung Bulan,sex,laki_laki,,620,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.01.2013,4,Tanjung Bulan,sex,perempuan,,570,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.01.2013,4,Tanjung Bulan,total,total,,1190,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.01.2014,4,Lesung Batu,sex,laki_laki,,320,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.01.2014,4,Lesung Batu,sex,perempuan,,303,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.01.2014,4,Lesung Batu,total,total,,623,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.01.2017,4,Matas,sex,laki_laki,,757,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.01.2017,4,Matas,sex,perempuan,,683,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.01.2017,4,Matas,total,total,,1440,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.01.2018,4,Tanjung Agung,sex,laki_laki,,3142,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.01.2018,4,Tanjung Agung,sex,perempuan,,3041,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.01.2018,4,Tanjung Agung,total,total,,6183,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.01.2020,4,Tanjung Karangan,sex,laki_laki,,1167,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.01.2020,4,Tanjung Karangan,sex,perempuan,,1134,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.01.2020,4,Tanjung Karangan,total,total,,2301,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.01.2021,4,Seleman,sex,laki_laki,,1417,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.01.2021,4,Seleman,sex,perempuan,,1336,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.01.2021,4,Seleman,total,total,,2753,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.01.2022,4,Penyandingan,sex,laki_laki,,854,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.01.2022,4,Penyandingan,sex,perempuan,,833,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.01.2022,4,Penyandingan,total,total,,1687,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.01.2023,4,Tanjung Lalang,sex,laki_laki,,931,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.01.2023,4,Tanjung Lalang,sex,perempuan,,912,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.01.2023,4,Tanjung Lalang,total,total,,1843,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.01.2024,4,Pulau Panggung,sex,laki_laki,,1641,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.01.2024,4,Pulau Panggung,sex,perempuan,,1634,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.01.2024,4,Pulau Panggung,total,total,,3275,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.01.2019,4,Muara Emil,sex,laki_laki,,1135,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.01.2019,4,Muara Emil,sex,perempuan,,1018,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.01.2019,4,Muara Emil,total,total,,2153,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.01,3,Tanjung Agung,sex,laki_laki,,15849,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.01,3,Tanjung Agung,sex,perempuan,,15132,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.01,3,Tanjung Agung,total,total,,30981,jiwa,2025,registration,total_population,unnumbered-p23,23,,

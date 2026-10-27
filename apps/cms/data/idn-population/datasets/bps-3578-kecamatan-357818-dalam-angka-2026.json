@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3578-kecamatan-357818-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.78.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lakarsantri Dalam Angka 2026",
+  "publisherName": "BPS Kota Surabaya",
+  "publisherDomain": "3578",
+  "publisherWebsite": "https://surabayakota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Surabaya (https://surabayakota.bps.go.id), publikasi \"Kecamatan Lakarsantri Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3578140",
+  "publicationNumber": "35780.25022",
+  "issn": "3110-5300",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://surabayakota.bps.go.id/id/publication/2026/09/28/abfbfbdbc2075bf9a64b9166/kecamatan-lakarsantri-dalam-angka-2026.html",
+  "sourceFileSha256": "ec35364f89b1f1fc30672411e4238c72491302d33c68353354c5db50bbccbf94",
+  "sourceFileBytes": 22112044,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Surabaya.",
+  "csvPath": "datasets/bps-3578-kecamatan-357818-dalam-angka-2026.csv",
+  "csvSha256": "1f81737534263af7e988d7b3b13e88f483dc246b96c986a5547ab3fc4b6f4ae6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Lakarsantri, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lakarsantri, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

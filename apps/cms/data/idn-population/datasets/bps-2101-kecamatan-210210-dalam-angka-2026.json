@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-2101-kecamatan-210210-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "21.02.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Meral Barat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Karimun",
+  "publisherDomain": "2101",
+  "publisherWebsite": "https://karimunkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Karimun (https://karimunkab.bps.go.id), publikasi \"Kecamatan Meral Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "21010.26018",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://karimunkab.bps.go.id/id/publication/2026/09/28/9d4350afb4f2380691f6192e/kecamatan-meral-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "298e3fc1d7dba364aa9925018c9d0be4afc9617cb8d516c40fc9d4007454d5e9",
+  "sourceFileBytes": 4237088,
+  "sourcePages": [34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Karimun",
+  "csvPath": "datasets/bps-2101-kecamatan-210210-dalam-angka-2026.csv",
+  "csvSha256": "18f8241f8d15626b1706ba33ad170b3309be5f4c244d8a726e2f42a023f5e80b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Meral Barat, 2025",
+      "printedPages": [],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Meral Barat, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Darusalam\": unmatched "
+  ]
+}

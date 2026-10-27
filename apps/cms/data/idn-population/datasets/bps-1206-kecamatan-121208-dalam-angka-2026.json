@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-1206-kecamatan-121208-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.12.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ajibata Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Toba",
+  "publisherDomain": "1206",
+  "publisherWebsite": "https://tobakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Toba (https://tobakab.bps.go.id), publikasi \"Kecamatan Ajibata Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1206082",
+  "publicationNumber": "12060.26022",
+  "issn": "2461-0097",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tobakab.bps.go.id/id/publication/2026/09/28/c76e3621626f0eeda0bbefca/kecamatan-ajibata-dalam-angka-2026.html",
+  "sourceFileSha256": "8e9763e03b171421a61d5e3d32234321486ba2edeacd9291ad4bc6866c71f19b",
+  "sourceFileBytes": 4338364,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Toba.",
+  "csvPath": "datasets/bps-1206-kecamatan-121208-dalam-angka-2026.csv",
+  "csvSha256": "de58dabd398ecb7f5c53d69b456f53c13ae1cdfe2f6d7859f055f515270d6eb0",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Ajibata, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ajibata, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "cross-table disagreement, both stored as published: 12.12.08 sex/laki_laki/ 2025: 5250 (table 3.1) vs 5192 (table 3.2)",
+    "cross-table disagreement, both stored as published: 12.12.08 sex/perempuan/ 2025: 5407 (table 3.1) vs 5349 (table 3.2)",
+    "cross-table disagreement, both stored as published: 12.12.08 total/total/ 2025: 10657 (table 3.1) vs 10541 (table 3.2)"
+  ]
+}

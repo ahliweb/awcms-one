@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1403-kecamatan-140402-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.04.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Enok Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Indragiri Hilir",
+  "publisherDomain": "1403",
+  "publisherWebsite": "https://inhilkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Indragiri Hilir (https://inhilkab.bps.go.id), publikasi \"Kecamatan Enok Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1403030",
+  "publicationNumber": "14030.26010",
+  "issn": "2597-5501",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://inhilkab.bps.go.id/id/publication/2026/09/28/9816d4ac081a6a75d6d86891/kecamatan-enok-dalam-angka-2026.html",
+  "sourceFileSha256": "52a14f952300e67bf91c5afa4fe050429c03b5ad1954035496cf7fd8408f20d5",
+  "sourceFileBytes": 2788984,
+  "sourcePages": [29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik BPS Kabupaten Indragiri Hilir.",
+  "csvPath": "datasets/bps-1403-kecamatan-140402-dalam-angka-2026.csv",
+  "csvSha256": "2121720eeadb322192769e8d1410992d547f3f5afc773c0bf3f2659ed58e4094",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Enok, 2026",
+      "printedPages": [29, 30],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.71.02.1003,4,Sukarame,sex,laki_laki,,10272,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.02.1003,4,Sukarame,sex,perempuan,,10217,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.02.1003,4,Sukarame,total,total,,20489,jiwa,2025,registration,total_population,3.1,26,,
+18.71.02.1004,4,Way Dadi,sex,laki_laki,,4656,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.02.1004,4,Way Dadi,sex,perempuan,,4607,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.02.1004,4,Way Dadi,total,total,,9263,jiwa,2025,registration,total_population,3.1,26,,
+18.71.02.1008,4,Korpri Jaya,sex,laki_laki,,3292,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.02.1008,4,Korpri Jaya,sex,perempuan,,3189,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.02.1008,4,Korpri Jaya,total,total,,6481,jiwa,2025,registration,total_population,3.1,26,,
+18.71.02.1007,4,Way Dadi Baru,sex,laki_laki,,6254,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.02.1007,4,Way Dadi Baru,sex,perempuan,,6076,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.02.1007,4,Way Dadi Baru,total,total,,12330,jiwa,2025,registration,total_population,3.1,26,,
+18.71.02.1009,4,Korpri Raya,sex,laki_laki,,4254,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.02.1009,4,Korpri Raya,sex,perempuan,,4323,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.02.1009,4,Korpri Raya,total,total,,8577,jiwa,2025,registration,total_population,3.1,26,,
+18.71.02.1006,4,Sukarame Baru,sex,laki_laki,,5322,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.02.1006,4,Sukarame Baru,sex,perempuan,,5202,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.02.1006,4,Sukarame Baru,total,total,,10524,jiwa,2025,registration,total_population,3.1,26,,
+18.71.02,3,Sukarame,sex,laki_laki,,34050,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+18.71.02,3,Sukarame,sex,perempuan,,33614,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+18.71.02,3,Sukarame,total,total,,67664,jiwa,2025,registration,total_population,3.1,26,,

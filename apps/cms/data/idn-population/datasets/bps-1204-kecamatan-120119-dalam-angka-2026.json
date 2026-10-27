@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1204-kecamatan-120119-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.01.19",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lumut Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tapanuli Tengah",
+  "publisherDomain": "1204",
+  "publisherWebsite": "https://tapanulitengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tapanuli Tengah (https://tapanulitengahkab.bps.go.id), publikasi \"Kecamatan Lumut Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1204021",
+  "publicationNumber": "12040.26011",
+  "issn": "2962-9098",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tapanulitengahkab.bps.go.id/id/publication/2026/09/28/5f9d881a74a29ef3ef140259/kecamatan-lumut-dalam-angka-2026.html",
+  "sourceFileSha256": "f0f861b67ccfc920d1eb1c9dd48859156e5b6e4a565007f0926a5c0d4e1660a4",
+  "sourceFileBytes": 11234568,
+  "sourcePages": [35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tapanuli Tengah .",
+  "csvPath": "datasets/bps-1204-kecamatan-120119-dalam-angka-2026.csv",
+  "csvSha256": "f16296b3d91f62ad00f8f00eba54fa780ce21a2a1327758c6ab485ce45cbf71b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Lumut , 202 5",
+      "printedPages": [35, 36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

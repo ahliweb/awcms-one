@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.14.01.1004,4,Sindangkasih,sex,laki_laki,,11155,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.01.1004,4,Sindangkasih,sex,perempuan,,10776,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.01.1004,4,Sindangkasih,total,total,,21931,jiwa,2025,registration,total_population,3.1,22,,
+32.14.01.1005,4,Cipaisan,sex,laki_laki,,6485,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.01.1005,4,Cipaisan,sex,perempuan,,6478,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.01.1005,4,Cipaisan,total,total,,12963,jiwa,2025,registration,total_population,3.1,22,,
+32.14.01.1008,4,Tegalmunjul,sex,laki_laki,,8026,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.01.1008,4,Tegalmunjul,sex,perempuan,,7981,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.01.1008,4,Tegalmunjul,total,total,,16007,jiwa,2025,registration,total_population,3.1,22,,
+32.14.01.2010,4,Citalang,sex,laki_laki,,6321,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.01.2010,4,Citalang,sex,perempuan,,6114,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.01.2010,4,Citalang,total,total,,12435,jiwa,2025,registration,total_population,3.1,22,,
+32.14.01.1009,4,Munjuljaya,sex,laki_laki,,11138,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.01.1009,4,Munjuljaya,sex,perempuan,,11080,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.01.1009,4,Munjuljaya,total,total,,22218,jiwa,2025,registration,total_population,3.1,22,,
+32.14.01.1007,4,Ciseureuh,sex,laki_laki,,20020,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.01.1007,4,Ciseureuh,sex,perempuan,,19975,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.01.1007,4,Ciseureuh,total,total,,39995,jiwa,2025,registration,total_population,3.1,22,,
+32.14.01.1006,4,Purwamekar,sex,laki_laki,,5413,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.01.1006,4,Purwamekar,sex,perempuan,,5394,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.01.1006,4,Purwamekar,total,total,,10807,jiwa,2025,registration,total_population,3.1,22,,
+32.14.01,3,Kecamatan Purwakarta,sex,laki_laki,,95111,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.01,3,Kecamatan Purwakarta,sex,perempuan,,94310,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.01,3,Kecamatan Purwakarta,total,total,,189421,jiwa,2025,registration,total_population,3.1,22,,

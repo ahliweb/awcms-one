@@ -1,0 +1,179 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.73.06.1006,4,Cilowong,sex,laki_laki,,3902,jiwa,2026,registration,total_population,3.1,,,Laki-Laki/Male
+36.73.06.1006,4,Cilowong,sex,perempuan,,3742,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+36.73.06.1006,4,Cilowong,total,total,,7644,jiwa,2026,registration,total_population,3.1,,,
+36.73.06.1002,4,Sayar,sex,laki_laki,,4083,jiwa,2026,registration,total_population,3.1,,,Laki-Laki/Male
+36.73.06.1002,4,Sayar,sex,perempuan,,3644,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+36.73.06.1002,4,Sayar,total,total,,7727,jiwa,2026,registration,total_population,3.1,,,
+36.73.06.1010,4,Sepang,sex,laki_laki,,8453,jiwa,2026,registration,total_population,3.1,,,Laki-Laki/Male
+36.73.06.1010,4,Sepang,sex,perempuan,,8158,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+36.73.06.1010,4,Sepang,total,total,,16611,jiwa,2026,registration,total_population,3.1,,,
+36.73.06.1003,4,Pancur,sex,laki_laki,,3190,jiwa,2026,registration,total_population,3.1,,,Laki-Laki/Male
+36.73.06.1003,4,Pancur,sex,perempuan,,3030,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+36.73.06.1003,4,Pancur,total,total,,6220,jiwa,2026,registration,total_population,3.1,,,
+36.73.06.1005,4,Kalang Anyar,sex,laki_laki,,2689,jiwa,2026,registration,total_population,3.1,,,Laki-Laki/Male
+36.73.06.1005,4,Kalang Anyar,sex,perempuan,,2513,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+36.73.06.1005,4,Kalang Anyar,total,total,,5202,jiwa,2026,registration,total_population,3.1,,,
+36.73.06.1004,4,Kuranji,sex,laki_laki,,3135,jiwa,2026,registration,total_population,3.1,,,Laki-Laki/Male
+36.73.06.1004,4,Kuranji,sex,perempuan,,2945,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+36.73.06.1004,4,Kuranji,total,total,,6080,jiwa,2026,registration,total_population,3.1,,,
+36.73.06.1007,4,Panggung Jati,sex,laki_laki,,5514,jiwa,2026,registration,total_population,3.1,,,Laki-Laki/Male
+36.73.06.1007,4,Panggung Jati,sex,perempuan,,5210,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+36.73.06.1007,4,Panggung Jati,total,total,,10724,jiwa,2026,registration,total_population,3.1,,,
+36.73.06.1008,4,Drangong,sex,laki_laki,,11328,jiwa,2026,registration,total_population,3.1,,,Laki-Laki/Male
+36.73.06.1008,4,Drangong,sex,perempuan,,11256,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+36.73.06.1008,4,Drangong,total,total,,22584,jiwa,2026,registration,total_population,3.1,,,
+36.73.06.1001,4,Taktakan,sex,laki_laki,,5351,jiwa,2026,registration,total_population,3.1,,,Laki-Laki/Male
+36.73.06.1001,4,Taktakan,sex,perempuan,,5027,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+36.73.06.1001,4,Taktakan,total,total,,10378,jiwa,2026,registration,total_population,3.1,,,
+36.73.06.1009,4,Umbul Tengah,sex,laki_laki,,2924,jiwa,2026,registration,total_population,3.1,,,Laki-Laki/Male
+36.73.06.1009,4,Umbul Tengah,sex,perempuan,,2676,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+36.73.06.1009,4,Umbul Tengah,total,total,,5600,jiwa,2026,registration,total_population,3.1,,,
+36.73.06.1011,4,Lialang,sex,laki_laki,,4597,jiwa,2026,registration,total_population,3.1,,,Laki-Laki/Male
+36.73.06.1011,4,Lialang,sex,perempuan,,4444,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+36.73.06.1011,4,Lialang,total,total,,9041,jiwa,2026,registration,total_population,3.1,,,
+36.73.06.1012,4,Taman Baru,sex,laki_laki,,4090,jiwa,2026,registration,total_population,3.1,,,Laki-Laki/Male
+36.73.06.1012,4,Taman Baru,sex,perempuan,,3749,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+36.73.06.1012,4,Taman Baru,total,total,,7839,jiwa,2026,registration,total_population,3.1,,,
+36.73.06.1013,4,Cibendung,sex,laki_laki,,1631,jiwa,2026,registration,total_population,3.1,,,Laki-Laki/Male
+36.73.06.1013,4,Cibendung,sex,perempuan,,1543,jiwa,2026,registration,total_population,3.1,,,Perempuan/Female
+36.73.06.1013,4,Cibendung,total,total,,3174,jiwa,2026,registration,total_population,3.1,,,
+36.73.06,3,Taktakan,age_group,0-4,laki_laki,5326,jiwa,2026,registration,total_population,3.2,,,0–4
+36.73.06,3,Taktakan,age_group,0-4,perempuan,4676,jiwa,2026,registration,total_population,3.2,,,0–4
+36.73.06,3,Taktakan,age_group,0-4,,10002,jiwa,2026,registration,total_population,3.2,,,0–4
+36.73.06,3,Taktakan,age_group,5-9,laki_laki,6152,jiwa,2026,registration,total_population,3.2,,,5–9
+36.73.06,3,Taktakan,age_group,5-9,perempuan,5894,jiwa,2026,registration,total_population,3.2,,,5–9
+36.73.06,3,Taktakan,age_group,5-9,,12046,jiwa,2026,registration,total_population,3.2,,,5–9
+36.73.06,3,Taktakan,age_group,10-14,laki_laki,5579,jiwa,2026,registration,total_population,3.2,,,10–14
+36.73.06,3,Taktakan,age_group,10-14,perempuan,5306,jiwa,2026,registration,total_population,3.2,,,10–14
+36.73.06,3,Taktakan,age_group,10-14,,10885,jiwa,2026,registration,total_population,3.2,,,10–14
+36.73.06,3,Taktakan,age_group,15-19,laki_laki,4793,jiwa,2026,registration,total_population,3.2,,,15–19
+36.73.06,3,Taktakan,age_group,15-19,perempuan,4546,jiwa,2026,registration,total_population,3.2,,,15–19
+36.73.06,3,Taktakan,age_group,15-19,,9339,jiwa,2026,registration,total_population,3.2,,,15–19
+36.73.06,3,Taktakan,age_group,20-24,laki_laki,4732,jiwa,2026,registration,total_population,3.2,,,20–24
+36.73.06,3,Taktakan,age_group,20-24,perempuan,4551,jiwa,2026,registration,total_population,3.2,,,20–24
+36.73.06,3,Taktakan,age_group,20-24,,9283,jiwa,2026,registration,total_population,3.2,,,20–24
+36.73.06,3,Taktakan,age_group,25-29,laki_laki,5451,jiwa,2026,registration,total_population,3.2,,,25–29
+36.73.06,3,Taktakan,age_group,25-29,perempuan,5458,jiwa,2026,registration,total_population,3.2,,,25–29
+36.73.06,3,Taktakan,age_group,25-29,,10909,jiwa,2026,registration,total_population,3.2,,,25–29
+36.73.06,3,Taktakan,age_group,30-34,laki_laki,5631,jiwa,2026,registration,total_population,3.2,,,30–34
+36.73.06,3,Taktakan,age_group,30-34,perempuan,5366,jiwa,2026,registration,total_population,3.2,,,30–34
+36.73.06,3,Taktakan,age_group,30-34,,10997,jiwa,2026,registration,total_population,3.2,,,30–34
+36.73.06,3,Taktakan,age_group,35-39,laki_laki,5009,jiwa,2026,registration,total_population,3.2,,,35–39
+36.73.06,3,Taktakan,age_group,35-39,perempuan,4803,jiwa,2026,registration,total_population,3.2,,,35–39
+36.73.06,3,Taktakan,age_group,35-39,,9812,jiwa,2026,registration,total_population,3.2,,,35–39
+36.73.06,3,Taktakan,age_group,40-44,laki_laki,4562,jiwa,2026,registration,total_population,3.2,,,40–44
+36.73.06,3,Taktakan,age_group,40-44,perempuan,4245,jiwa,2026,registration,total_population,3.2,,,40–44
+36.73.06,3,Taktakan,age_group,40-44,,8807,jiwa,2026,registration,total_population,3.2,,,40–44
+36.73.06,3,Taktakan,age_group,45-49,laki_laki,3894,jiwa,2026,registration,total_population,3.2,,,45–49
+36.73.06,3,Taktakan,age_group,45-49,perempuan,3607,jiwa,2026,registration,total_population,3.2,,,45–49
+36.73.06,3,Taktakan,age_group,45-49,,7501,jiwa,2026,registration,total_population,3.2,,,45–49
+36.73.06,3,Taktakan,age_group,50-54,laki_laki,3243,jiwa,2026,registration,total_population,3.2,,,50–54
+36.73.06,3,Taktakan,age_group,50-54,perempuan,3067,jiwa,2026,registration,total_population,3.2,,,50–54
+36.73.06,3,Taktakan,age_group,50-54,,6310,jiwa,2026,registration,total_population,3.2,,,50–54
+36.73.06,3,Taktakan,age_group,55-59,laki_laki,2534,jiwa,2026,registration,total_population,3.2,,,55–59
+36.73.06,3,Taktakan,age_group,55-59,perempuan,2405,jiwa,2026,registration,total_population,3.2,,,55–59
+36.73.06,3,Taktakan,age_group,55-59,,4939,jiwa,2026,registration,total_population,3.2,,,55–59
+36.73.06,3,Taktakan,age_group,60-64,laki_laki,1742,jiwa,2026,registration,total_population,3.2,,,60–64
+36.73.06,3,Taktakan,age_group,60-64,perempuan,1695,jiwa,2026,registration,total_population,3.2,,,60–64
+36.73.06,3,Taktakan,age_group,60-64,,3437,jiwa,2026,registration,total_population,3.2,,,60–64
+36.73.06,3,Taktakan,age_group,65-69,laki_laki,1137,jiwa,2026,registration,total_population,3.2,,,65–69
+36.73.06,3,Taktakan,age_group,65-69,perempuan,1031,jiwa,2026,registration,total_population,3.2,,,65–69
+36.73.06,3,Taktakan,age_group,65-69,,2168,jiwa,2026,registration,total_population,3.2,,,65–69
+36.73.06,3,Taktakan,age_group,70-74,laki_laki,563,jiwa,2026,registration,total_population,3.2,,,70–74
+36.73.06,3,Taktakan,age_group,70-74,perempuan,570,jiwa,2026,registration,total_population,3.2,,,70–74
+36.73.06,3,Taktakan,age_group,70-74,,1133,jiwa,2026,registration,total_population,3.2,,,70–74
+36.73.06,3,Taktakan,age_group,75+,laki_laki,539,jiwa,2026,registration,total_population,3.2,,,≥75
+36.73.06,3,Taktakan,age_group,75+,perempuan,717,jiwa,2026,registration,total_population,3.2,,,≥75
+36.73.06,3,Taktakan,age_group,75+,,1256,jiwa,2026,registration,total_population,3.2,,,≥75
+36.73.06.1006,4,Cilowong,religion,islam,,7618,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.06.1006,4,Cilowong,religion,kristen,,6,jiwa,2026,registration,total_population,3.5,39,,Kristen
+36.73.06.1006,4,Cilowong,religion,katolik,,5,jiwa,2026,registration,total_population,3.5,39,,Catholic
+36.73.06.1006,4,Cilowong,religion,hindu,,7,jiwa,2026,registration,total_population,3.5,39,,Hindu
+36.73.06.1002,4,Sayar,religion,islam,,7726,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.06.1002,4,Sayar,religion,kristen,,0,jiwa,2026,registration,total_population,3.5,39,nil,Kristen
+36.73.06.1002,4,Sayar,religion,katolik,,0,jiwa,2026,registration,total_population,3.5,39,nil,Catholic
+36.73.06.1002,4,Sayar,religion,hindu,,0,jiwa,2026,registration,total_population,3.5,39,nil,Hindu
+36.73.06.1010,4,Sepang,religion,islam,,16390,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.06.1010,4,Sepang,religion,kristen,,133,jiwa,2026,registration,total_population,3.5,39,,Kristen
+36.73.06.1010,4,Sepang,religion,katolik,,70,jiwa,2026,registration,total_population,3.5,39,,Catholic
+36.73.06.1010,4,Sepang,religion,hindu,,7,jiwa,2026,registration,total_population,3.5,39,,Hindu
+36.73.06.1003,4,Pancur,religion,islam,,6219,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.06.1003,4,Pancur,religion,kristen,,0,jiwa,2026,registration,total_population,3.5,39,nil,Kristen
+36.73.06.1003,4,Pancur,religion,katolik,,1,jiwa,2026,registration,total_population,3.5,39,,Catholic
+36.73.06.1003,4,Pancur,religion,hindu,,0,jiwa,2026,registration,total_population,3.5,39,nil,Hindu
+36.73.06.1005,4,Kalang Anyar,religion,islam,,5191,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.06.1005,4,Kalang Anyar,religion,kristen,,8,jiwa,2026,registration,total_population,3.5,39,,Kristen
+36.73.06.1005,4,Kalang Anyar,religion,katolik,,3,jiwa,2026,registration,total_population,3.5,39,,Catholic
+36.73.06.1005,4,Kalang Anyar,religion,hindu,,0,jiwa,2026,registration,total_population,3.5,39,nil,Hindu
+36.73.06.1004,4,Kuranji,religion,islam,,6062,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.06.1004,4,Kuranji,religion,kristen,,14,jiwa,2026,registration,total_population,3.5,39,,Kristen
+36.73.06.1004,4,Kuranji,religion,katolik,,0,jiwa,2026,registration,total_population,3.5,39,nil,Catholic
+36.73.06.1004,4,Kuranji,religion,hindu,,0,jiwa,2026,registration,total_population,3.5,39,nil,Hindu
+36.73.06.1007,4,Panggung Jati,religion,islam,,10584,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.06.1007,4,Panggung Jati,religion,kristen,,106,jiwa,2026,registration,total_population,3.5,39,,Kristen
+36.73.06.1007,4,Panggung Jati,religion,katolik,,32,jiwa,2026,registration,total_population,3.5,39,,Catholic
+36.73.06.1007,4,Panggung Jati,religion,hindu,,0,jiwa,2026,registration,total_population,3.5,39,nil,Hindu
+36.73.06.1008,4,Drangong,religion,islam,,21406,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.06.1008,4,Drangong,religion,kristen,,689,jiwa,2026,registration,total_population,3.5,39,,Kristen
+36.73.06.1008,4,Drangong,religion,katolik,,322,jiwa,2026,registration,total_population,3.5,39,,Catholic
+36.73.06.1008,4,Drangong,religion,hindu,,9,jiwa,2026,registration,total_population,3.5,39,,Hindu
+36.73.06.1001,4,Taktakan,religion,islam,,10291,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.06.1001,4,Taktakan,religion,kristen,,52,jiwa,2026,registration,total_population,3.5,39,,Kristen
+36.73.06.1001,4,Taktakan,religion,katolik,,11,jiwa,2026,registration,total_population,3.5,39,,Catholic
+36.73.06.1001,4,Taktakan,religion,hindu,,21,jiwa,2026,registration,total_population,3.5,39,,Hindu
+36.73.06.1009,4,Umbul Tengah,religion,islam,,5591,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.06.1009,4,Umbul Tengah,religion,kristen,,5,jiwa,2026,registration,total_population,3.5,39,,Kristen
+36.73.06.1009,4,Umbul Tengah,religion,katolik,,0,jiwa,2026,registration,total_population,3.5,39,nil,Catholic
+36.73.06.1009,4,Umbul Tengah,religion,hindu,,0,jiwa,2026,registration,total_population,3.5,39,nil,Hindu
+36.73.06.1011,4,Lialang,religion,islam,,8674,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.06.1011,4,Lialang,religion,kristen,,233,jiwa,2026,registration,total_population,3.5,39,,Kristen
+36.73.06.1011,4,Lialang,religion,katolik,,78,jiwa,2026,registration,total_population,3.5,39,,Catholic
+36.73.06.1011,4,Lialang,religion,hindu,,51,jiwa,2026,registration,total_population,3.5,39,,Hindu
+36.73.06.1012,4,Taman Baru,religion,islam,,7324,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.06.1012,4,Taman Baru,religion,kristen,,341,jiwa,2026,registration,total_population,3.5,39,,Kristen
+36.73.06.1012,4,Taman Baru,religion,katolik,,104,jiwa,2026,registration,total_population,3.5,39,,Catholic
+36.73.06.1012,4,Taman Baru,religion,hindu,,70,jiwa,2026,registration,total_population,3.5,39,,Hindu
+36.73.06.1013,4,Cibendung,religion,islam,,3174,jiwa,2026,registration,total_population,3.5,39,,Islam
+36.73.06.1013,4,Cibendung,religion,kristen,,0,jiwa,2026,registration,total_population,3.5,39,nil,Kristen
+36.73.06.1013,4,Cibendung,religion,katolik,,0,jiwa,2026,registration,total_population,3.5,39,nil,Catholic
+36.73.06.1013,4,Cibendung,religion,hindu,,0,jiwa,2026,registration,total_population,3.5,39,nil,Hindu
+36.73.06.1006,4,Cilowong,religion,buddha,,8,jiwa,2026,registration,total_population,3.5,,,Budha
+36.73.06.1006,4,Cilowong,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,,nil,Khonghucu
+36.73.06.1006,4,Cilowong,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,,nil,Kepercayaan
+36.73.06.1002,4,Sayar,religion,buddha,,1,jiwa,2026,registration,total_population,3.5,,,Budha
+36.73.06.1002,4,Sayar,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,,nil,Khonghucu
+36.73.06.1002,4,Sayar,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,,nil,Kepercayaan
+36.73.06.1010,4,Sepang,religion,buddha,,7,jiwa,2026,registration,total_population,3.5,,,Budha
+36.73.06.1010,4,Sepang,religion,khonghucu,,4,jiwa,2026,registration,total_population,3.5,,,Khonghucu
+36.73.06.1010,4,Sepang,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,,nil,Kepercayaan
+36.73.06.1003,4,Pancur,religion,buddha,,0,jiwa,2026,registration,total_population,3.5,,nil,Budha
+36.73.06.1003,4,Pancur,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,,nil,Khonghucu
+36.73.06.1003,4,Pancur,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,,nil,Kepercayaan
+36.73.06.1005,4,Kalang Anyar,religion,buddha,,0,jiwa,2026,registration,total_population,3.5,,nil,Budha
+36.73.06.1005,4,Kalang Anyar,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,,nil,Khonghucu
+36.73.06.1005,4,Kalang Anyar,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,,nil,Kepercayaan
+36.73.06.1004,4,Kuranji,religion,buddha,,4,jiwa,2026,registration,total_population,3.5,,,Budha
+36.73.06.1004,4,Kuranji,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,,nil,Khonghucu
+36.73.06.1004,4,Kuranji,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,,nil,Kepercayaan
+36.73.06.1007,4,Panggung Jati,religion,buddha,,2,jiwa,2026,registration,total_population,3.5,,,Budha
+36.73.06.1007,4,Panggung Jati,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,,nil,Khonghucu
+36.73.06.1007,4,Panggung Jati,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,,nil,Kepercayaan
+36.73.06.1008,4,Drangong,religion,buddha,,157,jiwa,2026,registration,total_population,3.5,,,Budha
+36.73.06.1008,4,Drangong,religion,khonghucu,,1,jiwa,2026,registration,total_population,3.5,,,Khonghucu
+36.73.06.1008,4,Drangong,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,,nil,Kepercayaan
+36.73.06.1001,4,Taktakan,religion,buddha,,3,jiwa,2026,registration,total_population,3.5,,,Budha
+36.73.06.1001,4,Taktakan,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,,nil,Khonghucu
+36.73.06.1001,4,Taktakan,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,,nil,Kepercayaan
+36.73.06.1009,4,Umbul Tengah,religion,buddha,,4,jiwa,2026,registration,total_population,3.5,,,Budha
+36.73.06.1009,4,Umbul Tengah,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,,nil,Khonghucu
+36.73.06.1009,4,Umbul Tengah,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,,nil,Kepercayaan
+36.73.06.1011,4,Lialang,religion,buddha,,5,jiwa,2026,registration,total_population,3.5,,,Budha
+36.73.06.1011,4,Lialang,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,,nil,Khonghucu
+36.73.06.1011,4,Lialang,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,,nil,Kepercayaan
+36.73.06.1012,4,Taman Baru,religion,buddha,,0,jiwa,2026,registration,total_population,3.5,,nil,Budha
+36.73.06.1012,4,Taman Baru,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,,nil,Khonghucu
+36.73.06.1012,4,Taman Baru,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,,nil,Kepercayaan
+36.73.06.1013,4,Cibendung,religion,buddha,,0,jiwa,2026,registration,total_population,3.5,,nil,Budha
+36.73.06.1013,4,Cibendung,religion,khonghucu,,0,jiwa,2026,registration,total_population,3.5,,nil,Khonghucu
+36.73.06.1013,4,Cibendung,religion,kepercayaan,,0,jiwa,2026,registration,total_population,3.5,,nil,Kepercayaan

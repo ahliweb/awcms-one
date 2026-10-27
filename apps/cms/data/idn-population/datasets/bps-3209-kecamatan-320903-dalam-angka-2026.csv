@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.03.2001,4,Astanalanggar,sex,laki_laki,,3474,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.03.2001,4,Astanalanggar,sex,perempuan,,3450,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.03.2001,4,Astanalanggar,total,total,,6924,jiwa,2025,registration,total_population,3.1,52,,
+32.09.03.2002,4,Barisan,sex,laki_laki,,2433,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.03.2002,4,Barisan,sex,perempuan,,2338,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.03.2002,4,Barisan,total,total,,4771,jiwa,2025,registration,total_population,3.1,52,,
+32.09.03.2003,4,Losari Kidul,sex,laki_laki,,1925,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.03.2003,4,Losari Kidul,sex,perempuan,,1798,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.03.2003,4,Losari Kidul,total,total,,3723,jiwa,2025,registration,total_population,3.1,52,,
+32.09.03.2004,4,Panggangsari,sex,laki_laki,,3580,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.03.2004,4,Panggangsari,sex,perempuan,,3530,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.03.2004,4,Panggangsari,total,total,,7110,jiwa,2025,registration,total_population,3.1,52,,
+32.09.03.2005,4,Losari Lor,sex,laki_laki,,3321,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.03.2005,4,Losari Lor,sex,perempuan,,3284,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.03.2005,4,Losari Lor,total,total,,6605,jiwa,2025,registration,total_population,3.1,52,,
+32.09.03.2006,4,Mulyasari,sex,laki_laki,,3296,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.03.2006,4,Mulyasari,sex,perempuan,,3259,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.03.2006,4,Mulyasari,total,total,,6555,jiwa,2025,registration,total_population,3.1,52,,
+32.09.03.2007,4,Kalirahayu,sex,laki_laki,,4335,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.03.2007,4,Kalirahayu,sex,perempuan,,4081,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.03.2007,4,Kalirahayu,total,total,,8416,jiwa,2025,registration,total_population,3.1,52,,
+32.09.03.2008,4,Kalisari,sex,laki_laki,,4685,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.03.2008,4,Kalisari,sex,perempuan,,4400,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.03.2008,4,Kalisari,total,total,,9085,jiwa,2025,registration,total_population,3.1,52,,
+32.09.03.2009,4,Ambulu,sex,laki_laki,,4327,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.03.2009,4,Ambulu,sex,perempuan,,4309,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.03.2009,4,Ambulu,total,total,,8636,jiwa,2025,registration,total_population,3.1,52,,
+32.09.03.2010,4,Tawangsari,sex,laki_laki,,3920,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.03.2010,4,Tawangsari,sex,perempuan,,3755,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.03.2010,4,Tawangsari,total,total,,7675,jiwa,2025,registration,total_population,3.1,52,,
+32.09.03,3,Kecamatan Losari,sex,laki_laki,,35296,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.03,3,Kecamatan Losari,sex,perempuan,,34204,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.03,3,Kecamatan Losari,total,total,,69500,jiwa,2025,registration,total_population,3.1,52,,
+32.09.03,3,Losari,age_group,0-4,laki_laki,2346,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.03,3,Losari,age_group,0-4,perempuan,2083,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.03,3,Losari,age_group,0-4,,4429,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.03,3,Losari,age_group,5-9,laki_laki,3036,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.03,3,Losari,age_group,5-9,perempuan,2809,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.03,3,Losari,age_group,5-9,,5845,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.03,3,Losari,age_group,10-14,laki_laki,3103,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.03,3,Losari,age_group,10-14,perempuan,2794,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.03,3,Losari,age_group,10-14,,5897,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.03,3,Losari,age_group,15-19,laki_laki,2377,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.03,3,Losari,age_group,15-19,perempuan,2400,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.03,3,Losari,age_group,15-19,,4777,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.03,3,Losari,age_group,20-24,laki_laki,2614,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.03,3,Losari,age_group,20-24,perempuan,2500,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.03,3,Losari,age_group,20-24,,5114,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.03,3,Losari,age_group,25-29,laki_laki,3099,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.03,3,Losari,age_group,25-29,perempuan,2767,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.03,3,Losari,age_group,25-29,,5866,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.03,3,Losari,age_group,30-34,laki_laki,3127,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.03,3,Losari,age_group,30-34,perempuan,2641,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.03,3,Losari,age_group,30-34,,5768,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.03,3,Losari,age_group,35-39,laki_laki,2787,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.03,3,Losari,age_group,35-39,perempuan,2552,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.03,3,Losari,age_group,35-39,,5339,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.03,3,Losari,age_group,40-44,laki_laki,2749,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.03,3,Losari,age_group,40-44,perempuan,2950,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.03,3,Losari,age_group,40-44,,5699,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.03,3,Losari,age_group,45-49,laki_laki,2471,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.03,3,Losari,age_group,45-49,perempuan,2689,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.03,3,Losari,age_group,45-49,,5160,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.03,3,Losari,age_group,50-54,laki_laki,2083,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.03,3,Losari,age_group,50-54,perempuan,2222,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.03,3,Losari,age_group,50-54,,4305,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.03,3,Losari,age_group,55-59,laki_laki,1761,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.03,3,Losari,age_group,55-59,perempuan,1873,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.03,3,Losari,age_group,55-59,,3634,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.03,3,Losari,age_group,60-64,laki_laki,1323,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.03,3,Losari,age_group,60-64,perempuan,1370,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.03,3,Losari,age_group,60-64,,2693,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.03,3,Losari,age_group,65-69,laki_laki,1038,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.03,3,Losari,age_group,65-69,perempuan,1070,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.03,3,Losari,age_group,65-69,,2108,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.03,3,Losari,age_group,70-74,laki_laki,737,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.03,3,Losari,age_group,70-74,perempuan,644,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.03,3,Losari,age_group,70-74,,1381,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.03,3,Losari,age_group,75+,laki_laki,645,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.03,3,Losari,age_group,75+,perempuan,840,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.03,3,Losari,age_group,75+,,1485,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.03,3,Kecamatan Losari,sex,laki_laki,,35296,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.03,3,Kecamatan Losari,sex,perempuan,,34204,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.03,3,Kecamatan Losari,total,total,,69500,jiwa,2025,registration,total_population,3.2,54,,

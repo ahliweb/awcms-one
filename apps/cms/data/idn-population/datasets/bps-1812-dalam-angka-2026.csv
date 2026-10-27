@@ -1,0 +1,168 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.12.03,3,Tulang Bawang Udik,total,total,,34545,jiwa,2025,projection,total_population,3.1.1,180,,
+18.12.02,3,Tumijajar,total,total,,46273,jiwa,2025,projection,total_population,3.1.1,180,,
+18.12.01,3,Tulang Bawang Tengah,total,total,,90509,jiwa,2025,projection,total_population,3.1.1,180,,
+18.12.08,3,Pagar Dewa,total,total,,7153,jiwa,2025,projection,total_population,3.1.1,180,,
+18.12.07,3,Lambu Kibang,total,total,,24804,jiwa,2025,projection,total_population,3.1.1,180,,
+18.12.04,3,Gunung Terang,total,total,,20361,jiwa,2025,projection,total_population,3.1.1,180,,
+18.12.09,3,Batu Putih,total,total,,18044,jiwa,2025,projection,total_population,3.1.1,180,,
+18.12.05,3,Gunung Agung,total,total,,35423,jiwa,2025,projection,total_population,3.1.1,180,,
+18.12.06,3,Way kenanga,total,total,,24678,jiwa,2025,projection,total_population,3.1.1,180,,
+18.12,2,Tulang Bawang Barat,total,total,,301790,jiwa,2025,projection,total_population,3.1.1,180,,
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,0-4,laki_laki,12620,jiwa,2025,projection,total_population,3.1.2,183,,0–4
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,0-4,perempuan,12109,jiwa,2025,projection,total_population,3.1.2,183,,0–4
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,0-4,,24729,jiwa,2025,projection,total_population,3.1.2,183,,0–4
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,5-9,laki_laki,13472,jiwa,2025,projection,total_population,3.1.2,183,,5–9
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,5-9,perempuan,12688,jiwa,2025,projection,total_population,3.1.2,183,,5–9
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,5-9,,26160,jiwa,2025,projection,total_population,3.1.2,183,,5–9
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,10-14,laki_laki,12533,jiwa,2025,projection,total_population,3.1.2,183,,10–14
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,10-14,perempuan,12021,jiwa,2025,projection,total_population,3.1.2,183,,10–14
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,10-14,,24554,jiwa,2025,projection,total_population,3.1.2,183,,10–14
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,15-19,laki_laki,11076,jiwa,2025,projection,total_population,3.1.2,183,,15–19
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,15-19,perempuan,10410,jiwa,2025,projection,total_population,3.1.2,183,,15–19
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,15-19,,21486,jiwa,2025,projection,total_population,3.1.2,183,,15–19
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,20-24,laki_laki,9346,jiwa,2025,projection,total_population,3.1.2,183,,20–24
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,20-24,perempuan,9056,jiwa,2025,projection,total_population,3.1.2,183,,20–24
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,20-24,,18402,jiwa,2025,projection,total_population,3.1.2,183,,20–24
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,25-29,laki_laki,11468,jiwa,2025,projection,total_population,3.1.2,183,,25–29
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,25-29,perempuan,11539,jiwa,2025,projection,total_population,3.1.2,183,,25–29
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,25-29,,23007,jiwa,2025,projection,total_population,3.1.2,183,,25–29
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,30-34,laki_laki,12733,jiwa,2025,projection,total_population,3.1.2,183,,30–34
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,30-34,perempuan,12605,jiwa,2025,projection,total_population,3.1.2,183,,30–34
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,30-34,,25338,jiwa,2025,projection,total_population,3.1.2,183,,30–34
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,35-39,laki_laki,12417,jiwa,2025,projection,total_population,3.1.2,183,,35–39
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,35-39,perempuan,12068,jiwa,2025,projection,total_population,3.1.2,183,,35–39
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,35-39,,24485,jiwa,2025,projection,total_population,3.1.2,183,,35–39
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,40-44,laki_laki,11516,jiwa,2025,projection,total_population,3.1.2,183,,40–44
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,40-44,perempuan,11007,jiwa,2025,projection,total_population,3.1.2,183,,40–44
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,40-44,,22523,jiwa,2025,projection,total_population,3.1.2,183,,40–44
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,45-49,laki_laki,10196,jiwa,2025,projection,total_population,3.1.2,183,,45–49
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,45-49,perempuan,10088,jiwa,2025,projection,total_population,3.1.2,183,,45–49
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,45-49,,20284,jiwa,2025,projection,total_population,3.1.2,183,,45–49
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,50-54,laki_laki,9155,jiwa,2025,projection,total_population,3.1.2,183,,50–54
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,50-54,perempuan,9544,jiwa,2025,projection,total_population,3.1.2,183,,50–54
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,50-54,,18699,jiwa,2025,projection,total_population,3.1.2,183,,50–54
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,55-59,laki_laki,8134,jiwa,2025,projection,total_population,3.1.2,183,,55–59
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,55-59,perempuan,8062,jiwa,2025,projection,total_population,3.1.2,183,,55–59
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,55-59,,16196,jiwa,2025,projection,total_population,3.1.2,183,,55–59
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,60-64,laki_laki,6922,jiwa,2025,projection,total_population,3.1.2,183,,60–64
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,60-64,perempuan,6524,jiwa,2025,projection,total_population,3.1.2,183,,60–64
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,60-64,,13446,jiwa,2025,projection,total_population,3.1.2,183,,60–64
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,65-69,laki_laki,5003,jiwa,2025,projection,total_population,3.1.2,183,,65–69
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,65-69,perempuan,4455,jiwa,2025,projection,total_population,3.1.2,183,,65–69
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,65-69,,9458,jiwa,2025,projection,total_population,3.1.2,183,,65–69
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,70-74,laki_laki,3550,jiwa,2025,projection,total_population,3.1.2,183,,70–74
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,70-74,perempuan,3071,jiwa,2025,projection,total_population,3.1.2,183,,70–74
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,70-74,,6621,jiwa,2025,projection,total_population,3.1.2,183,,70–74
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,75+,laki_laki,3304,jiwa,2025,projection,total_population,3.1.2,183,,75+
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,75+,perempuan,3098,jiwa,2025,projection,total_population,3.1.2,183,,75+
+18.12,2,Kabupaten Tulang Bawang Barat,age_group,75+,,6402,jiwa,2025,projection,total_population,3.1.2,183,,75+
+18.12,2,Tulang Bawang Barat,sex,laki_laki,,153445,jiwa,2025,projection,total_population,3.1.2,183,,Laki-Laki
+18.12,2,Tulang Bawang Barat,sex,perempuan,,148345,jiwa,2025,projection,total_population,3.1.2,183,,Perempuan
+18.12,2,Tulang Bawang Barat,total,total,,301790,jiwa,2025,projection,total_population,3.1.2,183,,
+18.12.03,3,Tulang Bawang Udik,religion,islam,,90225,jiwa,2025,registration,total_population,4.3.1,270,,Islam
+18.12.03,3,Tulang Bawang Udik,religion,kristen,,2269,jiwa,2025,registration,total_population,4.3.1,270,,Kristen
+18.12.03,3,Tulang Bawang Udik,religion,katolik,,575,jiwa,2025,registration,total_population,4.3.1,270,,Katolik
+18.12.03,3,Tulang Bawang Udik,religion,hindu,,426,jiwa,2025,registration,total_population,4.3.1,270,,Hindu
+18.12.03,3,Tulang Bawang Udik,religion,buddha,,78,jiwa,2025,registration,total_population,4.3.1,270,,Budha
+18.12.03,3,Tulang Bawang Udik,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,270,,Lainnya
+18.12.02,3,Tumijajar,religion,islam,,46982,jiwa,2025,registration,total_population,4.3.1,270,,Islam
+18.12.02,3,Tumijajar,religion,kristen,,1118,jiwa,2025,registration,total_population,4.3.1,270,,Kristen
+18.12.02,3,Tumijajar,religion,katolik,,739,jiwa,2025,registration,total_population,4.3.1,270,,Katolik
+18.12.02,3,Tumijajar,religion,hindu,,271,jiwa,2025,registration,total_population,4.3.1,270,,Hindu
+18.12.02,3,Tumijajar,religion,buddha,,40,jiwa,2025,registration,total_population,4.3.1,270,,Budha
+18.12.02,3,Tumijajar,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,270,,Lainnya
+18.12.01,3,Tulang Bawang Tengah,religion,islam,,34226,jiwa,2025,registration,total_population,4.3.1,270,,Islam
+18.12.01,3,Tulang Bawang Tengah,religion,kristen,,1410,jiwa,2025,registration,total_population,4.3.1,270,,Kristen
+18.12.01,3,Tulang Bawang Tengah,religion,katolik,,364,jiwa,2025,registration,total_population,4.3.1,270,,Katolik
+18.12.01,3,Tulang Bawang Tengah,religion,hindu,,6,jiwa,2025,registration,total_population,4.3.1,270,,Hindu
+18.12.01,3,Tulang Bawang Tengah,religion,buddha,,67,jiwa,2025,registration,total_population,4.3.1,270,,Budha
+18.12.01,3,Tulang Bawang Tengah,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,270,,Lainnya
+18.12.08,3,Pagar Dewa,religion,islam,,19139,jiwa,2025,registration,total_population,4.3.1,270,,Islam
+18.12.08,3,Pagar Dewa,religion,kristen,,373,jiwa,2025,registration,total_population,4.3.1,270,,Kristen
+18.12.08,3,Pagar Dewa,religion,katolik,,44,jiwa,2025,registration,total_population,4.3.1,270,,Katolik
+18.12.08,3,Pagar Dewa,religion,hindu,,1778,jiwa,2025,registration,total_population,4.3.1,270,,Hindu
+18.12.08,3,Pagar Dewa,religion,buddha,,74,jiwa,2025,registration,total_population,4.3.1,270,,Budha
+18.12.08,3,Pagar Dewa,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,270,,Lainnya
+18.12.07,3,Lambu Kibang,religion,islam,,34982,jiwa,2025,registration,total_population,4.3.1,270,,Islam
+18.12.07,3,Lambu Kibang,religion,kristen,,886,jiwa,2025,registration,total_population,4.3.1,270,,Kristen
+18.12.07,3,Lambu Kibang,religion,katolik,,207,jiwa,2025,registration,total_population,4.3.1,270,,Katolik
+18.12.07,3,Lambu Kibang,religion,hindu,,276,jiwa,2025,registration,total_population,4.3.1,270,,Hindu
+18.12.07,3,Lambu Kibang,religion,buddha,,32,jiwa,2025,registration,total_population,4.3.1,270,,Budha
+18.12.07,3,Lambu Kibang,religion,lainnya,,6,jiwa,2025,registration,total_population,4.3.1,270,,Lainnya
+18.12.04,3,Gunung Terang,religion,islam,,24506,jiwa,2025,registration,total_population,4.3.1,270,,Islam
+18.12.04,3,Gunung Terang,religion,kristen,,527,jiwa,2025,registration,total_population,4.3.1,270,,Kristen
+18.12.04,3,Gunung Terang,religion,katolik,,109,jiwa,2025,registration,total_population,4.3.1,270,,Katolik
+18.12.04,3,Gunung Terang,religion,hindu,,400,jiwa,2025,registration,total_population,4.3.1,270,,Hindu
+18.12.04,3,Gunung Terang,religion,buddha,,5,jiwa,2025,registration,total_population,4.3.1,270,,Budha
+18.12.04,3,Gunung Terang,religion,lainnya,,1,jiwa,2025,registration,total_population,4.3.1,270,,Lainnya
+18.12.09,3,Batu Putih,religion,islam,,24126,jiwa,2025,registration,total_population,4.3.1,270,,Islam
+18.12.09,3,Batu Putih,religion,kristen,,310,jiwa,2025,registration,total_population,4.3.1,270,,Kristen
+18.12.09,3,Batu Putih,religion,katolik,,175,jiwa,2025,registration,total_population,4.3.1,270,,Katolik
+18.12.09,3,Batu Putih,religion,hindu,,330,jiwa,2025,registration,total_population,4.3.1,270,,Hindu
+18.12.09,3,Batu Putih,religion,buddha,,20,jiwa,2025,registration,total_population,4.3.1,270,,Budha
+18.12.09,3,Batu Putih,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,270,,Lainnya
+18.12.05,3,Gunung Agung,religion,islam,,6796,jiwa,2025,registration,total_population,4.3.1,270,,Islam
+18.12.05,3,Gunung Agung,religion,kristen,,94,jiwa,2025,registration,total_population,4.3.1,270,,Kristen
+18.12.05,3,Gunung Agung,religion,katolik,,7,jiwa,2025,registration,total_population,4.3.1,270,,Katolik
+18.12.05,3,Gunung Agung,religion,hindu,,795,jiwa,2025,registration,total_population,4.3.1,270,,Hindu
+18.12.05,3,Gunung Agung,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,270,nil,Budha
+18.12.05,3,Gunung Agung,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,270,nil,Lainnya
+18.12.06,3,Way kenanga,religion,islam,,18146,jiwa,2025,registration,total_population,4.3.1,270,,Islam
+18.12.06,3,Way kenanga,religion,kristen,,109,jiwa,2025,registration,total_population,4.3.1,270,,Kristen
+18.12.06,3,Way kenanga,religion,katolik,,52,jiwa,2025,registration,total_population,4.3.1,270,,Katolik
+18.12.06,3,Way kenanga,religion,hindu,,68,jiwa,2025,registration,total_population,4.3.1,270,,Hindu
+18.12.06,3,Way kenanga,religion,buddha,,14,jiwa,2025,registration,total_population,4.3.1,270,,Budha
+18.12.06,3,Way kenanga,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,270,nil,Lainnya
+18.12,2,Tulang Bawang Barat,religion,islam,,299128,jiwa,2025,registration,total_population,4.3.1,270,,Islam
+18.12,2,Tulang Bawang Barat,religion,kristen,,7096,jiwa,2025,registration,total_population,4.3.1,270,,Kristen
+18.12,2,Tulang Bawang Barat,religion,katolik,,2272,jiwa,2025,registration,total_population,4.3.1,270,,Katolik
+18.12,2,Tulang Bawang Barat,religion,hindu,,4350,jiwa,2025,registration,total_population,4.3.1,270,,Hindu
+18.12,2,Tulang Bawang Barat,religion,buddha,,330,jiwa,2025,registration,total_population,4.3.1,270,,Budha
+18.12,2,Tulang Bawang Barat,religion,lainnya,,17,jiwa,2025,registration,total_population,4.3.1,270,,Lainnya
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/padi_padian,,84954,rupiah,2025,survey_estimate,per_capita,10.1,460,,Padi-padian
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/padi_padian,,96816,rupiah,2024,survey_estimate,per_capita,10.1,460,,Padi-padian
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/umbi_umbian,,4454,rupiah,2025,survey_estimate,per_capita,10.1,460,,Umbi-umbian
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/umbi_umbian,,5184,rupiah,2024,survey_estimate,per_capita,10.1,460,,Umbi-umbian
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,3541,rupiah,2025,survey_estimate,per_capita,10.1,460,,Ikan/udang/cumi/kerang
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,37333,rupiah,2024,survey_estimate,per_capita,10.1,460,,Ikan/udang/cumi/kerang
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/daging,,19171,rupiah,2025,survey_estimate,per_capita,10.1,460,,Daging
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/daging,,19071,rupiah,2024,survey_estimate,per_capita,10.1,460,,Daging
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/telur_dan_susu,,27519,rupiah,2025,survey_estimate,per_capita,10.1,460,,Telur dan susu
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/telur_dan_susu,,24993,rupiah,2024,survey_estimate,per_capita,10.1,460,,Telur dan susu
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/sayur_sayuran,,7141,rupiah,2025,survey_estimate,per_capita,10.1,460,,Sayur-sayuran
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/sayur_sayuran,,69294,rupiah,2024,survey_estimate,per_capita,10.1,460,,Sayur-sayuran
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/kacang_kacangan,,15639,rupiah,2025,survey_estimate,per_capita,10.1,460,,Kacang-kacangan
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/kacang_kacangan,,16684,rupiah,2024,survey_estimate,per_capita,10.1,460,,Kacang-kacangan
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/buah_buahan,,33189,rupiah,2025,survey_estimate,per_capita,10.1,460,,Buah-buahan
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/buah_buahan,,27199,rupiah,2024,survey_estimate,per_capita,10.1,460,,Buah-buahan
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,20795,rupiah,2025,survey_estimate,per_capita,10.1,460,,Minyak dan kelapa
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18092,rupiah,2024,survey_estimate,per_capita,10.1,460,,Minyak dan kelapa
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/bahan_minuman,,19774,rupiah,2025,survey_estimate,per_capita,10.1,460,,Bahan minuman
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/bahan_minuman,,19281,rupiah,2024,survey_estimate,per_capita,10.1,460,,Bahan minuman
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/bumbu_bumbuan,,13851,rupiah,2025,survey_estimate,per_capita,10.1,460,,Bumbu-bumbuan
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/bumbu_bumbuan,,13815,rupiah,2024,survey_estimate,per_capita,10.1,460,,Bumbu-bumbuan
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/konsumsi_lainnya,,9241,rupiah,2025,survey_estimate,per_capita,10.1,460,,Konsumsi lainnya
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/konsumsi_lainnya,,10417,rupiah,2024,survey_estimate,per_capita,10.1,460,,Konsumsi lainnya
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,12465,rupiah,2025,survey_estimate,per_capita,10.1,460,,Makanan dan minuman jadi
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,146310,rupiah,2024,survey_estimate,per_capita,10.1,460,,Makanan dan minuman jadi
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/rokok,,89839,rupiah,2025,survey_estimate,per_capita,10.1,460,,Rokok
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/rokok,,111546,rupiah,2024,survey_estimate,per_capita,10.1,460,,Rokok
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/jumlah_makanan,,569899,rupiah,2025,survey_estimate,per_capita,10.1,460,,Jumlah makanan
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/jumlah_makanan,,616035,rupiah,2024,survey_estimate,per_capita,10.1,460,,Jumlah makanan
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,248027,rupiah,2025,survey_estimate,per_capita,10.1,460,,Perumahan dan fasilitas rumah tangga
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,278317,rupiah,2024,survey_estimate,per_capita,10.1,460,,Perumahan dan fasilitas rumah tangga
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,120979,rupiah,2025,survey_estimate,per_capita,10.1,460,,Aneka barang dan jasa
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,136386,rupiah,2024,survey_estimate,per_capita,10.1,460,,Aneka barang dan jasa
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,33303,rupiah,2025,survey_estimate,per_capita,10.1,460,,"Pakaian, alas kaki, dan tutup kepala"
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,30570,rupiah,2024,survey_estimate,per_capita,10.1,460,,"Pakaian, alas kaki, dan tutup kepala"
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/barang_tahan_lama,,33737,rupiah,2025,survey_estimate,per_capita,10.1,460,,Barang tahan lama
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/barang_tahan_lama,,28667,rupiah,2024,survey_estimate,per_capita,10.1,460,,Barang tahan lama
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,31222,rupiah,2025,survey_estimate,per_capita,10.1,460,,"Pajak, pungutan, dan asuransi"
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,36796,rupiah,2024,survey_estimate,per_capita,10.1,460,,"Pajak, pungutan, dan asuransi"
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,22381,rupiah,2025,survey_estimate,per_capita,10.1,460,,Keperluan pesta dan upacara/kenduri
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,37085,rupiah,2024,survey_estimate,per_capita,10.1,460,,Keperluan pesta dan upacara/kenduri
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,489648,rupiah,2025,survey_estimate,per_capita,10.1,460,,Jumlah bukan makanan
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,547820,rupiah,2024,survey_estimate,per_capita,10.1,460,,Jumlah bukan makanan
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,total,,1059547,rupiah,2025,survey_estimate,per_capita,10.1,460,,
+18.12,2,Kabupaten Tulang Bawang Barat,expenditure,total,,1163855,rupiah,2024,survey_estimate,per_capita,10.1,460,,

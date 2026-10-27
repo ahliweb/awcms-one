@@ -1,0 +1,94 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.26.15.2019,4,Gigir,sex,laki_laki,,1213,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.15.2019,4,Gigir,sex,perempuan,,1192,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.15.2019,4,Gigir,total,total,,2405,jiwa,2025,registration,total_population,3.1,31,,
+35.26.15.2018,4,Ko'olan,sex,laki_laki,,375,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.15.2018,4,Ko'olan,sex,perempuan,,373,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.15.2018,4,Ko'olan,total,total,,748,jiwa,2025,registration,total_population,3.1,31,,
+35.26.15.2015,4,Panjalinan,sex,laki_laki,,818,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.15.2015,4,Panjalinan,sex,perempuan,,779,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.15.2015,4,Panjalinan,total,total,,1597,jiwa,2025,registration,total_population,3.1,31,,
+35.26.15.2002,4,Rosep,sex,laki_laki,,1348,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.15.2002,4,Rosep,sex,perempuan,,1313,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.15.2002,4,Rosep,total,total,,2661,jiwa,2025,registration,total_population,3.1,31,,
+35.26.15.2017,4,Kampao,sex,laki_laki,,561,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.15.2017,4,Kampao,sex,perempuan,,565,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.15.2017,4,Kampao,total,total,,1126,jiwa,2025,registration,total_population,3.1,31,,
+35.26.15.2011,4,Lombang Laok,sex,laki_laki,,924,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.15.2011,4,Lombang Laok,sex,perempuan,,852,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.15.2011,4,Lombang Laok,total,total,,1776,jiwa,2025,registration,total_population,3.1,31,,
+35.26.15.2013,4,Karpote,sex,laki_laki,,1635,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.15.2013,4,Karpote,sex,perempuan,,1604,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.15.2013,4,Karpote,total,total,,3239,jiwa,2025,registration,total_population,3.1,31,,
+35.26.15.2005,4,Blegaoloh,sex,laki_laki,,800,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.15.2005,4,Blegaoloh,sex,perempuan,,844,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.15.2005,4,Blegaoloh,total,total,,1644,jiwa,2025,registration,total_population,3.1,31,,
+35.26.15.2008,4,Karang Gayam,sex,laki_laki,,1632,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.15.2008,4,Karang Gayam,sex,perempuan,,1633,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.15.2008,4,Karang Gayam,total,total,,3265,jiwa,2025,registration,total_population,3.1,31,,
+35.26.15.2009,4,Lomaer,sex,laki_laki,,1728,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.15.2009,4,Lomaer,sex,perempuan,,1680,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.15.2009,4,Lomaer,total,total,,3408,jiwa,2025,registration,total_population,3.1,31,,
+35.26.15.2010,4,Bates,sex,laki_laki,,2005,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.15.2010,4,Bates,sex,perempuan,,1933,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.15.2010,4,Bates,total,total,,3938,jiwa,2025,registration,total_population,3.1,31,,
+35.26.15.2007,4,Karang Panasan,sex,laki_laki,,1022,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.15.2007,4,Karang Panasan,sex,perempuan,,1054,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.15.2007,4,Karang Panasan,total,total,,2076,jiwa,2025,registration,total_population,3.1,31,,
+35.26.15.2001,4,Blega,sex,laki_laki,,3786,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.15.2001,4,Blega,sex,perempuan,,3735,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.15.2001,4,Blega,total,total,,7521,jiwa,2025,registration,total_population,3.1,31,,
+35.26.15,3,Kecamatan Blega,sex,laki_laki,,28809,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.26.15,3,Kecamatan Blega,sex,perempuan,,28121,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.26.15,3,Kecamatan Blega,total,total,,56930,jiwa,2025,registration,total_population,3.1,31,,
+35.26.15,3,Blega,age_group,0-4,laki_laki,2306,jiwa,2025,registration,total_population,3.3,35,,00 - 04
+35.26.15,3,Blega,age_group,0-4,perempuan,2249,jiwa,2025,registration,total_population,3.3,35,,00 - 04
+35.26.15,3,Blega,age_group,0-4,,4555,jiwa,2025,registration,total_population,3.3,35,,00 - 04
+35.26.15,3,Blega,age_group,5-9,laki_laki,2775,jiwa,2025,registration,total_population,3.3,35,,05 - 09
+35.26.15,3,Blega,age_group,5-9,perempuan,2525,jiwa,2025,registration,total_population,3.3,35,,05 - 09
+35.26.15,3,Blega,age_group,5-9,,5300,jiwa,2025,registration,total_population,3.3,35,,05 - 09
+35.26.15,3,Blega,age_group,10-14,laki_laki,2580,jiwa,2025,registration,total_population,3.3,35,,10 - 14
+35.26.15,3,Blega,age_group,10-14,perempuan,2512,jiwa,2025,registration,total_population,3.3,35,,10 - 14
+35.26.15,3,Blega,age_group,10-14,,5092,jiwa,2025,registration,total_population,3.3,35,,10 - 14
+35.26.15,3,Blega,age_group,15-19,laki_laki,1788,jiwa,2025,registration,total_population,3.3,35,,15 - 19
+35.26.15,3,Blega,age_group,15-19,perempuan,1682,jiwa,2025,registration,total_population,3.3,35,,15 - 19
+35.26.15,3,Blega,age_group,15-19,,3470,jiwa,2025,registration,total_population,3.3,35,,15 - 19
+35.26.15,3,Blega,age_group,20-24,laki_laki,2409,jiwa,2025,registration,total_population,3.3,35,,20 - 24
+35.26.15,3,Blega,age_group,20-24,perempuan,2298,jiwa,2025,registration,total_population,3.3,35,,20 - 24
+35.26.15,3,Blega,age_group,20-24,,4707,jiwa,2025,registration,total_population,3.3,35,,20 - 24
+35.26.15,3,Blega,age_group,25-29,laki_laki,2594,jiwa,2025,registration,total_population,3.3,35,,25 - 29
+35.26.15,3,Blega,age_group,25-29,perempuan,2253,jiwa,2025,registration,total_population,3.3,35,,25 - 29
+35.26.15,3,Blega,age_group,25-29,,4847,jiwa,2025,registration,total_population,3.3,35,,25 - 29
+35.26.15,3,Blega,age_group,30-34,laki_laki,2336,jiwa,2025,registration,total_population,3.3,35,,30 - 34
+35.26.15,3,Blega,age_group,30-34,perempuan,2150,jiwa,2025,registration,total_population,3.3,35,,30 - 34
+35.26.15,3,Blega,age_group,30-34,,4486,jiwa,2025,registration,total_population,3.3,35,,30 - 34
+35.26.15,3,Blega,age_group,35-39,laki_laki,2170,jiwa,2025,registration,total_population,3.3,35,,35 - 39
+35.26.15,3,Blega,age_group,35-39,perempuan,2237,jiwa,2025,registration,total_population,3.3,35,,35 - 39
+35.26.15,3,Blega,age_group,35-39,,4407,jiwa,2025,registration,total_population,3.3,35,,35 - 39
+35.26.15,3,Blega,age_group,40-44,laki_laki,2096,jiwa,2025,registration,total_population,3.3,35,,40 - 44
+35.26.15,3,Blega,age_group,40-44,perempuan,2097,jiwa,2025,registration,total_population,3.3,35,,40 - 44
+35.26.15,3,Blega,age_group,40-44,,4193,jiwa,2025,registration,total_population,3.3,35,,40 - 44
+35.26.15,3,Blega,age_group,45-49,laki_laki,1807,jiwa,2025,registration,total_population,3.3,35,,45 - 49
+35.26.15,3,Blega,age_group,45-49,perempuan,1951,jiwa,2025,registration,total_population,3.3,35,,45 - 49
+35.26.15,3,Blega,age_group,45-49,,3758,jiwa,2025,registration,total_population,3.3,35,,45 - 49
+35.26.15,3,Blega,age_group,50-54,laki_laki,1462,jiwa,2025,registration,total_population,3.3,35,,50 - 54
+35.26.15,3,Blega,age_group,50-54,perempuan,1563,jiwa,2025,registration,total_population,3.3,35,,50 - 54
+35.26.15,3,Blega,age_group,50-54,,3025,jiwa,2025,registration,total_population,3.3,35,,50 - 54
+35.26.15,3,Blega,age_group,55-59,laki_laki,1244,jiwa,2025,registration,total_population,3.3,35,,55 - 59
+35.26.15,3,Blega,age_group,55-59,perempuan,1555,jiwa,2025,registration,total_population,3.3,35,,55 - 59
+35.26.15,3,Blega,age_group,55-59,,2799,jiwa,2025,registration,total_population,3.3,35,,55 - 59
+35.26.15,3,Blega,age_group,60-64,laki_laki,1065,jiwa,2025,registration,total_population,3.3,35,,60 - 64
+35.26.15,3,Blega,age_group,60-64,perempuan,1392,jiwa,2025,registration,total_population,3.3,35,,60 - 64
+35.26.15,3,Blega,age_group,60-64,,2457,jiwa,2025,registration,total_population,3.3,35,,60 - 64
+35.26.15,3,Blega,age_group,65-69,laki_laki,971,jiwa,2025,registration,total_population,3.3,35,,65 - 69
+35.26.15,3,Blega,age_group,65-69,perempuan,1205,jiwa,2025,registration,total_population,3.3,35,,65 - 69
+35.26.15,3,Blega,age_group,65-69,,2176,jiwa,2025,registration,total_population,3.3,35,,65 - 69
+35.26.15,3,Blega,age_group,70-74,laki_laki,551,jiwa,2025,registration,total_population,3.3,35,,70 - 74
+35.26.15,3,Blega,age_group,70-74,perempuan,194,jiwa,2025,registration,total_population,3.3,35,,70 - 74
+35.26.15,3,Blega,age_group,70-74,,745,jiwa,2025,registration,total_population,3.3,35,,70 - 74
+35.26.15,3,Blega,age_group,75+,laki_laki,655,jiwa,2025,registration,total_population,3.3,35,,75 +
+35.26.15,3,Blega,age_group,75+,perempuan,258,jiwa,2025,registration,total_population,3.3,35,,75 +
+35.26.15,3,Blega,age_group,75+,,913,jiwa,2025,registration,total_population,3.3,35,,75 +
+35.26.15,3,Blega,sex,laki_laki,,28809,jiwa,2025,registration,total_population,3.3,35,,Laki-Laki
+35.26.15,3,Blega,sex,perempuan,,28121,jiwa,2025,registration,total_population,3.3,35,,Perempuan
+35.26.15,3,Blega,total,total,,56930,jiwa,2025,registration,total_population,3.3,35,,

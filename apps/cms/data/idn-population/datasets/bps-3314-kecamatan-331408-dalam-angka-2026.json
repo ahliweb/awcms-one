@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3314-kecamatan-331408-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.14.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ngrampal Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sragen",
+  "publisherDomain": "3314",
+  "publisherWebsite": "https://sragenkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sragen (https://sragenkab.bps.go.id), publikasi \"Kecamatan Ngrampal Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3314080",
+  "publicationNumber": "3314026014",
+  "issn": "0853-5035",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sragenkab.bps.go.id/id/publication/2026/09/28/5bad6fe53d3a3c856031c53c/kecamatan-ngrampal-dalam-angka-2026.html",
+  "sourceFileSha256": "90be80ef2d098acacec8512a4dcb0ad3c7917f58609e44b88030bfe4d24c7a55",
+  "sourceFileBytes": 18614295,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sragen.",
+  "csvPath": "datasets/bps-3314-kecamatan-331408-dalam-angka-2026.csv",
+  "csvSha256": "ddfa695ffa9b846dd0ba3432446fc98239f84cedde9baeed9f306ec4c7aaba2b",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Ngrampal, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ngrampal, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

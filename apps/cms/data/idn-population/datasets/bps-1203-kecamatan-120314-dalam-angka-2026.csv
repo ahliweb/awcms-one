@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.03.14.1039,4,Arse,sex,laki_laki,,972,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.14.1039,4,Arse,sex,perempuan,,990,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.14.1039,4,Arse,total,total,,1962,jiwa,2025,registration,total_population,3.1,26,,
+12.03.14.1040,4,Lancat,sex,laki_laki,,667,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.14.1040,4,Lancat,sex,perempuan,,668,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.14.1040,4,Lancat,total,total,,1335,jiwa,2025,registration,total_population,3.1,26,,
+12.03.14.2028,4,Sipogu,sex,laki_laki,,302,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.14.2028,4,Sipogu,sex,perempuan,,335,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.14.2028,4,Sipogu,total,total,,637,jiwa,2025,registration,total_population,3.1,26,,
+12.03.14.2032,4,Pinagar,sex,laki_laki,,581,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.14.2032,4,Pinagar,sex,perempuan,,576,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.14.2032,4,Pinagar,total,total,,1157,jiwa,2025,registration,total_population,3.1,26,,
+12.03.14.2033,4,Pardomuan,sex,laki_laki,,279,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.14.2033,4,Pardomuan,sex,perempuan,,294,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.14.2033,4,Pardomuan,total,total,,573,jiwa,2025,registration,total_population,3.1,26,,
+12.03.14.2034,4,Aek Haminjon,sex,laki_laki,,531,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.14.2034,4,Aek Haminjon,sex,perempuan,,518,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.14.2034,4,Aek Haminjon,total,total,,1049,jiwa,2025,registration,total_population,3.1,26,,
+12.03.14.2035,4,Nanggar Jati Huta Padang,sex,laki_laki,,394,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.14.2035,4,Nanggar Jati Huta Padang,sex,perempuan,,421,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.14.2035,4,Nanggar Jati Huta Padang,total,total,,815,jiwa,2025,registration,total_population,3.1,26,,
+12.03.14.2036,4,Nanggar Jati,sex,laki_laki,,259,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.14.2036,4,Nanggar Jati,sex,perempuan,,252,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.14.2036,4,Nanggar Jati,total,total,,511,jiwa,2025,registration,total_population,3.1,26,,
+12.03.14.2037,4,Natambang Roncitan,sex,laki_laki,,442,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.14.2037,4,Natambang Roncitan,sex,perempuan,,469,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.14.2037,4,Natambang Roncitan,total,total,,911,jiwa,2025,registration,total_population,3.1,26,,
+12.03.14.2038,4,Dalihan Natolu,sex,laki_laki,,139,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.14.2038,4,Dalihan Natolu,sex,perempuan,,122,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.14.2038,4,Dalihan Natolu,total,total,,261,jiwa,2025,registration,total_population,3.1,26,,
+12.03.14,3,Arse,sex,laki_laki,,4566,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.03.14,3,Arse,sex,perempuan,,4645,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.03.14,3,Arse,total,total,,9211,jiwa,2025,registration,total_population,3.1,26,,

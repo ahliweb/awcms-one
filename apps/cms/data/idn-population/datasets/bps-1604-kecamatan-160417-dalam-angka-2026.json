@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-1604-kecamatan-160417-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.04.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kikim Timur Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Lahat",
+  "publisherDomain": "1604",
+  "publisherWebsite": "https://lahatkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Lahat (https://lahatkab.bps.go.id), publikasi \"Kecamatan Kikim Timur Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1604112",
+  "publicationNumber": "16040.26024",
+  "issn": "2808-6015",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://lahatkab.bps.go.id/id/publication/2026/09/28/091e26fcfc101983dda910d7/kecamatan-kikim-timur-dalam-angka-2026.html",
+  "sourceFileSha256": "9aca8106f517b29dd9dbff885f0eca50bf41d40e83d3056031f251f37f916fb6",
+  "sourceFileBytes": 7855248,
+  "sourcePages": [32, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Lahat",
+  "csvPath": "datasets/bps-1604-kecamatan-160417-dalam-angka-2026.csv",
+  "csvSha256": "d37f692f39892b52729feed7139f6bd3dfad8af05bd1ae9c3c899996de9dc1ca",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kikim Timur, 2025​",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Lubuk Tampang\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)",
+    "table 3.2: row not stored: row \"Timur/Kikim Timur District\": unmatched "
+  ]
+}

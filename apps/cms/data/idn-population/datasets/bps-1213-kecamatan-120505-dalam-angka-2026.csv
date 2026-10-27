@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.05.05.2004,4,Tanjung Jati,sex,laki_laki,,3865,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.05.2004,4,Tanjung Jati,sex,perempuan,,3804,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.05.2004,4,Tanjung Jati,total,total,,7669,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.05.2005,4,Sidomulyo,sex,laki_laki,,4818,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.05.2005,4,Sidomulyo,sex,perempuan,,4705,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.05.2005,4,Sidomulyo,total,total,,9523,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.05.2003,4,Sendang Rejo,sex,laki_laki,,3777,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.05.2003,4,Sendang Rejo,sex,perempuan,,3728,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.05.2003,4,Sendang Rejo,total,total,,7505,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.05.2002,4,Sambirejo,sex,laki_laki,,4715,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.05.2002,4,Sambirejo,sex,perempuan,,4587,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.05.2002,4,Sambirejo,total,total,,9302,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.05.1001,4,Kwala Begumit,sex,laki_laki,,2909,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.05.1001,4,Kwala Begumit,sex,perempuan,,2906,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.05.1001,4,Kwala Begumit,total,total,,5815,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.05.2006,4,Perdamaian,sex,laki_laki,,4233,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.05.2006,4,Perdamaian,sex,perempuan,,4256,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.05.2006,4,Perdamaian,total,total,,8489,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.05.2007,4,Suka Makmur,sex,laki_laki,,2691,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.05.2007,4,Suka Makmur,sex,perempuan,,2563,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.05.2007,4,Suka Makmur,total,total,,5254,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+12.05.05,3,Kecamatan Binjai,sex,laki_laki,,27008,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+12.05.05,3,Kecamatan Binjai,sex,perempuan,,26549,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+12.05.05,3,Kecamatan Binjai,total,total,,53557,jiwa,2025,registration,total_population,unnumbered-p39,39,,

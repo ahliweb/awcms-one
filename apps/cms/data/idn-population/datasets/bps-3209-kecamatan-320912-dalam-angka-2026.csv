@@ -1,0 +1,91 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.12.2001,4,Setupatok,sex,laki_laki,,6210,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.12.2001,4,Setupatok,sex,perempuan,,5726,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.12.2001,4,Setupatok,total,total,,11936,jiwa,2025,registration,total_population,3.1,52,,
+32.09.12.2002,4,Penpen,sex,laki_laki,,5703,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.12.2002,4,Penpen,sex,perempuan,,5389,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.12.2002,4,Penpen,total,total,,11092,jiwa,2025,registration,total_population,3.1,52,,
+32.09.12.2003,4,Mundu Mesigit,sex,laki_laki,,2717,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.12.2003,4,Mundu Mesigit,sex,perempuan,,2575,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.12.2003,4,Mundu Mesigit,total,total,,5292,jiwa,2025,registration,total_population,3.1,52,,
+32.09.12.2004,4,Luwung,sex,laki_laki,,3258,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.12.2004,4,Luwung,sex,perempuan,,3116,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.12.2004,4,Luwung,total,total,,6374,jiwa,2025,registration,total_population,3.1,52,,
+32.09.12.2005,4,Waruduwur,sex,laki_laki,,2585,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.12.2005,4,Waruduwur,sex,perempuan,,2446,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.12.2005,4,Waruduwur,total,total,,5031,jiwa,2025,registration,total_population,3.1,52,,
+32.09.12.2006,4,Citemu,sex,laki_laki,,2306,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.12.2006,4,Citemu,sex,perempuan,,2191,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.12.2006,4,Citemu,total,total,,4497,jiwa,2025,registration,total_population,3.1,52,,
+32.09.12.2007,4,Bandengan,sex,laki_laki,,2038,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.12.2007,4,Bandengan,sex,perempuan,,1915,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.12.2007,4,Bandengan,total,total,,3953,jiwa,2025,registration,total_population,3.1,52,,
+32.09.12.2008,4,Mundu Pesisir,sex,laki_laki,,3582,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.12.2008,4,Mundu Pesisir,sex,perempuan,,3654,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.12.2008,4,Mundu Pesisir,total,total,,7236,jiwa,2025,registration,total_population,3.1,52,,
+32.09.12.2009,4,Suci,sex,laki_laki,,2136,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.12.2009,4,Suci,sex,perempuan,,2071,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.12.2009,4,Suci,total,total,,4207,jiwa,2025,registration,total_population,3.1,52,,
+32.09.12.2010,4,Banjarwangunan,sex,laki_laki,,6296,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.12.2010,4,Banjarwangunan,sex,perempuan,,6052,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.12.2010,4,Banjarwangunan,total,total,,12348,jiwa,2025,registration,total_population,3.1,52,,
+32.09.12.2011,4,Pamengkang,sex,laki_laki,,5914,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.12.2011,4,Pamengkang,sex,perempuan,,5758,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.12.2011,4,Pamengkang,total,total,,11672,jiwa,2025,registration,total_population,3.1,52,,
+32.09.12.2012,4,Sinarancang,sex,laki_laki,,1768,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.12.2012,4,Sinarancang,sex,perempuan,,1744,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.12.2012,4,Sinarancang,total,total,,3512,jiwa,2025,registration,total_population,3.1,52,,
+32.09.12,3,Kecamatan Mundu,sex,laki_laki,,44513,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.12,3,Kecamatan Mundu,sex,perempuan,,42637,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.12,3,Kecamatan Mundu,total,total,,87150,jiwa,2025,registration,total_population,3.1,52,,
+32.09.12,3,Mundu,age_group,0-4,laki_laki,3165,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.12,3,Mundu,age_group,0-4,perempuan,2971,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.12,3,Mundu,age_group,0-4,,6136,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.12,3,Mundu,age_group,5-9,laki_laki,3984,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.12,3,Mundu,age_group,5-9,perempuan,3856,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.12,3,Mundu,age_group,5-9,,7840,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.12,3,Mundu,age_group,10-14,laki_laki,3879,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.12,3,Mundu,age_group,10-14,perempuan,3576,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.12,3,Mundu,age_group,10-14,,7455,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.12,3,Mundu,age_group,15-19,laki_laki,3327,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.12,3,Mundu,age_group,15-19,perempuan,3244,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.12,3,Mundu,age_group,15-19,,6571,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.12,3,Mundu,age_group,20-24,laki_laki,3814,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.12,3,Mundu,age_group,20-24,perempuan,3559,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.12,3,Mundu,age_group,20-24,,7373,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.12,3,Mundu,age_group,25-29,laki_laki,3965,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.12,3,Mundu,age_group,25-29,perempuan,3593,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.12,3,Mundu,age_group,25-29,,7558,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.12,3,Mundu,age_group,30-34,laki_laki,3763,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.12,3,Mundu,age_group,30-34,perempuan,3410,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.12,3,Mundu,age_group,30-34,,7173,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.12,3,Mundu,age_group,35-39,laki_laki,3434,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.12,3,Mundu,age_group,35-39,perempuan,3354,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.12,3,Mundu,age_group,35-39,,6788,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.12,3,Mundu,age_group,40-44,laki_laki,3477,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.12,3,Mundu,age_group,40-44,perempuan,3295,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.12,3,Mundu,age_group,40-44,,6772,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.12,3,Mundu,age_group,45-49,laki_laki,3063,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.12,3,Mundu,age_group,45-49,perempuan,3107,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.12,3,Mundu,age_group,45-49,,6170,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.12,3,Mundu,age_group,50-54,laki_laki,2699,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.12,3,Mundu,age_group,50-54,perempuan,2654,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.12,3,Mundu,age_group,50-54,,5353,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.12,3,Mundu,age_group,55-59,laki_laki,2086,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.12,3,Mundu,age_group,55-59,perempuan,1963,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.12,3,Mundu,age_group,55-59,,4049,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.12,3,Mundu,age_group,60-64,laki_laki,1349,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.12,3,Mundu,age_group,60-64,perempuan,1433,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.12,3,Mundu,age_group,60-64,,2782,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.12,3,Mundu,age_group,65-69,laki_laki,1114,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.12,3,Mundu,age_group,65-69,perempuan,1170,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.12,3,Mundu,age_group,65-69,,2284,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.12,3,Mundu,age_group,70-74,laki_laki,731,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.12,3,Mundu,age_group,70-74,perempuan,696,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.12,3,Mundu,age_group,70-74,,1427,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.12,3,Mundu,age_group,75+,laki_laki,663,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.12,3,Mundu,age_group,75+,perempuan,756,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.12,3,Mundu,age_group,75+,,1419,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.12,3,Kecamatan Mundu,sex,laki_laki,,44513,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.12,3,Kecamatan Mundu,sex,perempuan,,42637,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.12,3,Kecamatan Mundu,total,total,,87150,jiwa,2025,registration,total_population,3.2,54,,

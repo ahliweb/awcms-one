@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-3601-kecamatan-360116-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.01.16",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Jiput Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pandeglang",
+  "publisherDomain": "3601",
+  "publisherWebsite": "https://pandeglangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pandeglang (https://pandeglangkab.bps.go.id), publikasi \"Kecamatan Jiput Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3601130",
+  "publicationNumber": "36010.26025",
+  "issn": "2598-4411",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pandeglangkab.bps.go.id/id/publication/2026/09/28/1d87897759c39b2600a7ff0f/kecamatan-jiput-dalam-angka-2026.html",
+  "sourceFileSha256": "2b4251182451b4163adc0d821b25f8fc2ec6106c0d30282762a68022e5c8f9d8",
+  "sourceFileBytes": 7426254,
+  "sourcePages": [32, 33],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pandeglang.",
+  "csvPath": "datasets/bps-3601-kecamatan-360116-dalam-angka-2026.csv",
+  "csvSha256": "f92bac9dd9ab21d6a1b24d3386fcd9cb03c3fd149cfdd8e5585a2360ee213b6d",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Jiput, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"KECAMATAN JIPUT JIPUT DISTRICT\": unmatched ",
+    "table 3.1: row not stored: row \"KECAMATAN JIPUT JIPUT DISTRICT\": unmatched "
+  ]
+}

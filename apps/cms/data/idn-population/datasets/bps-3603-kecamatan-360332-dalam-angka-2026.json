@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3603-kecamatan-360332-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "36.03.32",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Gunung Kaler Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tangerang",
+  "publisherDomain": "3603",
+  "publisherWebsite": "https://tangerangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tangerang (https://tangerangkab.bps.go.id), publikasi \"Kecamatan Gunung Kaler Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3603141",
+  "publicationNumber": "36030.26023",
+  "issn": "2407-4780",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tangerangkab.bps.go.id/id/publication/2026/09/28/0925128564b2ba4e48e9e95e/kecamatan-gunung-kaler-dalam-angka-2026.html",
+  "sourceFileSha256": "ff952eef748a393c5751120afe4140d4808fdaf0de777dd6906e694152c066ff",
+  "sourceFileBytes": 16013600,
+  "sourcePages": [25, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tangerang.",
+  "csvPath": "datasets/bps-3603-kecamatan-360332-dalam-angka-2026.csv",
+  "csvSha256": "e1eca869478e06da7ead20fd143228cfef4173ae18a0a7b4720b14dac7e6d08e",
+  "tablesUsed": [
+    {
+      "table": "3.2.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Gunung Kaler, 2025",
+      "printedPages": [25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.1",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Gunung Kaler, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2.1: row not stored: row \"Kecamatan Gunug Kaler Gunung Kaler District\": unmatched ",
+    "table 3.1: row not stored: row \">75 TAHUN\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Gunug Kaler Gunung Kaler District\": unmatched "
+  ]
+}

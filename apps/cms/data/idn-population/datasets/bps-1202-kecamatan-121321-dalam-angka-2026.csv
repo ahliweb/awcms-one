@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.13.21.2005,4,Huta Julu,sex,laki_laki,,55,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.21.2005,4,Huta Julu,sex,perempuan,,47,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.21.2005,4,Huta Julu,total,total,,102,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.21.2007,4,Huta Padang,sex,laki_laki,,135,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.21.2007,4,Huta Padang,sex,perempuan,,113,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.21.2007,4,Huta Padang,total,total,,248,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.21.2006,4,Huta Toras,sex,laki_laki,,197,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.21.2006,4,Huta Toras,sex,perempuan,,191,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.21.2006,4,Huta Toras,total,total,,388,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.21.2002,4,Pakantan Lombang,sex,laki_laki,,271,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.21.2002,4,Pakantan Lombang,sex,perempuan,,251,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.21.2002,4,Pakantan Lombang,total,total,,522,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.21.2004,4,Huta Lancat,sex,laki_laki,,98,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.21.2004,4,Huta Lancat,sex,perempuan,,90,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.21.2004,4,Huta Lancat,total,total,,188,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.21.2001,4,Pakantan Dolok,sex,laki_laki,,184,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.21.2001,4,Pakantan Dolok,sex,perempuan,,167,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.21.2001,4,Pakantan Dolok,total,total,,351,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.21.2008,4,Silogun,sex,laki_laki,,53,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.21.2008,4,Silogun,sex,perempuan,,45,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.21.2008,4,Silogun,total,total,,98,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.21.2003,4,Huta Gambir,sex,laki_laki,,262,jiwa,2025,registration,total_population,unnumbered-p22,22,,Laki-Laki
+12.13.21.2003,4,Huta Gambir,sex,perempuan,,266,jiwa,2025,registration,total_population,unnumbered-p22,22,,Perempuan
+12.13.21.2003,4,Huta Gambir,total,total,,528,jiwa,2025,registration,total_population,unnumbered-p22,22,,
+12.13.21,3,Kecamatan Pakantan,sex,laki_laki,,1255,jiwa,2025,registration,total_population,unnumbered-p24,24,,Laki-Laki
+12.13.21,3,Kecamatan Pakantan,sex,perempuan,,1170,jiwa,2025,registration,total_population,unnumbered-p24,24,,Perempuan
+12.13.21,3,Kecamatan Pakantan,total,total,,2425,jiwa,2025,registration,total_population,unnumbered-p24,24,,

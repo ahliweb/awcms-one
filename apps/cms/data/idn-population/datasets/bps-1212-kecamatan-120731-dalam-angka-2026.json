@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1212-kecamatan-120731-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.07.31",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pagar Merbau Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Deli Serdang",
+  "publisherDomain": "1212",
+  "publisherWebsite": "https://deliserdangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Deli Serdang (https://deliserdangkab.bps.go.id), publikasi \"Kecamatan Pagar Merbau Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1212310",
+  "publicationNumber": "12120",
+  "issn": "2776-0464",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://deliserdangkab.bps.go.id/id/publication/2026/09/28/dc23d8a4cec609e2dc17477e/kecamatan-pagar-merbau-dalam-angka-2026.html",
+  "sourceFileSha256": "4f4afc070ebab0b1c1c16ba980d4874f306b45bee0b0f5b1377c3c766a5a8d46",
+  "sourceFileBytes": 6612249,
+  "sourcePages": [40],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Deli Serdang.",
+  "csvPath": "datasets/bps-1212-kecamatan-120731-dalam-angka-2026.csv",
+  "csvSha256": "1e5105baf697491d9fb2caca542a67842c7face0070774d06cbfdeadde7b8875",
+  "tablesUsed": [
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pagar Merbau, 2024",
+      "printedPages": [40],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

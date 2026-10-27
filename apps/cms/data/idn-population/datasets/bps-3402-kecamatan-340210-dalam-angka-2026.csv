@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+34.02.10.2001,4,Selopamioro,sex,laki_laki,,7640,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.10.2001,4,Selopamioro,sex,perempuan,,7742,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.10.2001,4,Selopamioro,total,total,,15382,jiwa,2025,registration,total_population,3.1,27,,
+34.02.10.2002,4,Sriharjo,sex,laki_laki,,4673,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.10.2002,4,Sriharjo,sex,perempuan,,4810,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.10.2002,4,Sriharjo,total,total,,9483,jiwa,2025,registration,total_population,3.1,27,,
+34.02.10.2004,4,Kebonagung,sex,laki_laki,,1964,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.10.2004,4,Kebonagung,sex,perempuan,,2012,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.10.2004,4,Kebonagung,total,total,,3976,jiwa,2025,registration,total_population,3.1,27,,
+34.02.10.2005,4,Karangtengah,sex,laki_laki,,2812,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.10.2005,4,Karangtengah,sex,perempuan,,2818,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.10.2005,4,Karangtengah,total,total,,5630,jiwa,2025,registration,total_population,3.1,27,,
+34.02.10.2006,4,Girirejo,sex,laki_laki,,2437,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.10.2006,4,Girirejo,sex,perempuan,,2429,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.10.2006,4,Girirejo,total,total,,4866,jiwa,2025,registration,total_population,3.1,27,,
+34.02.10.2007,4,Karangtalun,sex,laki_laki,,1584,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.10.2007,4,Karangtalun,sex,perempuan,,1586,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.10.2007,4,Karangtalun,total,total,,3170,jiwa,2025,registration,total_population,3.1,27,,
+34.02.10.2008,4,Imogiri,sex,laki_laki,,2077,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.10.2008,4,Imogiri,sex,perempuan,,2139,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.10.2008,4,Imogiri,total,total,,4216,jiwa,2025,registration,total_population,3.1,27,,
+34.02.10.2003,4,Wukirsari,sex,laki_laki,,9191,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.10.2003,4,Wukirsari,sex,perempuan,,9315,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.10.2003,4,Wukirsari,total,total,,18506,jiwa,2025,registration,total_population,3.1,27,,
+34.02.10,3,Imogiri,sex,laki_laki,,32378,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+34.02.10,3,Imogiri,sex,perempuan,,32851,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+34.02.10,3,Imogiri,total,total,,65229,jiwa,2025,registration,total_population,3.1,27,,
+34.02.10,3,Imogiri,age_group,0-4,laki_laki,1776,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+34.02.10,3,Imogiri,age_group,0-4,perempuan,1643,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+34.02.10,3,Imogiri,age_group,0-4,,3419,jiwa,2025,registration,total_population,3.2,29,,0 - 4
+34.02.10,3,Imogiri,age_group,5-9,laki_laki,2233,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+34.02.10,3,Imogiri,age_group,5-9,perempuan,2218,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+34.02.10,3,Imogiri,age_group,5-9,,4451,jiwa,2025,registration,total_population,3.2,29,,5 - 9
+34.02.10,3,Imogiri,age_group,10-14,laki_laki,2445,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+34.02.10,3,Imogiri,age_group,10-14,perempuan,2291,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+34.02.10,3,Imogiri,age_group,10-14,,4736,jiwa,2025,registration,total_population,3.2,29,,10 - 14
+34.02.10,3,Imogiri,age_group,15-19,laki_laki,2477,jiwa,2025,registration,total_population,3.2,29,,15 - 19
+34.02.10,3,Imogiri,age_group,15-19,perempuan,2383,jiwa,2025,registration,total_population,3.2,29,,15 - 19
+34.02.10,3,Imogiri,age_group,15-19,,4860,jiwa,2025,registration,total_population,3.2,29,,15 - 19
+34.02.10,3,Imogiri,age_group,20-24,laki_laki,2176,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+34.02.10,3,Imogiri,age_group,20-24,perempuan,2084,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+34.02.10,3,Imogiri,age_group,20-24,,4260,jiwa,2025,registration,total_population,3.2,29,,20 - 24
+34.02.10,3,Imogiri,age_group,25-29,laki_laki,2144,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+34.02.10,3,Imogiri,age_group,25-29,perempuan,2195,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+34.02.10,3,Imogiri,age_group,25-29,,4339,jiwa,2025,registration,total_population,3.2,29,,25 - 29
+34.02.10,3,Imogiri,age_group,30-34,laki_laki,2197,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+34.02.10,3,Imogiri,age_group,30-34,perempuan,2286,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+34.02.10,3,Imogiri,age_group,30-34,,4483,jiwa,2025,registration,total_population,3.2,29,,30 - 34
+34.02.10,3,Imogiri,age_group,35-39,laki_laki,2199,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+34.02.10,3,Imogiri,age_group,35-39,perempuan,2285,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+34.02.10,3,Imogiri,age_group,35-39,,4484,jiwa,2025,registration,total_population,3.2,29,,35 - 39
+34.02.10,3,Imogiri,age_group,40-44,laki_laki,2717,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+34.02.10,3,Imogiri,age_group,40-44,perempuan,2549,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+34.02.10,3,Imogiri,age_group,40-44,,5266,jiwa,2025,registration,total_population,3.2,29,,40 - 44
+34.02.10,3,Imogiri,age_group,45-49,laki_laki,2368,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+34.02.10,3,Imogiri,age_group,45-49,perempuan,2338,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+34.02.10,3,Imogiri,age_group,45-49,,4706,jiwa,2025,registration,total_population,3.2,29,,45 - 49
+34.02.10,3,Imogiri,age_group,50-54,laki_laki,2134,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+34.02.10,3,Imogiri,age_group,50-54,perempuan,2040,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+34.02.10,3,Imogiri,age_group,50-54,,4174,jiwa,2025,registration,total_population,3.2,29,,50 - 54
+34.02.10,3,Imogiri,age_group,55-59,laki_laki,2028,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+34.02.10,3,Imogiri,age_group,55-59,perempuan,2095,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+34.02.10,3,Imogiri,age_group,55-59,,4123,jiwa,2025,registration,total_population,3.2,29,,55 - 59
+34.02.10,3,Imogiri,age_group,60-64,laki_laki,1695,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+34.02.10,3,Imogiri,age_group,60-64,perempuan,1877,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+34.02.10,3,Imogiri,age_group,60-64,,3572,jiwa,2025,registration,total_population,3.2,29,,60 - 64
+34.02.10,3,Imogiri,age_group,65-69,laki_laki,1636,jiwa,2025,registration,total_population,3.2,29,,65 - 69
+34.02.10,3,Imogiri,age_group,65-69,perempuan,1795,jiwa,2025,registration,total_population,3.2,29,,65 - 69
+34.02.10,3,Imogiri,age_group,65-69,,3431,jiwa,2025,registration,total_population,3.2,29,,65 - 69
+34.02.10,3,Imogiri,age_group,70-74,laki_laki,1031,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+34.02.10,3,Imogiri,age_group,70-74,perempuan,1052,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+34.02.10,3,Imogiri,age_group,70-74,,2083,jiwa,2025,registration,total_population,3.2,29,,70 - 74
+34.02.10,3,Imogiri,age_group,75+,laki_laki,1122,jiwa,2025,registration,total_population,3.2,29,,75 +
+34.02.10,3,Imogiri,age_group,75+,perempuan,1720,jiwa,2025,registration,total_population,3.2,29,,75 +
+34.02.10,3,Imogiri,age_group,75+,,2842,jiwa,2025,registration,total_population,3.2,29,,75 +
+34.02.10,3,Imogiri,sex,laki_laki,,32378,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+34.02.10,3,Imogiri,sex,perempuan,,32851,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+34.02.10,3,Imogiri,total,total,,65229,jiwa,2025,registration,total_population,3.2,29,,

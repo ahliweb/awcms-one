@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.71.14.1004,4,Pebatuan,sex,laki_laki,,7019,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.14.1004,4,Pebatuan,sex,perempuan,,6935,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.14.1004,4,Pebatuan,total,total,,13954,jiwa,2025,registration,total_population,3.1,22,,
+14.71.14.1003,4,Sialang Rampai,sex,laki_laki,,3923,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.14.1003,4,Sialang Rampai,sex,perempuan,,3757,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.14.1003,4,Sialang Rampai,total,total,,7680,jiwa,2025,registration,total_population,3.1,22,,
+14.71.14.1002,4,Mentangor,sex,laki_laki,,8521,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.14.1002,4,Mentangor,sex,perempuan,,8207,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.14.1002,4,Mentangor,total,total,,16728,jiwa,2025,registration,total_population,3.1,22,,
+14.71.14.1005,4,Pematang Kapau,sex,laki_laki,,10956,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.14.1005,4,Pematang Kapau,sex,perempuan,,10878,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.14.1005,4,Pematang Kapau,total,total,,21834,jiwa,2025,registration,total_population,3.1,22,,
+14.71.14.1001,4,Kulim,sex,laki_laki,,2727,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.14.1001,4,Kulim,sex,perempuan,,2580,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.14.1001,4,Kulim,total,total,,5307,jiwa,2025,registration,total_population,3.1,22,,
+14.71.14,3,Kulim,sex,laki_laki,,33146,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.71.14,3,Kulim,sex,perempuan,,32357,jiwa,2025,registration,total_population,3.1,22,,Perempuan/
+14.71.14,3,Kulim,total,total,,65503,jiwa,2025,registration,total_population,3.1,22,,

@@ -1,0 +1,38 @@
+{
+  "datasetCode": "bps-3576-kecamatan-357603-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.76.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kranggan Dalam Angka 2026",
+  "publisherName": "BPS Kota Mojokerto",
+  "publisherDomain": "3576",
+  "publisherWebsite": "https://mojokertokota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Mojokerto (https://mojokertokota.bps.go.id), publikasi \"Kecamatan Kranggan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3576021",
+  "publicationNumber": "35760.25006",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://mojokertokota.bps.go.id/id/publication/2026/09/28/bfebee54b05082e41e1b5289/kecamatan-kranggan-dalam-angka-2026.html",
+  "sourceFileSha256": "e219b9c29b26a14d89c31f9189b7e17baf70c91eb5dd963726454f5773362806",
+  "sourceFileBytes": 13322658,
+  "sourcePages": [74],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik.",
+  "csvPath": "datasets/bps-3576-kecamatan-357603-dalam-angka-2026.csv",
+  "csvSha256": "ec0ff0957103a5059045c84d12cfa21b4686eed1e4a67bdc069d1ed070146300",
+  "tablesUsed": [
+    {
+      "table": "4.4.1",
+      "title": "Jumlah Penduduk Menurut Kelurahan dan Agama yang Dianut di Kecamatan Kranggan, 2025",
+      "printedPages": [74],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "table 4.4.1: 7 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers"
+  ]
+}

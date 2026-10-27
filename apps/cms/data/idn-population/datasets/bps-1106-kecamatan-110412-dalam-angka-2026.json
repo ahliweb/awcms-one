@@ -1,0 +1,43 @@
+{
+  "datasetCode": "bps-1106-kecamatan-110412-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.04.12",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kute Panang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten",
+  "publisherDomain": "1106",
+  "publisherWebsite": "https://acehtengahkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten (https://acehtengahkab.bps.go.id), publikasi \"Kecamatan Kute Panang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "110660.26006",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehtengahkab.bps.go.id/id/publication/2026/09/28/326eca5806e1430d2d231945/kecamatan-kute-panang-dalam-angka-2026.html",
+  "sourceFileSha256": "6aab062299ec31dfa0a08f31cb3da515aaa9e0cf7ba6811c0538d682d8efe792",
+  "sourceFileBytes": 4089619,
+  "sourcePages": [20],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten/Kota Aceh Tengah",
+  "csvPath": "datasets/bps-1106-kecamatan-110412-dalam-angka-2026.csv",
+  "csvSha256": "0b2224172d67b6b6ee3e1e6caf1f207d82f6a9e8e62bbe9311b8cb5edcb27db9",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kute Panang, 2025",
+      "printedPages": [20],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Lukup Sabun\": unmatched ",
+    "table 3.1: row not stored: row \"Lukup Sabun Tengah\": unmatched ",
+    "table 3.1: row not stored: row \"Lukup Sabun Timur\": unmatched ",
+    "table 3.1: row not stored: row \"Lukup Sabun Barat\": unmatched ",
+    "table 3.1: the rows of region 11.04.12.2014 are not stored: sex split vs total: parts sum 232.0000 != 323.0000 (diff 91.0000); the source itself is inconsistent",
+    "table 3.1: the rows of region 11.04.12.2009 are not stored: sex split vs total: parts sum 458.0000 != 456.0000 (diff 2.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-1212-kecamatan-120728-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.07.28",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Lubuk Pakam Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Deli Serdang",
+  "publisherDomain": "1212",
+  "publisherWebsite": "https://deliserdangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Deli Serdang (https://deliserdangkab.bps.go.id), publikasi \"Kecamatan Lubuk Pakam Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1212300",
+  "publicationNumber": "12120.26027",
+  "issn": "2776-0472",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://deliserdangkab.bps.go.id/id/publication/2026/09/28/9b52a8cec3794b46aff4f910/kecamatan-lubuk-pakam-dalam-angka-2026.html",
+  "sourceFileSha256": "a4eeebb95fe735aa68ae47e82298df04ffa4b0b2b4c053ddf3217b7f077ded28",
+  "sourceFileBytes": 6582719,
+  "sourcePages": [40],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Deli Serdang.",
+  "csvPath": "datasets/bps-1212-kecamatan-120728-dalam-angka-2026.csv",
+  "csvSha256": "1b4046218c0aac107115cf06290c886c33ec3150d75246f23091984b0b22b377",
+  "tablesUsed": [
+    {
+      "table": "3.3",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Lubuk Pakam, 2024",
+      "printedPages": [40],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per desa/kelurahan (Kecamatan 3.1.1): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

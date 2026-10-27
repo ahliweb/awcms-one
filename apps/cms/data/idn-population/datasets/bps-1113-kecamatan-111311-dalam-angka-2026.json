@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1113-kecamatan-111311-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.13.11",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pantan Cuaca Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Gayo Lues",
+  "publisherDomain": "1113",
+  "publisherWebsite": "https://gayolueskab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Gayo Lues (https://gayolueskab.bps.go.id), publikasi \"Kecamatan Pantan Cuaca Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1113041",
+  "publicationNumber": "11130.26006",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://gayolueskab.bps.go.id/id/publication/2026/09/28/aebeb3910bfeb8c0cf984482/kecamatan-pantan-cuaca-dalam-angka-2026.html",
+  "sourceFileSha256": "3e31948cd4f6290caac55530112e8824308d7d4c828ed099fded8c6fc7d2dfad",
+  "sourceFileBytes": 11025745,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Gayo Lues.",
+  "csvPath": "datasets/bps-1113-kecamatan-111311-dalam-angka-2026.csv",
+  "csvSha256": "e9f20030053679b50575f509c19e8e9d304cd4ffe6b5885c40bffb49d655f21a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Pantan Cuaca, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecam atan Pantan Cuaca , 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Uning Kurnia\": unmatched ",
+    "table 3.1: row not stored: row \"Aih Selah\": unmatched "
+  ]
+}

@@ -1,0 +1,87 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.06.14.2001,4,Winong Kidul,sex,perempuan,,1030,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.14.2001,4,Winong Kidul,total,total,,2065,jiwa,2025,registration,total_population,3.1,21,,
+33.06.14.2002,4,Seren,sex,perempuan,,1971,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.14.2002,4,Seren,total,total,,3990,jiwa,2025,registration,total_population,3.1,21,,
+33.06.14.1003,4,Lugosobo,sex,perempuan,,2029,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.14.1003,4,Lugosobo,total,total,,4087,jiwa,2025,registration,total_population,3.1,21,,
+33.06.14.2004,4,Gintungan,sex,perempuan,,1619,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.14.2004,4,Gintungan,total,total,,3261,jiwa,2025,registration,total_population,3.1,21,,
+33.06.14.2005,4,Bulus,sex,perempuan,,993,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.14.2005,4,Bulus,total,total,,2027,jiwa,2025,registration,total_population,3.1,21,,
+33.06.14.2006,4,Rendeng,sex,perempuan,,831,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.14.2006,4,Rendeng,total,total,,1592,jiwa,2025,registration,total_population,3.1,21,,
+33.06.14.2007,4,Kroyo,sex,perempuan,,1141,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.14.2007,4,Kroyo,total,total,,2331,jiwa,2025,registration,total_population,3.1,21,,
+33.06.14.2008,4,Winong Lor,sex,perempuan,,1058,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.14.2008,4,Winong Lor,total,total,,2146,jiwa,2025,registration,total_population,3.1,21,,
+33.06.14.2009,4,Mlaran,sex,perempuan,,968,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.14.2009,4,Mlaran,total,total,,1933,jiwa,2025,registration,total_population,3.1,21,,
+33.06.14.2010,4,Pelutan,sex,perempuan,,482,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.14.2010,4,Pelutan,total,total,,992,jiwa,2025,registration,total_population,3.1,21,,
+33.06.14.2011,4,Bendosari,sex,perempuan,,481,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.14.2011,4,Bendosari,total,total,,970,jiwa,2025,registration,total_population,3.1,21,,
+33.06.14.2012,4,Gebang,sex,perempuan,,765,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.14.2012,4,Gebang,total,total,,1498,jiwa,2025,registration,total_population,3.1,21,,
+33.06.14.2014,4,Pakem,sex,perempuan,,891,jiwa,2025,registration,total_population,3.1,21,,Perempuan/Female
+33.06.14.2014,4,Pakem,total,total,,1753,jiwa,2025,registration,total_population,3.1,21,,
+33.06.14.2013,4,Salam,sex,perempuan,,316,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.14.2013,4,Salam,total,total,,627,jiwa,2025,registration,total_population,3.1,22,,
+33.06.14.2015,4,Wonotopo,sex,perempuan,,687,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.14.2015,4,Wonotopo,total,total,,1347,jiwa,2025,registration,total_population,3.1,22,,
+33.06.14.2016,4,Sidoleren,sex,perempuan,,401,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.14.2016,4,Sidoleren,total,total,,815,jiwa,2025,registration,total_population,3.1,22,,
+33.06.14.2017,4,Penungkulan,sex,perempuan,,1548,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.14.2017,4,Penungkulan,total,total,,3171,jiwa,2025,registration,total_population,3.1,22,,
+33.06.14.2018,4,Redin,sex,perempuan,,1782,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.14.2018,4,Redin,total,total,,3595,jiwa,2025,registration,total_population,3.1,22,,
+33.06.14.2019,4,Tlogosono,sex,perempuan,,522,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.14.2019,4,Tlogosono,total,total,,1011,jiwa,2025,registration,total_population,3.1,22,,
+33.06.14.2020,4,Ngemplak,sex,perempuan,,637,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.14.2020,4,Ngemplak,total,total,,1262,jiwa,2025,registration,total_population,3.1,22,,
+33.06.14.2021,4,Kragilan,sex,perempuan,,371,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.14.2021,4,Kragilan,total,total,,799,jiwa,2025,registration,total_population,3.1,22,,
+33.06.14.2022,4,Prumben,sex,perempuan,,288,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.14.2022,4,Prumben,total,total,,567,jiwa,2025,registration,total_population,3.1,22,,
+33.06.14.2023,4,Ngaglik,sex,perempuan,,638,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.14.2023,4,Ngaglik,total,total,,1273,jiwa,2025,registration,total_population,3.1,22,,
+33.06.14.2025,4,Kalitengkek,sex,perempuan,,692,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.14.2025,4,Kalitengkek,total,total,,1407,jiwa,2025,registration,total_population,3.1,22,,
+33.06.14.2024,4,Kemiri,sex,perempuan,,552,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.14.2024,4,Kemiri,total,total,,1145,jiwa,2025,registration,total_population,3.1,22,,
+33.06.14,3,Kecamatan Gebang,sex,perempuan,,22693,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+33.06.14,3,Kecamatan Gebang,total,total,,45664,jiwa,2025,registration,total_population,3.1,22,,
+33.06.14,3,Gebang,age_group,0-4,perempuan,1301,jiwa,2025,registration,total_population,3.2,25,,0–4
+33.06.14,3,Gebang,age_group,0-4,,2667,jiwa,2025,registration,total_population,3.2,25,,0–4
+33.06.14,3,Gebang,age_group,5-9,perempuan,1518,jiwa,2025,registration,total_population,3.2,25,,5–9
+33.06.14,3,Gebang,age_group,5-9,,3195,jiwa,2025,registration,total_population,3.2,25,,5–9
+33.06.14,3,Gebang,age_group,10-14,perempuan,1598,jiwa,2025,registration,total_population,3.2,25,,10–14
+33.06.14,3,Gebang,age_group,10-14,,3222,jiwa,2025,registration,total_population,3.2,25,,10–14
+33.06.14,3,Gebang,age_group,15-19,perempuan,1603,jiwa,2025,registration,total_population,3.2,25,,15–19
+33.06.14,3,Gebang,age_group,15-19,,3289,jiwa,2025,registration,total_population,3.2,25,,15–19
+33.06.14,3,Gebang,age_group,20-24,perempuan,1643,jiwa,2025,registration,total_population,3.2,25,,20–24
+33.06.14,3,Gebang,age_group,20-24,,3372,jiwa,2025,registration,total_population,3.2,25,,20–24
+33.06.14,3,Gebang,age_group,25-29,perempuan,1649,jiwa,2025,registration,total_population,3.2,25,,25–29
+33.06.14,3,Gebang,age_group,25-29,,3527,jiwa,2025,registration,total_population,3.2,25,,25–29
+33.06.14,3,Gebang,age_group,30-34,perempuan,1586,jiwa,2025,registration,total_population,3.2,25,,30–34
+33.06.14,3,Gebang,age_group,30-34,,3339,jiwa,2025,registration,total_population,3.2,25,,30–34
+33.06.14,3,Gebang,age_group,35-39,perempuan,1567,jiwa,2025,registration,total_population,3.2,25,,35–39
+33.06.14,3,Gebang,age_group,35-39,,3244,jiwa,2025,registration,total_population,3.2,25,,35–39
+33.06.14,3,Gebang,age_group,40-44,perempuan,1451,jiwa,2025,registration,total_population,3.2,25,,40–44
+33.06.14,3,Gebang,age_group,40-44,,3005,jiwa,2025,registration,total_population,3.2,25,,40–44
+33.06.14,3,Gebang,age_group,45-49,perempuan,1482,jiwa,2025,registration,total_population,3.2,25,,45–49
+33.06.14,3,Gebang,age_group,45-49,,2978,jiwa,2025,registration,total_population,3.2,25,,45–49
+33.06.14,3,Gebang,age_group,50-54,perempuan,1474,jiwa,2025,registration,total_population,3.2,25,,50–54
+33.06.14,3,Gebang,age_group,50-54,,2839,jiwa,2025,registration,total_population,3.2,25,,50–54
+33.06.14,3,Gebang,age_group,55-59,perempuan,1564,jiwa,2025,registration,total_population,3.2,25,,55–59
+33.06.14,3,Gebang,age_group,55-59,,2994,jiwa,2025,registration,total_population,3.2,25,,55–59
+33.06.14,3,Gebang,age_group,60-64,perempuan,1514,jiwa,2025,registration,total_population,3.2,25,,60–64
+33.06.14,3,Gebang,age_group,60-64,,2868,jiwa,2025,registration,total_population,3.2,25,,60–64
+33.06.14,3,Gebang,age_group,65-69,perempuan,1149,jiwa,2025,registration,total_population,3.2,25,,65–69
+33.06.14,3,Gebang,age_group,65-69,,2222,jiwa,2025,registration,total_population,3.2,25,,65–69
+33.06.14,3,Gebang,age_group,70-74,perempuan,689,jiwa,2025,registration,total_population,3.2,25,,70–74
+33.06.14,3,Gebang,age_group,70-74,,1353,jiwa,2025,registration,total_population,3.2,25,,70–74
+33.06.14,3,Gebang,age_group,75+,perempuan,905,jiwa,2025,registration,total_population,3.2,25,,75+
+33.06.14,3,Gebang,age_group,75+,,1550,jiwa,2025,registration,total_population,3.2,25,,75+
+33.06.14,3,Kecamatan Gebang,sex,perempuan,,22693,jiwa,2025,registration,total_population,3.2,25,,Perempuan
+33.06.14,3,Kecamatan Gebang,total,total,,45664,jiwa,2025,registration,total_population,3.2,25,,

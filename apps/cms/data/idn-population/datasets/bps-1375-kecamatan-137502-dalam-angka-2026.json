@@ -1,0 +1,62 @@
+{
+  "datasetCode": "bps-1375-kecamatan-137502-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "13.75.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mandiangin Koto Selayan Dalam Angka 2026",
+  "publisherName": "BPS Kota Bukittinggi",
+  "publisherDomain": "1375",
+  "publisherWebsite": "https://bukittinggikota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bukittinggi (https://bukittinggikota.bps.go.id), publikasi \"Kecamatan Mandiangin Koto Selayan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1375020",
+  "publicationNumber": "13750.26009",
+  "issn": "3031-2647",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bukittinggikota.bps.go.id/id/publication/2026/09/28/0c81042c3a6382483bf2a446/kecamatan-mandiangin-koto-selayan-dalam-angka-2026.html",
+  "sourceFileSha256": "7ea23ab1ce6d222625e75db4d2c30531b7dab2b21297e1dc6d4bc9d83b882ffb",
+  "sourceFileBytes": 11167894,
+  "sourcePages": [
+    35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52
+  ],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bukittinggi. ISSN 3031-2647 TIM PENYUSUN KECAMATAN MANDIANGIN KOTO SELAYAN DALAM ANGKA 2026 Volume 15, 2026 Pengarah Abdi Gunawan Penyunting Yeni Putriyanti .g o. id Penanggung Jawab Yeni Putriyanti ta .b ps Penulis Naskah Abdul Azis Daffa Yanuar in gg i ko Pengolah Data Yeni Putriyanti Abdul Azis Daffa Yanuar ht tp s: //b uk itt Penata Letak Yeni Putriyanti Abdul Azis Daffa Yanuar in itt uk //b s: ht tp .g o. id ps .b ta ko gg i KONTRIBUTOR DATA s: //b uk itt in gg i ko ta .b ps .g o. id Kantor Camat Mandiangin Koto Selayan Dinas Kependudukan dan Pencatatan Sipil Kota Bukittinggi Badan Keuangan Kota Bukittinggi Puskesmas Mandiangin Puskesmas Plus Mandiangin Puskesmas Gulai Bancah Puskesmas Nilam Sari ht tp 1. 2. 3. 4. 5. 6. 7. in itt uk //b s: ht tp .g o. id ps .b ta ko gg i KATA PENGANTAR Publikasi Kecamatan Mandiangin Koto Selayan dalam Angka 2026 adalah kelanjutan dari penerbitan sebelumnya dan merupakan edisi yang ke-15. Data yang disajikan dalam Kecamatan Mandiangin Koto Selayan dalam Angka 2026 ini diperoleh dari instansi daerah dan dilengkapi data dari Badan Pusat Statistik yang berasal dari kegiatan pengumpulan data. .g o. id Kecamatan Mandiangin Koto Selayan dalam Angka saat ini menjadi salah satu sumber referensi oleh para perencana kebijakan, peneliti, dosen, mahasiswa, serta pembaca yang membutuhkan informasi statistik yang komprehensif hingga level kecamatan. gg i ko ta .b ps Kepada Bapak Camat Mandiangin Koto Selayan kami ucapkan terima kasih atas bantuan yang telah diberikan, begitu pula kepada semua pemberi informasi dan data lainnya sehingga publikasi ini dapat terbit sebagaimana mestinya. ht tp s: //b uk itt in Demi penyempurnaan penerbitan di masa yang akan datang kami mengharapkan saran serta kritikan sehat bagi semua pihak. Semoga publikasi ini dapat bermanfaat bagi kita semua. Bukittinggi, September 2026 Kepala BPS Kota Bukittinggi Abdi Gunawan vii in itt uk //b s: ht tp .g o. id ps .b ta ko gg i",
+  "csvPath": "datasets/bps-1375-kecamatan-137502-dalam-angka-2026.csv",
+  "csvSha256": "16d2c1e20145016346fb62c16f011a635866a3cb91b0aee89856f65973d92a9a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Mandiangin Koto Selayan, 2025 Penduduk Kelurahan Laki-Laki Perempuan Jumlah",
+      "printedPages": [35, 36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mandiangin Koto Selayan, 2025 0–4 tahun Kelurahan Laki-Laki Perempuan Jumlah",
+      "printedPages": [
+        37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52
+      ],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"Kubu Gulai Bancah Campago Guguk Bulek\": unmatched ",
+    "table 3.2: row not stored: row \"Kubu Gulai Bancah Campago Guguk Bulek\": unmatched ",
+    "table 3.2: row not stored: row \"Kubu Gulai Bancah Campago Guguk Bulek\": unmatched ",
+    "table 3.2: row not stored: row \"Kubu Gulai Bancah Campago Guguk Bulek\": unmatched ",
+    "table 3.2: the rows of region 13.75.02.1006 are not stored: sex split vs total: parts sum 7114.0000 != 543.0000 (diff 6571.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 13.75.02.1007 are not stored: sex split vs total: parts sum 1996.0000 != 182.0000 (diff 1814.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 13.75.02.1008 are not stored: sex split vs total: parts sum 3255.0000 != 231.0000 (diff 3024.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 13.75.02.1009 are not stored: sex split vs total: parts sum 5754.0000 != 397.0000 (diff 5357.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 13.75.02.1002 are not stored: sex split vs total: parts sum 12019.0000 != 853.0000 (diff 11166.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 13.75.02.1003 are not stored: sex split vs total: parts sum 6688.0000 != 457.0000 (diff 6231.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 13.75.02.1005 are not stored: sex split vs total: parts sum 8358.0000 != 560.0000 (diff 7798.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 13.75.02 are not stored: sex split vs total: parts sum 61395.0000 != 4404.0000 (diff 56991.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 13.75.02.1004 are not stored: sex split vs total: parts sum 4840.0000 != 604.0000 (diff 4236.0000); the source itself is inconsistent",
+    "table 3.2: the rows of region 13.75.02.1001 are not stored: sex split vs total: parts sum 5942.0000 != 819.0000 (diff 5123.0000); the source itself is inconsistent"
+  ]
+}

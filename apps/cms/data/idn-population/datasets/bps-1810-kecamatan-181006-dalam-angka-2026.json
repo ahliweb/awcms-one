@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1810-kecamatan-181006-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.10.06",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Banyumas Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pringsewu",
+  "publisherDomain": "1810",
+  "publisherWebsite": "https://pringsewukab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pringsewu (https://pringsewukab.bps.go.id), publikasi \"Kecamatan Banyumas Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1810070",
+  "publicationNumber": "18100.26008",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pringsewukab.bps.go.id/id/publication/2026/09/28/b66fca77ea6868525695bfdc/kecamatan-banyumas-dalam-angka-2026.html",
+  "sourceFileSha256": "22bae1b1c62725fa25dd039e9f9bb77aa03d762cc490a5353153d9242d45d17c",
+  "sourceFileBytes": 26992603,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pringsewu.",
+  "csvPath": "datasets/bps-1810-kecamatan-181006-dalam-angka-2026.csv",
+  "csvSha256": "4a47fa80de6ab46fcfc9a78c650c08fd384eb3b4e5afd82598171f9ab7f1abe7",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Banyumas, 2025",
+      "printedPages": [32, 33],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Banyumas, 2025",
+      "printedPages": [34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sinar Mulia\": unmatched ",
+    "table 3.1: row not stored: row \"Sinar Mulia\": unmatched "
+  ]
+}

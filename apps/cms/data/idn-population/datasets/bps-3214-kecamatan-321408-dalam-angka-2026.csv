@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.14.08.2007,4,Sukahaji,sex,laki_laki,,1639,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.08.2007,4,Sukahaji,sex,perempuan,,1543,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.08.2007,4,Sukahaji,total,total,,3182,jiwa,2025,registration,total_population,3.1,22,,
+32.14.08.2008,4,Karoya,sex,laki_laki,,2908,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.08.2008,4,Karoya,sex,perempuan,,2756,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.08.2008,4,Karoya,total,total,,5664,jiwa,2025,registration,total_population,3.1,22,,
+32.14.08.2009,4,Cadassari,sex,laki_laki,,1808,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.08.2009,4,Cadassari,sex,perempuan,,1671,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.08.2009,4,Cadassari,total,total,,3479,jiwa,2025,registration,total_population,3.1,22,,
+32.14.08.2010,4,Cadasmekar,sex,laki_laki,,2018,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.08.2010,4,Cadasmekar,sex,perempuan,,1883,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.08.2010,4,Cadasmekar,total,total,,3901,jiwa,2025,registration,total_population,3.1,22,,
+32.14.08.2002,4,Citalang,sex,laki_laki,,2957,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.08.2002,4,Citalang,sex,perempuan,,2908,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.08.2002,4,Citalang,total,total,,5865,jiwa,2025,registration,total_population,3.1,22,,
+32.14.08.2001,4,Batutumpang,sex,laki_laki,,2599,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.08.2001,4,Batutumpang,sex,perempuan,,2529,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.08.2001,4,Batutumpang,total,total,,5128,jiwa,2025,registration,total_population,3.1,22,,
+32.14.08.2003,4,Tegalwaru,sex,laki_laki,,1703,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.08.2003,4,Tegalwaru,sex,perempuan,,1616,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.08.2003,4,Tegalwaru,total,total,,3319,jiwa,2025,registration,total_population,3.1,22,,
+32.14.08.2004,4,Tegalsari,sex,laki_laki,,1633,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.08.2004,4,Tegalsari,sex,perempuan,,1523,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.08.2004,4,Tegalsari,total,total,,3156,jiwa,2025,registration,total_population,3.1,22,,
+32.14.08.2005,4,Warungjeruk,sex,laki_laki,,2840,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.08.2005,4,Warungjeruk,sex,perempuan,,2865,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.08.2005,4,Warungjeruk,total,total,,5705,jiwa,2025,registration,total_population,3.1,22,,
+32.14.08.2006,4,Galumpit,sex,laki_laki,,1679,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.08.2006,4,Galumpit,sex,perempuan,,1560,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.08.2006,4,Galumpit,total,total,,3239,jiwa,2025,registration,total_population,3.1,22,,
+32.14.08.2011,4,Cisarua,sex,laki_laki,,2771,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.08.2011,4,Cisarua,sex,perempuan,,2611,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.08.2011,4,Cisarua,total,total,,5382,jiwa,2025,registration,total_population,3.1,22,,
+32.14.08.2012,4,Sukamulya,sex,laki_laki,,3397,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.08.2012,4,Sukamulya,sex,perempuan,,3261,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.08.2012,4,Sukamulya,total,total,,6658,jiwa,2025,registration,total_population,3.1,22,,
+32.14.08.2013,4,Pasanggrahan,sex,laki_laki,,2016,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.08.2013,4,Pasanggrahan,sex,perempuan,,1931,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.08.2013,4,Pasanggrahan,total,total,,3947,jiwa,2025,registration,total_population,3.1,22,,
+32.14.08,3,Kecamatan Tegal Waru,sex,laki_laki,,29968,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.08,3,Kecamatan Tegal Waru,sex,perempuan,,28657,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.08,3,Kecamatan Tegal Waru,total,total,,58625,jiwa,2025,registration,total_population,3.1,22,,

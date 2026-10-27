@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.06.08.1015,4,Keluang,sex,laki_laki,,3296,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.08.1015,4,Keluang,sex,perempuan,,3232,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.08.1015,4,Keluang,total,total,,6528,jiwa,2026,registration,total_population,3.1,34,,
+16.06.08.2006,4,Sumber Agung,sex,laki_laki,,1385,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.08.2006,4,Sumber Agung,sex,perempuan,,1319,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.08.2006,4,Sumber Agung,total,total,,2704,jiwa,2026,registration,total_population,3.1,34,,
+16.06.08.2007,4,Karya Maju,sex,laki_laki,,2321,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.08.2007,4,Karya Maju,sex,perempuan,,2308,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.08.2007,4,Karya Maju,total,total,,4629,jiwa,2026,registration,total_population,3.1,34,,
+16.06.08.2005,4,Mekar Jaya,sex,laki_laki,,1621,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.08.2005,4,Mekar Jaya,sex,perempuan,,1524,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.08.2005,4,Mekar Jaya,total,total,,3145,jiwa,2026,registration,total_population,3.1,34,,
+16.06.08.2010,4,Loka Jaya,sex,laki_laki,,1251,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.08.2010,4,Loka Jaya,sex,perempuan,,1280,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.08.2010,4,Loka Jaya,total,total,,2531,jiwa,2026,registration,total_population,3.1,34,,
+16.06.08.2004,4,Dawas,sex,laki_laki,,2562,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.08.2004,4,Dawas,sex,perempuan,,2342,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.08.2004,4,Dawas,total,total,,4904,jiwa,2026,registration,total_population,3.1,34,,
+16.06.08.2003,4,Tanjung Dalam,sex,laki_laki,,619,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.08.2003,4,Tanjung Dalam,sex,perempuan,,597,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.08.2003,4,Tanjung Dalam,total,total,,1216,jiwa,2026,registration,total_population,3.1,34,,
+16.06.08.2009,4,Cipta Praja,sex,laki_laki,,1659,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.08.2009,4,Cipta Praja,sex,perempuan,,1661,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.08.2009,4,Cipta Praja,total,total,,3320,jiwa,2026,registration,total_population,3.1,34,,
+16.06.08.2011,4,Mekar Sari,sex,laki_laki,,513,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.08.2011,4,Mekar Sari,sex,perempuan,,477,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.08.2011,4,Mekar Sari,total,total,,990,jiwa,2026,registration,total_population,3.1,34,,
+16.06.08.2013,4,Mulyo Asih,sex,laki_laki,,1413,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.08.2013,4,Mulyo Asih,sex,perempuan,,1387,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.08.2013,4,Mulyo Asih,total,total,,2800,jiwa,2026,registration,total_population,3.1,34,,
+16.06.08.2012,4,Sido Rejo,sex,laki_laki,,856,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.08.2012,4,Sido Rejo,sex,perempuan,,842,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.08.2012,4,Sido Rejo,total,total,,1698,jiwa,2026,registration,total_population,3.1,34,,
+16.06.08.2014,4,Sridamai,sex,laki_laki,,414,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.08.2014,4,Sridamai,sex,perempuan,,359,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.08.2014,4,Sridamai,total,total,,773,jiwa,2026,registration,total_population,3.1,34,,
+16.06.08,3,Keluang,sex,laki_laki,,19903,jiwa,2026,registration,total_population,3.1,34,,Laki-Laki/Male
+16.06.08,3,Keluang,sex,perempuan,,19311,jiwa,2026,registration,total_population,3.1,34,,Perempuan/Female
+16.06.08,3,Keluang,total,total,,39214,jiwa,2026,registration,total_population,3.1,34,,
+16.06.08,3,Keluang,age_group,0-14,laki_laki,4663,jiwa,2026,projection,total_population,3.2,36,,0–14
+16.06.08,3,Keluang,age_group,0-14,perempuan,4540,jiwa,2026,projection,total_population,3.2,36,,0–14
+16.06.08,3,Keluang,age_group,0-14,,9203,jiwa,2026,projection,total_population,3.2,36,,0–14
+16.06.08,3,Keluang,age_group,15-64,laki_laki,12094,jiwa,2026,projection,total_population,3.2,36,,15–64
+16.06.08,3,Keluang,age_group,15-64,perempuan,11814,jiwa,2026,projection,total_population,3.2,36,,15–64
+16.06.08,3,Keluang,age_group,15-64,,23908,jiwa,2026,projection,total_population,3.2,36,,15–64
+16.06.08,3,Keluang,age_group,65+,laki_laki,1237,jiwa,2026,projection,total_population,3.2,36,,65+
+16.06.08,3,Keluang,age_group,65+,perempuan,1322,jiwa,2026,projection,total_population,3.2,36,,65+
+16.06.08,3,Keluang,age_group,65+,,2559,jiwa,2026,projection,total_population,3.2,36,,65+
+16.06.08,3,Keluang,sex,laki_laki,,17994,jiwa,2026,projection,total_population,3.2,36,,Laki-Laki
+16.06.08,3,Keluang,sex,perempuan,,17676,jiwa,2026,projection,total_population,3.2,36,,Perempuan
+16.06.08,3,Keluang,total,total,,35670,jiwa,2026,projection,total_population,3.2,36,,

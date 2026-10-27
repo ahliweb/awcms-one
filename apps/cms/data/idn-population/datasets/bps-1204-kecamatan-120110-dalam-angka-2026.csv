@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.01.10.2014,4,Maduma,sex,laki_laki,,205,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.10.2014,4,Maduma,sex,perempuan,,204,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.10.2014,4,Maduma,total,total,,409,jiwa,2025,registration,total_population,3.1,37,,
+12.01.10.2003,4,Pahieme I,sex,laki_laki,,1178,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.10.2003,4,Pahieme I,sex,perempuan,,1228,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.10.2003,4,Pahieme I,total,total,,2406,jiwa,2025,registration,total_population,3.1,37,,
+12.01.10.2004,4,Pasar Sorkam,sex,laki_laki,,1607,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.10.2004,4,Pasar Sorkam,sex,perempuan,,1529,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.10.2004,4,Pasar Sorkam,total,total,,3136,jiwa,2025,registration,total_population,3.1,37,,
+12.01.10.2002,4,Sipea Pea,sex,laki_laki,,912,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.10.2002,4,Sipea Pea,sex,perempuan,,933,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.10.2002,4,Sipea Pea,total,total,,1845,jiwa,2025,registration,total_population,3.1,37,,
+12.01.10.2005,4,Aek Raso,sex,laki_laki,,622,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.10.2005,4,Aek Raso,sex,perempuan,,672,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.10.2005,4,Aek Raso,total,total,,1294,jiwa,2025,registration,total_population,3.1,37,,
+12.01.10.2006,4,Pasaribu Tobing Jae,sex,laki_laki,,597,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.10.2006,4,Pasaribu Tobing Jae,sex,perempuan,,603,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.10.2006,4,Pasaribu Tobing Jae,total,total,,1200,jiwa,2025,registration,total_population,3.1,37,,
+12.01.10.2017,4,Pahieme II,sex,laki_laki,,794,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.10.2017,4,Pahieme II,sex,perempuan,,859,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.10.2017,4,Pahieme II,total,total,,1653,jiwa,2025,registration,total_population,3.1,37,,
+12.01.10.1019,4,Binasi,sex,laki_laki,,614,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.10.1019,4,Binasi,sex,perempuan,,558,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.10.1019,4,Binasi,total,total,,1172,jiwa,2025,registration,total_population,3.1,37,,
+12.01.10.2016,4,Sidikalang,sex,laki_laki,,570,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.10.2016,4,Sidikalang,sex,perempuan,,615,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.10.2016,4,Sidikalang,total,total,,1185,jiwa,2025,registration,total_population,3.1,37,,
+12.01.10.2020,4,Madani,sex,laki_laki,,317,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.10.2020,4,Madani,sex,perempuan,,326,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.10.2020,4,Madani,total,total,,643,jiwa,2025,registration,total_population,3.1,37,,
+12.01.10,3,Sorkam Barat,sex,laki_laki,,8869,jiwa,2025,registration,total_population,3.1,37,,Laki-Laki/Male
+12.01.10,3,Sorkam Barat,sex,perempuan,,8900,jiwa,2025,registration,total_population,3.1,37,,Perempuan/
+12.01.10,3,Sorkam Barat,total,total,,17769,jiwa,2025,registration,total_population,3.1,37,,

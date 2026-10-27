@@ -1,0 +1,121 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.78.05.2007,4,Fadoro You,sex,laki_laki,,457,jiwa,2024,registration,total_population,3.1,31,,Laki-laki/Male
+12.78.05.2007,4,Fadoro You,sex,laki_laki,,450,jiwa,2025,registration,total_population,3.1,31,,Laki-laki/Male
+12.78.05.2007,4,Fadoro You,sex,perempuan,,449,jiwa,2024,registration,total_population,3.1,31,,Perempuan/Female
+12.78.05.2007,4,Fadoro You,sex,perempuan,,442,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.78.05.2007,4,Fadoro You,total,total,,906,jiwa,2024,registration,total_population,3.1,31,,
+12.78.05.2007,4,Fadoro You,total,total,,892,jiwa,2025,registration,total_population,3.1,31,,
+12.78.05.2001,4,Nazalou Alooa,sex,laki_laki,,531,jiwa,2024,registration,total_population,3.1,31,,Laki-laki/Male
+12.78.05.2001,4,Nazalou Alooa,sex,laki_laki,,536,jiwa,2025,registration,total_population,3.1,31,,Laki-laki/Male
+12.78.05.2001,4,Nazalou Alooa,sex,perempuan,,637,jiwa,2024,registration,total_population,3.1,31,,Perempuan/Female
+12.78.05.2001,4,Nazalou Alooa,sex,perempuan,,635,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.78.05.2001,4,Nazalou Alooa,total,total,,1168,jiwa,2024,registration,total_population,3.1,31,,
+12.78.05.2001,4,Nazalou Alooa,total,total,,1171,jiwa,2025,registration,total_population,3.1,31,,
+12.78.05.2002,4,Nikootano Dao,sex,laki_laki,,795,jiwa,2024,registration,total_population,3.1,31,,Laki-laki/Male
+12.78.05.2002,4,Nikootano Dao,sex,laki_laki,,795,jiwa,2025,registration,total_population,3.1,31,,Laki-laki/Male
+12.78.05.2002,4,Nikootano Dao,sex,perempuan,,852,jiwa,2024,registration,total_population,3.1,31,,Perempuan/Female
+12.78.05.2002,4,Nikootano Dao,sex,perempuan,,851,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.78.05.2002,4,Nikootano Dao,total,total,,1647,jiwa,2024,registration,total_population,3.1,31,,
+12.78.05.2002,4,Nikootano Dao,total,total,,1646,jiwa,2025,registration,total_population,3.1,31,,
+12.78.05.2009,4,Nazalou Lolowua,sex,laki_laki,,623,jiwa,2024,registration,total_population,3.1,31,,Laki-laki/Male
+12.78.05.2009,4,Nazalou Lolowua,sex,laki_laki,,615,jiwa,2025,registration,total_population,3.1,31,,Laki-laki/Male
+12.78.05.2009,4,Nazalou Lolowua,sex,perempuan,,694,jiwa,2024,registration,total_population,3.1,31,,Perempuan/Female
+12.78.05.2009,4,Nazalou Lolowua,sex,perempuan,,693,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.78.05.2009,4,Nazalou Lolowua,total,total,,1317,jiwa,2024,registration,total_population,3.1,31,,
+12.78.05.2009,4,Nazalou Lolowua,total,total,,1308,jiwa,2025,registration,total_population,3.1,31,,
+12.78.05.2008,4,Lololawa,sex,laki_laki,,168,jiwa,2024,registration,total_population,3.1,31,,Laki-laki/Male
+12.78.05.2008,4,Lololawa,sex,laki_laki,,171,jiwa,2025,registration,total_population,3.1,31,,Laki-laki/Male
+12.78.05.2008,4,Lololawa,sex,perempuan,,188,jiwa,2024,registration,total_population,3.1,31,,Perempuan/Female
+12.78.05.2008,4,Lololawa,sex,perempuan,,189,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.78.05.2008,4,Lololawa,total,total,,356,jiwa,2024,registration,total_population,3.1,31,,
+12.78.05.2008,4,Lololawa,total,total,,360,jiwa,2025,registration,total_population,3.1,31,,
+12.78.05.2004,4,Orahili Tanoseo,sex,laki_laki,,220,jiwa,2024,registration,total_population,3.1,31,,Laki-laki/Male
+12.78.05.2004,4,Orahili Tanoseo,sex,laki_laki,,223,jiwa,2025,registration,total_population,3.1,31,,Laki-laki/Male
+12.78.05.2004,4,Orahili Tanoseo,sex,perempuan,,252,jiwa,2024,registration,total_population,3.1,31,,Perempuan/Female
+12.78.05.2004,4,Orahili Tanoseo,sex,perempuan,,253,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.78.05.2004,4,Orahili Tanoseo,total,total,,472,jiwa,2024,registration,total_population,3.1,31,,
+12.78.05.2004,4,Orahili Tanoseo,total,total,,476,jiwa,2025,registration,total_population,3.1,31,,
+12.78.05.2005,4,Tarakhaini,sex,laki_laki,,373,jiwa,2024,registration,total_population,3.1,31,,Laki-laki/Male
+12.78.05.2005,4,Tarakhaini,sex,laki_laki,,376,jiwa,2025,registration,total_population,3.1,31,,Laki-laki/Male
+12.78.05.2005,4,Tarakhaini,sex,perempuan,,363,jiwa,2024,registration,total_population,3.1,31,,Perempuan/Female
+12.78.05.2005,4,Tarakhaini,sex,perempuan,,357,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.78.05.2005,4,Tarakhaini,total,total,,736,jiwa,2024,registration,total_population,3.1,31,,
+12.78.05.2005,4,Tarakhaini,total,total,,733,jiwa,2025,registration,total_population,3.1,31,,
+12.78.05.2006,4,Fadoro Hilimbowo,sex,laki_laki,,202,jiwa,2024,registration,total_population,3.1,31,,Laki-laki/Male
+12.78.05.2006,4,Fadoro Hilimbowo,sex,laki_laki,,202,jiwa,2025,registration,total_population,3.1,31,,Laki-laki/Male
+12.78.05.2006,4,Fadoro Hilimbowo,sex,perempuan,,214,jiwa,2024,registration,total_population,3.1,31,,Perempuan/Female
+12.78.05.2006,4,Fadoro Hilimbowo,sex,perempuan,,219,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.78.05.2006,4,Fadoro Hilimbowo,total,total,,416,jiwa,2024,registration,total_population,3.1,31,,
+12.78.05.2006,4,Fadoro Hilimbowo,total,total,,421,jiwa,2025,registration,total_population,3.1,31,,
+12.78.05.2003,4,Iraono Lase,sex,laki_laki,,551,jiwa,2024,registration,total_population,3.1,31,,Laki-laki/Male
+12.78.05.2003,4,Iraono Lase,sex,laki_laki,,552,jiwa,2025,registration,total_population,3.1,31,,Laki-laki/Male
+12.78.05.2003,4,Iraono Lase,sex,perempuan,,541,jiwa,2024,registration,total_population,3.1,31,,Perempuan/Female
+12.78.05.2003,4,Iraono Lase,sex,perempuan,,543,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.78.05.2003,4,Iraono Lase,total,total,,1092,jiwa,2024,registration,total_population,3.1,31,,
+12.78.05.2003,4,Iraono Lase,total,total,,1095,jiwa,2025,registration,total_population,3.1,31,,
+12.78.05,3,Gunungsitoli Alo’oa,sex,laki_laki,,3920,jiwa,2024,registration,total_population,3.1,31,,Laki-laki/Male
+12.78.05,3,Gunungsitoli Alo’oa,sex,laki_laki,,3920,jiwa,2025,registration,total_population,3.1,31,,Laki-laki/Male
+12.78.05,3,Gunungsitoli Alo’oa,sex,perempuan,,4190,jiwa,2024,registration,total_population,3.1,31,,Perempuan/Female
+12.78.05,3,Gunungsitoli Alo’oa,sex,perempuan,,4182,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+12.78.05,3,Gunungsitoli Alo’oa,total,total,,8110,jiwa,2024,registration,total_population,3.1,31,,
+12.78.05,3,Gunungsitoli Alo’oa,total,total,,8102,jiwa,2025,registration,total_population,3.1,31,,
+12.78.05.2007,4,Fadoro You,religion,islam,,0,jiwa,2025,registration,total_population,3.4,38,,Islam
+12.78.05.2007,4,Fadoro You,religion,kristen,,751,jiwa,2025,registration,total_population,3.4,38,,Protestan
+12.78.05.2007,4,Fadoro You,religion,katolik,,153,jiwa,2025,registration,total_population,3.4,38,,Katolik
+12.78.05.2007,4,Fadoro You,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,38,,Hindu
+12.78.05.2007,4,Fadoro You,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,38,,Budha
+12.78.05.2007,4,Fadoro You,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,38,,Konghucu
+12.78.05.2001,4,Nazalou Alooa,religion,islam,,0,jiwa,2025,registration,total_population,3.4,38,,Islam
+12.78.05.2001,4,Nazalou Alooa,religion,kristen,,1142,jiwa,2025,registration,total_population,3.4,38,,Protestan
+12.78.05.2001,4,Nazalou Alooa,religion,katolik,,34,jiwa,2025,registration,total_population,3.4,38,,Katolik
+12.78.05.2001,4,Nazalou Alooa,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,38,,Hindu
+12.78.05.2001,4,Nazalou Alooa,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,38,,Budha
+12.78.05.2001,4,Nazalou Alooa,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,38,,Konghucu
+12.78.05.2002,4,Nikootano Dao,religion,islam,,4,jiwa,2025,registration,total_population,3.4,38,,Islam
+12.78.05.2002,4,Nikootano Dao,religion,kristen,,1628,jiwa,2025,registration,total_population,3.4,38,,Protestan
+12.78.05.2002,4,Nikootano Dao,religion,katolik,,0,jiwa,2025,registration,total_population,3.4,38,,Katolik
+12.78.05.2002,4,Nikootano Dao,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,38,,Hindu
+12.78.05.2002,4,Nikootano Dao,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,38,,Budha
+12.78.05.2002,4,Nikootano Dao,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,38,,Konghucu
+12.78.05.2009,4,Nazalou Lolowua,religion,islam,,0,jiwa,2025,registration,total_population,3.4,38,,Islam
+12.78.05.2009,4,Nazalou Lolowua,religion,kristen,,1298,jiwa,2025,registration,total_population,3.4,38,,Protestan
+12.78.05.2009,4,Nazalou Lolowua,religion,katolik,,3,jiwa,2025,registration,total_population,3.4,38,,Katolik
+12.78.05.2009,4,Nazalou Lolowua,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,38,,Hindu
+12.78.05.2009,4,Nazalou Lolowua,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,38,,Budha
+12.78.05.2009,4,Nazalou Lolowua,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,38,,Konghucu
+12.78.05.2008,4,Lololawa,religion,islam,,0,jiwa,2025,registration,total_population,3.4,38,,Islam
+12.78.05.2008,4,Lololawa,religion,kristen,,367,jiwa,2025,registration,total_population,3.4,38,,Protestan
+12.78.05.2008,4,Lololawa,religion,katolik,,0,jiwa,2025,registration,total_population,3.4,38,,Katolik
+12.78.05.2008,4,Lololawa,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,38,,Hindu
+12.78.05.2008,4,Lololawa,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,38,,Budha
+12.78.05.2008,4,Lololawa,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,38,,Konghucu
+12.78.05.2004,4,Orahili Tanoseo,religion,islam,,5,jiwa,2025,registration,total_population,3.4,38,,Islam
+12.78.05.2004,4,Orahili Tanoseo,religion,kristen,,478,jiwa,2025,registration,total_population,3.4,38,,Protestan
+12.78.05.2004,4,Orahili Tanoseo,religion,katolik,,2,jiwa,2025,registration,total_population,3.4,38,,Katolik
+12.78.05.2004,4,Orahili Tanoseo,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,38,,Hindu
+12.78.05.2004,4,Orahili Tanoseo,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,38,,Budha
+12.78.05.2004,4,Orahili Tanoseo,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,38,,Konghucu
+12.78.05.2005,4,Tarakhaini,religion,islam,,0,jiwa,2025,registration,total_population,3.4,38,,Islam
+12.78.05.2005,4,Tarakhaini,religion,kristen,,727,jiwa,2025,registration,total_population,3.4,38,,Protestan
+12.78.05.2005,4,Tarakhaini,religion,katolik,,1,jiwa,2025,registration,total_population,3.4,38,,Katolik
+12.78.05.2005,4,Tarakhaini,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,38,,Hindu
+12.78.05.2005,4,Tarakhaini,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,38,,Budha
+12.78.05.2005,4,Tarakhaini,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,38,,Konghucu
+12.78.05.2006,4,Fadoro Hilimbowo,religion,islam,,0,jiwa,2025,registration,total_population,3.4,38,,Islam
+12.78.05.2006,4,Fadoro Hilimbowo,religion,kristen,,406,jiwa,2025,registration,total_population,3.4,38,,Protestan
+12.78.05.2006,4,Fadoro Hilimbowo,religion,katolik,,5,jiwa,2025,registration,total_population,3.4,38,,Katolik
+12.78.05.2006,4,Fadoro Hilimbowo,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,38,,Hindu
+12.78.05.2006,4,Fadoro Hilimbowo,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,38,,Budha
+12.78.05.2006,4,Fadoro Hilimbowo,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,38,,Konghucu
+12.78.05.2003,4,Iraono Lase,religion,islam,,1,jiwa,2025,registration,total_population,3.4,38,,Islam
+12.78.05.2003,4,Iraono Lase,religion,kristen,,1123,jiwa,2025,registration,total_population,3.4,38,,Protestan
+12.78.05.2003,4,Iraono Lase,religion,katolik,,10,jiwa,2025,registration,total_population,3.4,38,,Katolik
+12.78.05.2003,4,Iraono Lase,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,38,,Hindu
+12.78.05.2003,4,Iraono Lase,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,38,,Budha
+12.78.05.2003,4,Iraono Lase,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,38,,Konghucu
+12.78.05,3,Gunungsitoli Alo’oa,religion,islam,,10,jiwa,2025,registration,total_population,3.4,38,,Islam
+12.78.05,3,Gunungsitoli Alo’oa,religion,kristen,,7920,jiwa,2025,registration,total_population,3.4,38,,Protestan
+12.78.05,3,Gunungsitoli Alo’oa,religion,katolik,,208,jiwa,2025,registration,total_population,3.4,38,,Katolik
+12.78.05,3,Gunungsitoli Alo’oa,religion,hindu,,0,jiwa,2025,registration,total_population,3.4,38,,Hindu
+12.78.05,3,Gunungsitoli Alo’oa,religion,buddha,,0,jiwa,2025,registration,total_population,3.4,38,,Budha
+12.78.05,3,Gunungsitoli Alo’oa,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.4,38,,Konghucu

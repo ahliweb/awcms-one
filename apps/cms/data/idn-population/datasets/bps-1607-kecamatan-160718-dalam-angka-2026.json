@@ -1,0 +1,48 @@
+{
+  "datasetCode": "bps-1607-kecamatan-160718-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.07.18",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sumber Marga Telang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Banyuasin",
+  "publisherDomain": "1607",
+  "publisherWebsite": "https://banyuasinkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Banyuasin (https://banyuasinkab.bps.go.id), publikasi \"Kecamatan Sumber Marga Telang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1607111",
+  "publicationNumber": "16070.26025",
+  "issn": "3110-2492",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banyuasinkab.bps.go.id/id/publication/2026/09/28/dc8fc2eea7e31dfc19b648c8/kecamatan-sumber-marga-telang-dalam-angka-2026.html",
+  "sourceFileSha256": "3e6a36aadb4ba70f8a372c001afd93f11e92b1dc4ecbd297b7b46285abb02374",
+  "sourceFileBytes": 13024099,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Banyuasin.",
+  "csvPath": "datasets/bps-1607-kecamatan-160718-dalam-angka-2026.csv",
+  "csvSha256": "dc76502efe5586805bb9ce51f4aeb4108423054e7aeb6aef02c1da7f8b91d69e",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sumber Marga Telang, 2026",
+      "printedPages": [36],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Karang Baru 1.838\": unmatched ",
+    "table 3.1: row not stored: row \"Karang Anyar 1.785\": unmatched ",
+    "table 3.1: row not stored: row \"Muara Telang Marga 748\": unmatched ",
+    "table 3.1: row not stored: row \"Sri Tiga 1.567\": unmatched ",
+    "table 3.1: row not stored: row \"Muara Telang 1.725\": unmatched ",
+    "table 3.1: row not stored: row \"Sumber Jaya 2.444\": unmatched ",
+    "table 3.1: row not stored: row \"Terusan Muara 1.043\": unmatched ",
+    "table 3.1: row not stored: row \"Terusan Tengah 736\": unmatched ",
+    "table 3.1: row not stored: row \"Terusan Dalam 894\": unmatched ",
+    "table 3.1: row not stored: row \"Talang Lubuk 752\": unmatched ",
+    "table 3.1: row not stored: row \"Sumber Marga Telang 13.532\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

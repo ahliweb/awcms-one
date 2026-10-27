@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.71.05.1005,4,Pantai Gelam,sex,laki_laki,,582,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.05.1005,4,Pantai Gelam,sex,perempuan,,576,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.05.1005,4,Pantai Gelam,total,total,,1158,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.05.1003,4,Temoyong,sex,laki_laki,,802,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.05.1003,4,Temoyong,sex,perempuan,,793,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.05.1003,4,Temoyong,total,total,,1595,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.05.1006,4,Pulau Setokok,sex,laki_laki,,1917,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.05.1006,4,Pulau Setokok,sex,perempuan,,1777,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.05.1006,4,Pulau Setokok,total,total,,3694,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.05.1004,4,Batu Legong,sex,laki_laki,,713,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.05.1004,4,Batu Legong,sex,perempuan,,640,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.05.1004,4,Batu Legong,total,total,,1353,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.05.1001,4,Bulang Lintang,sex,laki_laki,,971,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.05.1001,4,Bulang Lintang,sex,perempuan,,887,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.05.1001,4,Bulang Lintang,total,total,,1858,jiwa,2025,registration,total_population,unnumbered-p21,21,,
+21.71.05.1002,4,Pulau Buluh,sex,laki_laki,,1612,jiwa,2025,registration,total_population,unnumbered-p21,21,,Laki-Laki/Male
+21.71.05.1002,4,Pulau Buluh,sex,perempuan,,1533,jiwa,2025,registration,total_population,unnumbered-p21,21,,Perempuan/Female
+21.71.05.1002,4,Pulau Buluh,total,total,,3145,jiwa,2025,registration,total_population,unnumbered-p21,21,,

@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.72.04.1022,4,Penjalang,sex,laki_laki,,1455,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.04.1022,4,Penjalang,sex,perempuan,,1329,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.04.1022,4,Penjalang,total,total,,2784,jiwa,2025,registration,total_population,3.1,28,,
+16.72.04.1002,4,Lubuk Buntak,sex,laki_laki,,1149,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.04.1002,4,Lubuk Buntak,sex,perempuan,,1073,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.04.1002,4,Lubuk Buntak,total,total,,2222,jiwa,2025,registration,total_population,3.1,28,,
+16.72.04.1020,4,Kance Diwe,sex,laki_laki,,1330,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.04.1020,4,Kance Diwe,sex,perempuan,,1228,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.04.1020,4,Kance Diwe,total,total,,2558,jiwa,2025,registration,total_population,3.1,28,,
+16.72.04.1021,4,Atung Bungsu,sex,laki_laki,,1902,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.04.1021,4,Atung Bungsu,sex,perempuan,,1718,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.04.1021,4,Atung Bungsu,total,total,,3620,jiwa,2025,registration,total_population,3.1,28,,
+16.72.04,3,Dempo Selatan,sex,laki_laki,,7326,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.72.04,3,Dempo Selatan,sex,perempuan,,6785,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.72.04,3,Dempo Selatan,total,total,,14111,jiwa,2025,registration,total_population,3.1,28,,
+16.72.04,3,Dempo Selatan,age_group,0-4,laki_laki,430,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.72.04,3,Dempo Selatan,age_group,0-4,perempuan,452,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.72.04,3,Dempo Selatan,age_group,0-4,,882,jiwa,2025,registration,total_population,3.2,30,,0 – 4
+16.72.04,3,Dempo Selatan,age_group,5-9,laki_laki,602,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.72.04,3,Dempo Selatan,age_group,5-9,perempuan,544,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.72.04,3,Dempo Selatan,age_group,5-9,,1146,jiwa,2025,registration,total_population,3.2,30,,5 – 9
+16.72.04,3,Dempo Selatan,age_group,10-14,laki_laki,622,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.72.04,3,Dempo Selatan,age_group,10-14,perempuan,590,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.72.04,3,Dempo Selatan,age_group,10-14,,1212,jiwa,2025,registration,total_population,3.2,30,,10 – 14
+16.72.04,3,Dempo Selatan,age_group,15-19,laki_laki,584,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.72.04,3,Dempo Selatan,age_group,15-19,perempuan,554,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.72.04,3,Dempo Selatan,age_group,15-19,,1138,jiwa,2025,registration,total_population,3.2,30,,15 – 19
+16.72.04,3,Dempo Selatan,age_group,20-24,laki_laki,564,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.72.04,3,Dempo Selatan,age_group,20-24,perempuan,535,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.72.04,3,Dempo Selatan,age_group,20-24,,1099,jiwa,2025,registration,total_population,3.2,30,,20 – 24
+16.72.04,3,Dempo Selatan,age_group,25-29,laki_laki,505,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.72.04,3,Dempo Selatan,age_group,25-29,perempuan,458,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.72.04,3,Dempo Selatan,age_group,25-29,,963,jiwa,2025,registration,total_population,3.2,30,,25 – 29
+16.72.04,3,Dempo Selatan,age_group,30-34,laki_laki,473,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.72.04,3,Dempo Selatan,age_group,30-34,perempuan,410,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.72.04,3,Dempo Selatan,age_group,30-34,,883,jiwa,2025,registration,total_population,3.2,30,,30 – 34
+16.72.04,3,Dempo Selatan,age_group,35-39,laki_laki,617,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.72.04,3,Dempo Selatan,age_group,35-39,perempuan,502,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.72.04,3,Dempo Selatan,age_group,35-39,,1119,jiwa,2025,registration,total_population,3.2,30,,35 – 39
+16.72.04,3,Dempo Selatan,age_group,40-44,laki_laki,612,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.72.04,3,Dempo Selatan,age_group,40-44,perempuan,492,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.72.04,3,Dempo Selatan,age_group,40-44,,1104,jiwa,2025,registration,total_population,3.2,30,,40 – 44
+16.72.04,3,Dempo Selatan,age_group,45-49,laki_laki,627,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.72.04,3,Dempo Selatan,age_group,45-49,perempuan,510,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.72.04,3,Dempo Selatan,age_group,45-49,,1137,jiwa,2025,registration,total_population,3.2,30,,45 – 49
+16.72.04,3,Dempo Selatan,age_group,50-54,laki_laki,476,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.72.04,3,Dempo Selatan,age_group,50-54,perempuan,410,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.72.04,3,Dempo Selatan,age_group,50-54,,886,jiwa,2025,registration,total_population,3.2,30,,50 – 54
+16.72.04,3,Dempo Selatan,age_group,55-59,laki_laki,320,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.72.04,3,Dempo Selatan,age_group,55-59,perempuan,320,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.72.04,3,Dempo Selatan,age_group,55-59,,640,jiwa,2025,registration,total_population,3.2,30,,55 – 59
+16.72.04,3,Dempo Selatan,age_group,60-64,laki_laki,308,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.72.04,3,Dempo Selatan,age_group,60-64,perempuan,316,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.72.04,3,Dempo Selatan,age_group,60-64,,624,jiwa,2025,registration,total_population,3.2,30,,60 – 64
+16.72.04,3,Dempo Selatan,age_group,65-69,laki_laki,249,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.72.04,3,Dempo Selatan,age_group,65-69,perempuan,269,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.72.04,3,Dempo Selatan,age_group,65-69,,518,jiwa,2025,registration,total_population,3.2,30,,65 – 69
+16.72.04,3,Dempo Selatan,age_group,70-74,laki_laki,178,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.72.04,3,Dempo Selatan,age_group,70-74,perempuan,176,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.72.04,3,Dempo Selatan,age_group,70-74,,354,jiwa,2025,registration,total_population,3.2,30,,70 – 74
+16.72.04,3,Dempo Selatan,age_group,75+,laki_laki,159,jiwa,2025,registration,total_population,3.2,30,,75+
+16.72.04,3,Dempo Selatan,age_group,75+,perempuan,247,jiwa,2025,registration,total_population,3.2,30,,75+
+16.72.04,3,Dempo Selatan,age_group,75+,,406,jiwa,2025,registration,total_population,3.2,30,,75+
+16.72.04,3,Dempo Selatan,sex,laki_laki,,7326,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+16.72.04,3,Dempo Selatan,sex,perempuan,,6785,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+16.72.04,3,Dempo Selatan,total,total,,14111,jiwa,2025,registration,total_population,3.2,30,,

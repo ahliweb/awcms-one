@@ -1,0 +1,49 @@
+{
+  "datasetCode": "bps-1203-kecamatan-120322-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.03.22",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Aek Bilah Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN TAPANULI SELATAN",
+  "publisherDomain": "1203",
+  "publisherWebsite": "https://tapanuliselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN TAPANULI SELATAN (https://tapanuliselatankab.bps.go.id), publikasi \"Kecamatan Aek Bilah Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1203161",
+  "publicationNumber": "12030",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tapanuliselatankab.bps.go.id/id/publication/2026/09/28/94d86e3cc35d3475dbc08fa5/kecamatan-aek-bilah-dalam-angka-2026.html",
+  "sourceFileSha256": "bee4bbe19a7c51e149efca51a826997f2674e1b595d03619ffb7c4834411b2ed",
+  "sourceFileBytes": 3831634,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tapanuli Selatan.",
+  "csvPath": "datasets/bps-1203-kecamatan-120322-dalam-angka-2026.csv",
+  "csvSha256": "227b76f3c1b5a64a2caa398086b8f39fd1b5349543de226d54e636ee128a203a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Aek Bilah, 2025",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Aek Bilah, 2025",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Lobu Tayаs\": unmatched ",
+    "table 3.1: row not stored: row \"Lobu Tayаs\": unmatched ",
+    "table 3.2: row not stored: row \"0 4\": unmatched ",
+    "table 3.2: row not stored: row \"5 9\": unmatched ",
+    "table 3.2: the rows of region 12.03.22 are not stored: age_group (perempuan) vs sex value: parts sum 3210.0000 != 3763.0000 (diff 553.0000); the source itself is inconsistent"
+  ]
+}

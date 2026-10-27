@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3517-kecamatan-351717-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.17.17",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kudu Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN JOMBANG",
+  "publisherDomain": "3517",
+  "publisherWebsite": "https://jombangkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN JOMBANG (https://jombangkab.bps.go.id), publikasi \"Kecamatan Kudu Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3517170",
+  "publicationNumber": "35170.26022",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jombangkab.bps.go.id/id/publication/2026/09/28/9eb093006dee4d7831d0ee6c/kecamatan-kudu-dalam-angka-2026.html",
+  "sourceFileSha256": "61b19890eefa2b306673198eaefc15ec75236f5c6b2528654b7a7bee4da74495",
+  "sourceFileBytes": 13277099,
+  "sourcePages": [33, 34, 35],
+  "termsOfUse": "Dilarang mengumumkan, mendistribusikan, mengomunikasikan, dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik.",
+  "csvPath": "datasets/bps-3517-kecamatan-351717-dalam-angka-2026.csv",
+  "csvSha256": "f58c7033e117f0e1bab2302b7a78a3401ac824d28195d2fc70d0dc78caad4979",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Kudu, 2025",
+      "printedPages": [33, 34],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kudu, 2024",
+      "printedPages": [35],
+      "referenceYears": [2024],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: the rows of region 35.17.17 are not stored: age_group (perempuan) vs sex value: parts sum 16692.0000 != 15870.0000 (diff 822.0000); the source itself is inconsistent"
+  ]
+}

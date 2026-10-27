@@ -1,0 +1,115 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.08.10.2017,4,Banjar Ratu,sex,laki_laki,,1728,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10.2017,4,Banjar Ratu,sex,perempuan,,1642,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10.2017,4,Banjar Ratu,total,total,,3370,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10.2003,4,Banjar Sakti,sex,laki_laki,,444,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10.2003,4,Banjar Sakti,sex,perempuan,,445,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10.2003,4,Banjar Sakti,total,total,,889,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10.2002,4,Gunung Baru,sex,laki_laki,,556,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10.2002,4,Gunung Baru,sex,perempuan,,538,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10.2002,4,Gunung Baru,total,total,,1094,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10.2004,4,Suka Negeri,sex,laki_laki,,1557,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10.2004,4,Suka Negeri,sex,perempuan,,1505,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10.2004,4,Suka Negeri,total,total,,3062,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10.2006,4,Negeri Sungkai,sex,laki_laki,,415,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10.2006,4,Negeri Sungkai,sex,perempuan,,382,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10.2006,4,Negeri Sungkai,total,total,,797,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10.2007,4,Gunung Sari,sex,laki_laki,,526,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10.2007,4,Gunung Sari,sex,perempuan,,517,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10.2007,4,Gunung Sari,total,total,,1043,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10.2001,4,Gunung Labuhan,sex,laki_laki,,1662,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10.2001,4,Gunung Labuhan,sex,perempuan,,1670,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10.2001,4,Gunung Labuhan,total,total,,3332,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10.2010,4,Bengkulu Rejo,sex,laki_laki,,895,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10.2010,4,Bengkulu Rejo,sex,perempuan,,884,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10.2010,4,Bengkulu Rejo,total,total,,1779,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10.2009,4,Bengkulu,sex,laki_laki,,1722,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10.2009,4,Bengkulu,sex,perempuan,,1719,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10.2009,4,Bengkulu,total,total,,3441,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10.2008,4,Way Tuba,sex,laki_laki,,712,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10.2008,4,Way Tuba,sex,perempuan,,671,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10.2008,4,Way Tuba,total,total,,1383,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10.2012,4,Bengkulu Raman,sex,laki_laki,,399,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10.2012,4,Bengkulu Raman,sex,perempuan,,417,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10.2012,4,Bengkulu Raman,total,total,,816,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10.2011,4,Kayu Batu,sex,laki_laki,,489,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10.2011,4,Kayu Batu,sex,perempuan,,503,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10.2011,4,Kayu Batu,total,total,,992,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10.2013,4,Bengkulu Jaya,sex,laki_laki,,719,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10.2013,4,Bengkulu Jaya,sex,perempuan,,661,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10.2013,4,Bengkulu Jaya,total,total,,1380,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10.2015,4,Curup Patah,sex,laki_laki,,650,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10.2015,4,Curup Patah,sex,perempuan,,626,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10.2015,4,Curup Patah,total,total,,1276,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10.2014,4,Tiuh Balak Ii,sex,laki_laki,,587,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10.2014,4,Tiuh Balak Ii,sex,perempuan,,571,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10.2014,4,Tiuh Balak Ii,total,total,,1158,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10.2016,4,Sukarame,sex,laki_laki,,799,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10.2016,4,Sukarame,sex,perempuan,,742,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10.2016,4,Sukarame,total,total,,1541,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10.2018,4,Negeri Ujan Mas,sex,laki_laki,,520,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10.2018,4,Negeri Ujan Mas,sex,perempuan,,485,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10.2018,4,Negeri Ujan Mas,total,total,,1005,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10.2019,4,Bengkulu Tengah,sex,laki_laki,,609,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10.2019,4,Bengkulu Tengah,sex,perempuan,,614,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10.2019,4,Bengkulu Tengah,total,total,,1223,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10.2020,4,Gunung Pekuwon,sex,laki_laki,,238,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10.2020,4,Gunung Pekuwon,sex,perempuan,,228,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10.2020,4,Gunung Pekuwon,total,total,,466,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10.2021,4,Labuhan Jaya,sex,laki_laki,,471,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10.2021,4,Labuhan Jaya,sex,perempuan,,491,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10.2021,4,Labuhan Jaya,total,total,,962,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10,3,Gunung Labuhan,sex,laki_laki,,16312,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+18.08.10,3,Gunung Labuhan,sex,perempuan,,15897,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+18.08.10,3,Gunung Labuhan,total,total,,32209,jiwa,2025,registration,total_population,3.1,35,,
+18.08.10,3,Gunung Labuhan,age_group,0-4,laki_laki,1106,jiwa,2025,registration,total_population,3.2,37,,0-4
+18.08.10,3,Gunung Labuhan,age_group,0-4,perempuan,1095,jiwa,2025,registration,total_population,3.2,37,,0-4
+18.08.10,3,Gunung Labuhan,age_group,0-4,,2201,jiwa,2025,registration,total_population,3.2,37,,0-4
+18.08.10,3,Gunung Labuhan,age_group,5-9,laki_laki,1464,jiwa,2025,registration,total_population,3.2,37,,5-9
+18.08.10,3,Gunung Labuhan,age_group,5-9,perempuan,1393,jiwa,2025,registration,total_population,3.2,37,,5-9
+18.08.10,3,Gunung Labuhan,age_group,5-9,,2857,jiwa,2025,registration,total_population,3.2,37,,5-9
+18.08.10,3,Gunung Labuhan,age_group,10-14,laki_laki,1510,jiwa,2025,registration,total_population,3.2,37,,10-14
+18.08.10,3,Gunung Labuhan,age_group,10-14,perempuan,1446,jiwa,2025,registration,total_population,3.2,37,,10-14
+18.08.10,3,Gunung Labuhan,age_group,10-14,,2956,jiwa,2025,registration,total_population,3.2,37,,10-14
+18.08.10,3,Gunung Labuhan,age_group,15-19,laki_laki,1420,jiwa,2025,registration,total_population,3.2,37,,15-19
+18.08.10,3,Gunung Labuhan,age_group,15-19,perempuan,1356,jiwa,2025,registration,total_population,3.2,37,,15-19
+18.08.10,3,Gunung Labuhan,age_group,15-19,,2776,jiwa,2025,registration,total_population,3.2,37,,15-19
+18.08.10,3,Gunung Labuhan,age_group,20-24,laki_laki,1308,jiwa,2025,registration,total_population,3.2,37,,20-24
+18.08.10,3,Gunung Labuhan,age_group,20-24,perempuan,1265,jiwa,2025,registration,total_population,3.2,37,,20-24
+18.08.10,3,Gunung Labuhan,age_group,20-24,,2573,jiwa,2025,registration,total_population,3.2,37,,20-24
+18.08.10,3,Gunung Labuhan,age_group,25-29,laki_laki,1298,jiwa,2025,registration,total_population,3.2,37,,25-29
+18.08.10,3,Gunung Labuhan,age_group,25-29,perempuan,1284,jiwa,2025,registration,total_population,3.2,37,,25-29
+18.08.10,3,Gunung Labuhan,age_group,25-29,,2582,jiwa,2025,registration,total_population,3.2,37,,25-29
+18.08.10,3,Gunung Labuhan,age_group,30-34,laki_laki,1182,jiwa,2025,registration,total_population,3.2,37,,30-34
+18.08.10,3,Gunung Labuhan,age_group,30-34,perempuan,1078,jiwa,2025,registration,total_population,3.2,37,,30-34
+18.08.10,3,Gunung Labuhan,age_group,30-34,,2260,jiwa,2025,registration,total_population,3.2,37,,30-34
+18.08.10,3,Gunung Labuhan,age_group,35-39,laki_laki,1381,jiwa,2025,registration,total_population,3.2,37,,35-39
+18.08.10,3,Gunung Labuhan,age_group,35-39,perempuan,1263,jiwa,2025,registration,total_population,3.2,37,,35-39
+18.08.10,3,Gunung Labuhan,age_group,35-39,,2644,jiwa,2025,registration,total_population,3.2,37,,35-39
+18.08.10,3,Gunung Labuhan,age_group,40-44,laki_laki,1233,jiwa,2025,registration,total_population,3.2,37,,40-44
+18.08.10,3,Gunung Labuhan,age_group,40-44,perempuan,1105,jiwa,2025,registration,total_population,3.2,37,,40-44
+18.08.10,3,Gunung Labuhan,age_group,40-44,,2338,jiwa,2025,registration,total_population,3.2,37,,40-44
+18.08.10,3,Gunung Labuhan,age_group,45-49,laki_laki,1040,jiwa,2025,registration,total_population,3.2,37,,45-49
+18.08.10,3,Gunung Labuhan,age_group,45-49,perempuan,1017,jiwa,2025,registration,total_population,3.2,37,,45-49
+18.08.10,3,Gunung Labuhan,age_group,45-49,,2057,jiwa,2025,registration,total_population,3.2,37,,45-49
+18.08.10,3,Gunung Labuhan,age_group,50-54,laki_laki,885,jiwa,2025,registration,total_population,3.2,37,,50-54
+18.08.10,3,Gunung Labuhan,age_group,50-54,perempuan,892,jiwa,2025,registration,total_population,3.2,37,,50-54
+18.08.10,3,Gunung Labuhan,age_group,50-54,,1777,jiwa,2025,registration,total_population,3.2,37,,50-54
+18.08.10,3,Gunung Labuhan,age_group,55-59,laki_laki,732,jiwa,2025,registration,total_population,3.2,37,,55-59
+18.08.10,3,Gunung Labuhan,age_group,55-59,perempuan,774,jiwa,2025,registration,total_population,3.2,37,,55-59
+18.08.10,3,Gunung Labuhan,age_group,55-59,,1506,jiwa,2025,registration,total_population,3.2,37,,55-59
+18.08.10,3,Gunung Labuhan,age_group,60-64,laki_laki,567,jiwa,2025,registration,total_population,3.2,37,,60-64
+18.08.10,3,Gunung Labuhan,age_group,60-64,perempuan,678,jiwa,2025,registration,total_population,3.2,37,,60-64
+18.08.10,3,Gunung Labuhan,age_group,60-64,,1245,jiwa,2025,registration,total_population,3.2,37,,60-64
+18.08.10,3,Gunung Labuhan,age_group,65-69,laki_laki,504,jiwa,2025,registration,total_population,3.2,37,,65-69
+18.08.10,3,Gunung Labuhan,age_group,65-69,perempuan,524,jiwa,2025,registration,total_population,3.2,37,,65-69
+18.08.10,3,Gunung Labuhan,age_group,65-69,,1028,jiwa,2025,registration,total_population,3.2,37,,65-69
+18.08.10,3,Gunung Labuhan,age_group,70-74,laki_laki,342,jiwa,2025,registration,total_population,3.2,37,,70-74
+18.08.10,3,Gunung Labuhan,age_group,70-74,perempuan,299,jiwa,2025,registration,total_population,3.2,37,,70-74
+18.08.10,3,Gunung Labuhan,age_group,70-74,,641,jiwa,2025,registration,total_population,3.2,37,,70-74
+18.08.10,3,Gunung Labuhan,age_group,75+,laki_laki,340,jiwa,2025,registration,total_population,3.2,37,,75+
+18.08.10,3,Gunung Labuhan,age_group,75+,perempuan,428,jiwa,2025,registration,total_population,3.2,37,,75+
+18.08.10,3,Gunung Labuhan,age_group,75+,,768,jiwa,2025,registration,total_population,3.2,37,,75+
+18.08.10,3,Gunung Labuhan,sex,laki_laki,,16312,jiwa,2025,registration,total_population,3.2,37,,Laki-Laki
+18.08.10,3,Gunung Labuhan,sex,perempuan,,15897,jiwa,2025,registration,total_population,3.2,37,,Perempuan
+18.08.10,3,Gunung Labuhan,total,total,,32209,jiwa,2025,registration,total_population,3.2,37,,

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3276-kecamatan-327602-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.76.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cimanggis Dalam Angka 2026",
+  "publisherName": "BPS Kota Depok",
+  "publisherDomain": "3276",
+  "publisherWebsite": "https://depokkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Depok (https://depokkota.bps.go.id), publikasi \"Kecamatan Cimanggis Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3276040",
+  "publicationNumber": "32760.26008",
+  "issn": "2597-8500",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://depokkota.bps.go.id/id/publication/2026/09/28/e8ac2e748b272fc95ce1ee65/kecamatan-cimanggis-dalam-angka-2026.html",
+  "sourceFileSha256": "4cfaac7d5bb38a48929c474d85896ae4c82a38269364aedd3fd6ee25e126bcd1",
+  "sourceFileBytes": 3773784,
+  "sourcePages": [22, 23, 24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Depok.",
+  "csvPath": "datasets/bps-3276-kecamatan-327602-dalam-angka-2026.csv",
+  "csvSha256": "c4fd8969d037f1763a6ddd473f64ea1bd94e8bf5dc1749d4905c470cd7524e78",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Cimanggis, 2025",
+      "printedPages": [22, 23, 24],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cimanggis, 2025",
+      "printedPages": [25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

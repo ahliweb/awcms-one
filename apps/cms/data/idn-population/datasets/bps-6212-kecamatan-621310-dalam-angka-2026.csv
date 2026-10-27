@@ -1,0 +1,14 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.13.10.2001,4,Dayu,sex,laki_laki,,945,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+62.13.10.2002,4,Wuran,sex,laki_laki,,603,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+62.13.10.2003,4,Ipu Mea,sex,laki_laki,,295,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+62.13.10.2003,4,Ipu Mea,sex,perempuan,,300595,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+62.13.10.2006,4,Simpang Naneng,sex,laki_laki,,324,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+62.13.10.2006,4,Simpang Naneng,sex,perempuan,,301625,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+62.13.10.2004,4,Lagan,sex,laki_laki,,343,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+62.13.10.2004,4,Lagan,sex,perempuan,,326669,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+62.13.10.2005,4,Putut Tawuluh,sex,laki_laki,,103,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+62.13.10.2005,4,Putut Tawuluh,sex,perempuan,,112215,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+62.13.10.2007,4,Kandris,sex,laki_laki,,225,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+62.13.10.2007,4,Kandris,sex,perempuan,,198423,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+62.13.10,3,Karusen Janang,sex,laki_laki,,2838,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male

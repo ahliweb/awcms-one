@@ -1,0 +1,49 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.09.10.2008,4,Sikijang,sex,laki_laki,,392,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.10.2008,4,Sikijang,sex,perempuan,,391,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.10.2008,4,Sikijang,total,total,,783,jiwa,2025,registration,total_population,3.1,22,,
+14.09.10.2007,4,Teratak Rendah,sex,laki_laki,,198,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.10.2007,4,Teratak Rendah,sex,perempuan,,147,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.10.2007,4,Teratak Rendah,total,total,,345,jiwa,2025,registration,total_population,3.1,22,,
+14.09.10.2001,4,Perhentian Luas,sex,laki_laki,,1525,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.10.2001,4,Perhentian Luas,sex,perempuan,,1491,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.10.2001,4,Perhentian Luas,total,total,,3016,jiwa,2025,registration,total_population,3.1,22,,
+14.09.10.2002,4,Logas,sex,laki_laki,,632,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.10.2002,4,Logas,sex,perempuan,,563,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.10.2002,4,Logas,total,total,,1195,jiwa,2025,registration,total_population,3.1,22,,
+14.09.10.2004,4,Sungai Rambai,sex,laki_laki,,181,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.10.2004,4,Sungai Rambai,sex,perempuan,,186,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.10.2004,4,Sungai Rambai,total,total,,367,jiwa,2025,registration,total_population,3.1,22,,
+14.09.10.2006,4,Rambahan,sex,laki_laki,,514,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.10.2006,4,Rambahan,sex,perempuan,,468,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.10.2006,4,Rambahan,total,total,,982,jiwa,2025,registration,total_population,3.1,22,,
+14.09.10.2003,4,Lubuk Kebun,sex,laki_laki,,1487,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.10.2003,4,Lubuk Kebun,sex,perempuan,,1330,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.10.2003,4,Lubuk Kebun,total,total,,2817,jiwa,2025,registration,total_population,3.1,22,,
+14.09.10.2005,4,Situgal,sex,laki_laki,,659,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.10.2005,4,Situgal,sex,perempuan,,586,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.10.2005,4,Situgal,total,total,,1245,jiwa,2025,registration,total_population,3.1,22,,
+14.09.10.2012,4,Hulu Teso,sex,laki_laki,,1267,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.10.2012,4,Hulu Teso,sex,perempuan,,1234,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.10.2012,4,Hulu Teso,total,total,,2501,jiwa,2025,registration,total_population,3.1,22,,
+14.09.10.2009,4,Sukaraja,sex,laki_laki,,1587,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.10.2009,4,Sukaraja,sex,perempuan,,1577,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.10.2009,4,Sukaraja,total,total,,3164,jiwa,2025,registration,total_population,3.1,22,,
+14.09.10.2010,4,Sako Margasari,sex,laki_laki,,950,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.10.2010,4,Sako Margasari,sex,perempuan,,868,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.10.2010,4,Sako Margasari,total,total,,1818,jiwa,2025,registration,total_population,3.1,22,,
+14.09.10.2013,4,Giri Sako,sex,laki_laki,,1556,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.10.2013,4,Giri Sako,sex,perempuan,,1510,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.10.2013,4,Giri Sako,total,total,,3066,jiwa,2025,registration,total_population,3.1,22,,
+14.09.10.2011,4,Kuantan Sako,sex,laki_laki,,1656,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.10.2011,4,Kuantan Sako,sex,perempuan,,1580,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.10.2011,4,Kuantan Sako,total,total,,3236,jiwa,2025,registration,total_population,3.1,22,,
+14.09.10.2015,4,Sidodadi,sex,laki_laki,,547,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.10.2015,4,Sidodadi,sex,perempuan,,556,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.10.2015,4,Sidodadi,total,total,,1103,jiwa,2025,registration,total_population,3.1,22,,
+14.09.10.2014,4,Bumi Mulya,sex,laki_laki,,1222,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.10.2014,4,Bumi Mulya,sex,perempuan,,1183,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.10.2014,4,Bumi Mulya,total,total,,2405,jiwa,2025,registration,total_population,3.1,22,,
+14.09.10,3,Logas Tanah Darat,sex,laki_laki,,14373,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+14.09.10,3,Logas Tanah Darat,sex,perempuan,,13670,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+14.09.10,3,Logas Tanah Darat,total,total,,28043,jiwa,2025,registration,total_population,3.1,22,,

@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.01.16.2002,4,Pantai Raja,sex,laki_laki,,3093,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+14.01.16.2002,4,Pantai Raja,sex,perempuan,,3007,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.16.2002,4,Pantai Raja,total,total,,6100,jiwa,2025,registration,total_population,3.1,11,,
+14.01.16.2004,4,Sialang Kubang,sex,laki_laki,,2206,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+14.01.16.2004,4,Sialang Kubang,sex,perempuan,,2124,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.16.2004,4,Sialang Kubang,total,total,,4330,jiwa,2025,registration,total_population,3.1,11,,
+14.01.16.2003,4,Hangtuah,sex,laki_laki,,3587,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+14.01.16.2003,4,Hangtuah,sex,perempuan,,3467,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.16.2003,4,Hangtuah,total,total,,7054,jiwa,2025,registration,total_population,3.1,11,,
+14.01.16.2001,4,Kampung Pinang,sex,laki_laki,,1101,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+14.01.16.2001,4,Kampung Pinang,sex,perempuan,,1074,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.16.2001,4,Kampung Pinang,total,total,,2175,jiwa,2025,registration,total_population,3.1,11,,
+14.01.16.2005,4,Lubuk Sakat,sex,laki_laki,,1359,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+14.01.16.2005,4,Lubuk Sakat,sex,perempuan,,1300,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.16.2005,4,Lubuk Sakat,total,total,,2659,jiwa,2025,registration,total_population,3.1,11,,
+14.01.16,3,Perhentian Raja,sex,laki_laki,,11346,jiwa,2025,registration,total_population,3.1,11,,Laki-Laki/Male
+14.01.16,3,Perhentian Raja,sex,perempuan,,10972,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.16,3,Perhentian Raja,total,total,,22318,jiwa,2025,registration,total_population,3.1,11,,

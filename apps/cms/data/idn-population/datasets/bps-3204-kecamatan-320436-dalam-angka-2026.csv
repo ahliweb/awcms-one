@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.04.36.2007,4,Neglasari,sex,laki_laki,,3134,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.36.2007,4,Neglasari,sex,perempuan,,2972,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.36.2007,4,Neglasari,total,total,,6106,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.36.2003,4,Dukuh,sex,laki_laki,,4623,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.36.2003,4,Dukuh,sex,perempuan,,4400,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.36.2003,4,Dukuh,total,total,,9023,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.36.2001,4,Ibun,sex,laki_laki,,4678,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.36.2001,4,Ibun,sex,perempuan,,4600,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.36.2001,4,Ibun,total,total,,9278,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.36.2002,4,Laksana,sex,laki_laki,,4706,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.36.2002,4,Laksana,sex,perempuan,,4541,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.36.2002,4,Laksana,total,total,,9247,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.36.2008,4,Mekarwangi,sex,laki_laki,,4266,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.36.2008,4,Mekarwangi,sex,perempuan,,4144,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.36.2008,4,Mekarwangi,total,total,,8410,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.36.2009,4,Sudi,sex,laki_laki,,3990,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.36.2009,4,Sudi,sex,perempuan,,3682,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.36.2009,4,Sudi,total,total,,7672,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.36.2011,4,Cibeet,sex,laki_laki,,3951,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.36.2011,4,Cibeet,sex,perempuan,,3775,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.36.2011,4,Cibeet,total,total,,7726,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.36.2005,4,Pangguh,sex,laki_laki,,5812,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.36.2005,4,Pangguh,sex,perempuan,,5428,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.36.2005,4,Pangguh,total,total,,11240,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.36.2012,4,Karyalaksana,sex,laki_laki,,4646,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.36.2012,4,Karyalaksana,sex,perempuan,,4255,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.36.2012,4,Karyalaksana,total,total,,8901,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.36.2006,4,Lampegan,sex,laki_laki,,4355,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.36.2006,4,Lampegan,sex,perempuan,,4099,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.36.2006,4,Lampegan,total,total,,8454,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.36.2004,4,Talun,sex,laki_laki,,4127,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.36.2004,4,Talun,sex,perempuan,,3903,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.36.2004,4,Talun,total,total,,8030,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.36.2010,4,Tanggulun,sex,laki_laki,,1972,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.36.2010,4,Tanggulun,sex,perempuan,,1880,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.36.2010,4,Tanggulun,total,total,,3852,jiwa,2025,registration,total_population,unnumbered-p28,28,,
+32.04.36,3,Kecamatan Ibun,sex,laki_laki,,50260,jiwa,2025,registration,total_population,unnumbered-p28,28,,Laki-Laki/Male
+32.04.36,3,Kecamatan Ibun,sex,perempuan,,47679,jiwa,2025,registration,total_population,unnumbered-p28,28,,Perempuan/Female
+32.04.36,3,Kecamatan Ibun,total,total,,97939,jiwa,2025,registration,total_population,unnumbered-p28,28,,

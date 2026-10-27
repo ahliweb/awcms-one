@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3276-kecamatan-327608-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.76.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cilodong Dalam Angka 2026",
+  "publisherName": "BPS Kota Depok",
+  "publisherDomain": "3276",
+  "publisherWebsite": "https://depokkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Depok (https://depokkota.bps.go.id), publikasi \"Kecamatan Cilodong Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3276031",
+  "publicationNumber": "32760.26010",
+  "issn": "2809-4891",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://depokkota.bps.go.id/id/publication/2026/09/28/ce30aac96f2e1aaaf71e0551/kecamatan-cilodong-dalam-angka-2026.html",
+  "sourceFileSha256": "dc8f9523cd59f79fc1ee525b41856e45ab9812853b6cb0d38ff9079b3db5edf2",
+  "sourceFileBytes": 3769018,
+  "sourcePages": [19, 20, 21, 22],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Depok.",
+  "csvPath": "datasets/bps-3276-kecamatan-327608-dalam-angka-2026.csv",
+  "csvSha256": "4f8e2e1a49d48d9abddd7defbbd48d849828353a9c4827be5aff926accd819e1",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Cilodong, 2025",
+      "printedPages": [19, 20, 21],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cilodong, 2025",
+      "printedPages": [22],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

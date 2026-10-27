@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.11.03.2017,4,Blang Rangkuluh,sex,laki_laki,,450,jiwa,2024,registration,total_population,3.1,579,,Laki-Laki/Male
+11.11.03.2017,4,Blang Rangkuluh,sex,perempuan,,461,jiwa,2024,registration,total_population,3.1,579,,Perempuan/Fem
+11.11.03.2017,4,Blang Rangkuluh,total,total,,911,jiwa,2024,registration,total_population,3.1,579,,
+11.11.03.2037,4,Alue Sijuek,sex,laki_laki,,285,jiwa,2024,registration,total_population,3.1,579,,Laki-Laki/Male
+11.11.03.2037,4,Alue Sijuek,sex,perempuan,,258,jiwa,2024,registration,total_population,3.1,579,,Perempuan/Fem
+11.11.03.2037,4,Alue Sijuek,total,total,,543,jiwa,2024,registration,total_population,3.1,579,,
+11.11.03.2039,4,Buket Paya,sex,laki_laki,,184,jiwa,2024,registration,total_population,3.1,579,,Laki-Laki/Male
+11.11.03.2039,4,Buket Paya,sex,perempuan,,215,jiwa,2024,registration,total_population,3.1,579,,Perempuan/Fem
+11.11.03.2039,4,Buket Paya,total,total,,399,jiwa,2024,registration,total_population,3.1,579,,
+11.11.03.2040,4,Dayah Mon Ara,sex,laki_laki,,267,jiwa,2024,registration,total_population,3.1,579,,Laki-Laki/Male
+11.11.03.2040,4,Dayah Mon Ara,sex,perempuan,,302,jiwa,2024,registration,total_population,3.1,579,,Perempuan/Fem
+11.11.03.2040,4,Dayah Mon Ara,total,total,,569,jiwa,2024,registration,total_population,3.1,579,,
+11.11.03.2035,4,Pulo Ara,sex,laki_laki,,307,jiwa,2024,registration,total_population,3.1,579,,Laki-Laki/Male
+11.11.03.2035,4,Pulo Ara,sex,perempuan,,340,jiwa,2024,registration,total_population,3.1,579,,Perempuan/Fem
+11.11.03.2035,4,Pulo Ara,total,total,,647,jiwa,2024,registration,total_population,3.1,579,,
+11.11.03.2036,4,Cot Laot,sex,laki_laki,,82,jiwa,2024,registration,total_population,3.1,579,,Laki-Laki/Male
+11.11.03.2036,4,Cot Laot,sex,perempuan,,94,jiwa,2024,registration,total_population,3.1,579,,Perempuan/Fem
+11.11.03.2036,4,Cot Laot,total,total,,176,jiwa,2024,registration,total_population,3.1,579,,
+11.11.03.2018,4,Meunasah Bungo,sex,laki_laki,,342,jiwa,2024,registration,total_population,3.1,579,,Laki-Laki/Male
+11.11.03.2018,4,Meunasah Bungo,sex,perempuan,,361,jiwa,2024,registration,total_population,3.1,579,,Perempuan/Fem
+11.11.03.2018,4,Meunasah Bungo,total,total,,703,jiwa,2024,registration,total_population,3.1,579,,
+11.11.03.2004,4,Cot Keutapang,sex,laki_laki,,206,jiwa,2024,registration,total_population,3.1,579,,Laki-Laki/Male
+11.11.03.2004,4,Cot Keutapang,sex,perempuan,,182,jiwa,2024,registration,total_population,3.1,579,,Perempuan/Fem
+11.11.03.2004,4,Cot Keutapang,total,total,,388,jiwa,2024,registration,total_population,3.1,579,,
+11.11.03.2001,4,Lawang,sex,laki_laki,,176,jiwa,2024,registration,total_population,3.1,579,,Laki-Laki/Male
+11.11.03.2001,4,Lawang,sex,perempuan,,170,jiwa,2024,registration,total_population,3.1,579,,Perempuan/Fem
+11.11.03.2001,4,Lawang,total,total,,346,jiwa,2024,registration,total_population,3.1,579,,
+11.11.03.2016,4,Hagu,sex,laki_laki,,267,jiwa,2024,registration,total_population,3.1,579,,Laki-Laki/Male
+11.11.03.2016,4,Hagu,sex,perempuan,,272,jiwa,2024,registration,total_population,3.1,579,,Perempuan/Fem
+11.11.03.2016,4,Hagu,total,total,,539,jiwa,2024,registration,total_population,3.1,579,,
+11.11.03.2003,4,Meunasah Krueng,sex,laki_laki,,300,jiwa,2024,registration,total_population,3.1,579,,Laki-Laki/Male
+11.11.03.2003,4,Meunasah Krueng,sex,perempuan,,315,jiwa,2024,registration,total_population,3.1,579,,Perempuan/Fem
+11.11.03.2003,4,Meunasah Krueng,total,total,,615,jiwa,2024,registration,total_population,3.1,579,,
+11.11.03.2005,4,Meunasah Rabo,sex,laki_laki,,248,jiwa,2024,registration,total_population,3.1,579,,Laki-Laki/Male
+11.11.03.2005,4,Meunasah Rabo,sex,perempuan,,272,jiwa,2024,registration,total_population,3.1,579,,Perempuan/Fem
+11.11.03.2005,4,Meunasah Rabo,total,total,,520,jiwa,2024,registration,total_population,3.1,579,,
+11.11.03.2006,4,Meunasah Tambo,sex,laki_laki,,397,jiwa,2024,registration,total_population,3.1,579,,Laki-Laki/Male
+11.11.03.2006,4,Meunasah Tambo,sex,perempuan,,383,jiwa,2024,registration,total_population,3.1,579,,Perempuan/Fem
+11.11.03.2006,4,Meunasah Tambo,total,total,,780,jiwa,2024,registration,total_population,3.1,579,,
+11.11.03.2007,4,Meunasah Baroh,sex,laki_laki,,417,jiwa,2024,registration,total_population,3.1,579,,Laki-Laki/Male
+11.11.03.2007,4,Meunasah Baroh,sex,perempuan,,445,jiwa,2024,registration,total_population,3.1,579,,Perempuan/Fem
+11.11.03.2007,4,Meunasah Baroh,total,total,,862,jiwa,2024,registration,total_population,3.1,579,,

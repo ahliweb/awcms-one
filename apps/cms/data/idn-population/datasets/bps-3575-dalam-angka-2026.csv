@@ -1,0 +1,36 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.75.01,3,Gadingrejo,religion,islam,,50703,jiwa,2025,registration,total_population,4.3.1,140,,Islam
+35.75.01,3,Gadingrejo,religion,kristen,,500,jiwa,2025,registration,total_population,4.3.1,140,,Protestan
+35.75.01,3,Gadingrejo,religion,katolik,,224,jiwa,2025,registration,total_population,4.3.1,140,,Katolik
+35.75.01,3,Gadingrejo,religion,hindu,,60,jiwa,2025,registration,total_population,4.3.1,140,,Hindu
+35.75.01,3,Gadingrejo,religion,buddha,,112,jiwa,2025,registration,total_population,4.3.1,140,,Budha
+35.75.01,3,Gadingrejo,religion,khonghucu,,3,jiwa,2025,registration,total_population,4.3.1,140,,Konghucu
+35.75.01,3,Gadingrejo,religion,kepercayaan,,1,jiwa,2025,registration,total_population,4.3.1,140,,Kepercayaan
+35.75.02,3,Purworejo,religion,islam,,61099,jiwa,2025,registration,total_population,4.3.1,140,,Islam
+35.75.02,3,Purworejo,religion,kristen,,979,jiwa,2025,registration,total_population,4.3.1,140,,Protestan
+35.75.02,3,Purworejo,religion,katolik,,537,jiwa,2025,registration,total_population,4.3.1,140,,Katolik
+35.75.02,3,Purworejo,religion,hindu,,56,jiwa,2025,registration,total_population,4.3.1,140,,Hindu
+35.75.02,3,Purworejo,religion,buddha,,162,jiwa,2025,registration,total_population,4.3.1,140,,Budha
+35.75.02,3,Purworejo,religion,khonghucu,,7,jiwa,2025,registration,total_population,4.3.1,140,,Konghucu
+35.75.02,3,Purworejo,religion,kepercayaan,,15,jiwa,2025,registration,total_population,4.3.1,140,,Kepercayaan
+35.75.03,3,Bugulkidul,religion,islam,,31980,jiwa,2025,registration,total_population,4.3.1,140,,Islam
+35.75.03,3,Bugulkidul,religion,kristen,,271,jiwa,2025,registration,total_population,4.3.1,140,,Protestan
+35.75.03,3,Bugulkidul,religion,katolik,,129,jiwa,2025,registration,total_population,4.3.1,140,,Katolik
+35.75.03,3,Bugulkidul,religion,hindu,,14,jiwa,2025,registration,total_population,4.3.1,140,,Hindu
+35.75.03,3,Bugulkidul,religion,buddha,,13,jiwa,2025,registration,total_population,4.3.1,140,,Budha
+35.75.03,3,Bugulkidul,religion,khonghucu,,0,jiwa,2025,registration,total_population,4.3.1,140,nil,Konghucu
+35.75.03,3,Bugulkidul,religion,kepercayaan,,0,jiwa,2025,registration,total_population,4.3.1,140,nil,Kepercayaan
+35.75.04,3,Panggungrejo,religion,islam,,64417,jiwa,2025,registration,total_population,4.3.1,140,,Islam
+35.75.04,3,Panggungrejo,religion,kristen,,1043,jiwa,2025,registration,total_population,4.3.1,140,,Protestan
+35.75.04,3,Panggungrejo,religion,katolik,,829,jiwa,2025,registration,total_population,4.3.1,140,,Katolik
+35.75.04,3,Panggungrejo,religion,hindu,,13,jiwa,2025,registration,total_population,4.3.1,140,,Hindu
+35.75.04,3,Panggungrejo,religion,buddha,,650,jiwa,2025,registration,total_population,4.3.1,140,,Budha
+35.75.04,3,Panggungrejo,religion,khonghucu,,14,jiwa,2025,registration,total_population,4.3.1,140,,Konghucu
+35.75.04,3,Panggungrejo,religion,kepercayaan,,7,jiwa,2025,registration,total_population,4.3.1,140,,Kepercayaan
+35.75,2,Kota Pasuruan,religion,islam,,208199,jiwa,2025,registration,total_population,4.3.1,140,,Islam
+35.75,2,Kota Pasuruan,religion,kristen,,2793,jiwa,2025,registration,total_population,4.3.1,140,,Protestan
+35.75,2,Kota Pasuruan,religion,katolik,,1719,jiwa,2025,registration,total_population,4.3.1,140,,Katolik
+35.75,2,Kota Pasuruan,religion,hindu,,143,jiwa,2025,registration,total_population,4.3.1,140,,Hindu
+35.75,2,Kota Pasuruan,religion,buddha,,937,jiwa,2025,registration,total_population,4.3.1,140,,Budha
+35.75,2,Kota Pasuruan,religion,khonghucu,,24,jiwa,2025,registration,total_population,4.3.1,140,,Konghucu
+35.75,2,Kota Pasuruan,religion,kepercayaan,,23,jiwa,2025,registration,total_population,4.3.1,140,,Kepercayaan

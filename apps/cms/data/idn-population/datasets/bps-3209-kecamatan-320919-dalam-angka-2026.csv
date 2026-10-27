@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.19.2001,4,Karangsari,sex,laki_laki,,4517,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.19.2001,4,Karangsari,sex,perempuan,,4275,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.19.2001,4,Karangsari,total,total,,8792,jiwa,2025,registration,total_population,3.1,52,,
+32.09.19.2002,4,Kertasari,sex,laki_laki,,4090,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.19.2002,4,Kertasari,sex,perempuan,,3825,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.19.2002,4,Kertasari,total,total,,7915,jiwa,2025,registration,total_population,3.1,52,,
+32.09.19.2004,4,Megu Cilik,sex,laki_laki,,5611,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.19.2004,4,Megu Cilik,sex,perempuan,,5328,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.19.2004,4,Megu Cilik,total,total,,10939,jiwa,2025,registration,total_population,3.1,52,,
+32.09.19.2003,4,Megu Gede,sex,laki_laki,,5764,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.19.2003,4,Megu Gede,sex,perempuan,,5294,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.19.2003,4,Megu Gede,total,total,,11058,jiwa,2025,registration,total_population,3.1,52,,
+32.09.19.2005,4,Setu Wetan,sex,laki_laki,,3949,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.19.2005,4,Setu Wetan,sex,perempuan,,3663,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.19.2005,4,Setu Wetan,total,total,,7612,jiwa,2025,registration,total_population,3.1,52,,
+32.09.19.2007,4,Weru Kidul,sex,laki_laki,,3139,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.19.2007,4,Weru Kidul,sex,perempuan,,3028,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.19.2007,4,Weru Kidul,total,total,,6167,jiwa,2025,registration,total_population,3.1,52,,
+32.09.19.2006,4,Setu Kulon,sex,laki_laki,,4159,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.19.2006,4,Setu Kulon,sex,perempuan,,4040,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.19.2006,4,Setu Kulon,total,total,,8199,jiwa,2025,registration,total_population,3.1,52,,
+32.09.19.2009,4,Tegalwangi,sex,laki_laki,,5722,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.19.2009,4,Tegalwangi,sex,perempuan,,5411,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.19.2009,4,Tegalwangi,total,total,,11133,jiwa,2025,registration,total_population,3.1,52,,
+32.09.19.2008,4,Weru Lor,sex,laki_laki,,3130,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.19.2008,4,Weru Lor,sex,perempuan,,3003,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.19.2008,4,Weru Lor,total,total,,6133,jiwa,2025,registration,total_population,3.1,52,,
+32.09.19,3,Kecamatan Weru,sex,laki_laki,,40081,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.19,3,Kecamatan Weru,sex,perempuan,,37867,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.19,3,Kecamatan Weru,total,total,,77948,jiwa,2025,registration,total_population,3.1,52,,
+32.09.19,3,Weru,age_group,0-4,laki_laki,2731,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.19,3,Weru,age_group,0-4,perempuan,2589,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.19,3,Weru,age_group,0-4,,5320,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.19,3,Weru,age_group,5-9,laki_laki,3521,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.19,3,Weru,age_group,5-9,perempuan,3168,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.19,3,Weru,age_group,5-9,,6689,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.19,3,Weru,age_group,10-14,laki_laki,3316,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.19,3,Weru,age_group,10-14,perempuan,3021,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.19,3,Weru,age_group,10-14,,6337,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.19,3,Weru,age_group,15-19,laki_laki,2903,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.19,3,Weru,age_group,15-19,perempuan,2817,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.19,3,Weru,age_group,15-19,,5720,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.19,3,Weru,age_group,20-24,laki_laki,3069,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.19,3,Weru,age_group,20-24,perempuan,2815,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.19,3,Weru,age_group,20-24,,5884,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.19,3,Weru,age_group,25-29,laki_laki,3174,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.19,3,Weru,age_group,25-29,perempuan,3036,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.19,3,Weru,age_group,25-29,,6210,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.19,3,Weru,age_group,30-34,laki_laki,3363,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.19,3,Weru,age_group,30-34,perempuan,3066,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.19,3,Weru,age_group,30-34,,6429,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.19,3,Weru,age_group,35-39,laki_laki,3333,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.19,3,Weru,age_group,35-39,perempuan,3020,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.19,3,Weru,age_group,35-39,,6353,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.19,3,Weru,age_group,40-44,laki_laki,3577,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.19,3,Weru,age_group,40-44,perempuan,3244,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.19,3,Weru,age_group,40-44,,6821,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.19,3,Weru,age_group,45-49,laki_laki,3213,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.19,3,Weru,age_group,45-49,perempuan,2880,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.19,3,Weru,age_group,45-49,,6093,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.19,3,Weru,age_group,50-54,laki_laki,2528,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.19,3,Weru,age_group,50-54,perempuan,2443,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.19,3,Weru,age_group,50-54,,4971,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.19,3,Weru,age_group,55-59,laki_laki,1850,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.19,3,Weru,age_group,55-59,perempuan,1820,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.19,3,Weru,age_group,55-59,,3670,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.19,3,Weru,age_group,60-64,laki_laki,1321,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.19,3,Weru,age_group,60-64,perempuan,1326,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.19,3,Weru,age_group,60-64,,2647,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.19,3,Weru,age_group,65-69,laki_laki,961,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.19,3,Weru,age_group,65-69,perempuan,1104,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.19,3,Weru,age_group,65-69,,2065,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.19,3,Weru,age_group,70-74,laki_laki,662,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.19,3,Weru,age_group,70-74,perempuan,723,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.19,3,Weru,age_group,70-74,,1385,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.19,3,Weru,age_group,75+,laki_laki,559,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.19,3,Weru,age_group,75+,perempuan,795,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.19,3,Weru,age_group,75+,,1354,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.19,3,Kecamatan Weru,sex,laki_laki,,40081,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.19,3,Kecamatan Weru,sex,perempuan,,37867,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.19,3,Kecamatan Weru,total,total,,77948,jiwa,2025,registration,total_population,3.2,54,,

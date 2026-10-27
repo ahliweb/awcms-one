@@ -1,0 +1,102 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.17.05,3,Harian,total,total,,9885,jiwa,2025,projection,total_population,3.1.1,46,,
+12.17.09,3,Sitiotio,total,total,,8524,jiwa,2025,projection,total_population,3.1.1,46,,
+12.17.02,3,Onan Runggu,total,total,,11625,jiwa,2025,projection,total_population,3.1.1,46,,
+12.17.03,3,Nainggolan,total,total,,13593,jiwa,2025,projection,total_population,3.1.1,46,,
+12.17.04,3,Palipi,total,total,,19304,jiwa,2025,projection,total_population,3.1.1,46,,
+12.17.07,3,Ronggur Nihuta,total,total,,10150,jiwa,2025,projection,total_population,3.1.1,46,,
+12.17.08,3,Pangururan,total,total,,36746,jiwa,2025,projection,total_population,3.1.1,46,,
+12.17.01,3,Simanindo,total,total,,24500,jiwa,2025,projection,total_population,3.1.1,46,,
+12.17,2,Kabupaten Samosir,age_group,0-4,laki_laki,6973,jiwa,2025,projection,total_population,3.1.2,49,,0–4
+12.17,2,Kabupaten Samosir,age_group,0-4,perempuan,6683,jiwa,2025,projection,total_population,3.1.2,49,,0–4
+12.17,2,Kabupaten Samosir,age_group,0-4,,13656,jiwa,2025,projection,total_population,3.1.2,49,,0–4
+12.17,2,Kabupaten Samosir,age_group,5-9,laki_laki,6987,jiwa,2025,projection,total_population,3.1.2,49,,5–9
+12.17,2,Kabupaten Samosir,age_group,5-9,perempuan,6662,jiwa,2025,projection,total_population,3.1.2,49,,5–9
+12.17,2,Kabupaten Samosir,age_group,5-9,,13649,jiwa,2025,projection,total_population,3.1.2,49,,5–9
+12.17,2,Kabupaten Samosir,age_group,10-14,laki_laki,7002,jiwa,2025,projection,total_population,3.1.2,49,,10–14
+12.17,2,Kabupaten Samosir,age_group,10-14,perempuan,6753,jiwa,2025,projection,total_population,3.1.2,49,,10–14
+12.17,2,Kabupaten Samosir,age_group,10-14,,13755,jiwa,2025,projection,total_population,3.1.2,49,,10–14
+12.17,2,Kabupaten Samosir,age_group,15-19,laki_laki,6985,jiwa,2025,projection,total_population,3.1.2,49,,15–19
+12.17,2,Kabupaten Samosir,age_group,15-19,perempuan,6783,jiwa,2025,projection,total_population,3.1.2,49,,15–19
+12.17,2,Kabupaten Samosir,age_group,15-19,,13768,jiwa,2025,projection,total_population,3.1.2,49,,15–19
+12.17,2,Kabupaten Samosir,age_group,20-24,laki_laki,7152,jiwa,2025,projection,total_population,3.1.2,49,,20–24
+12.17,2,Kabupaten Samosir,age_group,20-24,perempuan,6634,jiwa,2025,projection,total_population,3.1.2,49,,20–24
+12.17,2,Kabupaten Samosir,age_group,20-24,,13786,jiwa,2025,projection,total_population,3.1.2,49,,20–24
+12.17,2,Kabupaten Samosir,age_group,25-29,laki_laki,6126,jiwa,2025,projection,total_population,3.1.2,49,,25–29
+12.17,2,Kabupaten Samosir,age_group,25-29,perempuan,5489,jiwa,2025,projection,total_population,3.1.2,49,,25–29
+12.17,2,Kabupaten Samosir,age_group,25-29,,11615,jiwa,2025,projection,total_population,3.1.2,49,,25–29
+12.17,2,Kabupaten Samosir,age_group,30-34,laki_laki,5277,jiwa,2025,projection,total_population,3.1.2,49,,30–34
+12.17,2,Kabupaten Samosir,age_group,30-34,perempuan,4581,jiwa,2025,projection,total_population,3.1.2,49,,30–34
+12.17,2,Kabupaten Samosir,age_group,30-34,,9858,jiwa,2025,projection,total_population,3.1.2,49,,30–34
+12.17,2,Kabupaten Samosir,age_group,35-39,laki_laki,4665,jiwa,2025,projection,total_population,3.1.2,49,,35–39
+12.17,2,Kabupaten Samosir,age_group,35-39,perempuan,4061,jiwa,2025,projection,total_population,3.1.2,49,,35–39
+12.17,2,Kabupaten Samosir,age_group,35-39,,8726,jiwa,2025,projection,total_population,3.1.2,49,,35–39
+12.17,2,Kabupaten Samosir,age_group,40-44,laki_laki,4201,jiwa,2025,projection,total_population,3.1.2,49,,40–44
+12.17,2,Kabupaten Samosir,age_group,40-44,perempuan,4087,jiwa,2025,projection,total_population,3.1.2,49,,40–44
+12.17,2,Kabupaten Samosir,age_group,40-44,,8288,jiwa,2025,projection,total_population,3.1.2,49,,40–44
+12.17,2,Kabupaten Samosir,age_group,45-49,laki_laki,3953,jiwa,2025,projection,total_population,3.1.2,49,,45–49
+12.17,2,Kabupaten Samosir,age_group,45-49,perempuan,3741,jiwa,2025,projection,total_population,3.1.2,49,,45–49
+12.17,2,Kabupaten Samosir,age_group,45-49,,7694,jiwa,2025,projection,total_population,3.1.2,49,,45–49
+12.17,2,Kabupaten Samosir,age_group,50-54,laki_laki,3312,jiwa,2025,projection,total_population,3.1.2,49,,50–54
+12.17,2,Kabupaten Samosir,age_group,50-54,perempuan,3247,jiwa,2025,projection,total_population,3.1.2,49,,50–54
+12.17,2,Kabupaten Samosir,age_group,50-54,,6559,jiwa,2025,projection,total_population,3.1.2,49,,50–54
+12.17,2,Kabupaten Samosir,age_group,55-59,laki_laki,2914,jiwa,2025,projection,total_population,3.1.2,49,,55–59
+12.17,2,Kabupaten Samosir,age_group,55-59,perempuan,3142,jiwa,2025,projection,total_population,3.1.2,49,,55–59
+12.17,2,Kabupaten Samosir,age_group,55-59,,6056,jiwa,2025,projection,total_population,3.1.2,49,,55–59
+12.17,2,Kabupaten Samosir,age_group,60-64,laki_laki,2375,jiwa,2025,projection,total_population,3.1.2,49,,60–64
+12.17,2,Kabupaten Samosir,age_group,60-64,perempuan,2914,jiwa,2025,projection,total_population,3.1.2,49,,60–64
+12.17,2,Kabupaten Samosir,age_group,60-64,,5289,jiwa,2025,projection,total_population,3.1.2,49,,60–64
+12.17,2,Kabupaten Samosir,age_group,65-69,laki_laki,1942,jiwa,2025,projection,total_population,3.1.2,49,,65–69
+12.17,2,Kabupaten Samosir,age_group,65-69,perempuan,2727,jiwa,2025,projection,total_population,3.1.2,49,,65–69
+12.17,2,Kabupaten Samosir,age_group,65-69,,4669,jiwa,2025,projection,total_population,3.1.2,49,,65–69
+12.17,2,Kabupaten Samosir,age_group,70-74,laki_laki,1409,jiwa,2025,projection,total_population,3.1.2,49,,70–74
+12.17,2,Kabupaten Samosir,age_group,70-74,perempuan,2234,jiwa,2025,projection,total_population,3.1.2,49,,70–74
+12.17,2,Kabupaten Samosir,age_group,70-74,,3643,jiwa,2025,projection,total_population,3.1.2,49,,70–74
+12.17,2,Kabupaten Samosir,age_group,75+,laki_laki,1237,jiwa,2025,projection,total_population,3.1.2,49,,75+
+12.17,2,Kabupaten Samosir,age_group,75+,perempuan,2565,jiwa,2025,projection,total_population,3.1.2,49,,75+
+12.17,2,Kabupaten Samosir,age_group,75+,,3802,jiwa,2025,projection,total_population,3.1.2,49,,75+
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/padi_padian,,127268,rupiah,2024,survey_estimate,per_capita,10.1,213,,Padi-padian
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/padi_padian,,122148,rupiah,2025,survey_estimate,per_capita,10.1,213,,Padi-padian
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/umbi_umbian,,9702,rupiah,2024,survey_estimate,per_capita,10.1,213,,Umbi-umbian
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/umbi_umbian,,6276,rupiah,2025,survey_estimate,per_capita,10.1,213,,Umbi-umbian
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,126194,rupiah,2024,survey_estimate,per_capita,10.1,213,,Ikan/udang/cumi/kerang
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,115546,rupiah,2025,survey_estimate,per_capita,10.1,213,,Ikan/udang/cumi/kerang
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/daging,,61526,rupiah,2024,survey_estimate,per_capita,10.1,213,,Daging
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/daging,,54110,rupiah,2025,survey_estimate,per_capita,10.1,213,,Daging
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/telur_dan_susu,,53438,rupiah,2024,survey_estimate,per_capita,10.1,213,,Telur dan susu
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/telur_dan_susu,,65322,rupiah,2025,survey_estimate,per_capita,10.1,213,,Telur dan susu
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/sayur_sayuran,,84033,rupiah,2024,survey_estimate,per_capita,10.1,213,,Sayur-sayuran
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/sayur_sayuran,,73266,rupiah,2025,survey_estimate,per_capita,10.1,213,,Sayur-sayuran
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/kacang_kacangan,,12270,rupiah,2024,survey_estimate,per_capita,10.1,213,,Kacang-kacangan
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/kacang_kacangan,,13388,rupiah,2025,survey_estimate,per_capita,10.1,213,,Kacang-kacangan
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/buah_buahan,,43478,rupiah,2024,survey_estimate,per_capita,10.1,213,,Buah-buahan
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/buah_buahan,,53839,rupiah,2025,survey_estimate,per_capita,10.1,213,,Buah-buahan
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19645,rupiah,2024,survey_estimate,per_capita,10.1,213,,Minyak dan kelapa
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/minyak_dan_kelapa,,23995,rupiah,2025,survey_estimate,per_capita,10.1,213,,Minyak dan kelapa
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/bahan_minuman,,28001,rupiah,2024,survey_estimate,per_capita,10.1,213,,Bahan minuman
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/bahan_minuman,,25840,rupiah,2025,survey_estimate,per_capita,10.1,213,,Bahan minuman
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/bumbu_bumbuan,,17665,rupiah,2024,survey_estimate,per_capita,10.1,213,,Bumbu-bumbuan
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/bumbu_bumbuan,,20573,rupiah,2025,survey_estimate,per_capita,10.1,213,,Bumbu-bumbuan
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/konsumsi_lainnya,,9244,rupiah,2024,survey_estimate,per_capita,10.1,213,,Konsumsi lainnya
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/konsumsi_lainnya,,8067,rupiah,2025,survey_estimate,per_capita,10.1,213,,Konsumsi lainnya
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,186255,rupiah,2024,survey_estimate,per_capita,10.1,213,,Makanan dan minuman jadi
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,197608,rupiah,2025,survey_estimate,per_capita,10.1,213,,Makanan dan minuman jadi
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/rokok,,128735,rupiah,2024,survey_estimate,per_capita,10.1,213,,Rokok
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/rokok,,121601,rupiah,2025,survey_estimate,per_capita,10.1,213,,Rokok
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/jumlah_makanan,,907455,rupiah,2024,survey_estimate,per_capita,10.1,213,,Jumlah makanan
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/jumlah_makanan,,901580,rupiah,2025,survey_estimate,per_capita,10.1,213,,Jumlah makanan
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,277984,rupiah,2024,survey_estimate,per_capita,10.1,213,,Perumahan dan fasilitas rumah tangga
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,293436,rupiah,2025,survey_estimate,per_capita,10.1,213,,Perumahan dan fasilitas rumah tangga
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,153501,rupiah,2024,survey_estimate,per_capita,10.1,213,,Aneka barang dan jasa
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,203843,rupiah,2025,survey_estimate,per_capita,10.1,213,,Aneka barang dan jasa
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,27444,rupiah,2024,survey_estimate,per_capita,10.1,213,,"Pakaian, alas kaki, dan tutup kepala"
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,41064,rupiah,2025,survey_estimate,per_capita,10.1,213,,"Pakaian, alas kaki, dan tutup kepala"
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/barang_tahan_lama,,28315,rupiah,2025,survey_estimate,per_capita,10.1,213,,Barang tahan lama
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,55175,rupiah,2024,survey_estimate,per_capita,10.1,213,,"Pajak, pungutan, dan asuransi"
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,69238,rupiah,2025,survey_estimate,per_capita,10.1,213,,"Pajak, pungutan, dan asuransi"
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,19552,rupiah,2024,survey_estimate,per_capita,10.1,213,,Keperluan pesta dan upacara/kenduri
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,9361,rupiah,2025,survey_estimate,per_capita,10.1,213,,Keperluan pesta dan upacara/kenduri
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,578733,rupiah,2024,survey_estimate,per_capita,10.1,213,,Jumlah bukan makanan
+12.17,2,Kabupaten Samosir,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,645258,rupiah,2025,survey_estimate,per_capita,10.1,213,,Jumlah bukan makanan
+12.17,2,Kabupaten Samosir,expenditure,total,,1486187,rupiah,2024,survey_estimate,per_capita,10.1,213,,
+12.17,2,Kabupaten Samosir,expenditure,total,,1546837,rupiah,2025,survey_estimate,per_capita,10.1,213,,

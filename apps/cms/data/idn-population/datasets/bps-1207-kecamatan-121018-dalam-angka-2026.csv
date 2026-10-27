@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.10.18.2003,4,Sei Siarti,sex,laki_laki,,4087,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.18.2003,4,Sei Siarti,sex,perempuan,,3868,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.18.2003,4,Sei Siarti,total,total,,7955,jiwa,2025,registration,total_population,3.1,29,,
+12.10.18.2007,4,Selat Beting,sex,laki_laki,,3133,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.18.2007,4,Selat Beting,sex,perempuan,,3005,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.18.2007,4,Selat Beting,total,total,,6138,jiwa,2025,registration,total_population,3.1,29,,
+12.10.18.2002,4,Sei Pelancang,sex,laki_laki,,1331,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.18.2002,4,Sei Pelancang,sex,perempuan,,1348,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.18.2002,4,Sei Pelancang,total,total,,2679,jiwa,2025,registration,total_population,3.1,29,,
+12.10.18.2008,4,Bagan Bilah,sex,laki_laki,,2194,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.18.2008,4,Bagan Bilah,sex,perempuan,,2107,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.18.2008,4,Bagan Bilah,total,total,,4301,jiwa,2025,registration,total_population,3.1,29,,
+12.10.18.2006,4,Sei Rakyat,sex,laki_laki,,3342,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.18.2006,4,Sei Rakyat,sex,perempuan,,3149,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.18.2006,4,Sei Rakyat,total,total,,6491,jiwa,2025,registration,total_population,3.1,29,,
+12.10.18.2004,4,Sei Nahodaris,sex,laki_laki,,1772,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.18.2004,4,Sei Nahodaris,sex,perempuan,,1591,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.18.2004,4,Sei Nahodaris,total,total,,3363,jiwa,2025,registration,total_population,3.1,29,,
+12.10.18.2009,4,Telaga Suka,sex,laki_laki,,1676,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.18.2009,4,Telaga Suka,sex,perempuan,,1569,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.18.2009,4,Telaga Suka,total,total,,3245,jiwa,2025,registration,total_population,3.1,29,,
+12.10.18.1001,4,Labuhan Bilik,sex,laki_laki,,2085,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.18.1001,4,Labuhan Bilik,sex,perempuan,,1987,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.18.1001,4,Labuhan Bilik,total,total,,4072,jiwa,2025,registration,total_population,3.1,29,,
+12.10.18.2005,4,Sei Merdeka,sex,laki_laki,,1312,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.18.2005,4,Sei Merdeka,sex,perempuan,,1204,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.18.2005,4,Sei Merdeka,total,total,,2516,jiwa,2025,registration,total_population,3.1,29,,
+12.10.18.2010,4,Pasar Tiga,sex,laki_laki,,1591,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.18.2010,4,Pasar Tiga,sex,perempuan,,1473,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.18.2010,4,Pasar Tiga,total,total,,3064,jiwa,2025,registration,total_population,3.1,29,,
+12.10.18,3,Panai Tengah,sex,laki_laki,,22523,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+12.10.18,3,Panai Tengah,sex,perempuan,,21301,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+12.10.18,3,Panai Tengah,total,total,,43824,jiwa,2025,registration,total_population,3.1,29,,
+12.10.18,3,Panai Tengah,age_group,0-4,laki_laki,1460,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.10.18,3,Panai Tengah,age_group,0-4,perempuan,1372,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.10.18,3,Panai Tengah,age_group,0-4,,2832,jiwa,2025,registration,total_population,3.2,31,,0 - 4
+12.10.18,3,Panai Tengah,age_group,5-9,laki_laki,2216,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.10.18,3,Panai Tengah,age_group,5-9,perempuan,2054,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.10.18,3,Panai Tengah,age_group,5-9,,4270,jiwa,2025,registration,total_population,3.2,31,,5 - 9
+12.10.18,3,Panai Tengah,age_group,10-14,laki_laki,2439,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+12.10.18,3,Panai Tengah,age_group,10-14,perempuan,2258,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+12.10.18,3,Panai Tengah,age_group,10-14,,4697,jiwa,2025,registration,total_population,3.2,31,,10 - 14
+12.10.18,3,Panai Tengah,age_group,15-19,laki_laki,2452,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.10.18,3,Panai Tengah,age_group,15-19,perempuan,2227,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.10.18,3,Panai Tengah,age_group,15-19,,4679,jiwa,2025,registration,total_population,3.2,31,,15 - 19
+12.10.18,3,Panai Tengah,age_group,20-24,laki_laki,2131,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.10.18,3,Panai Tengah,age_group,20-24,perempuan,2003,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.10.18,3,Panai Tengah,age_group,20-24,,4134,jiwa,2025,registration,total_population,3.2,31,,20 - 24
+12.10.18,3,Panai Tengah,age_group,25-29,laki_laki,1912,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.10.18,3,Panai Tengah,age_group,25-29,perempuan,1818,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.10.18,3,Panai Tengah,age_group,25-29,,3730,jiwa,2025,registration,total_population,3.2,31,,25 - 29
+12.10.18,3,Panai Tengah,age_group,30-34,laki_laki,1801,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+12.10.18,3,Panai Tengah,age_group,30-34,perempuan,1666,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+12.10.18,3,Panai Tengah,age_group,30-34,,3467,jiwa,2025,registration,total_population,3.2,31,,30 - 34
+12.10.18,3,Panai Tengah,age_group,35-39,laki_laki,1711,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.10.18,3,Panai Tengah,age_group,35-39,perempuan,1643,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.10.18,3,Panai Tengah,age_group,35-39,,3354,jiwa,2025,registration,total_population,3.2,31,,35 - 39
+12.10.18,3,Panai Tengah,age_group,40-44,laki_laki,1614,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.10.18,3,Panai Tengah,age_group,40-44,perempuan,1403,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.10.18,3,Panai Tengah,age_group,40-44,,3017,jiwa,2025,registration,total_population,3.2,31,,40 - 44
+12.10.18,3,Panai Tengah,age_group,45-49,laki_laki,1246,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.10.18,3,Panai Tengah,age_group,45-49,perempuan,1117,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.10.18,3,Panai Tengah,age_group,45-49,,2363,jiwa,2025,registration,total_population,3.2,31,,45 - 49
+12.10.18,3,Panai Tengah,age_group,50-54,laki_laki,956,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.10.18,3,Panai Tengah,age_group,50-54,perempuan,943,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.10.18,3,Panai Tengah,age_group,50-54,,1899,jiwa,2025,registration,total_population,3.2,31,,50 - 54
+12.10.18,3,Panai Tengah,age_group,55-59,laki_laki,734,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.10.18,3,Panai Tengah,age_group,55-59,perempuan,771,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.10.18,3,Panai Tengah,age_group,55-59,,1505,jiwa,2025,registration,total_population,3.2,31,,55 - 59
+12.10.18,3,Panai Tengah,age_group,60-64,laki_laki,650,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.10.18,3,Panai Tengah,age_group,60-64,perempuan,718,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.10.18,3,Panai Tengah,age_group,60-64,,1368,jiwa,2025,registration,total_population,3.2,31,,60 - 64
+12.10.18,3,Panai Tengah,age_group,65-69,laki_laki,519,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.10.18,3,Panai Tengah,age_group,65-69,perempuan,536,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.10.18,3,Panai Tengah,age_group,65-69,,1055,jiwa,2025,registration,total_population,3.2,31,,65 - 69
+12.10.18,3,Panai Tengah,age_group,70-74,laki_laki,304,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.10.18,3,Panai Tengah,age_group,70-74,perempuan,311,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.10.18,3,Panai Tengah,age_group,70-74,,615,jiwa,2025,registration,total_population,3.2,31,,70 - 74
+12.10.18,3,Panai Tengah,age_group,75+,laki_laki,262,jiwa,2025,registration,total_population,3.2,31,,75+
+12.10.18,3,Panai Tengah,age_group,75+,perempuan,384,jiwa,2025,registration,total_population,3.2,31,,75+
+12.10.18,3,Panai Tengah,age_group,75+,,646,jiwa,2025,registration,total_population,3.2,31,,75+
+12.10.18,3,Panai Tengah,sex,laki_laki,,22407,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+12.10.18,3,Panai Tengah,sex,perempuan,,21224,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+12.10.18,3,Panai Tengah,total,total,,43631,jiwa,2025,registration,total_population,3.2,31,,

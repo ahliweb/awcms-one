@@ -1,0 +1,28 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.08.21.2001,4,Sumbersuko,sex,laki_laki,,2314,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.21.2001,4,Sumbersuko,sex,perempuan,,2305,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.21.2001,4,Sumbersuko,total,total,,4619,jiwa,2025,registration,total_population,3.1,31,,
+35.08.21.2002,4,Kebonsari,sex,laki_laki,,3066,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.21.2002,4,Kebonsari,sex,perempuan,,3009,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.21.2002,4,Kebonsari,total,total,,6075,jiwa,2025,registration,total_population,3.1,31,,
+35.08.21.2003,4,Grati,sex,laki_laki,,1923,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.21.2003,4,Grati,sex,perempuan,,2004,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.21.2003,4,Grati,total,total,,3927,jiwa,2025,registration,total_population,3.1,31,,
+35.08.21.2004,4,Labruk Kidul,sex,laki_laki,,3351,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.21.2004,4,Labruk Kidul,sex,perempuan,,3324,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.21.2004,4,Labruk Kidul,total,total,,6675,jiwa,2025,registration,total_population,3.1,31,,
+35.08.21.2005,4,Mojosari,sex,laki_laki,,2349,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.21.2005,4,Mojosari,sex,perempuan,,2396,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.21.2005,4,Mojosari,total,total,,4745,jiwa,2025,registration,total_population,3.1,31,,
+35.08.21.2006,4,Sentul,sex,laki_laki,,2071,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.21.2006,4,Sentul,sex,perempuan,,2104,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.21.2006,4,Sentul,total,total,,4175,jiwa,2025,registration,total_population,3.1,31,,
+35.08.21.2007,4,Purwosono,sex,laki_laki,,2228,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.21.2007,4,Purwosono,sex,perempuan,,2294,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.21.2007,4,Purwosono,total,total,,4522,jiwa,2025,registration,total_population,3.1,31,,
+35.08.21.2008,4,Petahunan,sex,laki_laki,,1131,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.21.2008,4,Petahunan,sex,perempuan,,1172,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.21.2008,4,Petahunan,total,total,,2303,jiwa,2025,registration,total_population,3.1,31,,
+35.08.21,3,Kecamatan Sumbersuko,sex,laki_laki,,18433,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.21,3,Kecamatan Sumbersuko,sex,perempuan,,18608,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.21,3,Kecamatan Sumbersuko,total,total,,37041,jiwa,2025,registration,total_population,3.1,31,,

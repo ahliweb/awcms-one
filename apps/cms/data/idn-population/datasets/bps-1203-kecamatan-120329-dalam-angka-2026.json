@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-1203-kecamatan-120329-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.03.29",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Muara Batang Toru Dalam Angka 2026",
+  "publisherName": "BPS KABUPATEN TAPANULI SELATAN",
+  "publisherDomain": "1203",
+  "publisherWebsite": "https://tapanuliselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS KABUPATEN TAPANULI SELATAN (https://tapanuliselatankab.bps.go.id), publikasi \"Kecamatan Muara Batang Toru Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1203102",
+  "publicationNumber": "12030",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tapanuliselatankab.bps.go.id/id/publication/2026/09/28/d8c7b66c436bf925ca367254/kecamatan-muara-batang-toru-dalam-angka-2026.html",
+  "sourceFileSha256": "036fb1b9c08efa54df1ba951c5885c1d71d8603635308721033f7fae7b81ced7",
+  "sourceFileBytes": 3814465,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tapanuli Selatan.",
+  "csvPath": "datasets/bps-1203-kecamatan-120329-dalam-angka-2026.csv",
+  "csvSha256": "6948fd42e0da801a415b1373ec2c4706d0f44a0d29e3e7e90a269cd55e93de5a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Muara Batang Toru, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Muara Batang Toru, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.2: row not stored: row \"0 4\": unmatched ",
+    "table 3.2: row not stored: row \"5 9\": unmatched ",
+    "table 3.2: the rows of region 12.03.29 are not stored: age_group (perempuan) vs sex value: parts sum 7503.0000 != 9252.0000 (diff 1749.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "datasetCode": "bps-3326-kecamatan-332610-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.26.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sragi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pekalongan",
+  "publisherDomain": "3326",
+  "publisherWebsite": "https://pekalongankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pekalongan (https://pekalongankab.bps.go.id), publikasi \"Kecamatan Sragi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3326100",
+  "publicationNumber": "33260.26015",
+  "issn": "2621-1750",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pekalongankab.bps.go.id/id/publication/2026/09/28/a9c5784b2745fc5e8fce9466/kecamatan-sragi-dalam-angka-2026.html",
+  "sourceFileSha256": "c786ade957e37458bb611954734cf2c1b1080a0af29686a6d1f01971a02c7b58",
+  "sourceFileBytes": 10974013,
+  "sourcePages": [34, 35, 36],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pekalongan.",
+  "csvPath": "datasets/bps-3326-kecamatan-332610-dalam-angka-2026.csv",
+  "csvSha256": "f3e89912b8a5a460876828adb0fb3c8831356bf7d9be6d06914846374d444df2",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sragi, 2025",
+      "printedPages": [34, 35],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Sragi, 2025",
+      "printedPages": [36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Krasakageng\": unmatched ",
+    "table 3.1: row not stored: row \"Ketanonageng 3,10%\": unmatched ",
+    "table 3.1: row not stored: row \"Mrican 4,04%\": unmatched ",
+    "table 3.1: row not stored: row \"Bulaksari 6,06%\": unmatched ",
+    "table 3.1: row not stored: row \"Sumublor 6,12%\": unmatched ",
+    "table 3.1: row not stored: row \"Sumubkidul 5,06%\": unmatched ",
+    "table 3.1: row not stored: row \"Kalijambe 7,02%\": unmatched ",
+    "table 3.1: row not stored: row \"Purworejo 5,94%\": unmatched ",
+    "table 3.1: row not stored: row \"Kedungjaran 3,94%\": unmatched ",
+    "table 3.1: row not stored: row \"Klunjukan 4,72%\": unmatched ",
+    "table 3.1: row not stored: row \"Gebangkerep 5,79%\": unmatched ",
+    "table 3.1: row not stored: row \"Purwodadi 2,67%\": unmatched ",
+    "table 3.1: row not stored: row \"Bulakpelem 7,96%\": unmatched ",
+    "table 3.1: row not stored: row \"Tegalsuruh 6,12%\": unmatched ",
+    "table 3.1: row not stored: row \"Krasakageng 7,66%\": unmatched ",
+    "table 3.1: row not stored: row \"Sijeruk 6,67%\": unmatched ",
+    "table 3.1: row not stored: row \"Sragi 10,55%\": unmatched ",
+    "table 3.1: row not stored: row \"Tegalontar 6,58%\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Sragi 100,00%\": unmatched "
+  ]
+}

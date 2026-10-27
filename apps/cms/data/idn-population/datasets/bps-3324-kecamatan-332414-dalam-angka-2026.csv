@@ -1,0 +1,69 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.24.14.2004,4,Lanji,sex,perempuan,,1714,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.14.2004,4,Lanji,total,total,,3337,jiwa,2025,registration,total_population,3.1,27,,
+33.24.14.2003,4,Donosari,sex,perempuan,,1586,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.14.2003,4,Donosari,total,total,,3188,jiwa,2025,registration,total_population,3.1,27,,
+33.24.14.2002,4,Margosari,sex,perempuan,,1654,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.14.2002,4,Margosari,total,total,,3297,jiwa,2025,registration,total_population,3.1,27,,
+33.24.14.2001,4,Bulugede,sex,perempuan,,1880,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.14.2001,4,Bulugede,total,total,,3751,jiwa,2025,registration,total_population,3.1,27,,
+33.24.14.2005,4,Tambakrejo,sex,perempuan,,2219,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.14.2005,4,Tambakrejo,total,total,,4505,jiwa,2025,registration,total_population,3.1,27,,
+33.24.14.2006,4,Kebonharjo,sex,perempuan,,3640,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.14.2006,4,Kebonharjo,total,total,,7285,jiwa,2025,registration,total_population,3.1,27,,
+33.24.14.2009,4,Purwosari,sex,perempuan,,1705,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.14.2009,4,Purwosari,total,total,,3437,jiwa,2025,registration,total_population,3.1,27,,
+33.24.14.2008,4,Jambearum,sex,perempuan,,2648,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.14.2008,4,Jambearum,total,total,,5305,jiwa,2025,registration,total_population,3.1,27,,
+33.24.14.2007,4,Purwokerto,sex,perempuan,,3023,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.14.2007,4,Purwokerto,total,total,,5964,jiwa,2025,registration,total_population,3.1,27,,
+33.24.14.2010,4,Sukolilan,sex,perempuan,,897,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.14.2010,4,Sukolilan,total,total,,1799,jiwa,2025,registration,total_population,3.1,27,,
+33.24.14.2011,4,Bangunrejo,sex,perempuan,,857,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.14.2011,4,Bangunrejo,total,total,,1740,jiwa,2025,registration,total_population,3.1,27,,
+33.24.14.2012,4,Kumpulrejo,sex,perempuan,,1782,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.14.2012,4,Kumpulrejo,total,total,,3541,jiwa,2025,registration,total_population,3.1,27,,
+33.24.14.2013,4,Magersari,sex,perempuan,,779,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.14.2013,4,Magersari,total,total,,1610,jiwa,2025,registration,total_population,3.1,27,,
+33.24.14.2014,4,Wonosari,sex,perempuan,,2836,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.14.2014,4,Wonosari,total,total,,5727,jiwa,2025,registration,total_population,3.1,27,,
+33.24.14.2018,4,Kartikajaya,sex,perempuan,,629,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.14.2018,4,Kartikajaya,total,total,,1285,jiwa,2025,registration,total_population,3.1,27,,
+33.24.14.2017,4,Bangunsari,sex,perempuan,,1045,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.14.2017,4,Bangunsari,total,total,,2134,jiwa,2025,registration,total_population,3.1,27,,
+33.24.14.2015,4,Pidodo wetan,sex,perempuan,,1755,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.14.2015,4,Pidodo wetan,total,total,,3533,jiwa,2025,registration,total_population,3.1,27,,
+33.24.14.2016,4,Pidodo Kulon,sex,perempuan,,1624,jiwa,2025,registration,total_population,3.1,27,,Perempuan/Female
+33.24.14.2016,4,Pidodo Kulon,total,total,,3269,jiwa,2025,registration,total_population,3.1,27,,
+33.24.14,3,Patebon,age_group,0-4,perempuan,1859,jiwa,2025,registration,total_population,3.2,29,,00 – 04
+33.24.14,3,Patebon,age_group,0-4,,3908,jiwa,2025,registration,total_population,3.2,29,,00 – 04
+33.24.14,3,Patebon,age_group,5-9,perempuan,2393,jiwa,2025,registration,total_population,3.2,29,,05 – 09
+33.24.14,3,Patebon,age_group,5-9,,4943,jiwa,2025,registration,total_population,3.2,29,,05 – 09
+33.24.14,3,Patebon,age_group,10-14,perempuan,2431,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+33.24.14,3,Patebon,age_group,10-14,,5003,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+33.24.14,3,Patebon,age_group,15-19,perempuan,2291,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+33.24.14,3,Patebon,age_group,15-19,,4677,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+33.24.14,3,Patebon,age_group,20-24,perempuan,2185,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+33.24.14,3,Patebon,age_group,20-24,,4639,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+33.24.14,3,Patebon,age_group,25-29,perempuan,2357,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+33.24.14,3,Patebon,age_group,25-29,,4791,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+33.24.14,3,Patebon,age_group,30-34,perempuan,2485,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+33.24.14,3,Patebon,age_group,30-34,,5142,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+33.24.14,3,Patebon,age_group,35-39,perempuan,2444,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+33.24.14,3,Patebon,age_group,35-39,,4991,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+33.24.14,3,Patebon,age_group,40-44,perempuan,2663,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+33.24.14,3,Patebon,age_group,40-44,,5187,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+33.24.14,3,Patebon,age_group,45-49,perempuan,2268,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+33.24.14,3,Patebon,age_group,45-49,,4471,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+33.24.14,3,Patebon,age_group,50-54,perempuan,2125,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+33.24.14,3,Patebon,age_group,50-54,,3910,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+33.24.14,3,Patebon,age_group,55-59,perempuan,2149,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+33.24.14,3,Patebon,age_group,55-59,,4048,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+33.24.14,3,Patebon,age_group,60-64,perempuan,1876,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+33.24.14,3,Patebon,age_group,60-64,,3598,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+33.24.14,3,Patebon,age_group,65-69,perempuan,1373,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+33.24.14,3,Patebon,age_group,65-69,,2758,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+33.24.14,3,Patebon,age_group,70-74,perempuan,664,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+33.24.14,3,Patebon,age_group,70-74,,1419,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+33.24.14,3,Patebon,age_group,75+,perempuan,710,jiwa,2025,registration,total_population,3.2,29,,> 75
+33.24.14,3,Patebon,age_group,75+,,1222,jiwa,2025,registration,total_population,3.2,29,,> 75

@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-3206-kecamatan-320636-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.06.36",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Ciawi Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tasikmalaya",
+  "publisherDomain": "3206",
+  "publisherWebsite": "https://tasikmalayakab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tasikmalaya (https://tasikmalayakab.bps.go.id), publikasi \"Kecamatan Ciawi Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3206260",
+  "publicationNumber": "3206.25030",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tasikmalayakab.bps.go.id/id/publication/2026/09/28/d6dc78c5c6e2c066c1eb3413/kecamatan-ciawi-dalam-angka-2026.html",
+  "sourceFileSha256": "825b885f4dc7c61cca4d9837951aae98882036d9fd027781cdce8dd2f0014cf0",
+  "sourceFileBytes": 8080636,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tasikmalaya.",
+  "csvPath": "datasets/bps-3206-kecamatan-320636-dalam-angka-2026.csv",
+  "csvSha256": "75d2fe412d7a7264e3a0d7993b5265cbe8cb36f754f82dce147dafe9ef022efe",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Ciawi, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Ciawi, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Kecamatan Ciawi Ciawi District\": unmatched ",
+    "table 3.1: row not stored: row \"Kecamatan Ciawi Ciawi District\": unmatched ",
+    "table 3.2: row not stored: row \"Kecamatan Ciawi Ciawi District\": unmatched "
+  ]
+}

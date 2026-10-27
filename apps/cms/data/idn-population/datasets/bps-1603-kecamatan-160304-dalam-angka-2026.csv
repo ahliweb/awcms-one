@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.03.04.2001,4,Penanggiran,sex,laki_laki,,1918,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.04.2001,4,Penanggiran,sex,perempuan,,1846,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.04.2001,4,Penanggiran,total,total,,3764,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.04.2002,4,Gunung Megang Luar,sex,laki_laki,,1645,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.04.2002,4,Gunung Megang Luar,sex,perempuan,,1575,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.04.2002,4,Gunung Megang Luar,total,total,,3220,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.04.2003,4,Gunung Megang Dalam,sex,laki_laki,,2661,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.04.2003,4,Gunung Megang Dalam,sex,perempuan,,2509,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.04.2003,4,Gunung Megang Dalam,total,total,,5170,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.04.2004,4,Lubuk Mumpo,sex,laki_laki,,1353,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.04.2004,4,Lubuk Mumpo,sex,perempuan,,1326,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.04.2004,4,Lubuk Mumpo,total,total,,2679,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.04.2005,4,Perjito,sex,laki_laki,,1068,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.04.2005,4,Perjito,sex,perempuan,,1092,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.04.2005,4,Perjito,total,total,,2160,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.04.2006,4,Tanjung Muning,sex,laki_laki,,885,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.04.2006,4,Tanjung Muning,sex,perempuan,,814,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.04.2006,4,Tanjung Muning,total,total,,1699,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.04.2016,4,Bangun Sari,sex,laki_laki,,1571,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.04.2016,4,Bangun Sari,sex,perempuan,,1479,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.04.2016,4,Bangun Sari,total,total,,3050,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.04.2017,4,Sumaja Makmur,sex,laki_laki,,1861,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.04.2017,4,Sumaja Makmur,sex,perempuan,,1786,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.04.2017,4,Sumaja Makmur,total,total,,3647,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.04.2018,4,Sidomulyo,sex,laki_laki,,544,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.04.2018,4,Sidomulyo,sex,perempuan,,520,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.04.2018,4,Sidomulyo,total,total,,1064,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.04.2019,4,Pajar Indah,sex,laki_laki,,770,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.04.2019,4,Pajar Indah,sex,perempuan,,702,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.04.2019,4,Pajar Indah,total,total,,1472,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.04.2020,4,Kayu Ara Sakti,sex,laki_laki,,652,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.04.2020,4,Kayu Ara Sakti,sex,perempuan,,632,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.04.2020,4,Kayu Ara Sakti,total,total,,1284,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.04.2021,4,Panang Jaya,sex,laki_laki,,2567,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.04.2021,4,Panang Jaya,sex,perempuan,,2368,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.04.2021,4,Panang Jaya,total,total,,4935,jiwa,2025,registration,total_population,unnumbered-p23,23,,
+16.03.04,3,Gunung Megang,sex,laki_laki,,18887,jiwa,2025,registration,total_population,unnumbered-p23,23,,Laki-Laki/Male
+16.03.04,3,Gunung Megang,sex,perempuan,,18037,jiwa,2025,registration,total_population,unnumbered-p23,23,,Perempuan/Female
+16.03.04,3,Gunung Megang,total,total,,36924,jiwa,2025,registration,total_population,unnumbered-p23,23,,

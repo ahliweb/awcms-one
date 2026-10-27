@@ -1,0 +1,126 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.72.02,3,Sukajaya,total,total,,20586,jiwa,2025,registration,total_population,3.1.1,48,,
+11.72.03,3,Sukamakmue,total,total,,8961,jiwa,2025,registration,total_population,3.1.1,48,,
+11.72.01,3,Sukakarya,total,total,,13442,jiwa,2025,registration,total_population,3.1.1,48,,
+11.72,2,Sabang,total,total,,42989,jiwa,2025,registration,total_population,3.1.1,48,,
+11.72,2,Kota Sabang,age_group,0-4,laki_laki,1438,jiwa,2025,registration,total_population,3.1.2,51,,0–4
+11.72,2,Kota Sabang,age_group,0-4,perempuan,1412,jiwa,2025,registration,total_population,3.1.2,51,,0–4
+11.72,2,Kota Sabang,age_group,0-4,,2850,jiwa,2025,registration,total_population,3.1.2,51,,0–4
+11.72,2,Kota Sabang,age_group,5-9,laki_laki,2087,jiwa,2025,registration,total_population,3.1.2,51,,5–9
+11.72,2,Kota Sabang,age_group,5-9,perempuan,1932,jiwa,2025,registration,total_population,3.1.2,51,,5–9
+11.72,2,Kota Sabang,age_group,5-9,,4019,jiwa,2025,registration,total_population,3.1.2,51,,5–9
+11.72,2,Kota Sabang,age_group,10-14,laki_laki,2177,jiwa,2025,registration,total_population,3.1.2,51,,10–14
+11.72,2,Kota Sabang,age_group,10-14,perempuan,2035,jiwa,2025,registration,total_population,3.1.2,51,,10–14
+11.72,2,Kota Sabang,age_group,10-14,,4212,jiwa,2025,registration,total_population,3.1.2,51,,10–14
+11.72,2,Kota Sabang,age_group,15-19,laki_laki,2193,jiwa,2025,registration,total_population,3.1.2,51,,15–19
+11.72,2,Kota Sabang,age_group,15-19,perempuan,1979,jiwa,2025,registration,total_population,3.1.2,51,,15–19
+11.72,2,Kota Sabang,age_group,15-19,,4172,jiwa,2025,registration,total_population,3.1.2,51,,15–19
+11.72,2,Kota Sabang,age_group,20-24,laki_laki,1843,jiwa,2025,registration,total_population,3.1.2,51,,20–24
+11.72,2,Kota Sabang,age_group,20-24,perempuan,1735,jiwa,2025,registration,total_population,3.1.2,51,,20–24
+11.72,2,Kota Sabang,age_group,20-24,,3578,jiwa,2025,registration,total_population,3.1.2,51,,20–24
+11.72,2,Kota Sabang,age_group,25-29,laki_laki,1525,jiwa,2025,registration,total_population,3.1.2,51,,25–29
+11.72,2,Kota Sabang,age_group,25-29,perempuan,1530,jiwa,2025,registration,total_population,3.1.2,51,,25–29
+11.72,2,Kota Sabang,age_group,25-29,,3055,jiwa,2025,registration,total_population,3.1.2,51,,25–29
+11.72,2,Kota Sabang,age_group,30-34,laki_laki,1450,jiwa,2025,registration,total_population,3.1.2,51,,30–34
+11.72,2,Kota Sabang,age_group,30-34,perempuan,1538,jiwa,2025,registration,total_population,3.1.2,51,,30–34
+11.72,2,Kota Sabang,age_group,30-34,,2988,jiwa,2025,registration,total_population,3.1.2,51,,30–34
+11.72,2,Kota Sabang,age_group,35-39,laki_laki,1587,jiwa,2025,registration,total_population,3.1.2,51,,35–39
+11.72,2,Kota Sabang,age_group,35-39,perempuan,1769,jiwa,2025,registration,total_population,3.1.2,51,,35–39
+11.72,2,Kota Sabang,age_group,35-39,,3356,jiwa,2025,registration,total_population,3.1.2,51,,35–39
+11.72,2,Kota Sabang,age_group,40-44,laki_laki,1740,jiwa,2025,registration,total_population,3.1.2,51,,40–44
+11.72,2,Kota Sabang,age_group,40-44,perempuan,1701,jiwa,2025,registration,total_population,3.1.2,51,,40–44
+11.72,2,Kota Sabang,age_group,40-44,,3441,jiwa,2025,registration,total_population,3.1.2,51,,40–44
+11.72,2,Kota Sabang,age_group,45-49,laki_laki,1550,jiwa,2025,registration,total_population,3.1.2,51,,45–49
+11.72,2,Kota Sabang,age_group,45-49,perempuan,1436,jiwa,2025,registration,total_population,3.1.2,51,,45–49
+11.72,2,Kota Sabang,age_group,45-49,,2986,jiwa,2025,registration,total_population,3.1.2,51,,45–49
+11.72,2,Kota Sabang,age_group,50-54,laki_laki,1240,jiwa,2025,registration,total_population,3.1.2,51,,50–54
+11.72,2,Kota Sabang,age_group,50-54,perempuan,1210,jiwa,2025,registration,total_population,3.1.2,51,,50–54
+11.72,2,Kota Sabang,age_group,50-54,,2450,jiwa,2025,registration,total_population,3.1.2,51,,50–54
+11.72,2,Kota Sabang,age_group,55-59,laki_laki,896,jiwa,2025,registration,total_population,3.1.2,51,,55–59
+11.72,2,Kota Sabang,age_group,55-59,perempuan,863,jiwa,2025,registration,total_population,3.1.2,51,,55–59
+11.72,2,Kota Sabang,age_group,55-59,,1759,jiwa,2025,registration,total_population,3.1.2,51,,55–59
+11.72,2,Kota Sabang,age_group,60-64,laki_laki,618,jiwa,2025,registration,total_population,3.1.2,51,,60–64
+11.72,2,Kota Sabang,age_group,60-64,perempuan,712,jiwa,2025,registration,total_population,3.1.2,51,,60–64
+11.72,2,Kota Sabang,age_group,60-64,,1330,jiwa,2025,registration,total_population,3.1.2,51,,60–64
+11.72,2,Kota Sabang,age_group,65-69,laki_laki,514,jiwa,2025,registration,total_population,3.1.2,51,,65–69
+11.72,2,Kota Sabang,age_group,65-69,perempuan,580,jiwa,2025,registration,total_population,3.1.2,51,,65–69
+11.72,2,Kota Sabang,age_group,65-69,,1094,jiwa,2025,registration,total_population,3.1.2,51,,65–69
+11.72,2,Kota Sabang,age_group,70-74,laki_laki,348,jiwa,2025,registration,total_population,3.1.2,51,,70–74
+11.72,2,Kota Sabang,age_group,70-74,perempuan,377,jiwa,2025,registration,total_population,3.1.2,51,,70–74
+11.72,2,Kota Sabang,age_group,70-74,,725,jiwa,2025,registration,total_population,3.1.2,51,,70–74
+11.72,2,Kota Sabang,age_group,75+,laki_laki,371,jiwa,2025,registration,total_population,3.1.2,51,,75+
+11.72,2,Kota Sabang,age_group,75+,perempuan,603,jiwa,2025,registration,total_population,3.1.2,51,,75+
+11.72,2,Kota Sabang,age_group,75+,,974,jiwa,2025,registration,total_population,3.1.2,51,,75+
+11.72,2,Sabang,sex,laki_laki,,21577,jiwa,2025,registration,total_population,3.1.2,51,,Laki-Laki
+11.72,2,Sabang,sex,perempuan,,21412,jiwa,2025,registration,total_population,3.1.2,51,,Perempuan
+11.72,2,Sabang,total,total,,42989,jiwa,2025,registration,total_population,3.1.2,51,,
+11.72.02,3,Sukajaya,religion,islam,,20452,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+11.72.02,3,Sukajaya,religion,kristen,,116,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+11.72.02,3,Sukajaya,religion,katolik,,12,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+11.72.02,3,Sukajaya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+11.72.02,3,Sukajaya,religion,buddha,,6,jiwa,2025,registration,total_population,4.3.1,108,,Budha
+11.72.02,3,Sukajaya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+11.72.03,3,Sukamakmue,religion,islam,,8943,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+11.72.03,3,Sukamakmue,religion,kristen,,11,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+11.72.03,3,Sukamakmue,religion,katolik,,6,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+11.72.03,3,Sukamakmue,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+11.72.03,3,Sukamakmue,religion,buddha,,1,jiwa,2025,registration,total_population,4.3.1,108,,Budha
+11.72.03,3,Sukamakmue,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+11.72.01,3,Sukakarya,religion,islam,,13042,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+11.72.01,3,Sukakarya,religion,kristen,,155,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+11.72.01,3,Sukakarya,religion,katolik,,35,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+11.72.01,3,Sukakarya,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+11.72.01,3,Sukakarya,religion,buddha,,210,jiwa,2025,registration,total_population,4.3.1,108,,Budha
+11.72.01,3,Sukakarya,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+11.72,2,Sabang,religion,islam,,42437,jiwa,2025,registration,total_population,4.3.1,108,,Islam
+11.72,2,Sabang,religion,kristen,,282,jiwa,2025,registration,total_population,4.3.1,108,,Protestan
+11.72,2,Sabang,religion,katolik,,53,jiwa,2025,registration,total_population,4.3.1,108,,Katolik
+11.72,2,Sabang,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Hindu
+11.72,2,Sabang,religion,buddha,,217,jiwa,2025,registration,total_population,4.3.1,108,,Budha
+11.72,2,Sabang,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,108,nil,Lainnya
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/padi_padian,,89885,rupiah,2024,survey_estimate,per_capita,10.1,225,,Padi-padian
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/padi_padian,,88873,rupiah,2025,survey_estimate,per_capita,10.1,225,,Padi-padian
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/umbi_umbian,,6202,rupiah,2024,survey_estimate,per_capita,10.1,225,,Umbi-umbian
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/umbi_umbian,,8393,rupiah,2025,survey_estimate,per_capita,10.1,225,,Umbi-umbian
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,100548,rupiah,2024,survey_estimate,per_capita,10.1,225,,Ikan/udang/cumi/kerang
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,108641,rupiah,2025,survey_estimate,per_capita,10.1,225,,Ikan/udang/cumi/kerang
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/daging,,25624,rupiah,2024,survey_estimate,per_capita,10.1,225,,Daging
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/daging,,16251,rupiah,2025,survey_estimate,per_capita,10.1,225,,Daging
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/telur_dan_susu,,38467,rupiah,2024,survey_estimate,per_capita,10.1,225,,Telur dan susu
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/telur_dan_susu,,43768,rupiah,2025,survey_estimate,per_capita,10.1,225,,Telur dan susu
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/sayur_sayuran,,71027,rupiah,2024,survey_estimate,per_capita,10.1,225,,Sayur-sayuran
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/sayur_sayuran,,72198,rupiah,2025,survey_estimate,per_capita,10.1,225,,Sayur-sayuran
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/kacang_kacangan,,9679,rupiah,2024,survey_estimate,per_capita,10.1,225,,Kacang-kacangan
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/kacang_kacangan,,11019,rupiah,2025,survey_estimate,per_capita,10.1,225,,Kacang-kacangan
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/buah_buahan,,41068,rupiah,2024,survey_estimate,per_capita,10.1,225,,Buah-buahan
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/buah_buahan,,51975,rupiah,2025,survey_estimate,per_capita,10.1,225,,Buah-buahan
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18866,rupiah,2024,survey_estimate,per_capita,10.1,225,,Minyak dan kelapa
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,24371,rupiah,2025,survey_estimate,per_capita,10.1,225,,Minyak dan kelapa
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/bahan_minuman,,15241,rupiah,2024,survey_estimate,per_capita,10.1,225,,Bahan minuman
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/bahan_minuman,,16746,rupiah,2025,survey_estimate,per_capita,10.1,225,,Bahan minuman
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/bumbu_bumbuan,,13337,rupiah,2024,survey_estimate,per_capita,10.1,225,,Bumbu-bumbuan
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/bumbu_bumbuan,,14681,rupiah,2025,survey_estimate,per_capita,10.1,225,,Bumbu-bumbuan
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/konsumsi_lainnya,,11325,rupiah,2024,survey_estimate,per_capita,10.1,225,,Konsumsi lainnya
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/konsumsi_lainnya,,13291,rupiah,2025,survey_estimate,per_capita,10.1,225,,Konsumsi lainnya
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,339729,rupiah,2024,survey_estimate,per_capita,10.1,225,,Makanan dan minuman jadi
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,368312,rupiah,2025,survey_estimate,per_capita,10.1,225,,Makanan dan minuman jadi
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/rokok,,109380,rupiah,2024,survey_estimate,per_capita,10.1,225,,Rokok
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/rokok,,78275,rupiah,2025,survey_estimate,per_capita,10.1,225,,Rokok
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/jumlah_makanan,,890378,rupiah,2024,survey_estimate,per_capita,10.1,225,,Jumlah makanan
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/jumlah_makanan,,916794,rupiah,2025,survey_estimate,per_capita,10.1,225,,Jumlah makanan
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,367318,rupiah,2024,survey_estimate,per_capita,10.1,225,,Perumahan dan fasilitas rumah tangga
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,406801,rupiah,2025,survey_estimate,per_capita,10.1,225,,Perumahan dan fasilitas rumah tangga
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,192453,rupiah,2024,survey_estimate,per_capita,10.1,225,,Aneka barang dan jasa
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,198531,rupiah,2025,survey_estimate,per_capita,10.1,225,,Aneka barang dan jasa
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,76705,rupiah,2024,survey_estimate,per_capita,10.1,225,,"Pakaian, alas kaki, dan tutup kepala"
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,80055,rupiah,2025,survey_estimate,per_capita,10.1,225,,"Pakaian, alas kaki, dan tutup kepala"
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/barang_tahan_lama,,50531,rupiah,2024,survey_estimate,per_capita,10.1,225,,Barang tahan lama
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/barang_tahan_lama,,61357,rupiah,2025,survey_estimate,per_capita,10.1,225,,Barang tahan lama
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,66936,rupiah,2024,survey_estimate,per_capita,10.1,225,,"Pajak, pungutan, dan asuransi"
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,66292,rupiah,2025,survey_estimate,per_capita,10.1,225,,"Pajak, pungutan, dan asuransi"
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,10451,rupiah,2024,survey_estimate,per_capita,10.1,225,,Keperluan pesta dan upacara/kenduri
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,7667,rupiah,2025,survey_estimate,per_capita,10.1,225,,Keperluan pesta dan upacara/kenduri
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,764394,rupiah,2024,survey_estimate,per_capita,10.1,225,,Jumlah bukan makanan
+11.72,2,Kota Sabang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,820703,rupiah,2025,survey_estimate,per_capita,10.1,225,,Jumlah bukan makanan
+11.72,2,Kota Sabang,expenditure,total,,1654772,rupiah,2024,survey_estimate,per_capita,10.1,225,,
+11.72,2,Kota Sabang,expenditure,total,,1737497,rupiah,2025,survey_estimate,per_capita,10.1,225,,

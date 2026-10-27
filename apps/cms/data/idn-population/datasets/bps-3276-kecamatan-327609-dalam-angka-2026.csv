@@ -1,0 +1,67 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.76.09.1001,4,Cinere,sex,laki_laki,,16252,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.09.1001,4,Cinere,sex,perempuan,,16639,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.09.1001,4,Cinere,total,total,,32891,jiwa,2025,registration,total_population,3.1,19,,
+32.76.09.1002,4,Gandul,sex,laki_laki,,12794,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.09.1002,4,Gandul,sex,perempuan,,13083,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.09.1002,4,Gandul,total,total,,25877,jiwa,2025,registration,total_population,3.1,19,,
+32.76.09.1004,4,Pangkalanjati Baru,sex,laki_laki,,5267,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.09.1004,4,Pangkalanjati Baru,sex,perempuan,,5384,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.09.1004,4,Pangkalanjati Baru,total,total,,10651,jiwa,2025,registration,total_population,3.1,19,,
+32.76.09.1003,4,Pangkalan Jati,sex,laki_laki,,8832,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.09.1003,4,Pangkalan Jati,sex,perempuan,,8856,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.09.1003,4,Pangkalan Jati,total,total,,17688,jiwa,2025,registration,total_population,3.1,19,,
+32.76.09,3,Kecamatan Cinere,sex,laki_laki,,43145,jiwa,2025,registration,total_population,3.1,19,,Laki-Laki
+32.76.09,3,Kecamatan Cinere,sex,perempuan,,43962,jiwa,2025,registration,total_population,3.1,19,,Perempuan
+32.76.09,3,Kecamatan Cinere,total,total,,87107,jiwa,2025,registration,total_population,3.1,19,,
+32.76.09,3,Cinere,age_group,0-4,laki_laki,2309,jiwa,2025,registration,total_population,3.2,22,,0 - 4
+32.76.09,3,Cinere,age_group,0-4,perempuan,2113,jiwa,2025,registration,total_population,3.2,22,,0 - 4
+32.76.09,3,Cinere,age_group,0-4,,4422,jiwa,2025,registration,total_population,3.2,22,,0 - 4
+32.76.09,3,Cinere,age_group,5-9,laki_laki,3217,jiwa,2025,registration,total_population,3.2,22,,5 - 9
+32.76.09,3,Cinere,age_group,5-9,perempuan,3050,jiwa,2025,registration,total_population,3.2,22,,5 - 9
+32.76.09,3,Cinere,age_group,5-9,,6267,jiwa,2025,registration,total_population,3.2,22,,5 - 9
+32.76.09,3,Cinere,age_group,10-24,laki_laki,3395,jiwa,2025,registration,total_population,3.2,22,,10 - 24
+32.76.09,3,Cinere,age_group,10-24,perempuan,3229,jiwa,2025,registration,total_population,3.2,22,,10 - 24
+32.76.09,3,Cinere,age_group,10-24,,6624,jiwa,2025,registration,total_population,3.2,22,,10 - 24
+32.76.09,3,Cinere,age_group,15-19,laki_laki,3254,jiwa,2025,registration,total_population,3.2,22,,15 - 19
+32.76.09,3,Cinere,age_group,15-19,perempuan,3136,jiwa,2025,registration,total_population,3.2,22,,15 - 19
+32.76.09,3,Cinere,age_group,15-19,,6390,jiwa,2025,registration,total_population,3.2,22,,15 - 19
+32.76.09,3,Cinere,age_group,20-24,laki_laki,3487,jiwa,2025,registration,total_population,3.2,22,,20 - 24
+32.76.09,3,Cinere,age_group,20-24,perempuan,3149,jiwa,2025,registration,total_population,3.2,22,,20 - 24
+32.76.09,3,Cinere,age_group,20-24,,6636,jiwa,2025,registration,total_population,3.2,22,,20 - 24
+32.76.09,3,Cinere,age_group,25-29,laki_laki,3409,jiwa,2025,registration,total_population,3.2,22,,25 - 29
+32.76.09,3,Cinere,age_group,25-29,perempuan,3318,jiwa,2025,registration,total_population,3.2,22,,25 - 29
+32.76.09,3,Cinere,age_group,25-29,,6727,jiwa,2025,registration,total_population,3.2,22,,25 - 29
+32.76.09,3,Cinere,age_group,30-34,laki_laki,3259,jiwa,2025,registration,total_population,3.2,22,,30 - 34
+32.76.09,3,Cinere,age_group,30-34,perempuan,3308,jiwa,2025,registration,total_population,3.2,22,,30 - 34
+32.76.09,3,Cinere,age_group,30-34,,6567,jiwa,2025,registration,total_population,3.2,22,,30 - 34
+32.76.09,3,Cinere,age_group,35-39,laki_laki,2998,jiwa,2025,registration,total_population,3.2,22,,35 - 39
+32.76.09,3,Cinere,age_group,35-39,perempuan,3269,jiwa,2025,registration,total_population,3.2,22,,35 - 39
+32.76.09,3,Cinere,age_group,35-39,,6267,jiwa,2025,registration,total_population,3.2,22,,35 - 39
+32.76.09,3,Cinere,age_group,40-44,laki_laki,3471,jiwa,2025,registration,total_population,3.2,22,,40 - 44
+32.76.09,3,Cinere,age_group,40-44,perempuan,3629,jiwa,2025,registration,total_population,3.2,22,,40 - 44
+32.76.09,3,Cinere,age_group,40-44,,7100,jiwa,2025,registration,total_population,3.2,22,,40 - 44
+32.76.09,3,Cinere,age_group,45-49,laki_laki,3465,jiwa,2025,registration,total_population,3.2,22,,45 - 49
+32.76.09,3,Cinere,age_group,45-49,perempuan,3692,jiwa,2025,registration,total_population,3.2,22,,45 - 49
+32.76.09,3,Cinere,age_group,45-49,,7157,jiwa,2025,registration,total_population,3.2,22,,45 - 49
+32.76.09,3,Cinere,age_group,50-54,laki_laki,3239,jiwa,2025,registration,total_population,3.2,22,,50 - 54
+32.76.09,3,Cinere,age_group,50-54,perempuan,3323,jiwa,2025,registration,total_population,3.2,22,,50 - 54
+32.76.09,3,Cinere,age_group,50-54,,6562,jiwa,2025,registration,total_population,3.2,22,,50 - 54
+32.76.09,3,Cinere,age_group,55-59,laki_laki,2634,jiwa,2025,registration,total_population,3.2,22,,55 - 59
+32.76.09,3,Cinere,age_group,55-59,perempuan,2650,jiwa,2025,registration,total_population,3.2,22,,55 - 59
+32.76.09,3,Cinere,age_group,55-59,,5284,jiwa,2025,registration,total_population,3.2,22,,55 - 59
+32.76.09,3,Cinere,age_group,60-64,laki_laki,1912,jiwa,2025,registration,total_population,3.2,22,,60 - 64
+32.76.09,3,Cinere,age_group,60-64,perempuan,2081,jiwa,2025,registration,total_population,3.2,22,,60 - 64
+32.76.09,3,Cinere,age_group,60-64,,3993,jiwa,2025,registration,total_population,3.2,22,,60 - 64
+32.76.09,3,Cinere,age_group,65-69,laki_laki,1273,jiwa,2025,registration,total_population,3.2,22,,65 - 69
+32.76.09,3,Cinere,age_group,65-69,perempuan,1600,jiwa,2025,registration,total_population,3.2,22,,65 - 69
+32.76.09,3,Cinere,age_group,65-69,,2873,jiwa,2025,registration,total_population,3.2,22,,65 - 69
+32.76.09,3,Cinere,age_group,70-74,laki_laki,921,jiwa,2025,registration,total_population,3.2,22,,70 - 74
+32.76.09,3,Cinere,age_group,70-74,perempuan,1111,jiwa,2025,registration,total_population,3.2,22,,70 - 74
+32.76.09,3,Cinere,age_group,70-74,,2032,jiwa,2025,registration,total_population,3.2,22,,70 - 74
+32.76.09,3,Cinere,age_group,75+,laki_laki,902,jiwa,2025,registration,total_population,3.2,22,,> 75
+32.76.09,3,Cinere,age_group,75+,perempuan,1304,jiwa,2025,registration,total_population,3.2,22,,> 75
+32.76.09,3,Cinere,age_group,75+,,2206,jiwa,2025,registration,total_population,3.2,22,,> 75
+32.76.09,3,Kecamatan Cinere,sex,laki_laki,,43145,jiwa,2025,registration,total_population,3.2,22,,Laki-Laki
+32.76.09,3,Kecamatan Cinere,sex,perempuan,,43962,jiwa,2025,registration,total_population,3.2,22,,Perempuan
+32.76.09,3,Kecamatan Cinere,total,total,,87107,jiwa,2025,registration,total_population,3.2,22,,

@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3578-kecamatan-357829-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.78.29",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bulak Dalam Angka 2026",
+  "publisherName": "BPS Kota Surabaya",
+  "publisherDomain": "3578",
+  "publisherWebsite": "https://surabayakota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Surabaya (https://surabayakota.bps.go.id), publikasi \"Kecamatan Bulak Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3578211",
+  "publicationNumber": "3578.25033",
+  "issn": "3110-5289",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://surabayakota.bps.go.id/id/publication/2026/09/28/601343789234b03414afa179/kecamatan-bulak-dalam-angka-2026.html",
+  "sourceFileSha256": "ed929be974a1527f29b474f9144ccbdfcc0ff158efc1e6695e6c4e8d66602fe8",
+  "sourceFileBytes": 25737167,
+  "sourcePages": [29, 30, 31],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Surabaya.",
+  "csvPath": "datasets/bps-3578-kecamatan-357829-dalam-angka-2026.csv",
+  "csvSha256": "08f03604d48353124c3e81e7090bee12497088da35e881b40c408b073248e1a7",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Bulak, 2025",
+      "printedPages": [29, 30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bulak, 2025",
+      "printedPages": [31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

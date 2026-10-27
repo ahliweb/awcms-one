@@ -1,0 +1,76 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.09.29.2005,4,Pondok Bungur,sex,laki_laki,,2141,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.09.29.2005,4,Pondok Bungur,sex,perempuan,,2100,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.09.29.2005,4,Pondok Bungur,total,total,,4241,jiwa,2025,registration,total_population,3.1,26,,
+12.09.29.2002,4,Rawang Baru,sex,laki_laki,,1106,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.09.29.2002,4,Rawang Baru,sex,perempuan,,1148,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.09.29.2002,4,Rawang Baru,total,total,,2254,jiwa,2025,registration,total_population,3.1,26,,
+12.09.29.2004,4,Rawang Pasar V,sex,laki_laki,,1618,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.09.29.2004,4,Rawang Pasar V,sex,perempuan,,1587,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.09.29.2004,4,Rawang Pasar V,total,total,,3205,jiwa,2025,registration,total_population,3.1,26,,
+12.09.29.2003,4,Rawang Pasar IV,sex,laki_laki,,2000,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.09.29.2003,4,Rawang Pasar IV,sex,perempuan,,1854,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.09.29.2003,4,Rawang Pasar IV,total,total,,3854,jiwa,2025,registration,total_population,3.1,26,,
+12.09.29.2001,4,Rawang Lama,sex,laki_laki,,1981,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.09.29.2001,4,Rawang Lama,sex,perempuan,,1846,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.09.29.2001,4,Rawang Lama,total,total,,3827,jiwa,2025,registration,total_population,3.1,26,,
+12.09.29.2006,4,Panca Arga,sex,laki_laki,,1075,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.09.29.2006,4,Panca Arga,sex,perempuan,,1085,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.09.29.2006,4,Panca Arga,total,total,,2160,jiwa,2025,registration,total_population,3.1,26,,
+12.09.29.2007,4,Rawang Pasar VI,sex,laki_laki,,673,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.09.29.2007,4,Rawang Pasar VI,sex,perempuan,,716,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.09.29.2007,4,Rawang Pasar VI,total,total,,1389,jiwa,2025,registration,total_population,3.1,26,,
+12.09.29,3,Rawang Panca Arga,sex,laki_laki,,10594,jiwa,2025,registration,total_population,3.1,26,,Laki-Laki/Male
+12.09.29,3,Rawang Panca Arga,sex,perempuan,,10336,jiwa,2025,registration,total_population,3.1,26,,Perempuan/Female
+12.09.29,3,Rawang Panca Arga,total,total,,20930,jiwa,2025,registration,total_population,3.1,26,,
+12.09.29,3,Rawang Panca Arga,age_group,0-4,laki_laki,562,jiwa,2025,registration,total_population,3.2,28,,0-4
+12.09.29,3,Rawang Panca Arga,age_group,0-4,perempuan,496,jiwa,2025,registration,total_population,3.2,28,,0-4
+12.09.29,3,Rawang Panca Arga,age_group,0-4,,1058,jiwa,2025,registration,total_population,3.2,28,,0-4
+12.09.29,3,Rawang Panca Arga,age_group,5-9,laki_laki,937,jiwa,2025,registration,total_population,3.2,28,,5-9
+12.09.29,3,Rawang Panca Arga,age_group,5-9,perempuan,793,jiwa,2025,registration,total_population,3.2,28,,5-9
+12.09.29,3,Rawang Panca Arga,age_group,5-9,,1730,jiwa,2025,registration,total_population,3.2,28,,5-9
+12.09.29,3,Rawang Panca Arga,age_group,10-14,laki_laki,960,jiwa,2025,registration,total_population,3.2,28,,10-14
+12.09.29,3,Rawang Panca Arga,age_group,10-14,perempuan,1029,jiwa,2025,registration,total_population,3.2,28,,10-14
+12.09.29,3,Rawang Panca Arga,age_group,10-14,,1989,jiwa,2025,registration,total_population,3.2,28,,10-14
+12.09.29,3,Rawang Panca Arga,age_group,15-19,laki_laki,1124,jiwa,2025,registration,total_population,3.2,28,,15-19
+12.09.29,3,Rawang Panca Arga,age_group,15-19,perempuan,936,jiwa,2025,registration,total_population,3.2,28,,15-19
+12.09.29,3,Rawang Panca Arga,age_group,15-19,,2060,jiwa,2025,registration,total_population,3.2,28,,15-19
+12.09.29,3,Rawang Panca Arga,age_group,20-24,laki_laki,906,jiwa,2025,registration,total_population,3.2,28,,20-24
+12.09.29,3,Rawang Panca Arga,age_group,20-24,perempuan,896,jiwa,2025,registration,total_population,3.2,28,,20-24
+12.09.29,3,Rawang Panca Arga,age_group,20-24,,1802,jiwa,2025,registration,total_population,3.2,28,,20-24
+12.09.29,3,Rawang Panca Arga,age_group,25-29,laki_laki,902,jiwa,2025,registration,total_population,3.2,28,,25-29
+12.09.29,3,Rawang Panca Arga,age_group,25-29,perempuan,835,jiwa,2025,registration,total_population,3.2,28,,25-29
+12.09.29,3,Rawang Panca Arga,age_group,25-29,,1737,jiwa,2025,registration,total_population,3.2,28,,25-29
+12.09.29,3,Rawang Panca Arga,age_group,30-34,laki_laki,822,jiwa,2025,registration,total_population,3.2,28,,30-34
+12.09.29,3,Rawang Panca Arga,age_group,30-34,perempuan,743,jiwa,2025,registration,total_population,3.2,28,,30-34
+12.09.29,3,Rawang Panca Arga,age_group,30-34,,1565,jiwa,2025,registration,total_population,3.2,28,,30-34
+12.09.29,3,Rawang Panca Arga,age_group,35-39,laki_laki,739,jiwa,2025,registration,total_population,3.2,28,,35-39
+12.09.29,3,Rawang Panca Arga,age_group,35-39,perempuan,682,jiwa,2025,registration,total_population,3.2,28,,35-39
+12.09.29,3,Rawang Panca Arga,age_group,35-39,,1421,jiwa,2025,registration,total_population,3.2,28,,35-39
+12.09.29,3,Rawang Panca Arga,age_group,40-44,laki_laki,715,jiwa,2025,registration,total_population,3.2,28,,40-44
+12.09.29,3,Rawang Panca Arga,age_group,40-44,perempuan,680,jiwa,2025,registration,total_population,3.2,28,,40-44
+12.09.29,3,Rawang Panca Arga,age_group,40-44,,1395,jiwa,2025,registration,total_population,3.2,28,,40-44
+12.09.29,3,Rawang Panca Arga,age_group,45-49,laki_laki,645,jiwa,2025,registration,total_population,3.2,28,,45-49
+12.09.29,3,Rawang Panca Arga,age_group,45-49,perempuan,644,jiwa,2025,registration,total_population,3.2,28,,45-49
+12.09.29,3,Rawang Panca Arga,age_group,45-49,,1289,jiwa,2025,registration,total_population,3.2,28,,45-49
+12.09.29,3,Rawang Panca Arga,age_group,50-54,laki_laki,569,jiwa,2025,registration,total_population,3.2,28,,50-54
+12.09.29,3,Rawang Panca Arga,age_group,50-54,perempuan,613,jiwa,2025,registration,total_population,3.2,28,,50-54
+12.09.29,3,Rawang Panca Arga,age_group,50-54,,1182,jiwa,2025,registration,total_population,3.2,28,,50-54
+12.09.29,3,Rawang Panca Arga,age_group,55-59,laki_laki,534,jiwa,2025,registration,total_population,3.2,28,,55-59
+12.09.29,3,Rawang Panca Arga,age_group,55-59,perempuan,528,jiwa,2025,registration,total_population,3.2,28,,55-59
+12.09.29,3,Rawang Panca Arga,age_group,55-59,,1062,jiwa,2025,registration,total_population,3.2,28,,55-59
+12.09.29,3,Rawang Panca Arga,age_group,60-64,laki_laki,410,jiwa,2025,registration,total_population,3.2,28,,60-64
+12.09.29,3,Rawang Panca Arga,age_group,60-64,perempuan,475,jiwa,2025,registration,total_population,3.2,28,,60-64
+12.09.29,3,Rawang Panca Arga,age_group,60-64,,885,jiwa,2025,registration,total_population,3.2,28,,60-64
+12.09.29,3,Rawang Panca Arga,age_group,65-69,laki_laki,359,jiwa,2025,registration,total_population,3.2,28,,65-69
+12.09.29,3,Rawang Panca Arga,age_group,65-69,perempuan,410,jiwa,2025,registration,total_population,3.2,28,,65-69
+12.09.29,3,Rawang Panca Arga,age_group,65-69,,769,jiwa,2025,registration,total_population,3.2,28,,65-69
+12.09.29,3,Rawang Panca Arga,age_group,70-74,laki_laki,210,jiwa,2025,registration,total_population,3.2,28,,70-74
+12.09.29,3,Rawang Panca Arga,age_group,70-74,perempuan,231,jiwa,2025,registration,total_population,3.2,28,,70-74
+12.09.29,3,Rawang Panca Arga,age_group,70-74,,441,jiwa,2025,registration,total_population,3.2,28,,70-74
+12.09.29,3,Rawang Panca Arga,age_group,75+,laki_laki,200,jiwa,2025,registration,total_population,3.2,28,,75+
+12.09.29,3,Rawang Panca Arga,age_group,75+,perempuan,345,jiwa,2025,registration,total_population,3.2,28,,75+
+12.09.29,3,Rawang Panca Arga,age_group,75+,,545,jiwa,2025,registration,total_population,3.2,28,,75+
+12.09.29,3,Rawang Panca Arga,sex,laki_laki,,10594,jiwa,2025,registration,total_population,3.2,28,,Laki-Laki
+12.09.29,3,Rawang Panca Arga,sex,perempuan,,10336,jiwa,2025,registration,total_population,3.2,28,,Perempuan
+12.09.29,3,Rawang Panca Arga,total,total,,20930,jiwa,2025,registration,total_population,3.2,28,,

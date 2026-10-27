@@ -1,0 +1,73 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+21.02.04.1001,4,Meral Kota,sex,laki_laki,,3752,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.04.1001,4,Meral Kota,sex,perempuan,,3729,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.04.1001,4,Meral Kota,total,total,,7481,jiwa,2025,registration,total_population,3.1,32,,
+21.02.04.1002,4,Baran Barat,sex,laki_laki,,5245,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.04.1002,4,Baran Barat,sex,perempuan,,4998,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.04.1002,4,Baran Barat,total,total,,10243,jiwa,2025,registration,total_population,3.1,32,,
+21.02.04.1003,4,Sungai Raya,sex,laki_laki,,4217,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.04.1003,4,Sungai Raya,sex,perempuan,,3956,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.04.1003,4,Sungai Raya,total,total,,8173,jiwa,2025,registration,total_population,3.1,32,,
+21.02.04.1007,4,Sungai Pasir,sex,laki_laki,,5092,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.04.1007,4,Sungai Pasir,sex,perempuan,,4806,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.04.1007,4,Sungai Pasir,total,total,,9898,jiwa,2025,registration,total_population,3.1,32,,
+21.02.04.1006,4,Baran Timur,sex,laki_laki,,6577,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.04.1006,4,Baran Timur,sex,perempuan,,6202,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.04.1006,4,Baran Timur,total,total,,12779,jiwa,2025,registration,total_population,3.1,32,,
+21.02.04.1008,4,Parit Benut,sex,laki_laki,,3573,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.04.1008,4,Parit Benut,sex,perempuan,,3348,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.04.1008,4,Parit Benut,total,total,,6921,jiwa,2025,registration,total_population,3.1,32,,
+21.02.04,3,Meral,sex,laki_laki,,28456,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+21.02.04,3,Meral,sex,perempuan,,27039,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+21.02.04,3,Meral,total,total,,55495,jiwa,2025,registration,total_population,3.1,32,,
+21.02.04,3,Meral,age_group,0-4,laki_laki,1977,jiwa,2025,registration,total_population,3.2,34,,0–4
+21.02.04,3,Meral,age_group,0-4,perempuan,1857,jiwa,2025,registration,total_population,3.2,34,,0–4
+21.02.04,3,Meral,age_group,0-4,,3834,jiwa,2025,registration,total_population,3.2,34,,0–4
+21.02.04,3,Meral,age_group,5-9,laki_laki,2648,jiwa,2025,registration,total_population,3.2,34,,5–9
+21.02.04,3,Meral,age_group,5-9,perempuan,2397,jiwa,2025,registration,total_population,3.2,34,,5–9
+21.02.04,3,Meral,age_group,5-9,,5045,jiwa,2025,registration,total_population,3.2,34,,5–9
+21.02.04,3,Meral,age_group,10-14,laki_laki,2731,jiwa,2025,registration,total_population,3.2,34,,10–14
+21.02.04,3,Meral,age_group,10-14,perempuan,2524,jiwa,2025,registration,total_population,3.2,34,,10–14
+21.02.04,3,Meral,age_group,10-14,,5255,jiwa,2025,registration,total_population,3.2,34,,10–14
+21.02.04,3,Meral,age_group,15-19,laki_laki,2463,jiwa,2025,registration,total_population,3.2,34,,15–19
+21.02.04,3,Meral,age_group,15-19,perempuan,2219,jiwa,2025,registration,total_population,3.2,34,,15–19
+21.02.04,3,Meral,age_group,15-19,,4682,jiwa,2025,registration,total_population,3.2,34,,15–19
+21.02.04,3,Meral,age_group,20-24,laki_laki,2381,jiwa,2025,registration,total_population,3.2,34,,20–24
+21.02.04,3,Meral,age_group,20-24,perempuan,2309,jiwa,2025,registration,total_population,3.2,34,,20–24
+21.02.04,3,Meral,age_group,20-24,,4690,jiwa,2025,registration,total_population,3.2,34,,20–24
+21.02.04,3,Meral,age_group,25-29,laki_laki,2349,jiwa,2025,registration,total_population,3.2,34,,25–29
+21.02.04,3,Meral,age_group,25-29,perempuan,2153,jiwa,2025,registration,total_population,3.2,34,,25–29
+21.02.04,3,Meral,age_group,25-29,,4502,jiwa,2025,registration,total_population,3.2,34,,25–29
+21.02.04,3,Meral,age_group,30-34,laki_laki,2316,jiwa,2025,registration,total_population,3.2,34,,30–34
+21.02.04,3,Meral,age_group,30-34,perempuan,2127,jiwa,2025,registration,total_population,3.2,34,,30–34
+21.02.04,3,Meral,age_group,30-34,,4443,jiwa,2025,registration,total_population,3.2,34,,30–34
+21.02.04,3,Meral,age_group,35-39,laki_laki,2121,jiwa,2025,registration,total_population,3.2,34,,35–39
+21.02.04,3,Meral,age_group,35-39,perempuan,2141,jiwa,2025,registration,total_population,3.2,34,,35–39
+21.02.04,3,Meral,age_group,35-39,,4262,jiwa,2025,registration,total_population,3.2,34,,35–39
+21.02.04,3,Meral,age_group,40-44,laki_laki,2129,jiwa,2025,registration,total_population,3.2,34,,40–44
+21.02.04,3,Meral,age_group,40-44,perempuan,2160,jiwa,2025,registration,total_population,3.2,34,,40–44
+21.02.04,3,Meral,age_group,40-44,,4289,jiwa,2025,registration,total_population,3.2,34,,40–44
+21.02.04,3,Meral,age_group,45-49,laki_laki,2063,jiwa,2025,registration,total_population,3.2,34,,45–49
+21.02.04,3,Meral,age_group,45-49,perempuan,2001,jiwa,2025,registration,total_population,3.2,34,,45–49
+21.02.04,3,Meral,age_group,45-49,,4064,jiwa,2025,registration,total_population,3.2,34,,45–49
+21.02.04,3,Meral,age_group,50-54,laki_laki,1703,jiwa,2025,registration,total_population,3.2,34,,50–54
+21.02.04,3,Meral,age_group,50-54,perempuan,1550,jiwa,2025,registration,total_population,3.2,34,,50–54
+21.02.04,3,Meral,age_group,50-54,,3253,jiwa,2025,registration,total_population,3.2,34,,50–54
+21.02.04,3,Meral,age_group,55-59,laki_laki,1229,jiwa,2025,registration,total_population,3.2,34,,55–59
+21.02.04,3,Meral,age_group,55-59,perempuan,1118,jiwa,2025,registration,total_population,3.2,34,,55–59
+21.02.04,3,Meral,age_group,55-59,,2347,jiwa,2025,registration,total_population,3.2,34,,55–59
+21.02.04,3,Meral,age_group,60-64,laki_laki,976,jiwa,2025,registration,total_population,3.2,34,,60–64
+21.02.04,3,Meral,age_group,60-64,perempuan,900,jiwa,2025,registration,total_population,3.2,34,,60–64
+21.02.04,3,Meral,age_group,60-64,,1876,jiwa,2025,registration,total_population,3.2,34,,60–64
+21.02.04,3,Meral,age_group,65-69,laki_laki,652,jiwa,2025,registration,total_population,3.2,34,,65–69
+21.02.04,3,Meral,age_group,65-69,perempuan,677,jiwa,2025,registration,total_population,3.2,34,,65–69
+21.02.04,3,Meral,age_group,65-69,,1329,jiwa,2025,registration,total_population,3.2,34,,65–69
+21.02.04,3,Meral,age_group,70-74,laki_laki,406,jiwa,2025,registration,total_population,3.2,34,,70–74
+21.02.04,3,Meral,age_group,70-74,perempuan,414,jiwa,2025,registration,total_population,3.2,34,,70–74
+21.02.04,3,Meral,age_group,70-74,,820,jiwa,2025,registration,total_population,3.2,34,,70–74
+21.02.04,3,Meral,age_group,75+,laki_laki,312,jiwa,2025,registration,total_population,3.2,34,,75+
+21.02.04,3,Meral,age_group,75+,perempuan,492,jiwa,2025,registration,total_population,3.2,34,,75+
+21.02.04,3,Meral,age_group,75+,,804,jiwa,2025,registration,total_population,3.2,34,,75+
+21.02.04,3,Meral,sex,laki_laki,,28456,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+21.02.04,3,Meral,sex,perempuan,,27039,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+21.02.04,3,Meral,total,total,,55495,jiwa,2025,registration,total_population,3.2,34,,

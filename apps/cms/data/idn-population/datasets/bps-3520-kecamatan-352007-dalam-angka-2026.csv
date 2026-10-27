@@ -1,0 +1,65 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.20.07.2001,4,Ngancar,sex,perempuan,,1143,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.07.2001,4,Ngancar,total,total,,2277,jiwa,2025,registration,total_population,3.1,29,,
+35.20.07.2002,4,Plumpung,sex,perempuan,,1746,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.07.2002,4,Plumpung,total,total,,3523,jiwa,2025,registration,total_population,3.1,29,,
+35.20.07.2003,4,Puntukdoro,sex,perempuan,,2107,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.07.2003,4,Puntukdoro,total,total,,4294,jiwa,2025,registration,total_population,3.1,29,,
+35.20.07.2004,4,Bulugunung,sex,perempuan,,2364,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.07.2004,4,Bulugunung,total,total,,4793,jiwa,2025,registration,total_population,3.1,29,,
+35.20.07.2005,4,Bogoarum,sex,perempuan,,1375,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.07.2005,4,Bogoarum,total,total,,2659,jiwa,2025,registration,total_population,3.1,29,,
+35.20.07.2006,4,Randugede,sex,perempuan,,1158,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.07.2006,4,Randugede,total,total,,2276,jiwa,2025,registration,total_population,3.1,29,,
+35.20.07.2007,4,Sumberagung,sex,perempuan,,1333,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.07.2007,4,Sumberagung,total,total,,2574,jiwa,2025,registration,total_population,3.1,29,,
+35.20.07.2008,4,Nitikan,sex,perempuan,,849,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.07.2008,4,Nitikan,total,total,,1731,jiwa,2025,registration,total_population,3.1,29,,
+35.20.07.2009,4,Sidomukti,sex,perempuan,,1577,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.07.2009,4,Sidomukti,total,total,,3152,jiwa,2025,registration,total_population,3.1,29,,
+35.20.07.2010,4,Buluharjo,sex,perempuan,,2075,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.07.2010,4,Buluharjo,total,total,,4229,jiwa,2025,registration,total_population,3.1,29,,
+35.20.07.1011,4,Plaosan,sex,perempuan,,2996,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.07.1011,4,Plaosan,total,total,,5946,jiwa,2025,registration,total_population,3.1,29,,
+35.20.07.2012,4,Dadi,sex,perempuan,,2542,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.07.2012,4,Dadi,total,total,,5108,jiwa,2025,registration,total_population,3.1,29,,
+35.20.07.1013,4,Sarangan,sex,perempuan,,1887,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.07.1013,4,Sarangan,total,total,,3667,jiwa,2025,registration,total_population,3.1,29,,
+35.20.07.2015,4,Sendangagung,sex,perempuan,,902,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.07.2015,4,Sendangagung,total,total,,1826,jiwa,2025,registration,total_population,3.1,29,,
+35.20.07,3,Kecamatan Plaosan,sex,perempuan,,26573,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+35.20.07,3,Kecamatan Plaosan,total,total,,53133,jiwa,2025,registration,total_population,3.1,29,,
+35.20.07,3,Plaosan,age_group,0-4,perempuan,1314,jiwa,2025,registration,total_population,3.3,32,,0 – 4
+35.20.07,3,Plaosan,age_group,0-4,,2815,jiwa,2025,registration,total_population,3.3,32,,0 – 4
+35.20.07,3,Plaosan,age_group,5-9,perempuan,1695,jiwa,2025,registration,total_population,3.3,32,,5–9
+35.20.07,3,Plaosan,age_group,5-9,,3544,jiwa,2025,registration,total_population,3.3,32,,5–9
+35.20.07,3,Plaosan,age_group,10-14,perempuan,1752,jiwa,2025,registration,total_population,3.3,32,,10–14
+35.20.07,3,Plaosan,age_group,10-14,,3616,jiwa,2025,registration,total_population,3.3,32,,10–14
+35.20.07,3,Plaosan,age_group,15-19,perempuan,1783,jiwa,2025,registration,total_population,3.3,32,,15–19
+35.20.07,3,Plaosan,age_group,15-19,,3684,jiwa,2025,registration,total_population,3.3,32,,15–19
+35.20.07,3,Plaosan,age_group,20-24,perempuan,1787,jiwa,2025,registration,total_population,3.3,32,,20–24
+35.20.07,3,Plaosan,age_group,20-24,,3674,jiwa,2025,registration,total_population,3.3,32,,20–24
+35.20.07,3,Plaosan,age_group,25-29,perempuan,1746,jiwa,2025,registration,total_population,3.3,32,,25–29
+35.20.07,3,Plaosan,age_group,25-29,,3463,jiwa,2025,registration,total_population,3.3,32,,25–29
+35.20.07,3,Plaosan,age_group,30-34,perempuan,1769,jiwa,2025,registration,total_population,3.3,32,,30–34
+35.20.07,3,Plaosan,age_group,30-34,,3499,jiwa,2025,registration,total_population,3.3,32,,30–34
+35.20.07,3,Plaosan,age_group,35-39,perempuan,1729,jiwa,2025,registration,total_population,3.3,32,,35–39
+35.20.07,3,Plaosan,age_group,35-39,,3561,jiwa,2025,registration,total_population,3.3,32,,35–39
+35.20.07,3,Plaosan,age_group,40-44,perempuan,2059,jiwa,2025,registration,total_population,3.3,32,,40–44
+35.20.07,3,Plaosan,age_group,40-44,,4149,jiwa,2025,registration,total_population,3.3,32,,40–44
+35.20.07,3,Plaosan,age_group,45-49,perempuan,1769,jiwa,2025,registration,total_population,3.3,32,,45–49
+35.20.07,3,Plaosan,age_group,45-49,,3623,jiwa,2025,registration,total_population,3.3,32,,45–49
+35.20.07,3,Plaosan,age_group,50-54,perempuan,1792,jiwa,2025,registration,total_population,3.3,32,,50–54
+35.20.07,3,Plaosan,age_group,50-54,,3476,jiwa,2025,registration,total_population,3.3,32,,50–54
+35.20.07,3,Plaosan,age_group,55-59,perempuan,1754,jiwa,2025,registration,total_population,3.3,32,,55–59
+35.20.07,3,Plaosan,age_group,55-59,,3470,jiwa,2025,registration,total_population,3.3,32,,55–59
+35.20.07,3,Plaosan,age_group,60-64,perempuan,1613,jiwa,2025,registration,total_population,3.3,32,,60–64
+35.20.07,3,Plaosan,age_group,60-64,,3146,jiwa,2025,registration,total_population,3.3,32,,60–64
+35.20.07,3,Plaosan,age_group,65-69,perempuan,1571,jiwa,2025,registration,total_population,3.3,32,,65–69
+35.20.07,3,Plaosan,age_group,65-69,,2989,jiwa,2025,registration,total_population,3.3,32,,65–69
+35.20.07,3,Plaosan,age_group,70-74,perempuan,928,jiwa,2025,registration,total_population,3.3,32,,70–74
+35.20.07,3,Plaosan,age_group,70-74,,1848,jiwa,2025,registration,total_population,3.3,32,,70–74
+35.20.07,3,Plaosan,age_group,75+,perempuan,1512,jiwa,2025,registration,total_population,3.3,32,,75 +
+35.20.07,3,Plaosan,age_group,75+,,2576,jiwa,2025,registration,total_population,3.3,32,,75 +
+35.20.07,3,Kecamatan Plaosan,sex,perempuan,,26573,jiwa,2025,registration,total_population,3.3,32,,Perempuan
+35.20.07,3,Kecamatan Plaosan,total,total,,53133,jiwa,2025,registration,total_population,3.3,32,,

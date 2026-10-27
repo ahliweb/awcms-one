@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.16.06.2001,4,Temengeng,sex,laki_laki,,1189,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.16.06.2001,4,Temengeng,sex,perempuan,,1145,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+33.16.06.2001,4,Temengeng,total,total,,2334,jiwa,2025,registration,total_population,3.1,32,,
+33.16.06.2002,4,Sambongrejo,sex,laki_laki,,1730,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.16.06.2002,4,Sambongrejo,sex,perempuan,,1832,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+33.16.06.2002,4,Sambongrejo,total,total,,3562,jiwa,2025,registration,total_population,3.1,32,,
+33.16.06.2003,4,Gadu,sex,laki_laki,,2110,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.16.06.2003,4,Gadu,sex,perempuan,,2163,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+33.16.06.2003,4,Gadu,total,total,,4273,jiwa,2025,registration,total_population,3.1,32,,
+33.16.06.2004,4,Sambong,sex,laki_laki,,1346,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.16.06.2004,4,Sambong,sex,perempuan,,1360,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+33.16.06.2004,4,Sambong,total,total,,2706,jiwa,2025,registration,total_population,3.1,32,,
+33.16.06.2005,4,Pojokwatu,sex,laki_laki,,1752,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.16.06.2005,4,Pojokwatu,sex,perempuan,,1751,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+33.16.06.2005,4,Pojokwatu,total,total,,3503,jiwa,2025,registration,total_population,3.1,32,,
+33.16.06.2006,4,Gagakan,sex,laki_laki,,966,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.16.06.2006,4,Gagakan,sex,perempuan,,921,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+33.16.06.2006,4,Gagakan,total,total,,1887,jiwa,2025,registration,total_population,3.1,32,,
+33.16.06.2007,4,Biting,sex,laki_laki,,1322,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.16.06.2007,4,Biting,sex,perempuan,,1307,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+33.16.06.2007,4,Biting,total,total,,2629,jiwa,2025,registration,total_population,3.1,32,,
+33.16.06.2008,4,Brabowan,sex,laki_laki,,1246,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.16.06.2008,4,Brabowan,sex,perempuan,,1224,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+33.16.06.2008,4,Brabowan,total,total,,2470,jiwa,2025,registration,total_population,3.1,32,,
+33.16.06.2009,4,Ledok,sex,laki_laki,,1587,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.16.06.2009,4,Ledok,sex,perempuan,,1622,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+33.16.06.2009,4,Ledok,total,total,,3209,jiwa,2025,registration,total_population,3.1,32,,
+33.16.06.2010,4,Giyanti,sex,laki_laki,,1243,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.16.06.2010,4,Giyanti,sex,perempuan,,1232,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+33.16.06.2010,4,Giyanti,total,total,,2475,jiwa,2025,registration,total_population,3.1,32,,
+33.16.06,3,Kecamatan Sambong,sex,laki_laki,,14491,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.16.06,3,Kecamatan Sambong,sex,perempuan,,14557,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+33.16.06,3,Kecamatan Sambong,total,total,,29048,jiwa,2025,registration,total_population,3.1,32,,

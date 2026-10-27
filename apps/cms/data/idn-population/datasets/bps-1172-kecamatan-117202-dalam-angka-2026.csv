@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.72.02.2004,4,Jaboi,sex,laki_laki,,445,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+11.72.02.2004,4,Jaboi,sex,perempuan,,420,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Female
+11.72.02.2004,4,Jaboi,total,total,,865,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+11.72.02.2005,4,Balohan,sex,laki_laki,,1966,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+11.72.02.2005,4,Balohan,sex,perempuan,,1939,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Female
+11.72.02.2005,4,Balohan,total,total,,3905,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+11.72.02.2006,4,Cot Abeuk,sex,laki_laki,,606,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+11.72.02.2006,4,Cot Abeuk,sex,perempuan,,614,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Female
+11.72.02.2006,4,Cot Abeuk,total,total,,1220,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+11.72.02.2007,4,Cot Ba’u,sex,laki_laki,,3931,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+11.72.02.2007,4,Cot Ba’u,sex,perempuan,,4030,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Female
+11.72.02.2007,4,Cot Ba’u,total,total,,7961,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+11.72.02.2008,4,Ie Meulee,sex,laki_laki,,2493,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+11.72.02.2008,4,Ie Meulee,sex,perempuan,,2460,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Female
+11.72.02.2008,4,Ie Meulee,total,total,,4953,jiwa,2025,registration,total_population,unnumbered-p16,16,,
+11.72.02,3,Sukajaya,sex,laki_laki,,6774,jiwa,2025,registration,total_population,unnumbered-p16,16,,Laki-Laki/Male
+11.72.02,3,Sukajaya,sex,perempuan,,6668,jiwa,2025,registration,total_population,unnumbered-p16,16,,Perempuan/Female
+11.72.02,3,Sukajaya,total,total,,13442,jiwa,2025,registration,total_population,unnumbered-p16,16,,

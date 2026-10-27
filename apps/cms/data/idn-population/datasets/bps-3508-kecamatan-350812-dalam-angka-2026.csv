@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.08.12.2001,4,Purworejo,sex,laki_laki,,2466,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.12.2001,4,Purworejo,sex,perempuan,,2495,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.12.2001,4,Purworejo,total,total,,4961,jiwa,2025,registration,total_population,3.1,31,,
+35.08.12.2002,4,Sarikemuning,sex,laki_laki,,1530,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.12.2002,4,Sarikemuning,sex,perempuan,,1501,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.12.2002,4,Sarikemuning,total,total,,3031,jiwa,2025,registration,total_population,3.1,31,,
+35.08.12.2003,4,Pandansari,sex,laki_laki,,2561,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.12.2003,4,Pandansari,sex,perempuan,,2615,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.12.2003,4,Pandansari,total,total,,5176,jiwa,2025,registration,total_population,3.1,31,,
+35.08.12.2004,4,Senduro,sex,laki_laki,,3546,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.12.2004,4,Senduro,sex,perempuan,,3524,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.12.2004,4,Senduro,total,total,,7070,jiwa,2025,registration,total_population,3.1,31,,
+35.08.12.2005,4,Burno,sex,laki_laki,,2636,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.12.2005,4,Burno,sex,perempuan,,2528,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.12.2005,4,Burno,total,total,,5164,jiwa,2025,registration,total_population,3.1,31,,
+35.08.12.2006,4,Kandangtepus,sex,laki_laki,,4963,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.12.2006,4,Kandangtepus,sex,perempuan,,4812,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.12.2006,4,Kandangtepus,total,total,,9775,jiwa,2025,registration,total_population,3.1,31,,
+35.08.12.2007,4,Kandangan,sex,laki_laki,,2258,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.12.2007,4,Kandangan,sex,perempuan,,2292,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.12.2007,4,Kandangan,total,total,,4550,jiwa,2025,registration,total_population,3.1,31,,
+35.08.12.2008,4,Bedayu,sex,laki_laki,,1010,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.12.2008,4,Bedayu,sex,perempuan,,1082,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.12.2008,4,Bedayu,total,total,,2092,jiwa,2025,registration,total_population,3.1,31,,
+35.08.12.2009,4,Bedayutalang,sex,laki_laki,,806,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.12.2009,4,Bedayutalang,sex,perempuan,,848,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.12.2009,4,Bedayutalang,total,total,,1654,jiwa,2025,registration,total_population,3.1,31,,
+35.08.12.2010,4,Wonocepokoayu,sex,laki_laki,,1357,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.12.2010,4,Wonocepokoayu,sex,perempuan,,1347,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.12.2010,4,Wonocepokoayu,total,total,,2704,jiwa,2025,registration,total_population,3.1,31,,
+35.08.12.2011,4,Argosari,sex,laki_laki,,1757,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.12.2011,4,Argosari,sex,perempuan,,1704,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.12.2011,4,Argosari,total,total,,3461,jiwa,2025,registration,total_population,3.1,31,,
+35.08.12.2012,4,Ranupani,sex,laki_laki,,771,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.12.2012,4,Ranupani,sex,perempuan,,779,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.12.2012,4,Ranupani,total,total,,1550,jiwa,2025,registration,total_population,3.1,31,,
+35.08.12,3,Kecamatan Senduro,sex,laki_laki,,25661,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+35.08.12,3,Kecamatan Senduro,sex,perempuan,,25527,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+35.08.12,3,Kecamatan Senduro,total,total,,51188,jiwa,2025,registration,total_population,3.1,31,,

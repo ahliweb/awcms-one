@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.03.30.2002,4,Lebak Wangi,sex,laki_laki,,16300,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.30.2002,4,Lebak Wangi,sex,perempuan,,15156,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.30.2002,4,Lebak Wangi,total,total,,31456,jiwa,2025,registration,total_population,3.1,25,,
+36.03.30.2001,4,Kedaung Barat,sex,laki_laki,,7023,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.30.2001,4,Kedaung Barat,sex,perempuan,,6594,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.30.2001,4,Kedaung Barat,total,total,,13617,jiwa,2025,registration,total_population,3.1,25,,
+36.03.30.2003,4,Jati Mulya,sex,laki_laki,,5706,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.30.2003,4,Jati Mulya,sex,perempuan,,5229,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.30.2003,4,Jati Mulya,total,total,,10935,jiwa,2025,registration,total_population,3.1,25,,
+36.03.30.2008,4,Tanah Merah,sex,laki_laki,,5576,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.30.2008,4,Tanah Merah,sex,perempuan,,5348,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.30.2008,4,Tanah Merah,total,total,,10924,jiwa,2025,registration,total_population,3.1,25,,
+36.03.30.2004,4,Sangiang,sex,laki_laki,,5459,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.30.2004,4,Sangiang,sex,perempuan,,5141,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.30.2004,4,Sangiang,total,total,,10600,jiwa,2025,registration,total_population,3.1,25,,
+36.03.30.2005,4,Gempol Sari,sex,laki_laki,,9037,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.30.2005,4,Gempol Sari,sex,perempuan,,8517,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.30.2005,4,Gempol Sari,total,total,,17554,jiwa,2025,registration,total_population,3.1,25,,
+36.03.30.2007,4,Pondok Kelor,sex,laki_laki,,4869,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.30.2007,4,Pondok Kelor,sex,perempuan,,4568,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.30.2007,4,Pondok Kelor,total,total,,9437,jiwa,2025,registration,total_population,3.1,25,,
+36.03.30.2006,4,Kampung Kelor,sex,laki_laki,,5457,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.30.2006,4,Kampung Kelor,sex,perempuan,,5128,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.30.2006,4,Kampung Kelor,total,total,,10585,jiwa,2025,registration,total_population,3.1,25,,
+36.03.30,3,Kecamatan Sepatan Timur,sex,laki_laki,,59427,jiwa,2025,registration,total_population,3.1,25,,Laki-Laki/Male
+36.03.30,3,Kecamatan Sepatan Timur,sex,perempuan,,55681,jiwa,2025,registration,total_population,3.1,25,,Perempuan/Female
+36.03.30,3,Kecamatan Sepatan Timur,total,total,,115108,jiwa,2025,registration,total_population,3.1,25,,
+36.03.30,3,Sepatan Timur,age_group,0-4,laki_laki,4267,jiwa,2025,registration,total_population,3.2,27,,00-04
+36.03.30,3,Sepatan Timur,age_group,0-4,perempuan,3855,jiwa,2025,registration,total_population,3.2,27,,00-04
+36.03.30,3,Sepatan Timur,age_group,0-4,,8122,jiwa,2025,registration,total_population,3.2,27,,00-04
+36.03.30,3,Sepatan Timur,age_group,5-9,laki_laki,5843,jiwa,2025,registration,total_population,3.2,27,,05-09
+36.03.30,3,Sepatan Timur,age_group,5-9,perempuan,5368,jiwa,2025,registration,total_population,3.2,27,,05-09
+36.03.30,3,Sepatan Timur,age_group,5-9,,11211,jiwa,2025,registration,total_population,3.2,27,,05-09
+36.03.30,3,Sepatan Timur,age_group,10-14,laki_laki,5559,jiwa,2025,registration,total_population,3.2,27,,10-14
+36.03.30,3,Sepatan Timur,age_group,10-14,perempuan,5133,jiwa,2025,registration,total_population,3.2,27,,10-14
+36.03.30,3,Sepatan Timur,age_group,10-14,,10692,jiwa,2025,registration,total_population,3.2,27,,10-14
+36.03.30,3,Sepatan Timur,age_group,15-19,laki_laki,4400,jiwa,2025,registration,total_population,3.2,27,,15-19
+36.03.30,3,Sepatan Timur,age_group,15-19,perempuan,3992,jiwa,2025,registration,total_population,3.2,27,,15-19
+36.03.30,3,Sepatan Timur,age_group,15-19,,8392,jiwa,2025,registration,total_population,3.2,27,,15-19
+36.03.30,3,Sepatan Timur,age_group,20-24,laki_laki,4164,jiwa,2025,registration,total_population,3.2,27,,20-24
+36.03.30,3,Sepatan Timur,age_group,20-24,perempuan,3994,jiwa,2025,registration,total_population,3.2,27,,20-24
+36.03.30,3,Sepatan Timur,age_group,20-24,,8158,jiwa,2025,registration,total_population,3.2,27,,20-24
+36.03.30,3,Sepatan Timur,age_group,25-29,laki_laki,4693,jiwa,2025,registration,total_population,3.2,27,,25-29
+36.03.30,3,Sepatan Timur,age_group,25-29,perempuan,4568,jiwa,2025,registration,total_population,3.2,27,,25-29
+36.03.30,3,Sepatan Timur,age_group,25-29,,9261,jiwa,2025,registration,total_population,3.2,27,,25-29
+36.03.30,3,Sepatan Timur,age_group,30-34,laki_laki,5531,jiwa,2025,registration,total_population,3.2,27,,30-34
+36.03.30,3,Sepatan Timur,age_group,30-34,perempuan,5127,jiwa,2025,registration,total_population,3.2,27,,30-34
+36.03.30,3,Sepatan Timur,age_group,30-34,,10658,jiwa,2025,registration,total_population,3.2,27,,30-34
+36.03.30,3,Sepatan Timur,age_group,35-39,laki_laki,5644,jiwa,2025,registration,total_population,3.2,27,,35-39
+36.03.30,3,Sepatan Timur,age_group,35-39,perempuan,5095,jiwa,2025,registration,total_population,3.2,27,,35-39
+36.03.30,3,Sepatan Timur,age_group,35-39,,10739,jiwa,2025,registration,total_population,3.2,27,,35-39
+36.03.30,3,Sepatan Timur,age_group,40-44,laki_laki,4939,jiwa,2025,registration,total_population,3.2,27,,40-44
+36.03.30,3,Sepatan Timur,age_group,40-44,perempuan,4629,jiwa,2025,registration,total_population,3.2,27,,40-44
+36.03.30,3,Sepatan Timur,age_group,40-44,,9568,jiwa,2025,registration,total_population,3.2,27,,40-44
+36.03.30,3,Sepatan Timur,age_group,45-49,laki_laki,4083,jiwa,2025,registration,total_population,3.2,27,,45-49
+36.03.30,3,Sepatan Timur,age_group,45-49,perempuan,3947,jiwa,2025,registration,total_population,3.2,27,,45-49
+36.03.30,3,Sepatan Timur,age_group,45-49,,8030,jiwa,2025,registration,total_population,3.2,27,,45-49
+36.03.30,3,Sepatan Timur,age_group,50-54,laki_laki,3054,jiwa,2025,registration,total_population,3.2,27,,50-54
+36.03.30,3,Sepatan Timur,age_group,50-54,perempuan,3006,jiwa,2025,registration,total_population,3.2,27,,50-54
+36.03.30,3,Sepatan Timur,age_group,50-54,,6060,jiwa,2025,registration,total_population,3.2,27,,50-54
+36.03.30,3,Sepatan Timur,age_group,55-59,laki_laki,2614,jiwa,2025,registration,total_population,3.2,27,,55-59
+36.03.30,3,Sepatan Timur,age_group,55-59,perempuan,2517,jiwa,2025,registration,total_population,3.2,27,,55-59
+36.03.30,3,Sepatan Timur,age_group,55-59,,5131,jiwa,2025,registration,total_population,3.2,27,,55-59
+36.03.30,3,Sepatan Timur,age_group,60-64,laki_laki,1863,jiwa,2025,registration,total_population,3.2,27,,60-64
+36.03.30,3,Sepatan Timur,age_group,60-64,perempuan,1761,jiwa,2025,registration,total_population,3.2,27,,60-64
+36.03.30,3,Sepatan Timur,age_group,60-64,,3624,jiwa,2025,registration,total_population,3.2,27,,60-64
+36.03.30,3,Sepatan Timur,age_group,65-69,laki_laki,1405,jiwa,2025,registration,total_population,3.2,27,,65-69
+36.03.30,3,Sepatan Timur,age_group,65-69,perempuan,1333,jiwa,2025,registration,total_population,3.2,27,,65-69
+36.03.30,3,Sepatan Timur,age_group,65-69,,2738,jiwa,2025,registration,total_population,3.2,27,,65-69
+36.03.30,3,Sepatan Timur,age_group,70-74,laki_laki,703,jiwa,2025,registration,total_population,3.2,27,,70-74
+36.03.30,3,Sepatan Timur,age_group,70-74,perempuan,584,jiwa,2025,registration,total_population,3.2,27,,70-74
+36.03.30,3,Sepatan Timur,age_group,70-74,,1287,jiwa,2025,registration,total_population,3.2,27,,70-74
+36.03.30,3,Sepatan Timur,age_group,75+,laki_laki,665,jiwa,2025,registration,total_population,3.2,27,,>75
+36.03.30,3,Sepatan Timur,age_group,75+,perempuan,772,jiwa,2025,registration,total_population,3.2,27,,>75
+36.03.30,3,Sepatan Timur,age_group,75+,,1437,jiwa,2025,registration,total_population,3.2,27,,>75
+36.03.30,3,Kecamatan Sepatan Timur,sex,laki_laki,,59427,jiwa,2025,registration,total_population,3.2,27,,Laki-Laki
+36.03.30,3,Kecamatan Sepatan Timur,sex,perempuan,,55681,jiwa,2025,registration,total_population,3.2,27,,Perempuan
+36.03.30,3,Kecamatan Sepatan Timur,total,total,,115108,jiwa,2025,registration,total_population,3.2,27,,

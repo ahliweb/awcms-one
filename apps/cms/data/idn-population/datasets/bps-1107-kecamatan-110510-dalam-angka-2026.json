@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-1107-kecamatan-110510-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "11.05.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Woyla Barat Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Aceh Barat",
+  "publisherDomain": "1107",
+  "publisherWebsite": "https://acehbaratkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Aceh Barat (https://acehbaratkab.bps.go.id), publikasi \"Kecamatan Woyla Barat Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1107071",
+  "publicationNumber": "11070.26010",
+  "issn": "2580-1570",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://acehbaratkab.bps.go.id/id/publication/2026/09/28/f49c7f8a7172f061ad0c6799/kecamatan-woyla-barat-dalam-angka-2026.html",
+  "sourceFileSha256": "5405c2260756ae038c3eb0778216282b79438611f70a8c13bac3eb43bb893df3",
+  "sourceFileBytes": 21744965,
+  "sourcePages": [33, 34, 35, 36, 37],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Aceh Barat.",
+  "csvPath": "datasets/bps-1107-kecamatan-110510-dalam-angka-2026.csv",
+  "csvSha256": "f97878fc95edaf236335f917046cd898d406b1470af6d3e09d2d8f6a08f30545",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Gampong di Kecamatan Woyla Barat, 2025",
+      "printedPages": [33, 34, 35, 36],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Woyla Barat, 2025",
+      "printedPages": [37],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

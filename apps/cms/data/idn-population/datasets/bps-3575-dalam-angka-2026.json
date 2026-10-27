@@ -1,0 +1,52 @@
+{
+  "datasetCode": "bps-3575-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "35.75",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kota Pasuruan Dalam Angka 2026",
+  "publisherName": "BPS Kota Pasuruan BPS-Statistics Pasuruan Municipality Sumber Ilustrasi",
+  "publisherDomain": "3575",
+  "publisherWebsite": "https://pasuruankota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Pasuruan BPS-Statistics Pasuruan Municipality Sumber Ilustrasi (https://pasuruankota.bps.go.id), publikasi \"Kota Pasuruan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3575",
+  "publicationNumber": "35750.26002",
+  "issn": "3110-6196",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://pasuruankota.bps.go.id/id/publication/2026/02/27/9518b70e50374f4544a4ed60/kota-pasuruan-dalam-angka-2026.html",
+  "sourceFileSha256": "910c02c87f0dc98ae4652fec7de9b971a5de1b47d82c08b9242d3fa65247687c",
+  "sourceFileBytes": 11358888,
+  "sourcePages": [53, 140],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Pasuruan.",
+  "csvPath": "datasets/bps-3575-dalam-angka-2026.csv",
+  "csvSha256": "1c87f82e99ffd3e104e126e419fa6bf3a007ffabde5a1d44b0b14b7abe8a2e82",
+  "tablesUsed": [
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kota Pasuruan, 2025",
+      "printedPages": [53],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.3.1",
+      "title": "Jumlah Penduduk Menurut Kecamatan dan Agama yang Dianut di Kota Pasuruan, 2025",
+      "printedPages": [140],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication",
+    "table 3.1.1 (total-by-region) could not be read reliably and is not included (heading says jiwa but only some figures carry decimals)",
+    "table 3.1.2: the rows of region 35.75 are not stored: age_group (laki_laki) vs sex value: parts sum 107033.0000 != 107013.0000 (diff 20.0000); the source itself is inconsistent"
+  ]
+}

@@ -1,0 +1,19 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.14.15.2005,4,Parungbanteng,sex,laki_laki,,1542,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.15.2005,4,Parungbanteng,sex,perempuan,,1461,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.15.2005,4,Parungbanteng,total,total,,3003,jiwa,2025,registration,total_population,3.1,22,,
+32.14.15.2004,4,Sukasari,sex,laki_laki,,2190,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.15.2004,4,Sukasari,sex,perempuan,,2110,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.15.2004,4,Sukasari,total,total,,4300,jiwa,2025,registration,total_population,3.1,22,,
+32.14.15.2003,4,Ciririp,sex,laki_laki,,2179,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.15.2003,4,Ciririp,sex,perempuan,,2002,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.15.2003,4,Ciririp,total,total,,4181,jiwa,2025,registration,total_population,3.1,22,,
+32.14.15.2002,4,Kertamanah,sex,laki_laki,,1665,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.15.2002,4,Kertamanah,sex,perempuan,,1605,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.15.2002,4,Kertamanah,total,total,,3270,jiwa,2025,registration,total_population,3.1,22,,
+32.14.15.2001,4,Kutamanah,sex,laki_laki,,2300,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.15.2001,4,Kutamanah,sex,perempuan,,2149,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.15.2001,4,Kutamanah,total,total,,4449,jiwa,2025,registration,total_population,3.1,22,,
+32.14.15,3,Kecamatan Sukasari,sex,laki_laki,,9876,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.15,3,Kecamatan Sukasari,sex,perempuan,,9327,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.15,3,Kecamatan Sukasari,total,total,,19203,jiwa,2025,registration,total_population,3.1,22,,

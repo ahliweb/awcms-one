@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.14.13.2001,4,Ciwangi,sex,laki_laki,,5617,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.13.2001,4,Ciwangi,sex,perempuan,,5583,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.13.2001,4,Ciwangi,total,total,,11200,jiwa,2025,registration,total_population,3.1,22,,
+32.14.13.2002,4,Cibening,sex,laki_laki,,7886,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.13.2002,4,Cibening,sex,perempuan,,7847,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.13.2002,4,Cibening,total,total,,15733,jiwa,2025,registration,total_population,3.1,22,,
+32.14.13.2003,4,Bungursari,sex,laki_laki,,2080,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.13.2003,4,Bungursari,sex,perempuan,,2014,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.13.2003,4,Bungursari,total,total,,4094,jiwa,2025,registration,total_population,3.1,22,,
+32.14.13.2005,4,Cibungur,sex,laki_laki,,2397,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.13.2005,4,Cibungur,sex,perempuan,,2441,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.13.2005,4,Cibungur,total,total,,4838,jiwa,2025,registration,total_population,3.1,22,,
+32.14.13.2004,4,Dangdeur,sex,laki_laki,,1480,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.13.2004,4,Dangdeur,sex,perempuan,,1505,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.13.2004,4,Dangdeur,total,total,,2985,jiwa,2025,registration,total_population,3.1,22,,
+32.14.13.2006,4,Wanakerta,sex,laki_laki,,2066,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.13.2006,4,Wanakerta,sex,perempuan,,2084,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.13.2006,4,Wanakerta,total,total,,4150,jiwa,2025,registration,total_population,3.1,22,,
+32.14.13.2007,4,Cinangka,sex,laki_laki,,2090,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.13.2007,4,Cinangka,sex,perempuan,,2095,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.13.2007,4,Cinangka,total,total,,4185,jiwa,2025,registration,total_population,3.1,22,,
+32.14.13.2008,4,Cikopo,sex,laki_laki,,4222,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.13.2008,4,Cikopo,sex,perempuan,,4293,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.13.2008,4,Cikopo,total,total,,8515,jiwa,2025,registration,total_population,3.1,22,,
+32.14.13.2010,4,Karangmukti,sex,laki_laki,,1594,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.13.2010,4,Karangmukti,sex,perempuan,,1523,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.13.2010,4,Karangmukti,total,total,,3117,jiwa,2025,registration,total_population,3.1,22,,
+32.14.13.2009,4,Cibodas,sex,laki_laki,,3575,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.13.2009,4,Cibodas,sex,perempuan,,3484,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.13.2009,4,Cibodas,total,total,,7059,jiwa,2025,registration,total_population,3.1,22,,
+32.14.13,3,Kecamatan Bungursari,sex,laki_laki,,33007,jiwa,2025,registration,total_population,3.1,22,,Laki-Laki/Male
+32.14.13,3,Kecamatan Bungursari,sex,perempuan,,32869,jiwa,2025,registration,total_population,3.1,22,,Perempuan/Female
+32.14.13,3,Kecamatan Bungursari,total,total,,65876,jiwa,2025,registration,total_population,3.1,22,,

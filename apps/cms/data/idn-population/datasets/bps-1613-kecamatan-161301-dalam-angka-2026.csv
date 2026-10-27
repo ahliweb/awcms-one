@@ -1,0 +1,58 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.13.01.2003,4,Batu Gajah,sex,laki_laki,,665,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.13.01.2003,4,Batu Gajah,sex,perempuan,,641,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.13.01.2003,4,Batu Gajah,total,total,,1306,jiwa,2025,registration,total_population,3.1,28,,
+16.13.01.2001,4,Tanjung Beringin,sex,laki_laki,,903,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.13.01.2001,4,Tanjung Beringin,sex,perempuan,,891,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.13.01.2001,4,Tanjung Beringin,total,total,,1794,jiwa,2025,registration,total_population,3.1,28,,
+16.13.01.2002,4,Noman,sex,laki_laki,,478,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.13.01.2002,4,Noman,sex,perempuan,,477,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.13.01.2002,4,Noman,total,total,,955,jiwa,2025,registration,total_population,3.1,28,,
+16.13.01.2016,4,Noman Baru,sex,laki_laki,,1343,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.13.01.2016,4,Noman Baru,sex,perempuan,,1338,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.13.01.2016,4,Noman Baru,total,total,,2681,jiwa,2025,registration,total_population,3.1,28,,
+16.13.01.2017,4,Batu Gajah Baru,sex,laki_laki,,741,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.13.01.2017,4,Batu Gajah Baru,sex,perempuan,,755,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.13.01.2017,4,Batu Gajah Baru,total,total,,1496,jiwa,2025,registration,total_population,3.1,28,,
+16.13.01.2005,4,Maur Baru,sex,laki_laki,,1294,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.13.01.2005,4,Maur Baru,sex,perempuan,,1228,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.13.01.2005,4,Maur Baru,total,total,,2522,jiwa,2025,registration,total_population,3.1,28,,
+16.13.01.2004,4,Maur Lama,sex,laki_laki,,938,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.13.01.2004,4,Maur Lama,sex,perempuan,,966,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.13.01.2004,4,Maur Lama,total,total,,1904,jiwa,2025,registration,total_population,3.1,28,,
+16.13.01.2006,4,Bingin Rupit,sex,laki_laki,,1204,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.13.01.2006,4,Bingin Rupit,sex,perempuan,,1174,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.13.01.2006,4,Bingin Rupit,total,total,,2378,jiwa,2025,registration,total_population,3.1,28,,
+16.13.01.2014,4,Beringin jaya,sex,laki_laki,,870,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.13.01.2014,4,Beringin jaya,sex,perempuan,,816,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.13.01.2014,4,Beringin jaya,total,total,,1686,jiwa,2025,registration,total_population,3.1,28,,
+16.13.01.2012,4,Karang Anyar,sex,laki_laki,,1496,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.13.01.2012,4,Karang Anyar,sex,perempuan,,1475,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.13.01.2012,4,Karang Anyar,total,total,,2971,jiwa,2025,registration,total_population,3.1,28,,
+16.13.01.2011,4,Karang Waru,sex,laki_laki,,623,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.13.01.2011,4,Karang Waru,sex,perempuan,,639,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.13.01.2011,4,Karang Waru,total,total,,1262,jiwa,2025,registration,total_population,3.1,28,,
+16.13.01.2010,4,Lawang Agung,sex,laki_laki,,3412,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.13.01.2010,4,Lawang Agung,sex,perempuan,,3346,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.13.01.2010,4,Lawang Agung,total,total,,6758,jiwa,2025,registration,total_population,3.1,28,,
+16.13.01.2008,4,Lubuk Rumbai,sex,laki_laki,,923,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.13.01.2008,4,Lubuk Rumbai,sex,perempuan,,904,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.13.01.2008,4,Lubuk Rumbai,total,total,,1827,jiwa,2025,registration,total_population,3.1,28,,
+16.13.01.2015,4,Lubuk Rumbai Baru,sex,laki_laki,,557,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.13.01.2015,4,Lubuk Rumbai Baru,sex,perempuan,,537,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.13.01.2015,4,Lubuk Rumbai Baru,total,total,,1094,jiwa,2025,registration,total_population,3.1,28,,
+16.13.01.2013,4,Sungai Jernih,sex,laki_laki,,919,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.13.01.2013,4,Sungai Jernih,sex,perempuan,,894,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.13.01.2013,4,Sungai Jernih,total,total,,1813,jiwa,2025,registration,total_population,3.1,28,,
+16.13.01.2009,4,Pantai,sex,laki_laki,,619,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.13.01.2009,4,Pantai,sex,perempuan,,599,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.13.01.2009,4,Pantai,total,total,,1218,jiwa,2025,registration,total_population,3.1,28,,
+16.13.01.1007,4,Muara Rupit,sex,laki_laki,,3292,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.13.01.1007,4,Muara Rupit,sex,perempuan,,3317,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.13.01.1007,4,Muara Rupit,total,total,,6609,jiwa,2025,registration,total_population,3.1,28,,
+16.13.01,3,Rupit,sex,laki_laki,,20277,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+16.13.01,3,Rupit,sex,perempuan,,19997,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+16.13.01,3,Rupit,total,total,,40274,jiwa,2025,registration,total_population,3.1,28,,
+16.13.01,3,Rupit,sex,laki_laki,,20277,jiwa,2025,registration,total_population,3.2,30,,Laki-Laki
+16.13.01,3,Rupit,sex,perempuan,,19997,jiwa,2025,registration,total_population,3.2,30,,Perempuan
+16.13.01,3,Rupit,total,total,,40274,jiwa,2025,registration,total_population,3.2,30,,

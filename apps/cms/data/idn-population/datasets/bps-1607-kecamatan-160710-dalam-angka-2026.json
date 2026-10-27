@@ -1,0 +1,47 @@
+{
+  "datasetCode": "bps-1607-kecamatan-160710-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "16.07.10",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Talang Kelapa Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Banyuasin",
+  "publisherDomain": "1607",
+  "publisherWebsite": "https://banyuasinkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Banyuasin (https://banyuasinkab.bps.go.id), publikasi \"Kecamatan Talang Kelapa Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "16070.26013",
+  "issn": "3064-4968",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banyuasinkab.bps.go.id/id/publication/2026/09/28/73b95720a55ecbdec09931bc/kecamatan-talang-kelapa-dalam-angka-2026.html",
+  "sourceFileSha256": "0dc1626595a6ef33b3a36f316f478f0e7c8f1c3f020920fbba0104376f607482",
+  "sourceFileBytes": 13183265,
+  "sourcePages": [36, 37, 38],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Banyuasin.",
+  "csvPath": "datasets/bps-1607-kecamatan-160710-dalam-angka-2026.csv",
+  "csvSha256": "be6f3f7f3ff67a30a977c8f1f766ab0cf8bcf7dca2ed623d0ea15fdfd1cd51e6",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Talang Kelapa, 2026",
+      "printedPages": [36, 37],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Talang Kelapa, 2026",
+      "printedPages": [38],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sukamoro\": unmatched ",
+    "table 3.1: row not stored: row \"Sukamoro\": unmatched ",
+    "table 3.2: the rows of region 16.07.10 are not stored: sex split vs total: parts sum 165931.0000 != 159632.0000 (diff 6299.0000); the source itself is inconsistent"
+  ]
+}

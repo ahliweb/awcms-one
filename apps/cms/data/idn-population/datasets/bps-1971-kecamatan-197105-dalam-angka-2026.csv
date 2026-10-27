@@ -1,0 +1,22 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.71.05.1001,4,Taman Bunga,sex,laki_laki,,2879,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.71.05.1001,4,Taman Bunga,sex,perempuan,,2907,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.71.05.1001,4,Taman Bunga,total,total,,5786,jiwa,2025,registration,total_population,3.1,31,,
+19.71.05.1002,4,Bukit Merapen,sex,laki_laki,,5828,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.71.05.1002,4,Bukit Merapen,sex,perempuan,,5852,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.71.05.1002,4,Bukit Merapen,total,total,,11680,jiwa,2025,registration,total_population,3.1,31,,
+19.71.05.1004,4,Bukit Sari,sex,laki_laki,,2553,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.71.05.1004,4,Bukit Sari,sex,perempuan,,2515,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.71.05.1004,4,Bukit Sari,total,total,,5068,jiwa,2025,registration,total_population,3.1,31,,
+19.71.05.1005,4,Tua Tunu Indah,sex,laki_laki,,7571,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.71.05.1005,4,Tua Tunu Indah,sex,perempuan,,7071,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.71.05.1005,4,Tua Tunu Indah,total,total,,14642,jiwa,2025,registration,total_population,3.1,31,,
+19.71.05.1006,4,Kacang Pedang,sex,laki_laki,,4956,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.71.05.1006,4,Kacang Pedang,sex,perempuan,,4926,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.71.05.1006,4,Kacang Pedang,total,total,,9882,jiwa,2025,registration,total_population,3.1,31,,
+19.71.05.1007,4,Air Kepala Tujuh,sex,laki_laki,,5662,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.71.05.1007,4,Air Kepala Tujuh,sex,perempuan,,5531,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.71.05.1007,4,Air Kepala Tujuh,total,total,,11193,jiwa,2025,registration,total_population,3.1,31,,
+19.71.05,3,Gerunggang,sex,laki_laki,,29449,jiwa,2025,registration,total_population,3.1,31,,Laki-Laki/Male
+19.71.05,3,Gerunggang,sex,perempuan,,28802,jiwa,2025,registration,total_population,3.1,31,,Perempuan/Female
+19.71.05,3,Gerunggang,total,total,,58251,jiwa,2025,registration,total_population,3.1,31,,

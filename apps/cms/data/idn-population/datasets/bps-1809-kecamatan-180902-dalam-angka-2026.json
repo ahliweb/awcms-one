@@ -1,0 +1,61 @@
+{
+  "datasetCode": "bps-1809-kecamatan-180902-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "18.09.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Negeri Katon Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pesawaran",
+  "publisherDomain": "1809",
+  "publisherWebsite": "https://pesawarankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pesawaran (https://pesawarankab.bps.go.id), publikasi \"Kecamatan Negeri Katon Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1809060",
+  "publicationNumber": "18090.26012",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pesawarankab.bps.go.id/id/publication/2026/09/28/024eeb5b1111a9afc019ca8a/kecamatan-negeri-katon-dalam-angka-2026.html",
+  "sourceFileSha256": "420e9bb7041778c42ba64cc8f8141d1cd31690833586f7a13fb81aae9e0aa7f2",
+  "sourceFileBytes": 6765484,
+  "sourcePages": [30, 31, 32, 56, 57],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pesawaran.",
+  "csvPath": "datasets/bps-1809-kecamatan-180902-dalam-angka-2026.csv",
+  "csvSha256": "8afb4e3cdee60bb0f8a321edaf15383fb6b496e778d553f1ed0190dd47f0ec3c",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa di Kecamatan Negeri Katon, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Negeri Katon, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.4.3",
+      "title": "Jumlah Penduduk Menurut Desa dan Agama yang Dianut di Kecamatan Negeri Katon, 2025",
+      "printedPages": [56, 57],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "table 3.1: row not stored: row \"Trisno maju\": unmatched ",
+    "table 3.1: row not stored: row \"Trisno maju\": unmatched ",
+    "table 4.4.3: row not stored: row \"Trisno maju\": unmatched ",
+    "table 4.4.3: row not stored: row \"Trisno maju\": unmatched ",
+    "table 4.4.3: 1 figure(s) printed with ',' as a thousands mark (e.g. 1,180) in a table of whole persons; read as integers",
+    "table 3.2: the rows of region 18.09.02 are not stored: age_group (laki_laki) vs sex value: parts sum 40179.0000 != 43147.0000 (diff 2968.0000); the source itself is inconsistent",
+    "table 4.4.3: the rows of region 18.09.02.2004 are not stored: religion vs total: parts sum 3571.0000 != 3480.0000 (diff 91.0000); the source itself is inconsistent",
+    "table 4.4.3: the rows of region 18.09.02.2005 are not stored: religion vs total: parts sum 3567.0000 != 5367.0000 (diff 1800.0000); the source itself is inconsistent",
+    "table 4.4.3: the rows of region 18.09.02.2015 are not stored: religion vs total: parts sum 4429.0000 != 5472.0000 (diff 1043.0000); the source itself is inconsistent",
+    "table 4.4.3: the rows of region 18.09.02.2017 are not stored: religion vs total: parts sum 4069.0000 != 4429.0000 (diff 360.0000); the source itself is inconsistent"
+  ]
+}

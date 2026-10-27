@@ -1,0 +1,51 @@
+{
+  "datasetCode": "bps-1800-dalam-angka-2026",
+  "publicationSeries": "provinsi_dalam_angka",
+  "coverageRegionCode": "18",
+  "coverageRegionLevel": 1,
+  "publicationTitle": "Provinsi Lampung Dalam Angka 2026",
+  "publisherName": "BPS Provinsi Lampung",
+  "publisherDomain": "1800",
+  "publisherWebsite": "https://lampung.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Provinsi Lampung (https://lampung.bps.go.id), publikasi \"Provinsi Lampung Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.18",
+  "publicationNumber": "18000.26006",
+  "issn": "0303-1942",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://lampung.bps.go.id/id/publication/2026/02/27/71de40a96c9fb7130aae19e3/provinsi-lampung-dalam-angka-2026.html",
+  "sourceFileSha256": "e3905a14b68c8778306155f432a3b220e552f55cd661f1b2bfbfa9db5ea234ce",
+  "sourceFileBytes": 19915570,
+  "sourcePages": [92, 134],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Provinsi Lampung.",
+  "csvPath": "datasets/bps-1800-dalam-angka-2026.csv",
+  "csvSha256": "04d74676a61e9569821ab7bd05d99d1844d4c68afdd8e0880d530205ce5c49c6",
+  "tablesUsed": [
+    {
+      "table": "3.1.1",
+      "title": "Jumlah Penduduk, Laju Pertumbuhan Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, dan Rasio Jenis Kelamin Penduduk Menurut Kabupaten/ Kota di Provinsi Lampung, 2020, 2025, dan 2026",
+      "printedPages": [92],
+      "referenceYears": [2020, 2025, 2026],
+      "figureBasis": "census+projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "3.2.21",
+      "title": "Rata-rata Upah/Gaji Bersih Sebulan Buruh/Karyawan/ Pegawai Menurut Kabupaten/Kota dan Lapangan Pekerjaan Utama di Provinsi Lampung (rupiah), 2025",
+      "printedPages": [134],
+      "referenceYears": [2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication",
+    "table 3.1.2 (age-by-sex) could not be read reliably and is not included (year of a column not determinable)",
+    "table 4.5.4 (religion-by-region) could not be read reliably and is not included (basis not determinable)",
+    "table 3.2.14 (employed-by-industry) could not be read reliably and is not included (basis not determinable)",
+    "table 3.2.22 (wage-by-age) could not be read reliably and is not included (no average column)"
+  ]
+}

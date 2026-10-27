@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.27,2,Kabupaten Pemalang,age_group,0-4,laki_laki,66405,jiwa,2025,projection,total_population,3.1.2,85,,0 - 4
+33.27,2,Kabupaten Pemalang,age_group,0-4,perempuan,63701,jiwa,2025,projection,total_population,3.1.2,85,,0 - 4
+33.27,2,Kabupaten Pemalang,age_group,0-4,,130106,jiwa,2025,projection,total_population,3.1.2,85,,0 - 4
+33.27,2,Kabupaten Pemalang,age_group,5-9,laki_laki,55976,jiwa,2025,projection,total_population,3.1.2,85,,5 - 9
+33.27,2,Kabupaten Pemalang,age_group,5-9,perempuan,53067,jiwa,2025,projection,total_population,3.1.2,85,,5 - 9
+33.27,2,Kabupaten Pemalang,age_group,5-9,,109043,jiwa,2025,projection,total_population,3.1.2,85,,5 - 9
+33.27,2,Kabupaten Pemalang,age_group,10-14,laki_laki,60242,jiwa,2025,projection,total_population,3.1.2,85,,10 - 14
+33.27,2,Kabupaten Pemalang,age_group,10-14,perempuan,57060,jiwa,2025,projection,total_population,3.1.2,85,,10 - 14
+33.27,2,Kabupaten Pemalang,age_group,10-14,,117302,jiwa,2025,projection,total_population,3.1.2,85,,10 - 14
+33.27,2,Kabupaten Pemalang,age_group,15-19,laki_laki,60013,jiwa,2025,projection,total_population,3.1.2,85,,15 - 19
+33.27,2,Kabupaten Pemalang,age_group,15-19,perempuan,56523,jiwa,2025,projection,total_population,3.1.2,85,,15 - 19
+33.27,2,Kabupaten Pemalang,age_group,15-19,,116536,jiwa,2025,projection,total_population,3.1.2,85,,15 - 19
+33.27,2,Kabupaten Pemalang,age_group,20-24,laki_laki,61107,jiwa,2025,projection,total_population,3.1.2,85,,20 - 24
+33.27,2,Kabupaten Pemalang,age_group,20-24,perempuan,57201,jiwa,2025,projection,total_population,3.1.2,85,,20 - 24
+33.27,2,Kabupaten Pemalang,age_group,20-24,,118308,jiwa,2025,projection,total_population,3.1.2,85,,20 - 24
+33.27,2,Kabupaten Pemalang,age_group,25-29,laki_laki,66782,jiwa,2025,projection,total_population,3.1.2,85,,25 - 29
+33.27,2,Kabupaten Pemalang,age_group,25-29,perempuan,62228,jiwa,2025,projection,total_population,3.1.2,85,,25 - 29
+33.27,2,Kabupaten Pemalang,age_group,25-29,,129010,jiwa,2025,projection,total_population,3.1.2,85,,25 - 29
+33.27,2,Kabupaten Pemalang,age_group,30-34,laki_laki,66576,jiwa,2025,projection,total_population,3.1.2,85,,30 - 34
+33.27,2,Kabupaten Pemalang,age_group,30-34,perempuan,62361,jiwa,2025,projection,total_population,3.1.2,85,,30 - 34
+33.27,2,Kabupaten Pemalang,age_group,30-34,,128937,jiwa,2025,projection,total_population,3.1.2,85,,30 - 34
+33.27,2,Kabupaten Pemalang,age_group,35-39,laki_laki,63621,jiwa,2025,projection,total_population,3.1.2,85,,35 - 39
+33.27,2,Kabupaten Pemalang,age_group,35-39,perempuan,58542,jiwa,2025,projection,total_population,3.1.2,85,,35 - 39
+33.27,2,Kabupaten Pemalang,age_group,35-39,,122163,jiwa,2025,projection,total_population,3.1.2,85,,35 - 39
+33.27,2,Kabupaten Pemalang,age_group,40-44,laki_laki,58843,jiwa,2025,projection,total_population,3.1.2,85,,40 - 44
+33.27,2,Kabupaten Pemalang,age_group,40-44,perempuan,56066,jiwa,2025,projection,total_population,3.1.2,85,,40 - 44
+33.27,2,Kabupaten Pemalang,age_group,40-44,,114909,jiwa,2025,projection,total_population,3.1.2,85,,40 - 44
+33.27,2,Kabupaten Pemalang,age_group,45-49,laki_laki,53574,jiwa,2025,projection,total_population,3.1.2,85,,45 - 49
+33.27,2,Kabupaten Pemalang,age_group,45-49,perempuan,52437,jiwa,2025,projection,total_population,3.1.2,85,,45 - 49
+33.27,2,Kabupaten Pemalang,age_group,45-49,,106011,jiwa,2025,projection,total_population,3.1.2,85,,45 - 49
+33.27,2,Kabupaten Pemalang,age_group,50-54,laki_laki,45621,jiwa,2025,projection,total_population,3.1.2,85,,50 - 54
+33.27,2,Kabupaten Pemalang,age_group,50-54,perempuan,47052,jiwa,2025,projection,total_population,3.1.2,85,,50 - 54
+33.27,2,Kabupaten Pemalang,age_group,50-54,,92673,jiwa,2025,projection,total_population,3.1.2,85,,50 - 54
+33.27,2,Kabupaten Pemalang,age_group,55-59,laki_laki,39447,jiwa,2025,projection,total_population,3.1.2,85,,55 - 59
+33.27,2,Kabupaten Pemalang,age_group,55-59,perempuan,41702,jiwa,2025,projection,total_population,3.1.2,85,,55 - 59
+33.27,2,Kabupaten Pemalang,age_group,55-59,,81149,jiwa,2025,projection,total_population,3.1.2,85,,55 - 59
+33.27,2,Kabupaten Pemalang,age_group,60-64,laki_laki,32867,jiwa,2025,projection,total_population,3.1.2,85,,60 - 64
+33.27,2,Kabupaten Pemalang,age_group,60-64,perempuan,35621,jiwa,2025,projection,total_population,3.1.2,85,,60 - 64
+33.27,2,Kabupaten Pemalang,age_group,60-64,,68488,jiwa,2025,projection,total_population,3.1.2,85,,60 - 64
+33.27,2,Kabupaten Pemalang,age_group,65-69,laki_laki,25470,jiwa,2025,projection,total_population,3.1.2,85,,65 - 69
+33.27,2,Kabupaten Pemalang,age_group,65-69,perempuan,28078,jiwa,2025,projection,total_population,3.1.2,85,,65 - 69
+33.27,2,Kabupaten Pemalang,age_group,65-69,,53548,jiwa,2025,projection,total_population,3.1.2,85,,65 - 69
+33.27,2,Kabupaten Pemalang,age_group,70-74,laki_laki,18109,jiwa,2025,projection,total_population,3.1.2,85,,70 - 74
+33.27,2,Kabupaten Pemalang,age_group,70-74,perempuan,19891,jiwa,2025,projection,total_population,3.1.2,85,,70 - 74
+33.27,2,Kabupaten Pemalang,age_group,70-74,,38000,jiwa,2025,projection,total_population,3.1.2,85,,70 - 74
+33.27,2,Kabupaten Pemalang,age_group,75+,laki_laki,14907,jiwa,2025,projection,total_population,3.1.2,85,,75+
+33.27,2,Kabupaten Pemalang,age_group,75+,perempuan,18216,jiwa,2025,projection,total_population,3.1.2,85,,75+
+33.27,2,Kabupaten Pemalang,age_group,75+,,33123,jiwa,2025,projection,total_population,3.1.2,85,,75+
+33.27,2,Kabupaten Pemalang,sex,laki_laki,,789560,jiwa,2025,projection,total_population,3.1.2,85,,Laki-Laki
+33.27,2,Kabupaten Pemalang,sex,perempuan,,769746,jiwa,2025,projection,total_population,3.1.2,85,,Perempuan
+33.27,2,Kabupaten Pemalang,total,total,,1559306,jiwa,2025,projection,total_population,3.1.2,85,,

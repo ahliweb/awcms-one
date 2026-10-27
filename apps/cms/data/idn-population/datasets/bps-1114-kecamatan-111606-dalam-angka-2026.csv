@@ -1,0 +1,43 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.16.06.2011,4,Kebun Sungai Liput,sex,laki_laki,,582,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.06.2011,4,Kebun Sungai Liput,sex,perempuan,,563,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.06.2011,4,Kebun Sungai Liput,total,total,,1145,jiwa,2025,registration,total_population,3.1,13,,
+11.16.06.2008,4,Alur Selebu,sex,laki_laki,,2104,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.06.2008,4,Alur Selebu,sex,perempuan,,2039,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.06.2008,4,Alur Selebu,total,total,,4143,jiwa,2025,registration,total_population,3.1,13,,
+11.16.06.2007,4,Suka Makmur,sex,laki_laki,,1426,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.06.2007,4,Suka Makmur,sex,perempuan,,1376,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.06.2007,4,Suka Makmur,total,total,,2802,jiwa,2025,registration,total_population,3.1,13,,
+11.16.06.2015,4,Karang Jadi,sex,laki_laki,,708,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.06.2015,4,Karang Jadi,sex,perempuan,,681,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.06.2015,4,Karang Jadi,total,total,,1389,jiwa,2025,registration,total_population,3.1,13,,
+11.16.06.2014,4,Sidodadi,sex,laki_laki,,791,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.06.2014,4,Sidodadi,sex,perempuan,,832,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.06.2014,4,Sidodadi,total,total,,1623,jiwa,2025,registration,total_population,3.1,13,,
+11.16.06.2012,4,Purwodadi,sex,laki_laki,,1563,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.06.2012,4,Purwodadi,sex,perempuan,,1655,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.06.2012,4,Purwodadi,total,total,,3218,jiwa,2025,registration,total_population,3.1,13,,
+11.16.06.2006,4,Gerenggam,sex,laki_laki,,805,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.06.2006,4,Gerenggam,sex,perempuan,,805,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.06.2006,4,Gerenggam,total,total,,1610,jiwa,2025,registration,total_population,3.1,13,,
+11.16.06.2004,4,Simpang Kanan,sex,laki_laki,,187,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.06.2004,4,Simpang Kanan,sex,perempuan,,188,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.06.2004,4,Simpang Kanan,total,total,,375,jiwa,2025,registration,total_population,3.1,13,,
+11.16.06.2003,4,Tanjung Mancang,sex,laki_laki,,790,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.06.2003,4,Tanjung Mancang,sex,perempuan,,768,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.06.2003,4,Tanjung Mancang,total,total,,1558,jiwa,2025,registration,total_population,3.1,13,,
+11.16.06.2002,4,Pangkalan,sex,laki_laki,,329,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.06.2002,4,Pangkalan,sex,perempuan,,307,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.06.2002,4,Pangkalan,total,total,,636,jiwa,2025,registration,total_population,3.1,13,,
+11.16.06.2010,4,Sungai Liput,sex,laki_laki,,1359,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.06.2010,4,Sungai Liput,sex,perempuan,,1339,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.06.2010,4,Sungai Liput,total,total,,2698,jiwa,2025,registration,total_population,3.1,13,,
+11.16.06.2001,4,Bukit Rata,sex,laki_laki,,3874,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.06.2001,4,Bukit Rata,sex,perempuan,,3968,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.06.2001,4,Bukit Rata,total,total,,7842,jiwa,2025,registration,total_population,3.1,13,,
+11.16.06.2021,4,Alur Mentawak,sex,laki_laki,,1040,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.06.2021,4,Alur Mentawak,sex,perempuan,,943,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.06.2021,4,Alur Mentawak,total,total,,1983,jiwa,2025,registration,total_population,3.1,13,,
+11.16.06,3,Kejuruan Muda,sex,laki_laki,,19489,jiwa,2025,registration,total_population,3.1,13,,Laki-Laki/Male
+11.16.06,3,Kejuruan Muda,sex,perempuan,,19414,jiwa,2025,registration,total_population,3.1,13,,Perempuan/Female
+11.16.06,3,Kejuruan Muda,total,total,,38903,jiwa,2025,registration,total_population,3.1,13,,

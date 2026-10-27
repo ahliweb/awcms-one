@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3275-kecamatan-327504-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.75.04",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bekasi Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kota Bekasi",
+  "publisherDomain": "3275",
+  "publisherWebsite": "https://bekasikota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Bekasi (https://bekasikota.bps.go.id), publikasi \"Kecamatan Bekasi Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3275050",
+  "publicationNumber": "32750.26013",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://bekasikota.bps.go.id/id/publication/2026/09/28/8f4a37e324a941da7ad494d7/kecamatan-bekasi-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "6a5e2ab9f9a2c2d46ead3c9d4ced96d7c3768406ea8547fb7e128761a8e0dd56",
+  "sourceFileBytes": 8420595,
+  "sourcePages": [27, 28, 29],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Bekasi.",
+  "csvPath": "datasets/bps-3275-kecamatan-327504-dalam-angka-2026.csv",
+  "csvSha256": "3148b1e331d7f026b539c3ab4822738cd31f7cafacbbd6ec2809fc9ff16c2423",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Bekasi Selatan, 2025",
+      "printedPages": [27, 28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bekasi Selatan, 2025",
+      "printedPages": [29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

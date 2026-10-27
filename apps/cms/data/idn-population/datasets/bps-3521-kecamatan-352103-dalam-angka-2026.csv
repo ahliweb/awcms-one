@@ -1,0 +1,40 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.21.03.2001,4,Umbulrejo,sex,laki_laki,,402,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+35.21.03.2001,4,Umbulrejo,sex,perempuan,,419,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+35.21.03.2001,4,Umbulrejo,total,total,,821,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+35.21.03.2002,4,Kletekan,sex,laki_laki,,1668,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+35.21.03.2002,4,Kletekan,sex,perempuan,,1714,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+35.21.03.2002,4,Kletekan,total,total,,3382,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+35.21.03.2003,4,Jaten,sex,laki_laki,,1677,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+35.21.03.2003,4,Jaten,sex,perempuan,,1767,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+35.21.03.2003,4,Jaten,total,total,,3444,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+35.21.03.2004,4,Girimulyo,sex,laki_laki,,1611,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+35.21.03.2004,4,Girimulyo,sex,perempuan,,1542,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+35.21.03.2004,4,Girimulyo,total,total,,3153,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+35.21.03.2005,4,Ngrayudan,sex,laki_laki,,2431,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+35.21.03.2005,4,Ngrayudan,sex,perempuan,,2547,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+35.21.03.2005,4,Ngrayudan,total,total,,4978,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+35.21.03.2006,4,Talang,sex,laki_laki,,578,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+35.21.03.2006,4,Talang,sex,perempuan,,606,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+35.21.03.2006,4,Talang,total,total,,1184,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+35.21.03.2007,4,Macanan,sex,laki_laki,,3644,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+35.21.03.2007,4,Macanan,sex,perempuan,,3616,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+35.21.03.2007,4,Macanan,total,total,,7260,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+35.21.03.2008,4,Brubuh,sex,laki_laki,,866,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+35.21.03.2008,4,Brubuh,sex,perempuan,,900,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+35.21.03.2008,4,Brubuh,total,total,,1766,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+35.21.03.2009,4,Jogorogo,sex,laki_laki,,4083,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+35.21.03.2009,4,Jogorogo,sex,perempuan,,4118,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+35.21.03.2009,4,Jogorogo,total,total,,8201,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+35.21.03.2010,4,Dawung,sex,laki_laki,,1922,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+35.21.03.2010,4,Dawung,sex,perempuan,,1934,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+35.21.03.2010,4,Dawung,total,total,,3856,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+35.21.03.2011,4,Tanjungsari,sex,laki_laki,,2127,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+35.21.03.2011,4,Tanjungsari,sex,perempuan,,2134,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+35.21.03.2011,4,Tanjungsari,total,total,,4261,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+35.21.03.2012,4,Soco,sex,laki_laki,,1493,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+35.21.03.2012,4,Soco,sex,perempuan,,1476,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+35.21.03.2012,4,Soco,total,total,,2969,jiwa,2025,registration,total_population,unnumbered-p39,39,,
+35.21.03,3,Kecamatan Jogorogo,sex,laki_laki,,22502,jiwa,2025,registration,total_population,unnumbered-p39,39,,Laki-Laki/Male
+35.21.03,3,Kecamatan Jogorogo,sex,perempuan,,22773,jiwa,2025,registration,total_population,unnumbered-p39,39,,Perempuan/Female
+35.21.03,3,Kecamatan Jogorogo,total,total,,45275,jiwa,2025,registration,total_population,unnumbered-p39,39,,

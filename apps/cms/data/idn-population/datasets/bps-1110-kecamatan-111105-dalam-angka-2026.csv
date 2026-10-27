@@ -1,0 +1,46 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.11.05.2068,4,Alue Udeng,sex,laki_laki,,301,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.05.2068,4,Alue Udeng,sex,perempuan,,321,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.05.2068,4,Alue Udeng,total,total,,622,jiwa,2025,registration,total_population,1.2,,,
+11.11.05.2069,4,Alue Peuno,sex,laki_laki,,303,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.05.2069,4,Alue Peuno,sex,perempuan,,328,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.05.2069,4,Alue Peuno,total,total,,631,jiwa,2025,registration,total_population,1.2,,,
+11.11.05.2035,4,Kapa,sex,laki_laki,,240,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.05.2035,4,Kapa,sex,perempuan,,217,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.05.2035,4,Kapa,total,total,,457,jiwa,2025,registration,total_population,1.2,,,
+11.11.05.2036,4,Blang Panjoe,sex,laki_laki,,285,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.05.2036,4,Blang Panjoe,sex,perempuan,,298,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.05.2036,4,Blang Panjoe,total,total,,583,jiwa,2025,registration,total_population,1.2,,,
+11.11.05.2008,4,Paya Cut,sex,laki_laki,,829,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.05.2008,4,Paya Cut,sex,perempuan,,848,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.05.2008,4,Paya Cut,total,total,,1677,jiwa,2025,registration,total_population,1.2,,,
+11.11.05.2009,4,Seuneubok Aceh,sex,laki_laki,,539,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.05.2009,4,Seuneubok Aceh,sex,perempuan,,577,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.05.2009,4,Seuneubok Aceh,total,total,,1116,jiwa,2025,registration,total_population,1.2,,,
+11.11.05.2016,4,Paya Lipah,sex,laki_laki,,185,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.05.2016,4,Paya Lipah,sex,perempuan,,211,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.05.2016,4,Paya Lipah,total,total,,396,jiwa,2025,registration,total_population,1.2,,,
+11.11.05.2065,4,Blang Geulanggang,sex,laki_laki,,288,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.05.2065,4,Blang Geulanggang,sex,perempuan,,338,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.05.2065,4,Blang Geulanggang,total,total,,626,jiwa,2025,registration,total_population,1.2,,,
+11.11.05.2067,4,Uteun Bunta,sex,laki_laki,,397,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.05.2067,4,Uteun Bunta,sex,perempuan,,399,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.05.2067,4,Uteun Bunta,total,total,,796,jiwa,2025,registration,total_population,1.2,,,
+11.11.05.2066,4,Paya Reuhat,sex,laki_laki,,173,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.05.2066,4,Paya Reuhat,sex,perempuan,,188,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.05.2066,4,Paya Reuhat,total,total,,361,jiwa,2025,registration,total_population,1.2,,,
+11.11.05.2063,4,Paya Aboe,sex,laki_laki,,161,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.05.2063,4,Paya Aboe,sex,perempuan,,180,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.05.2063,4,Paya Aboe,total,total,,341,jiwa,2025,registration,total_population,1.2,,,
+11.11.05.2052,4,Paloh,sex,laki_laki,,173,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.05.2052,4,Paloh,sex,perempuan,,194,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.05.2052,4,Paloh,total,total,,367,jiwa,2025,registration,total_population,1.2,,,
+11.11.05.2017,4,Paya Meuneng,sex,laki_laki,,428,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.05.2017,4,Paya Meuneng,sex,perempuan,,435,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.05.2017,4,Paya Meuneng,total,total,,863,jiwa,2025,registration,total_population,1.2,,,
+11.11.05.2012,4,Matang Sagoe,sex,laki_laki,,1212,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.05.2012,4,Matang Sagoe,sex,perempuan,,1282,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.05.2012,4,Matang Sagoe,total,total,,2494,jiwa,2025,registration,total_population,1.2,,,
+11.11.05.2010,4,Panton Geulima,sex,laki_laki,,189,jiwa,2025,registration,total_population,1.2,,,Laki-Laki/Male
+11.11.05.2010,4,Panton Geulima,sex,perempuan,,190,jiwa,2025,registration,total_population,1.2,,,Perempuan/Fem
+11.11.05.2010,4,Panton Geulima,total,total,,379,jiwa,2025,registration,total_population,1.2,,,

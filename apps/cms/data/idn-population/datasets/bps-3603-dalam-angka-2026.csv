@@ -1,0 +1,289 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.03.05,3,Cisoka,total,total,,105364,jiwa,2025,registration,total_population,3.1.1,55,,
+36.03.31,3,Solear,total,total,,111928,jiwa,2025,registration,total_population,3.1.1,55,,
+36.03.03,3,Tigaraksa,total,total,,173585,jiwa,2025,registration,total_population,3.1.1,55,,
+36.03.04,3,Jambe,total,total,,59668,jiwa,2025,registration,total_population,3.1.1,55,,
+36.03.18,3,Cikupa,total,total,,216322,jiwa,2025,registration,total_population,3.1.1,55,,
+36.03.19,3,Panongan,total,total,,138952,jiwa,2025,registration,total_population,3.1.1,55,,
+36.03.17,3,Curug,total,total,,186559,jiwa,2025,registration,total_population,3.1.1,55,,
+36.03.28,3,Kelapa Dua,total,total,,175455,jiwa,2025,registration,total_population,3.1.1,55,,
+36.03.20,3,Legok,total,total,,132434,jiwa,2025,registration,total_population,3.1.1,55,,
+36.03.22,3,Pagedangan,total,total,,121572,jiwa,2025,registration,total_population,3.1.1,55,,
+36.03.23,3,Cisauk,total,total,,99285,jiwa,2025,registration,total_population,3.1.1,55,,
+36.03.12,3,Pasarkemis,total,total,,265683,jiwa,2025,registration,total_population,3.1.1,55,,
+36.03.29,3,Sindang Jaya,total,total,,102506,jiwa,2025,registration,total_population,3.1.1,55,,
+36.03.01,3,Balaraja,total,total,,130843,jiwa,2025,registration,total_population,3.1.1,55,,
+36.03.02,3,Jayanti,total,total,,74039,jiwa,2025,registration,total_population,3.1.1,55,,
+36.03.27,3,Sukamulya,total,total,,77931,jiwa,2025,registration,total_population,3.1.1,55,,
+36.03.06,3,Kresek,total,total,,75530,jiwa,2025,registration,total_population,3.1.1,55,,
+36.03.32,3,Gunung Kaler,total,total,,59910,jiwa,2025,registration,total_population,3.1.1,55,,
+36.03.07,3,Kronjo,total,total,,69479,jiwa,2025,registration,total_population,3.1.1,55,,
+36.03.33,3,Mekar Baru,total,total,,47296,jiwa,2025,registration,total_population,3.1.1,55,,
+36.03,2,Kabupaten Tangerang,age_group,0-4,laki_laki,107457,jiwa,2025,registration,total_population,3.1.2,61,,0–4
+36.03,2,Kabupaten Tangerang,age_group,0-4,perempuan,99020,jiwa,2025,registration,total_population,3.1.2,61,,0–4
+36.03,2,Kabupaten Tangerang,age_group,0-4,,206477,jiwa,2025,registration,total_population,3.1.2,61,,0–4
+36.03,2,Kabupaten Tangerang,age_group,5-9,laki_laki,167840,jiwa,2025,registration,total_population,3.1.2,61,,5–9
+36.03,2,Kabupaten Tangerang,age_group,5-9,perempuan,155263,jiwa,2025,registration,total_population,3.1.2,61,,5–9
+36.03,2,Kabupaten Tangerang,age_group,5-9,,323103,jiwa,2025,registration,total_population,3.1.2,61,,5–9
+36.03,2,Kabupaten Tangerang,age_group,10-14,laki_laki,166250,jiwa,2025,registration,total_population,3.1.2,61,,10–14
+36.03,2,Kabupaten Tangerang,age_group,10-14,perempuan,154534,jiwa,2025,registration,total_population,3.1.2,61,,10–14
+36.03,2,Kabupaten Tangerang,age_group,10-14,,320784,jiwa,2025,registration,total_population,3.1.2,61,,10–14
+36.03,2,Kabupaten Tangerang,age_group,15-19,laki_laki,141785,jiwa,2025,registration,total_population,3.1.2,61,,15–19
+36.03,2,Kabupaten Tangerang,age_group,15-19,perempuan,134967,jiwa,2025,registration,total_population,3.1.2,61,,15–19
+36.03,2,Kabupaten Tangerang,age_group,15-19,,276752,jiwa,2025,registration,total_population,3.1.2,61,,15–19
+36.03,2,Kabupaten Tangerang,age_group,20-24,laki_laki,142047,jiwa,2025,registration,total_population,3.1.2,61,,20–24
+36.03,2,Kabupaten Tangerang,age_group,20-24,perempuan,136890,jiwa,2025,registration,total_population,3.1.2,61,,20–24
+36.03,2,Kabupaten Tangerang,age_group,20-24,,278937,jiwa,2025,registration,total_population,3.1.2,61,,20–24
+36.03,2,Kabupaten Tangerang,age_group,25-29,laki_laki,148053,jiwa,2025,registration,total_population,3.1.2,61,,25–29
+36.03,2,Kabupaten Tangerang,age_group,25-29,perempuan,144848,jiwa,2025,registration,total_population,3.1.2,61,,25–29
+36.03,2,Kabupaten Tangerang,age_group,25-29,,292901,jiwa,2025,registration,total_population,3.1.2,61,,25–29
+36.03,2,Kabupaten Tangerang,age_group,30-34,laki_laki,153957,jiwa,2025,registration,total_population,3.1.2,61,,30–34
+36.03,2,Kabupaten Tangerang,age_group,30-34,perempuan,149185,jiwa,2025,registration,total_population,3.1.2,61,,30–34
+36.03,2,Kabupaten Tangerang,age_group,30-34,,303142,jiwa,2025,registration,total_population,3.1.2,61,,30–34
+36.03,2,Kabupaten Tangerang,age_group,35-39,laki_laki,148403,jiwa,2025,registration,total_population,3.1.2,61,,35–39
+36.03,2,Kabupaten Tangerang,age_group,35-39,perempuan,141184,jiwa,2025,registration,total_population,3.1.2,61,,35–39
+36.03,2,Kabupaten Tangerang,age_group,35-39,,289587,jiwa,2025,registration,total_population,3.1.2,61,,35–39
+36.03,2,Kabupaten Tangerang,age_group,40-44,laki_laki,141629,jiwa,2025,registration,total_population,3.1.2,61,,40–44
+36.03,2,Kabupaten Tangerang,age_group,40-44,perempuan,139932,jiwa,2025,registration,total_population,3.1.2,61,,40–44
+36.03,2,Kabupaten Tangerang,age_group,40-44,,281561,jiwa,2025,registration,total_population,3.1.2,61,,40–44
+36.03,2,Kabupaten Tangerang,age_group,45-49,laki_laki,127480,jiwa,2025,registration,total_population,3.1.2,61,,45–49
+36.03,2,Kabupaten Tangerang,age_group,45-49,perempuan,134808,jiwa,2025,registration,total_population,3.1.2,61,,45–49
+36.03,2,Kabupaten Tangerang,age_group,45-49,,262288,jiwa,2025,registration,total_population,3.1.2,61,,45–49
+36.03,2,Kabupaten Tangerang,age_group,50-54,laki_laki,109967,jiwa,2025,registration,total_population,3.1.2,61,,50–54
+36.03,2,Kabupaten Tangerang,age_group,50-54,perempuan,111548,jiwa,2025,registration,total_population,3.1.2,61,,50–54
+36.03,2,Kabupaten Tangerang,age_group,50-54,,221515,jiwa,2025,registration,total_population,3.1.2,61,,50–54
+36.03,2,Kabupaten Tangerang,age_group,55-59,laki_laki,90040,jiwa,2025,registration,total_population,3.1.2,61,,55–59
+36.03,2,Kabupaten Tangerang,age_group,55-59,perempuan,83633,jiwa,2025,registration,total_population,3.1.2,61,,55–59
+36.03,2,Kabupaten Tangerang,age_group,55-59,,173673,jiwa,2025,registration,total_population,3.1.2,61,,55–59
+36.03,2,Kabupaten Tangerang,age_group,60-64,laki_laki,59085,jiwa,2025,registration,total_population,3.1.2,61,,60–64
+36.03,2,Kabupaten Tangerang,age_group,60-64,perempuan,55913,jiwa,2025,registration,total_population,3.1.2,61,,60–64
+36.03,2,Kabupaten Tangerang,age_group,60-64,,114998,jiwa,2025,registration,total_population,3.1.2,61,,60–64
+36.03,2,Kabupaten Tangerang,age_group,65-69,laki_laki,40798,jiwa,2025,registration,total_population,3.1.2,61,,65–69
+36.03,2,Kabupaten Tangerang,age_group,65-69,perempuan,39156,jiwa,2025,registration,total_population,3.1.2,61,,65–69
+36.03,2,Kabupaten Tangerang,age_group,65-69,,79954,jiwa,2025,registration,total_population,3.1.2,61,,65–69
+36.03,2,Kabupaten Tangerang,age_group,70-74,laki_laki,22887,jiwa,2025,registration,total_population,3.1.2,61,,70–74
+36.03,2,Kabupaten Tangerang,age_group,70-74,perempuan,20275,jiwa,2025,registration,total_population,3.1.2,61,,70–74
+36.03,2,Kabupaten Tangerang,age_group,70-74,,43162,jiwa,2025,registration,total_population,3.1.2,61,,70–74
+36.03,2,Kabupaten Tangerang,age_group,75+,laki_laki,21383,jiwa,2025,registration,total_population,3.1.2,61,,75+
+36.03,2,Kabupaten Tangerang,age_group,75+,perempuan,25878,jiwa,2025,registration,total_population,3.1.2,61,,75+
+36.03,2,Kabupaten Tangerang,age_group,75+,,47261,jiwa,2025,registration,total_population,3.1.2,61,,75+
+36.03.05,3,Cisoka,religion,islam,,103460,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.05,3,Cisoka,religion,kristen,,1303,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.05,3,Cisoka,religion,katolik,,242,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.05,3,Cisoka,religion,hindu,,4,jiwa,2025,registration,total_population,4.3.1,168,,Hindu
+36.03.05,3,Cisoka,religion,buddha,,345,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.05,3,Cisoka,religion,lainnya,,10,jiwa,2025,registration,total_population,4.3.1,168,,Lainnya
+36.03.31,3,Solear,religion,islam,,106747,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.31,3,Solear,religion,kristen,,3362,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.31,3,Solear,religion,katolik,,903,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.31,3,Solear,religion,hindu,,32,jiwa,2025,registration,total_population,4.3.1,168,,Hindu
+36.03.31,3,Solear,religion,buddha,,794,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.31,3,Solear,religion,lainnya,,90,jiwa,2025,registration,total_population,4.3.1,168,,Lainnya
+36.03.03,3,Tigaraksa,religion,islam,,165086,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.03,3,Tigaraksa,religion,kristen,,5073,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.03,3,Tigaraksa,religion,katolik,,1673,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.03,3,Tigaraksa,religion,hindu,,158,jiwa,2025,registration,total_population,4.3.1,168,,Hindu
+36.03.03,3,Tigaraksa,religion,buddha,,1543,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.03,3,Tigaraksa,religion,lainnya,,52,jiwa,2025,registration,total_population,4.3.1,168,,Lainnya
+36.03.04,3,Jambe,religion,islam,,58473,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.04,3,Jambe,religion,kristen,,705,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.04,3,Jambe,religion,katolik,,358,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.04,3,Jambe,religion,hindu,,13,jiwa,2025,registration,total_population,4.3.1,168,,Hindu
+36.03.04,3,Jambe,religion,buddha,,114,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.04,3,Jambe,religion,lainnya,,5,jiwa,2025,registration,total_population,4.3.1,168,,Lainnya
+36.03.18,3,Cikupa,religion,islam,,208021,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.18,3,Cikupa,religion,kristen,,4377,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.18,3,Cikupa,religion,katolik,,1879,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.18,3,Cikupa,religion,hindu,,72,jiwa,2025,registration,total_population,4.3.1,168,,Hindu
+36.03.18,3,Cikupa,religion,buddha,,1937,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.18,3,Cikupa,religion,lainnya,,36,jiwa,2025,registration,total_population,4.3.1,168,,Lainnya
+36.03.19,3,Panongan,religion,islam,,124507,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.19,3,Panongan,religion,kristen,,6593,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.19,3,Panongan,religion,katolik,,3005,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.19,3,Panongan,religion,hindu,,127,jiwa,2025,registration,total_population,4.3.1,168,,Hindu
+36.03.19,3,Panongan,religion,buddha,,4449,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.19,3,Panongan,religion,lainnya,,271,jiwa,2025,registration,total_population,4.3.1,168,,Lainnya
+36.03.17,3,Curug,religion,islam,,166852,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.17,3,Curug,religion,kristen,,10818,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.17,3,Curug,religion,katolik,,4879,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.17,3,Curug,religion,hindu,,219,jiwa,2025,registration,total_population,4.3.1,168,,Hindu
+36.03.17,3,Curug,religion,buddha,,3753,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.17,3,Curug,religion,lainnya,,38,jiwa,2025,registration,total_population,4.3.1,168,,Lainnya
+36.03.28,3,Kelapa Dua,religion,islam,,133668,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.28,3,Kelapa Dua,religion,kristen,,21952,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.28,3,Kelapa Dua,religion,katolik,,12530,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.28,3,Kelapa Dua,religion,hindu,,351,jiwa,2025,registration,total_population,4.3.1,168,,Hindu
+36.03.28,3,Kelapa Dua,religion,buddha,,6872,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.28,3,Kelapa Dua,religion,lainnya,,82,jiwa,2025,registration,total_population,4.3.1,168,,Lainnya
+36.03.20,3,Legok,religion,islam,,125639,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.20,3,Legok,religion,kristen,,3072,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.20,3,Legok,religion,katolik,,1029,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.20,3,Legok,religion,hindu,,60,jiwa,2025,registration,total_population,4.3.1,168,,Hindu
+36.03.20,3,Legok,religion,buddha,,2584,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.20,3,Legok,religion,lainnya,,50,jiwa,2025,registration,total_population,4.3.1,168,,Lainnya
+36.03.22,3,Pagedangan,religion,islam,,103205,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.22,3,Pagedangan,religion,kristen,,8280,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.22,3,Pagedangan,religion,katolik,,5762,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.22,3,Pagedangan,religion,hindu,,119,jiwa,2025,registration,total_population,4.3.1,168,,Hindu
+36.03.22,3,Pagedangan,religion,buddha,,4156,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.22,3,Pagedangan,religion,lainnya,,50,jiwa,2025,registration,total_population,4.3.1,168,,Lainnya
+36.03.23,3,Cisauk,religion,islam,,89418,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.23,3,Cisauk,religion,kristen,,5355,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.23,3,Cisauk,religion,katolik,,2532,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.23,3,Cisauk,religion,hindu,,110,jiwa,2025,registration,total_population,4.3.1,168,,Hindu
+36.03.23,3,Cisauk,religion,buddha,,1796,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.23,3,Cisauk,religion,lainnya,,74,jiwa,2025,registration,total_population,4.3.1,168,,Lainnya
+36.03.12,3,Pasarkemis,religion,islam,,233870,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.12,3,Pasarkemis,religion,kristen,,18599,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.12,3,Pasarkemis,religion,katolik,,7754,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.12,3,Pasarkemis,religion,hindu,,421,jiwa,2025,registration,total_population,4.3.1,168,,Hindu
+36.03.12,3,Pasarkemis,religion,buddha,,4948,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.12,3,Pasarkemis,religion,lainnya,,91,jiwa,2025,registration,total_population,4.3.1,168,,Lainnya
+36.03.29,3,Sindang Jaya,religion,islam,,99208,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.29,3,Sindang Jaya,religion,kristen,,1688,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.29,3,Sindang Jaya,religion,katolik,,759,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.29,3,Sindang Jaya,religion,hindu,,52,jiwa,2025,registration,total_population,4.3.1,168,,Hindu
+36.03.29,3,Sindang Jaya,religion,buddha,,778,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.29,3,Sindang Jaya,religion,lainnya,,21,jiwa,2025,registration,total_population,4.3.1,168,,Lainnya
+36.03.01,3,Balaraja,religion,islam,,127065,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.01,3,Balaraja,religion,kristen,,2556,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.01,3,Balaraja,religion,katolik,,700,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.01,3,Balaraja,religion,hindu,,24,jiwa,2025,registration,total_population,4.3.1,168,,Hindu
+36.03.01,3,Balaraja,religion,buddha,,496,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.01,3,Balaraja,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,168,,Lainnya
+36.03.02,3,Jayanti,religion,islam,,73226,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.02,3,Jayanti,religion,kristen,,609,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.02,3,Jayanti,religion,katolik,,122,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.02,3,Jayanti,religion,hindu,,9,jiwa,2025,registration,total_population,4.3.1,168,,Hindu
+36.03.02,3,Jayanti,religion,buddha,,69,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.02,3,Jayanti,religion,lainnya,,4,jiwa,2025,registration,total_population,4.3.1,168,,Lainnya
+36.03.27,3,Sukamulya,religion,islam,,77137,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.27,3,Sukamulya,religion,kristen,,579,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.27,3,Sukamulya,religion,katolik,,150,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.27,3,Sukamulya,religion,hindu,,9,jiwa,2025,registration,total_population,4.3.1,168,,Hindu
+36.03.27,3,Sukamulya,religion,buddha,,54,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.27,3,Sukamulya,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,168,,Lainnya
+36.03.06,3,Kresek,religion,islam,,75476,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.06,3,Kresek,religion,kristen,,29,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.06,3,Kresek,religion,katolik,,5,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.06,3,Kresek,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,168,,Hindu
+36.03.06,3,Kresek,religion,buddha,,16,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.06,3,Kresek,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,168,,Lainnya
+36.03.32,3,Gunung Kaler,religion,islam,,59908,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.32,3,Gunung Kaler,religion,kristen,,0,jiwa,2025,registration,total_population,4.3.1,168,nil,Protestan
+36.03.32,3,Gunung Kaler,religion,katolik,,1,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.32,3,Gunung Kaler,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,168,,Hindu
+36.03.32,3,Gunung Kaler,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,168,nil,Budha
+36.03.32,3,Gunung Kaler,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,168,nil,Lainnya
+36.03.07,3,Kronjo,religion,islam,,69435,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.07,3,Kronjo,religion,kristen,,19,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.07,3,Kronjo,religion,katolik,,15,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.07,3,Kronjo,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,168,nil,Hindu
+36.03.07,3,Kronjo,religion,buddha,,10,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.07,3,Kronjo,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,168,nil,Lainnya
+36.03.33,3,Mekar Baru,religion,islam,,47295,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.33,3,Mekar Baru,religion,kristen,,1,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.33,3,Mekar Baru,religion,katolik,,0,jiwa,2025,registration,total_population,4.3.1,168,nil,Katolik
+36.03.33,3,Mekar Baru,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,168,nil,Hindu
+36.03.33,3,Mekar Baru,religion,buddha,,0,jiwa,2025,registration,total_population,4.3.1,168,nil,Budha
+36.03.33,3,Mekar Baru,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,168,nil,Lainnya
+36.03.08,3,Mauk,religion,islam,,94660,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.08,3,Mauk,religion,kristen,,288,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.08,3,Mauk,religion,katolik,,75,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.08,3,Mauk,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,168,nil,Hindu
+36.03.08,3,Mauk,religion,buddha,,920,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.08,3,Mauk,religion,lainnya,,2,jiwa,2025,registration,total_population,4.3.1,168,,Lainnya
+36.03.09,3,Kemiri,religion,islam,,54379,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.09,3,Kemiri,religion,kristen,,17,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.09,3,Kemiri,religion,katolik,,12,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.09,3,Kemiri,religion,hindu,,0,jiwa,2025,registration,total_population,4.3.1,168,nil,Hindu
+36.03.09,3,Kemiri,religion,buddha,,10,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.09,3,Kemiri,religion,lainnya,,0,jiwa,2025,registration,total_population,4.3.1,168,nil,Lainnya
+36.03.10,3,Sukadiri,religion,islam,,70178,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.10,3,Sukadiri,religion,kristen,,144,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.10,3,Sukadiri,religion,katolik,,62,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.10,3,Sukadiri,religion,hindu,,3,jiwa,2025,registration,total_population,4.3.1,168,,Hindu
+36.03.10,3,Sukadiri,religion,buddha,,73,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.10,3,Sukadiri,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,168,,Lainnya
+36.03.11,3,Rajeg,religion,islam,,199616,jiwa,2025,registration,total_population,4.3.1,168,,Islam
+36.03.11,3,Rajeg,religion,kristen,,5396,jiwa,2025,registration,total_population,4.3.1,168,,Protestan
+36.03.11,3,Rajeg,religion,katolik,,1330,jiwa,2025,registration,total_population,4.3.1,168,,Katolik
+36.03.11,3,Rajeg,religion,hindu,,112,jiwa,2025,registration,total_population,4.3.1,168,,Hindu
+36.03.11,3,Rajeg,religion,buddha,,297,jiwa,2025,registration,total_population,4.3.1,168,,Budha
+36.03.11,3,Rajeg,religion,lainnya,,33,jiwa,2025,registration,total_population,4.3.1,168,,Lainnya
+36.03.16,3,Sepatan,religion,islam,,115743,jiwa,2025,registration,total_population,4.3.1,169,,Islam
+36.03.16,3,Sepatan,religion,kristen,,2384,jiwa,2025,registration,total_population,4.3.1,169,,Protestan
+36.03.16,3,Sepatan,religion,katolik,,623,jiwa,2025,registration,total_population,4.3.1,169,,Katolik
+36.03.16,3,Sepatan,religion,hindu,,35,jiwa,2025,registration,total_population,4.3.1,169,,Hindu
+36.03.16,3,Sepatan,religion,buddha,,638,jiwa,2025,registration,total_population,4.3.1,169,,Budha
+36.03.16,3,Sepatan,religion,lainnya,,9,jiwa,2025,registration,total_population,4.3.1,169,,Lainnya
+36.03.30,3,Sepatan Timur,religion,islam,,108068,jiwa,2025,registration,total_population,4.3.1,169,,Islam
+36.03.30,3,Sepatan Timur,religion,kristen,,1710,jiwa,2025,registration,total_population,4.3.1,169,,Protestan
+36.03.30,3,Sepatan Timur,religion,katolik,,326,jiwa,2025,registration,total_population,4.3.1,169,,Katolik
+36.03.30,3,Sepatan Timur,religion,hindu,,26,jiwa,2025,registration,total_population,4.3.1,169,,Hindu
+36.03.30,3,Sepatan Timur,religion,buddha,,3003,jiwa,2025,registration,total_population,4.3.1,169,,Budha
+36.03.30,3,Sepatan Timur,religion,lainnya,,27,jiwa,2025,registration,total_population,4.3.1,169,,Lainnya
+36.03.15,3,Pakuhaji,religion,islam,,134063,jiwa,2025,registration,total_population,4.3.1,169,,Islam
+36.03.15,3,Pakuhaji,religion,kristen,,306,jiwa,2025,registration,total_population,4.3.1,169,,Protestan
+36.03.15,3,Pakuhaji,religion,katolik,,60,jiwa,2025,registration,total_population,4.3.1,169,,Katolik
+36.03.15,3,Pakuhaji,religion,hindu,,1,jiwa,2025,registration,total_population,4.3.1,169,,Hindu
+36.03.15,3,Pakuhaji,religion,buddha,,620,jiwa,2025,registration,total_population,4.3.1,169,,Budha
+36.03.15,3,Pakuhaji,religion,lainnya,,3,jiwa,2025,registration,total_population,4.3.1,169,,Lainnya
+36.03.13,3,Teluknaga,religion,islam,,166640,jiwa,2025,registration,total_population,4.3.1,169,,Islam
+36.03.13,3,Teluknaga,religion,kristen,,3282,jiwa,2025,registration,total_population,4.3.1,169,,Protestan
+36.03.13,3,Teluknaga,religion,katolik,,735,jiwa,2025,registration,total_population,4.3.1,169,,Katolik
+36.03.13,3,Teluknaga,religion,hindu,,32,jiwa,2025,registration,total_population,4.3.1,169,,Hindu
+36.03.13,3,Teluknaga,religion,buddha,,7489,jiwa,2025,registration,total_population,4.3.1,169,,Budha
+36.03.13,3,Teluknaga,religion,lainnya,,153,jiwa,2025,registration,total_population,4.3.1,169,,Lainnya
+36.03.14,3,Kosambi,religion,islam,,99029,jiwa,2025,registration,total_population,4.3.1,169,,Islam
+36.03.14,3,Kosambi,religion,kristen,,6676,jiwa,2025,registration,total_population,4.3.1,169,,Protestan
+36.03.14,3,Kosambi,religion,katolik,,1469,jiwa,2025,registration,total_population,4.3.1,169,,Katolik
+36.03.14,3,Kosambi,religion,hindu,,42,jiwa,2025,registration,total_population,4.3.1,169,,Hindu
+36.03.14,3,Kosambi,religion,buddha,,10891,jiwa,2025,registration,total_population,4.3.1,169,,Budha
+36.03.14,3,Kosambi,religion,lainnya,,61,jiwa,2025,registration,total_population,4.3.1,169,,Lainnya
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/padi_padian,,101040,rupiah,2024,survey_estimate,per_capita,10.1,341,,Padi–padian
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/padi_padian,,79815,rupiah,2025,survey_estimate,per_capita,10.1,341,,Padi–padian
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/umbi_umbian,,9201,rupiah,2024,survey_estimate,per_capita,10.1,341,,Umbi–umbian
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/umbi_umbian,,8271,rupiah,2025,survey_estimate,per_capita,10.1,341,,Umbi–umbian
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,60000,rupiah,2024,survey_estimate,per_capita,10.1,341,,Ikan/udang/cumi/kerang
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,61206,rupiah,2025,survey_estimate,per_capita,10.1,341,,Ikan/udang/cumi/kerang
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/daging,,33790,rupiah,2024,survey_estimate,per_capita,10.1,341,,Daging
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/daging,,34080,rupiah,2025,survey_estimate,per_capita,10.1,341,,Daging
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/telur_dan_susu,,43726,rupiah,2024,survey_estimate,per_capita,10.1,341,,Telur dan susu
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/telur_dan_susu,,33655,rupiah,2025,survey_estimate,per_capita,10.1,341,,Telur dan susu
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/sayur_sayuran,,64419,rupiah,2024,survey_estimate,per_capita,10.1,341,,Sayur–sayuran
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/sayur_sayuran,,63582,rupiah,2025,survey_estimate,per_capita,10.1,341,,Sayur–sayuran
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/kacang_kacangan,,14566,rupiah,2024,survey_estimate,per_capita,10.1,341,,Kacang–kacangan
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/kacang_kacangan,,15944,rupiah,2025,survey_estimate,per_capita,10.1,341,,Kacang–kacangan
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/buah_buahan,,36503,rupiah,2024,survey_estimate,per_capita,10.1,341,,Buah–buahan
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/buah_buahan,,41645,rupiah,2025,survey_estimate,per_capita,10.1,341,,Buah–buahan
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19290,rupiah,2024,survey_estimate,per_capita,10.1,341,,Minyak dan kelapa
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/minyak_dan_kelapa,,19493,rupiah,2025,survey_estimate,per_capita,10.1,341,,Minyak dan kelapa
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/bahan_minuman,,23163,rupiah,2024,survey_estimate,per_capita,10.1,341,,Bahan minuman
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/bahan_minuman,,24176,rupiah,2025,survey_estimate,per_capita,10.1,341,,Bahan minuman
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/bumbu_bumbuan,,17937,rupiah,2024,survey_estimate,per_capita,10.1,341,,Bumbu–bumbuan
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/bumbu_bumbuan,,17311,rupiah,2025,survey_estimate,per_capita,10.1,341,,Bumbu–bumbuan
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/konsumsi_lainnya,,15555,rupiah,2024,survey_estimate,per_capita,10.1,341,,Konsumsi lainnya
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/konsumsi_lainnya,,15161,rupiah,2025,survey_estimate,per_capita,10.1,341,,Konsumsi lainnya
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,277927,rupiah,2024,survey_estimate,per_capita,10.1,341,,Makanan dan minuman jadi
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,301156,rupiah,2025,survey_estimate,per_capita,10.1,341,,Makanan dan minuman jadi
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/rokok,,116122,rupiah,2024,survey_estimate,per_capita,10.1,341,,Rokok
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/rokok,,119736,rupiah,2025,survey_estimate,per_capita,10.1,341,,Rokok
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/jumlah_makanan,,833240,rupiah,2024,survey_estimate,per_capita,10.1,341,,Jumlah makanan
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/jumlah_makanan,,835232,rupiah,2025,survey_estimate,per_capita,10.1,341,,Jumlah makanan
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,435840,rupiah,2024,survey_estimate,per_capita,10.1,341,,Perumahan dan fasilitas rumah tangga
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,392702,rupiah,2025,survey_estimate,per_capita,10.1,341,,Perumahan dan fasilitas rumah tangga
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,152775,rupiah,2024,survey_estimate,per_capita,10.1,341,,Aneka barang dan jasa
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,153514,rupiah,2025,survey_estimate,per_capita,10.1,341,,Aneka barang dan jasa
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,37727,rupiah,2024,survey_estimate,per_capita,10.1,341,,"Pakaian, alas kaki, dan tutup kepala"
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,39048,rupiah,2025,survey_estimate,per_capita,10.1,341,,"Pakaian, alas kaki, dan tutup kepala"
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/barang_tahan_lama,,38869,rupiah,2024,survey_estimate,per_capita,10.1,341,,Barang tahan lama
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/barang_tahan_lama,,44746,rupiah,2025,survey_estimate,per_capita,10.1,341,,Barang tahan lama
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,61860,rupiah,2024,survey_estimate,per_capita,10.1,341,,"Pajak, pungutan, dan asuransi"
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,64292,rupiah,2025,survey_estimate,per_capita,10.1,341,,"Pajak, pungutan, dan asuransi"
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,17535,rupiah,2024,survey_estimate,per_capita,10.1,341,,Keperluan pesta dan upacara/kenduri
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,9340,rupiah,2025,survey_estimate,per_capita,10.1,341,,Keperluan pesta dan upacara/kenduri
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,744606,rupiah,2024,survey_estimate,per_capita,10.1,341,,Jumlah bukan makanan
+36.03,2,Kabupaten Tangerang,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,703641,rupiah,2025,survey_estimate,per_capita,10.1,341,,Jumlah bukan makanan
+36.03,2,Kabupaten Tangerang,expenditure,total,,1577846,rupiah,2024,survey_estimate,per_capita,10.1,341,,
+36.03,2,Kabupaten Tangerang,expenditure,total,,1538873,rupiah,2025,survey_estimate,per_capita,10.1,341,,

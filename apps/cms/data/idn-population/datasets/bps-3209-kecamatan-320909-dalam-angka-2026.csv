@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+32.09.09.2001,4,Karangwuni,sex,laki_laki,,2861,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.09.2001,4,Karangwuni,sex,perempuan,,2741,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.09.2001,4,Karangwuni,total,total,,5602,jiwa,2025,registration,total_population,3.1,52,,
+32.09.09.2002,4,Sedong Kidul,sex,laki_laki,,2497,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.09.2002,4,Sedong Kidul,sex,perempuan,,2471,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.09.2002,4,Sedong Kidul,total,total,,4968,jiwa,2025,registration,total_population,3.1,52,,
+32.09.09.2003,4,Sedong Lor,sex,laki_laki,,2114,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.09.2003,4,Sedong Lor,sex,perempuan,,2093,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.09.2003,4,Sedong Lor,total,total,,4207,jiwa,2025,registration,total_population,3.1,52,,
+32.09.09.2004,4,Windujaya,sex,laki_laki,,2168,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.09.2004,4,Windujaya,sex,perempuan,,2083,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.09.2004,4,Windujaya,total,total,,4251,jiwa,2025,registration,total_population,3.1,52,,
+32.09.09.2005,4,Winduhaji,sex,laki_laki,,1789,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.09.2005,4,Winduhaji,sex,perempuan,,1671,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.09.2005,4,Winduhaji,total,total,,3460,jiwa,2025,registration,total_population,3.1,52,,
+32.09.09.2006,4,Kertawangun,sex,laki_laki,,1999,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.09.2006,4,Kertawangun,sex,perempuan,,1925,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.09.2006,4,Kertawangun,total,total,,3924,jiwa,2025,registration,total_population,3.1,52,,
+32.09.09.2007,4,Panambangan,sex,laki_laki,,2207,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.09.2007,4,Panambangan,sex,perempuan,,2174,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.09.2007,4,Panambangan,total,total,,4381,jiwa,2025,registration,total_population,3.1,52,,
+32.09.09.2008,4,Putat,sex,laki_laki,,3423,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.09.2008,4,Putat,sex,perempuan,,3192,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.09.2008,4,Putat,total,total,,6615,jiwa,2025,registration,total_population,3.1,52,,
+32.09.09.2009,4,Panongan,sex,laki_laki,,2594,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.09.2009,4,Panongan,sex,perempuan,,2507,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.09.2009,4,Panongan,total,total,,5101,jiwa,2025,registration,total_population,3.1,52,,
+32.09.09.2010,4,Panongan Lor,sex,laki_laki,,2629,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.09.2010,4,Panongan Lor,sex,perempuan,,2529,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.09.2010,4,Panongan Lor,total,total,,5158,jiwa,2025,registration,total_population,3.1,52,,
+32.09.09,3,Kecamatan Sedong,sex,laki_laki,,24281,jiwa,2025,registration,total_population,3.1,52,,Laki-Laki/Male
+32.09.09,3,Kecamatan Sedong,sex,perempuan,,23386,jiwa,2025,registration,total_population,3.1,52,,Perempuan/Female
+32.09.09,3,Kecamatan Sedong,total,total,,47667,jiwa,2025,registration,total_population,3.1,52,,
+32.09.09,3,Sedong,age_group,0-4,laki_laki,1663,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.09,3,Sedong,age_group,0-4,perempuan,1627,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.09,3,Sedong,age_group,0-4,,3290,jiwa,2025,registration,total_population,3.2,54,,0–4
+32.09.09,3,Sedong,age_group,5-9,laki_laki,2038,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.09,3,Sedong,age_group,5-9,perempuan,1838,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.09,3,Sedong,age_group,5-9,,3876,jiwa,2025,registration,total_population,3.2,54,,5–9
+32.09.09,3,Sedong,age_group,10-14,laki_laki,2114,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.09,3,Sedong,age_group,10-14,perempuan,1902,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.09,3,Sedong,age_group,10-14,,4016,jiwa,2025,registration,total_population,3.2,54,,10–14
+32.09.09,3,Sedong,age_group,15-19,laki_laki,1830,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.09,3,Sedong,age_group,15-19,perempuan,1692,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.09,3,Sedong,age_group,15-19,,3522,jiwa,2025,registration,total_population,3.2,54,,15–19
+32.09.09,3,Sedong,age_group,20-24,laki_laki,1891,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.09,3,Sedong,age_group,20-24,perempuan,1869,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.09,3,Sedong,age_group,20-24,,3760,jiwa,2025,registration,total_population,3.2,54,,20–24
+32.09.09,3,Sedong,age_group,25-29,laki_laki,2031,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.09,3,Sedong,age_group,25-29,perempuan,1826,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.09,3,Sedong,age_group,25-29,,3857,jiwa,2025,registration,total_population,3.2,54,,25–29
+32.09.09,3,Sedong,age_group,30-34,laki_laki,1838,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.09,3,Sedong,age_group,30-34,perempuan,1632,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.09,3,Sedong,age_group,30-34,,3470,jiwa,2025,registration,total_population,3.2,54,,30–34
+32.09.09,3,Sedong,age_group,35-39,laki_laki,1607,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.09,3,Sedong,age_group,35-39,perempuan,1539,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.09,3,Sedong,age_group,35-39,,3146,jiwa,2025,registration,total_population,3.2,54,,35–39
+32.09.09,3,Sedong,age_group,40-44,laki_laki,1784,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.09,3,Sedong,age_group,40-44,perempuan,1747,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.09,3,Sedong,age_group,40-44,,3531,jiwa,2025,registration,total_population,3.2,54,,40–44
+32.09.09,3,Sedong,age_group,45-49,laki_laki,1671,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.09,3,Sedong,age_group,45-49,perempuan,1647,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.09,3,Sedong,age_group,45-49,,3318,jiwa,2025,registration,total_population,3.2,54,,45–49
+32.09.09,3,Sedong,age_group,50-54,laki_laki,1549,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.09,3,Sedong,age_group,50-54,perempuan,1539,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.09,3,Sedong,age_group,50-54,,3088,jiwa,2025,registration,total_population,3.2,54,,50–54
+32.09.09,3,Sedong,age_group,55-59,laki_laki,1243,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.09,3,Sedong,age_group,55-59,perempuan,1217,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.09,3,Sedong,age_group,55-59,,2460,jiwa,2025,registration,total_population,3.2,54,,55–59
+32.09.09,3,Sedong,age_group,60-64,laki_laki,986,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.09,3,Sedong,age_group,60-64,perempuan,1021,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.09,3,Sedong,age_group,60-64,,2007,jiwa,2025,registration,total_population,3.2,54,,60–64
+32.09.09,3,Sedong,age_group,65-69,laki_laki,789,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.09,3,Sedong,age_group,65-69,perempuan,841,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.09,3,Sedong,age_group,65-69,,1630,jiwa,2025,registration,total_population,3.2,54,,65–69
+32.09.09,3,Sedong,age_group,70-74,laki_laki,555,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.09,3,Sedong,age_group,70-74,perempuan,571,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.09,3,Sedong,age_group,70-74,,1126,jiwa,2025,registration,total_population,3.2,54,,70–74
+32.09.09,3,Sedong,age_group,75+,laki_laki,692,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.09,3,Sedong,age_group,75+,perempuan,878,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.09,3,Sedong,age_group,75+,,1570,jiwa,2025,registration,total_population,3.2,54,,75+
+32.09.09,3,Kecamatan Sedong,sex,laki_laki,,24281,jiwa,2025,registration,total_population,3.2,54,,Laki-Laki
+32.09.09,3,Kecamatan Sedong,sex,perempuan,,23386,jiwa,2025,registration,total_population,3.2,54,,Perempuan
+32.09.09,3,Kecamatan Sedong,total,total,,47667,jiwa,2025,registration,total_population,3.2,54,,

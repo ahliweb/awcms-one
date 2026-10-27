@@ -1,0 +1,25 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+35.09.21.1003,4,Kranjingan,sex,laki_laki,,8948,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.21.1003,4,Kranjingan,sex,perempuan,,8960,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.21.1003,4,Kranjingan,total,total,,17908,jiwa,2025,registration,total_population,3.1,33,,
+35.09.21.1005,4,Tegalgede,sex,laki_laki,,4815,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.21.1005,4,Tegalgede,sex,perempuan,,4974,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.21.1005,4,Tegalgede,total,total,,9789,jiwa,2025,registration,total_population,3.1,33,,
+35.09.21.1001,4,Kebonsari,sex,laki_laki,,15706,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.21.1001,4,Kebonsari,sex,perempuan,,16057,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.21.1001,4,Kebonsari,total,total,,31763,jiwa,2025,registration,total_population,3.1,33,,
+35.09.21.1004,4,Karangrejo,sex,laki_laki,,10350,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.21.1004,4,Karangrejo,sex,perempuan,,10474,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.21.1004,4,Karangrejo,total,total,,20824,jiwa,2025,registration,total_population,3.1,33,,
+35.09.21.1002,4,Sumbersari,sex,laki_laki,,15199,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.21.1002,4,Sumbersari,sex,perempuan,,15830,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.21.1002,4,Sumbersari,total,total,,31029,jiwa,2025,registration,total_population,3.1,33,,
+35.09.21.1007,4,Antirogo,sex,laki_laki,,6107,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.21.1007,4,Antirogo,sex,perempuan,,6317,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.21.1007,4,Antirogo,total,total,,12424,jiwa,2025,registration,total_population,3.1,33,,
+35.09.21.1006,4,Wirolegi,sex,laki_laki,,7361,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.21.1006,4,Wirolegi,sex,perempuan,,7369,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.21.1006,4,Wirolegi,total,total,,14730,jiwa,2025,registration,total_population,3.1,33,,
+35.09.21,3,Kecamatan Sumbersari,sex,laki_laki,,68486,jiwa,2025,registration,total_population,3.1,33,,Laki-Laki/Male
+35.09.21,3,Kecamatan Sumbersari,sex,perempuan,,69981,jiwa,2025,registration,total_population,3.1,33,,Perempuan/Female
+35.09.21,3,Kecamatan Sumbersari,total,total,,138467,jiwa,2025,registration,total_population,3.1,33,,

@@ -1,0 +1,53 @@
+{
+  "datasetCode": "bps-1310-dalam-angka-2026",
+  "publicationSeries": "kabupaten_kota_dalam_angka",
+  "coverageRegionCode": "13.11",
+  "coverageRegionLevel": 2,
+  "publicationTitle": "Kabupaten Solok Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Solok Selatan",
+  "publisherDomain": "1310",
+  "publisherWebsite": "https://solokselatankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Solok Selatan (https://solokselatankab.bps.go.id), publikasi \"Kabupaten Solok Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1310",
+  "publicationNumber": "13100.26003",
+  "issn": "2654-9611",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://solokselatankab.bps.go.id/id/publication/2026/02/27/bc807cfe20b93d364683d14f/kabupaten-solok-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "625e0b04ec980d76a7d19d345b661a0e63a4c1e651ad7d84b8d0495b7d3ef20c",
+  "sourceFileBytes": 13044913,
+  "sourcePages": [101, 433],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Solok Selatan.",
+  "csvPath": "datasets/bps-1310-dalam-angka-2026.csv",
+  "csvSha256": "234db92eb4a36d5468966ca7fdf6898d1679e2e83364558cc740ea6362c2dc23",
+  "tablesUsed": [
+    {
+      "table": "3.1.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kabupaten Solok Selatan (ribu jiwa), 2025",
+      "printedPages": [101],
+      "referenceYears": [2025],
+      "figureBasis": "projection",
+      "unit": "ribu_jiwa"
+    },
+    {
+      "table": "10.1",
+      "title": "Rata-rata Pengeluaran per Kapita Sebulan Menurut Kelompok Komoditas di Kabupaten Solok Selatan (rupiah), 2023 dan 2025",
+      "printedPages": [433],
+      "referenceYears": [2024, 2025],
+      "figureBasis": "survey_estimate",
+      "unit": "rupiah"
+    }
+  ],
+  "knownGaps": [
+    "Total population per child region (3.1.1): no table with this title was found in the publication",
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "Employed 15+ by industry group per region (3.2.14): no table with this title was found in the publication",
+    "Net wage by industry group per region (3.2.30): no table with this title was found in the publication",
+    "Net wage by age group (3.2.31): no table with this title was found in the publication",
+    "table 3.1.2: row not stored: row \"2025\": unmatched ",
+    "table 3.1.2: row not stored: row \"2024\": unmatched "
+  ]
+}

@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.07.01.1010,4,Teluk Merbau,sex,laki_laki,,1564,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.01.1010,4,Teluk Merbau,sex,perempuan,,1550,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.01.1010,4,Teluk Merbau,total,total,,3114,jiwa,2025,registration,total_population,3.1,18,,
+14.07.01.2004,4,Rantau Panjang Kanan,sex,laki_laki,,829,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.01.2004,4,Rantau Panjang Kanan,sex,perempuan,,862,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.01.2004,4,Rantau Panjang Kanan,total,total,,1691,jiwa,2025,registration,total_population,3.1,18,,
+14.07.01.2003,4,Sungai Kubu,sex,laki_laki,,938,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.01.2003,4,Sungai Kubu,sex,perempuan,,876,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.01.2003,4,Sungai Kubu,total,total,,1814,jiwa,2025,registration,total_population,3.1,18,,
+14.07.01.2002,4,Tanjung Leban,sex,laki_laki,,1742,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.01.2002,4,Tanjung Leban,sex,perempuan,,1588,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.01.2002,4,Tanjung Leban,total,total,,3330,jiwa,2025,registration,total_population,3.1,18,,
+14.07.01.2012,4,Teluk Piyai,sex,laki_laki,,2263,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.01.2012,4,Teluk Piyai,sex,perempuan,,2006,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.01.2012,4,Teluk Piyai,total,total,,4269,jiwa,2025,registration,total_population,3.1,18,,
+14.07.01.2015,4,Sei Segajah Makmur,sex,laki_laki,,1776,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.01.2015,4,Sei Segajah Makmur,sex,perempuan,,1735,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.01.2015,4,Sei Segajah Makmur,total,total,,3511,jiwa,2025,registration,total_population,3.1,18,,
+14.07.01.2021,4,Sungai Kubu Hulu,sex,laki_laki,,1018,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.01.2021,4,Sungai Kubu Hulu,sex,perempuan,,1061,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.01.2021,4,Sungai Kubu Hulu,total,total,,2079,jiwa,2025,registration,total_population,3.1,18,,
+14.07.01.2020,4,Teluk Piyai Pesisir,sex,laki_laki,,2385,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.01.2020,4,Teluk Piyai Pesisir,sex,perempuan,,2208,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.01.2020,4,Teluk Piyai Pesisir,total,total,,4593,jiwa,2025,registration,total_population,3.1,18,,
+14.07.01,3,KUBU,sex,laki_laki,,15640,jiwa,2025,registration,total_population,3.1,18,,Laki-Laki/Male
+14.07.01,3,KUBU,sex,perempuan,,14862,jiwa,2025,registration,total_population,3.1,18,,Perempuan/Female
+14.07.01,3,KUBU,total,total,,30502,jiwa,2025,registration,total_population,3.1,18,,
+14.07.01,3,Kubu,age_group,0-4,laki_laki,1087,jiwa,2025,registration,total_population,3.2,20,,0 - 4
+14.07.01,3,Kubu,age_group,0-4,perempuan,1093,jiwa,2025,registration,total_population,3.2,20,,0 - 4
+14.07.01,3,Kubu,age_group,0-4,,2180,jiwa,2025,registration,total_population,3.2,20,,0 - 4
+14.07.01,3,Kubu,age_group,5-9,laki_laki,1584,jiwa,2025,registration,total_population,3.2,20,,5 - 9
+14.07.01,3,Kubu,age_group,5-9,perempuan,1542,jiwa,2025,registration,total_population,3.2,20,,5 - 9
+14.07.01,3,Kubu,age_group,5-9,,3126,jiwa,2025,registration,total_population,3.2,20,,5 - 9
+14.07.01,3,Kubu,age_group,10-14,laki_laki,1746,jiwa,2025,registration,total_population,3.2,20,,10 - 14
+14.07.01,3,Kubu,age_group,10-14,perempuan,1631,jiwa,2025,registration,total_population,3.2,20,,10 - 14
+14.07.01,3,Kubu,age_group,10-14,,3377,jiwa,2025,registration,total_population,3.2,20,,10 - 14
+14.07.01,3,Kubu,age_group,15-19,laki_laki,1475,jiwa,2025,registration,total_population,3.2,20,,15 - 19
+14.07.01,3,Kubu,age_group,15-19,perempuan,1333,jiwa,2025,registration,total_population,3.2,20,,15 - 19
+14.07.01,3,Kubu,age_group,15-19,,2808,jiwa,2025,registration,total_population,3.2,20,,15 - 19
+14.07.01,3,Kubu,age_group,20-24,laki_laki,1420,jiwa,2025,registration,total_population,3.2,20,,20 - 24
+14.07.01,3,Kubu,age_group,20-24,perempuan,1299,jiwa,2025,registration,total_population,3.2,20,,20 - 24
+14.07.01,3,Kubu,age_group,20-24,,2719,jiwa,2025,registration,total_population,3.2,20,,20 - 24
+14.07.01,3,Kubu,age_group,25-29,laki_laki,1289,jiwa,2025,registration,total_population,3.2,20,,25 - 29
+14.07.01,3,Kubu,age_group,25-29,perempuan,1253,jiwa,2025,registration,total_population,3.2,20,,25 - 29
+14.07.01,3,Kubu,age_group,25-29,,2542,jiwa,2025,registration,total_population,3.2,20,,25 - 29
+14.07.01,3,Kubu,age_group,30-34,laki_laki,1171,jiwa,2025,registration,total_population,3.2,20,,30 - 34
+14.07.01,3,Kubu,age_group,30-34,perempuan,1108,jiwa,2025,registration,total_population,3.2,20,,30 - 34
+14.07.01,3,Kubu,age_group,30-34,,2279,jiwa,2025,registration,total_population,3.2,20,,30 - 34
+14.07.01,3,Kubu,age_group,35-39,laki_laki,1134,jiwa,2025,registration,total_population,3.2,20,,35 - 39
+14.07.01,3,Kubu,age_group,35-39,perempuan,1180,jiwa,2025,registration,total_population,3.2,20,,35 - 39
+14.07.01,3,Kubu,age_group,35-39,,2314,jiwa,2025,registration,total_population,3.2,20,,35 - 39
+14.07.01,3,Kubu,age_group,40-44,laki_laki,1122,jiwa,2025,registration,total_population,3.2,20,,40 - 44
+14.07.01,3,Kubu,age_group,40-44,perempuan,1062,jiwa,2025,registration,total_population,3.2,20,,40 - 44
+14.07.01,3,Kubu,age_group,40-44,,2184,jiwa,2025,registration,total_population,3.2,20,,40 - 44
+14.07.01,3,Kubu,age_group,45-49,laki_laki,971,jiwa,2025,registration,total_population,3.2,20,,45 - 49
+14.07.01,3,Kubu,age_group,45-49,perempuan,909,jiwa,2025,registration,total_population,3.2,20,,45 - 49
+14.07.01,3,Kubu,age_group,45-49,,1880,jiwa,2025,registration,total_population,3.2,20,,45 - 49
+14.07.01,3,Kubu,age_group,50-54,laki_laki,803,jiwa,2025,registration,total_population,3.2,20,,50 - 54
+14.07.01,3,Kubu,age_group,50-54,perempuan,714,jiwa,2025,registration,total_population,3.2,20,,50 - 54
+14.07.01,3,Kubu,age_group,50-54,,1517,jiwa,2025,registration,total_population,3.2,20,,50 - 54
+14.07.01,3,Kubu,age_group,55-59,laki_laki,649,jiwa,2025,registration,total_population,3.2,20,,55 - 59
+14.07.01,3,Kubu,age_group,55-59,perempuan,590,jiwa,2025,registration,total_population,3.2,20,,55 - 59
+14.07.01,3,Kubu,age_group,55-59,,1239,jiwa,2025,registration,total_population,3.2,20,,55 - 59
+14.07.01,3,Kubu,age_group,60-64,laki_laki,435,jiwa,2025,registration,total_population,3.2,20,,60 - 64
+14.07.01,3,Kubu,age_group,60-64,perempuan,412,jiwa,2025,registration,total_population,3.2,20,,60 - 64
+14.07.01,3,Kubu,age_group,60-64,,847,jiwa,2025,registration,total_population,3.2,20,,60 - 64
+14.07.01,3,Kubu,age_group,65-69,laki_laki,319,jiwa,2025,registration,total_population,3.2,20,,65 - 69
+14.07.01,3,Kubu,age_group,65-69,perempuan,311,jiwa,2025,registration,total_population,3.2,20,,65 - 69
+14.07.01,3,Kubu,age_group,65-69,,630,jiwa,2025,registration,total_population,3.2,20,,65 - 69
+14.07.01,3,Kubu,age_group,70-74,laki_laki,185,jiwa,2025,registration,total_population,3.2,20,,70 - 74
+14.07.01,3,Kubu,age_group,70-74,perempuan,190,jiwa,2025,registration,total_population,3.2,20,,70 - 74
+14.07.01,3,Kubu,age_group,70-74,,375,jiwa,2025,registration,total_population,3.2,20,,70 - 74
+14.07.01,3,Kubu,age_group,75+,laki_laki,250,jiwa,2025,registration,total_population,3.2,20,,75 +
+14.07.01,3,Kubu,age_group,75+,perempuan,235,jiwa,2025,registration,total_population,3.2,20,,75 +
+14.07.01,3,Kubu,age_group,75+,,485,jiwa,2025,registration,total_population,3.2,20,,75 +
+14.07.01,3,KUBU,sex,laki_laki,,15640,jiwa,2025,registration,total_population,3.2,20,,Laki-Laki
+14.07.01,3,KUBU,sex,perempuan,,14862,jiwa,2025,registration,total_population,3.2,20,,Perempuan
+14.07.01,3,KUBU,total,total,,30502,jiwa,2025,registration,total_population,3.2,20,,

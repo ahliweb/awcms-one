@@ -1,0 +1,37 @@
+{
+  "datasetCode": "bps-3376-kecamatan-337603-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.76.03",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tegal Selatan Dalam Angka 2026",
+  "publisherName": "BPS Kota Tegal",
+  "publisherDomain": "3376",
+  "publisherWebsite": "https://tegalkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Tegal (https://tegalkota.bps.go.id), publikasi \"Kecamatan Tegal Selatan Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3376010",
+  "publicationNumber": "33760.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tegalkota.bps.go.id/id/publication/2026/09/28/6137b7bd1618a46f1b385175/kecamatan-tegal-selatan-dalam-angka-2026.html",
+  "sourceFileSha256": "ef5d8dd7e04c51a51827ae8da3d42f850ace421eba1619b449584f15b12147d7",
+  "sourceFileBytes": 8896233,
+  "sourcePages": [35],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Tegal.",
+  "csvPath": "datasets/bps-3376-kecamatan-337603-dalam-angka-2026.csv",
+  "csvSha256": "5bac8dfb4290cdc5ae13a802dee70a53feb297771274d2ee2ffa5cc89b0334bb",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p35",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Tegal Selatan, 2026",
+      "printedPages": [35],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

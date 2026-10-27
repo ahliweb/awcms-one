@@ -1,0 +1,46 @@
+{
+  "datasetCode": "bps-1405-kecamatan-140808-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "14.08.08",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bunga Raya Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Siak",
+  "publisherDomain": "1405",
+  "publisherWebsite": "https://siakkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Siak (https://siakkab.bps.go.id), publikasi \"Kecamatan Bunga Raya Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1405",
+  "publicationNumber": "14050.26018",
+  "issn": "2715-0801",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://siakkab.bps.go.id/id/publication/2026/09/28/453eadab34e5b26c19ccc143/kecamatan-bunga-raya-dalam-angka-2026.html",
+  "sourceFileSha256": "bbdefef3d208c9579247f9ddc0929f1c9439cd893047a09dcbd4f3eb62a11ea7",
+  "sourceFileBytes": 7610790,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Siak.",
+  "csvPath": "datasets/bps-1405-kecamatan-140808-dalam-angka-2026.csv",
+  "csvSha256": "3be3f7980e1c4df850cfcd24cfe9432f4945f2cf022f0188255c631e85ca8a91",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Bunga Raya, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bunga Raya, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"BUANTAN LESTARI\": unmatched ",
+    "table 3.1: row not stored: row \"BUANTAN LESTARI\": unmatched "
+  ]
+}

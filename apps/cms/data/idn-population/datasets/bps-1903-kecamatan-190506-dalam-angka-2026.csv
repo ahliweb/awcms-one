@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+19.05.06.2004,4,Bakit,sex,laki_laki,,1031,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+19.05.06.2004,4,Bakit,sex,perempuan,,1038,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+19.05.06.2004,4,Bakit,total,total,,2069,jiwa,2025,registration,total_population,3.1,32,,
+19.05.06.2009,4,Semulut,sex,laki_laki,,1502,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+19.05.06.2009,4,Semulut,sex,perempuan,,1385,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+19.05.06.2009,4,Semulut,total,total,,2887,jiwa,2025,registration,total_population,3.1,32,,
+19.05.06.2008,4,Kapit,sex,laki_laki,,888,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+19.05.06.2008,4,Kapit,sex,perempuan,,782,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+19.05.06.2008,4,Kapit,total,total,,1670,jiwa,2025,registration,total_population,3.1,32,,
+19.05.06.2002,4,Telak,sex,laki_laki,,948,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+19.05.06.2002,4,Telak,sex,perempuan,,887,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+19.05.06.2002,4,Telak,total,total,,1835,jiwa,2025,registration,total_population,3.1,32,,
+19.05.06.2001,4,Sekar Biru,sex,laki_laki,,2629,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+19.05.06.2001,4,Sekar Biru,sex,perempuan,,2541,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+19.05.06.2001,4,Sekar Biru,total,total,,5170,jiwa,2025,registration,total_population,3.1,32,,
+19.05.06.2005,4,Puput,sex,laki_laki,,3184,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+19.05.06.2005,4,Puput,sex,perempuan,,2955,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+19.05.06.2005,4,Puput,total,total,,6139,jiwa,2025,registration,total_population,3.1,32,,
+19.05.06.2006,4,Air Gantang,sex,laki_laki,,2908,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+19.05.06.2006,4,Air Gantang,sex,perempuan,,2643,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+19.05.06.2006,4,Air Gantang,total,total,,5551,jiwa,2025,registration,total_population,3.1,32,,
+19.05.06.2007,4,Kelabat,sex,laki_laki,,2143,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+19.05.06.2007,4,Kelabat,sex,perempuan,,1927,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+19.05.06.2007,4,Kelabat,total,total,,4070,jiwa,2025,registration,total_population,3.1,32,,
+19.05.06.2003,4,Cupat,sex,laki_laki,,2718,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+19.05.06.2003,4,Cupat,sex,perempuan,,2493,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+19.05.06.2003,4,Cupat,total,total,,5211,jiwa,2025,registration,total_population,3.1,32,,
+19.05.06.2010,4,Teluk Limau,sex,laki_laki,,2113,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+19.05.06.2010,4,Teluk Limau,sex,perempuan,,2034,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+19.05.06.2010,4,Teluk Limau,total,total,,4147,jiwa,2025,registration,total_population,3.1,32,,
+19.05.06,3,Parittiga,sex,laki_laki,,20064,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+19.05.06,3,Parittiga,sex,perempuan,,18685,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+19.05.06,3,Parittiga,total,total,,38749,jiwa,2025,registration,total_population,3.1,32,,
+19.05.06,3,Parittiga,age_group,0-4,laki_laki,1165,jiwa,2025,registration,total_population,3.2,34,,0–4
+19.05.06,3,Parittiga,age_group,0-4,perempuan,1096,jiwa,2025,registration,total_population,3.2,34,,0–4
+19.05.06,3,Parittiga,age_group,0-4,,2261,jiwa,2025,registration,total_population,3.2,34,,0–4
+19.05.06,3,Parittiga,age_group,5-9,laki_laki,1733,jiwa,2025,registration,total_population,3.2,34,,5–9
+19.05.06,3,Parittiga,age_group,5-9,perempuan,1558,jiwa,2025,registration,total_population,3.2,34,,5–9
+19.05.06,3,Parittiga,age_group,5-9,,3291,jiwa,2025,registration,total_population,3.2,34,,5–9
+19.05.06,3,Parittiga,age_group,10-14,laki_laki,2052,jiwa,2025,registration,total_population,3.2,34,,10–14
+19.05.06,3,Parittiga,age_group,10-14,perempuan,1942,jiwa,2025,registration,total_population,3.2,34,,10–14
+19.05.06,3,Parittiga,age_group,10-14,,3994,jiwa,2025,registration,total_population,3.2,34,,10–14
+19.05.06,3,Parittiga,age_group,15-19,laki_laki,1923,jiwa,2025,registration,total_population,3.2,34,,15–19
+19.05.06,3,Parittiga,age_group,15-19,perempuan,1890,jiwa,2025,registration,total_population,3.2,34,,15–19
+19.05.06,3,Parittiga,age_group,15-19,,3813,jiwa,2025,registration,total_population,3.2,34,,15–19
+19.05.06,3,Parittiga,age_group,20-24,laki_laki,1708,jiwa,2025,registration,total_population,3.2,34,,20–24
+19.05.06,3,Parittiga,age_group,20-24,perempuan,1595,jiwa,2025,registration,total_population,3.2,34,,20–24
+19.05.06,3,Parittiga,age_group,20-24,,3303,jiwa,2025,registration,total_population,3.2,34,,20–24
+19.05.06,3,Parittiga,age_group,25-29,laki_laki,1429,jiwa,2025,registration,total_population,3.2,34,,25–29
+19.05.06,3,Parittiga,age_group,25-29,perempuan,1194,jiwa,2025,registration,total_population,3.2,34,,25–29
+19.05.06,3,Parittiga,age_group,25-29,,2623,jiwa,2025,registration,total_population,3.2,34,,25–29
+19.05.06,3,Parittiga,age_group,30-34,laki_laki,1236,jiwa,2025,registration,total_population,3.2,34,,30–34
+19.05.06,3,Parittiga,age_group,30-34,perempuan,1182,jiwa,2025,registration,total_population,3.2,34,,30–34
+19.05.06,3,Parittiga,age_group,30-34,,2418,jiwa,2025,registration,total_population,3.2,34,,30–34
+19.05.06,3,Parittiga,age_group,35-39,laki_laki,1497,jiwa,2025,registration,total_population,3.2,34,,35–39
+19.05.06,3,Parittiga,age_group,35-39,perempuan,1587,jiwa,2025,registration,total_population,3.2,34,,35–39
+19.05.06,3,Parittiga,age_group,35-39,,3084,jiwa,2025,registration,total_population,3.2,34,,35–39
+19.05.06,3,Parittiga,age_group,40-44,laki_laki,1729,jiwa,2025,registration,total_population,3.2,34,,40–44
+19.05.06,3,Parittiga,age_group,40-44,perempuan,1565,jiwa,2025,registration,total_population,3.2,34,,40–44
+19.05.06,3,Parittiga,age_group,40-44,,3294,jiwa,2025,registration,total_population,3.2,34,,40–44
+19.05.06,3,Parittiga,age_group,45-49,laki_laki,1612,jiwa,2025,registration,total_population,3.2,34,,45–49
+19.05.06,3,Parittiga,age_group,45-49,perempuan,1372,jiwa,2025,registration,total_population,3.2,34,,45–49
+19.05.06,3,Parittiga,age_group,45-49,,2984,jiwa,2025,registration,total_population,3.2,34,,45–49
+19.05.06,3,Parittiga,age_group,50-54,laki_laki,1211,jiwa,2025,registration,total_population,3.2,34,,50–54
+19.05.06,3,Parittiga,age_group,50-54,perempuan,985,jiwa,2025,registration,total_population,3.2,34,,50–54
+19.05.06,3,Parittiga,age_group,50-54,,2196,jiwa,2025,registration,total_population,3.2,34,,50–54
+19.05.06,3,Parittiga,age_group,55-59,laki_laki,900,jiwa,2025,registration,total_population,3.2,34,,55–59
+19.05.06,3,Parittiga,age_group,55-59,perempuan,757,jiwa,2025,registration,total_population,3.2,34,,55–59
+19.05.06,3,Parittiga,age_group,55-59,,1657,jiwa,2025,registration,total_population,3.2,34,,55–59
+19.05.06,3,Parittiga,age_group,60-64,laki_laki,655,jiwa,2025,registration,total_population,3.2,34,,60–64
+19.05.06,3,Parittiga,age_group,60-64,perempuan,601,jiwa,2025,registration,total_population,3.2,34,,60–64
+19.05.06,3,Parittiga,age_group,60-64,,1256,jiwa,2025,registration,total_population,3.2,34,,60–64
+19.05.06,3,Parittiga,age_group,65-69,laki_laki,529,jiwa,2025,registration,total_population,3.2,34,,65–69
+19.05.06,3,Parittiga,age_group,65-69,perempuan,581,jiwa,2025,registration,total_population,3.2,34,,65–69
+19.05.06,3,Parittiga,age_group,65-69,,1110,jiwa,2025,registration,total_population,3.2,34,,65–69
+19.05.06,3,Parittiga,age_group,70-74,laki_laki,342,jiwa,2025,registration,total_population,3.2,34,,70–74
+19.05.06,3,Parittiga,age_group,70-74,perempuan,355,jiwa,2025,registration,total_population,3.2,34,,70–74
+19.05.06,3,Parittiga,age_group,70-74,,697,jiwa,2025,registration,total_population,3.2,34,,70–74
+19.05.06,3,Parittiga,age_group,75+,laki_laki,343,jiwa,2025,registration,total_population,3.2,34,,75+
+19.05.06,3,Parittiga,age_group,75+,perempuan,425,jiwa,2025,registration,total_population,3.2,34,,75+
+19.05.06,3,Parittiga,age_group,75+,,768,jiwa,2025,registration,total_population,3.2,34,,75+
+19.05.06,3,Parittiga,sex,laki_laki,,20064,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+19.05.06,3,Parittiga,sex,perempuan,,18685,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+19.05.06,3,Parittiga,total,total,,38749,jiwa,2025,registration,total_population,3.2,34,,

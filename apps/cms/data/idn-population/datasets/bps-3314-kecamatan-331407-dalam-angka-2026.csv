@@ -1,0 +1,79 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.14.07.2002,4,Karanganyar,sex,laki_laki,,2835,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.07.2002,4,Karanganyar,sex,perempuan,,2921,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.07.2002,4,Karanganyar,total,total,,5756,jiwa,2025,registration,total_population,3.1,32,,
+33.14.07.2005,4,Toyogo,sex,laki_laki,,2897,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.07.2005,4,Toyogo,sex,perempuan,,2892,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.07.2005,4,Toyogo,total,total,,5789,jiwa,2025,registration,total_population,3.1,32,,
+33.14.07.2007,4,Gringging,sex,laki_laki,,2838,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.07.2007,4,Gringging,sex,perempuan,,2833,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.07.2007,4,Gringging,total,total,,5671,jiwa,2025,registration,total_population,3.1,32,,
+33.14.07.2008,4,Banaran,sex,laki_laki,,2187,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.07.2008,4,Banaran,sex,perempuan,,2277,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.07.2008,4,Banaran,total,total,,4464,jiwa,2025,registration,total_population,3.1,32,,
+33.14.07.2009,4,Sambungmacan,sex,laki_laki,,1868,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.07.2009,4,Sambungmacan,sex,perempuan,,1830,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.07.2009,4,Sambungmacan,total,total,,3698,jiwa,2025,registration,total_population,3.1,32,,
+33.14.07.2004,4,Bedoro,sex,laki_laki,,2733,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.07.2004,4,Bedoro,sex,perempuan,,2611,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.07.2004,4,Bedoro,total,total,,5344,jiwa,2025,registration,total_population,3.1,32,,
+33.14.07.2001,4,Plumbon,sex,laki_laki,,4591,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.07.2001,4,Plumbon,sex,perempuan,,4611,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.07.2001,4,Plumbon,total,total,,9202,jiwa,2025,registration,total_population,3.1,32,,
+33.14.07.2003,4,Cemeng,sex,laki_laki,,2859,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.07.2003,4,Cemeng,sex,perempuan,,2879,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.07.2003,4,Cemeng,total,total,,5738,jiwa,2025,registration,total_population,3.1,32,,
+33.14.07,3,Kecamatan Sambungmacan,sex,laki_laki,,25347,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+33.14.07,3,Kecamatan Sambungmacan,sex,perempuan,,25420,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+33.14.07,3,Kecamatan Sambungmacan,total,total,,50767,jiwa,2025,registration,total_population,3.1,32,,
+33.14.07,3,Sambungmacan,age_group,0-4,laki_laki,1350,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.07,3,Sambungmacan,age_group,0-4,perempuan,1218,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.07,3,Sambungmacan,age_group,0-4,,2568,jiwa,2025,registration,total_population,3.2,34,,0 - 4
+33.14.07,3,Sambungmacan,age_group,5-9,laki_laki,1826,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.07,3,Sambungmacan,age_group,5-9,perempuan,1734,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.07,3,Sambungmacan,age_group,5-9,,3560,jiwa,2025,registration,total_population,3.2,34,,5 - 9
+33.14.07,3,Sambungmacan,age_group,10-14,laki_laki,1878,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.07,3,Sambungmacan,age_group,10-14,perempuan,1760,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.07,3,Sambungmacan,age_group,10-14,,3638,jiwa,2025,registration,total_population,3.2,34,,10 - 14
+33.14.07,3,Sambungmacan,age_group,15-19,laki_laki,2005,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.07,3,Sambungmacan,age_group,15-19,perempuan,1819,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.07,3,Sambungmacan,age_group,15-19,,3824,jiwa,2025,registration,total_population,3.2,34,,15 - 19
+33.14.07,3,Sambungmacan,age_group,20-24,laki_laki,1854,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.07,3,Sambungmacan,age_group,20-24,perempuan,1712,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.07,3,Sambungmacan,age_group,20-24,,3566,jiwa,2025,registration,total_population,3.2,34,,20 - 24
+33.14.07,3,Sambungmacan,age_group,25-29,laki_laki,1861,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.07,3,Sambungmacan,age_group,25-29,perempuan,1785,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.07,3,Sambungmacan,age_group,25-29,,3646,jiwa,2025,registration,total_population,3.2,34,,25 - 29
+33.14.07,3,Sambungmacan,age_group,30-34,laki_laki,1671,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.07,3,Sambungmacan,age_group,30-34,perempuan,1619,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.07,3,Sambungmacan,age_group,30-34,,3290,jiwa,2025,registration,total_population,3.2,34,,30 - 34
+33.14.07,3,Sambungmacan,age_group,35-39,laki_laki,1592,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.07,3,Sambungmacan,age_group,35-39,perempuan,1568,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.07,3,Sambungmacan,age_group,35-39,,3160,jiwa,2025,registration,total_population,3.2,34,,35 - 39
+33.14.07,3,Sambungmacan,age_group,40-44,laki_laki,1949,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.07,3,Sambungmacan,age_group,40-44,perempuan,1966,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.07,3,Sambungmacan,age_group,40-44,,3915,jiwa,2025,registration,total_population,3.2,34,,40 - 44
+33.14.07,3,Sambungmacan,age_group,45-49,laki_laki,1915,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.07,3,Sambungmacan,age_group,45-49,perempuan,1899,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.07,3,Sambungmacan,age_group,45-49,,3814,jiwa,2025,registration,total_population,3.2,34,,45 - 49
+33.14.07,3,Sambungmacan,age_group,50-54,laki_laki,1656,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.07,3,Sambungmacan,age_group,50-54,perempuan,1649,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.07,3,Sambungmacan,age_group,50-54,,3305,jiwa,2025,registration,total_population,3.2,34,,50 - 54
+33.14.07,3,Sambungmacan,age_group,55-59,laki_laki,1528,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.07,3,Sambungmacan,age_group,55-59,perempuan,1642,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.07,3,Sambungmacan,age_group,55-59,,3170,jiwa,2025,registration,total_population,3.2,34,,55 - 59
+33.14.07,3,Sambungmacan,age_group,60-64,laki_laki,1226,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.07,3,Sambungmacan,age_group,60-64,perempuan,1426,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.07,3,Sambungmacan,age_group,60-64,,2652,jiwa,2025,registration,total_population,3.2,34,,60 - 64
+33.14.07,3,Sambungmacan,age_group,65-69,laki_laki,1158,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.07,3,Sambungmacan,age_group,65-69,perempuan,1376,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.07,3,Sambungmacan,age_group,65-69,,2534,jiwa,2025,registration,total_population,3.2,34,,65 - 69
+33.14.07,3,Sambungmacan,age_group,70-74,laki_laki,852,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.07,3,Sambungmacan,age_group,70-74,perempuan,816,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.07,3,Sambungmacan,age_group,70-74,,1668,jiwa,2025,registration,total_population,3.2,34,,70 - 74
+33.14.07,3,Sambungmacan,age_group,75+,laki_laki,1026,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.07,3,Sambungmacan,age_group,75+,perempuan,1431,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.07,3,Sambungmacan,age_group,75+,,2457,jiwa,2025,registration,total_population,3.2,34,,75+
+33.14.07,3,Kecamatan Sambungmacan,sex,laki_laki,,25347,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+33.14.07,3,Kecamatan Sambungmacan,sex,perempuan,,25420,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+33.14.07,3,Kecamatan Sambungmacan,total,total,,50767,jiwa,2025,registration,total_population,3.2,34,,

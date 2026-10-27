@@ -1,0 +1,78 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.72.03.1001,4,Joyosuran,religion,islam,,9217,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.03.1001,4,Joyosuran,religion,kristen,,1026,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.03.1001,4,Joyosuran,religion,katolik,,499,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.03.1001,4,Joyosuran,religion,hindu,,5,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.03.1002,4,Semanggi,religion,islam,,21903,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.03.1002,4,Semanggi,religion,kristen,,938,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.03.1002,4,Semanggi,religion,katolik,,795,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.03.1002,4,Semanggi,religion,hindu,,3,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.03.1003,4,Pasar Kliwon,religion,islam,,5244,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.03.1003,4,Pasar Kliwon,religion,kristen,,165,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.03.1003,4,Pasar Kliwon,religion,katolik,,97,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.03.1003,4,Pasar Kliwon,religion,hindu,,0,jiwa,2025,registration,total_population,3.1.6,59,nil,Hindu
+33.72.03.1005,4,Baluwarti,religion,islam,,5847,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.03.1005,4,Baluwarti,religion,kristen,,326,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.03.1005,4,Baluwarti,religion,katolik,,380,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.03.1005,4,Baluwarti,religion,hindu,,4,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.03.1004,4,Gajahan,religion,islam,,2685,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.03.1004,4,Gajahan,religion,kristen,,738,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.03.1004,4,Gajahan,religion,katolik,,401,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.03.1004,4,Gajahan,religion,hindu,,0,jiwa,2025,registration,total_population,3.1.6,59,nil,Hindu
+33.72.03.1009,4,Kauman,religion,islam,,2462,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.03.1009,4,Kauman,religion,kristen,,126,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.03.1009,4,Kauman,religion,katolik,,74,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.03.1009,4,Kauman,religion,hindu,,0,jiwa,2025,registration,total_population,3.1.6,59,nil,Hindu
+33.72.03.1006,4,Kampung Baru,religion,islam,,1946,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.03.1006,4,Kampung Baru,religion,kristen,,266,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.03.1006,4,Kampung Baru,religion,katolik,,667,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.03.1006,4,Kampung Baru,religion,hindu,,0,jiwa,2025,registration,total_population,3.1.6,59,nil,Hindu
+33.72.03.1007,4,Kedung Lumbu,religion,islam,,4780,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.03.1007,4,Kedung Lumbu,religion,kristen,,312,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.03.1007,4,Kedung Lumbu,religion,katolik,,325,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.03.1007,4,Kedung Lumbu,religion,hindu,,1,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.03.1008,4,Sangkrah,religion,islam,,11467,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.03.1008,4,Sangkrah,religion,kristen,,760,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.03.1008,4,Sangkrah,religion,katolik,,544,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.03.1008,4,Sangkrah,religion,hindu,,1,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.03.1010,4,Mojo,religion,islam,,13238,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.03.1010,4,Mojo,religion,kristen,,941,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.03.1010,4,Mojo,religion,katolik,,521,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.03.1010,4,Mojo,religion,hindu,,0,jiwa,2025,registration,total_population,3.1.6,59,nil,Hindu
+33.72.03,3,Kecamatan Pasar Kliwon,religion,islam,,78789,jiwa,2025,registration,total_population,3.1.6,59,,Islam
+33.72.03,3,Kecamatan Pasar Kliwon,religion,kristen,,5598,jiwa,2025,registration,total_population,3.1.6,59,,Protestan
+33.72.03,3,Kecamatan Pasar Kliwon,religion,katolik,,4303,jiwa,2025,registration,total_population,3.1.6,59,,Katolik
+33.72.03,3,Kecamatan Pasar Kliwon,religion,hindu,,14,jiwa,2025,registration,total_population,3.1.6,59,,Hindu
+33.72.03.1001,4,Joyosuran,religion,buddha,,4,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.03.1001,4,Joyosuran,religion,khonghucu,,1,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.03.1001,4,Joyosuran,religion,kepercayaan,,1,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.03.1002,4,Semanggi,religion,buddha,,7,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.03.1002,4,Semanggi,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.03.1002,4,Semanggi,religion,kepercayaan,,1,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.03.1003,4,Pasar Kliwon,religion,buddha,,3,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.03.1003,4,Pasar Kliwon,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.03.1003,4,Pasar Kliwon,religion,kepercayaan,,1,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.03.1005,4,Baluwarti,religion,buddha,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Budha
+33.72.03.1005,4,Baluwarti,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.03.1005,4,Baluwarti,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Kepercayaan
+33.72.03.1004,4,Gajahan,religion,buddha,,42,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.03.1004,4,Gajahan,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.03.1004,4,Gajahan,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Kepercayaan
+33.72.03.1009,4,Kauman,religion,buddha,,22,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.03.1009,4,Kauman,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.03.1009,4,Kauman,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Kepercayaan
+33.72.03.1006,4,Kampung Baru,religion,buddha,,12,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.03.1006,4,Kampung Baru,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.03.1006,4,Kampung Baru,religion,kepercayaan,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Kepercayaan
+33.72.03.1007,4,Kedung Lumbu,religion,buddha,,12,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.03.1007,4,Kedung Lumbu,religion,khonghucu,,1,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.03.1007,4,Kedung Lumbu,religion,kepercayaan,,1,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.03.1008,4,Sangkrah,religion,buddha,,11,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.03.1008,4,Sangkrah,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.03.1008,4,Sangkrah,religion,kepercayaan,,2,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.03.1010,4,Mojo,religion,buddha,,3,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.03.1010,4,Mojo,religion,khonghucu,,0,jiwa,2025,registration,total_population,3.1.6,60,nil,Konghucu
+33.72.03.1010,4,Mojo,religion,kepercayaan,,2,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan
+33.72.03,3,Kecamatan Pasar Kliwon,religion,buddha,,116,jiwa,2025,registration,total_population,3.1.6,60,,Budha
+33.72.03,3,Kecamatan Pasar Kliwon,religion,khonghucu,,2,jiwa,2025,registration,total_population,3.1.6,60,,Konghucu
+33.72.03,3,Kecamatan Pasar Kliwon,religion,kepercayaan,,8,jiwa,2025,registration,total_population,3.1.6,60,,Kepercayaan

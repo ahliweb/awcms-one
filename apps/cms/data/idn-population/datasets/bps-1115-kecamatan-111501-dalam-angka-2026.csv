@@ -1,0 +1,35 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+11.15.01.2024,4,ALUE IE MAMEH,sex,perempuan,,750,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.01.2024,4,ALUE IE MAMEH,total,total,,1467,jiwa,2026,registration,total_population,3.1,31,,
+11.15.01.2023,4,BLANG BARO,sex,perempuan,,406,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.01.2023,4,BLANG BARO,total,total,,806,jiwa,2026,registration,total_population,3.1,31,,
+11.15.01.2030,4,BLANG BINTANG,sex,perempuan,,593,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.01.2030,4,BLANG BINTANG,total,total,,1215,jiwa,2026,registration,total_population,3.1,31,,
+11.15.01.2020,4,BLANG MUKO,sex,perempuan,,594,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.01.2020,4,BLANG MUKO,total,total,,1221,jiwa,2026,registration,total_population,3.1,31,,
+11.15.01.2027,4,BLANG TEUNGOH,sex,perempuan,,709,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.01.2027,4,BLANG TEUNGOH,total,total,,1339,jiwa,2026,registration,total_population,3.1,31,,
+11.15.01.2029,4,COT KUMBANG,sex,perempuan,,415,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.01.2029,4,COT KUMBANG,total,total,,875,jiwa,2026,registration,total_population,3.1,31,,
+11.15.01.2033,4,GUNONG REUBO,sex,perempuan,,159,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.01.2033,4,GUNONG REUBO,total,total,,327,jiwa,2026,registration,total_population,3.1,31,,
+11.15.01.2032,4,KUTA MAKMUE,sex,perempuan,,512,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.01.2032,4,KUTA MAKMUE,total,total,,1035,jiwa,2026,registration,total_population,3.1,31,,
+11.15.01.2003,4,LAWA BATU,sex,perempuan,,411,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.01.2003,4,LAWA BATU,total,total,,851,jiwa,2026,registration,total_population,3.1,31,,
+11.15.01.2021,4,PULO IE,sex,perempuan,,500,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.01.2021,4,PULO IE,total,total,,971,jiwa,2026,registration,total_population,3.1,31,,
+11.15.01.2022,4,PURWOREJO,sex,perempuan,,539,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.01.2022,4,PURWOREJO,total,total,,1098,jiwa,2026,registration,total_population,3.1,31,,
+11.15.01.2026,4,SIMPANG PEUT,sex,perempuan,,2092,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.01.2026,4,SIMPANG PEUT,total,total,,4297,jiwa,2026,registration,total_population,3.1,31,,
+11.15.01.2028,4,UJONG PADANG,sex,perempuan,,678,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.01.2028,4,UJONG PADANG,total,total,,1334,jiwa,2026,registration,total_population,3.1,31,,
+11.15.01.2025,4,UJONG PASI,sex,perempuan,,534,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.01.2025,4,UJONG PASI,total,total,,1078,jiwa,2026,registration,total_population,3.1,31,,
+11.15.01.2031,4,UJONG PATIHAH,sex,perempuan,,2336,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.01.2031,4,UJONG PATIHAH,total,total,,4668,jiwa,2026,registration,total_population,3.1,31,,
+11.15.01.2019,4,UJONG SIKUNENG,sex,perempuan,,260,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.01.2019,4,UJONG SIKUNENG,total,total,,542,jiwa,2026,registration,total_population,3.1,31,,
+11.15.01,3,KUALA,sex,perempuan,,11996,jiwa,2026,registration,total_population,3.1,31,,Perempuan/
+11.15.01,3,KUALA,total,total,,24173,jiwa,2026,registration,total_population,3.1,31,,

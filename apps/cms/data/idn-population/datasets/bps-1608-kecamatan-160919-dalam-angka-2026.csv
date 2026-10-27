@@ -1,0 +1,85 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.09.19.2009,4,Pelawi,sex,laki_laki,,766,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.19.2009,4,Pelawi,sex,perempuan,,692,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.19.2009,4,Pelawi,total,total,,1458,jiwa,2025,registration,total_population,3.1,27,,
+16.09.19.2007,4,Bendi,sex,laki_laki,,486,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.19.2007,4,Bendi,sex,perempuan,,453,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.19.2007,4,Bendi,total,total,,939,jiwa,2025,registration,total_population,3.1,27,,
+16.09.19.2005,4,Gunung Cahya,sex,laki_laki,,1098,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.19.2005,4,Gunung Cahya,sex,perempuan,,1033,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.19.2005,4,Gunung Cahya,total,total,,2131,jiwa,2025,registration,total_population,3.1,27,,
+16.09.19.2004,4,Ruos,sex,laki_laki,,693,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.19.2004,4,Ruos,sex,perempuan,,675,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.19.2004,4,Ruos,total,total,,1368,jiwa,2025,registration,total_population,3.1,27,,
+16.09.19.2006,4,Bumi jaya,sex,laki_laki,,597,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.19.2006,4,Bumi jaya,sex,perempuan,,521,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.19.2006,4,Bumi jaya,total,total,,1118,jiwa,2025,registration,total_population,3.1,27,,
+16.09.19.2003,4,Banjar Agung,sex,laki_laki,,691,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.19.2003,4,Banjar Agung,sex,perempuan,,647,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.19.2003,4,Banjar Agung,total,total,,1338,jiwa,2025,registration,total_population,3.1,27,,
+16.09.19.2002,4,Sukajaya,sex,laki_laki,,1891,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.19.2002,4,Sukajaya,sex,perempuan,,1744,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.19.2002,4,Sukajaya,total,total,,3635,jiwa,2025,registration,total_population,3.1,27,,
+16.09.19.2001,4,Rantau Panjang,sex,laki_laki,,1712,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.19.2001,4,Rantau Panjang,sex,perempuan,,1653,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.19.2001,4,Rantau Panjang,total,total,,3365,jiwa,2025,registration,total_population,3.1,27,,
+16.09.19.2011,4,Majar,sex,laki_laki,,316,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.19.2011,4,Majar,sex,perempuan,,316,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.19.2011,4,Majar,total,total,,632,jiwa,2025,registration,total_population,3.1,27,,
+16.09.19.2012,4,Bumi Agung Jaya,sex,laki_laki,,1645,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.19.2012,4,Bumi Agung Jaya,sex,perempuan,,1583,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.19.2012,4,Bumi Agung Jaya,total,total,,3228,jiwa,2025,registration,total_population,3.1,27,,
+16.09.19,3,Buay Rawan,sex,laki_laki,,10568,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.19,3,Buay Rawan,sex,perempuan,,9913,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.19,3,Buay Rawan,total,total,,20481,jiwa,2025,registration,total_population,3.1,27,,
+16.09.19,3,Buay Rawan,age_group,0-4,laki_laki,781,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.19,3,Buay Rawan,age_group,0-4,perempuan,692,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.19,3,Buay Rawan,age_group,0-4,,1473,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.19,3,Buay Rawan,age_group,5-9,laki_laki,960,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.19,3,Buay Rawan,age_group,5-9,perempuan,900,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.19,3,Buay Rawan,age_group,5-9,,1860,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.19,3,Buay Rawan,age_group,10-14,laki_laki,964,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.19,3,Buay Rawan,age_group,10-14,perempuan,872,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.19,3,Buay Rawan,age_group,10-14,,1836,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.19,3,Buay Rawan,age_group,15-19,laki_laki,884,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.19,3,Buay Rawan,age_group,15-19,perempuan,853,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.19,3,Buay Rawan,age_group,15-19,,1737,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.19,3,Buay Rawan,age_group,20-24,laki_laki,858,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.19,3,Buay Rawan,age_group,20-24,perempuan,788,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.19,3,Buay Rawan,age_group,20-24,,1646,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.19,3,Buay Rawan,age_group,25-29,laki_laki,844,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.19,3,Buay Rawan,age_group,25-29,perempuan,796,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.19,3,Buay Rawan,age_group,25-29,,1640,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.19,3,Buay Rawan,age_group,30-34,laki_laki,772,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.19,3,Buay Rawan,age_group,30-34,perempuan,772,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.19,3,Buay Rawan,age_group,30-34,,1544,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.19,3,Buay Rawan,age_group,35-39,laki_laki,913,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.19,3,Buay Rawan,age_group,35-39,perempuan,912,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.19,3,Buay Rawan,age_group,35-39,,1825,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.19,3,Buay Rawan,age_group,40-44,laki_laki,875,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.19,3,Buay Rawan,age_group,40-44,perempuan,753,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.19,3,Buay Rawan,age_group,40-44,,1628,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.19,3,Buay Rawan,age_group,45-49,laki_laki,675,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.19,3,Buay Rawan,age_group,45-49,perempuan,598,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.19,3,Buay Rawan,age_group,45-49,,1273,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.19,3,Buay Rawan,age_group,50-54,laki_laki,512,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.19,3,Buay Rawan,age_group,50-54,perempuan,495,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.19,3,Buay Rawan,age_group,50-54,,1007,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.19,3,Buay Rawan,age_group,55-59,laki_laki,434,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.19,3,Buay Rawan,age_group,55-59,perempuan,482,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.19,3,Buay Rawan,age_group,55-59,,916,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.19,3,Buay Rawan,age_group,60-64,laki_laki,377,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.19,3,Buay Rawan,age_group,60-64,perempuan,363,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.19,3,Buay Rawan,age_group,60-64,,740,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.19,3,Buay Rawan,age_group,65-69,laki_laki,313,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.19,3,Buay Rawan,age_group,65-69,perempuan,271,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.19,3,Buay Rawan,age_group,65-69,,584,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.19,3,Buay Rawan,age_group,70-74,laki_laki,193,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.19,3,Buay Rawan,age_group,70-74,perempuan,168,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.19,3,Buay Rawan,age_group,70-74,,361,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.19,3,Buay Rawan,age_group,75+,laki_laki,213,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.19,3,Buay Rawan,age_group,75+,perempuan,198,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.19,3,Buay Rawan,age_group,75+,,411,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.19,3,Buay Rawan,sex,laki_laki,,10568,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+16.09.19,3,Buay Rawan,sex,perempuan,,9913,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+16.09.19,3,Buay Rawan,total,total,,20481,jiwa,2025,registration,total_population,3.2,29,,

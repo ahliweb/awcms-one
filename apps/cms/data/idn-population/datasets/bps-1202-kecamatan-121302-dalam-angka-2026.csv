@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.13.02.2018,4,Simanondong,sex,laki_laki,,418,jiwa,2026,registration,total_population,3.1,21,,Laki-Laki
+12.13.02.2018,4,Simanondong,sex,perempuan,,404,jiwa,2026,registration,total_population,3.1,21,,Perempuan
+12.13.02.2018,4,Simanondong,total,total,,822,jiwa,2026,registration,total_population,3.1,21,,
+12.13.02.2014,4,Rumbio,sex,laki_laki,,1068,jiwa,2026,registration,total_population,3.1,21,,Laki-Laki
+12.13.02.2014,4,Rumbio,sex,perempuan,,1098,jiwa,2026,registration,total_population,3.1,21,,Perempuan
+12.13.02.2014,4,Rumbio,total,total,,2166,jiwa,2026,registration,total_population,3.1,21,,
+12.13.02.2010,4,Mompang Julu,sex,laki_laki,,3016,jiwa,2026,registration,total_population,3.1,21,,Laki-Laki
+12.13.02.2010,4,Mompang Julu,sex,perempuan,,3003,jiwa,2026,registration,total_population,3.1,21,,Perempuan
+12.13.02.2010,4,Mompang Julu,total,total,,6019,jiwa,2026,registration,total_population,3.1,21,,
+12.13.02.2007,4,Huta Damai,sex,laki_laki,,522,jiwa,2026,registration,total_population,3.1,21,,Laki-Laki
+12.13.02.2007,4,Huta Damai,sex,perempuan,,555,jiwa,2026,registration,total_population,3.1,21,,Perempuan
+12.13.02.2007,4,Huta Damai,total,total,,1077,jiwa,2026,registration,total_population,3.1,21,,
+12.13.02.2015,4,Suka Ramai,sex,laki_laki,,449,jiwa,2026,registration,total_population,3.1,21,,Laki-Laki
+12.13.02.2015,4,Suka Ramai,sex,perempuan,,453,jiwa,2026,registration,total_population,3.1,21,,Perempuan
+12.13.02.2015,4,Suka Ramai,total,total,,902,jiwa,2026,registration,total_population,3.1,21,,
+12.13.02.2008,4,Jambur Padang Matinggi,sex,laki_laki,,2206,jiwa,2026,registration,total_population,3.1,21,,Laki-Laki
+12.13.02.2008,4,Jambur Padang Matinggi,sex,perempuan,,2244,jiwa,2026,registration,total_population,3.1,21,,Perempuan
+12.13.02.2008,4,Jambur Padang Matinggi,total,total,,4450,jiwa,2026,registration,total_population,3.1,21,,
+12.13.02.2017,4,Sopo Sorik,sex,laki_laki,,276,jiwa,2026,registration,total_population,3.1,21,,Laki-Laki
+12.13.02.2017,4,Sopo Sorik,sex,perempuan,,262,jiwa,2026,registration,total_population,3.1,21,,Perempuan
+12.13.02.2017,4,Sopo Sorik,total,total,,538,jiwa,2026,registration,total_population,3.1,21,,
+12.13.02.2020,4,Tanjung Mompang,sex,laki_laki,,887,jiwa,2026,registration,total_population,3.1,21,,Laki-Laki
+12.13.02.2020,4,Tanjung Mompang,sex,perempuan,,898,jiwa,2026,registration,total_population,3.1,21,,Perempuan
+12.13.02.2020,4,Tanjung Mompang,total,total,,1785,jiwa,2026,registration,total_population,3.1,21,,
+12.13.02.2019,4,Torbanua Raja,sex,laki_laki,,402,jiwa,2026,registration,total_population,3.1,21,,Laki-Laki
+12.13.02.2019,4,Torbanua Raja,sex,perempuan,,385,jiwa,2026,registration,total_population,3.1,21,,Perempuan
+12.13.02.2019,4,Torbanua Raja,total,total,,787,jiwa,2026,registration,total_population,3.1,21,,
+12.13.02.2009,4,Kampung Baru,sex,laki_laki,,433,jiwa,2026,registration,total_population,3.1,21,,Laki-Laki
+12.13.02.2009,4,Kampung Baru,sex,perempuan,,457,jiwa,2026,registration,total_population,3.1,21,,Perempuan
+12.13.02.2009,4,Kampung Baru,total,total,,890,jiwa,2026,registration,total_population,3.1,21,,
+12.13.02.1012,4,Mompang Jae,sex,laki_laki,,2374,jiwa,2026,registration,total_population,3.1,21,,Laki-Laki
+12.13.02.1012,4,Mompang Jae,sex,perempuan,,2431,jiwa,2026,registration,total_population,3.1,21,,Perempuan
+12.13.02.1012,4,Mompang Jae,total,total,,4805,jiwa,2026,registration,total_population,3.1,21,,

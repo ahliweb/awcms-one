@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.08.15.2004,4,Pulau Kerakap,sex,laki_laki,,599,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.15.2004,4,Pulau Kerakap,sex,perempuan,,554,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.15.2004,4,Pulau Kerakap,total,total,,1153,jiwa,2025,registration,total_population,3.1,32,,
+15.08.15.2002,4,Peninjau,sex,laki_laki,,1100,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.15.2002,4,Peninjau,sex,perempuan,,1052,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.15.2002,4,Peninjau,total,total,,2152,jiwa,2025,registration,total_population,3.1,32,,
+15.08.15.2001,4,Pelayang,sex,laki_laki,,1086,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.15.2001,4,Pelayang,sex,perempuan,,1026,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.15.2001,4,Pelayang,total,total,,2112,jiwa,2025,registration,total_population,3.1,32,,
+15.08.15.2003,4,Talang Silungko,sex,laki_laki,,1134,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.15.2003,4,Talang Silungko,sex,perempuan,,1013,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.15.2003,4,Talang Silungko,total,total,,2147,jiwa,2025,registration,total_population,3.1,32,,
+15.08.15.2005,4,Seberang Jaya,sex,laki_laki,,1111,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.15.2005,4,Seberang Jaya,sex,perempuan,,1006,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.15.2005,4,Seberang Jaya,total,total,,2117,jiwa,2025,registration,total_population,3.1,32,,
+15.08.15,3,Bathin II Pelayang,sex,laki_laki,,5030,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+15.08.15,3,Bathin II Pelayang,sex,perempuan,,4651,jiwa,2025,registration,total_population,3.1,32,,Perempuan/
+15.08.15,3,Bathin II Pelayang,total,total,,9681,jiwa,2025,registration,total_population,3.1,32,,
+15.08.15,3,Bathin II Pelayang,age_group,0-4,laki_laki,357,jiwa,2025,registration,total_population,3.2,34,,0-4
+15.08.15,3,Bathin II Pelayang,age_group,0-4,perempuan,320,jiwa,2025,registration,total_population,3.2,34,,0-4
+15.08.15,3,Bathin II Pelayang,age_group,0-4,,677,jiwa,2025,registration,total_population,3.2,34,,0-4
+15.08.15,3,Bathin II Pelayang,age_group,5-9,laki_laki,476,jiwa,2025,registration,total_population,3.2,34,,5-9
+15.08.15,3,Bathin II Pelayang,age_group,5-9,perempuan,420,jiwa,2025,registration,total_population,3.2,34,,5-9
+15.08.15,3,Bathin II Pelayang,age_group,5-9,,896,jiwa,2025,registration,total_population,3.2,34,,5-9
+15.08.15,3,Bathin II Pelayang,age_group,10-14,laki_laki,493,jiwa,2025,registration,total_population,3.2,34,,10-14
+15.08.15,3,Bathin II Pelayang,age_group,10-14,perempuan,452,jiwa,2025,registration,total_population,3.2,34,,10-14
+15.08.15,3,Bathin II Pelayang,age_group,10-14,,945,jiwa,2025,registration,total_population,3.2,34,,10-14
+15.08.15,3,Bathin II Pelayang,age_group,15-19,laki_laki,430,jiwa,2025,registration,total_population,3.2,34,,15-19
+15.08.15,3,Bathin II Pelayang,age_group,15-19,perempuan,393,jiwa,2025,registration,total_population,3.2,34,,15-19
+15.08.15,3,Bathin II Pelayang,age_group,15-19,,823,jiwa,2025,registration,total_population,3.2,34,,15-19
+15.08.15,3,Bathin II Pelayang,age_group,20-24,laki_laki,422,jiwa,2025,registration,total_population,3.2,34,,20-24
+15.08.15,3,Bathin II Pelayang,age_group,20-24,perempuan,365,jiwa,2025,registration,total_population,3.2,34,,20-24
+15.08.15,3,Bathin II Pelayang,age_group,20-24,,787,jiwa,2025,registration,total_population,3.2,34,,20-24
+15.08.15,3,Bathin II Pelayang,age_group,25-29,laki_laki,413,jiwa,2025,registration,total_population,3.2,34,,25-29
+15.08.15,3,Bathin II Pelayang,age_group,25-29,perempuan,365,jiwa,2025,registration,total_population,3.2,34,,25-29
+15.08.15,3,Bathin II Pelayang,age_group,25-29,,778,jiwa,2025,registration,total_population,3.2,34,,25-29
+15.08.15,3,Bathin II Pelayang,age_group,30-34,laki_laki,379,jiwa,2025,registration,total_population,3.2,34,,30-34
+15.08.15,3,Bathin II Pelayang,age_group,30-34,perempuan,370,jiwa,2025,registration,total_population,3.2,34,,30-34
+15.08.15,3,Bathin II Pelayang,age_group,30-34,,749,jiwa,2025,registration,total_population,3.2,34,,30-34
+15.08.15,3,Bathin II Pelayang,age_group,35-39,laki_laki,402,jiwa,2025,registration,total_population,3.2,34,,35-39
+15.08.15,3,Bathin II Pelayang,age_group,35-39,perempuan,362,jiwa,2025,registration,total_population,3.2,34,,35-39
+15.08.15,3,Bathin II Pelayang,age_group,35-39,,764,jiwa,2025,registration,total_population,3.2,34,,35-39
+15.08.15,3,Bathin II Pelayang,age_group,40-44,laki_laki,396,jiwa,2025,registration,total_population,3.2,34,,40-44
+15.08.15,3,Bathin II Pelayang,age_group,40-44,perempuan,357,jiwa,2025,registration,total_population,3.2,34,,40-44
+15.08.15,3,Bathin II Pelayang,age_group,40-44,,753,jiwa,2025,registration,total_population,3.2,34,,40-44
+15.08.15,3,Bathin II Pelayang,age_group,45-49,laki_laki,354,jiwa,2025,registration,total_population,3.2,34,,45-49
+15.08.15,3,Bathin II Pelayang,age_group,45-49,perempuan,319,jiwa,2025,registration,total_population,3.2,34,,45-49
+15.08.15,3,Bathin II Pelayang,age_group,45-49,,673,jiwa,2025,registration,total_population,3.2,34,,45-49
+15.08.15,3,Bathin II Pelayang,age_group,50-54,laki_laki,273,jiwa,2025,registration,total_population,3.2,34,,50-54
+15.08.15,3,Bathin II Pelayang,age_group,50-54,perempuan,283,jiwa,2025,registration,total_population,3.2,34,,50-54
+15.08.15,3,Bathin II Pelayang,age_group,50-54,,556,jiwa,2025,registration,total_population,3.2,34,,50-54
+15.08.15,3,Bathin II Pelayang,age_group,55-59,laki_laki,212,jiwa,2025,registration,total_population,3.2,34,,55-59
+15.08.15,3,Bathin II Pelayang,age_group,55-59,perempuan,220,jiwa,2025,registration,total_population,3.2,34,,55-59
+15.08.15,3,Bathin II Pelayang,age_group,55-59,,432,jiwa,2025,registration,total_population,3.2,34,,55-59
+15.08.15,3,Bathin II Pelayang,age_group,60-64,laki_laki,169,jiwa,2025,registration,total_population,3.2,34,,60-64
+15.08.15,3,Bathin II Pelayang,age_group,60-64,perempuan,172,jiwa,2025,registration,total_population,3.2,34,,60-64
+15.08.15,3,Bathin II Pelayang,age_group,60-64,,341,jiwa,2025,registration,total_population,3.2,34,,60-64
+15.08.15,3,Bathin II Pelayang,age_group,65-69,laki_laki,123,jiwa,2025,registration,total_population,3.2,34,,65-69
+15.08.15,3,Bathin II Pelayang,age_group,65-69,perempuan,112,jiwa,2025,registration,total_population,3.2,34,,65-69
+15.08.15,3,Bathin II Pelayang,age_group,65-69,,235,jiwa,2025,registration,total_population,3.2,34,,65-69
+15.08.15,3,Bathin II Pelayang,age_group,70-74,laki_laki,76,jiwa,2025,registration,total_population,3.2,34,,70-74
+15.08.15,3,Bathin II Pelayang,age_group,70-74,perempuan,60,jiwa,2025,registration,total_population,3.2,34,,70-74
+15.08.15,3,Bathin II Pelayang,age_group,70-74,,136,jiwa,2025,registration,total_population,3.2,34,,70-74
+15.08.15,3,Bathin II Pelayang,age_group,75+,laki_laki,55,jiwa,2025,registration,total_population,3.2,34,,75+
+15.08.15,3,Bathin II Pelayang,age_group,75+,perempuan,81,jiwa,2025,registration,total_population,3.2,34,,75+
+15.08.15,3,Bathin II Pelayang,age_group,75+,,136,jiwa,2025,registration,total_population,3.2,34,,75+
+15.08.15,3,Bathin II Pelayang,sex,laki_laki,,5030,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+15.08.15,3,Bathin II Pelayang,sex,perempuan,,4651,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+15.08.15,3,Bathin II Pelayang,total,total,,9681,jiwa,2025,registration,total_population,3.2,34,,

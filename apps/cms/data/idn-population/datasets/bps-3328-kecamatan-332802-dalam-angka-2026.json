@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3328-kecamatan-332802-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.28.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Bumijawa Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Tegal",
+  "publisherDomain": "3328",
+  "publisherWebsite": "https://tegalkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Tegal (https://tegalkab.bps.go.id), publikasi \"Kecamatan Bumijawa Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3328020",
+  "publicationNumber": "33280.25016",
+  "issn": "2621-1769",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://tegalkab.bps.go.id/id/publication/2026/09/28/ef469b3608ab4851b1ee4a93/kecamatan-bumijawa-dalam-angka-2026.html",
+  "sourceFileSha256": "2cbceb95926c812ffc04a87bddecc26ea1e0dea7fd1b8954de8f11efc46425ea",
+  "sourceFileBytes": 4987821,
+  "sourcePages": [32, 33, 34],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Tegal.",
+  "csvPath": "datasets/bps-3328-kecamatan-332802-dalam-angka-2026.csv",
+  "csvSha256": "f0b401918dc7df7d2bc91324424be83b43cfbd0f3e7ea94e622c0e91e67c396a",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Bumijawa, 2026",
+      "printedPages": [32, 33],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Bumijawa, 2026",
+      "printedPages": [34],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

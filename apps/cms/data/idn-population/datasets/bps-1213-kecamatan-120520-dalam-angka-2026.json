@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-1213-kecamatan-120520-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "12.05.20",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Sawit Seberang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Langkat",
+  "publisherDomain": "1213",
+  "publisherWebsite": "https://langkatkab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Langkat (https://langkatkab.bps.go.id), publikasi \"Kecamatan Sawit Seberang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.1213100",
+  "publicationNumber": "12130.26021",
+  "issn": "2579-678X",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://langkatkab.bps.go.id/id/publication/2026/09/28/39b06b459405e561763c233f/kecamatan-sawit-seberang-dalam-angka-2026.html",
+  "sourceFileSha256": "d5f1e9172f026c6826eb72fe37ce8e0af4c5e8cff2441c942c80d71fd393faec",
+  "sourceFileBytes": 25550064,
+  "sourcePages": [39],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Langkat.",
+  "csvPath": "datasets/bps-1213-kecamatan-120520-dalam-angka-2026.csv",
+  "csvSha256": "2867429c78af82853ea60a570bb4f924254c891ffb4baeaed6f36827f988b302",
+  "tablesUsed": [
+    {
+      "table": "unnumbered-p39",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan 3.1 Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Sawit Seberang 2025",
+      "printedPages": [39],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table unnumbered-p39: row not stored: row \"Simpang Tiga Sawit Seberang\": unmatched ",
+    "table unnumbered-p39: row not stored: row \"Mekar Sawit Alur Melati\": unmatched "
+  ]
+}

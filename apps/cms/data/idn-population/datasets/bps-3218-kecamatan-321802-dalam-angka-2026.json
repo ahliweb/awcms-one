@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3218-kecamatan-321802-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.18.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Cijulang Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Pangandaran",
+  "publisherDomain": "3218",
+  "publisherWebsite": "https://pangandarankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Pangandaran (https://pangandarankab.bps.go.id), publikasi \"Kecamatan Cijulang Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3218020",
+  "publicationNumber": "32180.26009",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://pangandarankab.bps.go.id/id/publication/2026/09/28/38bd69bb3f34e6e1d318eb98/kecamatan-cijulang-dalam-angka-2026.html",
+  "sourceFileSha256": "6a135490ed68e3d5c7023ff9e2f01078d0088f81451df924a1c3bdd38ef582ff",
+  "sourceFileBytes": 4023291,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Pangandaran.",
+  "csvPath": "datasets/bps-3218-kecamatan-321802-dalam-angka-2026.csv",
+  "csvSha256": "e153e76e3ea7b9acb6afc6970a0a1a22ecd6b96a6997bda62d6f704d3431b245",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Cijulang, 2025",
+      "printedPages": [30, 31],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Cijulang, 2025",
+      "printedPages": [32],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

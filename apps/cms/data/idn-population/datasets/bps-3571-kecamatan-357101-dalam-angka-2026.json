@@ -1,0 +1,65 @@
+{
+  "datasetCode": "bps-3571-kecamatan-357101-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "35.71.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Mojoroto Dalam Angka 2026",
+  "publisherName": "BPS Kota Kediri",
+  "publisherDomain": "3571",
+  "publisherWebsite": "https://kedirikota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Kediri (https://kedirikota.bps.go.id), publikasi \"Kecamatan Mojoroto Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3571010",
+  "publicationNumber": "35710.26005",
+  "issn": "2598-4489",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://kedirikota.bps.go.id/id/publication/2026/09/28/b75753c0d48aa66113fb78eb/kecamatan-mojoroto-dalam-angka-2026.html",
+  "sourceFileSha256": "ffcfd75dac0cd091e1783603f01a9613142fcfc2940c2d472e76076e0f11b770",
+  "sourceFileBytes": 16753683,
+  "sourcePages": [28, 29, 30, 68, 69],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Kediri.",
+  "csvPath": "datasets/bps-3571-kecamatan-357101-dalam-angka-2026.csv",
+  "csvSha256": "f6a527e1db21ae929fd8f415523349d3d066214caedab14a3a776d16338d4814",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Kelurahan di Kecamatan Mojoroto, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Mojoroto (jiwa), 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "4.4.4",
+      "title": "Jumlah Penduduk Menurut Kelurahan dan Agama yang Dianut di Kecamatan Mojoroto (jiwa), 2025",
+      "printedPages": [68, 69],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "cross-table disagreement, both stored as published: 35.71.01.1004 total/total/ 2025: 11871 (table 3.1) vs 12649 (table 4.4.4)",
+    "cross-table disagreement, both stored as published: 35.71.01.1012 total/total/ 2025: 8144 (table 3.1) vs 11076 (table 4.4.4)",
+    "cross-table disagreement, both stored as published: 35.71.01.1014 total/total/ 2025: 5268 (table 3.1) vs 6808 (table 4.4.4)",
+    "cross-table disagreement, both stored as published: 35.71.01.1003 total/total/ 2025: 6808 (table 3.1) vs 11871 (table 4.4.4)",
+    "cross-table disagreement, both stored as published: 35.71.01.1002 total/total/ 2025: 11076 (table 3.1) vs 8480 (table 4.4.4)",
+    "cross-table disagreement, both stored as published: 35.71.01.1013 total/total/ 2025: 7265 (table 3.1) vs 7931 (table 4.4.4)",
+    "cross-table disagreement, both stored as published: 35.71.01.1001 total/total/ 2025: 12649 (table 3.1) vs 4744 (table 4.4.4)",
+    "cross-table disagreement, both stored as published: 35.71.01.1011 total/total/ 2025: 15187 (table 3.1) vs 6464 (table 4.4.4)",
+    "cross-table disagreement, both stored as published: 35.71.01.1005 total/total/ 2025: 8480 (table 3.1) vs 4842 (table 4.4.4)",
+    "cross-table disagreement, both stored as published: 35.71.01.1006 total/total/ 2025: 7931 (table 3.1) vs 6884 (table 4.4.4)",
+    "cross-table disagreement, both stored as published: 35.71.01.1010 total/total/ 2025: 6884 (table 3.1) vs 15187 (table 4.4.4)",
+    "cross-table disagreement, both stored as published: 35.71.01.1007 total/total/ 2025: 4744 (table 3.1) vs 8144 (table 4.4.4)",
+    "cross-table disagreement, both stored as published: 35.71.01.1008 total/total/ 2025: 6464 (table 3.1) vs 7265 (table 4.4.4)",
+    "cross-table disagreement, both stored as published: 35.71.01.1009 total/total/ 2025: 4842 (table 3.1) vs 5268 (table 4.4.4)"
+  ]
+}

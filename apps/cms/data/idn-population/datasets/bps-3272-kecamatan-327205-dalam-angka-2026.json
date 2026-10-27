@@ -1,0 +1,42 @@
+{
+  "datasetCode": "bps-3272-kecamatan-327205-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.72.05",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Baros Dalam Angka 2026",
+  "publisherName": "BPS Kota Sukabumi",
+  "publisherDomain": "3272",
+  "publisherWebsite": "https://sukabumikota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Sukabumi (https://sukabumikota.bps.go.id), publikasi \"Kecamatan Baros Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3272010",
+  "publicationNumber": "32720.26005",
+  "issn": "2798-8449",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sukabumikota.bps.go.id/id/publication/2026/09/28/54b51d201c63d18b54214bc8/kecamatan-baros-dalam-angka-2026.html",
+  "sourceFileSha256": "80cd86264a3508878e2ec74f2fa884c52ec7bb7d8c5cf54368c67be05c208dbc",
+  "sourceFileBytes": 6943243,
+  "sourcePages": [30, 31, 32],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Sukabumi.",
+  "csvPath": "datasets/bps-3272-kecamatan-327205-dalam-angka-2026.csv",
+  "csvSha256": "42b58f69c039e2973734bbe4193ea9683f0850f061ccc96ce35eb09319a349d7",
+  "tablesUsed": [
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Baros, 2026",
+      "printedPages": [32],
+      "referenceYears": [2026],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Sudajaya Hilir 3.938\": unmatched ",
+    "table 3.1: row not stored: row \"Jayamekar 3.296\": unmatched ",
+    "table 3.1: row not stored: row \"Jayaraksa 3.873\": unmatched ",
+    "table 3.1: row not stored: row \"Baros 9.979\": unmatched ",
+    "table 3.1: row not stored: row \"Baros 21.086\": unmatched ",
+    "table 3.1: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

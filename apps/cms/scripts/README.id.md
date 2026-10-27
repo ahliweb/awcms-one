@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:52a55c6cc81edd1d6b4c89fb6ac3a3d5837326c4cba76d98f46d17bb7d3dbf6e -->
+<!-- i18n-source-hash: sha256:eae0e2f86b50c9622e1eac0c891f876c644dac7a27cbf6fbd77b39348705906a -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-168 target menjalankan berkas di `scripts/`; 64 di antaranya
+170 target menjalankan berkas di `scripts/`; 64 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -138,6 +138,8 @@ terjadwal, atau oleh workflow CI tertentu.
 | `identity:principal-access:check`         | `identity-principal-access-check.ts`           | ✅   |
 | `identity:principals:preflight`           | `identity-access-principal-preflight.ts`       | —    |
 | `identity:session-readers:check`          | `session-readers-check.ts`                     | ✅   |
+| `idn-population:activate`                 | `idn-population-activate.ts`                   | —    |
+| `idn-population:import`                   | `idn-population-import.ts`                     | —    |
 | `idn-regions:activate`                    | `idn-regions-activate.ts`                      | —    |
 | `idn-regions:import`                      | `idn-regions-import.ts`                        | —    |
 | `idn-regions:rollback`                    | `idn-regions-rollback.ts`                      | —    |

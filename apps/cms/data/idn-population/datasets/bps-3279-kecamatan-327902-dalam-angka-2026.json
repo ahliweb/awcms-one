@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3279-kecamatan-327902-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.79.02",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Pataruman Dalam Angka 2026",
+  "publisherName": "BPS Kota Banjar",
+  "publisherDomain": "3279",
+  "publisherWebsite": "https://banjarkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Banjar (https://banjarkota.bps.go.id), publikasi \"Kecamatan Pataruman Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3279030",
+  "publicationNumber": "32790.26008",
+  "issn": "2407-6953",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://banjarkota.bps.go.id/id/publication/2026/09/28/844d0c087d66a46647b0a8e6/kecamatan-pataruman-dalam-angka-2026.html",
+  "sourceFileSha256": "20bef1494d7c358de22770d53387b5969e5534c61bccb9ab87e6064feec344b1",
+  "sourceFileBytes": 6566700,
+  "sourcePages": [28, 29, 30],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Banjar.",
+  "csvPath": "datasets/bps-3279-kecamatan-327902-dalam-angka-2026.csv",
+  "csvSha256": "e9227ad1a5a45d4bb5030f2481e377ccee3dd55b75ac40376a25249637f8a5d8",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Pataruman, 2025",
+      "printedPages": [28, 29],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Pataruman, 2025",
+      "printedPages": [30],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

@@ -1,0 +1,70 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+36.72.08.1003,4,Lebak Denok,sex,laki_laki,,6411,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+36.72.08.1003,4,Lebak Denok,sex,perempuan,,6254,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+36.72.08.1003,4,Lebak Denok,total,total,,12665,jiwa,2025,registration,total_population,3.1,29,,
+36.72.08.1004,4,Taman Baru,sex,laki_laki,,5121,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+36.72.08.1004,4,Taman Baru,sex,perempuan,,5010,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+36.72.08.1004,4,Taman Baru,total,total,,10131,jiwa,2025,registration,total_population,3.1,29,,
+36.72.08.1007,4,Citangkil,sex,laki_laki,,8355,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+36.72.08.1007,4,Citangkil,sex,perempuan,,8311,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+36.72.08.1007,4,Citangkil,total,total,,16666,jiwa,2025,registration,total_population,3.1,29,,
+36.72.08.1005,4,Kebonsari,sex,laki_laki,,6645,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+36.72.08.1005,4,Kebonsari,sex,perempuan,,6655,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+36.72.08.1005,4,Kebonsari,total,total,,13300,jiwa,2025,registration,total_population,3.1,29,,
+36.72.08.1001,4,Warnasari,sex,laki_laki,,7371,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+36.72.08.1001,4,Warnasari,sex,perempuan,,7276,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+36.72.08.1001,4,Warnasari,total,total,,14647,jiwa,2025,registration,total_population,3.1,29,,
+36.72.08.1006,4,Samangraya,sex,laki_laki,,5487,jiwa,2025,registration,total_population,3.1,29,,Laki-Laki/Male
+36.72.08.1006,4,Samangraya,sex,perempuan,,5344,jiwa,2025,registration,total_population,3.1,29,,Perempuan/Female
+36.72.08.1006,4,Samangraya,total,total,,10831,jiwa,2025,registration,total_population,3.1,29,,
+36.72.08,3,Citangkil,age_group,0-4,laki_laki,3809,jiwa,2025,registration,total_population,3.2,31,,0–4
+36.72.08,3,Citangkil,age_group,0-4,perempuan,3516,jiwa,2025,registration,total_population,3.2,31,,0–4
+36.72.08,3,Citangkil,age_group,0-4,,7325,jiwa,2025,registration,total_population,3.2,31,,0–4
+36.72.08,3,Citangkil,age_group,5-9,laki_laki,4548,jiwa,2025,registration,total_population,3.2,31,,5–9
+36.72.08,3,Citangkil,age_group,5-9,perempuan,4290,jiwa,2025,registration,total_population,3.2,31,,5–9
+36.72.08,3,Citangkil,age_group,5-9,,8838,jiwa,2025,registration,total_population,3.2,31,,5–9
+36.72.08,3,Citangkil,age_group,10-14,laki_laki,4219,jiwa,2025,registration,total_population,3.2,31,,10–14
+36.72.08,3,Citangkil,age_group,10-14,perempuan,3939,jiwa,2025,registration,total_population,3.2,31,,10–14
+36.72.08,3,Citangkil,age_group,10-14,,8158,jiwa,2025,registration,total_population,3.2,31,,10–14
+36.72.08,3,Citangkil,age_group,15-19,laki_laki,3842,jiwa,2025,registration,total_population,3.2,31,,15–19
+36.72.08,3,Citangkil,age_group,15-19,perempuan,3534,jiwa,2025,registration,total_population,3.2,31,,15–19
+36.72.08,3,Citangkil,age_group,15-19,,7376,jiwa,2025,registration,total_population,3.2,31,,15–19
+36.72.08,3,Citangkil,age_group,20-24,laki_laki,3539,jiwa,2025,registration,total_population,3.2,31,,20–24
+36.72.08,3,Citangkil,age_group,20-24,perempuan,3350,jiwa,2025,registration,total_population,3.2,31,,20–24
+36.72.08,3,Citangkil,age_group,20-24,,6889,jiwa,2025,registration,total_population,3.2,31,,20–24
+36.72.08,3,Citangkil,age_group,25-29,laki_laki,3650,jiwa,2025,registration,total_population,3.2,31,,25–29
+36.72.08,3,Citangkil,age_group,25-29,perempuan,3906,jiwa,2025,registration,total_population,3.2,31,,25–29
+36.72.08,3,Citangkil,age_group,25-29,,7556,jiwa,2025,registration,total_population,3.2,31,,25–29
+36.72.08,3,Citangkil,age_group,30-34,laki_laki,3681,jiwa,2025,registration,total_population,3.2,31,,30–34
+36.72.08,3,Citangkil,age_group,30-34,perempuan,3744,jiwa,2025,registration,total_population,3.2,31,,30–34
+36.72.08,3,Citangkil,age_group,30-34,,7425,jiwa,2025,registration,total_population,3.2,31,,30–34
+36.72.08,3,Citangkil,age_group,35-39,laki_laki,3446,jiwa,2025,registration,total_population,3.2,31,,35–39
+36.72.08,3,Citangkil,age_group,35-39,perempuan,3455,jiwa,2025,registration,total_population,3.2,31,,35–39
+36.72.08,3,Citangkil,age_group,35-39,,6901,jiwa,2025,registration,total_population,3.2,31,,35–39
+36.72.08,3,Citangkil,age_group,40-44,laki_laki,3313,jiwa,2025,registration,total_population,3.2,31,,40–44
+36.72.08,3,Citangkil,age_group,40-44,perempuan,3408,jiwa,2025,registration,total_population,3.2,31,,40–44
+36.72.08,3,Citangkil,age_group,40-44,,6721,jiwa,2025,registration,total_population,3.2,31,,40–44
+36.72.08,3,Citangkil,age_group,45-49,laki_laki,2964,jiwa,2025,registration,total_population,3.2,31,,45–49
+36.72.08,3,Citangkil,age_group,45-49,perempuan,3003,jiwa,2025,registration,total_population,3.2,31,,45–49
+36.72.08,3,Citangkil,age_group,45-49,,5967,jiwa,2025,registration,total_population,3.2,31,,45–49
+36.72.08,3,Citangkil,age_group,50-54,laki_laki,2657,jiwa,2025,registration,total_population,3.2,31,,50–54
+36.72.08,3,Citangkil,age_group,50-54,perempuan,2534,jiwa,2025,registration,total_population,3.2,31,,50–54
+36.72.08,3,Citangkil,age_group,50-54,,5191,jiwa,2025,registration,total_population,3.2,31,,50–54
+36.72.08,3,Citangkil,age_group,55-59,laki_laki,2081,jiwa,2025,registration,total_population,3.2,31,,55–59
+36.72.08,3,Citangkil,age_group,55-59,perempuan,2029,jiwa,2025,registration,total_population,3.2,31,,55–59
+36.72.08,3,Citangkil,age_group,55-59,,4110,jiwa,2025,registration,total_population,3.2,31,,55–59
+36.72.08,3,Citangkil,age_group,60-64,laki_laki,1400,jiwa,2025,registration,total_population,3.2,31,,60–64
+36.72.08,3,Citangkil,age_group,60-64,perempuan,1350,jiwa,2025,registration,total_population,3.2,31,,60–64
+36.72.08,3,Citangkil,age_group,60-64,,2750,jiwa,2025,registration,total_population,3.2,31,,60–64
+36.72.08,3,Citangkil,age_group,65-69,laki_laki,911,jiwa,2025,registration,total_population,3.2,31,,65–69
+36.72.08,3,Citangkil,age_group,65-69,perempuan,947,jiwa,2025,registration,total_population,3.2,31,,65–69
+36.72.08,3,Citangkil,age_group,65-69,,1858,jiwa,2025,registration,total_population,3.2,31,,65–69
+36.72.08,3,Citangkil,age_group,70-74,laki_laki,525,jiwa,2025,registration,total_population,3.2,31,,70–74
+36.72.08,3,Citangkil,age_group,70-74,perempuan,482,jiwa,2025,registration,total_population,3.2,31,,70–74
+36.72.08,3,Citangkil,age_group,70-74,,1007,jiwa,2025,registration,total_population,3.2,31,,70–74
+36.72.08,3,Citangkil,age_group,75+,laki_laki,376,jiwa,2025,registration,total_population,3.2,31,,75+
+36.72.08,3,Citangkil,age_group,75+,perempuan,572,jiwa,2025,registration,total_population,3.2,31,,75+
+36.72.08,3,Citangkil,age_group,75+,,948,jiwa,2025,registration,total_population,3.2,31,,75+
+36.72.08,3,Citangkil,sex,laki_laki,,44961,jiwa,2025,registration,total_population,3.2,31,,Laki-Laki
+36.72.08,3,Citangkil,sex,perempuan,,44059,jiwa,2025,registration,total_population,3.2,31,,Perempuan
+36.72.08,3,Citangkil,total,total,,89020,jiwa,2025,registration,total_population,3.2,31,,

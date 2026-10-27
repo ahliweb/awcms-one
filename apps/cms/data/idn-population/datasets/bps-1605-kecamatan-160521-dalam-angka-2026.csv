@@ -1,0 +1,34 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.05.21.2007,4,Rantau Alih,sex,laki_laki,,690,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.21.2007,4,Rantau Alih,sex,perempuan,,629,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.21.2007,4,Rantau Alih,total,total,,1319,jiwa,2025,registration,total_population,3.1,23,,
+16.05.21.2004,4,Ciptodadi,sex,laki_laki,,2134,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.21.2004,4,Ciptodadi,sex,perempuan,,2032,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.21.2004,4,Ciptodadi,total,total,,4166,jiwa,2025,registration,total_population,3.1,23,,
+16.05.21.2001,4,Sukowarno,sex,laki_laki,,850,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.21.2001,4,Sukowarno,sex,perempuan,,813,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.21.2001,4,Sukowarno,total,total,,1663,jiwa,2025,registration,total_population,3.1,23,,
+16.05.21.2003,4,Bangun Rejo,sex,laki_laki,,1373,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.21.2003,4,Bangun Rejo,sex,perempuan,,1328,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.21.2003,4,Bangun Rejo,total,total,,2701,jiwa,2025,registration,total_population,3.1,23,,
+16.05.21.2005,4,Sukarena,sex,laki_laki,,586,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.21.2005,4,Sukarena,sex,perempuan,,539,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.21.2005,4,Sukarena,total,total,,1125,jiwa,2025,registration,total_population,3.1,23,,
+16.05.21.2008,4,Ciptodadi II,sex,laki_laki,,999,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.21.2008,4,Ciptodadi II,sex,perempuan,,948,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.21.2008,4,Ciptodadi II,total,total,,1947,jiwa,2025,registration,total_population,3.1,23,,
+16.05.21,3,Suka Karya,sex,laki_laki,,8282,jiwa,2025,registration,total_population,3.1,23,,Laki-Laki/Male
+16.05.21,3,Suka Karya,sex,perempuan,,7784,jiwa,2025,registration,total_population,3.1,23,,Perempuan/Female
+16.05.21,3,Suka Karya,total,total,,16066,jiwa,2025,registration,total_population,3.1,23,,
+16.05.21,3,Suka Karya,age_group,0-14,laki_laki,2002,jiwa,2025,registration,total_population,3.2,25,,0-14
+16.05.21,3,Suka Karya,age_group,0-14,perempuan,1832,jiwa,2025,registration,total_population,3.2,25,,0-14
+16.05.21,3,Suka Karya,age_group,0-14,,3834,jiwa,2025,registration,total_population,3.2,25,,0-14
+16.05.21,3,Suka Karya,age_group,15-64,laki_laki,5736,jiwa,2025,registration,total_population,3.2,25,,15-64
+16.05.21,3,Suka Karya,age_group,15-64,perempuan,5473,jiwa,2025,registration,total_population,3.2,25,,15-64
+16.05.21,3,Suka Karya,age_group,15-64,,11209,jiwa,2025,registration,total_population,3.2,25,,15-64
+16.05.21,3,Suka Karya,age_group,65+,laki_laki,544,jiwa,2025,registration,total_population,3.2,25,,65+
+16.05.21,3,Suka Karya,age_group,65+,perempuan,479,jiwa,2025,registration,total_population,3.2,25,,65+
+16.05.21,3,Suka Karya,age_group,65+,,1023,jiwa,2025,registration,total_population,3.2,25,,65+
+16.05.21,3,Suka Karya,sex,laki_laki,,8282,jiwa,2025,registration,total_population,3.2,25,,Laki-Laki
+16.05.21,3,Suka Karya,sex,perempuan,,7784,jiwa,2025,registration,total_population,3.2,25,,Perempuan
+16.05.21,3,Suka Karya,total,total,,16066,jiwa,2025,registration,total_population,3.2,25,,

@@ -1,0 +1,50 @@
+{
+  "datasetCode": "bps-1200-dalam-angka-2026",
+  "publicationSeries": "provinsi_dalam_angka",
+  "coverageRegionCode": "12",
+  "coverageRegionLevel": 1,
+  "publicationTitle": "Provinsi Sumatera Utara Dalam Angka 2026",
+  "publisherName": "BPS Provinsi Sumatera Utara",
+  "publisherDomain": "1200",
+  "publisherWebsite": "https://sumut.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Provinsi Sumatera Utara (https://sumut.bps.go.id), publikasi \"Provinsi Sumatera Utara Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.12",
+  "publicationNumber": "12000.26006",
+  "issn": "0215-2053",
+  "publicationYear": 2026,
+  "releaseDate": "2026-02-27",
+  "publicationUrl": "https://sumut.bps.go.id/id/publication/2026/02/27/cc9ebe7b48da2db36146409c/provinsi-sumatera-utara-dalam-angka-2026.html",
+  "sourceFileSha256": "3249ef35eea5f4faabd90a78315ffa0351259f50ce9936310c47ac86e7a8abaa",
+  "sourceFileBytes": 16397013,
+  "sourcePages": [111, 123],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersil tanpa izin tertulis dari Badan Pusat Statistik Provinsi Sumatera Utara.",
+  "csvPath": "datasets/bps-1200-dalam-angka-2026.csv",
+  "csvSha256": "bd5248f25937c863c3053d08427541a28eedf22d0aca7020c577b3ca803db798",
+  "tablesUsed": [
+    {
+      "table": "3.2.14",
+      "title": "Penduduk Berumur 15 Tahun ke Atas yang Bekerja Selama Seminggu yang Lalu Menurut Kabupaten/Kota dan Lapangan Pekerjaan Utama di Provinsi Sumatera Utara, 2025",
+      "printedPages": [111],
+      "referenceYears": [2025],
+      "figureBasis": "survey_estimate",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by sex per child region (3.1.3 / registration 3.1.3-3.1.4): no table with this title was found in the publication",
+    "Age groups down, regions across (3.1.4): no table with this title was found in the publication",
+    "Religion by sex of the covered region (4.3.4): no table with this title was found in the publication",
+    "Per-capita expenditure by commodity group (10.1): no table with this title was found in the publication",
+    "table 3.1.1 (total-by-region) could not be read reliably and is not included (population unit not stated in the heading)",
+    "table 3.1.2 (age-by-sex) could not be read reliably and is not included (unit not stated in the heading)",
+    "table 4.5.4 (religion-by-region) could not be read reliably and is not included (basis not determinable)",
+    "table 3.2.22 (wage-by-age) could not be read reliably and is not included (no average column)",
+    "table 3.2.14: industry group 1: footnote label not parseable; its column is not stored",
+    "table 3.2.14: industry group 2: footnote label not parseable; its column is not stored",
+    "table 3.2.14: industry group 3: footnote label not parseable; its column is not stored",
+    "table 3.2.21: industry group 1: footnote label not parseable; its column is not stored",
+    "table 3.2.21: industry group 2: footnote label not parseable; its column is not stored",
+    "table 3.2.21: industry group 3: footnote label not parseable; its column is not stored",
+    "table 3.2.21: no figures were read (every cell is unavailable (\"...\") or not recognised)"
+  ]
+}

@@ -1,0 +1,15 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+14.01.13.2002,4,Siabu,sex,perempuan,,3154,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.13.2002,4,Siabu,total,total,,6549,jiwa,2025,registration,total_population,3.1,11,,
+14.01.13.2006,4,Ganting,sex,perempuan,,1650,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.13.2006,4,Ganting,total,total,,3329,jiwa,2025,registration,total_population,3.1,11,,
+14.01.13.2004,4,Sipungguk,sex,perempuan,,1795,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.13.2004,4,Sipungguk,total,total,,3711,jiwa,2025,registration,total_population,3.1,11,,
+14.01.13.2005,4,Ganting Damai,sex,perempuan,,1222,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.13.2005,4,Ganting Damai,total,total,,2496,jiwa,2025,registration,total_population,3.1,11,,
+14.01.13.2001,4,Salo,sex,perempuan,,3968,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.13.2001,4,Salo,total,total,,8095,jiwa,2025,registration,total_population,3.1,11,,
+14.01.13.2003,4,Salo Timur,sex,perempuan,,2418,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.13.2003,4,Salo Timur,total,total,,4972,jiwa,2025,registration,total_population,3.1,11,,
+14.01.13,3,Salo,sex,perempuan,,14207,jiwa,2025,registration,total_population,3.1,11,,Perempuan/Female
+14.01.13,3,Salo,total,total,,29152,jiwa,2025,registration,total_population,3.1,11,,

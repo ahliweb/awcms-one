@@ -1,0 +1,113 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+33.21.01,3,Mranggen,total,total,,182830,jiwa,2025,projection,total_population,3.1.1,67,,
+33.21.02,3,Karangawen,total,total,,99530,jiwa,2025,projection,total_population,3.1.1,67,,
+33.21.03,3,Guntur,total,total,,92381,jiwa,2025,projection,total_population,3.1.1,67,,
+33.21.04,3,Sayung,total,total,,108759,jiwa,2025,projection,total_population,3.1.1,67,,
+33.21.05,3,Karangtengah,total,total,,72976,jiwa,2025,projection,total_population,3.1.1,67,,
+33.21.12,3,Bonang,total,total,,110824,jiwa,2025,projection,total_population,3.1.1,67,,
+33.21.11,3,Demak,total,total,,114843,jiwa,2025,projection,total_population,3.1.1,67,,
+33.21.06,3,Wonosalam,total,total,,90570,jiwa,2025,projection,total_population,3.1.1,67,,
+33.21.07,3,Dempet,total,total,,63433,jiwa,2025,projection,total_population,3.1.1,67,,
+33.21.14,3,Kebonagung,total,total,,42972,jiwa,2025,projection,total_population,3.1.1,67,,
+33.21.08,3,Gajah,total,total,,55760,jiwa,2025,projection,total_population,3.1.1,67,,
+33.21.09,3,Karanganyar,total,total,,81331,jiwa,2025,projection,total_population,3.1.1,67,,
+33.21.10,3,Mijen,total,total,,61697,jiwa,2025,projection,total_population,3.1.1,67,,
+33.21.13,3,Wedung,total,total,,87147,jiwa,2025,projection,total_population,3.1.1,67,,
+33.21,2,Kabupaten Demak,total,total,,1265053,jiwa,2025,projection,total_population,3.1.1,67,,
+33.21,2,Kabupaten Demak,age_group,0-4,laki_laki,50178,jiwa,2025,projection,total_population,3.1.2,70,,0–4
+33.21,2,Kabupaten Demak,age_group,0-4,perempuan,48209,jiwa,2025,projection,total_population,3.1.2,70,,0–4
+33.21,2,Kabupaten Demak,age_group,0-4,,98387,jiwa,2025,projection,total_population,3.1.2,70,,0–4
+33.21,2,Kabupaten Demak,age_group,5-9,laki_laki,51293,jiwa,2025,projection,total_population,3.1.2,70,,5–9
+33.21,2,Kabupaten Demak,age_group,5-9,perempuan,48893,jiwa,2025,projection,total_population,3.1.2,70,,5–9
+33.21,2,Kabupaten Demak,age_group,5-9,,100186,jiwa,2025,projection,total_population,3.1.2,70,,5–9
+33.21,2,Kabupaten Demak,age_group,10-14,laki_laki,49529,jiwa,2025,projection,total_population,3.1.2,70,,10–14
+33.21,2,Kabupaten Demak,age_group,10-14,perempuan,46456,jiwa,2025,projection,total_population,3.1.2,70,,10–14
+33.21,2,Kabupaten Demak,age_group,10-14,,95985,jiwa,2025,projection,total_population,3.1.2,70,,10–14
+33.21,2,Kabupaten Demak,age_group,15-19,laki_laki,48275,jiwa,2025,projection,total_population,3.1.2,70,,15–19
+33.21,2,Kabupaten Demak,age_group,15-19,perempuan,45758,jiwa,2025,projection,total_population,3.1.2,70,,15–19
+33.21,2,Kabupaten Demak,age_group,15-19,,94033,jiwa,2025,projection,total_population,3.1.2,70,,15–19
+33.21,2,Kabupaten Demak,age_group,20-24,laki_laki,49432,jiwa,2025,projection,total_population,3.1.2,70,,20–24
+33.21,2,Kabupaten Demak,age_group,20-24,perempuan,46002,jiwa,2025,projection,total_population,3.1.2,70,,20–24
+33.21,2,Kabupaten Demak,age_group,20-24,,95434,jiwa,2025,projection,total_population,3.1.2,70,,20–24
+33.21,2,Kabupaten Demak,age_group,25-29,laki_laki,51390,jiwa,2025,projection,total_population,3.1.2,70,,25–29
+33.21,2,Kabupaten Demak,age_group,25-29,perempuan,48282,jiwa,2025,projection,total_population,3.1.2,70,,25–29
+33.21,2,Kabupaten Demak,age_group,25-29,,99672,jiwa,2025,projection,total_population,3.1.2,70,,25–29
+33.21,2,Kabupaten Demak,age_group,30-34,laki_laki,52782,jiwa,2025,projection,total_population,3.1.2,70,,30–34
+33.21,2,Kabupaten Demak,age_group,30-34,perempuan,49442,jiwa,2025,projection,total_population,3.1.2,70,,30–34
+33.21,2,Kabupaten Demak,age_group,30-34,,102224,jiwa,2025,projection,total_population,3.1.2,70,,30–34
+33.21,2,Kabupaten Demak,age_group,35-39,laki_laki,52263,jiwa,2025,projection,total_population,3.1.2,70,,35–39
+33.21,2,Kabupaten Demak,age_group,35-39,perempuan,49507,jiwa,2025,projection,total_population,3.1.2,70,,35–39
+33.21,2,Kabupaten Demak,age_group,35-39,,101770,jiwa,2025,projection,total_population,3.1.2,70,,35–39
+33.21,2,Kabupaten Demak,age_group,40-44,laki_laki,46552,jiwa,2025,projection,total_population,3.1.2,70,,40–44
+33.21,2,Kabupaten Demak,age_group,40-44,perempuan,45298,jiwa,2025,projection,total_population,3.1.2,70,,40–44
+33.21,2,Kabupaten Demak,age_group,40-44,,91850,jiwa,2025,projection,total_population,3.1.2,70,,40–44
+33.21,2,Kabupaten Demak,age_group,45-49,laki_laki,42444,jiwa,2025,projection,total_population,3.1.2,70,,45–49
+33.21,2,Kabupaten Demak,age_group,45-49,perempuan,43814,jiwa,2025,projection,total_population,3.1.2,70,,45–49
+33.21,2,Kabupaten Demak,age_group,45-49,,86258,jiwa,2025,projection,total_population,3.1.2,70,,45–49
+33.21,2,Kabupaten Demak,age_group,50-54,laki_laki,38063,jiwa,2025,projection,total_population,3.1.2,70,,50–54
+33.21,2,Kabupaten Demak,age_group,50-54,perempuan,39914,jiwa,2025,projection,total_population,3.1.2,70,,50–54
+33.21,2,Kabupaten Demak,age_group,50-54,,77977,jiwa,2025,projection,total_population,3.1.2,70,,50–54
+33.21,2,Kabupaten Demak,age_group,55-59,laki_laki,34688,jiwa,2025,projection,total_population,3.1.2,70,,55–59
+33.21,2,Kabupaten Demak,age_group,55-59,perempuan,35552,jiwa,2025,projection,total_population,3.1.2,70,,55–59
+33.21,2,Kabupaten Demak,age_group,55-59,,70240,jiwa,2025,projection,total_population,3.1.2,70,,55–59
+33.21,2,Kabupaten Demak,age_group,60-64,laki_laki,27371,jiwa,2025,projection,total_population,3.1.2,70,,60–64
+33.21,2,Kabupaten Demak,age_group,60-64,perempuan,28579,jiwa,2025,projection,total_population,3.1.2,70,,60–64
+33.21,2,Kabupaten Demak,age_group,60-64,,55950,jiwa,2025,projection,total_population,3.1.2,70,,60–64
+33.21,2,Kabupaten Demak,age_group,65-69,laki_laki,20699,jiwa,2025,projection,total_population,3.1.2,70,,65–69
+33.21,2,Kabupaten Demak,age_group,65-69,perempuan,22058,jiwa,2025,projection,total_population,3.1.2,70,,65–69
+33.21,2,Kabupaten Demak,age_group,65-69,,42757,jiwa,2025,projection,total_population,3.1.2,70,,65–69
+33.21,2,Kabupaten Demak,age_group,70-74,laki_laki,12626,jiwa,2025,projection,total_population,3.1.2,70,,70–74
+33.21,2,Kabupaten Demak,age_group,70-74,perempuan,14125,jiwa,2025,projection,total_population,3.1.2,70,,70–74
+33.21,2,Kabupaten Demak,age_group,70-74,,26751,jiwa,2025,projection,total_population,3.1.2,70,,70–74
+33.21,2,Kabupaten Demak,age_group,75+,laki_laki,10365,jiwa,2025,projection,total_population,3.1.2,70,,75+
+33.21,2,Kabupaten Demak,age_group,75+,perempuan,15214,jiwa,2025,projection,total_population,3.1.2,70,,75+
+33.21,2,Kabupaten Demak,age_group,75+,,25579,jiwa,2025,projection,total_population,3.1.2,70,,75+
+33.21,2,Kabupaten Demak,sex,laki_laki,,637950,jiwa,2025,projection,total_population,3.1.2,70,,Laki-Laki
+33.21,2,Kabupaten Demak,sex,perempuan,,627103,jiwa,2025,projection,total_population,3.1.2,70,,Perempuan
+33.21,2,Kabupaten Demak,total,total,,1265053,jiwa,2025,projection,total_population,3.1.2,70,,
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/padi_padian,,78236,rupiah,2024,survey_estimate,per_capita,10.1,285,,Padi-padian
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/padi_padian,,74721,rupiah,2025,survey_estimate,per_capita,10.1,285,,Padi-padian
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/umbi_umbian,,3488,rupiah,2024,survey_estimate,per_capita,10.1,285,,Umbi-umbian
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/umbi_umbian,,4894,rupiah,2025,survey_estimate,per_capita,10.1,285,,Umbi-umbian
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,42429,rupiah,2024,survey_estimate,per_capita,10.1,285,,Ikan/udang/cumi/kerang
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,46733,rupiah,2025,survey_estimate,per_capita,10.1,285,,Ikan/udang/cumi/kerang
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/daging,,22504,rupiah,2024,survey_estimate,per_capita,10.1,285,,Daging
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/daging,,24703,rupiah,2025,survey_estimate,per_capita,10.1,285,,Daging
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/telur_dan_susu,,31720,rupiah,2024,survey_estimate,per_capita,10.1,285,,Telur dan susu
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/telur_dan_susu,,34062,rupiah,2025,survey_estimate,per_capita,10.1,285,,Telur dan susu
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/sayur_sayuran,,50323,rupiah,2024,survey_estimate,per_capita,10.1,285,,Sayur-sayuran
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/sayur_sayuran,,55076,rupiah,2025,survey_estimate,per_capita,10.1,285,,Sayur-sayuran
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/kacang_kacangan,,16213,rupiah,2024,survey_estimate,per_capita,10.1,285,,Kacang-kacangan
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/kacang_kacangan,,16974,rupiah,2025,survey_estimate,per_capita,10.1,285,,Kacang-kacangan
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/buah_buahan,,27422,rupiah,2024,survey_estimate,per_capita,10.1,285,,Buah-buahan
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/buah_buahan,,39504,rupiah,2025,survey_estimate,per_capita,10.1,285,,Buah-buahan
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/minyak_dan_kelapa,,15533,rupiah,2024,survey_estimate,per_capita,10.1,285,,Minyak dan kelapa
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/minyak_dan_kelapa,,18485,rupiah,2025,survey_estimate,per_capita,10.1,285,,Minyak dan kelapa
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/bahan_minuman,,19704,rupiah,2024,survey_estimate,per_capita,10.1,285,,Bahan minuman
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/bahan_minuman,,21323,rupiah,2025,survey_estimate,per_capita,10.1,285,,Bahan minuman
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/bumbu_bumbuan,,14492,rupiah,2024,survey_estimate,per_capita,10.1,285,,Bumbu-bumbuan
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/bumbu_bumbuan,,17502,rupiah,2025,survey_estimate,per_capita,10.1,285,,Bumbu-bumbuan
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/konsumsi_lainnya,,12992,rupiah,2024,survey_estimate,per_capita,10.1,285,,Konsumsi lainnya
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/konsumsi_lainnya,,13454,rupiah,2025,survey_estimate,per_capita,10.1,285,,Konsumsi lainnya
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,212663,rupiah,2024,survey_estimate,per_capita,10.1,285,,Makanan dan minuman jadi
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,209046,rupiah,2025,survey_estimate,per_capita,10.1,285,,Makanan dan minuman jadi
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/rokok,,93753,rupiah,2024,survey_estimate,per_capita,10.1,285,,Rokok
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/rokok,,91352,rupiah,2025,survey_estimate,per_capita,10.1,285,,Rokok
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/jumlah_makanan,,641471,rupiah,2024,survey_estimate,per_capita,10.1,285,,Jumlah makanan
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/jumlah_makanan,,667829,rupiah,2025,survey_estimate,per_capita,10.1,285,,Jumlah makanan
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,290136,rupiah,2024,survey_estimate,per_capita,10.1,285,,Perumahan dan fasilitas rumah tangga
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,286580,rupiah,2025,survey_estimate,per_capita,10.1,285,,Perumahan dan fasilitas rumah tangga
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,160830,rupiah,2024,survey_estimate,per_capita,10.1,285,,Aneka barang dan jasa
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,129808,rupiah,2025,survey_estimate,per_capita,10.1,285,,Aneka barang dan jasa
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,26918,rupiah,2024,survey_estimate,per_capita,10.1,285,,"Pakaian, alas kaki, dan tutup kepala"
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,25260,rupiah,2025,survey_estimate,per_capita,10.1,285,,"Pakaian, alas kaki, dan tutup kepala"
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/barang_tahan_lama,,16311,rupiah,2024,survey_estimate,per_capita,10.1,285,,Barang tahan lama
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/barang_tahan_lama,,28502,rupiah,2025,survey_estimate,per_capita,10.1,285,,Barang tahan lama
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,45173,rupiah,2024,survey_estimate,per_capita,10.1,285,,"Pajak, pungutan, dan asuransi"
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,44214,rupiah,2025,survey_estimate,per_capita,10.1,285,,"Pajak, pungutan, dan asuransi"
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,30146,rupiah,2024,survey_estimate,per_capita,10.1,285,,Keperluan pesta dan upacara/kenduri
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,23740,rupiah,2025,survey_estimate,per_capita,10.1,285,,Keperluan pesta dan upacara/kenduri
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,569514,rupiah,2024,survey_estimate,per_capita,10.1,285,,Jumlah bukan makanan
+33.21,2,Kabupaten Demak,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,538105,rupiah,2025,survey_estimate,per_capita,10.1,285,,Jumlah bukan makanan
+33.21,2,Kabupaten Demak,expenditure,total,,1210985,rupiah,2024,survey_estimate,per_capita,10.1,285,,
+33.21,2,Kabupaten Demak,expenditure,total,,1205934,rupiah,2025,survey_estimate,per_capita,10.1,285,,

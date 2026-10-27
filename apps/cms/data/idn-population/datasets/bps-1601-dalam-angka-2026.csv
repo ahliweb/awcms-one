@@ -1,0 +1,112 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.01.28,3,Lengkiti,total,total,,26802,jiwa,2025,registration,total_population,3.1.1,51,,
+16.01.07,3,Sosoh Buay Rayap,total,total,,14844,jiwa,2025,registration,total_population,3.1.1,51,,
+16.01.08,3,Pengandonan,total,total,,10673,jiwa,2025,registration,total_population,3.1.1,51,,
+16.01.21,3,Semidang Aji,total,total,,30796,jiwa,2025,registration,total_population,3.1.1,51,,
+16.01.20,3,Ulu Ogan,total,total,,8981,jiwa,2025,registration,total_population,3.1.1,51,,
+16.01.31,3,Muara Jaya,total,total,,7917,jiwa,2025,registration,total_population,3.1.1,51,,
+16.01.09,3,Peninjauan,total,total,,34105,jiwa,2025,registration,total_population,3.1.1,51,,
+16.01.22,3,Lubuk Batang,total,total,,35883,jiwa,2025,registration,total_population,3.1.1,51,,
+16.01.29,3,Sinar Peninjauan,total,total,,23513,jiwa,2025,registration,total_population,3.1.1,51,,
+16.01.32,3,Kedaton Peninjauan Raya,total,total,,13761,jiwa,2025,registration,total_population,3.1.1,51,,
+16.01.14,3,Baturaja Timur,total,total,,115720,jiwa,2025,registration,total_population,3.1.1,51,,
+16.01.30,3,Lubuk Raja,total,total,,32101,jiwa,2025,registration,total_population,3.1.1,51,,
+16.01.13,3,Baturaja Barat,total,total,,39526,jiwa,2025,registration,total_population,3.1.1,51,,
+16.01,2,Ogan Komering Ulu,total,total,,394622,jiwa,2025,registration,total_population,3.1.1,51,,
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,0-4,laki_laki,13661,jiwa,2025,registration,total_population,3.1.2,54,,0–4
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,0-4,perempuan,12535,jiwa,2025,registration,total_population,3.1.2,54,,0–4
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,0-4,,26196,jiwa,2025,registration,total_population,3.1.2,54,,0–4
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,5-9,laki_laki,17634,jiwa,2025,registration,total_population,3.1.2,54,,5–9
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,5-9,perempuan,16747,jiwa,2025,registration,total_population,3.1.2,54,,5–9
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,5-9,,34381,jiwa,2025,registration,total_population,3.1.2,54,,5–9
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,10-14,laki_laki,18881,jiwa,2025,registration,total_population,3.1.2,54,,10–14
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,10-14,perempuan,17636,jiwa,2025,registration,total_population,3.1.2,54,,10–14
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,10-14,,36517,jiwa,2025,registration,total_population,3.1.2,54,,10–14
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,15-19,laki_laki,17485,jiwa,2025,registration,total_population,3.1.2,54,,15–19
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,15-19,perempuan,16662,jiwa,2025,registration,total_population,3.1.2,54,,15–19
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,15-19,,34147,jiwa,2025,registration,total_population,3.1.2,54,,15–19
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,20-24,laki_laki,16258,jiwa,2025,registration,total_population,3.1.2,54,,20–24
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,20-24,perempuan,15247,jiwa,2025,registration,total_population,3.1.2,54,,20–24
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,20-24,,31505,jiwa,2025,registration,total_population,3.1.2,54,,20–24
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,25-29,laki_laki,15259,jiwa,2025,registration,total_population,3.1.2,54,,25–29
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,25-29,perempuan,14192,jiwa,2025,registration,total_population,3.1.2,54,,25–29
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,25-29,,29451,jiwa,2025,registration,total_population,3.1.2,54,,25–29
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,30-34,laki_laki,14341,jiwa,2025,registration,total_population,3.1.2,54,,30–34
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,30-34,perempuan,13506,jiwa,2025,registration,total_population,3.1.2,54,,30–34
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,30-34,,27847,jiwa,2025,registration,total_population,3.1.2,54,,30–34
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,35-39,laki_laki,16269,jiwa,2025,registration,total_population,3.1.2,54,,35–39
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,35-39,perempuan,15487,jiwa,2025,registration,total_population,3.1.2,54,,35–39
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,35-39,,31756,jiwa,2025,registration,total_population,3.1.2,54,,35–39
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,40-44,laki_laki,15928,jiwa,2025,registration,total_population,3.1.2,54,,40–44
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,40-44,perempuan,14817,jiwa,2025,registration,total_population,3.1.2,54,,40–44
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,40-44,,30745,jiwa,2025,registration,total_population,3.1.2,54,,40–44
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,45-49,laki_laki,14264,jiwa,2025,registration,total_population,3.1.2,54,,45–49
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,45-49,perempuan,13123,jiwa,2025,registration,total_population,3.1.2,54,,45–49
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,45-49,,27387,jiwa,2025,registration,total_population,3.1.2,54,,45–49
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,50-54,laki_laki,11438,jiwa,2025,registration,total_population,3.1.2,54,,50–54
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,50-54,perempuan,10836,jiwa,2025,registration,total_population,3.1.2,54,,50–54
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,50-54,,22274,jiwa,2025,registration,total_population,3.1.2,54,,50–54
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,55-59,laki_laki,9382,jiwa,2025,registration,total_population,3.1.2,54,,55–59
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,55-59,perempuan,9502,jiwa,2025,registration,total_population,3.1.2,54,,55–59
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,55-59,,18884,jiwa,2025,registration,total_population,3.1.2,54,,55–59
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,60-64,laki_laki,7560,jiwa,2025,registration,total_population,3.1.2,54,,60–64
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,60-64,perempuan,7836,jiwa,2025,registration,total_population,3.1.2,54,,60–64
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,60-64,,15396,jiwa,2025,registration,total_population,3.1.2,54,,60–64
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,65-69,laki_laki,5957,jiwa,2025,registration,total_population,3.1.2,54,,65–69
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,65-69,perempuan,6074,jiwa,2025,registration,total_population,3.1.2,54,,65–69
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,65-69,,12031,jiwa,2025,registration,total_population,3.1.2,54,,65–69
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,70-74,laki_laki,3605,jiwa,2025,registration,total_population,3.1.2,54,,70–74
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,70-74,perempuan,3505,jiwa,2025,registration,total_population,3.1.2,54,,70–74
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,70-74,,7110,jiwa,2025,registration,total_population,3.1.2,54,,70–74
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,75+,laki_laki,4030,jiwa,2025,registration,total_population,3.1.2,54,,75+
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,75+,perempuan,4965,jiwa,2025,registration,total_population,3.1.2,54,,75+
+16.01,2,Kabupaten Ogan Komering Ulu,age_group,75+,,8995,jiwa,2025,registration,total_population,3.1.2,54,,75+
+16.01,2,Ogan Komering Ulu,sex,laki_laki,,201952,jiwa,2025,registration,total_population,3.1.2,54,,Laki-Laki
+16.01,2,Ogan Komering Ulu,sex,perempuan,,192670,jiwa,2025,registration,total_population,3.1.2,54,,Perempuan
+16.01,2,Ogan Komering Ulu,total,total,,394622,jiwa,2025,registration,total_population,3.1.2,54,,
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/padi_padian,,87374,rupiah,2025,survey_estimate,per_capita,10.1,294,,Padi-padian
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/padi_padian,,95388,rupiah,2024,survey_estimate,per_capita,10.1,294,,Padi-padian
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/umbi_umbian,,5769,rupiah,2025,survey_estimate,per_capita,10.1,294,,Umbi-umbian
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/umbi_umbian,,4240,rupiah,2024,survey_estimate,per_capita,10.1,294,,Umbi-umbian
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,57528,rupiah,2025,survey_estimate,per_capita,10.1,294,,Ikan/udang/cumi/kerang
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,49806,rupiah,2024,survey_estimate,per_capita,10.1,294,,Ikan/udang/cumi/kerang
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/daging,,32286,rupiah,2025,survey_estimate,per_capita,10.1,294,,Daging
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/daging,,27110,rupiah,2024,survey_estimate,per_capita,10.1,294,,Daging
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/telur_dan_susu,,43269,rupiah,2025,survey_estimate,per_capita,10.1,294,,Telur dan susu
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/telur_dan_susu,,38701,rupiah,2024,survey_estimate,per_capita,10.1,294,,Telur dan susu
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/sayur_sayuran,,55354,rupiah,2025,survey_estimate,per_capita,10.1,294,,Sayur-sayuran
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/sayur_sayuran,,48835,rupiah,2024,survey_estimate,per_capita,10.1,294,,Sayur-sayuran
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/kacang_kacangan,,13150,rupiah,2025,survey_estimate,per_capita,10.1,294,,Kacang-kacangan
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/kacang_kacangan,,11352,rupiah,2024,survey_estimate,per_capita,10.1,294,,Kacang-kacangan
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/buah_buahan,,33641,rupiah,2025,survey_estimate,per_capita,10.1,294,,Buah-buahan
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/buah_buahan,,31537,rupiah,2024,survey_estimate,per_capita,10.1,294,,Buah-buahan
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16734,rupiah,2025,survey_estimate,per_capita,10.1,294,,Minyak dan kelapa
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/minyak_dan_kelapa,,16135,rupiah,2024,survey_estimate,per_capita,10.1,294,,Minyak dan kelapa
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/bahan_minuman,,19714,rupiah,2025,survey_estimate,per_capita,10.1,294,,Bahan minuman
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/bahan_minuman,,18323,rupiah,2024,survey_estimate,per_capita,10.1,294,,Bahan minuman
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/bumbu_bumbuan,,13665,rupiah,2025,survey_estimate,per_capita,10.1,294,,Bumbu-bumbuan
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/bumbu_bumbuan,,12803,rupiah,2024,survey_estimate,per_capita,10.1,294,,Bumbu-bumbuan
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/konsumsi_lainnya,,12145,rupiah,2025,survey_estimate,per_capita,10.1,294,,Konsumsi lainnya
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/konsumsi_lainnya,,13176,rupiah,2024,survey_estimate,per_capita,10.1,294,,Konsumsi lainnya
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,142703,rupiah,2025,survey_estimate,per_capita,10.1,294,,Makanan dan minuman jadi
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,143283,rupiah,2024,survey_estimate,per_capita,10.1,294,,Makanan dan minuman jadi
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/rokok,,71304,rupiah,2025,survey_estimate,per_capita,10.1,294,,Rokok
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/rokok,,84292,rupiah,2024,survey_estimate,per_capita,10.1,294,,Rokok
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/jumlah_makanan,,604637,rupiah,2025,survey_estimate,per_capita,10.1,294,,Jumlah makanan
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/jumlah_makanan,,594982,rupiah,2024,survey_estimate,per_capita,10.1,294,,Jumlah makanan
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,258776,rupiah,2025,survey_estimate,per_capita,10.1,294,,Perumahan dan fasilitas rumah tangga
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,275171,rupiah,2024,survey_estimate,per_capita,10.1,294,,Perumahan dan fasilitas rumah tangga
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,122780,rupiah,2025,survey_estimate,per_capita,10.1,294,,Aneka barang dan jasa
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/aneka_barang_dan_jasa,,113976,rupiah,2024,survey_estimate,per_capita,10.1,294,,Aneka barang dan jasa
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,24923,rupiah,2025,survey_estimate,per_capita,10.1,294,,"Pakaian, alas kaki, dan tutup kepala"
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,23874,rupiah,2024,survey_estimate,per_capita,10.1,294,,"Pakaian, alas kaki, dan tutup kepala"
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/barang_tahan_lama,,38659,rupiah,2025,survey_estimate,per_capita,10.1,294,,Barang tahan lama
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/barang_tahan_lama,,47287,rupiah,2024,survey_estimate,per_capita,10.1,294,,Barang tahan lama
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,63420,rupiah,2025,survey_estimate,per_capita,10.1,294,,"Pajak, pungutan, dan asuransi"
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,49254,rupiah,2024,survey_estimate,per_capita,10.1,294,,"Pajak, pungutan, dan asuransi"
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,17226,rupiah,2025,survey_estimate,per_capita,10.1,294,,Keperluan pesta dan upacara/kenduri
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,14450,rupiah,2024,survey_estimate,per_capita,10.1,294,,Keperluan pesta dan upacara/kenduri
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,525784,rupiah,2025,survey_estimate,per_capita,10.1,294,,Jumlah bukan makanan
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,524011,rupiah,2024,survey_estimate,per_capita,10.1,294,,Jumlah bukan makanan
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,total,,1130421,rupiah,2025,survey_estimate,per_capita,10.1,294,,
+16.01,2,Kabupaten Ogan Komering Ulu,expenditure,total,,1118993,rupiah,2024,survey_estimate,per_capita,10.1,294,,

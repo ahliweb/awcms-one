@@ -1,0 +1,44 @@
+{
+  "datasetCode": "bps-3315-kecamatan-331501-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "33.15.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Kedungjati Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Grobogan",
+  "publisherDomain": "3315",
+  "publisherWebsite": "https://grobogankab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Grobogan (https://grobogankab.bps.go.id), publikasi \"Kecamatan Kedungjati Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3315010",
+  "publicationNumber": "33150.26007",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://grobogankab.bps.go.id/id/publication/2026/09/28/a9054b89d937809d431dc61f/kecamatan-kedungjati-dalam-angka-2026.html",
+  "sourceFileSha256": "55745c3af22a995675f13ad83d4228469c6c2130351b1d3745e87320e2f2db31",
+  "sourceFileBytes": 12994479,
+  "sourcePages": [25, 26, 27],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Grobogan",
+  "csvPath": "datasets/bps-3315-kecamatan-331501-dalam-angka-2026.csv",
+  "csvSha256": "9655133c93b66e76453949010c9e1395a27c018e4bde9de8b96e04d689bcf711",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Kedungjati , 202 5",
+      "printedPages": [25, 26],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Kedun g jati , 202 5",
+      "printedPages": [27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication"
+  ]
+}

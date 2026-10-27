@@ -1,0 +1,45 @@
+{
+  "datasetCode": "bps-3171-kecamatan-317401-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "31.74.01",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Tebet Dalam Angka 2026",
+  "publisherName": "BPS Kota Jakarta Selatan",
+  "publisherDomain": "3171",
+  "publisherWebsite": "https://jakselkota.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kota Jakarta Selatan (https://jakselkota.bps.go.id), publikasi \"Kecamatan Tebet Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001",
+  "publicationNumber": "31710.26013",
+  "issn": null,
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://jakselkota.bps.go.id/id/publication/2026/09/28/c99f5af4c1bc9a7e80813403/kecamatan-tebet-dalam-angka-2026.html",
+  "sourceFileSha256": "68744d6ed1d10775d568964e17b9ae03ffe3d69f0a2a20592f7e7f5f99da3a27",
+  "sourceFileBytes": 21489674,
+  "sourcePages": [26, 27, 28],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kota Jakarta Selatan.",
+  "csvPath": "datasets/bps-3171-kecamatan-317401-dalam-angka-2026.csv",
+  "csvSha256": "5a24e56411d0db3c7151f5e9ce7ba1048ade3ff7801ceb6a0845cab94e514f81",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/ Kelurahan di Kecamatan Tebet, 2025",
+      "printedPages": [26, 27],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    },
+    {
+      "table": "3.2",
+      "title": "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin di Kecamatan Tebet, 2025",
+      "printedPages": [28],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Nama Kecamatan\": unmatched "
+  ]
+}

@@ -1,0 +1,82 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+18.05.23.2002,4,Gedung Asri,sex,laki_laki,,1548,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.23.2002,4,Gedung Asri,sex,perempuan,,1422,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.23.2002,4,Gedung Asri,total,total,,2970,jiwa,2025,registration,total_population,3.1,32,,
+18.05.23.2001,4,Gedung Harapan,sex,laki_laki,,914,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.23.2001,4,Gedung Harapan,sex,perempuan,,858,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.23.2001,4,Gedung Harapan,total,total,,1772,jiwa,2025,registration,total_population,3.1,32,,
+18.05.23.2003,4,Gedung Rejo Sakti,sex,laki_laki,,1251,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.23.2003,4,Gedung Rejo Sakti,sex,perempuan,,1249,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.23.2003,4,Gedung Rejo Sakti,total,total,,2500,jiwa,2025,registration,total_population,3.1,32,,
+18.05.23.2006,4,Karya Makmur,sex,laki_laki,,1197,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.23.2006,4,Karya Makmur,sex,perempuan,,1152,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.23.2006,4,Karya Makmur,total,total,,2349,jiwa,2025,registration,total_population,3.1,32,,
+18.05.23.2008,4,Panca Tunggal Jaya,sex,laki_laki,,1779,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.23.2008,4,Panca Tunggal Jaya,sex,perempuan,,1639,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.23.2008,4,Panca Tunggal Jaya,total,total,,3418,jiwa,2025,registration,total_population,3.1,32,,
+18.05.23.2004,4,Pasar Batang,sex,laki_laki,,1024,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.23.2004,4,Pasar Batang,sex,perempuan,,928,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.23.2004,4,Pasar Batang,total,total,,1952,jiwa,2025,registration,total_population,3.1,32,,
+18.05.23.2005,4,Suka Makmur,sex,laki_laki,,967,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.23.2005,4,Suka Makmur,sex,perempuan,,911,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.23.2005,4,Suka Makmur,total,total,,1878,jiwa,2025,registration,total_population,3.1,32,,
+18.05.23.2009,4,Sumber Sari,sex,laki_laki,,1254,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.23.2009,4,Sumber Sari,sex,perempuan,,1165,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.23.2009,4,Sumber Sari,total,total,,2419,jiwa,2025,registration,total_population,3.1,32,,
+18.05.23.2007,4,Wono Rejo,sex,laki_laki,,1507,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.23.2007,4,Wono Rejo,sex,perempuan,,1355,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.23.2007,4,Wono Rejo,total,total,,2862,jiwa,2025,registration,total_population,3.1,32,,
+18.05.23,3,Penawar Aji,sex,laki_laki,,11441,jiwa,2025,registration,total_population,3.1,32,,Laki-Laki/Male
+18.05.23,3,Penawar Aji,sex,perempuan,,10679,jiwa,2025,registration,total_population,3.1,32,,Perempuan/Female
+18.05.23,3,Penawar Aji,total,total,,22120,jiwa,2025,registration,total_population,3.1,32,,
+18.05.23,3,Penawar Aji,age_group,0-4,laki_laki,689,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.23,3,Penawar Aji,age_group,0-4,perempuan,613,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.23,3,Penawar Aji,age_group,0-4,,1302,jiwa,2025,registration,total_population,3.2,34,,0 – 4
+18.05.23,3,Penawar Aji,age_group,5-9,laki_laki,908,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.23,3,Penawar Aji,age_group,5-9,perempuan,852,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.23,3,Penawar Aji,age_group,5-9,,1760,jiwa,2025,registration,total_population,3.2,34,,5 – 9
+18.05.23,3,Penawar Aji,age_group,10-14,laki_laki,1007,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.23,3,Penawar Aji,age_group,10-14,perempuan,895,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.23,3,Penawar Aji,age_group,10-14,,1902,jiwa,2025,registration,total_population,3.2,34,,10 – 14
+18.05.23,3,Penawar Aji,age_group,15-19,laki_laki,903,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.23,3,Penawar Aji,age_group,15-19,perempuan,826,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.23,3,Penawar Aji,age_group,15-19,,1729,jiwa,2025,registration,total_population,3.2,34,,15 – 19
+18.05.23,3,Penawar Aji,age_group,20-24,laki_laki,728,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.23,3,Penawar Aji,age_group,20-24,perempuan,706,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.23,3,Penawar Aji,age_group,20-24,,1434,jiwa,2025,registration,total_population,3.2,34,,20 – 24
+18.05.23,3,Penawar Aji,age_group,25-29,laki_laki,812,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.23,3,Penawar Aji,age_group,25-29,perempuan,793,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.23,3,Penawar Aji,age_group,25-29,,1605,jiwa,2025,registration,total_population,3.2,34,,25 – 29
+18.05.23,3,Penawar Aji,age_group,30-34,laki_laki,912,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.23,3,Penawar Aji,age_group,30-34,perempuan,897,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.23,3,Penawar Aji,age_group,30-34,,1809,jiwa,2025,registration,total_population,3.2,34,,30 – 34
+18.05.23,3,Penawar Aji,age_group,35-39,laki_laki,859,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.23,3,Penawar Aji,age_group,35-39,perempuan,849,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.23,3,Penawar Aji,age_group,35-39,,1708,jiwa,2025,registration,total_population,3.2,34,,35 – 39
+18.05.23,3,Penawar Aji,age_group,40-44,laki_laki,872,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.23,3,Penawar Aji,age_group,40-44,perempuan,820,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.23,3,Penawar Aji,age_group,40-44,,1692,jiwa,2025,registration,total_population,3.2,34,,40 – 44
+18.05.23,3,Penawar Aji,age_group,45-49,laki_laki,775,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.23,3,Penawar Aji,age_group,45-49,perempuan,739,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.23,3,Penawar Aji,age_group,45-49,,1514,jiwa,2025,registration,total_population,3.2,34,,45 – 49
+18.05.23,3,Penawar Aji,age_group,50-54,laki_laki,660,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.23,3,Penawar Aji,age_group,50-54,perempuan,629,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.23,3,Penawar Aji,age_group,50-54,,1289,jiwa,2025,registration,total_population,3.2,34,,50 – 54
+18.05.23,3,Penawar Aji,age_group,55-59,laki_laki,548,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.23,3,Penawar Aji,age_group,55-59,perempuan,520,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.23,3,Penawar Aji,age_group,55-59,,1068,jiwa,2025,registration,total_population,3.2,34,,55 – 59
+18.05.23,3,Penawar Aji,age_group,60-64,laki_laki,517,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.23,3,Penawar Aji,age_group,60-64,perempuan,562,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.23,3,Penawar Aji,age_group,60-64,,1079,jiwa,2025,registration,total_population,3.2,34,,60 – 64
+18.05.23,3,Penawar Aji,age_group,65-69,laki_laki,423,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.23,3,Penawar Aji,age_group,65-69,perempuan,383,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.23,3,Penawar Aji,age_group,65-69,,806,jiwa,2025,registration,total_population,3.2,34,,65 – 69
+18.05.23,3,Penawar Aji,age_group,70-74,laki_laki,335,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.23,3,Penawar Aji,age_group,70-74,perempuan,251,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.23,3,Penawar Aji,age_group,70-74,,586,jiwa,2025,registration,total_population,3.2,34,,70 – 74
+18.05.23,3,Penawar Aji,age_group,75+,laki_laki,493,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.23,3,Penawar Aji,age_group,75+,perempuan,344,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.23,3,Penawar Aji,age_group,75+,,837,jiwa,2025,registration,total_population,3.2,34,,>75
+18.05.23,3,Penawar Aji,sex,laki_laki,,11441,jiwa,2025,registration,total_population,3.2,34,,Laki-Laki
+18.05.23,3,Penawar Aji,sex,perempuan,,10679,jiwa,2025,registration,total_population,3.2,34,,Perempuan
+18.05.23,3,Penawar Aji,total,total,,22120,jiwa,2025,registration,total_population,3.2,34,,

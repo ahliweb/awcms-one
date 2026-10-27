@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+62.11.01.2001,4,Dandang,sex,laki_laki,,885,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.01.2001,4,Dandang,sex,perempuan,,802,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.01.2001,4,Dandang,total,total,,1687,jiwa,2025,registration,total_population,3.1,35,,
+62.11.01.2002,4,Talio,sex,laki_laki,,157,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.01.2002,4,Talio,sex,perempuan,,131,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.01.2002,4,Talio,total,total,,288,jiwa,2025,registration,total_population,3.1,35,,
+62.11.01.2012,4,Gadabung,sex,laki_laki,,862,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.01.2012,4,Gadabung,sex,perempuan,,838,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.01.2012,4,Gadabung,total,total,,1700,jiwa,2025,registration,total_population,3.1,35,,
+62.11.01.2011,4,Belanti Siam,sex,laki_laki,,1397,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.01.2011,4,Belanti Siam,sex,perempuan,,1351,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.01.2011,4,Belanti Siam,total,total,,2748,jiwa,2025,registration,total_population,3.1,35,,
+62.11.01.2003,4,Pangkoh Hilir,sex,laki_laki,,342,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.01.2003,4,Pangkoh Hilir,sex,perempuan,,312,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.01.2003,4,Pangkoh Hilir,total,total,,654,jiwa,2025,registration,total_population,3.1,35,,
+62.11.01.2006,4,Talio Muara,sex,laki_laki,,1265,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.01.2006,4,Talio Muara,sex,perempuan,,1267,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.01.2006,4,Talio Muara,total,total,,2532,jiwa,2025,registration,total_population,3.1,35,,
+62.11.01.2007,4,Talio Hulu,sex,laki_laki,,1050,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.01.2007,4,Talio Hulu,sex,perempuan,,975,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.01.2007,4,Talio Hulu,total,total,,2025,jiwa,2025,registration,total_population,3.1,35,,
+62.11.01.2008,4,Pangkoh Sari,sex,laki_laki,,562,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.01.2008,4,Pangkoh Sari,sex,perempuan,,550,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.01.2008,4,Pangkoh Sari,total,total,,1112,jiwa,2025,registration,total_population,3.1,35,,
+62.11.01.2005,4,Kantan Muara,sex,laki_laki,,928,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.01.2005,4,Kantan Muara,sex,perempuan,,913,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.01.2005,4,Kantan Muara,total,total,,1841,jiwa,2025,registration,total_population,3.1,35,,
+62.11.01.2004,4,Pangkoh Hulu,sex,laki_laki,,525,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.01.2004,4,Pangkoh Hulu,sex,perempuan,,498,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.01.2004,4,Pangkoh Hulu,total,total,,1023,jiwa,2025,registration,total_population,3.1,35,,
+62.11.01.2009,4,Sanggang,sex,laki_laki,,470,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.01.2009,4,Sanggang,sex,perempuan,,431,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.01.2009,4,Sanggang,total,total,,901,jiwa,2025,registration,total_population,3.1,35,,
+62.11.01.2010,4,Pantik,sex,laki_laki,,281,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.01.2010,4,Pantik,sex,perempuan,,246,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.01.2010,4,Pantik,total,total,,527,jiwa,2025,registration,total_population,3.1,35,,
+62.11.01.2013,4,Mulyasari,sex,laki_laki,,626,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.01.2013,4,Mulyasari,sex,perempuan,,609,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.01.2013,4,Mulyasari,total,total,,1235,jiwa,2025,registration,total_population,3.1,35,,
+62.11.01.2014,4,Kantan Dalam,sex,laki_laki,,888,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.01.2014,4,Kantan Dalam,sex,perempuan,,832,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.01.2014,4,Kantan Dalam,total,total,,1720,jiwa,2025,registration,total_population,3.1,35,,
+62.11.01.2015,4,Kantan Atas,sex,laki_laki,,659,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.01.2015,4,Kantan Atas,sex,perempuan,,627,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.01.2015,4,Kantan Atas,total,total,,1286,jiwa,2025,registration,total_population,3.1,35,,
+62.11.01.2016,4,Karya Bersama,sex,laki_laki,,524,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.01.2016,4,Karya Bersama,sex,perempuan,,473,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.01.2016,4,Karya Bersama,total,total,,997,jiwa,2025,registration,total_population,3.1,35,,
+62.11.01,3,Pandih Batu,sex,laki_laki,,11421,jiwa,2025,registration,total_population,3.1,35,,Laki-Laki/Male
+62.11.01,3,Pandih Batu,sex,perempuan,,10855,jiwa,2025,registration,total_population,3.1,35,,Perempuan/Female
+62.11.01,3,Pandih Batu,total,total,,22276,jiwa,2025,registration,total_population,3.1,35,,

@@ -1,0 +1,37 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+15.05.09.2010,4,Sungai Dayo,sex,laki_laki,,541,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.09.2010,4,Sungai Dayo,sex,perempuan,,462,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.09.2010,4,Sungai Dayo,total,total,,1003,jiwa,2025,registration,total_population,3.1,28,,
+15.05.09.2006,4,Bukit Mulya,sex,laki_laki,,666,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.09.2006,4,Bukit Mulya,sex,perempuan,,668,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.09.2006,4,Bukit Mulya,total,total,,1334,jiwa,2025,registration,total_population,3.1,28,,
+15.05.09.2005,4,Matra Manunggal,sex,laki_laki,,609,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.09.2005,4,Matra Manunggal,sex,perempuan,,580,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.09.2005,4,Matra Manunggal,total,total,,1189,jiwa,2025,registration,total_population,3.1,28,,
+15.05.09.2008,4,Pinang Tinggi,sex,laki_laki,,537,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.09.2008,4,Pinang Tinggi,sex,perempuan,,482,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.09.2008,4,Pinang Tinggi,total,total,,1019,jiwa,2025,registration,total_population,3.1,28,,
+15.05.09.2011,4,Bahar Mulya,sex,laki_laki,,741,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.09.2011,4,Bahar Mulya,sex,perempuan,,723,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.09.2011,4,Bahar Mulya,total,total,,1464,jiwa,2025,registration,total_population,3.1,28,,
+15.05.09.2007,4,Sumber Jaya,sex,laki_laki,,398,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.09.2007,4,Sumber Jaya,sex,perempuan,,372,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.09.2007,4,Sumber Jaya,total,total,,770,jiwa,2025,registration,total_population,3.1,28,,
+15.05.09.2003,4,Sumber Mulya,sex,laki_laki,,456,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.09.2003,4,Sumber Mulya,sex,perempuan,,426,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.09.2003,4,Sumber Mulya,total,total,,882,jiwa,2025,registration,total_population,3.1,28,,
+15.05.09.2004,4,Mulya Jaya,sex,laki_laki,,291,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.09.2004,4,Mulya Jaya,sex,perempuan,,280,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.09.2004,4,Mulya Jaya,total,total,,571,jiwa,2025,registration,total_population,3.1,28,,
+15.05.09.2001,4,Talang Bukit,sex,laki_laki,,1032,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.09.2001,4,Talang Bukit,sex,perempuan,,1025,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.09.2001,4,Talang Bukit,total,total,,2057,jiwa,2025,registration,total_population,3.1,28,,
+15.05.09.2002,4,Talang Datar,sex,laki_laki,,677,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.09.2002,4,Talang Datar,sex,perempuan,,641,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.09.2002,4,Talang Datar,total,total,,1318,jiwa,2025,registration,total_population,3.1,28,,
+15.05.09.2009,4,Markanding,sex,laki_laki,,1886,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.09.2009,4,Markanding,sex,perempuan,,1772,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.09.2009,4,Markanding,total,total,,3658,jiwa,2025,registration,total_population,3.1,28,,
+15.05.09,3,Bahar Utara,sex,laki_laki,,7834,jiwa,2025,registration,total_population,3.1,28,,Laki-Laki/Male
+15.05.09,3,Bahar Utara,sex,perempuan,,7431,jiwa,2025,registration,total_population,3.1,28,,Perempuan/Female
+15.05.09,3,Bahar Utara,total,total,,15265,jiwa,2025,registration,total_population,3.1,28,,

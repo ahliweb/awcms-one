@@ -1,0 +1,122 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.13.15,3,Batahan,total,total,,25359,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.22,3,Sinunukan,total,total,,25287,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.13,3,Batang Natal,total,total,,26735,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.14,3,Lingga Bayu,total,total,,30401,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.18,3,Ranto Baek,total,total,,15667,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.08,3,Kotanopan,total,total,,28629,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.11,3,Ulu Pungkut,total,total,,4886,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.10,3,Tambangan,total,total,,10915,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.09,3,Lembah Sorik Marapi,total,total,,10971,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.20,3,Puncak Sorik Marapi,total,total,,9498,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.12,3,Muara Sipongi,total,total,,14173,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.21,3,Pakantan,total,total,,2255,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.01,3,Panyabungan,total,total,,96679,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.04,3,Panyabungan Selatan,total,total,,10776,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.05,3,Panyabungan Barat,total,total,,11631,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.02,3,Panyabungan Utara,total,total,,23894,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.03,3,Panyabungan Timur,total,total,,15212,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.19,3,Huta Bargot,total,total,,10729,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.16,3,Natal,total,total,,37573,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.17,3,Muara Batang Gadis,total,total,,26650,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.06,3,Siabu,total,total,,56304,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.07,3,Bukit Malintang,total,total,,13766,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13.23,3,Naga Juang,total,total,,5546,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13,2,Mandailing Natal,total,total,,513536,jiwa,2025,projection,total_population,3.1.1,74,,
+12.13,2,Kabupaten Mandailing Natal,age_group,0-4,laki_laki,28.19,ribu_jiwa,2025,projection,total_population,3.1.2,77,,0–4
+12.13,2,Kabupaten Mandailing Natal,age_group,0-4,perempuan,27.03,ribu_jiwa,2025,projection,total_population,3.1.2,77,,0–4
+12.13,2,Kabupaten Mandailing Natal,age_group,0-4,,55.22,ribu_jiwa,2025,projection,total_population,3.1.2,77,,0–4
+12.13,2,Kabupaten Mandailing Natal,age_group,5-9,laki_laki,25.28,ribu_jiwa,2025,projection,total_population,3.1.2,77,,5–9
+12.13,2,Kabupaten Mandailing Natal,age_group,5-9,perempuan,24.40,ribu_jiwa,2025,projection,total_population,3.1.2,77,,5–9
+12.13,2,Kabupaten Mandailing Natal,age_group,5-9,,49.68,ribu_jiwa,2025,projection,total_population,3.1.2,77,,5–9
+12.13,2,Kabupaten Mandailing Natal,age_group,10-14,laki_laki,24.77,ribu_jiwa,2025,projection,total_population,3.1.2,77,,10–14
+12.13,2,Kabupaten Mandailing Natal,age_group,10-14,perempuan,23.72,ribu_jiwa,2025,projection,total_population,3.1.2,77,,10–14
+12.13,2,Kabupaten Mandailing Natal,age_group,10-14,,48.50,ribu_jiwa,2025,projection,total_population,3.1.2,77,,10–14
+12.13,2,Kabupaten Mandailing Natal,age_group,15-19,laki_laki,24.09,ribu_jiwa,2025,projection,total_population,3.1.2,77,,15–19
+12.13,2,Kabupaten Mandailing Natal,age_group,15-19,perempuan,23.25,ribu_jiwa,2025,projection,total_population,3.1.2,77,,15–19
+12.13,2,Kabupaten Mandailing Natal,age_group,15-19,,47.34,ribu_jiwa,2025,projection,total_population,3.1.2,77,,15–19
+12.13,2,Kabupaten Mandailing Natal,age_group,20-24,laki_laki,22.11,ribu_jiwa,2025,projection,total_population,3.1.2,77,,20–24
+12.13,2,Kabupaten Mandailing Natal,age_group,20-24,perempuan,21.44,ribu_jiwa,2025,projection,total_population,3.1.2,77,,20–24
+12.13,2,Kabupaten Mandailing Natal,age_group,20-24,,43.55,ribu_jiwa,2025,projection,total_population,3.1.2,77,,20–24
+12.13,2,Kabupaten Mandailing Natal,age_group,25-29,laki_laki,21.42,ribu_jiwa,2025,projection,total_population,3.1.2,77,,25–29
+12.13,2,Kabupaten Mandailing Natal,age_group,25-29,perempuan,20.08,ribu_jiwa,2025,projection,total_population,3.1.2,77,,25–29
+12.13,2,Kabupaten Mandailing Natal,age_group,25-29,,41.50,ribu_jiwa,2025,projection,total_population,3.1.2,77,,25–29
+12.13,2,Kabupaten Mandailing Natal,age_group,30-34,laki_laki,20.23,ribu_jiwa,2025,projection,total_population,3.1.2,77,,30–34
+12.13,2,Kabupaten Mandailing Natal,age_group,30-34,perempuan,19.79,ribu_jiwa,2025,projection,total_population,3.1.2,77,,30–34
+12.13,2,Kabupaten Mandailing Natal,age_group,30-34,,40.02,ribu_jiwa,2025,projection,total_population,3.1.2,77,,30–34
+12.13,2,Kabupaten Mandailing Natal,age_group,35-39,laki_laki,19.08,ribu_jiwa,2025,projection,total_population,3.1.2,77,,35–39
+12.13,2,Kabupaten Mandailing Natal,age_group,35-39,perempuan,18.72,ribu_jiwa,2025,projection,total_population,3.1.2,77,,35–39
+12.13,2,Kabupaten Mandailing Natal,age_group,35-39,,37.80,ribu_jiwa,2025,projection,total_population,3.1.2,77,,35–39
+12.13,2,Kabupaten Mandailing Natal,age_group,40-44,laki_laki,15.55,ribu_jiwa,2025,projection,total_population,3.1.2,77,,40–44
+12.13,2,Kabupaten Mandailing Natal,age_group,40-44,perempuan,15.34,ribu_jiwa,2025,projection,total_population,3.1.2,77,,40–44
+12.13,2,Kabupaten Mandailing Natal,age_group,40-44,,30.89,ribu_jiwa,2025,projection,total_population,3.1.2,77,,40–44
+12.13,2,Kabupaten Mandailing Natal,age_group,45-49,laki_laki,13.60,ribu_jiwa,2025,projection,total_population,3.1.2,77,,45–49
+12.13,2,Kabupaten Mandailing Natal,age_group,45-49,perempuan,14.18,ribu_jiwa,2025,projection,total_population,3.1.2,77,,45–49
+12.13,2,Kabupaten Mandailing Natal,age_group,45-49,,27.78,ribu_jiwa,2025,projection,total_population,3.1.2,77,,45–49
+12.13,2,Kabupaten Mandailing Natal,age_group,50-54,laki_laki,11.66,ribu_jiwa,2025,projection,total_population,3.1.2,77,,50–54
+12.13,2,Kabupaten Mandailing Natal,age_group,50-54,perempuan,12.41,ribu_jiwa,2025,projection,total_population,3.1.2,77,,50–54
+12.13,2,Kabupaten Mandailing Natal,age_group,50-54,,24.07,ribu_jiwa,2025,projection,total_population,3.1.2,77,,50–54
+12.13,2,Kabupaten Mandailing Natal,age_group,55-59,laki_laki,9.77,ribu_jiwa,2025,projection,total_population,3.1.2,77,,55–59
+12.13,2,Kabupaten Mandailing Natal,age_group,55-59,perempuan,11.02,ribu_jiwa,2025,projection,total_population,3.1.2,77,,55–59
+12.13,2,Kabupaten Mandailing Natal,age_group,55-59,,20.79,ribu_jiwa,2025,projection,total_population,3.1.2,77,,55–59
+12.13,2,Kabupaten Mandailing Natal,age_group,60-64,laki_laki,8.19,ribu_jiwa,2025,projection,total_population,3.1.2,77,,60–64
+12.13,2,Kabupaten Mandailing Natal,age_group,60-64,perempuan,9.40,ribu_jiwa,2025,projection,total_population,3.1.2,77,,60–64
+12.13,2,Kabupaten Mandailing Natal,age_group,60-64,,17.59,ribu_jiwa,2025,projection,total_population,3.1.2,77,,60–64
+12.13,2,Kabupaten Mandailing Natal,age_group,65-69,laki_laki,6.05,ribu_jiwa,2025,projection,total_population,3.1.2,77,,65–69
+12.13,2,Kabupaten Mandailing Natal,age_group,65-69,perempuan,7.24,ribu_jiwa,2025,projection,total_population,3.1.2,77,,65–69
+12.13,2,Kabupaten Mandailing Natal,age_group,65-69,,13.28,ribu_jiwa,2025,projection,total_population,3.1.2,77,,65–69
+12.13,2,Kabupaten Mandailing Natal,age_group,70-74,laki_laki,3.80,ribu_jiwa,2025,projection,total_population,3.1.2,77,,70–74
+12.13,2,Kabupaten Mandailing Natal,age_group,70-74,perempuan,4.97,ribu_jiwa,2025,projection,total_population,3.1.2,77,,70–74
+12.13,2,Kabupaten Mandailing Natal,age_group,70-74,,8.77,ribu_jiwa,2025,projection,total_population,3.1.2,77,,70–74
+12.13,2,Kabupaten Mandailing Natal,age_group,75+,laki_laki,2.44,ribu_jiwa,2025,projection,total_population,3.1.2,77,,75+
+12.13,2,Kabupaten Mandailing Natal,age_group,75+,perempuan,4.34,ribu_jiwa,2025,projection,total_population,3.1.2,77,,75+
+12.13,2,Kabupaten Mandailing Natal,age_group,75+,,6.78,ribu_jiwa,2025,projection,total_population,3.1.2,77,,75+
+12.13,2,Mandailing Natal,sex,laki_laki,,256.22,ribu_jiwa,2025,projection,total_population,3.1.2,77,,Laki-Laki
+12.13,2,Mandailing Natal,sex,perempuan,,257.32,ribu_jiwa,2025,projection,total_population,3.1.2,77,,Perempuan
+12.13,2,Mandailing Natal,total,total,,513.54,ribu_jiwa,2025,projection,total_population,3.1.2,77,,
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/padi_padian,,127357,rupiah,2024,survey_estimate,per_capita,10.1,370,,Padi-padian
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/padi_padian,,116628,rupiah,2025,survey_estimate,per_capita,10.1,370,,Padi-padian
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/umbi_umbian,,7780,rupiah,2024,survey_estimate,per_capita,10.1,370,,Umbi-umbian
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/umbi_umbian,,8229,rupiah,2025,survey_estimate,per_capita,10.1,370,,Umbi-umbian
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,67494,rupiah,2024,survey_estimate,per_capita,10.1,370,,Ikan/udang/cumi/kerang
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/ikan_udang_cumi_kerang,,76371,rupiah,2025,survey_estimate,per_capita,10.1,370,,Ikan/udang/cumi/kerang
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/daging,,19573,rupiah,2024,survey_estimate,per_capita,10.1,370,,Daging
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/daging,,21206,rupiah,2025,survey_estimate,per_capita,10.1,370,,Daging
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/telur_dan_susu,,23789,rupiah,2024,survey_estimate,per_capita,10.1,370,,Telur dan susu
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/telur_dan_susu,,24409,rupiah,2025,survey_estimate,per_capita,10.1,370,,Telur dan susu
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/sayur_sayuran,,69203,rupiah,2024,survey_estimate,per_capita,10.1,370,,Sayur-sayuran
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/sayur_sayuran,,69486,rupiah,2025,survey_estimate,per_capita,10.1,370,,Sayur-sayuran
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/kacang_kacangan,,9913,rupiah,2024,survey_estimate,per_capita,10.1,370,,Kacang-kacangan
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/kacang_kacangan,,9403,rupiah,2025,survey_estimate,per_capita,10.1,370,,Kacang-kacangan
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/buah_buahan,,15811,rupiah,2024,survey_estimate,per_capita,10.1,370,,Buah-buahan
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/buah_buahan,,37037,rupiah,2025,survey_estimate,per_capita,10.1,370,,Buah-buahan
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/minyak_dan_kelapa,,25518,rupiah,2024,survey_estimate,per_capita,10.1,370,,Minyak dan kelapa
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/minyak_dan_kelapa,,30921,rupiah,2025,survey_estimate,per_capita,10.1,370,,Minyak dan kelapa
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/bahan_minuman,,9515,rupiah,2024,survey_estimate,per_capita,10.1,370,,Bahan minuman
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/bahan_minuman,,9525,rupiah,2025,survey_estimate,per_capita,10.1,370,,Bahan minuman
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/bumbu_bumbuan,,11195,rupiah,2024,survey_estimate,per_capita,10.1,370,,Bumbu-bumbuan
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/bumbu_bumbuan,,11970,rupiah,2025,survey_estimate,per_capita,10.1,370,,Bumbu-bumbuan
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/konsumsi_lainnya,,5539,rupiah,2024,survey_estimate,per_capita,10.1,370,,Konsumsi lainnya
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/konsumsi_lainnya,,7310,rupiah,2025,survey_estimate,per_capita,10.1,370,,Konsumsi lainnya
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,185233,rupiah,2024,survey_estimate,per_capita,10.1,370,,Makanan dan minuman jadi
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/makanan_dan_minuman_jadi,,188167,rupiah,2025,survey_estimate,per_capita,10.1,370,,Makanan dan minuman jadi
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/rokok,,106365,rupiah,2024,survey_estimate,per_capita,10.1,370,,Rokok
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/rokok,,114826,rupiah,2025,survey_estimate,per_capita,10.1,370,,Rokok
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/jumlah_makanan,,684284,rupiah,2024,survey_estimate,per_capita,10.1,370,,Jumlah makanan
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/jumlah_makanan,,725488,rupiah,2025,survey_estimate,per_capita,10.1,370,,Jumlah makanan
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,177403,rupiah,2024,survey_estimate,per_capita,10.1,370,,Perumahan dan fasilitas rumah tangga
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/perumahan_dan_fasilitas_rumah_tangga,,188158,rupiah,2025,survey_estimate,per_capita,10.1,370,,Perumahan dan fasilitas rumah tangga
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,124446,rupiah,2024,survey_estimate,per_capita,10.1,370,,Aneka komoditas dan jasa
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/aneka_komoditas_dan_jasa,,105082,rupiah,2025,survey_estimate,per_capita,10.1,370,,Aneka komoditas dan jasa
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,50269,rupiah,2024,survey_estimate,per_capita,10.1,370,,"Pakaian, alas kaki, dan tutup kepala"
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/pakaian_alas_kaki_dan_tutup_kepala,,57033,rupiah,2025,survey_estimate,per_capita,10.1,370,,"Pakaian, alas kaki, dan tutup kepala"
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/komoditas_tahan_lama,,13635,rupiah,2024,survey_estimate,per_capita,10.1,370,,Komoditas tahan lama
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/komoditas_tahan_lama,,22807,rupiah,2025,survey_estimate,per_capita,10.1,370,,Komoditas tahan lama
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,34067,rupiah,2024,survey_estimate,per_capita,10.1,370,,"Pajak, pungutan, dan asuransi"
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/pajak_pungutan_dan_asuransi,,37062,rupiah,2025,survey_estimate,per_capita,10.1,370,,"Pajak, pungutan, dan asuransi"
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,15826,rupiah,2024,survey_estimate,per_capita,10.1,370,,Keperluan pesta dan upacara/kenduri
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/keperluan_pesta_dan_upacara_kenduri,,14520,rupiah,2025,survey_estimate,per_capita,10.1,370,,Keperluan pesta dan upacara/kenduri
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,415646,rupiah,2024,survey_estimate,per_capita,10.1,370,,Jumlah bukan makanan
+12.13,2,Kabupaten Mandailing Natal,expenditure,kelompok_komoditas/jumlah_bukan_makanan,,424662,rupiah,2025,survey_estimate,per_capita,10.1,370,,Jumlah bukan makanan
+12.13,2,Kabupaten Mandailing Natal,expenditure,total,,1099930,rupiah,2024,survey_estimate,per_capita,10.1,370,,
+12.13,2,Kabupaten Mandailing Natal,expenditure,total,,1150149,rupiah,2025,survey_estimate,per_capita,10.1,370,,

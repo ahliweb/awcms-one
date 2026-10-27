@@ -1,0 +1,52 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+12.23.05.2002,4,Perkebunan Pernantian,sex,laki_laki,,639,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.23.05.2002,4,Perkebunan Pernantian,sex,perempuan,,616,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.23.05.2002,4,Perkebunan Pernantian,total,total,,1255,jiwa,2025,registration,total_population,3.1,34,,
+12.23.05.2004,4,Perkebunan Milano,sex,laki_laki,,261,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.23.05.2004,4,Perkebunan Milano,sex,perempuan,,234,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.23.05.2004,4,Perkebunan Milano,total,total,,495,jiwa,2025,registration,total_population,3.1,34,,
+12.23.05.2006,4,Pulo Bargot,sex,laki_laki,,1494,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.23.05.2006,4,Pulo Bargot,sex,perempuan,,1552,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.23.05.2006,4,Pulo Bargot,total,total,,3046,jiwa,2025,registration,total_population,3.1,34,,
+12.23.05.2018,4,Sumber Mulyo,sex,laki_laki,,1998,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.23.05.2018,4,Sumber Mulyo,sex,perempuan,,1889,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.23.05.2018,4,Sumber Mulyo,total,total,,3887,jiwa,2025,registration,total_population,3.1,34,,
+12.23.05.2008,4,Sipare-pare Hilir,sex,laki_laki,,765,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.23.05.2008,4,Sipare-pare Hilir,sex,perempuan,,760,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.23.05.2008,4,Sipare-pare Hilir,total,total,,1525,jiwa,2025,registration,total_population,3.1,34,,
+12.23.05.2007,4,Sipare-pare Tengah,sex,laki_laki,,1373,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.23.05.2007,4,Sipare-pare Tengah,sex,perempuan,,1373,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.23.05.2007,4,Sipare-pare Tengah,total,total,,2746,jiwa,2025,registration,total_population,3.1,34,,
+12.23.05.2009,4,Tubiran,sex,laki_laki,,626,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.23.05.2009,4,Tubiran,sex,perempuan,,589,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.23.05.2009,4,Tubiran,total,total,,1215,jiwa,2025,registration,total_population,3.1,34,,
+12.23.05.2010,4,Belongkut,sex,laki_laki,,2186,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.23.05.2010,4,Belongkut,sex,perempuan,,2205,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.23.05.2010,4,Belongkut,total,total,,4391,jiwa,2025,registration,total_population,3.1,34,,
+12.23.05.2011,4,Simpang Empat,sex,laki_laki,,1707,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.23.05.2011,4,Simpang Empat,sex,perempuan,,1810,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.23.05.2011,4,Simpang Empat,total,total,,3517,jiwa,2025,registration,total_population,3.1,34,,
+12.23.05.1001,4,Marbau,sex,laki_laki,,1339,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.23.05.1001,4,Marbau,sex,perempuan,,1419,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.23.05.1001,4,Marbau,total,total,,2758,jiwa,2025,registration,total_population,3.1,34,,
+12.23.05.2012,4,Babussalam,sex,laki_laki,,1054,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.23.05.2012,4,Babussalam,sex,perempuan,,1036,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.23.05.2012,4,Babussalam,total,total,,2090,jiwa,2025,registration,total_population,3.1,34,,
+12.23.05.2013,4,Marbau Selatan,sex,laki_laki,,2171,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.23.05.2013,4,Marbau Selatan,sex,perempuan,,2257,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.23.05.2013,4,Marbau Selatan,total,total,,4428,jiwa,2025,registration,total_population,3.1,34,,
+12.23.05.2014,4,Aek Tapa,sex,laki_laki,,1817,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.23.05.2014,4,Aek Tapa,sex,perempuan,,1785,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.23.05.2014,4,Aek Tapa,total,total,,3602,jiwa,2025,registration,total_population,3.1,34,,
+12.23.05.2015,4,Lobu Rampah,sex,laki_laki,,604,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.23.05.2015,4,Lobu Rampah,sex,perempuan,,602,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.23.05.2015,4,Lobu Rampah,total,total,,1206,jiwa,2025,registration,total_population,3.1,34,,
+12.23.05.2016,4,Bulungihit,sex,laki_laki,,1225,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.23.05.2016,4,Bulungihit,sex,perempuan,,1198,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.23.05.2016,4,Bulungihit,total,total,,2423,jiwa,2025,registration,total_population,3.1,34,,
+12.23.05.2017,4,Aek Hitetoras,sex,laki_laki,,2096,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.23.05.2017,4,Aek Hitetoras,sex,perempuan,,1995,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.23.05.2017,4,Aek Hitetoras,total,total,,4091,jiwa,2025,registration,total_population,3.1,34,,
+12.23.05,3,Marbau,sex,laki_laki,,22432,jiwa,2025,registration,total_population,3.1,34,,Laki-Laki/Male
+12.23.05,3,Marbau,sex,perempuan,,22403,jiwa,2025,registration,total_population,3.1,34,,Perempuan/Female
+12.23.05,3,Marbau,total,total,,44835,jiwa,2025,registration,total_population,3.1,34,,

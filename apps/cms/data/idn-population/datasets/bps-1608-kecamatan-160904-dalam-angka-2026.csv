@@ -1,0 +1,106 @@
+region_code,region_level,source_region_name,dimension,category,sex,value,unit,reference_year,figure_basis,universe,source_table,source_page,value_note,category_label
+16.09.04.2011,4,Gunung Gare,sex,laki_laki,,780,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.04.2011,4,Gunung Gare,sex,perempuan,,689,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.04.2011,4,Gunung Gare,total,total,,1469,jiwa,2025,registration,total_population,3.1,27,,
+16.09.04.2022,4,Tanjung Beringin,sex,laki_laki,,389,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.04.2022,4,Tanjung Beringin,sex,perempuan,,345,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.04.2022,4,Tanjung Beringin,total,total,,734,jiwa,2025,registration,total_population,3.1,27,,
+16.09.04.2040,4,Simpang Lubuk Dalam,sex,laki_laki,,796,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.04.2040,4,Simpang Lubuk Dalam,sex,perempuan,,720,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.04.2040,4,Simpang Lubuk Dalam,total,total,,1516,jiwa,2025,registration,total_population,3.1,27,,
+16.09.04.2018,4,Ulak Agung Ulu,sex,laki_laki,,808,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.04.2018,4,Ulak Agung Ulu,sex,perempuan,,669,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.04.2018,4,Ulak Agung Ulu,total,total,,1477,jiwa,2025,registration,total_population,3.1,27,,
+16.09.04.2007,4,Bandar Alam Baru,sex,laki_laki,,226,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.04.2007,4,Bandar Alam Baru,sex,perempuan,,217,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.04.2007,4,Bandar Alam Baru,total,total,,443,jiwa,2025,registration,total_population,3.1,27,,
+16.09.04.2009,4,Ulak Agung Ilir,sex,laki_laki,,590,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.04.2009,4,Ulak Agung Ilir,sex,perempuan,,499,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.04.2009,4,Ulak Agung Ilir,total,total,,1089,jiwa,2025,registration,total_population,3.1,27,,
+16.09.04.2006,4,Alundua,sex,laki_laki,,244,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.04.2006,4,Alundua,sex,perempuan,,236,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.04.2006,4,Alundua,total,total,,480,jiwa,2025,registration,total_population,3.1,27,,
+16.09.04.2005,4,Penyandingan,sex,laki_laki,,511,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.04.2005,4,Penyandingan,sex,perempuan,,481,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.04.2005,4,Penyandingan,total,total,,992,jiwa,2025,registration,total_population,3.1,27,,
+16.09.04.2008,4,Dusun Tengah,sex,laki_laki,,510,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.04.2008,4,Dusun Tengah,sex,perempuan,,459,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.04.2008,4,Dusun Tengah,total,total,,969,jiwa,2025,registration,total_population,3.1,27,,
+16.09.04.2029,4,Sukaraja,sex,laki_laki,,262,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.04.2029,4,Sukaraja,sex,perempuan,,260,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.04.2029,4,Sukaraja,total,total,,522,jiwa,2025,registration,total_population,3.1,27,,
+16.09.04.2019,4,Muaradua Kisam,sex,laki_laki,,629,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.04.2019,4,Muaradua Kisam,sex,perempuan,,615,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.04.2019,4,Muaradua Kisam,total,total,,1244,jiwa,2025,registration,total_population,3.1,27,,
+16.09.04.2021,4,Pagar Dewa,sex,laki_laki,,548,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.04.2021,4,Pagar Dewa,sex,perempuan,,494,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.04.2021,4,Pagar Dewa,total,total,,1042,jiwa,2025,registration,total_population,3.1,27,,
+16.09.04.2020,4,Sukananti,sex,laki_laki,,416,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.04.2020,4,Sukananti,sex,perempuan,,393,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.04.2020,4,Sukananti,total,total,,809,jiwa,2025,registration,total_population,3.1,27,,
+16.09.04.2003,4,Tanjung Tebat,sex,laki_laki,,942,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.04.2003,4,Tanjung Tebat,sex,perempuan,,814,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.04.2003,4,Tanjung Tebat,total,total,,1756,jiwa,2025,registration,total_population,3.1,27,,
+16.09.04.2001,4,Lawang Agung,sex,laki_laki,,859,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.04.2001,4,Lawang Agung,sex,perempuan,,781,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.04.2001,4,Lawang Agung,total,total,,1640,jiwa,2025,registration,total_population,3.1,27,,
+16.09.04.2002,4,Bayur Tengah,sex,laki_laki,,550,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.04.2002,4,Bayur Tengah,sex,perempuan,,486,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.04.2002,4,Bayur Tengah,total,total,,1036,jiwa,2025,registration,total_population,3.1,27,,
+16.09.04.2004,4,Sugihan,sex,laki_laki,,891,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.04.2004,4,Sugihan,sex,perempuan,,857,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.04.2004,4,Sugihan,total,total,,1748,jiwa,2025,registration,total_population,3.1,27,,
+16.09.04,3,Muaradua Kisam,sex,laki_laki,,10451,jiwa,2025,registration,total_population,3.1,27,,Laki-Laki/Male
+16.09.04,3,Muaradua Kisam,sex,perempuan,,9489,jiwa,2025,registration,total_population,3.1,27,,Perempuan/
+16.09.04,3,Muaradua Kisam,total,total,,19940,jiwa,2025,registration,total_population,3.1,27,,
+16.09.04,3,Muara Dua Kisam,age_group,0-4,laki_laki,558,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.04,3,Muara Dua Kisam,age_group,0-4,perempuan,469,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.04,3,Muara Dua Kisam,age_group,0-4,,1027,jiwa,2025,registration,total_population,3.2,29,,0 – 4
+16.09.04,3,Muara Dua Kisam,age_group,5-9,laki_laki,766,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.04,3,Muara Dua Kisam,age_group,5-9,perempuan,705,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.04,3,Muara Dua Kisam,age_group,5-9,,1471,jiwa,2025,registration,total_population,3.2,29,,5 – 9
+16.09.04,3,Muara Dua Kisam,age_group,10-14,laki_laki,829,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.04,3,Muara Dua Kisam,age_group,10-14,perempuan,741,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.04,3,Muara Dua Kisam,age_group,10-14,,1570,jiwa,2025,registration,total_population,3.2,29,,10 – 14
+16.09.04,3,Muara Dua Kisam,age_group,15-19,laki_laki,858,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.04,3,Muara Dua Kisam,age_group,15-19,perempuan,863,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.04,3,Muara Dua Kisam,age_group,15-19,,1721,jiwa,2025,registration,total_population,3.2,29,,15 – 19
+16.09.04,3,Muara Dua Kisam,age_group,20-24,laki_laki,959,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.04,3,Muara Dua Kisam,age_group,20-24,perempuan,876,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.04,3,Muara Dua Kisam,age_group,20-24,,1835,jiwa,2025,registration,total_population,3.2,29,,20 – 24
+16.09.04,3,Muara Dua Kisam,age_group,25-29,laki_laki,853,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.04,3,Muara Dua Kisam,age_group,25-29,perempuan,750,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.04,3,Muara Dua Kisam,age_group,25-29,,1603,jiwa,2025,registration,total_population,3.2,29,,25 – 29
+16.09.04,3,Muara Dua Kisam,age_group,30-34,laki_laki,760,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.04,3,Muara Dua Kisam,age_group,30-34,perempuan,616,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.04,3,Muara Dua Kisam,age_group,30-34,,1376,jiwa,2025,registration,total_population,3.2,29,,30 – 34
+16.09.04,3,Muara Dua Kisam,age_group,35-39,laki_laki,831,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.04,3,Muara Dua Kisam,age_group,35-39,perempuan,709,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.04,3,Muara Dua Kisam,age_group,35-39,,1540,jiwa,2025,registration,total_population,3.2,29,,35 – 39
+16.09.04,3,Muara Dua Kisam,age_group,40-44,laki_laki,803,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.04,3,Muara Dua Kisam,age_group,40-44,perempuan,725,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.04,3,Muara Dua Kisam,age_group,40-44,,1528,jiwa,2025,registration,total_population,3.2,29,,40 – 44
+16.09.04,3,Muara Dua Kisam,age_group,45-49,laki_laki,758,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.04,3,Muara Dua Kisam,age_group,45-49,perempuan,747,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.04,3,Muara Dua Kisam,age_group,45-49,,1505,jiwa,2025,registration,total_population,3.2,29,,45 – 49
+16.09.04,3,Muara Dua Kisam,age_group,50-54,laki_laki,736,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.04,3,Muara Dua Kisam,age_group,50-54,perempuan,637,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.04,3,Muara Dua Kisam,age_group,50-54,,1373,jiwa,2025,registration,total_population,3.2,29,,50 – 54
+16.09.04,3,Muara Dua Kisam,age_group,55-59,laki_laki,539,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.04,3,Muara Dua Kisam,age_group,55-59,perempuan,528,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.04,3,Muara Dua Kisam,age_group,55-59,,1067,jiwa,2025,registration,total_population,3.2,29,,55 – 59
+16.09.04,3,Muara Dua Kisam,age_group,60-64,laki_laki,411,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.04,3,Muara Dua Kisam,age_group,60-64,perempuan,406,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.04,3,Muara Dua Kisam,age_group,60-64,,817,jiwa,2025,registration,total_population,3.2,29,,60 – 64
+16.09.04,3,Muara Dua Kisam,age_group,65-69,laki_laki,380,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.04,3,Muara Dua Kisam,age_group,65-69,perempuan,314,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.04,3,Muara Dua Kisam,age_group,65-69,,694,jiwa,2025,registration,total_population,3.2,29,,65 – 69
+16.09.04,3,Muara Dua Kisam,age_group,70-74,laki_laki,193,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.04,3,Muara Dua Kisam,age_group,70-74,perempuan,195,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.04,3,Muara Dua Kisam,age_group,70-74,,388,jiwa,2025,registration,total_population,3.2,29,,70 – 74
+16.09.04,3,Muara Dua Kisam,age_group,75+,laki_laki,217,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.04,3,Muara Dua Kisam,age_group,75+,perempuan,208,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.04,3,Muara Dua Kisam,age_group,75+,,425,jiwa,2025,registration,total_population,3.2,29,,75+
+16.09.04,3,Muaradua Kisam,sex,laki_laki,,10451,jiwa,2025,registration,total_population,3.2,29,,Laki-Laki
+16.09.04,3,Muaradua Kisam,sex,perempuan,,9489,jiwa,2025,registration,total_population,3.2,29,,Perempuan
+16.09.04,3,Muaradua Kisam,total,total,,19940,jiwa,2025,registration,total_population,3.2,29,,

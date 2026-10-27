@@ -1,0 +1,39 @@
+{
+  "datasetCode": "bps-3202-kecamatan-320213-dalam-angka-2026",
+  "publicationSeries": "kecamatan_dalam_angka",
+  "coverageRegionCode": "32.02.13",
+  "coverageRegionLevel": 3,
+  "publicationTitle": "Kecamatan Parung Kuda Dalam Angka 2026",
+  "publisherName": "BPS Kabupaten Sukabumi BPS-Statistics of Sukabumi Regency Sumber Ilustrasi",
+  "publisherDomain": "3202",
+  "publisherWebsite": "https://sukabumikab.bps.go.id",
+  "attribution": "Data diperoleh dari situs web resmi BPS Kabupaten Sukabumi BPS-Statistics of Sukabumi Regency Sumber Ilustrasi (https://sukabumikab.bps.go.id), publikasi \"Kecamatan Parung Kuda Dalam Angka 2026\", yang dapat diunduh secara bebas oleh siapa pun.",
+  "catalogueNumber": "1102001.3202260",
+  "publicationNumber": "32020.26029",
+  "issn": "2797-7447",
+  "publicationYear": 2026,
+  "releaseDate": "2026-09-28",
+  "publicationUrl": "https://sukabumikab.bps.go.id/id/publication/2026/09/28/fc8aea12553963f6e2e79b80/kecamatan-parung-kuda-dalam-angka-2026.html",
+  "sourceFileSha256": "d389a0b37d5531e4324e4a9fa77241482cee20f743bd32b7d15583451b53eb7f",
+  "sourceFileBytes": 6404892,
+  "sourcePages": [24, 25],
+  "termsOfUse": "Dilarang mereproduksi dan/atau menggandakan sebagian atau seluruh isi buku ini untuk tujuan komersial tanpa izin tertulis dari Badan Pusat Statistik Kabupaten Sukabumi.",
+  "csvPath": "datasets/bps-3202-kecamatan-320213-dalam-angka-2026.csv",
+  "csvSha256": "37c3b34d21a0f4a1feaf84ed8ca73deae5e27958bcc43ca3f01ca6300d1b8fdf",
+  "tablesUsed": [
+    {
+      "table": "3.1",
+      "title": "Jumlah Penduduk, Distribusi Persentase Penduduk, Kepadatan Penduduk, Rasio Jenis Kelamin Penduduk Menurut Desa/Kelurahan di Kecamatan Parungkuda, 2025",
+      "printedPages": [24, 25],
+      "referenceYears": [2025],
+      "figureBasis": "registration",
+      "unit": "jiwa"
+    }
+  ],
+  "knownGaps": [
+    "Population by age group and sex of the covered region (3.1.2): no table with this title was found in the publication",
+    "Religion per child region (4.5.4 / 4.3.1): no table with this title was found in the publication",
+    "table 3.1: row not stored: row \"Langensari\": unmatched ",
+    "table 3.1: row not stored: row \"Langensari\": unmatched "
+  ]
+}
