@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](omnichannel-crm-ui-ux.md)
 
-<!-- i18n-source-hash: sha256:e7b1694515f521d7c470b94ed9764843ef2c0a06c787ef0ec24b1fda0ee94776 -->
+<!-- i18n-source-hash: sha256:b32c660a5747d861b18da2fcc9690e4d09f8c90587dadc5b4ed15d44e3604347 -->
 
 # AWCMS-One Omnichannel CRM — Spesifikasi UI/UX lengkap v1.0
 
@@ -11,7 +11,7 @@
 - **Sudah berjalan di commerce:** Astro /admin/commerce-customers, /admin/commerce-segments, /admin/commerce-campaigns, /admin/commerce-inbox, /admin/commerce-whatsapp, /admin/commerce-reports, /admin/commerce-settings, order, booking dan POS. Feature flag/izin tetap berlaku. Inbox commerce tidak identik dengan inbox lintas sosial.
 - **Sudah berjalan di upstream AWCMS:** modul email, template, newsletter, suppression, WhatsApp generik, Web Push, Telegram notifikasi staf dan halaman /admin/omes/* sesuai kontrak yang ada. Port social publishing belum menjamin adapter akun provider nyata.
 - **Direncanakan:** lead/pipeline [AWCMS #1163/#1166](https://github.com/ahliweb/awcms/issues/1166), unified inbox/SLA [#1144/#1164](https://github.com/ahliweb/awcms/issues/1164), follow-up [#1165](https://github.com/ahliweb/awcms/issues/1165), multi-akun/sosial [#1139–#1152](https://github.com/ahliweb/awcms/issues/1139), CRM campaign [One #458](https://github.com/ahliweb/awcms-one/issues/458), AI Hermes [#459](https://github.com/ahliweb/awcms-one/issues/459), Telegram [#460](https://github.com/ahliweb/awcms-one/issues/460), Mailketing [#461](https://github.com/ahliweb/awcms-one/issues/461), mapping lead/customer [#463](https://github.com/ahliweb/awcms-one/issues/463), laporan [#464](https://github.com/ahliweb/awcms-one/issues/464).
-- **Versi faktual (24 Oktober):** root AWCMS/AWCMS-One Bun **1.4.3**, Astro Bun **1.4.2**; stabil terbaru terverifikasi **1.4.4** (22 Oktober). Mailketing adapter masih memakai **v1**; target **REST v2.0.2** (23 Oktober). Issue AWCMS #1159 migrasi, #1172 Bun, One #470, Astro #125. Layar v2 harus bertanda belum aktif sampai backend teruji.
+- **Versi faktual (24 Oktober):** root AWCMS/AWCMS-One Bun **1.4.3**, Astro Bun **1.4.2**; stabil terbaru terverifikasi **1.4.4** (22 Oktober). Sejak PR #457 (25 Oktober), pin root AWCMS-One dan `packageManager` `apps/cms` adalah **Bun 1.4.4**. Mailketing adapter masih memakai **v1**; target **REST v2.0.2** (23 Oktober). Issue AWCMS #1159 migrasi, #1172 Bun, One #470, Astro #125. Layar v2 harus bertanda belum aktif sampai backend teruji.
 - **Kebijakan terbaru yang aman:** tinjau bun outdated, bun audit, SDK, image, perubahan provider setiap minggu; update menjadi PR pin-versi, uji, staging dan rollback. Jangan tag produksi latest atau edit bun.lock manual. Issue dependensi AWCMS #1173, One #471, Astro #126, OMES #347.
 
 ## 2. Batas arsitektur dan prinsip desain
