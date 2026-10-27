@@ -7,6 +7,8 @@
  * vocabulary (`domain/segment-rules.ts`); an unknown field, operator, key or a
  * depth above the bound is a `400` that names the offending path. Both methods
  * are gated on the tenant's `segments` feature (`409 FEATURE_DISABLED` off).
+ * A rule that reads a booking-derived field (rule schema 2, ADR-0052) also needs
+ * the `booking` feature and `commerce.booking_reservation_links.read`.
  */
 import { created, fail, ok } from "../../../../../modules/_shared/api-response";
 import { defineTenantRoute } from "../../../../../modules/_shared/tenant-route";
@@ -20,6 +22,7 @@ import {
 } from "../../../../../modules/commerce/application/segment-directory";
 import {
   readValidatedBody,
+  requireBookingRuleAccess,
   requireSegmentsFeature
 } from "../../../../../modules/commerce/application/segment-http";
 import {
@@ -73,9 +76,18 @@ export const POST = defineTenantRoute<CreateSegmentInput>({
   prepare: ({ request }) =>
     readValidatedBody(request, validateCreateSegmentInput),
   authorize: CREATE_GUARD,
-  handler: async ({ tx, tenantId, auth, prepared, locals }) => {
+  handler: async ({ tx, tenantId, auth, prepared, locals, now, tokenHash }) => {
     const gate = await requireSegmentsFeature(tx, tenantId);
     if (gate) return gate;
+    const bookingDenied = await requireBookingRuleAccess(
+      tx,
+      tenantId,
+      tokenHash,
+      now,
+      prepared.node,
+      { requireFeature: true }
+    );
+    if (bookingDenied) return bookingDenied;
     const outcome = await createSegment(
       tx,
       tenantId,

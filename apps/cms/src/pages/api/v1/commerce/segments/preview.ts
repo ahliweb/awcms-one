@@ -13,6 +13,10 @@
  * SEGMENT_EVALUATION_BUSY`), time-limited (`422 SEGMENT_TOO_EXPENSIVE`) and
  * throttled per actor (`429 RATE_LIMITED`). A tenant id in the body is refused
  * by name; the tenant always comes from the authenticated context.
+ *
+ * A rule that reads a booking-derived field (rule schema 2, ADR-0052) also needs
+ * `commerce.booking_reservation_links.read`, and - when the rule is unsaved
+ * (being defined) - the tenant's `booking` feature.
  */
 import { fail, ok } from "../../../../../modules/_shared/api-response";
 import { defineTenantRoute } from "../../../../../modules/_shared/tenant-route";
@@ -22,6 +26,7 @@ import {
   evaluationRefusalResponse,
   holdsMemberVisibility,
   readValidatedBody,
+  requireBookingRuleAccess,
   requireSegmentsFeature,
   segmentNotFoundResponse,
   throttlePreview
@@ -57,6 +62,16 @@ export const POST = defineTenantRoute<SegmentPreviewRequest>({
     let segment: { id: string; version: number } | null = null;
     if (prepared.kind === "rules") {
       rules = { node: prepared.node, stats: prepared.stats };
+      // An UNSAVED rule is being defined: the booking feature must be on too.
+      const bookingDenied = await requireBookingRuleAccess(
+        tx,
+        tenantId,
+        tokenHash,
+        now,
+        prepared.node,
+        { requireFeature: true }
+      );
+      if (bookingDenied) return bookingDenied;
     } else {
       const resolved = await resolveSegmentRules(
         tx,
@@ -67,6 +82,15 @@ export const POST = defineTenantRoute<SegmentPreviewRequest>({
       if (!resolved) return segmentNotFoundResponse();
       rules = { node: resolved.node, stats: resolved.stats };
       segment = { id: resolved.segmentId, version: resolved.version };
+      const bookingDenied = await requireBookingRuleAccess(
+        tx,
+        tenantId,
+        tokenHash,
+        now,
+        resolved.node,
+        { requireFeature: false }
+      );
+      if (bookingDenied) return bookingDenied;
     }
 
     const includeSample = await holdsMemberVisibility(

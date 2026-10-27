@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:5015b530cc88c02f0b3d89d0dec9330dd72690fe8403c1f4845b92287f17449d -->
+<!-- i18n-source-hash: sha256:75d62ce6c64716a3c4f18c7832c710dc1657c4a2c0f8d97491e2111d95f146a3 -->
 
 # API
 
@@ -166,6 +166,15 @@ Setiap rute di bawah ini berada di balik bendera fitur `segments` milik tenant (
 | `GET`                  | `commerce/segments/{id}/export.csv?version`           | `commerce.segment_members.export` **dan** `commerce.customers.read` | Satu CSV, dinetralkan dari rumus, bidang bertopeng, ≤ 10.000 baris (`X-Export-Truncated`), `no-store`, diaudit pada `warning`                                                                                                                                                                                           |
 
 Evaluasi dibatasi: `422 SEGMENT_TOO_EXPENSIVE` (dibatalkan pada batas waktu statement 5 detik), `429 SEGMENT_EVALUATION_BUSY` (2 per tenant, 1 per aktor; `Retry-After`) dan `429 RATE_LIMITED` (30 pratinjau per aktor per menit). Pelanggan walk-in, terblokir, dan terhapus tidak pernah dihitung atau didaftar. Tujuh kunci izin: `commerce.segments.{read,create,update,delete}`, `commerce.segment_previews.read`, `commerce.segment_members.{read,export}`. Belum ada domain event yang diterbitkan.
+
+### Aturan segmen turunan booking (issue #390, [ADR-0052](adr/0052-booking-derived-segment-rules-are-rule-schema-2-read-live-through-the-booking-links-and-never-stored.md))
+
+Kelima route di atas menerima lima nilai `field` tambahan dalam aturan - `booking_count`, `stay_count`, `no_show_count`, `cancellation_count` (operator `eq gt gte lt lte`, `value` bilangan bulat 0 sampai 1.000.000, `windowDays` opsional) dan `last_stay_date` (operator `before after never`, `value` instan ISO atau `{ "daysAgo": n }`, tanpa jendela) - dan tidak ada hal lain pada isi permintaannya yang berubah. Setiap versi dalam respons membawa `ruleSchemaVersion` (`1` untuk versi yang disimpan sebelum perubahan ini, `2` untuk yang baru); sebuah versi selalu dibaca di bawah skema yang dibawanya, sehingga bidang booking di dalam versi skema-1 ditolak, bukan dievaluasi. Aturan yang membaca salah satu dari kelimanya juga membutuhkan:
+
+- untuk **mendefinisikan**nya (`POST commerce/segments`, `PATCH commerce/segments/{id}` dengan `rules`, `POST commerce/segments/preview` dengan `rules` tak tersimpan): fitur `booking` tenant (`409 FEATURE_DISABLED`) **dan** `commerce.booking_reservation_links.read` (`403`);
+- untuk **membaca** yang tersimpan (`preview` dengan `segmentId`, `members`, `export.csv`) dan untuk **mengarahkan** kampanye atau versi program loyalitas kepadanya: `commerce.booking_reservation_links.read` (`403`), bukan fiturnya.
+
+Aturan tanpa bidang booking, penggantian nama, dan `GET commerce/segments/{id}` (hanya aturan) tidak membutuhkan hal baru.
 
 ### Kelayakan program loyalitas berdasarkan segmen (issue #361)
 

@@ -8,11 +8,13 @@
 import { fail } from "../../_shared/api-response";
 import { checkRateLimit } from "../../../lib/security/rate-limit";
 import { authorizeInTransaction } from "../../identity-access/application/access-guard";
+import { COMMERCE_BOOKING_RESERVATION_LINKS_ACTIVITY_CODE } from "../domain/booking-adapter-permissions";
 import {
   COMMERCE_CUSTOMERS_ACTIVITY_CODE,
   COMMERCE_SEGMENT_MEMBERS_ACTIVITY_CODE
 } from "../domain/commerce-permissions";
 import { SEGMENT_EVALUATION_LIMITS } from "../domain/segment";
+import { usesBookingFields, type SegmentNode } from "../domain/segment-rules";
 import { requireCommerceFeatureForOwnerRoute } from "./commerce-feature-gate";
 
 export { readValidatedBody } from "./register-http";
@@ -23,6 +25,53 @@ export function requireSegmentsFeature(
   tenantId: string
 ): Promise<Response | null> {
   return requireCommerceFeatureForOwnerRoute(tx, tenantId, "segments");
+}
+
+const BOOKING_LINKS_READ_GUARD = {
+  moduleKey: "commerce",
+  activityCode: COMMERCE_BOOKING_RESERVATION_LINKS_ACTIVITY_CODE,
+  action: "read"
+} as const;
+
+/**
+ * Booking-derived rules (rule schema 2, ADR-0052 D5) are a separate power: a
+ * count of "people who no-showed" is booking behaviour, so a segment editor who
+ * may not read bookings must not be able to define, count, list or export one.
+ * `null` when the rule reads no booking fact or the caller holds
+ * `commerce.booking_reservation_links.read` (checked through the one access
+ * chokepoint, so the decision is logged), the finished denial otherwise.
+ *
+ * `requireFeature` additionally demands the tenant's `booking` feature - for
+ * DEFINING a rule (create, edit, an unsaved preview): a tenant that never
+ * enabled the booking adapter has nothing to derive. Reading the result of a
+ * rule already saved does not re-check the flag, because the facts are history
+ * that outlives it.
+ */
+export async function requireBookingRuleAccess(
+  tx: Bun.SQL,
+  tenantId: string,
+  tokenHash: string,
+  now: Date,
+  node: SegmentNode,
+  options: { requireFeature: boolean }
+): Promise<Response | null> {
+  if (!usesBookingFields(node)) return null;
+  if (options.requireFeature) {
+    const gate = await requireCommerceFeatureForOwnerRoute(
+      tx,
+      tenantId,
+      "booking"
+    );
+    if (gate) return gate;
+  }
+  const result = await authorizeInTransaction(
+    tx,
+    tenantId,
+    tokenHash,
+    now,
+    BOOKING_LINKS_READ_GUARD
+  );
+  return result.allowed ? null : result.denied;
 }
 
 const CUSTOMERS_READ_GUARD = {
